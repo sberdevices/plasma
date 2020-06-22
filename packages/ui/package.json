@@ -44,8 +44,5 @@
   },
   "files": [
     "components"
-  ],
-  "dependencies": {
-    "json-rpc-client": "0.1.1"
-  }
+  ]
 }
