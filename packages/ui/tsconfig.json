@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES5",
-    "module": "CommonJS",
+    "module": "ESNext",
     "lib": [
       "dom", "dom.iterable", "esnext"
     ],
@@ -35,10 +35,13 @@
     /* Advanced Options */
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist",
+    "outDir": "./core",
     "rootDir": "./src"
   },
   "include": [
     "./src",
+  ],
+  "exclude": [
+    "./src/**/*.stories.tsx"
   ]
 }

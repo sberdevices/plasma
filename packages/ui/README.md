@@ -9,6 +9,20 @@
 
 # Библиотека компонентов
 
+## Использование
+
+```typescript
+import { ActionButton, Icon } from 'ui';
+
+...
+
+return (
+  <StyledActionButton color="#08a652" size="large">
+      <Icon icon="plus" size="l" />
+  </StyledActionButton>
+)
+```
+
 ## Компоненты
 
 - [x] ActionButton
@@ -19,3 +33,5 @@
 ## TODO
 
 - [ ] Регрессионное тестирование (Hermione?)
+- [ ] Документация
+- [ ] Code Splitting

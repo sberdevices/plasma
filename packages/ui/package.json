@@ -1,11 +1,13 @@
 {
   "name": "ui",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "SberDevices Design System",
   "repository": {
     "type": "git",
     "url": "ssh://git@***REMOVED***.git"
   },
+  "main": "./core/index.js",
+  "types": "./core/index.d.ts",
   "author": "SberDevices Frontend Team",
   "license": "UNLICENSED",
   "peerDependencies": {
@@ -17,6 +19,9 @@
     "styled-components": "5.1.0"
   },
   "devDependencies": {
+    "@rollup/plugin-image": "2.0.5",
+    "@rollup/plugin-typescript": "5.0.0",
+    "@rollup/plugin-url": "5.0.1",
     "@storybook/addon-actions": "5.3.19",
     "@storybook/addon-backgrounds": "5.3.19",
     "@storybook/addon-info": "5.3.19",
@@ -34,15 +39,16 @@
     "react": "16.13.1",
     "react-docgen-typescript-loader": "3.7.2",
     "react-dom": "16.13.1",
+    "rollup": "2.18.0",
     "styled-components": "5.1.0",
     "ts-loader": "7.0.5",
     "typescript": "3.9.5"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "rollup -c",
     "storybook": "start-storybook -s .storybook/public -p 6006 -c .storybook"
   },
   "files": [
-    "components"
+    "core"
   ]
 }

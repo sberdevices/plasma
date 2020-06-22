@@ -73,7 +73,7 @@ const StyledPrice = styled.div`
     color: #fff;
 `;
 
-const Cart: React.FC<CartProps> = ({ amount, total, currency = '₽' }) => (
+export const Cart: React.FC<CartProps> = ({ amount, total, currency = '₽' }) => (
     <StyledRoot tabIndex={0}>
         <StyledIcon>
             <Icon icon="cart" size="l" />

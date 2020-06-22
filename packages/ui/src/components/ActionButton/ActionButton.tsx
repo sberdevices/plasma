@@ -31,7 +31,7 @@ const StyledButton = styled.span<{ color: string; size: number }>`
     `}
 `;
 
-const ActionButton: React.FC<ActionButtonProps> = ({ children, className, color, onClick, size = 'medium' }) => {
+export const ActionButton: React.FC<ActionButtonProps> = ({ children, className, color, onClick, size = 'medium' }) => {
     const buttonSize = React.useMemo(() => sizeMap[size], [size]);
 
     return (

@@ -6,6 +6,7 @@ interface CardProps {
     disabled?: boolean;
     className?: string;
     highlightOnFocus?: boolean;
+    scaleOnFocus?: boolean;
     shouldFocusOnMount?: boolean;
     onClick?: (id: string) => void;
     onFocus?: (id: string) => void;
@@ -14,22 +15,26 @@ interface CardProps {
 
 const OUTER_GAP = 4;
 
-const StyledRoot = styled.div<{ highlightOnFocus: boolean }>`
+const StyledRoot = styled.div<{ highlight: boolean; scale: boolean }>`
     display: inline-block;
     position: relative;
     transition: transform 0.4s ease-in-out;
 
     &:focus {
         outline: none;
-        transform: scale(1.08);
+        ${({ scale }) =>
+            scale &&
+            css`
+                transform: scale(1.08);
+            `}
 
         &::before {
             opacity: 1;
         }
     }
 
-    ${({ highlightOnFocus }) =>
-        highlightOnFocus &&
+    ${({ highlight }) =>
+        highlight &&
         css`
             &:before {
                 border-radius: 28px;
@@ -68,6 +73,7 @@ export const Card: React.FC<CardProps> = ({
     className,
     disabled,
     highlightOnFocus,
+    scaleOnFocus,
     shouldFocusOnMount,
     onClick,
     onBlur,
@@ -103,7 +109,8 @@ export const Card: React.FC<CardProps> = ({
         <StyledRoot
             ref={ref}
             className={className}
-            highlightOnFocus={Boolean(highlightOnFocus)}
+            highlight={Boolean(highlightOnFocus)}
+            scale={Boolean(scaleOnFocus)}
             tabIndex={disabled ? -1 : 0}
             onFocus={handleFocus}
             onClick={handleClick}
