@@ -13,10 +13,10 @@ const StyledRoot = styled.div<CardMediaProps>`
     background-repeat: no-repeat;
     background-size: cover;
 
-    position: relative;
     display: block;
+    position: relative;
     height: 392px;
-    width: 392px;
+    width: 100%;
 
     ${({ disabled }) =>
         disabled &&

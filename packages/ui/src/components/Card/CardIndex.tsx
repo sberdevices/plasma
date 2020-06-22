@@ -1,28 +1,62 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+type CardIndexPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
 interface CardIndexProps {
     index: number;
+    position: CardIndexPosition;
     color?: string;
     className?: string;
 }
 
-const StyledRoot = styled.div<{ color: string }>`
+function resolvePosition(pos: CardIndexPosition) {
+    switch (pos) {
+        case 'top-left':
+            return css`
+                left: 16px;
+                top: 16px;
+            `;
+        case 'top-right':
+            return css`
+                right: 16px;
+                top: 16px;
+            `;
+        case 'bottom-left':
+            return css`
+                left: 16px;
+                bottom: 16px;
+            `;
+        case 'bottom-right':
+            return css`
+                right: 16px;
+                bottom: 16px;
+            `;
+        default:
+            return null;
+    }
+}
+
+const StyledRoot = styled.div<{ color: string; position: CardIndexPosition }>`
+    align-items: center;
+    background-color: ${({ color }) => color};
+    border-radius: 50%;
+    color: rgba(0, 0, 0, 0.55);
+    display: flex;
     height: 64px;
-    width: 64px;
-    text-align: center;
-    line-height: 64px;
     font-size: 28px;
     font-weight: 600;
-    color: rgba(0, 0, 0, 0.55);
+    justify-content: center;
+    position: absolute;
+    text-align: center;
+    width: 64px;
 
-    background-color: ${({ color }) => color};
-    border-radius: 40px;
+    ${({ position }) => resolvePosition(position)}
 `;
 
-export const CardIndex: React.FC<CardIndexProps> = ({ index, className, color = '#eaeaec' }) => {
+export const CardIndex: React.FC<CardIndexProps> = ({ index, className, position, color = '#eaeaec' }) => {
     return (
-        <StyledRoot color={color} className={className}>
+        <StyledRoot color={color} position={position} className={className}>
             {index}
         </StyledRoot>
     );

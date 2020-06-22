@@ -19,48 +19,56 @@ const StyledActionButton = styled(ActionButton)`
     right: 24px;
 `;
 
-const StyledCardBadge = styled(CardBadge)`
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    z-index: 1;
-`;
-
 const StyledCard = styled(Card)`
     width: 392px;
-    min-height: 592px;
 `;
 
-const StyledIndex = styled(CardIndex)`
-    position: absolute;
-    left: 16px;
-    top: 16px;
+const StyledDivider = styled.div`
+    flex: 1;
+`;
+
+const StyledCardContent = styled(CardContent)`
+    height: 200px;
+    display: flex;
+    flex-direction: column;
 `;
 
 export default {
     title: 'Card',
 };
 
-export const Default = () => {
-    return (
-        <StyledCard id="1">
-            <CardMedia src={img1} />
-            <StyledIndex index={1} />
-            <StyledCardBadge color="#F6650A">Осталось мало</StyledCardBadge>
-            <CardContent>
-                <StyledActionButton color="#08a652" size="large">
-                    <Icon icon="plus" size="l" />
-                </StyledActionButton>
-                <CardLabel>Random item</CardLabel>
-                <CardPrice price={120} oldPrice={190} count={3} />
-            </CardContent>
-        </StyledCard>
-    );
-};
+interface FullCardPreviewProps {
+    disabled?: boolean;
+    highlightOnFocus?: boolean;
+}
+
+const FullCardPreview: React.FC<FullCardPreviewProps> = ({ disabled, highlightOnFocus }) => (
+    <StyledCard disabled={disabled} highlightOnFocus={highlightOnFocus} id="1">
+        <CardMedia src={img1} disabled={disabled} />
+        <CardIndex index={1} position="top-left" />
+
+        <CardBadge color="#F6650A" position="top-right">
+            Осталось мало
+        </CardBadge>
+
+        <StyledCardContent disabled={disabled}>
+            <StyledActionButton color="#08a652" size="large">
+                <Icon icon="plus" size="l" />
+            </StyledActionButton>
+            <CardLabel>Random item</CardLabel>
+            <StyledDivider />
+            <CardPrice price={120} oldPrice={190} count={3} />
+        </StyledCardContent>
+    </StyledCard>
+);
+
+export const Default = () => <FullCardPreview highlightOnFocus />;
+
+export const Disabled = () => <FullCardPreview disabled />;
 
 export const Simple = () => {
     return (
-        <Card id="1">
+        <Card id="1" highlightOnFocus>
             <CardContent>
                 <CardLabel>Lorem ipsum dolor sit amet consectetur adipisicing elit.</CardLabel>
                 <CardLabel>

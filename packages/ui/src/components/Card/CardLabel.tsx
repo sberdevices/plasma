@@ -2,11 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledRoot = styled.div`
-    height: 80px;
+    color: #fff;
+    font-weight: 500;
     line-height: 40px;
     font-size: 32px;
-    font-weight: 500;
-    color: #fff;
 
     display: -webkit-box;
     -webkit-box-orient: vertical;

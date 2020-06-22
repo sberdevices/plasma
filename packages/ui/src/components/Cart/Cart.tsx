@@ -76,7 +76,7 @@ const StyledPrice = styled.div`
 const Cart: React.FC<CartProps> = ({ amount, total, currency = '₽' }) => (
     <StyledRoot tabIndex={0}>
         <StyledIcon>
-            <Icon icon="cart" size="32" />
+            <Icon icon="cart" size="l" />
             {amount > 0 && <StyledBadge>{amount}</StyledBadge>}
         </StyledIcon>
         <StyledPrice>

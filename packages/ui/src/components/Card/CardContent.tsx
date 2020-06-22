@@ -7,9 +7,9 @@ interface CardContentProps {
 }
 
 const StyledRoot = styled.div<CardContentProps>`
+    box-sizing: border-box;
     position: relative;
     padding: 32px 32px 36px;
-    box-sizing: border-box;
 
     ${({ disabled }) =>
         disabled &&
