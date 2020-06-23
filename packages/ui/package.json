@@ -46,6 +46,7 @@
   },
   "scripts": {
     "build": "rollup -c",
+    "build:storybook": "build-storybook -c .storybook -o dist",
     "clean": "rm -r core",
     "storybook": "start-storybook -s .storybook/public -p 6006 -c .storybook"
   },
