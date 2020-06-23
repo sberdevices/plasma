@@ -81,23 +81,23 @@ export const Card: React.FC<CardProps> = ({
 }) => {
     const ref = React.useRef<HTMLDivElement>(null);
 
-    const handleClick = () => {
+    const handleClick = React.useCallback(() => {
         if (onClick) {
             onClick(id);
         }
-    };
+    }, [onClick, id]);
 
-    const handleFocus = () => {
+    const handleFocus = React.useCallback(() => {
         if (onFocus) {
             onFocus(id);
         }
-    };
+    }, [onFocus, id]);
 
-    const handleBlur = () => {
+    const handleBlur = React.useCallback(() => {
         if (onBlur) {
             onBlur(id);
         }
-    };
+    }, [onBlur, id]);
 
     React.useLayoutEffect(() => {
         if (shouldFocusOnMount && ref.current instanceof HTMLElement) {

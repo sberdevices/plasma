@@ -10,6 +10,11 @@ export default {
         format: 'cjs',
         sourcemap: true,
     },
-    plugins: [url(), typescript()],
+    plugins: [
+        url(),
+        typescript({
+            exclude: ['./src/**/*.stories.tsx'],
+        }),
+    ],
     externals: ['react', 'react-dom', 'styled-components'],
 };
