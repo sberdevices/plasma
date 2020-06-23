@@ -9,7 +9,7 @@ const sizeMap = {
 
 type ActionButtonSize = keyof typeof sizeMap;
 
-type ActionButtonColor = keyof DefaultTheme['colors'];
+type ActionButtonColor = keyof DefaultTheme['color'];
 
 export interface ActionButtonProps {
     size?: ActionButtonSize;
@@ -26,7 +26,7 @@ interface StyledRootProps {
 const StyledRoot = styled.span<StyledRootProps>`
     ${({ theme, color, size }) => css`
         align-items: center;
-        background-color: ${theme.colors[color]};
+        background-color: ${theme.color[color]};
         display: flex;
         justify-content: center;
         transition: opacity 0.2s ease-in-out;

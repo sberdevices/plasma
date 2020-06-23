@@ -4,12 +4,14 @@ import styled, { css } from 'styled-components';
 import cart from './svg/cart.svg';
 import done from './svg/done.svg';
 import minus from './svg/minus.svg';
+import paper from './svg/paper.svg';
 import plus from './svg/plus.svg';
 
 const iconSet = {
     cart,
     done,
     minus,
+    paper,
     plus,
 };
 
@@ -21,7 +23,7 @@ const sizeMap = {
 
 type IconSize = keyof typeof sizeMap;
 
-type IconName = keyof typeof iconSet;
+export type IconName = keyof typeof iconSet;
 
 export interface IconProps {
     icon: IconName;

@@ -1,12 +1,11 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-export interface CardProps {
-    disabled?: boolean;
+export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
     className?: string;
     highlightOnFocus?: boolean;
     scaleOnFocus?: boolean;
-    shouldFocusOnMount?: boolean;
+    focused?: boolean;
     onClick?: React.MouseEventHandler<HTMLDivElement>;
     onFocus?: React.FocusEventHandler<HTMLDivElement>;
     onBlur?: React.FocusEventHandler<HTMLDivElement>;
@@ -17,33 +16,23 @@ const OUTER_GAP = 4;
 interface StyledRootProps {
     highlight?: boolean;
     scale?: boolean;
+    focused?: boolean;
     gap: number;
 }
 
 const StyledRoot = styled.div<StyledRootProps>`
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
     position: relative;
     transition: transform 0.4s ease-in-out;
-
-    &:focus {
-        outline: none;
-        ${({ scale }) =>
-            scale &&
-            css`
-                transform: scale(1.08);
-            `}
-
-        &::before {
-            opacity: 1;
-        }
-    }
 
     ${({ theme, highlight, gap }) =>
         highlight &&
         css`
             &:before {
                 border-radius: 28px;
-                box-shadow: 0 0 0 4px ${theme.colors.highlight};
+                box-shadow: 0 0 0 4px ${theme.color.highlight};
                 box-sizing: content-box;
                 content: ' ';
                 display: block;
@@ -56,6 +45,31 @@ const StyledRoot = styled.div<StyledRootProps>`
                 bottom: -${gap}px;
             }
         `}
+
+    ${({ focused, scale }) =>
+        focused &&
+        css`
+            &:before {
+                opacity: 1;
+            }
+            ${scale &&
+            css`
+                transform: scale(1.08);
+            `}
+        `}
+
+    &:focus {
+        outline: none;
+        ${({ scale }) =>
+            scale &&
+            css`
+                transform: scale(1.08);
+            `}
+
+        &:before {
+            opacity: 1;
+        }
+    }
 `;
 
 const StyledContainer = styled.div`
@@ -75,30 +89,22 @@ const StyledContainer = styled.div`
 export const Card: React.FC<CardProps> = ({
     children,
     className,
-    disabled,
     highlightOnFocus,
     scaleOnFocus,
-    shouldFocusOnMount,
+    focused,
     onClick,
     onBlur,
     onFocus,
+    ...attributes
 }) => {
-    const ref = React.useRef<HTMLDivElement>(null);
-
-    React.useLayoutEffect(() => {
-        if (shouldFocusOnMount && ref.current instanceof HTMLElement) {
-            ref.current.focus();
-        }
-    }, [shouldFocusOnMount]);
-
     return (
         <StyledRoot
-            ref={ref}
+            {...attributes}
+            focused={focused}
             gap={OUTER_GAP}
             className={className}
             highlight={highlightOnFocus}
             scale={scaleOnFocus}
-            tabIndex={disabled ? -1 : 0}
             onFocus={onFocus}
             onClick={onClick}
             onBlur={onBlur}

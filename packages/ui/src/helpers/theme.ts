@@ -1,10 +1,10 @@
 import { color } from '@storybook/addon-knobs';
 
-import { UITheme } from '.';
+import { UITheme } from '../theme';
 
 export function getTheme(): UITheme {
     return {
-        colors: {
+        color: {
             active: color('Theme Color Active', '#08a652'),
             highlight: color('Theme Color Highlight', '#2ac673'),
         },

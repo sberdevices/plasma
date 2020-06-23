@@ -79,6 +79,7 @@ const App: React.FC = () => (
 ## Компоненты
 
 - [x] ActionButton
+- [ ] Button
 - [x] Card
 - [x] Cart
 - [x] Icon

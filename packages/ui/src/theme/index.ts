@@ -1,7 +1,8 @@
 export const defaultTheme = {
-    colors: {
+    color: {
         active: '#08a652',
         highlight: '#2ac673',
+        blank: '#ffffff',
     },
 };
 

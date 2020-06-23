@@ -1,14 +1,13 @@
 import React from 'react';
 import styled, { css, DefaultTheme } from 'styled-components';
 
-import Icon from '../Icon/Icon';
+import { Icon, IconName } from '../Icon';
 
-type CartColor = keyof DefaultTheme['colors'];
+type CartColor = keyof DefaultTheme['color'];
 
 export interface CartProps {
     amount: number;
-    total: number;
-    currency?: React.ReactNode;
+    icon?: IconName;
     color?: CartColor;
 }
 
@@ -30,7 +29,7 @@ const StyledRoot = styled.div<StyledRootProps>`
 
         &:focus {
             outline: 0;
-            background-color: ${theme.colors[color]};
+            background-color: ${theme.color[color]};
         }
     `}
 `;
@@ -48,38 +47,40 @@ interface StyledBadgeProps {
 const StyledBadge = styled.span<StyledBadgeProps>`
     ${({ theme, color }) => css`
         position: absolute;
-        top: -14px;
-        right: -12px;
+        top: 0;
+        right: 0;
+        transform: scale(1) translate(50%, -50%);
+        transform-origin: 100% 0%;
 
         display: flex;
         justify-content: center;
         align-items: center;
 
-        width: 32px;
         height: 32px;
-        line-height: 28px;
+        min-width: 32px;
+        padding: 0 8px;
 
         font-size: 20px;
 
         box-sizing: border-box;
 
         color: #fff;
-        border-radius: 50%;
-        background: ${theme.colors[color]};
+        border-radius: 16px;
+        background: ${theme.color[color]};
 
         transition: 0.2s ease-in-out;
         will-change: background-color;
+        border: 2px solid transparent;
 
         ${StyledRoot}:focus & {
-            color: ${theme.colors[color]};
-
+            color: ${theme.color[color]};
             background: #fff;
-            border: 2px solid ${theme.colors[color]};
+            border: 2px solid ${theme.color[color]};
         }
     `}
 `;
 
-const StyledPrice = styled.div`
+const StyledLabel = styled.div`
     height: 48px;
     margin-left: 16px;
     font-size: 32px;
@@ -88,15 +89,13 @@ const StyledPrice = styled.div`
     color: #fff;
 `;
 
-export const Cart: React.FC<CartProps> = ({ amount, total, currency = '₽', color = 'active' }) => (
+export const Cart: React.FC<CartProps> = ({ amount, children, icon = 'cart', color = 'active' }) => (
     <StyledRoot color={color} tabIndex={0}>
         <StyledIcon>
-            <Icon icon="cart" />
+            <Icon icon={icon} />
             {amount > 0 && <StyledBadge color={color}>{amount}</StyledBadge>}
         </StyledIcon>
-        <StyledPrice>
-            {total}&nbsp;{currency}
-        </StyledPrice>
+        {children && <StyledLabel>{children}</StyledLabel>}
     </StyledRoot>
 );
 

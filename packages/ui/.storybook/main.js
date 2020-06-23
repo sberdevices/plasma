@@ -5,7 +5,8 @@ module.exports = {
     addons: [
         '@storybook/preset-typescript',
         '@storybook/addon-knobs/register',
-        '@storybook/addon-backgrounds/register',
         '@storybook/addon-actions',
+        '@storybook/addon-backgrounds/register',
+        '@storybook/addon-viewport/register',
     ],
 };

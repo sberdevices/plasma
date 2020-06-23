@@ -39,10 +39,10 @@
     "rootDir": "./src"
   },
   "include": [
-    "./src", "global.d.ts"
+    "./src"
   ],
   "exclude": [
-    "./src/theme/storiesTheme.ts",
+    "./src/helpers",
     "./src/**/*.stories.tsx"
   ]
 }

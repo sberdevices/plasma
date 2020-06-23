@@ -1,7 +1,6 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
 
-import { getTheme } from '../../theme/storiesTheme';
+import Story from '../../helpers/Story';
 
 import ActionButton from './ActionButton';
 
@@ -10,19 +9,19 @@ export default {
 };
 
 export const Default = () => (
-    <ThemeProvider theme={getTheme()}>
+    <Story>
         <ActionButton />
-    </ThemeProvider>
+    </Story>
 );
 
 export const SizeSmall = () => (
-    <ThemeProvider theme={getTheme()}>
+    <Story>
         <ActionButton size="s" />
-    </ThemeProvider>
+    </Story>
 );
 
 export const SizeLarge = () => (
-    <ThemeProvider theme={getTheme()}>
+    <Story>
         <ActionButton size="l" />
-    </ThemeProvider>
+    </Story>
 );
