@@ -2,20 +2,25 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 interface CardProps {
-    id: string;
     disabled?: boolean;
     className?: string;
     highlightOnFocus?: boolean;
     scaleOnFocus?: boolean;
     shouldFocusOnMount?: boolean;
-    onClick?: (id: string) => void;
-    onFocus?: (id: string) => void;
-    onBlur?: (id: string) => void;
+    onClick?: React.MouseEventHandler<HTMLDivElement>;
+    onFocus?: React.FocusEventHandler<HTMLDivElement>;
+    onBlur?: React.FocusEventHandler<HTMLDivElement>;
 }
 
 const OUTER_GAP = 4;
 
-const StyledRoot = styled.div<{ highlight: boolean; scale: boolean }>`
+interface StyledRootProps {
+    highlight?: boolean;
+    scale?: boolean;
+    gap: number;
+}
+
+const StyledRoot = styled.div<StyledRootProps>`
     display: inline-block;
     position: relative;
     transition: transform 0.4s ease-in-out;
@@ -33,7 +38,7 @@ const StyledRoot = styled.div<{ highlight: boolean; scale: boolean }>`
         }
     }
 
-    ${({ highlight }) =>
+    ${({ highlight, gap }) =>
         highlight &&
         css`
             &:before {
@@ -45,10 +50,10 @@ const StyledRoot = styled.div<{ highlight: boolean; scale: boolean }>`
                 opacity: 0;
                 transition: opacity 0.2s ease-in-out;
                 position: absolute;
-                top: -${OUTER_GAP}px;
-                left: -${OUTER_GAP}px;
-                right: -${OUTER_GAP}px;
-                bottom: -${OUTER_GAP}px;
+                top: -${gap}px;
+                left: -${gap}px;
+                right: -${gap}px;
+                bottom: -${gap}px;
             }
         `}
 `;
@@ -68,7 +73,6 @@ const StyledContainer = styled.div`
 `;
 
 export const Card: React.FC<CardProps> = ({
-    id,
     children,
     className,
     disabled,
@@ -81,24 +85,6 @@ export const Card: React.FC<CardProps> = ({
 }) => {
     const ref = React.useRef<HTMLDivElement>(null);
 
-    const handleClick = React.useCallback(() => {
-        if (onClick) {
-            onClick(id);
-        }
-    }, [onClick, id]);
-
-    const handleFocus = React.useCallback(() => {
-        if (onFocus) {
-            onFocus(id);
-        }
-    }, [onFocus, id]);
-
-    const handleBlur = React.useCallback(() => {
-        if (onBlur) {
-            onBlur(id);
-        }
-    }, [onBlur, id]);
-
     React.useLayoutEffect(() => {
         if (shouldFocusOnMount && ref.current instanceof HTMLElement) {
             ref.current.focus();
@@ -108,13 +94,14 @@ export const Card: React.FC<CardProps> = ({
     return (
         <StyledRoot
             ref={ref}
+            gap={OUTER_GAP}
             className={className}
-            highlight={Boolean(highlightOnFocus)}
-            scale={Boolean(scaleOnFocus)}
+            highlight={highlightOnFocus}
+            scale={scaleOnFocus}
             tabIndex={disabled ? -1 : 0}
-            onFocus={handleFocus}
-            onClick={handleClick}
-            onBlur={handleBlur}
+            onFocus={onFocus}
+            onClick={onClick}
+            onBlur={onBlur}
         >
             <StyledContainer>{children}</StyledContainer>
         </StyledRoot>

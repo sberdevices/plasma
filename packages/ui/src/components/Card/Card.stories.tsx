@@ -44,7 +44,7 @@ interface FullCardPreviewProps {
 }
 
 const FullCardPreview: React.FC<FullCardPreviewProps> = ({ disabled, highlightOnFocus, scaleOnFocus }) => (
-    <StyledCard disabled={disabled} highlightOnFocus={highlightOnFocus} scaleOnFocus={scaleOnFocus} id="1">
+    <StyledCard disabled={disabled} highlightOnFocus={highlightOnFocus} scaleOnFocus={scaleOnFocus}>
         <CardMedia src={img1} disabled={disabled} />
         <CardIndex index={1} position="top-left" />
 
@@ -71,7 +71,7 @@ export const Disabled = () => <FullCardPreview disabled />;
 
 export const Simple = () => {
     return (
-        <Card id="1" highlightOnFocus scaleOnFocus>
+        <Card highlightOnFocus scaleOnFocus>
             <CardContent>
                 <CardLabel>Lorem ipsum dolor sit amet consectetur adipisicing elit.</CardLabel>
                 <CardLabel>

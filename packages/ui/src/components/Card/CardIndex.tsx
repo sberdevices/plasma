@@ -37,7 +37,12 @@ function resolvePosition(pos: CardIndexPosition) {
     }
 }
 
-const StyledRoot = styled.div<{ color: string; position: CardIndexPosition }>`
+interface StyledRootProps {
+    color: string;
+    position: CardIndexPosition;
+}
+
+const StyledRoot = styled.div<StyledRootProps>`
     align-items: center;
     background-color: ${({ color }) => color};
     border-radius: 50%;

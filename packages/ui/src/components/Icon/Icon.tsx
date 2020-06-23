@@ -35,9 +35,7 @@ const StyledRoot = styled.span<{ size: number; icon: IconName }>`
 `;
 
 export const Icon: React.FC<IconProps> = ({ icon, size = 'm' }) => {
-    const iconSize = React.useMemo(() => sizeMap[size], [size]);
-
-    return <StyledRoot icon={icon} size={iconSize} />;
+    return <StyledRoot icon={icon} size={sizeMap[size]} />;
 };
 
 export { iconSet };

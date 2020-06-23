@@ -38,14 +38,17 @@ function resolvePosition(pos: CardBadgePosition) {
 
 const StyledRoot = styled.div<CardBadgeProps>`
     background-color: ${({ color }) => color};
-    border-radius: 16px;
+    box-sizing: border-box;
+    border-radius: 24px;
     color: #fff;
     font-weight: 500;
     font-size: 24px;
+    height: 48px;
+    display: flex;
+    align-items: center;
     line-height: 32px;
     padding: 8px 16px;
     position: absolute;
-    z-index: 1;
 
     ${({ position }) => resolvePosition(position)}
 `;
