@@ -1,6 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
+import { getTheme } from '../../theme/storiesTheme';
 import ActionButton from '../ActionButton/ActionButton';
 import Icon from '../Icon/Icon';
 
@@ -53,8 +54,8 @@ const FullCardPreview: React.FC<FullCardPreviewProps> = ({ disabled, highlightOn
         </CardBadge>
 
         <StyledCardContent disabled={disabled}>
-            <StyledActionButton color="#08a652" size="large">
-                <Icon icon="plus" size="l" />
+            <StyledActionButton size="l">
+                <Icon icon="plus" />
             </StyledActionButton>
             <CardLabel>Random item</CardLabel>
             <StyledDivider />
@@ -63,21 +64,35 @@ const FullCardPreview: React.FC<FullCardPreviewProps> = ({ disabled, highlightOn
     </StyledCard>
 );
 
-export const Default = () => <FullCardPreview highlightOnFocus scaleOnFocus />;
+export const Default = () => (
+    <ThemeProvider theme={getTheme()}>
+        <FullCardPreview highlightOnFocus scaleOnFocus />
+    </ThemeProvider>
+);
 
-export const NoScale = () => <FullCardPreview highlightOnFocus />;
+export const NoScale = () => (
+    <ThemeProvider theme={getTheme()}>
+        <FullCardPreview highlightOnFocus />;
+    </ThemeProvider>
+);
 
-export const Disabled = () => <FullCardPreview disabled />;
+export const Disabled = () => (
+    <ThemeProvider theme={getTheme()}>
+        <FullCardPreview disabled />;
+    </ThemeProvider>
+);
 
 export const Simple = () => {
     return (
-        <Card highlightOnFocus scaleOnFocus>
-            <CardContent>
-                <CardLabel>Lorem ipsum dolor sit amet consectetur adipisicing elit.</CardLabel>
-                <CardLabel>
-                    Blanditiis obcaecati nostrum quas reiciendis nemo nihil similique repudiandae ullam harum!
-                </CardLabel>
-            </CardContent>
-        </Card>
+        <ThemeProvider theme={getTheme()}>
+            <Card highlightOnFocus scaleOnFocus>
+                <CardContent>
+                    <CardLabel>Lorem ipsum dolor sit amet consectetur adipisicing elit.</CardLabel>
+                    <CardLabel>
+                        Blanditiis obcaecati nostrum quas reiciendis nemo nihil similique repudiandae ullam harum!
+                    </CardLabel>
+                </CardContent>
+            </Card>
+        </ThemeProvider>
     );
 };

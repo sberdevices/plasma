@@ -1,29 +1,38 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css, DefaultTheme } from 'styled-components';
 
 import Icon from '../Icon/Icon';
 
-interface CartProps {
+type CartColor = keyof DefaultTheme['colors'];
+
+export interface CartProps {
     amount: number;
     total: number;
     currency?: React.ReactNode;
+    color?: CartColor;
 }
 
-const StyledRoot = styled.div`
-    display: flex;
-    align-items: center;
-    margin-left: 8px;
-    border-radius: 40px;
-    padding: 20px 40px;
-    height: 80px;
-    box-sizing: border-box;
-    transition: 0.2s ease-in-out;
-    will-change: background-color;
+interface StyledRootProps {
+    color: CartColor;
+}
 
-    &:focus {
-        outline: 0;
-        background: ${({ theme }) => theme.activeColor};
-    }
+const StyledRoot = styled.div<StyledRootProps>`
+    ${({ theme, color }) => css`
+        display: inline-flex;
+        align-items: center;
+        margin-left: 8px;
+        border-radius: 40px;
+        padding: 20px 40px;
+        height: 80px;
+        box-sizing: border-box;
+        transition: 0.2s ease-in-out;
+        will-change: background-color;
+
+        &:focus {
+            outline: 0;
+            background-color: ${theme.colors[color]};
+        }
+    `}
 `;
 
 const StyledIcon = styled.div`
@@ -32,36 +41,42 @@ const StyledIcon = styled.div`
     height: 36px;
 `;
 
-const StyledBadge = styled.span`
-    position: absolute;
-    top: -14px;
-    right: -12px;
+interface StyledBadgeProps {
+    color: CartColor;
+}
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+const StyledBadge = styled.span<StyledBadgeProps>`
+    ${({ theme, color }) => css`
+        position: absolute;
+        top: -14px;
+        right: -12px;
 
-    width: 32px;
-    height: 32px;
-    line-height: 28px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-    font-size: 20px;
+        width: 32px;
+        height: 32px;
+        line-height: 28px;
 
-    box-sizing: border-box;
+        font-size: 20px;
 
-    color: #fff;
-    border-radius: 50%;
-    background: #08a652;
+        box-sizing: border-box;
 
-    transition: 0.2s ease-in-out;
-    will-change: background-color;
+        color: #fff;
+        border-radius: 50%;
+        background: ${theme.colors[color]};
 
-    ${StyledRoot}:focus & {
-        color: #08a652;
+        transition: 0.2s ease-in-out;
+        will-change: background-color;
 
-        background: #fff;
-        border: 2px solid #08a652;
-    }
+        ${StyledRoot}:focus & {
+            color: ${theme.colors[color]};
+
+            background: #fff;
+            border: 2px solid ${theme.colors[color]};
+        }
+    `}
 `;
 
 const StyledPrice = styled.div`
@@ -73,11 +88,11 @@ const StyledPrice = styled.div`
     color: #fff;
 `;
 
-export const Cart: React.FC<CartProps> = ({ amount, total, currency = '₽' }) => (
-    <StyledRoot tabIndex={0}>
+export const Cart: React.FC<CartProps> = ({ amount, total, currency = '₽', color = 'active' }) => (
+    <StyledRoot color={color} tabIndex={0}>
         <StyledIcon>
-            <Icon icon="cart" size="l" />
-            {amount > 0 && <StyledBadge>{amount}</StyledBadge>}
+            <Icon icon="cart" />
+            {amount > 0 && <StyledBadge color={color}>{amount}</StyledBadge>}
         </StyledIcon>
         <StyledPrice>
             {total}&nbsp;{currency}

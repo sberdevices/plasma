@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-interface CardProps {
+export interface CardProps {
     disabled?: boolean;
     className?: string;
     highlightOnFocus?: boolean;
@@ -38,12 +38,12 @@ const StyledRoot = styled.div<StyledRootProps>`
         }
     }
 
-    ${({ highlight, gap }) =>
+    ${({ theme, highlight, gap }) =>
         highlight &&
         css`
             &:before {
                 border-radius: 28px;
-                box-shadow: 0 0 0 4px #2ac673;
+                box-shadow: 0 0 0 4px ${theme.colors.highlight};
                 box-sizing: content-box;
                 content: ' ';
                 display: block;

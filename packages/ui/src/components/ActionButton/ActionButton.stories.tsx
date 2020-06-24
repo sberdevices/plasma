@@ -1,4 +1,7 @@
 import React from 'react';
+import { ThemeProvider } from 'styled-components';
+
+import { getTheme } from '../../theme/storiesTheme';
 
 import ActionButton from './ActionButton';
 
@@ -6,34 +9,20 @@ export default {
     title: 'ActionButton',
 };
 
-export const Default = () => {
-    return (
-        <>
-            <ActionButton color="red" />
-            <br />
-            <ActionButton color="green" />
-            <br />
-            <ActionButton color="blue" />
-        </>
-    );
-};
+export const Default = () => (
+    <ThemeProvider theme={getTheme()}>
+        <ActionButton />
+    </ThemeProvider>
+);
 
 export const SizeSmall = () => (
-    <>
-        <ActionButton color="red" size="small" />
-        <br />
-        <ActionButton color="green" size="small" />
-        <br />
-        <ActionButton color="blue" size="small" />
-    </>
+    <ThemeProvider theme={getTheme()}>
+        <ActionButton size="s" />
+    </ThemeProvider>
 );
 
 export const SizeLarge = () => (
-    <>
-        <ActionButton color="red" size="large" />
-        <br />
-        <ActionButton color="green" size="large" />
-        <br />
-        <ActionButton color="blue" size="large" />
-    </>
+    <ThemeProvider theme={getTheme()}>
+        <ActionButton size="l" />
+    </ThemeProvider>
 );

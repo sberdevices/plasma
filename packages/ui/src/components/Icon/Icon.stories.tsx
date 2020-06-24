@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Icon, { iconSet, IconName } from './Icon';
+import Icon, { iconSet, IconProps } from './Icon';
 
 const StyledContainer = styled.div`
     padding: 10px;
@@ -16,7 +16,7 @@ export const Default = () => (
     <>
         {Object.keys(iconSet).map((icon) => (
             <StyledContainer key={icon}>
-                <Icon icon={icon as IconName} size="m" />
+                <Icon icon={icon as IconProps['icon']} size="m" />
             </StyledContainer>
         ))}
     </>
@@ -26,7 +26,7 @@ export const Small = () => (
     <>
         {Object.keys(iconSet).map((icon) => (
             <StyledContainer key={icon}>
-                <Icon icon={icon as IconName} size="s" />
+                <Icon icon={icon as IconProps['icon']} size="s" />
             </StyledContainer>
         ))}
     </>
@@ -36,17 +36,7 @@ export const Large = () => (
     <>
         {Object.keys(iconSet).map((icon) => (
             <StyledContainer key={icon}>
-                <Icon icon={icon as IconName} size="l" />
-            </StyledContainer>
-        ))}
-    </>
-);
-
-export const ExtraLarge = () => (
-    <>
-        {Object.keys(iconSet).map((icon) => (
-            <StyledContainer key={icon}>
-                <Icon icon={icon as IconName} size="xxl" />
+                <Icon icon={icon as IconProps['icon']} size="l" />
             </StyledContainer>
         ))}
     </>

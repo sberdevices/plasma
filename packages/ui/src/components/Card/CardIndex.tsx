@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 type CardIndexPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
-interface CardIndexProps {
+export interface CardIndexProps {
     index: number;
     position: CardIndexPosition;
     color?: string;

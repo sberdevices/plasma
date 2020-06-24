@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-interface CardContentProps {
+export interface CardContentProps {
     disabled?: boolean;
     className?: string;
 }

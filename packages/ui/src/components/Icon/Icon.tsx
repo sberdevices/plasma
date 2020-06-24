@@ -14,17 +14,16 @@ const iconSet = {
 };
 
 const sizeMap = {
-    s: 16,
-    m: 24,
-    l: 32,
-    xxl: 72,
+    s: 24,
+    m: 36,
+    l: 48,
 };
 
 type IconSize = keyof typeof sizeMap;
 
-export type IconName = keyof typeof iconSet;
+type IconName = keyof typeof iconSet;
 
-interface IconProps {
+export interface IconProps {
     icon: IconName;
     size?: IconSize;
     color?: string;

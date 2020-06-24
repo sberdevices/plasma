@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-interface CardMediaProps {
+export interface CardMediaProps {
     src: string;
     disabled?: boolean;
     className?: string;

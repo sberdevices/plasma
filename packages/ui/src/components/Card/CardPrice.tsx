@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-interface CardPriceProps {
+export interface CardPriceProps {
     price: number;
     oldPrice?: number;
     currency?: string;
     count?: number;
+    className?: string;
 }
 
 const StyledRoot = styled.div`
@@ -36,9 +37,9 @@ const StyledCount = styled.div`
     color: #08a652;
 `;
 
-export const CardPrice: React.FC<CardPriceProps> = ({ count, oldPrice, price, currency = '₽' }) => {
+export const CardPrice: React.FC<CardPriceProps> = ({ className, count, oldPrice, price, currency = '₽' }) => {
     return (
-        <StyledRoot>
+        <StyledRoot className={className}>
             <StyledPrice>
                 {price}&nbsp;{currency}
             </StyledPrice>

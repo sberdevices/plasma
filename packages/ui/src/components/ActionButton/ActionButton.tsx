@@ -1,41 +1,53 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css, DefaultTheme } from 'styled-components';
 
 const sizeMap = {
-    small: 40,
-    medium: 56,
-    large: 72,
+    s: 40,
+    m: 56,
+    l: 72,
 };
 
 type ActionButtonSize = keyof typeof sizeMap;
 
-interface ActionButtonProps {
-    color: string;
+type ActionButtonColor = keyof DefaultTheme['colors'];
+
+export interface ActionButtonProps {
     size?: ActionButtonSize;
     onClick?: (event: React.SyntheticEvent<HTMLSpanElement>) => void;
     className?: string;
+    color?: ActionButtonColor;
 }
 
-const StyledButton = styled.span<{ color: string; size: number }>`
-    align-items: center;
-    background-color: ${(props) => props.color};
-    display: flex;
-    justify-content: center;
-    transition: opacity 0.2s ease-in-out;
-    border-radius: 50%;
-    border: none;
+interface StyledRootProps {
+    size: number;
+    color: ActionButtonColor;
+}
 
-    ${({ size }) => css`
+const StyledRoot = styled.span<StyledRootProps>`
+    ${({ theme, color, size }) => css`
+        align-items: center;
+        background-color: ${theme.colors[color]};
+        display: flex;
+        justify-content: center;
+        transition: opacity 0.2s ease-in-out;
+        border-radius: 50%;
+        border: none;
         height: ${size}px;
         width: ${size}px;
     `}
 `;
 
-export const ActionButton: React.FC<ActionButtonProps> = ({ children, className, color, onClick, size = 'medium' }) => {
+export const ActionButton: React.FC<ActionButtonProps> = ({
+    children,
+    className,
+    onClick,
+    size = 'm',
+    color = 'active',
+}) => {
     return (
-        <StyledButton onClick={onClick} color={color} className={className} size={sizeMap[size]}>
+        <StyledRoot onClick={onClick} className={className} size={sizeMap[size]} color={color}>
             {children}
-        </StyledButton>
+        </StyledRoot>
     );
 };
 

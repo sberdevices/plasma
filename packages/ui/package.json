@@ -16,41 +16,33 @@
     "@types/react-dom": "16.9.8",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "styled-components": "5.1.0"
+    "styled-components": "5.1.1"
   },
   "devDependencies": {
-    "@rollup/plugin-image": "2.0.5",
-    "@rollup/plugin-typescript": "5.0.0",
-    "@rollup/plugin-url": "5.0.1",
     "@storybook/addon-actions": "5.3.19",
     "@storybook/addon-backgrounds": "5.3.19",
-    "@storybook/addon-info": "5.3.19",
     "@storybook/addon-knobs": "5.3.19",
-    "@storybook/addon-links": "5.3.19",
     "@storybook/preset-typescript": "3.0.0",
     "@storybook/react": "5.3.19",
-    "@svgr/webpack": "5.4.0",
     "@types/node": "12.12.30",
     "@types/react": "16.9.38",
     "@types/react-dom": "16.9.8",
     "@types/styled-components": "5.1.0",
     "babel-loader": "8.1.0",
-    "fork-ts-checker-webpack-plugin": "5.0.2",
     "react": "16.13.1",
-    "react-docgen-typescript-loader": "3.7.2",
     "react-dom": "16.13.1",
-    "rollup": "2.18.0",
-    "styled-components": "5.1.0",
-    "ts-loader": "7.0.5",
+    "styled-components": "5.1.1",
     "typescript": "3.9.5"
   },
   "scripts": {
-    "build": "rollup -c",
+    "build": "tsc && npm run copy:static",
     "build:storybook": "build-storybook -s .storybook/public -c .storybook -o dist",
-    "clean": "rm -r core",
+    "copy:static": "cp -r ./src/components/Icon/svg ./components/Icon/svg",
+    "clean": "rm -r components && rm -r theme",
     "storybook": "start-storybook -s .storybook/public -p 6006 -c .storybook"
   },
   "files": [
-    "core"
+    "./components",
+    "./theme"
   ]
 }

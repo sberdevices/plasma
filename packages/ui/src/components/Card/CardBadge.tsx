@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 type CardBadgePosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
-interface CardBadgeProps {
+export interface CardBadgeProps {
     color: string;
     position: CardBadgePosition;
     className?: string;
