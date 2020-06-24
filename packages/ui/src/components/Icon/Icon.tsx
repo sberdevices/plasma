@@ -1,27 +1,42 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import iconSet from './svg';
+import cart from './svg/cart.svg';
+import done from './svg/done.svg';
+import minus from './svg/minus.svg';
+import plus from './svg/plus.svg';
+
+const iconSet = {
+    cart,
+    done,
+    minus,
+    plus,
+};
 
 const sizeMap = {
     s: 16,
     m: 24,
     l: 32,
     xxl: 72,
-} as const;
+};
 
 type IconSize = keyof typeof sizeMap;
 
 export type IconName = keyof typeof iconSet;
 
-interface RootProps {
+interface IconProps {
     icon: IconName;
     size?: IconSize;
+    color?: string;
+    className?: string;
 }
 
-type IconProps = RootProps;
+interface StyledRootProps {
+    size: number;
+    icon: IconName;
+}
 
-const StyledRoot = styled.span<{ size: number; icon: IconName }>`
+const StyledRoot = styled.span<StyledRootProps>`
     ${(props) => css`
         display: inline-block;
         background-image: url('${iconSet[props.icon]}');

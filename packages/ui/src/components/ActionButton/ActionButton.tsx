@@ -5,7 +5,7 @@ const sizeMap = {
     small: 40,
     medium: 56,
     large: 72,
-} as const;
+};
 
 type ActionButtonSize = keyof typeof sizeMap;
 
