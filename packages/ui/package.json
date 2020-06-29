@@ -42,5 +42,8 @@
   "files": [
     "components",
     "theme"
-  ]
+  ],
+  "dependencies": {
+    "spatnav": "0.0.1"
+  }
 }

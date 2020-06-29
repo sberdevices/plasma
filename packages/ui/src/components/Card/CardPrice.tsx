@@ -1,9 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export interface CardPriceProps {
-    price: number;
-    oldPrice?: number;
+    price: number | string;
+    oldPrice?: number | string;
     currency?: string;
     count?: number;
     className?: string;
@@ -29,12 +29,14 @@ const StyledOldPrice = styled(StyledPrice)`
 `;
 
 const StyledCount = styled.div`
-    height: 40px;
-    line-height: 40px;
-    margin-left: 8px;
-    font-size: 32px;
-    font-weight: 600;
-    color: #08a652;
+    ${({ theme }) => css`
+        height: 40px;
+        line-height: 40px;
+        margin-left: 8px;
+        font-size: 32px;
+        font-weight: 600;
+        color: ${theme.color.active};
+    `}
 `;
 
 export const CardPrice: React.FC<CardPriceProps> = ({ className, count, oldPrice, price, currency = '₽' }) => {

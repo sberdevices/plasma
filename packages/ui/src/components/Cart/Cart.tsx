@@ -5,7 +5,7 @@ import { Icon, IconName } from '../Icon';
 
 type CartColor = keyof DefaultTheme['color'];
 
-export interface CartProps {
+export interface CartProps extends React.HTMLAttributes<HTMLDivElement> {
     amount: number;
     icon?: IconName;
     color?: CartColor;
@@ -89,8 +89,8 @@ const StyledLabel = styled.div`
     color: #fff;
 `;
 
-export const Cart: React.FC<CartProps> = ({ amount, children, icon = 'cart', color = 'active' }) => (
-    <StyledRoot color={color} tabIndex={0}>
+export const Cart: React.FC<CartProps> = ({ amount, children, icon = 'cart', color = 'active', ...restProps }) => (
+    <StyledRoot {...restProps} color={color}>
         <StyledIcon>
             <Icon icon={icon} />
             {amount > 0 && <StyledBadge color={color}>{amount}</StyledBadge>}

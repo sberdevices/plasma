@@ -14,9 +14,9 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 const OUTER_GAP = 4;
 
 interface StyledRootProps {
-    highlight?: boolean;
-    scale?: boolean;
-    focused?: boolean;
+    highlightOnFocus: boolean;
+    scaleOnFocus: boolean;
+    focused: boolean;
     gap: number;
 }
 
@@ -27,8 +27,8 @@ const StyledRoot = styled.div<StyledRootProps>`
     position: relative;
     transition: transform 0.4s ease-in-out;
 
-    ${({ theme, highlight, gap }) =>
-        highlight &&
+    ${({ theme, highlightOnFocus, gap }) =>
+        highlightOnFocus &&
         css`
             &:before {
                 border-radius: 28px;
@@ -46,13 +46,13 @@ const StyledRoot = styled.div<StyledRootProps>`
             }
         `}
 
-    ${({ focused, scale }) =>
+    ${({ focused, scaleOnFocus }) =>
         focused &&
         css`
             &:before {
                 opacity: 1;
             }
-            ${scale &&
+            ${scaleOnFocus &&
             css`
                 transform: scale(1.08);
             `}
@@ -60,8 +60,8 @@ const StyledRoot = styled.div<StyledRootProps>`
 
     &:focus {
         outline: none;
-        ${({ scale }) =>
-            scale &&
+        ${({ scaleOnFocus }) =>
+            scaleOnFocus &&
             css`
                 transform: scale(1.08);
             `}
@@ -89,9 +89,9 @@ const StyledContainer = styled.div`
 export const Card: React.FC<CardProps> = ({
     children,
     className,
-    highlightOnFocus,
-    scaleOnFocus,
-    focused,
+    highlightOnFocus = false,
+    scaleOnFocus = false,
+    focused = false,
     onClick,
     onBlur,
     onFocus,
@@ -103,8 +103,8 @@ export const Card: React.FC<CardProps> = ({
             focused={focused}
             gap={OUTER_GAP}
             className={className}
-            highlight={highlightOnFocus}
-            scale={scaleOnFocus}
+            highlightOnFocus={highlightOnFocus}
+            scaleOnFocus={scaleOnFocus}
             onFocus={onFocus}
             onClick={onClick}
             onBlur={onBlur}

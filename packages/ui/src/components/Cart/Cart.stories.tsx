@@ -11,12 +11,14 @@ export default {
 
 export const Default = () => (
     <Story>
-        <Cart amount={number('Amount', 5)}>{number('Total', 2350)}&nbsp;₽</Cart>
+        <Cart tabIndex={0} amount={number('Amount', 5)}>
+            {number('Total', 2350)}&nbsp;₽
+        </Cart>
     </Story>
 );
 
 export const Empty = () => (
     <Story>
-        <Cart amount={number('Amount', 5)} />
+        <Cart tabIndex={0} amount={number('Amount', 5)} />
     </Story>
 );
