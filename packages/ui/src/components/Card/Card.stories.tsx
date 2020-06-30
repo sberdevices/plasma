@@ -6,6 +6,7 @@ import ActionButton from '../ActionButton/ActionButton';
 import Icon from '../Icon/Icon';
 
 import Card, { CardProps } from './Card';
+import CardBody from './CardBody';
 import CardBadge from './CardBadge';
 import CardContent from './CardContent';
 import CardIndex from './CardIndex';
@@ -43,21 +44,23 @@ interface FullCardPreviewProps extends CardProps {
 
 const FullCardPreview: React.FC<FullCardPreviewProps> = ({ disabled, ...cardProps }) => (
     <StyledCard {...cardProps}>
-        <CardMedia src="/images/001.png" disabled={disabled} />
-        <CardIndex index={1} position="top-left" />
+        <CardBody>
+            <CardMedia src="/images/001.png" disabled={disabled} />
+            <CardIndex index={1} position="top-left" />
 
-        <CardBadge color="#F6650A" position="top-right">
-            Осталось мало
-        </CardBadge>
+            <CardBadge color="#F6650A" position="top-right">
+                Осталось мало
+            </CardBadge>
 
-        <StyledCardContent disabled={disabled}>
-            <StyledActionButton size="l">
-                <Icon icon="plus" />
-            </StyledActionButton>
-            <CardLabel>Random item</CardLabel>
-            <StyledDivider />
-            <CardPrice price={120} oldPrice={190} count={3} />
-        </StyledCardContent>
+            <StyledCardContent disabled={disabled}>
+                <StyledActionButton size="l">
+                    <Icon icon="plus" />
+                </StyledActionButton>
+                <CardLabel>Random item</CardLabel>
+                <StyledDivider />
+                <CardPrice price={120} oldPrice={190} count={3} />
+            </StyledCardContent>
+        </CardBody>
     </StyledCard>
 );
 
@@ -90,10 +93,10 @@ export const Simple = () => {
         <Story>
             <Card highlightOnFocus scaleOnFocus tabIndex={0}>
                 <CardContent>
-                    <CardLabel>Lorem ipsum dolor sit amet consectetur adipisicing elit.</CardLabel>
-                    <CardLabel>
-                        Blanditiis obcaecati nostrum quas reiciendis nemo nihil similique repudiandae ullam harum!
-                    </CardLabel>
+                    <CardBody>
+                        <CardLabel>Lorem ipsum dolor sit amet consectetur adipisicing elit.</CardLabel>
+                        <CardLabel>Blanditiis obcaecati nostrum quas reiciendis nemo nihil</CardLabel>
+                    </CardBody>
                 </CardContent>
             </Card>
         </Story>

@@ -1,4 +1,5 @@
 export * from './Card';
+export * from './CardBody';
 export * from './CardBadge';
 export * from './CardContent';
 export * from './CardIndex';
