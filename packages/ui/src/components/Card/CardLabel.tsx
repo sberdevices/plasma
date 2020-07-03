@@ -11,6 +11,7 @@ const StyledRoot = styled.div`
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
+    white-space: normal;
 `;
 
 export const CardLabel: React.FC = ({ children }) => {
