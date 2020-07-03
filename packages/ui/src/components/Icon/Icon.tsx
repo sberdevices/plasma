@@ -1,11 +1,11 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import cart from './svg/cart.svg';
-import done from './svg/done.svg';
-import minus from './svg/minus.svg';
-import paper from './svg/paper.svg';
-import plus from './svg/plus.svg';
+import cart from './Icon.assets/cart.svg';
+import done from './Icon.assets/done.svg';
+import minus from './Icon.assets/minus.svg';
+import paper from './Icon.assets/paper.svg';
+import plus from './Icon.assets/plus.svg';
 
 const iconSet = {
     cart,
