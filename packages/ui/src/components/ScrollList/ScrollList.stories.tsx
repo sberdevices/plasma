@@ -7,6 +7,7 @@ import Story from '../../helpers/Story';
 
 import ListContext from './ListContext';
 import HScrollList from './HScrollList';
+import VScrollList from './VScrollList';
 
 interface ListItemProps {
     active: boolean;
@@ -21,12 +22,11 @@ const StyledListItemBody = styled.div`
     justify-content: center;
     font-size: 24px;
     height: 100%;
-    margin: 0 20px;
 `;
 
 const StyledListItemRoot = styled.div<ListItemProps>`
     box-sizing: border-box;
-
+    padding: 20px;
     ${({ width, height }) => css`
         width: ${width}px;
         height: ${height}px;
@@ -45,6 +45,13 @@ const StyledHScrollList = styled(HScrollList)`
     width: 1800px;
     background-color: #4c4c4c;
     padding: 30px 0;
+`;
+
+const StyledVScrollList = styled(VScrollList)`
+    background-color: #4c4c4c;
+    height: 1000px;
+    width: 100%;
+    position: relative;
 `;
 
 const ListItem: React.FC<ListItemProps> = ({ active, width, height, children }) => {
@@ -68,10 +75,9 @@ export default {
     title: 'ScrollList',
 };
 
-const items = Array(12).fill(0);
 export const Horizontal = () => {
+    const items = Array(number('Item count', 12)).fill(0);
     const itemWidth = number('Item width', 400);
-    const itemHeight = number('Item height', 300);
     const index = number('Index', 0);
 
     let itemIndex = index;
@@ -85,11 +91,36 @@ export const Horizontal = () => {
         <Story>
             <StyledHScrollList itemWidth={itemWidth} index={itemIndex} onChange={action('index change')}>
                 {items.map((_, i) => (
-                    <ListItem active={i === itemIndex} width={itemWidth} height={itemHeight} key={`item:${i}`}>
+                    <ListItem active={i === itemIndex} width={itemWidth} height={300} key={`item:${i}`}>
                         {i}
                     </ListItem>
                 ))}
             </StyledHScrollList>
+        </Story>
+    );
+};
+
+export const Vertical = () => {
+    const items = Array(number('Item count', 12)).fill(0);
+    const itemHeight = number('Item height', 200);
+    const index = number('Index', 0);
+
+    let itemIndex = index;
+    if (itemIndex < 0) {
+        itemIndex = 0;
+    } else if (itemIndex > items.length - 1) {
+        itemIndex = items.length - 1;
+    }
+
+    return (
+        <Story>
+            <StyledVScrollList itemHeight={itemHeight} index={itemIndex} onChange={action('index change')}>
+                {items.map((_, i) => (
+                    <ListItem active={i === itemIndex} width={600} height={itemHeight} key={`item:${i}`}>
+                        {i}
+                    </ListItem>
+                ))}
+            </StyledVScrollList>
         </Story>
     );
 };
