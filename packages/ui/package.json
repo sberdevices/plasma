@@ -1,6 +1,6 @@
 {
   "name": "ui",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "SberDevices Design System",
   "repository": {
     "type": "git",
@@ -41,7 +41,8 @@
   },
   "files": [
     "components",
-    "theme"
+    "theme",
+    "contexts"
   ],
   "dependencies": {
     "spatnav": "0.0.1"

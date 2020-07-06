@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
+import UIContext, { useUIContext } from '../contexts/UIContext';
+
 import { getTheme } from './theme';
 
 const StoriesRoot = styled.div`
@@ -12,9 +14,14 @@ const StoriesRoot = styled.div`
 `;
 
 const Story: React.FC = ({ children }) => {
+    const uiContext = useUIContext();
+    const theme = getTheme();
+
     return (
-        <ThemeProvider theme={getTheme()}>
-            <StoriesRoot>{children}</StoriesRoot>
+        <ThemeProvider theme={theme}>
+            <UIContext.Provider value={uiContext}>
+                <StoriesRoot>{children}</StoriesRoot>
+            </UIContext.Provider>
         </ThemeProvider>
     );
 };

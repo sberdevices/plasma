@@ -1,9 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 import Story from '../../helpers/Story';
 import ActionButton from '../ActionButton/ActionButton';
 import Icon from '../Icon/Icon';
+import { getTheme } from '../../helpers/theme';
 
 import Card, { CardProps } from './Card';
 import CardBody from './CardBody';
@@ -34,10 +35,6 @@ const StyledCardContent = styled(CardContent)`
     flex-direction: column;
 `;
 
-export default {
-    title: 'Card',
-};
-
 interface FullCardPreviewProps extends CardProps {
     disabled?: boolean;
 }
@@ -48,7 +45,7 @@ const FullCardPreview: React.FC<FullCardPreviewProps> = ({ disabled, ...cardProp
             <CardMedia src="/images/001.png" disabled={disabled} />
             <CardIndex index={1} position="top-left" />
 
-            <CardBadge color="#F6650A" position="top-right">
+            <CardBadge color="accent" position="top-right">
                 Осталось мало
             </CardBadge>
 
@@ -58,47 +55,61 @@ const FullCardPreview: React.FC<FullCardPreviewProps> = ({ disabled, ...cardProp
                 </StyledActionButton>
                 <CardLabel>Random item</CardLabel>
                 <StyledDivider />
-                <CardPrice price={120} oldPrice={190} count={3} />
+                <CardPrice price={1234} oldPrice={1987} count={3} />
             </StyledCardContent>
         </CardBody>
     </StyledCard>
 );
 
+export default {
+    title: 'Card',
+};
+
 export const Default = () => (
     <Story>
-        <FullCardPreview highlightOnFocus scaleOnFocus tabIndex={0} />
+        <ThemeProvider theme={getTheme()}>
+            <FullCardPreview highlightOnFocus scaleOnFocus tabIndex={0} />
+        </ThemeProvider>
     </Story>
 );
 
 export const NoScale = () => (
     <Story>
-        <FullCardPreview highlightOnFocus tabIndex={0} />
+        <ThemeProvider theme={getTheme()}>
+            <FullCardPreview highlightOnFocus tabIndex={0} />
+        </ThemeProvider>
     </Story>
 );
 
 export const Disabled = () => (
     <Story>
-        <FullCardPreview disabled />
+        <ThemeProvider theme={getTheme()}>
+            <FullCardPreview disabled />
+        </ThemeProvider>
     </Story>
 );
 
 export const AlwaysFocused = () => (
     <Story>
-        <FullCardPreview highlightOnFocus focused />
+        <ThemeProvider theme={getTheme()}>
+            <FullCardPreview highlightOnFocus focused />
+        </ThemeProvider>
     </Story>
 );
 
 export const Simple = () => {
     return (
         <Story>
-            <Card highlightOnFocus scaleOnFocus tabIndex={0}>
-                <CardContent>
-                    <CardBody>
-                        <CardLabel>Lorem ipsum dolor sit amet consectetur adipisicing elit.</CardLabel>
-                        <CardLabel>Blanditiis obcaecati nostrum quas reiciendis nemo nihil</CardLabel>
-                    </CardBody>
-                </CardContent>
-            </Card>
+            <ThemeProvider theme={getTheme()}>
+                <Card highlightOnFocus scaleOnFocus tabIndex={0}>
+                    <CardContent>
+                        <CardBody>
+                            <CardLabel>Lorem ipsum dolor sit amet consectetur adipisicing elit.</CardLabel>
+                            <CardLabel>Blanditiis obcaecati nostrum quas reiciendis nemo nihil</CardLabel>
+                        </CardBody>
+                    </CardContent>
+                </Card>
+            </ThemeProvider>
         </Story>
     );
 };
