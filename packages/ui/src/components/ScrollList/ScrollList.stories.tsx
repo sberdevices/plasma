@@ -47,8 +47,7 @@ const StyledHScrollList = styled(HScrollList)`
 `;
 
 const StyledVScrollList = styled(VScrollList)`
-    background-color: #4c4c4c;
-    height: 950px;
+    height: 100%;
     width: 100%;
     position: relative;
 `;
