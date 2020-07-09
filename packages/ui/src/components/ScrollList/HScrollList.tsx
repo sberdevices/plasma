@@ -36,7 +36,9 @@ export const HScrollList: React.FC<HScrollListProps> = ({ children, className, i
     React.useEffect(() => {
         // направление движения: вперёд=1, назад=-1
         const direction = index - prevIndex;
-        const rootWidth = rootRef.current ? rootRef.current.getBoundingClientRect().width : 0;
+        const rootRect = rootRef.current?.getBoundingClientRect();
+        const rootWidth = rootRect ? rootRect.width : 0;
+        const rootX = rootRect ? rootRect.x : 0;
         const scrollWidth = scrollRef.current ? scrollRef.current.getBoundingClientRect().width : 0;
 
         const itemsOnScreen = Math.floor(rootWidth / itemWidth);
@@ -45,14 +47,15 @@ export const HScrollList: React.FC<HScrollListProps> = ({ children, className, i
         if (index < 0) {
             setOffset(-sideOffset);
         } else if (rootWidth > 0 && scrollWidth > 0) {
-            const rect = ctx.getItem(index)?.current?.getBoundingClientRect();
+            const itemRect = ctx.getItem(index)?.current?.getBoundingClientRect();
 
-            if (rect) {
-                if ((index <= 0 && rect.x < 0) || direction === 0) {
+            if (itemRect) {
+                const itemX = itemRect.x - rootX;
+                if ((index <= 0 && itemX < 0) || direction === 0) {
                     setOffset(-sideOffset);
-                } else if (direction > 0 && rect.x > rootWidth - itemWidth) {
+                } else if (direction > 0 && itemX > rootWidth - itemWidth) {
                     setOffset(index * itemWidth - rootWidth + itemWidth + sideOffset);
-                } else if (direction < 0 && rect.x < 0) {
+                } else if (direction < 0 && itemX < 0) {
                     setOffset(index * itemWidth - sideOffset);
                 }
             } else {

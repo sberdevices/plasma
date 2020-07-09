@@ -4,6 +4,7 @@ export const defaultTheme = {
         highlight: '#2ac673',
         blank: '#ffffff',
         accent: '#f6650a',
+        index: 'rgba(0, 0, 0, 0.56)',
     },
 };
 

@@ -54,7 +54,6 @@ declare module 'styled-components' {
 // App.tsx
 import React from 'react';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
-import { UIContext, useUIContext } from 'ui/contexts';
 import { defaultTheme } from 'ui/theme';
 import { ActionButton } from 'ui/ActionButton';
 import { Icon } from 'ui/Icon';
@@ -66,16 +65,11 @@ const theme: DefaultTheme = {
 
 
 const App: React.FC = () => {
-  // для работы с Intl необходимо подключить UIContext
-  const uiContext = useUIContext();
-
   return (
     <ThemeProvider theme={theme}>
-      <UIContext.Provider value={uiContext}>
-        <ActionButton size="l">
-          <Icon icon="plus" size="m" />
-        </ActionButton>
-      </UIContext.Provider>
+      <ActionButton size="l">
+        <Icon icon="plus" size="m" />
+      </ActionButton>
     </ThemeProvider>
   );
 };
@@ -94,6 +88,7 @@ const App: React.FC = () => {
 - [x] Icon
 - [x] HScroll
 - [x] VScroll
+- [ ] Typography
 
 ## TODO
 

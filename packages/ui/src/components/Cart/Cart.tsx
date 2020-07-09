@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css, DefaultTheme } from 'styled-components';
 
-import { Icon, IconName } from '../Icon';
+import { Icon, IconName } from '../Icon/Icon';
 
 type CartColor = keyof DefaultTheme['color'];
 

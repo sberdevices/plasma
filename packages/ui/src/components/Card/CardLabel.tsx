@@ -1,21 +1,30 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const StyledRoot = styled.div`
-    color: #fff;
-    font-weight: 500;
-    line-height: 40px;
-    font-size: 32px;
+export interface CardLabelProps {
+    lines?: number;
+}
 
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    white-space: normal;
+interface StyledRootProps {
+    lines: number;
+}
+const StyledRoot = styled.div<StyledRootProps>`
+    ${({ lines }) => css`
+        color: #fff;
+        font-weight: 500;
+        line-height: 40px;
+        font-size: 32px;
+
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: ${lines};
+        overflow: hidden;
+        white-space: normal;
+    `}
 `;
 
-export const CardLabel: React.FC = ({ children }) => {
-    return <StyledRoot>{children}</StyledRoot>;
+export const CardLabel: React.FC<CardLabelProps> = ({ children, lines = 2 }) => {
+    return <StyledRoot lines={lines}>{children}</StyledRoot>;
 };
 
 export default CardLabel;

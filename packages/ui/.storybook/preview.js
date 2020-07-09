@@ -5,13 +5,20 @@ addDecorator(withKnobs);
 
 addParameters({
     viewport: {
-        defaultViewport: 'FullHD',
+        defaultViewport: 'HD',
         viewports: {
-            FullHD: {
+            FHD: {
                 name: '1080p',
                 styles: {
                     width: '1920px',
                     height: '1080px',
+                },
+            },
+            HD: {
+                name: 'HD',
+                styles: {
+                    width: '1280px',
+                    height: '720px',
                 },
             },
             StarGate: {
@@ -28,10 +35,6 @@ addParameters({
             name: 'dark',
             value: '#0B121E',
             default: true,
-        },
-        {
-            name: 'StarGate',
-            value: 'linear-gradient(180deg, #00132b 0%, #002e2f 100%)',
         },
     ],
 });

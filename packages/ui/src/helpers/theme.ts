@@ -9,6 +9,7 @@ export function getTheme(): UITheme {
             highlight: color('Theme Color Highlight', '#2ac673'),
             blank: color('Theme Color Blank', '#ffffff'),
             accent: color('Theme Color Accent', '#f6650a'),
+            index: color('Theme Color Index', 'rgba(0, 0, 0, 0.56)'),
         },
     };
 }

@@ -42,14 +42,12 @@ const StyledListItemRoot = styled.div<ListItemProps>`
 `;
 
 const StyledHScrollList = styled(HScrollList)`
-    width: 1800px;
-    background-color: #4c4c4c;
+    width: 100%;
     padding: 30px 0;
 `;
 
 const StyledVScrollList = styled(VScrollList)`
-    background-color: #4c4c4c;
-    height: 1000px;
+    height: 100%;
     width: 100%;
     position: relative;
 `;
@@ -77,7 +75,7 @@ export default {
 
 export const Horizontal = () => {
     const items = Array(number('Item count', 12)).fill(0);
-    const itemWidth = number('Item width', 400);
+    const itemWidth = number('Item width', 350);
     const index = number('Index', 0);
 
     let itemIndex = index;
@@ -102,7 +100,7 @@ export const Horizontal = () => {
 
 export const Vertical = () => {
     const items = Array(number('Item count', 12)).fill(0);
-    const itemHeight = number('Item height', 200);
+    const itemHeight = number('Item height', 180);
     const index = number('Index', 0);
 
     let itemIndex = index;

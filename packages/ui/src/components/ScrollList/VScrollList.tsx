@@ -34,7 +34,9 @@ export const VScrollList: React.FC<VScrollListProps> = ({ children, className, i
 
     React.useEffect(() => {
         const direction = index - prevIndex;
-        const rootHeight = rootRef.current ? rootRef.current.getBoundingClientRect().height : 0;
+        const rootRect = rootRef.current?.getBoundingClientRect();
+        const rootHeight = rootRect ? rootRect.height : 0;
+        const rootY = rootRect ? rootRect.y : 0;
         const scrollHeight = scrollRef.current ? scrollRef.current.getBoundingClientRect().height : 0;
 
         const itemsOnScreen = Math.floor(rootHeight / itemHeight);
@@ -43,14 +45,15 @@ export const VScrollList: React.FC<VScrollListProps> = ({ children, className, i
         if (index < 0) {
             setOffset(-verticalOffset);
         } else if (rootHeight > 0 && scrollHeight > 0) {
-            const rect = ctx.getItem(index)?.current?.getBoundingClientRect();
+            const itemRect = ctx.getItem(index)?.current?.getBoundingClientRect();
 
-            if (rect) {
-                if (index <= 1 || direction === 0) {
+            if (itemRect) {
+                const itemY = itemRect.y - rootY;
+                if (index <= 0 || direction === 0) {
                     setOffset(-verticalOffset);
-                } else if (direction > 0 && rect.y > rootHeight - itemHeight * 2) {
+                } else if (direction > 0 && itemY > rootHeight - itemHeight * 2) {
                     setOffset(index * itemHeight - rootHeight + itemHeight * 2 + verticalOffset);
-                } else if (direction < 0 && rect.y < itemHeight * 2) {
+                } else if (direction < 0 && itemY < itemHeight * 2) {
                     setOffset(index * itemHeight - itemHeight - verticalOffset);
                 }
             } else {
@@ -68,9 +71,13 @@ export const VScrollList: React.FC<VScrollListProps> = ({ children, className, i
         }
     });
 
+    const preventScroll = React.useCallback((e: React.UIEvent<HTMLDivElement>) => {
+        e.currentTarget.scrollTop = 0;
+    }, []);
+
     return (
         <ListContext.Provider value={ctx}>
-            <StyledRoot ref={rootRef} className={className}>
+            <StyledRoot ref={rootRef} className={className} onScroll={preventScroll}>
                 <StyledScroll ref={scrollRef} style={{ transform: `translateY(${-1 * offset}px)` }}>
                     {children}
                 </StyledScroll>

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import UIContext from '../../contexts/UIContext';
+import { formatCurrency } from '../../utils/i18n';
 
 export interface CardPriceProps {
     price: number;
@@ -42,12 +42,10 @@ const StyledCount = styled.div`
 `;
 
 export const CardPrice: React.FC<CardPriceProps> = ({ className, count, currency, oldPrice, price }) => {
-    const ctx = React.useContext(UIContext);
-
     return (
         <StyledRoot className={className}>
-            <StyledPrice>{ctx.currencyFormat(price, currency)}</StyledPrice>
-            {oldPrice && <StyledOldPrice>{ctx.currencyFormat(oldPrice, currency)}</StyledOldPrice>}
+            <StyledPrice>{formatCurrency(price, currency)}</StyledPrice>
+            {oldPrice && <StyledOldPrice>{formatCurrency(oldPrice, currency)}</StyledOldPrice>}
             {count ? <StyledCount>×{count}</StyledCount> : ''}
         </StyledRoot>
     );
