@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-
-import { formatCurrency } from '../../utils/i18n';
+import { formatCurrency } from 'i18n';
 
 export interface CardPriceProps {
     price: number;

@@ -43,6 +43,7 @@
   ],
   "exclude": [
     "./src/helpers",
+    "./src/utils",
     "./src/**/*.stories.tsx"
   ]
 }
