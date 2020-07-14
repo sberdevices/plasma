@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export interface CardMediaProps {
     src: string;
@@ -7,8 +7,7 @@ export interface CardMediaProps {
     className?: string;
 }
 
-const StyledRoot = styled.div<CardMediaProps>`
-    background-image: url('${({ src }) => src}');
+const StyledRoot = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -17,17 +16,17 @@ const StyledRoot = styled.div<CardMediaProps>`
     position: relative;
     height: 392px;
     width: 100%;
-
-    ${({ disabled }) =>
-        disabled &&
-        css`
-            opacity: 0.5;
-        `}
 `;
 
 export const CardMedia: React.FC<CardMediaProps> = ({ children, className, disabled, src }) => {
     return (
-        <StyledRoot src={src} disabled={disabled} className={className}>
+        <StyledRoot
+            className={className}
+            style={{
+                backgroundImage: `url('${src}')`,
+                opacity: disabled ? 0.5 : 1,
+            }}
+        >
             {children}
         </StyledRoot>
     );
