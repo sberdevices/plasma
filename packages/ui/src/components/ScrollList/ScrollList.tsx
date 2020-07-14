@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 import ListContext, { ListContextController } from './ListContext';
 
-interface HScrollListProps {
+interface ScrollListProps {
     index: number;
     axis: 'x' | 'y';
     preventScroll?: boolean;
@@ -12,7 +12,7 @@ interface HScrollListProps {
     onChange?: (index: number, prevIndex: number) => void;
 }
 
-function resolveInlineStyle(axis: HScrollListProps['axis'], position: number): React.CSSProperties {
+function resolveInlineStyle(axis: ScrollListProps['axis'], position: number): React.CSSProperties {
     switch (axis) {
         case 'x':
             return {
@@ -28,7 +28,7 @@ function resolveInlineStyle(axis: HScrollListProps['axis'], position: number): R
 }
 
 interface StyledRootProps {
-    axis: HScrollListProps['axis'];
+    axis: ScrollListProps['axis'];
 }
 const StyledRoot = styled.div<StyledRootProps>`
     position: relative;
@@ -77,7 +77,7 @@ const StyledWrapper = styled.div<StyledRootProps>`
     }}
 `;
 
-export const ScrollList: React.FC<HScrollListProps> = ({
+export const ScrollList: React.FC<ScrollListProps> = ({
     axis,
     children,
     className,

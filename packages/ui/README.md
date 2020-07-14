@@ -29,13 +29,12 @@ const path = require('path');
 const { override, addWebpackAlias } = require('customize-cra');
 
 module.exports = override(
-  addWebpackAlias({
-    react: path.resolve(__dirname, 'node_modules', 'react'),
-    'react-dom': path.resolve(__dirname, 'node_modules', 'react-dom'),
-    'styled-components': path.resolve(__dirname, 'node_modules', 'styled-components'),
-  }),
+    addWebpackAlias({
+        react: path.resolve(__dirname, 'node_modules', 'react'),
+        'react-dom': path.resolve(__dirname, 'node_modules', 'react-dom'),
+        'styled-components': path.resolve(__dirname, 'node_modules', 'styled-components'),
+    }),
 );
-
 ```
 
 ### Настройка контекстов
@@ -46,9 +45,9 @@ import 'styled-components';
 import { UITheme } from 'ui/theme';
 
 declare module 'styled-components' {
-  export interface DefaultTheme extends UITheme {
-    // любые дополнительные свойства
-  }
+    export interface DefaultTheme extends UITheme {
+        // любые дополнительные свойства
+    }
 }
 
 // App.tsx
@@ -59,19 +58,18 @@ import { ActionButton } from 'ui/ActionButton';
 import { Icon } from 'ui/Icon';
 
 const theme: DefaultTheme = {
-  ...defaultTheme,
-  // любые дополнительные свойства или переопределение UITheme
+    ...defaultTheme,
+    // любые дополнительные свойства или переопределение UITheme
 };
 
-
 const App: React.FC = () => {
-  return (
-    <ThemeProvider theme={theme}>
-      <ActionButton size="l">
-        <Icon icon="plus" size="m" />
-      </ActionButton>
-    </ThemeProvider>
-  );
+    return (
+        <ThemeProvider theme={theme}>
+            <ActionButton size="l">
+                <Icon icon="plus" size="m" />
+            </ActionButton>
+        </ThemeProvider>
+    );
 };
 ```
 
@@ -81,17 +79,16 @@ const App: React.FC = () => {
 
 ## Компоненты
 
-- [x] ActionButton
-- [ ] Button
-- [x] Card
-- [x] Cart
-- [x] Icon
-- [x] HScroll
-- [x] VScroll
-- [ ] Typography
+-   [x] ActionButton
+-   [ ] Button
+-   [x] Card
+-   [x] Cart
+-   [x] Icon
+-   [x] ScrollList
+-   [ ] Typography
 
 ## TODO
 
-- [ ] Регрессионное тестирование (Hermione?, Cypress?)
-- [ ] Документация
-- [x] Code Splitting
+-   [ ] Регрессионное тестирование (Hermione?, Cypress?)
+-   [ ] Документация
+-   [x] Code Splitting

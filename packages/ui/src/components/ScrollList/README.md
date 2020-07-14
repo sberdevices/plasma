@@ -1,15 +1,15 @@
 # ScrollList
 
-`HScrollList` и `VScrollList` – компоненты для создания списков с прокруткой. Для использования каждый дочерний элемент списка должен использовать `ListContext` для регистрации `ref` – это необходимо для рассчёта положения элементов на экране
+`ScrollList` – компонент для создания списков с прокруткой. Для использования каждый дочерний элемент списка должен использовать `ListContext` для регистрации `ref` – это необходимо для рассчёта положения элементов на экране
 
 ## Пример подключения компонентов
 
 ```tsx
 import React from 'react';
 import styled from 'styled-components';
-import { HScrollList, VScrollList, ListContext } from 'ui/components/ScrollList';
+import { ScrollList, ListContext } from 'ui/components/ScrollList';
 
-const StyledList = styled(HScrollList)`
+const StyledList = styled(ScrollList)`
   height: 300px;
   display: flex;
   align-items: center;
@@ -42,7 +42,7 @@ const List = ({ items }) => {
   ...
 
   return (
-    <StyledList index={index} itemWidth={200}>
+    <StyledList axis="x" index={index}>
       {items.map((item) => (
         <StyledListItem item={item} key={item.id} />
       ))}
