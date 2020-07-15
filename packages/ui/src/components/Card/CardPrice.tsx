@@ -49,5 +49,3 @@ export const CardPrice: React.FC<CardPriceProps> = ({ className, count, currency
         </StyledRoot>
     );
 };
-
-export default CardPrice;

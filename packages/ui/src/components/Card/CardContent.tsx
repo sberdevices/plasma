@@ -25,5 +25,3 @@ export const CardContent: React.FC<CardContentProps> = ({ className, children, d
         </StyledRoot>
     );
 };
-
-export default CardContent;

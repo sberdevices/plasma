@@ -50,5 +50,3 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
         </StyledRoot>
     );
 };
-
-export default ActionButton;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import ListContext, { ListContextController } from './ListContext';
+import { ListContext, ListContextController } from './ListContext';
 
 interface ScrollListProps {
     index: number;
@@ -181,5 +181,3 @@ export const ScrollList: React.FC<ScrollListProps> = ({
         </ListContext.Provider>
     );
 };
-
-export default ScrollList;

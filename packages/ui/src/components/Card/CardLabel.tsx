@@ -26,5 +26,3 @@ const StyledRoot = styled.div<StyledRootProps>`
 export const CardLabel: React.FC<CardLabelProps> = ({ children, lines = 2 }) => {
     return <StyledRoot lines={lines}>{children}</StyledRoot>;
 };
-
-export default CardLabel;

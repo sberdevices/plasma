@@ -101,5 +101,3 @@ export const Card: React.FC<CardProps> = ({
         </StyledRoot>
     );
 };
-
-export default Card;

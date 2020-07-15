@@ -70,5 +70,3 @@ export const CardIndex: React.FC<CardIndexProps> = ({ index, className, position
         </StyledRoot>
     );
 };
-
-export default CardIndex;

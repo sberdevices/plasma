@@ -74,5 +74,3 @@ export const CardBadge: React.FC<CardBadgeProps> = ({
         </StyledRoot>
     );
 };
-
-export default CardBadge;

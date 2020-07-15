@@ -98,5 +98,3 @@ export const Cart: React.FC<CartProps> = ({ amount, children, icon = 'cart', col
         {children && <StyledLabel>{children}</StyledLabel>}
     </StyledRoot>
 );
-
-export default Cart;

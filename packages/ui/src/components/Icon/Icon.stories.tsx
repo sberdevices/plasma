@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Story from '../../helpers/Story';
 
-import Icon, { iconSet, IconProps } from './Icon';
+import { Icon, IconProps, iconSet } from './Icon';
 
 const StyledContainer = styled.div`
     padding: 10px;

@@ -23,5 +23,3 @@ export class ListContextController {
 }
 
 export const ListContext = React.createContext(new ListContextController());
-
-export default ListContext;

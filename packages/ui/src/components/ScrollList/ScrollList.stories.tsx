@@ -5,8 +5,8 @@ import { number } from '@storybook/addon-knobs';
 
 import Story from '../../helpers/Story';
 
-import ListContext from './ListContext';
-import ScrollList from './ScrollList';
+import { ListContext } from './ListContext';
+import { ScrollList } from './ScrollList';
 
 interface ListItemProps {
     active: boolean;

@@ -3,7 +3,7 @@ import { number } from '@storybook/addon-knobs';
 
 import Story from '../../helpers/Story';
 
-import Cart from './Cart';
+import { Cart } from './Cart';
 
 export default {
     title: 'Cart',

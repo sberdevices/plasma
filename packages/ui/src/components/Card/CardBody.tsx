@@ -30,5 +30,3 @@ export const CardBody: React.FC<CardBodyProps> = ({ children, className, borderR
         </StyledRoot>
     );
 };
-
-export default CardBody;

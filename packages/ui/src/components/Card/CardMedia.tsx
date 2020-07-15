@@ -31,5 +31,3 @@ export const CardMedia: React.FC<CardMediaProps> = ({ children, className, disab
         </StyledRoot>
     );
 };
-
-export default CardMedia;

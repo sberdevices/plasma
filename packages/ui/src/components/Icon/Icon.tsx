@@ -55,5 +55,3 @@ export const Icon: React.FC<IconProps> = ({ icon, size = 'm' }) => {
 };
 
 export { iconSet };
-
-export default Icon;
