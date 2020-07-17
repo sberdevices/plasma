@@ -36,7 +36,7 @@ const StyledCount = styled.div`
         margin-left: 8px;
         font-size: 32px;
         font-weight: 600;
-        color: ${theme.color.active};
+        color: ${theme.uiColor.active};
     `}
 `;
 

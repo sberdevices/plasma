@@ -3,7 +3,7 @@ import styled, { css, DefaultTheme } from 'styled-components';
 
 type CardIndexPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
-type CardIndexColor = keyof DefaultTheme['color'];
+type CardIndexColor = keyof DefaultTheme['uiColor'];
 
 export interface CardIndexProps {
     index: number;
@@ -47,7 +47,7 @@ interface StyledRootProps {
 const StyledRoot = styled.div<StyledRootProps>`
     ${({ theme, position, color }) => css`
         align-items: center;
-        background-color: ${theme.color[color]};
+        background-color: ${theme.uiColor[color]};
         border-radius: 50%;
         color: rgba(255, 255, 255, 0.56);
         display: flex;

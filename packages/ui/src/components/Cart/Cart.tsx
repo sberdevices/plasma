@@ -3,7 +3,7 @@ import styled, { css, DefaultTheme } from 'styled-components';
 
 import { Icon, IconName } from '../Icon/Icon';
 
-type CartColor = keyof DefaultTheme['color'];
+type CartColor = keyof DefaultTheme['uiColor'];
 
 export interface CartProps extends React.HTMLAttributes<HTMLDivElement> {
     amount: number;
@@ -29,7 +29,7 @@ const StyledRoot = styled.div<StyledRootProps>`
 
         &:focus {
             outline: 0;
-            background-color: ${theme.color[color]};
+            background-color: ${theme.uiColor[color]};
         }
     `}
 `;
@@ -66,16 +66,16 @@ const StyledBadge = styled.span<StyledBadgeProps>`
 
         color: #fff;
         border-radius: 16px;
-        background: ${theme.color[color]};
+        background: ${theme.uiColor[color]};
 
         transition: 0.2s ease-in-out;
         will-change: background-color;
         border: 2px solid transparent;
 
         ${StyledRoot}:focus & {
-            color: ${theme.color[color]};
+            color: ${theme.uiColor[color]};
             background: #fff;
-            border: 2px solid ${theme.color[color]};
+            border: 2px solid ${theme.uiColor[color]};
         }
     `}
 `;

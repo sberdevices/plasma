@@ -35,7 +35,7 @@ const StyledRoot = styled.div<StyledRootProps>`
         css`
             &:before {
                 border-radius: ${borderRadius}px;
-                box-shadow: 0 0 0 4px ${theme.color.highlight};
+                box-shadow: 0 0 0 4px ${theme.uiColor.highlight};
                 box-sizing: content-box;
                 content: ' ';
                 display: block;

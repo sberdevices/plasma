@@ -3,7 +3,7 @@ import styled, { css, DefaultTheme } from 'styled-components';
 
 type CardBadgePosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
-type CardBadgePositionColor = keyof DefaultTheme['color'];
+type CardBadgePositionColor = keyof DefaultTheme['uiColor'];
 
 export interface CardBadgeProps {
     position?: CardBadgePosition;
@@ -45,7 +45,7 @@ interface StyledRootProps {
 
 const StyledRoot = styled.div<StyledRootProps>`
     ${({ theme, color, position }) => css`
-        background-color: ${theme.color[color]};
+        background-color: ${theme.uiColor[color]};
         box-sizing: border-box;
         border-radius: 24px;
         color: #fff;
