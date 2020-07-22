@@ -39,7 +39,7 @@
     },
     "scripts": {
         "build": "tsc && npm run copy:static",
-        "build:storybook": "build-storybook -s .storybook/public -c .storybook -o dist",
+        "build:storybook": "build-storybook -s .storybook/public -c .storybook -o build-sb",
         "copy:static": "cp -r ./src/components/Icon/Icon.assets ./components/Icon/Icon.assets",
         "storybook": "start-storybook -s .storybook/public -p 6006 -c .storybook"
     },
