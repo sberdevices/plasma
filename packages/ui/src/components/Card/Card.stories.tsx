@@ -42,7 +42,7 @@ interface FullCardPreviewProps extends CardProps {
 const FullCardPreview: React.FC<FullCardPreviewProps> = ({ disabled, ...cardProps }) => (
     <StyledCard {...cardProps}>
         <CardBody>
-            <CardMedia src="/images/001.png" disabled={disabled} />
+            <CardMedia src={"./images/001.png"} disabled={disabled} />
             <CardIndex index={1} position="top-left" />
 
             <CardBadge color="accent" position="top-right">
