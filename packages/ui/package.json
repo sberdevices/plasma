@@ -44,16 +44,12 @@
         "build:storybook": "npm run storybook:build && npm run storybook:extract",
         "copy:static": "cp -r ./src/components/Icon/Icon.assets ./components/Icon/Icon.assets",
         "storybook": "start-storybook -s .storybook/public -p 6006 -c .storybook",
-        "storybook:build": "build-storybook -s .storybook/public -c .storybook -o build-sb",
-        "storybook:extract": "sb extract build-sb ./build-sb/stories.json"
+        "storybook:build": "build-storybook -s .storybook/public -c .storybook -o build",
+        "storybook:extract": "sb extract build ./build/stories.json"
     },
     "storybook": {
         "title": "SberDevices Design System",
-        "url": "http://***REMOVED***/static-dev/ui-sb"
+        "url": "http://***REMOVED***/static-dev/ui"
     },
-    "files": [
-        "components",
-        "theme",
-        "utils"
-    ]
+    "files": ["components", "theme", "utils"]
 }
