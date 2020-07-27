@@ -73,18 +73,22 @@ const StyledRoot = styled.div<StyledRootProps>`
     `}
 `;
 
-export const Card: React.FC<CardProps> = ({
-    children,
-    className,
-    highlightOnFocus = false,
-    scaleOnFocus = false,
-    focused = false,
-    borderRadius = 28,
-    onClick,
-    onBlur,
-    onFocus,
-    ...attributes
-}) => {
+// eslint-disable-next-line prefer-arrow-callback
+export const Card = React.forwardRef<HTMLDivElement, CardProps>(function Card(
+    {
+        children,
+        className,
+        highlightOnFocus = false,
+        scaleOnFocus = false,
+        focused = false,
+        borderRadius = 28,
+        onClick,
+        onBlur,
+        onFocus,
+        ...attributes
+    },
+    ref,
+) {
     return (
         <StyledRoot
             {...attributes}
@@ -96,8 +100,9 @@ export const Card: React.FC<CardProps> = ({
             onFocus={onFocus}
             onClick={onClick}
             onBlur={onBlur}
+            ref={ref}
         >
             {children}
         </StyledRoot>
     );
-};
+});

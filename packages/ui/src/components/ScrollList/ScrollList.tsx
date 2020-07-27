@@ -9,6 +9,8 @@ interface ScrollListProps {
     preventScroll?: boolean;
     className?: string;
     offset?: number;
+    // Длительность перехода трансформации, в милисекундах
+    transitionDuration?: number;
     onChange?: (index: number, prevIndex: number) => void;
 }
 
@@ -27,9 +29,7 @@ function resolveInlineStyle(axis: ScrollListProps['axis'], position: number): Re
     }
 }
 
-interface StyledRootProps {
-    axis: ScrollListProps['axis'];
-}
+type StyledRootProps = Pick<ScrollListProps, 'axis' | 'transitionDuration'>;
 const StyledRoot = styled.div<StyledRootProps>`
     position: relative;
 
@@ -53,9 +53,11 @@ const StyledRoot = styled.div<StyledRootProps>`
 `;
 
 const StyledWrapper = styled.div<StyledRootProps>`
-    align-items: center;
     position: relative;
-    transition: transform 0.4s ease-in-out;
+
+    align-items: center;
+
+    transition: ${(props) => `transform ${props.transitionDuration}ms ease-in-out`};
 
     ${({ axis }) => {
         switch (axis) {
@@ -84,13 +86,14 @@ export const ScrollList: React.FC<ScrollListProps> = ({
     index,
     offset = 0,
     preventScroll = false,
+    transitionDuration = 400,
     onChange,
 }) => {
     const rootRef = React.useRef<HTMLDivElement | null>(null);
     const scrollRef = React.useRef<HTMLDivElement | null>(null);
 
     const [prevIndex, setPrevIndex] = React.useState(index);
-    const [position, setPosition] = React.useState(0);
+    const [position, setPosition] = React.useState(-offset);
 
     const ctx = React.useMemo(() => new ListContextController(), []);
 
@@ -174,7 +177,12 @@ export const ScrollList: React.FC<ScrollListProps> = ({
     return (
         <ListContext.Provider value={ctx}>
             <StyledRoot ref={rootRef} className={className} onScroll={handleScroll} axis={axis}>
-                <StyledWrapper ref={scrollRef} style={resolveInlineStyle(axis, position)} axis={axis}>
+                <StyledWrapper
+                    ref={scrollRef}
+                    style={resolveInlineStyle(axis, position)}
+                    axis={axis}
+                    transitionDuration={transitionDuration}
+                >
                     {children}
                 </StyledWrapper>
             </StyledRoot>

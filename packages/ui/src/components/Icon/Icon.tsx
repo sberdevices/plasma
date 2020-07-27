@@ -6,6 +6,7 @@ import done from './Icon.assets/done.svg';
 import minus from './Icon.assets/minus.svg';
 import paper from './Icon.assets/paper.svg';
 import plus from './Icon.assets/plus.svg';
+import clock from './Icon.assets/clock.svg';
 
 const iconSet = {
     cart,
@@ -13,6 +14,7 @@ const iconSet = {
     minus,
     paper,
     plus,
+    clock,
 };
 
 const sizeMap = {
