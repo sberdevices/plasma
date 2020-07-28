@@ -2,7 +2,10 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 import cart from './Icon.assets/cart.svg';
+import chevronLeft from './Icon.assets/chevron-left.svg';
+import clock from './Icon.assets/clock.svg';
 import done from './Icon.assets/done.svg';
+import hotel from './Icon.assets/hotel.svg';
 import minus from './Icon.assets/minus.svg';
 import paper from './Icon.assets/paper.svg';
 import plus from './Icon.assets/plus.svg';
@@ -10,7 +13,10 @@ import clock from './Icon.assets/clock.svg';
 
 const iconSet = {
     cart,
+    chevronLeft,
+    clock,
     done,
+    hotel,
     minus,
     paper,
     plus,
