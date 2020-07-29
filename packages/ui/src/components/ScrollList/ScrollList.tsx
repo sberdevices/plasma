@@ -6,10 +6,18 @@ import { ListContext, ListContextController } from './ListContext';
 interface ScrollListProps {
     index: number;
     axis: 'x' | 'y';
+    /**
+     * Фиксирует скролл. Необходимо при использовании вместе с spatnav
+     */
     preventScroll?: boolean;
     className?: string;
+    /**
+     * Горизонтальное/вертикальное смещение, относительно начала и конца списка
+     */
     offset?: number;
-    // Длительность перехода трансформации, в милисекундах
+    /**
+     * Длительность перехода трансформации, в милисекундах
+     */
     transitionDuration?: number;
     onChange?: (index: number, prevIndex: number) => void;
 }
