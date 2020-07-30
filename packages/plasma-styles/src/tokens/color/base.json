@@ -1,0 +1,21 @@
+{
+    "color": {
+        "base": {
+            "primary": {
+                "value": "#fff"
+            },
+            "secondary": {
+                "value": "rgba(255, 255, 255, 0.12)"
+            },
+            "warning": {
+                "value": "#ef6b25"
+            },
+            "critical": {
+                "value": "#ef6b25"
+            },
+            "checked": {
+                "value": "#fff"
+            }
+        }
+    }
+}

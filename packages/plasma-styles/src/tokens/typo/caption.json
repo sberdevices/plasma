@@ -1,0 +1,23 @@
+{
+    "typo": {
+        "caption": {
+            "Caption": {
+                "fontSize": {
+                    "value": "12px"
+                },
+                "fontStyle": {
+                    "value": "normal"
+                },
+                "lineHeight": {
+                    "value": "16px"
+                },
+                "fontWeight": {
+                    "value": "500"
+                },
+                "letterSpacing": {
+                    "value": "-0.022em"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,54 @@
+{
+    "typo": {
+        "display": {
+            "Display1": {
+                "fontSize": {
+                    "value": "96px"
+                },
+                "fontStyle": {
+                    "value": "normal"
+                },
+                "lineHeight": {
+                    "value": "96px"
+                },
+                "fontWeight": {
+                    "value": "500"
+                },
+                "letterSpacing": {
+                    "value": "-0.019em"
+                }
+            },
+            "Display2": {
+                "fontSize": {
+                    "value": "60px"
+                },
+                "fontStyle": {
+                    "value": "normal"
+                },
+                "lineHeight": {
+                    "value": "64px"
+                },
+                "fontWeight": {
+                    "value": "500"
+                },
+                "letterSpacing": {
+                    "value": "-0.019em"
+                }
+            },
+            "Display3": {
+                "fontSize": {
+                    "value": "48px"
+                },
+                "fontStyle": {
+                    "value": "normal"
+                },
+                "lineHeight": {
+                    "value": "52px"
+                },
+                "fontWeight": {
+                    "value": "500"
+                }
+            }
+        }
+    }
+}

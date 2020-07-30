@@ -1,0 +1,30 @@
+{
+    "color": {
+        "text": {
+            "primary": {
+                "value": "#fff"
+            },
+            "secondary": {
+                "value": "rgba(255, 255, 255, 0.56)"
+            },
+            "tertiary": {
+                "value": "rgba(255, 255, 255, 0.28)"
+            },
+            "warning": {
+                "value": "#ef6b25"
+            },
+            "critical": {
+                "value": "#dc283a"
+            },
+            "sber": {
+                "value": "#2ac673"
+            },
+            "eva": {
+                "value": "#2990ff"
+            },
+            "joy": {
+                "value": "#a27de8"
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "theme:dark:joy": {
+        "color": {
+            "base": {
+                "primary": {
+                    "value": "#8356d7"
+                }
+            },
+            "background": {
+                "default": {
+                    "value": "linear-gradient(350.06deg, rgba(255, 156, 101, 0.24) 0%, rgba(8, 8, 8, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(61, 19, 149, 0.34) 0%, rgba(19, 24, 149, 0.1) 99.69%), linear-gradient(180.01deg, rgba(8, 8, 8, 0) 50%, rgba(255, 215, 179, 0.15) 99.97%), linear-gradient(270deg, rgba(107, 15, 87, 0.2) 0%, rgba(8, 8, 8, 0) 100%)"
+                }
+            }
+        }
+    }
+}

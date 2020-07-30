@@ -1,0 +1,40 @@
+{
+    "typo": {
+        "paragraph": {
+            "ParagraphText1": {
+                "fontSize": {
+                    "value": "16px"
+                },
+                "fontStyle": {
+                    "value": "normal"
+                },
+                "lineHeight": {
+                    "value": "22px"
+                },
+                "fontWeight": {
+                    "value": "normal"
+                },
+                "letterSpacing": {
+                    "value": "-0.019em"
+                }
+            },
+            "ParagraphText2": {
+                "fontSize": {
+                    "value": "16px"
+                },
+                "fontStyle": {
+                    "value": "normal"
+                },
+                "lineHeight": {
+                    "value": "22px"
+                },
+                "fontWeight": {
+                    "value": "600"
+                },
+                "letterSpacing": {
+                    "value": "-0.019em"
+                }
+            }
+        }
+    }
+}
