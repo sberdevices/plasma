@@ -1,51 +1,19 @@
 import React from 'react';
 import styled, { css, DefaultTheme } from 'styled-components';
 
-type CardIndexPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
-
 type CardIndexColor = keyof DefaultTheme['uiColor'];
 
 export interface CardIndexProps {
-    index: number;
-    position: CardIndexPosition;
     color?: CardIndexColor;
     className?: string;
 }
 
-function resolvePosition(pos: CardIndexPosition) {
-    switch (pos) {
-        case 'top-left':
-            return css`
-                left: 16px;
-                top: 16px;
-            `;
-        case 'top-right':
-            return css`
-                right: 16px;
-                top: 16px;
-            `;
-        case 'bottom-left':
-            return css`
-                left: 16px;
-                bottom: 16px;
-            `;
-        case 'bottom-right':
-            return css`
-                right: 16px;
-                bottom: 16px;
-            `;
-        default:
-            return null;
-    }
-}
-
 interface StyledRootProps {
     color: CardIndexColor;
-    position: CardIndexPosition;
 }
 
 const StyledRoot = styled.div<StyledRootProps>`
-    ${({ theme, position, color }) => css`
+    ${({ theme, color }) => css`
         align-items: center;
         background-color: ${theme.uiColor[color]};
         border-radius: 50%;
@@ -58,15 +26,13 @@ const StyledRoot = styled.div<StyledRootProps>`
         position: absolute;
         text-align: center;
         width: 64px;
-
-        ${resolvePosition(position)}
     `}
 `;
 
-export const CardIndex: React.FC<CardIndexProps> = ({ index, className, position, color = 'index' }) => {
+export const CardIndex: React.FC<CardIndexProps> = ({ children, className, color = 'index' }) => {
     return (
-        <StyledRoot color={color} position={position} className={className}>
-            {index}
+        <StyledRoot color={color} className={className}>
+            {children}
         </StyledRoot>
     );
 };

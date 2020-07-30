@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 export interface CardLabelProps {
+    className?: string;
     lines?: number;
 }
 
@@ -23,6 +24,10 @@ const StyledRoot = styled.div<StyledRootProps>`
     `}
 `;
 
-export const CardLabel: React.FC<CardLabelProps> = ({ children, lines = 2 }) => {
-    return <StyledRoot lines={lines}>{children}</StyledRoot>;
+export const CardLabel: React.FC<CardLabelProps> = ({ children, className, lines = 2 }) => {
+    return (
+        <StyledRoot lines={lines} className={className}>
+            {children}
+        </StyledRoot>
+    );
 };

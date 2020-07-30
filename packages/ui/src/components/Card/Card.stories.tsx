@@ -30,9 +30,15 @@ const StyledDivider = styled.div`
 `;
 
 const StyledCardContent = styled(CardContent)`
-    height: 200px;
     display: flex;
     flex-direction: column;
+
+    height: 200px;
+`;
+
+const StyledCardIndex = styled(CardIndex)`
+    top: 8px;
+    left: 8px;
 `;
 
 interface FullCardPreviewProps extends CardProps {
@@ -42,8 +48,8 @@ interface FullCardPreviewProps extends CardProps {
 const FullCardPreview: React.FC<FullCardPreviewProps> = ({ disabled, ...cardProps }) => (
     <StyledCard {...cardProps}>
         <CardBody>
-            <CardMedia src={"./images/001.png"} disabled={disabled} />
-            <CardIndex index={1} position="top-left" />
+            <CardMedia src="./images/001.png" disabled={disabled} />
+            <StyledCardIndex>1</StyledCardIndex>
 
             <CardBadge color="accent" position="top-right">
                 Осталось мало

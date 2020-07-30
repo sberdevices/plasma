@@ -1,31 +1,27 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export interface CardBodyProps extends React.HTMLAttributes<HTMLDivElement> {
-    borderRadius?: number;
     className?: string;
 }
 
-interface StyledRootProps {
-    borderRadius: number;
-}
+const StyledRoot = styled.div`
+    position: relative;
 
-const StyledRoot = styled.div<StyledRootProps>`
-    ${({ borderRadius }) => css`
-        border-radius: ${borderRadius}px;
-        box-sizing: content-box;
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-        overflow: hidden;
-        position: relative;
-        width: 100%;
-    `}
+    display: flex;
+    overflow: hidden;
+    flex: 1;
+    flex-direction: column;
+
+    box-sizing: content-box;
+    width: 100%;
+
+    border-radius: 40px;
 `;
 
-export const CardBody: React.FC<CardBodyProps> = ({ children, className, borderRadius = 28, ...attributes }) => {
+export const CardBody: React.FC<CardBodyProps> = ({ children, className, ...attributes }) => {
     return (
-        <StyledRoot {...attributes} className={className} borderRadius={borderRadius}>
+        <StyledRoot {...attributes} className={className}>
             {children}
         </StyledRoot>
     );
