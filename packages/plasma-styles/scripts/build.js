@@ -77,6 +77,14 @@ const config = {
                         type: name,
                     }),
                 ),
+                cssInJsProperties.config({
+                    destination: `Typo/${tokensVariableName}.ts`,
+                    category: 'typo',
+                }),
+                cssInJsProperties.config({
+                    destination: `Color/${tokensVariableName}.ts`,
+                    category: 'color',
+                }),
                 styledGlobalStyle.config({
                     destination: 'Typo/index.tsx',
                     category: 'typo',

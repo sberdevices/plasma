@@ -11,9 +11,12 @@
                 "value": "#ef6b25"
             },
             "critical": {
-                "value": "#ef6b25"
+                "value": "#dc283a"
             },
             "checked": {
+                "value": "#fff"
+            },
+            "focus": {
                 "value": "#fff"
             }
         }

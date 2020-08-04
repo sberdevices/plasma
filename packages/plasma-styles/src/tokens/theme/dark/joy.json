@@ -4,6 +4,9 @@
             "base": {
                 "primary": {
                     "value": "#8356d7"
+                },
+                "focus": {
+                    "value": "{color.brand.joy.value}"
                 }
             },
             "background": {

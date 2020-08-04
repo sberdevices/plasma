@@ -11,9 +11,9 @@ export const themedCssProperty = (prop: DictionaryProperty, tab = 2) => {
         part += `${tablulation}/** Inefered from ${prop.original.value.replace('{', '').replace('}', '')} */\n`;
     }
 
-    part += `${tablulation}--${`${prop.attributes.type}-${prop.attributes.item}-${prop.attributes.subitem}`}: ${
-        prop.value
-    };`;
+    const value = prop.original.value.includes('rgb') ? prop.original.value : prop.value;
+
+    part += `${tablulation}--${`${prop.attributes.type}-${prop.attributes.item}-${prop.attributes.subitem}`}: ${value};`;
 
     return part;
 };

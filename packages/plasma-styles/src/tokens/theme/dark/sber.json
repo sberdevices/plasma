@@ -4,6 +4,9 @@
             "base": {
                 "primary": {
                     "value": "#12a557"
+                },
+                "focus": {
+                    "value": "{color.brand.sber.value}"
                 }
             },
             "background": {

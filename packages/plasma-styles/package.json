@@ -7,7 +7,7 @@
         "fix": "rm -rf node_modules/@types/react-native",
         "compile:formatters": "tsc",
         "clean": "rm -rf dist ts",
-        "build": "npm run clean && npm run fix && ts-node scripts/build.js && tsc"
+        "build": "npm run clean && npm run fix && ts-node -O '{\"module\":\"commonjs\"}' scripts/build.js && tsc"
     },
     "author": "SberDevices Frontend Team",
     "license": "UNLICENSED",

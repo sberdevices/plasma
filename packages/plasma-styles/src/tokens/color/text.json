@@ -15,15 +15,6 @@
             },
             "critical": {
                 "value": "#dc283a"
-            },
-            "sber": {
-                "value": "#2ac673"
-            },
-            "eva": {
-                "value": "#2990ff"
-            },
-            "joy": {
-                "value": "#a27de8"
             }
         }
     }

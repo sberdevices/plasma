@@ -21,7 +21,9 @@ export const cssProperty = (prop: DictionaryProperty, tab = 2) => {
 
     if (prop.comment) part += `${tablulation}/** ${prop.comment} */\n`;
 
-    part += `${tablulation}--${paramCase(prop.name)}: ${prop.value};`;
+    const value = prop.original.value.includes('rgb') ? prop.original.value : prop.value;
+
+    part += `${tablulation}--${paramCase(prop.name)}: ${value};`;
 
     return part;
 };

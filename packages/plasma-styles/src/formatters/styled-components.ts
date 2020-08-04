@@ -10,14 +10,14 @@
  * import * as tokens from './tokens';
  *
  * export const Button1 = styled.div`
- *   font-size: ${tokens.TypoButtonButton1FontSize};
- *   font-style: ${tokens.TypoButtonButton1FontStyle};
- *   line-height: ${tokens.TypoButtonButton1LineHeight};
- *   font-weight: ${tokens.TypoButtonButton1FontWeight};
+ *   font-size: ${tokens.typoButtonButton1FontSize};
+ *   font-style: ${tokens.typoButtonButton1FontStyle};
+ *   line-height: ${tokens.typoButtonButton1LineHeight};
+ *   font-weight: ${tokens.typoButtonButton1FontWeight};
  *`;
  * ```
  */
-import { paramCase } from 'change-case';
+import { paramCase, camelCase } from 'change-case';
 
 import { Dictionary, CategoryProperties } from '../typings';
 import { header } from '../lib/header';
@@ -41,9 +41,9 @@ const typedCssVariable = (categories: CategoryProperties, props: FormatterOption
         Object.keys(categories[categoryName]).forEach((componentName, i) => {
             const style = Object.keys(categories[categoryName][componentName]).reduce(
                 (cssProps: Record<string, string>, propName) => {
-                    cssProps[
-                        propName
-                    ] = `${props.tokensVariableName}.${categories[categoryName][componentName][propName].name}`;
+                    cssProps[propName] = `${props.tokensVariableName}.${camelCase(
+                        categories[categoryName][componentName][propName].name,
+                    )}`;
                     return cssProps;
                 },
                 {},

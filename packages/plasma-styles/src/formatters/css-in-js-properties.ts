@@ -4,13 +4,13 @@
  *
  * Example:
  *
- * export const TypoBodyBodyAiFontSize = 'var(--typo-body-body-ai-font-size)';
- * export const TypoBodyBodyAiFontStyle = 'var(--typo-body-body-ai-font-style)';
- * export const TypoBodyBodyAiLineHeight = 'var(--typo-body-body-ai-line-height)';
- * export const TypoBodyBodyAiFontWeight = 'var(--typo-body-body-ai-font-weight)';
- * export const TypoBodyBodyAiLetterSpacing = 'var(--typo-body-body-ai-letter-spacing)';
+ * export const typoBodyBodyAiFontSize = 'var(--typo-body-body-ai-font-size)';
+ * export const typoBodyBodyAiFontStyle = 'var(--typo-body-body-ai-font-style)';
+ * export const typoBodyBodyAiLineHeight = 'var(--typo-body-body-ai-line-height)';
+ * export const typoBodyBodyAiFontWeight = 'var(--typo-body-body-ai-font-weight)';
+ * export const typoBodyBodyAiLetterSpacing = 'var(--typo-body-body-ai-letter-spacing)';
  */
-import { paramCase } from 'change-case';
+import { paramCase, camelCase } from 'change-case';
 
 import { DictionaryProperty, Dictionary } from '../typings';
 import { header } from '../lib/header';
@@ -20,7 +20,7 @@ const typedCssVariable = (prop: DictionaryProperty) => {
 
     if (prop.comment) part += `/** ${prop.comment} */\n`;
 
-    part += `export const ${prop.name} = 'var(--${paramCase(prop.name)})';`;
+    part += `export const ${camelCase(prop.name)} = 'var(--${paramCase(prop.name)})';`;
 
     return part;
 };

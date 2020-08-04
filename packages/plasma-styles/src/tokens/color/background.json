@@ -1,6 +1,9 @@
 {
     "color": {
         "background": {
+            "color": {
+                "value": "#080808"
+            },
             "default": {
                 "value": "#080808"
             },

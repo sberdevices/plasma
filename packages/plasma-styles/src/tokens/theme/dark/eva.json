@@ -4,6 +4,9 @@
             "base": {
                 "primary": {
                     "value": "#0f6fdf"
+                },
+                "focus": {
+                    "value": "{color.brand.eva.value}"
                 }
             },
             "background": {

@@ -1,0 +1,15 @@
+{
+    "color": {
+        "brand": {
+            "sber": {
+                "value": "#2ac673"
+            },
+            "eva": {
+                "value": "#2990ff"
+            },
+            "joy": {
+                "value": "#a27de8"
+            }
+        }
+    }
+}
