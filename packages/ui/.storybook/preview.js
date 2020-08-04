@@ -37,10 +37,6 @@ addParameters({
                 name: 'dark',
                 value: '#0B121E',
             },
-            {
-                name: 'SberBox',
-                value: 'linear-gradient(180deg, #00132b 0%, #002e2f 100%)',
-            },
         ],
     },
 });
