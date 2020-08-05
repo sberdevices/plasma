@@ -41,7 +41,7 @@ const config = {
     platforms: {
         css: {
             transformGroup: 'css',
-            buildPath: 'dist/js/',
+            buildPath: '.tmp/js/',
             files: [
                 cssCustomProperties.config({
                     destination: `${tokensVariableName}/typo.css`,
@@ -61,7 +61,7 @@ const config = {
         },
         components: {
             transformGroup: 'js',
-            buildPath: 'ts/сomponents/',
+            buildPath: '.tmp/ts/components/',
             files: [
                 ...typoComponents.map((name) =>
                     cssInJsProperties.config({

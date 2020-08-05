@@ -1,8 +1,8 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { select } from '@storybook/addon-knobs';
-import Typo from 'plasma-styles/dist/js/сomponents/Typo';
-import Color from 'plasma-styles/dist/js/сomponents/Color';
+import Typo from 'plasma-styles/components/Typo';
+import Color from 'plasma-styles/components/Color';
 import {
     colorTextPrimary,
     colorBackgroundColor,
@@ -17,18 +17,18 @@ import {
     colorTextSecondary,
     colorTextWarning,
     colorTextCritical,
-} from 'plasma-styles/dist/js/сomponents/Color/tokens';
-import ThemeSber from 'plasma-styles/dist/js/сomponents/Theme/_dark/Theme_dark_sber';
-import ThemeEva from 'plasma-styles/dist/js/сomponents/Theme/_dark/Theme_dark_eva';
-import ThemeJoy from 'plasma-styles/dist/js/сomponents/Theme/_dark/Theme_dark_joy';
-import { Display1, Display2, Display3 } from 'plasma-styles/dist/js/сomponents/Display';
-import { Headline1, Headline2, Headline3, Headline4 } from 'plasma-styles/dist/js/сomponents/Headline';
-import { Body1, Body2, Body3, BodyAI } from 'plasma-styles/dist/js/сomponents/Body';
-import { ParagraphText1, ParagraphText2 } from 'plasma-styles/dist/js/сomponents/Paragraph';
-import { Footnote1, Footnote2 } from 'plasma-styles/dist/js/сomponents/Footnote';
-import { Button1, Button2 } from 'plasma-styles/dist/js/сomponents/Button';
-import { Caption } from 'plasma-styles/dist/js/сomponents/Caption';
-import { Underline } from 'plasma-styles/dist/js/сomponents/Underline';
+} from 'plasma-styles/components/Color/tokens';
+import ThemeSber from 'plasma-styles/components/Theme/_dark/Theme_dark_sber';
+import ThemeEva from 'plasma-styles/components/Theme/_dark/Theme_dark_eva';
+import ThemeJoy from 'plasma-styles/components/Theme/_dark/Theme_dark_joy';
+import { Display1, Display2, Display3 } from 'plasma-styles/components/Display';
+import { Headline1, Headline2, Headline3, Headline4 } from 'plasma-styles/components/Headline';
+import { Body1, Body2, Body3, BodyAI } from 'plasma-styles/components/Body';
+import { ParagraphText1, ParagraphText2 } from 'plasma-styles/components/Paragraph';
+import { Footnote1, Footnote2 } from 'plasma-styles/components/Footnote';
+import { Button1, Button2 } from 'plasma-styles/components/Button';
+import { Caption } from 'plasma-styles/components/Caption';
+import { Underline } from 'plasma-styles/components/Underline';
 
 export default {
     title: 'PlasmaStyles',

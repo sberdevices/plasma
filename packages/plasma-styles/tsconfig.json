@@ -33,8 +33,8 @@
         /* Advanced Options */
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
-        "outDir": "./dist/js",
-        "rootDir": "./ts"
+        "outDir": "./.tmp/js",
+        "rootDir": "./.tmp/ts"
     },
-    "include": ["./ts"]
+    "include": ["./.tmp/ts"]
 }
