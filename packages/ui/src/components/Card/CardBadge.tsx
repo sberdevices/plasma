@@ -1,75 +1,41 @@
 import React from 'react';
 import styled, { css, DefaultTheme } from 'styled-components';
 
-type CardBadgePosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
-
-type CardBadgePositionColor = keyof DefaultTheme['uiColor'];
+type CardBadgeColor = keyof DefaultTheme['uiColor'];
 
 export interface CardBadgeProps {
-    position?: CardBadgePosition;
-    color?: CardBadgePositionColor;
+    color?: CardBadgeColor;
     className?: string;
 }
 
-function resolvePosition(pos: CardBadgePosition) {
-    switch (pos) {
-        case 'top-left':
-            return css`
-                left: 16px;
-                top: 16px;
-            `;
-        case 'top-right':
-            return css`
-                right: 16px;
-                top: 16px;
-            `;
-        case 'bottom-left':
-            return css`
-                left: 16px;
-                bottom: 16px;
-            `;
-        case 'bottom-right':
-            return css`
-                right: 16px;
-                bottom: 16px;
-            `;
-        default:
-            return null;
-    }
-}
-
 interface StyledRootProps {
-    color: CardBadgePositionColor;
-    position: CardBadgePosition;
+    color: CardBadgeColor;
 }
-
 const StyledRoot = styled.div<StyledRootProps>`
-    ${({ theme, color, position }) => css`
-        background-color: ${theme.uiColor[color]};
-        box-sizing: border-box;
-        border-radius: 24px;
-        color: #fff;
-        font-weight: 500;
-        font-size: 24px;
-        height: 48px;
-        display: flex;
-        align-items: center;
-        line-height: 32px;
-        padding: 8px 16px;
-        position: absolute;
+    position: absolute;
 
-        ${resolvePosition(position)}
+    display: flex;
+    align-items: center;
+
+    box-sizing: border-box;
+    height: 48px;
+    padding: 8px 16px;
+
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 32px;
+
+    color: #fff;
+    border-radius: 24px;
+
+    ${({ theme, color }) => css`
+        background-color: ${theme.uiColor[color]};
     `}
 `;
 
-export const CardBadge: React.FC<CardBadgeProps> = ({
-    className,
-    children,
-    color = 'active',
-    position = 'top-right',
-}) => {
+export const CardBadge: React.FC<CardBadgeProps> = ({ className, children, color = 'active' }) => {
     return (
-        <StyledRoot color={color} position={position} className={className}>
+        <StyledRoot color={color} className={className}>
             {children}
         </StyledRoot>
     );

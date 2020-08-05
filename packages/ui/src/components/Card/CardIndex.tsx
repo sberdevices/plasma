@@ -13,19 +13,24 @@ interface StyledRootProps {
 }
 
 const StyledRoot = styled.div<StyledRootProps>`
+    position: absolute;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 64px;
+    height: 64px;
+
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+
+    color: rgba(255, 255, 255, 0.56);
+    border-radius: 50%;
+
     ${({ theme, color }) => css`
-        align-items: center;
         background-color: ${theme.uiColor[color]};
-        border-radius: 50%;
-        color: rgba(255, 255, 255, 0.56);
-        display: flex;
-        height: 64px;
-        font-size: 28px;
-        font-weight: 600;
-        justify-content: center;
-        position: absolute;
-        text-align: center;
-        width: 64px;
     `}
 `;
 

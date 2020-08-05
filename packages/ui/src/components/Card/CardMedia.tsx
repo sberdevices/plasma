@@ -8,14 +8,16 @@ export interface CardMediaProps {
 }
 
 const StyledRoot = styled.div`
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    position: relative;
 
     display: block;
-    position: relative;
-    height: 392px;
+
     width: 100%;
+    height: 392px;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 `;
 
 export const CardMedia: React.FC<CardMediaProps> = ({ children, className, disabled, src }) => {

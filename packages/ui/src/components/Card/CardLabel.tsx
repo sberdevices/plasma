@@ -10,17 +10,19 @@ interface StyledRootProps {
     lines: number;
 }
 const StyledRoot = styled.div<StyledRootProps>`
-    ${({ lines }) => css`
-        color: #fff;
-        font-weight: 500;
-        line-height: 40px;
-        font-size: 32px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 40px;
+    white-space: normal;
+
+    color: #fff;
+
+    ${({ lines }) => css`
         -webkit-line-clamp: ${lines};
-        overflow: hidden;
-        white-space: normal;
     `}
 `;
 

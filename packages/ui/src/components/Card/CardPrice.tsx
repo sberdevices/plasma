@@ -11,31 +11,38 @@ export interface CardPriceProps {
 }
 
 const StyledRoot = styled.div`
-    margin-top: 12px;
     display: flex;
+
+    margin-top: 12px;
 `;
 
 const StyledPrice = styled.div`
     height: 40px;
-    line-height: 40px;
+
     font-size: 32px;
     font-weight: 600;
+    line-height: 40px;
+
     color: #fff;
 `;
 
 const StyledOldPrice = styled(StyledPrice)`
-    opacity: 0.24;
     margin-left: 8px;
+
     text-decoration: line-through;
+
+    opacity: 0.24;
 `;
 
 const StyledCount = styled.div`
+    height: 40px;
+    margin-left: 8px;
+
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 40px;
+
     ${({ theme }) => css`
-        height: 40px;
-        line-height: 40px;
-        margin-left: 8px;
-        font-size: 32px;
-        font-weight: 600;
         color: ${theme.uiColor.active};
     `}
 `;

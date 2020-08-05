@@ -7,8 +7,9 @@ export interface CardContentProps {
 }
 
 const StyledRoot = styled.div<CardContentProps>`
-    box-sizing: border-box;
     position: relative;
+
+    box-sizing: border-box;
     padding: 32px;
 
     ${({ disabled }) =>

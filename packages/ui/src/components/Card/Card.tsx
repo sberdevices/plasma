@@ -18,17 +18,20 @@ interface StyledRootProps {
 }
 
 const StyledRoot = styled.div<StyledRootProps>`
-    ${({ theme, highlightOnFocus, focused, scaleOnFocus }) => css`
-        display: flex;
-        flex-direction: column;
-        flex-shrink: 0;
-        position: relative;
-        transition: transform 0.4s ease-in-out;
-        border-radius: 40px;
-        background: rgba(255, 255, 255, 0.06);
-        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
-        will-change: background-color, transform;
+    position: relative;
 
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+
+    border-radius: 40px;
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
+    will-change: background-color, transform;
+
+    transition: transform 0.4s ease-in-out;
+
+    ${({ theme, highlightOnFocus, focused, scaleOnFocus }) => css`
         ${highlightOnFocus &&
         css`
             &:before {

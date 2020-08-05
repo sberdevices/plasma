@@ -41,6 +41,11 @@ const StyledCardIndex = styled(CardIndex)`
     left: 8px;
 `;
 
+const StyledCardBadge = styled(CardBadge)`
+    top: 16px;
+    right: 16px;
+`;
+
 interface FullCardPreviewProps extends CardProps {
     disabled?: boolean;
 }
@@ -51,9 +56,7 @@ const FullCardPreview: React.FC<FullCardPreviewProps> = ({ disabled, ...cardProp
             <CardMedia src="./images/001.png" disabled={disabled} />
             <StyledCardIndex>1</StyledCardIndex>
 
-            <CardBadge color="accent" position="top-right">
-                Осталось мало
-            </CardBadge>
+            <StyledCardBadge color="accent">Осталось мало</StyledCardBadge>
 
             <StyledCardContent disabled={disabled}>
                 <StyledActionButton size="l">
@@ -108,12 +111,12 @@ export const Simple = () => {
         <Story>
             <ThemeProvider theme={getTheme()}>
                 <Card highlightOnFocus scaleOnFocus tabIndex={0}>
-                    <CardContent>
-                        <CardBody>
+                    <CardBody>
+                        <CardContent>
                             <CardLabel>Lorem ipsum dolor sit amet consectetur adipisicing elit.</CardLabel>
                             <CardLabel>Blanditiis obcaecati nostrum quas reiciendis nemo nihil</CardLabel>
-                        </CardBody>
-                    </CardContent>
+                        </CardContent>
+                    </CardBody>
                 </Card>
             </ThemeProvider>
         </Story>
