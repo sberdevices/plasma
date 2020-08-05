@@ -4,8 +4,9 @@ import styled, { ThemeProvider } from 'styled-components';
 import { getTheme } from './theme';
 
 const StoriesRoot = styled.div`
-    box-sizing: border-box;
     overflow: scroll;
+
+    box-sizing: border-box;
     padding: 40px;
 `;
 
