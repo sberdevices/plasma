@@ -17,7 +17,7 @@ import { header } from '../lib/header';
 
 export const cssProperty = (prop: DictionaryProperty, tab = 2) => {
     let part = '';
-    const tablulation = Array(tab).fill(' ').join('');
+    const tablulation = ' '.repeat(tab);
 
     if (prop.comment) part += `${tablulation}/** ${prop.comment} */\n`;
 
