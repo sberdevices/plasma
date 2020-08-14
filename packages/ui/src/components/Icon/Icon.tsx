@@ -9,6 +9,12 @@ import hotel from './Icon.assets/hotel.svg';
 import minus from './Icon.assets/minus.svg';
 import paper from './Icon.assets/paper.svg';
 import plus from './Icon.assets/plus.svg';
+import forward from './Icon.assets/forward.svg';
+import pause from './Icon.assets/pause.svg';
+import play from './Icon.assets/play.svg';
+import replay from './Icon.assets/replay.svg';
+import skipNext from './Icon.assets/skip-next.svg';
+import skipPrevious from './Icon.assets/skip-previous.svg';
 
 const iconSet = {
     cart,
@@ -19,6 +25,12 @@ const iconSet = {
     minus,
     paper,
     plus,
+    skipPrevious,
+    replay,
+    pause,
+    play,
+    forward,
+    skipNext,
 };
 
 const sizeMap = {
@@ -46,13 +58,14 @@ interface StyledRootProps {
 const StyledRoot = styled.span<StyledRootProps>`
     ${(props) => css`
         display: inline-block;
-        background-image: url('${iconSet[props.icon]}');
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        display: inline-block;
+
         width: ${props.size}px;
         height: ${props.size}px;
+
+        background-image: url('${iconSet[props.icon]}');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
     `}
 `;
 
