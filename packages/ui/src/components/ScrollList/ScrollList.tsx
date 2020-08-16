@@ -37,7 +37,7 @@ function resolveInlineStyle(axis: ScrollListProps['axis'], position: number): Re
     }
 }
 
-type StyledRootProps = Pick<ScrollListProps, 'axis' | 'transitionDuration'>;
+type StyledRootProps = Pick<ScrollListProps, 'axis'>;
 const StyledRoot = styled.div<StyledRootProps>`
     position: relative;
 
@@ -60,12 +60,17 @@ const StyledRoot = styled.div<StyledRootProps>`
     }}
 `;
 
-const StyledWrapper = styled.div<StyledRootProps>`
+type StyledWrapperProps = Pick<ScrollListProps, 'axis' | 'transitionDuration'>;
+const StyledWrapper = styled.div<StyledWrapperProps>`
     position: relative;
 
     align-items: center;
 
-    transition: ${(props) => `transform ${props.transitionDuration}ms ease-in-out`};
+    ${({ transitionDuration }) =>
+        transitionDuration &&
+        css`
+            transition: transform ${transitionDuration}ms ease-in-out;
+        `};
 
     ${({ axis }) => {
         switch (axis) {
@@ -105,9 +110,11 @@ export const ScrollList: React.FC<ScrollListProps> = ({
 
     const ctx = React.useMemo(() => new ListContextController(), []);
 
+    // направление движения: `назад`=-1, `не изменилось`=0, `вперёд`=1
+    const direction = React.useRef(0);
+
     React.useEffect(() => {
-        // направление движения: вперёд=1, назад=-1
-        const direction = index - prevIndex;
+        direction.current = index - prevIndex;
         const rootRect = rootRef.current?.getBoundingClientRect();
         const scrollRect = scrollRef.current?.getBoundingClientRect();
         const item = ctx.getItem(index)?.current;
@@ -126,11 +133,11 @@ export const ScrollList: React.FC<ScrollListProps> = ({
                     if (itemRect) {
                         const itemX = itemRect.x - rootX;
 
-                        if ((index <= 0 && itemX < 0) || direction === 0) {
+                        if (index <= 0 && itemX < 0) {
                             setPosition(-offset);
-                        } else if (direction > 0 && itemX > rootWidth - itemRect.width - offset) {
+                        } else if (direction.current >= 0 && itemX > rootWidth - itemRect.width - offset) {
                             setPosition(item.offsetLeft - rootWidth + itemRect.width + offset);
-                        } else if (direction < 0 && itemX < offset) {
+                        } else if (direction.current < 0 && itemX < offset) {
                             setPosition(item.offsetLeft - offset);
                         }
                     }
@@ -148,11 +155,11 @@ export const ScrollList: React.FC<ScrollListProps> = ({
                     if (itemRect) {
                         const itemY = itemRect.y - rootY;
 
-                        if (index <= 0 || direction === 0) {
+                        if (index <= 0) {
                             setPosition(-offset);
-                        } else if (direction > 0 && itemY > rootHeight - itemRect.height - offset) {
+                        } else if (direction.current >= 0 && itemY > rootHeight - itemRect.height - offset) {
                             setPosition(item.offsetTop - rootHeight + itemRect.height + offset);
-                        } else if (direction < 0 && itemY < offset) {
+                        } else if (direction.current < 0 && itemY < offset) {
                             setPosition(item.offsetTop - offset);
                         }
                     }
@@ -189,7 +196,10 @@ export const ScrollList: React.FC<ScrollListProps> = ({
                     ref={scrollRef}
                     style={resolveInlineStyle(axis, position)}
                     axis={axis}
-                    transitionDuration={transitionDuration}
+                    // если `direction` не определён, то отключаем анимацию. Кейс: переход на другую страницу
+                    // из середины списка с последующим возвратом назад: если оставить анимацию,
+                    // то список будет скролить от 0 до текущей позиции
+                    transitionDuration={direction.current !== 0 ? transitionDuration : undefined}
                 >
                     {children}
                 </StyledWrapper>

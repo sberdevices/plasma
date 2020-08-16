@@ -1,6 +1,6 @@
 {
     "name": "ui",
-    "version": "0.1.13",
+    "version": "0.1.14",
     "description": "SberDevices Design System",
     "repository": {
         "type": "git",
@@ -53,9 +53,5 @@
         "title": "SberDevices Design System",
         "url": "http://***REMOVED***/static-dev/ui"
     },
-    "files": [
-        "components",
-        "theme",
-        "utils"
-    ]
+    "files": ["components", "theme", "utils"]
 }
