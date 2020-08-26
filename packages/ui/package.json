@@ -53,5 +53,14 @@
         "title": "SberDevices Design System",
         "url": "http://***REMOVED***/static-dev/ui"
     },
-    "files": ["components", "theme", "utils"]
+    "files": [
+        "components",
+        "theme",
+        "utils"
+    ],
+    "contributors": [
+        "Чельцов Евгений Олегович",
+        "Vasiliy Loginevskiy",
+        "Виноградов Антон Александрович"
+    ]
 }
