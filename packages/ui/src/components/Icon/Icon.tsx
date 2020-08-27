@@ -15,6 +15,7 @@ import play from './Icon.assets/play.svg';
 import replay from './Icon.assets/replay.svg';
 import skipNext from './Icon.assets/skip-next.svg';
 import skipPrevious from './Icon.assets/skip-previous.svg';
+import plaint from './Icon.assets/plaint.svg';
 
 const iconSet = {
     cart,
@@ -31,6 +32,7 @@ const iconSet = {
     play,
     forward,
     skipNext,
+    plaint,
 };
 
 const sizeMap = {
