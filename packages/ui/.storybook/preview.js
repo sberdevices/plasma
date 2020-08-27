@@ -31,7 +31,7 @@ addParameters({
         },
     },
     backgrounds: {
-        default: 'SberBox',
+        default: 'dark',
         values: [
             {
                 name: 'dark',
