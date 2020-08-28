@@ -11,5 +11,9 @@ export function getTheme(): UITheme {
             accent: color('Theme Color Accent', '#f6650a'),
             index: color('Theme Color Index', 'rgba(0, 0, 0, 0.56)'),
         },
+        buttonColor: {
+            active: color('Button Color Active', '#12a557'),
+            secondary: color('Button Color Secondary', 'rgba(255, 255, 255, 0.12)'),
+        },
     };
 }
