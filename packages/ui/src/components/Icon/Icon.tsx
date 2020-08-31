@@ -71,8 +71,8 @@ const StyledRoot = styled.span<StyledRootProps>`
     `}
 `;
 
-export const Icon: React.FC<IconProps> = ({ icon, size = 'm' }) => {
-    return <StyledRoot icon={icon} size={sizeMap[size]} />;
+export const Icon: React.FC<IconProps> = ({ icon, size = 'm', className }) => {
+    return <StyledRoot className={className} icon={icon} size={sizeMap[size]} />;
 };
 
 export { iconSet };
