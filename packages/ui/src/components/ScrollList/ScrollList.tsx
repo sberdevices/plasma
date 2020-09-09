@@ -3,6 +3,15 @@ import styled, { css } from 'styled-components';
 
 import { ListContext, ListContextController } from './ListContext';
 
+export type CalcPosition = (
+    index: number,
+    offset: number,
+    direction: React.MutableRefObject<number>,
+    rootRect?: DOMRect,
+    scrollRect?: DOMRect,
+    item?: HTMLElement | null,
+) => number;
+
 interface ScrollListProps {
     index: number;
     axis: 'x' | 'y';
@@ -20,6 +29,7 @@ interface ScrollListProps {
      */
     transitionDuration?: number;
     onChange?: (index: number, prevIndex: number) => void;
+    calcPosition?: CalcPosition;
 }
 
 function resolveInlineStyle(axis: ScrollListProps['axis'], position: number): React.CSSProperties {
@@ -101,6 +111,7 @@ export const ScrollList: React.FC<ScrollListProps> = ({
     preventScroll = false,
     transitionDuration = 400,
     onChange,
+    calcPosition,
 }) => {
     const rootRef = React.useRef<HTMLDivElement | null>(null);
     const scrollRef = React.useRef<HTMLDivElement | null>(null);
@@ -121,6 +132,8 @@ export const ScrollList: React.FC<ScrollListProps> = ({
 
         if (index < 0) {
             setPosition(-offset);
+        } else if (calcPosition) {
+            setPosition(calcPosition(index, offset, direction, rootRect, scrollRect, item));
         } else if (axis === 'x') {
             const rootWidth = rootRect ? rootRect.width : 0;
             const rootX = rootRect ? rootRect.x : 0;

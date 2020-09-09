@@ -6,7 +6,7 @@ import { number } from '@storybook/addon-knobs';
 import Story from '../../helpers/Story';
 
 import { ListContext } from './ListContext';
-import { ScrollList } from './ScrollList';
+import { CalcPosition, ScrollList } from './ScrollList';
 
 interface ListItemProps {
     active: boolean;
@@ -227,6 +227,43 @@ export const VerticalArbitaryHeight = () => {
                 <ListItem key="item:11" active={itemIndex === 11} height={250} width={600}>
                     11
                 </ListItem>
+            </StyledVScrollList>
+        </Story>
+    );
+};
+
+export const VerticalWithCustomCalcPosition = () => {
+    const items = Array(number('Item count', 12)).fill(0);
+    const index = number('Index', 0);
+
+    let itemIndex = index;
+    if (itemIndex < 0) {
+        itemIndex = 0;
+    } else if (itemIndex > items.length - 1) {
+        itemIndex = items.length - 1;
+    }
+
+    /**
+     * Скроллим верхний блок
+     */
+    const calcPosition: CalcPosition = (indexPosition, offset, _direction, _rootRect, _scrollRect, item) => {
+        let position = -offset;
+
+        if (item && indexPosition > 0) {
+            position = item.offsetTop - offset;
+        }
+
+        return position;
+    };
+
+    return (
+        <Story>
+            <StyledVScrollList axis="y" index={itemIndex} calcPosition={calcPosition} onChange={action('index change')}>
+                {items.map((_, i) => (
+                    <ListItem active={i === itemIndex} width={600} height={200} key={`item:${i}`}>
+                        {i}
+                    </ListItem>
+                ))}
             </StyledVScrollList>
         </Story>
     );
