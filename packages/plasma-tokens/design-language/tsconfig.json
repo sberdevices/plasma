@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "incremental": true,
+    "typeRoots": [ "./types", "./node_modules/@types" ],
+    "target": "ESNext",
+    "rootDir": "src",
+    "outDir": "lib",
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    "strict": true
+  },
+  "include": ["src/**/*.ts"]
+}

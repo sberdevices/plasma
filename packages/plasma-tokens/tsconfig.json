@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "incremental": true,
+    "typeRoots": [ "./types", "./node_modules/@types" ],
+    "target": "ESNext",
+    "outDir": "lib",
+    "module": "commonjs",
+    "strict": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "removeComments": false
+  },
+  "files": ["src/index.ts"],
+  "include": ["src/themesValues/"]
+}
