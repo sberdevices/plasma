@@ -1,6 +1,6 @@
 {
     "name": "plasma-styles",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "",
     "main": "index.js",
     "scripts": {
@@ -9,10 +9,7 @@
     },
     "author": "SberDevices Frontend Team",
     "license": "UNLICENSED",
-    "files": [
-        "tokens",
-        "components"
-    ],
+    "files": ["tokens", "components"],
     "devDependencies": {
         "@types/node": "14.0.26",
         "@types/styled-components": "5.1.0",
@@ -25,7 +22,5 @@
     "peerDependencies": {
         "styled-components": "^5.1.0"
     },
-    "contributors": [
-        "Виноградов Антон Александрович"
-    ]
+    "contributors": ["Виноградов Антон Александрович"]
 }
