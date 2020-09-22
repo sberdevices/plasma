@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "install": "npm ci --prefix='design-language'",
+    "prepare": "npm ci --prefix='design-language'",
     "build:ds": "npm run build --prefix='./design-language'",
     "postbuild:ds": "npm run generate",
     "prebuild": "npm run build:ds",
