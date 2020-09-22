@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { accent, buttonSecondary } from 'plasma-tokens';
 
 interface StyledHeaderButtonProps {
     disabled?: boolean;
@@ -23,36 +24,34 @@ const StyledHeaderButton = styled.div<StyledHeaderButtonProps>`
             opacity: 0.4;
         `}
 
-    ${({ theme }) => css`
+    &::before {
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        bottom: -4px;
+        left: -4px;
+
+        display: block;
+
+        box-sizing: content-box;
+
+        content: ' ';
+
+        opacity: 0;
+        border-radius: 28px;
+        box-shadow: 0 0 0 4px ${accent};
+
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    &:focus {
+        outline: none;
+        background: ${buttonSecondary};
+
         &::before {
-            position: absolute;
-            top: -4px;
-            right: -4px;
-            bottom: -4px;
-            left: -4px;
-
-            display: block;
-
-            box-sizing: content-box;
-
-            content: ' ';
-
-            opacity: 0;
-            border-radius: 28px;
-            box-shadow: 0 0 0 4px ${theme.uiColor.highlight};
-
-            transition: opacity 0.2s ease-in-out;
+            opacity: 1;
         }
-
-        &:focus {
-            outline: none;
-            background: ${theme.buttonColor.secondary};
-
-            &::before {
-                opacity: 1;
-            }
-        }
-    `}
+    }
 
     ${({ disabled }) => css`
         ${disabled &&

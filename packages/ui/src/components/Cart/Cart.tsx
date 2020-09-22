@@ -1,9 +1,18 @@
 import React from 'react';
-import styled, { css, DefaultTheme } from 'styled-components';
+import styled, { css } from 'styled-components';
+import { buttonAccent, accent, buttonWarning, whitePrimary, blackSecondary } from 'plasma-tokens';
 
 import { Icon, IconName } from '../Icon/Icon';
 
-type CartColor = keyof DefaultTheme['uiColor'];
+// TODO: refactor Cart
+const uiColor = {
+    active: buttonAccent,
+    highlight: accent,
+    blank: whitePrimary,
+    accent: buttonWarning,
+    index: blackSecondary,
+};
+type CartColor = keyof typeof uiColor;
 
 export interface CartProps extends React.HTMLAttributes<HTMLDivElement> {
     amount: number;
@@ -16,7 +25,7 @@ interface StyledRootProps {
 }
 
 const StyledRoot = styled.div<StyledRootProps>`
-    ${({ theme, color }) => css`
+    ${({ color }) => css`
         display: inline-flex;
         align-items: center;
         margin-left: 8px;
@@ -29,7 +38,7 @@ const StyledRoot = styled.div<StyledRootProps>`
 
         &:focus {
             outline: 0;
-            background-color: ${theme.uiColor[color]};
+            background-color: ${uiColor[color]};
         }
     `}
 `;
@@ -45,7 +54,7 @@ interface StyledBadgeProps {
 }
 
 const StyledBadge = styled.span<StyledBadgeProps>`
-    ${({ theme, color }) => css`
+    ${({ color }) => css`
         position: absolute;
         top: 0;
         right: 0;
@@ -66,16 +75,16 @@ const StyledBadge = styled.span<StyledBadgeProps>`
 
         color: #fff;
         border-radius: 16px;
-        background: ${theme.uiColor[color]};
+        background: ${uiColor[color]};
 
         transition: 0.2s ease-in-out;
         will-change: background-color;
         border: 2px solid transparent;
 
         ${StyledRoot}:focus & {
-            color: ${theme.uiColor[color]};
+            color: ${uiColor[color]};
             background: #fff;
-            border: 2px solid ${theme.uiColor[color]};
+            border: 2px solid ${uiColor[color]};
         }
     `}
 `;

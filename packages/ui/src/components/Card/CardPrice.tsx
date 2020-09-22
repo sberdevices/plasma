@@ -1,6 +1,8 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { formatCurrency } from 'i18n';
+import { buttonAccent } from 'plasma-tokens';
+
 
 export interface CardPriceProps {
     price: number;
@@ -42,9 +44,7 @@ const StyledCount = styled.div`
     font-weight: 600;
     line-height: 40px;
 
-    ${({ theme }) => css`
-        color: ${theme.uiColor.active};
-    `}
+    color: ${buttonAccent};
 `;
 
 export const CardPrice: React.FC<CardPriceProps> = ({ className, count, currency, oldPrice, price }) => {

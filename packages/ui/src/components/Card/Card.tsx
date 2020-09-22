@@ -1,5 +1,15 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { buttonAccent, accent, buttonWarning, whitePrimary, blackSecondary } from 'plasma-tokens';
+
+// TODO: refactor Card
+export const uiColor = {
+    active: buttonAccent,
+    highlight: accent,
+    blank: whitePrimary,
+    accent: buttonWarning,
+    index: blackSecondary,
+};
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
     className?: string;
@@ -31,12 +41,12 @@ const StyledRoot = styled.div<StyledRootProps>`
 
     transition: transform 0.4s ease-in-out;
 
-    ${({ theme, highlightOnFocus, focused, scaleOnFocus }) => css`
+    ${({ highlightOnFocus, focused, scaleOnFocus }) => css`
         ${highlightOnFocus &&
         css`
             &:before {
                 border-radius: 44px;
-                box-shadow: 0 0 0 4px ${theme.uiColor.highlight};
+                box-shadow: 0 0 0 4px ${accent};
                 box-sizing: content-box;
                 content: ' ';
                 display: block;

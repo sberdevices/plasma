@@ -1,7 +1,9 @@
 import React from 'react';
-import styled, { css, DefaultTheme } from 'styled-components';
+import styled, { css } from 'styled-components';
 
-type CardIndexColor = keyof DefaultTheme['uiColor'];
+import { uiColor } from './Card'
+
+type CardIndexColor = keyof typeof uiColor;
 
 export interface CardIndexProps {
     color?: CardIndexColor;
@@ -29,8 +31,8 @@ const StyledRoot = styled.div<StyledRootProps>`
     color: rgba(255, 255, 255, 0.56);
     border-radius: 50%;
 
-    ${({ theme, color }) => css`
-        background-color: ${theme.uiColor[color]};
+    ${({ color }) => css`
+        background-color: ${uiColor[color]};
     `}
 `;
 

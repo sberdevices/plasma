@@ -1,7 +1,9 @@
 import React from 'react';
-import styled, { css, DefaultTheme } from 'styled-components';
+import styled, { css  } from 'styled-components';
 
-type CardBadgeColor = keyof DefaultTheme['uiColor'];
+import { uiColor } from './Card'
+
+type CardBadgeColor = keyof typeof uiColor;
 
 export interface CardBadgeProps {
     color?: CardBadgeColor;
@@ -28,8 +30,8 @@ const StyledRoot = styled.div<StyledRootProps>`
     color: #fff;
     border-radius: 24px;
 
-    ${({ theme, color }) => css`
-        background-color: ${theme.uiColor[color]};
+    ${({ color }) => css`
+        background-color: ${uiColor[color]};
     `}
 `;
 

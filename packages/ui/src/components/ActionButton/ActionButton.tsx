@@ -1,5 +1,14 @@
 import React from 'react';
-import styled, { css, DefaultTheme } from 'styled-components';
+import styled, { css } from 'styled-components';
+import { buttonAccent, accent, buttonWarning, whitePrimary, blackSecondary } from 'plasma-tokens';
+
+export const uiColor = {
+    active: buttonAccent,
+    highlight: accent,
+    blank: whitePrimary,
+    accent: buttonWarning,
+    index: blackSecondary,
+};
 
 const sizeMap = {
     s: 40,
@@ -8,8 +17,7 @@ const sizeMap = {
 };
 
 type ActionButtonSize = keyof typeof sizeMap;
-
-type ActionButtonColor = keyof DefaultTheme['uiColor'];
+type ActionButtonColor = keyof typeof uiColor;
 
 export interface ActionButtonProps {
     size?: ActionButtonSize;
@@ -24,9 +32,9 @@ interface StyledRootProps {
 }
 
 const StyledRoot = styled.span<StyledRootProps>`
-    ${({ theme, color, size }) => css`
+    ${({ color, size }) => css`
         align-items: center;
-        background-color: ${theme.uiColor[color]};
+        background-color: ${uiColor[color]};
         display: flex;
         justify-content: center;
         transition: opacity 0.2s ease-in-out;
