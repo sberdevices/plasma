@@ -5,15 +5,21 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build:ds": "npm run build --prefix='./design-language'",
     "install": "npm ci --prefix='design-language'",
+    "build:ds": "npm run build --prefix='./design-language'",
     "postbuild:ds": "npm run generate",
     "prebuild": "npm run build:ds",
+    "build": "",
+    "clean": "rm -rf src && rm -rf lib && rm -rf themes && rm -rf themesValues",
+    "pregenerate": "npm run clean",
     "generate": "ts-node ./generate.ts",
-    "build": "tsc"
+    "postgenerate": "tsc src/index.ts -d --outDir lib && tsc -d themes/index.ts && tsc -d themesValues/*.ts",
+    "figma": "npm run extract --prefix='./design-language'"
   },
   "files": [
     "lib",
+    "themes",
+    "themesValues",
     "theme.json",
     "theme@2x.json"
   ],

@@ -4,7 +4,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 import { typography } from 'plasma-tokens';
 import { text, background, accent, gradient } from 'plasma-tokens';
-import { darkSber, darkEva, darkJoy, lightSber, lightEva, lightJoy } from 'plasma-tokens';
+import { darkSber, darkEva, darkJoy, lightSber, lightEva, lightJoy } from 'plasma-tokens/themes';
 
 // Some type helpers
 type textVariants = keyof typeof typography;

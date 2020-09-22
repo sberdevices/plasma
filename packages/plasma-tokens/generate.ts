@@ -450,14 +450,14 @@ const generateThemes = (themes_dir: string, generator: themeGenerator, needIndex
     needIndex && fs.writeFileSync(path.join(themes_dir, 'index.ts'), themeIndexes);   
 }
 
-generateThemes(path.join('src', 'themes'), (theme, themeName) => {
+generateThemes(path.join('themes'), (theme, themeName) => {
     const themeStyles = createThemeStyles(withOutComments(theme));
 
     return roboComment +
         `export const ${themeName} = ${JSON.stringify(themeStyles, null, 4)};\n`;
 });
 
-generateThemes(path.join('src', 'themesValues'), (theme) => {
+generateThemes(path.join('themesValues'), (theme) => {
     return generateTokens(theme);
 }, false);
 
@@ -516,26 +516,25 @@ generateTypography(path.join('src', 'typography@2x'), typo2x);
 const indexTS = roboComment +
 `
 import * as colors from './colors';
+import * as colorValues from './colors/values';
 // because x2 is default for canvas apps
 import * as typographyx1 from './typography@1x';
 import * as typographyx1Values from './typography@1xValues';
 import * as typography from './typography@2x';
-import * as themes from './themes';
 import * as typographyx2Values from './typography@2xValues';
 
 export { colors };
+export { colorValues };
 export { typography };
-export { themes };
 
 export * from './colors';
-export * from './themes';
 export * from './typography@2x';
 export * from './typography@2xValues';
 
 export { typographyx1 };
 export { typographyx1Values };
-export { typographyx2Values };
 export { typography as typographyx2 };
+export { typographyx2Values };
 `;
 
 fs.writeFileSync(path.join('src', 'index.ts'), indexTS);

@@ -18,6 +18,7 @@
   },
   "scripts": {
     "build": "npx diez compile",
+    "extract": "npx diez extract",
     "start": "diez start",
     "demo": "diez start web"
   }
