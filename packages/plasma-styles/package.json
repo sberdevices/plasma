@@ -1,22 +1,36 @@
 {
     "name": "plasma-styles",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "description": "",
     "main": "index.js",
+    "types": "index.d.ts",
+    "files": [
+        "components",
+        "index.d.ts",
+        "index.d.ts.map",
+        "index.js.map"
+    ],
     "scripts": {
-        "clean": "rm -rf tokens components ts",
-        "build": "npm run clean && ts-node -O '{\"module\":\"commonjs\"}' scripts/build.js && cp -R .tmp/ts/* .tmp/js && tsc && mv .tmp/js/* ./"
+        "prepare": "npm run compile",
+        "clean": "rm -rf components && rm -f index.*",
+        "precompile": "npm run clean",
+        "compile": "tsc",
+        "storybook": "start-storybook -s .storybook/public -p ${PORT:-6006} -c .storybook",
+        "build-storybook": "build-storybook"
     },
     "author": "SberDevices Frontend Team",
     "license": "UNLICENSED",
-    "files": ["tokens", "components"],
     "devDependencies": {
+        "@storybook/addon-actions": "6.0.0-rc.13",
+        "@storybook/addon-backgrounds": "6.0.0-rc.13",
+        "@storybook/addon-knobs": "6.0.0-rc.13",
+        "@storybook/addon-viewport": "6.0.0-rc.13",
+        "@storybook/preset-create-react-app": "3.1.4",
+        "@storybook/react": "6.0.0-rc.13",
         "@types/node": "14.0.26",
-        "@types/styled-components": "5.1.0",
-        "change-case": "4.1.1",
-        "style-dictionary": "2.10.1",
+        "react-scripts": "3.4.1",
+        "sb": "6.0.0-rc.13",
         "styled-components": "5.1.0",
-        "ts-node": "8.10.2",
         "typescript": "3.9.5"
     },
     "peerDependencies": {
@@ -25,6 +39,11 @@
     "contributors": [
         "Виноградов Антон Александрович",
         "Зубаиров Фаниль Асхатович",
-        "Антонов Игорь Александрович"
-    ]
+        "Антонов Игорь Александрович",
+        "Vasiliy Loginevskiy"
+    ],
+    "dependencies": {
+        "plasma-tokens": "0.0.2-beta.4.3318d091",
+        "@types/styled-components": "5.1.0"
+    }
 }
