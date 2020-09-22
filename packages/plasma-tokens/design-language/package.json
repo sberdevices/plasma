@@ -17,7 +17,7 @@
     "typescript": "^3.7.2"
   },
   "scripts": {
-    "build": "npx diez compile",
+    "build": "npx diez compile --target=web",
     "extract": "npx diez extract",
     "start": "diez start",
     "demo": "diez start web"
