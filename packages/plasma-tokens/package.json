@@ -1,6 +1,6 @@
 {
   "name": "plasma-tokens",
-  "version": "0.0.1",
+  "version": "0.0.1-beta.1.5fd8ea86",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

@@ -47,6 +47,25 @@ const theme = {
 
   dark_overlay: plasmaStylesTokens.colors.backgroundOverlay1,
 
+  dark_surface_Liquid01: plasmaStylesTokens.colors.surfaceLiquid01,
+  dark_surface_Liquid02: plasmaStylesTokens.colors.surfaceLiquid02,
+  dark_surface_Liquid03: plasmaStylesTokens.colors.surfaceLiquid03,
+  dark_surface_card: plasmaStylesTokens.colors.surfaceCard1,
+
+  dark_button_sber: plasmaStylesTokens.colors.buttonPrimarySber1,
+  dark_button_eva: plasmaStylesTokens.colors.buttonPrimaryEva1,
+  dark_button_joy: plasmaStylesTokens.colors.buttonPrimaryJoy1,
+
+  dark_button_primary: plasmaStylesTokens.colors.buttonPrimaryDefault1,
+  dark_button_secondary: plasmaStylesTokens.colors.buttonSecondaryDefault1,
+
+  dark_button_warning: plasmaStylesTokens.colors.buttonSpecialWarning1,
+  dark_button_critical: plasmaStylesTokens.colors.buttonSpecialCritical1,
+  dark_button_checked: plasmaStylesTokens.colors.buttonSpecialChecked1,
+
+  dark_focus_sber: plasmaStylesTokens.colors.textIconsBrandSber1,
+  dark_focus_eva: plasmaStylesTokens.colors.textIconsBrandEva1,
+  dark_focus_joy: plasmaStylesTokens.colors.textIconsBrandJoy1,
 
   // light
   light_primary: plasmaStylesTokens.colors.textIconsPrimary,
@@ -68,6 +87,28 @@ const theme = {
 
 
   light_overlay: plasmaStylesTokens.colors.backgroundOverlay,
+
+  light_surface_Liquid01: plasmaStylesTokens.colors.surface01,
+  light_surface_Liquid02: plasmaStylesTokens.colors.surface02,
+  light_surface_Liquid03: plasmaStylesTokens.colors.surface03,
+  light_surface_card: plasmaStylesTokens.colors.surfaceCard,
+
+  light_button_sber: plasmaStylesTokens.colors.buttonPrimarySber,
+  light_button_eva: plasmaStylesTokens.colors.buttonPrimaryEva,
+  light_button_joy: plasmaStylesTokens.colors.buttonPrimaryJoy,
+
+  light_button_primary: plasmaStylesTokens.colors.buttonPrimaryDefault,
+  light_button_secondary: plasmaStylesTokens.colors.buttonSecondaryDefault,
+
+  light_button_warning: plasmaStylesTokens.colors.buttonSpecialWarning,
+  light_button_critical: plasmaStylesTokens.colors.buttonSpecialCritical,
+  light_button_checked: plasmaStylesTokens.colors.buttonSpecialChecked,
+
+  // light_focus_sber: plasmaStylesTokens.colors.textIconsBrandSber,
+  // TODO: diez doesn't work with border-colors =/
+  light_focus_sber: Color.hex('#1AC76B'),
+  light_focus_eva: plasmaStylesTokens.colors.textIconsBrandEva,
+  light_focus_joy: plasmaStylesTokens.colors.textIconsBrandJoy,
 };
 
 

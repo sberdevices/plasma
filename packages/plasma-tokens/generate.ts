@@ -116,14 +116,28 @@ const themeColorsComments = {
     warning: 'Цвет предупреждения',
     critical: 'Цвет ошибки',
 
-    overlay: 'Цвет фона подложки',
+    overlay: 'Цвет фона паранжи',
 
-    gradient: 'Градиент для заливки основного фона'
+    gradient: 'Градиент для заливки основного фона',
+
+    surfaceLiquid01: 'Цвет подложки 1',
+    surfaceLiquid02: 'Цвет подложки 2',
+    surfaceLiquid03: 'Цвет подложки 3',
+    surfaceCard: 'Цвет подложки карточек',
+
+    buttonPrimary: 'Первичный цвет контролов',
+    buttonSecondary: 'Вторичный цвет контролов',
+
+    buttonAccent: 'Акцентный цвет у контролов',
+    buttonWarning: 'Цвет предупреждения у контролов',
+    buttonCritical: 'Цвет ошибки у контролов',
+    buttonChecked: 'Цвет зажатого контрола',
+    buttonFocused: 'Цвет рамки фокуса у контрола',
 }
 
 export type ThemeTokens = {[key in keyof typeof themeColorsComments]: Token<TColor>};
 
-type baseTheme = Omit<ThemeTokens, 'accent' | 'gradient'>
+type baseTheme = Omit<ThemeTokens, 'accent' | 'gradient' | 'buttonAccent' | 'buttonFocused'>
 
 const dark: baseTheme = {
     text: {
@@ -174,6 +188,45 @@ const dark: baseTheme = {
     overlay: {
         value: humanizeColor(ds.theme.dark_overlay.color),
         comment: themeColorsComments.overlay,
+    },
+
+    surfaceLiquid01: {
+        value: humanizeColor(ds.theme.dark_surface_Liquid01.color),
+        comment: themeColorsComments.surfaceLiquid01,
+    },
+    surfaceLiquid02: {
+        value: humanizeColor(ds.theme.dark_surface_Liquid02.color),
+        comment: themeColorsComments.surfaceLiquid02,
+    },
+    surfaceLiquid03: {
+        value: humanizeColor(ds.theme.dark_surface_Liquid02.color),
+        comment: themeColorsComments.surfaceLiquid03,
+    },
+    surfaceCard: {
+        value: humanizeColor(ds.theme.dark_surface_card.color),
+        comment: themeColorsComments.surfaceCard,
+    },
+
+    buttonPrimary: {
+        value: humanizeColor(ds.theme.dark_button_primary.color),
+        comment: themeColorsComments.buttonPrimary,
+    },
+    buttonSecondary: {
+        value: humanizeColor(ds.theme.dark_button_secondary.color),
+        comment: themeColorsComments.buttonSecondary,
+    },
+
+    buttonWarning: {
+        value: humanizeColor(ds.theme.dark_button_warning.color),
+        comment: themeColorsComments.buttonWarning,
+    },
+    buttonCritical: {
+        value: humanizeColor(ds.theme.dark_button_critical.color),
+        comment: themeColorsComments.buttonCritical,
+    },
+    buttonChecked: {
+        value: humanizeColor(ds.theme.dark_button_checked.color),
+        comment: themeColorsComments.buttonChecked,
     },
 };
 
@@ -227,6 +280,46 @@ const light: baseTheme = {
         value: humanizeColor(ds.theme.light_overlay.color),
         comment: themeColorsComments.overlay,
     },
+
+
+    surfaceLiquid01: {
+        value: humanizeColor(ds.theme.light_surface_Liquid01.color),
+        comment: themeColorsComments.surfaceLiquid01,
+    },
+    surfaceLiquid02: {
+        value: humanizeColor(ds.theme.light_surface_Liquid02.color),
+        comment: themeColorsComments.surfaceLiquid02,
+    },
+    surfaceLiquid03: {
+        value: humanizeColor(ds.theme.light_surface_Liquid02.color),
+        comment: themeColorsComments.surfaceLiquid03,
+    },
+    surfaceCard: {
+        value: humanizeColor(ds.theme.light_surface_card.color),
+        comment: themeColorsComments.surfaceCard,
+    },
+
+    buttonPrimary: {
+        value: humanizeColor(ds.theme.light_button_primary.color),
+        comment: themeColorsComments.buttonPrimary,
+    },
+    buttonSecondary: {
+        value: humanizeColor(ds.theme.light_button_secondary.color),
+        comment: themeColorsComments.buttonSecondary,
+    },
+
+    buttonWarning: {
+        value: humanizeColor(ds.theme.light_button_warning.color),
+        comment: themeColorsComments.buttonWarning,
+    },
+    buttonCritical: {
+        value: humanizeColor(ds.theme.light_button_critical.color),
+        comment: themeColorsComments.buttonCritical,
+    },
+    buttonChecked: {
+        value: humanizeColor(ds.theme.light_button_checked.color),
+        comment: themeColorsComments.buttonChecked,
+    },
 }
 
 const darkSber: ThemeTokens =  {
@@ -234,6 +327,14 @@ const darkSber: ThemeTokens =  {
     accent: {
         value: humanizeColor(ds.theme.dark_sber.color),
         comment: themeColorsComments.accent,
+    },
+    buttonAccent: {
+        value: humanizeColor(ds.theme.dark_button_sber.color),
+        comment: themeColorsComments.buttonAccent,
+    },
+    buttonFocused: {
+        value: humanizeColor(ds.theme.dark_focus_sber.color),
+        comment: themeColorsComments.buttonFocused,
     },
     // TODO: export from figma is broken
     gradient: {
@@ -248,6 +349,14 @@ const darkEva: ThemeTokens = {
         value: humanizeColor(ds.theme.dark_eva.color),
         comment: themeColorsComments.accent,
     },
+    buttonAccent: {
+        value: humanizeColor(ds.theme.dark_button_eva.color),
+        comment: themeColorsComments.buttonAccent,
+    },
+    buttonFocused: {
+        value: humanizeColor(ds.theme.dark_focus_eva.color),
+        comment: themeColorsComments.buttonFocused,
+    },
     gradient: {
         value: 'linear-gradient(336.9deg, #143787 0%, rgba(8, 8, 8, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(110, 5, 193, 0.44) 0%, rgba(53, 19, 149, 0.1) 99.69%), linear-gradient(180.03deg, rgba(8, 8, 8, 0) 50%, rgba(25, 63, 152, 0.41) 99.97%), linear-gradient(270deg, rgba(39, 15, 107, 0.3) 0%, rgba(8, 8, 8, 0) 100%)',
         comment: themeColorsComments.gradient,
@@ -260,6 +369,14 @@ const darkJoy: ThemeTokens = {
         value: humanizeColor(ds.theme.dark_joy.color),
         comment: themeColorsComments.accent,
     },
+    buttonAccent: {
+        value: humanizeColor(ds.theme.dark_button_joy.color),
+        comment: themeColorsComments.buttonAccent,
+    },
+    buttonFocused: {
+        value: humanizeColor(ds.theme.dark_focus_joy.color),
+        comment: themeColorsComments.buttonFocused,
+    },
     gradient: {
         value: 'linear-gradient(336.9deg, rgba(255, 156, 101, 0.24) 0%, rgba(8, 8, 8, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(61, 19, 149, 0.34) 0%, rgba(19, 24, 149, 0.1) 99.69%), linear-gradient(180.03deg, rgba(8, 8, 8, 0) 50%, rgba(255, 215, 179, 0.15) 99.97%), linear-gradient(270deg, rgba(107, 15, 87, 0.2) 0%, rgba(8, 8, 8, 0) 100%)',
         comment: themeColorsComments.gradient,
@@ -271,6 +388,14 @@ const lightSber: ThemeTokens = {
     accent: {
         value: humanizeColor(ds.theme.light_sber.color),
         comment: themeColorsComments.accent,
+    },
+    buttonAccent: {
+        value: humanizeColor(ds.theme.light_button_sber.color),
+        comment: themeColorsComments.buttonAccent,
+    },
+    buttonFocused: {
+        value: humanizeColor(ds.theme.light_focus_sber.color),
+        comment: themeColorsComments.buttonFocused,
     },
     gradient: {
         value: 'linear-gradient(336.9deg, rgba(4, 255, 44, 0.02) 0%, rgba(255, 255, 255, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(0, 179, 255, 0.06) 0%, rgba(0, 209, 255, 0.01) 99.69%), linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, rgba(0, 251, 59, 0.05) 100%), linear-gradient(270deg, rgba(6, 195, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);',
@@ -285,6 +410,14 @@ const lightEva: ThemeTokens = {
         value: humanizeColor(ds.theme.light_eva.color),
         comment: themeColorsComments.accent,
     },
+    buttonAccent: {
+        value: humanizeColor(ds.theme.light_button_eva.color),
+        comment: themeColorsComments.buttonAccent,
+    },
+    buttonFocused: {
+        value: humanizeColor(ds.theme.light_focus_eva.color),
+        comment: themeColorsComments.buttonFocused,
+    },
     gradient: {
         value: 'linear-gradient(336.9deg, rgba(0, 224, 255, 0.06) 0%, rgba(255, 255, 255, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(0, 87, 255, 0.04) 0%, rgba(87, 8, 255, 0.01) 99.69%), linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, rgba(0, 224, 255, 0.06) 100%), linear-gradient(270deg, rgba(0, 71, 253, 0.02) 0%, rgba(255, 255, 255, 0) 100%)',
         comment: themeColorsComments.gradient,
@@ -296,6 +429,14 @@ const lightJoy: ThemeTokens = {
     accent: {
         value: humanizeColor(ds.theme.light_joy.color),
         comment: themeColorsComments.accent,
+    },
+    buttonAccent: {
+        value: humanizeColor(ds.theme.light_button_joy.color),
+        comment: themeColorsComments.buttonAccent,
+    },
+    buttonFocused: {
+        value: humanizeColor(ds.theme.light_focus_joy.color),
+        comment: themeColorsComments.buttonFocused,
     },
     // background: lToRgba(ds.gradients.light_bg_joy.linearGradient),
     gradient: {
