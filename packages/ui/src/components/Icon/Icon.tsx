@@ -41,7 +41,7 @@ const sizeMap = {
     l: 48,
 };
 
-type IconSize = keyof typeof sizeMap;
+export type IconSize = keyof typeof sizeMap;
 
 export type IconName = keyof typeof iconSet;
 

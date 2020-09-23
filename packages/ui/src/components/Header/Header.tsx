@@ -4,9 +4,7 @@ import { Headline3 } from 'plasma-styles/components/Headline';
 import { Footnote1 } from 'plasma-styles/components/Footnote';
 import { colorTextSecondary } from 'plasma-styles/components/Color/tokens';
 
-import { Icon } from '../Icon/Icon';
-
-type Size = 's' | 'm' | 'l';
+import { Icon, IconSize } from '../Icon/Icon';
 
 const StyledHeader = styled.header`
     position: relative;
@@ -49,7 +47,7 @@ const StyledLogo = styled.img`
     }
 `;
 
-const StyledBackIcon = styled(Icon)<{ size?: Size}>`
+const StyledBackIcon = styled(Icon)<{ size?: IconSize }>`
     margin: 0;
     padding: 0;
 
@@ -93,7 +91,7 @@ export const HeaderTitle: React.FC<{ text: string; className?: string }> = ({ te
 
 export const HeaderSubTitle: React.FC<{ text: string }> = ({ text }) => <StyledSubTitle>{text}</StyledSubTitle>;
 
-export const HeaderBack: React.FC<{ size?: Size }> = ({ size }) => <StyledBackIcon size={size} icon="chevronLeft" />;
+export const HeaderBack: React.FC<{ size?: IconSize }> = ({ size }) => <StyledBackIcon size={size} icon="chevronLeft" />;
 
 export const HeaderContent: React.FC<{ className?: string }> = ({ children, className }) => (
     <StyledContent className={className}>
