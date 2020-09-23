@@ -10,7 +10,7 @@ export type CalcPosition = (
     rootRect?: DOMRect,
     scrollRect?: DOMRect,
     item?: HTMLElement | null,
-) => number;
+) => number | undefined;
 
 interface ScrollListProps {
     index: number;
@@ -133,7 +133,10 @@ export const ScrollList: React.FC<ScrollListProps> = ({
         if (index < 0) {
             setPosition(-offset);
         } else if (calcPosition) {
-            setPosition(calcPosition(index, offset, direction, rootRect, scrollRect, item));
+            const calculatedPosition = calcPosition(index, offset, direction, rootRect, scrollRect, item);
+            if (calculatedPosition !== undefined) {
+                setPosition(calculatedPosition);
+            }
         } else if (axis === 'x') {
             const rootWidth = rootRect ? rootRect.width : 0;
             const rootX = rootRect ? rootRect.x : 0;

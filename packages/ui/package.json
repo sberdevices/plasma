@@ -1,6 +1,6 @@
 {
     "name": "ui",
-    "version": "0.1.17",
+    "version": "0.1.18",
     "description": "SberDevices Design System",
     "repository": {
         "type": "git",
@@ -54,5 +54,10 @@
         "url": "http://***REMOVED***/static-dev/ui"
     },
     "files": ["components", "theme", "utils"],
-    "contributors": ["Чельцов Евгений Олегович", "Vasiliy Loginevskiy", "Виноградов Антон Александрович", "Зубаиров Фаниль Асхатович"]
+    "contributors": [
+        "Чельцов Евгений Олегович",
+        "Vasiliy Loginevskiy",
+        "Виноградов Антон Александрович",
+        "Зубаиров Фаниль Асхатович"
+    ]
 }
