@@ -70,6 +70,12 @@ const StyledBackIcon = styled(Icon)<{ size?: Size}>`
     }
 `;
 
+const StyledContent = styled.div`
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+`;
+
 export const Header: React.FC<{ className?: string }> = ({ children, className }) => (
     <StyledHeader className={className}>{children}</StyledHeader>
 );
@@ -88,3 +94,9 @@ export const HeaderTitle: React.FC<{ text: string; className?: string }> = ({ te
 export const HeaderSubTitle: React.FC<{ text: string }> = ({ text }) => <StyledSubTitle>{text}</StyledSubTitle>;
 
 export const HeaderBack: React.FC<{ size?: Size }> = ({ size }) => <StyledBackIcon size={size} icon="chevronLeft" />;
+
+export const HeaderContent: React.FC<{ className?: string }> = ({ children, className }) => (
+    <StyledContent className={className}>
+        {children}
+    </StyledContent>
+);
