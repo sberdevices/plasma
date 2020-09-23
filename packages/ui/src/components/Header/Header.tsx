@@ -6,6 +6,8 @@ import { colorTextSecondary } from 'plasma-styles/components/Color/tokens';
 
 import { Icon } from '../Icon/Icon';
 
+type Size = 's' | 'm' | 'l';
+
 const StyledHeader = styled.header`
     position: relative;
     z-index: 1;
@@ -47,7 +49,7 @@ const StyledLogo = styled.img`
     }
 `;
 
-const StyledBackIcon = styled(Icon)`
+const StyledBackIcon = styled(Icon)<{ size?: Size}>`
     margin: 0;
     padding: 0;
 
@@ -72,12 +74,12 @@ export const Header: React.FC<{ className?: string }> = ({ children, className }
     <StyledHeader className={className}>{children}</StyledHeader>
 );
 
-export const HeaderLogo: React.FC<{ src: string; alt: string }> = ({ src, alt }) => (
-    <StyledLogo src={src} alt={alt} />
+export const HeaderLogo: React.FC<{ src: string; alt: string; className?: string }> = ({ src, alt, className }) => (
+    <StyledLogo src={src} alt={alt} className={className} />
 );
 
-export const HeaderTitle: React.FC<{ text: string }> = ({ text, children }) => (
-    <StyledTitleWrapper>
+export const HeaderTitle: React.FC<{ text: string; className?: string }> = ({ text, children, className }) => (
+    <StyledTitleWrapper className={className}>
         <StyledTitle>{text}</StyledTitle>
         {children}
     </StyledTitleWrapper>
@@ -85,4 +87,4 @@ export const HeaderTitle: React.FC<{ text: string }> = ({ text, children }) => (
 
 export const HeaderSubTitle: React.FC<{ text: string }> = ({ text }) => <StyledSubTitle>{text}</StyledSubTitle>;
 
-export const HeaderBack: React.FC = () => <StyledBackIcon icon="chevronLeft" />;
+export const HeaderBack: React.FC<{ size?: Size }> = ({ size }) => <StyledBackIcon size={size} icon="chevronLeft" />;
