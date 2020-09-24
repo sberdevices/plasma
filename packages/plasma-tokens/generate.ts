@@ -133,6 +133,9 @@ const themeColorsComments = {
     buttonCritical: 'Цвет ошибки у контролов',
     buttonChecked: 'Цвет зажатого контрола',
     buttonFocused: 'Цвет рамки фокуса у контрола',
+
+    speechBubbleSent: 'Цвет фона баблов отправленный сообщений',
+    speechBubbleReceived: 'Цвет фона баблов получнных сообщений',
 }
 
 export type ThemeTokens = {[key in keyof typeof themeColorsComments]: Token<TColor>};
@@ -228,6 +231,15 @@ const dark: baseTheme = {
         value: humanizeColor(ds.theme.dark_button_checked.color),
         comment: themeColorsComments.buttonChecked,
     },
+
+    speechBubbleSent: {
+        value: humanizeColor(ds.theme.dark_speech_bubble_sent.color),
+        comment: themeColorsComments.speechBubbleSent,
+    },
+    speechBubbleReceived: {
+        value: humanizeColor(ds.theme.dark_speech_bubble_received.color),
+        comment: themeColorsComments.speechBubbleReceived,
+    },
 };
 
 const light: baseTheme = {
@@ -319,6 +331,15 @@ const light: baseTheme = {
     buttonChecked: {
         value: humanizeColor(ds.theme.light_button_checked.color),
         comment: themeColorsComments.buttonChecked,
+    },
+
+    speechBubbleSent: {
+        value: humanizeColor(ds.theme.light_speech_bubble_sent.color),
+        comment: themeColorsComments.speechBubbleSent,
+    },
+    speechBubbleReceived: {
+        value: humanizeColor(ds.theme.light_speech_bubble_received.color),
+        comment: themeColorsComments.speechBubbleReceived,
     },
 }
 

@@ -67,6 +67,9 @@ const theme = {
   dark_focus_eva: plasmaStylesTokens.colors.textIconsBrandEva1,
   dark_focus_joy: plasmaStylesTokens.colors.textIconsBrandJoy1,
 
+  dark_speech_bubble_sent: plasmaStylesTokens.colors.speechBubbleSent1,
+  dark_speech_bubble_received: plasmaStylesTokens.colors.speechBubbleReceived1,
+
   // light
   light_primary: plasmaStylesTokens.colors.textIconsPrimary,
   light_secondary: plasmaStylesTokens.colors.textIconsSecondary,
@@ -109,6 +112,9 @@ const theme = {
   light_focus_sber: Color.hex('#1AC76B'),
   light_focus_eva: plasmaStylesTokens.colors.textIconsBrandEva,
   light_focus_joy: plasmaStylesTokens.colors.textIconsBrandJoy,
+
+  light_speech_bubble_sent: plasmaStylesTokens.colors.speechBubbleSent,
+  light_speech_bubble_received: plasmaStylesTokens.colors.speechBubbleReceived,
 };
 
 
