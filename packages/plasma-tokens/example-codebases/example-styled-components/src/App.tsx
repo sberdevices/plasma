@@ -5,6 +5,9 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { typography } from 'plasma-tokens';
 import { text, background, accent, gradient } from 'plasma-tokens';
 import { darkSber, darkEva, darkJoy, lightSber, lightEva, lightJoy } from 'plasma-tokens/themes';
+// you probably don't need to cycle through typo scales
+// by default we use SberBox
+import { sberBox, sberPortal, touch } from 'plasma-tokens/typo';
 
 // Some type helpers
 type textVariants = keyof typeof typography;
@@ -33,7 +36,7 @@ const Text = styled(Headline)`` as React.FC<TextProps & { style: React.CSSProper
 
 
 const AppStyled = styled.div`
-  padding: 30px;
+  padding: ${typography.body1.fontSize};
   color: ${text};
   background-color: ${background};
   background-image: ${gradient};
@@ -53,8 +56,10 @@ const Button = styled.button<IButton>`
   background-color: ${accent};
   color: ${text};
   outline: 0;
+
+  float: right;
+
   ${props => typography[props.variant || 'button1']}
-  
 `;
 
 Button.defaultProps = {
@@ -70,29 +75,52 @@ const themes = {
   lightJoy: createGlobalStyle(lightJoy)
 };
 
+const sizes = {
+  SberBox: createGlobalStyle(sberBox),
+  SberPortal: createGlobalStyle(sberPortal),
+  Touch: createGlobalStyle(touch),
+};
+
 
 const [mode, ...restModes] = Object.keys(themes);
 // document.body.setAttribute('theme', mode);
 const initialModes = [...restModes, mode];
 
+const [typo, ...resTypos] = Object.keys(sizes);
+const initialTypos = [...resTypos, typo];
+
 
 function App() {
   const [modes, setModes] = useState(initialModes);
+  const [typos, setTypos] = useState(initialTypos);
 
-  const cycleTheme=() => {
+  const cycleTheme = () => {
     const mode = modes.shift()!;
     // document.body.setAttribute('theme', mode);
     setModes([...modes, mode]);
   };
 
+  const cycleTypo = () => {
+    const typo = typos.shift()!;
+    setTypos([...typos, typo]);
+  };
+
   const curMode = modes[modes.length - 1] as keyof typeof themes;
-  const GlobalStyle = themes[curMode];
+  const ThemelStyle = themes[curMode];
+
+  const curTypo = typos[typos.length - 1] as keyof typeof sizes;
+  const TypoStyle = sizes[curTypo];
 
   return (
     <AppStyled >
-      <GlobalStyle />
+      <ThemelStyle />
+      <TypoStyle />
 
-      <Button onClick={cycleTheme} style={{float: 'right'}}>{curMode}</Button>
+      <div style={{float: 'right'}}>
+        <Button onClick={cycleTheme}>{curMode}</Button>
+        <br />
+        <Button onClick={cycleTypo}>{curTypo}</Button>
+      </div>
       
       <Headline variant="display1" style={{ marginBottom: 20 }}>Display 1</Headline>
       <Headline variant="display2" style={{ marginBottom: 20 }}>Display 2</Headline>
@@ -111,7 +139,7 @@ function App() {
       <Text variant="paragraph2" as="p" style={{ marginBottom: 20 }}>Paragraph Text 2</Text>
 
       <Text variant="footnote1" as="div" style={{ marginBottom: 20 }}>Footnote 1</Text>
-      <Text variant="footnote2" as="div" style={{ marginBottom: 20 }}>Footnote1 2</Text>
+      <Text variant="footnote2" as="div" style={{ marginBottom: 20 }}>Footnote 2</Text>
 
       <Text variant="button1" as="div" style={{ marginBottom: 20 }}>Button 1</Text>
       <Text variant="button2" as="div" style={{ marginBottom: 20 }}>Button 2</Text>
@@ -124,4 +152,3 @@ function App() {
 }
 
 export default App;
-

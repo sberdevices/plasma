@@ -2,7 +2,8 @@ import Color from 'color';
 import * as CSS from 'csstype';
 import { css } from '@theme-ui/css'
 // import { serializeStyles } from '@emotion/serialize';
-import { ThemeTokens, TokenGroup } from './generate';
+import { ThemeTokens, TokenGroup, Typo, TypoStyles } from './generate';
+import { Theme } from './design-language/build/diez-plasma-tokens-web';
 
 
 /**
@@ -162,7 +163,7 @@ function _c(...funcs: Array<tfn>) {
 
 
 
-const toVarName = (key: string) => `--theme-${key}`
+const toVarName = (key: string) => `--plasma-${key}`
 export const toVarValue = (key: string, value: string | number) =>
     `var(${toVarName(key)}, ${value})`
 
@@ -269,6 +270,28 @@ export const createThemeStyles = (theme: SimpleTokens) => {
         },
     })({ colors: theme }) as {};
 };
+
+export const createTypoStyles = (typo: Typo) => {
+    const typoText = Object.entries(typo.text).reduce((acc, [text, styles]) => {
+        styles = Object.entries(styles).reduce((acc, [key, prop]) => {
+            if (key === 'fontSize' || key === 'lineHeight') {
+                acc[key] = prop;
+            }
+
+            return acc;
+        }, {} as typeof styles);
+
+        acc[text as keyof TypoStyles] = styles;
+
+        return acc;
+    }, {} as TypoStyles);
+
+    return css({
+        ':root': {
+            ...objectToVars('typo', typoText),
+        },
+    })() as {};
+}
 
 
 export const withOutComments = <T extends TokenGroup = TokenGroup>(theme: T) => {

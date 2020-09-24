@@ -1,6 +1,6 @@
 {
   "name": "plasma-tokens",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -10,14 +10,15 @@
     "build:ds": "npm run build --prefix='./design-language'",
     "prebuild:tokens": "npm run build:ds",
     "build:tokens": "npm run generate",
-    "clean": "rm -rf src && rm -rf lib && rm -rf themes && rm -rf themesValues",
+    "clean": "rm -rf src && rm -rf lib && rm -rf typo && rm -rf themes && rm -rf themesValues",
     "pregenerate": "npm run clean",
     "generate": "ts-node ./generate.ts",
-    "postgenerate": "tsc src/index.ts -d --outDir lib && tsc -d themes/index.ts && tsc -d themesValues/*.ts",
+    "postgenerate": "tsc src/index.ts -d --outDir lib && tsc -d typo/index.ts && tsc -d themes/index.ts && tsc -d themesValues/*.ts",
     "figma": "npm run extract --prefix='./design-language'"
   },
   "files": [
     "lib",
+    "typo",
     "themes",
     "themesValues",
     "theme.json",
@@ -26,15 +27,20 @@
   "devDependencies": {
     "@emotion/serialize": "0.11.16",
     "@theme-ui/css": "0.3.1",
-    "@types/camel-case": "1.2.1",
     "@types/color": "3.0.1",
     "@types/node": "^14.11.1",
-    "camel-case": "4.1.1",
+    "@types/param-case": "1.1.2",
     "color": "^3.1.2",
     "csstype": "3.0.3",
     "jsdom": "16.4.0",
     "jsdom-global": "3.0.2",
+    "param-case": "3.0.3",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.2"
-  }
+  },
+  "contributors": [
+    "Виноградов Антон Александрович",
+    "Зубаиров Фаниль Асхатович",
+    "Vasiliy Loginevskiy"
+  ]
 }
