@@ -19,8 +19,8 @@
         "styled-components": "5.1.1"
     },
     "devDependencies": {
-        "plasma-styles": "1.0.0",
         "i18n": "0.1.0",
+        "plasma-styles": "1.1.0-beta.2.761d1958",
         "spatnav": "0.0.1",
         "@storybook/addon-actions": "6.0.0-rc.13",
         "@storybook/addon-backgrounds": "6.0.0-rc.13",
@@ -45,7 +45,7 @@
         "build": "npm run clean && tsc && npm run copy:static",
         "build:storybook": "npm run storybook:build && npm run storybook:extract",
         "copy:static": "cp -r ./src/components/Icon/Icon.assets ./components/Icon/Icon.assets",
-        "storybook": "start-storybook -s .storybook/public -p 6006 -c .storybook",
+        "storybook": "start-storybook -s .storybook/public -p ${PORT:-6006} -c .storybook",
         "storybook:build": "build-storybook --quiet -s .storybook/public -c .storybook -o build",
         "storybook:extract": "sb extract build ./build/stories.json"
     },
@@ -53,7 +53,11 @@
         "title": "SberDevices Design System",
         "url": "http://***REMOVED***/static-dev/ui"
     },
-    "files": ["components", "theme", "utils"],
+    "files": [
+        "components",
+        "theme",
+        "utils"
+    ],
     "contributors": [
         "Чельцов Евгений Олегович",
         "Vasiliy Loginevskiy",
