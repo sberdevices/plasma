@@ -24,6 +24,9 @@ import {
 } from 'plasma-tokens';
 
 
+import { accent as colorBrandSber } from  'plasma-tokens/themesValues/darkSber';
+export { colorBrandSber };
+
 export const colorBackgroundColor = background;
 export const colorBackgroundDefault = gradient;
 export const colorBackgroundOverlay = overlay;
