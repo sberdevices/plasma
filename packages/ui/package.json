@@ -18,9 +18,11 @@
         "react-dom": "16.13.1",
         "styled-components": "5.1.1"
     },
+    "dependencies": {
+        "plasma-styles": "1.1.0"
+    },
     "devDependencies": {
         "i18n": "0.1.0",
-        "plasma-styles": "1.1.0-beta.2.761d1958",
         "spatnav": "0.0.1",
         "@storybook/addon-actions": "6.0.0-rc.13",
         "@storybook/addon-backgrounds": "6.0.0-rc.13",

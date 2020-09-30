@@ -43,7 +43,7 @@
         "Vasiliy Loginevskiy"
     ],
     "dependencies": {
-        "plasma-tokens": "0.0.2-beta.4.3318d091",
+        "plasma-tokens": "0.0.2",
         "@types/styled-components": "5.1.0"
     }
 }
