@@ -1,0 +1,26 @@
+{
+    "componentChunkName": "component---src-components-icon-icon-mdx",
+    "path": "/components/Icon",
+    "result": {
+        "pageContext": {
+            "frontmatter": { "name": "Icon", "menu": "Components", "route": "/components/Icon" },
+            "entry": {
+                "id": "e3fc531106e64472fee730eea48e21ec",
+                "filepath": "src/components/Icon/Icon.mdx",
+                "fullpath": "/Users/out-antonov-ia/work/mono/packages/ui/src/components/Icon/Icon.mdx",
+                "route": "/components/Icon",
+                "slug": "src-components-icon-icon",
+                "name": "Icon",
+                "menu": "Components",
+                "headings": [
+                    { "slug": "icon", "depth": 1, "value": "Icon" },
+                    { "slug": "props", "depth": 2, "value": "Props" },
+                    { "slug": "default-size", "depth": 2, "value": "Default size" },
+                    { "slug": "small-size", "depth": 2, "value": "Small size" },
+                    { "slug": "large-size", "depth": 2, "value": "Large size" }
+                ]
+            }
+        }
+    },
+    "staticQueryHashes": ["1635659820"]
+}

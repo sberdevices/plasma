@@ -1,0 +1,55 @@
+---
+name: Header
+menu: Components
+route: /components/Header
+---
+
+import { Playground, Props } from 'docz';
+
+import Logo from "../../../.storybook/public/images/s7-logo.svg";
+import { Header, HeaderBack, HeaderLogo, HeaderSubTitle, HeaderTitle, HeaderContent } from './Header';
+import { HeaderButton } from '../HeaderButton/HeaderButton';
+import { Cart } from '../Cart/Cart';
+
+# Header
+
+## Props
+<Props of={Header} />
+
+## Playground
+
+### Default
+<Playground>
+<Header>
+  <HeaderBack />
+  <HeaderLogo src={Logo} alt="S7 Airlines" />
+  <HeaderTitle text="S7 Airlines" />
+</Header>
+</Playground>
+
+### WithSubTitle 
+<Playground>
+  <Header>
+    <HeaderBack />
+    <HeaderLogo src={Logo} alt="Еда" />
+    <HeaderTitle text="1 пассажир">
+      <HeaderSubTitle text="Шаг 1 из 9" />
+    </HeaderTitle>
+  </Header>
+</Playground>
+
+### WithContent
+<Playground>
+  <div style={{ backgroundColor: '#333' }}>
+    <Header>
+      <HeaderBack />
+      <HeaderLogo src={Logo} alt="Еда" />
+      <HeaderTitle text="Корзина"/>
+      <HeaderContent>
+        <HeaderButton>
+          <Cart amount={8}>2345 ₽</Cart>
+        </HeaderButton>
+      </HeaderContent>
+    </Header>
+  </div>
+</Playground>

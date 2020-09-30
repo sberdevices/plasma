@@ -1,0 +1,41 @@
+---
+name: Icon
+menu: Components
+route: /components/Icon
+---
+
+import { Playground, Props } from 'docz';
+
+import { Icon, iconSet } from './Icon'
+
+# Icon
+
+## Props
+<Props of={Icon} />
+
+## Default size
+<div style={{ background: '#333', display: 'flex' }}>
+  {Object.keys(iconSet).map((icon) => (
+    <div style={{ padding: 10 }}>
+    <Icon icon={icon} size="m" />
+    </div>
+  ))}
+</div>
+
+## Small size
+<div style={{ background: '#333', display: 'flex' }}>
+  {Object.keys(iconSet).map((icon) => (
+    <div style={{ padding: 10 }}>
+    <Icon icon={icon} size="s" />
+    </div>
+  ))}
+</div>
+
+## Large size
+<div style={{ background: '#333', display: 'flex' }}>
+  {Object.keys(iconSet).map((icon) => (
+    <div style={{ padding: 10 }}>
+    <Icon icon={icon} size="l" />
+    </div>
+  ))}
+</div>

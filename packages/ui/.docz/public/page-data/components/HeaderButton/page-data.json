@@ -1,0 +1,26 @@
+{
+    "componentChunkName": "component---src-components-header-button-header-button-mdx",
+    "path": "/components/HeaderButton",
+    "result": {
+        "pageContext": {
+            "frontmatter": { "name": "HeaderButton", "menu": "Components", "route": "/components/HeaderButton" },
+            "entry": {
+                "id": "7020eb232fd3c2dc9f4ba95e387c0211",
+                "filepath": "src/components/HeaderButton/HeaderButton.mdx",
+                "fullpath": "/Users/out-antonov-ia/work/mono/packages/ui/src/components/HeaderButton/HeaderButton.mdx",
+                "route": "/components/HeaderButton",
+                "slug": "src-components-header-button-header-button",
+                "name": "HeaderButton",
+                "menu": "Components",
+                "headings": [
+                    { "slug": "headerbutton", "depth": 1, "value": "HeaderButton" },
+                    { "slug": "props", "depth": 2, "value": "Props" },
+                    { "slug": "playground", "depth": 2, "value": "Playground" },
+                    { "slug": "default", "depth": 3, "value": "Default" },
+                    { "slug": "with-cart", "depth": 3, "value": "With Cart" }
+                ]
+            }
+        }
+    },
+    "staticQueryHashes": ["1635659820"]
+}

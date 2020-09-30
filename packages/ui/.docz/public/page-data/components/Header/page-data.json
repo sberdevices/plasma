@@ -1,0 +1,27 @@
+{
+    "componentChunkName": "component---src-components-header-header-mdx",
+    "path": "/components/Header",
+    "result": {
+        "pageContext": {
+            "frontmatter": { "name": "Header", "menu": "Components", "route": "/components/Header" },
+            "entry": {
+                "id": "8f55aa099a0ac7e0f41f8b2c8aedf8d4",
+                "filepath": "src/components/Header/Header.mdx",
+                "fullpath": "/Users/out-antonov-ia/work/mono/packages/ui/src/components/Header/Header.mdx",
+                "route": "/components/Header",
+                "slug": "src-components-header-header",
+                "name": "Header",
+                "menu": "Components",
+                "headings": [
+                    { "slug": "header", "depth": 1, "value": "Header" },
+                    { "slug": "props", "depth": 2, "value": "Props" },
+                    { "slug": "playground", "depth": 2, "value": "Playground" },
+                    { "slug": "default", "depth": 3, "value": "Default" },
+                    { "slug": "withsubtitle", "depth": 3, "value": "WithSubTitle" },
+                    { "slug": "withcontent", "depth": 3, "value": "WithContent" }
+                ]
+            }
+        }
+    },
+    "staticQueryHashes": ["1635659820"]
+}

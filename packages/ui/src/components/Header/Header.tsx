@@ -91,10 +91,10 @@ export const HeaderTitle: React.FC<{ text: string; className?: string }> = ({ te
 
 export const HeaderSubTitle: React.FC<{ text: string }> = ({ text }) => <StyledSubTitle>{text}</StyledSubTitle>;
 
-export const HeaderBack: React.FC<{ size?: IconSize }> = ({ size }) => <StyledBackIcon size={size} icon="chevronLeft" />;
+export const HeaderBack: React.FC<{ size?: IconSize }> = ({ size }) => (
+    <StyledBackIcon size={size} icon="chevronLeft" />
+);
 
 export const HeaderContent: React.FC<{ className?: string }> = ({ children, className }) => (
-    <StyledContent className={className}>
-        {children}
-    </StyledContent>
+    <StyledContent className={className}>{children}</StyledContent>
 );

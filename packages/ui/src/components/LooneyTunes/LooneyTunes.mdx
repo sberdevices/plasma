@@ -1,0 +1,30 @@
+---
+name: LooneyTunes
+menu: Components
+route: /components/LooneyTunes
+---
+
+import { Playground, Props } from 'docz'
+
+import { LooneyTunes } from './LooneyTunes'
+
+# LooneyTunes
+
+## Props
+<Props of={LooneyTunes} />
+
+## Playground
+<Playground>
+  <div style={{
+      width: '100%',
+      height: '700px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      color: 'rgba(255, 255, 255, 0.7)',
+      backgroundColor: '#333'
+    }}
+  >
+    <LooneyTunes size={100} maxSize={500} circles={2}>CONTENT</LooneyTunes>
+  </div>
+</Playground>

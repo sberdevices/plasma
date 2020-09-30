@@ -1,0 +1,33 @@
+---
+name: HeaderButton
+menu: Components
+route: /components/HeaderButton
+---
+
+import { Playground, Props } from 'docz'
+
+import { HeaderButton } from './HeaderButton'
+import { Cart } from '../Cart/Cart';
+
+# HeaderButton
+
+## Props
+<Props of={HeaderButton} />
+
+## Playground
+
+### Default 
+<Playground>
+  <div style={{ padding: 16, backgroundColor: '#333' }}>
+    <HeaderButton>Текст</HeaderButton>
+  </div>
+</Playground>
+
+### With Cart
+<Playground>
+  <div style={{ padding: 16, backgroundColor: '#333' }}>
+    <HeaderButton>
+      <Cart amount={5}>2350 ₽</Cart>
+    </HeaderButton>
+  </div>
+</Playground>
