@@ -6,7 +6,7 @@ import { number } from '@storybook/addon-knobs';
 import Story from '../../helpers/Story';
 
 import { ListContext } from './ListContext';
-import { CalcPosition, ScrollList } from './ScrollList';
+import { ScrollListCalcPosition, ScrollList } from './ScrollList';
 
 interface ListItemProps {
     active: boolean;
@@ -48,6 +48,7 @@ const StyledHScrollList = styled(ScrollList)`
 const StyledVScrollList = styled(ScrollList)`
     height: 100%;
     width: 100%;
+    max-height: 75vh;
     position: relative;
 `;
 
@@ -246,7 +247,11 @@ export const VerticalWithCustomCalcPosition = () => {
     /**
      * Скроллим верхний блок
      */
-    const calcPosition: CalcPosition = (indexPosition, offset, _direction, _rootRect, _scrollRect, item) => {
+    const calcPosition: ScrollListCalcPosition = ({ index: indexPosition, offset, item }) => {
+        if (indexPosition < 0) {
+            return -offset;
+        }
+
         let position = -offset;
 
         if (item && indexPosition > 0) {

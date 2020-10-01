@@ -3,14 +3,42 @@ import styled, { css } from 'styled-components';
 
 import { ListContext, ListContextController } from './ListContext';
 
-export type CalcPosition = (
-    index: number,
-    offset: number,
-    direction: React.MutableRefObject<number>,
-    rootRect?: DOMRect,
-    scrollRect?: DOMRect,
-    item?: HTMLElement | null,
-) => number | undefined;
+interface ScrollListCalcPositionProps {
+    /**
+     * Ось движения
+     */
+    axis: 'x' | 'y';
+    /**
+     * Текущий индекс элемента
+     */
+    index: number;
+    /**
+     * Смещение, которое необходимо задать в начале и в конце оси смещения
+     */
+    offset: number;
+    /**
+     * Направление движения по оси
+     */
+    direction: number;
+    /**
+     * DOMRect корневого контейнера
+     */
+    rootRect: DOMRect;
+    /**
+     * DOMRect контейнера, содержащего все элементы списка
+     */
+    scrollRect: DOMRect;
+    /**
+     * Ссылка на DOM текущего элемента
+     */
+    item: HTMLElement;
+    /**
+     * Предыдущее значения смещения
+     */
+    prevPosition: number;
+}
+
+export type ScrollListCalcPosition = (params: ScrollListCalcPositionProps) => number;
 
 interface ScrollListProps {
     index: number;
@@ -29,8 +57,80 @@ interface ScrollListProps {
      */
     transitionDuration?: number;
     onChange?: (index: number, prevIndex: number) => void;
-    calcPosition?: CalcPosition;
+    calcPosition?: ScrollListCalcPosition;
+    /**
+     * Функция вызывается при старте анимации списка
+     */
+    onAnimationStart?: (event: TransitionEvent, direction: number) => void;
+    /**
+     * Функция вызывается при завершении анимации списка
+     */
+    onAnimationEnd?: (event: TransitionEvent, direction: number) => void;
 }
+
+/**
+ * Функция по-умолчания для расчёта смещения списка
+ */
+export const calcPositionDefault: ScrollListCalcPosition = ({
+    index,
+    axis,
+    rootRect,
+    scrollRect,
+    item,
+    direction,
+    offset,
+    prevPosition,
+}) => {
+    if (index < 0) {
+        return -offset;
+    }
+
+    if (axis === 'x') {
+        const rootWidth = rootRect.width;
+        const rootX = rootRect ? rootRect.x : 0;
+        const scrollWidth = scrollRect.width;
+
+        if (rootWidth > 0 && scrollWidth > 0) {
+            const itemRect = item.getBoundingClientRect();
+            const itemX = itemRect.x - rootX;
+
+            if (index <= 0 && itemX < 0) {
+                return -offset;
+            }
+
+            if (direction >= 0 && itemX > rootWidth - itemRect.width - offset) {
+                return item.offsetLeft - rootWidth + itemRect.width + offset;
+            }
+
+            if (direction < 0 && itemX < offset) {
+                return item.offsetLeft - offset;
+            }
+        }
+    } else if (axis === 'y') {
+        const rootHeight = rootRect.height;
+        const rootY = rootRect.y;
+        const scrollHeight = scrollRect.height;
+
+        if (rootHeight > 0 && scrollHeight > 0) {
+            const itemRect = item.getBoundingClientRect();
+            const itemY = itemRect.y - rootY;
+
+            if (index <= 0) {
+                return -offset;
+            }
+
+            if (direction >= 0 && itemY > rootHeight - itemRect.height - offset) {
+                return item.offsetTop - rootHeight + itemRect.height + offset;
+            }
+
+            if (direction < 0 && itemY < offset) {
+                return item.offsetTop - offset;
+            }
+        }
+    }
+
+    return prevPosition;
+};
 
 function resolveInlineStyle(axis: ScrollListProps['axis'], position: number): React.CSSProperties {
     switch (axis) {
@@ -112,98 +212,105 @@ export const ScrollList: React.FC<ScrollListProps> = ({
     transitionDuration = 400,
     onChange,
     calcPosition,
+    onAnimationStart,
+    onAnimationEnd,
 }) => {
     const rootRef = React.useRef<HTMLDivElement | null>(null);
     const scrollRef = React.useRef<HTMLDivElement | null>(null);
+    const prevIndex = React.useRef(index);
 
-    const [prevIndex, setPrevIndex] = React.useState(index);
+    /**
+     * направление движения:
+     * -1: назад
+     *  0: не изменилось
+     *  1: вперёд
+     */
+    const direction = React.useRef(0);
+
     const [position, setPosition] = React.useState(-offset);
 
     const ctx = React.useMemo(() => new ListContextController(), []);
 
-    // направление движения: `назад`=-1, `не изменилось`=0, `вперёд`=1
-    const direction = React.useRef(0);
+    React.useEffect(() => {
+        setPosition((prevPosition) => {
+            direction.current = index - prevIndex.current;
+
+            const rootRect = rootRef.current?.getBoundingClientRect();
+            const scrollRect = scrollRef.current?.getBoundingClientRect();
+            const item = ctx.getItem(index)?.current;
+
+            if (rootRect && scrollRect && item) {
+                const params: ScrollListCalcPositionProps = {
+                    direction: direction.current,
+                    prevPosition,
+                    axis,
+                    index,
+                    offset,
+                    rootRect,
+                    scrollRect,
+                    item,
+                };
+
+                const nextPosition = calcPosition ? calcPosition(params) : calcPositionDefault(params);
+                prevIndex.current = index;
+                return nextPosition;
+            }
+
+            return prevPosition;
+        });
+    }, [ctx, index, axis, calcPosition, offset]);
 
     React.useEffect(() => {
-        direction.current = index - prevIndex;
-        const rootRect = rootRef.current?.getBoundingClientRect();
-        const scrollRect = scrollRef.current?.getBoundingClientRect();
-        const item = ctx.getItem(index)?.current;
-
-        if (index < 0) {
-            setPosition(-offset);
-        } else if (calcPosition) {
-            const calculatedPosition = calcPosition(index, offset, direction, rootRect, scrollRect, item);
-            if (calculatedPosition !== undefined) {
-                setPosition(calculatedPosition);
-            }
-        } else if (axis === 'x') {
-            const rootWidth = rootRect ? rootRect.width : 0;
-            const rootX = rootRect ? rootRect.x : 0;
-            const scrollWidth = scrollRect ? scrollRect.width : 0;
-
-            if (rootWidth > 0 && scrollWidth > 0) {
-                if (item) {
-                    const itemRect = item.getBoundingClientRect();
-
-                    if (itemRect) {
-                        const itemX = itemRect.x - rootX;
-
-                        if (index <= 0 && itemX < 0) {
-                            setPosition(-offset);
-                        } else if (direction.current >= 0 && itemX > rootWidth - itemRect.width - offset) {
-                            setPosition(item.offsetLeft - rootWidth + itemRect.width + offset);
-                        } else if (direction.current < 0 && itemX < offset) {
-                            setPosition(item.offsetLeft - offset);
-                        }
-                    }
-                }
-            }
-        } else if (axis === 'y') {
-            const rootHeight = rootRect ? rootRect.height : 0;
-            const rootY = rootRect ? rootRect.y : 0;
-            const scrollHeight = scrollRect ? scrollRect.height : 0;
-
-            if (rootHeight > 0 && scrollHeight > 0) {
-                if (item) {
-                    const itemRect = item.getBoundingClientRect();
-
-                    if (itemRect) {
-                        const itemY = itemRect.y - rootY;
-
-                        if (index <= 0) {
-                            setPosition(-offset);
-                        } else if (direction.current >= 0 && itemY > rootHeight - itemRect.height - offset) {
-                            setPosition(item.offsetTop - rootHeight + itemRect.height + offset);
-                        } else if (direction.current < 0 && itemY < offset) {
-                            setPosition(item.offsetTop - offset);
-                        }
-                    }
-                }
-            }
-        }
-        setPrevIndex(index);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [ctx, index]);
-
-    React.useEffect(() => {
-        if (onChange && index !== prevIndex) {
-            onChange(index, prevIndex);
+        if (onChange && index !== prevIndex.current) {
+            onChange(index, prevIndex.current);
         }
     });
 
     const handleScroll = React.useCallback(
-        (e: React.UIEvent<HTMLDivElement>) => {
+        (event: React.UIEvent<HTMLDivElement>) => {
             if (preventScroll) {
                 if (axis === 'x') {
-                    e.currentTarget.scrollLeft = 0;
+                    event.currentTarget.scrollLeft = 0;
                 } else if (axis === 'y') {
-                    e.currentTarget.scrollTop = 0;
+                    event.currentTarget.scrollTop = 0;
                 }
             }
         },
         [axis, preventScroll],
     );
+
+    const handleTransitionStart = React.useCallback(
+        (event: TransitionEvent) => {
+            if (onAnimationStart && event.target === scrollRef.current) {
+                onAnimationStart(event, direction.current);
+            }
+        },
+        [onAnimationStart],
+    );
+
+    const handleTransitionEnd = React.useCallback(
+        (event: TransitionEvent) => {
+            if (onAnimationEnd && event.target === scrollRef.current) {
+                onAnimationEnd(event, direction.current);
+            }
+        },
+        [onAnimationEnd],
+    );
+
+    React.useLayoutEffect(() => {
+        const node = scrollRef.current;
+        if (node) {
+            node.addEventListener('transitionstart', handleTransitionStart);
+            node.addEventListener('transitionend', handleTransitionEnd);
+        }
+
+        return () => {
+            if (node) {
+                node.removeEventListener('transitionstart', handleTransitionStart);
+                node.removeEventListener('transitionend', handleTransitionEnd);
+            }
+        };
+    }, [handleTransitionStart, handleTransitionEnd]);
 
     return (
         <ListContext.Provider value={ctx}>
