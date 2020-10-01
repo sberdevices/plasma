@@ -69,13 +69,19 @@ const StyledHeaderButton = styled.div<StyledHeaderButtonProps>`
 `;
 
 interface HeaderButtonProps {
+    className?: string;
     disabled?: boolean;
     onClick?: () => void;
 }
 
-export const HeaderButton: React.FC<HeaderButtonProps> = ({ disabled, onClick: handleClick, children }) => {
+export const HeaderButton: React.FC<HeaderButtonProps> = ({ className, disabled, onClick: handleClick, children }) => {
     return (
-        <StyledHeaderButton tabIndex={disabled ? -1 : 0} onClick={handleClick} disabled={disabled}>
+        <StyledHeaderButton
+            className={className}
+            tabIndex={disabled ? -1 : 0}
+            onClick={handleClick}
+            disabled={disabled}
+        >
             {children}
         </StyledHeaderButton>
     );
