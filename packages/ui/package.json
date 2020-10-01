@@ -1,6 +1,6 @@
 {
     "name": "ui",
-    "version": "0.1.19",
+    "version": "0.1.20",
     "description": "SberDevices Design System",
     "repository": {
         "type": "git",
@@ -8,9 +8,6 @@
     },
     "author": "SberDevices Frontend Team",
     "license": "UNLICENSED",
-    "dependencies": {
-        "plasma-tokens": "0.0.1"
-    },
     "peerDependencies": {
         "i18n": "0.1.0",
         "spatnav": "0.0.1",
@@ -22,7 +19,8 @@
         "styled-components": "5.1.1"
     },
     "dependencies": {
-        "plasma-styles": "1.1.0"
+        "plasma-styles": "1.1.0",
+        "plasma-tokens": "0.0.1"
     },
     "devDependencies": {
         "i18n": "0.1.0",
