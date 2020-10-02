@@ -1,6 +1,6 @@
 {
     "name": "ui",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "SberDevices Design System",
     "repository": {
         "type": "git",
@@ -44,7 +44,7 @@
         "typescript": "3.9.5"
     },
     "scripts": {
-        "clean": "rm -rf ./components && rm -rf ./theme",
+        "clean": "rm -rf ./components && rm -rf ./hocs && rm -rf ./theme",
         "build": "npm run clean && tsc && npm run copy:static",
         "build:storybook": "npm run storybook:build && npm run storybook:extract",
         "copy:static": "cp -r ./src/components/Icon/Icon.assets ./components/Icon/Icon.assets",
@@ -58,6 +58,7 @@
     },
     "files": [
         "components",
+        "hocs",
         "theme",
         "utils"
     ],
