@@ -59,7 +59,7 @@
     },
     "storybook": {
         "title": "SberDevices Design System",
-        "url": "http://***REMOVED***/static-dev/ui"
+        "url": "http://ui-sb.dev.apps.sberdevices.ru/"
     },
     "files": ["components", "hocs", "theme", "utils"],
     "contributors": [
