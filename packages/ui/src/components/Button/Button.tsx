@@ -162,6 +162,7 @@ const StyledButton = styled.button<StyledButtonProps>`
 
     display: inline-flex;
     align-items: center;
+    justify-content: center;
 
     appearance: none;
     border: none;
