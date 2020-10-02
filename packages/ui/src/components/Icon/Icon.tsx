@@ -18,7 +18,7 @@ import skipPrevious from './Icon.assets/skip-previous.svg';
 import plaint from './Icon.assets/plaint.svg';
 import search from './Icon.assets/search.svg';
 import assistant from './Icon.assets/assistant.svg';
-import assistantPlaceholder from './Icon.assets/assistant_placeholder.svg';
+import assistantPlaceholder from './Icon.assets/assistant-placeholder.svg';
 
 const iconSet = {
     cart,
