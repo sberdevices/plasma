@@ -1,25 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 
-export interface AutoFocusProps {
-    autoFocus?: boolean | null;
-    tabIndex: number;
-}
-
 export interface WithAutoFocusProps {
-    autoFocusProps?: AutoFocusProps;
+    autoFocus?: boolean | null;
+    tabIndex?: number;
     preventScroll?: boolean;
 }
 
-export const blankAutoFocusProps: AutoFocusProps = {
-    tabIndex: -1,
-};
-
 export const withAutoFocus = <P extends object>(
     Component: React.ComponentType<P>,
-): React.FC<P & WithAutoFocusProps> => ({ autoFocusProps, preventScroll = true, ...props }) => {
+): React.FC<P & WithAutoFocusProps> => ({ autoFocus, tabIndex = -1, preventScroll = true, ...props }) => {
     const divRef = useRef<HTMLDivElement>(null);
-
-    const { autoFocus, tabIndex } = autoFocusProps || blankAutoFocusProps;
 
     useEffect(() => {
         if (autoFocus && divRef.current) {
