@@ -7,7 +7,7 @@ export interface AutoFocusProps {
 
 export interface WithAutoFocusProps {
     autoFocusProps?: AutoFocusProps;
-    hideFocus?: boolean;
+    preventScroll?: boolean;
 }
 
 export const blankAutoFocusProps: AutoFocusProps = {
@@ -16,16 +16,16 @@ export const blankAutoFocusProps: AutoFocusProps = {
 
 export const withAutoFocus = <P extends object>(
     Component: React.ComponentType<P>,
-): React.FC<P & WithAutoFocusProps> => ({ autoFocusProps, hideFocus, ...props }) => {
+): React.FC<P & WithAutoFocusProps> => ({ autoFocusProps, preventScroll = true, ...props }) => {
     const divRef = useRef<HTMLDivElement>(null);
 
     const { autoFocus, tabIndex } = autoFocusProps || blankAutoFocusProps;
 
     useEffect(() => {
         if (autoFocus && divRef.current) {
-            divRef.current.focus({ preventScroll: true });
+            divRef.current.focus({ preventScroll });
         }
     });
 
-    return <Component tabIndex={tabIndex} ref={divRef} hideFocus={hideFocus} {...(props as P)} />;
+    return <Component tabIndex={tabIndex} ref={divRef} {...(props as P)} />;
 };
