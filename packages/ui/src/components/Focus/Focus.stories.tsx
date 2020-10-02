@@ -1,9 +1,10 @@
 import React from 'react';
+import { number } from '@storybook/addon-knobs';
 
 import Story from '../../helpers/Story';
 import { Cart } from '../Cart/Cart';
+
 import { withAutoFocus } from './Focus';
-import { number } from '@storybook/addon-knobs';
 
 export default {
     title: 'Focus',
