@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { formatCurrency } from 'i18n';
 import { buttonAccent } from 'plasma-tokens';
 
-
 export interface CardPriceProps {
     price: number;
     oldPrice?: number;

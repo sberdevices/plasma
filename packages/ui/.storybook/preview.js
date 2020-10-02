@@ -49,7 +49,6 @@ addDecorator(withKnobs);
 addDecorator(withTheme);
 
 addParameters({
-    options: { theme: {} },
     viewport: {
         defaultViewport: 'HD',
         viewports: {

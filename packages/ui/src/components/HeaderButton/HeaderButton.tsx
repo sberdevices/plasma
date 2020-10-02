@@ -24,34 +24,36 @@ const StyledHeaderButton = styled.div<StyledHeaderButtonProps>`
             opacity: 0.4;
         `}
 
-    &::before {
-        position: absolute;
-        top: -4px;
-        right: -4px;
-        bottom: -4px;
-        left: -4px;
-
-        display: block;
-
-        box-sizing: content-box;
-
-        content: ' ';
-
-        opacity: 0;
-        border-radius: 28px;
-        box-shadow: 0 0 0 4px ${accent};
-
-        transition: opacity 0.2s ease-in-out;
-    }
-
-    &:focus {
-        outline: none;
-        background: ${buttonSecondary};
-
+    ${() => css`
         &::before {
-            opacity: 1;
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            bottom: -4px;
+            left: -4px;
+
+            display: block;
+
+            box-sizing: content-box;
+
+            content: ' ';
+
+            opacity: 0;
+            border-radius: 28px;
+            box-shadow: 0 0 0 4px ${accent};
+
+            transition: opacity 0.2s ease-in-out;
         }
-    }
+
+        &:focus {
+            outline: none;
+            background: ${buttonSecondary};
+
+            &::before {
+                opacity: 1;
+            }
+        }
+    `}
 
     ${({ disabled }) => css`
         ${disabled &&
