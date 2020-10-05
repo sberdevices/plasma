@@ -1,0 +1,44 @@
+---
+name: Input
+menu: Components
+route: /components/Input
+---
+
+import { Playground, Props } from 'docz'
+
+import { Input } from './Input'
+import { ThemeSelect } from '../../helpers/ThemeSelect'
+import { ThemeBackground } from '../../helpers/ThemeBackground'
+
+<ThemeSelect />
+
+# Input
+Компонент ввода.
+
+## Props
+<Props of={Input} />
+
+## Примеры использования
+
+### Базовое применение
+<Playground>
+  <ThemeBackground>
+    <Input
+      value="Text Input"
+      placeholder="Placeholder"
+      onChange={(e) => setValue(e.target.value)}
+    />
+  </ThemeBackground>
+</Playground>
+
+### С иконкой
+<Playground>
+  <ThemeBackground>
+    <Input
+      value="Command for 🤖"
+      placeholder="Type your command..."
+      iconName="assistant"
+    />
+  </ThemeBackground>
+</Playground>
+
