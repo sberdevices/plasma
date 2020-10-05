@@ -2,7 +2,6 @@ import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import { ThemeDarkEva, ThemeDarkJoy, ThemeDarkSber } from 'plasma-styles/components/Theme';
 import Color from 'plasma-styles/components/Color';
 import {
     colorTextPrimary,
@@ -10,6 +9,7 @@ import {
     colorBackgroundDefault,
 } from 'plasma-styles/components/Color/tokens';
 import { touch, sberBox, sberPortal } from 'plasma-tokens/typo';
+import { darkEva, darkJoy, darkSber, lightEva, lightJoy, lightSber } from 'plasma-tokens/themes';
 
 const DocumentStyle = createGlobalStyle`
     /* stylelint-disable-next-line selector-nested-pattern */
@@ -34,13 +34,18 @@ const typoSizes = {
 };
 
 const themes = {
-    sber: ThemeDarkSber,
-    eva: ThemeDarkEva,
-    joy: ThemeDarkJoy,
+    darkSber: createGlobalStyle(darkSber),
+    darkEva: createGlobalStyle(darkEva),
+    darkJoy: createGlobalStyle(darkJoy),
+    lightSber: createGlobalStyle(lightSber),
+    lightEva: createGlobalStyle(lightEva),
+    lightJoy: createGlobalStyle(lightJoy),
 };
+
 const withTheme = (Story, context) => {
     const Theme = themes[context.globals.theme];
     const Typo = typoSizes[context.globals.typoSize];
+
     return (
         <>
             <Theme />
@@ -88,9 +93,9 @@ export const globalTypes = {
     theme: {
         name: 'Theme',
         description: 'Global theme for components',
-        defaultValue: 'sber',
+        defaultValue: 'darkSber',
         toolbar: {
-            items: ['sber', 'joy', 'eva'],
+            items: ['darkSber', 'darkJoy', 'darkEva', 'lightSber', 'lightJoy', 'lightEva'],
         },
     },
     typoSize: {
