@@ -3,3 +3,8 @@
 /theme
 /utils
 /dist
+/.docz/app
+/.docz/src/pages
+/.docz/public
+/.docz/*.js
+/.docz/*.json
