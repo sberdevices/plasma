@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Story from '../../helpers/Story';
 import { ActionButton } from '../ActionButton/ActionButton';
 import { Icon } from '../Icon/Icon';
 
@@ -73,41 +72,23 @@ export default {
     title: 'Card',
 };
 
-export const Default = () => (
-    <Story>
-        <FullCardPreview highlightOnFocus scaleOnFocus tabIndex={0} />
-    </Story>
-);
+export const Default = () => <FullCardPreview highlightOnFocus scaleOnFocus tabIndex={0} />;
 
-export const NoScale = () => (
-    <Story>
-        <FullCardPreview highlightOnFocus tabIndex={0} />
-    </Story>
-);
+export const NoScale = () => <FullCardPreview highlightOnFocus tabIndex={0} />;
 
-export const Disabled = () => (
-    <Story>
-        <FullCardPreview disabled />
-    </Story>
-);
+export const Disabled = () => <FullCardPreview disabled />;
 
-export const AlwaysFocused = () => (
-    <Story>
-        <FullCardPreview highlightOnFocus focused />
-    </Story>
-);
+export const AlwaysFocused = () => <FullCardPreview highlightOnFocus focused />;
 
 export const Simple = () => {
     return (
-        <Story>
-            <Card highlightOnFocus scaleOnFocus tabIndex={0}>
-                <CardBody>
-                    <CardContent>
-                        <CardLabel>Lorem ipsum dolor sit amet consectetur adipisicing elit.</CardLabel>
-                        <CardLabel>Blanditiis obcaecati nostrum quas reiciendis nemo nihil</CardLabel>
-                    </CardContent>
-                </CardBody>
-            </Card>
-        </Story>
+        <Card highlightOnFocus scaleOnFocus tabIndex={0}>
+            <CardBody>
+                <CardContent>
+                    <CardLabel>Lorem ipsum dolor sit amet consectetur adipisicing elit.</CardLabel>
+                    <CardLabel>Blanditiis obcaecati nostrum quas reiciendis nemo nihil</CardLabel>
+                </CardContent>
+            </CardBody>
+        </Card>
     );
 };

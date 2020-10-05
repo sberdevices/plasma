@@ -3,13 +3,13 @@ import { createGlobalStyle } from 'styled-components';
 import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { ThemeDarkEva, ThemeDarkJoy, ThemeDarkSber } from 'plasma-styles/components/Theme';
-import Typo from 'plasma-styles/components/Typo';
 import Color from 'plasma-styles/components/Color';
 import {
     colorTextPrimary,
     colorBackgroundColor,
     colorBackgroundDefault,
 } from 'plasma-styles/components/Color/tokens';
+import { touch, sberBox, sberPortal } from 'plasma-tokens/typo';
 
 const DocumentStyle = createGlobalStyle`
     /* stylelint-disable-next-line selector-nested-pattern */
@@ -27,13 +27,20 @@ const DocumentStyle = createGlobalStyle`
     }
 `;
 
+const typoSizes = {
+    sberBox: createGlobalStyle(sberBox),
+    sberPortal: createGlobalStyle(sberPortal),
+    touch: createGlobalStyle(touch),
+};
+
+const themes = {
+    sber: ThemeDarkSber,
+    eva: ThemeDarkEva,
+    joy: ThemeDarkJoy,
+};
 const withTheme = (Story, context) => {
-    const mapThemeOnComponent = {
-        sber: ThemeDarkSber,
-        eva: ThemeDarkEva,
-        joy: ThemeDarkJoy,
-    };
-    const Theme = mapThemeOnComponent[context.globals.theme];
+    const Theme = themes[context.globals.theme];
+    const Typo = typoSizes[context.globals.typoSize];
     return (
         <>
             <Theme />
@@ -84,6 +91,14 @@ export const globalTypes = {
         defaultValue: 'sber',
         toolbar: {
             items: ['sber', 'joy', 'eva'],
+        },
+    },
+    typoSize: {
+        name: 'Typo size',
+        description: 'Global typography size for components',
+        defaultValue: 'sberBox',
+        toolbar: {
+            items: ['touch', 'sberBox', 'sberPortal'],
         },
     },
 };

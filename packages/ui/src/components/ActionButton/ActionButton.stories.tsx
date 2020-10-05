@@ -1,27 +1,13 @@
 import React from 'react';
 
-import Story from '../../helpers/Story';
-
 import { ActionButton } from './ActionButton';
 
 export default {
     title: 'ActionButton',
 };
 
-export const Default = () => (
-    <Story>
-        <ActionButton />
-    </Story>
-);
+export const Default = () => <ActionButton />;
 
-export const SizeSmall = () => (
-    <Story>
-        <ActionButton size="s" />
-    </Story>
-);
+export const SizeSmall = () => <ActionButton size="s" />;
 
-export const SizeLarge = () => (
-    <Story>
-        <ActionButton size="l" />
-    </Story>
-);
+export const SizeLarge = () => <ActionButton size="l" />;

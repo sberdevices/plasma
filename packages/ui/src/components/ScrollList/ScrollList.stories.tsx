@@ -3,8 +3,6 @@ import { action } from '@storybook/addon-actions';
 import styled, { css } from 'styled-components';
 import { number } from '@storybook/addon-knobs';
 
-import Story from '../../helpers/Story';
-
 import { ListContext } from './ListContext';
 import { ScrollListCalcPosition, ScrollList } from './ScrollList';
 
@@ -86,15 +84,13 @@ export const HorizontalFixedWidth = () => {
     }
 
     return (
-        <Story>
-            <StyledHScrollList offset={100} axis="x" index={itemIndex} onChange={action('index change')}>
-                {items.map((_, i) => (
-                    <ListItem active={i === itemIndex} width={itemWidth} height={300} key={`item:${i}`}>
-                        {i}
-                    </ListItem>
-                ))}
-            </StyledHScrollList>
-        </Story>
+        <StyledHScrollList offset={100} axis="x" index={itemIndex} onChange={action('index change')}>
+            {items.map((_, i) => (
+                <ListItem active={i === itemIndex} width={itemWidth} height={300} key={`item:${i}`}>
+                    {i}
+                </ListItem>
+            ))}
+        </StyledHScrollList>
     );
 };
 
@@ -110,46 +106,44 @@ export const HorizontalArbitaryWidth = () => {
     }
 
     return (
-        <Story>
-            <StyledHScrollList axis="x" index={itemIndex} onChange={action('index change')}>
-                <ListItem key="item:0" active={itemIndex === 0} width={200} height={300}>
-                    0
-                </ListItem>
-                <ListItem key="item:1" active={itemIndex === 1} width={250} height={300}>
-                    1
-                </ListItem>
-                <ListItem key="item:2" active={itemIndex === 2} width={350} height={300}>
-                    2
-                </ListItem>
-                <ListItem key="item:3" active={itemIndex === 3} width={300} height={300}>
-                    3
-                </ListItem>
-                <ListItem key="item:4" active={itemIndex === 4} width={150} height={300}>
-                    4
-                </ListItem>
-                <ListItem key="item:5" active={itemIndex === 5} width={200} height={300}>
-                    5
-                </ListItem>
-                <ListItem key="item:6" active={itemIndex === 6} width={400} height={300}>
-                    6
-                </ListItem>
-                <ListItem key="item:7" active={itemIndex === 7} width={200} height={300}>
-                    7
-                </ListItem>
-                <ListItem key="item:8" active={itemIndex === 8} width={250} height={300}>
-                    8
-                </ListItem>
-                <ListItem key="item:9" active={itemIndex === 9} width={450} height={300}>
-                    9
-                </ListItem>
-                <ListItem key="item:10" active={itemIndex === 10} width={200} height={300}>
-                    10
-                </ListItem>
-                <ListItem key="item:11" active={itemIndex === 11} width={250} height={300}>
-                    11
-                </ListItem>
-            </StyledHScrollList>
-        </Story>
+        <StyledHScrollList axis="x" index={itemIndex} onChange={action('index change')}>
+            <ListItem key="item:0" active={itemIndex === 0} width={200} height={300}>
+                0
+            </ListItem>
+            <ListItem key="item:1" active={itemIndex === 1} width={250} height={300}>
+                1
+            </ListItem>
+            <ListItem key="item:2" active={itemIndex === 2} width={350} height={300}>
+                2
+            </ListItem>
+            <ListItem key="item:3" active={itemIndex === 3} width={300} height={300}>
+                3
+            </ListItem>
+            <ListItem key="item:4" active={itemIndex === 4} width={150} height={300}>
+                4
+            </ListItem>
+            <ListItem key="item:5" active={itemIndex === 5} width={200} height={300}>
+                5
+            </ListItem>
+            <ListItem key="item:6" active={itemIndex === 6} width={400} height={300}>
+                6
+            </ListItem>
+            <ListItem key="item:7" active={itemIndex === 7} width={200} height={300}>
+                7
+            </ListItem>
+            <ListItem key="item:8" active={itemIndex === 8} width={250} height={300}>
+                8
+            </ListItem>
+            <ListItem key="item:9" active={itemIndex === 9} width={450} height={300}>
+                9
+            </ListItem>
+            <ListItem key="item:10" active={itemIndex === 10} width={200} height={300}>
+                10
+            </ListItem>
+            <ListItem key="item:11" active={itemIndex === 11} width={250} height={300}>
+                11
+            </ListItem>
+        </StyledHScrollList>
     );
 };
 
@@ -166,15 +160,13 @@ export const VerticalFixedHeight = () => {
     }
 
     return (
-        <Story>
-            <StyledVScrollList axis="y" index={itemIndex} onChange={action('index change')}>
-                {items.map((_, i) => (
-                    <ListItem active={i === itemIndex} width={600} height={itemHeight} key={`item:${i}`}>
-                        {i}
-                    </ListItem>
-                ))}
-            </StyledVScrollList>
-        </Story>
+        <StyledVScrollList axis="y" index={itemIndex} onChange={action('index change')}>
+            {items.map((_, i) => (
+                <ListItem active={i === itemIndex} width={600} height={itemHeight} key={`item:${i}`}>
+                    {i}
+                </ListItem>
+            ))}
+        </StyledVScrollList>
     );
 };
 
@@ -190,46 +182,44 @@ export const VerticalArbitaryHeight = () => {
     }
 
     return (
-        <Story>
-            <StyledVScrollList axis="y" index={itemIndex} onChange={action('index change')}>
-                <ListItem key="item:0" active={itemIndex === 0} height={200} width={600}>
-                    0
-                </ListItem>
-                <ListItem key="item:1" active={itemIndex === 1} height={250} width={600}>
-                    1
-                </ListItem>
-                <ListItem key="item:2" active={itemIndex === 2} height={350} width={600}>
-                    2
-                </ListItem>
-                <ListItem key="item:3" active={itemIndex === 3} height={300} width={600}>
-                    3
-                </ListItem>
-                <ListItem key="item:4" active={itemIndex === 4} height={150} width={600}>
-                    4
-                </ListItem>
-                <ListItem key="item:5" active={itemIndex === 5} height={200} width={600}>
-                    5
-                </ListItem>
-                <ListItem key="item:6" active={itemIndex === 6} height={400} width={600}>
-                    6
-                </ListItem>
-                <ListItem key="item:7" active={itemIndex === 7} height={200} width={600}>
-                    7
-                </ListItem>
-                <ListItem key="item:8" active={itemIndex === 8} height={250} width={600}>
-                    8
-                </ListItem>
-                <ListItem key="item:9" active={itemIndex === 9} height={450} width={600}>
-                    9
-                </ListItem>
-                <ListItem key="item:10" active={itemIndex === 10} height={200} width={600}>
-                    10
-                </ListItem>
-                <ListItem key="item:11" active={itemIndex === 11} height={250} width={600}>
-                    11
-                </ListItem>
-            </StyledVScrollList>
-        </Story>
+        <StyledVScrollList axis="y" index={itemIndex} onChange={action('index change')}>
+            <ListItem key="item:0" active={itemIndex === 0} height={200} width={600}>
+                0
+            </ListItem>
+            <ListItem key="item:1" active={itemIndex === 1} height={250} width={600}>
+                1
+            </ListItem>
+            <ListItem key="item:2" active={itemIndex === 2} height={350} width={600}>
+                2
+            </ListItem>
+            <ListItem key="item:3" active={itemIndex === 3} height={300} width={600}>
+                3
+            </ListItem>
+            <ListItem key="item:4" active={itemIndex === 4} height={150} width={600}>
+                4
+            </ListItem>
+            <ListItem key="item:5" active={itemIndex === 5} height={200} width={600}>
+                5
+            </ListItem>
+            <ListItem key="item:6" active={itemIndex === 6} height={400} width={600}>
+                6
+            </ListItem>
+            <ListItem key="item:7" active={itemIndex === 7} height={200} width={600}>
+                7
+            </ListItem>
+            <ListItem key="item:8" active={itemIndex === 8} height={250} width={600}>
+                8
+            </ListItem>
+            <ListItem key="item:9" active={itemIndex === 9} height={450} width={600}>
+                9
+            </ListItem>
+            <ListItem key="item:10" active={itemIndex === 10} height={200} width={600}>
+                10
+            </ListItem>
+            <ListItem key="item:11" active={itemIndex === 11} height={250} width={600}>
+                11
+            </ListItem>
+        </StyledVScrollList>
     );
 };
 
@@ -262,14 +252,12 @@ export const VerticalWithCustomCalcPosition = () => {
     };
 
     return (
-        <Story>
-            <StyledVScrollList axis="y" index={itemIndex} calcPosition={calcPosition} onChange={action('index change')}>
-                {items.map((_, i) => (
-                    <ListItem active={i === itemIndex} width={600} height={200} key={`item:${i}`}>
-                        {i}
-                    </ListItem>
-                ))}
-            </StyledVScrollList>
-        </Story>
+        <StyledVScrollList axis="y" index={itemIndex} calcPosition={calcPosition} onChange={action('index change')}>
+            {items.map((_, i) => (
+                <ListItem active={i === itemIndex} width={600} height={200} key={`item:${i}`}>
+                    {i}
+                </ListItem>
+            ))}
+        </StyledVScrollList>
     );
 };
