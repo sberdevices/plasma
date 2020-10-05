@@ -7,6 +7,10 @@ route: /components/Cart
 import { Playground, Props } from 'docz'
 
 import { Cart } from './Cart'
+import { ThemeSelect } from '../../helpers/ThemeSelect'
+import { ThemeBackground } from '../../helpers/ThemeBackground'
+
+<ThemeSelect />
 
 # Cart
 
@@ -15,7 +19,7 @@ import { Cart } from './Cart'
 
 ## Playground
 <Playground>
-  <div style={{ backgroundColor: '#333' }}>
+  <ThemeBackground>
     <Cart amount={5} icon="cart" color="active">1000</Cart>
-  </div>
+  </ThemeBackground>
 </Playground>

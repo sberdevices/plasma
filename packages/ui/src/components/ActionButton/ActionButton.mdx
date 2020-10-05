@@ -7,6 +7,10 @@ route: /components/ActionButton
 import { Playground, Props } from 'docz'
 
 import { ActionButton } from './ActionButton'
+import { ThemeSelect } from '../../helpers/ThemeSelect'
+import { ThemeBackground } from '../../helpers/ThemeBackground'
+
+<ThemeSelect />
 
 # ActionButton
 
@@ -15,5 +19,7 @@ import { ActionButton } from './ActionButton'
 
 ## Playground
 <Playground>
-  <ActionButton />
+  <ThemeBackground>
+    <ActionButton />
+  </ThemeBackground>
 </Playground>

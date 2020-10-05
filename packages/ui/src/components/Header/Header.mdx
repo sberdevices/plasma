@@ -10,6 +10,10 @@ import Logo from "../../../.storybook/public/images/s7-logo.svg";
 import { Header, HeaderBack, HeaderLogo, HeaderSubTitle, HeaderTitle, HeaderContent } from './Header';
 import { HeaderButton } from '../HeaderButton/HeaderButton';
 import { Cart } from '../Cart/Cart';
+import { ThemeSelect } from '../../helpers/ThemeSelect'
+import { ThemeBackground } from '../../helpers/ThemeBackground'
+
+<ThemeSelect />
 
 # Header
 
@@ -20,27 +24,31 @@ import { Cart } from '../Cart/Cart';
 
 ### Default
 <Playground>
-<Header>
-  <HeaderBack />
-  <HeaderLogo src={Logo} alt="S7 Airlines" />
-  <HeaderTitle text="S7 Airlines" />
-</Header>
+  <ThemeBackground>
+    <Header>
+      <HeaderBack />
+      <HeaderLogo src={Logo} alt="S7 Airlines" />
+      <HeaderTitle text="S7 Airlines" />
+    </Header>
+  </ThemeBackground>
 </Playground>
 
 ### WithSubTitle 
 <Playground>
-  <Header>
-    <HeaderBack />
-    <HeaderLogo src={Logo} alt="Еда" />
-    <HeaderTitle text="1 пассажир">
-      <HeaderSubTitle text="Шаг 1 из 9" />
-    </HeaderTitle>
-  </Header>
+  <ThemeBackground>
+    <Header>
+      <HeaderBack />
+      <HeaderLogo src={Logo} alt="Еда" />
+      <HeaderTitle text="1 пассажир">
+        <HeaderSubTitle text="Шаг 1 из 9" />
+      </HeaderTitle>
+    </Header>
+  </ThemeBackground>
 </Playground>
 
 ### WithContent
 <Playground>
-  <div style={{ backgroundColor: '#333' }}>
+  <ThemeBackground>
     <Header>
       <HeaderBack />
       <HeaderLogo src={Logo} alt="Еда" />
@@ -51,5 +59,5 @@ import { Cart } from '../Cart/Cart';
         </HeaderButton>
       </HeaderContent>
     </Header>
-  </div>
+  </ThemeBackground>
 </Playground>

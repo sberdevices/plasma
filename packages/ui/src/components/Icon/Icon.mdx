@@ -7,6 +7,10 @@ route: /components/Icon
 import { Playground, Props } from 'docz';
 
 import { Icon, iconSet } from './Icon'
+import { ThemeSelect } from '../../helpers/ThemeSelect'
+import { ThemeBackground } from '../../helpers/ThemeBackground';
+
+<ThemeSelect />
 
 # Icon
 
@@ -14,28 +18,28 @@ import { Icon, iconSet } from './Icon'
 <Props of={Icon} />
 
 ## Default size
-<div style={{ background: '#333', display: 'flex' }}>
+<ThemeBackground>
   {Object.keys(iconSet).map((icon) => (
     <div style={{ padding: 10 }}>
     <Icon icon={icon} size="m" />
     </div>
   ))}
-</div>
+</ThemeBackground>
 
 ## Small size
-<div style={{ background: '#333', display: 'flex' }}>
+<ThemeBackground>
   {Object.keys(iconSet).map((icon) => (
     <div style={{ padding: 10 }}>
     <Icon icon={icon} size="s" />
     </div>
   ))}
-</div>
+</ThemeBackground>
 
 ## Large size
-<div style={{ background: '#333', display: 'flex' }}>
+<ThemeBackground>
   {Object.keys(iconSet).map((icon) => (
     <div style={{ padding: 10 }}>
     <Icon icon={icon} size="l" />
     </div>
   ))}
-</div>
+</ThemeBackground>

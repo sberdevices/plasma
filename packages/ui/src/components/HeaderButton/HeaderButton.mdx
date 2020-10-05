@@ -8,6 +8,10 @@ import { Playground, Props } from 'docz'
 
 import { HeaderButton } from './HeaderButton'
 import { Cart } from '../Cart/Cart';
+import { ThemeSelect } from '../../helpers/ThemeSelect'
+import { ThemeBackground } from '../../helpers/ThemeBackground'
+
+<ThemeSelect />
 
 # HeaderButton
 
@@ -18,16 +22,16 @@ import { Cart } from '../Cart/Cart';
 
 ### Default 
 <Playground>
-  <div style={{ padding: 16, backgroundColor: '#333' }}>
+  <ThemeBackground>
     <HeaderButton>Текст</HeaderButton>
-  </div>
+  </ThemeBackground>
 </Playground>
 
 ### With Cart
 <Playground>
-  <div style={{ padding: 16, backgroundColor: '#333' }}>
+  <ThemeBackground>
     <HeaderButton>
       <Cart amount={5}>2350 ₽</Cart>
     </HeaderButton>
-  </div>
+  </ThemeBackground>
 </Playground>
