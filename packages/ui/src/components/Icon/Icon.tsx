@@ -19,6 +19,7 @@ import { ReactComponent as Plaint } from './Icon.assets/plaint.svg';
 import { ReactComponent as Search } from './Icon.assets/search.svg';
 import { ReactComponent as Assistant } from './Icon.assets/assistant.svg';
 import { ReactComponent as AssistantPlaceholder } from './Icon.assets/assistant-placeholder.svg';
+import { ReactComponent as Remove } from './Icon.assets/remove.svg';
 
 const iconSet = {
     cart: Cart,
@@ -39,6 +40,7 @@ const iconSet = {
     search: Search,
     assistant: Assistant,
     assistantPlaceholder: AssistantPlaceholder,
+    remove: Remove,
 };
 
 export type IconName = keyof typeof iconSet;

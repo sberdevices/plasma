@@ -16,3 +16,4 @@ export { IconReplay } from './Icons/IconReplay';
 export { IconSearch } from './Icons/IconSearch';
 export { IconSkipNext } from './Icons/IconSkipNext';
 export { IconSkipPrevious } from './Icons/IconSkipPrevious';
+export { IconRemove } from './Icons/IconRemove';
