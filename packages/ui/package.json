@@ -51,8 +51,8 @@
         "build:storybook": "npm run storybook:build && npm run storybook:extract",
         "copy:static": "cp -r ./src/components/Icon/Icon.assets ./components/Icon/Icon.assets",
         "storybook": "start-storybook -s .storybook/public -p ${PORT:-6006} -c .storybook",
-        "storybook:build": "build-storybook --quiet -s .storybook/public -c .storybook -o build",
-        "storybook:extract": "sb extract build ./build/stories.json",
+        "storybook:build": "build-storybook --quiet -s .storybook/public -c .storybook -o build-sb",
+        "storybook:extract": "sb extract build-sb ./build/stories.json",
         "docz:dev": "docz dev",
         "docz:build": "docz build",
         "docz:serve": "docz serve"
