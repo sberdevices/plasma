@@ -1,6 +1,6 @@
 import React from 'react';
 
-import hotel from '../Icon.assets/hotel.svg';
+import { ReactComponent as Hotel } from '../Icon.assets/hotel.svg';
 import { IconRoot } from '../IconRoot';
 
 interface IconProps {
@@ -10,5 +10,5 @@ interface IconProps {
 }
 
 export const IconHotel: React.FC<IconProps> = ({ size, className }) => {
-    return <IconRoot className={className} size={size} icon={hotel} />;
+    return <IconRoot className={className} size={size} icon={Hotel} />;
 };

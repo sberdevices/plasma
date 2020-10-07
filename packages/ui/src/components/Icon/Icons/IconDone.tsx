@@ -1,6 +1,6 @@
 import React from 'react';
 
-import done from '../Icon.assets/done.svg';
+import { ReactComponent as Done } from '../Icon.assets/done.svg';
 import { IconRoot } from '../IconRoot';
 
 interface IconProps {
@@ -10,5 +10,5 @@ interface IconProps {
 }
 
 export const IconDone: React.FC<IconProps> = ({ size, className }) => {
-    return <IconRoot className={className} size={size} icon={done} />;
+    return <IconRoot className={className} size={size} icon={Done} />;
 };

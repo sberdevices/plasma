@@ -1,6 +1,6 @@
 import React from 'react';
 
-import replay from '../Icon.assets/replay.svg';
+import { ReactComponent as Replay } from '../Icon.assets/replay.svg';
 import { IconRoot } from '../IconRoot';
 
 interface IconProps {
@@ -10,5 +10,5 @@ interface IconProps {
 }
 
 export const IconReplay: React.FC<IconProps> = ({ size, className }) => {
-    return <IconRoot className={className} size={size} icon={replay} />;
+    return <IconRoot className={className} size={size} icon={Replay} />;
 };

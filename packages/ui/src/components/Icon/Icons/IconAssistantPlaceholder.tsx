@@ -1,6 +1,6 @@
 import React from 'react';
 
-import assistantPlaceholder from '../Icon.assets/assistant-placeholder.svg';
+import { ReactComponent as AssistantPlaceholder } from '../Icon.assets/assistant-placeholder.svg';
 import { IconRoot } from '../IconRoot';
 
 interface IconProps {
@@ -10,5 +10,5 @@ interface IconProps {
 }
 
 export const IconAssistantPlaceholder: React.FC<IconProps> = ({ size, className }) => {
-    return <IconRoot className={className} size={size} icon={assistantPlaceholder} />;
+    return <IconRoot className={className} size={size} icon={AssistantPlaceholder} />;
 };

@@ -1,3 +1,4 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
 
 const sizeMap = {
@@ -6,23 +7,32 @@ const sizeMap = {
     l: 48,
 };
 
-export type IconSize = keyof typeof sizeMap;
+type IconSize = keyof typeof sizeMap;
 
-export interface IconRootProps {
-    icon: string;
+interface IconRootProps {
+    icon: React.ComponentType<React.SVGAttributes<SVGElement>>;
     size?: IconSize;
+    className?: string;
+    color?: string;
 }
 
-export const IconRoot = styled.span<IconRootProps>`
-    ${({ icon, size = 'm' }) => css`
-        display: inline-block;
+interface StyledRootProps {
+    size: IconSize;
+}
 
+const StyledRoot = styled.span<StyledRootProps>`
+    display: inline-block;
+
+    ${({ size }) => css`
         width: ${sizeMap[size]}px;
         height: ${sizeMap[size]}px;
-
-        background-image: url('${icon}');
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
     `}
 `;
+
+export const IconRoot: React.FC<IconRootProps> = ({ icon: IconComponent, size = 'm', color, className }) => {
+    return (
+        <StyledRoot size={size} className={className}>
+            <IconComponent width={sizeMap[size]} height={sizeMap[size]} fill={color} />
+        </StyledRoot>
+    );
+};

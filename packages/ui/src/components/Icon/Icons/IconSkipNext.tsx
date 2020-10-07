@@ -1,6 +1,6 @@
 import React from 'react';
 
-import skipNext from '../Icon.assets/skip-next.svg';
+import { ReactComponent as SkipNext } from '../Icon.assets/skip-next.svg';
 import { IconRoot } from '../IconRoot';
 
 interface IconProps {
@@ -10,5 +10,5 @@ interface IconProps {
 }
 
 export const IconSkipNext: React.FC<IconProps> = ({ size, className }) => {
-    return <IconRoot className={className} size={size} icon={skipNext} />;
+    return <IconRoot className={className} size={size} icon={SkipNext} />;
 };

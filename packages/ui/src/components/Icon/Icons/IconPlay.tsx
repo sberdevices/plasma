@@ -1,6 +1,6 @@
 import React from 'react';
 
-import play from '../Icon.assets/play.svg';
+import { ReactComponent as Play } from '../Icon.assets/play.svg';
 import { IconRoot } from '../IconRoot';
 
 interface IconProps {
@@ -10,5 +10,5 @@ interface IconProps {
 }
 
 export const IconPlay: React.FC<IconProps> = ({ size, className }) => {
-    return <IconRoot className={className} size={size} icon={play} />;
+    return <IconRoot className={className} size={size} icon={Play} />;
 };

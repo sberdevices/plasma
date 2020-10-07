@@ -1,6 +1,6 @@
 import React from 'react';
 
-import clock from '../Icon.assets/clock.svg';
+import { ReactComponent as Clock } from '../Icon.assets/clock.svg';
 import { IconRoot } from '../IconRoot';
 
 interface IconProps {
@@ -10,5 +10,5 @@ interface IconProps {
 }
 
 export const IconClock: React.FC<IconProps> = ({ size, className }) => {
-    return <IconRoot className={className} size={size} icon={clock} />;
+    return <IconRoot className={className} size={size} icon={Clock} />;
 };

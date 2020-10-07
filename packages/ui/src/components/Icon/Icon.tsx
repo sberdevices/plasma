@@ -1,44 +1,44 @@
 import React from 'react';
 
 import { IconRoot } from './IconRoot';
-import cart from './Icon.assets/cart.svg';
-import chevronLeft from './Icon.assets/chevron-left.svg';
-import clock from './Icon.assets/clock.svg';
-import done from './Icon.assets/done.svg';
-import hotel from './Icon.assets/hotel.svg';
-import minus from './Icon.assets/minus.svg';
-import paper from './Icon.assets/paper.svg';
-import plus from './Icon.assets/plus.svg';
-import forward from './Icon.assets/forward.svg';
-import pause from './Icon.assets/pause.svg';
-import play from './Icon.assets/play.svg';
-import replay from './Icon.assets/replay.svg';
-import skipNext from './Icon.assets/skip-next.svg';
-import skipPrevious from './Icon.assets/skip-previous.svg';
-import plaint from './Icon.assets/plaint.svg';
-import search from './Icon.assets/search.svg';
-import assistant from './Icon.assets/assistant.svg';
-import assistantPlaceholder from './Icon.assets/assistant-placeholder.svg';
+import { ReactComponent as Cart } from './Icon.assets/cart.svg';
+import { ReactComponent as ChevronLeft } from './Icon.assets/chevron-left.svg';
+import { ReactComponent as Clock } from './Icon.assets/clock.svg';
+import { ReactComponent as Done } from './Icon.assets/done.svg';
+import { ReactComponent as Hotel } from './Icon.assets/hotel.svg';
+import { ReactComponent as Minus } from './Icon.assets/minus.svg';
+import { ReactComponent as Paper } from './Icon.assets/paper.svg';
+import { ReactComponent as Plus } from './Icon.assets/plus.svg';
+import { ReactComponent as Forward } from './Icon.assets/forward.svg';
+import { ReactComponent as Pause } from './Icon.assets/pause.svg';
+import { ReactComponent as Play } from './Icon.assets/play.svg';
+import { ReactComponent as Replay } from './Icon.assets/replay.svg';
+import { ReactComponent as SkipNext } from './Icon.assets/skip-next.svg';
+import { ReactComponent as SkipPrevious } from './Icon.assets/skip-previous.svg';
+import { ReactComponent as Plaint } from './Icon.assets/plaint.svg';
+import { ReactComponent as Search } from './Icon.assets/search.svg';
+import { ReactComponent as Assistant } from './Icon.assets/assistant.svg';
+import { ReactComponent as AssistantPlaceholder } from './Icon.assets/assistant-placeholder.svg';
 
 const iconSet = {
-    cart,
-    chevronLeft,
-    clock,
-    done,
-    hotel,
-    minus,
-    paper,
-    plus,
-    skipPrevious,
-    replay,
-    pause,
-    play,
-    forward,
-    skipNext,
-    plaint,
-    search,
-    assistant,
-    assistantPlaceholder,
+    cart: Cart,
+    chevronLeft: ChevronLeft,
+    clock: Clock,
+    done: Done,
+    hotel: Hotel,
+    minus: Minus,
+    paper: Paper,
+    plus: Plus,
+    skipPrevious: SkipPrevious,
+    replay: Replay,
+    pause: Pause,
+    play: Play,
+    forward: Forward,
+    skipNext: SkipNext,
+    plaint: Plaint,
+    search: Search,
+    assistant: Assistant,
+    assistantPlaceholder: AssistantPlaceholder,
 };
 
 export type IconName = keyof typeof iconSet;

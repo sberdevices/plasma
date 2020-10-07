@@ -1,6 +1,6 @@
 import React from 'react';
 
-import cart from '../Icon.assets/cart.svg';
+import { ReactComponent as Cart } from '../Icon.assets/cart.svg';
 import { IconRoot } from '../IconRoot';
 
 interface IconProps {
@@ -10,5 +10,5 @@ interface IconProps {
 }
 
 export const IconCart: React.FC<IconProps> = ({ size, className }) => {
-    return <IconRoot className={className} size={size} icon={cart} />;
+    return <IconRoot className={className} size={size} icon={Cart} />;
 };

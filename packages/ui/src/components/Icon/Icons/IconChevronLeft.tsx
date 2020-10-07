@@ -1,6 +1,6 @@
 import React from 'react';
 
-import chevronLeft from '../Icon.assets/chevron-left.svg';
+import { ReactComponent as ChevronLeft } from '../Icon.assets/chevron-left.svg';
 import { IconRoot } from '../IconRoot';
 
 interface IconProps {
@@ -10,5 +10,5 @@ interface IconProps {
 }
 
 export const IconChevronLeft: React.FC<IconProps> = ({ size, className }) => {
-    return <IconRoot className={className} size={size} icon={chevronLeft} />;
+    return <IconRoot className={className} size={size} icon={ChevronLeft} />;
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import forward from '../Icon.assets/forward.svg';
+import { ReactComponent as Forward } from '../Icon.assets/forward.svg';
 import { IconRoot } from '../IconRoot';
 
 interface IconProps {
@@ -10,5 +10,5 @@ interface IconProps {
 }
 
 export const IconForward: React.FC<IconProps> = ({ size, className }) => {
-    return <IconRoot className={className} size={size} icon={forward} />;
+    return <IconRoot className={className} size={size} icon={Forward} />;
 };
