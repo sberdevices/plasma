@@ -1,0 +1,44 @@
+---
+name: Badge
+menu: Components
+route: /components/Badge
+---
+
+import { Playground, Props } from 'docz'
+
+import { Badge } from './Badge'
+import { ThemeSelect } from '../../helpers/ThemeSelect'
+import { ThemeBackground } from '../../helpers/ThemeBackground'
+
+<ThemeSelect />
+
+# Badge
+Компонент для отображения бейджа. Может быть отображена в нескольких размерах и цветах, с текстом и иконкой или без.
+
+***REMOVED***
+
+## Props
+<Props of={Badge} />
+
+## Примеры использования
+
+### Базовое применение
+<Playground>
+  <ThemeBackground>
+    <Badge text="Badge" view="primary" />
+  </ThemeBackground>
+</Playground>
+
+### С иконкой
+<Playground>
+  <ThemeBackground>
+    <Badge text="Badge" iconName="done" view="primary" />
+  </ThemeBackground>
+</Playground>
+
+### Без текста
+<Playground>
+  <ThemeBackground>
+    <Badge iconName="done" view="primary" />
+  </ThemeBackground>
+</Playground>
