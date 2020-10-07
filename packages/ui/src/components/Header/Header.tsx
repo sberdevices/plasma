@@ -4,7 +4,8 @@ import { Headline3 } from 'plasma-styles/components/Headline';
 import { Footnote1 } from 'plasma-styles/components/Footnote';
 import { colorTextSecondary } from 'plasma-styles/components/Color/tokens';
 
-import { Icon, IconSize } from '../Icon/Icon';
+import { Icon } from '../Icon/Icon';
+import { IconSize } from '../Icon/IconRoot';
 
 const StyledHeader = styled.header`
     position: relative;

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { primary } from 'plasma-tokens';
 
 const sizeMap = {
     s: 24,
@@ -7,13 +8,16 @@ const sizeMap = {
     l: 48,
 };
 
-type IconSize = keyof typeof sizeMap;
+export type IconSize = keyof typeof sizeMap;
 
-interface IconRootProps {
-    icon: React.ComponentType<React.SVGAttributes<SVGElement>>;
-    size?: IconSize;
-    className?: string;
+export interface IconProps {
+    size?: 's' | 'm' | 'l';
     color?: string;
+    className?: string;
+}
+
+interface IconRootProps extends IconProps {
+    icon: React.ComponentType<React.SVGAttributes<SVGElement>>;
 }
 
 interface StyledRootProps {
@@ -32,7 +36,7 @@ const StyledRoot = styled.span<StyledRootProps>`
 export const IconRoot: React.FC<IconRootProps> = ({ icon: IconComponent, size = 'm', color, className }) => {
     return (
         <StyledRoot size={size} className={className}>
-            <IconComponent width={sizeMap[size]} height={sizeMap[size]} fill={color} />
+            <IconComponent width={sizeMap[size]} height={sizeMap[size]} color={color || primary} />
         </StyledRoot>
     );
 };
