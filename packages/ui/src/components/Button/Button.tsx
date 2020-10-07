@@ -36,7 +36,7 @@ const sizes = {
     },
 };
 
-const viewToColors = {
+export const viewToColors = {
     primary: css`
         background-color: ${colors.buttonAccent};
         color: ${colors.text};
