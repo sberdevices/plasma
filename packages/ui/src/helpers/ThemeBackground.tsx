@@ -13,6 +13,10 @@ const StyledRoot = styled.div`
     color: ${colorTextPrimary};
     background: ${colorBackgroundDefault};
     background-color: ${colorBackgroundColor};
+
+    & * {
+        box-sizing: border-box;
+    }
 `;
 
 export const ThemeBackground: React.FC = ({ children }) => {
