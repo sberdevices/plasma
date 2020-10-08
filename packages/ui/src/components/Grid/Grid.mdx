@@ -1,0 +1,66 @@
+---
+name: Grid
+menu: Components
+route: /components/Grid
+---
+
+import { Playground, Props } from 'docz'
+
+import { Container, Row, Col } from './Grid'
+import { ThemeSelect } from '../../helpers/ThemeSelect'
+import { ThemeBackground } from '../../helpers/ThemeBackground'
+import { Filler } from '../../helpers/Filler'
+
+<ThemeSelect />
+
+# Grid
+***REMOVED***
+
+## Container
+Блок с полями по бокам для размещения контента по вертикали. Недопустимо вкладывать этот блок сам в себя (или дальше по древу).
+
+### Props
+<Props of={Container} />
+
+## Row
+Блок с отрицательными отступами для размещения ячеек (или столбцов, Col-s) по горизонтали. Недопустимо вкладывать этот блок сам в себя, но можно чередовать далее по древу с использованием Col.
+
+### Props
+<Props of={Row} />
+
+## Col
+Блок для размещения контента. На каждом брейкпоинте разрешения свое максимальное количество столбцов.
+
+### Props
+<Props of={Col} />
+
+## Пример использования
+<ThemeBackground>
+    <Container>
+        <Row>
+            <Col>
+                <Filler>1</Filler>
+            </Col>
+            <Col size={2}>
+                <Filler>2</Filler>
+            </Col>
+            <Col size={3}>
+                <Filler>3</Filler>
+            </Col>
+            <Col size={4}>
+                <Filler>4</Filler>
+            </Col>
+            <Col size={2}>
+                <Filler>2</Filler>
+            </Col>
+        </Row>
+        <Row>
+            <Col size={3} offset={1}>
+                <Filler>3 offset 1</Filler>
+            </Col>
+            <Col size={6} offset={2}>
+                <Filler>6 offset 2</Filler>
+            </Col>
+        </Row>
+    </Container>
+</ThemeBackground>

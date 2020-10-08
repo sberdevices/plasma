@@ -1,3 +1,4 @@
+import React from 'react';
 import styled, { FlattenSimpleInterpolation } from 'styled-components';
 
 const breakpoints = {
@@ -37,44 +38,86 @@ export const mediaQuery = (viewport: Viewport): MediaQueryFunction => {
     const max = breakpoints[nextBreakpoint] ? breakpoints[nextBreakpoint] - 1 : null;
 
     if (min === null && max !== null) {
-        return content => `@media (max-width: ${max}px) { ${content} }`;
+        return (content) => `@media (max-width: ${max}px) { ${content} }`;
     } else if (min !== null && max !== null) {
-        return content => `@media (min-width: ${min}px) and (max-width: ${max}px) { ${content} }`;
+        return (content) => `@media (min-width: ${min}px) and (max-width: ${max}px) { ${content} }`;
     } else {
-        return content => `@media (min-width: ${min}px) { ${content} }`;
+        return (content) => `@media (min-width: ${min}px) { ${content} }`;
     }
 };
 
-export const Container = styled.div`
+const StyledContainer = styled.div`
     margin: 0 auto;
+
     display: flex;
     flex-direction: column;
+
+    width: 100%;
     max-width: 1200px;
 
-    ${viewports.map(viewport => mediaQuery(viewport)(`
+    ${viewports.map((viewport) =>
+        mediaQuery(viewport)(`
         padding-left: ${margin[viewport]}px;
         padding-right: ${margin[viewport]}px;
-    `))}
+    `),
+    )}
 `;
 
-export const Row = styled.div`
+export const Container: React.FC<{ className?: string }> = ({ children, className }) => (
+    <StyledContainer className={className}>{children}</StyledContainer>
+);
+
+const StyledRow = styled.div`
     display: flex;
     flex-wrap: wrap;
 
-    ${viewports.map(viewport => mediaQuery(viewport)(`
+    ${viewports.map((viewport) =>
+        mediaQuery(viewport)(`
         margin-left: -${gutter[viewport] / 2}px;
         margin-right: -${gutter[viewport] / 2}px;
-    `))}
+    `),
+    )}
 `;
 
-export const Col = styled.div<{ size?: number; offset?: number; }>`
-    ${({ size = 1, offset = 0 }) => viewports.map(viewport => mediaQuery(viewport)(`
-        width: ${size / columns[viewport] * 100}%;
+export const Row: React.FC<{ className?: string }> = ({ children, className }) => (
+    <StyledRow className={className}>{children}</StyledRow>
+);
+
+interface StyledColProps {
+    /**
+     * Размер ячейки, зависящий от максимального количества столбцов.
+     */
+    size: number;
+    /**
+     * Отступ ячейки, сдвинет ее на n ячеек вправо.
+     */
+    offset: number;
+}
+
+const StyledCol = styled.div<StyledColProps>`
+    ${({ size, offset }) =>
+        viewports.map((viewport) =>
+            mediaQuery(viewport)(`
+        width: ${(size / columns[viewport]) * 100}%;
         padding-left: ${gutter[viewport] / 2}px;
         padding-right: ${gutter[viewport] / 2}px;
 
-        ${offset && `
-            margin-left: ${offset / columns[viewport] * 100}%;
-        `}
-    `))}
+        ${
+            offset &&
+            `
+            margin-left: ${(offset / columns[viewport]) * 100}%;
+        `
+        }
+    `),
+        )}
 `;
+
+export interface ColProps extends Partial<StyledColProps> {
+    className?: string;
+}
+
+export const Col: React.FC<ColProps> = ({ size = 1, offset = 0, children, className }) => (
+    <StyledCol size={size} offset={offset} className={className}>
+        {children}
+    </StyledCol>
+);
