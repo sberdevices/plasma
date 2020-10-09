@@ -81,7 +81,13 @@ export type Views = keyof typeof viewToColors;
 export type Pins = keyof typeof pinsMatrix;
 
 export interface SizesModel {
+    /**
+     * Размер кнопки
+     */
     size?: Sizes;
+    /**
+     * Границы кнопки
+     */
     pin?: Pins;
     isText?: boolean;
 }
@@ -153,6 +159,9 @@ const getSizes = ({ size = 'l', pin = 'square-square', isText = false }: SizesMo
 };
 
 interface StyledButtonProps extends SizesModel {
+    /**
+     * Вид кнопки
+     */
     view?: Views;
     disabled?: boolean;
 }
@@ -232,7 +241,13 @@ const StyledText = styled.span<StyledTextProps>`
 export interface ButtonProps
     extends Pick<StyledButtonProps, 'pin' | 'view' | 'size' | 'disabled'>,
         React.ButtonHTMLAttributes<HTMLButtonElement> {
+    /**
+     * Дополнительный контент перед `children`
+     */
     iconLeft?: React.ReactElement;
+    /**
+     * Дополнительный контент после `children`
+     */
     iconRight?: React.ReactElement;
     children?: string;
     className?: string;
