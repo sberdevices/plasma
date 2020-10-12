@@ -12,7 +12,13 @@ const StyledRoot = styled.div`
 `;
 
 interface StyledValueProps {
+    /**
+     * Неактивное состояние: состояние, при котором компонент отображается, но недоступен для действий пользователя
+     */
     disabled?: boolean;
+    /**
+     * Состояние, когда значение контрола близко к предельному
+     */
     isWarning?: boolean;
 }
 
@@ -46,6 +52,9 @@ export interface StepperButtonProps
 }
 
 export interface StepperValueProps extends Pick<StyledValueProps, 'disabled' | 'isWarning'> {
+    /**
+     * Выводимое значение
+     */
     value: number;
 }
 
@@ -84,13 +93,37 @@ export const StepperValue: React.FC<StepperValueProps> = ({ value, disabled, isW
 );
 
 export interface StepperProps {
+    /**
+     * Числовое значение
+     */
     value: number;
+    /**
+     * Обработчик изменения значения счетчика
+     */
     onChange: (value: number) => void;
+    /**
+     * Шаг изменения значения
+     */
     step?: number;
+    /**
+     * Минимальное значение
+     */
     min?: number;
+    /**
+     * Максимальное значение
+     */
     max?: number;
+    /**
+     * Неактивное состояние: состояние, при котором компонент отображается, но недоступен для действий пользователя
+     */
     disabled?: boolean;
+    /**
+     * Обработчик фокуса по кнопкам +/-
+     */
     onFocus?: React.FocusEventHandler<HTMLButtonElement>;
+    /**
+     * Обработчик ухода фокуса от кнопок +/-
+     */
     onBlur?: React.FocusEventHandler<HTMLButtonElement>;
 }
 

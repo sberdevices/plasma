@@ -1,0 +1,82 @@
+---
+name: Stepper
+menu: Components
+route: /components/Stepper
+---
+
+import { Playground, Props } from 'docz'
+
+import { Stepper, StepperButton, StepperValue, StepperRoot } from './Stepper'
+import { Icon } from '../Icon/Icon'
+import { ThemeSelect } from '../../helpers/ThemeSelect'
+import { ThemeBackground } from '../../helpers/ThemeBackground'
+
+<ThemeSelect />
+
+# Stepper
+Набор компонентов для создания контролов управления количеством, суммой и прочими численными показателями.
+
+## Stepper
+Готовый компонент для создания счетчика, подобного input[type="range"].
+
+### Props
+<Props of={Stepper} />
+
+## StepperButton
+Кнопка, позволяющая создавать контролы +/- и имеющая API как у Button.
+
+### Props
+<Props of={StepperButton} />
+
+## StepperValue
+Компонент для отображения значения.
+
+### Props
+<Props of={StepperValue} />
+
+## StepperRoot
+Стилизованный div, обертка над StepperButton и StepperValue.
+
+### Props
+Не имеет.
+
+## Примеры использования
+
+### Базовое применение
+<Playground>
+  <ThemeBackground>
+    <Stepper
+      value={5}
+      step={1}
+      min={0}
+      max={10}
+      disabled={false}
+      onChange={() => {}}
+    />
+  </ThemeBackground>
+</Playground>
+
+### Кастомная сборка
+<Playground>
+  <ThemeBackground>
+    <StepperRoot>
+      <StepperButton
+        view="primary"
+        disabled={false}
+        icon={<Icon icon="minus" />}
+        onClick={() => {}}
+      />
+      <StepperValue
+        value={10}
+        disabled={false}
+        isWarning={false}
+      />
+      <StepperButton
+        view="primary"
+        disabled={false}
+        icon={<Icon icon="plus" />}
+        onClick={() => {}}
+      />
+    </StepperRoot>
+  </ThemeBackground>
+</Playground>
