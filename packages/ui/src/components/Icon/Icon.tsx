@@ -52,8 +52,8 @@ export interface IconProps {
     className?: string;
 }
 
-export const Icon: React.FC<IconProps> = ({ icon, size, className }) => {
-    return <IconRoot className={className} icon={iconSet[icon]} size={size} />;
+export const Icon: React.FC<IconProps> = ({ icon, size, color, className }) => {
+    return <IconRoot className={className} icon={iconSet[icon]} size={size} color={color} />;
 };
 
 export { iconSet };
