@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { text } from '@storybook/addon-knobs';
 
 import { Icon, IconProps, iconSet } from './Icon';
 
@@ -56,3 +57,17 @@ export const Large = () => (
         ))}
     </StoryRoot>
 );
+
+export const CustomColor = () => {
+    const color = text('color', '#fc0');
+    return (
+        <StoryRoot>
+            {Object.keys(iconSet).map((icon) => (
+                <StyledContainer key={icon}>
+                    <IconName>{icon}</IconName>
+                    <Icon icon={icon as IconProps['icon']} color={color} />
+                </StyledContainer>
+            ))}
+        </StoryRoot>
+    );
+};
