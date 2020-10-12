@@ -4,6 +4,7 @@ import { Headline3 } from 'plasma-styles/components/Headline';
 import { Footnote1 } from 'plasma-styles/components/Footnote';
 import { colorTextSecondary } from 'plasma-styles/components/Color/tokens';
 
+import { Button, ButtonProps } from '../Button/Button';
 import { Icon } from '../Icon/Icon';
 import { IconSize } from '../Icon/IconRoot';
 
@@ -75,6 +76,14 @@ const StyledContent = styled.div`
     justify-content: flex-end;
 `;
 
+const StyledButton = styled(Button)`
+    /**
+     * Сброс для совместимости с предыдущей версией компонента.
+     */
+    height: auto;
+    padding: 0;
+`;
+
 export const Header: React.FC<{ className?: string }> = ({ children, className }) => (
     <StyledHeader className={className}>{children}</StyledHeader>
 );
@@ -99,3 +108,36 @@ export const HeaderBack: React.FC<{ size?: IconSize }> = ({ size }) => (
 export const HeaderContent: React.FC<{ className?: string }> = ({ children, className }) => (
     <StyledContent className={className}>{children}</StyledContent>
 );
+
+/**
+ * FixMe: ButtonProps.children принимает только string;
+ * В интерфейс ButtonProps надо добавить text: string, а children вернуть в стандартное значение.
+ */
+interface HeaderButtonProps extends ButtonProps {
+    /**
+     * Содержимое кнопки
+     */
+    children?: any;
+}
+
+export const HeaderButton: React.FC<HeaderButtonProps> = ({
+    size = 'm',
+    view = 'clear',
+    className,
+    disabled,
+    onClick: handleClick,
+    children,
+}) => {
+    return (
+        <StyledButton
+            size={size}
+            view={view}
+            className={className}
+            tabIndex={disabled ? -1 : 0}
+            onClick={handleClick}
+            disabled={disabled}
+        >
+            {children}
+        </StyledButton>
+    );
+};

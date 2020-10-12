@@ -1,9 +1,8 @@
 import React from 'react';
 
-import { HeaderButton } from '../HeaderButton/HeaderButton';
 import { Cart } from '../Cart/Cart';
 
-import { Header, HeaderBack, HeaderLogo, HeaderSubTitle, HeaderTitle, HeaderContent } from './Header';
+import { Header, HeaderBack, HeaderLogo, HeaderSubTitle, HeaderTitle, HeaderContent, HeaderButton } from './Header';
 
 export default {
     title: 'Header',
