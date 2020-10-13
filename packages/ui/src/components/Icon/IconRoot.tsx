@@ -21,21 +21,21 @@ interface IconRootProps extends IconProps {
 }
 
 interface StyledRootProps {
-    size: IconSize;
+    $size: IconSize;
 }
 
 const StyledRoot = styled.span<StyledRootProps>`
     display: inline-block;
 
-    ${({ size }) => css`
-        width: ${sizeMap[size]}px;
-        height: ${sizeMap[size]}px;
+    ${({ $size }) => css`
+        width: ${sizeMap[$size]}px;
+        height: ${sizeMap[$size]}px;
     `}
 `;
 
 export const IconRoot: React.FC<IconRootProps> = ({ icon: IconComponent, size = 'm', color, className }) => {
     return (
-        <StyledRoot size={size} className={className}>
+        <StyledRoot $size={size} className={className}>
             <IconComponent width={sizeMap[size]} height={sizeMap[size]} color={color || primary} />
         </StyledRoot>
     );
