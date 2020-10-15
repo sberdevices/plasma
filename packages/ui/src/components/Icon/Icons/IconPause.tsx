@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ReactComponent as Pause } from '../Icon.assets/pause.svg';
+import { Pause } from '../Icon.assets/Pause';
 import { IconRoot, IconProps } from '../IconRoot';
 
 export const IconPause: React.FC<IconProps> = ({ size, color, className }) => {

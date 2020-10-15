@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ReactComponent as Plus } from '../Icon.assets/plus.svg';
+import { Plus } from '../Icon.assets/Plus';
 import { IconRoot, IconProps } from '../IconRoot';
 
 export const IconPlus: React.FC<IconProps> = ({ size, color, className }) => {

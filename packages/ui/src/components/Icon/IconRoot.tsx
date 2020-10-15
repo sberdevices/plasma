@@ -16,8 +16,14 @@ export interface IconProps {
     className?: string;
 }
 
+export interface IconAsset {
+    width?: number;
+    height?: number;
+    color?: string;
+}
+
 interface IconRootProps extends IconProps {
-    icon: React.ComponentType<React.SVGAttributes<SVGElement>>;
+    icon: React.FC<IconAsset>;
 }
 
 interface StyledRootProps {

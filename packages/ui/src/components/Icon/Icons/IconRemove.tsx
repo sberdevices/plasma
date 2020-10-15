@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ReactComponent as Remove } from '../Icon.assets/remove.svg';
+import { Remove } from '../Icon.assets/Remove';
 import { IconRoot, IconProps } from '../IconRoot';
 
 export const IconRemove: React.FC<IconProps> = ({ size, color, className }) => {

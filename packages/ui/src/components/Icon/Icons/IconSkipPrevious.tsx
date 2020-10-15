@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ReactComponent as SkipPrevious } from '../Icon.assets/skip-previous.svg';
+import { SkipPrevious } from '../Icon.assets/SkipPrevious';
 import { IconRoot, IconProps } from '../IconRoot';
 
 export const IconSkipPrevious: React.FC<IconProps> = ({ size, color, className }) => {

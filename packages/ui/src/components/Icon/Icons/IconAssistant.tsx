@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ReactComponent as Assistant } from '../Icon.assets/assistant.svg';
+import { Assistant } from '../Icon.assets/Assistant';
 import { IconRoot, IconProps } from '../IconRoot';
 
 export const IconAssistant: React.FC<IconProps> = ({ size, color, className }) => {

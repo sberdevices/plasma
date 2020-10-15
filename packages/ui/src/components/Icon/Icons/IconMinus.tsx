@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ReactComponent as Minus } from '../Icon.assets/minus.svg';
+import { Minus } from '../Icon.assets/Minus';
 import { IconRoot, IconProps } from '../IconRoot';
 
 export const IconMinus: React.FC<IconProps> = ({ size, color, className }) => {

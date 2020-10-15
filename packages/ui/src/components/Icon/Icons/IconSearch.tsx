@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ReactComponent as Search } from '../Icon.assets/search.svg';
+import { Search } from '../Icon.assets/Search';
 import { IconRoot, IconProps } from '../IconRoot';
 
 export const IconSearch: React.FC<IconProps> = ({ size, color, className }) => {

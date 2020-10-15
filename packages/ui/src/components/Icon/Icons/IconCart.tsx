@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ReactComponent as Cart } from '../Icon.assets/cart.svg';
+import { Cart } from '../Icon.assets/Cart';
 import { IconRoot, IconProps } from '../IconRoot';
 
 export const IconCart: React.FC<IconProps> = ({ size, color, className }) => {

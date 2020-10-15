@@ -20,7 +20,7 @@ import { ThemeBackground } from '../../helpers/ThemeBackground';
 ## Default size
 <ThemeBackground>
   {Object.keys(iconSet).map((icon) => (
-    <div style={{ padding: 10 }}>
+    <div style={{ padding: 10 }} key={icon}>
     <Icon icon={icon} size="m" />
     </div>
   ))}
@@ -29,7 +29,7 @@ import { ThemeBackground } from '../../helpers/ThemeBackground';
 ## Small size
 <ThemeBackground>
   {Object.keys(iconSet).map((icon) => (
-    <div style={{ padding: 10 }}>
+    <div style={{ padding: 10 }} key={icon}>
     <Icon icon={icon} size="s" />
     </div>
   ))}
@@ -38,7 +38,7 @@ import { ThemeBackground } from '../../helpers/ThemeBackground';
 ## Large size
 <ThemeBackground>
   {Object.keys(iconSet).map((icon) => (
-    <div style={{ padding: 10 }}>
+    <div style={{ padding: 10 }} key={icon}>
     <Icon icon={icon} size="l" />
     </div>
   ))}
