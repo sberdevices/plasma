@@ -1,6 +1,6 @@
 {
     "name": "ui",
-    "version": "0.5.3",
+    "version": "0.6.0",
     "description": "SberDevices Design System",
     "repository": {
         "type": "git",
@@ -61,12 +61,7 @@
         "title": "SberDevices Design System",
         "url": "http://***REMOVED***/static-dev/ui"
     },
-    "files": [
-        "components",
-        "hocs",
-        "theme",
-        "utils"
-    ],
+    "files": ["components", "hocs", "theme", "utils"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Антонов Игорь Александрович",
