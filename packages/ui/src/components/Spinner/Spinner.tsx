@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { keyframes, css } from 'styled-components';
 
-import { ReactComponent as SpinnerAsset } from './spinner.svg';
+import { SpinnerSvg } from './SpinnerSvg';
 
 const rotateAnimation = keyframes`
     from {
@@ -32,7 +32,7 @@ interface SpinnerProps {
 export const Spinner: React.FC<SpinnerProps> = ({ size = 56, className }) => {
     return (
         <StyledRoot className={className} $size={size}>
-            <SpinnerAsset width={size} height={size} />
+            <SpinnerSvg width={size} height={size} />
         </StyledRoot>
     );
 };
