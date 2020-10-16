@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { colors, typography } from '@sberdevices/plasma-tokens';
 
-import { viewToColors } from '../Button/Button';
+import { views } from '../Button/Button';
 
 const fontSize = 12;
 
@@ -46,15 +46,15 @@ export const badgeRootSizes = {
         border-radius: ${16 / fontSize}em;
     `,
 };
-export const badgeViewsToColors = {
-    ...viewToColors,
+export const badgeViews = {
+    ...views,
     black: css`
         background-color: ${colors.blackSecondary};
         color: ${colors.text};
     `,
 };
 
-export type BadgeView = keyof typeof badgeViewsToColors;
+export type BadgeView = keyof typeof badgeViews;
 export type BadgeSize = keyof typeof badgeSizes;
 
 interface StyledBadgeProps {
@@ -80,24 +80,24 @@ const StyledBadge = styled.div<StyledBadgeProps>`
     ${typography.caption};
 
     ${({ size }) => badgeRootSizes[size]};
-    ${({ view }) => badgeViewsToColors[view]};
+    ${({ view }) => badgeViews[view]};
 
     ${({ isContentLeft, isText, size }) =>
-        isContentLeft && isText &&
+        isContentLeft &&
+        isText &&
         css`
             padding-left: ${badgeSizes[size].paddingX}em;
         `};
 
     ${({ isContentRight, isText, size }) =>
-        isContentRight && isText &&
+        isContentRight &&
+        isText &&
         css`
             padding-right: ${badgeSizes[size].paddingX}em;
         `};
 `;
 
-interface StyledTextProps extends Pick<StyledBadgeProps, 'size' | 'isContentLeft' | 'isContentRight'> {
-
-}
+type StyledTextProps = Pick<StyledBadgeProps, 'size' | 'isContentLeft' | 'isContentRight'>;
 
 const StyledText = styled.span<StyledTextProps>`
     box-sizing: border-box;
@@ -120,7 +120,9 @@ const StyledText = styled.span<StyledTextProps>`
         `};
 `;
 
-export interface BadgeProps extends Partial<Omit<StyledBadgeProps, 'isText' | 'isContentLeft' | 'isContentRight'>> {
+export interface BadgeProps
+    extends Partial<Omit<StyledBadgeProps, 'isText' | 'isContentLeft' | 'isContentRight'>>,
+        React.HTMLAttributes<HTMLDivElement> {
     /**
      * Текст для отображения.
      */
@@ -133,10 +135,27 @@ export interface BadgeProps extends Partial<Omit<StyledBadgeProps, 'isText' | 'i
      * Слот для контента справа от текста.
      */
     contentRight?: React.ReactElement;
+    className?: string;
 }
 
-export const Badge: React.FC<BadgeProps> = ({ text, contentLeft, contentRight, size = 'l', view = 'secondary' }) => (
-    <StyledBadge size={size} view={view} isText={!!text} isContentLeft={!!contentLeft} isContentRight={!!contentRight}>
+export const Badge: React.FC<BadgeProps> = ({
+    text,
+    contentLeft,
+    contentRight,
+    className,
+    style,
+    size = 'l',
+    view = 'secondary',
+}) => (
+    <StyledBadge
+        size={size}
+        view={view}
+        className={className}
+        style={style}
+        isText={!!text}
+        isContentLeft={!!contentLeft}
+        isContentRight={!!contentRight}
+    >
         {contentLeft}
         {text && (
             <StyledText size={size} isContentLeft={!!contentLeft} isContentRight={!!contentRight}>
