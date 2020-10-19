@@ -74,22 +74,22 @@ const pinsMatrix = {
     'circle-circle': 'h h h h',
 };
 
-export type Sizes = keyof typeof sizesToTypography;
+export type Size = keyof typeof sizesToTypography;
 
-export type Views = keyof typeof viewToColors;
+export type View = keyof typeof viewToColors;
 
-export type Pins = keyof typeof pinsMatrix;
+export type Pin = keyof typeof pinsMatrix;
 
 export interface SizesModel {
     /**
      * Размер кнопки
      */
-    size?: Sizes;
+    size?: Size;
     /**
      * Границы кнопки
      */
-    pin?: Pins;
-    isText?: boolean;
+    pin?: Pin;
+    isTextOrChildren?: boolean;
 }
 
 // Преобразовывает матрицу радиусов с указанными размерами
@@ -110,7 +110,7 @@ const convertMatrix = (matrix: string, r: string, h: string): string => {
 };
 
 // Возвращает стили размеров по параметрам
-const getSizes = ({ size = 'l', pin = 'square-square', isText = false }: SizesModel) => {
+const getSizes = ({ size = 'l', pin = 'square-square', isTextOrChildren = false }: SizesModel) => {
     const fontSize = sizes[size].fontSize;
     const height = sizes[size].height / fontSize;
     const paddingY = sizes[size].paddingY / fontSize;
@@ -123,7 +123,7 @@ const getSizes = ({ size = 'l', pin = 'square-square', isText = false }: SizesMo
 
     let sizesIfText;
 
-    if (isText) {
+    if (isTextOrChildren) {
         sizesIfText = css`
             padding-left: ${paddingX}em;
             padding-right: ${paddingX}em;
@@ -163,7 +163,7 @@ interface StyledButtonProps extends SizesModel {
     /**
      * Вид кнопки
      */
-    view?: Views;
+    view?: View;
     disabled?: boolean;
 }
 
@@ -221,21 +221,21 @@ const StyledButton = styled.button<StyledButtonProps>`
 `;
 
 interface StyledTextProps {
-    isIconLeft?: boolean;
-    isIconRight?: boolean;
+    isContentLeft?: boolean;
+    isContentRight?: boolean;
 }
 
 const StyledText = styled.span<StyledTextProps>`
     box-sizing: border-box;
 
-    ${({ isIconLeft }) =>
-        isIconLeft &&
+    ${({ isContentLeft }) =>
+        isContentLeft &&
         css`
             margin-left: 0.25em;
         `}
 
-    ${({ isIconRight }) =>
-        isIconRight &&
+    ${({ isContentRight }) =>
+        isContentRight &&
         css`
             margin-right: 0.25em;
         `}
@@ -245,14 +245,21 @@ export interface ButtonProps
     extends Pick<StyledButtonProps, 'pin' | 'view' | 'size' | 'disabled'>,
         React.ButtonHTMLAttributes<HTMLButtonElement> {
     /**
-     * Дополнительный контент перед `children`
+     * Слот для контента слева, например <Icon/>
      */
-    iconLeft?: React.ReactElement;
+    contentLeft?: React.ReactNode;
     /**
-     * Дополнительный контент после `children`
+     * Слот для контента справа, например <Icon/>
      */
-    iconRight?: React.ReactElement;
-    children?: string;
+    contentRight?: React.ReactNode;
+    /**
+     * Текстовая надпись на кнопке
+     */
+    text?: string;
+    /**
+     * Кастомный контент кнопки. При указании этого свойства contentLeft, contentRight и text не применяются
+     */
+    children?: React.ReactNode;
     className?: string;
     onFocus?: React.FocusEventHandler<HTMLButtonElement>;
     onBlur?: React.FocusEventHandler<HTMLButtonElement>;
@@ -260,7 +267,24 @@ export interface ButtonProps
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ view, size, pin, disabled, children, iconLeft, iconRight, className, style, onFocus, onBlur, onClick }, ref) => (
+    (
+        {
+            view,
+            size,
+            pin,
+            disabled,
+            text,
+            children,
+            contentLeft,
+            contentRight,
+            className,
+            style,
+            onFocus,
+            onBlur,
+            onClick,
+        },
+        ref,
+    ) => (
         <StyledButton
             className={className}
             style={style}
@@ -268,19 +292,20 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             size={size}
             pin={pin}
             disabled={disabled}
-            isText={!!children}
+            isTextOrChildren={!!text || !!children}
             onFocus={onFocus}
             onBlur={onBlur}
             onClick={onClick}
             ref={ref}
         >
-            {iconLeft}
-            {children && (
-                <StyledText isIconLeft={!!iconLeft} isIconRight={!!iconRight}>
-                    {children}
+            {children}
+            {!children && contentLeft}
+            {!children && text && (
+                <StyledText isContentLeft={!!contentLeft} isContentRight={!!contentRight}>
+                    {text}
                 </StyledText>
             )}
-            {iconRight}
+            {!children && contentRight}
         </StyledButton>
     ),
 );

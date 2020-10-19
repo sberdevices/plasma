@@ -7,7 +7,7 @@ route: /components/Button
 import { Playground, Props } from 'docz'
 
 import { Button } from './Button'
-import { Icon } from '../Icon/Icon'
+import { IconAssistant } from '../Icon/Icons/IconAssistant'
 import { ThemeSelect } from '../../helpers/ThemeSelect'
 import { ThemeBackground } from '../../helpers/ThemeBackground'
 
@@ -22,9 +22,13 @@ import { ThemeBackground } from '../../helpers/ThemeBackground'
 ## Примеры использования
 
 ### Базовое применение
+Допустимо указывать надпись через свойство ``text`` (в связке со свойствами ``contentLeft`` и ``contentRight``) или любой контент напрямую через ``children``
 <Playground>
   <ThemeBackground>
-    <Button>Привет, мир!</Button>
+    <Button text="Это текст" />
+    <Button>
+        <span>Это тоже текст</span>
+    </Button>
   </ThemeBackground>
 </Playground>
 
@@ -32,9 +36,9 @@ import { ThemeBackground } from '../../helpers/ThemeBackground'
 Чтобы изменить размер кнопки, установите свойство ``size`` в одно из следующих значений: ``"l"``, ``"m"``, ``"s"``.
 <Playground>
   <ThemeBackground>
-    <Button size="l">Button</Button>
-    <Button size="m">Button</Button>
-    <Button size="s">Button</Button>
+    <Button text="Button" size="l" />
+    <Button text="Button" size="m" />
+    <Button text="Button" size="s" />
   </ThemeBackground>
 </Playground>
 
@@ -42,12 +46,12 @@ import { ThemeBackground } from '../../helpers/ThemeBackground'
 Чтобы изменить вид кнопки, установите свойство ``view`` в одно из следующих значений: ``"primary"``, ``"secondary"``, ``"warning"``, ``"critical"``, ``"checked"``, ``"clear"``.
 <Playground>
   <ThemeBackground>
-    <Button view="primary" size="s">Button</Button>
-    <Button view="secondary" size="s">Button</Button>
-    <Button view="warning" size="s">Button</Button>
-    <Button view="critical" size="s">Button</Button>
-    <Button view="checked" size="s">Button</Button>
-    <Button view="clear" size="s">Button</Button>
+    <Button text="Button" view="primary" size="s" />
+    <Button text="Button" view="secondary" size="s" />
+    <Button text="Button" view="warning" size="s" />
+    <Button text="Button" view="critical" size="s" />
+    <Button text="Button" view="checked" size="s" />
+    <Button text="Button" view="clear" size="s" />
   </ThemeBackground>
 </Playground>
 
@@ -57,17 +61,17 @@ import { ThemeBackground } from '../../helpers/ThemeBackground'
   <ThemeBackground>
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <div style={{ display: 'flex', marginBottom: '10px' }}>
-        <Button pin="square-square" size="s">Button</Button>
-        <Button pin="circle-circle" size="s">Button</Button>
-        <Button pin="clear-clear" size="s">Button</Button>
+        <Button text="Button" pin="square-square" size="s" />
+        <Button text="Button" pin="circle-circle" size="s" />
+        <Button text="Button" pin="clear-clear" size="s" />
       </div>
       <div style={{ display: 'flex', marginBottom: '10px' }}>
-        <Button pin="square-clear" size="s">Button</Button>
-        <Button pin="clear-square" size="s">Button</Button>
+        <Button text="Button" pin="square-clear" size="s" />
+        <Button pin="clear-square" size="s"/>
       </div>
       <div style={{ display: 'flex' }}>
-        <Button pin="circle-clear" size="s">Button</Button>
-        <Button pin="clear-circle" size="s">Button</Button>
+        <Button text="Button" pin="circle-clear" size="s" />
+        <Button text="Button" pin="clear-circle" size="s" />
       </div>
     </div>
   </ThemeBackground>
@@ -76,8 +80,8 @@ import { ThemeBackground } from '../../helpers/ThemeBackground'
 ### Иконки
 <Playground>
   <ThemeBackground>
-    <Button iconLeft={<Icon icon="assistant" />}>Text</Button>
-    <Button iconRight={<Icon icon="assistant" />}>Text</Button>
-    <Button iconRight={<Icon icon="assistant" />}/>
+    <Button text="Button" contentLeft={<IconAssistant />} />
+    <Button text="Button" contentRight={<IconAssistant />} />
+    <Button text="Button" contentRight={<IconAssistant />} />
   </ThemeBackground>
 </Playground>

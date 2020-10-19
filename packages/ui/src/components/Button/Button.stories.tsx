@@ -3,7 +3,7 @@ import { text, boolean, select } from '@storybook/addon-knobs';
 
 import { Icon } from '../Icon/Icon';
 
-import { Button } from './Button';
+import { Button, View, Size, Pin } from './Button';
 
 export default {
     title: 'Button',
@@ -16,16 +16,9 @@ export default {
     ],
 };
 
-const sizes: ['l', 'm', 's'] = ['l', 'm', 's'];
-const views: ['primary', 'secondary', 'warning', 'critical', 'checked', 'clear'] = [
-    'primary',
-    'secondary',
-    'warning',
-    'critical',
-    'checked',
-    'clear',
-];
-const pins: [
+const sizes: Size[] = ['l', 'm', 's'];
+const views: View[] = ['primary', 'secondary', 'warning', 'critical', 'checked', 'clear'];
+const pins: Pin[] = [
     'square-square',
     'square-clear',
     'clear-square',
@@ -33,26 +26,26 @@ const pins: [
     'clear-circle',
     'circle-clear',
     'circle-circle',
-] = ['square-square', 'square-clear', 'clear-square', 'clear-clear', 'clear-circle', 'circle-clear', 'circle-circle'];
+];
 
-export const Default = () => <Button disabled={boolean('disabled', false)}>{text('children', 'Button')}</Button>;
+export const Default = () => <Button text={text('text', 'Button')} disabled={boolean('disabled', false)} />;
 
 export const Sizes = () => (
-    <Button disabled={boolean('disabled', false)} size={select('size', sizes, 'l')}>
-        {text('children', 'Button')}
-    </Button>
+    <Button text={text('text', 'Button')} disabled={boolean('disabled', false)} size={select('size', sizes, 'l')} />
 );
 
 export const Views = () => (
-    <Button disabled={boolean('disabled', false)} view={select('view', views, 'primary')}>
-        {text('children', 'Button')}
-    </Button>
+    <Button
+        text={text('text', 'Button')}
+        disabled={boolean('disabled', false)}
+        view={select('view', views, 'primary')}
+    />
 );
 
 export const Pins = () => (
     <Button
         disabled={boolean('disabled', false)}
-        iconLeft={<Icon icon="clock" />}
+        contentLeft={<Icon icon="clock" />}
         pin={select('pin', pins, 'square-square')}
     />
 );
@@ -60,14 +53,16 @@ export const Pins = () => (
 export const WithIcon = () => (
     <>
         <Button
+            text="Prev"
             disabled={boolean('disabled', false)}
-            iconLeft={<Icon icon="skipPrevious" />}
+            contentLeft={<Icon icon="skipPrevious" />}
             style={{ marginRight: '15px' }}
-        >
-            Prev
-        </Button>
-        <Button disabled={boolean('disabled', false)} iconRight={<Icon icon="skipNext" />}>
-            Next
-        </Button>
+        />
+        <Button
+            text="Next"
+            disabled={boolean('disabled', false)}
+            contentRight={<Icon icon="skipNext" />}
+            style={{ marginLeft: '15px' }}
+        />
     </>
 );

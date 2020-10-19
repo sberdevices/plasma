@@ -81,7 +81,7 @@ export const StepperButton: React.FC<StepperButtonProps> = ({
         view={view}
         size={size}
         disabled={disabled}
-        iconLeft={icon || <Icon icon="minus" />}
+        contentLeft={icon || <Icon icon="minus" />}
         onFocus={onFocus}
         onBlur={onBlur}
         onClick={onClick}
