@@ -1,10 +1,13 @@
 import React from 'react';
 import styled, { FlattenSimpleInterpolation } from 'styled-components';
 
+/**
+ * Умножаем на 2 пиксельные размеры для корректного отображния на устройствах
+ */
 const breakpoints = {
-    tv: 960,
-    portal8: 769,
-    portal6: 560,
+    tv: 960 * 2,
+    portal8: 769 * 2,
+    portal6: 560 * 2,
     mobile: 0,
 };
 const columns = {
@@ -14,15 +17,15 @@ const columns = {
     mobile: 4,
 };
 const margin = {
-    tv: 64,
-    portal8: 56,
-    portal6: 56,
+    tv: 64 * 2,
+    portal8: 56 * 2,
+    portal6: 56 * 2,
     mobile: 16,
 };
 const gutter = {
-    tv: 16,
-    portal8: 16,
-    portal6: 16,
+    tv: 16 * 2,
+    portal8: 16 * 2,
+    portal6: 16 * 2,
     mobile: 8,
 };
 
@@ -39,11 +42,11 @@ export const mediaQuery = (viewport: Viewport): MediaQueryFunction => {
 
     if (min === null && max !== null) {
         return (content) => `@media (max-width: ${max}px) { ${content} }`;
-    } else if (min !== null && max !== null) {
-        return (content) => `@media (min-width: ${min}px) and (max-width: ${max}px) { ${content} }`;
-    } else {
-        return (content) => `@media (min-width: ${min}px) { ${content} }`;
     }
+    if (min !== null && max !== null) {
+        return (content) => `@media (min-width: ${min}px) and (max-width: ${max}px) { ${content} }`;
+    }
+    return (content) => `@media (min-width: ${min}px) { ${content} }`;
 };
 
 const StyledContainer = styled.div`
@@ -54,7 +57,7 @@ const StyledContainer = styled.div`
     flex-direction: column;
 
     width: 100%;
-    max-width: 1200px;
+    max-width: 2400px;
 
     ${viewports.map((viewport) =>
         mediaQuery(viewport)(`
