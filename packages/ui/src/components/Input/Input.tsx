@@ -26,6 +26,7 @@ export const StyledRoot = styled.label<StyledRootProps>`
 
     display: flex;
     align-items: center;
+    box-sizing: border-box;
 
     background: ${colors.surfaceLiquid03};
     border: ${rootBorderWidth}em solid transparent;
@@ -67,6 +68,7 @@ interface StyledInputProps {
 }
 
 export const StyledInput = styled.input<StyledInputProps>`
+    box-sizing: border-box;
     width: 100%;
     height: 100%;
     padding: ${inputPaddingY}em ${inputPaddingX}em;

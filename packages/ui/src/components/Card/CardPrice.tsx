@@ -13,11 +13,13 @@ export interface CardPriceProps {
 
 const StyledRoot = styled.div`
     display: flex;
+    box-sizing: border-box;
 
     margin-top: 12px;
 `;
 
 const StyledPrice = styled.div`
+    box-sizing: border-box;
     height: 40px;
 
     font-size: 32px;
@@ -28,6 +30,7 @@ const StyledPrice = styled.div`
 `;
 
 const StyledOldPrice = styled(StyledPrice)`
+    box-sizing: border-box;
     margin-left: 8px;
 
     text-decoration: line-through;
@@ -36,6 +39,8 @@ const StyledOldPrice = styled(StyledPrice)`
 `;
 
 const StyledCount = styled.div`
+    box-sizing: border-box;
+
     height: 40px;
     margin-left: 8px;
 

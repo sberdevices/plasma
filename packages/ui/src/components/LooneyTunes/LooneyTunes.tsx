@@ -19,6 +19,7 @@ interface StyledLavaCircleProps {
 
 const StyledRoot = styled.div<StyledCircleProps>`
     display: inline-flex;
+    box-sizing: border-box;
 
     ${({ diameter: size }) => css`
         width: ${size}px;
@@ -34,6 +35,7 @@ const StyledBody = styled.div`
 
 const StyledCircle = styled.div<StyledCircleProps>`
     ${({ diameter: size }) => css`
+        box-sizing: border-box;
         position: absolute;
         width: ${size}px;
         height: ${size}px;

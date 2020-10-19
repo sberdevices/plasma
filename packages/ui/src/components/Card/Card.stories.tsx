@@ -14,21 +14,25 @@ import { CardMedia } from './CardMedia';
 import { CardPrice } from './CardPrice';
 
 const StyledActionButton = styled(ActionButton)`
+    box-sizing: border-box;
     position: absolute;
     top: -52px;
     right: 24px;
 `;
 
 const StyledCard = styled(Card)`
+    box-sizing: border-box;
     width: 392px;
 `;
 
 const StyledDivider = styled.div`
+    box-sizing: border-box;
     flex: 1;
 `;
 
 const StyledCardContent = styled(CardContent)`
     display: flex;
+    box-sizing: border-box;
     flex-direction: column;
 
     height: 200px;
@@ -37,11 +41,13 @@ const StyledCardContent = styled(CardContent)`
 const StyledCardIndex = styled(CardIndex)`
     top: 8px;
     left: 8px;
+    box-sizing: border-box;
 `;
 
 const StyledCardBadge = styled(CardBadge)`
     top: 16px;
     right: 16px;
+    box-sizing: border-box;
 `;
 
 interface FullCardPreviewProps extends CardProps {

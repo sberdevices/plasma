@@ -6,9 +6,11 @@ const StyledRoot = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    box-sizing: border-box;
 `;
 
 const StyledSelect = styled.select`
+    box-sizing: border-box;
     padding: 4px 8px;
     margin-left: 8px;
 `;

@@ -152,6 +152,7 @@ const getSizes = ({ size = 'l', pin = 'square-square', isText = false }: SizesMo
             border-radius: ${beforeRadius};
             border-width: ${outline}em;
         }
+
         &:focus::before {
             box-shadow: 0 0 0 ${outline}em ${colors.buttonFocused};
         }
@@ -171,6 +172,7 @@ const StyledButton = styled.button<StyledButtonProps>`
 
     display: inline-flex;
     align-items: center;
+    box-sizing: border-box;
     justify-content: center;
 
     appearance: none;
@@ -199,8 +201,7 @@ const StyledButton = styled.button<StyledButtonProps>`
     &[disabled] {
         opacity: 0.4;
 
-        &:hover,
-        &:active {
+        &:hover, &:active {
             transform: none;
         }
     }
@@ -225,6 +226,8 @@ interface StyledTextProps {
 }
 
 const StyledText = styled.span<StyledTextProps>`
+    box-sizing: border-box;
+
     ${({ isIconLeft }) =>
         isIconLeft &&
         css`

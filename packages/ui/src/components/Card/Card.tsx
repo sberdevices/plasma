@@ -31,6 +31,7 @@ const StyledRoot = styled.div<StyledRootProps>`
     position: relative;
 
     display: flex;
+    box-sizing: border-box;
     flex-direction: column;
     flex-shrink: 0;
 

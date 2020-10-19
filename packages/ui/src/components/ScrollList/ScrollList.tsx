@@ -150,6 +150,7 @@ function resolveInlineStyle(axis: ScrollListProps['axis'], position: number): Re
 type StyledRootProps = Pick<ScrollListProps, 'axis'>;
 const StyledRoot = styled.div<StyledRootProps>`
     position: relative;
+    box-sizing: border-box;
 
     ${({ axis }) => {
         switch (axis) {
@@ -175,6 +176,7 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
     position: relative;
 
     align-items: center;
+    box-sizing: border-box;
 
     ${({ transitionDuration }) =>
         transitionDuration &&

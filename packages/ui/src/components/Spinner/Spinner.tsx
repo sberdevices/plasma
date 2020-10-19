@@ -15,6 +15,7 @@ const rotateAnimation = keyframes`
 
 const StyledRoot = styled.div<{ $size: number }>`
     display: flex;
+    box-sizing: border-box;
 
     ${({ $size }) => css`
         width: ${$size}px;

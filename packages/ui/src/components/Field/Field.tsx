@@ -28,6 +28,7 @@ interface StyledRootProps {
 
 const StyledRoot = styled(Root)<StyledRootProps>`
     position: relative;
+    box-sizing: border-box;
     height: ${rootHeight}em;
 
     border-radius: ${rootBorderRadius}em;
@@ -57,6 +58,7 @@ interface StyledInputLinePros {
 }
 
 const StyledInputLine = styled.div<StyledInputLinePros>`
+    box-sizing: border-box;
     width: 100%;
     padding: ${linePaddingT}em ${linePaddingX}em ${linePaddingB}em;
 

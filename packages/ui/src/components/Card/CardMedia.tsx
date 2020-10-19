@@ -11,6 +11,7 @@ const StyledRoot = styled.div`
     position: relative;
 
     display: block;
+    box-sizing: border-box;
 
     width: 100%;
     height: 392px;

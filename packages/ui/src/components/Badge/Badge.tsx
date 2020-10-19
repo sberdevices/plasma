@@ -74,6 +74,7 @@ interface StyledBadgeProps {
 const StyledBadge = styled.div<StyledBadgeProps>`
     display: flex;
     align-items: center;
+    box-sizing: border-box;
     justify-content: center;
 
     ${typography.caption};
@@ -99,6 +100,8 @@ interface StyledTextProps extends Pick<StyledBadgeProps, 'size' | 'isContentLeft
 }
 
 const StyledText = styled.span<StyledTextProps>`
+    box-sizing: border-box;
+
     ${({ size }) =>
         css`
             padding: 0 ${badgeSizes[size].paddingX}em;

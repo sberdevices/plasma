@@ -10,6 +10,7 @@ const StyledLooneyTunesContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
 
     color: rgba(255, 255, 255, 0.7);
 `;

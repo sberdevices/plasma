@@ -8,8 +8,11 @@ import {
 
 const StyledRoot = styled.div`
     display: flex;
+    box-sizing: border-box;
+
     margin: -20px;
     padding: 20px;
+
     color: ${colorTextPrimary};
     background: ${colorBackgroundDefault};
     background-color: ${colorBackgroundColor};

@@ -37,6 +37,7 @@ const StyledRoot = styled.span<StyledRootProps>`
         background-color: ${uiColor[color]};
         display: flex;
         justify-content: center;
+        box-sizing: border-box;
         transition: opacity 0.2s ease-in-out;
         border-radius: 50%;
         border: none;

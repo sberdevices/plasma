@@ -13,6 +13,7 @@ const StyledRoot = styled.div<StyledRootProps>`
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    box-sizing: border-box;
 
     font-size: 32px;
     font-weight: 500;

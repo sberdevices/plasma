@@ -14,22 +14,26 @@ const StyledHeader = styled.header`
 
     display: flex;
     align-items: center;
+    box-sizing: border-box;
 
     height: 72px;
     padding: 60px 48px;
 `;
 
 const StyledTitleWrapper = styled.div`
+    box-sizing: border-box;
     margin: 0;
     margin-left: 80px;
 `;
 
 const StyledTitle = styled(Headline3)`
+    box-sizing: border-box;
     font-size: 40px;
     line-height: 1.2;
 `;
 
 const StyledSubTitle = styled(Footnote1)`
+    box-sizing: border-box;
     color: ${colorTextSecondary};
 
     font-size: 24px;
@@ -37,6 +41,7 @@ const StyledSubTitle = styled(Footnote1)`
 `;
 
 const StyledLogo = styled.img`
+    box-sizing: border-box;
     width: 72px;
     height: 72px;
     margin-right: 24px;

@@ -50,6 +50,7 @@ const StyledContainer = styled.div`
     margin: 0 auto;
 
     display: flex;
+    box-sizing: border-box;
     flex-direction: column;
 
     width: 100%;
@@ -69,6 +70,7 @@ export const Container: React.FC<{ className?: string }> = ({ children, classNam
 
 const StyledRow = styled.div`
     display: flex;
+    box-sizing: border-box;
     flex-wrap: wrap;
 
     ${viewports.map((viewport) =>
@@ -95,6 +97,8 @@ interface StyledColProps {
 }
 
 const StyledCol = styled.div<StyledColProps>`
+    box-sizing: border-box;
+
     ${({ size, offset }) =>
         viewports.map((viewport) =>
             mediaQuery(viewport)(`

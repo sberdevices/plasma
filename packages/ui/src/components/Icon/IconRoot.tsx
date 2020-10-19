@@ -26,6 +26,7 @@ interface StyledRootProps {
 
 const StyledRoot = styled.span<StyledRootProps>`
     display: inline-block;
+    box-sizing: border-box;
 
     ${({ $size }) => css`
         width: ${sizeMap[$size]}px;

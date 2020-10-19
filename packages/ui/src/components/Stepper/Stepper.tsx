@@ -8,6 +8,7 @@ import { Icon } from '../Icon/Icon';
 const StyledRoot = styled.div`
     display: flex;
     align-items: center;
+    box-sizing: border-box;
     justify-content: space-between;
 `;
 
@@ -23,6 +24,7 @@ interface StyledValueProps {
 }
 
 const StyledValue = styled.span<StyledValueProps>`
+    box-sizing: border-box;
     margin-left: 0.375em;
     margin-right: 0.375em;
 
