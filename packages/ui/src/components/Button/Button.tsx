@@ -2,6 +2,8 @@ import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 import { typography, colors } from '@sberdevices/plasma-tokens';
 
+import { PickOptional } from '../../types/PickOptional';
+
 const sizesToTypography = {
     l: typography.button1,
     m: typography.button1,
@@ -36,7 +38,7 @@ const sizes = {
     },
 };
 
-export const viewToColors = {
+export const views = {
     primary: css`
         background-color: ${colors.buttonAccent};
         color: ${colors.text};
@@ -76,19 +78,23 @@ const pinsMatrix = {
 
 export type Size = keyof typeof sizesToTypography;
 
-export type View = keyof typeof viewToColors;
+export type View = keyof typeof views;
 
 export type Pin = keyof typeof pinsMatrix;
 
-export interface SizesModel {
+export interface Sized {
     /**
      * Размер кнопки
      */
-    size?: Size;
+    size: Size;
     /**
      * Границы кнопки
      */
-    pin?: Pin;
+    pin: Pin;
+    /**
+     * Растянуть кнопку на всю ширину родителя (width=100%)
+     */
+    fullWidth?: boolean;
     isTextOrChildren?: boolean;
 }
 
@@ -110,7 +116,7 @@ const convertMatrix = (matrix: string, r: string, h: string): string => {
 };
 
 // Возвращает стили размеров по параметрам
-const getSizes = ({ size = 'l', pin = 'square-square', isTextOrChildren = false }: SizesModel) => {
+const getSizes = ({ pin, size, fullWidth = false, isTextOrChildren = false }: Sized) => {
     const fontSize = sizes[size].fontSize;
     const height = sizes[size].height / fontSize;
     const paddingY = sizes[size].paddingY / fontSize;
@@ -121,30 +127,29 @@ const getSizes = ({ size = 'l', pin = 'square-square', isTextOrChildren = false 
     const elemRadius = convertMatrix(pinsMatrix[pin], `${squareRadius}em`, `${circleRadius}em`);
     const beforeRadius = convertMatrix(pinsMatrix[pin], `${squareRadius + outline}em`, `${circleRadius + outline}em`);
 
-    let sizesIfText;
-
-    if (isTextOrChildren) {
-        sizesIfText = css`
-            padding-left: ${paddingX}em;
-            padding-right: ${paddingX}em;
-        `;
-    } else {
-        sizesIfText = css`
-            width: ${height}em;
-            padding-left: ${paddingY}em;
-            padding-right: ${paddingY}em;
-        `;
-    }
-
     return css`
-        ${sizesIfText};
-
         height: ${height}em;
         padding-top: ${paddingY}em;
         padding-bottom: ${paddingY}em;
         border-radius: ${elemRadius};
 
         ${sizesToTypography[size]}
+
+        ${isTextOrChildren
+            ? css`
+                  padding-left: ${paddingX}em;
+                  padding-right: ${paddingX}em;
+              `
+            : css`
+                  width: ${height}em;
+                  padding-left: ${paddingY}em;
+                  padding-right: ${paddingY}em;
+              `};
+
+        ${fullWidth &&
+        css`
+            width: 100%;
+        `};
 
         &::before {
             top: -${outline}em;
@@ -159,11 +164,15 @@ const getSizes = ({ size = 'l', pin = 'square-square', isTextOrChildren = false 
     `;
 };
 
-interface StyledButtonProps extends SizesModel {
+interface StyledButtonProps extends Sized {
     /**
      * Вид кнопки
      */
-    view?: View;
+    view: View;
+    /**
+     * Увеличение по нажатию и ховеру, по умолчанию включено
+     */
+    motion?: boolean;
     disabled?: boolean;
 }
 
@@ -180,25 +189,28 @@ const StyledButton = styled.button<StyledButtonProps>`
 
     transition: transform 0.1s ease-in-out;
 
-    &:focus {
-        outline: none;
-    }
+    ${({ motion }) =>
+        motion &&
+        css`
+            &:hover {
+                transform: scale(1.1);
+            }
+            &:active {
+                transform: scale(0.926);
+            }
+        `}
 
-    &:hover {
-        transform: scale(1.1);
-    }
-
-    &:active {
-        transform: scale(0.926);
-    }
-
-    ${({ view = 'secondary' }) => css`
-        ${viewToColors[view]}
+    ${({ view }) => css`
+        ${views[view]}
     `}
 
     ${getSizes}
 
-    &[disabled] {
+    &:focus {
+        outline: none;
+    }
+
+    &:disabled {
         opacity: 0.4;
 
         &:hover, &:active {
@@ -242,7 +254,7 @@ const StyledText = styled.span<StyledTextProps>`
 `;
 
 export interface ButtonProps
-    extends Pick<StyledButtonProps, 'pin' | 'view' | 'size' | 'disabled'>,
+    extends PickOptional<StyledButtonProps, 'fullWidth' | 'pin' | 'view' | 'size' | 'motion' | 'disabled'>,
         React.ButtonHTMLAttributes<HTMLButtonElement> {
     /**
      * Слот для контента слева, например <Icon/>
@@ -269,34 +281,26 @@ export interface ButtonProps
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     (
         {
-            view,
-            size,
-            pin,
-            disabled,
             text,
             children,
             contentLeft,
             contentRight,
-            className,
-            style,
-            onFocus,
-            onBlur,
-            onClick,
+            view = 'secondary',
+            size = 'l',
+            pin = 'square-square',
+            motion = true,
+            ...rest
         },
         ref,
     ) => (
         <StyledButton
-            className={className}
-            style={style}
             view={view}
             size={size}
             pin={pin}
-            disabled={disabled}
+            motion={motion}
             isTextOrChildren={!!text || !!children}
-            onFocus={onFocus}
-            onBlur={onBlur}
-            onClick={onClick}
             ref={ref}
+            {...rest}
         >
             {children}
             {!children && contentLeft}
