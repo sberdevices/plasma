@@ -6,7 +6,8 @@ route: /components/Icon
 
 import { Playground, Props } from 'docz';
 
-import { Icon, iconSet } from './Icon'
+import { Icon } from './Icon'
+import {IconSet } from './IconSet'
 import { ThemeSelect } from '../../helpers/ThemeSelect'
 import { ThemeBackground } from '../../helpers/ThemeBackground';
 
@@ -19,33 +20,25 @@ import { ThemeBackground } from '../../helpers/ThemeBackground';
 
 ## Default size
 <ThemeBackground>
-  {Object.keys(iconSet).map((icon) => (
-    <div style={{ padding: 10 }} key={icon}>
-    <Icon icon={icon} size="m" />
-    </div>
-  ))}
+  <IconSet />
 </ThemeBackground>
 
 ## Small size
 <ThemeBackground>
-  {Object.keys(iconSet).map((icon) => (
-    <div style={{ padding: 10 }} key={icon}>
-    <Icon icon={icon} size="s" />
-    </div>
-  ))}
+  <IconSet size="s" />
 </ThemeBackground>
 
 ## Large size
 <ThemeBackground>
-  {Object.keys(iconSet).map((icon) => (
-    <div style={{ padding: 10 }} key={icon}>
-    <Icon icon={icon} size="l" />
-    </div>
-  ))}
+  <IconSet size="l" />
 </ThemeBackground>
 
-## Как добавить новую иконку
+## Использование
+Доступные иконки находятся в директории Icons.   
+Пример импорта одной иконки:  
+``` import { IconCart } from 'ui/components/Icon/Icons/IconCart' ```
 
+## Как добавить новую иконку
 1. Подготовить свг-разметку в виде реакт-компонента в директории Icon.assets
 2. Собрать компонент иконки в директории Icons для отдельного использования
 3. Импортировать свг в компонент Icon

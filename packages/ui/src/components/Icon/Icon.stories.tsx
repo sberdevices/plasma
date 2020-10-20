@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { text } from '@storybook/addon-knobs';
 
 import { Icon, IconProps, iconSet } from './Icon';
+import { IconSet } from './IconSet';
 
 const StoryRoot = styled.div`
     display: flex;
@@ -25,49 +26,13 @@ export default {
     title: 'Icon',
 };
 
-export const Default = () => (
-    <StoryRoot>
-        {Object.keys(iconSet).map((icon) => (
-            <StyledContainer key={icon}>
-                <IconName>{icon}</IconName>
-                <Icon icon={icon as IconProps['icon']} size="m" />
-            </StyledContainer>
-        ))}
-    </StoryRoot>
-);
+export const Default = () => <IconSet />;
 
-export const Small = () => (
-    <StoryRoot>
-        {Object.keys(iconSet).map((icon) => (
-            <StyledContainer key={icon}>
-                <IconName>{icon}</IconName>
-                <Icon icon={icon as IconProps['icon']} size="s" />
-            </StyledContainer>
-        ))}
-    </StoryRoot>
-);
+export const Small = () => <IconSet size="s" />;
 
-export const Large = () => (
-    <StoryRoot>
-        {Object.keys(iconSet).map((icon) => (
-            <StyledContainer key={icon}>
-                <IconName>{icon}</IconName>
-                <Icon icon={icon as IconProps['icon']} size="l" />
-            </StyledContainer>
-        ))}
-    </StoryRoot>
-);
+export const Large = () => <IconSet size="l" />;
 
 export const CustomColor = () => {
     const color = text('color', '#fc0');
-    return (
-        <StoryRoot>
-            {Object.keys(iconSet).map((icon) => (
-                <StyledContainer key={icon}>
-                    <IconName>{icon}</IconName>
-                    <Icon icon={icon as IconProps['icon']} color={color} />
-                </StyledContainer>
-            ))}
-        </StoryRoot>
-    );
+    return <IconSet color={color} />;
 };
