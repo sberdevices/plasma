@@ -85,3 +85,15 @@ import { ThemeBackground } from '../../helpers/ThemeBackground'
     <Button text="Button" contentRight={<IconAssistant />} />
   </ThemeBackground>
 </Playground>
+
+### Модификаторы
+``disabled`` делает кнопку недоступной для нажатия, ``fullWidth`` позволяет ей занять доступню ширину, а с помощью ``motion`` можно управлять анимацией при наведении/нажатии.
+<Playground>
+  <ThemeBackground>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%' }}>
+      <Button text="Недоступно" disabled />
+      <Button text="Широкая кнопка" fullWidth />
+      <Button text="Без анимации" motion={false} />
+    </div>
+  </ThemeBackground>
+</Playground>

@@ -2,7 +2,6 @@ import React from 'react';
 import { text, boolean, select } from '@storybook/addon-knobs';
 
 import { Icon } from '../Icon/Icon';
-
 import { Button, View, Size, Pin } from './Button';
 
 export default {
@@ -28,25 +27,42 @@ const pins: Pin[] = [
     'circle-circle',
 ];
 
-export const Default = () => <Button text={text('text', 'Button')} disabled={boolean('disabled', false)} />;
+export const Default = () => (
+    <Button
+        text={text('text', 'Button')}
+        motion={boolean('motion', true)}
+        disabled={boolean('disabled', false)}
+        fullWidth={boolean('fullWidth', false)}
+    />
+);
 
 export const Sizes = () => (
-    <Button text={text('text', 'Button')} disabled={boolean('disabled', false)} size={select('size', sizes, 'l')} />
+    <Button
+        text={text('text', 'Button')}
+        size={select('size', sizes, 'l')}
+        motion={boolean('motion', true)}
+        disabled={boolean('disabled', false)}
+        fullWidth={boolean('fullWidth', false)}
+    />
 );
 
 export const Views = () => (
     <Button
         text={text('text', 'Button')}
-        disabled={boolean('disabled', false)}
         view={select('view', views, 'primary')}
+        motion={boolean('motion', true)}
+        disabled={boolean('disabled', false)}
+        fullWidth={boolean('fullWidth', false)}
     />
 );
 
 export const Pins = () => (
     <Button
-        disabled={boolean('disabled', false)}
-        contentLeft={<Icon icon="clock" />}
         pin={select('pin', pins, 'square-square')}
+        contentLeft={<Icon icon="clock" />}
+        motion={boolean('motion', true)}
+        disabled={boolean('disabled', false)}
+        fullWidth={boolean('fullWidth', false)}
     />
 );
 
@@ -54,14 +70,18 @@ export const WithIcon = () => (
     <>
         <Button
             text="Prev"
-            disabled={boolean('disabled', false)}
             contentLeft={<Icon icon="skipPrevious" />}
+            motion={boolean('motion', true)}
+            disabled={boolean('disabled', false)}
+            fullWidth={boolean('fullWidth', false)}
             style={{ marginRight: '15px' }}
         />
         <Button
             text="Next"
-            disabled={boolean('disabled', false)}
             contentRight={<Icon icon="skipNext" />}
+            motion={boolean('motion', true)}
+            disabled={boolean('disabled', false)}
+            fullWidth={boolean('fullWidth', false)}
             style={{ marginLeft: '15px' }}
         />
     </>
