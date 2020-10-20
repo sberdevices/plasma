@@ -1,6 +1,8 @@
 /components
 /hocs
+/mixins
 /theme
+/types
 /utils
 /dist
 /.docz
