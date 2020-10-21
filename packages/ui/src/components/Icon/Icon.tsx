@@ -20,6 +20,7 @@ import { Search } from './Icon.assets/Search';
 import { Assistant } from './Icon.assets/Assistant';
 import { AssistantPlaceholder } from './Icon.assets/AssistantPlaceholder';
 import { Remove } from './Icon.assets/Remove';
+import { Card } from './Icon.assets/Card';
 
 const iconSet = {
     cart: Cart,
@@ -41,6 +42,7 @@ const iconSet = {
     assistant: Assistant,
     assistantPlaceholder: AssistantPlaceholder,
     remove: Remove,
+    card: Card,
 };
 
 export type IconName = keyof typeof iconSet;
