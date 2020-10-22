@@ -1,0 +1,32 @@
+{
+  "name": "plasma",
+  "private": true,
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "devDependencies": {
+    "@commitlint/cli": "11.0.0",
+    "@commitlint/config-conventional": "11.0.0",
+    "@typescript-eslint/eslint-plugin": "4.5.0",
+    "@typescript-eslint/parser": "4.5.0",
+    "babel-eslint": "10.1.0",
+    "eslint": "7.11.0",
+    "eslint-config-airbnb": "18.2.0",
+    "eslint-config-prettier": "6.14.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jest": "24.1.0",
+    "eslint-plugin-jsx-a11y": "6.3.1",
+    "eslint-plugin-prettier": "3.1.4",
+    "eslint-plugin-react": "7.21.5",
+    "eslint-plugin-react-hooks": "4.2.0",
+    "husky": "4.3.0",
+    "lerna": "^3.22.1",
+    "lint-staged": "10.4.2",
+    "prettier": "2.1.2",
+    "stylelint": "13.7.2",
+    "stylelint-config-recommended": "3.0.0",
+    "stylelint-config-styled-components": "0.1.1",
+    "stylelint-order": "4.1.0",
+    "stylelint-prettier": "1.1.2",
+    "stylelint-processor-styled-components": "1.10.0",
+    "typescript": "4.0.3"
+  }
+}
