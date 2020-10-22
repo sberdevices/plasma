@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { buttonAccent, accent, buttonWarning, whitePrimary, blackSecondary } from 'plasma-tokens';
+import { buttonAccent, accent, buttonWarning, whitePrimary, blackSecondary } from '@sberdevices/plasma-tokens';
 
 export const uiColor = {
     active: buttonAccent,

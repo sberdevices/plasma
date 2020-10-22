@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { paragraph1, paragraph2 } from 'plasma-tokens';
+import { paragraph1, paragraph2 } from '@sberdevices/plasma-tokens';
 
 export const ParagraphText1 = styled.div(paragraph1);
 export const ParagraphText2 = styled.div(paragraph2);

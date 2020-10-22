@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Headline3 } from 'plasma-styles/components/Headline';
-import { Footnote1 } from 'plasma-styles/components/Footnote';
-import { colorTextSecondary } from 'plasma-styles/components/Color/tokens';
+import { Headline3 } from '@sberdevices/plasma-styles/components/Headline';
+import { Footnote1 } from '@sberdevices/plasma-styles/components/Footnote';
+import { colorTextSecondary } from '@sberdevices/plasma-styles/components/Color/tokens';
 
 import { Button, ButtonProps } from '../Button/Button';
 import { Icon } from '../Icon/Icon';

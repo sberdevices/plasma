@@ -1,18 +1,18 @@
 import {
     accent,
     background,
-    
+
     overlay,
     critical,
     warning,
-    primary, 
+    primary,
     secondary,
     tertiary,
     gradient,
-    
+
     buttonAccent,
     buttonSecondary,
-    buttonChecked, 
+    buttonChecked,
     buttonFocused,
 
     surfaceLiquid01,
@@ -21,10 +21,10 @@ import {
 
     speechBubbleReceived,
     speechBubbleSent,
-} from 'plasma-tokens';
+} from '@sberdevices/plasma-tokens';
 
 
-import { accent as colorBrandSber } from  'plasma-tokens/themesValues/darkSber';
+import { accent as colorBrandSber } from  '@sberdevices/plasma-tokens/themesValues/darkSber';
 export { colorBrandSber };
 
 export const colorBackgroundColor = background;

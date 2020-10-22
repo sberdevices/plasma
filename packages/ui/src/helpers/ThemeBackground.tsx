@@ -4,7 +4,7 @@ import {
     colorTextPrimary,
     colorBackgroundColor,
     colorBackgroundDefault,
-} from 'plasma-styles/components/Color/tokens';
+} from '@sberdevices/plasma-styles/components/Color/tokens';
 
 const StyledRoot = styled.div`
     display: flex;

@@ -7,7 +7,7 @@
 ```tsx
 import React from 'react';
 import styled from 'styled-components';
-import { ScrollList, ListContext } from 'ui/components/ScrollList';
+import { ScrollList, ListContext } from '@sberdevices/ui/components/ScrollList';
 
 const StyledList = styled(ScrollList)`
   height: 300px;

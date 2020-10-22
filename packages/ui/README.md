@@ -16,7 +16,7 @@
 ### Установка пакета
 
 ```bash
-$ npm install ui
+$ npm install @sberdevices/ui
 ```
 
 ### Настройка
@@ -42,7 +42,7 @@ module.exports = override(
 ```typescript
 // styled.d.ts
 import 'styled-components';
-import { UITheme } from 'ui/theme';
+import { UITheme } from '@sberdevices/ui/theme';
 
 declare module 'styled-components' {
     export interface DefaultTheme extends UITheme {
@@ -53,9 +53,9 @@ declare module 'styled-components' {
 // App.tsx
 import React from 'react';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
-import { defaultTheme } from 'ui/theme';
-import { ActionButton } from 'ui/ActionButton';
-import { Icon } from 'ui/Icon';
+import { defaultTheme } from '@sberdevices/ui/theme';
+import { ActionButton } from '@sberdevices/ui/ActionButton';
+import { Icon } from '@sberdevices/ui/Icon';
 
 const theme: DefaultTheme = {
     ...defaultTheme,

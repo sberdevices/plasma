@@ -1,4 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import { darkJoy } from 'plasma-tokens/themes';
+import { darkJoy } from '@sberdevices/plasma-tokens/themes';
 
 export default createGlobalStyle(darkJoy);

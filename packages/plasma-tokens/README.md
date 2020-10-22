@@ -8,13 +8,13 @@
 ## Пример использования
 
 ```sh
-npm i --save 'plasma-tokens'
+npm i --save '@sberdevices/plasma-tokens'
 ```
 
 ```js
 import styled from 'styled-components';
 
-import { text, background, gradient } from 'plasma-tokens';
+import { text, background, gradient } from '@sberdevices/plasma-tokens';
 
 const AppStyled = styled.div`
   padding: 30px;
@@ -38,7 +38,7 @@ export default const App = () => {
 ## Типографическая Система
 
 ```js
-import { typography } from 'plasma-tokens';
+import { typography } from '@sberdevices/plasma-tokens';
 ```
 Включает в себя все необходимые константы для работы с тектом.
 
@@ -80,7 +80,7 @@ Hero Unit:
 Также можно получить все возможные значения для `fontSizes`, `fonts`, `fontWeights`, `lineHeights`, `letterSpacings`;
 
 ```js
-import { fonts } from 'plasma-tokens';
+import { fonts } from '@sberdevices/plasma-tokens';
 
 console.log(fonts);
 // –> {
@@ -96,7 +96,7 @@ console.log(fonts);
 Для получения типографических констант в первоначальном размере можно использовать следущий пример:
 
 ```js
-import { typographyx1 } from 'plasma-tokens';
+import { typographyx1 } from '@sberdevices/plasma-tokens';
 ```
 
 ## Цвета
@@ -105,7 +105,7 @@ import { typographyx1 } from 'plasma-tokens';
 
 
 ```js
-import { accent } from 'plasma-tokens';
+import { accent } from '@sberdevices/plasma-tokens';
 
 ```
 
@@ -121,7 +121,7 @@ export declare const accent = "var(--theme-colors-accent, #2AC673)";
 Также доступны сами значения пременных:
 
 ```js
-import { colorValues } from 'plasma-tokens';
+import { colorValues } from '@sberdevices/plasma-tokens';
 
 console.log(colorValues.black); // –> '#080808'
 
@@ -145,9 +145,9 @@ console.log(colorValues.black); // –> '#080808'
 import styled, { createGlobalStyle } from 'styled-components';
 
 // Подключение не из корня пакета:
-import { darkEva } from 'plasma-tokens/themes';
+import { darkEva } from '@sberdevices/plasma-tokens/themes';
 
-import { text, background, gradient } from 'plasma-tokens';
+import { text, background, gradient } from '@sberdevices/plasma-tokens';
 
 // Создаем глобальные стили
 // Лучше такие места выносит из render() вашего компонента

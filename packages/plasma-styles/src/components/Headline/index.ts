@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { headline1, headline2, headline3, headline4 } from 'plasma-tokens';
+import { headline1, headline2, headline3, headline4 } from '@sberdevices/plasma-tokens';
 
 export const Headline1 = styled.div(headline1);
 export const Headline2 = styled.div(headline2);

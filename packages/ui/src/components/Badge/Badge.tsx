@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { colors, typography } from 'plasma-tokens';
+import { colors, typography } from '@sberdevices/plasma-tokens';
 
 import { viewToColors } from '../Button/Button';
 

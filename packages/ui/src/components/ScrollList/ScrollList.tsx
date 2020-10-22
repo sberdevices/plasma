@@ -44,7 +44,7 @@ interface ScrollListProps {
     index: number;
     axis: 'x' | 'y';
     /**
-     * Фиксирует скролл. Необходимо при использовании вместе с spatnav
+     * Фиксирует скролл. Необходимо при использовании вместе с @sberdevices/spatnav
      */
     preventScroll?: boolean;
     className?: string;

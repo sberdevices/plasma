@@ -2,14 +2,14 @@ import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import Color from 'plasma-styles/components/Color';
+import Color from '@sberdevices/plasma-styles/components/Color';
 import {
     colorTextPrimary,
     colorBackgroundColor,
     colorBackgroundDefault,
-} from 'plasma-styles/components/Color/tokens';
-import { touch, sberBox, sberPortal } from 'plasma-tokens/typo';
-import { darkEva, darkJoy, darkSber, lightEva, lightJoy, lightSber } from 'plasma-tokens/themes';
+} from '@sberdevices/plasma-styles/components/Color/tokens';
+import { touch, sberBox, sberPortal } from '@sberdevices/plasma-tokens/typo';
+import { darkEva, darkJoy, darkSber, lightEva, lightJoy, lightSber } from '@sberdevices/plasma-tokens/themes';
 
 const DocumentStyle = createGlobalStyle`
     /* stylelint-disable-next-line selector-nested-pattern */

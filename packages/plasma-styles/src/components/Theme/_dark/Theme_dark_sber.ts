@@ -1,4 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import { darkSber } from 'plasma-tokens/themes';
+import { darkSber } from '@sberdevices/plasma-tokens/themes';
 
 export default createGlobalStyle(darkSber);

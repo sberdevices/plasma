@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { formatCurrency } from 'i18n';
-import { buttonAccent } from 'plasma-tokens';
+import { formatCurrency } from '@sberdevices/i18n';
+import { buttonAccent } from '@sberdevices/plasma-tokens';
 
 export interface CardPriceProps {
     price: number;

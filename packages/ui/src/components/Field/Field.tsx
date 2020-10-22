@@ -1,6 +1,6 @@
 import React, { forwardRef, useState, useCallback } from 'react';
 import styled, { css } from 'styled-components';
-import { colors } from 'plasma-tokens';
+import { colors } from '@sberdevices/plasma-tokens';
 
 import { StyledRoot as Root, StyledInput as Input, InputProps } from '../Input/Input';
 

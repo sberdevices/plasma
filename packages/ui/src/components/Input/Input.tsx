@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
-import { typography, colors } from 'plasma-tokens';
+import { typography, colors } from '@sberdevices/plasma-tokens';
 
 import { Icon, IconName } from '../Icon/Icon';
 import type { PickOptional } from '../../types/PickOptional';

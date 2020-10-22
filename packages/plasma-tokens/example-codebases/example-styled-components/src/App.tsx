@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 
 import styled, { createGlobalStyle } from 'styled-components';
 
-import { typography } from 'plasma-tokens';
-import { text, background, accent, gradient } from 'plasma-tokens';
-import { darkSber, darkEva, darkJoy, lightSber, lightEva, lightJoy } from 'plasma-tokens/themes';
+import { typography } from '@sberdevices/plasma-tokens';
+import { text, background, accent, gradient } from '@sberdevices/plasma-tokens';
+import { darkSber, darkEva, darkJoy, lightSber, lightEva, lightJoy } from '@sberdevices/plasma-tokens/themes';
 // you probably don't need to cycle through typo scales
 // by default we use SberBox
-import { sberBox, sberPortal, touch } from 'plasma-tokens/typo';
+import { sberBox, sberPortal, touch } from '@sberdevices/plasma-tokens/typo';
 
 // Some type helpers
 type textVariants = keyof typeof typography;
 
-// actually you could use components from plasma-styles
+// actually you could use components from @sberdevices/plasma-styles
 // For h1/h2/h3/h4/p ...
 interface HeadlineProps {
   variant: Extract<textVariants,
@@ -46,7 +46,7 @@ interface IButton {
   variant?: Extract<textVariants, 'button1' | 'button2'>;
 }
 
-// For Button and more complex components you could use "ui"
+// For Button and more complex components you could use "@sberdevices/ui"
 const Button = styled.button<IButton>`
   margin: 1em;
   padding: 0.25em 1em;
@@ -121,7 +121,7 @@ function App() {
         <br />
         <Button onClick={cycleTypo}>{curTypo}</Button>
       </div>
-      
+
       <Headline variant="display1" style={{ marginBottom: 20 }}>Display 1</Headline>
       <Headline variant="display2" style={{ marginBottom: 20 }}>Display 2</Headline>
       <Headline variant="display3" style={{ marginBottom: 20 }}>Display 2</Headline>
@@ -146,8 +146,8 @@ function App() {
 
       <Text variant="caption" as="div" style={{ marginBottom: 20 }}>Caption</Text>
       <Text variant="underline" as="div" style={{ marginBottom: 20 }}>Underline</Text>
-      
-    </AppStyled> 
+
+    </AppStyled>
   );
 }
 

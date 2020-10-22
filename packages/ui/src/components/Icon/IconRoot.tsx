@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { primary } from 'plasma-tokens';
+import { primary } from '@sberdevices/plasma-tokens';
 
 const sizeMap = {
     s: 24,
