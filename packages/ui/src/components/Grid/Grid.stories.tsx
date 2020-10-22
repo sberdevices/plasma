@@ -1,8 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import { text, number } from '@storybook/addon-knobs';
+
+import { Filler } from '../../helpers/Filler';
 
 import { Container, Row, Col } from './Grid';
-import { Filler } from '../../helpers/Filler';
+
+const StyledDummyFiller = styled(Filler)`
+    opacity: 0.5;
+`;
 
 export default {
     title: 'Grid',
@@ -15,31 +21,40 @@ export default {
     ],
 };
 
-export const Default = () => (
+export const ColPlayground = () => (
     <Container>
         <Row>
-            <Col>
-                <Filler>1</Filler>
-            </Col>
-            <Col size={2}>
-                <Filler>2</Filler>
-            </Col>
-            <Col size={3}>
-                <Filler>3</Filler>
-            </Col>
             <Col size={4}>
-                <Filler>4</Filler>
-            </Col>
-            <Col size={2}>
-                <Filler>2</Filler>
+                <StyledDummyFiller>Dummy</StyledDummyFiller>
             </Col>
         </Row>
         <Row>
-            <Col size={3} offset={1}>
-                <Filler>3 offset 1</Filler>
+            <Col size={3}>
+                <StyledDummyFiller>Dummy</StyledDummyFiller>
             </Col>
-            <Col size={6} offset={2}>
-                <Filler>6 offset 2</Filler>
+            <Col size={1}>
+                <StyledDummyFiller>Dummy</StyledDummyFiller>
+            </Col>
+        </Row>
+        <Row>
+            <Col size={2}>
+                <StyledDummyFiller>Dummy</StyledDummyFiller>
+            </Col>
+            <Col size={2}>
+                <StyledDummyFiller>Dummy</StyledDummyFiller>
+            </Col>
+        </Row>
+        <Row>
+            <Col size={1}>
+                <StyledDummyFiller>Dummy</StyledDummyFiller>
+            </Col>
+            <Col size={3}>
+                <StyledDummyFiller>Dummy</StyledDummyFiller>
+            </Col>
+        </Row>
+        <Row>
+            <Col size={number('Size', 1)} offset={number('Offset', 0)}>
+                <Filler>{text('Content', 'Content')}</Filler>
             </Col>
         </Row>
     </Container>
