@@ -1,10 +1,16 @@
 {
     "name": "@sberdevices/plasma-styles",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "",
     "main": "index.js",
     "types": "index.d.ts",
-    "files": ["components", "mixins", "index.d.ts", "index.d.ts.map", "index.js.map"],
+    "files": [
+        "components",
+        "mixins",
+        "index.d.ts",
+        "index.d.ts.map",
+        "index.js.map"
+    ],
     "scripts": {
         "build": "npm run clean && tsc",
         "prepare": "npm run compile",
@@ -39,7 +45,7 @@
         "Vasiliy Loginevskiy"
     ],
     "dependencies": {
-        "@sberdevices/plasma-tokens": "0.0.2",
+        "@sberdevices/plasma-tokens": "0.0.3",
         "@types/styled-components": "5.1.0"
     }
 }
