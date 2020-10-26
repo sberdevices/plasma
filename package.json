@@ -4,7 +4,9 @@
   "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
   "license": "Sber Public License at-nc-sa v.2",
   "scripts": {
-    "release": "auto shipit"
+    "release": "auto shipit",
+    "chromatic": "lerna run chromatic",
+    "build-storybook": "lerna run build-storybook"
   },
   "devDependencies": {
     "@auto-it/conventional-commits": "9.60.1",
@@ -12,6 +14,12 @@
     "@auto-it/slack": "9.60.1",
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
+    "@storybook/addon-actions": "6.0.0-rc.13",
+    "@storybook/addon-backgrounds": "6.0.0-rc.13",
+    "@storybook/addon-knobs": "6.0.0-rc.13",
+    "@storybook/addon-toolbars": "6.0.22",
+    "@storybook/addon-viewport": "6.0.0-rc.13",
+    "@storybook/react": "6.0.0-rc.13",
     "@typescript-eslint/eslint-plugin": "4.5.0",
     "@typescript-eslint/parser": "4.5.0",
     "auto": "9.60.1",

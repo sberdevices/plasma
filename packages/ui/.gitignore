@@ -4,3 +4,5 @@
 /utils
 /dist
 /.docz
+build-sb
+build-storybook.log
