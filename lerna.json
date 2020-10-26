@@ -1,4 +1,20 @@
 {
     "packages": ["packages/*"],
-    "version": "independent"
+    "version": "independent",
+    "ignoreChanges": ["*.md"],
+    "loglevel": "verbose",
+    "exact": true,
+    "ci": true,
+    "command": {
+        "bootstrap": {
+            "npmClientArgs": [
+                "--no-audit",
+                "--no-optional",
+                "--loglevel error",
+                "--no-progress",
+                "--unsafe-perm",
+                "--prefer-offline"
+            ]
+        }
+    }
 }
