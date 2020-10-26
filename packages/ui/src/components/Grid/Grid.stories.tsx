@@ -22,7 +22,7 @@ export const Default = () => (
                 <Filler>1</Filler>
             </Col>
             <Col size={2}>
-                <Filler>2</Filler>
+                <Filler>22</Filler>
             </Col>
             <Col size={3}>
                 <Filler>3</Filler>
@@ -39,7 +39,7 @@ export const Default = () => (
                 <Filler>3 offset 1</Filler>
             </Col>
             <Col size={6} offset={2}>
-                <Filler>6 offset 2</Filler>
+                <Filler>6 offset 42</Filler>
             </Col>
         </Row>
     </Container>
