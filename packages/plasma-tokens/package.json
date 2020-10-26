@@ -13,19 +13,12 @@
         "prebuild:tokens": "npm run build:ds",
         "build:tokens": "npm run generate",
         "clean": "rm -rf src && rm -rf lib && rm -rf typo && rm -rf themes && rm -rf themesValues",
-        "pregenerate": "npm run clean",
+        "pregenerate": "npm run clean && rm -rf ../../node_modules/@types/webpack",
         "generate": "npx ts-node ./generate.ts",
         "postgenerate": "npx tsc src/index.ts -d --outDir lib && npx tsc -d typo/index.ts && npx tsc -d themes/index.ts && npx tsc -d themesValues/*.ts",
         "figma": "npm run extract --prefix='./design-language'"
     },
-    "files": [
-        "lib",
-        "typo",
-        "themes",
-        "themesValues",
-        "theme.json",
-        "theme@2x.json"
-    ],
+    "files": ["lib", "typo", "themes", "themesValues", "theme.json", "theme@2x.json"],
     "devDependencies": {
         "@emotion/serialize": "0.11.16",
         "@theme-ui/css": "0.3.1",
@@ -40,9 +33,5 @@
         "ts-node": "^9.0.0",
         "typescript": "^4.0.2"
     },
-    "contributors": [
-        "Виноградов Антон Александрович",
-        "Зубаиров Фаниль Асхатович",
-        "Vasiliy Loginevskiy"
-    ]
+    "contributors": ["Виноградов Антон Александрович", "Зубаиров Фаниль Асхатович", "Vasiliy Loginevskiy"]
 }
