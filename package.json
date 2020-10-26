@@ -2,11 +2,18 @@
   "name": "plasma",
   "private": true,
   "license": "SEE LICENSE IN LICENSE.txt",
+  "scripts": {
+    "release": "auto shipit"
+  },
   "devDependencies": {
+    "@auto-it/conventional-commits": "9.60.1",
+    "@auto-it/npm": "9.60.1",
+    "@auto-it/slack": "9.60.1",
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
     "@typescript-eslint/eslint-plugin": "4.5.0",
     "@typescript-eslint/parser": "4.5.0",
+    "auto": "9.60.1",
     "babel-eslint": "10.1.0",
     "eslint": "7.11.0",
     "eslint-config-airbnb": "18.2.0",
@@ -28,5 +35,17 @@
     "stylelint-prettier": "1.1.2",
     "stylelint-processor-styled-components": "1.10.0",
     "typescript": "4.0.3"
+  },
+  "auto": {
+    "plugins": [
+      [
+        "npm",
+        {
+          "setRcToken": false
+        }
+      ],
+      "conventional-commits",
+      "slack"
+    ]
   }
 }
