@@ -9,7 +9,7 @@
     "author": "SberDevices Frontend Team",
     "license": "UNLICENSED",
     "dependencies": {
-        "@sberdevices/plasma-styles": "1.1.0",
+        "@sberdevices/plasma-styles": "1.1.1",
         "@sberdevices/plasma-tokens": "0.0.2"
     },
     "peerDependencies": {
@@ -61,12 +61,7 @@
         "title": "SberDevices Design System",
         "url": "https://ui-sb.dev.app.sberdevices.ru/"
     },
-    "files": [
-        "components",
-        "hocs",
-        "theme",
-        "utils"
-    ],
+    "files": ["components", "hocs", "theme", "utils"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Антонов Игорь Александрович",

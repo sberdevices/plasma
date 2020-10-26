@@ -31,4 +31,5 @@ jobs:
       - name: Create Release
         run: |
           npm ci
+          npx lerna bootstrap
           npm run release
