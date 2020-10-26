@@ -4,13 +4,7 @@
     "description": "",
     "main": "index.js",
     "types": "index.d.ts",
-    "files": [
-        "components",
-        "mixins",
-        "index.d.ts",
-        "index.d.ts.map",
-        "index.js.map"
-    ],
+    "files": ["components", "mixins", "index.d.ts", "index.d.ts.map", "index.js.map"],
     "scripts": {
         "build": "npm run clean && tsc",
         "prepare": "npm run compile",
@@ -20,8 +14,8 @@
         "storybook": "start-storybook -s .storybook/public -p ${PORT:-6006} -c .storybook",
         "build-storybook": "build-storybook"
     },
-    "author": "SberDevices Frontend Team",
-    "license": "UNLICENSED",
+    "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
+    "license": "Sber Public License at-nc-sa v.2",
     "devDependencies": {
         "@storybook/addon-actions": "6.0.0-rc.13",
         "@storybook/addon-backgrounds": "6.0.0-rc.13",
