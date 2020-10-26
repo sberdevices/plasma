@@ -2,6 +2,7 @@ import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 import { typography, colors } from '@sberdevices/plasma-tokens';
 
+import { views, View } from '../../mixins/views';
 import { PickOptional } from '../../types/PickOptional';
 
 const sizesToTypography = {
@@ -38,33 +39,6 @@ const sizes = {
     },
 };
 
-export const views = {
-    primary: css`
-        background-color: ${colors.buttonAccent};
-        color: ${colors.text};
-    `,
-    secondary: css`
-        background-color: ${colors.buttonSecondary};
-        color: ${colors.text};
-    `,
-    checked: css`
-        background-color: ${colors.buttonChecked};
-        color: ${colors.black};
-    `,
-    warning: css`
-        background-color: ${colors.buttonWarning};
-        color: ${colors.text};
-    `,
-    critical: css`
-        background-color: ${colors.buttonCritical};
-        color: ${colors.text};
-    `,
-    clear: css`
-        background-color: ${colors.transparent};
-        color: ${colors.text};
-    `,
-};
-
 // Матрица радиусов. r - радиус стандартный, h - радиус округлый (вычисляемый из высоты)
 const pinsMatrix = {
     'square-square': 'r r r r',
@@ -77,8 +51,6 @@ const pinsMatrix = {
 };
 
 export type Size = keyof typeof sizesToTypography;
-
-export type View = keyof typeof views;
 
 export type Pin = keyof typeof pinsMatrix;
 
@@ -117,7 +89,7 @@ const convertMatrix = (matrix: string, r: string, h: string): string => {
 
 // Возвращает стили размеров по параметрам
 const getSizes = ({ pin, size, fullWidth = false, isTextOrChildren = false }: Sized) => {
-    const fontSize = sizes[size].fontSize;
+    const { fontSize } = sizes[size];
     const height = sizes[size].height / fontSize;
     const paddingY = sizes[size].paddingY / fontSize;
     const paddingX = sizes[size].paddingX / fontSize;

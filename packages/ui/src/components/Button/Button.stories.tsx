@@ -1,8 +1,10 @@
 import React from 'react';
 import { text, boolean, select } from '@storybook/addon-knobs';
 
+import { View } from '../../mixins/views';
 import { Icon } from '../Icon/Icon';
-import { Button, View, Size, Pin } from './Button';
+
+import { Button, Size, Pin } from './Button';
 
 export default {
     title: 'Button',
