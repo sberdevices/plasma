@@ -2,6 +2,8 @@
     "name": "@sberdevices/plasma-tokens",
     "version": "0.0.2",
     "description": "",
+    "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
+    "license": "Sber Public License at-nc-sa v.2",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "scripts": {

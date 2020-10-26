@@ -1,7 +1,8 @@
 {
   "name": "plasma",
   "private": true,
-  "license": "SEE LICENSE IN LICENSE.txt",
+  "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
+  "license": "Sber Public License at-nc-sa v.2",
   "scripts": {
     "release": "auto shipit"
   },
