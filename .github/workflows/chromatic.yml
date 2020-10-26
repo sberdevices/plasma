@@ -1,0 +1,27 @@
+# name of our action
+name: 'Chromatic Deployment'
+# the event that will trigger the action
+on: push
+
+# what the action will do
+jobs:
+  test:
+    # the operating system it will run on
+    runs-on: ubuntu-latest
+    # the list of steps that the action will go through
+    env:
+      NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
+      # version of @storybook/react in packages/ui
+      CHROMATIC_STORYBOOK_VERSION: 'react@6.0.0-rc.13'
+    steps:
+      - uses: actions/checkout@v1
+      - run: npm ci
+      - run: npx lerna bootstrap --scope="@sberdevices/ui"
+      - run: npx lerna run build-storybook --scope="@sberdevices/ui"
+      - uses: chromaui/action@v1
+        # options required to the GitHub chromatic action
+        with:
+          storybookBuildDir: ./packages/ui/build-sb
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
+

@@ -37,6 +37,7 @@
         "@types/react-dom": "16.9.8",
         "@types/styled-components": "5.1.0",
         "babel-loader": "8.1.0",
+        "chromatic": "5.2.0",
         "docz": "2.3.1",
         "react": "16.13.1",
         "react-dom": "16.13.1",
@@ -48,6 +49,7 @@
     "scripts": {
         "clean": "rm -rf ./components && rm -rf ./hocs && rm -rf ./theme",
         "build": "npm run clean && tsc && npm run copy:static",
+        "build-storybook": "npm run storybook:build",
         "build:storybook": "npm run storybook:build && npm run storybook:extract",
         "copy:static": "cp -r ./src/components/Icon/Icon.assets ./components/Icon/Icon.assets",
         "storybook": "start-storybook -s .storybook/public -p ${PORT:-6006} -c .storybook",
@@ -55,18 +57,14 @@
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
         "docz:dev": "docz dev",
         "docz:build": "docz build",
-        "docz:serve": "docz serve"
+        "docz:serve": "docz serve",
+        "chromatic": "npx chromatic"
     },
     "storybook": {
         "title": "SberDevices Design System",
         "url": "https://ui-sb.dev.app.sberdevices.ru/"
     },
-    "files": [
-        "components",
-        "hocs",
-        "theme",
-        "utils"
-    ],
+    "files": ["components", "hocs", "theme", "utils"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Антонов Игорь Александрович",

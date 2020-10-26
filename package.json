@@ -4,7 +4,9 @@
   "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
   "license": "Sber Public License at-nc-sa v.2",
   "scripts": {
-    "release": "auto shipit"
+    "release": "auto shipit",
+    "chromatic": "lerna run chromatic",
+    "build-storybook": "lerna run build-storybook"
   },
   "devDependencies": {
     "@auto-it/conventional-commits": "9.60.1",
