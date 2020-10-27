@@ -1,44 +1,43 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { blackSecondary, whiteSecondary } from '@sberdevices/plasma-tokens';
 
-import { uiColor } from './Card';
+import { Badge, BadgeSize, BadgeView } from '../Badge/Badge';
 
-type CardBadgeColor = keyof typeof uiColor;
+// https://github.com/sberdevices/plasma/issues/12
+export const colorsToViews = {
+    active: 'primary',
+    highlight: 'primary',
+    blank: 'checked',
+    accent: 'warning',
+    index: 'secondary',
+};
+
+type CompatColor = keyof typeof colorsToViews;
+
+const StyledRoot = styled(Badge)`
+    position: absolute;
+
+    ${({ view }) =>
+        view === 'secondary' &&
+        css`
+            background-color: ${blackSecondary};
+            color: ${whiteSecondary};
+        `}
+`;
 
 export interface CardBadgeProps {
-    color?: CardBadgeColor;
+    size?: BadgeSize;
+    view?: BadgeView;
+    color?: CompatColor;
     className?: string;
 }
 
-interface StyledRootProps {
-    color: CardBadgeColor;
-}
-const StyledRoot = styled.div<StyledRootProps>`
-    position: absolute;
-
-    display: flex;
-    align-items: center;
-
-    box-sizing: border-box;
-    height: 48px;
-    padding: 8px 16px;
-
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 32px;
-
-    color: #fff;
-    border-radius: 24px;
-
-    ${({ color }) => css`
-        background-color: ${uiColor[color]};
-    `}
-`;
-
-export const CardBadge: React.FC<CardBadgeProps> = ({ className, children, color = 'active' }) => {
-    return (
-        <StyledRoot color={color} className={className}>
-            {children}
-        </StyledRoot>
-    );
-};
+export const CardBadge: React.FC<CardBadgeProps> = ({ className, children, size, view, color = 'active' }) => (
+    <StyledRoot
+        view={view || (colorsToViews[color] as BadgeView)}
+        size={size}
+        className={className}
+        text={children as string}
+    />
+);

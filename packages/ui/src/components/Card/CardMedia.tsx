@@ -1,34 +1,50 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export interface CardMediaProps {
-    src: string;
-    disabled?: boolean;
-    className?: string;
+interface StyledRootProps {
+    $height?: number;
+    $disabled?: boolean;
 }
 
-const StyledRoot = styled.div`
+const StyledRoot = styled.div<StyledRootProps>`
     position: relative;
 
     display: block;
     box-sizing: border-box;
 
     width: 100%;
-    height: 392px;
 
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+
+    ${({ $disabled }) =>
+        $disabled &&
+        css`
+            opacity: 0.5;
+        `}
+
+    ${({ $height }) =>
+        $height &&
+        css`
+            height: ${$height}px;
+        `}
 `;
 
-export const CardMedia: React.FC<CardMediaProps> = ({ children, className, disabled, src }) => {
+export interface CardMediaProps {
+    src: string;
+    height?: number;
+    disabled?: boolean;
+    className?: string;
+}
+
+export const CardMedia: React.FC<CardMediaProps> = ({ children, className, src, height, disabled }) => {
     return (
         <StyledRoot
             className={className}
-            style={{
-                backgroundImage: `url('${src}')`,
-                opacity: disabled ? 0.5 : 1,
-            }}
+            style={{ backgroundImage: `url('${src}')` }}
+            $height={height}
+            $disabled={disabled}
         >
             {children}
         </StyledRoot>

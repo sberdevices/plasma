@@ -1,33 +1,28 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { buttonAccent, accent, buttonWarning, whitePrimary, blackSecondary } from '@sberdevices/plasma-tokens';
+import { accent, surfaceLiquid01 } from '@sberdevices/plasma-tokens';
+import { Body1 } from '@sberdevices/plasma-styles/components/Body';
 
-// TODO: refactor Card
-export const uiColor = {
-    active: buttonAccent,
-    highlight: accent,
-    blank: whitePrimary,
-    accent: buttonWarning,
-    index: blackSecondary,
-};
-
-export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-    className?: string;
-    focused?: boolean;
-    highlightOnFocus?: boolean;
-    scaleOnFocus?: boolean;
-    onBlur?: React.FocusEventHandler<HTMLDivElement>;
-    onClick?: React.MouseEventHandler<HTMLDivElement>;
-    onFocus?: React.FocusEventHandler<HTMLDivElement>;
-}
+import { PickOptional } from '../../types/PickOptional';
+import { beforeFocusOutline } from '../../mixins/beforeFocusOutline';
 
 interface StyledRootProps {
-    focused: boolean;
     highlightOnFocus: boolean;
     scaleOnFocus: boolean;
+    focused: boolean;
 }
 
-const StyledRoot = styled.div<StyledRootProps>`
+// В этих константах задаем размеры в em, чтобы не зависеть напрямую от пикселей
+// В то же время в числителях - значения в пикселях, взятые из макета
+const fontSize = 16;
+const borderRadius = 20 / fontSize;
+const shadowOffset = 8 / fontSize;
+const shadowSize = 24 / fontSize;
+const outlineSize = 2 / fontSize;
+const outlineRadius = 22 / fontSize;
+const outlineOffset = outlineSize;
+
+export const StyledCard = styled(Body1)<StyledRootProps>`
     position: relative;
 
     display: flex;
@@ -35,84 +30,55 @@ const StyledRoot = styled.div<StyledRootProps>`
     flex-direction: column;
     flex-shrink: 0;
 
-    border-radius: 40px;
-    background: rgba(255, 255, 255, 0.06);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
+    border-radius: ${borderRadius}em;
+    background: ${surfaceLiquid01};
+    box-shadow: 0 ${shadowOffset}em ${shadowSize}em rgba(0, 0, 0, 0.1);
     will-change: background-color, transform;
 
     transition: transform 0.4s ease-in-out;
 
-    ${({ highlightOnFocus, focused, scaleOnFocus }) => css`
-        ${highlightOnFocus &&
-        css`
-            &:before {
-                border-radius: 44px;
-                box-shadow: 0 0 0 4px ${accent};
-                box-sizing: content-box;
-                content: ' ';
-                display: block;
-                opacity: 0;
-                transition: opacity 0.2s ease-in-out;
-                position: absolute;
-                top: -4px;
-                left: -4px;
-                right: -4px;
-                bottom: -4px;
-            }
-        `}
+    ${({ highlightOnFocus, scaleOnFocus, focused }) => css`
+        ${highlightOnFocus && beforeFocusOutline(outlineSize, outlineRadius, outlineOffset, accent, focused)};
 
         ${focused &&
+        scaleOnFocus &&
         css`
-            &:before {
-                opacity: 1;
-            }
-            ${scaleOnFocus &&
-            css`
-                transform: scale(1.08);
-            `}
+            transform: scale(1.08);
         `}
+
         &:focus {
             outline: none;
             ${scaleOnFocus &&
             css`
                 transform: scale(1.08);
             `}
-
-            &:before {
-                opacity: 1;
-            }
         }
     `}
 `;
 
+export interface CardProps
+    extends React.HTMLAttributes<HTMLDivElement>,
+        PickOptional<StyledRootProps, 'highlightOnFocus' | 'scaleOnFocus' | 'focused'> {
+    className?: string;
+    onBlur?: React.FocusEventHandler<HTMLDivElement>;
+    onClick?: React.MouseEventHandler<HTMLDivElement>;
+    onFocus?: React.FocusEventHandler<HTMLDivElement>;
+}
+
 // eslint-disable-next-line prefer-arrow-callback
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(function Card(
-    {
-        children,
-        className,
-        highlightOnFocus = false,
-        scaleOnFocus = false,
-        focused = false,
-        onClick,
-        onBlur,
-        onFocus,
-        ...attributes
-    },
+    { children, highlightOnFocus = false, scaleOnFocus = false, focused = false, ...rest },
     ref,
 ) {
     return (
-        <StyledRoot
-            {...attributes}
-            focused={focused}
-            className={className}
+        <StyledCard
             highlightOnFocus={highlightOnFocus}
             scaleOnFocus={scaleOnFocus}
-            onFocus={onFocus}
-            onClick={onClick}
-            onBlur={onBlur}
+            focused={focused}
             ref={ref}
+            {...rest}
         >
             {children}
-        </StyledRoot>
+        </StyledCard>
     );
 });
