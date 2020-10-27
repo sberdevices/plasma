@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { formatCurrency } from '@sberdevices/i18n';
 import { buttonAccent } from '@sberdevices/plasma-tokens';
+import { Body2 } from '@sberdevices/plasma-styles/components/Body';
 
 export interface CardPriceProps {
     price: number;
@@ -18,13 +19,9 @@ const StyledRoot = styled.div`
     margin-top: 12px;
 `;
 
-const StyledPrice = styled.div`
+const StyledPrice = styled(Body2)`
     box-sizing: border-box;
     height: 40px;
-
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 40px;
 
     color: #fff;
 `;
@@ -38,15 +35,10 @@ const StyledOldPrice = styled(StyledPrice)`
     opacity: 0.24;
 `;
 
-const StyledCount = styled.div`
+const StyledCount = styled(Body2)`
     box-sizing: border-box;
-
     height: 40px;
     margin-left: 8px;
-
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 40px;
 
     color: ${buttonAccent};
 `;

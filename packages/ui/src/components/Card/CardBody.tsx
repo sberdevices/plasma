@@ -1,11 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export interface CardBodyProps extends React.HTMLAttributes<HTMLDivElement> {
-    className?: string;
-}
-
-const StyledRoot = styled.div`
+const StyledCardBody = styled.div`
     position: relative;
 
     display: flex;
@@ -16,13 +12,21 @@ const StyledRoot = styled.div`
     box-sizing: content-box;
     width: 100%;
 
-    border-radius: 40px;
+    border-radius: inherit;
 `;
 
-export const CardBody: React.FC<CardBodyProps> = ({ children, className, ...attributes }) => {
+export interface CardBodyProps extends React.HTMLAttributes<HTMLDivElement> {
+    className?: string;
+    style?: React.CSSProperties;
+}
+
+/**
+ * Используется для скругления рамок содержимого внутри Card.
+ */
+export const CardBody: React.FC<CardBodyProps> = ({ children, className, ...rest }) => {
     return (
-        <StyledRoot {...attributes} className={className}>
+        <StyledCardBody {...rest} className={className}>
             {children}
-        </StyledRoot>
+        </StyledCardBody>
     );
 };
