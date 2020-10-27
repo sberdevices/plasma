@@ -1,8 +1,9 @@
 import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
-import { typography, colors } from '@sberdevices/plasma-tokens';
+import { typography, accent } from '@sberdevices/plasma-tokens';
 
 import { views, View } from '../../mixins/views';
+import { beforeFocusOutline } from '../../mixins/beforeFocusOutline';
 import { PickOptional } from '../../types/PickOptional';
 
 const sizesToTypography = {
@@ -97,7 +98,7 @@ const getSizes = ({ pin, size, fullWidth = false, isTextOrChildren = false }: Si
     const circleRadius = height / 2;
     const outline = sizes[size].outline / fontSize;
     const elemRadius = convertMatrix(pinsMatrix[pin], `${squareRadius}em`, `${circleRadius}em`);
-    const beforeRadius = convertMatrix(pinsMatrix[pin], `${squareRadius + outline}em`, `${circleRadius + outline}em`);
+    const outlineRadius = convertMatrix(pinsMatrix[pin], `${squareRadius + outline}em`, `${circleRadius + outline}em`);
 
     return css`
         height: ${height}em;
@@ -123,16 +124,7 @@ const getSizes = ({ pin, size, fullWidth = false, isTextOrChildren = false }: Si
             width: 100%;
         `};
 
-        &::before {
-            top: -${outline}em;
-            left: -${outline}em;
-            border-radius: ${beforeRadius};
-            border-width: ${outline}em;
-        }
-
-        &:focus::before {
-            box-shadow: 0 0 0 ${outline}em ${colors.buttonFocused};
-        }
+        ${beforeFocusOutline(outline, outlineRadius, outline, accent)};
     `;
 };
 
@@ -188,19 +180,6 @@ const StyledButton = styled.button<StyledButtonProps>`
         &:hover, &:active {
             transform: none;
         }
-    }
-
-    &::before {
-        position: absolute;
-
-        width: 100%;
-        height: 100%;
-
-        border-color: transparent;
-        border-style: solid;
-        content: '';
-
-        transition: box-shadow 0.2s ease-in-out;
     }
 `;
 
