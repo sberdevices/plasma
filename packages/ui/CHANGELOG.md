@@ -1,3 +1,23 @@
+# v0.9.0 (Tue Oct 27 2020)
+
+#### 🚀 Enhancement
+
+- feat(ui): views вынесены в mixins [#17](https://github.com/sberdevices/plasma/pull/17) ([@fanisco](https://github.com/fanisco))
+- feat(ui): доработка Button API в рамках работы над Card [#1](https://github.com/sberdevices/plasma/pull/1) ([@fanisco](https://github.com/fanisco))
+- feat(ui): доработка Badge API в рамках работы над Card [#1](https://github.com/sberdevices/plasma/pull/1) ([@fanisco](https://github.com/fanisco))
+- feat(ui): доработка Card [#1](https://github.com/sberdevices/plasma/pull/1) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- chore(ui): bump deps versions in lock [#1](https://github.com/sberdevices/plasma/pull/1) ([@fanisco](https://github.com/fanisco))
+- chore(ui): types, mixins [#1](https://github.com/sberdevices/plasma/pull/1) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v0.8.0 (Tue Oct 27 2020)
 
 #### 🚀 Enhancement

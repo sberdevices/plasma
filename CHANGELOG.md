@@ -2,6 +2,28 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/ui@0.9.0`
+  - feat(ui): views вынесены в mixins [#17](https://github.com/sberdevices/plasma/pull/17) ([@fanisco](https://github.com/fanisco))
+  - feat(ui): доработка Button API в рамках работы над Card [#1](https://github.com/sberdevices/plasma/pull/1) ([@fanisco](https://github.com/fanisco))
+  - feat(ui): доработка Badge API в рамках работы над Card [#1](https://github.com/sberdevices/plasma/pull/1) ([@fanisco](https://github.com/fanisco))
+  - feat(ui): доработка Card [#1](https://github.com/sberdevices/plasma/pull/1) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/ui@0.9.0`
+  - chore(ui): bump deps versions in lock [#1](https://github.com/sberdevices/plasma/pull/1) ([@fanisco](https://github.com/fanisco))
+  - chore(ui): types, mixins [#1](https://github.com/sberdevices/plasma/pull/1) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Tue Oct 27 2020)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/ui@0.8.0`
   - feat(ui): добавить иконки для новостей [#16](https://github.com/sberdevices/plasma/pull/16) ([@Alisa007](https://github.com/Alisa007))
 
