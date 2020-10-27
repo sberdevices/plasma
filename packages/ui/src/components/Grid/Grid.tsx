@@ -1,32 +1,34 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled, { FlattenSimpleInterpolation } from 'styled-components';
 
 /**
  * Умножаем на 2 пиксельные размеры для корректного отображния на устройствах
  */
+const sides = 2;
+const deviceScale = 2;
 const breakpoints = {
-    tv: 960 * 2,
-    portal8: 769 * 2,
-    portal6: 560 * 2,
-    mobile: 0,
+    xl: 960 * deviceScale, // TV
+    lg: 769 * deviceScale, // Portal 8 cols
+    md: 560 * deviceScale, // Portal 6 cols
+    sm: 0, // Mobile
 };
 const columns = {
-    tv: 12,
-    portal8: 8,
-    portal6: 6,
-    mobile: 4,
+    xl: 12,
+    lg: 8,
+    md: 6,
+    sm: 4,
 };
 const margin = {
-    tv: 64 * 2,
-    portal8: 56 * 2,
-    portal6: 56 * 2,
-    mobile: 16,
+    xl: 64 * deviceScale,
+    lg: 56 * deviceScale,
+    md: 56 * deviceScale,
+    sm: 16,
 };
 const gutter = {
-    tv: 16 * 2,
-    portal8: 16 * 2,
-    portal6: 16 * 2,
-    mobile: 8,
+    xl: 16 * deviceScale,
+    lg: 16 * deviceScale,
+    md: 16 * deviceScale,
+    sm: 8,
 };
 
 type MediaQueryFunction = (content: FlattenSimpleInterpolation | string) => string;
@@ -43,9 +45,11 @@ export const mediaQuery = (viewport: Viewport): MediaQueryFunction => {
     if (min === null && max !== null) {
         return (content) => `@media (max-width: ${max}px) { ${content} }`;
     }
+
     if (min !== null && max !== null) {
         return (content) => `@media (min-width: ${min}px) and (max-width: ${max}px) { ${content} }`;
     }
+
     return (content) => `@media (min-width: ${min}px) { ${content} }`;
 };
 
@@ -57,12 +61,12 @@ const StyledContainer = styled.div`
     flex-direction: column;
 
     width: 100%;
-    max-width: 2400px;
 
     ${viewports.map((viewport) =>
         mediaQuery(viewport)(`
-        padding-left: ${margin[viewport]}px;
-        padding-right: ${margin[viewport]}px;
+        --container-width: calc(min(100vw, 2400px) - ${margin[viewport] * sides}px);
+        --column-width: calc(var(--container-width) / ${columns[viewport]});
+        max-width: var(--container-width);
     `),
     )}
 `;
@@ -78,8 +82,8 @@ const StyledRow = styled.div`
 
     ${viewports.map((viewport) =>
         mediaQuery(viewport)(`
-        margin-left: -${gutter[viewport] / 2}px;
-        margin-right: -${gutter[viewport] / 2}px;
+        margin-left: -${gutter[viewport] / sides}px;
+        margin-right: -${gutter[viewport] / sides}px;
     `),
     )}
 `;
@@ -89,42 +93,39 @@ export const Row: React.FC<{ className?: string }> = ({ children, className }) =
 );
 
 interface StyledColProps {
-    /**
-     * Размер ячейки, зависящий от максимального количества столбцов.
-     */
-    size: number;
-    /**
-     * Отступ ячейки, сдвинет ее на n ячеек вправо.
-     */
-    offset: number;
+    $size: number;
+    $offset: number;
 }
 
 const StyledCol = styled.div<StyledColProps>`
     box-sizing: border-box;
 
-    ${({ size, offset }) =>
+    ${({ $size, $offset }) =>
         viewports.map((viewport) =>
             mediaQuery(viewport)(`
-        width: ${(size / columns[viewport]) * 100}%;
-        padding-left: ${gutter[viewport] / 2}px;
-        padding-right: ${gutter[viewport] / 2}px;
+                padding-left: ${gutter[viewport] / sides}px;
+                padding-right: ${gutter[viewport] / sides}px;
 
-        ${
-            offset &&
-            `
-            margin-left: ${(offset / columns[viewport]) * 100}%;
-        `
-        }
-    `),
+                ${$size !== 1 ? `width: calc(var(--column-width) * ${$size})` : 'width: var(--column-width)'};
+                ${$offset && `margin-left: calc(var(--column-width) * ${$offset})`};
+            `),
         )}
 `;
 
-export interface ColProps extends Partial<StyledColProps> {
+export interface ColProps {
+    /**
+     * Размер ячейки, зависящий от максимального количества столбцов.
+     */
+    size?: number;
+    /**
+     * Отступ ячейки, сдвинет ее на n ячеек вправо.
+     */
+    offset?: number;
     className?: string;
 }
 
-export const Col: React.FC<ColProps> = ({ size = 1, offset = 0, children, className }) => (
-    <StyledCol size={size} offset={offset} className={className}>
+export const Col = forwardRef<HTMLDivElement, ColProps>(({ size = 1, offset = 0, children, className }, ref) => (
+    <StyledCol $size={size} $offset={offset} className={className} ref={ref}>
         {children}
     </StyledCol>
-);
+));

@@ -3,6 +3,9 @@ import { action } from '@storybook/addon-actions';
 import styled, { css } from 'styled-components';
 import { number } from '@storybook/addon-knobs';
 
+import { Filler } from '../../helpers/Filler';
+import { Col, Container, Row } from '../Grid/Grid';
+
 import { ListContext } from './ListContext';
 import { ScrollListCalcPosition, ScrollList } from './ScrollList';
 
@@ -10,6 +13,11 @@ interface ListItemProps {
     active: boolean;
     width: number;
     height: number;
+}
+
+interface ListGridItemProps {
+    size?: number;
+    active?: boolean;
 }
 
 const StyledListItemBody = styled.div`
@@ -50,6 +58,12 @@ const StyledVScrollList = styled(ScrollList)`
     position: relative;
 `;
 
+const StyledFiller = styled(Filler)<{ active?: boolean }>`
+    height: 200px;
+
+    ${({ active }) => active && 'background-color: rebeccapurple'};
+`;
+
 const ListItem: React.FC<ListItemProps> = ({ active, width, height, children }) => {
     const ref = React.useRef<HTMLDivElement | null>(null);
     const ctx = React.useContext(ListContext);
@@ -67,6 +81,23 @@ const ListItem: React.FC<ListItemProps> = ({ active, width, height, children }) 
     );
 };
 
+const ListGridItem: React.FC<ListGridItemProps> = ({ size, active, children }) => {
+    const ref = React.useRef<HTMLDivElement | null>(null);
+    const ctx = React.useContext(ListContext);
+
+    React.useEffect(() => {
+        ctx.register(ref);
+
+        return () => ctx.unregister(ref);
+    }, [ctx]);
+
+    return (
+        <Col ref={ref} size={size}>
+            <StyledFiller active={active}>{children}</StyledFiller>
+        </Col>
+    );
+};
+
 export default {
     title: 'ScrollList',
 };
@@ -77,6 +108,7 @@ export const HorizontalFixedWidth = () => {
     const index = number('Index', 0);
 
     let itemIndex = index;
+
     if (itemIndex < 0) {
         itemIndex = 0;
     } else if (itemIndex > items.length - 1) {
@@ -99,6 +131,7 @@ export const HorizontalArbitaryWidth = () => {
     const count = 11;
 
     let itemIndex = index;
+
     if (itemIndex < 0) {
         itemIndex = 0;
     } else if (itemIndex > count) {
@@ -153,6 +186,7 @@ export const VerticalFixedHeight = () => {
     const index = number('Index', 0);
 
     let itemIndex = index;
+
     if (itemIndex < 0) {
         itemIndex = 0;
     } else if (itemIndex > items.length - 1) {
@@ -175,6 +209,7 @@ export const VerticalArbitaryHeight = () => {
     const count = 11;
 
     let itemIndex = index;
+
     if (itemIndex < 0) {
         itemIndex = 0;
     } else if (itemIndex > count) {
@@ -228,6 +263,7 @@ export const VerticalWithCustomCalcPosition = () => {
     const index = number('Index', 0);
 
     let itemIndex = index;
+
     if (itemIndex < 0) {
         itemIndex = 0;
     } else if (itemIndex > items.length - 1) {
@@ -259,5 +295,40 @@ export const VerticalWithCustomCalcPosition = () => {
                 </ListItem>
             ))}
         </StyledVScrollList>
+    );
+};
+
+export const CarouselInLayout = () => {
+    const items = Array(number('Item count', 12)).fill(0);
+    const index = number('Index', 0);
+
+    let itemIndex = index;
+
+    if (itemIndex < 0) {
+        itemIndex = 0;
+    } else if (itemIndex > items.length - 1) {
+        itemIndex = items.length - 1;
+    }
+
+    return (
+        <Container>
+            <Row>
+                <Col size={2}>
+                    <Filler>Sidebar</Filler>
+                </Col>
+                <Col size={4}>
+                    <Filler>Carousel</Filler>
+                    <Row>
+                        <StyledHScrollList axis="x" index={itemIndex}>
+                            {items.map((_, i) => (
+                                <ListGridItem key={`item:${i}`} size={1} active={i === itemIndex}>
+                                    Card {i}
+                                </ListGridItem>
+                            ))}
+                        </StyledHScrollList>
+                    </Row>
+                </Col>
+            </Row>
+        </Container>
     );
 };
