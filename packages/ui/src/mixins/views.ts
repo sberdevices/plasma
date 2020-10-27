@@ -28,6 +28,10 @@ export const views = {
     clear: css`
         background-color: ${colors.transparent};
         color: ${colors.text};
+
+        &:focus {
+            background-color: ${colors.buttonSecondary};
+        }
     `,
 };
 
