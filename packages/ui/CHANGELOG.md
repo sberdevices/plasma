@@ -1,3 +1,15 @@
+# v0.8.0 (Tue Oct 27 2020)
+
+#### 🚀 Enhancement
+
+- feat(ui): добавить иконки для новостей [#16](https://github.com/sberdevices/plasma/pull/16) ([@Alisa007](https://github.com/Alisa007))
+
+#### Authors: 1
+
+- [@Alisa007](https://github.com/Alisa007)
+
+---
+
 # v0.7.0 (Tue Oct 27 2020)
 
 #### 🚀 Enhancement

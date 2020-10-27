@@ -2,6 +2,19 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/ui@0.8.0`
+  - feat(ui): добавить иконки для новостей [#16](https://github.com/sberdevices/plasma/pull/16) ([@Alisa007](https://github.com/Alisa007))
+
+#### Authors: 1
+
+- [@Alisa007](https://github.com/Alisa007)
+
+---
+
+# (Tue Oct 27 2020)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/ui@0.7.0`
   - feat(ui): Размеры ячеек Col расчитываются исходя из размеров Container [#3](https://github.com/sberdevices/plasma/pull/3) ([@fanisco](https://github.com/fanisco))
 
