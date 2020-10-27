@@ -21,6 +21,9 @@ import { Assistant } from './Icon.assets/Assistant';
 import { AssistantPlaceholder } from './Icon.assets/AssistantPlaceholder';
 import { Remove } from './Icon.assets/Remove';
 import { Card } from './Icon.assets/Card';
+import { Text } from './Icon.assets/Text';
+import { Mute } from './Icon.assets/Mute';
+import { Bubble } from './Icon.assets/Bubble';
 
 const iconSet = {
     cart: Cart,
@@ -43,6 +46,9 @@ const iconSet = {
     assistantPlaceholder: AssistantPlaceholder,
     remove: Remove,
     card: Card,
+    text: Text,
+    mute: Mute,
+    bubble: Bubble,
 };
 
 export type IconName = keyof typeof iconSet;
