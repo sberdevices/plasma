@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-tokens",
-    "version": "0.0.3",
+    "version": "0.1.0",
     "description": "",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
@@ -18,7 +18,14 @@
         "postgenerate": "npx tsc src/index.ts -d --outDir lib && npx tsc -d typo/index.ts && npx tsc -d themes/index.ts && npx tsc -d themesValues/*.ts",
         "figma": "npm run extract --prefix='./design-language'"
     },
-    "files": ["lib", "typo", "themes", "themesValues", "theme.json", "theme@2x.json"],
+    "files": [
+        "lib",
+        "typo",
+        "themes",
+        "themesValues",
+        "theme.json",
+        "theme@2x.json"
+    ],
     "devDependencies": {
         "@emotion/serialize": "0.11.16",
         "@theme-ui/css": "0.3.1",
@@ -33,5 +40,9 @@
         "ts-node": "^9.0.0",
         "typescript": "^4.0.2"
     },
-    "contributors": ["Виноградов Антон Александрович", "Зубаиров Фаниль Асхатович", "Vasiliy Loginevskiy"]
+    "contributors": [
+        "Виноградов Антон Александрович",
+        "Зубаиров Фаниль Асхатович",
+        "Vasiliy Loginevskiy"
+    ]
 }

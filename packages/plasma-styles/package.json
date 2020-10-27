@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-styles",
-    "version": "1.1.2",
+    "version": "1.2.0",
     "description": "",
     "main": "index.js",
     "types": "index.d.ts",
@@ -45,7 +45,7 @@
         "Vasiliy Loginevskiy"
     ],
     "dependencies": {
-        "@sberdevices/plasma-tokens": "0.0.3",
+        "@sberdevices/plasma-tokens": "0.1.0",
         "@types/styled-components": "5.1.0"
     }
 }
