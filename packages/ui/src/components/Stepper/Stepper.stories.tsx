@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { number, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
-import { Stepper, StepperRoot, StepperButton, StepperValue } from './Stepper';
 import { Icon } from '../Icon/Icon';
+
+import { Stepper, StepperRoot, StepperButton, StepperValue } from './Stepper';
 
 export default {
     title: 'Stepper',

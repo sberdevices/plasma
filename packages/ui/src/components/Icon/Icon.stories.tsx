@@ -1,26 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import { text } from '@storybook/addon-knobs';
 
-import { Icon, IconProps, iconSet } from './Icon';
 import { IconSet } from './IconSet';
-
-const StoryRoot = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-`;
-
-const StyledContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    margin: 10px;
-`;
-
-const IconName = styled.div`
-    padding-bottom: 8px;
-`;
 
 export default {
     title: 'Icon',
