@@ -1,4 +1,3 @@
-
 import styled from 'styled-components';
 import { body1, body2, body3 } from '@sberdevices/plasma-tokens';
 
