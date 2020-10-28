@@ -1,0 +1,65 @@
+---
+name: Cell
+menu: Components
+route: /components/Cell
+---
+
+import { Playground, Props } from 'docz';
+
+import { Cell } from './Cell';
+import { IconCart } from '../Icon/Icons/IconCart'
+import { ThemeSelect } from '../../helpers/ThemeSelect'
+import { ThemeBackground } from '../../helpers/ThemeBackground'
+
+<ThemeSelect />
+
+# Cell
+Базовый компонент для использования в списках, карточках.
+
+## Props
+<Props of={Cell} />
+
+## Playground
+
+### Базовое применение
+Вид компонента контролируется через props. 
+
+<Playground>
+  <ThemeBackground>
+    <Cell
+      header=""
+      title="title"
+      subTitle="subTitle"
+      detail=""
+      icon={<IconCart size="l" />}
+      centerColLeft={false}
+      centerColRight={true}
+      centerIcon={true}
+      withBorderBottom={true}
+      actionIconSize="s"
+      onClick={() => undefined}
+    />
+  </ThemeBackground>
+</Playground>
+
+### Кастомная сборка
+Компоненты `<CellRoot />` и `<CellContent />` обязательны. В `<CellLeft />` и `<CellRight />` можно оборачивать любой контент.
+<Playground>
+  <ThemeBackground>
+    <CellRoot>
+      <CellIcon centerIcon={true}>
+        <IconCart />
+      </CellIcon>
+      <CellContent>
+        <CellLeft>
+          <CellTitle>title</CellTitle>
+          <CellSubTitle>subTitle</CellSubTitle>
+        </CellLeft>
+        <CellRight>
+          <CellDetail>detail</CellDetail>
+          <CellSubTitle>info</CellSubTitle>
+        </CellRight>
+    </CellContent>
+    </CellRoot>
+  </ThemeBackground>
+</Playground>
