@@ -4,13 +4,15 @@ module.exports = {
         'airbnb/hooks',
         'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
+        'plugin:cypress/recommended',
         'prettier/react',
     ],
     parser: '@typescript-eslint/parser',
-    plugins: ['react', 'import', 'prettier'],
+    plugins: ['react', 'import', 'prettier', 'cypress'],
     rules: {
-        'no-restricted-syntax': 'off',
-        'spaced-comment': ['error', 'always', { markers: ['/'] }],
+        '@typescript-eslint/no-empty-function': 'off',
+        'no-restricted-syntax': 'off', // В for...of циклах ничего плохого нет
+        'spaced-comment': ['error', 'always', { markers: ['/'] }], /// разрешаем ts-require directive
         'comma-dangle': ['error', 'always-multiline'],
         'arrow-parens': ['error', 'always'],
 
@@ -50,6 +52,7 @@ module.exports = {
         'function-paren-newline': 'off',
         'no-param-reassign': 'off',
         'no-shadow': 'warn',
+        'space-before-function-paren': 'off',
         'consistent-return': 'off',
         'prettier/prettier': 'error',
 
@@ -66,12 +69,13 @@ module.exports = {
         'react/destructuring-assignment': 'off',
         'react/sort-comp': 'off',
         'react/no-array-index-key': 'off',
+        'react-hooks/exhaustive-deps': 'off', // TODO: https://github.com/sberdevices/plasma/issues/23
 
         'jsx-a11y/no-static-element-interactions': 'off',
         'jsx-a11y/click-events-have-key-events': 'off',
         'jsx-a11y/no-noninteractive-tabindex': 'off',
 
-        'import/prefer-default-export': 'off',
+        'import/prefer-default-export': 'off', // @grape: https://humanwhocodes.com/blog/2019/01/stop-using-default-exports-javascript-module/
         'import/order': [
             'error',
             {
@@ -81,11 +85,13 @@ module.exports = {
         ],
         'import/no-unresolved': 'off',
         'import/extensions': 'off',
-        'import/no-extraneous-dependencies': ['off'],
+        'import/no-extraneous-dependencies': ['off'], //можно включить тока нужно резолвы разрулить
         'arrow-body-style': 'off',
+        'padding-line-between-statements': 'off',
         'no-unused-expressions': 'off',
         'no-use-before-define': 'off', // TODO: Убрать после ПРа про eslint
         '@typescript-eslint/no-empty-function': 'off',
+        '@typescript-eslint/no-empty-interface': 'off',
     },
     overrides: [
         {
