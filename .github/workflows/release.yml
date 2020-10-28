@@ -28,6 +28,9 @@ jobs:
         with:
           node-version: 12.x
 
+      - name: Lint
+        run: npm run lint
+
       - name: Create Release
         run: |
           npm ci
