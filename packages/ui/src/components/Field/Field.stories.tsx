@@ -3,8 +3,9 @@ import { text, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import styled from 'styled-components';
 
-import { Field } from './Field';
 import { Icon } from '../Icon/Icon';
+
+import { Field } from './Field';
 
 export default {
     title: 'Field',
