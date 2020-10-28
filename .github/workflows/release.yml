@@ -28,11 +28,13 @@ jobs:
         with:
           node-version: 12.x
 
+      - name: Setup packages
+        run: |
+          npm ci
+          npx lerna bootstrap
+
       - name: Lint
         run: npm run lint
 
       - name: Create Release
-        run: |
-          npm ci
-          npx lerna bootstrap
-          npm run release
+        run: npm run release
