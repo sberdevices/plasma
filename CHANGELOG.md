@@ -1,3 +1,16 @@
+# (Wed Oct 28 2020)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/ui@0.10.0`
+  - feat(ui): использование Button beforeFocusOutline [#22](https://github.com/sberdevices/plasma/pull/22) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Tue Oct 27 2020)
 
 #### 🚀 Enhancement
