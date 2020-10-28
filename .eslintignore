@@ -1,1 +1,7 @@
 build
+node_modules
+
+packages/plasma-tokens
+
+packages/plasma-styles/*
+!packages/plasma-styles/src
