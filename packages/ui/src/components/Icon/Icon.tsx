@@ -24,6 +24,7 @@ import { Card } from './Icon.assets/Card';
 import { Text } from './Icon.assets/Text';
 import { Mute } from './Icon.assets/Mute';
 import { Bubble } from './Icon.assets/Bubble';
+import { DisclosureRight } from './Icon.assets/DisclosureRight';
 
 const iconSet = {
     cart: Cart,
@@ -49,6 +50,7 @@ const iconSet = {
     text: Text,
     mute: Mute,
     bubble: Bubble,
+    disclosureRight: DisclosureRight,
 };
 
 export type IconName = keyof typeof iconSet;
