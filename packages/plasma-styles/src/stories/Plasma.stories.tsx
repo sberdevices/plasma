@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { select } from '@storybook/addon-knobs';
+
 import Typo from '../components/Typo';
 import Color from '../components/Color';
 import {
@@ -208,8 +209,7 @@ export const Default = () => {
                     <TextWarning />
                     <TextCritical />
                 </ColorsSection>
-                </StyledPlate>
+            </StyledPlate>
         </>
     );
 };
-
