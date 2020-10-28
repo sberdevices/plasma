@@ -165,14 +165,15 @@ module.exports = {
         'no-empty-first-line': true,
         'no-unknown-animations': true,
 
-        'order/order': [
+        /* 'order/order': [
             'dollar-variables',
             'custom-properties',
             'declarations',
             { type: 'at-rule' },
             { type: 'at-rule', hasBlock: true },
             'rules',
-        ],
+        ], */
         'order/properties-order': null,
+        'order/order': null, // TODO: https://github.com/sberdevices/plasma/issues/24
     },
 };
