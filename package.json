@@ -6,7 +6,8 @@
   "scripts": {
     "release": "auto shipit",
     "chromatic": "lerna run chromatic",
-    "build-storybook": "lerna run build-storybook"
+    "build-storybook": "lerna run build-storybook",
+    "build-docz": "lerna run docz:build"
   },
   "devDependencies": {
     "@auto-it/conventional-commits": "9.60.1",
