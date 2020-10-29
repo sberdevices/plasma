@@ -44,7 +44,8 @@
         "react-scripts": "3.4.1",
         "sb": "6.0.0-rc.13",
         "styled-components": "5.1.1",
-        "typescript": "3.9.5"
+        "typescript": "3.9.5",
+        "@mdx-js/mdx": "^1.6.16"
     },
     "scripts": {
         "clean": "rm -rf ./components && rm -rf ./hocs && rm -rf ./mixins && rm -rf ./theme && rm -rf ./types",
@@ -64,14 +65,7 @@
         "title": "SberDevices Design System",
         "url": "https://ui-sb.dev.app.sberdevices.ru/"
     },
-    "files": [
-        "components",
-        "hocs",
-        "mixins",
-        "theme",
-        "types",
-        "utils"
-    ],
+    "files": ["components", "hocs", "mixins", "theme", "types", "utils"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Антонов Игорь Александрович",
