@@ -2,9 +2,10 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { blackSecondary, whiteSecondary } from '@sberdevices/plasma-tokens';
 
-import { Badge, BadgeSize, BadgeView } from '../Badge/Badge';
+import { View } from '../../mixins/applyView';
+import { Badge, BadgeSize } from '../Badge/Badge';
 
-// https://github.com/sberdevices/plasma/issues/12
+// Для совместимости. https://github.com/sberdevices/plasma/issues/12
 export const colorsToViews = {
     active: 'primary',
     highlight: 'primary',
@@ -28,14 +29,15 @@ const StyledRoot = styled(Badge)`
 
 export interface CardBadgeProps {
     size?: BadgeSize;
-    view?: BadgeView;
-    color?: CompatColor;
+    view?: View;
     className?: string;
+    // Для совместимости. https://github.com/sberdevices/plasma/issues/12
+    color?: CompatColor;
 }
 
 export const CardBadge: React.FC<CardBadgeProps> = ({ className, children, size, view, color = 'active' }) => (
     <StyledRoot
-        view={view || (colorsToViews[color] as BadgeView)}
+        view={view || (colorsToViews[color] as View)}
         size={size}
         className={className}
         text={children as string}

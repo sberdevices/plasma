@@ -38,7 +38,8 @@ export const StyledCard = styled(Body1)<StyledRootProps>`
     transition: transform 0.4s ease-in-out;
 
     ${({ highlightOnFocus, scaleOnFocus, focused }) => css`
-        ${highlightOnFocus && beforeFocusOutline(outlineSize, outlineRadius, outlineOffset, accent, focused)};
+        ${highlightOnFocus &&
+        beforeFocusOutline(`${outlineSize}em`, `${outlineRadius}em`, `${outlineOffset}em`, accent, focused)};
 
         ${focused &&
         scaleOnFocus &&

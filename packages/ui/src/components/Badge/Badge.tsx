@@ -1,8 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { colors, typography } from '@sberdevices/plasma-tokens';
+import { typography } from '@sberdevices/plasma-tokens';
 
-import { views } from '../../mixins/views';
+import { applyView, ViewProps } from '../../mixins/applyView';
 
 const fontSize = 12;
 
@@ -46,24 +46,12 @@ export const badgeRootSizes = {
         border-radius: ${16 / fontSize}em;
     `,
 };
-export const badgeViews = {
-    ...views,
-    black: css`
-        background-color: ${colors.blackSecondary};
-        color: ${colors.text};
-    `,
-};
 
-export type BadgeView = keyof typeof badgeViews;
 export type BadgeSize = keyof typeof badgeSizes;
 
-interface StyledBadgeProps {
+interface StyledBadgeProps extends ViewProps {
     /**
-     * Цвет иконки. Все те же цвета, что и в Button + цвет "Black".
-     */
-    view: BadgeView;
-    /**
-     * Размер компонента.
+     * Размер компонента
      */
     size: BadgeSize;
     isText?: boolean;
@@ -80,7 +68,7 @@ const StyledBadge = styled.div<StyledBadgeProps>`
     ${typography.caption};
 
     ${({ size }) => badgeRootSizes[size]};
-    ${({ view }) => badgeViews[view]};
+    ${applyView};
 
     ${({ isContentLeft, isText, size }) =>
         isContentLeft &&

@@ -1,112 +1,57 @@
 import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
-import { typography, accent } from '@sberdevices/plasma-tokens';
+import { accent } from '@sberdevices/plasma-tokens';
 
-import { views, View } from '../../mixins/views';
+import { applyView, ViewProps } from '../../mixins/applyView';
+import { applyMotion, MotionProps } from '../../mixins/applyMotion';
+import { applyDisabled, DisabledProps } from '../../mixins/applyDisabled';
+import { convertPinsMatrix, PinProps } from '../../mixins/pins';
 import { beforeFocusOutline } from '../../mixins/beforeFocusOutline';
 import { PickOptional } from '../../types/PickOptional';
 
-const sizesToTypography = {
-    l: typography.button1,
-    m: typography.button1,
-    s: typography.button2,
-};
+import { SizeProps, buttonBase, buttonTypography, fontSizeL, fontSizeM, fontSizeS } from './ButtonBase';
 
-// Размеры в пикселях по макету
-const sizes = {
+/**
+ * Размеры в пикселях по макету
+ */
+export const sizes = {
     l: {
-        fontSize: 16,
-        height: 56,
-        paddingY: 16,
-        paddingX: 26,
-        squareRadius: 16,
-        outline: 2,
+        height: 56 / fontSizeL,
+        paddingY: 16 / fontSizeL,
+        paddingX: 26 / fontSizeL,
+        squareRadius: 16 / fontSizeL,
+        outline: 2 / fontSizeL,
     },
     m: {
-        fontSize: 16,
-        height: 48,
-        paddingY: 12,
-        paddingX: 22,
-        squareRadius: 12,
-        outline: 2,
+        height: 48 / fontSizeM,
+        paddingY: 12 / fontSizeM,
+        paddingX: 22 / fontSizeM,
+        squareRadius: 12 / fontSizeM,
+        outline: 2 / fontSizeM,
     },
     s: {
-        fontSize: 14,
-        height: 40,
-        paddingY: 8,
-        paddingX: 18,
-        squareRadius: 12,
-        outline: 2,
+        height: 40 / fontSizeS,
+        paddingY: 8 / fontSizeS,
+        paddingX: 18 / fontSizeS,
+        squareRadius: 12 / fontSizeS,
+        outline: 2 / fontSizeS,
     },
 };
 
-// Матрица радиусов. r - радиус стандартный, h - радиус округлый (вычисляемый из высоты)
-const pinsMatrix = {
-    'square-square': 'r r r r',
-    'square-clear': 'r 0 0 r',
-    'clear-square': '0 r r 0',
-    'clear-clear': '0 0 0 0',
-    'clear-circle': '0 h h 0',
-    'circle-clear': 'h 0 0 h',
-    'circle-circle': 'h h h h',
-};
-
-export type Size = keyof typeof sizesToTypography;
-
-export type Pin = keyof typeof pinsMatrix;
-
-export interface Sized {
-    /**
-     * Размер кнопки
-     */
-    size: Size;
-    /**
-     * Границы кнопки
-     */
-    pin: Pin;
-    /**
-     * Растянуть кнопку на всю ширину родителя (width=100%)
-     */
-    fullWidth?: boolean;
-    isTextOrChildren?: boolean;
-}
-
-// Преобразовывает матрицу радиусов с указанными размерами
-const convertMatrix = (matrix: string, r: string, h: string): string => {
-    return matrix
-        .split(' ')
-        .map((char) => {
-            switch (char) {
-                case 'r':
-                    return r;
-                case 'h':
-                    return h;
-                default:
-                    return char;
-            }
-        })
-        .join(' ');
-};
-
-// Возвращает стили размеров по параметрам
-const getSizes = ({ pin, size, fullWidth = false, isTextOrChildren = false }: Sized) => {
-    const { fontSize } = sizes[size];
-    const height = sizes[size].height / fontSize;
-    const paddingY = sizes[size].paddingY / fontSize;
-    const paddingX = sizes[size].paddingX / fontSize;
-    const squareRadius = sizes[size].squareRadius / fontSize;
+/**
+ * Миксин размеров кнопки по параметрам
+ */
+const applySizes = ({ pin, size, focusable, isTextOrChildren }: SizeProps & PinProps) => {
+    const { height, paddingY, paddingX, squareRadius, outline } = sizes[size];
     const circleRadius = height / 2;
-    const outline = sizes[size].outline / fontSize;
-    const elemRadius = convertMatrix(pinsMatrix[pin], `${squareRadius}em`, `${circleRadius}em`);
-    const outlineRadius = convertMatrix(pinsMatrix[pin], `${squareRadius + outline}em`, `${circleRadius + outline}em`);
+    const elemRadius = convertPinsMatrix(pin, `${squareRadius}em`, `${circleRadius}em`);
+    const outlineRadius = convertPinsMatrix(pin, `${squareRadius + outline}em`, `${circleRadius + outline}em`);
 
     return css`
         height: ${height}em;
         padding-top: ${paddingY}em;
         padding-bottom: ${paddingY}em;
         border-radius: ${elemRadius};
-
-        ${sizesToTypography[size]}
 
         ${isTextOrChildren
             ? css`
@@ -119,68 +64,30 @@ const getSizes = ({ pin, size, fullWidth = false, isTextOrChildren = false }: Si
                   padding-right: ${paddingY}em;
               `};
 
-        ${fullWidth &&
-        css`
-            width: 100%;
-        `};
-
-        ${beforeFocusOutline(outline, outlineRadius, outline, accent)};
+        ${buttonTypography[size]}
+        ${focusable && beforeFocusOutline(`${outline}em`, `${outlineRadius}`, `${outline}em`, accent)};
     `;
 };
 
-interface StyledButtonProps extends Sized {
+interface StyledButtonProps extends SizeProps, ViewProps, PinProps, MotionProps, DisabledProps {
     /**
-     * Вид кнопки
+     * Растянуть кнопку на всю ширину родителя (width=100%)
      */
-    view: View;
-    /**
-     * Увеличение по нажатию и ховеру, по умолчанию включено
-     */
-    motion?: boolean;
-    disabled?: boolean;
+    fullWidth?: boolean;
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
-    position: relative;
+    ${buttonBase}
+    ${applyView}
+    ${applySizes}
+    ${applyMotion}
+    ${applyDisabled}
 
-    display: inline-flex;
-    align-items: center;
-    box-sizing: border-box;
-    justify-content: center;
-
-    appearance: none;
-    border: none;
-
-    transition: transform 0.1s ease-in-out;
-
-    ${({ motion }) =>
-        motion &&
+    ${({ fullWidth }) =>
+        fullWidth &&
         css`
-            &:hover {
-                transform: scale(1.1);
-            }
-            &:active {
-                transform: scale(0.926);
-            }
-        `}
-
-    ${({ view }) => css`
-        ${views[view]}
-    `}
-
-    ${getSizes}
-
-    &:focus {
-        outline: none;
-    }
-
-    &:disabled {
-        opacity: 0.4;
-
-        &:hover, &:active {
-            transform: none;
-        }
-    }
+            width: 100%;
+        `};
 `;
 
 interface StyledTextProps {
@@ -205,7 +112,10 @@ const StyledText = styled.span<StyledTextProps>`
 `;
 
 export interface ButtonProps
-    extends PickOptional<StyledButtonProps, 'fullWidth' | 'pin' | 'view' | 'size' | 'motion' | 'disabled'>,
+    extends PickOptional<
+            StyledButtonProps,
+            'fullWidth' | 'pin' | 'view' | 'size' | 'motion' | 'focusable' | 'disabled'
+        >,
         React.ButtonHTMLAttributes<HTMLButtonElement> {
     /**
      * Слот для контента слева, например <Icon/>
@@ -223,6 +133,7 @@ export interface ButtonProps
      * Кастомный контент кнопки. При указании этого свойства contentLeft, contentRight и text не применяются
      */
     children?: React.ReactNode;
+    style?: React.CSSProperties;
     className?: string;
     onFocus?: React.FocusEventHandler<HTMLButtonElement>;
     onBlur?: React.FocusEventHandler<HTMLButtonElement>;
@@ -240,6 +151,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             size = 'l',
             pin = 'square-square',
             motion = true,
+            focusable = true,
             ...rest
         },
         ref,
@@ -249,6 +161,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             size={size}
             pin={pin}
             motion={motion}
+            focusable={focusable}
             isTextOrChildren={!!text || !!children}
             ref={ref}
             {...rest}
