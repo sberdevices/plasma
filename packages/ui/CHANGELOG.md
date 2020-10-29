@@ -1,3 +1,20 @@
+# v0.11.0 (Thu Oct 29 2020)
+
+#### 🚀 Enhancement
+
+- feat(ui): переработаны Button и ActionButton [#29](https://github.com/sberdevices/plasma/pull/29) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- docs(ui): fix empty documentation [#30](https://github.com/sberdevices/plasma/pull/30) ([@IgorAntonov](https://github.com/IgorAntonov))
+
+#### Authors: 2
+
+- [@IgorAntonov](https://github.com/IgorAntonov)
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v0.10.0 (Wed Oct 28 2020)
 
 #### 🚀 Enhancement

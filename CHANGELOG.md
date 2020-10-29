@@ -1,3 +1,25 @@
+# (Thu Oct 29 2020)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/ui@0.11.0`
+  - feat(ui): переработаны Button и ActionButton [#29](https://github.com/sberdevices/plasma/pull/29) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- ci: remove gh-pages workflow [#30](https://github.com/sberdevices/plasma/pull/30) ([@IgorAntonov](https://github.com/IgorAntonov))
+- chore: change CONTRIBUTING.md [#15](https://github.com/sberdevices/plasma/pull/15) ([@IgorAntonov](https://github.com/IgorAntonov))
+- Create CONTRIBUTING.md [#15](https://github.com/sberdevices/plasma/pull/15) ([@IgorAntonov](https://github.com/IgorAntonov))
+- `@sberdevices/ui@0.11.0`
+  - docs(ui): fix empty documentation [#30](https://github.com/sberdevices/plasma/pull/30) ([@IgorAntonov](https://github.com/IgorAntonov))
+
+#### Authors: 2
+
+- [@IgorAntonov](https://github.com/IgorAntonov)
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Wed Oct 28 2020)
 
 #### 🚀 Enhancement
