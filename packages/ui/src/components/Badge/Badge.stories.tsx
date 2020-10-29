@@ -1,9 +1,10 @@
 import React from 'react';
 import { text, select } from '@storybook/addon-knobs';
 
+import { View, views } from '../../mixins/applyView';
 import { Icon } from '../Icon/Icon';
 
-import { Badge, badgeSizes, badgeViews } from './Badge';
+import { Badge, badgeSizes, BadgeSize } from './Badge';
 
 export default {
     title: 'Badge',
@@ -17,14 +18,14 @@ export default {
     ],
 };
 
-const sizes = Object.keys(badgeSizes);
-const views = Object.keys(badgeViews);
+const sizeKeys = Object.keys(badgeSizes) as BadgeSize[];
+const viewKeys = Object.keys(views) as View[];
 
 export const Default = () => <Badge text={text('text', 'Badge')} />;
 
-export const Sizes = () => <Badge text={text('text', 'Badge')} size={select('size', sizes, 'l')} />;
+export const Sizes = () => <Badge text={text('text', 'Badge')} size={select('size', sizeKeys, 'l')} />;
 
-export const Views = () => <Badge text={text('text', 'Badge')} view={select('view', views, 'primary')} />;
+export const Views = () => <Badge text={text('text', 'Badge')} view={select('view', viewKeys, 'primary')} />;
 
 export const WithIconInLeft = () => (
     <Badge text={text('text', 'Badge')} contentLeft={<Icon icon="assistant" size="s" />} />

@@ -1,10 +1,10 @@
-import { css } from 'styled-components';
+import { css, FlattenSimpleInterpolation } from 'styled-components';
 
 /**
- * @param {number} size (em)
- * @param {number|string} radius (em) Числовое значение в em или css-значение с ед./изм.
- * @param {number} offset (em)
- * @param {string} color (hex)
+ * @param {string} size css-значение с ед./изм.
+ * @param {string} radius css-значение с ед./изм.
+ * @param {string} offset css-значение с ед./изм.
+ * @param {string} color hex, rgba, alias
  * @param {boolean} focused Фокус через состояние или пропс
  * @example
  * // Выведет outline размером 2em, скруглением 5em, отступом 2em и цветом 'rebeccapurple'.
@@ -14,39 +14,39 @@ import { css } from 'styled-components';
  * beforeFocusOutline(4, '10px 1px', 0, 'greenyellow');
  */
 export const beforeFocusOutline = (
-    size: number,
-    radius: number|string,
-    offset: number,
+    size: string,
+    radius: string,
+    offset: string,
     color: string,
     focused?: boolean,
-) => css`
+): FlattenSimpleInterpolation => css`
     position: relative;
 
     &::before {
         position: absolute;
-        top: -${offset}em;
-        left: -${offset}em;
-        right: -${offset}em;
-        bottom: -${offset}em;
+        top: -${offset};
+        left: -${offset};
+        right: -${offset};
+        bottom: -${offset};
 
         width: 100%;
         height: 100%;
 
-        border: ${size}em solid transparent;
-        border-radius: ${typeof radius === 'number' ? `${radius}em` : radius};
+        border: ${size} solid transparent;
+        border-radius: ${radius};
         content: '';
 
         transition: box-shadow 0.2s ease-in-out;
     }
 
     &:focus::before {
-        box-shadow: 0 0 0 ${size}em ${color};
+        box-shadow: 0 0 0 ${size} ${color};
     }
 
     ${focused &&
     css`
         &::before {
-            box-shadow: 0 0 0 ${size}em ${color};
+            box-shadow: 0 0 0 ${size} ${color};
         }
     `};
 `;

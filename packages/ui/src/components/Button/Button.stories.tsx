@@ -1,10 +1,14 @@
 import React from 'react';
 import { text, boolean, select } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
-import { View } from '../../mixins/views';
+import { View, views } from '../../mixins/applyView';
+import { Pin, pins } from '../../mixins/pins';
 import { Icon } from '../Icon/Icon';
 
-import { Button, Size, Pin } from './Button';
+import { ButtonSize } from './ButtonBase';
+import { Button, sizes } from './Button';
+import { ActionButton as ActionButtonComponent } from './ActionButton';
 
 export default {
     title: 'Button',
@@ -17,74 +21,41 @@ export default {
     ],
 };
 
-const sizes: Size[] = ['l', 'm', 's'];
-const views: View[] = ['primary', 'secondary', 'warning', 'critical', 'checked', 'clear'];
-const pins: Pin[] = [
-    'square-square',
-    'square-clear',
-    'clear-square',
-    'clear-clear',
-    'clear-circle',
-    'circle-clear',
-    'circle-circle',
-];
+const sizeKeys = Object.keys(sizes) as ButtonSize[];
+const viewKeys = Object.keys(views) as View[];
+const pinKeys = Object.keys(pins) as Pin[];
 
 export const Default = () => (
     <Button
         text={text('text', 'Button')}
+        size={select('size', sizeKeys, 'l')}
+        view={select('view', viewKeys, 'primary')}
+        pin={select('pin', pinKeys, 'square-square')}
         motion={boolean('motion', true)}
+        focusable={boolean('focusable', true)}
         disabled={boolean('disabled', false)}
         fullWidth={boolean('fullWidth', false)}
+        contentLeft={boolean('contentLeft', false) && <Icon icon="clock" />}
+        contentRight={boolean('contentRight', false) && <Icon icon="assistant" />}
+        onClick={action('onClick')}
+        onFocus={action('onFocus')}
+        onBlur={action('onBlur')}
     />
 );
 
-export const Sizes = () => (
-    <Button
-        text={text('text', 'Button')}
-        size={select('size', sizes, 'l')}
+export const ActionButton = () => (
+    <ActionButtonComponent
+        pin={select('pin', pinKeys, 'circle-circle')}
+        size={select('size', sizeKeys, 'm')}
+        view={select('view', viewKeys, 'primary')}
         motion={boolean('motion', true)}
+        focusable={boolean('focusable', true)}
         disabled={boolean('disabled', false)}
-        fullWidth={boolean('fullWidth', false)}
-    />
-);
-
-export const Views = () => (
-    <Button
-        text={text('text', 'Button')}
-        view={select('view', views, 'primary')}
-        motion={boolean('motion', true)}
-        disabled={boolean('disabled', false)}
-        fullWidth={boolean('fullWidth', false)}
-    />
-);
-
-export const Pins = () => (
-    <Button
-        pin={select('pin', pins, 'square-square')}
-        contentLeft={<Icon icon="clock" />}
-        motion={boolean('motion', true)}
-        disabled={boolean('disabled', false)}
-        fullWidth={boolean('fullWidth', false)}
-    />
-);
-
-export const WithIcon = () => (
-    <>
-        <Button
-            text="Prev"
-            contentLeft={<Icon icon="skipPrevious" />}
-            motion={boolean('motion', true)}
-            disabled={boolean('disabled', false)}
-            fullWidth={boolean('fullWidth', false)}
-            style={{ marginRight: '15px' }}
-        />
-        <Button
-            text="Next"
-            contentRight={<Icon icon="skipNext" />}
-            motion={boolean('motion', true)}
-            disabled={boolean('disabled', false)}
-            fullWidth={boolean('fullWidth', false)}
-            style={{ marginLeft: '15px' }}
-        />
-    </>
+        tabIndex={boolean('focusable', true) && 0}
+        onClick={action('onClick')}
+        onFocus={action('onFocus')}
+        onBlur={action('onBlur')}
+    >
+        <Icon icon={text('Icon name', 'assistant') as any} size={select('size', sizeKeys, 'l')} />
+    </ActionButtonComponent>
 );

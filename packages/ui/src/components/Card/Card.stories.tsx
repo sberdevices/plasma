@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { text, boolean } from '@storybook/addon-knobs';
 
-import { ActionButton } from '../ActionButton/ActionButton';
 import { Icon } from '../Icon/Icon';
 import { Row, Col } from '../Grid/Grid';
 import { Button } from '../Button/Button';
+import { ActionButton } from '../Button/ActionButton';
 
 import { Card } from './Card';
 import { CardBody } from './CardBody';
@@ -84,7 +84,7 @@ export const Default = () => (
                     view="primary"
                     size="s"
                     motion={false}
-                    fullWidth={true}
+                    fullWidth
                     style={{ marginTop: '1em' }}
                     tabIndex={-1}
                 />
@@ -102,10 +102,12 @@ export const FullPreview = () => (
     >
         <CardBody>
             <CardMedia src="./images/001.png" height={392} disabled={boolean('disabled', false)} />
-            <StyledCardIndex view="secondary" size="xl">1</StyledCardIndex>
+            <StyledCardIndex view="secondary" size="xl">
+                1
+            </StyledCardIndex>
             <StyledCardBadge view="warning">Осталось мало</StyledCardBadge>
             <StyledCardContent disabled={boolean('disabled', false)}>
-                <StyledActionButton size="l">
+                <StyledActionButton size="l" motion={false}>
                     <Icon icon="plus" />
                 </StyledActionButton>
                 <CardBody1>Random item</CardBody1>
@@ -131,6 +133,7 @@ export const Simple = () => {
 
 export const Gallery = () => {
     const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
+
     return (
         <Row>
             {galleryItems.map((item, i) => (

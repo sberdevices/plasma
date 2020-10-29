@@ -6,10 +6,12 @@ route: /components/Button
 
 import { Playground, Props } from 'docz'
 
-import { Button } from './Button'
 import { IconAssistant } from '../Icon/Icons/IconAssistant'
 import { ThemeSelect } from '../../helpers/ThemeSelect'
 import { ThemeBackground } from '../../helpers/ThemeBackground'
+
+import { Button } from './Button'
+import { ActionButton } from './ActionButton'
 
 <ThemeSelect />
 
@@ -95,5 +97,18 @@ import { ThemeBackground } from '../../helpers/ThemeBackground'
       <Button text="Широкая кнопка" fullWidth />
       <Button text="Без анимации" motion={false} />
     </div>
+  </ThemeBackground>
+</Playground>
+
+## ActionButton
+Упрощенная версия Button для создания квадратных (со сторонами 1:1) кнопок, с меньшими, чем у Button, размерами.
+
+## Props
+<Props of={ActionButton} />
+
+## Playground
+<Playground>
+  <ThemeBackground>
+    <ActionButton />
   </ThemeBackground>
 </Playground>

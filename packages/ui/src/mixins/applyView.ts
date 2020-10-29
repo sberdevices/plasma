@@ -1,8 +1,8 @@
-import { css } from 'styled-components';
+import { css, InterpolationFunction } from 'styled-components';
 import { colors } from '@sberdevices/plasma-tokens';
 
 /**
- * Общие стили оформления кнопок, баджей и т.п.
+ * Общие цветовые стили оформления кнопок, баджей и т.п.
  */
 export const views = {
     primary: css`
@@ -29,6 +29,21 @@ export const views = {
         background-color: ${colors.transparent};
         color: ${colors.text};
     `,
+    index: css`
+        background-color: ${colors.blackSecondary};
+        color: ${colors.text};
+    `,
 };
 
 export type View = keyof typeof views;
+export interface ViewProps {
+    /**
+     * Вид компонента
+     */
+    view: View;
+}
+
+/**
+ * Миксин для применения общих цветовых стилей.
+ */
+export const applyView: InterpolationFunction<ViewProps> = ({ view }) => views[view];
