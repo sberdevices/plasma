@@ -145,9 +145,42 @@ export const normalizeFontNames = (style: TypographStyle) => {
     return style;
 };
 
+/** 
+ * Размер шрифта на <html>, принятый за базу.
+ */
+export const scalingPixelBasis = 16;
+
+/** 
+ * Конвертация значений fontSize и lineHeight из пикселей в ремы.
+ * @param {TypographStyle} style
+ * @return {TypographStyle}
+ */
+export const convertPixelsToRems = (style: TypographStyle) => {
+    if (style.fontSize.indexOf('px') !== -1) {
+        style.fontSize = pixelsToRems(style.fontSize);
+    }
+    if (style.lineHeight && style.lineHeight.indexOf('px') !== -1) {
+        style.lineHeight = pixelsToRems(style.lineHeight);
+    }
+
+    return style;
+}
+
+/**
+ * Переведет пиксели в ремы.
+ * @param {string} value
+ * @param {number} basis По-умолчанию взято 16, потому что предполагается скалирование
+ * на уровне тега html, кратное 16.
+ * @return {string}
+ */
+const pixelsToRems = (value: string, basis: number = scalingPixelBasis): string => {
+    return parseInt(value.replace(/\D+$/, ''), 10) / basis + 'rem';
+}
+
 export const normalizeTypographyStyle = (style: TypographStyle) => {
     // right to left: first we transform "LetterSpace" only then we scale "fontSize"
     return _c(
+        convertPixelsToRems,
         normalizeFontNames,
         removeUnnecessary,
         // scaleTypograpyForDevices,
@@ -271,7 +304,7 @@ export const createThemeStyles = (theme: SimpleTokens) => {
     })({ colors: theme }) as {};
 };
 
-export const createTypoStyles = (typo: Typo) => {
+export const createTypoStyles = (typo: Typo, typoScale: number) => {
     const typoText = Object.entries(typo.text).reduce((acc, [text, styles]) => {
         styles = Object.entries(styles).reduce((acc, [key, prop]) => {
             if (key === 'fontSize' || key === 'lineHeight') {
@@ -288,6 +321,7 @@ export const createTypoStyles = (typo: Typo) => {
 
     return css({
         ':root': {
+            'font-size': `${scalingPixelBasis * typoScale}px`,
             ...objectToVars('typo', typoText),
         },
     })() as {};

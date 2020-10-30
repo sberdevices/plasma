@@ -1,15 +1,15 @@
 {
     "fontSizes": [
-        10,
-        12,
-        14,
-        16,
-        20,
-        24,
-        32,
-        48,
-        60,
-        96
+        0.625,
+        0.75,
+        0.875,
+        1,
+        1.25,
+        1.5,
+        2,
+        3,
+        3.75,
+        6
     ],
     "colors": {
         "white": "#FFFFFF",
@@ -231,17 +231,17 @@
         "Regular": 400
     },
     "lineHeights": [
-        12,
-        16,
-        18,
-        20,
-        22,
-        24,
-        28,
-        36,
-        52,
-        64,
-        96
+        0.75,
+        1,
+        1.125,
+        1.25,
+        1.375,
+        1.5,
+        1.75,
+        2.25,
+        3.25,
+        4,
+        6
     ],
     "letterSpacings": [
         "-0.0250em",
@@ -256,145 +256,145 @@
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 500,
             "fontStyle": "normal",
-            "fontSize": "96px",
+            "fontSize": "6rem",
             "letterSpacing": "-0.0190em",
-            "lineHeight": "96px"
+            "lineHeight": "6rem"
         },
         "display2": {
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 500,
             "fontStyle": "normal",
-            "fontSize": "60px",
+            "fontSize": "3.75rem",
             "letterSpacing": "-0.0190em",
-            "lineHeight": "64px"
+            "lineHeight": "4rem"
         },
         "display3": {
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 500,
             "fontStyle": "normal",
-            "fontSize": "48px",
+            "fontSize": "3rem",
             "letterSpacing": "normal",
-            "lineHeight": "52px"
+            "lineHeight": "3.25rem"
         },
         "headline1": {
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 700,
             "fontStyle": "normal",
-            "fontSize": "32px",
+            "fontSize": "2rem",
             "letterSpacing": "-0.0110em",
-            "lineHeight": "36px"
+            "lineHeight": "2.25rem"
         },
         "headline2": {
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 600,
             "fontStyle": "normal",
-            "fontSize": "24px",
+            "fontSize": "1.5rem",
             "letterSpacing": "-0.0220em",
-            "lineHeight": "28px"
+            "lineHeight": "1.75rem"
         },
         "headline3": {
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 600,
             "fontStyle": "normal",
-            "fontSize": "20px",
+            "fontSize": "1.25rem",
             "letterSpacing": "-0.0250em",
-            "lineHeight": "24px"
+            "lineHeight": "1.5rem"
         },
         "headline4": {
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 700,
             "fontStyle": "normal",
-            "fontSize": "20px",
+            "fontSize": "1.25rem",
             "letterSpacing": "-0.0250em",
-            "lineHeight": "24px"
+            "lineHeight": "1.5rem"
         },
         "body1": {
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 500,
             "fontStyle": "normal",
-            "fontSize": "16px",
+            "fontSize": "1rem",
             "letterSpacing": "-0.0190em",
-            "lineHeight": "20px"
+            "lineHeight": "1.25rem"
         },
         "body2": {
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 600,
             "fontStyle": "normal",
-            "fontSize": "16px",
+            "fontSize": "1rem",
             "letterSpacing": "-0.0190em",
-            "lineHeight": "20px"
+            "lineHeight": "1.25rem"
         },
         "body3": {
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 700,
             "fontStyle": "normal",
-            "fontSize": "16px",
+            "fontSize": "1rem",
             "letterSpacing": "-0.0190em",
-            "lineHeight": "20px"
+            "lineHeight": "1.25rem"
         },
         "paragraph1": {
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 400,
             "fontStyle": "normal",
-            "fontSize": "16px",
+            "fontSize": "1rem",
             "letterSpacing": "-0.0190em",
-            "lineHeight": "22px"
+            "lineHeight": "1.375rem"
         },
         "paragraph2": {
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 600,
             "fontStyle": "normal",
-            "fontSize": "16px",
+            "fontSize": "1rem",
             "letterSpacing": "-0.0190em",
-            "lineHeight": "22px"
+            "lineHeight": "1.375rem"
         },
         "footnote1": {
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 500,
             "fontStyle": "normal",
-            "fontSize": "14px",
+            "fontSize": "0.875rem",
             "letterSpacing": "-0.0190em",
-            "lineHeight": "18px"
+            "lineHeight": "1.125rem"
         },
         "footnote2": {
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 600,
             "fontStyle": "normal",
-            "fontSize": "14px",
+            "fontSize": "0.875rem",
             "letterSpacing": "-0.0190em",
-            "lineHeight": "18px"
+            "lineHeight": "1.125rem"
         },
         "button1": {
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 600,
             "fontStyle": "normal",
-            "fontSize": "16px",
+            "fontSize": "1rem",
             "letterSpacing": "normal",
-            "lineHeight": "20px"
+            "lineHeight": "1.25rem"
         },
         "button2": {
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 600,
             "fontStyle": "normal",
-            "fontSize": "14px",
+            "fontSize": "0.875rem",
             "letterSpacing": "normal",
-            "lineHeight": "16px"
+            "lineHeight": "1rem"
         },
         "caption": {
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 500,
             "fontStyle": "normal",
-            "fontSize": "12px",
+            "fontSize": "0.75rem",
             "letterSpacing": "-0.0220em",
-            "lineHeight": "16px"
+            "lineHeight": "1rem"
         },
         "underline": {
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 500,
             "fontStyle": "normal",
-            "fontSize": "10px",
+            "fontSize": "0.625rem",
             "letterSpacing": "0.0125em",
-            "lineHeight": "12px",
+            "lineHeight": "0.75rem",
             "textTransform": "uppercase"
         }
     },
@@ -403,54 +403,54 @@
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 700,
             "fontStyle": "normal",
-            "fontSize": "32px",
+            "fontSize": "2rem",
             "letterSpacing": "-0.0110em",
-            "lineHeight": "36px",
+            "lineHeight": "2.25rem",
             "margin": 0
         },
         "h2": {
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 600,
             "fontStyle": "normal",
-            "fontSize": "24px",
+            "fontSize": "1.5rem",
             "letterSpacing": "-0.0220em",
-            "lineHeight": "28px",
+            "lineHeight": "1.75rem",
             "margin": 0
         },
         "h3": {
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 600,
             "fontStyle": "normal",
-            "fontSize": "20px",
+            "fontSize": "1.25rem",
             "letterSpacing": "-0.0250em",
-            "lineHeight": "24px",
+            "lineHeight": "1.5rem",
             "margin": 0
         },
         "h4": {
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 700,
             "fontStyle": "normal",
-            "fontSize": "20px",
+            "fontSize": "1.25rem",
             "letterSpacing": "-0.0250em",
-            "lineHeight": "24px",
+            "lineHeight": "1.5rem",
             "margin": 0
         },
         "p": {
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 400,
             "fontStyle": "normal",
-            "fontSize": "16px",
+            "fontSize": "1rem",
             "letterSpacing": "-0.0190em",
-            "lineHeight": "22px",
+            "lineHeight": "1.375rem",
             "margin": 0
         },
         "root": {
             "fontFamily": "\"SB Sans Text\",\"Helvetica\",\"Arial\",sans-serif",
             "fontWeight": 500,
             "fontStyle": "normal",
-            "fontSize": "16px",
+            "fontSize": "1rem",
             "letterSpacing": "-0.0190em",
-            "lineHeight": "20px",
+            "lineHeight": "1.25rem",
             "color": "#FFFFFF",
             "backgroundColor": "#080808"
         }

@@ -14,8 +14,9 @@ import {
     matchFont,
     toVarValue,
     createThemeStyles,
-    scaleTypograpyForDevices,
-    withOutComments, createTypoStyles
+    withOutComments,
+    createTypoStyles,
+    scalingPixelBasis,
 } from './utils';
 
 
@@ -490,7 +491,7 @@ export type Typo = {
     text: TypoStyles,
     styles?: {[key: string]: CSSProperties },
 }
-const collectTypography = (scale: boolean): Typo => {
+const collectTypography = (): Typo => {
     
     const text = {} as TypoStyles;
     const fonts = {} as Record<string, string>;
@@ -502,10 +503,6 @@ const collectTypography = (scale: boolean): Typo => {
     for (let entry of Object.entries(ds.typography)) {
         const [key, tv] = entry as [Typos, Typograph];
         let style = normalizeTypographyStyle(tv.style);
-
-        if (scale) {
-            style = scaleTypograpyForDevices(style);
-        }
     
         if (key === 'underline') {
             style.textTransform = 'uppercase';
@@ -518,8 +515,8 @@ const collectTypography = (scale: boolean): Typo => {
         fonts[fontType] = fontFamily;
         fontWeights[fontType] = fontWeight;
     
-        fontSizeSet.add(parseInt(fontSize));
-        lineHeightSet.add(parseInt(lineHeight || fontSize));
+        fontSizeSet.add(parseFloat(fontSize));
+        lineHeightSet.add(parseFloat(lineHeight || fontSize));
         letterSpacingSet.add(String(letterSpacing));
     
         text[key] = style;
@@ -534,7 +531,7 @@ const collectTypography = (scale: boolean): Typo => {
     
         return aa - bb;
     });
-    
+
     return {
         fontSizes,
         fonts,
@@ -683,17 +680,13 @@ const generateTypography = (typography_dir: string, typo: Typo, tokens: boolean 
     fs.writeFileSync(path.join(typography_dir, 'index.ts'), typoIndexes);
 };
 
-const typo = collectTypography(false);
-generateTypography(path.join('src', 'typography@1x'), typo);
-
-// For SberBox & SberPortal we scale typography by 2
-const typo2x = collectTypography(true);
-generateTypography(path.join('src', 'typography@2x'), typo2x, true);
+const typo = collectTypography();
+generateTypography(path.join('src', 'typography'), typo, true);
 
 const typos = {
-    sberPortal: 'x2',
-    sberBox: 'x2',
-    touch: 'x1',
+    sberPortal: 2,
+    sberBox: 2,
+    touch: 1,
 };
 
 const typo_dir = 'typo';
@@ -702,7 +695,8 @@ let typoIndexes = roboComment;
 
 for (let [typoName, typoScale] of Object.entries(typos)) {
     typoIndexes += `export { ${typoName} } from './${typoName}';\n`;
-    const typoStyles = createTypoStyles(typoScale == 'x2' ? typo2x : typo);
+
+    const typoStyles = createTypoStyles(typo, typoScale);
     const typoTS = roboComment +
         `export const ${typoName} = ${JSON.stringify(typoStyles, null, 4)};\n`;
 
@@ -716,21 +710,22 @@ const indexTS = roboComment +
 `
 import * as colors from './colors';
 import * as colorValues from './colors/values';
-// typo x2 is default for canvas apps
-import * as typographyx1Values from './typography@1xValues';
-import * as typography from './typography@2x';
-import * as typographyx2Values from './typography@2xValues';
+import * as typography from './typography';
+import * as typographyValues from './typographyValues';
 
 export { colors };
 export { colorValues };
 export { typography };
+export { typographyValues };
+
+export const sberPortalScale = ${typos.sberPortal};
+export const sberBoxScale = ${typos.sberBox};
+export const touchScale = ${typos.touch};
+export const scalingPixelBasis = ${scalingPixelBasis};
 
 export * from './colors';
-export * from './typography@2x';
-export * from './typography@2xValues';
-
-export { typographyx1Values };
-export { typographyx2Values };
+export * from './typography';
+export * from './typographyValues';
 `;
 
 fs.writeFileSync(path.join('src', 'index.ts'), indexTS);
@@ -806,7 +801,6 @@ const generateThemeJSON = (typo: Typo) => {
 }
 
 fs.writeFileSync('theme.json', generateThemeJSON(typo));
-fs.writeFileSync('theme@2x.json', generateThemeJSON(typo2x));
 
 
 
