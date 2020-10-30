@@ -6,7 +6,7 @@ route: /components/Header
 
 import { Playground, Props } from 'docz';
 
-import Logo from "../../../.storybook/public/images/s7-logo.svg";
+import Logo from "../../../.storybook/public/images/logo.png";
 import { Header, HeaderBack, HeaderLogo, HeaderSubTitle, HeaderTitle, HeaderContent, HeaderButton } from './Header';
 import { Cart } from '../Cart/Cart';
 import { ThemeSelect } from '../../helpers/ThemeSelect'
@@ -26,8 +26,8 @@ import { ThemeBackground } from '../../helpers/ThemeBackground'
   <ThemeBackground>
     <Header>
       <HeaderBack />
-      <HeaderLogo src={Logo} alt="S7 Airlines" />
-      <HeaderTitle text="S7 Airlines" />
+      <HeaderLogo src={Logo} alt="Logo" />
+      <HeaderTitle text="Logo" />
     </Header>
   </ThemeBackground>
 </Playground>
@@ -37,7 +37,7 @@ import { ThemeBackground } from '../../helpers/ThemeBackground'
   <ThemeBackground>
     <Header>
       <HeaderBack />
-      <HeaderLogo src={Logo} alt="Еда" />
+      <HeaderLogo src={Logo} alt="Logo" />
       <HeaderTitle text="1 пассажир">
         <HeaderSubTitle text="Шаг 1 из 9" />
       </HeaderTitle>
@@ -50,7 +50,7 @@ import { ThemeBackground } from '../../helpers/ThemeBackground'
   <ThemeBackground>
     <Header>
       <HeaderBack />
-      <HeaderLogo src={Logo} alt="Еда" />
+      <HeaderLogo src={Logo} alt="Logo" />
       <HeaderTitle text="Корзина"/>
       <HeaderContent>
         <HeaderButton>

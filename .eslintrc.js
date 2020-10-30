@@ -84,6 +84,7 @@ module.exports = {
         'import/no-extraneous-dependencies': ['off'],
         'arrow-body-style': 'off',
         'no-unused-expressions': 'off',
+        'no-use-before-define': 'off', // TODO: Убрать после ПРа про eslint
         '@typescript-eslint/no-empty-function': 'off',
     },
     overrides: [
