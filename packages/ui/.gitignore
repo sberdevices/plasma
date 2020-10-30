@@ -1,9 +1,8 @@
 /components
 /hocs
 /mixins
-/theme
 /types
-/utils
+/helpers
 /dist
 /.docz
 build-sb
