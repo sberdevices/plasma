@@ -5,3 +5,6 @@ packages/plasma-tokens
 
 packages/plasma-styles/*
 !packages/plasma-styles/src
+
+packages/ui/*
+!packages/ui/src
