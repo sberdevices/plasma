@@ -44,7 +44,8 @@
         "typescript": "3.9.5"
     },
     "scripts": {
-        "clean": "rm -rf ./components && rm -rf ./hocs && rm -rf ./mixins && rm -rf ./theme && rm -rf ./types",
+        "prepare": "npm run build",
+        "clean": "rm -rf ./components && rm -rf ./hocs && rm -rf ./mixins && rm -rf ./types",
         "build": "npm run clean && tsc && npm run copy:static",
         "build-storybook": "npm run storybook:build",
         "build:storybook": "npm run storybook:build && npm run storybook:extract",
@@ -61,7 +62,7 @@
         "title": "SberDevices Design System",
         "url": "https://ui-sb.dev.app.sberdevices.ru/"
     },
-    "files": ["components", "hocs", "mixins", "theme", "types", "utils"],
+    "files": ["components", "hocs", "mixins", "types"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Антонов Игорь Александрович",
