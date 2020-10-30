@@ -11,15 +11,15 @@ export default {
 export const Default = () => (
     <Header>
         <HeaderBack />
-        <HeaderLogo src="./images/s7-logo.svg" alt="S7 Airlines" />
-        <HeaderTitle text="S7 Airlines" />
+        <HeaderLogo src="./images/logo.png" alt="Logo" />
+        <HeaderTitle text="Logo" />
     </Header>
 );
 
 export const WithSubTitle = () => (
     <Header>
         <HeaderBack />
-        <HeaderLogo src="./images/s7-logo.svg" alt="Еда" />
+        <HeaderLogo src="./images/logo.png" alt="Logo" />
         <HeaderTitle text="1 пассажир">
             <HeaderSubTitle text="Шаг 1 из 9" />
         </HeaderTitle>
@@ -29,7 +29,7 @@ export const WithSubTitle = () => (
 export const WithContent = () => (
     <Header>
         <HeaderBack />
-        <HeaderLogo src="./images/s7-logo.svg" alt="Еда" />
+        <HeaderLogo src="./images/logo.png" alt="Logo" />
         <HeaderTitle text="Корзина" />
         <HeaderContent>
             <HeaderButton>
