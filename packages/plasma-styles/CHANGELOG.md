@@ -1,3 +1,17 @@
+# v1.4.0 (Fri Oct 30 2020)
+
+#### 🐛 Bug Fix
+
+- refactor(plasma-styles): fix lint errors [#26](https://github.com/sberdevices/plasma/pull/26) ([@IgorAntonov](https://github.com/IgorAntonov))
+- ci: bump locks \[skip ci\] [#34](https://github.com/sberdevices/plasma/pull/34) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- [@IgorAntonov](https://github.com/IgorAntonov)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.3.0 (Fri Oct 30 2020)
 
 #### 🚀 Enhancement

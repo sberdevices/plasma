@@ -2,6 +2,36 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/ui@0.13.0`
+  - feat(ui): Добавить шаг prepare/build в публикацию [#34](https://github.com/sberdevices/plasma/pull/34) ([@IgorAntonov](https://github.com/IgorAntonov))
+
+#### 🐛 Bug Fix
+
+- fix(ui): change eslintignore [#26](https://github.com/sberdevices/plasma/pull/26) ([@IgorAntonov](https://github.com/IgorAntonov))
+- ci: add lint step to chromatic workflow [#26](https://github.com/sberdevices/plasma/pull/26) ([@IgorAntonov](https://github.com/IgorAntonov))
+- fix: release steps flow [#26](https://github.com/sberdevices/plasma/pull/26) ([@IgorAntonov](https://github.com/IgorAntonov))
+- chore: disable order rule [#26](https://github.com/sberdevices/plasma/pull/26) ([@IgorAntonov](https://github.com/IgorAntonov))
+- ci: add lint step [#26](https://github.com/sberdevices/plasma/pull/26) ([@IgorAntonov](https://github.com/IgorAntonov))
+- build: change eslint versions [#26](https://github.com/sberdevices/plasma/pull/26) ([@IgorAntonov](https://github.com/IgorAntonov))
+- `@sberdevices/ui@0.13.0`
+  - refactor(ui): fix another lint errors [#26](https://github.com/sberdevices/plasma/pull/26) ([@IgorAntonov](https://github.com/IgorAntonov))
+  - refactor(ui): fix lint errors [#26](https://github.com/sberdevices/plasma/pull/26) ([@IgorAntonov](https://github.com/IgorAntonov))
+  - chore: change logo image for docs/storybook [#32](https://github.com/sberdevices/plasma/pull/32) ([@IgorAntonov](https://github.com/IgorAntonov))
+  - refactor(ui): format currency without package i18n [#32](https://github.com/sberdevices/plasma/pull/32) ([@IgorAntonov](https://github.com/IgorAntonov))
+  - build: remove private packages from deps [#32](https://github.com/sberdevices/plasma/pull/32) ([@IgorAntonov](https://github.com/IgorAntonov))
+- `@sberdevices/plasma-styles@1.4.0`
+  - refactor(plasma-styles): fix lint errors [#26](https://github.com/sberdevices/plasma/pull/26) ([@IgorAntonov](https://github.com/IgorAntonov))
+
+#### Authors: 1
+
+- [@IgorAntonov](https://github.com/IgorAntonov)
+
+---
+
+# (Fri Oct 30 2020)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-styles@1.3.0`
   - feat(plasma-styles): Общий фокус-миксин [#11](https://github.com/sberdevices/plasma/pull/11) ([@SemyonMakhaev](https://github.com/SemyonMakhaev))
 

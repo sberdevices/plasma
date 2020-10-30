@@ -1,3 +1,25 @@
+# v0.13.0 (Fri Oct 30 2020)
+
+#### 🚀 Enhancement
+
+- feat(ui): Добавить шаг prepare/build в публикацию [#34](https://github.com/sberdevices/plasma/pull/34) ([@IgorAntonov](https://github.com/IgorAntonov))
+
+#### 🐛 Bug Fix
+
+- refactor(ui): fix another lint errors [#26](https://github.com/sberdevices/plasma/pull/26) ([@IgorAntonov](https://github.com/IgorAntonov))
+- refactor(ui): fix lint errors [#26](https://github.com/sberdevices/plasma/pull/26) ([@IgorAntonov](https://github.com/IgorAntonov))
+- ci: bump locks \[skip ci\] [#34](https://github.com/sberdevices/plasma/pull/34) ([@Yeti-or](https://github.com/Yeti-or))
+- chore: change logo image for docs/storybook [#32](https://github.com/sberdevices/plasma/pull/32) ([@IgorAntonov](https://github.com/IgorAntonov))
+- refactor(ui): format currency without package i18n [#32](https://github.com/sberdevices/plasma/pull/32) ([@IgorAntonov](https://github.com/IgorAntonov))
+- build: remove private packages from deps [#32](https://github.com/sberdevices/plasma/pull/32) ([@IgorAntonov](https://github.com/IgorAntonov))
+
+#### Authors: 2
+
+- [@IgorAntonov](https://github.com/IgorAntonov)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v0.11.0 (Thu Oct 29 2020)
 
 #### 🚀 Enhancement
