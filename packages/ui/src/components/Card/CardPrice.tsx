@@ -1,8 +1,9 @@
-import React from 'react';
+import React from 'react'; // eslint-disable-line
 import styled from 'styled-components';
-import { formatCurrency } from '@sberdevices/i18n';
 import { buttonAccent } from '@sberdevices/plasma-tokens';
 import { Body2 } from '@sberdevices/plasma-styles/components/Body';
+
+import { formatCurrency } from '../../helpers/formatCurrency';
 
 export interface CardPriceProps {
     price: number;
