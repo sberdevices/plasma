@@ -15,10 +15,18 @@ jobs:
       # CHROMATIC_STORYBOOK_VERSION: 'react@6.0.0-rc.13'
     steps:
       - uses: actions/checkout@v1
-      - run: npm ci
+
+      - name: Prepare repository
+        run: |
+          npm ci
+          npx lerna bootstrap
+
+      - name: Lint
+        run: npm run lint
+
       - name: Build UI storybook
         working-directory: ./packages/ui
-        run: npm ci && npm run build-storybook
+        run: npm run build-storybook
       - uses: chromaui/action@v1
         # options required to the GitHub chromatic action
         with:
