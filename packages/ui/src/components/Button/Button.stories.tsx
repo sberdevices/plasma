@@ -32,7 +32,7 @@ export const Default = () => (
         view={select('view', viewKeys, 'primary')}
         pin={select('pin', pinKeys, 'square-square')}
         motion={boolean('motion', true)}
-        focusable={boolean('focusable', true)}
+        outlined={boolean('outlined', true)}
         disabled={boolean('disabled', false)}
         fullWidth={boolean('fullWidth', false)}
         contentLeft={boolean('contentLeft', false) && <Icon icon="clock" />}
@@ -49,9 +49,9 @@ export const ActionButton = () => (
         size={select('size', sizeKeys, 'm')}
         view={select('view', viewKeys, 'primary')}
         motion={boolean('motion', true)}
-        focusable={boolean('focusable', true)}
+        outlined={boolean('outlined', true)}
         disabled={boolean('disabled', false)}
-        tabIndex={boolean('focusable', true) && 0}
+        tabIndex={0}
         onClick={action('onClick')}
         onFocus={action('onFocus')}
         onBlur={action('onBlur')}

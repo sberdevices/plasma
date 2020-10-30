@@ -1,12 +1,11 @@
 import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
-import { accent } from '@sberdevices/plasma-tokens';
+import { addFocus, FocusProps } from '@sberdevices/plasma-styles';
 
 import { applyView, ViewProps } from '../../mixins/applyView';
 import { applyMotion, MotionProps } from '../../mixins/applyMotion';
 import { applyDisabled, DisabledProps } from '../../mixins/applyDisabled';
 import { convertPinsMatrix, PinProps } from '../../mixins/pins';
-import { beforeFocusOutline } from '../../mixins/beforeFocusOutline';
 import { PickOptional } from '../../types/PickOptional';
 
 import { SizeProps, buttonBase, buttonTypography, fontSizeL, fontSizeM, fontSizeS } from './ButtonBase';
@@ -41,7 +40,7 @@ export const sizes = {
 /**
  * Миксин размеров кнопки по параметрам
  */
-const applySizes = ({ pin, size, focusable, isTextOrChildren }: SizeProps & PinProps) => {
+const applySizes = ({ pin, size, outlined, focused, isTextOrChildren }: SizeProps & PinProps & FocusProps) => {
     const { height, paddingY, paddingX, squareRadius, outline } = sizes[size];
     const circleRadius = height / 2;
     const elemRadius = convertPinsMatrix(pin, `${squareRadius}em`, `${circleRadius}em`);
@@ -65,11 +64,16 @@ const applySizes = ({ pin, size, focusable, isTextOrChildren }: SizeProps & PinP
               `};
 
         ${buttonTypography[size]}
-        ${focusable && beforeFocusOutline(`${outline}em`, `${outlineRadius}`, `${outline}em`, accent)};
+        ${addFocus({
+            focused,
+            outlined,
+            outlineSize: `${outline}em`,
+            outlineRadius,
+        })}
     `;
 };
 
-interface StyledButtonProps extends SizeProps, ViewProps, PinProps, MotionProps, DisabledProps {
+interface StyledButtonProps extends SizeProps, ViewProps, PinProps, MotionProps, FocusProps, DisabledProps {
     /**
      * Растянуть кнопку на всю ширину родителя (width=100%)
      */
@@ -114,7 +118,7 @@ const StyledText = styled.span<StyledTextProps>`
 export interface ButtonProps
     extends PickOptional<
             StyledButtonProps,
-            'fullWidth' | 'pin' | 'view' | 'size' | 'motion' | 'focusable' | 'disabled'
+            'fullWidth' | 'pin' | 'view' | 'size' | 'motion' | 'focused' | 'outlined' | 'disabled'
         >,
         React.ButtonHTMLAttributes<HTMLButtonElement> {
     /**
@@ -151,7 +155,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             size = 'l',
             pin = 'square-square',
             motion = true,
-            focusable = true,
+            outlined = true,
             ...rest
         },
         ref,
@@ -161,7 +165,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             size={size}
             pin={pin}
             motion={motion}
-            focusable={focusable}
+            outlined={outlined}
             isTextOrChildren={!!text || !!children}
             ref={ref}
             {...rest}
