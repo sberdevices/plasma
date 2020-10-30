@@ -1,3 +1,16 @@
+# (Fri Oct 30 2020)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-styles@1.3.0`
+  - feat(plasma-styles): Общий фокус-миксин [#11](https://github.com/sberdevices/plasma/pull/11) ([@SemyonMakhaev](https://github.com/SemyonMakhaev))
+
+#### Authors: 1
+
+- Махаев Семён ([@SemyonMakhaev](https://github.com/SemyonMakhaev))
+
+---
+
 # (Thu Oct 29 2020)
 
 #### 🚀 Enhancement
