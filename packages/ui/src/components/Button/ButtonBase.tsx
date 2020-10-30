@@ -20,10 +20,6 @@ export interface SizeProps {
      * Размер кнопки
      */
     size: ButtonSize;
-    /**
-     * Визуальный фокус на компоненте, для фактического фокуса использовать tabIndex
-     */
-    focusable?: boolean;
     isTextOrChildren?: boolean;
 }
 

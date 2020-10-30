@@ -1,12 +1,11 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { accent } from '@sberdevices/plasma-tokens';
+import { addFocus, FocusProps } from '@sberdevices/plasma-styles';
 
 import { applyView, View, ViewProps } from '../../mixins/applyView';
 import { applyMotion, MotionProps } from '../../mixins/applyMotion';
 import { applyDisabled, DisabledProps } from '../../mixins/applyDisabled';
 import { convertPinsMatrix, PinProps } from '../../mixins/pins';
-import { beforeFocusOutline } from '../../mixins/beforeFocusOutline';
 import { PickOptional } from '../../types/PickOptional';
 
 import { SizeProps, buttonBase, buttonTypography, fontSizeL, fontSizeM, fontSizeS } from './ButtonBase';
@@ -46,7 +45,7 @@ export const sizes = {
 /**
  * Миксин размеров кнопки по параметрам
  */
-const applySizes = ({ pin, size, focusable }: SizeProps & PinProps) => {
+const applySizes = ({ pin, size, focused, outlined }: SizeProps & PinProps & FocusProps) => {
     const { width, height, outline } = sizes[size];
     const radius = height / 2;
     const elemRadius = convertPinsMatrix(pin, `${radius}em`, `${radius}em`);
@@ -58,11 +57,16 @@ const applySizes = ({ pin, size, focusable }: SizeProps & PinProps) => {
         border-radius: ${elemRadius};
 
         ${buttonTypography[size]};
-        ${focusable && beforeFocusOutline(`${outline}em`, `${outlineRadius}`, `${outline}em`, accent)};
+        ${addFocus({
+            focused,
+            outlined,
+            outlineSize: `${outline}em`,
+            outlineRadius,
+        })}
     `;
 };
 
-interface StyledActionButtonsProps extends SizeProps, ViewProps, PinProps, MotionProps, DisabledProps {}
+interface StyledActionButtonsProps extends SizeProps, ViewProps, PinProps, MotionProps, FocusProps, DisabledProps {}
 
 const StyledActionButton = styled.button<StyledActionButtonsProps>`
     ${buttonBase}
@@ -73,7 +77,10 @@ const StyledActionButton = styled.button<StyledActionButtonsProps>`
 `;
 
 export interface ActionButtonProps
-    extends PickOptional<StyledActionButtonsProps, 'pin' | 'view' | 'size' | 'motion' | 'focusable' | 'disabled'>,
+    extends PickOptional<
+            StyledActionButtonsProps,
+            'pin' | 'view' | 'size' | 'motion' | 'focused' | 'outlined' | 'disabled'
+        >,
         React.ButtonHTMLAttributes<HTMLButtonElement> {
     style?: React.CSSProperties;
     className?: string;
@@ -90,7 +97,7 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
     size = 'm',
     pin = 'square-square',
     motion = true,
-    focusable = true,
+    outlined = true,
     color = 'active',
     ...rest
 }) => {
@@ -100,7 +107,7 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
             size={size}
             pin={pin}
             motion={motion}
-            focusable={focusable}
+            outlined={outlined}
             {...rest}
         >
             {children}

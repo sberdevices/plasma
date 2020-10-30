@@ -1,10 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { accent, surfaceLiquid01 } from '@sberdevices/plasma-tokens';
+import { surfaceLiquid01 } from '@sberdevices/plasma-tokens';
+import { addFocus } from '@sberdevices/plasma-styles';
 import { Body1 } from '@sberdevices/plasma-styles/components/Body';
 
 import { PickOptional } from '../../types/PickOptional';
-import { beforeFocusOutline } from '../../mixins/beforeFocusOutline';
 
 interface StyledRootProps {
     highlightOnFocus: boolean;
@@ -20,7 +20,6 @@ const shadowOffset = 8 / fontSize;
 const shadowSize = 24 / fontSize;
 const outlineSize = 2 / fontSize;
 const outlineRadius = 22 / fontSize;
-const outlineOffset = outlineSize;
 
 export const StyledCard = styled(Body1)<StyledRootProps>`
     position: relative;
@@ -38,8 +37,12 @@ export const StyledCard = styled(Body1)<StyledRootProps>`
     transition: transform 0.4s ease-in-out;
 
     ${({ highlightOnFocus, scaleOnFocus, focused }) => css`
-        ${highlightOnFocus &&
-        beforeFocusOutline(`${outlineSize}em`, `${outlineRadius}em`, `${outlineOffset}em`, accent, focused)};
+        ${addFocus({
+            focused,
+            outlined: highlightOnFocus,
+            outlineSize: `${outlineSize}em`,
+            outlineRadius: `${outlineRadius}em`,
+        })}
 
         ${focused &&
         scaleOnFocus &&
