@@ -2,6 +2,19 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/ui@0.14.0`
+  - feat(ui): Переход на общий фокус-миксин [#33](https://github.com/sberdevices/plasma/pull/33) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Fri Oct 30 2020)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/ui@0.13.0`
   - feat(ui): Добавить шаг prepare/build в публикацию [#34](https://github.com/sberdevices/plasma/pull/34) ([@IgorAntonov](https://github.com/IgorAntonov))
 

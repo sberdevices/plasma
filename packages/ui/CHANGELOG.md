@@ -1,3 +1,15 @@
+# v0.14.0 (Fri Oct 30 2020)
+
+#### 🚀 Enhancement
+
+- feat(ui): Переход на общий фокус-миксин [#33](https://github.com/sberdevices/plasma/pull/33) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v0.13.0 (Fri Oct 30 2020)
 
 #### 🚀 Enhancement
