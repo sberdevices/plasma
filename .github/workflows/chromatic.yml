@@ -16,9 +16,17 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: npm-deps-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            npm-deps-${{ hashFiles('package-lock.json') }}
+
       - name: Prepare repository
         run: |
-          npm ci
+          npm i
           npx lerna bootstrap
 
       - name: Lint
