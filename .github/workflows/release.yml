@@ -28,9 +28,17 @@ jobs:
         with:
           node-version: 12.x
 
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: npm-deps-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            npm-deps-${{ hashFiles('package-lock.json') }}
+
       - name: Setup packages
         run: |
-          npm ci
+          npm i
           npx lerna bootstrap
 
       - name: Lint
