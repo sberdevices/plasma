@@ -139,14 +139,20 @@ export interface FieldProps extends Omit<InputProps, 'iconName' | 'placeholder' 
 export const Field = forwardRef<HTMLInputElement, FieldProps>(
     ({ value, title, disabled, contentLeft, contentRight, onFocus, onBlur, ...rest }, ref) => {
         const [focused, setFocused] = useState(false);
-        const handleFocus = useCallback((e) => {
-            setFocused(true);
-            onFocus?.(e);
-        }, []);
-        const handleBlur = useCallback((e) => {
-            setFocused(false);
-            onBlur?.(e);
-        }, []);
+        const handleFocus = useCallback(
+            (e) => {
+                setFocused(true);
+                onFocus?.(e);
+            },
+            [onFocus],
+        );
+        const handleBlur = useCallback(
+            (e) => {
+                setFocused(false);
+                onBlur?.(e);
+            },
+            [onBlur],
+        );
 
         return (
             <StyledRoot disabled={disabled} isIconLeft={!!contentLeft} isIconRight={!!contentRight}>

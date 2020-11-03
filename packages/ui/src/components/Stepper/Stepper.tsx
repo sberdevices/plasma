@@ -139,8 +139,8 @@ export const Stepper: React.FC<StepperProps> = ({
     onFocus,
     onBlur,
 }) => {
-    const onLessClick = useCallback(() => onChange(value - step), [value, step]);
-    const onMoreClick = useCallback(() => onChange(value + step), [value, step]);
+    const onLessClick = useCallback(() => onChange(value - step), [value, step, onChange]);
+    const onMoreClick = useCallback(() => onChange(value + step), [value, step, onChange]);
     const lessDisabled = disabled || value <= min || value - step < min;
     const moreDisabled = disabled || value >= max || value + step > max;
     const isWarning = value >= max;
