@@ -1,3 +1,15 @@
+# v0.2.0 (Thu Nov 05 2020)
+
+#### 🚀 Enhancement
+
+- feat(plasma-tokens): Генерация размеров в rem [#36](https://github.com/sberdevices/plasma/pull/36) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v0.1.0 (Tue Oct 27 2020)
 
 #### 🐛 Bug Fix

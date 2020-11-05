@@ -1,3 +1,15 @@
+# v1.5.0 (Thu Nov 05 2020)
+
+#### 🚀 Enhancement
+
+- feat(plasma-styles): Вычисление device scale [#36](https://github.com/sberdevices/plasma/pull/36) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.4.0 (Fri Oct 30 2020)
 
 #### 🐛 Bug Fix
