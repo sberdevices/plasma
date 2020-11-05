@@ -63,27 +63,48 @@ addDecorator(withTheme);
 
 addParameters({
     viewport: {
-        defaultViewport: 'HD',
+        defaultViewport: 'SberBox',
         viewports: {
-            FHD: {
-                name: '1080p',
+            '360': {
+                name: '360',
                 styles: {
-                    width: '1920px',
-                    height: '1080px',
+                    width: '360px',
+                    height: '640px',
                 },
             },
-            HD: {
-                name: 'HD',
+            '720': {
+                name: '720',
+                styles: {
+                    width: '720px',
+                    height: '405px',
+                },
+            },
+            '860': {
+                name: '860',
+                styles: {
+                    width: '860px',
+                    height: '484px',
+                },
+            },
+            '1024': {
+                name: '1024',
+                styles: {
+                    width: '1024px',
+                    height: '576px',
+                },
+            },
+            SberPortal: {
+                name: 'SberPortal',
                 styles: {
                     width: '1280px',
                     height: '720px',
                 },
             },
-            StarGate: {
-                name: 'StarGate',
+            SberBox: {
+                name: 'SberBox',
                 styles: {
-                    width: '1280px',
-                    height: '800px',
+                    width: '1920px',
+                    height: '1080px',
                 },
             },
         },
@@ -100,7 +121,7 @@ export const globalTypes = {
         },
     },
     typoSize: {
-        name: 'Typo size',
+        name: 'Device kind',
         description: 'Global typography size for components',
         defaultValue: 'sberBox',
         toolbar: {
