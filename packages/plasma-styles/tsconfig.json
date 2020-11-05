@@ -36,5 +36,5 @@
         "outDir": ".",
         "rootDir": "./src"
     },
-    "exclude": ["./src/stories"]
+    "exclude": ["./src/stories", "./utils"]
 }
