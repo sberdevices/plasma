@@ -4,13 +4,7 @@
     "description": "",
     "main": "index.js",
     "types": "index.d.ts",
-    "files": [
-        "components",
-        "mixins",
-        "index.d.ts",
-        "index.d.ts.map",
-        "index.js.map"
-    ],
+    "files": ["components", "mixins", "utils", "index.d.ts", "index.d.ts.map", "index.js.map"],
     "scripts": {
         "build": "npm run clean && tsc",
         "prepare": "npm run compile",
