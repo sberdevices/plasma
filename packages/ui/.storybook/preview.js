@@ -24,6 +24,7 @@ const DocumentStyle = createGlobalStyle`
         background: ${colorBackgroundDefault};
         background-color: ${colorBackgroundColor};
         margin: 0;
+        padding: 16px !important;
     }
 `;
 

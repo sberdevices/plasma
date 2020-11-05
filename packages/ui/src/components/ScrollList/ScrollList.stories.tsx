@@ -100,6 +100,13 @@ const ListGridItem: React.FC<ListGridItemProps> = ({ size, active, children }) =
 
 export default {
     title: 'ScrollList',
+    decorators: [
+        (Story) => (
+            <div style={{ fontSize: '16px' }}>
+                <Story />
+            </div>
+        ),
+    ],
 };
 
 export const HorizontalFixedWidth = () => {

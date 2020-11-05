@@ -5,6 +5,13 @@ import { IconSet } from './IconSet';
 
 export default {
     title: 'Icon',
+    decorators: [
+        (Story) => (
+            <div style={{ fontSize: '16px' }}>
+                <Story />
+            </div>
+        ),
+    ],
 };
 
 export const Default = () => <IconSet />;

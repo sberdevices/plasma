@@ -17,6 +17,13 @@ const StyledLooneyTunesContainer = styled.div`
 
 export default {
     title: 'LooneyTunes',
+    decorators: [
+        (Story) => (
+            <div style={{ fontSize: '16px' }}>
+                <Story />
+            </div>
+        ),
+    ],
 };
 
 export const Default = () => (
