@@ -14,7 +14,7 @@ export default {
     title: 'Grid',
     decorators: [
         (Story) => (
-            <div style={{ margin: '0 -1em' }}>
+            <div style={{ margin: '0 -1em', fontSize: '16px' }}>
                 <Story />
             </div>
         ),
