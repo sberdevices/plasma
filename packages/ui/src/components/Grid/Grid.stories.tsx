@@ -14,48 +14,30 @@ export default {
     title: 'Grid',
     decorators: [
         (Story) => (
-            <div style={{ margin: '0 -1em', fontSize: '16px' }}>
+            <div style={{ margin: '0 -16px' }}>
                 <Story />
             </div>
         ),
     ],
 };
 
-export const ColPlayground = () => (
-    <Container>
-        <Row>
-            <Col size={4}>
-                <StyledDummyFiller>Dummy</StyledDummyFiller>
-            </Col>
-        </Row>
-        <Row>
-            <Col size={3}>
-                <StyledDummyFiller>Dummy</StyledDummyFiller>
-            </Col>
-            <Col size={1}>
-                <StyledDummyFiller>Dummy</StyledDummyFiller>
-            </Col>
-        </Row>
-        <Row>
-            <Col size={2}>
-                <StyledDummyFiller>Dummy</StyledDummyFiller>
-            </Col>
-            <Col size={2}>
-                <StyledDummyFiller>Dummy</StyledDummyFiller>
-            </Col>
-        </Row>
-        <Row>
-            <Col size={1}>
-                <StyledDummyFiller>Dummy</StyledDummyFiller>
-            </Col>
-            <Col size={3}>
-                <StyledDummyFiller>Dummy</StyledDummyFiller>
-            </Col>
-        </Row>
-        <Row>
-            <Col size={number('Size', 1)} offset={number('Offset', 0)}>
-                <Filler>{text('Content', 'Content')}</Filler>
-            </Col>
-        </Row>
-    </Container>
-);
+export const ColPlayground = () => {
+    const size = number('Dummy size', 1);
+    const items = Array(number('Dummy columns', 12)).fill(0);
+    return (
+        <Container>
+            <Row>
+                {items.map((_, i) => (
+                    <Col key={`item:${i}`} size={size}>
+                        <StyledDummyFiller>Dummy</StyledDummyFiller>
+                    </Col>
+                ))}
+            </Row>
+            <Row>
+                <Col size={number('Size', 4)} offset={number('Offset', 0)}>
+                    <Filler>{text('Content', 'Content')}</Filler>
+                </Col>
+            </Row>
+        </Container>
+    );
+};

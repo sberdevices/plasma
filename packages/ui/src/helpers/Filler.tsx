@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const Filler = styled.div`
+    display: flex;
+    align-items: center;
+
     box-sizing: border-box;
 
     width: 100%;
@@ -9,5 +12,5 @@ export const Filler = styled.div`
     margin-bottom: 1em;
 
     background: rgba(200, 255, 255, 0.23);
-    color: white;
+    color: #fff;
 `;
