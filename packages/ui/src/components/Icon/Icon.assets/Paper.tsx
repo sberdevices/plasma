@@ -3,7 +3,7 @@ import React from 'react';
 import { IconAsset } from '../IconRoot';
 
 export const Paper: React.FC<IconAsset> = (props) => (
-    <svg width={18} height={22} viewBox="0 0 18 22" fill="none" {...props}>
+    <svg viewBox="0 0 18 22" fill="none" {...props}>
         <path
             fillRule="evenodd"
             clipRule="evenodd"

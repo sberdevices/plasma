@@ -3,7 +3,7 @@ import React from 'react';
 import { IconAsset } from '../IconRoot';
 
 export const SkipPrevious: React.FC<IconAsset> = (props) => (
-    <svg width={20} height={20} viewBox="0 0 20 20" fill="none" {...props}>
+    <svg viewBox="0 0 20 20" fill="none" {...props}>
         <path
             fillRule="evenodd"
             clipRule="evenodd"

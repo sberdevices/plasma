@@ -3,7 +3,7 @@ import React from 'react';
 import { IconAsset } from '../IconRoot';
 
 export const Clock: React.FC<IconAsset> = (props) => (
-    <svg width={10} height={10} viewBox="0 0 10 10" fill="none" {...props}>
+    <svg viewBox="0 0 10 10" fill="none" {...props}>
         <path
             fillRule="evenodd"
             clipRule="evenodd"

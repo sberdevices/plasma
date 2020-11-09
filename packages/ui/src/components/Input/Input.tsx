@@ -124,10 +124,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
                 <StyledInput ref={ref} value={value} disabled={disabled} isIcon={!!value} {...rest} />
                 {value && !iconName && !disabled && (
                     <StyledResetButton onClick={onResetClick}>
-                        <StyledIcon icon="remove" size="s" />
+                        <StyledIcon icon="remove" size="xs" />
                     </StyledResetButton>
                 )}
-                {iconName && <StyledIcon icon={iconName} size="m" />}
+                {iconName && <StyledIcon icon={iconName} size="s" />}
             </StyledRoot>
         );
     },

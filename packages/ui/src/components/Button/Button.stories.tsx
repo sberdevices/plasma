@@ -56,6 +56,6 @@ export const ActionButton = () => (
         onFocus={action('onFocus')}
         onBlur={action('onBlur')}
     >
-        <Icon icon={text('Icon name', 'assistant') as any} size={select('size', sizeKeys, 'l')} />
+        <Icon icon={text('Icon name', 'assistant') as any} size={select('iconSize', ['xs', 's', 'm'], 's')} />
     </ActionButtonComponent>
 );

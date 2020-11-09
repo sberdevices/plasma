@@ -3,7 +3,7 @@ import React from 'react';
 import { IconAsset } from '../IconRoot';
 
 export const Forward: React.FC<IconAsset> = (props) => (
-    <svg width={28} height={31} viewBox="0 0 28 31" fill="none" {...props}>
+    <svg viewBox="0 0 28 31" fill="none" {...props}>
         <path
             d="M14 3.751a.635.635 0 110 1.27c-6.663 0-12.064 5.4-12.064 12.063S7.337 29.148 14 29.148c6.662 0 12.063-5.401 12.063-12.064 0-1.973-.474-3.877-1.368-5.586a.635.635 0 011.125-.59 13.277 13.277 0 011.513 6.176c0 7.364-5.97 13.334-13.333 13.334-7.364 0-13.333-5.97-13.333-13.334C.667 9.721 6.636 3.751 14 3.751z"
             fill="currentColor"

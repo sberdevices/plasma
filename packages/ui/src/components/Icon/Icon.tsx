@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IconRoot } from './IconRoot';
+import { IconRoot, IconSize } from './IconRoot';
 import { Cart } from './Icon.assets/Cart';
 import { ChevronLeft } from './Icon.assets/ChevronLeft';
 import { Clock } from './Icon.assets/Clock';
@@ -55,13 +55,14 @@ export type IconName = keyof typeof iconSet;
 
 export interface IconProps {
     icon: IconName;
-    size?: 's' | 'm' | 'l';
+    size?: IconSize;
     color?: string;
     className?: string;
 }
 
-export const Icon: React.FC<IconProps> = ({ icon, size, color, className }) => {
+export const Icon: React.FC<IconProps> = ({ icon, size = 's', color, className }) => {
     return <IconRoot className={className} icon={iconSet[icon]} size={size} color={color} />;
 };
 
+export type { IconSize };
 export { iconSet };

@@ -1,24 +1,17 @@
 import React from 'react';
-import { text } from '@storybook/addon-knobs';
+import { text, select } from '@storybook/addon-knobs';
 
-import { IconSet } from './IconSet';
+import { IconSet } from '../../helpers/IconSet';
 
 export default {
     title: 'Icon',
-    decorators: [
-        (Story) => (
-            <div style={{ fontSize: '16px' }}>
-                <Story />
-            </div>
-        ),
-    ],
 };
 
-export const Default = () => <IconSet />;
+export const Default = () => {
+    const size = select('size', ['xs', 's', 'm', 'l', 'xl', 'xxl'], 's');
 
-export const Small = () => <IconSet size="s" />;
-
-export const Large = () => <IconSet size="l" />;
+    return <IconSet size={size} />;
+};
 
 export const CustomColor = () => {
     const color = text('color', '#fc0');

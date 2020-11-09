@@ -28,11 +28,11 @@ export const Sizes = () => <Badge text={text('text', 'Badge')} size={select('siz
 export const Views = () => <Badge text={text('text', 'Badge')} view={select('view', viewKeys, 'primary')} />;
 
 export const WithIconInLeft = () => (
-    <Badge text={text('text', 'Badge')} contentLeft={<Icon icon="assistant" size="s" />} />
+    <Badge text={text('text', 'Badge')} contentLeft={<Icon icon="assistant" size="xs" />} />
 );
 
 export const WithIconInRight = () => (
-    <Badge text={text('text', 'Badge')} contentRight={<Icon icon="assistant" size="s" />} />
+    <Badge text={text('text', 'Badge')} contentRight={<Icon icon="assistant" size="xs" />} />
 );
 
-export const NoText = () => <Badge contentLeft={<Icon icon="assistant" size="s" />} />;
+export const NoText = () => <Badge contentLeft={<Icon icon="assistant" size="xs" />} />;

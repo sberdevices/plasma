@@ -3,7 +3,7 @@ import React from 'react';
 import { IconAsset } from '../IconRoot';
 
 export const Cart: React.FC<IconAsset> = (props) => (
-    <svg width={40} height={40} viewBox="0 0 40 40" fill="none" {...props}>
+    <svg viewBox="0 0 40 40" fill="none" {...props}>
         <path
             fillRule="evenodd"
             clipRule="evenodd"

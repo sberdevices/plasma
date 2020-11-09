@@ -3,15 +3,18 @@ import styled, { css } from 'styled-components';
 import { primary } from '@sberdevices/plasma-tokens';
 
 const sizeMap = {
-    s: 24,
-    m: 36,
-    l: 48,
+    xs: 1, // 16px
+    s: 1.5, // 24px
+    m: 2.25, // 36px
+    l: 3, // 48px
+    xl: 3.5, // 56px
+    xxl: 4, // 64px
 };
 
 export type IconSize = keyof typeof sizeMap;
 
 export interface IconProps {
-    size?: 's' | 'm' | 'l';
+    size?: IconSize;
     color?: string;
     className?: string;
 }
@@ -35,15 +38,17 @@ const StyledRoot = styled.span<StyledRootProps>`
     box-sizing: border-box;
 
     ${({ $size }) => css`
-        width: ${sizeMap[$size]}px;
-        height: ${sizeMap[$size]}px;
+        width: ${sizeMap[$size]}rem;
+        height: ${sizeMap[$size]}rem;
     `}
 `;
 
-export const IconRoot: React.FC<IconRootProps> = ({ icon: IconComponent, size = 'm', color, className }) => {
+export const IconRoot: React.FC<IconRootProps> = ({ icon: IconComponent, size = 's', color, className }) => {
+    const sizeVal = (`${sizeMap[size]}rem` as unknown) as number;
+
     return (
         <StyledRoot $size={size} className={className}>
-            <IconComponent width={sizeMap[size]} height={sizeMap[size]} color={color || primary} />
+            <IconComponent width={sizeVal} height={sizeVal} color={color || primary} />
         </StyledRoot>
     );
 };

@@ -3,7 +3,7 @@ import React from 'react';
 import { IconAsset } from '../IconRoot';
 
 export const Play: React.FC<IconAsset> = (props) => (
-    <svg width={19} height={26} viewBox="0 0 19 26" fill="none" {...props}>
+    <svg viewBox="0 0 19 26" fill="none" {...props}>
         <path
             fillRule="evenodd"
             clipRule="evenodd"
