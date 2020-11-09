@@ -1,163 +1,107 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import { typography, colors } from '@sberdevices/plasma-tokens';
-
-import { Icon } from '../Icon/Icon';
+import styled from 'styled-components';
+import { SelfPosition } from 'csstype';
 
 export const CellRoot = styled.div`
     display: flex;
-    min-width: 320px;
 `;
 
-export const CellContent = styled.div<{ withBorderBottom?: boolean }>`
+export type CellSize = 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl';
+type sizeVal = { margin: number; height: number; br: number };
+
+const sizeMap: Record<CellSize, sizeVal> = {
+    xs: { margin: 0.25, height: 1, br: 0.25 }, // 16px
+    s: { margin: 0.5, height: 1.5, br: 0.25 }, // 24px
+    m: { margin: 0.75, height: 2.25, br: 0.5 }, // 36px
+    l: { margin: 1, height: 3, br: 0.75 }, // 48px
+    xl: { margin: 1, height: 3.5, br: 0.75 }, // 56px
+    xxl: { margin: 1, height: 4, br: 0.75 }, // 64px
+};
+
+type alignLeftProp = 'center' | 'top' | 'bottom';
+type alignRightProp = 'center' | 'top';
+
+const alignToFlex: Record<alignLeftProp, SelfPosition> = {
+    center: 'center',
+    top: 'flex-start',
+    bottom: 'flex-end',
+};
+
+export const CellLeft = styled.div<{ align: alignLeftProp }>`
     display: flex;
+    align-items: ${({ align = 'center' }) => alignToFlex[align]};
+    padding: 0.375rem 0;
+`;
+
+export const CellRight = styled.div<{ align: alignRightProp }>`
+    display: flex;
+    align-items: ${({ align = 'center' }) => alignToFlex[align]};
+
+    text-align: right;
+`;
+
+/** Оборачивает ( content + right ) */
+export const CellContentWrapper = styled.div`
+    display: flex;
+    flex: auto;
     justify-content: space-between;
-    flex: 1;
-    padding: 12px 0;
 
-    ${({ withBorderBottom }) =>
-        withBorderBottom &&
-        css`
-            padding-bottom: 11px;
-            border-bottom: 1px solid ${colors.surfaceLiquid03};
-        `}
+    padding: 0.375rem 0;
 `;
 
-export const CellHeader = styled.span`
-    padding-bottom: 8px;
-
-    color: ${colors.text};
-    ${typography.headline3};
-
-    &:last-child {
-        padding-bottom: 0;
-    }
-`;
-
-export const CellTitle = styled.span`
-    padding-bottom: 2px;
-
-    color: ${colors.text};
-    ${typography.body1};
-
-    &:last-child {
-        padding-bottom: 0;
-    }
-`;
-
-export const CellDetail = styled.span<{ hasHeader?: boolean }>`
-    padding-bottom: 2px;
-    ${({ hasHeader }) =>
-        hasHeader &&
-        css`
-            padding-top: 3px;
-        `}
-
-    color: ${colors.text};
-    ${typography.body1};
-
-    &:last-child {
-        padding-bottom: 0;
-    }
-`;
-
-export const CellSubTitle = styled.span`
-    padding-bottom: 4px;
-
-    color: ${colors.secondary};
-    ${typography.footnote1};
-
-    &:last-child {
-        padding-bottom: 0;
-    }
-`;
-
-export const CellLeft = styled.div<{ centerColLeft?: boolean }>`
+export const CellContent = styled.div`
     display: flex;
-    flex-direction: column;
-
-    ${({ centerColLeft }) => css`
-        justify-content: ${centerColLeft ? 'center' : 'flex-start'};
-    `}
+    align-items: center;
 `;
 
-export const CellRight = styled.div<{ centerColRight?: boolean }>`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-
-    ${({ centerColRight }) => css`
-        justify-content: ${centerColRight ? 'center' : 'flex-start'};
-    `}
-`;
-
-export const CellIcon = styled.div<{ centerIcon?: boolean }>`
-    display: flex;
-    padding: 2px 12px 2px 0;
-
-    ${({ centerIcon }) => css`
-        align-items: ${centerIcon === false ? 'flex-start' : 'center'};
-    `}
-`;
-
-export const CellIconWrapper = styled.button`
-    display: flex;
-    padding: 0;
-    border: none;
-    background: none;
-    outline: none;
-    cursor: pointer;
-
-    & span {
-        transform: translateX(33%);
-    }
-`;
-
-interface CellProps {
-    header?: string;
-    title?: string;
-    subTitle?: string;
-    detail?: string;
-    icon?: React.ReactNode;
-    centerColLeft?: boolean;
-    centerColRight?: boolean;
-    centerIcon?: boolean;
-    withBorderBottom?: boolean;
-    actionIconSize?: 's' | 'm' | 'l';
-    onClick?: () => void;
+export interface CellIconProps {
+    /** Размер Иконки ( по умолчанию – m ) */
+    size?: CellSize;
 }
 
-export const Cell: React.FC<CellProps> = ({
-    header,
-    title,
-    subTitle,
-    detail,
-    icon,
-    centerColLeft,
-    centerColRight = true,
-    centerIcon,
-    withBorderBottom,
-    actionIconSize,
-    onClick,
-}) => {
+export const CellIcon = styled.div<CellIconProps>`
+    height: ${({ size = 'm' }) => sizeMap[size].height}rem;
+    border-radius: ${({ size = 'm' }) => sizeMap[size].br}rem;
+    overflow: hidden;
+
+    margin: 0.125rem ${({ size = 'm' }) => sizeMap[size].margin}rem;
+
+    /* stylelint-disable-next-line declaration-block-semicolon-newline-after, rule-empty-line-before */
+    ${CellLeft} &:first-child {
+        margin-left: 0;
+    }
+
+    /* stylelint-disable-next-line declaration-block-semicolon-newline-after, rule-empty-line-before */
+    ${CellRight} &:last-child {
+        margin-right: 0;
+    }
+
+    & + & {
+        margin-left: 0;
+    }
+`;
+
+export interface CellProps {
+    left?: React.ReactNode;
+    content: React.ReactNode;
+    right?: React.ReactNode;
+
+    alignLeft?: alignLeftProp;
+    alignRight?: alignRightProp;
+
+    as?: React.ComponentType<any>;
+}
+
+export const Cell: React.FC<CellProps & React.HTMLAttributes<HTMLDivElement>> = (props) => {
+    const { left, content, right, alignLeft = 'center', alignRight = 'center', ...rest } = props;
+
     return (
-        <CellRoot>
-            {icon && <CellIcon centerIcon={centerIcon}>{icon}</CellIcon>}
-            <CellContent withBorderBottom={withBorderBottom}>
-                <CellLeft centerColLeft={centerColLeft}>
-                    {header && <CellHeader>{header}</CellHeader>}
-                    {title && <CellTitle>{title}</CellTitle>}
-                    {subTitle && <CellSubTitle>{subTitle}</CellSubTitle>}
-                </CellLeft>
-                <CellRight centerColRight={centerColRight}>
-                    {detail && <CellDetail hasHeader={Boolean(header)}>{detail}</CellDetail>}
-                    {onClick && (
-                        <CellIconWrapper onClick={onClick}>
-                            <Icon size={actionIconSize || 's'} icon="disclosureRight" />
-                        </CellIconWrapper>
-                    )}
-                </CellRight>
-            </CellContent>
+        <CellRoot {...rest}>
+            {left && <CellLeft align={alignLeft}>{left}</CellLeft>}
+            <CellContentWrapper>
+                <CellContent>{content}</CellContent>
+                {right && <CellRight align={alignRight}>{right}</CellRight>}
+            </CellContentWrapper>
         </CellRoot>
     );
 };
