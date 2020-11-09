@@ -3,7 +3,6 @@ import { text, boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
 import { View, views } from '../../mixins/applyView';
-import { Pin, pins } from '../../mixins/pins';
 import { Icon } from '../Icon/Icon';
 
 import { ButtonSize } from './ButtonBase';
@@ -23,14 +22,12 @@ export default {
 
 const sizeKeys = Object.keys(sizes) as ButtonSize[];
 const viewKeys = Object.keys(views) as View[];
-const pinKeys = Object.keys(pins) as Pin[];
 
 export const Default = () => (
     <Button
         text={text('text', 'Button')}
         size={select('size', sizeKeys, 'l')}
         view={select('view', viewKeys, 'primary')}
-        pin={select('pin', pinKeys, 'square-square')}
         motion={boolean('motion', true)}
         outlined={boolean('outlined', true)}
         disabled={boolean('disabled', false)}
@@ -45,7 +42,6 @@ export const Default = () => (
 
 export const ActionButton = () => (
     <ActionButtonComponent
-        pin={select('pin', pinKeys, 'circle-circle')}
         size={select('size', sizeKeys, 'm')}
         view={select('view', viewKeys, 'primary')}
         motion={boolean('motion', true)}
