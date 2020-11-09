@@ -1,49 +1,31 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { typography } from '@sberdevices/plasma-tokens';
+import { typography, scalingPixelBasis } from '@sberdevices/plasma-tokens';
 
 import { applyView, ViewProps } from '../../mixins/applyView';
 
-const fontSize = 12;
-
 export const badgeSizes = {
     s: {
-        paddingX: 4 / fontSize,
-        paddingCompactX: 2 / fontSize,
-    },
-    m: {
-        paddingX: 6 / fontSize,
-        paddingCompactX: 3 / fontSize,
+        paddingX: 4 / scalingPixelBasis,
+        paddingCompactX: 2 / scalingPixelBasis,
     },
     l: {
-        paddingX: 8 / fontSize,
-        paddingCompactX: 4 / fontSize,
-    },
-    xl: {
-        paddingX: 12 / fontSize,
-        paddingCompactX: 6 / fontSize,
+        paddingX: 8 / scalingPixelBasis,
+        paddingCompactX: 4 / scalingPixelBasis,
     },
 };
 export const badgeRootSizes = {
     s: css`
-        height: ${16 / fontSize}em;
-        min-width: ${16 / fontSize}em;
-        border-radius: ${8 / fontSize}em;
-    `,
-    m: css`
-        height: ${22 / fontSize}em;
-        min-width: ${22 / fontSize}em;
-        border-radius: ${11 / fontSize}em;
+        height: ${16 / scalingPixelBasis}rem;
+        min-width: ${16 / scalingPixelBasis}rem;
+        border-radius: ${8 / scalingPixelBasis}rem;
+        font-size: ${10 / scalingPixelBasis}rem;
     `,
     l: css`
-        height: ${24 / fontSize}em;
-        min-width: ${24 / fontSize}em;
-        border-radius: ${12 / fontSize}em;
-    `,
-    xl: css`
-        height: ${32 / fontSize}em;
-        min-width: ${32 / fontSize}em;
-        border-radius: ${16 / fontSize}em;
+        height: ${24 / scalingPixelBasis}rem;
+        min-width: ${24 / scalingPixelBasis}rem;
+        border-radius: ${12 / scalingPixelBasis}rem;
+        font-size: ${12 / scalingPixelBasis}rem;
     `,
 };
 
@@ -92,19 +74,19 @@ const StyledText = styled.span<StyledTextProps>`
 
     ${({ size }) =>
         css`
-            padding: 0 ${badgeSizes[size].paddingX}em;
+            padding: 0 ${badgeSizes[size].paddingX}rem;
         `};
 
     ${({ isContentLeft, size }) =>
         isContentLeft &&
         css`
-            padding-left: ${badgeSizes[size].paddingCompactX}em;
+            padding-left: ${badgeSizes[size].paddingCompactX}rem;
         `};
 
     ${({ isContentRight, size }) =>
         isContentRight &&
         css`
-            padding-right: ${badgeSizes[size].paddingCompactX}em;
+            padding-right: ${badgeSizes[size].paddingCompactX}rem;
         `};
 `;
 
