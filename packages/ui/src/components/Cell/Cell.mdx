@@ -6,8 +6,9 @@ route: /components/Cell
 
 import { Playground, Props } from 'docz';
 
-import { Cell } from './Cell';
-import { IconCart } from '../Icon/Icons/IconCart'
+import { Cell, CellIcon } from './Cell';
+import { TextBox } from '../TextBox/TextBox';
+
 import { ThemeSelect } from '../../helpers/ThemeSelect'
 import { ThemeBackground } from '../../helpers/ThemeBackground'
 
@@ -26,40 +27,9 @@ import { ThemeBackground } from '../../helpers/ThemeBackground'
 
 <Playground>
   <ThemeBackground>
-    <Cell
-      header=""
-      title="title"
-      subTitle="subTitle"
-      detail=""
-      icon={<IconCart size="l" />}
-      centerColLeft={false}
-      centerColRight={true}
-      centerIcon={true}
-      withBorderBottom={true}
-      actionIconSize="s"
-      onClick={() => undefined}
-    />
-  </ThemeBackground>
-</Playground>
-
-### Кастомная сборка
-Компоненты `<CellRoot />` и `<CellContent />` обязательны. В `<CellLeft />` и `<CellRight />` можно оборачивать любой контент.
-<Playground>
-  <ThemeBackground>
-    <CellRoot>
-      <CellIcon centerIcon={true}>
-        <IconCart />
-      </CellIcon>
-      <CellContent>
-        <CellLeft>
-          <CellTitle>title</CellTitle>
-          <CellSubTitle>subTitle</CellSubTitle>
-        </CellLeft>
-        <CellRight>
-          <CellDetail>detail</CellDetail>
-          <CellSubTitle>info</CellSubTitle>
-        </CellRight>
-    </CellContent>
-    </CellRoot>
+      <Cell
+        left={ <CellIcon as='img' src='https://user-images.githubusercontent.com/1813468/98660938-ecaf4080-2356-11eb-839e-20489183c440.png' alt='avocado' /> }
+        content={ <TextBox title='Hello World of Plasma' subTitle='Use with wisdom' /> }
+      />
   </ThemeBackground>
 </Playground>

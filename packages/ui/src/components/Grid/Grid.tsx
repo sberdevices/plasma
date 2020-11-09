@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, ReactNode } from 'react';
 import styled, { FlattenSimpleInterpolation } from 'styled-components';
 import { scalingPixelBasis } from '@sberdevices/plasma-tokens';
 
@@ -123,6 +123,7 @@ export interface ColProps {
      */
     offset?: number;
     className?: string;
+    children?: ReactNode;
 }
 
 export const Col = forwardRef<HTMLDivElement, ColProps>(({ size = 1, offset = 0, children, className }, ref) => (
