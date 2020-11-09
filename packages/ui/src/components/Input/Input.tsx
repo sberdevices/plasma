@@ -1,36 +1,34 @@
 import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
-import { typography, colors } from '@sberdevices/plasma-tokens';
+import { typography, colors, scalingPixelBasis } from '@sberdevices/plasma-tokens';
 
 import { Icon, IconName } from '../Icon/Icon';
 import type { PickOptional } from '../../types/PickOptional';
 
 // В этих константах задаем размеры в em, чтобы не зависеть напрямую от пикселей
 // В то же время в числителях - значения в пикселях, взятые из макета
-const fontSize = 16;
-const rootHeight = 36 / fontSize;
-const rootBorderWidth = 1 / fontSize;
+const rootHeight = 36 / scalingPixelBasis;
 const rootBorderRadius = 2;
-const inputPaddingY = 8 / fontSize - rootBorderWidth;
-const inputPaddingX = 1 - rootBorderWidth;
-const inputPaddingCompactX = 12 / fontSize;
+const inputPaddingY = 8 / scalingPixelBasis;
+const inputPaddingX = 16 / scalingPixelBasis;
+const inputPaddingCompactX = 12 / scalingPixelBasis;
 
 interface StyledRootProps {
     disabled?: boolean;
     isIcon?: boolean;
 }
 
-export const StyledRoot = styled.label<StyledRootProps>`
+export const StyledInputRoot = styled.label<StyledRootProps>`
     width: 100%;
-    height: ${rootHeight}em;
+    height: ${rootHeight}rem;
 
     display: flex;
     align-items: center;
     box-sizing: border-box;
 
-    background: ${colors.surfaceLiquid03};
-    border: ${rootBorderWidth}em solid transparent;
-    border-radius: ${rootBorderRadius}em;
+    background: ${colors.surfaceLiquid02};
+    border: 0 none;
+    border-radius: ${rootBorderRadius}rem;
     color: ${colors.whiteSecondary};
 
     ${typography.body1};
@@ -38,14 +36,13 @@ export const StyledRoot = styled.label<StyledRootProps>`
     ${({ isIcon }) =>
         isIcon &&
         css`
-            padding-right: ${inputPaddingCompactX}em;
+            padding-right: ${inputPaddingCompactX}rem;
         `}
 
     ${({ disabled }) =>
         disabled &&
         css`
-            background: none;
-            border-color: ${colors.surfaceLiquid03};
+            background: ${colors.surfaceLiquid01};
         `}
 `;
 
@@ -71,7 +68,7 @@ export const StyledInput = styled.input<StyledInputProps>`
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    padding: ${inputPaddingY}em ${inputPaddingX}em;
+    padding: ${inputPaddingY}rem ${inputPaddingX}rem;
 
     appearance: none;
     background: none;
@@ -99,7 +96,7 @@ export const StyledInput = styled.input<StyledInputProps>`
     ${({ isIcon }) =>
         isIcon &&
         css`
-            padding-right: ${inputPaddingCompactX}em;
+            padding-right: ${inputPaddingCompactX}rem;
         `}
 `;
 
@@ -120,7 +117,7 @@ export interface InputProps extends InputAttributes, InputHandlers {
 export const Input = forwardRef<HTMLInputElement, InputProps>(
     ({ value, disabled, iconName, onResetClick, ...rest }, ref) => {
         return (
-            <StyledRoot disabled={disabled} isIcon={!!iconName || !!value}>
+            <StyledInputRoot disabled={disabled} isIcon={!!iconName || !!value}>
                 <StyledInput ref={ref} value={value} disabled={disabled} isIcon={!!value} {...rest} />
                 {value && !iconName && !disabled && (
                     <StyledResetButton onClick={onResetClick}>
@@ -128,7 +125,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
                     </StyledResetButton>
                 )}
                 {iconName && <StyledIcon icon={iconName} size="m" />}
-            </StyledRoot>
+            </StyledInputRoot>
         );
     },
 );
