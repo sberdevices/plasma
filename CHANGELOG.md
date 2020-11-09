@@ -1,3 +1,17 @@
+# (Mon Nov 09 2020)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/ui@0.16.0`
+  - feat(ui): Перевел сетку на rem-ы [#43](https://github.com/sberdevices/plasma/pull/43) ([@fanisco](https://github.com/fanisco))
+  - feat(ui): В сторибук заменены вьюпорты на родные для сетки [#43](https://github.com/sberdevices/plasma/pull/43) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Thu Nov 05 2020)
 
 #### 🚀 Enhancement
