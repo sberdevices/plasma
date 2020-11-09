@@ -13,16 +13,15 @@ import { darkEva, darkJoy, darkSber, lightEva, lightJoy, lightSber } from '@sber
 
 const DocumentStyle = createGlobalStyle`
     /* stylelint-disable-next-line selector-nested-pattern */
-    html {
-        height: 100vh;
+    html:root {
+        min-height: 100vh;
+        color: ${colorTextPrimary};
+        background: ${colorBackgroundDefault};
+        background-color: ${colorBackgroundColor};
     }
 
     /* stylelint-disable-next-line selector-nested-pattern */
     body {
-        height: 100vh;
-        color: ${colorTextPrimary};
-        background: ${colorBackgroundDefault};
-        background-color: ${colorBackgroundColor};
         margin: 0;
         padding: 16px !important;
     }
