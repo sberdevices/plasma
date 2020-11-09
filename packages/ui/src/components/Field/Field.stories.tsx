@@ -66,7 +66,7 @@ export const WithIcon = () => {
                         setValue(`${Number(value) - 1}`);
                     }}
                 >
-                    <Icon icon="minus" size="s" />
+                    <Icon icon="minus" size="xs" />
                 </StyledGhostButton>
             }
             contentRight={
@@ -76,7 +76,7 @@ export const WithIcon = () => {
                         setValue(`${Number(value) + 1}`);
                     }}
                 >
-                    <Icon icon="plus" size="s" />
+                    <Icon icon="plus" size="xs" />
                 </StyledGhostButton>
             }
             onChange={(e) => setValue(e.target.value)}

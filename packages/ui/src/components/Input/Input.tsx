@@ -127,7 +127,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
                         <StyledIcon icon="remove" size="xs" />
                     </StyledResetButton>
                 )}
-                {iconName && <StyledIcon icon={iconName} size="s" />}
+                {iconName && <StyledIcon icon={iconName} size="xs" />}
             </StyledRoot>
         );
     },
