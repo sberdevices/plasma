@@ -7,6 +7,11 @@ import { Cell, CellProps, CellContentWrapper } from './Cell';
 const ListItem = styled.li`
     list-style: none;
 
+    ${CellContentWrapper} {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
     &:not(:last-child) ${CellContentWrapper} {
         /* stylelint-disable-next-line number-max-precision */
         border-bottom: 0.0625rem solid ${surfaceLiquid03};

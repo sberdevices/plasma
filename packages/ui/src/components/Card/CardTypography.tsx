@@ -2,9 +2,17 @@
 import styled, { css } from 'styled-components';
 import { primary, secondary, tertiary } from '@sberdevices/plasma-tokens';
 
-import { Headline1, Headline3, Body1, Footnote1 } from '../Typography';
-
-import { StyledCard } from './Card';
+import {
+    Body1,
+    Body2,
+    ParagraphText1,
+    ParagraphText2,
+    Headline1,
+    Headline2,
+    Headline3,
+    Footnote1,
+    Footnote2,
+} from '../Typography';
 
 const views = {
     primary,
@@ -16,19 +24,31 @@ interface ViewProps {
     view?: keyof typeof views;
 }
 
-interface LineProps {
+interface LinesProps {
     lines?: number;
 }
 
-const viewMixin = ({ view = 'primary' }: ViewProps) => `
+const linesMixin = ({ lines = 2 }) => css`
+    display: -webkit-box;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    white-space: normal;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: ${lines};
+`;
+
+const viewMixin = ({ view = 'primary' }: ViewProps) => css`
+    transition: color 0.1s ease-in-out;
     color: ${views[view]};
 `;
 
 export const CardHeadline1 = styled(Headline1)<ViewProps>`
-    ${Headline3} + & {
-        margin-top: ${12 / 32}em;
-    }
+    ${viewMixin};
+`;
 
+export const CardHeadline2 = styled(Headline2)<ViewProps>`
     ${viewMixin};
 `;
 
@@ -36,31 +56,30 @@ export const CardHeadline3 = styled(Headline3)<ViewProps>`
     ${viewMixin};
 `;
 
-export const CardBody1 = styled(Body1)<ViewProps & LineProps>`
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    box-sizing: border-box;
-
-    white-space: normal;
-
-    ${({ lines = 2 }) => css`
-        -webkit-line-clamp: ${lines};
-    `}
-
+export const CardFootnote1 = styled(Footnote1)<ViewProps>`
     ${viewMixin};
 `;
 
-export const CardFootnote1 = styled(Footnote1)<ViewProps>`
-    transition: color 0.1s ease-in-out;
+export const CardFootnote2 = styled(Footnote2)<ViewProps>`
+    ${viewMixin};
+`;
 
-    ${Headline1} + & {
-        margin-top: ${6 / 14}em;
-    }
+export const CardBody1 = styled(Body1)<ViewProps & LinesProps>`
+    ${linesMixin};
+    ${viewMixin};
+`;
 
-    ${StyledCard} + & {
-        margin-top: ${8 / 14}em;
-    }
+export const CardBody2 = styled(Body2)<ViewProps & LinesProps>`
+    ${linesMixin};
+    ${viewMixin};
+`;
 
+export const CardParagraph1 = styled(ParagraphText1)<ViewProps & LinesProps>`
+    ${linesMixin};
+    ${viewMixin};
+`;
+
+export const CardParagraph2 = styled(ParagraphText2)<ViewProps & LinesProps>`
+    ${linesMixin};
     ${viewMixin};
 `;
