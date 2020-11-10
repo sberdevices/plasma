@@ -10,9 +10,8 @@
 
 ## Состав:
 
-- @sberdevices/plasma-ui
-- @sberdevices/plasma-tokens
-
+-   @sberdevices/plasma-ui
+-   @sberdevices/plasma-tokens
 
 ### plasma-tokens
 
@@ -23,7 +22,6 @@
 Перед использованием `plasma-ui` необходимо ознакомится с основными сущностями этого пакета.
 
 [Читать Подробнее](./packages/plasma-tokens/README.md)
-
 
 ### plasma-ui
 
@@ -41,24 +39,23 @@
 
 `Canvas App` это web-приложение, для его создания вам потребуются следующие пререквизиты:
 
-* `Node.js` & `npm` [установка](https://nodejs.org/ru/) 
+-   `Node.js` & `npm` [установка](https://nodejs.org/ru/)
 
-* `Create React App` – для быстрого создания вашего приложения. [CRA](https://create-react-app.dev/docs/getting-started#quick-start)
+-   `Create React App` – для быстрого создания вашего приложения. [CRA](https://create-react-app.dev/docs/getting-started#quick-start)
 
-* `React` Как основа для web интерфейса. Погружение для новичков: https://ru.reactjs.org/tutorial/tutorial.html
-
+-   `React` Как основа для web интерфейса. Погружение для новичков: https://ru.reactjs.org/tutorial/tutorial.html
 
 ### Установка
 
 После создания [начального приложения](https://create-react-app.dev/docs/getting-started#quick-start)
 Необходимо установить следующие пакеты:
 
-<!-- Компоненты реализованы с помощью [styled-components](http://styled-components.com/)
+Компоненты реализованы с помощью [styled-components](http://styled-components.com/)
 Поэтому необходимо поставить их в зависимость:
 
 ```sh
 npm install --save styled-components
-``` -->
+```
 
 Установка `plasma`:
 
@@ -84,34 +81,29 @@ import React from 'react';
 import { Button } from '@sberdevices/ui/components/Button/Button';
 
 function App() {
-  return (
-    <div className="App">
-        <p>
-         <Button view="primary">Hello Plasma</Button>
-        </p>
-    </div>
-  );
+    return (
+        <div className="App">
+            <p>
+                <Button view="primary">Hello Plasma</Button>
+            </p>
+        </div>
+    );
 }
 
 export default App;
-
 ```
 
 Для каждого компоненты есть документация описывающая его поведение и модификации.
 Например кнопка: https://plasma-docs.netlify.app/components/Button
-
 
 ## Обратная связь
 
 Разработка `plasma` ведется в репозитории https://github.com/sberdevices/plasma
 Если вы хотите добавить новый компонент вы можете прислать пулл-реквест следуя [правилам разработки](./CONTRIBUTING.md). Также вы можете завести задачу на создание нового [https://github.com/sberdevices/plasma/issues/new] или описать некоректное поведение текущего.
 
-
 ## Концепция создания приложений
 
 ## Список компонентов
-
-
 
 [canvas-app](https://developer.sberdevices.ru/docs/ru/methodology/research/canvasapp)
 [custom-props](https://developer.mozilla.org/en-US/docs/Web/CSS/--*)

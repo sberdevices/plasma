@@ -21,7 +21,9 @@ const DocumentStyle = createGlobalStyle`
     body {
         margin: 0;
         padding: 16px !important;
-        font-family: 'SB Sans Text', Helvetica, Arial, sans-serif;
+
+        /* stylelint-disable-next-line string-quotes */
+        font-family: "SB Sans Text", Helvetica, Arial, sans-serif;
     }
 `;
 
