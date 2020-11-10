@@ -1,3 +1,21 @@
+# (Tue Nov 10 2020)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/ui@0.17.0`
+  - feat(ui): Удален Card.stories [#45](https://github.com/sberdevices/plasma/pull/45) ([@fanisco](https://github.com/fanisco))
+  - feat(ui): Скрыт ScrollList [#45](https://github.com/sberdevices/plasma/pull/45) ([@fanisco](https://github.com/fanisco))
+  - feat(ui): Удален LooneyTunes [#45](https://github.com/sberdevices/plasma/pull/45) ([@fanisco](https://github.com/fanisco))
+  - feat(ui): Доработаны Input, Field (TextField) [#45](https://github.com/sberdevices/plasma/pull/45) ([@fanisco](https://github.com/fanisco))
+  - feat(ui): Доработан Button [#45](https://github.com/sberdevices/plasma/pull/45) ([@fanisco](https://github.com/fanisco))
+  - feat(ui): Доработан Badge [#45](https://github.com/sberdevices/plasma/pull/45) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Mon Nov 09 2020)
 
 #### 🚀 Enhancement
