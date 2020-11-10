@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { text, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { accent, footnote1 } from '@sberdevices/plasma-tokens';
-import { Footnote1, Headline1 } from '@sberdevices/plasma-styles';
 
+import { Footnote1, Headline1 } from '../Typography';
 import { Default as Stepper } from '../Stepper/Stepper.stories';
 import { Container, Col } from '../Grid/Grid';
 import { TextBox, Title, SubTitle, Label, Caption } from '../TextBox/TextBox';

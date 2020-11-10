@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { text, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import styled from 'styled-components';
 
 import { Icon } from '../Icon/Icon';
 

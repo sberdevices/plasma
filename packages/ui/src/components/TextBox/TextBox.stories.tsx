@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { accent, footnote1 } from '@sberdevices/plasma-tokens';
-import { Footnote1 } from '@sberdevices/plasma-styles';
 import { text } from '@storybook/addon-knobs';
 
+import { Footnote1 } from '../Typography';
 import { Container, Col } from '../Grid/Grid';
 
 import { TextBox, Title, BigTitle, SubTitle, Label, Caption } from './TextBox';
