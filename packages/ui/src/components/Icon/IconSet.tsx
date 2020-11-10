@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Icon, iconSet, IconProps } from './Icon';
+import { Icon, iconSet, IconProps, IconName as IName } from './Icon';
 import { IconSize } from './IconRoot';
 
 const StyledRoot = styled.div`
@@ -24,17 +24,21 @@ const IconName = styled.div`
 interface IconSetProps {
     size?: IconSize;
     color?: string;
+    exclude?: Array<IName>;
+    include?: Array<IName>;
 }
 
-export const IconSet: React.FC<IconSetProps> = ({ size, color }) => {
+export const IconSet: React.FC<IconSetProps> = ({ size, color, exclude, include = [] }) => {
     return (
         <StyledRoot>
-            {Object.keys(iconSet).map((icon) => (
-                <StyledContainer key={icon}>
-                    <IconName>{icon}</IconName>
-                    <Icon icon={icon as IconProps['icon']} size={size} color={color} />
-                </StyledContainer>
-            ))}
+            {Object.keys(iconSet)
+                .filter((icon) => (exclude ? !exclude.includes(icon as IName) : include.includes(icon as IName)))
+                .map((icon) => (
+                    <StyledContainer key={icon}>
+                        <IconName>{icon}</IconName>
+                        <Icon icon={icon as IconProps['icon']} size={size} color={color} />
+                    </StyledContainer>
+                ))}
         </StyledRoot>
     );
 };

@@ -3,7 +3,7 @@ import React from 'react';
 import { IconAsset } from '../IconRoot';
 
 export const Cross: React.FC<IconAsset> = (props) => (
-    <svg viewBox="0 0 24 24" fill="none" {...props}>
+    <svg width="1.5rem" viewBox="0 0 24 24" fill="none" {...props}>
         <path
             fillRule="evenodd"
             clipRule="evenodd"

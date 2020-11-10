@@ -14,11 +14,11 @@ export default {
     ],
 };
 
-export const XsSize = () => <IconSet size="xs" />;
+export const XsSize = () => <IconSet size="xs" include={['chevronUp', 'chevronDown', 'disclosureRight']} />;
 
-export const SmallSize = () => <IconSet size="s" />;
+export const SmallSize = () => <IconSet size="s" exclude={['chevronUp', 'chevronDown']} />;
 
 export const CustomColor = () => {
     const color = text('color', '#fc0');
-    return <IconSet color={color} />;
+    return <IconSet color={color} exclude={['chevronUp', 'chevronDown']} />;
 };
