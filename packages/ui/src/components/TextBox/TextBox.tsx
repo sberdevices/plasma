@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Body1, Footnote1, Headline3 } from '@sberdevices/plasma-styles';
 import { primary, secondary } from '@sberdevices/plasma-tokens';
 
-// TODO: rems in Typo
+import { Body1, Footnote1, Headline3 } from '../Typography';
 
 export const Title = styled(Body1)`
     margin: 0.125rem 0;

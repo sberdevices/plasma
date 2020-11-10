@@ -1,3 +1,8 @@
+---
+name: Plasma UI
+route: /
+---
+
 # Библиотека компонентов `plasma-ui`
 
 Реализация компонент для создания смартаппов.
@@ -21,3 +26,9 @@ $ npm install --save react react-dom
 $ npm install --save styled-components
 $ npm install --save @sberdevices/ui @sberdevices/plasma-tokens
 ```
+
+## Полезные ссылки:
+
+Витрина с компонентами [storybook](https://master--5f96ec813d800900227e3b93.chromatic.com)
+
+Документация о каждом компоненте: https://plasma-docs.netlify.app

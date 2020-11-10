@@ -8,7 +8,7 @@
 
 ## Пример использования
 
-_NB_ — Все примеры будут приведены с использованием [styled-components][styled-components]. Но использовать `plasma-tokens` можно и без этого инструмента.
+_NB_ — Все примеры будут приведены с использованием [styled-components](styled-components). Но использовать `plasma-tokens` можно и без этого инструмента.
 
 ```sh
 npm i --save '@sberdevices/plasma-tokens'
@@ -146,10 +146,10 @@ export default App;
 
 #### Установка шрифта
 
-Типографическая система основана на фирменном шрифте `SB Sans Text`. Для того чтобы шрифт было удобно поставлять в web-приложения, шрифт был загружен на [cdn][cdn].
+Типографическая система основана на фирменном шрифте `SB Sans Text`. Для того чтобы шрифт было удобно поставлять в web-приложения, шрифт был загружен на [cdn](cdn).
 
 Для использования типографической системы вам достаточно загрузить один `css` файл:
-Его необходимо добавить внутрь тега `head`. Если в качестве основы web-приложения вы используете [create-react-app][create-react-app], вам необходимо изменить файл `./public/index.html`.
+Его необходимо добавить внутрь тега `head`. Если в качестве основы web-приложения вы используете [create-react-app](create-react-app), вам необходимо изменить файл `./public/index.html`.
 
 ```html
 <html>
@@ -374,7 +374,7 @@ export default App;
 
 Все описанные выше примеры можно посмотреть в [демо-приложении](../../examples/demo-tokens/src/App.tsx)
 
-Приложение основано на [create-react-app][create-react-app] c использованием [typescript][typescript] и [styled-components][styled-components]
+Приложение основано на [create-react-app](create-react-app) c использованием [typescript](typescript) и [styled-components](styled-components)
 
 Для запуска приложение прочитайте [README](../../examples/demo-tokens/README.md)
 
