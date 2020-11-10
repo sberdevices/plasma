@@ -45,16 +45,6 @@ export const LongText = () => {
     );
 };
 
-const StyledGhostButton = styled.button`
-    appearance: none;
-    background: none;
-    border: 0 none;
-
-    &:focus {
-        outline: none;
-    }
-`;
-
 export const WithIcon = () => {
     const [value, setValue] = useState('5');
     return (
