@@ -28,6 +28,7 @@ import { ActionButton } from './ActionButton'
 <Playground>
   <ThemeBackground>
     <Button text="Это текст" />
+    {'\u00A0\u00A0\u00A0\u00A0'}
     <Button>
         <span>Это тоже текст</span>
     </Button>
@@ -39,7 +40,9 @@ import { ActionButton } from './ActionButton'
 <Playground>
   <ThemeBackground>
     <Button text="Button" size="l" />
+    {'\u00A0\u00A0\u00A0\u00A0'}
     <Button text="Button" size="m" />
+    {'\u00A0\u00A0\u00A0\u00A0'}
     <Button text="Button" size="s" />
   </ThemeBackground>
 </Playground>
@@ -49,41 +52,27 @@ import { ActionButton } from './ActionButton'
 <Playground>
   <ThemeBackground>
     <Button text="Button" view="primary" size="s" />
+    {'\u00A0\u00A0\u00A0\u00A0'}
     <Button text="Button" view="secondary" size="s" />
+    {'\u00A0\u00A0\u00A0\u00A0'}
     <Button text="Button" view="warning" size="s" />
+    {'\u00A0\u00A0\u00A0\u00A0'}
     <Button text="Button" view="critical" size="s" />
+    {'\u00A0\u00A0\u00A0\u00A0'}
     <Button text="Button" view="checked" size="s" />
+    {'\u00A0\u00A0\u00A0\u00A0'}
     <Button text="Button" view="clear" size="s" />
   </ThemeBackground>
 </Playground>
 
-### Границы кнопки
-Чтобы изменить границы кнопки, установите свойство ``pin`` в одно из допустимых значений.
-<Playground>
-  <ThemeBackground>
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <div style={{ display: 'flex', marginBottom: '10px' }}>
-        <Button text="Button" pin="square-square" size="s" />
-        <Button text="Button" pin="circle-circle" size="s" />
-        <Button text="Button" pin="clear-clear" size="s" />
-      </div>
-      <div style={{ display: 'flex', marginBottom: '10px' }}>
-        <Button text="Button" pin="square-clear" size="s" />
-        <Button pin="clear-square" size="s"/>
-      </div>
-      <div style={{ display: 'flex' }}>
-        <Button text="Button" pin="circle-clear" size="s" />
-        <Button text="Button" pin="clear-circle" size="s" />
-      </div>
-    </div>
-  </ThemeBackground>
-</Playground>
 
 ### Иконки
 <Playground>
   <ThemeBackground>
     <Button text="Button" contentLeft={<IconAssistant />} />
+    {'\u00A0\u00A0\u00A0\u00A0'}
     <Button text="Button" contentRight={<IconAssistant />} />
+    {'\u00A0\u00A0\u00A0\u00A0'}
     <Button text="Button" contentRight={<IconAssistant />} />
   </ThemeBackground>
 </Playground>
@@ -92,9 +81,11 @@ import { ActionButton } from './ActionButton'
 ``disabled`` делает кнопку недоступной для нажатия, ``fullWidth`` позволяет ей занять доступню ширину, а с помощью ``motion`` можно управлять анимацией при наведении/нажатии.
 <Playground>
   <ThemeBackground>
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', padding: 40 }}>
       <Button text="Недоступно" disabled />
+      {'\u00A0\u00A0\u00A0\u00A0'}
       <Button text="Широкая кнопка" fullWidth />
+      {'\u00A0\u00A0\u00A0\u00A0'}
       <Button text="Без анимации" motion={false} />
     </div>
   </ThemeBackground>

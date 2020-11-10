@@ -1,13 +1,10 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
+
 import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import Color from '@sberdevices/plasma-styles/components/Color';
-import {
-    colorTextPrimary,
-    colorBackgroundColor,
-    colorBackgroundDefault,
-} from '@sberdevices/plasma-styles/components/Color/tokens';
+
+import { text, background, gradient } from '@sberdevices/plasma-tokens';
 import { touch, sberBox, sberPortal } from '@sberdevices/plasma-tokens/typo';
 import { darkEva, darkJoy, darkSber, lightEva, lightJoy, lightSber } from '@sberdevices/plasma-tokens/themes';
 
@@ -15,15 +12,16 @@ const DocumentStyle = createGlobalStyle`
     /* stylelint-disable-next-line selector-nested-pattern */
     html:root {
         min-height: 100vh;
-        color: ${colorTextPrimary};
-        background: ${colorBackgroundDefault};
-        background-color: ${colorBackgroundColor};
+        color: ${text};
+        background-color: ${background};
+        background-image: ${gradient};
     }
 
     /* stylelint-disable-next-line selector-nested-pattern */
     body {
         margin: 0;
         padding: 16px !important;
+        font-family: 'SB Sans Text', Helvetica, Arial, sans-serif;
     }
 `;
 
@@ -50,7 +48,6 @@ const withTheme = (Story, context) => {
         <>
             <Theme />
             <Typo />
-            <Color />
             <DocumentStyle />
             <Story {...context} />
         </>

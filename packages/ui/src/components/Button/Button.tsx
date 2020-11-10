@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
-import { addFocus, FocusProps } from '@sberdevices/plasma-styles';
 
+import { addFocus, FocusProps } from '../../mixins/addFocus';
 import { applyView, ViewProps } from '../../mixins/applyView';
 import { applyMotion, MotionProps } from '../../mixins/applyMotion';
 import { applyDisabled, DisabledProps } from '../../mixins/applyDisabled';
