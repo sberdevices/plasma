@@ -1,3 +1,17 @@
+# v0.18.0 (Tue Nov 10 2020)
+
+#### 🚀 Enhancement
+
+- feat(ui): Добавлены компоненты TextBox & Cell [#47](https://github.com/sberdevices/plasma/pull/47) ([@Yeti-or](https://github.com/Yeti-or))
+- feat(ui): add Cell component [#47](https://github.com/sberdevices/plasma/pull/47) ([@IgorAntonov](https://github.com/IgorAntonov))
+
+#### Authors: 2
+
+- [@IgorAntonov](https://github.com/IgorAntonov)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v0.17.0 (Tue Nov 10 2020)
 
 #### 🚀 Enhancement

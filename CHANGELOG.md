@@ -2,6 +2,21 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/ui@0.18.0`
+  - feat(ui): Добавлены компоненты TextBox & Cell [#47](https://github.com/sberdevices/plasma/pull/47) ([@Yeti-or](https://github.com/Yeti-or))
+  - feat(ui): add Cell component [#47](https://github.com/sberdevices/plasma/pull/47) ([@IgorAntonov](https://github.com/IgorAntonov))
+
+#### Authors: 2
+
+- [@IgorAntonov](https://github.com/IgorAntonov)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# (Tue Nov 10 2020)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/ui@0.17.0`
   - feat(ui): Удален Card.stories [#45](https://github.com/sberdevices/plasma/pull/45) ([@fanisco](https://github.com/fanisco))
   - feat(ui): Скрыт ScrollList [#45](https://github.com/sberdevices/plasma/pull/45) ([@fanisco](https://github.com/fanisco))
