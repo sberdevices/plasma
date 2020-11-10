@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Headline3 } from '@sberdevices/plasma-styles/components/Headline';
-import { Footnote1 } from '@sberdevices/plasma-styles/components/Footnote';
-import { colorTextSecondary } from '@sberdevices/plasma-styles/components/Color/tokens';
+import { secondary } from '@sberdevices/plasma-tokens';
 
+import { Headline3, Footnote1 } from '../Typography';
 import { Button, ButtonProps } from '../Button/Button';
 import { Icon } from '../Icon/Icon';
 import { IconSize } from '../Icon/IconRoot';
@@ -34,7 +33,7 @@ const StyledTitle = styled(Headline3)`
 
 const StyledSubTitle = styled(Footnote1)`
     box-sizing: border-box;
-    color: ${colorTextSecondary};
+    color: ${secondary};
 
     font-size: 24px;
     line-height: 36px;

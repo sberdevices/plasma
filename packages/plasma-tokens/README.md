@@ -2,15 +2,13 @@
 
 Пакет предоставляет набор `дизайн-токенов` реализующих дизайн «Plasma» для разных устройств.
 
-
 <p align="center">
   <img width="768" src="https://user-images.githubusercontent.com/1813468/98609049-8cd87b80-22fd-11eb-826c-2279f4f3f1bd.png" alt="plasma-tokens" />
 </p>
 
-
 ## Пример использования
 
-*NB* — Все примеры будут приведены с использованием [styled-components][styled-components]. Но использовать `plasma-tokens` можно и без этого инструмента.
+_NB_ — Все примеры будут приведены с использованием [styled-components][styled-components]. Но использовать `plasma-tokens` можно и без этого инструмента.
 
 ```sh
 npm i --save '@sberdevices/plasma-tokens'
@@ -23,19 +21,19 @@ import styled from 'styled-components';
 import { text, background, gradient } from '@sberdevices/plasma-tokens';
 
 const AppStyled = styled.div`
-  padding: 30px;
-  color: ${text};
-  background-color: ${background};
-  background-image: ${gradient};
+    padding: 30px;
+    color: ${text};
+    background-color: ${background};
+    background-image: ${gradient};
 `;
 
 const App = () => {
-  return (
-    <AppStyled>
-      <h2>Hello Plasma</h2>
-    </AppStyled>
-  );
-}
+    return (
+        <AppStyled>
+            <h2>Hello Plasma</h2>
+        </AppStyled>
+    );
+};
 
 export default App;
 ```
@@ -43,7 +41,7 @@ export default App;
 ## Реализация
 
 Все `css` переменные завернуты в `js` переменные для более удобного доступа.
-Каждая переменная имеет описание ввиде комментария. Современные `IDE` будут выводить этот комментарий ввиде подсказки. Ознакомиться со всеми токенами можно в документации: (TODO)
+Каждая переменная имеет описание ввиде комментария. Современные `IDE` будут выводить этот комментарий ввиде подсказки.
 
 Пример:
 
@@ -52,17 +50,15 @@ export default App;
 export const warning = 'var(--plasma-colors-warning)';
 ```
 
-
 ## Состав
 
 В пакете реализованы несколько сущностей:
-  
-  * [Типографическая Система](#Типографическая-Система)
-  * [Цветовая палитра](#Цветовая-палитра)
-  * [Управление темой приложения](#Темы)
+
+-   [Типографическая Система](#Типографическая-Система)
+-   [Цветовая палитра](#Цветовая-палитра)
+-   [Управление темой приложения](#Темы)
 
 Разберём каждую сущность подробнее:
-
 
 ### Типографическая Система
 
@@ -76,39 +72,45 @@ import { typography } from '@sberdevices/plasma-tokens';
 
 `typography` включает в себя следующие готовые стилевые объекты:
 
-- Hero Unit:
-  * display1
-  * display2
-  * display3
+-   Hero Unit:
 
-- Заголовки:
-  * headline1
-  * headline2
-  * headline3
-  * headline4
+    -   display1
+    -   display2
+    -   display3
 
-- Основной текст:
-  * body1
-  * body2
-  * body3
+-   Заголовки:
 
-  * paragraph1
-  * paragraph2
+    -   headline1
+    -   headline2
+    -   headline3
+    -   headline4
 
-- Вспомогательный текст:
-  * footnote1
-  * footnote2
+-   Основной текст:
 
-- Контролы:
-  * button1
-  * button2
+    -   body1
+    -   body2
+    -   body3
 
-- Дополнительные:
-  * caption
-  * underline
+    -   paragraph1
+    -   paragraph2
 
+-   Вспомогательный текст:
 
-Все стиливые объекты также можно импортировать по одному:
+    -   footnote1
+    -   footnote2
+
+-   Контролы:
+
+    -   button1
+    -   button2
+
+-   Дополнительные:
+    -   caption
+    -   underline
+
+Посмотреть в живую можно в документации [типографической системы](https://plasma-docs.netlify.app/typograpy#%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B)
+
+Все стилевые объекты также можно импортировать по одному:
 
 ```jsx
 import React from 'react';
@@ -117,35 +119,30 @@ import styled from 'styled-components';
 import { body1, headline2 } from '@sberdevices/plasma-tokens';
 
 const AppStyled = styled.div`
-  padding: 30px;
-  ${ body1 }
+    padding: 30px;
+    ${body1}
 `;
 
 const App = () => {
-  return (
-    <AppStyled>
-      <h2 style={ headline2 }>Hello Plasma</h2>
-      <div>
-        <span>
-          Сил человеческих хватает до известного предела.
-        </span>
-        <br/>
-        <span>
-          Кто виноват, что именно этот предел играет решающую роль?
-        </span>
-      </div>
-    </AppStyled>
-  );
-}
+    return (
+        <AppStyled>
+            <h2 style={headline2}>Hello Plasma</h2>
+            <div>
+                <span>Сил человеческих хватает до известного предела.</span>
+                <br />
+                <span>Кто виноват, что именно этот предел играет решающую роль?</span>
+            </div>
+        </AppStyled>
+    );
+};
 
 export default App;
 ```
 
 Если запустить приведенный выше пример, можно заметить две вещи:
 
-- Текст написан не фирменным шрифтом.
-- Размер шрифта выглядит хорошо на декстопном девайсе, но будет мелковат на ТВ-платформе.
-
+-   Текст написан не фирменным шрифтом.
+-   Размер шрифта выглядит хорошо на декстопном девайсе, но будет мелковат на ТВ-платформе.
 
 #### Установка шрифта
 
@@ -155,15 +152,14 @@ export default App;
 Его необходимо добавить внутрь тега `head`. Если в качестве основы web-приложения вы используете [create-react-app][create-react-app], вам необходимо изменить файл `./public/index.html`.
 
 ```html
-
 <html>
-  <head>
-    <link rel="stylesheet" href="https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansText.0.1.0.css" />
-  </head>
-  <body>
-    ...
-  </body>
-
+    <head>
+        <link rel="stylesheet" href="https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansText.0.1.0.css" />
+    </head>
+    <body>
+        ...
+    </body>
+</html>
 ```
 
 #### Размеры
@@ -172,13 +168,13 @@ export default App;
 
 ```js
 export const body1 = {
-  fontFamily: "'SB Sans Text','Helvetica','Arial',sans-serif",
-  fontWeight: 500,
-  fontStyle: 'normal',
-  fontSize: 'var(--plasma-typo-body1-font-size, 1rem)',
-  letterSpacing: '-0.0190em',
-  lineHeight: 'var(--plasma-typo-body1-line-height, 1.25rem)'
-}
+    fontFamily: "'SB Sans Text','Helvetica','Arial',sans-serif",
+    fontWeight: 500,
+    fontStyle: 'normal',
+    fontSize: 'var(--plasma-typo-body1-font-size, 1rem)',
+    letterSpacing: '-0.0190em',
+    lineHeight: 'var(--plasma-typo-body1-line-height, 1.25rem)',
+};
 ```
 
 Это позволяет масштабировать весь интерфейс за счёт указания `font-size` на `html` теге.
@@ -188,7 +184,7 @@ export const body1 = {
 
 ```css
 html {
-  font-size: 32px;
+    font-size: 32px;
 }
 ```
 
@@ -212,32 +208,28 @@ import { sberBox } from '@sberdevices/plasma-tokens/typo';
 import { body1, headline2 } from '@sberdevices/plasma-tokens';
 
 const AppStyled = styled.div`
-  padding: 30px;
-  ${body1}
+    padding: 30px;
+    ${body1}
 `;
 
 // создаем react-компонент c глобальными стилями
 const TypoScale = createGlobalStyle(sberBox);
 
 const App = () => {
-  return (
-    <AppStyled>
-      {/* Используем  react-компонент один раз */}
-      <TypoScale />
+    return (
+        <AppStyled>
+            {/* Используем  react-компонент один раз */}
+            <TypoScale />
 
-      <h2 style={ headline2 }>Hello Plasma</h2>
-      <div>
-        <span>
-          Сил человеческих хватает до известного предела.
-        </span>
-        <br/>
-        <span>
-          Кто виноват, что именно этот предел играет решающую роль?
-        </span>
-      </div>
-    </AppStyled>
-  );
-}
+            <h2 style={headline2}>Hello Plasma</h2>
+            <div>
+                <span>Сил человеческих хватает до известного предела.</span>
+                <br />
+                <span>Кто виноват, что именно этот предел играет решающую роль?</span>
+            </div>
+        </AppStyled>
+    );
+};
 
 export default App;
 ```
@@ -247,11 +239,12 @@ export default App;
 #### Дополнительно
 
 Также из пакета можно получить все возможные значения для:
-  - `fontSizes`
-  - `fonts`
-  - `fontWeights`
-  - `lineHeights` 
-  - `letterSpacings`;
+
+-   `fontSizes`
+-   `fonts`
+-   `fontWeights`
+-   `lineHeights`
+-   `letterSpacings`;
 
 ```js
 import { fonts } from '@sberdevices/plasma-tokens';
@@ -265,26 +258,23 @@ console.log(fonts);
 // }
 ```
 
-
 ### Цветовая палитра
 
-Цветовая палитра это вторая основная часть ощущения платформы `SberDevices`. 
+Цветовая палитра это вторая основная часть ощущения платформы `SberDevices`.
 Цвета можно забират из корня пакета, для каждого цвета есть коментарий описывающий его использование.
-
 
 ```js
 import { accent } from '@sberdevices/plasma-tokens';
-
 ```
 
 ```js
 /** Акцентный цвет призыва к действию */
-export const accent = "var(--theme-colors-accent, #2AC673)";
+export const accent = 'var(--theme-colors-accent, #2AC673)';
 ```
 
 Цвета представляют собой [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) c заданным цветом по умолчанию.
 Это позволяет переопределять цвета с помощью [Тем](#Темы).
-Всю представленную палитру можно посмотреть в документации: ( TODO )
+Всю представленную палитру можно посмотреть в документации: https://plasma-docs.netlify.app/pallete
 
 Также доступны сами значения пременных:
 
@@ -292,11 +282,9 @@ export const accent = "var(--theme-colors-accent, #2AC673)";
 import { colorValues } from '@sberdevices/plasma-tokens';
 
 console.log(colorValues.black); // –> '#080808'
-
 ```
 
 Пример использования цветов для создания основной подложки web-приложения:
-
 
 ```jsx
 import React from 'react';
@@ -304,12 +292,12 @@ import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 // получаем цвета для нашего интерфейса
 import { text, background, gradient } from '@sberdevices/plasma-tokens';
-/** 
+/**
  * text - основной цвет текста
  * background - овновной цвет фона
  * gradient - градиентная заливка фона
  */
- 
+
 const DocStyles = createGlobalStyle`
   html {
     color: ${text};
@@ -322,17 +310,16 @@ const DocStyles = createGlobalStyle`
 `;
 
 const App = () => {
-  return (
-    <div>
-      {/* Используем глобальные react-компоненты один раз */}
-      <DocStyles />
-    </div>
-  );
-}
+    return (
+        <div>
+            {/* Используем глобальные react-компоненты один раз */}
+            <DocStyles />
+        </div>
+    );
+};
 
 export default App;
 ```
-
 
 ### Темы
 
@@ -340,13 +327,12 @@ export default App;
 
 В пакете предоставлены 6 тем:
 
-  * `darkSber` – Тема по умолчанию,
-  * `darkEva`
-  * `darkJoy`
-  * `lightSber`
-  * `lightEva`
-  * `lightJoy`
-
+-   `darkSber` – Тема по умолчанию,
+-   `darkEva`
+-   `darkJoy`
+-   `lightSber`
+-   `lightEva`
+-   `lightJoy`
 
 Подключение:
 
@@ -358,7 +344,7 @@ import { createGlobalStyle } from 'styled-components';
 import { darkJoy } from '@sberdevices/plasma-tokens/themes';
 // получаем цвета для нашего интерфейса
 import { text, background, gradient } from '@sberdevices/plasma-tokens';
- 
+
 const DocStyles = createGlobalStyle`
   html {
     color: ${text};
@@ -374,17 +360,16 @@ const DocStyles = createGlobalStyle`
 const Theme = createGlobalStyle(darkJoy);
 
 const App = () => {
-  return (
-    <div>
-      {/* Используем глобальные react-компоненты один раз */}
-      <DocStyles />
-      <Theme />
-    </div>
-  );
-}
+    return (
+        <div>
+            {/* Используем глобальные react-компоненты один раз */}
+            <DocStyles />
+            <Theme />
+        </div>
+    );
+};
 
 export default App;
-
 ```
 
 ## Готовый пример
@@ -394,7 +379,6 @@ export default App;
 Приложение основано на [create-react-app][create-react-app] c использованием [typescript][typescript] и [styled-components][styled-components]
 
 Для запуска приложение прочитайте [README](../../examples/demo-tokens/README.md)
-
 
 [styled-components](https://styled-components.com/)
 [cdn](https://ru.wikipedia.org/wiki/Content_Delivery_Network)

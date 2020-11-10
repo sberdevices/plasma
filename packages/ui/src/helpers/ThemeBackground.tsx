@@ -1,10 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-    colorTextPrimary,
-    colorBackgroundColor,
-    colorBackgroundDefault,
-} from '@sberdevices/plasma-styles/components/Color/tokens';
+import { text, background, gradient } from '@sberdevices/plasma-tokens';
 
 const StyledRoot = styled.div`
     display: flex;
@@ -13,13 +9,9 @@ const StyledRoot = styled.div`
     margin: -20px;
     padding: 20px;
 
-    color: ${colorTextPrimary};
-    background: ${colorBackgroundDefault};
-    background-color: ${colorBackgroundColor};
-
-    & * {
-        box-sizing: border-box;
-    }
+    color: ${text};
+    background-color: ${background};
+    background-image: ${gradient};
 `;
 
 export const ThemeBackground: React.FC = ({ children }) => {
