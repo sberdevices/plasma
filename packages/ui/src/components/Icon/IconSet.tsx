@@ -28,11 +28,16 @@ interface IconSetProps {
     include?: Array<IName>;
 }
 
-export const IconSet: React.FC<IconSetProps> = ({ size, color, exclude, include = [] }) => {
+export const IconSet: React.FC<IconSetProps> = ({ size, color, exclude, include }) => {
     return (
         <StyledRoot>
             {Object.keys(iconSet)
-                .filter((icon) => (exclude ? !exclude.includes(icon as IName) : include.includes(icon as IName)))
+                .filter((icon) => {
+                    if (exclude) {
+                        return !exclude.includes(icon as IName);
+                    }
+                    return include ? include.includes(icon as IName) : true;
+                })
                 .map((icon) => (
                     <StyledContainer key={icon}>
                         <IconName>{icon}</IconName>

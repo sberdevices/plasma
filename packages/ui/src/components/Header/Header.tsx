@@ -105,7 +105,7 @@ export const HeaderTitle: React.FC<{ text: string; className?: string }> = ({ te
 
 export const HeaderSubTitle: React.FC<{ text: string }> = ({ text }) => <StyledSubTitle>{text}</StyledSubTitle>;
 
-export const HeaderBack: React.FC<{ size?: IconSize }> = ({ size = 'xs' }) => (
+export const HeaderBack: React.FC<{ size?: IconSize }> = ({ size = 's' }) => (
     <StyledBackIcon size={size} icon="chevronLeft" />
 );
 
