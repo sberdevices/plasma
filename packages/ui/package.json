@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/ui",
-    "version": "0.18.0",
+    "version": "0.19.0",
     "description": "SberDevices Design System",
     "repository": {
         "type": "git",
@@ -19,7 +19,7 @@
     },
     "devDependencies": {
         "@mdx-js/mdx": "^1.6.16",
-        "@sberdevices/plasma-tokens": "0.2.0",
+        "@sberdevices/plasma-tokens": "0.3.0",
         "@storybook/addon-actions": "6.0.0-rc.13",
         "@storybook/addon-backgrounds": "6.0.0-rc.13",
         "@storybook/addon-knobs": "6.0.0-rc.13",
@@ -60,7 +60,13 @@
         "title": "SberDevices Design System",
         "url": "https://5f96ec813d800900227e3b93-eobodfvrnh.chromatic.com/"
     },
-    "files": ["components", "hocs", "mixins", "types", "utils"],
+    "files": [
+        "components",
+        "hocs",
+        "mixins",
+        "types",
+        "utils"
+    ],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Антонов Игорь Александрович",
