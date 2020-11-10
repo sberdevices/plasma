@@ -6,11 +6,21 @@ route: /components/Card
 
 import { Playground, Props } from 'docz'
 
+import { ThemeSelect } from '../../helpers/ThemeSelect'
+import { ThemeBackground } from '../../helpers/ThemeBackground'
+import { IconPlaceholder } from '../../helpers/IconPlaceholder'
+import { ImagePlaceholder } from '../../helpers/ImagePlaceholder'
+import { Button } from '../Button/Button'
+import { Cell, CellIcon } from '../Cell/Cell'
+import { CellListItem } from '../Cell/CellListItem'
+import { Disclosure } from '../Cell/CellDisclosure'
+import { TextBox, Title, SubTitle, BiggerTitle, BigTitle } from '../TextBox/TextBox'
+
 import { Card } from './Card'
 import { CardBody } from './CardBody'
 import { CardContent } from './CardContent'
 import { CardMedia } from './CardMedia'
-import { CardHeadline1, CardParagraph1 } from './CardTypography';
+import { CardHeadline1, CardHeadline3, CardFootnote1, CardParagraph1 } from './CardTypography'
 
 <ThemeSelect />
 
@@ -41,14 +51,148 @@ import { CardHeadline1, CardParagraph1 } from './CardTypography';
 ### Props
 <Props of={CardMedia} />
 
-## CardHeadline1, CardHeadline2, CardHeadline3, CardFootnote1, CardFootnote2
-Типографика, поддерживающая изменение цвета через ``view``.
+## CardHeadline1, ...
+``... CardHeadline2, CardHeadline3, CardFootnote1, CardFootnote2`` — типографика, поддерживающая изменение цвета через ``view``.
 
 ### Props
 <Props of={CardHeadline1} />
 
-## CardBody1, CardBody2, CardParagraph1, CardParagraph2
-Типографика, с возможностью задания количества строк и поддерживающая изменение цвета через ``view``.
+## CardParagraph1, ...
+``... CardParagraph2, CardBody1, CardBody2`` — типографика, с возможностью задания количества строк через ``lines`` и поддерживающая изменение цвета через ``view``.
 
 ### Props
 <Props of={CardParagraph1} />
+
+## Примеры использования
+
+### Basic / value
+
+Карточка информативного ответа. Может быть нескольких видов и представляет собой класс карточек. Может иметь ячейку-изображение.
+
+<Playground>
+    <ThemeBackground>
+        <Card style={{ width: '20rem' }}>
+            <CardBody>
+                <CardMedia height="12rem">
+                    <ImagePlaceholder
+                        color="white"
+                        width="100%"
+                        height="12rem"
+                        rotation={29}
+                    />
+                </CardMedia>
+                <CardContent>
+                    <CardHeadline3>Потребительский кредит</CardHeadline3>
+                    <CardHeadline1 style={{ marginTop: '0.75rem' }}>до 230 000 ₽</CardHeadline1>
+                    <CardFootnote1 style={{ marginTop: '0.375rem' }} view="secondary">
+                        На 18 месяцев, ставка 13,9%
+                    </CardFootnote1>
+                    <Button
+                        text="Label"
+                        view="primary"
+                        size="s"
+                        motion={false}
+                        fullWidth
+                        style={{ marginTop: '1em' }}
+                        tabIndex={-1}
+                    />
+                </CardContent>
+            </CardBody>
+        </Card>
+    </ThemeBackground>
+</Playground>
+
+### List card
+
+Карточка-список / конструктор целого класса карточек, состоящих из списка ячеек (Cells).
+Может быть представлена в нескольки вариантах.
+По сути представляет собой набор стилей и параметров для обертки списка ячеек в карточку.
+
+<Playground>
+    <ThemeBackground>
+        <Card style={{ width: '20rem' }}>
+            <CardContent compact>
+                <Cell
+                    content={<BigTitle>Название раздела</BigTitle>}
+                    right={'Detail'}
+                />
+                <CellListItem
+                    left={
+                        <CellIcon>
+                            <IconPlaceholder size={2.25} />
+                        </CellIcon>
+                    }
+                    content={
+                        <TextBox>
+                            <Title>Title</Title>
+                            <SubTitle>Subtitle</SubTitle>
+                        </TextBox>
+                    }
+                    right={<Disclosure />}
+                />
+                <CellListItem
+                    left={
+                        <CellIcon>
+                            <IconPlaceholder size={2.25} />
+                        </CellIcon>
+                    }
+                    content={
+                        <TextBox>
+                            <Title>Title</Title>
+                            <SubTitle>Subtitle</SubTitle>
+                        </TextBox>
+                    }
+                    right={<Disclosure />}
+                />
+                <CellListItem
+                    left={
+                        <CellIcon>
+                            <IconPlaceholder size={2.25} />
+                        </CellIcon>
+                    }
+                    content={
+                        <TextBox>
+                            <Title>Title</Title>
+                            <SubTitle>Subtitle</SubTitle>
+                        </TextBox>
+                    }
+                    right={<Disclosure />}
+                />
+            </CardContent>
+        </Card>
+    </ThemeBackground>
+</Playground>
+
+### Fast answer
+
+Карточка-список / конструктор целого класса карточек, состоящих из списка ячеек (Cells).
+Может быть представлена в нескольки вариантах.
+По сути представляет собой набор стилей и параметров для обертки списка ячеек в карточку.
+
+<Playground>
+    <ThemeBackground>
+        <Card style={{ width: '20rem' }}>
+            <CardContent>
+                <Cell
+                    content={<BigTitle style={{ marginTop: 0 }}>Название раздела</BigTitle>}
+                    right={'Detail'}
+                />
+                <Cell
+                    left={
+                        <CellIcon>
+                            <IconPlaceholder size={2.25} />
+                        </CellIcon>
+                    }
+                    content={<BiggerTitle>Value</BiggerTitle>}
+                    right={
+                        <CellIcon>
+                            <IconPlaceholder style={{ marginTop: '0.375rem' }} size={1.5} />
+                        </CellIcon>
+                    }
+                    alignRight="center"
+                />
+                <SubTitle>Description</SubTitle>
+            </CardContent>
+        </Card>
+    </ThemeBackground>
+</Playground>
