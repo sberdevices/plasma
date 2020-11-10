@@ -1,3 +1,24 @@
+# v0.19.0 (Tue Nov 10 2020)
+
+#### 🚀 Enhancement
+
+- feat(ui): Добавлена карточка в сторибук и докзи [#51](https://github.com/sberdevices/plasma/pull/51) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- docs(ui): fix links and stuff [#46](https://github.com/sberdevices/plasma/pull/46) ([@Yeti-or](https://github.com/Yeti-or))
+- chore(ui): more cleanup [#46](https://github.com/sberdevices/plasma/pull/46) ([@Yeti-or](https://github.com/Yeti-or))
+- chore: cleanup [#46](https://github.com/sberdevices/plasma/pull/46) ([@Yeti-or](https://github.com/Yeti-or))
+- docs: Обновить документацию [#46](https://github.com/sberdevices/plasma/pull/46) ([@Yeti-or](https://github.com/Yeti-or))
+- chore: storybook: поправить глобальные стили [#46](https://github.com/sberdevices/plasma/pull/46) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v0.18.0 (Tue Nov 10 2020)
 
 #### 🚀 Enhancement

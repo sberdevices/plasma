@@ -2,6 +2,36 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/ui@0.19.0`
+  - feat(ui): Добавлена карточка в сторибук и докзи [#51](https://github.com/sberdevices/plasma/pull/51) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- Update README.md [#48](https://github.com/sberdevices/plasma/pull/48) ([@awinogradov](https://github.com/awinogradov))
+- Update README.md [#48](https://github.com/sberdevices/plasma/pull/48) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-tokens@0.3.0`
+  - docs: update links [#48](https://github.com/sberdevices/plasma/pull/48) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-tokens@0.3.0`, `@sberdevices/ui@0.19.0`
+  - docs(ui): fix links and stuff [#46](https://github.com/sberdevices/plasma/pull/46) ([@Yeti-or](https://github.com/Yeti-or))
+  - chore: cleanup [#46](https://github.com/sberdevices/plasma/pull/46) ([@Yeti-or](https://github.com/Yeti-or))
+- `demo-tokens@0.2.0`, `@sberdevices/plasma-tokens@0.3.0`, `@sberdevices/ui@0.19.0`
+  - chore(ui): more cleanup [#46](https://github.com/sberdevices/plasma/pull/46) ([@Yeti-or](https://github.com/Yeti-or))
+  - docs: Обновить документацию [#46](https://github.com/sberdevices/plasma/pull/46) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/ui@0.19.0`
+  - chore: storybook: поправить глобальные стили [#46](https://github.com/sberdevices/plasma/pull/46) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 3
+
+- Anton Vinogradov ([@awinogradov](https://github.com/awinogradov))
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# (Tue Nov 10 2020)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/ui@0.18.0`
   - feat(ui): Добавлены компоненты TextBox & Cell [#47](https://github.com/sberdevices/plasma/pull/47) ([@Yeti-or](https://github.com/Yeti-or))
   - feat(ui): add Cell component [#47](https://github.com/sberdevices/plasma/pull/47) ([@IgorAntonov](https://github.com/IgorAntonov))

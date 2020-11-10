@@ -1,3 +1,19 @@
+# v0.3.0 (Tue Nov 10 2020)
+
+#### 🐛 Bug Fix
+
+- docs: update links [#48](https://github.com/sberdevices/plasma/pull/48) ([@Yeti-or](https://github.com/Yeti-or))
+- docs(ui): fix links and stuff [#46](https://github.com/sberdevices/plasma/pull/46) ([@Yeti-or](https://github.com/Yeti-or))
+- chore(ui): more cleanup [#46](https://github.com/sberdevices/plasma/pull/46) ([@Yeti-or](https://github.com/Yeti-or))
+- chore: cleanup [#46](https://github.com/sberdevices/plasma/pull/46) ([@Yeti-or](https://github.com/Yeti-or))
+- docs: Обновить документацию [#46](https://github.com/sberdevices/plasma/pull/46) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v0.2.0 (Thu Nov 05 2020)
 
 #### 🚀 Enhancement
