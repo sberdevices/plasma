@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 interface StyledRootProps {
-    $height?: number;
+    $height?: string;
     $disabled?: boolean;
 }
 
@@ -27,13 +27,13 @@ const StyledRoot = styled.div<StyledRootProps>`
     ${({ $height }) =>
         $height &&
         css`
-            height: ${$height}px;
+            height: ${$height};
         `}
 `;
 
 export interface CardMediaProps {
     src: string;
-    height?: number;
+    height?: string;
     disabled?: boolean;
     className?: string;
 }

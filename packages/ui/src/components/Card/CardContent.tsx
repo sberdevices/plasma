@@ -4,16 +4,17 @@ import styled, { css } from 'styled-components';
 interface StyledRootProps {
     cover?: boolean;
     disabled?: boolean;
+    compact?: boolean;
 }
 
-const StyledRoot = styled.div<CardContentProps>`
+const StyledRoot = styled.div<StyledRootProps>`
     display: flex;
     flex-direction: column;
 
     position: relative;
 
     box-sizing: border-box;
-    padding: 32px;
+    padding: ${({ compact }) => (compact ? 0.375 : 1)}rem 1rem;
 
     border-radius: inherit;
 
@@ -42,9 +43,9 @@ export interface CardContentProps extends StyledRootProps {
     className?: string;
 }
 
-export const CardContent: React.FC<CardContentProps> = ({ disabled, cover, className, children }) => {
+export const CardContent: React.FC<CardContentProps> = ({ disabled, cover, compact, className, children }) => {
     return (
-        <StyledRoot cover={cover} disabled={disabled} className={className}>
+        <StyledRoot cover={cover} compact={compact} disabled={disabled} className={className}>
             {children}
         </StyledRoot>
     );

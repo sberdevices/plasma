@@ -1,0 +1,54 @@
+---
+name: Card
+menu: Components
+route: /components/Card
+---
+
+import { Playground, Props } from 'docz'
+
+import { Card } from './Card'
+import { CardBody } from './CardBody'
+import { CardContent } from './CardContent'
+import { CardMedia } from './CardMedia'
+import { CardHeadline1, CardParagraph1 } from './CardTypography';
+
+<ThemeSelect />
+
+# Card
+Набор компонентов для создания карточек.
+
+## Card
+Контейнер со скругленными углами с возможностью фокусировки на нем.
+
+### Props
+<Props of={Card} />
+
+## CardBody
+Используйте этот компонент для корректного отображения скругленных углов контента.
+
+### Props
+<Props of={CardBody} />
+
+## CardContent
+Компонент для размещения в нем текстового или любого другого контента.
+
+### Props
+<Props of={CardContent} />
+
+## CardMedia
+Компонент для отображения картинок.
+
+### Props
+<Props of={CardMedia} />
+
+## CardHeadline1, CardHeadline2, CardHeadline3, CardFootnote1, CardFootnote2
+Типографика, поддерживающая изменение цвета через ``view``.
+
+### Props
+<Props of={CardHeadline1} />
+
+## CardBody1, CardBody2, CardParagraph1, CardParagraph2
+Типографика, с возможностью задания количества строк и поддерживающая изменение цвета через ``view``.
+
+### Props
+<Props of={CardParagraph1} />
