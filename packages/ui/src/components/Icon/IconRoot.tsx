@@ -23,31 +23,14 @@ export interface IconAsset {
     width?: number;
     height?: number;
     color?: string;
+    className?: string;
 }
 
 interface IconRootProps extends IconProps {
     icon: React.FC<IconAsset>;
 }
 
-interface StyledRootProps {
-    $size: IconSize;
-}
-
-const StyledRoot = styled.span<StyledRootProps>`
-    display: inline-block;
-    box-sizing: border-box;
-
-    ${({ $size }) => css`
-        width: ${sizeMap[$size]}rem;
-        height: ${sizeMap[$size]}rem;
-    `}
-`;
-
-export const IconRoot: React.FC<IconRootProps> = ({ icon: IconComponent, size = 's', color, className }) => {
-    const sizeVal = (`${sizeMap[size]}rem` as unknown) as number;
-    return (
-        <StyledRoot $size={size} className={className}>
-            <IconComponent width={sizeVal} height={sizeVal} color={color || primary} />
-        </StyledRoot>
-    );
+export const IconRoot: React.FC<IconRootProps> = ({ icon: IconComponent, size, color, className }) => {
+    const sizeVal = size ? ((`${sizeMap[size]}rem` as unknown) as number) : undefined;
+    return <IconComponent width={sizeVal} height={sizeVal} color={color || primary} className={className} />;
 };

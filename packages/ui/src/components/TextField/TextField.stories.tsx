@@ -52,13 +52,13 @@ export const WithIcon = () => {
                 value={value}
                 title={text('title', 'Label')}
                 style={{ marginRight: '1rem' }}
-                contentLeft={<Icon icon="assistant" size="s" />}
+                contentLeft={<Icon icon="download" size="s" />}
                 onChange={(e) => setValue(e.target.value)}
             />
             <TextField
                 value={value}
                 title={text('title', 'Label')}
-                contentRight={<Icon icon="assistant" size="s" />}
+                contentRight={<Icon icon="download" size="s" />}
                 onChange={(e) => setValue(e.target.value)}
             />
         </>

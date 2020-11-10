@@ -98,7 +98,7 @@ const StyledLabel = styled.div`
     color: #fff;
 `;
 
-export const Cart: React.FC<CartProps> = ({ amount, children, icon = 'cart', color = 'active', ...restProps }) => (
+export const Cart: React.FC<CartProps> = ({ amount, children, icon = 'download', color = 'active', ...restProps }) => (
     <StyledRoot {...restProps} color={color}>
         <StyledIcon>
             <Icon icon={icon} size="xs" />
