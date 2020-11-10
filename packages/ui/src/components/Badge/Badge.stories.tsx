@@ -26,7 +26,7 @@ export const Default = () => (
         text={text('text', 'Badge')}
         size={select('size', sizeKeys, 'l')}
         view={select('view', viewKeys, 'primary')}
-        contentLeft={boolean('contentLeft', false) && <Icon icon="assistant" size="s" />}
+        contentLeft={boolean('contentLeft', false) && <Icon icon="download" size="xs" />}
     />
 );
 

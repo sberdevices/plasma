@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Icon, iconSet, IconProps } from './Icon';
+import { IconSize } from './IconRoot';
 
 const StyledRoot = styled.div`
     display: flex;
@@ -21,7 +22,7 @@ const IconName = styled.div`
 `;
 
 interface IconSetProps {
-    size?: 's' | 'm' | 'l';
+    size?: IconSize;
     color?: string;
 }
 

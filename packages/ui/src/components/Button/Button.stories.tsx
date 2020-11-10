@@ -33,7 +33,7 @@ export const Default = () => (
         disabled={boolean('disabled', false)}
         fullWidth={boolean('fullWidth', false)}
         contentLeft={boolean('contentLeft', false) && <Icon icon="clock" />}
-        contentRight={boolean('contentRight', false) && <Icon icon="assistant" />}
+        contentRight={boolean('contentRight', false) && <Icon icon="download" />}
         onClick={action('onClick')}
         onFocus={action('onFocus')}
         onBlur={action('onBlur')}
@@ -52,6 +52,6 @@ export const ActionButton = () => (
         onFocus={action('onFocus')}
         onBlur={action('onBlur')}
     >
-        <Icon icon={text('Icon name', 'assistant') as any} size={select('size', sizeKeys, 'l')} />
+        <Icon icon={text('Icon name', 'download') as any} size={select('iconSize', ['xs', 's', 'm'], 's')} />
     </ActionButtonComponent>
 );
