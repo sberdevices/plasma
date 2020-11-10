@@ -52,7 +52,8 @@
         "storybook:build": "build-storybook --quiet -s .storybook/public -c .storybook -o build-sb",
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
         "docz:dev": "docz dev",
-        "docz:build": "npm i typescript@3.5.3 && docz build",
+        "pre:docz:build": "npm i --no-save typescript@3.5.3",
+        "docz:build": "docz build",
         "docz:serve": "docz serve",
         "chromatic": "npx chromatic"
     },
@@ -60,13 +61,7 @@
         "title": "SberDevices Design System",
         "url": "https://5f96ec813d800900227e3b93-eobodfvrnh.chromatic.com/"
     },
-    "files": [
-        "components",
-        "hocs",
-        "mixins",
-        "types",
-        "utils"
-    ],
+    "files": ["components", "hocs", "mixins", "types", "utils"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Антонов Игорь Александрович",
