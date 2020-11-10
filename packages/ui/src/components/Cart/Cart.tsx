@@ -101,7 +101,7 @@ const StyledLabel = styled.div`
 export const Cart: React.FC<CartProps> = ({ amount, children, icon = 'cart', color = 'active', ...restProps }) => (
     <StyledRoot {...restProps} color={color}>
         <StyledIcon>
-            <Icon icon={icon} />
+            <Icon icon={icon} size="xs" />
             {amount > 0 && <StyledBadge color={color}>{amount}</StyledBadge>}
         </StyledIcon>
         {children && <StyledLabel>{children}</StyledLabel>}

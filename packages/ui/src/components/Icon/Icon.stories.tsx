@@ -14,11 +14,9 @@ export default {
     ],
 };
 
-export const Default = () => <IconSet />;
+export const XsSize = () => <IconSet size="xs" />;
 
-export const Small = () => <IconSet size="s" />;
-
-export const Large = () => <IconSet size="l" />;
+export const SmallSize = () => <IconSet size="s" />;
 
 export const CustomColor = () => {
     const color = text('color', '#fc0');
