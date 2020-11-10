@@ -56,7 +56,8 @@ const StyledResetButton = styled.button`
     }
 `;
 
-const StyledIcon = styled(Icon)`
+const IconWrapper = styled.div`
+    display: flex;
     opacity: 0.5;
 `;
 
@@ -121,10 +122,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
                 <StyledInput ref={ref} value={value} disabled={disabled} isIcon={!!value} {...rest} />
                 {value && !iconName && !disabled && (
                     <StyledResetButton onClick={onResetClick}>
-                        <StyledIcon icon="crossCircle" size="s" />
+                        <IconWrapper>
+                            <Icon icon="crossCircle" size="s" />
+                        </IconWrapper>
                     </StyledResetButton>
                 )}
-                {iconName && <StyledIcon icon={iconName} size="m" />}
+                {iconName && (
+                    <IconWrapper>
+                        <Icon icon={iconName} size="s" />
+                    </IconWrapper>
+                )}
             </StyledInputRoot>
         );
     },
