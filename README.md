@@ -8,8 +8,11 @@
 
 ## Состав:
 
--   `@sberdevices/ui`
--   `@sberdevices/plasma-tokens`
+- @sberdevices/ui
+- @sberdevices/plasma-tokens
+
+ [![npm ui](https://img.shields.io/npm/v/@sberdevices/ui/rc?label=%40sberdevices%2Fui%40rc&style=for-the-badge)](https://www.npmjs.com/package/@sberdevices/ui) 
+ [![npm ui](https://img.shields.io/npm/v/@sberdevices/plasma-tokens/rc?label=%40sberdevices%2Fplasma-tokens%40rc&style=for-the-badge)](https://www.npmjs.com/package/@sberdevices/plasma-tokens)
 
 ### plasma-tokens
 
@@ -34,7 +37,7 @@
 После создания [основы приложения](https://create-react-app.dev/docs/getting-started#quick-start):
 
 ```sh
-npm i -S styled-components @sberdevices/ui @sberdevices/plasma-tokens
+npm i -S styled-components @sberdevices/ui@rc @sberdevices/plasma-tokens@rc
 ```
 
 _Компоненты реализованы с помощью [styled-components](http://styled-components.com/). Поэтому необходимо поставить их в зависимость._
