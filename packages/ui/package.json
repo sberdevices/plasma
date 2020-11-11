@@ -41,6 +41,9 @@
         "styled-components": "5.1.1",
         "typescript": "3.9.5"
     },
+    "publishConfig": {
+        "access": "public"
+    },
     "scripts": {
         "prepare": "npm run build",
         "clean": "rm -rf ./components && rm -rf ./hocs && rm -rf ./mixins && rm -rf ./types",
@@ -61,13 +64,7 @@
         "title": "SberDevices Design System",
         "url": "https://5f96ec813d800900227e3b93-eobodfvrnh.chromatic.com/"
     },
-    "files": [
-        "components",
-        "hocs",
-        "mixins",
-        "types",
-        "utils"
-    ],
+    "files": ["components", "hocs", "mixins", "types", "utils"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Антонов Игорь Александрович",
