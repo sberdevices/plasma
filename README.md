@@ -8,14 +8,14 @@
 
 ## Состав:
 
--   `@sberdevices/plasma-ui`
+-   `@sberdevices/ui`
 -   `@sberdevices/plasma-tokens`
 
 ### plasma-tokens
 
-Пакет с набором `дизайн-токенов`. В пакет входят типографические и цветовые константы. `Дизайн-токены` поставляются в качестве `css` [custom propperties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) и `js` переменных. Перед использованием `plasma-ui` рекомендуется ознакомится с содержимым этого [пакета](./packages/plasma-tokens/README.md)
+Пакет с набором `дизайн-токенов`. В пакет входят типографические и цветовые константы. `Дизайн-токены` поставляются в качестве `css` [custom propperties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) и `js` переменных. Перед использованием `ui` рекомендуется ознакомится с содержимым этого [пакета](./packages/plasma-tokens/README.md)
 
-### plasma-ui
+### ui
 
 Пакет с набором готовых компонентов для создания `Canvas App`. Компоненты реализованы с помощью [React](https://reactjs.org/). Для компонентов доступна [витрина](https://master--5f96ec813d800900227e3b93.chromatic.com) и [документация](https://plasma-docs.netlify.app).
 
