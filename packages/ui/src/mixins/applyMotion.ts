@@ -13,9 +13,9 @@ export const applyMotion: InterpolationFunction<MotionProps> = ({ motion }) =>
         transition: transform 0.1s ease-in-out;
 
         &:hover {
-            transform: scale(1.1);
+            transform: scale(1.04);
         }
         &:active {
-            transform: scale(0.926);
+            transform: scale(0.96);
         }
     `;
