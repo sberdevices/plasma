@@ -6,10 +6,13 @@ route: /components/Badge
 
 import { Playground, Props } from 'docz'
 
-import { Badge } from './Badge'
-import { ThemeSelect } from '../../helpers/ThemeSelect'
+import { ThemeSelect, TypoSelect } from '../../helpers/ThemeSelect'
 import { ThemeBackground } from '../../helpers/ThemeBackground'
+import { IconDownload } from '../Icon/Icons/IconDownload'
 
+import { Badge } from './Badge'
+
+<TypoSelect />
 <ThemeSelect />
 
 # Badge
@@ -21,23 +24,36 @@ import { ThemeBackground } from '../../helpers/ThemeBackground'
 
 ## Примеры использования
 
-### Базовое применение
+### Размер бейджа
+Чтобы изменить размер бейджа, установите свойство ``size`` в одно из следующих значений: ``"l"``, ``"s"``.
 <Playground>
-  <ThemeBackground>
+  <ThemeBackground spaced>
+    <Badge text="Badge" size="l" />
+    <Badge text="Badge" size="s" />
+  </ThemeBackground>
+</Playground>
+
+### Вид бейджа
+Чтобы изменить вид бейджа, установите свойство ``view`` в одно из следующих значений: ``"primary"``, ``"secondary"``, ``"warning"``, ``"critical"``, ``"checked"``, ``"index"``, ``"clear"``.
+<Playground>
+  <ThemeBackground spaced>
     <Badge text="Badge" view="primary" />
+    <Badge text="Badge" view="secondary" />
+    <Badge text="Badge" view="warning" />
+    <Badge text="Badge" view="critical" />
+    <Badge text="Badge" view="checked" />
+    <Badge text="Badge" view="index" />
+    <Badge text="Badge" view="clear" />
   </ThemeBackground>
 </Playground>
 
-### С иконкой
+### Иконки
+Для создания квадратных бейджей с иконкой или текстом используйте свойство ``contentLeft``, передавая туда рендер иконки или текста.
+Также, иконку можно помещать слева от текста.
 <Playground>
-  <ThemeBackground>
-    <Badge text="Badge" iconName="done" view="primary" />
-  </ThemeBackground>
-</Playground>
-
-### Без текста
-<Playground>
-  <ThemeBackground>
-    <Badge iconName="done" view="primary" />
+  <ThemeBackground spaced>
+    <Badge contentLeft={<IconDownload />} />
+    <Badge contentLeft={42} />
+    <Badge text="Badge" contentLeft={<IconDownload />} />
   </ThemeBackground>
 </Playground>
