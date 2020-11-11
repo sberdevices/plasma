@@ -6,13 +6,14 @@ route: /components/Button
 
 import { Playground, Props } from 'docz'
 
-import { IconDownload } from '../Icon/Icons/IconDownload'
-import { ThemeSelect } from '../../helpers/ThemeSelect'
+import { ThemeSelect, TypoSelect } from '../../helpers/ThemeSelect'
 import { ThemeBackground } from '../../helpers/ThemeBackground'
+import { IconDownload } from '../Icon/Icons/IconDownload'
 
 import { Button } from './Button'
 import { ActionButton } from './ActionButton'
 
+<TypoSelect />
 <ThemeSelect />
 
 # Button
@@ -26,9 +27,8 @@ import { ActionButton } from './ActionButton'
 ### Базовое применение
 Допустимо указывать надпись через свойство ``text`` (в связке со свойствами ``contentLeft`` и ``contentRight``) или любой контент напрямую через ``children``
 <Playground>
-  <ThemeBackground>
+  <ThemeBackground spaced>
     <Button text="Это текст" />
-    {'\u00A0\u00A0\u00A0\u00A0'}
     <Button>
         <span>Это тоже текст</span>
     </Button>
@@ -38,11 +38,9 @@ import { ActionButton } from './ActionButton'
 ### Размер кнопки
 Чтобы изменить размер кнопки, установите свойство ``size`` в одно из следующих значений: ``"l"``, ``"m"``, ``"s"``.
 <Playground>
-  <ThemeBackground>
+  <ThemeBackground spaced>
     <Button text="Button" size="l" />
-    {'\u00A0\u00A0\u00A0\u00A0'}
     <Button text="Button" size="m" />
-    {'\u00A0\u00A0\u00A0\u00A0'}
     <Button text="Button" size="s" />
   </ThemeBackground>
 </Playground>
@@ -50,56 +48,61 @@ import { ActionButton } from './ActionButton'
 ### Вид кнопки
 Чтобы изменить вид кнопки, установите свойство ``view`` в одно из следующих значений: ``"primary"``, ``"secondary"``, ``"warning"``, ``"critical"``, ``"checked"``, ``"clear"``.
 <Playground>
-  <ThemeBackground>
-    <Button text="Button" view="primary" size="s" />
-    {'\u00A0\u00A0\u00A0\u00A0'}
-    <Button text="Button" view="secondary" size="s" />
-    {'\u00A0\u00A0\u00A0\u00A0'}
-    <Button text="Button" view="warning" size="s" />
-    {'\u00A0\u00A0\u00A0\u00A0'}
-    <Button text="Button" view="critical" size="s" />
-    {'\u00A0\u00A0\u00A0\u00A0'}
-    <Button text="Button" view="checked" size="s" />
-    {'\u00A0\u00A0\u00A0\u00A0'}
-    <Button text="Button" view="clear" size="s" />
+  <ThemeBackground spaced>
+    <Button text="Button" view="primary" />
+    <Button text="Button" view="secondary" />
+    <Button text="Button" view="warning" />
+    <Button text="Button" view="critical" />
+    <Button text="Button" view="checked" />
+    <Button text="Button" view="clear" />
   </ThemeBackground>
 </Playground>
 
-
 ### Иконки
+Для создания квадратных кнопок с иконкой или текстом используйте свойство ``contentLeft``, передавая туда рендер иконки или текста.
+Также, иконку можно помещать слева и справа от текста.
 <Playground>
-  <ThemeBackground>
+  <ThemeBackground spaced>
+    <Button contentLeft={<IconDownload />} />
+    <Button contentLeft={42} />
     <Button text="Button" contentLeft={<IconDownload />} />
-    {'\u00A0\u00A0\u00A0\u00A0'}
-    <Button text="Button" contentRight={<IconDownload />} />
-    {'\u00A0\u00A0\u00A0\u00A0'}
     <Button text="Button" contentRight={<IconDownload />} />
   </ThemeBackground>
 </Playground>
 
 ### Модификаторы
-``disabled`` делает кнопку недоступной для нажатия, ``fullWidth`` позволяет ей занять доступню ширину, а с помощью ``motion`` можно управлять анимацией при наведении/нажатии.
+``disabled`` делает кнопку недоступной для нажатия,
+``fullWidth`` позволяет ей занять доступню ширину,
+``outlined`` добавляет рамку при фокусе,
+a с помощью ``motion`` можно управлять анимацией при наведении/нажатии.
 <Playground>
-  <ThemeBackground>
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', padding: 40 }}>
-      <Button text="Недоступно" disabled />
-      {'\u00A0\u00A0\u00A0\u00A0'}
-      <Button text="Широкая кнопка" fullWidth />
-      {'\u00A0\u00A0\u00A0\u00A0'}
-      <Button text="Без анимации" motion={false} />
-    </div>
+  <ThemeBackground spaced>
+    <Button text="Недоступно" disabled />
+    <Button text="Широкая кнопка" fullWidth />
+    <Button text="Без фокуса" outlined={false} />
+    <Button text="Без анимации" motion={false} />
   </ThemeBackground>
 </Playground>
 
 ## ActionButton
-Упрощенная версия Button для создания квадратных (со сторонами 1:1) кнопок, с меньшими, чем у Button, размерами.
+Упрощенная версия Button для создания квадратных (со сторонами 1:1) кнопок.
+Размеры ActionButton меньше, чем у Button.
+Цвета, размеры и модификаторы имеет те же, что у основной кнопки.
 
-## Props
+### Props
 <Props of={ActionButton} />
 
-## Playground
+### Примеры использования
 <Playground>
-  <ThemeBackground>
-    <ActionButton />
+  <ThemeBackground spaced>
+    <ActionButton size="s">
+      <IconDownload />
+    </ActionButton>
+    <ActionButton size="m">
+      <IconDownload />
+    </ActionButton>
+    <ActionButton size="l">
+      <IconDownload />
+    </ActionButton>
   </ThemeBackground>
 </Playground>
