@@ -27,6 +27,19 @@ $ npm install --save styled-components
 $ npm install --save @sberdevices/ui @sberdevices/plasma-tokens
 ```
 
+### Использование компонент
+
+Все компоненты доступны из папки `components`
+Пример:
+
+```jsx
+import { Button } from '@sberdevices/ui/components/Button/Button';
+
+const App = () => {
+    return <Button>Hello Plasma</Button>;
+};
+```
+
 ## Полезные ссылки:
 
 Витрина с компонентами [storybook](https://master--5f96ec813d800900227e3b93.chromatic.com)
