@@ -24,7 +24,7 @@ route: /
 ```bash
 $ npm install --save react react-dom
 $ npm install --save styled-components
-$ npm install --save @sberdevices/ui @sberdevices/plasma-tokens
+$ npm install --save @sberdevices/ui@rc @sberdevices/plasma-tokens@rc
 ```
 
 ### Использование компонент
