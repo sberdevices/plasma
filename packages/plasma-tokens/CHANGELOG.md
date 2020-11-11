@@ -1,3 +1,15 @@
+# v0.4.0 (Wed Nov 11 2020)
+
+#### 🐛 Bug Fix
+
+- chore: updated lock files [#62](https://github.com/sberdevices/plasma/pull/62) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v0.3.0 (Tue Nov 10 2020)
 
 #### 🐛 Bug Fix

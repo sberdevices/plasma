@@ -1,3 +1,33 @@
+# (Wed Nov 11 2020)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/ui@0.20.0`
+  - feat(ui): Доработана докуменация по Card [#58](https://github.com/sberdevices/plasma/pull/58) ([@fanisco](https://github.com/fanisco))
+  - feat(icon): Добавлены новые иконки xs:16 & s:24 [#57](https://github.com/sberdevices/plasma/pull/57) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### 🐛 Bug Fix
+
+- ci: Добавлен шаг сборки beta(rc) ветки [#61](https://github.com/sberdevices/plasma/pull/61) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-tokens@0.4.0`, `@sberdevices/ui@0.20.0`
+  - chore: updated lock files [#62](https://github.com/sberdevices/plasma/pull/62) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/ui@0.20.0`
+  - build: запускать сборку доки с ts3.5.3 [#62](https://github.com/sberdevices/plasma/pull/62) ([@Yeti-or](https://github.com/Yeti-or))
+  - build(ui): ts ломает сборку доки [#57](https://github.com/sberdevices/plasma/pull/57) ([@Yeti-or](https://github.com/Yeti-or))
+  - chore: правки после рефакторинга [#57](https://github.com/sberdevices/plasma/pull/57) ([@IgorAntonov](https://github.com/IgorAntonov))
+  - chore: Удалены стори и дока для Cart [#57](https://github.com/sberdevices/plasma/pull/57) ([@IgorAntonov](https://github.com/IgorAntonov))
+  - fix: компонент Input [#57](https://github.com/sberdevices/plasma/pull/57) ([@IgorAntonov](https://github.com/IgorAntonov))
+  - fix: remove old icons from components [#57](https://github.com/sberdevices/plasma/pull/57) ([@IgorAntonov](https://github.com/IgorAntonov))
+  - refactor: new icons [#57](https://github.com/sberdevices/plasma/pull/57) ([@IgorAntonov](https://github.com/IgorAntonov))
+
+#### Authors: 3
+
+- [@IgorAntonov](https://github.com/IgorAntonov)
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # (Tue Nov 10 2020)
 
 #### 🚀 Enhancement
