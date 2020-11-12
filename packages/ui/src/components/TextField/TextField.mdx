@@ -7,7 +7,7 @@ route: /components/TextField
 import { Playground, Props } from 'docz'
 
 import { TextField } from './TextField'
-import { Icon } from '../Icon/Icon'
+import { IconMinus, IconPlus } from '../Icon'
 import { ThemeSelect } from '../../helpers/ThemeSelect'
 import { ThemeBackground } from '../../helpers/ThemeBackground'
 
@@ -38,8 +38,8 @@ import { ThemeBackground } from '../../helpers/ThemeBackground'
     <TextField
       value="5"
       title="Custom range input"
-      contentLeft={<Icon icon="minus" size="s" />}
-      contentRight={<Icon icon="plus" size="s" />}
+      contentLeft={<IconMinus size="s" />}
+      contentRight={<IconPlus size="s" />}
     />
   </ThemeBackground>
 </Playground>

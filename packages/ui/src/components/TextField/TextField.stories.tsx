@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { text, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
-import { Icon } from '../Icon/Icon';
+import { IconDownload } from '../Icon';
 
 import { TextField } from './TextField';
 
@@ -52,13 +52,13 @@ export const WithIcon = () => {
                 value={value}
                 title={text('title', 'Label')}
                 style={{ marginRight: '1rem' }}
-                contentLeft={<Icon icon="download" size="s" />}
+                contentLeft={<IconDownload size="s" />}
                 onChange={(e) => setValue(e.target.value)}
             />
             <TextField
                 value={value}
                 title={text('title', 'Label')}
-                contentRight={<Icon icon="download" size="s" />}
+                contentRight={<IconDownload size="s" />}
                 onChange={(e) => setValue(e.target.value)}
             />
         </>

@@ -4,7 +4,7 @@ import { secondary } from '@sberdevices/plasma-tokens';
 
 import { Headline3, Footnote1 } from '../Typography';
 import { Button, ButtonProps } from '../Button/Button';
-import { Icon } from '../Icon/Icon';
+import { IconChevronLeft } from '../Icon';
 import { IconSize } from '../Icon/IconRoot';
 
 const StyledHeader = styled.header`
@@ -53,7 +53,7 @@ const StyledLogo = styled.img`
     }
 `;
 
-const StyledBackIcon = styled(Icon)<{ size?: IconSize }>`
+const StyledBackIcon = styled(IconChevronLeft)<{ size?: IconSize }>`
     margin: 0;
     padding: 0;
 
@@ -105,9 +105,7 @@ export const HeaderTitle: React.FC<{ text: string; className?: string }> = ({ te
 
 export const HeaderSubTitle: React.FC<{ text: string }> = ({ text }) => <StyledSubTitle>{text}</StyledSubTitle>;
 
-export const HeaderBack: React.FC<{ size?: IconSize }> = ({ size = 's' }) => (
-    <StyledBackIcon size={size} icon="chevronLeft" />
-);
+export const HeaderBack: React.FC<{ size?: IconSize }> = ({ size = 's' }) => <StyledBackIcon size={size} />;
 
 export const HeaderContent: React.FC<{ className?: string }> = ({ children, className }) => (
     <StyledContent className={className}>{children}</StyledContent>

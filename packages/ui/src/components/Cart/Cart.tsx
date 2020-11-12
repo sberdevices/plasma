@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { buttonAccent, accent, buttonWarning, whitePrimary, blackSecondary } from '@sberdevices/plasma-tokens';
 
-import { Icon, IconName } from '../Icon/Icon';
+import { IconDownload } from '../Icon';
 
 // TODO: refactor Cart
 const uiColor = {
@@ -16,7 +16,7 @@ type CartColor = keyof typeof uiColor;
 
 export interface CartProps extends React.HTMLAttributes<HTMLDivElement> {
     amount: number;
-    icon?: IconName;
+    icon?: React.ReactNode;
     color?: CartColor;
 }
 
@@ -98,10 +98,10 @@ const StyledLabel = styled.div`
     color: #fff;
 `;
 
-export const Cart: React.FC<CartProps> = ({ amount, children, icon = 'download', color = 'active', ...restProps }) => (
+export const Cart: React.FC<CartProps> = ({ amount, children, icon, color = 'active', ...restProps }) => (
     <StyledRoot {...restProps} color={color}>
         <StyledIcon>
-            <Icon icon={icon} size="s" />
+            {icon || <IconDownload size="s" />}
             {amount > 0 && <StyledBadge color={color}>{amount}</StyledBadge>}
         </StyledIcon>
         {children && <StyledLabel>{children}</StyledLabel>}

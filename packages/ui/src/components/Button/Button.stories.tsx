@@ -3,6 +3,7 @@ import { text, boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
 import { View, views } from '../../mixins/applyView';
+import { IconClock, IconDownload } from '../Icon';
 import { Icon } from '../Icon/Icon';
 
 import { ButtonSize } from './ButtonBase';
@@ -32,8 +33,8 @@ export const Default = () => (
         outlined={boolean('outlined', true)}
         disabled={boolean('disabled', false)}
         fullWidth={boolean('fullWidth', false)}
-        contentLeft={boolean('contentLeft', false) && <Icon icon="clock" />}
-        contentRight={boolean('contentRight', false) && <Icon icon="download" />}
+        contentLeft={boolean('contentLeft', false) && <IconClock />}
+        contentRight={boolean('contentRight', false) && <IconDownload />}
         onClick={action('onClick')}
         onFocus={action('onFocus')}
         onBlur={action('onBlur')}

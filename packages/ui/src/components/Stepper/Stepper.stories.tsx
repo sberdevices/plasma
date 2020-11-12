@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { number, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
-import { Icon } from '../Icon/Icon';
+import { IconMinus, IconPlus } from '../Icon';
 
 import { Stepper, StepperRoot, StepperButton, StepperValue } from './Stepper';
 
@@ -43,7 +43,7 @@ export const Custom = () => {
         <StepperRoot>
             <StepperButton
                 view={value > min ? 'primary' : 'critical'}
-                icon={<Icon icon="minus" />}
+                icon={<IconMinus />}
                 onClick={() => setValue(value - step)}
             />
             <StepperValue
@@ -53,7 +53,7 @@ export const Custom = () => {
             />
             <StepperButton
                 view="primary"
-                icon={<Icon icon="plus" />}
+                icon={<IconPlus />}
                 disabled={value >= max}
                 onClick={() => setValue(value + step)}
             />
