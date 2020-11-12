@@ -2,24 +2,13 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 import { addFocus, FocusProps } from '../../mixins/addFocus';
-import { applyView, View, ViewProps } from '../../mixins/applyView';
+import { applyView, ViewProps } from '../../mixins/applyView';
 import { applyMotion, MotionProps } from '../../mixins/applyMotion';
 import { applyDisabled, DisabledProps } from '../../mixins/applyDisabled';
 import { convertPinsMatrix, PinProps } from '../../mixins/pins';
 import { PickOptional } from '../../types/PickOptional';
 
 import { SizeProps, buttonBase, buttonTypography, fontSizeL, fontSizeM, fontSizeS } from './ButtonBase';
-
-// Для совместимости. https://github.com/sberdevices/plasma/issues/12
-export const colorsToViews = {
-    active: 'primary',
-    highlight: 'primary',
-    blank: 'checked',
-    accent: 'warning',
-    index: 'secondary',
-};
-
-type CompatColor = keyof typeof colorsToViews;
 
 /**
  * Размеры в пикселях по макету
@@ -87,29 +76,19 @@ export interface ActionButtonProps
     onFocus?: React.FocusEventHandler<HTMLButtonElement>;
     onBlur?: React.FocusEventHandler<HTMLButtonElement>;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
-    // Для совместимости. https://github.com/sberdevices/plasma/issues/12
-    color?: CompatColor;
 }
 
 export const ActionButton: React.FC<ActionButtonProps> = ({
     children,
-    view,
+    view = 'secondary',
     size = 'm',
     pin = 'square-square',
     motion = true,
     outlined = true,
-    color = 'active',
     ...rest
 }) => {
     return (
-        <StyledActionButton
-            view={view || (colorsToViews[color] as View)}
-            size={size}
-            pin={pin}
-            motion={motion}
-            outlined={outlined}
-            {...rest}
-        >
+        <StyledActionButton view={view} size={size} pin={pin} motion={motion} outlined={outlined} {...rest}>
             {children}
         </StyledActionButton>
     );
