@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Button, ButtonProps } from '../Button/Button';
+import { Button, ButtonProps } from '../Button';
 import { IconDisclosureRight } from '../Icon';
 
 const DisclosureBtn = styled(Button)`

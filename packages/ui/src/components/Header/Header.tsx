@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { secondary } from '@sberdevices/plasma-tokens';
 
 import { Headline3, Footnote1 } from '../Typography';
-import { Button, ButtonProps } from '../Button/Button';
+import { Button, ButtonProps } from '../Button';
 import { IconChevronLeft } from '../Icon';
 import { IconSize } from '../Icon/IconRoot';
 

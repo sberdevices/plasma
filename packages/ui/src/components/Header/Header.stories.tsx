@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Cart } from '../Cart/Cart';
+import { Cart } from '../Cart';
 
 import { Header, HeaderBack, HeaderLogo, HeaderSubTitle, HeaderTitle, HeaderContent, HeaderButton } from './Header';
 

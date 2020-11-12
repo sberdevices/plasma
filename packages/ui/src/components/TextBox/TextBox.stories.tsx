@@ -4,7 +4,7 @@ import { accent, footnote1 } from '@sberdevices/plasma-tokens';
 import { text } from '@storybook/addon-knobs';
 
 import { Footnote1 } from '../Typography';
-import { Container, Col } from '../Grid/Grid';
+import { Container, Col } from '../Grid';
 
 import { TextBox, Title, BigTitle, SubTitle, Label, Caption } from './TextBox';
 
