@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { typography, colors } from '@sberdevices/plasma-tokens';
 
 import { Button, ButtonProps } from '../Button/Button';
-import { Icon } from '../Icon/Icon';
+import { IconMinus, IconPlus } from '../Icon';
 
 const StyledRoot = styled.div`
     display: flex;
@@ -81,7 +81,7 @@ export const StepperButton: React.FC<StepperButtonProps> = ({
         view={view}
         size={size}
         disabled={disabled}
-        contentLeft={icon || <Icon icon="minus" />}
+        contentLeft={icon || <IconMinus />}
         onFocus={onFocus}
         onBlur={onBlur}
         onClick={onClick}
@@ -149,7 +149,7 @@ export const Stepper: React.FC<StepperProps> = ({
         <StepperRoot>
             <StepperButton
                 disabled={lessDisabled}
-                icon={<Icon icon="minus" />}
+                icon={<IconMinus />}
                 onClick={onLessClick}
                 onFocus={onFocus}
                 onBlur={onBlur}
@@ -157,7 +157,7 @@ export const Stepper: React.FC<StepperProps> = ({
             <StepperValue value={value} disabled={disabled} isWarning={isWarning} />
             <StepperButton
                 disabled={moreDisabled}
-                icon={<Icon icon="plus" />}
+                icon={<IconPlus />}
                 onClick={onMoreClick}
                 onFocus={onFocus}
                 onBlur={onBlur}

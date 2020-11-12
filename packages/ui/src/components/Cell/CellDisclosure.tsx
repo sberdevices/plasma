@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Button, ButtonProps } from '../Button/Button';
-import { Icon } from '../Icon/Icon';
+import { IconDisclosureRight } from '../Icon';
 
 const DisclosureBtn = styled(Button)`
     left: 1rem;
@@ -16,7 +16,7 @@ export const Disclosure = (props: ButtonProps) => {
             size="s"
             view="clear"
             outlined={false}
-            contentRight={<Icon icon="disclosureRight" size="s" />}
+            contentRight={<IconDisclosureRight size="s" />}
         />
     );
 };
