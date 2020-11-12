@@ -24,7 +24,7 @@ type CompatColor = keyof typeof colorsToViews;
 /**
  * Размеры в пикселях по макету
  */
-export const sizes = {
+const sizes = {
     l: {
         width: 36 / fontSizeL,
         height: 36 / fontSizeL,

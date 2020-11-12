@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { blackSecondary, whiteSecondary } from '@sberdevices/plasma-tokens';
 
 import { View } from '../../mixins/applyView';
-import { Badge, BadgeSize } from '../Badge/Badge';
+import { Badge, BadgeSize } from '../Badge';
 
 // Для совместимости. https://github.com/sberdevices/plasma/issues/12
 export const colorsToViews = {

@@ -2,11 +2,9 @@ import React from 'react';
 import { text, number, boolean } from '@storybook/addon-knobs';
 
 import { IconPlaceholder } from '../../helpers/IconPlaceholder';
-import { Button } from '../Button/Button';
-import { Cell, CellIcon } from '../Cell/Cell';
-import { CellListItem } from '../Cell/CellListItem';
-import { Disclosure } from '../Cell/CellDisclosure';
-import { TextBox, Title, SubTitle, BiggerTitle, BigTitle } from '../TextBox/TextBox';
+import { Button } from '../Button';
+import { Cell, CellIcon, CellListItem, Disclosure } from '../Cell';
+import { TextBox, Title, SubTitle, BiggerTitle, BigTitle } from '../TextBox';
 
 import { Card } from './Card';
 import { CardBody } from './CardBody';
