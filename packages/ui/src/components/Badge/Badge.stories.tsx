@@ -2,7 +2,7 @@ import React from 'react';
 import { text, boolean, select } from '@storybook/addon-knobs';
 
 import { View, views } from '../../mixins/applyView';
-import { Icon } from '../Icon/Icon';
+import { IconDownload } from '../Icon';
 
 import { Badge, badgeSizes, BadgeSize } from './Badge';
 
@@ -26,7 +26,7 @@ export const Default = () => (
         text={text('text', 'Badge')}
         size={select('size', sizeKeys, 'l')}
         view={select('view', viewKeys, 'primary')}
-        contentLeft={boolean('contentLeft', false) && <Icon icon="download" size="xs" />}
+        contentLeft={boolean('contentLeft', false) && <IconDownload size="xs" />}
     />
 );
 
