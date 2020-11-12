@@ -13,7 +13,7 @@ import { SizeProps, buttonBase, buttonTypography, fontSizeL, fontSizeM, fontSize
 /**
  * Размеры в пикселях по макету
  */
-export const sizes = {
+const sizes = {
     l: {
         width: 36 / fontSizeL,
         height: 36 / fontSizeL,

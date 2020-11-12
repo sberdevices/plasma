@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { View } from '../../mixins/applyView';
-import { Badge, BadgeSize } from '../Badge/Badge';
+import { Badge, BadgeSize } from '../Badge';
 
 const StyledRoot = styled(Badge)`
     position: absolute;

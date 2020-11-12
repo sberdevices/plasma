@@ -4,6 +4,8 @@
 /types
 /utils
 /helpers
+/index.js*
+/index.d.ts*
 /dist
 /.docz
 build-sb

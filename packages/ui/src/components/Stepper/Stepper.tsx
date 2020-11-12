@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import { typography, colors } from '@sberdevices/plasma-tokens';
 
-import { Button, ButtonProps } from '../Button/Button';
+import { Button, ButtonProps } from '../Button';
 import { IconMinus, IconPlus } from '../Icon';
 
 const StyledRoot = styled.div`

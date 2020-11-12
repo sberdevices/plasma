@@ -6,8 +6,8 @@ import { accent, footnote1 } from '@sberdevices/plasma-tokens';
 
 import { Footnote1, Headline1 } from '../Typography';
 import { Default as Stepper } from '../Stepper/Stepper.stories';
-import { Container, Col } from '../Grid/Grid';
-import { TextBox, Title, SubTitle, Label, Caption } from '../TextBox/TextBox';
+import { Container, Col } from '../Grid';
+import { TextBox, Title, SubTitle, Label, Caption } from '../TextBox';
 
 import { Cell, CellIcon, CellSize } from './Cell';
 import { Disclosure } from './CellDisclosure';
