@@ -1,0 +1,150 @@
+---
+name: Tabs
+menu: Components
+route: /components/Tabs
+---
+
+import { Playground, Props } from 'docz'
+
+import { ThemeSelect, TypoSelect } from '../../helpers/ThemeSelect'
+import { ThemeBackground } from '../../helpers/ThemeBackground'
+import { Icon } from '../Icon/Icon'
+
+import { Tabs } from './Tabs'
+import { TabItem } from './TabItem'
+
+<ThemeSelect />
+<TypoSelect />
+
+# Tabs
+Набор компонентов для создания табов.
+Для создания табов используется структура схожая со структурой маркированного списка, создаваемой с помощью тегов ``ul`` и ``li`` в HTML.
+<ThemeBackground showcase>
+    <Tabs>
+        <TabItem isActive={true}>Элемент 1</TabItem>
+        <TabItem>Элемент 2</TabItem>
+        <TabItem>Элемент 3</TabItem>
+        <TabItem>Элемент 4</TabItem>
+    </Tabs>
+</ThemeBackground>
+
+## Tabs
+Основной компонент, контейнер табов.
+
+### Props
+<Props of={Tabs} />
+
+## TabItem
+Элемент списка, недопустимо импользовать вне компонента ``Tabs``.
+
+### Props
+<Props of={TabItem} />
+
+## Примеры использования
+
+### Размер табов
+Чтобы изменить размер, установите свойство ``size`` на компоненте ``Tabs`` в одно из следующих значений: ``"l"``, ``"m"``, ``"s"``.
+<Playground>
+  <ThemeBackground spaced vertical>
+    <Tabs size="l">
+        <TabItem isActive={true}>Элемент 1</TabItem>
+        <TabItem>Элемент 2</TabItem>
+        <TabItem>Элемент 3</TabItem>
+        <TabItem>Элемент 4</TabItem>
+    </Tabs>
+    <Tabs size="m">
+        <TabItem isActive={true}>Элемент 1</TabItem>
+        <TabItem>Элемент 2</TabItem>
+        <TabItem>Элемент 3</TabItem>
+        <TabItem>Элемент 4</TabItem>
+    </Tabs>
+    <Tabs size="s">
+        <TabItem isActive={true}>Элемент 1</TabItem>
+        <TabItem>Элемент 2</TabItem>
+        <TabItem>Элемент 3</TabItem>
+        <TabItem>Элемент 4</TabItem>
+    </Tabs>
+  </ThemeBackground>
+</Playground>
+
+### Вид табов
+Чтобы изменить вид, установите свойство ``view`` на компоненте ``Tabs`` в одно из следующих значений:
+``"secondary"``, ``"index"``, ``"clear"``.
+<Playground>
+  <ThemeBackground spaced vertical>
+    <Tabs view="secondary">
+        <TabItem isActive={true}>Элемент 1</TabItem>
+        <TabItem>Элемент 2</TabItem>
+        <TabItem>Элемент 3</TabItem>
+        <TabItem>Элемент 4</TabItem>
+    </Tabs>
+    <Tabs view="index">
+        <TabItem isActive={true}>Элемент 1</TabItem>
+        <TabItem>Элемент 2</TabItem>
+        <TabItem>Элемент 3</TabItem>
+        <TabItem>Элемент 4</TabItem>
+    </Tabs>
+    <Tabs view="clear">
+        <TabItem isActive={true}>Элемент 1</TabItem>
+        <TabItem>Элемент 2</TabItem>
+        <TabItem>Элемент 3</TabItem>
+        <TabItem>Элемент 4</TabItem>
+    </Tabs>
+  </ThemeBackground>
+</Playground>
+
+### Иконки
+Для создания квадратных табов с иконкой или текстом используйте свойство ``contentLeft``, передавая туда рендер иконки или текста.
+Также, иконку можно помещать слева и справа от текста.
+<Playground>
+  <ThemeBackground>
+    <Tabs>
+        <TabItem isActive={true} contentLeft={<Icon icon="clock" size="s" />} />
+        <TabItem contentLeft={<Icon icon="settings" size="s" />} />
+        <TabItem contentLeft={<Icon icon="house" size="s" />} />
+        <TabItem contentLeft={<Icon icon="trash" size="s" />} />
+    </Tabs>
+  </ThemeBackground>
+</Playground>
+
+### Модификаторы на компоненте ``Tabs``
+* ``disabled`` — делает табы недоступными для нажатия;
+* ``fixedWidth`` — кнопки табов примут фиксированную ширину, максимально равную 25% контейнера Tabs, при этом сам контейнер займет 100% ширины;
+* ``outlined`` — добавляет рамку при фокусе;
+* ``motion`` — дает анимацию при наведении/нажатии;
+* ``pilled`` — кнопки табов и контейнер примут вид скругленных "капсул".
+
+<Playground>
+  <ThemeBackground spaced vertical>
+    <Tabs disabled>
+        <TabItem isActive={true}>Недоступно</TabItem>
+        <TabItem>Таб</TabItem>
+        <TabItem>Таб</TabItem>
+        <TabItem>Таб</TabItem>
+    </Tabs>
+    <Tabs fixedWidth>
+        <TabItem isActive={true}>100% ширины</TabItem>
+        <TabItem>Таб</TabItem>
+        <TabItem>Таб</TabItem>
+        <TabItem>Таб</TabItem>
+    </Tabs>
+    <Tabs outlined>
+        <TabItem isActive={true} tabIndex={1}>Фокус</TabItem>
+        <TabItem tabIndex={2}>Таб</TabItem>
+        <TabItem tabIndex={3}>Таб</TabItem>
+        <TabItem tabIndex={4}>Таб</TabItem>
+    </Tabs>
+    <Tabs motion>
+        <TabItem isActive={true}>Анимация</TabItem>
+        <TabItem>Таб</TabItem>
+        <TabItem>Таб</TabItem>
+        <TabItem>Таб</TabItem>
+    </Tabs>
+    <Tabs pilled>
+        <TabItem isActive={true}>Капсула</TabItem>
+        <TabItem>Таб</TabItem>
+        <TabItem>Таб</TabItem>
+        <TabItem>Таб</TabItem>
+    </Tabs>
+  </ThemeBackground>
+</Playground>

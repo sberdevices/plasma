@@ -13,6 +13,7 @@ export interface DisabledProps {
 export const applyDisabled: InterpolationFunction<DisabledProps> = ({ disabled }) => css`
     &:disabled {
         opacity: 0.4;
+        cursor: not-allowed;
 
         &:hover,
         &:active {
@@ -23,6 +24,7 @@ export const applyDisabled: InterpolationFunction<DisabledProps> = ({ disabled }
     ${disabled &&
     css`
         opacity: 0.4;
+        cursor: not-allowed;
 
         &:hover,
         &:active {
