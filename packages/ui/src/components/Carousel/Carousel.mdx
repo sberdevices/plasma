@@ -1,0 +1,43 @@
+---
+name: Carousel
+menu: Components
+route: /components/Carousel
+---
+
+import { Playground, Props } from 'docz'
+
+import { ThemeSelect } from '../../helpers/ThemeSelect'
+import { ThemeBackground } from '../../helpers/ThemeBackground'
+import { Filler } from '../../helpers/Filler'
+
+import { Carousel } from './Carousel'
+import { CarouselItem } from './CarouselItem'
+import { CarouselGridCol } from './CarouselGridCol'
+
+<ThemeSelect />
+
+# Carousel
+
+Набор компонентов для создания списков с прокруткой.
+Для использования каждый дочерний элемент списка должен использовать CarosuselContext для регистрации ``ref`` – это необходимо для рассчёта положения элементов на экране (см. CarouselItem).
+
+## Carousel
+Основной компонент карусели.
+
+### Props
+<Props of={Carousel} />
+
+## CarouselWrapper
+Обертка над ``Carousel`` для компенсации отрицательных отступов.
+
+## CarouselItem
+Компонент для обертывания элемента в контекст и регистрации ``ref``.
+
+### Props
+<Props of={CarouselItem} />
+
+## CarouselGridCol
+Альтернативная обертка в контекст для создания карусели с поддержкой сетки.
+
+### Props
+<Props of={CarouselGridCol} />

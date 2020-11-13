@@ -1,16 +1,35 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Filler = styled.div`
+import { applyView, ViewProps } from '../mixins/applyView';
+
+interface FillerProps extends ViewProps {
+    bordered?: boolean;
+    fullHeight?: boolean;
+}
+
+export const Filler = styled.div<FillerProps>`
     display: flex;
     align-items: center;
+    justify-content: center;
 
     box-sizing: border-box;
 
     width: 100%;
-    height: 2em;
-    padding: 0.25em 0.5em;
-    margin-bottom: 1em;
+    min-height: 2rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
 
-    background: rgba(200, 255, 255, 0.23);
-    color: #fff;
+    border-radius: 0.25rem;
+
+    ${({ view = 'secondary' }) => applyView({ view })};
+    ${({ bordered }) =>
+        bordered &&
+        css`
+            border: 1px solid;
+        `}
+    ${({ fullHeight }) =>
+        fullHeight &&
+        css`
+            height: 100%;
+        `}
 `;
