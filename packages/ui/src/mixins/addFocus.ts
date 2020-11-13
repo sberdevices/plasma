@@ -3,11 +3,11 @@ import { buttonFocused } from '@sberdevices/plasma-tokens';
 
 export interface FocusProps {
     /**
-     * Состояние в фокусе
+     * Компонент в фокусе
      */
     focused?: boolean;
     /**
-     * Есть ли рамка у компонента при фокусе
+     * Добавить рамку при фокусе
      */
     outlined?: boolean;
     /**
@@ -62,7 +62,7 @@ export const syntheticFocus = (
 export const addFocus: InterpolationFunction<FocusProps> = ({
     focused,
     outlined = true,
-    outlineSize = 0,
+    outlineSize = '0.125rem',
     outlineOffset = outlineSize,
     outlineColor = buttonFocused,
     outlineRadius = 0,
