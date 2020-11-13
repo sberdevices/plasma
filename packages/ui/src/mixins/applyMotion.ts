@@ -2,7 +2,7 @@ import { css, InterpolationFunction } from 'styled-components';
 
 export interface MotionProps {
     /**
-     * Увеличение по нажатию и ховеру, по умолчанию включено
+     * Увеличение по нажатию и ховеру
      */
     motion?: boolean;
 }
