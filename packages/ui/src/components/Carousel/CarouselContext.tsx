@@ -2,7 +2,10 @@ import React from 'react';
 
 type ItemRef = React.MutableRefObject<HTMLElement | null>;
 
-export class ListContextController {
+/**
+ * Хранилище элементов карусели.
+ */
+export class CarouselStore {
     private items: ItemRef[];
 
     constructor() {
@@ -20,6 +23,10 @@ export class ListContextController {
     public getItem(at: number): ItemRef | null {
         return this.items[at] || null;
     }
+
+    public length(): number {
+        return this.items.length;
+    }
 }
 
-export const ListContext = React.createContext(new ListContextController());
+export const CarouselContext = React.createContext(new CarouselStore());
