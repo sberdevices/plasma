@@ -3,8 +3,8 @@ import { text, number, boolean } from '@storybook/addon-knobs';
 
 import { IconPlaceholder } from '../../helpers/IconPlaceholder';
 import { Button } from '../Button';
-import { Cell, CellIcon, CellListItem, Disclosure } from '../Cell';
-import { TextBox, Title, SubTitle, BiggerTitle, BigTitle } from '../TextBox';
+import { Cell, CellIcon, CellListItem, CellDisclosure } from '../Cell';
+import { TextBox, TextBoxTitle, TextBoxSubTitle, TextBoxBiggerTitle, TextBoxBigTitle } from '../TextBox';
 
 import { Card } from './Card';
 import { CardBody } from './CardBody';
@@ -76,11 +76,11 @@ export const ListCard = () => (
                 }
                 content={
                     <TextBox>
-                        <Title>{text('title', 'Title')}</Title>
-                        <SubTitle>{text('subtitle', 'Subtitle')}</SubTitle>
+                        <TextBoxTitle>{text('title', 'Title')}</TextBoxTitle>
+                        <TextBoxSubTitle>{text('subtitle', 'Subtitle')}</TextBoxSubTitle>
                     </TextBox>
                 }
-                right={<Disclosure />}
+                right={<CellDisclosure />}
             />
         </CardContent>
     </Card>
@@ -92,7 +92,7 @@ export const ListAndHeader = () => {
         <Card style={{ width: '20rem' }}>
             <CardContent compact>
                 <Cell
-                    content={<BigTitle>{text('header', 'Название раздела')}</BigTitle>}
+                    content={<TextBoxBigTitle>{text('header', 'Название раздела')}</TextBoxBigTitle>}
                     right={text('details', 'Detail')}
                 />
                 {items.map((_, i) => (
@@ -105,11 +105,11 @@ export const ListAndHeader = () => {
                         }
                         content={
                             <TextBox>
-                                <Title>{text('title', 'Title')}</Title>
-                                <SubTitle>{text('subtitle', 'Subtitle')}</SubTitle>
+                                <TextBoxTitle>{text('title', 'Title')}</TextBoxTitle>
+                                <TextBoxSubTitle>{text('subtitle', 'Subtitle')}</TextBoxSubTitle>
                             </TextBox>
                         }
-                        right={<Disclosure />}
+                        right={<CellDisclosure />}
                     />
                 ))}
             </CardContent>
@@ -121,7 +121,9 @@ export const FastAnswer = () => (
     <Card style={{ width: '20rem' }}>
         <CardContent>
             <Cell
-                content={<BigTitle style={{ marginTop: 0 }}>{text('header', 'Название раздела')}</BigTitle>}
+                content={
+                    <TextBoxBigTitle style={{ marginTop: 0 }}>{text('header', 'Название раздела')}</TextBoxBigTitle>
+                }
                 right={text('details', 'Detail')}
             />
             <Cell
@@ -130,7 +132,7 @@ export const FastAnswer = () => (
                         <IconPlaceholder size={2.25} />
                     </CellIcon>
                 }
-                content={<BiggerTitle>{text('value', 'Value')}</BiggerTitle>}
+                content={<TextBoxBiggerTitle>{text('value', 'Value')}</TextBoxBiggerTitle>}
                 right={
                     <CellIcon>
                         <IconPlaceholder style={{ marginTop: '0.375rem' }} size={1.5} />
@@ -138,7 +140,7 @@ export const FastAnswer = () => (
                 }
                 alignRight="center"
             />
-            <SubTitle>{text('description', 'Description')}</SubTitle>
+            <TextBoxSubTitle>{text('description', 'Description')}</TextBoxSubTitle>
         </CardContent>
     </Card>
 );

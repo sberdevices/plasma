@@ -7,7 +7,7 @@ import { accent, footnote1 } from '@sberdevices/plasma-tokens';
 import { Footnote1, Headline1 } from '../Typography';
 import { Default as Stepper } from '../Stepper/Stepper.stories';
 import { Container, Col } from '../Grid';
-import { TextBox, Title, SubTitle, Label, Caption } from '../TextBox';
+import { TextBox, TextBoxTitle, TextBoxSubTitle, TextBoxLabel, TextBoxCaption } from '../TextBox';
 
 import { Cell, CellIcon, CellSize } from './Cell';
 import { Disclosure } from './CellDisclosure';
@@ -75,8 +75,8 @@ export const IconSize = () => {
                         left={<CellIcon size={size} as="img" src="./images/avocado.png" alt="avocado" />}
                         content={
                             <TextBox>
-                                <Title>{title}</Title>
-                                <SubTitle>{subTitle}</SubTitle>
+                                <TextBoxTitle>{title}</TextBoxTitle>
+                                <TextBoxSubTitle>{subTitle}</TextBoxSubTitle>
                             </TextBox>
                         }
                     />
@@ -101,8 +101,8 @@ export const Content = () => {
                         left={left}
                         content={
                             <TextBox>
-                                <Title>Hello World of Plasma</Title>
-                                <SubTitle>+7 (495) 500-55-50</SubTitle>
+                                <TextBoxTitle>Hello World of Plasma</TextBoxTitle>
+                                <TextBoxSubTitle>+7 (495) 500-55-50</TextBoxSubTitle>
                             </TextBox>
                         }
                         right={right}
@@ -135,8 +135,8 @@ export const Right = () => {
     const left = <CellIcon size={size} as="img" src="./images/avocado.png" alt="avocado" />;
     const content = (
         <TextBox>
-            <Title>Hello World of Plasma</Title>
-            <SubTitle>Use with wisdom</SubTitle>
+            <TextBoxTitle>Hello World of Plasma</TextBoxTitle>
+            <TextBoxSubTitle>Use with wisdom</TextBoxSubTitle>
         </TextBox>
     );
 
@@ -189,10 +189,10 @@ export const Align = () => {
     const left = <CellIcon size={size} as="img" src="./images/avocado.png" alt="avocado" />;
     const content = (
         <TextBox>
-            <Label>Label</Label>
-            <Title>Hello World of Plasma</Title>
-            <SubTitle>Use with wisdom</SubTitle>
-            <Caption color={accent}>Скидка 42%</Caption>
+            <TextBoxLabel>Label</TextBoxLabel>
+            <TextBoxTitle>Hello World of Plasma</TextBoxTitle>
+            <TextBoxSubTitle>Use with wisdom</TextBoxSubTitle>
+            <TextBoxCaption color={accent}>Скидка 42%</TextBoxCaption>
         </TextBox>
     );
 
@@ -233,8 +233,8 @@ export const Align = () => {
                         right={
                             <TextBox>
                                 <CellIcon size="xs" as="img" src="./images/avocado.png" alt="avocado" />
-                                <Title>{title}</Title>
-                                <SubTitle>{subTitle}</SubTitle>
+                                <TextBoxTitle>{title}</TextBoxTitle>
+                                <TextBoxSubTitle>{subTitle}</TextBoxSubTitle>
                             </TextBox>
                         }
                     />
@@ -259,8 +259,8 @@ export const CellListItem = () => {
                         left={left}
                         content={
                             <TextBox>
-                                <Title>Hello World of Plasma</Title>
-                                <SubTitle>+7 (495) 500-55-50</SubTitle>
+                                <TextBoxTitle>Hello World of Plasma</TextBoxTitle>
+                                <TextBoxSubTitle>+7 (495) 500-55-50</TextBoxSubTitle>
                             </TextBox>
                         }
                         right={<Disclosure onClick={action('disclosure clicked')} />}
@@ -270,8 +270,8 @@ export const CellListItem = () => {
                         left={left}
                         content={
                             <TextBox>
-                                <Title>Hello World of Plasma</Title>
-                                <SubTitle>+7 (495) 500-55-50</SubTitle>
+                                <TextBoxTitle>Hello World of Plasma</TextBoxTitle>
+                                <TextBoxSubTitle>+7 (495) 500-55-50</TextBoxSubTitle>
                             </TextBox>
                         }
                         right={<Disclosure onClick={action('disclosure clicked')} />}
@@ -281,8 +281,8 @@ export const CellListItem = () => {
                         left={left}
                         content={
                             <TextBox>
-                                <Title>Hello World of Plasma</Title>
-                                <SubTitle>+7 (495) 500-55-50</SubTitle>
+                                <TextBoxTitle>Hello World of Plasma</TextBoxTitle>
+                                <TextBoxSubTitle>+7 (495) 500-55-50</TextBoxSubTitle>
                             </TextBox>
                         }
                         right={<Disclosure onClick={action('disclosure clicked')} />}
