@@ -1,1 +1,1 @@
-export * from './Header';
+export { Header, HeaderBack, HeaderButton, HeaderContent, HeaderLogo, HeaderSubTitle, HeaderTitle } from './Header';

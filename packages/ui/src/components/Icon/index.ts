@@ -39,3 +39,6 @@ export { IconSettings } from './Icons/IconSettings';
 export { IconSpinner } from './Icons/IconSpinner';
 export { IconTrash } from './Icons/IconTrash';
 export { IconTrashFilled } from './Icons/IconTrashFilled';
+
+export { IconRoot } from './IconRoot';
+export type { IconProps, IconSize } from './IconRoot';

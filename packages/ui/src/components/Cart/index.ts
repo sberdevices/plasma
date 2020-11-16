@@ -1,1 +1,2 @@
-export * from './Cart';
+export { Cart } from './Cart';
+export type { CartProps } from './Cart';

@@ -1,5 +1,3 @@
-import * as Typography from './components/Typography';
-
 export * from './components/Badge';
 export * from './components/Button';
 export * from './components/Card';
@@ -13,4 +11,5 @@ export * from './components/Stepper';
 export * from './components/TextBox';
 export * from './components/TextField';
 export * from './components/Theme';
-export { Typography };
+export * from './components/Typography';
+export * from './components/Typo';
