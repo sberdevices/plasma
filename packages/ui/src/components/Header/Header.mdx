@@ -6,57 +6,67 @@ route: /components/Header
 
 import { Playground, Props } from 'docz';
 
-import Logo from "../../../.storybook/public/images/logo.png";
-import { Header, HeaderBack, HeaderLogo, HeaderSubTitle, HeaderTitle, HeaderContent, HeaderButton } from './Header';
-import { Cart } from '../Cart';
-import { ThemeSelect } from '../../helpers/ThemeSelect'
+import logo from '../../../.storybook/public/images/logo.png'
+import { ThemeSelect, TypoSelect } from '../../helpers/ThemeSelect'
 import { ThemeBackground } from '../../helpers/ThemeBackground'
+import { Button } from '../Button';
+import { Container } from '../Grid'
 
+import { Header } from './Header'
+import { HeaderRoot } from './HeaderRoot'
+import { HeaderBack } from './HeaderBack'
+import { HeaderLogo } from './HeaderLogo'
+import { HeaderTitleWrapper } from './HeaderTitleWrapper'
+import { HeaderSubtitle } from './HeaderSubtitle'
+import { HeaderTitle } from './HeaderTitle'
+import { HeaderContent } from './HeaderContent'
+
+<TypoSelect />
 <ThemeSelect />
 
 # Header
+Набор компонентов для создания шапки.
 
 ## Props
 <Props of={Header} />
 
-## Playground
+## Примеры
 
-### Default
+### Использование готовой шапки
+Воспользовавшись готовым компонентом ``Header``, можно отобразить шапку, указав свойства ``title``, ``logo`` и пр.
 <Playground>
-  <ThemeBackground>
-    <Header>
-      <HeaderBack />
-      <HeaderLogo src={Logo} alt="Logo" />
-      <HeaderTitle text="Logo" />
-    </Header>
-  </ThemeBackground>
+    <ThemeBackground>
+        <Container>
+            <Header
+                back
+                logo={logo}
+                logoAlt="Logo"
+                title="Header title text"
+                subtitle="Subtitle text"
+            >
+                <Button view="clear" shiftRight>Header button</Button>
+            </Header>
+      </Container>
+    </ThemeBackground>
 </Playground>
 
-### WithSubTitle
+### Создание собственной шапки
+Если возможностей компонента ``Header`` недостаточно, можно создать собственную шапку.
+Используйте такие компоненты, как ``HeaderRoot``, ``HeaderTitle``, ``HeaderContent`` и другие.
 <Playground>
-  <ThemeBackground>
-    <Header>
-      <HeaderBack />
-      <HeaderLogo src={Logo} alt="Logo" />
-      <HeaderTitle text="1 пассажир">
-        <HeaderSubTitle text="Шаг 1 из 9" />
-      </HeaderTitle>
-    </Header>
-  </ThemeBackground>
-</Playground>
-
-### WithContent
-<Playground>
-  <ThemeBackground>
-    <Header>
-      <HeaderBack />
-      <HeaderLogo src={Logo} alt="Logo" />
-      <HeaderTitle text="Корзина"/>
-      <HeaderContent>
-        <HeaderButton>
-          <Cart amount={8}>2345 ₽</Cart>
-        </HeaderButton>
-      </HeaderContent>
-    </Header>
-  </ThemeBackground>
+    <ThemeBackground>
+        <Container>
+            <HeaderRoot>
+                <HeaderBack />
+                <HeaderLogo src={logo} alt="Logo" />
+                <HeaderTitleWrapper>
+                    <HeaderTitle>Header title text</HeaderTitle>
+                    <HeaderSubtitle>Subtitle text</HeaderSubtitle>
+                </HeaderTitleWrapper>
+                <HeaderContent>
+                    <Button view="clear" shiftRight>Header button</Button>
+                </HeaderContent>
+            </HeaderRoot>
+        </Container>
+    </ThemeBackground>
 </Playground>
