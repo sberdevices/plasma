@@ -6,7 +6,7 @@ import { applyView, ViewProps } from '../../mixins/applyView';
 import { applyMotion, MotionProps } from '../../mixins/applyMotion';
 import { applyDisabled, DisabledProps } from '../../mixins/applyDisabled';
 import { convertPinsMatrix, PinProps } from '../../mixins/pins';
-import { PickOptional } from '../../types/PickOptional';
+import { PickOptional, ShiftProps, StylingProps } from '../../types';
 
 import { SizeProps, buttonBase, buttonTypography, fontSizeL, fontSizeM, fontSizeS } from './ButtonBase';
 
@@ -37,14 +37,22 @@ export const sizes = {
     },
 };
 
+interface StyledButtonProps extends SizeProps, ViewProps, PinProps, MotionProps, FocusProps, DisabledProps, ShiftProps {
+    /**
+     * Растянуть кнопку на всю ширину родителя (width=100%)
+     */
+    fullWidth?: boolean;
+}
+
 /**
  * Миксин размеров кнопки по параметрам
  */
-const applySizes = ({ pin, size, outlined, focused, isTextOrChildren }: SizeProps & PinProps & FocusProps) => {
-    const { height, paddingY, paddingX, squareRadius, outline } = sizes[size];
+const applySizes = ({ pin, size, outlined, focused, shiftLeft, shiftRight, isTextOrChildren }: StyledButtonProps) => {
+    const { height, paddingY, paddingX: paddingXWithText, squareRadius, outline } = sizes[size];
     const circleRadius = height / 2;
     const elemRadius = convertPinsMatrix(pin, `${squareRadius}em`, `${circleRadius}em`);
     const outlineRadius = convertPinsMatrix(pin, `${squareRadius + outline}em`, `${circleRadius + outline}em`);
+    const paddingX = isTextOrChildren ? paddingXWithText : paddingY;
 
     return css`
         height: ${height}em;
@@ -63,6 +71,16 @@ const applySizes = ({ pin, size, outlined, focused, isTextOrChildren }: SizeProp
                   padding-right: ${paddingY}em;
               `};
 
+        ${shiftLeft &&
+        css`
+            margin-left: -${paddingX}em;
+        `};
+
+        ${shiftRight &&
+        css`
+            margin-right: -${paddingX}em;
+        `};
+
         ${buttonTypography[size]}
         ${addFocus({
             focused,
@@ -72,13 +90,6 @@ const applySizes = ({ pin, size, outlined, focused, isTextOrChildren }: SizeProp
         })}
     `;
 };
-
-interface StyledButtonProps extends SizeProps, ViewProps, PinProps, MotionProps, FocusProps, DisabledProps {
-    /**
-     * Растянуть кнопку на всю ширину родителя (width=100%)
-     */
-    fullWidth?: boolean;
-}
 
 const StyledButton = styled.button<StyledButtonProps>`
     ${buttonBase}
@@ -116,10 +127,12 @@ const StyledText = styled.span<StyledTextProps>`
 `;
 
 export interface ButtonProps
-    extends PickOptional<
-            StyledButtonProps,
-            'fullWidth' | 'pin' | 'view' | 'size' | 'motion' | 'focused' | 'outlined' | 'disabled'
-        >,
+    extends PickOptional<StyledButtonProps, 'fullWidth' | 'size' | 'view' | 'pin'>,
+        MotionProps,
+        FocusProps,
+        DisabledProps,
+        ShiftProps,
+        StylingProps,
         React.ButtonHTMLAttributes<HTMLButtonElement> {
     /**
      * Слот для контента слева, например <Icon/>
@@ -137,8 +150,6 @@ export interface ButtonProps
      * Кастомный контент кнопки. При указании этого свойства contentLeft, contentRight и text не применяются
      */
     children?: React.ReactNode;
-    style?: React.CSSProperties;
-    className?: string;
     onFocus?: React.FocusEventHandler<HTMLButtonElement>;
     onBlur?: React.FocusEventHandler<HTMLButtonElement>;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
