@@ -1,18 +1,11 @@
 import React, { forwardRef, ReactNode } from 'react';
-import styled, { FlattenSimpleInterpolation } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { scalingPixelBasis } from '@sberdevices/plasma-tokens';
 
-/**
- * Умножаем на 2 пиксельные размеры для корректного отображния на устройствах
- */
+import { mediaQuery, breakpoints } from '../../utils';
+
 const sides = 2;
 const maxContainerWidth = 1200 / scalingPixelBasis;
-const breakpoints = {
-    xl: 960 / scalingPixelBasis, // TV
-    lg: 769 / scalingPixelBasis, // Portal 8 cols
-    md: 560 / scalingPixelBasis, // Portal 6 cols
-    sm: 0, // Mobile
-};
 const columns = {
     xl: 12,
     lg: 8,
@@ -32,28 +25,6 @@ const gutter = {
     sm: 8 / scalingPixelBasis,
 };
 
-type MediaQueryFunction = (content: FlattenSimpleInterpolation | string) => string;
-type Viewport = keyof typeof breakpoints;
-
-const viewports = Object.keys(breakpoints) as Viewport[];
-
-export const mediaQuery = (viewport: Viewport): MediaQueryFunction => {
-    const index = viewports.indexOf(viewport);
-    const nextBreakpoint = viewports[index - 1] as Viewport;
-    const min = breakpoints[viewport] > 0 ? breakpoints[viewport] : null;
-    const max = breakpoints[nextBreakpoint] ? breakpoints[nextBreakpoint] - 1 : null;
-
-    if (min === null && max !== null) {
-        return (content) => `@media (max-width: ${max}rem) { ${content} }`;
-    }
-
-    if (min !== null && max !== null) {
-        return (content) => `@media (min-width: ${min}rem) and (max-width: ${max}rem) { ${content} }`;
-    }
-
-    return (content) => `@media (min-width: ${min}rem) { ${content} }`;
-};
-
 const StyledContainer = styled.div`
     margin: 0 auto;
 
@@ -62,13 +33,18 @@ const StyledContainer = styled.div`
     flex-direction: column;
 
     width: 100%;
+    max-width: var(--container-width);
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
 
-    ${viewports.map((viewport) =>
-        mediaQuery(viewport)(`
-        --container-width: calc(min(100vw, ${maxContainerWidth}rem) - ${margin[viewport] * sides}rem);
-        --column-width: calc((var(--container-width) + ${gutter[viewport]}rem) / ${columns[viewport]});
-        max-width: var(--container-width);
-    `),
+    ${breakpoints.map((breakpoint) =>
+        mediaQuery(breakpoint)(css`
+            --container-width: min(100%, ${maxContainerWidth}rem);
+            --container-padding: ${margin[breakpoint]}rem;
+            --column-width: calc(
+                (var(--container-width) - var(--container-padding) + ${gutter[breakpoint]}rem) / ${columns[breakpoint]}
+            );
+        `),
     )}
 `;
 
@@ -81,11 +57,11 @@ const StyledRow = styled.div`
     box-sizing: border-box;
     flex-wrap: wrap;
 
-    ${viewports.map((viewport) =>
-        mediaQuery(viewport)(`
-        margin-left: -${gutter[viewport] / sides}rem;
-        margin-right: -${gutter[viewport] / sides}rem;
-    `),
+    ${breakpoints.map((breakpoint) =>
+        mediaQuery(breakpoint)(css`
+            margin-left: -${gutter[breakpoint] / sides}rem;
+            margin-right: -${gutter[breakpoint] / sides}rem;
+        `),
     )}
 `;
 
@@ -102,11 +78,10 @@ const StyledCol = styled.div<StyledColProps>`
     box-sizing: border-box;
 
     ${({ $size, $offset }) =>
-        viewports.map((viewport) =>
-            mediaQuery(viewport)(`
-                padding-left: ${gutter[viewport] / sides}rem;
-                padding-right: ${gutter[viewport] / sides}rem;
-                // width: ${($size / columns[viewport]) * 100}%;
+        breakpoints.map((breakpoint) =>
+            mediaQuery(breakpoint)(css`
+                padding-left: ${gutter[breakpoint] / sides}rem;
+                padding-right: ${gutter[breakpoint] / sides}rem;
                 ${$size !== 1 ? `width: calc(var(--column-width) * ${$size})` : 'width: var(--column-width)'};
                 ${$offset && `margin-left: calc(var(--column-width) * ${$offset})`};
             `),
