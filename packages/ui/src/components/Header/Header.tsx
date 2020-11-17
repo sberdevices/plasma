@@ -1,145 +1,33 @@
 import React from 'react';
-import styled from 'styled-components';
-import { secondary } from '@sberdevices/plasma-tokens';
 
-import { Headline3, Footnote1 } from '../Typography';
-import { Button, ButtonProps } from '../Button';
-import { IconChevronLeft } from '../Icon';
-import { IconSize } from '../Icon/IconRoot';
+import { StylingProps } from '../../types/StylingProps';
 
-const StyledHeader = styled.header`
-    position: relative;
-    z-index: 1;
+import { HeaderRoot } from './HeaderRoot';
+import { HeaderBack } from './HeaderBack';
+import { HeaderLogo } from './HeaderLogo';
+import { HeaderSubtitle } from './HeaderSubtitle';
+import { HeaderTitle } from './HeaderTitle';
+import { HeaderTitleWrapper } from './HeaderTitleWrapper';
+import { HeaderContent } from './HeaderContent';
 
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-
-    height: 72px;
-    padding: 60px 48px;
-`;
-
-const StyledTitleWrapper = styled.div`
-    box-sizing: border-box;
-    margin: 0;
-    margin-left: 80px;
-`;
-
-const StyledTitle = styled(Headline3)`
-    box-sizing: border-box;
-    font-size: 40px;
-    line-height: 1.2;
-`;
-
-const StyledSubTitle = styled(Footnote1)`
-    box-sizing: border-box;
-    color: ${secondary};
-
-    font-size: 24px;
-    line-height: 36px;
-`;
-
-const StyledLogo = styled.img`
-    box-sizing: border-box;
-    width: 72px;
-    height: 72px;
-    margin-right: 24px;
-    margin-left: 80px;
-
-    border-radius: 16px;
-
-    & + ${StyledTitleWrapper} {
-        margin-left: 0;
-    }
-`;
-
-const StyledBackIcon = styled(IconChevronLeft)<{ size?: IconSize }>`
-    margin: 0;
-    padding: 0;
-
-    border: none;
-    outline: none;
-    background-color: transparent;
-
-    & + ${StyledLogo} {
-        margin-left: 32px;
-    }
-
-    & + ${StyledTitleWrapper} {
-        margin-left: 40px;
-    }
-
-    &:focus {
-        display: inherit;
-    }
-`;
-
-const StyledContent = styled.div`
-    display: flex;
-    flex: 1;
-    justify-content: flex-end;
-`;
-
-const StyledButton = styled(Button)`
-    /**
-     * Сброс для совместимости с предыдущей версией компонента.
-     */
-    height: auto;
-    padding: 0;
-`;
-
-export const Header: React.FC<{ className?: string }> = ({ children, className }) => (
-    <StyledHeader className={className}>{children}</StyledHeader>
-);
-
-export const HeaderLogo: React.FC<{ src: string; alt: string; className?: string }> = ({ src, alt, className }) => (
-    <StyledLogo src={src} alt={alt} className={className} />
-);
-
-export const HeaderTitle: React.FC<{ text: string; className?: string }> = ({ text, children, className }) => (
-    <StyledTitleWrapper className={className}>
-        <StyledTitle>{text}</StyledTitle>
-        {children}
-    </StyledTitleWrapper>
-);
-
-export const HeaderSubTitle: React.FC<{ text: string }> = ({ text }) => <StyledSubTitle>{text}</StyledSubTitle>;
-
-export const HeaderBack: React.FC<{ size?: IconSize }> = ({ size = 's' }) => <StyledBackIcon size={size} />;
-
-export const HeaderContent: React.FC<{ className?: string }> = ({ children, className }) => (
-    <StyledContent className={className}>{children}</StyledContent>
-);
-
-/**
- * FixMe: ButtonProps.children принимает только string;
- * В интерфейс ButtonProps надо добавить text: string, а children вернуть в стандартное значение.
- */
-interface HeaderButtonProps extends ButtonProps {
-    /**
-     * Содержимое кнопки
-     */
-    children?: any;
+export interface HeaderProps extends StylingProps {
+    back?: boolean;
+    logo?: string;
+    logoAlt?: string;
+    title?: string;
+    subtitle?: string;
 }
 
-export const HeaderButton: React.FC<HeaderButtonProps> = ({
-    size = 'm',
-    view = 'clear',
-    className,
-    disabled,
-    onClick: handleClick,
-    children,
-}) => {
-    return (
-        <StyledButton
-            size={size}
-            view={view}
-            className={className}
-            tabIndex={disabled ? -1 : 0}
-            onClick={handleClick}
-            disabled={disabled}
-        >
-            {children}
-        </StyledButton>
-    );
-};
+export const Header: React.FC<HeaderProps> = ({ back, logo, logoAlt, title, subtitle, children, ...rest }) => (
+    <HeaderRoot {...rest}>
+        {back && <HeaderBack />}
+        {logo && <HeaderLogo src={logo} alt={logoAlt} />}
+        {title && (
+            <HeaderTitleWrapper>
+                {title && <HeaderTitle>{title}</HeaderTitle>}
+                {subtitle && <HeaderSubtitle>{subtitle}</HeaderSubtitle>}
+            </HeaderTitleWrapper>
+        )}
+        {children && <HeaderContent>{children}</HeaderContent>}
+    </HeaderRoot>
+);
