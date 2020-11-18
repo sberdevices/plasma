@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
+import { scalingPixelBasis } from '@sberdevices/plasma-tokens';
 
 import { addFocus, FocusProps } from '../../mixins/addFocus';
 import { applyView, ViewProps } from '../../mixins/applyView';
@@ -9,6 +10,11 @@ import { convertPinsMatrix, PinProps } from '../../mixins/pins';
 import { PickOptional, ShiftProps, StylingProps } from '../../types';
 
 import { SizeProps, buttonBase, buttonTypography, fontSizeL, fontSizeM, fontSizeS } from './ButtonBase';
+
+/**
+ * Размеры в ремах
+ */
+const iconMargin = `${6 / scalingPixelBasis}rem`;
 
 /**
  * Размеры в пикселях по макету
@@ -116,13 +122,13 @@ const StyledText = styled.span<StyledTextProps>`
     ${({ isContentLeft }) =>
         isContentLeft &&
         css`
-            margin-left: 0.25em;
+            margin-left: ${iconMargin};
         `}
 
     ${({ isContentRight }) =>
         isContentRight &&
         css`
-            margin-right: 0.25em;
+            margin-right: ${iconMargin};
         `}
 `;
 
