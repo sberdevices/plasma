@@ -46,15 +46,20 @@ import { ThemeBackground } from '../../helpers/ThemeBackground'
 <Playground>
   <ThemeBackground>
     <Stepper
+      remover
       value={5}
       step={1}
       min={0}
       max={10}
       disabled={false}
       onChange={() => {}}
+      onRemove={() => {}}
     />
   </ThemeBackground>
 </Playground>
+
+### Модификаторы
+``remover`` при достижении минимального количества, кнопка минус превратится в удалить и при клике на эту кнопку будет вызываться обработчик удаления.
 
 ### Кастомная сборка
 <Playground>

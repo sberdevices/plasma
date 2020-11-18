@@ -19,15 +19,17 @@ export default {
 };
 
 export const Default = () => {
-    const [value, setValue] = useState(12345);
+    const [value, setValue] = useState(number('value', 5));
     return (
         <Stepper
             disabled={boolean('disabled', false)}
             value={value}
             step={number('step', 1)}
             min={number('min', 1)}
-            max={number('max', 12346)}
+            max={number('max', 10)}
+            remover={boolean('remover', true)}
             onChange={(v) => setValue(v)}
+            onRemove={action('onRemove')}
             onFocus={action('onFocus')}
             onBlur={action('onBlur')}
         />
