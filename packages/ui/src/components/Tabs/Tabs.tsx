@@ -12,17 +12,26 @@ import {
 import { addFocus, FocusProps } from '../../mixins/addFocus';
 import { applyMotion, MotionProps } from '../../mixins/applyMotion';
 import { applyDisabled, DisabledProps } from '../../mixins/applyDisabled';
+import { ShiftProps, StylingProps } from '../../types';
 
 import { StyledTabItem } from './TabItem';
 
 /**
- * Размеры в ремах для контейнера и айтемов (в css vars).
+ * Размеры в ремах
+ */
+const padding = `${2 / scalingPixelBasis}rem`;
+const pilledRadius = `${100 / scalingPixelBasis}rem`;
+const pilledOutlineRadius = `${102 / scalingPixelBasis}rem`;
+
+/**
+ * Размеры для контейнера и айтемов (в css vars).
  * Паддинги айтемов дополнительно обыгрываются в TabItem.
  * Так нужно поступать, потому что у айтемов есть своя логика паддингов,
  * а размеры (свойство size) задаются через компонент Tabs.
  */
 const sizes = {
     l: (fixedWidth: boolean) => css`
+        --tabs-shifting: -${((fixedWidth ? 12 : 24) + 2) / scalingPixelBasis}rem;
         --tab-item-padding-x: ${(fixedWidth ? 12 : 24) / scalingPixelBasis}rem;
         --tab-item-padding-y: ${14 / scalingPixelBasis}rem;
         --tab-item-padding-y-reduced: ${12 / scalingPixelBasis}rem;
@@ -33,6 +42,7 @@ const sizes = {
         ${button1};
     `,
     m: (fixedWidth: boolean) => css`
+        --tabs-shifting: -${((fixedWidth ? 12 : 20) + 2) / scalingPixelBasis}rem;
         --tab-item-padding-x: ${(fixedWidth ? 12 : 20) / scalingPixelBasis}rem;
         --tab-item-padding-y: ${12 / scalingPixelBasis}rem;
         --tab-item-padding-y-reduced: ${8 / scalingPixelBasis}rem;
@@ -43,6 +53,7 @@ const sizes = {
         ${button2};
     `,
     s: (fixedWidth: boolean) => css`
+        --tabs-shifting: -${((fixedWidth ? 10 : 16) + 2) / scalingPixelBasis}rem;
         --tab-item-padding-x: ${(fixedWidth ? 10 : 16) / scalingPixelBasis}rem;
         --tab-item-padding-y: ${10 / scalingPixelBasis}rem;
         --tab-item-padding-y-reduced: ${6 / scalingPixelBasis}rem;
@@ -64,7 +75,6 @@ const outlineSizes = {
         radius: `${14 / scalingPixelBasis}rem`,
     },
 };
-const outlinePillsRadius = `${102 / scalingPixelBasis}rem`;
 
 /**
  * Цвета контейнера.
@@ -78,7 +88,7 @@ const views = {
 export type TabsView = keyof typeof views;
 export type TabsSize = keyof typeof sizes;
 
-interface StyledTabsProps extends FocusProps, MotionProps, DisabledProps {
+interface StyledTabsProps extends FocusProps, MotionProps, DisabledProps, ShiftProps {
     $size: TabsSize;
     $view: TabsView;
     $fixedWidth: boolean;
@@ -92,7 +102,7 @@ const applyFocus = ({ $size, $pilled, focused, outlined }: StyledTabsProps) => c
     ${addFocus({
         focused,
         outlined,
-        outlineRadius: $pilled ? outlinePillsRadius : outlineSizes[$size].radius,
+        outlineRadius: $pilled ? pilledOutlineRadius : outlineSizes[$size].radius,
     })}
 `;
 
@@ -104,7 +114,7 @@ const StyledTabs = styled.ul<StyledTabsProps>`
     justify-content: stretch;
 
     margin: 0;
-    padding: 0.125rem;
+    padding: ${padding};
     width: max-content;
 
     list-style-type: none;
@@ -112,9 +122,19 @@ const StyledTabs = styled.ul<StyledTabsProps>`
 
     background-color: ${({ $view }) => views[$view]};
 
-    ${({ $size, $fixedWidth }) =>
+    ${({ $size, $fixedWidth, shiftLeft, shiftRight }) =>
         css`
             ${sizes[$size]($fixedWidth)};
+
+            ${shiftLeft &&
+            css`
+                margin-left: var(--tabs-shifting);
+            `}
+
+            ${shiftRight &&
+            css`
+                margin-right: var(--tabs-shifting);
+            `}
         `};
 
     /**
@@ -139,13 +159,13 @@ const StyledTabs = styled.ul<StyledTabsProps>`
     ${({ $pilled }) =>
         $pilled &&
         css`
-            border-radius: 6.25rem;
+            border-radius: ${pilledRadius};
 
             & ${StyledTabItem} {
-                border-radius: 6.25rem;
+                border-radius: ${pilledRadius};
             }
         `}
-    
+
     & ${StyledTabItem} {
         ${applyFocus}
         ${applyMotion}
@@ -153,7 +173,13 @@ const StyledTabs = styled.ul<StyledTabsProps>`
     }
 `;
 
-export interface TabsProps extends React.HTMLAttributes<HTMLUListElement>, FocusProps, MotionProps, DisabledProps {
+export interface TabsProps
+    extends React.HTMLAttributes<HTMLUListElement>,
+        FocusProps,
+        MotionProps,
+        DisabledProps,
+        ShiftProps,
+        StylingProps {
     /**
      * Размер компонента
      */
@@ -172,8 +198,6 @@ export interface TabsProps extends React.HTMLAttributes<HTMLUListElement>, Focus
      * Кнопки табов и контейнер примут вид скругленных "капсул"
      */
     pilled?: boolean;
-    style?: React.CSSProperties;
-    className?: string;
 }
 
 /**
