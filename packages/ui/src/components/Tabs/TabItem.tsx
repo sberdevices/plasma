@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { surfaceLiquid03 } from '@sberdevices/plasma-tokens';
+import { surfaceLiquid03, scalingPixelBasis } from '@sberdevices/plasma-tokens';
 
 interface StyledTabsProps {
     isActive?: boolean;
@@ -82,7 +82,7 @@ export const StyledTabItem = styled.li<StyledTabsProps>`
             padding-bottom: var(--tab-item-padding-y-reduced);
 
             & ${StyledTabItemText} {
-                margin-left: 0.5rem;
+                margin-left: ${6 / scalingPixelBasis}rem;
             }
         `}
 `;
