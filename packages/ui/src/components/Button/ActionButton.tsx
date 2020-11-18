@@ -20,13 +20,13 @@ const sizes = {
         outline: 2 / fontSizeL,
     },
     m: {
-        width: 28 / fontSizeM,
-        height: 28 / fontSizeM,
+        width: 32 / fontSizeM,
+        height: 32 / fontSizeM,
         outline: 2 / fontSizeM,
     },
     s: {
-        width: 20 / fontSizeS,
-        height: 20 / fontSizeS,
+        width: 28 / fontSizeS,
+        height: 28 / fontSizeS,
         outline: 2 / fontSizeS,
     },
 };

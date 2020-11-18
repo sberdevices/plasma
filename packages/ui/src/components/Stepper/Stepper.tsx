@@ -1,9 +1,10 @@
 import React, { useCallback } from 'react';
 import styled, { css } from 'styled-components';
-import { typography, colors } from '@sberdevices/plasma-tokens';
+import { typography, colors, scalingPixelBasis } from '@sberdevices/plasma-tokens';
 
-import { Button, ButtonProps } from '../Button';
-import { IconMinus, IconPlus } from '../Icon';
+import { PickOptional } from '../../types/PickOptional';
+import { ActionButton, ButtonProps } from '../Button';
+import { IconMinus, IconPlus, IconTrash } from '../Icon';
 
 const StyledRoot = styled.div`
     display: flex;
@@ -24,13 +25,17 @@ interface StyledValueProps {
 }
 
 const StyledValue = styled.span<StyledValueProps>`
+    ${typography.body2}
+
     box-sizing: border-box;
-    margin-left: 0.375em;
-    margin-right: 0.375em;
+
+    margin-left: ${12 / scalingPixelBasis}rem;
+    margin-right: ${12 / scalingPixelBasis}rem;
+    min-width: ${20 / scalingPixelBasis}rem;
 
     color: ${colors.text};
 
-    ${typography.body2}
+    text-align: center;
 
     ${({ isWarning }) =>
         isWarning &&
@@ -46,9 +51,9 @@ const StyledValue = styled.span<StyledValueProps>`
 `;
 
 export interface StepperButtonProps
-    extends Pick<
+    extends PickOptional<
         ButtonProps,
-        'pin' | 'size' | 'view' | 'disabled' | 'className' | 'style' | 'onFocus' | 'onBlur' | 'onClick'
+        'pin' | 'view' | 'disabled' | 'className' | 'style' | 'onFocus' | 'onBlur' | 'onClick'
     > {
     icon?: React.ReactElement;
 }
@@ -64,28 +69,13 @@ export const StepperRoot = StyledRoot;
 
 export const StepperButton: React.FC<StepperButtonProps> = ({
     pin = 'circle-circle',
-    size = 's',
     view = 'secondary',
-    disabled,
     icon,
-    className,
-    style,
-    onFocus,
-    onBlur,
-    onClick,
+    ...rest
 }) => (
-    <Button
-        className={className}
-        style={style}
-        pin={pin}
-        view={view}
-        size={size}
-        disabled={disabled}
-        contentLeft={icon || <IconMinus />}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        onClick={onClick}
-    />
+    <ActionButton size="m" pin={pin} view={view} {...rest}>
+        {icon}
+    </ActionButton>
 );
 
 export const StepperValue: React.FC<StepperValueProps> = ({ value, disabled, isWarning }) => (
@@ -120,6 +110,11 @@ export interface StepperProps {
      */
     disabled?: boolean;
     /**
+     * При достижении минимального количества, кнопка минус превратится в удалить
+     */
+    remover?: boolean;
+    onRemove?: React.MouseEventHandler<HTMLButtonElement>;
+    /**
      * Обработчик фокуса по кнопкам +/-
      */
     onFocus?: React.FocusEventHandler<HTMLButtonElement>;
@@ -131,6 +126,7 @@ export interface StepperProps {
 
 export const Stepper: React.FC<StepperProps> = ({
     value,
+    remover,
     step = 1,
     min = 0,
     max = Infinity,
@@ -138,25 +134,29 @@ export const Stepper: React.FC<StepperProps> = ({
     onChange,
     onFocus,
     onBlur,
+    onRemove,
 }) => {
     const onLessClick = useCallback(() => onChange(value - step), [value, step, onChange]);
     const onMoreClick = useCallback(() => onChange(value + step), [value, step, onChange]);
-    const lessDisabled = disabled || value <= min || value - step < min;
-    const moreDisabled = disabled || value >= max || value + step > max;
-    const isWarning = value >= max;
+    const onRemoveClick = useCallback((e) => onRemove?.(e), [onRemove]);
+    const isMin = value <= min;
+    const isMax = value >= max;
+    const lessDisabled = isMin || value - step < min;
+    const moreDisabled = isMax || value + step > max;
 
     return (
         <StepperRoot>
             <StepperButton
-                disabled={lessDisabled}
-                icon={<IconMinus />}
-                onClick={onLessClick}
+                disabled={disabled || (!remover && lessDisabled)}
+                icon={isMin && remover ? <IconTrash /> : <IconMinus />}
+                view={isMin && remover ? 'critical' : 'secondary'}
+                onClick={isMin && remover ? onRemoveClick : onLessClick}
                 onFocus={onFocus}
                 onBlur={onBlur}
             />
-            <StepperValue value={value} disabled={disabled} isWarning={isWarning} />
+            <StepperValue value={value} disabled={disabled} isWarning={isMax} />
             <StepperButton
-                disabled={moreDisabled}
+                disabled={disabled || moreDisabled}
                 icon={<IconPlus />}
                 onClick={onMoreClick}
                 onFocus={onFocus}
