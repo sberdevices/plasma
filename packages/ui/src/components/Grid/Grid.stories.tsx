@@ -12,13 +12,6 @@ const StyledDummyFiller = styled(Filler)`
 
 export default {
     title: 'Grid',
-    decorators: [
-        (Story) => (
-            <div style={{ margin: '0 -16px' }}>
-                <Story />
-            </div>
-        ),
-    ],
 };
 
 export const ColPlayground = () => {
