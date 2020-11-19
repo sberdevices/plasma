@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 import { typography, colors, scalingPixelBasis } from '@sberdevices/plasma-tokens';
+import { Icon, IconName } from '@sberdevices/plasma-icons';
 
-import { Icon, IconName } from '../Icon/Icon';
 import type { PickOptional } from '../../types/PickOptional';
 
 // В этих константах задаем размеры в em, чтобы не зависеть напрямую от пикселей

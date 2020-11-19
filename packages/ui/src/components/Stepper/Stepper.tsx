@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import { typography, colors, scalingPixelBasis } from '@sberdevices/plasma-tokens';
+import { IconMinus, IconPlus, IconTrash } from '@sberdevices/plasma-icons';
 
 import { PickOptional } from '../../types/PickOptional';
 import { ActionButton, ButtonProps } from '../Button';
-import { IconMinus, IconPlus, IconTrash } from '../Icon';
 
 const StyledRoot = styled.div`
     display: flex;

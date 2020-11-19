@@ -1,0 +1,50 @@
+{
+    "name": "@sberdevices/plasma-icons",
+    "version": "0.1.0",
+    "description": "SberDevices Design System Icons",
+    "main": "index.js",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "ssh://git@github.com:sberdevices/plasma.git"
+    },
+    "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
+    "license": "Sber Public License at-nc-sa v.2",
+    "peerDependencies": {
+        "@sberdevices/plasma-tokens": "^0.4.0",
+        "@types/node": "^12.12.30",
+        "@types/react": "^16.9.38",
+        "@types/react-dom": "^16.9.8",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "styled-components": "^5.1.1"
+    },
+    "devDependencies": {
+        "@sberdevices/plasma-tokens": "0.4.0",
+        "@types/node": "12.12.30",
+        "@types/react": "16.9.38",
+        "@types/react-dom": "16.9.8",
+        "@types/styled-components": "5.1.0",
+        "babel-loader": "8.1.0",
+        "react": "16.13.1",
+        "react-dom": "16.13.1",
+        "react-scripts": "3.4.1",
+        "typescript": "3.9.5"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "prepare": "npm run build",
+        "clean": "rm -rf ./Icon.assets && rm -rf ./Icons",
+        "build": "npm run clean && tsc"
+    },
+    "files": ["Icon.assets", "Icons", "index.d.ts", "index.js", "Icon.d.ts", "Icon.js", "IconRoot.d.ts", "IconRoot.js"],
+    "contributors": [
+        "Vasiliy Loginevskiy",
+        "Антонов Игорь Александрович",
+        "Виноградов Антон Александрович",
+        "Зубаиров Фаниль Асхатович",
+        "Чельцов Евгений Олегович"
+    ]
+}

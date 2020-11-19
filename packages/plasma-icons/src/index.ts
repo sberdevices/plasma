@@ -42,3 +42,6 @@ export { IconTrashFilled } from './Icons/IconTrashFilled';
 
 export { IconRoot } from './IconRoot';
 export type { IconProps, IconSize } from './IconRoot';
+
+export { Icon, iconSectionsSet } from './Icon';
+export type { IconName } from './Icon';

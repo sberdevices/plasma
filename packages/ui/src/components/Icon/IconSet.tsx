@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import { Icon, iconSectionsSet, IconProps, IconName as IName } from './Icon';
-import { IconSize } from './IconRoot';
+import { Icon, iconSectionsSet, IconProps, IconName as IName, IconSize } from '@sberdevices/plasma-icons';
 
 const StyledRoot = styled.div`
     display: flex;
@@ -63,7 +61,7 @@ export const IconSet: React.FC<IconSetProps> = ({ size, color, exclude, include 
                                 {filteredIcons.map((icon) => (
                                     <StyledContainer key={icon}>
                                         <IconName>{icon}</IconName>
-                                        <Icon icon={icon as IconProps['icon']} size={size} color={color} />
+                                        <Icon icon={icon as IName} size={size} color={color} />
                                     </StyledContainer>
                                 ))}
                             </IconList>

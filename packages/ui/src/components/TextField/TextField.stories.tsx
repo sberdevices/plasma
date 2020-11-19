@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { text, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-
-import { IconSettings } from '../Icon';
+import { IconSettings } from '@sberdevices/plasma-icons';
 
 import { TextField } from './TextField';
 

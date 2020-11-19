@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { number, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-
-import { IconMinus, IconPlus } from '../Icon';
+import { IconMinus, IconPlus } from '@sberdevices/plasma-icons';
 
 import { Stepper, StepperRoot, StepperButton, StepperValue } from './Stepper';
 
