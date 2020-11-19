@@ -12,6 +12,7 @@
     "license": "Sber Public License at-nc-sa v.2",
     "peerDependencies": {
         "@sberdevices/plasma-tokens": "^0.2.0",
+        "@sberdevices/plasma-icons": "^0.1.0",
         "@types/node": "^12.12.30",
         "@types/react": "^16.9.38",
         "@types/react-dom": "^16.9.8",
@@ -22,6 +23,7 @@
     "devDependencies": {
         "@mdx-js/mdx": "^1.6.16",
         "@sberdevices/plasma-tokens": "0.4.0",
+        "@sberdevices/plasma-icons": "0.1.0",
         "@storybook/addon-actions": "6.0.0-rc.13",
         "@storybook/addon-backgrounds": "6.0.0-rc.13",
         "@storybook/addon-knobs": "6.0.0-rc.13",

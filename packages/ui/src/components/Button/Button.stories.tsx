@@ -1,10 +1,9 @@
 import React from 'react';
 import { text, boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import { IconClock, IconDownload, Icon } from '@sberdevices/plasma-icons';
 
 import { View, views } from '../../mixins/applyView';
-import { IconClock, IconDownload } from '../Icon';
-import { Icon } from '../Icon/Icon';
 
 import { ButtonSize } from './ButtonBase';
 import { Button, sizes } from './Button';

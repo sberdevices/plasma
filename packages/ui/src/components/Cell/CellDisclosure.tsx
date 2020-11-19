@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { IconDisclosureRight } from '@sberdevices/plasma-icons';
 
 import { Button, ButtonProps } from '../Button';
-import { IconDisclosureRight } from '../Icon';
 
 const DisclosureBtn = styled(Button)`
     left: 1rem;
