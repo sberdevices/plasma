@@ -1,8 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { buttonAccent, accent, buttonWarning, whitePrimary, blackSecondary } from '@sberdevices/plasma-tokens';
-
-import { IconDownload } from '../Icon';
+import { IconDownload } from '@sberdevices/plasma-icons';
 
 // TODO: refactor Cart
 const uiColor = {
