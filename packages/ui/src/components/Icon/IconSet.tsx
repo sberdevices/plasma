@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Icon, iconSectionsSet, IconProps, IconName as IName, IconSize } from '@sberdevices/plasma-icons';
+import { Icon, iconSectionsSet, IconName as IName, IconSize } from '@sberdevices/plasma-icons';
 
 const StyledRoot = styled.div`
     display: flex;
