@@ -2,7 +2,7 @@ import React from 'react';
 
 import { IconAsset } from '../IconRoot';
 
-export const WifiNotConnected: React.FC<IconAsset> = (props) => (
+export const WifiOff: React.FC<IconAsset> = (props) => (
     <svg width="1.5rem" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path
             fillRule="evenodd"
