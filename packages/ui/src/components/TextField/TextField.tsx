@@ -1,22 +1,35 @@
-import React, { forwardRef, useState, useCallback } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
-import { colors, scalingPixelBasis } from '@sberdevices/plasma-tokens';
+import {
+    body1,
+    caption,
+    accent,
+    critical,
+    surfaceLiquid01,
+    surfaceLiquid02,
+    whitePrimary,
+    whiteSecondary,
+    scalingPixelBasis,
+} from '@sberdevices/plasma-tokens';
 
-import { StyledInputRoot, StyledInput, InputProps } from '../Input';
+import { StylingProps, PickOptional } from '../../types';
+import { DisabledProps } from '../../mixins';
 
-// В этих константах задаем размеры в em, чтобы не зависеть напрямую от пикселей
-// В то же время в числителях - значения в пикселях, взятые из макета
-const rootHeight = 56 / scalingPixelBasis;
-const rootBorderRadius = 12 / scalingPixelBasis;
-const rootPaddingX = 16 / scalingPixelBasis;
-const linePaddingT = 24 / scalingPixelBasis;
-const linePaddingX = rootPaddingX;
-const linePaddingCompactX = 12 / scalingPixelBasis;
-const titleMarginX = linePaddingX * 2;
-const titleTranslateYSmall = 4 / scalingPixelBasis;
-const titleTranslateY = 18 / scalingPixelBasis;
-const titleFontSize = 12 / scalingPixelBasis;
-const inputHeight = 22 / scalingPixelBasis;
+/**
+ * Значения в ремах храним тут,
+ * чтобы не считать их каждый раз при перерисовке.
+ * Числа в числителях соответствуют значениям в макетах.
+ */
+const paddingX = `${16 / scalingPixelBasis}rem`;
+const paddingXWithContent = `${(16 * 2 + 24) / scalingPixelBasis}rem`;
+const inputHeight = `${56 / scalingPixelBasis}rem`;
+const inputPaddingT = `${26 / scalingPixelBasis}rem`;
+const inputPaddingB = `${10 / scalingPixelBasis}rem`;
+const inputBorderRadius = `${16 / scalingPixelBasis}rem`;
+const labelTopEmpty = `${18 / scalingPixelBasis}rem`;
+const labelTopFullfilled = `${6 / scalingPixelBasis}rem`;
+const contentTop = `${16 / scalingPixelBasis}rem`;
+const helperTop = `${4 / scalingPixelBasis}rem`;
 
 interface ValidationProps {
     /**
@@ -29,134 +42,157 @@ interface ValidationProps {
     hasError?: boolean;
 }
 
-interface StyledRootProps extends ValidationProps {
-    disabled?: boolean;
-    isIconLeft?: boolean;
-    isIconRight?: boolean;
+interface IsContentProps {
+    isContentLeft?: boolean;
+    isContentRight?: boolean;
 }
 
-const StyledRoot = styled(StyledInputRoot)<StyledRootProps>`
-    box-sizing: border-box;
-    height: ${rootHeight}rem;
-
-    border-radius: ${rootBorderRadius}rem;
-
-    ${({ isIconLeft }) =>
-        isIconLeft &&
-        css`
-            padding-left: ${rootPaddingX}rem;
-        `}
-
-    ${({ isIconRight }) =>
-        isIconRight &&
-        css`
-            padding-right: ${rootPaddingX}rem;
-        `}
-
-    ${({ disabled }) =>
-        disabled &&
-        css`
-            background: ${colors.surfaceLiquid01};
-        `}
-
-    ${({ hasSuccess }) =>
-        hasSuccess &&
-        css`
-            background-color: #12a55716;
-        `}
-
-    ${({ hasError }) =>
-        hasError &&
-        css`
-            background-color: #dc283a16;
-        `}
-`;
-
-interface StyledInputLinePros {
-    isIconLeft?: boolean;
-    isIconRight?: boolean;
-}
-
-const StyledInputLine = styled.div<StyledInputLinePros>`
+const StyledInputWrapper = styled.label`
     position: relative;
-    box-sizing: border-box;
-
-    width: 100%;
-    height: 100%;
-    padding: ${linePaddingT}rem ${linePaddingX}rem 0;
-
-    ${({ isIconLeft }) =>
-        isIconLeft &&
-        css`
-            padding-left: ${linePaddingCompactX}rem;
-        `}
-
-    ${({ isIconRight }) =>
-        isIconRight &&
-        css`
-            padding-right: ${linePaddingCompactX}rem;
-        `}
+    cursor: pointer;
 `;
 
-interface StyledTitleProps extends ValidationProps {
-    disabled?: boolean;
-    focused?: boolean;
+const StyledInput = styled.input`
+    ${body1};
+
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    padding: ${inputPaddingT} ${paddingX} ${inputPaddingB};
+    width: 100%;
+    height: ${inputHeight};
+
+    background-color: ${surfaceLiquid01};
+    border: 0 none;
+    border-radius: ${inputBorderRadius};
+    color: ${whitePrimary};
+
+    transition-duration: 0.1s;
+    transition-property: background-color, color;
+    transition-timing-function: ease-in-out;
+
+    &:focus {
+        background-color: ${surfaceLiquid02};
+        outline: none;
+    }
+
+    &:disabled {
+        color: ${whiteSecondary};
+    }
+`;
+
+interface StyledLabelProps {
     isValue?: boolean;
 }
 
-const StyledTitle = styled.span<StyledTitleProps>`
-    position: absolute;
-    top: 0;
-
-    width: calc(100% - ${titleMarginX}rem);
+const StyledLabel = styled.span<StyledLabelProps>`
+    ${body1};
 
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 
-    transform: translateY(${titleTranslateY}rem);
+    position: absolute;
+    top: ${labelTopEmpty};
+    left: ${paddingX};
+    right: ${paddingX};
+
     transition: all 0.1s ease-in-out;
 
-    ${({ disabled }) =>
-        disabled &&
-        css`
-            color: ${colors.whiteSecondary};
-        `}
+    ${StyledInput}:focus ~ & {
+        ${caption};
 
-    ${({ focused }) =>
-        focused &&
-        css`
-            color: ${colors.accent};
-        `}
+        top: ${labelTopFullfilled};
+    }
 
-    ${({ isValue, focused }) =>
-        (isValue || focused) &&
+    ${({ isValue }) =>
+        isValue &&
         css`
-            transform: translateY(${titleTranslateYSmall}rem);
-            font-size: ${titleFontSize}rem;
+            ${caption};
+
+            top: ${labelTopFullfilled};
         `}
+`;
+
+const StyledContent = styled.div`
+    position: absolute;
+    top: ${contentTop};
+    left: 0;
+    margin: 0 ${paddingX};
+
+    ${StyledInput} ~ & {
+        left: auto;
+        right: 0;
+    }
+`;
+
+const StyledHelperText = styled.span`
+    ${caption};
+
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    margin-top: ${helperTop};
+    padding-left: ${paddingX};
+    padding-right: ${paddingX};
+`;
+
+const StyledRoot = styled.div<ValidationProps & DisabledProps & IsContentProps>`
+    display: flex;
+    flex-direction: column;
+
+    caret-color: ${accent};
+    color: ${whiteSecondary};
 
     ${({ hasSuccess }) =>
         hasSuccess &&
         css`
-            color: ${colors.accent};
+            color: ${accent};
         `}
 
     ${({ hasError }) =>
         hasError &&
         css`
-            color: ${colors.critical};
+            color: ${critical};
+        `}
+
+    ${({ disabled }) =>
+        disabled &&
+        css`
+            opacity: 0.4;
+        `}
+
+    ${({ isContentLeft }) =>
+        isContentLeft &&
+        css`
+            & ${StyledInput} {
+                padding-left: ${paddingXWithContent};
+            }
+            & ${StyledLabel} {
+                left: ${paddingXWithContent};
+            }
+        `}
+
+    ${({ isContentRight }) =>
+        isContentRight &&
+        css`
+            & ${StyledInput} {
+                padding-right: ${paddingXWithContent};
+            }
+            & ${StyledLabel} {
+                right: ${paddingXWithContent};
+            }
         `}
 `;
 
-const StyledFieldInput = styled(StyledInput)`
-    height: ${inputHeight}rem;
-    padding: 0;
+type InputAttributes = PickOptional<HTMLInputElement, 'type' | 'name' | 'value' | 'disabled' | 'placeholder'>;
+type InputHandlers = PickOptional<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'onFocus' | 'onBlur'>;
 
-    color: ${colors.whitePrimary};
-`;
-
-export interface FieldProps extends Omit<InputProps, 'iconName' | 'placeholder' | 'onResetClick'>, ValidationProps {
+export interface FieldProps extends InputAttributes, InputHandlers, ValidationProps, StylingProps {
     /**
      * Надпись лейбла.
      */
@@ -169,64 +205,45 @@ export interface FieldProps extends Omit<InputProps, 'iconName' | 'placeholder' 
      * Слот для контента справа.
      */
     contentRight?: React.ReactElement;
-    style?: React.CSSProperties;
-    className?: string;
+    /**
+     * Подсказка для поля ввода.
+     */
+    helperText?: string;
 }
 
-export const TextField = forwardRef<HTMLInputElement, FieldProps>(
+export const TextField = React.forwardRef<HTMLInputElement, FieldProps>(
     (
-        { value, title, disabled, contentLeft, contentRight, onFocus, onBlur, hasSuccess, hasError, style, ...rest },
+        {
+            value,
+            title,
+            helperText,
+            disabled,
+            contentLeft,
+            contentRight,
+            hasSuccess,
+            hasError,
+            style,
+            className,
+            ...rest
+        },
         ref,
-    ) => {
-        const [focused, setFocused] = useState(false);
-        const handleFocus = useCallback(
-            (e) => {
-                setFocused(true);
-                onFocus?.(e);
-            },
-            [onFocus],
-        );
-        const handleBlur = useCallback(
-            (e) => {
-                setFocused(false);
-                onBlur?.(e);
-            },
-            [onBlur],
-        );
-
-        return (
-            <StyledRoot
-                disabled={disabled}
-                isIconLeft={!!contentLeft}
-                isIconRight={!!contentRight}
-                hasSuccess={hasSuccess}
-                hasError={hasError}
-                style={style}
-            >
-                {contentLeft}
-                <StyledInputLine>
-                    {title && (
-                        <StyledTitle
-                            focused={focused}
-                            disabled={disabled}
-                            isValue={!!value}
-                            hasSuccess={hasSuccess}
-                            hasError={hasError}
-                        >
-                            {title}
-                        </StyledTitle>
-                    )}
-                    <StyledFieldInput
-                        ref={ref}
-                        value={value}
-                        disabled={disabled}
-                        onFocus={handleFocus}
-                        onBlur={handleBlur}
-                        {...rest}
-                    />
-                </StyledInputLine>
-                {contentRight}
-            </StyledRoot>
-        );
-    },
+    ) => (
+        <StyledRoot
+            hasSuccess={hasSuccess}
+            hasError={hasError}
+            disabled={disabled}
+            style={style}
+            className={className}
+            isContentLeft={!!contentLeft}
+            isContentRight={!!contentRight}
+        >
+            <StyledInputWrapper>
+                {contentLeft && <StyledContent>{contentLeft}</StyledContent>}
+                <StyledInput ref={ref} value={value} disabled={disabled} {...rest} />
+                {title && <StyledLabel isValue={!!value}>{title}</StyledLabel>}
+                {contentRight && <StyledContent>{contentRight}</StyledContent>}
+            </StyledInputWrapper>
+            {helperText && <StyledHelperText>{helperText}</StyledHelperText>}
+        </StyledRoot>
+    ),
 );
