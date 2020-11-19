@@ -7,7 +7,7 @@
     "release": "auto shipit",
     "chromatic": "lerna run chromatic",
     "build-storybook": "lerna run build-storybook",
-    "build-docz": "lerna bootstrap --scope @sberdevices/ui && lerna run docz:build",
+    "build-docz": "lerna bootstrap --scope=@sberdevices/{plasma-icons,ui} && lerna run docz:build",
     "lint": "eslint --ext .js,.ts,.tsx ."
   },
   "devDependencies": {

@@ -16,15 +16,13 @@
         "@types/react": "^16.9.38",
         "@types/react-dom": "^16.9.8",
         "react": "^16.13.1",
-        "react-dom": "^16.13.1",
-        "styled-components": "^5.1.1"
+        "react-dom": "^16.13.1"
     },
     "devDependencies": {
         "@sberdevices/plasma-tokens": "0.4.0",
         "@types/node": "12.12.30",
         "@types/react": "16.9.38",
         "@types/react-dom": "16.9.8",
-        "@types/styled-components": "5.1.0",
         "babel-loader": "8.1.0",
         "react": "16.13.1",
         "react-dom": "16.13.1",
@@ -46,5 +44,6 @@
         "Виноградов Антон Александрович",
         "Зубаиров Фаниль Асхатович",
         "Чельцов Евгений Олегович"
-    ]
+    ],
+    "dependencies": {}
 }
