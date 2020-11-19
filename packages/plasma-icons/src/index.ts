@@ -39,6 +39,104 @@ export { IconSettings } from './Icons/IconSettings';
 export { IconSpinner } from './Icons/IconSpinner';
 export { IconTrash } from './Icons/IconTrash';
 export { IconTrashFilled } from './Icons/IconTrashFilled';
+// Action
+export { IconAlarm } from './Icons/IconAlarm';
+export { IconBankCard } from './Icons/IconBankCard';
+export { IconBankCardAlt1 } from './Icons/IconBankCardAlt1';
+export { IconHeart } from './Icons/IconHeart';
+export { IconHeartStroke } from './Icons/IconHeartStroke';
+export { IconLanguage } from './Icons/IconLanguage';
+export { IconLock } from './Icons/IconLock';
+export { IconPower } from './Icons/IconPower';
+export { IconRefresh } from './Icons/IconRefresh';
+export { IconReset } from './Icons/IconReset';
+export { IconSyncProblem } from './Icons/IconSyncProblem';
+export { IconTimerStroke } from './Icons/IconTimerStroke';
+export { IconTimerFill } from './Icons/IconTimerFill';
+export { IconEye } from './Icons/IconEye';
+// Alert
+export { IconBell } from './Icons/IconBell';
+export { IconBellActive } from './Icons/IconBellActive';
+export { IconHelp } from './Icons/IconHelp';
+// export { IconInfo } from './Icons/IconInfo';
+// export { IconInfoFilled } from './Icons/IconInfoFilled';
+export { IconWarning } from './Icons/IconWarning';
+// AV
+export { IconCamReverse } from './Icons/IconCamReverse';
+export { IconCameraVideo } from './Icons/IconCameraVideo';
+export { IconVideoOff } from './Icons/IconVideoOff';
+export { IconMic } from './Icons/IconMic';
+export { IconMicNone } from './Icons/IconMicNone';
+export { IconMicOff } from './Icons/IconMicOff';
+export { IconMusicMic } from './Icons/IconMusicMic';
+export { IconVolumeAlt1 } from './Icons/IconVolumeAlt1';
+export { IconVolumeAlt2 } from './Icons/IconVolumeAlt2';
+export { IconVolumeDown } from './Icons/IconVolumeDown';
+export { IconMute } from './Icons/IconMute';
+export { IconVolumeOff } from './Icons/IconVolumeOff';
+export { IconVolumeUp } from './Icons/IconVolumeUp';
+export { IconVideoClip } from './Icons/IconVideoClip';
+export { IconMusicAlbum } from './Icons/IconMusicAlbum';
+// Connection
+export { IconBluetooth } from './Icons/IconBluetooth';
+export { IconBluetoothDisabled } from './Icons/IconBluetoothDisabled';
+export { IconBluetoothSearching } from './Icons/IconBluetoothSearching';
+export { IconEthernet } from './Icons/IconEthernet';
+export { IconInputs } from './Icons/IconInputs';
+export { IconNetwork } from './Icons/IconNetwork';
+export { IconPowerWire } from './Icons/IconPowerWire';
+export { IconWifi } from './Icons/IconWifi';
+export { IconWifiOff } from './Icons/IconWifiOff';
+export { IconWifiSignal0 } from './Icons/IconWifiSignal0';
+export { IconWifiSignal1 } from './Icons/IconWifiSignal1';
+export { IconWifiSignal2 } from './Icons/IconWifiSignal2';
+export { IconWifiSignal3 } from './Icons/IconWifiSignal3';
+export { IconWifiSignalLock } from './Icons/IconWifiSignalLock';
+// Hardware
+export { IconDevices } from './Icons/IconDevices';
+export { IconDevice } from './Icons/IconDevice';
+export { IconDeviceTv } from './Icons/IconDeviceTv';
+export { IconDisplay } from './Icons/IconDisplay';
+export { IconGamepad } from './Icons/IconGamepad';
+export { IconGyro } from './Icons/IconGyro';
+export { IconHeadphones } from './Icons/IconHeadphones';
+export { IconKeyboard } from './Icons/IconKeyboard';
+export { IconMobileAutorotate } from './Icons/IconMobileAutorotate';
+export { IconRemotesAndAccessories } from './Icons/IconRemotesAndAccessories';
+export { IconRemotesAndAccessoriesStroke } from './Icons/IconRemotesAndAccessoriesStroke';
+export { IconTv } from './Icons/IconTv';
+export { IconTvChannel } from './Icons/IconTvChannel';
+export { IconTvChannelAlt1 } from './Icons/IconTvChannelAlt1';
+// Communication
+export { IconAddToCall } from './Icons/IconAddToCall';
+export { IconCall } from './Icons/IconCall';
+export { IconCallCircle } from './Icons/IconCallCircle';
+export { IconCallEnd } from './Icons/IconCallEnd';
+export { IconCallEndCircle } from './Icons/IconCallEndCircle';
+export { IconMessage } from './Icons/IconMessage';
+// Files
+export { IconCardstack } from './Icons/IconCardstack';
+export { IconCopy } from './Icons/IconCopy';
+export { IconFolder } from './Icons/IconFolder';
+// Map
+export { IconLocation } from './Icons/IconLocation';
+export { IconNavigationArrow } from './Icons/IconNavigationArrow';
+// Player
+export { IconNext } from './Icons/IconNext';
+export { IconPause } from './Icons/IconPause';
+export { IconPlay } from './Icons/IconPlay';
+export { IconPrevious } from './Icons/IconPrevious';
+export { IconRepeat } from './Icons/IconRepeat';
+export { IconShuffle } from './Icons/IconShuffle';
+// Other
+export { IconAccessibility } from './Icons/IconAccessibility';
+export { IconPicture } from './Icons/IconPicture';
+export { IconSleep } from './Icons/IconSleep';
+export { IconMagicWand } from './Icons/IconMagicWand';
+export { IconPip1 } from './Icons/IconPip1';
+export { IconStoreGamepad } from './Icons/IconStoreGamepad';
+export { IconStoreRemote } from './Icons/IconStoreRemote';
+export { IconTicket } from './Icons/IconTicket';
 
 export { IconRoot } from './IconRoot';
 export type { IconProps, IconSize } from './IconRoot';

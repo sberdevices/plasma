@@ -54,15 +54,16 @@ import { Power } from './Icon.assets/Power';
 import { Refresh } from './Icon.assets/Refresh';
 import { Reset } from './Icon.assets/Reset';
 import { SyncProblem } from './Icon.assets/SyncProblem';
-import { Timer } from './Icon.assets/Timer';
+import { TimerStroke } from './Icon.assets/TimerStroke';
 import { TimerFill } from './Icon.assets/TimerFill';
+import { Eye } from './Icon.assets/Eye';
 // Alert
 import { Bell } from './Icon.assets/Bell';
 import { BellActive } from './Icon.assets/BellActive';
 import { Help } from './Icon.assets/Help';
-import { Info } from './Icon.assets/Info';
-import { Info1 } from './Icon.assets/Info1';
-import { InfoFilled } from './Icon.assets/InfoFilled';
+// import { Info } from './Icon.assets/Info';
+// import { Info1 } from './Icon.assets/Info1';
+// import { InfoFilled } from './Icon.assets/InfoFilled';
 import { Warning } from './Icon.assets/Warning';
 // AV
 import { CamReverse } from './Icon.assets/CamReverse';
@@ -84,23 +85,23 @@ import { MusicAlbum } from './Icon.assets/MusicAlbum';
 import { Bluetooth } from './Icon.assets/Bluetooth';
 import { BluetoothDisabled } from './Icon.assets/BluetoothDisabled';
 import { BluetoothSearching } from './Icon.assets/BluetoothSearching';
-import { EthernetWhite } from './Icon.assets/EthernetWhite';
+import { Ethernet } from './Icon.assets/Ethernet';
 import { Inputs } from './Icon.assets/Inputs';
 import { Network } from './Icon.assets/Network';
 import { PowerWire } from './Icon.assets/PowerWire';
 import { Wifi } from './Icon.assets/Wifi';
-import { WifiNotConnected } from './Icon.assets/WifiNotConnected';
+import { WifiOff } from './Icon.assets/WifiOff';
 import { WifiSignal0 } from './Icon.assets/WifiSignal0';
 import { WifiSignal1 } from './Icon.assets/WifiSignal1';
 import { WifiSignal2 } from './Icon.assets/WifiSignal2';
 import { WifiSignal3 } from './Icon.assets/WifiSignal3';
 import { WifiSignalLock } from './Icon.assets/WifiSignalLock';
 // Hardware
-import { DeviceAlt1 } from './Icon.assets/DeviceAlt1';
+import { Devices } from './Icon.assets/Devices';
 import { Device } from './Icon.assets/Device';
 import { DeviceTv } from './Icon.assets/DeviceTv';
 import { Display } from './Icon.assets/Display';
-import { GamepadAlt1 } from './Icon.assets/GamepadAlt1';
+import { Gamepad } from './Icon.assets/Gamepad';
 import { Gyro } from './Icon.assets/Gyro';
 import { Headphones } from './Icon.assets/Headphones';
 import { Keyboard } from './Icon.assets/Keyboard';
@@ -108,8 +109,8 @@ import { MobileAutorotate } from './Icon.assets/MobileAutorotate';
 import { RemotesAndAccessories } from './Icon.assets/RemotesAndAccessories';
 import { RemotesAndAccessoriesStroke } from './Icon.assets/RemotesAndAccessoriesStroke';
 import { Tv } from './Icon.assets/Tv';
-import { TvLive } from './Icon.assets/TvLive';
-import { TvLiveAlt1 } from './Icon.assets/TvLiveAlt1';
+import { TvChannel } from './Icon.assets/TvChannel';
+import { TvChannelAlt1 } from './Icon.assets/TvChannelAlt1';
 // Communication
 import { AddToCall } from './Icon.assets/AddToCall';
 import { Call } from './Icon.assets/Call';
@@ -199,16 +200,17 @@ export const iconSectionsSet = {
         refresh: Refresh,
         reset: Reset,
         syncProblem: SyncProblem,
-        timer: Timer,
+        timerStroke: TimerStroke,
         timerFill: TimerFill,
+        eye: Eye,
     },
     alert: {
         bell: Bell,
         bellActive: BellActive,
         help: Help,
-        info: Info,
-        info1: Info1,
-        infoFilled: InfoFilled,
+        // info: Info,
+        // info1: Info1,
+        // infoFilled: InfoFilled,
         warning: Warning,
     },
     av: {
@@ -232,12 +234,12 @@ export const iconSectionsSet = {
         bluetooth: Bluetooth,
         bluetoothDisabled: BluetoothDisabled,
         bluetoothSearching: BluetoothSearching,
-        ethernetWhite: EthernetWhite,
+        ethernet: Ethernet,
         inputs: Inputs,
         network: Network,
         powerWire: PowerWire,
         wifi: Wifi,
-        wifiNotConnected: WifiNotConnected,
+        wifiOff: WifiOff,
         wifiSignal0: WifiSignal0,
         wifiSignal1: WifiSignal1,
         wifiSignal2: WifiSignal2,
@@ -245,11 +247,11 @@ export const iconSectionsSet = {
         wifiSignalLock: WifiSignalLock,
     },
     hardware: {
-        deviceAlt1: DeviceAlt1,
+        devices: Devices,
         device: Device,
         deviceTv: DeviceTv,
         display: Display,
-        gamepadAlt1: GamepadAlt1,
+        gamepad: Gamepad,
         gyro: Gyro,
         headphones: Headphones,
         keyboard: Keyboard,
@@ -257,8 +259,8 @@ export const iconSectionsSet = {
         remotesAndAccessories: RemotesAndAccessories,
         remotesAndAccessoriesStroke: RemotesAndAccessoriesStroke,
         tv: Tv,
-        tvLive: TvLive,
-        tvLiveAlt1: TvLiveAlt1,
+        tvChannel: TvChannel,
+        tvChannelAlt1: TvChannelAlt1,
     },
     communication: {
         addToCall: AddToCall,
