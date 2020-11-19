@@ -6,7 +6,7 @@ import { accent, footnote1 } from '@sberdevices/plasma-tokens';
 
 import { Footnote1, Headline1 } from '../Typography';
 import { Default as Stepper } from '../Stepper/Stepper.stories';
-import { Container, Col } from '../Grid';
+import { Container, Row, Col } from '../Grid';
 import { TextBox, TextBoxTitle, TextBoxSubTitle, TextBoxLabel, TextBoxCaption } from '../TextBox';
 
 import { Cell, CellIcon, CellSize } from './Cell';
@@ -40,15 +40,17 @@ export const Default = () => {
 
     return (
         <Container>
-            <Col size={4}>
-                <Example>
-                    <Cell
-                        onClick={action('cell clicked')}
-                        left={<CellIcon as="img" src="./images/avocado.png" alt="avocado" />}
-                        content={<TextBox title={title} subTitle={subTitle} />}
-                    />
-                </Example>
-            </Col>
+            <Row>
+                <Col size={4}>
+                    <Example>
+                        <Cell
+                            onClick={action('cell clicked')}
+                            left={<CellIcon as="img" src="./images/avocado.png" alt="avocado" />}
+                            content={<TextBox title={title} subTitle={subTitle} />}
+                        />
+                    </Example>
+                </Col>
+            </Row>
         </Container>
     );
 };
@@ -68,20 +70,22 @@ export const IconSize = () => {
 
     return (
         <Container>
-            <Col size={4}>
-                <Example>
-                    <Variation>{`CellIcon Size:${size}`}</Variation>
-                    <Cell
-                        left={<CellIcon size={size} as="img" src="./images/avocado.png" alt="avocado" />}
-                        content={
-                            <TextBox>
-                                <TextBoxTitle>{title}</TextBoxTitle>
-                                <TextBoxSubTitle>{subTitle}</TextBoxSubTitle>
-                            </TextBox>
-                        }
-                    />
-                </Example>
-            </Col>
+            <Row>
+                <Col size={4}>
+                    <Example>
+                        <Variation>{`CellIcon Size:${size}`}</Variation>
+                        <Cell
+                            left={<CellIcon size={size} as="img" src="./images/avocado.png" alt="avocado" />}
+                            content={
+                                <TextBox>
+                                    <TextBoxTitle>{title}</TextBoxTitle>
+                                    <TextBoxSubTitle>{subTitle}</TextBoxSubTitle>
+                                </TextBox>
+                            }
+                        />
+                    </Example>
+                </Col>
+            </Row>
         </Container>
     );
 };
@@ -94,35 +98,39 @@ export const Content = () => {
 
     return (
         <Container>
-            <Col size={6}>
-                <Example>
-                    <Variation>Content: Title + SubTitle</Variation>
-                    <Cell
-                        left={left}
-                        content={
-                            <TextBox>
-                                <TextBoxTitle>Hello World of Plasma</TextBoxTitle>
-                                <TextBoxSubTitle>+7 (495) 500-55-50</TextBoxSubTitle>
-                            </TextBox>
-                        }
-                        right={right}
-                    />
-                </Example>
-            </Col>
-            <Col size={6}>
-                <Example>
-                    <Variation>Content: Header</Variation>
-                    <Cell
-                        left={left}
-                        content={
-                            <TextBox>
-                                <Headline1>Very much</Headline1>
-                            </TextBox>
-                        }
-                        right={right}
-                    />
-                </Example>
-            </Col>
+            <Row>
+                <Col size={6}>
+                    <Example>
+                        <Variation>Content: Title + SubTitle</Variation>
+                        <Cell
+                            left={left}
+                            content={
+                                <TextBox>
+                                    <TextBoxTitle>Hello World of Plasma</TextBoxTitle>
+                                    <TextBoxSubTitle>+7 (495) 500-55-50</TextBoxSubTitle>
+                                </TextBox>
+                            }
+                            right={right}
+                        />
+                    </Example>
+                </Col>
+            </Row>
+            <Row>
+                <Col size={6}>
+                    <Example>
+                        <Variation>Content: Header</Variation>
+                        <Cell
+                            left={left}
+                            content={
+                                <TextBox>
+                                    <Headline1>Very much</Headline1>
+                                </TextBox>
+                            }
+                            right={right}
+                        />
+                    </Example>
+                </Col>
+            </Row>
         </Container>
     );
 };
@@ -142,39 +150,47 @@ export const Right = () => {
 
     return (
         <Container>
-            <Col size={6}>
-                <Example>
-                    <Variation>Right: Title</Variation>
-                    <Cell left={left} content={content} right={<TextBox title={title} />} />
-                </Example>
-            </Col>
-            <Col size={6}>
-                <Example>
-                    <Variation>Right: Title + SubTitle</Variation>
-                    <Cell left={left} content={content} right={<TextBox title={title} subTitle={subTitle} />} />
-                </Example>
-            </Col>
-            <Col size={6}>
-                <Example>
-                    <Variation>Right: Title + SubTitle + Icon</Variation>
-                    <Cell
-                        left={left}
-                        content={content}
-                        right={
-                            <>
-                                <TextBox title={title} subTitle={subTitle} />
-                                <CellIcon size="s" as="img" src="./images/avocado.png" alt="avocado" />
-                            </>
-                        }
-                    />
-                </Example>
-            </Col>
-            <Col size={6}>
-                <Example>
-                    <Variation>Right: Stepper</Variation>
-                    <Cell left={left} content={content} right={<Stepper />} />
-                </Example>
-            </Col>
+            <Row>
+                <Col size={6}>
+                    <Example>
+                        <Variation>Right: Title</Variation>
+                        <Cell left={left} content={content} right={<TextBox title={title} />} />
+                    </Example>
+                </Col>
+            </Row>
+            <Row>
+                <Col size={6}>
+                    <Example>
+                        <Variation>Right: Title + SubTitle</Variation>
+                        <Cell left={left} content={content} right={<TextBox title={title} subTitle={subTitle} />} />
+                    </Example>
+                </Col>
+            </Row>
+            <Row>
+                <Col size={6}>
+                    <Example>
+                        <Variation>Right: Title + SubTitle + Icon</Variation>
+                        <Cell
+                            left={left}
+                            content={content}
+                            right={
+                                <>
+                                    <TextBox title={title} subTitle={subTitle} />
+                                    <CellIcon size="s" as="img" src="./images/avocado.png" alt="avocado" />
+                                </>
+                            }
+                        />
+                    </Example>
+                </Col>
+            </Row>
+            <Row>
+                <Col size={6}>
+                    <Example>
+                        <Variation>Right: Stepper</Variation>
+                        <Cell left={left} content={content} right={<Stepper />} />
+                    </Example>
+                </Col>
+            </Row>
         </Container>
     );
 };
@@ -198,48 +214,54 @@ export const Align = () => {
 
     return (
         <Container>
-            <Col size={6}>
-                <Example>
-                    <Variation>Align: Title</Variation>
-                    <Cell
-                        alignLeft={alignLeft}
-                        alignRight={alignRight}
-                        left={left}
-                        content={content}
-                        right={<TextBox title={title} />}
-                    />
-                </Example>
-            </Col>
-            <Col size={6}>
-                <Example>
-                    <Variation>Align: Title + SubTitle</Variation>
-                    <Cell
-                        alignLeft={alignLeft}
-                        alignRight={alignRight}
-                        left={left}
-                        content={content}
-                        right={<TextBox title={title} subTitle={subTitle} />}
-                    />
-                </Example>
-            </Col>
-            <Col size={6}>
-                <Example>
-                    <Variation>Align: Title + SubTitle + Icon</Variation>
-                    <Cell
-                        alignLeft={alignLeft}
-                        alignRight={alignRight}
-                        left={left}
-                        content={content}
-                        right={
-                            <TextBox>
-                                <CellIcon size="xs" as="img" src="./images/avocado.png" alt="avocado" />
-                                <TextBoxTitle>{title}</TextBoxTitle>
-                                <TextBoxSubTitle>{subTitle}</TextBoxSubTitle>
-                            </TextBox>
-                        }
-                    />
-                </Example>
-            </Col>
+            <Row>
+                <Col size={6}>
+                    <Example>
+                        <Variation>Align: Title</Variation>
+                        <Cell
+                            alignLeft={alignLeft}
+                            alignRight={alignRight}
+                            left={left}
+                            content={content}
+                            right={<TextBox title={title} />}
+                        />
+                    </Example>
+                </Col>
+            </Row>
+            <Row>
+                <Col size={6}>
+                    <Example>
+                        <Variation>Align: Title + SubTitle</Variation>
+                        <Cell
+                            alignLeft={alignLeft}
+                            alignRight={alignRight}
+                            left={left}
+                            content={content}
+                            right={<TextBox title={title} subTitle={subTitle} />}
+                        />
+                    </Example>
+                </Col>
+            </Row>
+            <Row>
+                <Col size={6}>
+                    <Example>
+                        <Variation>Align: Title + SubTitle + Icon</Variation>
+                        <Cell
+                            alignLeft={alignLeft}
+                            alignRight={alignRight}
+                            left={left}
+                            content={content}
+                            right={
+                                <TextBox>
+                                    <CellIcon size="xs" as="img" src="./images/avocado.png" alt="avocado" />
+                                    <TextBoxTitle>{title}</TextBoxTitle>
+                                    <TextBoxSubTitle>{subTitle}</TextBoxSubTitle>
+                                </TextBox>
+                            }
+                        />
+                    </Example>
+                </Col>
+            </Row>
         </Container>
     );
 };
@@ -251,63 +273,67 @@ export const CellListItem = () => {
 
     return (
         <Container>
-            <Col size={6}>
-                <Example color="rgba(0,0,0,0)">
-                    <Variation>With Disclosure</Variation>
-                    <ListItem
-                        onClick={action('cell clicked')}
-                        left={left}
-                        content={
-                            <TextBox>
-                                <TextBoxTitle>Hello World of Plasma</TextBoxTitle>
-                                <TextBoxSubTitle>+7 (495) 500-55-50</TextBoxSubTitle>
-                            </TextBox>
-                        }
-                        right={<Disclosure onClick={action('disclosure clicked')} />}
-                    />
-                    <ListItem
-                        onClick={action('cell clicked')}
-                        left={left}
-                        content={
-                            <TextBox>
-                                <TextBoxTitle>Hello World of Plasma</TextBoxTitle>
-                                <TextBoxSubTitle>+7 (495) 500-55-50</TextBoxSubTitle>
-                            </TextBox>
-                        }
-                        right={<Disclosure onClick={action('disclosure clicked')} />}
-                    />
-                    <ListItem
-                        onClick={action('cell clicked')}
-                        left={left}
-                        content={
-                            <TextBox>
-                                <TextBoxTitle>Hello World of Plasma</TextBoxTitle>
-                                <TextBoxSubTitle>+7 (495) 500-55-50</TextBoxSubTitle>
-                            </TextBox>
-                        }
-                        right={<Disclosure onClick={action('disclosure clicked')} />}
-                    />
-                </Example>
-            </Col>
-            <Col size={6}>
-                <Example>
-                    <Variation>With Disclosure + Title</Variation>
-                    <ListItem
-                        left={left}
-                        content={
-                            <TextBox>
-                                <Headline1>Very much</Headline1>
-                            </TextBox>
-                        }
-                        right={
-                            <>
-                                <TextBox title="Details" />
-                                <Disclosure />
-                            </>
-                        }
-                    />
-                </Example>
-            </Col>
+            <Row>
+                <Col size={6}>
+                    <Example color="rgba(0,0,0,0)">
+                        <Variation>With Disclosure</Variation>
+                        <ListItem
+                            onClick={action('cell clicked')}
+                            left={left}
+                            content={
+                                <TextBox>
+                                    <TextBoxTitle>Hello World of Plasma</TextBoxTitle>
+                                    <TextBoxSubTitle>+7 (495) 500-55-50</TextBoxSubTitle>
+                                </TextBox>
+                            }
+                            right={<Disclosure onClick={action('disclosure clicked')} />}
+                        />
+                        <ListItem
+                            onClick={action('cell clicked')}
+                            left={left}
+                            content={
+                                <TextBox>
+                                    <TextBoxTitle>Hello World of Plasma</TextBoxTitle>
+                                    <TextBoxSubTitle>+7 (495) 500-55-50</TextBoxSubTitle>
+                                </TextBox>
+                            }
+                            right={<Disclosure onClick={action('disclosure clicked')} />}
+                        />
+                        <ListItem
+                            onClick={action('cell clicked')}
+                            left={left}
+                            content={
+                                <TextBox>
+                                    <TextBoxTitle>Hello World of Plasma</TextBoxTitle>
+                                    <TextBoxSubTitle>+7 (495) 500-55-50</TextBoxSubTitle>
+                                </TextBox>
+                            }
+                            right={<Disclosure onClick={action('disclosure clicked')} />}
+                        />
+                    </Example>
+                </Col>
+            </Row>
+            <Row>
+                <Col size={6}>
+                    <Example>
+                        <Variation>With Disclosure + Title</Variation>
+                        <ListItem
+                            left={left}
+                            content={
+                                <TextBox>
+                                    <Headline1>Very much</Headline1>
+                                </TextBox>
+                            }
+                            right={
+                                <>
+                                    <TextBox title="Details" />
+                                    <Disclosure />
+                                </>
+                            }
+                        />
+                    </Example>
+                </Col>
+            </Row>
         </Container>
     );
 };

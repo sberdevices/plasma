@@ -89,13 +89,6 @@ const ResponsiveContent = () => (
 
 export default {
     title: 'Header',
-    decorators: [
-        (Story) => (
-            <div style={{ margin: '0 -16px' }}>
-                <Story />
-            </div>
-        ),
-    ],
 };
 
 export const Default = () => {
