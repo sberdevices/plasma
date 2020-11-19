@@ -51,10 +51,9 @@
     "scripts": {
         "prepare": "npm run build",
         "clean": "rm -rf ./components && rm -rf ./hocs && rm -rf ./mixins && rm -rf ./types",
-        "build": "npm run clean && tsc && npm run copy:static",
+        "build": "npm run clean && tsc",
         "build-storybook": "npm run storybook:build",
         "build:storybook": "npm run storybook:build && npm run storybook:extract",
-        "copy:static": "cp -r ./src/components/Icon/Icon.assets ./components/Icon/Icon.assets",
         "storybook": "start-storybook -s .storybook/public -p ${PORT:-6006} -c .storybook",
         "storybook:build": "build-storybook --quiet -s .storybook/public -c .storybook -o build-sb",
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
