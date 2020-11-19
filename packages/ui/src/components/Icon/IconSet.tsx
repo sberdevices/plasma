@@ -1,10 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Icon, iconSet, IconProps, IconName as IName } from './Icon';
+import { Icon, iconSectionsSet, IconProps, IconName as IName } from './Icon';
 import { IconSize } from './IconRoot';
 
 const StyledRoot = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+const Section = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 16px;
+`;
+
+const IconList = styled.div`
     display: flex;
     flex-wrap: wrap;
 `;
@@ -21,6 +32,11 @@ const IconName = styled.div`
     padding-bottom: 8px;
 `;
 
+const SectionName = styled.div`
+    font-size: 24px;
+    text-align: center;
+`;
+
 interface IconSetProps {
     size?: IconSize;
     color?: string;
@@ -31,19 +47,30 @@ interface IconSetProps {
 export const IconSet: React.FC<IconSetProps> = ({ size, color, exclude, include }) => {
     return (
         <StyledRoot>
-            {Object.keys(iconSet)
-                .filter((icon) => {
+            {Object.entries(iconSectionsSet).map(([sectionName, section]) => {
+                const filteredIcons = Object.keys(section).filter((icon) => {
                     if (exclude) {
                         return !exclude.includes(icon as IName);
                     }
                     return include ? include.includes(icon as IName) : true;
-                })
-                .map((icon) => (
-                    <StyledContainer key={icon}>
-                        <IconName>{icon}</IconName>
-                        <Icon icon={icon as IconProps['icon']} size={size} color={color} />
-                    </StyledContainer>
-                ))}
+                });
+                return (
+                    filteredIcons &&
+                    filteredIcons.length > 0 && (
+                        <Section>
+                            <SectionName>{sectionName}</SectionName>
+                            <IconList>
+                                {filteredIcons.map((icon) => (
+                                    <StyledContainer key={icon}>
+                                        <IconName>{icon}</IconName>
+                                        <Icon icon={icon as IconProps['icon']} size={size} color={color} />
+                                    </StyledContainer>
+                                ))}
+                            </IconList>
+                        </Section>
+                    )
+                );
+            })}
         </StyledRoot>
     );
 };
