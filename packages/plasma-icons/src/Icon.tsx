@@ -301,6 +301,7 @@ export const iconSectionsSet = {
 
 type IconSections = typeof iconSectionsSet;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type DistributiveValues<T extends Record<string, any>> = T extends T ? keyof T : never;
 type InnerValues<T extends Record<keyof T, object>, K extends keyof T> = DistributiveValues<T[K]>;
 
