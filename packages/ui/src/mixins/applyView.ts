@@ -5,6 +5,10 @@ import { colors } from '@sberdevices/plasma-tokens';
  * Общие цветовые стили оформления кнопок, баджей и т.п.
  */
 export const views = {
+    accent: css`
+        background-color: ${colors.accent};
+        color: ${colors.text};
+    `,
     primary: css`
         background-color: ${colors.buttonAccent};
         color: ${colors.text};
