@@ -2,7 +2,7 @@ import React from 'react';
 import { text, boolean, select } from '@storybook/addon-knobs';
 
 import { View, views } from '../../mixins/applyView';
-import { IconDownload } from '../Icon';
+import { IconSettings } from '../Icon';
 
 import { Badge, badgeSizes, BadgeSize } from './Badge';
 
@@ -11,7 +11,7 @@ export default {
     component: Badge,
     decorators: [
         (Story) => (
-            <div style={{ display: 'flex', padding: '40px' }}>
+            <div style={{ display: 'flex' }}>
                 <Story />
             </div>
         ),
@@ -26,8 +26,15 @@ export const Default = () => (
         text={text('text', 'Badge')}
         size={select('size', sizeKeys, 'l')}
         view={select('view', viewKeys, 'primary')}
-        contentLeft={boolean('contentLeft', false) && <IconDownload size="xs" />}
+        contentLeft={boolean('Enable icon', false) && <IconSettings size="xs" />}
     />
 );
 
-export const Quantity = () => <Badge text={text('text', '#')} size="s" view="primary" />;
+export const Quantity = () => (
+    <Badge
+        text={text('text', '11')}
+        size={select('size', sizeKeys, 's')}
+        view={select('view', viewKeys, 'accent')}
+        circled={boolean('circled', true)}
+    />
+);

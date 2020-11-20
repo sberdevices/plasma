@@ -2,7 +2,6 @@ export { Card, StyledCard } from './Card';
 export type { CardProps } from './Card';
 
 export { CardBadge } from './CardBadge';
-export type { CardBadgeProps } from './CardBadge';
 
 export { CardBody } from './CardBody';
 export type { CardBodyProps } from './CardBody';

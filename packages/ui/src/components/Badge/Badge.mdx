@@ -16,13 +16,15 @@ import { Badge } from './Badge'
 <ThemeSelect />
 
 # Badge
-Компонент для отображения бейджа. Может быть отображена в нескольких размерах и цветах, с текстом и иконкой или без.
-
+Компонент бейджа. Может быть отображен в нескольких размерах и цветах, с текстом и иконкой или без.
+<ThemeBackground showcase>
+    <Badge text="Badge" view="primary" />
+</ThemeBackground>
 
 ## Props
 <Props of={Badge} />
 
-## Примеры использования
+## Примеры
 
 ### Размер бейджа
 Чтобы изменить размер бейджа, установите свойство ``size`` в одно из следующих значений: ``"l"``, ``"s"``.
@@ -34,9 +36,10 @@ import { Badge } from './Badge'
 </Playground>
 
 ### Вид бейджа
-Чтобы изменить вид бейджа, установите свойство ``view`` в одно из следующих значений: ``"primary"``, ``"secondary"``, ``"warning"``, ``"critical"``, ``"checked"``, ``"index"``, ``"clear"``.
+Чтобы изменить вид бейджа, установите свойство ``view`` в одно из следующих значений: ``"accent"``, ``"primary"``, ``"secondary"``, ``"warning"``, ``"critical"``, ``"checked"``, ``"index"``, ``"clear"``.
 <Playground>
   <ThemeBackground spaced>
+    <Badge text="Badge" view="accent" />
     <Badge text="Badge" view="primary" />
     <Badge text="Badge" view="secondary" />
     <Badge text="Badge" view="warning" />
@@ -47,13 +50,19 @@ import { Badge } from './Badge'
   </ThemeBackground>
 </Playground>
 
-### Иконки
-Для создания квадратных бейджей с иконкой или текстом используйте свойство ``contentLeft``, передавая туда рендер иконки или текста.
-Также, иконку можно помещать слева от текста.
+### Модификаторы
+``circled`` — компонент примет форму круга с соотношением сторон 1x1.
 <Playground>
   <ThemeBackground spaced>
-    <Badge contentLeft={<IconDownload />} />
-    <Badge contentLeft={42} />
+    <Badge text="8" size="l" view="primary" circled />
+  </ThemeBackground>
+</Playground>
+
+### Иконки
+Допустимо помещать иконку в слот ``contentLeft`` (1). Также допустимо использовать иконку без текста (2).
+<Playground>
+  <ThemeBackground spaced>
     <Badge text="Badge" contentLeft={<IconDownload />} />
+    <Badge contentLeft={<IconDownload />} />
   </ThemeBackground>
 </Playground>
