@@ -1,0 +1,94 @@
+---
+name: Смена персонажа
+route: /theme
+---
+
+import { Playground } from 'docz'
+
+
+import { ThemeSelect } from '../helpers/ThemeSelect'
+import { ThemeBackground } from '../helpers/ThemeBackground'
+import { ColorsDemo } from '../helpers/ColorsDemo';
+
+
+<ThemeSelect />
+
+# Смена персонажа
+
+import React, { FC, memo, useRef, useEffect, useState } from "react";
+import { createSmartappDebugger, createAssistant, AssistantAppState, AssistantCharacterType } from "@sberdevices/assistant-client";
+import { darkJoy, darkEva, darkSber } from '@sberdevices/plasma-tokens/themes';
+import { text, background, gradient } from '@sberdevices/plasma-tokens';
+import { createGlobalStyle } from 'styled-components';
+
+const ThemeBackgroundEva = createGlobalStyle(darkEva);
+const ThemeBackgroundSber = createGlobalStyle(darkSber);
+const ThemeBackgroundJoy = createGlobalStyle(darkJoy);
+
+const DocStyles = createGlobalStyle`
+  html {
+    color: ${text};
+    background-color: ${background};
+    background-image: ${gradient};
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  `;
+
+const initializeAssistant = (getState: any) => {
+  if (process.env.NODE_ENV === "development") {
+    return createSmartappDebugger({ 
+      token: process.env.REACT_APP_SBER_TOKEN ?? "", 
+      initPhrase: process.env.REACT_APP_SMARTAPP ?? "", 
+      getState,
+    });
+  }
+  return createAssistant({ getState });
+};
+
+export const App: FC = memo(() => {
+
+  const [character, setCharacter] = useState("sber" as AssistantCharacterType);
+  
+  const assistantStateRef = useRef<AssistantAppState>();
+  const assistantRef = useRef<ReturnType<typeof createAssistant>>();
+
+  useEffect(() => {
+    assistantRef.current = initializeAssistant(() => assistantStateRef.current);
+    assistantRef.current.on("data", (command) => {
+      console.log(`command: ${JSON.stringify(command)}`);
+      switch (command.type) {
+        case "character":
+          setCharacter(command.character.id);
+          // 'sber' | 'eva' | 'joy';
+          break;
+        case "navigation":
+          break;
+        case "smart_app_data":
+          break;
+        default:
+          return;
+      }
+    });
+  }, []);
+
+  return (
+    <div>
+      <DocStyles />
+      {(() => {
+        switch (character) {
+          case "sber":
+            return <ThemeBackgroundSber />;
+          case "eva": 
+            return <ThemeBackgroundEva />;
+          case "joy":
+            return <ThemeBackgroundJoy />;
+          default:
+            return;
+        }
+      })()}
+    </div>
+  );
+});
