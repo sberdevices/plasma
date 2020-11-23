@@ -1,8 +1,7 @@
 import React from 'react';
 import { text, number, select, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-
-import { Icon } from '../Icon/Icon';
+import { Icon } from '@sberdevices/plasma-icons';
 
 import { Tabs, TabsSize, TabsView } from './Tabs';
 import { TabItem } from './TabItem';
