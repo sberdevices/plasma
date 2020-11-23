@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { text, number, boolean, select } from '@storybook/addon-knobs';
+import { Icon } from '@sberdevices/plasma-icons';
 
 import { mediaQuery } from '../../utils';
 import { Button } from '../Button/Button';
 import { Container } from '../Grid/Grid';
-import { Icon } from '../Icon/Icon';
 import { Tabs, TabItem } from '../Tabs';
 
 import { Header } from './Header';
