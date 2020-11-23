@@ -1,0 +1,104 @@
+---
+name: Notification
+menu: Components
+route: /components/Notification
+---
+
+import { Playground, Props } from 'docz';
+
+import { Notification } from './Notification';
+import { NotificationsProvider } from './NotificationsProvider'
+import { addNotification } from './notificationStore'
+import { Button } from '../Button'
+
+import { ThemeSelect } from '../../helpers/ThemeSelect'
+import { ThemeBackground } from '../../helpers/ThemeBackground'
+
+<ThemeSelect />
+
+# Notification
+Компонент для небольших уведомлений пользователя.
+
+## Props
+<Props of={Notification} />
+
+
+## Примеры использования
+Компонент Notification может использоваться для создания собственных систем оповещения.  
+Вид компонента контролируется через props.  
+Текстовая часть оповещения состоит из title и subTitle. Title имеет три варианта отображения (titleType).  
+Опциональные свойства imageSrc и labelSrc - пути/url до ассета, отображаются через html-тег img.  
+Кнопки описываются через массив actions, где view - валидный view для компонента Button, name - текст кнопки, action - действие на нажатие.  
+
+Ниже некоторые варианты использования:
+
+### Warning Notification
+<Playground>
+  <ThemeBackground>
+        <Notification
+            type="warning"
+            titleType="headline"
+            title="через 30 секунд"
+            subTitle="Устройство выключится"
+            actions={[{ name: 'Отменить', action: () => undefined, view: 'critical' }]}
+            reverseTitles
+        />
+  </ThemeBackground>
+</Playground>
+
+### Info Notification
+<Playground>
+  <ThemeBackground>
+        <Notification
+            type="info"
+            titleType="thin"
+            title="Ваше королевство захвачено. Скорее переходите и исправляйте ситуацию!"
+            subTitle="Да, Милорд!"
+            actions={[{ name: 'Кнопка', action: () => undefined }]}
+            reverseTitles
+            textSpacing={8}
+        />
+  </ThemeBackground>
+</Playground>
+
+## Система оповещений
+Также предоставляется готовая система оповещений. Для использования необходимо обернуть приложение в NotificationsProvider:
+
+```jsx
+import React from 'react';
+
+import { NotificationsProvider } from '@sberdevices/ui';
+
+function App() {
+    return (
+        <NotificationsProvider>
+            <div className="App">
+            Hello world
+            </div>
+        </NotificationsProvider>
+    );
+}
+
+export default App;
+```
+
+После этого из любого места в приложении станет возможен вызов функции addNotification, который приведет к отображению оповещения.   
+Функция принимает значения пропсов компонента Notification. Пример:
+
+<Playground>
+    <NotificationsProvider>
+    <ThemeBackground>
+    <Button
+        onClick={() => addNotification({
+            type: 'warning',
+            title: 'Ирина Иванова',
+            subTitle: 'Входящий вызов',
+            actions: [{ name: 'Ответить', action: () => undefined }],
+            timeout: 8000,
+        })}
+    >
+    Показать оповещение
+</Button>
+</ThemeBackground>
+    </NotificationsProvider>
+</Playground>

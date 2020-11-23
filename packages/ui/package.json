@@ -17,7 +17,8 @@
         "@types/react-dom": "^16.9.8",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
-        "styled-components": "^5.1.1"
+        "styled-components": "^5.1.1",
+        "storeon": "^3.1.1"
     },
     "devDependencies": {
         "@mdx-js/mdx": "^1.6.16",
@@ -41,7 +42,8 @@
         "react-scripts": "3.4.1",
         "sb": "6.0.0-rc.13",
         "styled-components": "5.1.1",
-        "typescript": "3.9.5"
+        "typescript": "3.9.5",
+        "storeon": "3.1.1"
     },
     "publishConfig": {
         "access": "public"
@@ -73,5 +75,8 @@
         "Виноградов Антон Александрович",
         "Зубаиров Фаниль Асхатович",
         "Чельцов Евгений Олегович"
-    ]
+    ],
+    "dependencies": {
+        "storeon": "3.1.1"
+    }
 }
