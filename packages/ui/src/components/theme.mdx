@@ -1,22 +1,41 @@
 ---
-name: Смена персонажа
+name: Смена персонажа ассистента
 route: /theme
 ---
 
-import { Playground } from 'docz'
-
-
 import { ThemeSelect } from '../helpers/ThemeSelect'
-import { ThemeBackground } from '../helpers/ThemeBackground'
-import { ColorsDemo } from '../helpers/ColorsDemo';
 
 
 <ThemeSelect />
 
-# Смена персонажа
+# Смена персонажа ассистента
 
-import React, { FC, memo, useRef, useEffect, useState } from "react";
-import { createSmartappDebugger, createAssistant, AssistantAppState, AssistantCharacterType } from "@sberdevices/assistant-client";
+Для смены персонажа ассистента используйте токены пакета `plasma-tokens`.
+При изменении персонажа учитывайте тон темы оформления: тёмный или светлый.
+На устройствах `SberBox` и `SberPortal` предполагается использование тёмных тем:
+
+```js
+import { darkJoy, darkEva, darkSber } from '@sberdevices/plasma-tokens/themes';
+```
+
+> Подробнее про персонажей ассистента читайте в [документации](https://developer.sberdevices.ru/docs/ru/basics/about_assistant).
+
+Чтобы узнать какой персонаж выбран у пользователя, подпишитесь на событие `data` от `assistant-client`:
+
+```js
+assistantClient.on('data', (command) => {
+  if (command.type === 'character') {
+    // 'sber' | 'eva' | 'joy';
+    setCharacter(command.character.id);
+  }
+});
+```
+
+## Пример смены персонажа
+
+```tsx
+import React, { FC, useRef, useEffect, useState } from 'react';
+import { createAssistant, AssistantAppState, AssistantCharacterType } from '@sberdevices/assistant-client';
 import { darkJoy, darkEva, darkSber } from '@sberdevices/plasma-tokens/themes';
 import { text, background, gradient } from '@sberdevices/plasma-tokens';
 import { createGlobalStyle } from 'styled-components';
@@ -31,42 +50,31 @@ const DocStyles = createGlobalStyle`
     background-color: ${background};
     background-image: ${gradient};
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
-  `;
+`;
 
 const initializeAssistant = (getState: any) => {
-  if (process.env.NODE_ENV === "development") {
-    return createSmartappDebugger({ 
-      token: process.env.REACT_APP_SBER_TOKEN ?? "", 
-      initPhrase: process.env.REACT_APP_SMARTAPP ?? "", 
-      getState,
-    });
-  }
   return createAssistant({ getState });
 };
 
-export const App: FC = memo(() => {
+export const App: FC = () => {
 
-  const [character, setCharacter] = useState("sber" as AssistantCharacterType);
+  const [character, setCharacter] = useState('sber' as AssistantCharacterType);
   
   const assistantStateRef = useRef<AssistantAppState>();
   const assistantRef = useRef<ReturnType<typeof createAssistant>>();
 
   useEffect(() => {
     assistantRef.current = initializeAssistant(() => assistantStateRef.current);
-    assistantRef.current.on("data", (command) => {
-      console.log(`command: ${JSON.stringify(command)}`);
+    assistantRef.current.on('data', (command) => {
       switch (command.type) {
-        case "character":
+        case 'character':
           setCharacter(command.character.id);
           // 'sber' | 'eva' | 'joy';
           break;
-        case "navigation":
+        case 'navigation':
           break;
-        case "smart_app_data":
+        case 'smart_app_data':
           break;
         default:
           return;
@@ -79,11 +87,11 @@ export const App: FC = memo(() => {
       <DocStyles />
       {(() => {
         switch (character) {
-          case "sber":
+          case 'sber':
             return <ThemeBackgroundSber />;
-          case "eva": 
+          case 'eva':
             return <ThemeBackgroundEva />;
-          case "joy":
+          case 'joy':
             return <ThemeBackgroundJoy />;
           default:
             return;
@@ -91,4 +99,5 @@ export const App: FC = memo(() => {
       })()}
     </div>
   );
-});
+};
+```
