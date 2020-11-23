@@ -8,10 +8,10 @@ import styled from 'styled-components'
 
 import { ThemeBackground } from '../helpers/ThemeBackground'
 
-import { addFocus, applyDisabled, applyMotion, applyView } from '.'
+import { addFocus, applyDisabled, applyMotion, applyRoundness, applyView } from '.'
 
 # Миксины (примеси)
-В данном разделе описаны функции-миксины для компонентов, стилизуемых с помощью 'styled-components'.
+Раздел содержит функции-примеси для компонентов, которые стилизуются с помощью 'styled-components'.
 
 > Для удобства типизации, каждый модуль, в котором лежит миксин, дополнительно экспортирует соответствующий интерфейс ``props``.
 
@@ -91,8 +91,29 @@ const Button = styled.button<MotionProps>`
 <Button motion>Button!</Button>
 ```
 
+## applyRoundness
+Применяет к компоненту скругление из списка ``radiuses``.
+
+> Скругление указывается в пикселях x1.
+Пример, ``roundness={16}`` = **1rem** = **16px** (при deviceScale x1) = **32px** (при deviceScale x2).
+
+### Props
+<Props of={applyRoundness} />
+
+### Использование
+```tsx
+import styled from 'styled-components';
+import { RoundnessProps, applyRoundness } from '@sberdevices/ui/mixins';
+
+const Button = styled.button<RoundnessProps>`
+    ${applyRoundness}
+`;
+
+<Button roundness={16}>Button!</Button>
+```
+
 ## applyView
-Применяет цвет фона и текста при передаче соответствующего значение в свойство ``view``.
+Применяет цвет фона и текста при передаче соответствующего значения в свойство ``view``.
 
 ### Props
 <Props of={applyView} />

@@ -16,3 +16,23 @@ import { withAutoFocus } from '@sberdevices/ui/hocs';
 const Button: React.FC = (props) => <Button {...props} />
 const AutoFocusButton = withAutoFocus(Button);
 ```
+
+## withSkeleton
+Делает компонент скелетоном - у него заменяется фоновый цвет, добавляется градиент и текст становится на 100% прозрачным.
+Управляется скелетон параметром ``skeleton``.
+
+### Использование
+```tsx
+import React from 'react';
+import { Button, ButtonProps } from '@sberdevices/ui/components/Button';
+import { withSkeleton, WithSkeletonProps } from '@sberdevices/ui/hocs';
+
+const ButtonSkeleton = withSkeleton<ButtonProps & WithSkeletonProps>(Button);
+
+return default () => (
+    <>
+        <ButtonSkeleton skeleton /> // Скелетон
+        <ButtonSkeleton /> // Кнопка
+    </>
+);
+```
