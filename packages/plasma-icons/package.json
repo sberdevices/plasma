@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-icons",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "SberDevices Design System Icons",
     "main": "index.js",
     "types": "index.d.ts",
