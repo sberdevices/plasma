@@ -93,7 +93,7 @@ export const ListAndHeader = () => {
             <CardContent compact>
                 <Cell
                     content={<TextBoxBigTitle>{text('header', 'Название раздела')}</TextBoxBigTitle>}
-                    right={text('details', 'Detail')}
+                    right={<span style={{ marginTop: 5 }}>{text('details', 'Detail')}</span>}
                 />
                 {items.map((_, i) => (
                     <CellListItem
@@ -119,12 +119,10 @@ export const ListAndHeader = () => {
 
 export const FastAnswer = () => (
     <Card style={{ width: '20rem' }}>
-        <CardContent>
+        <CardContent compact>
             <Cell
-                content={
-                    <TextBoxBigTitle style={{ marginTop: 0 }}>{text('header', 'Название раздела')}</TextBoxBigTitle>
-                }
-                right={text('details', 'Detail')}
+                content={<TextBoxBigTitle>{text('header', 'Название раздела')}</TextBoxBigTitle>}
+                right={<span style={{ marginTop: 5 }}>{text('details', 'Detail')}</span>}
             />
             <Cell
                 left={
