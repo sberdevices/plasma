@@ -62,6 +62,8 @@ const StyledBadge = styled.div<StyledBadgeProps>`
     box-sizing: border-box;
     justify-content: center;
 
+    width: max-content;
+
     ${({ size, circled }) => css`
         ${badgeRootSizes[size]};
         ${
