@@ -44,10 +44,10 @@ export interface ViewProps {
     /**
      * Вид компонента
      */
-    view: View;
+    view?: View;
 }
 
 /**
  * Миксин для применения общих цветовых стилей.
  */
-export const applyView: InterpolationFunction<ViewProps> = ({ view }) => views[view];
+export const applyView: InterpolationFunction<ViewProps> = ({ view }) => view && views[view];
