@@ -1,0 +1,18 @@
+---
+name: High order components
+route: /hocs
+---
+
+# High order components
+
+## withAutoFocus
+Добавляет фокус при инициализации компонента.
+
+### Использование
+```tsx
+import React from 'react';
+import { withAutoFocus } from '@sberdevices/ui/hocs';
+
+const Button: React.FC = (props) => <Button {...props} />
+const AutoFocusButton = withAutoFocus(Button);
+```
