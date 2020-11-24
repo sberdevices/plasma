@@ -13,6 +13,9 @@ export type Breakpoint = keyof typeof breakpointValues;
 
 export const breakpoints = Object.keys(breakpointValues) as Breakpoint[];
 
+/**
+ * Обертка над css-медиазапросами с заранее определенными брейкпоинтами.
+ */
 export const mediaQuery = (breakpoint: Breakpoint): MediaQueryFunction => {
     const index = breakpoints.indexOf(breakpoint);
     const nextBreakpoint = breakpoints[index - 1] as Breakpoint;
