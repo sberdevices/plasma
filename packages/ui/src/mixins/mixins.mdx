@@ -1,0 +1,110 @@
+---
+name: Миксины (примеси)
+route: /mixins
+---
+
+import { Playground, Props } from 'docz'
+import styled from 'styled-components'
+
+import { ThemeBackground } from '../helpers/ThemeBackground'
+
+import { addFocus, applyDisabled, applyMotion, applyView } from '.'
+
+# Миксины (примеси)
+В данном разделе описаны функции-миксины для компонентов, стилизуемых с помощью 'styled-components'.
+
+> Для удобства типизации, каждый модуль, в котором лежит миксин, дополнительно экспортирует соответствующий интерфейс ``props``.
+
+## addFocus
+Добавляет фокусную рамку компонентам, для которых возможно фокусирование или если передан флаг ``focused``.
+
+### Props
+<Props of={addFocus} />
+
+### Использование
+```tsx
+import styled from 'styled-components';
+import { FocusProps, addFocus } from '@sberdevices/ui/mixins';
+
+// Способ 1. Передача props напрямую в вызываемый компонент
+const Button1 = styled.button<FocusProps>`
+    ${addFocus}
+`;
+
+<Button1
+    outlined={true}
+    outlineSize="2px"
+    outlineOffset="2px"
+    outlineColor="green"
+    outlineRadius="5px"
+>
+    Hello!
+</Button1>
+
+// Способ 2. Передача props на стороне стилизуемого компонента
+const Button2 = styled.button<FocusProps>`
+    ${addFocus({
+        outlined: true,
+        outlineSize: '2px',
+        outlineOffset: '2px',
+        outlineColor: 'green',
+        outlineRadius: '5px',
+    })}
+`;
+
+<Button2>Hello!</Button2>
+```
+
+## applyDisabled
+Делает компонент недоступным для взаимодействия, если компонент может быть задизейблен или если передан флаг ``disabled``.
+
+### Props
+<Props of={applyDisabled} />
+
+### Использование
+```tsx
+import styled from 'styled-components';
+import { DisabledProps, applyDisabled } from '@sberdevices/ui/mixins';
+
+const Button = styled.button<DisabledProps>`
+    ${applyDisabled}
+`;
+
+<Button disabled>I'm disabled</Button>
+```
+
+## applyMotion
+Делает компонент анимированным при таких видах взаимодействия, как наведение (:hover) и нажатие (:active).
+
+### Props
+<Props of={applyMotion} />
+
+### Использование
+```tsx
+import styled from 'styled-components';
+import { MotionProps, applyMotion } from '@sberdevices/ui/mixins';
+
+const Button = styled.button<MotionProps>`
+    ${applyMotion}
+`;
+
+<Button motion>Button!</Button>
+```
+
+## applyView
+Применяет цвет фона и текста при передаче соответствующего значение в свойство ``view``.
+
+### Props
+<Props of={applyView} />
+
+### Использование
+```tsx
+import styled from 'styled-components';
+import { ViewProps, applyView } from '@sberdevices/ui/mixins';
+
+const Button = styled.button<ViewProps>`
+    ${applyView}
+`;
+
+<Button view="primary">Primary button</Button>
+```
