@@ -124,7 +124,13 @@ export const Notification: React.FC<NotificationProps> = ({
                 (actions && (
                     <ContentRight>
                         {actions.map(({ name, action, view }) => (
-                            <Button size="s" view={view} onClick={action}>
+                            <Button
+                                key={name}
+                                size="s"
+                                view={view}
+                                onClick={action}
+                                style={{ width: '8.125rem', marginLeft: '1rem' }}
+                            >
                                 {name}
                             </Button>
                         ))}

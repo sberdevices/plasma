@@ -1,6 +1,7 @@
 import React from 'react';
 import { text, select, boolean, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import styled from 'styled-components';
 
 import { Button } from '../Button';
 
@@ -81,11 +82,23 @@ export const InfoExample = () => {
     );
 };
 
+const ButtonsWrapper = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    height: 70vh;
+    flex-direction: column;
+    margin: auto 0;
+    z-index: 1000;
+
+    & > :first-child {
+        margin-bottom: 16px;
+    }
+`;
+
 export const Notifications = () => {
     return (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <ButtonsWrapper>
             <Button
-                style={{ zIndex: 10000, marginBottom: 8 }}
                 onClick={() =>
                     addNotification({
                         type: 'warning',
@@ -99,7 +112,6 @@ export const Notifications = () => {
                 Показать оповещение
             </Button>
             <Button
-                style={{ zIndex: 10000 }}
                 onClick={() =>
                     addNotification({
                         type: 'info',
@@ -116,6 +128,6 @@ export const Notifications = () => {
             >
                 Показать инфо-оповещение
             </Button>
-        </div>
+        </ButtonsWrapper>
     );
 };
