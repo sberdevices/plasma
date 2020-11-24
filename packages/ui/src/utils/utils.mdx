@@ -1,0 +1,88 @@
+---
+name: Утилиты
+route: /utils
+---
+
+# Утилиты
+
+## animatedScrollToX
+Плавная прокрутка по оси X.
+
+### Использование
+```tsx
+import React from 'react';
+import { animatedScrollToX } from '@sberdevices/ui/utils';
+
+const ScrollComponent: React.FC = ({ children }) => {
+    const ref = React.useRef(null);
+
+    React.useLayoutEffect(() => {
+        if (ref.current) {
+            // Плавный скролл на 400px после первого рендера компонента
+            animatedScrollToX(ref.current, 400);
+        }
+    }, []);
+
+    return (
+        <div ref={ref}>{children}</div>
+    );
+};
+```
+
+## convertRoundnessMatrix
+По заданному шаблону-матрице выводит значения для ``border-radius``.
+Значение символов: ``r`` - радиус стандартный, ``h`` - радиус округлый (вычисляемый из высоты).
+
+### Использование
+```tsx
+import styled from 'styled-components';
+import { convertRoundnessMatrix } from '@sberdevices/ui/utils';
+
+// Выведет значение для border-radius, равное '1em 2em 2em 1em'
+const Box = styled.div`
+    border-radius: ${convertPinsMatrix('r h h r', '1em', '2em')};
+`;
+```
+
+## detectDevice
+Вернет тип устройства, под которым запустилось приложение.
+В случае запуска в серверном окружении, возвращает "sberBox".
+Для детектирования устройства используется ``navigator.userAgent``.
+
+### Использование
+```tsx
+import { detectDevice } from '@sberdevices/ui/utils';
+
+// Вернет "SberPortal" или "SberBox" или "touch" (для всех остальных устройств)
+const deviceKind = detectDevice();
+```
+## mediaQuery
+Обертка над css-медиазапросами с заранее определенными брейкпоинтами.
+
+### Использование
+```tsx
+import styled, { css } from 'styled-components';
+import { mediaQuery, breakpoints } from '@sberdevices/ui/utils';
+
+// Блок Box примет красный цвет фона на больших экранах
+const Box = styled.div`
+    ${mediaQuery('xl')(css`
+        background: red;
+    `)};
+`;
+
+// Возможно использование массива ``breakpoints``, в котором перечислен список разрешений
+const colors = {
+    xl: 'azure'
+    lg: 'aliceblue'
+    md: 'aquamarine'
+    sm: 'cadetblue'
+};
+const Text = styled.span`
+    ${breakpoints.map((breakpoint) =>
+        mediaQuery(breakpoint)(css`
+            color: ${colors[breakpoint]};
+        `)
+    )}
+`;
+```
