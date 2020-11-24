@@ -5,7 +5,7 @@ import { addFocus, FocusProps } from '../../mixins/addFocus';
 import { applyView, ViewProps } from '../../mixins/applyView';
 import { applyMotion, MotionProps } from '../../mixins/applyMotion';
 import { applyDisabled, DisabledProps } from '../../mixins/applyDisabled';
-import { convertPinsMatrix, PinProps } from '../../mixins/pins';
+import { convertRoundnessMatrix, PinProps } from '../../utils';
 import { PickOptional } from '../../types/PickOptional';
 
 import { SizeProps, buttonBase, buttonTypography, fontSizeL, fontSizeM, fontSizeS } from './ButtonBase';
@@ -37,8 +37,8 @@ const sizes = {
 const applySizes = ({ pin, size, focused, outlined }: SizeProps & PinProps & FocusProps) => {
     const { width, height, outline } = sizes[size];
     const radius = height / 2;
-    const elemRadius = convertPinsMatrix(pin, `${radius}em`, `${radius}em`);
-    const outlineRadius = convertPinsMatrix(pin, `${radius + outline}em`, `${radius + outline}em`);
+    const elemRadius = convertRoundnessMatrix(pin, `${radius}em`, `${radius}em`);
+    const outlineRadius = convertRoundnessMatrix(pin, `${radius + outline}em`, `${radius + outline}em`);
 
     return css`
         width: ${width}em;

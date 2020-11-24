@@ -6,7 +6,7 @@ import { addFocus, FocusProps } from '../../mixins/addFocus';
 import { applyView, ViewProps } from '../../mixins/applyView';
 import { applyMotion, MotionProps } from '../../mixins/applyMotion';
 import { applyDisabled, DisabledProps } from '../../mixins/applyDisabled';
-import { convertPinsMatrix, PinProps } from '../../mixins/pins';
+import { convertRoundnessMatrix, PinProps } from '../../utils';
 import { PickOptional, ShiftProps, StylingProps } from '../../types';
 
 import { SizeProps, buttonBase, buttonTypography, fontSizeL, fontSizeM, fontSizeS } from './ButtonBase';
@@ -56,8 +56,8 @@ interface StyledButtonProps extends SizeProps, ViewProps, PinProps, MotionProps,
 const applySizes = ({ pin, size, outlined, focused, shiftLeft, shiftRight, isTextOrChildren }: StyledButtonProps) => {
     const { height, paddingY, paddingX: paddingXWithText, squareRadius, outline } = sizes[size];
     const circleRadius = height / 2;
-    const elemRadius = convertPinsMatrix(pin, `${squareRadius}em`, `${circleRadius}em`);
-    const outlineRadius = convertPinsMatrix(pin, `${squareRadius + outline}em`, `${circleRadius + outline}em`);
+    const elemRadius = convertRoundnessMatrix(pin, `${squareRadius}em`, `${circleRadius}em`);
+    const outlineRadius = convertRoundnessMatrix(pin, `${squareRadius + outline}em`, `${circleRadius + outline}em`);
     const paddingX = isTextOrChildren ? paddingXWithText : paddingY;
 
     return css`
