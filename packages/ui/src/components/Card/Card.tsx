@@ -62,11 +62,7 @@ export const StyledCard = styled(Body1)<StyledRootProps>`
 
 export interface CardProps
     extends React.HTMLAttributes<HTMLDivElement>,
-        PickOptional<StyledRootProps, 'highlightOnFocus' | 'scaleOnFocus' | 'focused'> {
-    onBlur?: React.FocusEventHandler<HTMLDivElement>;
-    onClick?: React.MouseEventHandler<HTMLDivElement>;
-    onFocus?: React.FocusEventHandler<HTMLDivElement>;
-}
+        PickOptional<StyledRootProps, 'highlightOnFocus' | 'scaleOnFocus' | 'focused'> {}
 
 // eslint-disable-next-line prefer-arrow-callback
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(function Card(
