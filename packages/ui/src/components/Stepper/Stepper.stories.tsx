@@ -3,18 +3,11 @@ import { number, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { IconMinus, IconPlus } from '@sberdevices/plasma-icons';
 
-import { Stepper, StepperRoot, StepperButton, StepperValue } from './Stepper';
+import { Stepper, StepperRoot, StepperButton, StepperValue } from '.';
 
 export default {
     title: 'Stepper',
     component: Stepper,
-    decorators: [
-        (Story) => (
-            <div style={{ display: 'flex', padding: '40px' }}>
-                <Story />
-            </div>
-        ),
-    ],
 };
 
 export const Default = () => {
