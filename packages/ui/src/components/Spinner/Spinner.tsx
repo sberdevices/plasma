@@ -25,14 +25,13 @@ const StyledRoot = styled.div<{ $size: number }>`
     animation: ${rotateAnimation} 1s linear infinite;
 `;
 
-interface SpinnerProps {
+interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
     size?: number;
-    className?: string;
 }
 
-export const Spinner: React.FC<SpinnerProps> = ({ size = 56, className }) => {
+export const Spinner: React.FC<SpinnerProps> = ({ size = 56, ...rest }) => {
     return (
-        <StyledRoot className={className} $size={size}>
+        <StyledRoot $size={size} {...rest}>
             <SpinnerSvg width={size} height={size} />
         </StyledRoot>
     );

@@ -31,21 +31,15 @@ const StyledRoot = styled.div<StyledRootProps>`
         `}
 `;
 
-export interface CardMediaProps {
+export interface CardMediaProps extends React.HTMLAttributes<HTMLDivElement> {
     src: string;
     height?: string;
     disabled?: boolean;
-    className?: string;
 }
 
-export const CardMedia: React.FC<CardMediaProps> = ({ children, className, src, height, disabled }) => {
+export const CardMedia: React.FC<CardMediaProps> = ({ children, src, height, ...rest }) => {
     return (
-        <StyledRoot
-            className={className}
-            style={{ backgroundImage: `url('${src}')` }}
-            $height={height}
-            $disabled={disabled}
-        >
+        <StyledRoot style={{ backgroundImage: `url('${src}')` }} $height={height} {...rest}>
             {children}
         </StyledRoot>
     );

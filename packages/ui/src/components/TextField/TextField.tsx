@@ -12,7 +12,6 @@ import {
     scalingPixelBasis,
 } from '@sberdevices/plasma-tokens';
 
-import { StylingProps, PickOptional } from '../../types';
 import { DisabledProps } from '../../mixins';
 
 /**
@@ -189,10 +188,7 @@ const StyledRoot = styled.div<ValidationProps & DisabledProps & IsContentProps>`
         `}
 `;
 
-type InputAttributes = PickOptional<HTMLInputElement, 'type' | 'name' | 'value' | 'disabled' | 'placeholder'>;
-type InputHandlers = PickOptional<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'onFocus' | 'onBlur'>;
-
-export interface FieldProps extends InputAttributes, InputHandlers, ValidationProps, StylingProps {
+export interface FieldProps extends ValidationProps, React.InputHTMLAttributes<HTMLInputElement> {
     /**
      * Надпись лейбла.
      */

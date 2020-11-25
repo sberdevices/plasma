@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 import { typography, scalingPixelBasis } from '@sberdevices/plasma-tokens';
 
 import { applyView, ViewProps } from '../../mixins/applyView';
-import { StylingProps } from '../../types';
 
 /**
  * Размеры в ремах.
@@ -85,7 +84,7 @@ const StyledBadge = styled.div<StyledBadgeProps>`
     `};
 `;
 
-export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement>, StyledBadgeProps, StylingProps {
+export interface BadgeProps extends StyledBadgeProps, React.HTMLAttributes<HTMLDivElement> {
     /**
      * Текст для отображения.
      */

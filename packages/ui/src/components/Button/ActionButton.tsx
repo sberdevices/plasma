@@ -70,13 +70,7 @@ export interface ActionButtonProps
             StyledActionButtonsProps,
             'pin' | 'view' | 'size' | 'motion' | 'focused' | 'outlined' | 'disabled'
         >,
-        React.ButtonHTMLAttributes<HTMLButtonElement> {
-    style?: React.CSSProperties;
-    className?: string;
-    onFocus?: React.FocusEventHandler<HTMLButtonElement>;
-    onBlur?: React.FocusEventHandler<HTMLButtonElement>;
-    onClick?: React.MouseEventHandler<HTMLButtonElement>;
-}
+        React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
 export const ActionButton: React.FC<ActionButtonProps> = ({
     children,

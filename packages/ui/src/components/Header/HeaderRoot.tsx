@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { scalingPixelBasis } from '@sberdevices/plasma-tokens';
 
-import { StylingProps } from '../../types/StylingProps';
 import { mediaQuery } from '../../utils/mediaQuery';
 
 import { StyledHeaderBackButton } from './HeaderBack';
@@ -36,6 +35,6 @@ const StyledHeaderRoot = styled.header`
     `)}
 `;
 
-export const HeaderRoot: React.FC<StylingProps> = ({ children, ...rest }) => (
+export const HeaderRoot: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children, ...rest }) => (
     <StyledHeaderRoot {...rest}>{children}</StyledHeaderRoot>
 );

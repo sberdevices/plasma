@@ -12,7 +12,7 @@ import {
 import { addFocus, FocusProps } from '../../mixins/addFocus';
 import { applyMotion, MotionProps } from '../../mixins/applyMotion';
 import { applyDisabled, DisabledProps } from '../../mixins/applyDisabled';
-import { ShiftProps, StylingProps } from '../../types';
+import { ShiftProps } from '../../types';
 
 import { StyledTabItem } from './TabItem';
 
@@ -178,8 +178,7 @@ export interface TabsProps
         FocusProps,
         MotionProps,
         DisabledProps,
-        ShiftProps,
-        StylingProps {
+        ShiftProps {
     /**
      * Размер компонента
      */

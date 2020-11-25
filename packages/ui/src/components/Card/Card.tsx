@@ -63,7 +63,6 @@ export const StyledCard = styled(Body1)<StyledRootProps>`
 export interface CardProps
     extends React.HTMLAttributes<HTMLDivElement>,
         PickOptional<StyledRootProps, 'highlightOnFocus' | 'scaleOnFocus' | 'focused'> {
-    className?: string;
     onBlur?: React.FocusEventHandler<HTMLDivElement>;
     onClick?: React.MouseEventHandler<HTMLDivElement>;
     onFocus?: React.FocusEventHandler<HTMLDivElement>;

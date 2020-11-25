@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { StylingProps } from '../../types/StylingProps';
 import { mediaQuery } from '../../utils/mediaQuery';
 
 export const StyledHeaderLogo = styled.img`
@@ -15,11 +14,11 @@ export const StyledHeaderLogo = styled.img`
     `)}
 `;
 
-export interface HeaderLogoProps extends StylingProps {
+export interface HeaderLogoProps extends React.HTMLAttributes<HTMLDivElement> {
     src: string;
     alt?: string;
 }
 
-export const HeaderLogo: React.FC<HeaderLogoProps> = ({ src, alt = 'logo', ...rest }) => (
-    <StyledHeaderLogo src={src} alt={alt} {...rest} />
+export const HeaderLogo: React.FC<HeaderLogoProps> = ({ alt = 'logo', ...rest }) => (
+    <StyledHeaderLogo alt={alt} {...rest} />
 );
