@@ -81,7 +81,7 @@ export const CellIcon = styled.div<CellIconProps>`
     }
 `;
 
-export interface CellProps {
+export interface CellProps extends React.HTMLAttributes<HTMLDivElement> {
     left?: React.ReactNode;
     content: React.ReactNode;
     right?: React.ReactNode;

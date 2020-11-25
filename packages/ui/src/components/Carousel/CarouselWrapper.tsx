@@ -29,10 +29,7 @@ const StyledCarouselWrapper = styled.div<StyledCarouselWrapperProps>`
         `}
 `;
 
-export interface CarouselWrapperProps extends StyledCarouselWrapperProps {
-    style?: React.CSSProperties;
-    className?: string;
-}
+export interface CarouselWrapperProps extends StyledCarouselWrapperProps, React.HTMLAttributes<HTMLDivElement> {}
 
 export const CarouselWrapper: React.FC<CarouselWrapperProps> = ({ children, ...rest }) => (
     <StyledCarouselWrapper {...rest}>{children}</StyledCarouselWrapper>

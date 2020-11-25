@@ -5,12 +5,11 @@ import { buttonAccent } from '@sberdevices/plasma-tokens';
 import { Body2 } from '../Typography';
 import { formatCurrency } from '../../helpers/formatCurrency';
 
-export interface CardPriceProps {
+export interface CardPriceProps extends React.HTMLAttributes<HTMLDivElement> {
     price: number;
     oldPrice?: number;
     currency?: string;
     count?: number;
-    className?: string;
 }
 
 const StyledRoot = styled.div`
@@ -44,9 +43,9 @@ const StyledCount = styled(Body2)`
     color: ${buttonAccent};
 `;
 
-export const CardPrice: React.FC<CardPriceProps> = ({ className, count, currency, oldPrice, price }) => {
+export const CardPrice: React.FC<CardPriceProps> = ({ count, currency, oldPrice, price, ...rest }) => {
     return (
-        <StyledRoot className={className}>
+        <StyledRoot {...rest}>
             <StyledPrice>{formatCurrency(price, currency)}</StyledPrice>
             {oldPrice && <StyledOldPrice>{formatCurrency(oldPrice, currency)}</StyledOldPrice>}
             {count ? <StyledCount>×{count}</StyledCount> : ''}
