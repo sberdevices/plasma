@@ -15,17 +15,14 @@ const StyledCardBody = styled.div`
     border-radius: inherit;
 `;
 
-export interface CardBodyProps extends React.HTMLAttributes<HTMLDivElement> {
-    className?: string;
-    style?: React.CSSProperties;
-}
+export interface CardBodyProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 /**
  * Используется для скругления рамок содержимого внутри Card.
  */
 export const CardBody: React.FC<CardBodyProps> = ({ children, className, ...rest }) => {
     return (
-        <StyledCardBody {...rest} className={className}>
+        <StyledCardBody className={className} {...rest}>
             {children}
         </StyledCardBody>
     );

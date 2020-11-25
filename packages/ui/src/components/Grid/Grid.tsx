@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { scalingPixelBasis } from '@sberdevices/plasma-tokens';
 
@@ -48,8 +48,8 @@ const StyledContainer = styled.div`
     )}
 `;
 
-export const Container: React.FC<{ className?: string }> = ({ children, className }) => (
-    <StyledContainer className={className}>{children}</StyledContainer>
+export const Container: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children, ...rest }) => (
+    <StyledContainer {...rest}>{children}</StyledContainer>
 );
 
 const StyledRow = styled.div`
@@ -65,8 +65,8 @@ const StyledRow = styled.div`
     )}
 `;
 
-export const Row: React.FC<{ className?: string }> = ({ children, className }) => (
-    <StyledRow className={className}>{children}</StyledRow>
+export const Row: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children, ...rest }) => (
+    <StyledRow {...rest}>{children}</StyledRow>
 );
 
 interface StyledColProps {
@@ -88,7 +88,7 @@ const StyledCol = styled.div<StyledColProps>`
         )}
 `;
 
-export interface ColProps {
+export interface ColProps extends React.HTMLAttributes<HTMLDivElement> {
     /**
      * Размер ячейки, зависящий от максимального количества столбцов.
      */
@@ -97,12 +97,10 @@ export interface ColProps {
      * Отступ ячейки, сдвинет ее на n ячеек вправо.
      */
     offset?: number;
-    className?: string;
-    children?: ReactNode;
 }
 
-export const Col = forwardRef<HTMLDivElement, ColProps>(({ size = 1, offset = 0, children, className }, ref) => (
-    <StyledCol $size={size} $offset={offset} className={className} ref={ref}>
+export const Col = React.forwardRef<HTMLDivElement, ColProps>(({ size = 1, offset = 0, children, ...rest }, ref) => (
+    <StyledCol $size={size} $offset={offset} ref={ref} {...rest}>
         {children}
     </StyledCol>
 ));

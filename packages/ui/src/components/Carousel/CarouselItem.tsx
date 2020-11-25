@@ -2,10 +2,7 @@ import React from 'react';
 
 import { CarouselContext } from './CarouselContext';
 
-export interface ListItemProps {
-    style?: React.CSSProperties;
-    className?: string;
-
+export interface ListItemProps extends React.HTMLAttributes<HTMLDivElement> {
     as?: React.ComponentType<any>;
 }
 

@@ -7,7 +7,7 @@ import { applyView, ViewProps } from '../../mixins/applyView';
 import { applyMotion, MotionProps } from '../../mixins/applyMotion';
 import { applyDisabled, DisabledProps } from '../../mixins/applyDisabled';
 import { convertRoundnessMatrix, PinProps } from '../../utils';
-import { PickOptional, ShiftProps, StylingProps } from '../../types';
+import { PickOptional, ShiftProps } from '../../types';
 
 import { SizeProps, buttonBase, buttonTypography, fontSizeL, fontSizeM, fontSizeS } from './ButtonBase';
 
@@ -138,7 +138,6 @@ export interface ButtonProps
         FocusProps,
         DisabledProps,
         ShiftProps,
-        StylingProps,
         React.ButtonHTMLAttributes<HTMLButtonElement> {
     /**
      * Слот для контента слева, например <Icon/>
@@ -156,9 +155,6 @@ export interface ButtonProps
      * Кастомный контент кнопки. При указании этого свойства contentLeft, contentRight и text не применяются
      */
     children?: React.ReactNode;
-    onFocus?: React.FocusEventHandler<HTMLButtonElement>;
-    onBlur?: React.FocusEventHandler<HTMLButtonElement>;
-    onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { StylingProps } from '../../types/StylingProps';
-
 import { HeaderRoot } from './HeaderRoot';
 import { HeaderBack } from './HeaderBack';
 import { HeaderLogo } from './HeaderLogo';
@@ -10,7 +8,7 @@ import { HeaderTitle } from './HeaderTitle';
 import { HeaderTitleWrapper } from './HeaderTitleWrapper';
 import { HeaderContent } from './HeaderContent';
 
-export interface HeaderProps extends StylingProps {
+export interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
     back?: boolean;
     logo?: string;
     logoAlt?: string;

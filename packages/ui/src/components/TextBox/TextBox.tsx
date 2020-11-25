@@ -53,9 +53,15 @@ export interface TextPttrnProps {
     size?: 'm' | 'l';
 }
 
-export const TextBox: React.FC<TextPttrnProps> = (props) => {
-    const { label, title, subTitle, caption, size = 'm', children } = props;
-
+export const TextBox: React.FC<TextPttrnProps> = ({
+    label,
+    title,
+    subTitle,
+    caption,
+    size = 'm',
+    children,
+    ...rest
+}) => {
     if (children) {
         return <TextBoxRoot>{children}</TextBoxRoot>;
     }
@@ -63,7 +69,7 @@ export const TextBox: React.FC<TextPttrnProps> = (props) => {
     const T = size === 'm' ? Title : BigTitle;
 
     return (
-        <TextBoxRoot>
+        <TextBoxRoot {...rest}>
             {label && <Label>{label}</Label>}
             {title && <T>{title}</T>}
             {subTitle && <SubTitle>{subTitle}</SubTitle>}

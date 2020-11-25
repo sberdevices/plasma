@@ -39,13 +39,11 @@ export const StyledCarouselTrack = styled.div<StyledCarouselTrackProps>`
     `};
 `;
 
-export interface CarouselProps extends DirectionProps {
+export interface CarouselProps extends DirectionProps, React.HTMLAttributes<HTMLDivElement> {
     /**
      * Индекс текущего элемента
      */
     index: number;
-    style?: React.CSSProperties;
-    className?: string;
 }
 
 export const Carousel: React.FC<CarouselProps> = ({ index, axis, children, ...rest }) => {

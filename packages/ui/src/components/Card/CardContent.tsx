@@ -39,13 +39,11 @@ const StyledRoot = styled.div<StyledRootProps>`
         `}
 `;
 
-export interface CardContentProps extends StyledRootProps {
-    className?: string;
-}
+export interface CardContentProps extends StyledRootProps, React.HTMLAttributes<HTMLDivElement> {}
 
-export const CardContent: React.FC<CardContentProps> = ({ disabled, cover, compact, className, children }) => {
+export const CardContent: React.FC<CardContentProps> = ({ disabled, cover, compact, className, children, ...rest }) => {
     return (
-        <StyledRoot cover={cover} compact={compact} disabled={disabled} className={className}>
+        <StyledRoot cover={cover} compact={compact} disabled={disabled} className={className} {...rest}>
             {children}
         </StyledRoot>
     );
