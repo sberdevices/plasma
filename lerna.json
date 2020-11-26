@@ -15,6 +15,9 @@
                 "--unsafe-perm",
                 "--prefer-offline"
             ]
+        },
+        "publish": {
+            "verifyAccess": false
         }
     }
 }
