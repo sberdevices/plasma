@@ -2,9 +2,133 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { body1, white, black } from '@sberdevices/plasma-tokens';
 
-const TL = styled.span<WithDirection>`
+/** Направление раскрытия тултипа */
+export type direction = 'top-left' | 'top' | 'top-right' | 'right' | 'bottom-left' | 'bottom' | 'bottom-right' | 'left';
+
+export interface TooltipProps {
+    /** Текст тултипа */
+    text: string;
+    /** Видимость тултипа */
+    visible: boolean;
+    /** Направление раскрытия тултипа */
+    direction?: direction;
+}
+
+const TL = styled.span<Omit<TooltipProps, 'text'>>`
     position: relative;
     display: inline-flex;
+
+    --plasma-tooltip-offset: 0 0 0 0;
+    --plasma-tooltip-offset_disapear: 0 0 0 0;
+    --plasma-tooltip__tail-offset: 0 0 0 0;
+    --plasma-tooltip__tail-offset_disapear: 0 0 0 0;
+
+    @keyframes plasma-tooltip-appear {
+        0% {
+            opacity: 0;
+            margin: var(--plasma-tooltip-offset_disapear);
+        }
+
+        100% {
+            opacity: 1;
+            margin: var(--plasma-tooltip-offset);
+        }
+    }
+
+    @keyframes plasma-tooltip-disapper {
+        0% {
+            visibility: visible;
+
+            opacity: 1;
+            margin: var(--plasma-tooltip-offset);
+        }
+
+        75% {
+            opacity: 0.75;
+        }
+
+        99% {
+            margin: var(--plasma-tooltip-offset_disapear);
+        }
+
+        100% {
+            visibility: hidden;
+
+            opacity: 0;
+        }
+    }
+
+    @keyframes plasma-tooltip__tail-appear {
+        0% {
+            opacity: 0;
+            margin: var(--plasma-tooltip__tail-offset_disapear);
+        }
+
+        75% {
+            opacity: 0.6;
+        }
+
+        100% {
+            opacity: 1;
+            margin: var(--plasma-tooltip__tail-offset);
+        }
+    }
+
+    @keyframes plasma-tooltip__tail-disappear {
+        0% {
+            visibility: visible;
+
+            opacity: 1;
+            margin: var(--plasma-tooltip__tail-offset);
+        }
+
+        75% {
+            opacity: 0.6;
+        }
+
+        99% {
+            margin: var(--plasma-tooltip__tail-offset_disapear);
+        }
+
+        100% {
+            visibility: hidden;
+
+            opacity: 0;
+        }
+    }
+    /* stylelint-disable selector-nested-pattern */
+    &::before,
+    &::after {
+        animation-duration: 0.2s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-in-out;
+    }
+    /* stylelint-enable selector-nested-pattern */
+
+    ${({ visible }) =>
+        visible
+            ? css`
+                  &::before {
+                      visibility: visible;
+                      animation-name: plasma-tooltip__tail-appear;
+                  }
+
+                  &::after {
+                      visibility: visible;
+                      animation-name: plasma-tooltip-appear;
+                  }
+              `
+            : css`
+                  &::before {
+                      visibility: hidden;
+                      animation-name: plasma-tooltip__tail-disappear;
+                  }
+
+                  &::after {
+                      visibility: hidden;
+                      animation-name: plasma-tooltip-disapper;
+                  }
+              `}
 
     &::before {
         position: absolute;
@@ -22,81 +146,49 @@ const TL = styled.span<WithDirection>`
 
         ${({ direction }) => {
             // tooltip above anchor
-            if (direction === 'top-center' || direction === 'top-left' || direction === 'top-right') {
+            if (direction === 'top' || direction === 'top-left' || direction === 'top-right') {
                 return css`
                     bottom: 100%;
-                    transform: translateY(50%) rotate(45deg);
-                    margin-bottom: 1rem;
-                    margin-left: 0.15rem;
+                    transform: translateY(50%) translateX(-50%) rotate(45deg);
+                    --plasma-tooltip__tail-offset: 0 0 1rem 50%;
+                    --plasma-tooltip__tail-offset_disapear: 0 0 2rem 50%;
                 `;
             }
 
             // tooltip is right to anchor
-            if (direction === 'right-center') {
+            if (direction === 'right') {
                 return css`
                     left: 100%;
-                    transform: translateX(-50%) rotate(45deg);
-                    margin-left: 1rem;
-                    margin-top: 0.15rem;
-                `;
-            }
-
-            if (direction === 'right-top') {
-                return css`
-                    left: 100%;
-                    transform: translateX(-50%) rotate(45deg);
-                    margin-left: 1rem;
-                `;
-            }
-
-            if (direction === 'right-bottom') {
-                return css`
-                    left: 100%;
-                    transform: translateX(-50%) rotate(45deg);
-                    margin-left: 1rem;
-                    margin-top: 0.3rem;
+                    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+                    --plasma-tooltip__tail-offset: 50% 0 0 1rem;
+                    --plasma-tooltip__tail-offset_disapear: 50% 0 0 2rem;
                 `;
             }
 
             // tooltip is under anchor
-            if (direction === 'bottom-center' || direction === 'bottom-left' || direction === 'bottom-right') {
+            if (direction === 'bottom' || direction === 'bottom-left' || direction === 'bottom-right') {
                 return css`
                     top: 100%;
-                    transform: translateY(-50%) rotate(45deg);
-                    margin-top: 1rem;
-                    margin-left: 0.125rem;
+                    transform: translateY(-50%) translateX(-50%) rotate(45deg);
+                    --plasma-tooltip__tail-offset: 1rem 0 0 50%;
+                    --plasma-tooltip__tail-offset_disapear: 2rem 0 0 50%;
                 `;
             }
 
             // tooltip is left to anchor
-            if (direction === 'left-center') {
+            if (direction === 'left') {
                 return css`
                     right: 100%;
-                    transform: translateX(50%) rotate(45deg);
-                    margin-right: 1rem;
-                    margin-top: 0.15rem;
-                `;
-            }
-
-            if (direction === 'left-top') {
-                return css`
-                    right: 100%;
-                    transform: translateX(50%) rotate(45deg);
-                    margin-right: 1rem;
-                `;
-            }
-
-            if (direction === 'left-bottom') {
-                return css`
-                    right: 100%;
-                    transform: translateX(50%) rotate(45deg);
-                    margin-right: 1rem;
-                    margin-top: 0.3rem;
+                    transform: translateX(50%) translateY(-50%) rotate(45deg);
+                    --plasma-tooltip__tail-offset: 50% 1rem 0 0;
+                    --plasma-tooltip__tail-offset_disapear: 50% 2rem 0 0;
                 `;
             }
 
             return null;
         }}
+
+        margin: var(--plasma-tooltip__tail-offset);
     }
 
     &::after {
@@ -110,6 +202,7 @@ const TL = styled.span<WithDirection>`
         color: ${white};
 
         content: attr(aria-label);
+
         ${body1}
         white-space: pre;
 
@@ -118,12 +211,13 @@ const TL = styled.span<WithDirection>`
 
         ${({ direction }) => {
             // tooltip above anchor
-            if (direction === 'top-center') {
+            if (direction === 'top') {
                 return css`
                     bottom: 100%;
                     right: 50%;
-                    margin-bottom: 0.75rem;
                     transform: translateX(50%);
+                    --plasma-tooltip-offset: 0 0 0.75rem 0;
+                    --plasma-tooltip-offset_disapear: 0 0 1.75rem 0;
                 `;
             }
 
@@ -131,7 +225,8 @@ const TL = styled.span<WithDirection>`
                 return css`
                     bottom: 100%;
                     right: -50%;
-                    margin-bottom: 0.75rem;
+                    --plasma-tooltip-offset: 0 0 0.75rem 0;
+                    --plasma-tooltip-offset_disapear: 0 0 1.75rem 0;
                 `;
             }
 
@@ -139,43 +234,30 @@ const TL = styled.span<WithDirection>`
                 return css`
                     bottom: 100%;
                     left: -50%;
-                    margin-bottom: 0.75rem;
+                    --plasma-tooltip-offset: 0 0 0.75rem 0;
+                    --plasma-tooltip-offset_disapear: 0 0 1.75rem 0;
                 `;
             }
 
             // tooltip is right to anchor
-            if (direction === 'right-center') {
+            if (direction === 'right') {
                 return css`
                     left: 100%;
                     top: 50%;
                     transform: translateY(-50%);
-                    margin-left: 0.75rem;
-                `;
-            }
-
-            if (direction === 'right-top') {
-                return css`
-                    left: 100%;
-                    bottom: 0;
-                    margin-left: 0.75rem;
-                `;
-            }
-
-            if (direction === 'right-bottom') {
-                return css`
-                    left: 100%;
-                    top: 0;
-                    margin-left: 0.75rem;
+                    --plasma-tooltip-offset: 0 0 0 0.75rem;
+                    --plasma-tooltip-offset_disapear: 0 0 0 1.75rem;
                 `;
             }
 
             // tooltip is under anchor
-            if (direction === 'bottom-center') {
+            if (direction === 'bottom') {
                 return css`
                     top: 100%;
                     right: 50%;
-                    margin-top: 0.75rem;
                     transform: translateX(50%);
+                    --plasma-tooltip-offset: 0.75rem 0 0 0;
+                    --plasma-tooltip-offset_disapear: 1.75rem 0 0 0;
                 `;
             }
 
@@ -183,7 +265,8 @@ const TL = styled.span<WithDirection>`
                 return css`
                     top: 100%;
                     right: -50%;
-                    margin-top: 0.75rem;
+                    --plasma-tooltip-offset: 0.75rem 0 0 0;
+                    --plasma-tooltip-offset_disapear: 1.75rem 0 0 0;
                 `;
             }
 
@@ -191,73 +274,38 @@ const TL = styled.span<WithDirection>`
                 return css`
                     top: 100%;
                     left: -50%;
-                    margin-top: 0.75rem;
+                    --plasma-tooltip-offset: 0.75rem 0 0 0;
+                    --plasma-tooltip-offset_disapear: 1.75rem 0 0 0;
                 `;
             }
 
             // tooltip is left to anchor
-            if (direction === 'left-center') {
+            if (direction === 'left') {
                 return css`
                     right: 100%;
                     top: 50%;
                     transform: translateY(-50%);
-                    margin-right: 0.75rem;
-                `;
-            }
-
-            if (direction === 'left-top') {
-                return css`
-                    right: 100%;
-                    bottom: 0;
-                    margin-right: 0.75rem;
-                `;
-            }
-
-            if (direction === 'left-bottom') {
-                return css`
-                    right: 100%;
-                    top: 0;
-                    margin-right: 0.75rem;
+                    --plasma-tooltip-offset: 0 0.75rem 0 0;
+                    --plasma-tooltip-offset_disapear: 0 1.75rem 0 0;
                 `;
             }
 
             return null;
         }}
+
+        margin: var(--plasma-tooltip-offset);
     }
 `;
 
-// направление раскрытия тултипа
-// TODO: Может выпилить к херам [right-top, right-bottom, left-top, left-bottom] ???
-export type direction =
-    | 'top-left'
-    | 'top-center'
-    | 'top-right'
-    | 'right-top'
-    | 'right-center'
-    | 'right-bottom'
-    | 'bottom-left'
-    | 'bottom-center'
-    | 'bottom-right'
-    | 'left-top'
-    | 'left-center'
-    | 'left-bottom';
-
-interface WithDirection {
-    direction: direction;
-}
-interface TooltipProps {
-    text: string;
-    direction?: direction;
-}
-
 export const Tooltip: React.FC<TooltipProps & React.HTMLAttributes<HTMLDivElement>> = ({
     text,
-    direction = 'bottom-center',
+    visible,
+    direction = 'bottom',
     children,
     ...rest
 }) => {
     return (
-        <TL aria-label={text} direction={direction} {...rest}>
+        <TL aria-label={text} visible={visible} direction={direction} {...rest}>
             {children}
         </TL>
     );

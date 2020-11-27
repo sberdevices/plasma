@@ -1,0 +1,58 @@
+---
+name: Tooltip
+menu: Components
+route: /components/Tooltip
+---
+
+import { Playground, Props } from 'docz';
+import { IconApps } from '@sberdevices/plasma-icons';
+import { useState } from 'react';
+
+import { Tooltip } from './Tooltip';
+
+import { ThemeSelect } from '../../helpers/ThemeSelect';
+import { ThemeBackground } from '../../helpers/ThemeBackground';
+import { Pad } from '../../helpers/Pad';
+
+<ThemeSelect />
+
+
+# Tooltip
+Компонент для текстовых подсказок. Основное предназначение — подписи к иконкам.
+
+## Props
+<Props of={Tooltip} />
+
+## Playground
+
+### Базовое применение
+
+`Tooltip` оборачивает собой любой компонент и открывается в заданную сторону.
+
+Предполагается оборачивать иконки из пакета `@sberdevices/plasma-icons`
+
+<Playground>
+    <ThemeBackground>
+        <Pad>
+            <Tooltip text="Высокое качество воспроизведения" visible>
+                <IconApps />
+            </Tooltip>
+        </Pad>
+    </ThemeBackground>
+</Playground>
+
+
+### Применение с другими компонентами
+
+Если используете `Tooltip` на объектах большего размера,
+используйте только направления раскрытия: `top`, `right`, `bottom` & `left`.
+
+<Playground>
+    <ThemeBackground>
+        <Pad>
+            <Tooltip text="Высокое качество воспроизведения" visible direction="top">
+                <div style={{ height: 200, width: 200, background: 'var(--plasma-colors-button-secondary)' }} />
+            </Tooltip>
+        </Pad>
+    </ThemeBackground>
+</Playground>

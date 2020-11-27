@@ -1,5 +1,5 @@
 import React from 'react';
-import { text, select } from '@storybook/addon-knobs';
+import { text, select, boolean } from '@storybook/addon-knobs';
 import { IconApps } from '@sberdevices/plasma-icons';
 
 import { direction, Tooltip } from './Tooltip';
@@ -11,7 +11,6 @@ export default {
         (story) => (
             <div
                 style={{
-                    // padding: '10rem',
                     height: '100vh',
                     display: 'flex',
                     justifyContent: 'center',
@@ -26,26 +25,26 @@ export default {
 
 const directions = [
     'top-left',
-    'top-center',
+    'top',
     'top-right',
 
-    'right-top',
-    'right-center',
-    'right-bottom',
+    // 'right-top',
+    'right',
+    // 'right-bottom',
 
     'bottom-right',
-    'bottom-center',
+    'bottom',
     'bottom-left',
 
-    'left-bottom',
-    'left-center',
-    'left-top',
+    // 'left-bottom',
+    'left',
+    // 'left-top',
 ];
 
 export const Default = () => {
     const args = {
         text: text('text', 'Высокое качество воспроизведения'),
-        // text: 'Отсутствует текст песни',
+        visible: boolean('visible', true),
         direction: select('direction', directions, 'top-center') as direction,
         children: <IconApps />,
     };
