@@ -22,13 +22,13 @@ const StyledHeaderRoot = styled.header`
     padding-top: ${paddingY}rem;
     padding-bottom: ${paddingY}rem;
 
-    ${mediaQuery('xl')(`
+    ${mediaQuery('XL')(`
         & ${StyledHeaderBackButton} {
             display: none;
         }
     `)}
 
-    ${mediaQuery('sm')(`
+    ${mediaQuery('S')(`
         & ${HeaderSubtitle} {
             display: none;
         }

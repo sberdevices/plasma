@@ -56,17 +56,22 @@ import { detectDevice } from '@sberdevices/ui/utils';
 // Вернет "SberPortal" или "SberBox" или "touch" (для всех остальных устройств)
 const deviceKind = detectDevice();
 ```
-## mediaQuery
+## mediaQuery(breakpoint: Breakpoint, deviceScale?: number)
 Обертка над css-медиазапросами с заранее определенными брейкпоинтами.
+
+> Для корректной работы на разных поверхностях, необходимо указывать второй параметр ``deviceScale``.
 
 ### Использование
 ```tsx
 import styled, { css } from 'styled-components';
 import { mediaQuery, breakpoints } from '@sberdevices/ui/utils';
 
+// Определяем поверхность
+const deviceScale = 2;
+
 // Блок Box примет красный цвет фона на больших экранах
 const Box = styled.div`
-    ${mediaQuery('xl')(css`
+    ${mediaQuery('XL', deviceScale)(css`
         background: red;
     `)};
 `;
