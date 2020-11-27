@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { body1, white, black } from '@sberdevices/plasma-tokens';
 
 /** Направление раскрытия тултипа */
-export type direction = 'top-left' | 'top' | 'top-right' | 'right' | 'bottom-left' | 'bottom' | 'bottom-right' | 'left';
+export type Direction = 'top-left' | 'top' | 'top-right' | 'right' | 'bottom-left' | 'bottom' | 'bottom-right' | 'left';
 
 export interface TooltipProps {
     /** Текст тултипа */
@@ -11,7 +11,7 @@ export interface TooltipProps {
     /** Видимость тултипа */
     visible: boolean;
     /** Направление раскрытия тултипа */
-    direction?: direction;
+    direction?: Direction;
 }
 
 const TL = styled.span<Omit<TooltipProps, 'text'>>`

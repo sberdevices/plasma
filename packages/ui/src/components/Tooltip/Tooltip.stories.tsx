@@ -2,7 +2,7 @@ import React from 'react';
 import { text, select, boolean } from '@storybook/addon-knobs';
 import { IconApps } from '@sberdevices/plasma-icons';
 
-import { direction, Tooltip } from './Tooltip';
+import { Direction, Tooltip } from './Tooltip';
 
 export default {
     title: 'Tooltip',
@@ -11,7 +11,8 @@ export default {
         (story) => (
             <div
                 style={{
-                    height: '100vh',
+                    height: '12rem',
+                    width: '100%',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -23,7 +24,7 @@ export default {
     ],
 };
 
-const directions = [
+const directions: Array<Direction> = [
     'top-left',
     'top',
     'top-right',
@@ -45,7 +46,7 @@ export const Default = () => {
     const args = {
         text: text('text', 'Высокое качество воспроизведения'),
         visible: boolean('visible', true),
-        direction: select('direction', directions, 'top-center') as direction,
+        direction: select('direction', directions, 'top'),
         children: <IconApps />,
     };
 
