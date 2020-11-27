@@ -8,7 +8,7 @@ export const StyledHeaderLogo = styled.img`
     height: 2.25rem;
     margin-right: 0.75rem;
 
-    ${mediaQuery('sm')(css`
+    ${mediaQuery('S')(css`
         width: 1.75rem;
         height: 1.75rem;
     `)}

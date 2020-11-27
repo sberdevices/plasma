@@ -31,11 +31,12 @@ export const StyledCarousel = styled.div<StyledCarouselProps>`
 interface StyledCarouselTrackProps extends DirectionProps {}
 
 export const StyledCarouselTrack = styled.div<StyledCarouselTrackProps>`
-    display: flex;
-    width: max-content;
-
-    ${({ dir }) => css`
-        flex-direction: ${dir === 'x' ? 'column' : 'row'};
+    ${({ axis }) => css`
+        ${axis === 'x' &&
+        css`
+            display: inline-flex;
+            flex-direction: row;
+        `}
     `};
 `;
 

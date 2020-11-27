@@ -4,8 +4,8 @@ import { text, number, boolean, select } from '@storybook/addon-knobs';
 import { Icon } from '@sberdevices/plasma-icons';
 
 import { mediaQuery } from '../../utils';
-import { Button } from '../Button/Button';
-import { Container } from '../Grid/Grid';
+import { Button } from '../Button';
+import { Container } from '../Grid';
 import { Tabs, TabItem } from '../Tabs';
 
 import { Header } from './Header';
@@ -20,14 +20,14 @@ import { HeaderContent } from './HeaderContent';
 const MobileHeaderButtons = styled.div`
     display: none;
 
-    ${mediaQuery('sm')(`
+    ${mediaQuery('S')(`
         display: flex;
     `)}
 `;
 const RegularHeaderButtons = styled.div`
     display: flex;
 
-    ${mediaQuery('sm')(`
+    ${mediaQuery('S')(`
         display: none;
     `)}
 `;

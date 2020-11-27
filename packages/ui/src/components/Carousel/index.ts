@@ -1,5 +1,5 @@
 export { Carousel } from './Carousel';
 export { CarouselWrapper } from './CarouselWrapper';
 export { CarouselContext, CarouselStore } from './CarouselContext';
-export { CarouselGridCol } from './CarouselGridCol';
+export { CarouselCol } from './CarouselCol';
 export { CarouselItem } from './CarouselItem';

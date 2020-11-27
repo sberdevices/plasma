@@ -5,8 +5,9 @@ import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 
 import { text, background, gradient } from '@sberdevices/plasma-tokens';
-import { touch, sberBox, sberPortal } from '@sberdevices/plasma-tokens/typo';
 import { darkEva, darkJoy, darkSber, lightEva, lightJoy, lightSber } from '@sberdevices/plasma-tokens/themes';
+
+import { DeviceDetectionProvider } from '../src/components/Device';
 
 const DocumentStyle = createGlobalStyle`
     /* stylelint-disable-next-line selector-nested-pattern */
@@ -27,12 +28,6 @@ const DocumentStyle = createGlobalStyle`
     }
 `;
 
-const typoSizes = {
-    sberBox: createGlobalStyle(sberBox),
-    sberPortal: createGlobalStyle(sberPortal),
-    touch: createGlobalStyle(touch),
-};
-
 const themes = {
     darkSber: createGlobalStyle(darkSber),
     darkEva: createGlobalStyle(darkEva),
@@ -44,14 +39,14 @@ const themes = {
 
 const withTheme = (Story, context) => {
     const Theme = themes[context.globals.theme];
-    const Typo = typoSizes[context.globals.typoSize];
 
     return (
         <>
-            <Theme />
-            <Typo />
-            <DocumentStyle />
-            <Story {...context} />
+            <DeviceDetectionProvider detectDeviceCallback={() => context.globals.typoSize}>
+                <Theme />
+                <DocumentStyle />
+                <Story {...context} />
+            </DeviceDetectionProvider>
         </>
     );
 };
@@ -81,14 +76,14 @@ addParameters({
                 name: '860',
                 styles: {
                     width: '860px',
-                    height: '484px',
+                    height: '640px',
                 },
             },
             '1024': {
                 name: '1024',
                 styles: {
                     width: '1024px',
-                    height: '576px',
+                    height: '768px',
                 },
             },
             SberPortal: {

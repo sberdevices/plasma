@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { applyView, ViewProps } from '../mixins/applyView';
 
 interface FillerProps extends ViewProps {
+    radius?: boolean;
     bordered?: boolean;
     fullHeight?: boolean;
 }
@@ -15,13 +16,10 @@ export const Filler = styled.div<FillerProps>`
     box-sizing: border-box;
 
     width: 100%;
-    min-height: 2rem;
     padding: 0.5rem 1rem;
-    margin-bottom: 1rem;
-
-    border-radius: 0.25rem;
 
     ${({ view = 'secondary' }) => applyView({ view })};
+    ${({ radius }) => radius && 'border-radius: 0.25rem'}
     ${({ bordered }) =>
         bordered &&
         css`
