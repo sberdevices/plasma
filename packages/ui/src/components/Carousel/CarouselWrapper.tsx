@@ -16,15 +16,15 @@ const StyledCarouselWrapper = styled.div<StyledCarouselWrapperProps>`
     ${({ inContainer }) =>
         inContainer &&
         css`
-            margin-left: calc(var(--container-padding) * -1);
-            margin-right: calc(var(--container-padding) * -1);
+            margin-left: calc(var(--plasma-grid-margin) * -1);
+            margin-right: calc(var(--plasma-grid-margin) * -1);
 
             & ${StyledCarousel} {
-                padding-left: var(--container-padding);
+                padding-left: var(--plasma-grid-margin);
             }
 
             & ${StyledCarouselTrack} {
-                padding-right: var(--container-padding);
+                padding-right: var(--plasma-grid-margin);
             }
         `}
 `;

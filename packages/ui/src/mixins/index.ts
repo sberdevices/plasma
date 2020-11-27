@@ -4,6 +4,9 @@ export type { FocusProps } from './addFocus';
 export { applyDisabled } from './applyDisabled';
 export type { DisabledProps } from './applyDisabled';
 
+export { applyMaxLines } from './applyMaxLines';
+export type { MaxLinesProps } from './applyMaxLines';
+
 export { applyMotion } from './applyMotion';
 export type { MotionProps } from './applyMotion';
 

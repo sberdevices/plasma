@@ -1,24 +1,23 @@
 import React from 'react';
-import { number } from '@storybook/addon-knobs';
+import styled, { css } from 'styled-components';
+import { boolean, number } from '@storybook/addon-knobs';
+import { whitePrimary, whiteSecondary, whiteTertiary } from '@sberdevices/plasma-tokens';
 
+import { GridLines } from '../../helpers/GridLines';
 import { Filler } from '../../helpers/Filler';
 import { Outline } from '../../helpers/Outline';
-import { ImagePlaceholder } from '../../helpers/ImagePlaceholder';
-import { ActionButton } from '../Button/ActionButton';
-import { Card, CardBody, CardMedia, CardContent, CardHeadline1, CardHeadline3, CardFootnote1 } from '../Card';
-import { Container, Row, Col } from '../Grid/Grid';
-import { Headline3 } from '../Typography/Headline';
+import { applyMaxLines, MaxLinesProps } from '../../mixins';
+import { Card, CardBody, CardMedia, CardContent } from '../Card';
+import { Container, Row } from '../Grid';
+import { Body1, Body3, Footnote1 } from '../Typography';
 
-import { CarouselWrapper } from './CarouselWrapper';
-import { Carousel } from './Carousel';
-import { CarouselItem } from './CarouselItem';
-import { CarouselGridCol } from './CarouselGridCol';
+import { CarouselWrapper, Carousel, CarouselItem, CarouselCol } from '.';
 
 export default {
     title: 'Carousel',
     decorators: [
         (Story) => (
-            <div style={{ padding: '1.5rem 0' }}>
+            <div style={{ margin: '-16px' }}>
                 <Story />
             </div>
         ),
@@ -27,7 +26,7 @@ export default {
 
 export const Basic = () => {
     const items = Array(number('Items', 20)).fill(0);
-    const index = number('index', 10);
+    const index = number('index', 0);
     return (
         <Outline>
             <Carousel axis="x" index={index}>
@@ -44,94 +43,213 @@ export const Basic = () => {
 };
 
 export const WithGrid = () => {
-    const items = Array(number('Items', 10)).fill(0);
-    const index = number('index', 5);
+    const items = Array(number('Items', 20)).fill(0);
+    const index = number('index', 0);
     return (
-        <Outline>
+        <>
+            {boolean('grid', true) && <GridLines />}
             <Container>
-                <Outline>
-                    <CarouselWrapper>
-                        <Row>
-                            <Carousel axis="x" index={index}>
-                                {items.map((_, i) => (
-                                    <CarouselGridCol key={`item:${i}`} size={3}>
-                                        <Filler view={i === index ? 'primary' : 'secondary'}>Item {i}</Filler>
-                                    </CarouselGridCol>
-                                ))}
-                            </Carousel>
-                        </Row>
-                    </CarouselWrapper>
-                </Outline>
+                <CarouselWrapper>
+                    <Row>
+                        <Carousel axis="x" index={index}>
+                            {items.map((_, i) => (
+                                <CarouselCol key={`item:${i}`} size={number('size', 2)}>
+                                    <Filler view={i === index ? 'primary' : 'secondary'}>Item {i}</Filler>
+                                </CarouselCol>
+                            ))}
+                        </Carousel>
+                    </Row>
+                </CarouselWrapper>
             </Container>
-        </Outline>
+        </>
     );
 };
 
-export const MarketPage = () => {
-    const genres = ['Action', 'Racing', 'RPG', 'Strategy', 'MOBA', 'Arcade', 'Single', 'Multiplayer'];
-    const items = Array(number('Items', 10)).fill(0);
+const songs = Array(12).fill({
+    title: 'Songs And Instrumentals',
+    artist: 'Haus Arafna',
+    image: '/images/card1.png',
+});
 
-    // Storybook knob здесь не подходит, потому что полностью перерисовывает сторис,
-    // так что будем менять индекс с помощью кнопок и useState
-    const [index, setIndex] = React.useState(0);
-    const handlePrev = () => setIndex(Math.max(index - 1, 0));
-    const handleNext = () => setIndex(Math.min(index + 1, items.length - 1));
+const hitsAndCharts = Array(12).fill({
+    title: 'Топ шазама',
+    descr: 'Самые зашазамленные треки этой недели',
+    note: '104 песни, 5 часов 24 минуты',
+    image: '/images/card1.png',
+});
 
-    return (
-        <Container>
-            {/** Карусель */}
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Headline3>Popular games</Headline3>
-                <div style={{ display: 'flex' }}>
-                    <ActionButton style={{ marginRight: 10 }} onClick={handlePrev}>
-                        &lt;
-                    </ActionButton>
-                    <ActionButton onClick={handleNext}>&gt;</ActionButton>
-                </div>
-            </div>
-            {/** Модификатор для компенсирования отступа Container */}
-            <CarouselWrapper inContainer>
-                <Row>
-                    {/** На карусели задаем отступы для фокусной рамки Card */}
-                    <Carousel axis="x" index={index} style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>
-                        {items.map((_, i) => (
-                            <CarouselGridCol key={`item:${i}`} size={3}>
-                                {/** Произвольный контент */}
-                                <Card highlightOnFocus focused={i === index}>
-                                    <CardBody>
-                                        <CardMedia src="" height="12rem">
-                                            <ImagePlaceholder color="white" width="100%" height="12rem" rotation={29} />
-                                        </CardMedia>
-                                        <CardContent>
-                                            <CardHeadline3>Bestseller</CardHeadline3>
-                                            <CardHeadline1 style={{ marginTop: '0.75rem' }}>Game {i}</CardHeadline1>
-                                            <CardFootnote1 style={{ marginTop: '0.375rem' }} view="secondary">
-                                                Popular Game Studios
-                                            </CardFootnote1>
-                                        </CardContent>
-                                    </CardBody>
-                                </Card>
-                            </CarouselGridCol>
-                        ))}
-                    </Carousel>
-                </Row>
-            </CarouselWrapper>
+const genres = Array(12).fill({
+    title: 'Саундтреки',
+    image: '/images/card1.png',
+});
 
-            {/** Остальной контент */}
-            <Headline3 style={{ marginBottom: '1rem' }}>Genres</Headline3>
+const artists = Array(12).fill({
+    artist: 'Foo Fighters',
+    image: '/images/card1.png',
+});
+
+const podcasts = Array(12).fill({
+    title: 'Pointcast (Поинткаст)',
+    descr: 'Обновлён 29.04',
+    image: '/images/card1.png',
+});
+
+const newPodcasts = Array(12).fill({
+    title: 'Лётчицы',
+    descr: 'История женской авиации в Великой Отечественной войне бла бла бла бла бла бла бла бла бла бла бла бла',
+    image: '/images/card1.png',
+});
+
+const StyledSection = styled.section`
+    margin-bottom: 1.75rem;
+
+    &:first-child {
+        margin-top: 1.75rem;
+    }
+`;
+
+const StyledSectionHeading = styled(Body3)`
+    margin-bottom: 1rem;
+`;
+
+const StyledItemTitle = styled(Body1)<{ textAlign?: string }>`
+    margin-top: 0.75rem;
+    color: ${whitePrimary};
+
+    ${({ textAlign }) =>
+        textAlign &&
+        css`
+            text-align: ${textAlign};
+        `}
+`;
+
+const StyledItemDescr = styled(Footnote1)<MaxLinesProps>`
+    ${applyMaxLines}
+
+    margin-top: 0.25rem;
+    color: ${whiteSecondary};
+`;
+
+const StyledItemNote = styled(Footnote1)`
+    margin-top: 0.25rem;
+    color: ${whiteTertiary};
+`;
+
+interface CarouselSectionProps {
+    heading: string;
+}
+
+const CarouselSection: React.FC<CarouselSectionProps> = ({ heading, children }) => (
+    <StyledSection>
+        <StyledSectionHeading>{heading}</StyledSectionHeading>
+        <CarouselWrapper inContainer>
             <Row>
-                {genres.map((name, i) => (
-                    <Col key={`item::${i}`} size={3}>
-                        <Card style={{ marginBottom: '1rem' }}>
-                            <CardBody>
-                                <CardContent>
-                                    <CardHeadline3>{name}</CardHeadline3>
-                                </CardContent>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                ))}
+                <Carousel axis="x" index={0}>
+                    {children}
+                </Carousel>
             </Row>
-        </Container>
+        </CarouselWrapper>
+    </StyledSection>
+);
+
+export const MusicPage: React.FC = () => {
+    return (
+        <>
+            {boolean('grid', true) && <GridLines />}
+            <Container>
+                <CarouselSection heading="Новые альбомы">
+                    {songs.map((item, i) => (
+                        <CarouselCol key={`item:${i}`} size={2} sizeM={1.5}>
+                            <Card roundness={12}>
+                                <CardBody>
+                                    <CardMedia src={item.image} ratio="1:1" />
+                                </CardBody>
+                            </Card>
+                            <StyledItemTitle>{item.title}</StyledItemTitle>
+                            <StyledItemDescr>{item.artist}</StyledItemDescr>
+                        </CarouselCol>
+                    ))}
+                </CarouselSection>
+                <CarouselSection heading="Хиты и чарты">
+                    {hitsAndCharts.map((item, i) => (
+                        <CarouselCol key={`item:${i}`} size={4} sizeM={3}>
+                            <Card roundness={12}>
+                                <CardBody>
+                                    <CardMedia src={item.image} ratio="9:16" />
+                                </CardBody>
+                            </Card>
+                            <StyledItemTitle>{item.title}</StyledItemTitle>
+                            <StyledItemDescr maxLines={2}>{item.descr}</StyledItemDescr>
+                            <StyledItemNote>{item.note}</StyledItemNote>
+                        </CarouselCol>
+                    ))}
+                </CarouselSection>
+                <CarouselSection heading="Лучшее за 2020">
+                    {songs.map((item, i) => (
+                        <CarouselCol key={`item:${i}`} size={2} sizeM={1.5}>
+                            <Card roundness={12}>
+                                <CardBody>
+                                    <CardMedia src={item.image} ratio="1:1" />
+                                </CardBody>
+                            </Card>
+                            <StyledItemTitle>{item.title}</StyledItemTitle>
+                            <StyledItemDescr>{item.artist}</StyledItemDescr>
+                        </CarouselCol>
+                    ))}
+                </CarouselSection>
+                <CarouselSection heading="Топ артисты">
+                    {artists.map((item, i) => (
+                        <CarouselCol key={`item:${i}`} size={2} sizeM={1.5}>
+                            <Card roundness={250}>
+                                <CardBody>
+                                    <CardMedia src={item.image} ratio="1:1" />
+                                </CardBody>
+                            </Card>
+                            <StyledItemTitle textAlign="center">{item.artist}</StyledItemTitle>
+                        </CarouselCol>
+                    ))}
+                </CarouselSection>
+                <CarouselSection heading="Жанры и настроения">
+                    {genres.map((item, i) => (
+                        <CarouselCol key={`item:${i}`} size={3} sizeM={2}>
+                            <Card roundness={12}>
+                                <CardBody>
+                                    <CardMedia src={item.image} ratio="9:16" />
+                                    <CardContent cover>
+                                        <StyledItemTitle>{item.title}</StyledItemTitle>
+                                    </CardContent>
+                                </CardBody>
+                            </Card>
+                        </CarouselCol>
+                    ))}
+                </CarouselSection>
+                <CarouselSection heading="Подкасты">
+                    {podcasts.map((item, i) => (
+                        <CarouselCol key={`item:${i}`} size={2} sizeM={1.5}>
+                            <Card roundness={12}>
+                                <CardBody>
+                                    <CardMedia src={item.image} ratio="1:1" />
+                                </CardBody>
+                            </Card>
+                            <StyledItemTitle>{item.title}</StyledItemTitle>
+                            <StyledItemDescr>{item.descr}</StyledItemDescr>
+                        </CarouselCol>
+                    ))}
+                </CarouselSection>
+                <CarouselSection heading="Новое в подкастах">
+                    {newPodcasts.map((item, i) => (
+                        <CarouselCol key={`item:${i}`} size={4} sizeM={3}>
+                            <Card roundness={12}>
+                                <CardBody>
+                                    <CardMedia src={item.image} customRatio="55.7575" />
+                                </CardBody>
+                            </Card>
+                            <StyledItemTitle>{item.title}</StyledItemTitle>
+                            <StyledItemDescr maxLines={2}>{item.descr}</StyledItemDescr>
+                        </CarouselCol>
+                    ))}
+                </CarouselSection>
+            </Container>
+        </>
     );
 };

@@ -2,17 +2,28 @@ import React from 'react';
 import styled from 'styled-components';
 import { text, number } from '@storybook/addon-knobs';
 
+import { GridLines } from '../../helpers/GridLines';
 import { Filler } from '../../helpers/Filler';
 
-import { Container, Row, Col } from './Grid';
+import { Container, Row, Col } from '.';
 
 const StyledDummyFiller = styled(Filler)`
+    margin-bottom: 0.5rem;
     opacity: 0.5;
 `;
 
 export default {
     title: 'Grid',
+    decorators: [
+        (Story) => (
+            <div style={{ margin: '-16px' }}>
+                <Story />
+            </div>
+        ),
+    ],
 };
+
+export const Default = () => <GridLines />;
 
 export const ColPlayground = () => {
     const size = number('Dummy size', 1);
