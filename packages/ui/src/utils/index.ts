@@ -8,3 +8,5 @@ export type { DeviceKind } from './deviceDetection';
 
 export { mediaQuery, breakpoints } from './mediaQuery';
 export type { Breakpoint } from './mediaQuery';
+
+export { toCssSize } from './toCssSize';
