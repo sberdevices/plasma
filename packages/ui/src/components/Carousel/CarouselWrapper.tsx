@@ -20,6 +20,7 @@ const StyledCarouselWrapper = styled.div<StyledCarouselWrapperProps>`
             margin-right: calc(var(--plasma-grid-margin) * -1);
 
             & ${StyledCarousel} {
+                scroll-padding: 0 var(--plasma-grid-margin);
                 padding-left: var(--plasma-grid-margin);
             }
 

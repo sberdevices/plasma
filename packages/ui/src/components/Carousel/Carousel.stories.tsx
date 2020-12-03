@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { boolean, number } from '@storybook/addon-knobs';
+import { boolean, number, select } from '@storybook/addon-knobs';
 import { whitePrimary, whiteSecondary, whiteTertiary } from '@sberdevices/plasma-tokens';
 
 import { GridLines } from '../../helpers/GridLines';
@@ -10,6 +10,8 @@ import { applyMaxLines, MaxLinesProps } from '../../mixins';
 import { Card, CardBody, CardMedia, CardContent } from '../Card';
 import { Container, Row } from '../Grid';
 import { Body1, Body3, Footnote1 } from '../Typography';
+
+import { SnapType, SnapAlign } from './Carousel';
 
 import { CarouselWrapper, Carousel, CarouselItem, CarouselCol } from '.';
 
@@ -47,7 +49,7 @@ export const WithGrid = () => {
     const index = number('index', 0);
     return (
         <>
-            {boolean('grid', true) && <GridLines />}
+            {boolean('Display grid', true) && <GridLines />}
             <Container>
                 <CarouselWrapper>
                     <Row>
@@ -135,6 +137,9 @@ const StyledItemNote = styled(Footnote1)`
     color: ${whiteTertiary};
 `;
 
+const snapTypes = ['mandatory', 'proximity'] as SnapType[];
+const snapAlign = ['start', 'center', 'end'] as SnapAlign[];
+
 interface CarouselSectionProps {
     heading: string;
 }
@@ -144,7 +149,13 @@ const CarouselSection: React.FC<CarouselSectionProps> = ({ heading, children }) 
         <StyledSectionHeading>{heading}</StyledSectionHeading>
         <CarouselWrapper inContainer>
             <Row>
-                <Carousel axis="x" index={0}>
+                <Carousel
+                    axis="x"
+                    index={0}
+                    scrollSnap={boolean('scrollSnap', true)}
+                    scrollSnapType={select('scrollSnapType', snapTypes, 'mandatory')}
+                    scrollSnapAlign={select('scrollSnapAlign', snapAlign, 'start')}
+                >
                     {children}
                 </Carousel>
             </Row>
@@ -155,7 +166,7 @@ const CarouselSection: React.FC<CarouselSectionProps> = ({ heading, children }) 
 export const MusicPage: React.FC = () => {
     return (
         <>
-            {boolean('grid', true) && <GridLines />}
+            {boolean('Display grid', true) && <GridLines />}
             <Container>
                 <CarouselSection heading="Новые альбомы">
                     {songs.map((item, i) => (
