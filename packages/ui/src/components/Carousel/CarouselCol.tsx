@@ -5,7 +5,7 @@ import { Col, ColProps } from '../Grid';
 
 import { CarouselContext } from './CarouselContext';
 
-const StyledCarouselCol = styled(Col)``;
+export const StyledCarouselCol = styled(Col)``;
 
 export const CarouselCol: React.FC<ColProps> = ({ children, ...rest }) => {
     const ref = React.useRef<HTMLDivElement | null>(null);

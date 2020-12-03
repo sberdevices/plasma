@@ -1,6 +1,9 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import { CarouselContext } from './CarouselContext';
+
+export const StyledCarouselItem = styled.div``;
 
 export interface ListItemProps extends React.HTMLAttributes<HTMLDivElement> {
     as?: React.ComponentType<any>;
@@ -17,8 +20,8 @@ export const CarouselItem: React.FC<ListItemProps> = ({ children, ...rest }) => 
     }, [ctx]);
 
     return (
-        <div ref={ref} {...rest}>
+        <StyledCarouselItem ref={ref} {...rest}>
             {children}
-        </div>
+        </StyledCarouselItem>
     );
 };
