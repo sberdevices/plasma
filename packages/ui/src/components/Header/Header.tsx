@@ -9,16 +9,44 @@ import { HeaderTitleWrapper } from './HeaderTitleWrapper';
 import { HeaderContent } from './HeaderContent';
 
 export interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+    /**
+     * Показать кнопку "назад"
+     */
     back?: boolean;
+    /**
+     * Путь до картинки с логотипом (src)
+     */
     logo?: string;
+    /**
+     * Alt логотипа
+     */
     logoAlt?: string;
+    /**
+     * Заголовок страницы
+     */
     title?: string;
+    /**
+     * Подзаголовок страницы
+     */
     subtitle?: string;
+    /**
+     * Обработчик клика по кнопке "назад"
+     */
+    onBackClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export const Header: React.FC<HeaderProps> = ({ back, logo, logoAlt, title, subtitle, children, ...rest }) => (
+export const Header: React.FC<HeaderProps> = ({
+    back,
+    logo,
+    logoAlt,
+    title,
+    subtitle,
+    children,
+    onBackClick,
+    ...rest
+}) => (
     <HeaderRoot {...rest}>
-        {back && <HeaderBack />}
+        {back && <HeaderBack onClick={onBackClick} />}
         {logo && <HeaderLogo src={logo} alt={logoAlt} />}
         {title && (
             <HeaderTitleWrapper>
