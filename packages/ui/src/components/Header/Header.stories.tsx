@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { text, number, boolean, select } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import { Icon } from '@sberdevices/plasma-icons';
 
 import { mediaQuery } from '../../utils';
@@ -89,6 +90,13 @@ const ResponsiveContent = () => (
 
 export default {
     title: 'Header',
+    decorators: [
+        (Story) => (
+            <div style={{ margin: '-16px' }}>
+                <Story />
+            </div>
+        ),
+    ],
 };
 
 export const Default = () => {
@@ -100,6 +108,7 @@ export const Default = () => {
                 logoAlt="Logo"
                 title={text('title', 'Header title text')}
                 subtitle={text('subtitle', 'Subtitle text')}
+                onBackClick={action('onBackClick')}
             >
                 <AppBarContent />
             </Header>
@@ -110,7 +119,7 @@ export const Default = () => {
 export const CustomWithResponsiveContent = () => (
     <Container>
         <HeaderRoot>
-            <HeaderBack />
+            <HeaderBack onClick={action('onBackClick')} />
             <HeaderLogo src="./images/logo.png" alt="Logo" />
             <HeaderTitleWrapper>
                 <HeaderTitle>{text('title', 'Header title text')}</HeaderTitle>
