@@ -4,6 +4,8 @@ import styled, { css } from 'styled-components';
 import { animatedScrollToX } from '../../utils/animatedScrollTo';
 
 import { CarouselStore, CarouselContext } from './CarouselContext';
+import { StyledCarouselItem } from './CarouselItem';
+import { StyledCarouselCol } from './CarouselCol';
 
 interface DirectionProps {
     /**
@@ -12,13 +14,27 @@ interface DirectionProps {
     axis: 'x';
 }
 
-interface StyledCarouselProps extends DirectionProps {}
+export type SnapType = 'mandatory' | 'proximity';
+export type SnapAlign = 'start' | 'center' | 'end';
+
+interface SnapProps {
+    /**
+     * Включить поддержку CSS Scroll Snap
+     */
+    scrollSnap?: boolean;
+    /**
+     * Тип Scroll Snap
+     */
+    scrollSnapType?: SnapType;
+    /**
+     * Центрирование Scroll Snap
+     */
+    scrollSnapAlign?: SnapAlign;
+}
+
+interface StyledCarouselProps extends DirectionProps, SnapProps {}
 
 export const StyledCarousel = styled.div<StyledCarouselProps>`
-    ::-webkit-scrollbar {
-        display: none;
-    }
-
     ${({ axis }) => css`
         ${axis === 'x' &&
         css`
@@ -26,6 +42,21 @@ export const StyledCarousel = styled.div<StyledCarouselProps>`
             overflow-x: auto;
         `}
     `};
+
+    ${({ scrollSnap, axis, scrollSnapType = 'mandatory', scrollSnapAlign = 'center' }) =>
+        scrollSnap &&
+        css`
+            scroll-snap-type: ${axis} ${scrollSnapType};
+
+            & ${StyledCarouselItem}, & ${StyledCarouselCol} {
+                scroll-snap-align: ${scrollSnapAlign};
+            }
+        `}
+
+    /* stylelint-disable-next-line selector-max-empty-lines, selector-nested-pattern, selector-type-no-unknown */
+    ::-webkit-scrollbar {
+        display: none;
+    }
 `;
 
 interface StyledCarouselTrackProps extends DirectionProps {}
@@ -40,14 +71,19 @@ export const StyledCarouselTrack = styled.div<StyledCarouselTrackProps>`
     `};
 `;
 
-export interface CarouselProps extends DirectionProps, React.HTMLAttributes<HTMLDivElement> {
+export interface CarouselProps extends DirectionProps, SnapProps {
     /**
      * Индекс текущего элемента
      */
     index: number;
 }
 
-export const Carousel: React.FC<CarouselProps> = ({ index, axis, children, ...rest }) => {
+export const Carousel: React.FC<CarouselProps & React.HTMLAttributes<HTMLDivElement>> = ({
+    index,
+    axis,
+    children,
+    ...rest
+}) => {
     const carouselRef = React.useRef<HTMLDivElement>(null);
     const store = React.useMemo(() => new CarouselStore(), []);
 
