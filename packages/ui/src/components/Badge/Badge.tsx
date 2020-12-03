@@ -10,11 +10,11 @@ import { applyView, ViewProps } from '../../mixins/applyView';
 export const badgeSizes = {
     l: {
         textMarginX: `${4 / scalingPixelBasis}rem`,
-        textMarginLeftAfterContent: `${6 / scalingPixelBasis}rem`,
+        textMarginLeftAfterContent: `${4 / scalingPixelBasis}rem`,
     },
     s: {
         textMarginX: `${2 / scalingPixelBasis}rem`,
-        textMarginLeftAfterContent: `${3 / scalingPixelBasis}rem`,
+        textMarginLeftAfterContent: `${2 / scalingPixelBasis}rem`,
     },
 };
 export const badgeRootSizes = {
