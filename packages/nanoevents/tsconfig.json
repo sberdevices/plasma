@@ -1,0 +1,28 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "jsx": "react",
+    "target": "ES6",
+    "module": "ES2015",
+    "lib": ["es2017", "esnext.asynciterable", "DOM"],
+    "declaration": true,
+    "declarationMap": true,
+    "composite": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "allowJs": true
+  },
+  "include": ["src", "global.d.ts"],
+  "exclude": ["**/tests/**/*", "**/dist/**/*"]
+}
