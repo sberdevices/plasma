@@ -29,7 +29,12 @@
                 }
             ],
             "conventional-commits",
-            "slack"
+            [
+                "slack",
+                {
+                    "atTarget": "U01206QB9UM"
+                }
+            ]
         ]
     },
     "devDependencies": {
