@@ -1,0 +1,23 @@
+##### OS FILES
+.DS_Store
+.history
+
+##### Editors
+.*.swp
+.idea
+.vscode
+.vs
+*.iml
+*.sublime-project
+*.sublime-workspace
+
+##### BUILD
+node_modules/
+npm-debug.log
+packages/**/node_modules/
+packages/**/dist/
+packages/**/*.tsbuildinfo
+
+
+.cache
+.env
