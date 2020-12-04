@@ -1,6 +1,6 @@
 {
   "name": "@sberdevices/nanoevents",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Fork of nanoevents",
   "main": "dist/index.js",
   "scripts": {
@@ -20,8 +20,12 @@
     "url": "https://github.com/sberdevices/pashka/issues"
   },
   "homepage": "https://github.com/sberdevices/pashka#readme",
-  "files": ["dist"],
-  "browserslist": ["last 1 Chrome versions"],
+  "files": [
+    "dist"
+  ],
+  "browserslist": [
+    "last 1 Chrome versions"
+  ],
   "devDependencies": {
     "typescript": "^3.9.2"
   }
