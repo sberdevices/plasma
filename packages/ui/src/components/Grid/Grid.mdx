@@ -6,66 +6,73 @@ route: /components/Grid
 
 import { Playground, Props } from 'docz'
 
-import { Container, Row, Col } from './Grid'
-import { ThemeSelect } from '../../helpers/ThemeSelect'
+import { ThemeSelect, TypoSelect } from '../../helpers/ThemeSelect'
 import { ThemeBackground } from '../../helpers/ThemeBackground'
 import { Filler } from '../../helpers/Filler'
 
+import { Container, Row, Col } from '.'
+
+<TypoSelect />
 <ThemeSelect />
 
 # Grid
+На каждом брейкпоинте разрешения свое максимальное количество столбцов.
 
 ## Container
-Блок с полями по бокам для размещения контента по вертикали. Недопустимо вкладывать этот блок сам в себя (или дальше по древу).
+Блок с полями по бокам для размещения контента по вертикали.
+Недопустимо вкладывать этот блок сам в себя (или дальше по древу).
 
 ### Props
 <Props of={Container} />
 
 ## Row
-Блок с отрицательными отступами для размещения ячеек (или столбцов, Col-s) по горизонтали. Недопустимо вкладывать этот блок сам в себя, но можно чередовать далее по древу с использованием Col.
+Блок с отрицательными отступами для размещения колонок (Col) по горизонтали. Недопустимо вкладывать этот блок сам в себя, но можно чередовать далее по древу с использованием Col.
 
 ### Props
 <Props of={Row} />
 
 ## Col
-Блок для размещения контента. На каждом брейкпоинте разрешения свое максимальное количество столбцов.
+Блок для размешения контента или строк (Row) внутри него.
+
+### Col[type="rel"]
+Поведение по умолчанию. У данного подтипа колонок ширина и отступ имеют относительное значение (в процентах).
+Предназначено для верстки с страниц.
+
+### Col[type="calc"]
+У таких колонок ширина и отступ расчитываются на основе ширины контейнера и хранятся в css vars.
+Предназначено для верстки каруселей. С примером использования можно ознакомиться в документации по [каруселям](/components/Carousel#пример).
 
 ### Props
 <Props of={Col} />
 
 ## Пример использования
-Предусмотрено два варианта использования сетки:
-* с помощью Col:rel (предназначено для верстки с страниц);
-* с помощью Col:calc (предназначено для верстки каруселей).
-
-Ширина колонок в первом варианте относительная (в процентах), а во втором - расчитывается средствами JavaScript.
 
 <Playground>
     <ThemeBackground>
         <Container>
             <Row>
-                <Col>
-                    <Filler>1</Filler>
+                <Col size={1}>
+                    <Filler style={{ marginBottom: '1rem' }}>1</Filler>
                 </Col>
                 <Col size={2}>
-                    <Filler>2</Filler>
+                    <Filler style={{ marginBottom: '1rem' }}>2</Filler>
                 </Col>
                 <Col size={3}>
-                    <Filler>3</Filler>
+                    <Filler style={{ marginBottom: '1rem' }}>3</Filler>
                 </Col>
                 <Col size={4}>
-                    <Filler>4</Filler>
+                    <Filler style={{ marginBottom: '1rem' }}>4</Filler>
                 </Col>
                 <Col size={2}>
-                    <Filler>2</Filler>
+                    <Filler style={{ marginBottom: '1rem' }}>2</Filler>
                 </Col>
             </Row>
             <Row>
                 <Col size={3} offset={1}>
-                    <Filler>3 offset 1</Filler>
+                    <Filler style={{ marginBottom: '1rem' }}>3 offset 1</Filler>
                 </Col>
                 <Col size={6} offset={2}>
-                    <Filler>6 offset 2</Filler>
+                    <Filler style={{ marginBottom: '1rem' }}>6 offset 2</Filler>
                 </Col>
             </Row>
         </Container>
