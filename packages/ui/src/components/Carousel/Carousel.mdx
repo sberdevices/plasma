@@ -6,14 +6,18 @@ route: /components/Carousel
 
 import { Playground, Props } from 'docz'
 
-import { ThemeSelect } from '../../helpers/ThemeSelect'
+import image from '../../../.storybook/public/images/card1.png'
+import { ThemeSelect, TypoSelect } from '../../helpers/ThemeSelect'
 import { ThemeBackground } from '../../helpers/ThemeBackground'
 import { Filler } from '../../helpers/Filler'
+import { Card, CardBody, CardMedia, CardContent } from '../Card'
+import { DeviceDetectionProvider } from '../Device'
+import { Container, Row } from '../Grid'
+import { Body1, Footnote1 } from '../Typography'
 
-import { Carousel } from './Carousel'
-import { CarouselItem } from './CarouselItem'
-import { CarouselGridCol } from './CarouselGridCol'
+import { CarouselWrapper, Carousel, CarouselItem, CarouselCol } from '.';
 
+<TypoSelect />
 <ThemeSelect />
 
 # Carousel
@@ -31,13 +35,64 @@ import { CarouselGridCol } from './CarouselGridCol'
 Обертка над ``Carousel`` для компенсации отрицательных отступов.
 
 ## CarouselItem
-Компонент для обертывания элемента в контекст и регистрации ``ref``.
+Компонент для создания обычных каруселей.
+Использует контекст ``CarouselContext`` для регистрации своего ``ref``.
 
 ### Props
 <Props of={CarouselItem} />
 
-## CarouselGridCol
-Альтернативная обертка в контекст для создания карусели с поддержкой сетки.
+## CarouselCol
+Компонент, основанный на Grid/Col и предназначенный для использования в каруселях с сеткой.
+Так же как и ``CarouselItem`` использует контекст ``CarouselContext``.
 
 ### Props
-<Props of={CarouselGridCol} />
+<Props of={CarouselCol} />
+
+## Пример
+<Playground>
+    {() => {
+        /**
+         * В данном примере используются Grid и CSS Scroll Snap.
+         * В корне приложения необходимо разместить DeviceDetectionProvider.
+         * В качестве основного блока лэйаута используется Container.
+         * Опция inContainer у CarouselWrapper - необходима для того, чтобы компенсировать отступы контейнера.
+         * Колонки (Col) помещаются в строки (Row).
+         */
+        return (
+            <DeviceDetectionProvider detectDeviceCallback={() => 'sberBox'}>
+                <ThemeBackground>
+                    <Container>
+                        <CarouselWrapper inContainer>
+                            <Row>
+                                <Carousel
+                                    axis="x"
+                                    index={0}
+                                    scrollSnap={true}
+                                    scrollSnapType="mandatory"
+                                    scrollSnapAlign="start"
+                                >
+                                    {Array(12)
+                                        .fill(0)
+                                        .map((item, i) => (
+                                            <CarouselCol key={`item:${i}`} size={2} sizeM={1.5}>
+                                                <Card roundness={12}>
+                                                    <CardBody>
+                                                        <CardMedia src={image} ratio="1:1" />
+                                                    </CardBody>
+                                                </Card>
+                                                <Body1 style={{ marginTop: '0.75rem' }}>Song #81</Body1>
+                                                <Footnote1 style={{ marginTop: '0.25rem' }}>
+                                                    Untitled artist
+                                                </Footnote1>
+                                            </CarouselCol>
+                                        ))
+                                    }
+                                </Carousel>
+                            </Row>
+                        </CarouselWrapper>
+                    </Container>
+                </ThemeBackground>
+            </DeviceDetectionProvider>
+        );
+    }}
+</Playground>
