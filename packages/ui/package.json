@@ -50,7 +50,7 @@
     },
     "scripts": {
         "prepare": "npm run build",
-        "clean": "rm -rf ./components && rm -rf ./hocs && rm -rf ./mixins && rm -rf ./types",
+        "clean": "rm -rf ./components && rm -rf ./helpers && rm -rf ./hocs && rm -rf ./mixins && rm -rf ./types && rm -rf ./utils",
         "build": "npm run clean && tsc",
         "build-storybook": "npm run storybook:build",
         "build:storybook": "npm run storybook:build && npm run storybook:extract",
