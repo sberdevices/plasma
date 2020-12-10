@@ -1,16 +1,15 @@
-import React from 'react';
 import styled, { css } from 'styled-components';
 
 import { StyledCarousel, StyledCarouselTrack } from './Carousel';
 
-interface StyledCarouselWrapperProps {
+export interface CarouselWrapperProps {
     /**
      * Если требуется компенсировать отступы контейнера в сетке
      */
     inContainer?: boolean;
 }
 
-const StyledCarouselWrapper = styled.div<StyledCarouselWrapperProps>`
+export const CarouselWrapper = styled.div<CarouselWrapperProps>`
     overflow: hidden;
 
     ${({ inContainer }) =>
@@ -29,9 +28,3 @@ const StyledCarouselWrapper = styled.div<StyledCarouselWrapperProps>`
             }
         `}
 `;
-
-export interface CarouselWrapperProps extends StyledCarouselWrapperProps, React.HTMLAttributes<HTMLDivElement> {}
-
-export const CarouselWrapper: React.FC<CarouselWrapperProps> = ({ children, ...rest }) => (
-    <StyledCarouselWrapper {...rest}>{children}</StyledCarouselWrapper>
-);

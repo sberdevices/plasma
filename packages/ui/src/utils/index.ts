@@ -1,4 +1,4 @@
-export { animatedScrollToX } from './animatedScrollTo';
+export { animatedScrollToX, animatedScrollToY } from './animatedScrollTo';
 
 export { convertRoundnessMatrix } from './roundness';
 export type { PinProps } from './roundness';

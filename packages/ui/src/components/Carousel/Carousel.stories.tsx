@@ -15,6 +15,11 @@ import { SnapType, SnapAlign } from './Carousel';
 
 import { CarouselWrapper, Carousel, CarouselItem, CarouselCol } from '.';
 
+const StyledSquareFiller = styled(Filler)`
+    width: 200px;
+    height: 200px;
+`;
+
 export default {
     title: 'Carousel',
     decorators: [
@@ -27,16 +32,17 @@ export default {
 };
 
 export const Basic = () => {
+    const axis = select('axis', ['x', 'y'], 'x');
     const items = Array(number('Items', 20)).fill(0);
     const index = number('index', 0);
     return (
-        <Outline>
-            <Carousel axis="x" index={index}>
+        <Outline style={{ width: axis === 'x' ? '100%' : 200, height: axis === 'y' ? '100vh' : 200 }}>
+            <Carousel axis={axis} index={index}>
                 {items.map((_, i) => (
-                    <CarouselItem key={`item:${i}`} style={{ width: 100, height: 200 }}>
-                        <Filler bordered fullHeight view={i === index ? 'primary' : 'secondary'}>
+                    <CarouselItem key={`item:${i}`}>
+                        <StyledSquareFiller bordered fullHeight view={i === index ? 'primary' : 'secondary'}>
                             Item {i}
-                        </Filler>
+                        </StyledSquareFiller>
                     </CarouselItem>
                 ))}
             </Carousel>
