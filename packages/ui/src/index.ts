@@ -5,6 +5,7 @@ export * from './components/Cell';
 export * from './components/Device';
 export * from './components/Grid';
 export * from './components/Header';
+export * from './components/MarkedList';
 export * from './components/Skeleton';
 export * from './components/Spinner';
 export * from './components/Stepper';
