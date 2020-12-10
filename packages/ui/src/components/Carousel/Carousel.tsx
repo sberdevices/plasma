@@ -1,17 +1,19 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { animatedScrollToX } from '../../utils/animatedScrollTo';
+import { animatedScrollToX, animatedScrollToY } from '../../utils/animatedScrollTo';
 
 import { CarouselStore, CarouselContext } from './CarouselContext';
 import { StyledCarouselItem } from './CarouselItem';
 import { StyledCarouselCol } from './CarouselCol';
 
+type Axis = 'x' | 'y';
+
 interface DirectionProps {
     /**
      * Ось скроллирования
      */
-    axis: 'x';
+    axis: Axis;
 }
 
 export type SnapType = 'mandatory' | 'proximity';
@@ -35,13 +37,18 @@ interface SnapProps {
 interface StyledCarouselProps extends DirectionProps, SnapProps {}
 
 export const StyledCarousel = styled.div<StyledCarouselProps>`
-    ${({ axis }) => css`
-        ${axis === 'x' &&
-        css`
-            overflow-y: hidden;
-            overflow-x: auto;
-        `}
-    `};
+    ${({ axis }) =>
+        axis === 'x'
+            ? css`
+                  width: 100%;
+                  overflow-x: auto;
+                  overflow-y: hidden;
+              `
+            : css`
+                  height: 100%;
+                  overflow-x: hidden;
+                  overflow-y: auto;
+              `}
 
     ${({ scrollSnap, axis, scrollSnapType = 'mandatory', scrollSnapAlign = 'center' }) =>
         scrollSnap &&
@@ -62,13 +69,16 @@ export const StyledCarousel = styled.div<StyledCarouselProps>`
 interface StyledCarouselTrackProps extends DirectionProps {}
 
 export const StyledCarouselTrack = styled.div<StyledCarouselTrackProps>`
-    ${({ axis }) => css`
-        ${axis === 'x' &&
-        css`
-            display: inline-flex;
-            flex-direction: row;
-        `}
-    `};
+    ${({ axis }) =>
+        axis === 'x'
+            ? css`
+                  display: inline-flex;
+                  flex-direction: row;
+              `
+            : css`
+                  display: flex;
+                  flex-direction: column;
+              `}
 `;
 
 export interface CarouselProps extends DirectionProps, SnapProps {
@@ -76,11 +86,16 @@ export interface CarouselProps extends DirectionProps, SnapProps {
      * Индекс текущего элемента
      */
     index: number;
+    /**
+     * Анимированная прокрутка с помощью requestAnimationFrame
+     */
+    animated?: boolean;
 }
 
 export const Carousel: React.FC<CarouselProps & React.HTMLAttributes<HTMLDivElement>> = ({
     index,
     axis,
+    animated = true,
     children,
     ...rest
 }) => {
@@ -90,23 +105,46 @@ export const Carousel: React.FC<CarouselProps & React.HTMLAttributes<HTMLDivElem
     React.useEffect(() => {
         if (carouselRef.current) {
             let pos = 0;
-
-            if (axis === 'x') {
-                for (let i = index - 1; i >= 0; i--) {
-                    const item = store.getItem(i);
-                    if (item && item.current) {
-                        pos += item.current.offsetWidth;
+            for (let i = index - 1; i >= 0; i--) {
+                const itemRef = store.getItem(i);
+                if (itemRef && itemRef.current) {
+                    if (axis === 'x') {
+                        pos += itemRef.current.offsetWidth;
+                    } else {
+                        pos += itemRef.current.offsetHeight;
                     }
                 }
-
-                const carouselWidth = carouselRef.current.offsetWidth;
-                const itemWidth = store.getItem(index)?.current?.offsetWidth || 0;
-                pos -= carouselWidth / 2 - itemWidth / 2;
             }
 
-            animatedScrollToX(carouselRef.current, pos);
+            let carouselSize;
+            let itemSize;
+
+            if (axis === 'x') {
+                carouselSize = carouselRef.current.offsetWidth;
+                itemSize = store.getItem(index)?.current?.offsetWidth || 0;
+            } else {
+                carouselSize = carouselRef.current.offsetHeight;
+                itemSize = store.getItem(index)?.current?.offsetHeight || 0;
+            }
+            console.log(axis, pos, carouselSize, itemSize);
+            pos -= carouselSize / 2 - itemSize / 2;
+
+            if (axis === 'x') {
+                if (animated) {
+                    animatedScrollToX(carouselRef.current, pos);
+                } else {
+                    carouselRef.current.scrollTo({ left: pos });
+                }
+            }
+            if (axis === 'y') {
+                if (animated) {
+                    animatedScrollToY(carouselRef.current, pos);
+                } else {
+                    carouselRef.current.scrollTo({ top: pos });
+                }
+            }
         }
-    }, [axis, index]);
+    }, [axis, index, store]);
 
     return (
         <CarouselContext.Provider value={store}>
