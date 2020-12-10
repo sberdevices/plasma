@@ -7,7 +7,7 @@ export const Info: React.FC<IconAsset> = (props) => (
         <path
             fillRule="evenodd"
             clipRule="evenodd"
-            d="M11 16a1 1 0 112 0 1 1 0 01-2 0zm0-8a1 1 0 112 0v4a1 1 0 11-2 0V8zm.99-6C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+            d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm-1-12a1 1 0 112 0v7a1 1 0 11-2 0v-7zm1-4a1 1 0 100 2 1 1 0 000-2z"
             fill="currentColor"
         />
     </svg>

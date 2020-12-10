@@ -54,12 +54,12 @@ export { IconSyncProblem } from './Icons/IconSyncProblem';
 export { IconTimerStroke } from './Icons/IconTimerStroke';
 export { IconTimerFill } from './Icons/IconTimerFill';
 export { IconEye } from './Icons/IconEye';
+export { IconShare } from './Icons/IconShare';
 // Alert
 export { IconBell } from './Icons/IconBell';
 export { IconBellActive } from './Icons/IconBellActive';
 export { IconHelp } from './Icons/IconHelp';
-// export { IconInfo } from './Icons/IconInfo';
-// export { IconInfoFilled } from './Icons/IconInfoFilled';
+export { IconInfo } from './Icons/IconInfo';
 export { IconWarning } from './Icons/IconWarning';
 // AV
 export { IconCamReverse } from './Icons/IconCamReverse';

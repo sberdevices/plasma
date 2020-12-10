@@ -57,13 +57,12 @@ import { SyncProblem } from './Icon.assets/SyncProblem';
 import { TimerStroke } from './Icon.assets/TimerStroke';
 import { TimerFill } from './Icon.assets/TimerFill';
 import { Eye } from './Icon.assets/Eye';
+import { Share } from './Icon.assets/Share';
 // Alert
 import { Bell } from './Icon.assets/Bell';
 import { BellActive } from './Icon.assets/BellActive';
 import { Help } from './Icon.assets/Help';
-// import { Info } from './Icon.assets/Info';
-// import { Info1 } from './Icon.assets/Info1';
-// import { InfoFilled } from './Icon.assets/InfoFilled';
+import { Info } from './Icon.assets/Info';
 import { Warning } from './Icon.assets/Warning';
 // AV
 import { CamReverse } from './Icon.assets/CamReverse';
@@ -203,14 +202,13 @@ export const iconSectionsSet = {
         timerStroke: TimerStroke,
         timerFill: TimerFill,
         eye: Eye,
+        share: Share,
     },
     alert: {
         bell: Bell,
         bellActive: BellActive,
         help: Help,
-        // info: Info,
-        // info1: Info1,
-        // infoFilled: InfoFilled,
+        info: Info,
         warning: Warning,
     },
     av: {
