@@ -7,7 +7,11 @@ import { TextBoxBigTitle } from '../TextBox';
 export const HeaderTitle = styled(TextBoxBigTitle)`
     margin: 0;
 
-    ${mediaQuery('S')(css`
-        ${body2};
-    `)}
+    ${(props) =>
+        mediaQuery(
+            'S',
+            props.theme.deviceScale,
+        )(css`
+            ${body2};
+        `)}
 `;

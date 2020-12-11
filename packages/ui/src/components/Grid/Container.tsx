@@ -1,13 +1,11 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { scalingPixelBasis, sberBoxScale } from '@sberdevices/plasma-tokens';
+import { scalingPixelBasis } from '@sberdevices/plasma-tokens';
 
 import { mediaQuery, gridSizes, gridColumns, gridMargins, gridGutters } from '../../utils';
-import { DeviceDetectionContext } from '../Device';
 
 interface StyledContainerProps {
     $width: number;
-    $deviceScale?: number;
 }
 
 const sidesCount = 2;
@@ -23,15 +21,17 @@ const StyledContainer = styled.div<StyledContainerProps>`
     padding-left: var(--plasma-grid-margin);
     padding-right: var(--plasma-grid-margin);
 
-    ${({ $width, $deviceScale = sberBoxScale }) =>
+    ${({ $width, theme }) =>
         gridSizes.map((breakpoint) => {
             const containerWidth = $width;
             const margins =
-                (gridMargins[breakpoint] * sidesCount - gridGutters[breakpoint]) * scalingPixelBasis * $deviceScale;
+                (gridMargins[breakpoint] * sidesCount - gridGutters[breakpoint]) *
+                scalingPixelBasis *
+                theme.deviceScale;
 
             return mediaQuery(
                 breakpoint,
-                $deviceScale,
+                theme.deviceScale,
             )(css`
                 --plasma-grid-margin: ${gridMargins[breakpoint]}rem;
                 --plasma-grid-gutter: ${gridGutters[breakpoint] / sidesCount}rem;
@@ -43,7 +43,6 @@ const StyledContainer = styled.div<StyledContainerProps>`
 export const Container: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children, ...props }) => {
     const ref = React.useRef<HTMLDivElement | null>(null);
     const [width, setWidth] = React.useState(0);
-    const { deviceScale } = React.useContext(DeviceDetectionContext);
 
     React.useLayoutEffect(() => {
         const resizeHandler = () => {
@@ -59,7 +58,7 @@ export const Container: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ chil
     }, []);
 
     return (
-        <StyledContainer ref={ref} $width={width} $deviceScale={deviceScale} {...props}>
+        <StyledContainer ref={ref} $width={width} {...props}>
             {children}
         </StyledContainer>
     );
