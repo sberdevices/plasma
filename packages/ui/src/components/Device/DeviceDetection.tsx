@@ -1,5 +1,5 @@
 import React from 'react';
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { sberPortal, sberBox, touch } from '@sberdevices/plasma-tokens/typo';
 import { sberPortalScale } from '@sberdevices/plasma-tokens';
 
@@ -11,23 +11,23 @@ const typoSizes = {
     touch: createGlobalStyle(touch),
 };
 
-export const DeviceDetectionContext = React.createContext({
-    deviceScale: sberPortalScale,
-});
+export interface DeviceThemeProps {
+    theme?: object;
+    detectDeviceCallback?: () => DeviceKind;
+}
 
-export const DeviceDetectionProvider: React.FC<{
-    detectDeviceCallback: () => DeviceKind;
-}> = ({ children, detectDeviceCallback = detectDevice }) => {
+export const DeviceThemeProvider: React.FC<DeviceThemeProps> = ({
+    theme,
+    children,
+    detectDeviceCallback = detectDevice,
+}) => {
     const deviceKind = detectDeviceCallback();
+    const deviceScale = deviceScales[deviceKind] || sberPortalScale;
     const Typo = React.useMemo(() => typoSizes[deviceKind], [deviceKind]);
     return (
-        <DeviceDetectionContext.Provider
-            value={{
-                deviceScale: deviceScales[deviceKind],
-            }}
-        >
+        <ThemeProvider theme={{ ...theme, deviceScale }}>
             <Typo />
             {children}
-        </DeviceDetectionContext.Provider>
+        </ThemeProvider>
     );
 };

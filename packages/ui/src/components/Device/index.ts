@@ -1,1 +1,1 @@
-export { DeviceDetectionProvider, DeviceDetectionContext } from './DeviceDetection';
+export { DeviceThemeProvider } from './DeviceDetection';

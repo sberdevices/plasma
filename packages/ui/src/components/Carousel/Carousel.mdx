@@ -11,7 +11,7 @@ import { ThemeSelect, TypoSelect } from '../../helpers/ThemeSelect'
 import { ThemeBackground } from '../../helpers/ThemeBackground'
 import { Filler } from '../../helpers/Filler'
 import { Card, CardBody, CardMedia, CardContent } from '../Card'
-import { DeviceDetectionProvider } from '../Device'
+import { DeviceThemeProvider } from '../Device'
 import { Container, Row } from '../Grid'
 import { Body1, Footnote1 } from '../Typography'
 
@@ -53,13 +53,13 @@ import { CarouselWrapper, Carousel, CarouselItem, CarouselCol } from '.';
     {() => {
         /**
          * В данном примере используются Grid и CSS Scroll Snap.
-         * В корне приложения необходимо разместить DeviceDetectionProvider.
+         * В корне приложения необходимо разместить DeviceThemeProvider.
          * В качестве основного блока лэйаута используется Container.
          * Опция inContainer у CarouselWrapper - необходима для того, чтобы компенсировать отступы контейнера.
          * Колонки (Col) помещаются в строки (Row).
          */
         return (
-            <DeviceDetectionProvider detectDeviceCallback={() => 'sberBox'}>
+            <DeviceThemeProvider detectDeviceCallback={() => 'sberBox'}>
                 <ThemeBackground>
                     <Container>
                         <CarouselWrapper inContainer>
@@ -92,7 +92,7 @@ import { CarouselWrapper, Carousel, CarouselItem, CarouselCol } from '.';
                         </CarouselWrapper>
                     </Container>
                 </ThemeBackground>
-            </DeviceDetectionProvider>
+            </DeviceThemeProvider>
         );
     }}
 </Playground>
