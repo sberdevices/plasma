@@ -7,7 +7,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { text, background, gradient } from '@sberdevices/plasma-tokens';
 import { darkEva, darkJoy, darkSber, lightEva, lightJoy, lightSber } from '@sberdevices/plasma-tokens/themes';
 
-import { DeviceDetectionProvider } from '../src/components/Device';
+import { DeviceThemeProvider } from '../src/components/Device';
 
 const DocumentStyle = createGlobalStyle`
     /* stylelint-disable-next-line selector-nested-pattern */
@@ -42,11 +42,11 @@ const withTheme = (Story, context) => {
 
     return (
         <>
-            <DeviceDetectionProvider detectDeviceCallback={() => context.globals.typoSize}>
+            <DeviceThemeProvider detectDeviceCallback={() => context.globals.typoSize}>
                 <Theme />
                 <DocumentStyle />
                 <Story {...context} />
-            </DeviceDetectionProvider>
+            </DeviceThemeProvider>
         </>
     );
 };

@@ -2,7 +2,6 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 import { mediaQuery } from '../utils';
-import { DeviceDetectionContext } from '../components/Device';
 import { Container, Row, Col } from '../components/Grid';
 
 const StyledFullHeightContainer = styled(Container)`
@@ -18,14 +17,14 @@ const StyledFullHeightRow = styled(Row)`
     height: 100vh;
 `;
 
-const StyledFullHeightCol = styled(Col)<{ $deviceScale?: number }>`
+const StyledFullHeightCol = styled(Col)`
     height: 100vh;
 
-    ${({ $deviceScale }) =>
+    ${({ theme }) =>
         css`
             ${mediaQuery(
                 'S',
-                $deviceScale,
+                theme.deviceScale,
             )(css`
                 &:nth-child(4) ~ & {
                     display: none;
@@ -33,7 +32,7 @@ const StyledFullHeightCol = styled(Col)<{ $deviceScale?: number }>`
             `)}
             ${mediaQuery(
                 'M',
-                $deviceScale,
+                theme.deviceScale,
             )(css`
                 &:nth-child(6) ~ & {
                     display: none;
@@ -41,7 +40,7 @@ const StyledFullHeightCol = styled(Col)<{ $deviceScale?: number }>`
             `)}
             ${mediaQuery(
                 'L',
-                $deviceScale,
+                theme.deviceScale,
             )(css`
                 &:nth-child(8) ~ & {
                     display: none;
@@ -69,13 +68,12 @@ export interface GridLinesProps extends React.HTMLAttributes<HTMLDivElement> {
  */
 export const GridLines: React.FC<GridLinesProps> = ({ columns = 12, ...rest }) => {
     const cols = Array(columns).fill(0);
-    const { deviceScale } = React.useContext(DeviceDetectionContext);
 
     return (
         <StyledFullHeightContainer {...rest}>
             <StyledFullHeightRow>
                 {cols.map((_, i) => (
-                    <StyledFullHeightCol key={`item:${i}`} size={1} $deviceScale={deviceScale}>
+                    <StyledFullHeightCol key={`item:${i}`} size={1}>
                         <StyledLine />
                     </StyledFullHeightCol>
                 ))}

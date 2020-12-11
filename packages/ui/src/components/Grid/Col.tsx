@@ -2,7 +2,6 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 import { mediaQuery, gridSizes, gridColumns, Breakpoint } from '../../utils';
-import { DeviceDetectionContext } from '../Device';
 
 type ColCount =
     | 1
@@ -78,17 +77,16 @@ const StyledColBase = styled.div`
 
 interface StyledColProps extends MediaProps, OffsetProps {
     $type: 'rel' | 'calc';
-    $deviceScale?: number;
 }
 
 const StyledCol = styled(StyledColBase)<StyledColProps>`
-    ${({ $type, $deviceScale, ...props }) =>
+    ${({ $type, theme, ...props }) =>
         gridSizes.map((breakpoint) => {
             const size = props[sizes[breakpoint]];
             const offset = props[offsets[breakpoint]];
             return mediaQuery(
                 breakpoint,
-                $deviceScale,
+                theme.deviceScale,
             )(css`
                 ${$type === 'rel' && size && `width: ${(100 / gridColumns[breakpoint]) * size}%;`}
                 ${$type === 'rel' && offset && `margin-left: ${(100 / gridColumns[breakpoint]) * offset}%;`}
@@ -115,7 +113,6 @@ export interface ColProps extends MediaProps, OffsetProps, React.HTMLAttributes<
 
 export const Col = React.forwardRef<HTMLDivElement, ColProps>(
     ({ type = 'rel', size, offset, children, ...props }, ref) => {
-        const { deviceScale } = React.useContext(DeviceDetectionContext);
         if (size) {
             Object.values(sizes).forEach((sizeProp) => {
                 if (!props[sizeProp]) {
@@ -131,7 +128,7 @@ export const Col = React.forwardRef<HTMLDivElement, ColProps>(
             });
         }
         return (
-            <StyledCol ref={ref} $type={type} $deviceScale={deviceScale} {...props}>
+            <StyledCol ref={ref} $type={type} {...props}>
                 {children}
             </StyledCol>
         );
