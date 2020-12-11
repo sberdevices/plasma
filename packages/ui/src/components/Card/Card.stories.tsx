@@ -19,7 +19,7 @@ export default {
 export const BasicValue = () => {
     const cover = boolean('cover', false);
     return (
-        <Card style={{ width: '20rem' }}>
+        <Card style={{ width: '20rem' }} tabIndex={-1}>
             <CardBody>
                 <CardMedia src="./images/card1.png" height={cover ? '20rem' : '12rem'} />
                 <CardContent cover={cover}>

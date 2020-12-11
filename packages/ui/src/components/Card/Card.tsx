@@ -1,9 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { surfaceLiquid01, scalingPixelBasis } from '@sberdevices/plasma-tokens';
+import { surfaceLiquid01 } from '@sberdevices/plasma-tokens';
 
-import { addFocus, FocusProps, applyMotion, MotionProps } from '../../mixins';
-import { PickOptional } from '../../types';
+import { addFocus, FocusProps, applyMotion, MotionProps, applyRoundness, RoundnessProps, radiuses } from '../../mixins';
 import { Body1 } from '../Typography';
 
 // В этих константах задаем размеры в em, чтобы не зависеть напрямую от пикселей
@@ -12,20 +11,13 @@ const fontSize = 16;
 const shadowOffset = 8 / fontSize;
 const shadowSize = 24 / fontSize;
 const outlineSize = 2 / fontSize;
-const outlineRadius = 22 / fontSize;
+const defaultRoundness = 20;
 
-const radius = {
-    250: 250 / scalingPixelBasis,
-    20: 20 / scalingPixelBasis,
-    12: 12 / scalingPixelBasis,
-};
-
-interface StyledRootProps extends FocusProps, MotionProps {
-    roundness?: keyof typeof radius;
-}
+interface StyledRootProps extends FocusProps, MotionProps, RoundnessProps {}
 
 export const StyledCard = styled(Body1)<StyledRootProps>`
-    ${applyMotion}
+    ${applyMotion};
+    ${({ roundness = defaultRoundness }) => applyRoundness({ roundness })};
 
     position: relative;
 
@@ -36,33 +28,24 @@ export const StyledCard = styled(Body1)<StyledRootProps>`
 
     background: ${surfaceLiquid01};
     box-shadow: 0 ${shadowOffset}em ${shadowSize}em rgba(0, 0, 0, 0.1);
-    will-change: background-color, transform;
 
     transition: transform 0.4s ease-in-out;
 
-    ${({ focused, outlined }) => css`
+    ${({ focused, outlined, roundness = 0 }) => css`
         ${addFocus({
             focused,
             outlined,
-            outlineSize: `${outlineSize}em`,
-            outlineRadius: `${outlineRadius}em`,
+            outlineSize: `${outlineSize}rem`,
+            outlineRadius: `${radiuses[roundness] + outlineSize}rem`,
         })}
 
         &:focus {
             outline: none;
         }
     `}
-
-    ${({ roundness = 20 }) => css`
-        border-radius: ${radius[roundness]}rem;
-    `}
 `;
 
-export interface CardProps
-    extends React.HTMLAttributes<HTMLDivElement>,
-        MotionProps,
-        FocusProps,
-        PickOptional<StyledRootProps, 'roundness'> {}
+export interface CardProps extends React.HTMLAttributes<HTMLDivElement>, MotionProps, FocusProps, RoundnessProps {}
 
 // eslint-disable-next-line prefer-arrow-callback
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(function Card({ children, ...rest }, ref) {
