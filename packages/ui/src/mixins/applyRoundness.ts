@@ -5,6 +5,7 @@ import { scalingPixelBasis } from '@sberdevices/plasma-tokens';
  * Набор часто встречающихся скруглений.
  */
 export const radiuses = {
+    250: 250 / scalingPixelBasis,
     32: 32 / scalingPixelBasis,
     28: 28 / scalingPixelBasis,
     24: 24 / scalingPixelBasis,
