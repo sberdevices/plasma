@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "skipLibCheck": true,
+        "strict": true,
+        "module": "CommonJS",
+        "isolatedModules": true,
+        "rootDir": "./src",
+        "outDir": "./dist"
+    },
+    "include": ["./src"],
+    "exclude": ["node_modules/*"]
+}
