@@ -1,24 +1,26 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { Col, ColProps } from '../Grid';
 
-import { CarouselContext } from './CarouselContext';
+import { useCarouselItem } from './Carousel.hooks';
+import { CarouselItemProps, StyledCarouselItemProps } from './CarouselItem';
 
-export const StyledCarouselCol = styled(Col)``;
+const StyledCarouselCol = styled(Col)<StyledCarouselItemProps>`
+    ${({ scrollSnapAlign }) =>
+        scrollSnapAlign &&
+        css`
+            scroll-snap-align: ${scrollSnapAlign};
+        `}
+`;
 
-export const CarouselCol: React.FC<ColProps> = ({ children, ...rest }) => {
-    const ref = React.useRef<HTMLDivElement | null>(null);
-    const ctx = React.useContext(CarouselContext);
+export interface CarouselColProps extends ColProps, CarouselItemProps, React.HTMLAttributes<HTMLDivElement> {}
 
-    React.useEffect(() => {
-        ctx.register(ref);
-
-        return () => ctx.unregister(ref);
-    }, [ctx]);
+export const CarouselCol: React.FC<CarouselColProps> = ({ children, ...rest }) => {
+    const itemRef = useCarouselItem<HTMLDivElement | null>();
 
     return (
-        <StyledCarouselCol ref={ref} type="calc" {...rest}>
+        <StyledCarouselCol ref={itemRef} type="calc" {...rest}>
             {children}
         </StyledCarouselCol>
     );

@@ -1,5 +1,6 @@
 /components
 /hocs
+/hooks
 /mixins
 /types
 /utils

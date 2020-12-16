@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
-import { StyledCarousel, StyledCarouselTrack } from './Carousel';
+import { StyledCarousel } from './Carousel';
 
-export interface CarouselWrapperProps {
+interface CarouselWrapperProps {
     /**
      * Если требуется компенсировать отступы контейнера в сетке
      */
@@ -18,12 +18,9 @@ export const CarouselWrapper = styled.div<CarouselWrapperProps>`
             margin-left: calc(var(--plasma-grid-margin) * -1);
             margin-right: calc(var(--plasma-grid-margin) * -1);
 
-            & ${StyledCarousel} {
+            ${StyledCarousel} {
                 scroll-padding: 0 var(--plasma-grid-margin);
                 padding-left: var(--plasma-grid-margin);
-            }
-
-            & ${StyledCarouselTrack} {
                 padding-right: var(--plasma-grid-margin);
             }
         `}
