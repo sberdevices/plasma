@@ -78,7 +78,7 @@ const baseColors = {
     },
 };
 
-const themeColorsComments = {
+export const themeColorsComments = {
     accent: 'Акцентный цвет призыва к действию',
     gradient: 'Градиент для заливки основного фона',
 
