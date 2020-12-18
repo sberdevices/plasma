@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { IconAsset } from '../IconRoot';
+import { IconProps } from '../IconRoot';
 
-export const Play: React.FC<IconAsset> = (props) => (
-    <svg width="1.5rem" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+export const Play: React.FC<IconProps> = (props) => (
+    <svg width="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <g filter="url(#ic_24_play_svg__filter0_b)">
             <path
                 fillRule="evenodd"
