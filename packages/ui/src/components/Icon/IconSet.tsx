@@ -55,7 +55,7 @@ export const IconSet: React.FC<IconSetProps> = ({ size, color, exclude, include 
                 return (
                     filteredIcons &&
                     filteredIcons.length > 0 && (
-                        <Section>
+                        <Section key={sectionName}>
                             <SectionName>{sectionName}</SectionName>
                             <IconList>
                                 {filteredIcons.map((icon) => (

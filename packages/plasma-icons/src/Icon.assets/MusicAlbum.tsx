@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { IconAsset } from '../IconRoot';
+import { IconProps } from '../IconRoot';
 
-export const MusicAlbum: React.FC<IconAsset> = (props) => (
-    <svg width="1.5rem" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+export const MusicAlbum: React.FC<IconProps> = (props) => (
+    <svg width="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path
             opacity={0.5}
             d="M3 7c0-.93 0-1.394.077-1.78A4 4 0 016.22 2.077C6.606 2 7.07 2 8 2h8c.93 0 1.394 0 1.78.077a4 4 0 013.143 3.143C21 5.606 21 6.07 21 7H3z"

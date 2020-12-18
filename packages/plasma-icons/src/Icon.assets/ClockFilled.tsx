@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { IconAsset } from '../IconRoot';
+import { IconProps } from '../IconRoot';
 
-export const ClockFilled: React.FC<IconAsset> = (props) => (
-    <svg width="1.5rem" viewBox="0 0 24 24" fill="none" {...props}>
+export const ClockFilled: React.FC<IconProps> = (props) => (
+    <svg width="100%" viewBox="0 0 24 24" fill="none" {...props}>
         <path
             fillRule="evenodd"
             clipRule="evenodd"

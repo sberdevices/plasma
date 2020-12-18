@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { IconAsset } from '../IconRoot';
+import { IconProps } from '../IconRoot';
 
-export const AddToCall: React.FC<IconAsset> = (props) => (
-    <svg width="1.5rem" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+export const AddToCall: React.FC<IconProps> = (props) => (
+    <svg width="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path
             d="M10.398 13.2H8.235A8.035 8.035 0 00.2 21.235c0 .201.164.365.365.365h11.407A7.774 7.774 0 019.8 16.2c0-1.063.213-2.076.598-3zM6.8 6.6a4.2 4.2 0 118.4 0 4.2 4.2 0 01-8.4 0z"
             fill="currentColor"

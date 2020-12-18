@@ -3,6 +3,6 @@ import React from 'react';
 import { DisclosureUp } from '../Icon.assets/DisclosureUp';
 import { IconRoot, IconProps } from '../IconRoot';
 
-export const IconDisclosureUp: React.FC<IconProps> = ({ size, color, className }) => {
+export const IconDisclosureUp: React.FC<IconProps> = ({ size = 's', color, className }) => {
     return <IconRoot className={className} size={size} color={color} icon={DisclosureUp} />;
 };
