@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { IconAsset } from '../IconRoot';
+import { IconProps } from '../IconRoot';
 
-export const ChevronDown: React.FC<IconAsset> = (props) => (
-    <svg width="1rem" viewBox="0 0 16 16" fill="none" {...props}>
+export const ChevronDown: React.FC<IconProps> = (props) => (
+    <svg width="100%" viewBox="0 0 16 16" fill="none" {...props}>
         <path
             fillRule="evenodd"
             clipRule="evenodd"

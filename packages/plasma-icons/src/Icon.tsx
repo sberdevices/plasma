@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IconAsset, IconRoot, IconSize } from './IconRoot';
+import { IconProps, IconRoot, IconSize } from './IconRoot';
 import { Apps } from './Icon.assets/Apps';
 import { ArrowDown } from './Icon.assets/ArrowDown';
 import { ArrowLeft } from './Icon.assets/ArrowLeft';
@@ -307,15 +307,15 @@ export type IconName = InnerValues<IconSections, keyof IconSections>;
 
 export const iconSet = Object.values(iconSectionsSet).reduce((acc, cur) => ({ ...acc, ...cur }), {}) as Record<
     IconName,
-    React.FC<IconAsset>
+    React.FC<IconProps>
 >;
-export interface IconProps {
+interface Props {
     icon: IconName;
     size?: IconSize;
     color?: string;
     className?: string;
 }
 
-export const Icon: React.FC<IconProps> = ({ icon, size, color, className }) => {
-    return <IconRoot className={className} icon={iconSet[icon]} size={size} color={color} />;
+export const Icon: React.FC<Props> = ({ icon, size, color, className }) => {
+    return <IconRoot className={className} icon={iconSet[icon]} size={size || 's'} color={color} />;
 };

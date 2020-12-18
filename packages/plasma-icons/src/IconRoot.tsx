@@ -1,4 +1,5 @@
 import React from 'react';
+import styled, { css } from 'styled-components';
 import { primary } from '@sberdevices/plasma-tokens';
 
 const sizeMap = {
@@ -18,24 +19,27 @@ export interface IconProps {
     className?: string;
 }
 
-export interface IconAsset {
-    width?: number | string;
-    height?: number | string;
-    color?: string;
-    className?: string;
+interface IconRootProps extends IconProps {
+    size: IconSize;
+    icon: React.FC<IconProps>;
 }
 
-interface IconRootProps extends IconProps {
-    icon: React.FC<IconAsset>;
-}
+const StyledRoot = styled.div<{ w: string }>`
+    display: inline-flex;
+    ${({ w }) => css`
+        width: ${w};
+        height: ${w};
+    `}
+`;
 
 export const IconRoot: React.FC<IconRootProps> = ({ icon: IconComponent, size, color, className }) => {
     const c = color || primary;
 
-    if (size) {
-        const w = `${sizeMap[size]}rem`;
-        return <IconComponent width={w} height={w} color={c} className={className} />;
-    }
+    const w = `${sizeMap[size]}rem`;
 
-    return <IconComponent color={c} className={className} />;
+    return (
+        <StyledRoot w={w}>
+            <IconComponent color={c} className={className} size={size} />
+        </StyledRoot>
+    );
 };

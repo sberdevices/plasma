@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { IconAsset } from '../IconRoot';
+import { IconProps } from '../IconRoot';
 
-export const CallEndCircle: React.FC<IconAsset> = (props) => (
-    <svg width="1.5rem" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+export const CallEndCircle: React.FC<IconProps> = (props) => (
+    <svg width="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <g clipPath="url(#ic_24_call_end_circle_svg__clip0)">
             <path
                 fillRule="evenodd"
