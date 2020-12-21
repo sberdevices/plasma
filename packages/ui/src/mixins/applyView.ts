@@ -7,11 +7,11 @@ import { colors } from '@sberdevices/plasma-tokens';
 export const views = {
     accent: css`
         background-color: ${colors.accent};
-        color: ${colors.text};
+        color: ${colors.white};
     `,
     primary: css`
         background-color: ${colors.buttonAccent};
-        color: ${colors.text};
+        color: ${colors.white};
     `,
     secondary: css`
         background-color: ${colors.buttonSecondary};
@@ -19,15 +19,18 @@ export const views = {
     `,
     checked: css`
         background-color: ${colors.buttonChecked};
-        color: ${colors.black};
+        /**
+         * FixMe: Заменить на соответствующий цвет при исправлении токенов дизайнерами
+         */
+        color: ${colors.background};
     `,
     warning: css`
         background-color: ${colors.buttonWarning};
-        color: ${colors.text};
+        color: ${colors.white};
     `,
     critical: css`
         background-color: ${colors.buttonCritical};
-        color: ${colors.text};
+        color: ${colors.white};
     `,
     clear: css`
         background-color: ${colors.transparent};
