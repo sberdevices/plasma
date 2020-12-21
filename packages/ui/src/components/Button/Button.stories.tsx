@@ -20,8 +20,8 @@ export default {
     ],
 };
 
-const sizeKeys = Object.keys(sizes) as ButtonSize[];
-const viewKeys = Object.keys(views) as View[];
+const sizeKeys = ['l', 'm', 's'] as ButtonSize[];
+const viewKeys = ['primary', 'secondary', 'checked', 'warning', 'critical', 'clear'] as View[];
 
 export const Default = () => (
     <Button
