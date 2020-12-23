@@ -9,6 +9,8 @@ import { darkEva, darkJoy, darkSber, lightEva, lightJoy, lightSber } from '@sber
 
 import { DeviceThemeProvider } from '../src/components/Device';
 
+import { ToastProvider } from '../src/components/Toast';
+
 const DocumentStyle = createGlobalStyle`
     /* stylelint-disable-next-line selector-nested-pattern */
     html:root {
@@ -51,8 +53,15 @@ const withTheme = (Story, context) => {
     );
 };
 
+const withToast = (Story) => (
+    <ToastProvider>
+        <Story />
+    </ToastProvider>
+);
+
 addDecorator(withKnobs);
 addDecorator(withTheme);
+addDecorator(withToast);
 
 addParameters({
     viewport: {

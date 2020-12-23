@@ -13,3 +13,4 @@ export * from './components/TextBox';
 export * from './components/TextField';
 export * from './components/Theme';
 export * from './components/Typography';
+export * from './components/Toast';
