@@ -1,0 +1,77 @@
+---
+name: Toast
+menu: Components
+route: /components/Toast
+---
+
+import { Playground, Props } from 'docz';
+
+import { Toast } from './Toast';
+import { ToastProvider } from './ToastProvider'
+import { Button } from '../Button'
+
+import { ThemeSelect } from '../../helpers/ThemeSelect'
+import { ThemeBackground } from '../../helpers/ThemeBackground'
+
+<ThemeSelect />
+
+# Toast
+Короткие текстовые уведомления. Могут вызываться только в текущем запущенном приложении как реакция на выполнение действия пользователем.
+
+## Props
+<Props of={Toast} />
+
+
+## Примеры использования
+Компонент ``Toast`` может использоваться для создания собственных систем уведомлений.  
+
+### Toast
+<Playground>
+  <ThemeBackground>
+        <Toast text="Short Text Message Without Action" />
+  </ThemeBackground>
+</Playground>
+
+## Система уведомлений
+Также предоставляется готовая система уведомлений. Для использования необходимо обернуть приложение в ``ToastProvider``:
+
+```jsx
+import React from 'react';
+
+import { ToastProvider } from '@sberdevices/ui';
+
+function App() {
+    return (
+        <ToastProvider>
+            <div className="App">
+            Hello world
+            </div>
+        </ToastProvider>
+    );
+}
+
+export default App;
+```
+
+После этого, с помощью хука ``useToast`` можно получить доступ к управлению уведомлениями.
+
+```jsx
+import React from 'react'
+import { useToast, Button } from '@sberdevices/ui'
+
+export const Component = () => {
+    const { showToast, hideToast } = useToast()
+    
+    return (
+        <Button onClick={() => showToast('text message')} />
+    )
+}
+```
+
+``showToast`` имеет опциональный аргумент position, отвечающий за позиционирование уведомления
+```jsx
+type Position = 'top-center' | 'top-right' | 'top-left' | 'bottom-center' | 'bottom-right' | 'bottom-left';
+```
+
+``showToast`` имеет опциональный аргумент timeout, отвечающий за время отображения уведомления.  
+Если аргумент не был передан, время отображения будет не ограничено. Скрыть уведомление можно через функцию ``hideToast``.  
