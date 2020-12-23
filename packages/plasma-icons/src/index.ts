@@ -114,6 +114,7 @@ export { IconCallCircle } from './Icons/IconCallCircle';
 export { IconCallEnd } from './Icons/IconCallEnd';
 export { IconCallEndCircle } from './Icons/IconCallEndCircle';
 export { IconMessage } from './Icons/IconMessage';
+export { IconFeedback } from './Icons/IconFeedback';
 // Files
 export { IconCardstack } from './Icons/IconCardstack';
 export { IconCopy } from './Icons/IconCopy';
