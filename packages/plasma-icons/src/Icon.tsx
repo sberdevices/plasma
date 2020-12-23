@@ -117,6 +117,7 @@ import { CallCircle } from './Icon.assets/CallCircle';
 import { CallEnd } from './Icon.assets/CallEnd';
 import { CallEndCircle } from './Icon.assets/CallEndCircle';
 import { Message } from './Icon.assets/Message';
+import { Feedback } from './Icon.assets/Feedback';
 // Files
 import { Cardstack } from './Icon.assets/Cardstack';
 import { Copy } from './Icon.assets/Copy';
@@ -267,6 +268,7 @@ export const iconSectionsSet = {
         callEnd: CallEnd,
         callEndCircle: CallEndCircle,
         message: Message,
+        feedback: Feedback,
     },
     files: {
         cardstack: Cardstack,
