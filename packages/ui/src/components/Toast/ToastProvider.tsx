@@ -20,7 +20,7 @@ export const ToastProvider: React.FC = ({ children }) => {
     const [value, setValue] = useState<ToastInfo>({ text: null, position: null, timeout: null });
 
     const showToast = useCallback((text: string, position?: Position, timeout?: number) => {
-        setValue({ text, position: position || 'bottom-center', timeout: timeout || null });
+        setValue({ text, position: position || 'bottom', timeout: timeout || null });
     }, []);
 
     const hideToast = useCallback(() => {
