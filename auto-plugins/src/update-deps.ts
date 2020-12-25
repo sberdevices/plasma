@@ -14,7 +14,7 @@ export default class UpdateDepsPlugin implements IPlugin {
                 if (!newVersion || !response) {
                     return undefined;
                 }
-                auto.logger.log('Обновление зависимостей в монорепозитории');
+                auto.logger.verbose.info('Обновление зависимостей в монорепозитории');
 
                 const releases = Array.isArray(response) ? response : [response];
 
@@ -28,7 +28,7 @@ export default class UpdateDepsPlugin implements IPlugin {
                 });
 
                 if (!updates.length) {
-                    auto.logger.log('Обновление зависимостей не требуется');
+                    auto.logger.verbose.info('Обновление зависимостей не требуется');
                     return undefined;
                 }
 
@@ -45,9 +45,9 @@ export default class UpdateDepsPlugin implements IPlugin {
                 });
                 const resJson: Response = await res.json();
 
-                auto.logger.log(`Обновление зависимостей завершено. Результат: ${resJson}`);
+                auto.logger.verbose.info(`Обновление зависимостей завершено. Результат: ${resJson}`);
             } catch (error) {
-                auto.logger.log(`Ошибка при обновлении зависимостей: ${error}`);
+                console.error(`Ошибка при обновлении зависимостей: ${error}`);
             }
         });
     }
