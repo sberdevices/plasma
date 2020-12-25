@@ -20,6 +20,29 @@ jobs:
       - name: Prepare repository
         run: git fetch --unshallow --tags
 
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: npm-deps-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            npm-deps-${{ hashFiles('package-lock.json') }}
+
+      - name: Setup packages
+        run: |
+          npm i
+          npx lerna bootstrap
+
+      - name: Lint
+        run: npm run lint
+
       - name: Build documentation
         if: ${{ github.event_name == 'pull_request' && github.event.number }}
-        run: echo PR number is ${{ github.event.number }}
+        run: |
+          echo Build documentation for PR ${{ github.event.number }}
+          npm run build-documentation --base /pr-${{ github.event.number }}/ --dest ./.docz/dist/pr-${{ github.event.number }}/
