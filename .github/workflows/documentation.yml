@@ -1,0 +1,25 @@
+name: Documentation
+
+on:
+  push:
+    branches:
+      - rc
+      - master
+  pull_request:
+    branches:
+      - rc
+      - master
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Prepare repository
+        run: git fetch --unshallow --tags
+
+      - name: Build documentation
+        if: ${{ github.event_name == 'pull_request' && github.event.number }}
+        run: echo PR number is ${{ github.event.number }}
