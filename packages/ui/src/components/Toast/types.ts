@@ -1,4 +1,4 @@
-export type Position = 'top-center' | 'top-right' | 'top-left' | 'bottom-center' | 'bottom-right' | 'bottom-left';
+export type Position = 'top' | 'bottom';
 
 export type ToastInfo = {
     text: string | null;

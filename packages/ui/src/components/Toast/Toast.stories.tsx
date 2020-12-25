@@ -21,14 +21,10 @@ export const ToastContext = () => {
     const position = select(
         'position',
         {
-            'top-left': 'top-left',
-            'top-center': 'top-center',
-            'top-right': 'top-right',
-            'bottom-left': 'bottom-left',
-            'bottom-center': 'bottom-center',
-            'bottom-right': 'bottom-right',
+            top: 'top',
+            bottom: 'bottom',
         },
-        'bottom-center',
+        'bottom',
     );
 
     const withTimeout = boolean('withTimeout', false);
