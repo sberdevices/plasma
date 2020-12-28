@@ -133,12 +133,12 @@ const StyledText = styled.span<StyledTextProps>`
 `;
 
 export interface ButtonProps
-    extends PickOptional<StyledButtonProps, 'fullWidth' | 'size' | 'view' | 'pin'>,
+    extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+        PickOptional<StyledButtonProps, 'fullWidth' | 'size' | 'view' | 'pin'>,
         MotionProps,
         FocusProps,
         DisabledProps,
-        ShiftProps,
-        React.ButtonHTMLAttributes<HTMLButtonElement> {
+        ShiftProps {
     /**
      * Слот для контента слева, например <Icon/>
      */
@@ -155,10 +155,15 @@ export interface ButtonProps
      * Кастомный контент кнопки. При указании этого свойства contentLeft, contentRight и text не применяются
      */
     children?: React.ReactNode;
+    /**
+     * Сменить рендер на другой тип компонента
+     */
+    as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-    (
+    // eslint-disable-next-line prefer-arrow-callback
+    function Button(
         {
             text,
             children,
@@ -172,25 +177,27 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             ...rest
         },
         ref,
-    ) => (
-        <StyledButton
-            view={view}
-            size={size}
-            pin={pin}
-            motion={motion}
-            outlined={outlined}
-            isTextOrChildren={!!text || !!children}
-            ref={ref}
-            {...rest}
-        >
-            {children}
-            {!children && contentLeft}
-            {!children && text && (
-                <StyledText isContentLeft={!!contentLeft} isContentRight={!!contentRight}>
-                    {text}
-                </StyledText>
-            )}
-            {!children && contentRight}
-        </StyledButton>
-    ),
+    ) {
+        return (
+            <StyledButton
+                view={view}
+                size={size}
+                pin={pin}
+                motion={motion}
+                outlined={outlined}
+                isTextOrChildren={!!text || !!children}
+                ref={ref}
+                {...rest}
+            >
+                {children}
+                {!children && contentLeft}
+                {!children && text && (
+                    <StyledText isContentLeft={!!contentLeft} isContentRight={!!contentRight}>
+                        {text}
+                    </StyledText>
+                )}
+                {!children && contentRight}
+            </StyledButton>
+        );
+    },
 );
