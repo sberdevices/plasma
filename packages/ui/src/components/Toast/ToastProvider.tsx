@@ -16,11 +16,13 @@ export const ToastContext = createContext<ContextType>({
     hideToast: () => undefined,
 });
 
+const defaultTimeout = 3000;
+
 export const ToastProvider: React.FC = ({ children }) => {
     const [value, setValue] = useState<ToastInfo>({ text: null, position: null, timeout: null });
 
     const showToast = useCallback((text: string, position?: Position, timeout?: number) => {
-        setValue({ text, position: position || 'bottom', timeout: timeout || null });
+        setValue({ text, position: position || 'bottom', timeout: timeout || defaultTimeout });
     }, []);
 
     const hideToast = useCallback(() => {
