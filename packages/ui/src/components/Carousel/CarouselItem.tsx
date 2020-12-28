@@ -1,27 +1,17 @@
 import React from 'react';
-import styled from 'styled-components';
 
-import { CarouselContext } from './CarouselContext';
+import { useCarouselItem } from './Carousel.hooks';
 
-export const StyledCarouselItem = styled.div``;
-
-export interface ListItemProps extends React.HTMLAttributes<HTMLDivElement> {
-    as?: React.ComponentType<any>;
+export interface CarouselItemProps extends React.HTMLAttributes<HTMLDivElement> {
+    as?: React.ComponentType<object>;
 }
 
-export const CarouselItem: React.FC<ListItemProps> = ({ children, ...rest }) => {
-    const ref = React.useRef<HTMLDivElement | null>(null);
-    const ctx = React.useContext(CarouselContext);
-
-    React.useEffect(() => {
-        ctx.register(ref);
-
-        return () => ctx.unregister(ref);
-    }, [ctx]);
+export const CarouselItem: React.FC<CarouselItemProps> = ({ children, ...rest }) => {
+    const itemRef = useCarouselItem<HTMLDivElement>();
 
     return (
-        <StyledCarouselItem ref={ref} {...rest}>
+        <div ref={itemRef} {...rest}>
             {children}
-        </StyledCarouselItem>
+        </div>
     );
 };

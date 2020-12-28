@@ -10,10 +10,10 @@ import image from '../../../.storybook/public/images/card1.png'
 import { ThemeSelect, TypoSelect } from '../../helpers/ThemeSelect'
 import { ThemeBackground } from '../../helpers/ThemeBackground'
 import { Filler } from '../../helpers/Filler'
-import { Card, CardBody, CardMedia, CardContent } from '../Card'
 import { DeviceThemeProvider } from '../Device'
 import { Container, Row } from '../Grid'
-import { Body1, Footnote1 } from '../Typography'
+
+import { ScalingColCard, scaleCallback, scaleResetCallback } from './Carousel.examples';
 
 import { CarouselWrapper, Carousel, CarouselItem, CarouselCol } from '.';
 
@@ -48,16 +48,85 @@ import { CarouselWrapper, Carousel, CarouselItem, CarouselCol } from '.';
 ### Props
 <Props of={CarouselCol} />
 
+## CSS Scroll Snap
+На компоненте ``Carousel`` укажите свойства ``scrollSnap`` и ``scrollSnapType``.
+```tsx
+import { Carousel } from '@sberdevices/ui';
+
+<Carousel scrollSnap scrollSnapType="mandatory">
+    // Карточки карусели помещаются здесь
+</Carousel>
+```
+> Не забудьте прописать стиль ``scroll-snap-align`` для элементов карусели.
+
+```tsx
+import styled from 'styled-components';
+import { CarouselItem } from '@sberdevices/ui';
+
+const StyledCarouselItem = styled(CarouselItem)`
+    scroll-snap-align: center;
+`;
+```
+
+## Определение центрального элемента
+При скроллинге карусель может определять центральный элемент.
+Для этого укажите свойства ``detectCentral``, ``detectThreshold`` и обработчик ``onCentralChange``.
+```tsx
+import { Carousel } from '@sberdevices/ui';
+
+<Carousel detectCentral detectThreshold={0.5} onCentralChange={(index) => console.log(index)}>
+    // Карточки карусели помещаются здесь
+</Carousel>
+```
+
+## Стилизация центрального элемента
+Элементы во вьюпорте можно подвергать стилизации. Например, увеличивать или менять непрозрачность.
+Свойства для определения элементов во вьюпорте:
+* scaleCentral
+* scaleCallback - обработчик для стилизации элементов во вьюпорте
+* scaleResetCallback - для элементов, находящихся вне вьюпорта
+
+Для обозначения позиции элемента во вьюпорте, карусель оперирует значением ``slot``:
+* ``0`` равен центральному элементу;
+* ``-1`` и ``1`` первый слева и справа от центрального;
+* ``-2`` и ``2`` и т.д., соответственно, для второго и далее.
+
+```tsx
+import { Carousel } from '@sberdevices/ui';
+
+/**
+ * Функция увеличения центрального элемента.
+ * Предположим, что у нас 5 элементов во вьюпорте.
+ * Тогда ряд slots будет таким: -2 -1 0 1 2.
+ * Центральный элемент примет opacity = 1, боковые - opacity = 0.5, а крайние слева и справа - opacity = 0
+ */
+const scaleCallback = (itemEl: HTMLDivElement, slot: number) => {
+    itemEl.style.opacity = `${1 - Math.abs(slot) / 2}`;
+};
+
+/**
+ * Функция сброса стилей элементов вне вьюпорта
+ */
+const scaleResetCallback = (itemEl: HTMLDivElement) => {
+    itemEl.style.opacity = '';
+};
+
+<Carousel scaleCentral scaleCallback={scaleCallback} scaleResetCallback={scaleResetCallback}>
+    // Карточки карусели помещаются здесь
+</Carousel>
+```
+
 ## Пример
+* В данном примере используются Grid и CSS Scroll Snap.
+* В корне приложения необходимо разместить DeviceThemeProvider.
+* В качестве основного блока лэйаута используется контейнер ([Container](/components/Grid#container)),
+а колонки ([Col](/components/Grid#col)) помещаются в строки ([Row](/components/Grid#row)).
+* Опция inContainer у CarouselWrapper необходима для того, чтобы компенсировать отступы контейнера.
+* Карусель поддерживает определение (``detectCentral``) и увеличение (``scaleCentral``) центрального элемента.
+
 <Playground>
     {() => {
-        /**
-         * В данном примере используются Grid и CSS Scroll Snap.
-         * В корне приложения необходимо разместить DeviceThemeProvider.
-         * В качестве основного блока лэйаута используется Container.
-         * Опция inContainer у CarouselWrapper - необходима для того, чтобы компенсировать отступы контейнера.
-         * Колонки (Col) помещаются в строки (Row).
-         */
+        const [index, setIndex] = React.useState(0);
         return (
             <DeviceThemeProvider detectDeviceCallback={() => 'sberBox'}>
                 <ThemeBackground>
@@ -65,26 +134,28 @@ import { CarouselWrapper, Carousel, CarouselItem, CarouselCol } from '.';
                         <CarouselWrapper inContainer>
                             <Row>
                                 <Carousel
+                                    style={{ paddingTop: '3.5rem' }}
                                     axis="x"
-                                    index={0}
-                                    scrollSnap={true}
+                                    index={index}
+                                    scrollSnap
                                     scrollSnapType="mandatory"
-                                    scrollSnapAlign="start"
+                                    detectCentral
+                                    detectThreshold={0.5}
+                                    onCentralChange={(i) => setIndex(i)}
+                                    scaleCentral
+                                    scaleCallback={scaleCallback}
+                                    scaleResetCallback={scaleResetCallback}
+                                    overscrollLeft="calc(var(--plasma-grid-column-width) * 2.5)"
+                                    overscrollRight="calc(var(--plasma-grid-column-width) * 2.5)"
                                 >
                                     {Array(12)
                                         .fill(0)
                                         .map((item, i) => (
-                                            <CarouselCol key={`item:${i}`} size={2} sizeM={1.5}>
-                                                <Card roundness={12}>
-                                                    <CardBody>
-                                                        <CardMedia src={image} ratio="1:1" />
-                                                    </CardBody>
-                                                </Card>
-                                                <Body1 style={{ marginTop: '0.75rem' }}>Song #81</Body1>
-                                                <Footnote1 style={{ marginTop: '0.25rem' }}>
-                                                    Untitled artist
-                                                </Footnote1>
-                                            </CarouselCol>
+                                            <ScalingColCard
+                                                key={`item:${i}`}
+                                                isActive={i === index}
+                                                item={{ title: `Song #${i}`, image }}
+                                            />
                                         ))
                                     }
                                 </Carousel>
