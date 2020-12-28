@@ -2,6 +2,7 @@ export * from './components/Badge';
 export * from './components/Button';
 export * from './components/Card';
 export * from './components/Cell';
+export * from './components/Carousel';
 export * from './components/Device';
 export * from './components/Grid';
 export * from './components/Header';

@@ -1,25 +1,18 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import { Col, ColProps } from '../Grid';
 
-import { CarouselContext } from './CarouselContext';
+import { useCarouselItem } from './Carousel.hooks';
+import { CarouselItemProps } from './CarouselItem';
 
-export const StyledCarouselCol = styled(Col)``;
+export interface CarouselColProps extends ColProps, CarouselItemProps, React.HTMLAttributes<HTMLDivElement> {}
 
-export const CarouselCol: React.FC<ColProps> = ({ children, ...rest }) => {
-    const ref = React.useRef<HTMLDivElement | null>(null);
-    const ctx = React.useContext(CarouselContext);
-
-    React.useEffect(() => {
-        ctx.register(ref);
-
-        return () => ctx.unregister(ref);
-    }, [ctx]);
+export const CarouselCol: React.FC<CarouselColProps> = ({ children, ...rest }) => {
+    const itemRef = useCarouselItem<HTMLDivElement>();
 
     return (
-        <StyledCarouselCol ref={ref} type="calc" {...rest}>
+        <Col ref={itemRef} type="calc" {...rest}>
             {children}
-        </StyledCarouselCol>
+        </Col>
     );
 };

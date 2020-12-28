@@ -1,32 +1,30 @@
 import React from 'react';
 
-type ItemRef = React.MutableRefObject<HTMLElement | null>;
+import { PickOptional } from '../../types';
+
+import type { CarouselProps } from './Carousel';
 
 /**
  * Хранилище элементов карусели.
  */
-export class CarouselStore {
-    private items: ItemRef[];
+export class CarouselItemRefs {
+    public items: React.MutableRefObject<HTMLElement | null>[] = [];
 
-    constructor() {
-        this.items = [];
-    }
-
-    public register(ref: ItemRef): number {
+    public register(ref: React.MutableRefObject<HTMLElement | null>): number {
         return this.items.push(ref) - 1;
     }
 
-    public unregister(ref: ItemRef) {
+    public unregister(ref: React.MutableRefObject<HTMLElement | null>) {
         this.items.splice(this.items.indexOf(ref), 1);
-    }
-
-    public getItem(at: number): ItemRef | null {
-        return this.items[at] || null;
-    }
-
-    public length(): number {
-        return this.items.length;
     }
 }
 
-export const CarouselContext = React.createContext(new CarouselStore());
+export interface CarouselContextType extends PickOptional<CarouselProps, 'axis'> {
+    refs?: CarouselItemRefs;
+}
+
+const carouselContextDefaultValue: CarouselContextType = {
+    axis: 'x',
+};
+
+export const CarouselContext = React.createContext<CarouselContextType>(carouselContextDefaultValue);
