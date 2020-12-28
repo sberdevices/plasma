@@ -8,7 +8,6 @@
     "chromatic": "lerna run chromatic",
     "build-storybook": "lerna run build-storybook",
     "build-docz": "lerna bootstrap --scope=@sberdevices/ui && lerna run docz:build",
-    "build-documentation": "lerna run docz:build",
     "lint": "eslint --ext .js,.ts,.tsx ."
   },
   "devDependencies": {
