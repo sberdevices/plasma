@@ -27,14 +27,13 @@ export const ToastContext = () => {
         'bottom',
     );
 
-    const withTimeout = boolean('withTimeout', false);
-    const timeout = number('timeout', 2000);
+    const timeout = number('timeout', 3000);
 
     return (
         <div>
             <Button
                 onClick={() => {
-                    showToast(toastText, position, withTimeout ? timeout : undefined);
+                    showToast(toastText, position, timeout);
                 }}
             >
                 Показать уведомление
