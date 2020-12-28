@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 import { animatedScrollToX, animatedScrollToY } from '../../utils/animatedScrollTo';
+import { useForkRef } from '../../utils/useForkRef';
 
 import { CarouselStore, CarouselContext } from './CarouselContext';
 import { StyledCarouselItem } from './CarouselItem';
@@ -81,7 +82,7 @@ export const StyledCarouselTrack = styled.div<StyledCarouselTrackProps>`
               `}
 `;
 
-export interface CarouselProps extends DirectionProps, SnapProps {
+export interface CarouselProps extends DirectionProps, SnapProps, React.HTMLAttributes<HTMLDivElement> {
     /**
      * Индекс текущего элемента
      */
@@ -92,15 +93,14 @@ export interface CarouselProps extends DirectionProps, SnapProps {
     animated?: boolean;
 }
 
-export const Carousel: React.FC<CarouselProps & React.HTMLAttributes<HTMLDivElement>> = ({
-    index,
-    axis,
-    animated = true,
-    children,
-    ...rest
-}) => {
+// eslint-disable-next-line prefer-arrow-callback
+export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carousel(
+    { index, axis, animated = true, children, ...rest },
+    ref,
+) {
     const carouselRef = React.useRef<HTMLDivElement>(null);
     const store = React.useMemo(() => new CarouselStore(), []);
+    const handleRef = useForkRef(carouselRef, ref);
 
     React.useEffect(() => {
         if (carouselRef.current) {
@@ -148,9 +148,9 @@ export const Carousel: React.FC<CarouselProps & React.HTMLAttributes<HTMLDivElem
 
     return (
         <CarouselContext.Provider value={store}>
-            <StyledCarousel ref={carouselRef} axis={axis} {...rest}>
+            <StyledCarousel ref={handleRef} axis={axis} {...rest}>
                 <StyledCarouselTrack axis={axis}>{children}</StyledCarouselTrack>
             </StyledCarousel>
         </CarouselContext.Provider>
     );
-};
+});
