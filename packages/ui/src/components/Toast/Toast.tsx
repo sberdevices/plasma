@@ -8,7 +8,7 @@ export type ToastProps = {
     text: string;
 };
 
-const StyledRoot = styled.div`
+const StyledRoot = styled(Footnote1)`
     display: inline-block;
     padding: 0.75rem 1.25rem;
     border-radius: 1.25rem;
@@ -16,8 +16,4 @@ const StyledRoot = styled.div`
     background: ${background};
 `;
 
-export const Toast: React.FC<ToastProps> = ({ text }) => (
-    <StyledRoot>
-        <Footnote1>{text}</Footnote1>
-    </StyledRoot>
-);
+export const Toast: React.FC<ToastProps> = ({ text }) => <StyledRoot>{text}</StyledRoot>;
