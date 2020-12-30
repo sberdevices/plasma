@@ -42,6 +42,8 @@ import { Settings } from './Icon.assets/Settings';
 import { Spinner } from './Icon.assets/Spinner';
 import { Trash } from './Icon.assets/Trash';
 import { TrashFilled } from './Icon.assets/TrashFilled';
+import { Cart } from './Icon.assets/Cart';
+import { CartAlt } from './Icon.assets/CartAlt';
 // Action
 import { Alarm } from './Icon.assets/Alarm';
 import { BankCard } from './Icon.assets/BankCard';
@@ -141,6 +143,9 @@ import { Pip1 } from './Icon.assets/Pip1';
 import { StoreGamepad } from './Icon.assets/StoreGamepad';
 import { StoreRemote } from './Icon.assets/StoreRemote';
 import { Ticket } from './Icon.assets/Ticket';
+// Logo
+import { Salute } from './Icon.assets/Salute';
+import { SaluteCircle } from './Icon.assets/SaluteCircle';
 
 export const iconSectionsSet = {
     navigation: {
@@ -187,6 +192,8 @@ export const iconSectionsSet = {
         spinner: Spinner,
         trash: Trash,
         trashFilled: TrashFilled,
+        cart: Cart,
+        cartAlt: CartAlt,
     },
     action: {
         alarm: Alarm,
@@ -296,6 +303,10 @@ export const iconSectionsSet = {
         storeGamepad: StoreGamepad,
         storeRemote: StoreRemote,
         ticket: Ticket,
+    },
+    logo: {
+        salute: Salute,
+        saluteCircle: SaluteCircle,
     },
 };
 
