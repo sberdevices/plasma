@@ -1,0 +1,27 @@
+name: PR documentation
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - rc
+      - master
+
+jobs:
+  clean:
+    name: Clean
+    runs-on: ubuntu-latest
+    env:
+      NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
+      PR_NAME: pr-${{ github.event.number }}
+    steps:
+      - name: Clean old documentation
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DOCS_HOST }}
+          username: ${{ secrets.DOCS_LOGIN }}
+          key: ${{ secrets.DOCS_KEY }}
+          envs: PR_NAME
+          script: |
+            cd ../../var/www/plasma
+            rm -rf $PR_NAME/
