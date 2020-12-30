@@ -1,0 +1,69 @@
+name: Main documentation
+
+on:
+  push:
+    branches:
+      - rc
+      - master
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    env:
+      NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Prepare repository
+        run: git fetch --unshallow --tags
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: npm-deps-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            npm-deps-${{ hashFiles('package-lock.json') }}
+
+      - name: Setup packages
+        run: |
+          npm i
+          npx lerna bootstrap
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build documentation
+        run: |
+          cd ./packages/ui && npm run docz:build -- --base /current/ --dest ./.docz/dist/current/
+          cd ../../.
+          mkdir ../build
+          cp -R ./packages/ui/.docz/dist/current ../build
+          mv ../build/current ../build/current-next
+
+      - name: Upload documentation build
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          host: ${{ secrets.DOCS_HOST }}
+          username: ${{ secrets.DOCS_LOGIN }}
+          privateKey: ${{ secrets.DOCS_KEY }}
+          local: "../build"
+          remote: "/var/www/plasma"
+
+      - name: Update and clean documentation
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DOCS_HOST }}
+          username: ${{ secrets.DOCS_LOGIN }}
+          key: ${{ secrets.DOCS_KEY }}
+          script: |
+            cd ../../var/www/plasma
+            rm -rf current/
+            mv current-next current
+

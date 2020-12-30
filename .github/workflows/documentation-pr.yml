@@ -1,10 +1,6 @@
-name: Documentation
+name: PR documentation
 
 on:
-  push:
-    branches:
-      - rc
-      - master
   pull_request:
     branches:
       - rc
@@ -16,7 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
-      IS_PR: ${{ github.event_name == 'pull_request' }}
       PR_NAME: pr-${{ github.event.number }}
     steps:
       - uses: actions/checkout@v2
@@ -45,24 +40,14 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Build documentation for PR
-        if: env.IS_PR == 'true'
+      - name: Build documentation
         run: |
           cd ./packages/ui && npm run docz:build -- --base /${PR_NAME}/ --dest ./.docz/dist/${PR_NAME}/
           cd ../../.
           mkdir ../build
           cp -R ./packages/ui/.docz/dist/${PR_NAME} ../build
 
-      - name: Build main documentation
-        if: env.IS_PR != 'true'
-        run: |
-          cd ./packages/ui && npm run docz:build -- --base /current/ --dest ./.docz/dist/current/
-          cd ../../.
-          mkdir ../build
-          cp -R ./packages/ui/.docz/dist/current ../build
-
-      - name: Clean old PR documentation
-        if: env.IS_PR == 'true'
+      - name: Clean old documentation
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.DOCS_HOST }}
@@ -71,20 +56,7 @@ jobs:
           envs: PR_NAME
           script: |
             cd ../../var/www/plasma
-            ls -a
             rm -rf $PR_NAME/
-
-      - name: Clean old main documentation
-        if: env.IS_PR != 'true'
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.DOCS_HOST }}
-          username: ${{ secrets.DOCS_LOGIN }}
-          key: ${{ secrets.DOCS_KEY }}
-          script: |
-            cd ../../var/www/plasma
-            ls -a
-            rm -rf current/
 
       - name: Upload documentation build
         uses: garygrossgarten/github-action-scp@release
@@ -96,7 +68,6 @@ jobs:
           remote: "/var/www/plasma"
 
       - name: Post success comment
-        if: env.IS_PR == 'true'
         uses: actions/github-script@v3
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
