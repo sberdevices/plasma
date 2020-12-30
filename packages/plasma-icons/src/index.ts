@@ -39,6 +39,8 @@ export { IconSettings } from './Icons/IconSettings';
 export { IconSpinner } from './Icons/IconSpinner';
 export { IconTrash } from './Icons/IconTrash';
 export { IconTrashFilled } from './Icons/IconTrashFilled';
+export { IconCart } from './Icons/IconCart';
+export { IconCartAlt } from './Icons/IconCartAlt';
 // Action
 export { IconAlarm } from './Icons/IconAlarm';
 export { IconBankCard } from './Icons/IconBankCard';
@@ -138,6 +140,9 @@ export { IconPip1 } from './Icons/IconPip1';
 export { IconStoreGamepad } from './Icons/IconStoreGamepad';
 export { IconStoreRemote } from './Icons/IconStoreRemote';
 export { IconTicket } from './Icons/IconTicket';
+// Logo
+export { IconSalute } from './Icons/IconSalute';
+export { IconSaluteCircle } from './Icons/IconSaluteCircle';
 
 export { IconRoot } from './IconRoot';
 export type { IconProps, IconSize } from './IconRoot';
