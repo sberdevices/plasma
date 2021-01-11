@@ -108,7 +108,7 @@ import { typography } from '@sberdevices/plasma-tokens';
     -   caption
     -   underline
 
-Посмотреть в живую можно в документации [типографической системы](https://plasma-docs.netlify.app/typograpy#%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B)
+Посмотреть в живую можно в документации [типографической системы](http://plasma.sberdevices.ru/current/typography#%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B)
 
 Все стилевые объекты также можно импортировать по одному:
 
@@ -272,7 +272,7 @@ export const accent = 'var(--theme-colors-accent, #2AC673)';
 
 Цвета представляют собой [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) c заданным цветом по умолчанию.
 Это позволяет переопределять цвета с помощью [Тем](#Темы).
-Всю представленную палитру можно посмотреть в документации: https://plasma-docs.netlify.app/pallete
+Всю представленную палитру можно посмотреть в документации: http://plasma.sberdevices.ru/current/pallete
 
 Также доступны сами значения пременных:
 
