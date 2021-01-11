@@ -42,4 +42,4 @@ const App = () => {
 
 Витрина с компонентами [storybook](https://master--5f96ec813d800900227e3b93.chromatic.com)
 
-Документация о каждом компоненте: https://plasma-docs.netlify.app
+Документация о каждом компоненте: http://plasma.sberdevices.ru/
