@@ -1,4 +1,5 @@
 import { Auto, IPlugin } from '@auto-it/core';
+import fetch from 'node-fetch';
 
 type Response = {
     preparedServices: Array<string>;
