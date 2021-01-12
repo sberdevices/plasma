@@ -23,14 +23,13 @@ export interface RoundnessProps {
     /**
      * Скругленность
      */
-    roundness?: Roundness;
+    roundness: Roundness;
 }
 
 /**
  * Миксин скругленности.
  */
 export const applyRoundness: InterpolationFunction<RoundnessProps> = ({ roundness }) =>
-    !!roundness &&
     css`
         border-radius: ${radiuses[roundness]}rem;
     `;
