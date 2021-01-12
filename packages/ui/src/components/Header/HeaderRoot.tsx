@@ -24,14 +24,6 @@ const StyledHeaderRoot = styled.header`
 
     ${({ theme }) => css`
         ${mediaQuery(
-            'XL',
-            theme.deviceScale,
-        )(css`
-            & ${StyledHeaderBackButton} {
-                display: none;
-            }
-        `)}
-        ${mediaQuery(
             'S',
             theme.deviceScale,
         )(css`
