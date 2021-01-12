@@ -4,6 +4,7 @@ import { text, number, boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { Icon } from '@sberdevices/plasma-icons';
 
+import { GridLines } from '../../helpers/GridLines';
 import { mediaQuery } from '../../utils';
 import { Button } from '../Button';
 import { Container } from '../Grid';
@@ -101,33 +102,39 @@ export default {
 
 export const Default = () => {
     return (
-        <Container>
-            <Header
-                back={boolean('Back button', true)}
-                logo={boolean('Logo', true) && './images/logo.png'}
-                logoAlt="Logo"
-                title={text('title', 'Header title text')}
-                subtitle={text('subtitle', 'Subtitle text')}
-                onBackClick={action('onBackClick')}
-            >
-                <AppBarContent />
-            </Header>
-        </Container>
+        <>
+            {boolean('Display grid', true) && <GridLines />}
+            <Container>
+                <Header
+                    back={boolean('Back button', true)}
+                    logo={boolean('Logo', true) && './images/logo.png'}
+                    logoAlt="Logo"
+                    title={text('title', 'Header title text')}
+                    subtitle={text('subtitle', 'Subtitle text')}
+                    onBackClick={action('onBackClick')}
+                >
+                    <AppBarContent />
+                </Header>
+            </Container>
+        </>
     );
 };
 
 export const CustomWithResponsiveContent = () => (
-    <Container>
-        <HeaderRoot>
-            <HeaderBack onClick={action('onBackClick')} />
-            <HeaderLogo src="./images/logo.png" alt="Logo" />
-            <HeaderTitleWrapper>
-                <HeaderTitle>{text('title', 'Header title text')}</HeaderTitle>
-                <HeaderSubtitle>{text('subtitle', 'Subtitle text')}</HeaderSubtitle>
-            </HeaderTitleWrapper>
-            <HeaderContent>
-                <ResponsiveContent />
-            </HeaderContent>
-        </HeaderRoot>
-    </Container>
+    <>
+        {boolean('Display grid', true) && <GridLines />}
+        <Container>
+            <HeaderRoot>
+                <HeaderBack onClick={action('onBackClick')} />
+                <HeaderLogo src="./images/logo.png" alt="Logo" />
+                <HeaderTitleWrapper>
+                    <HeaderTitle>{text('title', 'Header title text')}</HeaderTitle>
+                    <HeaderSubtitle>{text('subtitle', 'Subtitle text')}</HeaderSubtitle>
+                </HeaderTitleWrapper>
+                <HeaderContent>
+                    <ResponsiveContent />
+                </HeaderContent>
+            </HeaderRoot>
+        </Container>
+    </>
 );
