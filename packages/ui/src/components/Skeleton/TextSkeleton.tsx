@@ -15,7 +15,7 @@ const StyledTextSkeleton = styled.div`
     width: 100%;
 `;
 
-export interface TextSkeletonProps extends TextSizeProps, RoundnessProps {
+export interface TextSkeletonProps extends TextSizeProps, Partial<RoundnessProps> {
     /**
      * Количетво линий скелета
      */

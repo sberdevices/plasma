@@ -38,7 +38,7 @@ const StyledLine = styled.div<StyledTextSizeProps>`
     }
 `;
 
-export interface LineSkeletonProps extends TextSizeProps, RoundnessProps {}
+export interface LineSkeletonProps extends TextSizeProps, Partial<RoundnessProps> {}
 
 export const LineSkeleton: React.FC<LineSkeletonProps & React.HTMLAttributes<HTMLDivElement>> = ({
     size = DEFAULT_TEXT_SIZE,

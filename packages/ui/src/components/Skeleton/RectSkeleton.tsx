@@ -24,7 +24,7 @@ const StyledRectSkeleton = styled.div<StyledRectSizeProps>`
     `}
 `;
 
-export interface RectSkeletonProps extends RoundnessProps {
+export interface RectSkeletonProps extends Partial<RoundnessProps> {
     width: string | number;
     height: string | number;
 }
