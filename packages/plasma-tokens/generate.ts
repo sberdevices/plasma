@@ -138,11 +138,13 @@ const themeColorsComments = {
 
     speechBubbleSent: 'Цвет фона баблов отправленный сообщений',
     speechBubbleReceived: 'Цвет фона баблов получнных сообщений',
-}
+
+    voicePhraseGradient: 'Градиент подсказок о голосовых запросах',
+};
 
 export type ThemeTokens = {[key in keyof typeof themeColorsComments]: Token<TColor>};
 
-type baseTheme = Omit<ThemeTokens, 'accent' | 'gradient' | 'buttonAccent' | 'buttonFocused'>
+type baseTheme = Omit<ThemeTokens, 'accent' | 'gradient' | 'voicePhraseGradient' |'buttonAccent' | 'buttonFocused'>
 
 const dark: baseTheme = {
     text: {
@@ -162,12 +164,12 @@ const dark: baseTheme = {
         value: humanizeColor(ds.theme.dark_tertiary.color),
         comment: themeColorsComments.tertiary,
     },
-    
+
     background: {
         value: humanizeColor(ds.theme.dark_bg.color),
         comment: themeColorsComments.background,
     },
-    
+
     backgroundPrimary: {
         value: humanizeColor(ds.theme.dark_bg_primary.color),
         comment: themeColorsComments.backgroundPrimary,
@@ -189,7 +191,7 @@ const dark: baseTheme = {
         value: humanizeColor(ds.theme.dark_critical.color),
         comment: themeColorsComments.critical,
     },
-    
+
     overlay: {
         value: humanizeColor(ds.theme.dark_overlay.color),
         comment: themeColorsComments.overlay,
@@ -262,12 +264,12 @@ const light: baseTheme = {
         value: humanizeColor(ds.theme.light_tertiary.color),
         comment: themeColorsComments.tertiary,
     },
-    
+
     background: {
         value: humanizeColor(ds.theme.light_bg.color),
         comment: themeColorsComments.background,
     },
-    
+
     backgroundPrimary: {
         value: humanizeColor(ds.theme.light_bg_primary.color),
         comment: themeColorsComments.backgroundPrimary,
@@ -289,7 +291,7 @@ const light: baseTheme = {
         value: humanizeColor(ds.theme.light_critical.color),
         comment: themeColorsComments.critical,
     },
-    
+
     overlay: {
         value: humanizeColor(ds.theme.light_overlay.color),
         comment: themeColorsComments.overlay,
@@ -345,7 +347,7 @@ const light: baseTheme = {
     },
 }
 
-const darkSber: ThemeTokens =  {
+const darkSber: ThemeTokens = {
     ...dark,
     accent: {
         value: humanizeColor(ds.theme.dark_sber.color),
@@ -359,10 +361,16 @@ const darkSber: ThemeTokens =  {
         value: humanizeColor(ds.theme.dark_focus_sber.color),
         comment: themeColorsComments.buttonFocused,
     },
-    // TODO: export from figma is broken
+    // TODO: export from figma is broken (#135)
     gradient: {
-        value: 'linear-gradient(336.84deg, rgba(20, 116, 70, 0.6) 0%, rgba(8, 8, 8, 0) 64.88%), radial-gradient(100% 100% at 75.89% 100%, rgba(0, 133, 255, 0.24) 0%, rgba(0, 71, 255, 0.03) 100%), linear-gradient(180deg, rgba(8, 8, 8, 0) 50%, rgba(7, 71, 33, 0.3) 100%), linear-gradient(270deg, #061621 0%, rgba(8, 8, 8, 0) 100%)',
+        value:
+            'linear-gradient(336.84deg, rgba(20, 116, 70, 0.6) 0%, rgba(8, 8, 8, 0) 64.88%), radial-gradient(100% 100% at 75.89% 100%, rgba(0, 133, 255, 0.24) 0%, rgba(0, 71, 255, 0.03) 100%), linear-gradient(180deg, rgba(8, 8, 8, 0) 50%, rgba(7, 71, 33, 0.3) 100%), linear-gradient(270deg, #061621 0%, rgba(8, 8, 8, 0) 100%)',
         comment: themeColorsComments.gradient,
+    },
+    voicePhraseGradient: {
+        // value: ds.gradients.voice_phrase_sber.linearGradient,
+        value: 'linear-gradient(93.97deg, #2FD65C 6.49%, #20C1C7 93.51%)',
+        comment: themeColorsComments.voicePhraseGradient,
     },
 };
 
@@ -380,9 +388,16 @@ const darkEva: ThemeTokens = {
         value: humanizeColor(ds.theme.dark_focus_eva.color),
         comment: themeColorsComments.buttonFocused,
     },
+    // TODO: export from figma is broken (#135)
     gradient: {
-        value: 'linear-gradient(336.9deg, #143787 0%, rgba(8, 8, 8, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(110, 5, 193, 0.44) 0%, rgba(53, 19, 149, 0.1) 99.69%), linear-gradient(180.03deg, rgba(8, 8, 8, 0) 50%, rgba(25, 63, 152, 0.41) 99.97%), linear-gradient(270deg, rgba(39, 15, 107, 0.3) 0%, rgba(8, 8, 8, 0) 100%)',
+        value:
+            'linear-gradient(336.9deg, #143787 0%, rgba(8, 8, 8, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(110, 5, 193, 0.44) 0%, rgba(53, 19, 149, 0.1) 99.69%), linear-gradient(180.03deg, rgba(8, 8, 8, 0) 50%, rgba(25, 63, 152, 0.41) 99.97%), linear-gradient(270deg, rgba(39, 15, 107, 0.3) 0%, rgba(8, 8, 8, 0) 100%)',
         comment: themeColorsComments.gradient,
+    },
+    voicePhraseGradient: {
+        // value: ds.gradients.voice_phrase_eva.linearGradient,
+        value: 'linear-gradient(93.97deg, #52C0FF 6.49%, #A193FD 93.51%)',
+        comment: themeColorsComments.voicePhraseGradient,
     },
 };
 
@@ -400,11 +415,18 @@ const darkJoy: ThemeTokens = {
         value: humanizeColor(ds.theme.dark_focus_joy.color),
         comment: themeColorsComments.buttonFocused,
     },
+    // TODO: export from figma is broken (#135)
     gradient: {
-        value: 'linear-gradient(336.9deg, rgba(255, 156, 101, 0.24) 0%, rgba(8, 8, 8, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(61, 19, 149, 0.34) 0%, rgba(19, 24, 149, 0.1) 99.69%), linear-gradient(180.03deg, rgba(8, 8, 8, 0) 50%, rgba(255, 215, 179, 0.15) 99.97%), linear-gradient(270deg, rgba(107, 15, 87, 0.2) 0%, rgba(8, 8, 8, 0) 100%)',
+        value:
+            'linear-gradient(336.9deg, rgba(255, 156, 101, 0.24) 0%, rgba(8, 8, 8, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(61, 19, 149, 0.34) 0%, rgba(19, 24, 149, 0.1) 99.69%), linear-gradient(180.03deg, rgba(8, 8, 8, 0) 50%, rgba(255, 215, 179, 0.15) 99.97%), linear-gradient(270deg, rgba(107, 15, 87, 0.2) 0%, rgba(8, 8, 8, 0) 100%)',
         comment: themeColorsComments.gradient,
     },
-}
+    voicePhraseGradient: {
+        // value: ds.gradients.voice_phrase_joy.linearGradient,
+        value: 'linear-gradient(93.97deg, #F5AE4C 6.49%, #FA8CAE 93.51%)',
+        comment: themeColorsComments.voicePhraseGradient,
+    },
+};
 
 const lightSber: ThemeTokens = {
     ...light,
@@ -420,11 +442,17 @@ const lightSber: ThemeTokens = {
         value: humanizeColor(ds.theme.light_focus_sber.color),
         comment: themeColorsComments.buttonFocused,
     },
+    // TODO: export from figma is broken (#135)
     gradient: {
-        value: 'linear-gradient(336.9deg, rgba(4, 255, 44, 0.02) 0%, rgba(255, 255, 255, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(0, 179, 255, 0.06) 0%, rgba(0, 209, 255, 0.01) 99.69%), linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, rgba(0, 251, 59, 0.05) 100%), linear-gradient(270deg, rgba(6, 195, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);',
+        value:
+            'linear-gradient(336.9deg, rgba(4, 255, 44, 0.02) 0%, rgba(255, 255, 255, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(0, 179, 255, 0.06) 0%, rgba(0, 209, 255, 0.01) 99.69%), linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, rgba(0, 251, 59, 0.05) 100%), linear-gradient(270deg, rgba(6, 195, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);',
         comment: themeColorsComments.gradient,
     },
-
+    voicePhraseGradient: {
+        // value: ds.gradients.voice_phrase_sber.linearGradient,
+        value: 'linear-gradient(93.97deg, #2FD65C 6.49%, #20C1C7 93.51%)',
+        comment: themeColorsComments.voicePhraseGradient,
+    },
 };
 
 const lightEva: ThemeTokens = {
@@ -441,9 +469,16 @@ const lightEva: ThemeTokens = {
         value: humanizeColor(ds.theme.light_focus_eva.color),
         comment: themeColorsComments.buttonFocused,
     },
+    // TODO: export from figma is broken (#135)
     gradient: {
-        value: 'linear-gradient(336.9deg, rgba(0, 224, 255, 0.06) 0%, rgba(255, 255, 255, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(0, 87, 255, 0.04) 0%, rgba(87, 8, 255, 0.01) 99.69%), linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, rgba(0, 224, 255, 0.06) 100%), linear-gradient(270deg, rgba(0, 71, 253, 0.02) 0%, rgba(255, 255, 255, 0) 100%)',
+        value:
+            'linear-gradient(336.9deg, rgba(0, 224, 255, 0.06) 0%, rgba(255, 255, 255, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(0, 87, 255, 0.04) 0%, rgba(87, 8, 255, 0.01) 99.69%), linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, rgba(0, 224, 255, 0.06) 100%), linear-gradient(270deg, rgba(0, 71, 253, 0.02) 0%, rgba(255, 255, 255, 0) 100%)',
         comment: themeColorsComments.gradient,
+    },
+    voicePhraseGradient: {
+        // value: ds.gradients.voice_phrase_eva.linearGradient,
+        value: 'linear-gradient(93.97deg, #52C0FF 6.49%, #A193FD 93.51%)',
+        comment: themeColorsComments.voicePhraseGradient,
     },
 };
 
@@ -461,10 +496,17 @@ const lightJoy: ThemeTokens = {
         value: humanizeColor(ds.theme.light_focus_joy.color),
         comment: themeColorsComments.buttonFocused,
     },
+    // TODO: export from figma is broken (#135)
     // background: lToRgba(ds.gradients.light_bg_joy.linearGradient),
     gradient: {
-        value: 'linear-gradient(336.9deg, rgba(255, 200, 3, 0.05) 0%, rgba(255, 255, 255, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(148, 0, 238, 0.02) 0%, rgba(160, 4, 255, 0.01) 99.69%), linear-gradient(180.03deg, rgba(255, 255, 255, 0) 50%, rgba(255, 184, 0, 0.04) 99.97%), linear-gradient(270deg, rgba(240, 0, 187, 0.03) 0%, rgba(255, 255, 255, 0) 100%)',
+        value:
+            'linear-gradient(336.9deg, rgba(255, 200, 3, 0.05) 0%, rgba(255, 255, 255, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(148, 0, 238, 0.02) 0%, rgba(160, 4, 255, 0.01) 99.69%), linear-gradient(180.03deg, rgba(255, 255, 255, 0) 50%, rgba(255, 184, 0, 0.04) 99.97%), linear-gradient(270deg, rgba(240, 0, 187, 0.03) 0%, rgba(255, 255, 255, 0) 100%)',
         comment: themeColorsComments.gradient,
+    },
+    voicePhraseGradient: {
+        // value: ds.gradients.voice_phrase_joy.linearGradient,
+        value: 'linear-gradient(93.97deg, #F5AE4C 6.49%, #FA8CAE 93.51%)',
+        comment: themeColorsComments.voicePhraseGradient,
     },
 };
 

@@ -134,6 +134,11 @@ const gradients = {
     light_bg_sber: plasmaStylesTokens.gradients.backgroundAssistantMobileSber,
     light_bg_eva: plasmaStylesTokens.gradients.backgroundAssistantMobileAthena,
     light_bg_joy: plasmaStylesTokens.gradients.backgroundAssistantMobileJoy,
+
+    // voice phrase
+    voice_phrase_sber: plasmaStylesTokens.gradients.textIconsVoicePhraseSber,
+    voice_phrase_eva: plasmaStylesTokens.gradients.textIconsVoicePhraseAthena,
+    voice_phrase_joy: plasmaStylesTokens.gradients.textIconsVoicePhraseJoy,
 };
 //
 // /**
