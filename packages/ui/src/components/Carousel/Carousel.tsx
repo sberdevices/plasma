@@ -3,11 +3,11 @@ import styled, { css } from 'styled-components';
 import throttle from 'lodash.throttle';
 
 import { useForkRef, useDebouncedFunction } from '../../hooks';
-import type { PickOptional } from '../../types';
+import type { PickOptional, SnapType } from '../../types';
 import { animatedScrollToX, animatedScrollToY } from '../../utils';
 
 import { CarouselContext, CarouselItemRefs } from './CarouselContext';
-import type { Axis, SnapType } from './Carousel.types';
+import type { Axis } from './Carousel.types';
 
 export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
     /**
@@ -21,7 +21,7 @@ export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
     /**
      * Анимированная прокрутка с помощью requestAnimationFrame
      */
-    animated?: boolean;
+    animatedScrollByIndex?: boolean;
     /**
      * Вычислять центральный элемент
      */
@@ -31,9 +31,9 @@ export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
      */
     detectThreshold?: number;
     /**
-     * Коллбек изменения центрального элемента
+     * Коллбек изменения индекса
      */
-    onCentralChange?: (index: number) => void;
+    onIndexChange?: (index: number) => void;
     /**
      * Плавное увеличение к центру
      */
@@ -66,13 +66,59 @@ export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
      * Отступ справа, используется при центрировании крайних элементов
      */
     overscrollRight?: string;
+    /**
+     * Throttling внутренних обработчиков события onScroll
+     */
+    throttleMs?: number;
+    /**
+     * Debounce внутренних обработчиков события onScroll
+     */
+    debounceMs?: number;
 }
 
-/**
- * Throttling и debounce внутренних обработчиков события onScroll
- */
-const THROTTLING_MS = 100;
-const DEBOUNCING_MS = 150;
+const THROTTLE_DEFAULT_MS = 100;
+const DEBOUNCE_DEFAULT_MS = 150;
+
+const getInitPos = (axis: Axis, scroll: Element, track: Element) => {
+    const paddingProp = axis === 'x' ? 'paddingLeft' : 'paddingTop';
+    return parseInt(getComputedStyle(scroll)[paddingProp], 10) + parseInt(getComputedStyle(track)[paddingProp], 10);
+};
+
+const calcPos = (
+    axis: Axis,
+    index: number,
+    scroll: HTMLElement,
+    track: HTMLElement,
+    items: React.MutableRefObject<HTMLElement | null>[],
+) => {
+    let pos = getInitPos(axis, scroll, track);
+    let carouselSize;
+    let itemSize;
+
+    if (!items.length) {
+        return pos;
+    }
+
+    for (let i = index - 1; i >= 0; i--) {
+        if (axis === 'x') {
+            pos += items[i].current?.offsetWidth || 0;
+        } else {
+            pos += items[i].current?.offsetHeight || 0;
+        }
+    }
+
+    if (axis === 'x') {
+        carouselSize = scroll.offsetWidth;
+        itemSize = items[index].current?.offsetWidth || 0;
+    } else {
+        carouselSize = scroll.offsetHeight;
+        itemSize = items[index].current?.offsetHeight || 0;
+    }
+
+    pos -= carouselSize / 2 - itemSize / 2;
+
+    return pos;
+};
 
 export const StyledCarousel = styled.div<PickOptional<CarouselProps, 'axis' | 'scrollSnap' | 'scrollSnapType'>>`
     position: relative;
@@ -132,21 +178,23 @@ export const StyledCarouselTrack = styled.div<
 // eslint-disable-next-line prefer-arrow-callback
 export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carousel(
     {
-        index,
-        axis,
-        animated = false,
+        index = 0,
+        axis = 'x',
+        animatedScrollByIndex = false,
         scrollSnap = false,
         scrollSnapType = 'mandatory',
-        detectCentral,
-        detectThreshold,
-        scaleCentral,
+        detectCentral = false,
+        detectThreshold = 0.5,
+        scaleCentral = false,
         scaleCallback,
         scaleResetCallback,
         overscrollLeft,
         overscrollRight,
         children,
         onScroll,
-        onCentralChange,
+        onIndexChange,
+        throttleMs = THROTTLE_DEFAULT_MS,
+        debounceMs = DEBOUNCE_DEFAULT_MS,
         ...rest
     },
     ref,
@@ -155,44 +203,33 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
     const scrollRef = React.useRef<HTMLDivElement | null>(null);
     const handleRef = useForkRef(scrollRef, ref);
     const trackRef = React.useRef<HTMLDivElement | null>(null);
-    const prevIndex = React.useRef<number>();
-    const [isTouching, setIsTouching] = React.useState(false);
-    const [scrollRect, setScrollRect] = React.useState<DOMRect | null>(null);
-
-    const getInitPos = React.useCallback(() => {
-        if (!scrollRef.current || !trackRef.current) {
-            return 0;
-        }
-        const paddingProp = axis === 'x' ? 'paddingLeft' : 'paddingTop';
-        return (
-            parseInt(getComputedStyle(scrollRef.current)[paddingProp], 10) +
-            parseInt(getComputedStyle(trackRef.current)[paddingProp], 10)
-        );
-    }, [axis]);
 
     /**
-     * Для того, чтобы не спамить изменениями индекса центрального элемента.
-     * Задержка дебаунса слегка больше, чем у тротлинга скролла.
-     * Таким образом, событие срабатывает при завершении скроллинга.
+     * Для того, чтобы не спамить изменениями индекса.
+     * Задержка дебаунса слегка больше, чем у тротлинга.
+     * Таким образом, событие срабатывает при завершении скролла.
      */
-    const internalOnCentralChange = useDebouncedFunction((i: number) => onCentralChange?.(i), DEBOUNCING_MS);
+    const debouncedOnIndexChange = useDebouncedFunction((i: number) => onIndexChange?.(i), debounceMs);
 
+    /**
+     * Вычисление центрального элемента.
+     * Подсчет: от 0 до 1, какое количество ширины/высоты
+     * каждого элемента находится по центру скролла.
+     */
     const centralDetection = React.useCallback(
         throttle(() => {
-            /**
-             * Вычисление центрального элемента.
-             * Подсчет: от 0 до 1, какое количество ширины/высоты
-             * каждого элемента находится по центру скролла.
-             */
-            if (!scrollRect || !scrollRef.current || (!scaleCentral && !detectCentral)) {
+            if (!scrollRef.current || !trackRef.current || (!scaleCentral && !detectCentral)) {
                 return;
             }
-
             const scrollPos = scrollRef.current[axis === 'x' ? 'scrollLeft' : 'scrollTop'];
             const scrollSize = scrollRef.current[axis === 'x' ? 'offsetWidth' : 'offsetHeight'];
             const scrollEdge = scrollPos + scrollSize;
             const scrollCenter = scrollPos + scrollSize / 2;
-            let itemPos = getInitPos();
+            let itemPos = getInitPos(axis, scrollRef.current, trackRef.current);
+
+            let viewportCount = 0;
+            const leftItems: HTMLElement[] = [];
+            const rightItems: HTMLElement[] = [];
 
             refs.items.forEach((itemRef, i) => {
                 if (!itemRef.current) {
@@ -203,11 +240,10 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
 
                 /**
                  * Все элементы правее вьюпорта выпадают из процедуры.
-                 * Захватим +1 элемент, чтобы была плавность переключения по стрелочкам.
                  */
-                if (itemPos > scrollEdge + itemSize) {
-                    if (scaleResetCallback) {
-                        scaleResetCallback(itemRef.current);
+                if (itemPos > scrollEdge) {
+                    if (scaleCentral && scaleCallback) {
+                        rightItems.push(itemRef.current);
                     }
                     return;
                 }
@@ -215,12 +251,11 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
                 itemPos += itemSize;
 
                 /**
-                 * Все элементы правее вьюпорта выпадают из процедуры.
-                 * Захватим +1 элемент, чтобы была плавность переключения по стрелочкам.
+                 * Все элементы левее вьюпорта выпадают из процедуры.
                  */
-                if (scrollPos > itemPos + itemSize) {
-                    if (scaleResetCallback) {
-                        scaleResetCallback(itemRef.current);
+                if (scrollPos > itemPos) {
+                    if (scaleCentral && scaleCallback) {
+                        leftItems.push(itemRef.current);
                     }
                     return;
                 }
@@ -229,19 +264,29 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
                 const itemSlot = Math.round(((itemCenter - scrollCenter) / itemSize) * 100) / 100;
 
                 if (detectCentral && detectThreshold && Math.abs(itemSlot) <= detectThreshold) {
-                    internalOnCentralChange(i);
+                    debouncedOnIndexChange(i);
                 }
 
                 if (scaleCentral && scaleCallback) {
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-                    // @ts-ignore
                     scaleCallback(itemRef.current, itemSlot);
+                    viewportCount++;
                 }
             });
-        }, THROTTLING_MS),
-        [axis, scrollRef, scrollRect],
+
+            if (scaleCentral && scaleCallback) {
+                window.requestAnimationFrame(() => {
+                    // viewportItems.forEach((entry) => scaleCallback(entry[0], entry[1]));
+                    leftItems.forEach((elem) => scaleCallback(elem, viewportCount * -1));
+                    rightItems.forEach((elem) => scaleCallback(elem, viewportCount));
+                });
+            }
+        }, throttleMs),
+        [axis, scrollRef],
     );
 
+    /**
+     * Обработчик скролла на DOM-узел.
+     */
     const handleScroll = React.useCallback(
         (event) => {
             centralDetection();
@@ -250,79 +295,44 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
         [centralDetection, onScroll],
     );
 
-    React.useEffect(() => {
-        if (scrollRef.current && (detectCentral || scaleCentral)) {
-            setScrollRect(scrollRef.current.getBoundingClientRect());
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [axis, refs.items.length]);
-
     /**
-     * Прокрутка карусели по индексу.
+     * Прокрутка к указанной позиции
      */
-    React.useEffect(() => {
-        /**
-         * Запрещаем прокрутку, пока пользователь не доскроллит на тач-устройстве.
-         */
-        if (
-            !isTouching &&
-            scrollRef.current &&
-            trackRef.current &&
-            refs &&
-            refs.items.length &&
-            index !== prevIndex.current
-        ) {
-            let pos = getInitPos();
-
-            for (let i = index - 1; i >= 0; i--) {
-                const itemRef = refs.items[i];
-                if (itemRef && itemRef.current) {
-                    if (axis === 'x') {
-                        pos += itemRef.current.offsetWidth;
-                    } else {
-                        pos += itemRef.current.offsetHeight;
-                    }
-                }
+    const toPos = React.useCallback(
+        (pos: number) => {
+            if (!scrollRef.current) {
+                return;
             }
-
-            let carouselSize;
-            let itemSize;
-
-            if (axis === 'x') {
-                carouselSize = scrollRef.current.offsetWidth;
-                itemSize = refs.items[index].current?.offsetWidth || 0;
-            } else {
-                carouselSize = scrollRef.current.offsetHeight;
-                itemSize = refs.items[index].current?.offsetHeight || 0;
-            }
-
-            pos -= carouselSize / 2 - itemSize / 2;
-
             if (Math.abs(pos - scrollRef.current.scrollLeft) > 1) {
-                if (scaleResetCallback) {
-                    refs.items.forEach((itemRef) => itemRef.current && scaleResetCallback(itemRef.current));
-                }
                 if (axis === 'x') {
-                    if (animated) {
+                    if (animatedScrollByIndex) {
                         animatedScrollToX(scrollRef.current, pos);
                     } else {
                         scrollRef.current.scrollTo({ left: pos });
                     }
                 }
                 if (axis === 'y') {
-                    if (animated) {
+                    if (animatedScrollByIndex) {
                         animatedScrollToY(scrollRef.current, pos);
                     } else {
                         scrollRef.current.scrollTo({ top: pos });
                     }
                 }
             }
-        }
+        },
+        [axis],
+    );
 
-        prevIndex.current = index;
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [axis, index, refs.items.length]);
+    /**
+     * Прокрутка к начальному элементу
+     */
+    React.useEffect(() => {
+        setTimeout(() => {
+            if (scrollRef.current && trackRef.current) {
+                toPos(calcPos(axis, index, scrollRef.current, trackRef.current, refs.items));
+            }
+        });
+    }, [index]);
 
     return (
         <CarouselContext.Provider value={{ axis, refs }}>
@@ -332,8 +342,6 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
                 scrollSnap={scrollSnap}
                 scrollSnapType={scrollSnapType}
                 onScroll={handleScroll}
-                onTouchStart={() => setIsTouching(true)}
-                onTouchEnd={() => setIsTouching(false)}
                 {...rest}
             >
                 <StyledCarouselTrack

@@ -6,18 +6,17 @@ import { whitePrimary, whiteSecondary, whiteTertiary } from '@sberdevices/plasma
 import { GridLines } from '../../helpers/GridLines';
 import { Filler } from '../../helpers/Filler';
 import { applyMaxLines, MaxLinesProps } from '../../mixins';
-import { Button } from '../Button';
+import type { SnapType, SnapAlign } from '../../types';
 import { Card, CardBody, CardMedia, CardContent } from '../Card';
 import { Container, Row } from '../Grid';
 import { Body1, Body3, Footnote1 } from '../Typography';
 
-import { ScalingColCard, scaleCallback, scaleResetCallback } from './Carousel.examples';
-import type { SnapType, SnapAlign } from './Carousel.types';
+import { ScalingColCard, scaleCallback, scaleResetCallback, useRemoteHandlers } from './Carousel.examples';
 
 import { CarouselWrapper, Carousel, CarouselItem, CarouselCol } from '.';
 
 const itemSize = '20vw';
-const items = Array(240).fill({
+const items = Array(30).fill({
     title: 'Untitled track',
     descr: 'Unnamed artist',
     image: '/images/card1.png',
@@ -25,13 +24,6 @@ const items = Array(240).fill({
 
 const snapTypes = ['mandatory', 'proximity'] as SnapType[];
 const snapAlign = ['start', 'center', 'end'] as SnapAlign[];
-
-const StyledControls: React.FC<{ onPrev: Function; onNext: Function }> = ({ onPrev, onNext }) => (
-    <div style={{ position: 'fixed', top: 5, left: 0, right: 0, zIndex: 1, justifyContent: 'center', display: 'flex' }}>
-        <Button text="<" size="s" onClick={onPrev} />
-        <Button text=">" size="s" onClick={onNext} />
-    </div>
-);
 
 const StyledSquareFiller = styled(Filler)`
     width: ${itemSize};
@@ -91,7 +83,8 @@ export default {
 
 export const Basic = () => {
     const axis = select('axis', ['x', 'y'], 'x');
-    const [index, setIndex] = React.useState(number('index', 0));
+    const index = number('index', 100);
+
     const style = React.useMemo(
         () => ({
             paddingTop: axis === 'x' ? '3rem' : 0,
@@ -104,10 +97,6 @@ export const Basic = () => {
 
     return (
         <>
-            <StyledControls
-                onPrev={() => setIndex(Math.max(index - 1, 0))}
-                onNext={() => setIndex(Math.min(index + 1, items.length - 1))}
-            />
             <CarouselWrapper>
                 <Carousel axis={axis} index={index} style={style}>
                     {items.map((_, i) => (
@@ -157,7 +146,7 @@ const CarouselSection: React.FC<CarouselSectionProps> = ({ heading, children }) 
                 <Carousel
                     axis="x"
                     index={0}
-                    scrollSnap={boolean('scrollSnap', false)}
+                    scrollSnap={boolean('scrollSnap', true)}
                     scrollSnapType={select('scrollSnapType', snapTypes, 'mandatory')}
                 >
                     {children}
@@ -169,6 +158,7 @@ const CarouselSection: React.FC<CarouselSectionProps> = ({ heading, children }) 
 
 export const MusicPage: React.FC = () => {
     const scrollSnapAlign = select('scrollSnapAlign', snapAlign, 'start');
+
     return (
         <>
             {boolean('Display grid', true) && <GridLines />}
@@ -271,26 +261,25 @@ export const MusicPage: React.FC = () => {
 };
 
 export const CenterItem: React.FC = () => {
-    const [index, setIndex] = React.useState(number('index', 0));
-    const scaleCentral = boolean('scaleCentral', true);
-    const detectCentral = boolean('detectCentral', true);
-    const detectThreshold = number('detectThreshold', 0.5);
+    const [index, setIndex] = useRemoteHandlers('x', 0, items.length - 1);
+
+    const animatedScrollByIndex = boolean('animatedScrollByIndex', false);
     const scrollSnap = boolean('scrollSnap', true);
     const scrollSnapType = select('scrollSnapType', snapTypes, 'mandatory');
+    const detectCentral = boolean('detectCentral', true);
+    const detectThreshold = number('detectThreshold', 0.5);
+    const scaleCentral = boolean('scaleCentral', true);
 
     return (
         <>
             {boolean('Display grid', true) && <GridLines />}
-            <StyledControls
-                onPrev={() => setIndex(Math.max(index - 1, 0))}
-                onNext={() => setIndex(Math.min(index + 1, items.length - 1))}
-            />
             <Container>
                 <CarouselWrapper inContainer>
                     <Row>
                         <SpacedCarousel
                             axis="x"
                             index={index}
+                            animatedScrollByIndex={animatedScrollByIndex}
                             scrollSnap={scrollSnap}
                             scrollSnapType={scrollSnapType}
                             detectCentral={detectCentral}
@@ -298,7 +287,7 @@ export const CenterItem: React.FC = () => {
                             scaleCentral={scaleCentral}
                             scaleCallback={scaleCallback}
                             scaleResetCallback={scaleResetCallback}
-                            onCentralChange={(i) => setIndex(i)}
+                            onIndexChange={(i) => setIndex(i)}
                             overscrollLeft="50%"
                             overscrollRight="50%"
                         >
