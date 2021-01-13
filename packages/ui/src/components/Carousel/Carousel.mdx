@@ -126,7 +126,7 @@ const scaleResetCallback = (itemEl: HTMLDivElement) => {
 
 <Playground>
     {() => {
-        const [index, setIndex] = React.useState(0);
+        const [index, setIndex] = React.useState(index);
         return (
             <DeviceThemeProvider detectDeviceCallback={() => 'sberBox'}>
                 <ThemeBackground>
@@ -141,12 +141,12 @@ const scaleResetCallback = (itemEl: HTMLDivElement) => {
                                     scrollSnapType="mandatory"
                                     detectCentral
                                     detectThreshold={0.5}
-                                    onCentralChange={(i) => setIndex(i)}
                                     scaleCentral
                                     scaleCallback={scaleCallback}
                                     scaleResetCallback={scaleResetCallback}
-                                    overscrollLeft="calc(var(--plasma-grid-column-width) * 2.5)"
-                                    overscrollRight="calc(var(--plasma-grid-column-width) * 2.5)"
+                                    onIndexChange={(i) => setIndex(i)}
+                                    overscrollLeft="50%"
+                                    overscrollRight="50%"
                                 >
                                     {Array(12)
                                         .fill(0)
