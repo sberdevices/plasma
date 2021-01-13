@@ -113,6 +113,8 @@ export const themeColorsComments = {
 
     speechBubbleSent: 'Цвет фона баблов отправленный сообщений',
     speechBubbleReceived: 'Цвет фона баблов получнных сообщений',
+
+    voicePhraseGradient: 'Градиент подсказок о голосовых запросах',
 };
 
 export const ColorsDemo: React.FC = () => (
@@ -120,11 +122,10 @@ export const ColorsDemo: React.FC = () => (
         <ColorsSection title="Цвета Темы">
             {Object.entries(themeColorsComments).map(([name, comment]) => {
                 const tokenName = <i>{`--plasma-colors-${name}:`}</i>;
-                let style = { backgroundColor: colors[name] };
 
-                if (name === 'gradient') {
-                    style = { backgroundImage: colors[name] } as any;
-                }
+                const isGradient = name === 'gradient' || name === 'voicePhraseGradient';
+
+                const style = isGradient ? { backgroundImage: colors[name] } : { backgroundColor: colors[name] };
 
                 return (
                     <Row>
