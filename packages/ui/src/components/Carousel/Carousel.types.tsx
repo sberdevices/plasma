@@ -1,3 +1,5 @@
 export type Axis = 'x' | 'y';
-export type SnapType = 'mandatory' | 'proximity';
-export type SnapAlign = 'start' | 'center' | 'end';
+
+export type ToIndex = (i: number) => void;
+export type ToPrev = () => void;
+export type ToNext = () => void;

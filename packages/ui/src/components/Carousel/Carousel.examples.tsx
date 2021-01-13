@@ -2,10 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { whitePrimary } from '@sberdevices/plasma-tokens';
 
+import { useRemoteListener, useSmartThrottle } from '../../hooks';
 import { Card, CardBody, CardMedia } from '../Card';
 import { Body1 } from '../Typography/Body';
 
 import { CarouselCol } from './CarouselCol';
+import { Axis, ToPrev, ToNext } from './Carousel.types';
 
 const scaleDelta = 0.37;
 
@@ -80,3 +82,56 @@ export const ScalingColCard: React.FC<ScalingColCardProps> = ({ isActive, item }
         </StyledColInner>
     </StyledCol>
 );
+
+/**
+ * Пример вызыва хука, который слушает вызовы пульта.
+ */
+export function useRemoteHandlers(axis: Axis, min: number, max: number) {
+    const indexState = React.useState(0);
+    const smartThrottle = useSmartThrottle<Array<string>>(
+        (cmd: '+' | '-') =>
+            indexState[1]((prevIndex) => {
+                if (cmd === '+') {
+                    return prevIndex + 1 <= max ? prevIndex + 1 : min;
+                }
+                if (cmd === '-') {
+                    return prevIndex - 1 >= min ? prevIndex - 1 : max;
+                }
+                return prevIndex;
+            }),
+        100,
+        700,
+    );
+
+    const toPrev = React.useCallback(() => smartThrottle('-'), []);
+    const toNext = React.useCallback(() => smartThrottle('+'), []);
+
+    useRemoteListener((key, ev) => {
+        ev.preventDefault();
+        if (axis === 'x') {
+            switch (key) {
+                case 'LEFT':
+                    toPrev();
+                    break;
+                case 'RIGHT':
+                    toNext();
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            switch (key) {
+                case 'UP':
+                    toPrev();
+                    break;
+                case 'DOWN':
+                    toNext();
+                    break;
+                default:
+                    break;
+            }
+        }
+    });
+
+    return indexState;
+}
