@@ -61,7 +61,7 @@
         "storybook:build": "build-storybook --quiet -s .storybook/public -c .storybook -o build-sb",
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
         "docz:dev": "docz dev",
-        "predocz:build": "npm i --no-save typescript@3.5.3",
+        "predocz:build": "npm i --no-save typescript@3.5.3 && npx lerna link",
         "docz:build": "docz build",
         "docz:serve": "docz serve",
         "chromatic": "npx chromatic"
