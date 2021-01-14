@@ -4,7 +4,7 @@ import { scalingPixelBasis } from '@sberdevices/plasma-tokens';
 
 import { addFocus, FocusProps } from '../../mixins/addFocus';
 import { applyView, ViewProps } from '../../mixins/applyView';
-import { applyMotion, MotionProps } from '../../mixins/applyMotion';
+import { applyInteraction, InteractionProps } from '../../mixins/applyInteraction';
 import { applyDisabled, DisabledProps } from '../../mixins/applyDisabled';
 import { convertRoundnessMatrix, PinProps } from '../../utils';
 import { PickOptional, ShiftProps } from '../../types';
@@ -43,7 +43,14 @@ export const sizes = {
     },
 };
 
-interface StyledButtonProps extends SizeProps, ViewProps, PinProps, MotionProps, FocusProps, DisabledProps, ShiftProps {
+interface StyledButtonProps
+    extends SizeProps,
+        ViewProps,
+        PinProps,
+        InteractionProps,
+        FocusProps,
+        DisabledProps,
+        ShiftProps {
     /**
      * Растянуть кнопку на всю ширину родителя (width=100%)
      */
@@ -101,7 +108,7 @@ const StyledButton = styled.button<StyledButtonProps>`
     ${buttonBase}
     ${applyView}
     ${applySizes}
-    ${applyMotion}
+    ${applyInteraction}
     ${applyDisabled}
 
     ${({ fullWidth }) =>
@@ -135,7 +142,7 @@ const StyledText = styled.span<StyledTextProps>`
 export interface ButtonProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement>,
         PickOptional<StyledButtonProps, 'fullWidth' | 'size' | 'view' | 'pin'>,
-        MotionProps,
+        InteractionProps,
         FocusProps,
         DisabledProps,
         ShiftProps {
@@ -172,7 +179,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             view = 'secondary',
             size = 'l',
             pin = 'square-square',
-            motion = true,
+            scaleOnInteraction = true,
             outlined = true,
             ...rest
         },
@@ -183,7 +190,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 view={view}
                 size={size}
                 pin={pin}
-                motion={motion}
+                scaleOnInteraction={scaleOnInteraction}
                 outlined={outlined}
                 isTextOrChildren={!!text || !!children}
                 ref={ref}

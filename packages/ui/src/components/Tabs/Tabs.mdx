@@ -111,7 +111,7 @@ import { TabItem } from './TabItem'
 * ``disabled`` — делает табы недоступными для нажатия;
 * ``fixedWidth`` — кнопки табов примут фиксированную ширину, максимально равную 25% контейнера Tabs, при этом сам контейнер займет 100% ширины;
 * ``outlined`` — добавляет рамку при фокусе;
-* ``motion`` — дает анимацию при наведении/нажатии;
+* ``scaleOnInteraction`` — увеличение/уменьшение по ховеру/нажатию;
 * ``pilled`` — кнопки табов и контейнер примут вид скругленных "капсул".
 
 <Playground>
@@ -134,7 +134,7 @@ import { TabItem } from './TabItem'
         <TabItem tabIndex={3}>Таб</TabItem>
         <TabItem tabIndex={4}>Таб</TabItem>
     </Tabs>
-    <Tabs motion>
+    <Tabs scaleOnInteraction>
         <TabItem isActive={true}>Анимация</TabItem>
         <TabItem>Таб</TabItem>
         <TabItem>Таб</TabItem>

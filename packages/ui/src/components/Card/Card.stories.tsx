@@ -19,7 +19,12 @@ export default {
 export const BasicValue = () => {
     const cover = boolean('cover', false);
     return (
-        <Card style={{ width: '20rem' }} tabIndex={-1}>
+        <Card
+            style={{ width: '20rem' }}
+            tabIndex={-1}
+            outlined={boolean('outlined', true)}
+            scaleOnFocus={boolean('scaleOnFocus', true)}
+        >
             <CardBody>
                 <CardMedia src="./images/card1.png" height={cover ? '20rem' : '12rem'} />
                 <CardContent cover={cover}>
@@ -32,7 +37,8 @@ export const BasicValue = () => {
                         text="Label"
                         view="primary"
                         size="s"
-                        motion={false}
+                        scaleOnInteraction={false}
+                        outlined={false}
                         fullWidth
                         style={{ marginTop: '1em' }}
                         tabIndex={-1}
