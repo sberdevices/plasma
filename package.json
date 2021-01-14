@@ -17,9 +17,6 @@
         "url": "https://github.com/sberdevices/pashka/issues"
     },
     "homepage": "https://github.com/sberdevices/pashka#readme",
-    "files": [
-        "dist"
-    ],
     "auto": {
         "plugins": [
             [
