@@ -75,7 +75,7 @@ export const InCard = () => {
                         text={s ? 'Загрузка...' : 'Подробнее'}
                         view="primary"
                         size="s"
-                        motion={false}
+                        scaleOnInteraction={false}
                         outlined={false}
                         style={{ marginTop: '1em' }}
                         tabIndex={-1}

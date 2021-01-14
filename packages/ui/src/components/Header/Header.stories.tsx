@@ -58,7 +58,7 @@ const AppBarContent = () => {
                     />
                 ))}
             {contentType === 'Tabs' && (
-                <Tabs size="m" view="clear" pilled motion shiftRight>
+                <Tabs size="m" view="clear" pilled scaleOnInteraction shiftRight>
                     {contentItems.map((label, i) => (
                         <TabItem
                             key={`item:${i}`}

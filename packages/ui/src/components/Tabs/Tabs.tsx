@@ -10,7 +10,7 @@ import {
 } from '@sberdevices/plasma-tokens';
 
 import { addFocus, FocusProps } from '../../mixins/addFocus';
-import { applyMotion, MotionProps } from '../../mixins/applyMotion';
+import { applyInteraction, InteractionProps } from '../../mixins/applyInteraction';
 import { applyDisabled, DisabledProps } from '../../mixins/applyDisabled';
 import { ShiftProps } from '../../types';
 
@@ -88,7 +88,7 @@ const views = {
 export type TabsView = keyof typeof views;
 export type TabsSize = keyof typeof sizes;
 
-interface StyledTabsProps extends FocusProps, MotionProps, DisabledProps, ShiftProps {
+interface StyledTabsProps extends FocusProps, InteractionProps, DisabledProps, ShiftProps {
     $size: TabsSize;
     $view: TabsView;
     $fixedWidth: boolean;
@@ -168,7 +168,7 @@ const StyledTabs = styled.ul<StyledTabsProps>`
 
     & ${StyledTabItem} {
         ${applyFocus}
-        ${applyMotion}
+        ${applyInteraction}
         ${applyDisabled}
     }
 `;
@@ -176,7 +176,7 @@ const StyledTabs = styled.ul<StyledTabsProps>`
 export interface TabsProps
     extends React.HTMLAttributes<HTMLUListElement>,
         FocusProps,
-        MotionProps,
+        InteractionProps,
         DisabledProps,
         ShiftProps {
     /**
@@ -207,10 +207,18 @@ export const Tabs: React.FC<TabsProps> = ({
     view = 'secondary',
     fixedWidth = false,
     pilled = false,
+    scaleOnInteraction = true,
     children,
     ...rest
 }) => (
-    <StyledTabs $size={size} $view={view} $fixedWidth={fixedWidth} $pilled={pilled} {...rest}>
+    <StyledTabs
+        $size={size}
+        $view={view}
+        $fixedWidth={fixedWidth}
+        $pilled={pilled}
+        scaleOnInteraction={scaleOnInteraction}
+        {...rest}
+    >
         {children}
     </StyledTabs>
 );

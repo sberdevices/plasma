@@ -21,7 +21,6 @@ export const Default = () => {
     const label = text('label', 'Label');
     const fixedWidth = boolean('fixedWidth', true);
     const pilled = boolean('pilled', false);
-    const motion = boolean('motion', false);
     const outlined = boolean('outlined', false);
     const disabled = boolean('disabled', false);
     const [index, setIndex] = React.useState(0);
@@ -32,7 +31,7 @@ export const Default = () => {
             view={select('view', viewKeys, 'secondary')}
             fixedWidth={fixedWidth}
             pilled={pilled}
-            motion={motion}
+            scaleOnInteraction={boolean('scaleOnInteraction', true)}
             outlined={!disabled && outlined}
             disabled={disabled}
         >

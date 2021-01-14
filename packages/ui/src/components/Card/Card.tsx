@@ -2,7 +2,8 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { surfaceLiquid01 } from '@sberdevices/plasma-tokens';
 
-import { addFocus, FocusProps, applyMotion, MotionProps, applyRoundness, RoundnessProps, radiuses } from '../../mixins';
+import { addFocus, FocusProps, applyRoundness, RoundnessProps, radiuses } from '../../mixins';
+import { syntheticFocus } from '../../mixins/addFocus';
 import { Body1 } from '../Typography';
 
 // В этих константах задаем размеры в em, чтобы не зависеть напрямую от пикселей
@@ -13,10 +14,15 @@ const shadowSize = 24 / fontSize;
 const outlineSize = 2 / fontSize;
 const DEFAULT_ROUNDNESS = 20;
 
-interface StyledRootProps extends FocusProps, MotionProps, RoundnessProps {}
+interface ScaleOnFocusProps {
+    /**
+     * Увеличение по фокусу
+     */
+    scaleOnFocus?: boolean;
+}
+interface StyledRootProps extends FocusProps, RoundnessProps, ScaleOnFocusProps {}
 
 export const StyledCard = styled(Body1)<StyledRootProps>`
-    ${applyMotion};
     ${applyRoundness};
 
     position: relative;
@@ -31,13 +37,23 @@ export const StyledCard = styled(Body1)<StyledRootProps>`
 
     transition: transform 0.4s ease-in-out;
 
-    ${({ focused, outlined, roundness }) => css`
+    ${({ focused, outlined, roundness, scaleOnFocus }) => css`
         ${addFocus({
             focused,
             outlined,
             outlineSize: `${outlineSize}rem`,
             outlineRadius: `${radiuses[roundness] + outlineSize}rem`,
         })}
+
+        ${scaleOnFocus &&
+        syntheticFocus(
+            css`
+                & {
+                    transform: scale(1.04);
+                }
+            `,
+            focused,
+        )}
 
         &:focus {
             outline: none;
@@ -47,8 +63,8 @@ export const StyledCard = styled(Body1)<StyledRootProps>`
 
 export interface CardProps
     extends React.HTMLAttributes<HTMLDivElement>,
-        MotionProps,
         FocusProps,
+        ScaleOnFocusProps,
         Partial<RoundnessProps> {}
 
 // eslint-disable-next-line prefer-arrow-callback

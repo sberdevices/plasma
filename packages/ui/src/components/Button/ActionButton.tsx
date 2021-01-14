@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 import { addFocus, FocusProps } from '../../mixins/addFocus';
 import { applyView, ViewProps } from '../../mixins/applyView';
-import { applyMotion, MotionProps } from '../../mixins/applyMotion';
+import { applyInteraction, InteractionProps } from '../../mixins/applyInteraction';
 import { applyDisabled, DisabledProps } from '../../mixins/applyDisabled';
 import { convertRoundnessMatrix, PinProps } from '../../utils';
 import { PickOptional } from '../../types/PickOptional';
@@ -55,34 +55,47 @@ const applySizes = ({ pin, size, focused, outlined }: SizeProps & PinProps & Foc
     `;
 };
 
-interface StyledActionButtonsProps extends SizeProps, ViewProps, PinProps, MotionProps, FocusProps, DisabledProps {}
+interface StyledActionButtonsProps
+    extends SizeProps,
+        ViewProps,
+        PinProps,
+        InteractionProps,
+        FocusProps,
+        DisabledProps {}
 
 const StyledActionButton = styled.button<StyledActionButtonsProps>`
     ${buttonBase}
     ${applyView}
     ${applySizes}
-    ${applyMotion}
+    ${applyInteraction}
     ${applyDisabled}
 `;
 
 export interface ActionButtonProps
-    extends PickOptional<
-            StyledActionButtonsProps,
-            'pin' | 'view' | 'size' | 'motion' | 'focused' | 'outlined' | 'disabled'
-        >,
-        React.ButtonHTMLAttributes<HTMLButtonElement> {}
+    extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+        PickOptional<StyledActionButtonsProps, 'size' | 'view' | 'pin'>,
+        InteractionProps,
+        FocusProps,
+        DisabledProps {}
 
 export const ActionButton: React.FC<ActionButtonProps> = ({
     children,
     view = 'secondary',
     size = 'm',
     pin = 'square-square',
-    motion = true,
+    scaleOnInteraction = true,
     outlined = true,
     ...rest
 }) => {
     return (
-        <StyledActionButton view={view} size={size} pin={pin} motion={motion} outlined={outlined} {...rest}>
+        <StyledActionButton
+            view={view}
+            size={size}
+            pin={pin}
+            scaleOnInteraction={scaleOnInteraction}
+            outlined={outlined}
+            {...rest}
+        >
             {children}
         </StyledActionButton>
     );
