@@ -7,8 +7,8 @@ export type { DisabledProps } from './applyDisabled';
 export { applyMaxLines } from './applyMaxLines';
 export type { MaxLinesProps } from './applyMaxLines';
 
-export { applyMotion } from './applyMotion';
-export type { MotionProps } from './applyMotion';
+export { applyInteraction } from './applyInteraction';
+export type { InteractionProps } from './applyInteraction';
 
 export { applyRoundness, radiuses } from './applyRoundness';
 export type { RoundnessProps, Roundness } from './applyRoundness';

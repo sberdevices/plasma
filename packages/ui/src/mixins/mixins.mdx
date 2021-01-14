@@ -8,7 +8,7 @@ import styled from 'styled-components'
 
 import { ThemeBackground } from '../helpers/ThemeBackground'
 
-import { addFocus, applyDisabled, applyMotion, applyRoundness, applyView } from '.'
+import { addFocus, applyDisabled, applyInteraction, applyRoundness, applyView } from '.'
 
 # Миксины (примеси)
 Раздел содержит функции-примеси для компонентов, которые стилизуются с помощью 'styled-components'.
@@ -73,22 +73,22 @@ const Button = styled.button<DisabledProps>`
 <Button disabled>I'm disabled</Button>
 ```
 
-## applyMotion
-Делает компонент анимированным при таких видах взаимодействия, как наведение (:hover) и нажатие (:active).
+## applyInteraction
+Увеличивает/уменьшает компонент при таких видах взаимодействия, как наведение (:hover) и нажатие (:active).
 
 ### Props
-<Props of={applyMotion} />
+<Props of={applyInteraction} />
 
 ### Использование
 ```tsx
 import styled from 'styled-components';
-import { MotionProps, applyMotion } from '@sberdevices/ui/mixins';
+import { InteractionProps, applyInteraction } from '@sberdevices/ui/mixins';
 
-const Button = styled.button<MotionProps>`
-    ${applyMotion}
+const Button = styled.button<InteractionProps>`
+    ${applyInteraction}
 `;
 
-<Button motion>Button!</Button>
+<Button scaleOnInteraction>Button!</Button>
 ```
 
 ## applyRoundness

@@ -3,10 +3,10 @@ import { text, boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { IconClock, IconDownload, Icon } from '@sberdevices/plasma-icons';
 
-import { View, views } from '../../mixins/applyView';
+import { View } from '../../mixins/applyView';
 
 import { ButtonSize } from './ButtonBase';
-import { Button, sizes } from './Button';
+import { Button } from './Button';
 import { ActionButton as ActionButtonComponent } from './ActionButton';
 
 export default {
@@ -28,7 +28,7 @@ export const Default = () => (
         text={text('text', 'Button')}
         size={select('size', sizeKeys, 'l')}
         view={select('view', viewKeys, 'primary')}
-        motion={boolean('motion', true)}
+        scaleOnInteraction={boolean('scaleOnInteraction', true)}
         outlined={boolean('outlined', true)}
         disabled={boolean('disabled', false)}
         fullWidth={boolean('fullWidth', false)}
@@ -44,7 +44,7 @@ export const ActionButton = () => (
     <ActionButtonComponent
         size={select('size', sizeKeys, 'm')}
         view={select('view', viewKeys, 'primary')}
-        motion={boolean('motion', true)}
+        scaleOnInteraction={boolean('scaleOnInteraction', true)}
         outlined={boolean('outlined', true)}
         disabled={boolean('disabled', false)}
         tabIndex={0}

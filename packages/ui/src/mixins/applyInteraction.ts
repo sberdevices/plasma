@@ -1,20 +1,21 @@
 import { css, InterpolationFunction } from 'styled-components';
 
-export interface MotionProps {
+export interface InteractionProps {
     /**
      * Увеличение по нажатию и ховеру
      */
-    motion?: boolean;
+    scaleOnInteraction?: boolean;
 }
 
-export const applyMotion: InterpolationFunction<MotionProps> = ({ motion }) =>
-    motion &&
+export const applyInteraction: InterpolationFunction<InteractionProps> = ({ scaleOnInteraction }) =>
+    scaleOnInteraction &&
     css`
         transition: transform 0.1s ease-in-out;
 
         &:hover {
             transform: scale(1.04);
         }
+
         &:active {
             transform: scale(0.96);
         }

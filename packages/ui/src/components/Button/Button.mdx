@@ -74,13 +74,13 @@ import { ActionButton } from './ActionButton'
 ``disabled`` делает кнопку недоступной для нажатия,
 ``fullWidth`` позволяет ей занять доступню ширину,
 ``outlined`` добавляет рамку при фокусе,
-a с помощью ``motion`` можно управлять анимацией при наведении/нажатии.
+``scaleOnInteraction`` увеличение/уменьшение по ховеру/нажатию.
 <Playground>
   <ThemeBackground spaced>
     <Button text="Недоступно" disabled />
     <Button text="Широкая кнопка" fullWidth />
     <Button text="Без фокуса" outlined={false} />
-    <Button text="Без анимации" motion={false} />
+    <Button text="Увеличение/уменьшение по ховеру/нажатию" scaleOnInteraction />
   </ThemeBackground>
 </Playground>
 
