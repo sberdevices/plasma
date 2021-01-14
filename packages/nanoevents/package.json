@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/sberdevices/pashka.git"
   },
-  "author": "SberDevices Frontend Team",
+  "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
   "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/sberdevices/pashka/issues"
