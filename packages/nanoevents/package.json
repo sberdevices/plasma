@@ -2,30 +2,26 @@
   "name": "@sberdevices/nanoevents",
   "version": "0.1.0",
   "description": "Fork of nanoevents",
-  "main": "dist/index.js",
+  "main": "dist/nanoevents.js",
   "scripts": {
     "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run clean && npm run compile",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo",
     "compile": "tsc"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sberdevices/pashka.git"
   },
-  "author": "SberDevices Frontend Team",
+  "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
   "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/sberdevices/pashka/issues"
   },
   "homepage": "https://github.com/sberdevices/pashka#readme",
-  "files": [
-    "dist"
-  ],
-  "browserslist": [
-    "last 1 Chrome versions"
-  ],
+  "files": ["dist"],
+  "browserslist": ["last 1 Chrome versions"],
   "devDependencies": {
     "typescript": "^3.9.2"
   }
