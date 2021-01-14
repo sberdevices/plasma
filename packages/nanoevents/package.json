@@ -7,7 +7,7 @@
     "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run clean && npm run compile",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo",
     "compile": "tsc"
   },
   "repository": {
@@ -20,12 +20,8 @@
     "url": "https://github.com/sberdevices/pashka/issues"
   },
   "homepage": "https://github.com/sberdevices/pashka#readme",
-  "files": [
-    "dist"
-  ],
-  "browserslist": [
-    "last 1 Chrome versions"
-  ],
+  "files": ["dist"],
+  "browserslist": ["last 1 Chrome versions"],
   "devDependencies": {
     "typescript": "^3.9.2"
   }
