@@ -1,3 +1,98 @@
+# (Thu Jan 14 2021)
+
+#### 🚀 Enhancement
+
+- feat: добавлен auto плагин update-deps [#117](https://github.com/sberdevices/plasma/pull/117) ([@IgorAntonov](https://github.com/IgorAntonov))
+- `@sberdevices/ui@0.20.1`
+  - feat(ui): Определение/Увеличение центрального элемента в Carousel [#131](https://github.com/sberdevices/plasma/pull/131) ([@fanisco](https://github.com/fanisco))
+  - feat(ui): проброс реф в компонент Carousel [#129](https://github.com/sberdevices/plasma/pull/129) ([@LamaEats](https://github.com/LamaEats))
+  - feat(ui): добавлен компонент Toast [#125](https://github.com/sberdevices/plasma/pull/125) ([@IgorAntonov](https://github.com/IgorAntonov))
+  - feat(ui): Светлая тема для Button [#121](https://github.com/sberdevices/plasma/pull/121) ([@fanisco](https://github.com/fanisco))
+  - Обновление токенов плазмы [#121](https://github.com/sberdevices/plasma/pull/121) ([@fanisco](https://github.com/fanisco))
+  - feat(ui): Передача deviceScale в theme. DeviceThemeProvider [#112](https://github.com/sberdevices/plasma/pull/112) ([@fanisco](https://github.com/fanisco))
+  - Доработка Header, Carousel, DeviceDetection и пр. [#112](https://github.com/sberdevices/plasma/pull/112) ([@fanisco](https://github.com/fanisco))
+  - Доработки сетки, карусели, карточки и прочих компонентов [#100](https://github.com/sberdevices/plasma/pull/100) ([@fanisco](https://github.com/fanisco))
+  - feat(ui): Набор компонентов Skeleton [#84](https://github.com/sberdevices/plasma/pull/84) ([@fanisco](https://github.com/fanisco))
+  - Стандартные атрибуты для компонентов [#90](https://github.com/sberdevices/plasma/pull/90) ([@fanisco](https://github.com/fanisco))
+  - Добавлены новые иконки, создан пакет plasma-icons [#76](https://github.com/sberdevices/plasma/pull/76) ([@IgorAntonov](https://github.com/IgorAntonov))
+  - feat(ui): Пресет quantity для Badge [#78](https://github.com/sberdevices/plasma/pull/78) ([@fanisco](https://github.com/fanisco))
+  - feat(ui): Размер xs для Stepper [#75](https://github.com/sberdevices/plasma/pull/75) ([@fanisco](https://github.com/fanisco))
+  - feat(ui): Переработан TextField, отвязан от Input [#77](https://github.com/sberdevices/plasma/pull/77) ([@fanisco](https://github.com/fanisco))
+  - feat(ui): Горизонтальная карусель с поддержкой scroll, grid [#73](https://github.com/sberdevices/plasma/pull/73) ([@fanisco](https://github.com/fanisco))
+  - feat(ui): Переработан Header под rem-ы [#68](https://github.com/sberdevices/plasma/pull/68) ([@fanisco](https://github.com/fanisco))
+  - feat(ui): Компонент Tabs [#74](https://github.com/sberdevices/plasma/pull/74) ([@fanisco](https://github.com/fanisco))
+  - Скалирование кнопки при действии [#65](https://github.com/sberdevices/plasma/pull/65) ([@fanisco](https://github.com/fanisco))
+  - Доработана документация для Button и Badge [#63](https://github.com/sberdevices/plasma/pull/63) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-icons@0.2.1`
+  - feat(plasma-icons): новые иконки [#133](https://github.com/sberdevices/plasma/pull/133) ([@IgorAntonov](https://github.com/IgorAntonov))
+  - feat(plasma-icons): добавлена иконка feedback [#126](https://github.com/sberdevices/plasma/pull/126) ([@IgorAntonov](https://github.com/IgorAntonov))
+- `@sberdevices/plasma-tokens@0.4.1`
+  - Обновление токенов плазмы [#121](https://github.com/sberdevices/plasma/pull/121) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-icons@0.2.1`, `@sberdevices/ui@0.20.1`
+  - Добавлены новые иконки, создан пакет plasma-icons [#76](https://github.com/sberdevices/plasma/pull/76) ([@IgorAntonov](https://github.com/IgorAntonov))
+
+#### 🐛 Bug Fix
+
+- fix: добавлен node-fetch для плагина обновления зависимостей [#137](https://github.com/sberdevices/plasma/pull/137) ([@IgorAntonov](https://github.com/IgorAntonov))
+- ci: рефакторинг билда документации [#134](https://github.com/sberdevices/plasma/pull/134) ([@IgorAntonov](https://github.com/IgorAntonov))
+- ci: сборка документации в зависимости от типа ивента [#127](https://github.com/sberdevices/plasma/pull/127) ([@IgorAntonov](https://github.com/IgorAntonov))
+- fix: ошибка при работе auto-плагина [#128](https://github.com/sberdevices/plasma/pull/128) ([@IgorAntonov](https://github.com/IgorAntonov))
+- chore: обновлен readme для иконок [#120](https://github.com/sberdevices/plasma/pull/120) ([@IgorAntonov](https://github.com/IgorAntonov))
+- Update README.md [#105](https://github.com/sberdevices/plasma/pull/105) ([@Yeti-or](https://github.com/Yeti-or))
+- ci: disable lerna check for user auth [#94](https://github.com/sberdevices/plasma/pull/94) ([@Yeti-or](https://github.com/Yeti-or))
+- Добавлены новые иконки, создан пакет plasma-icons [#76](https://github.com/sberdevices/plasma/pull/76) ([@IgorAntonov](https://github.com/IgorAntonov))
+- Fix create issue link [#69](https://github.com/sberdevices/plasma/pull/69) ([@awinogradov](https://github.com/awinogradov))
+- docs: добавить описание импортов [#64](https://github.com/sberdevices/plasma/pull/64) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/ui@0.20.1`
+  - chore(ui): добавлен alias для реакта при сборке доки [#142](https://github.com/sberdevices/plasma/pull/142) ([@IgorAntonov](https://github.com/IgorAntonov))
+  - fix(ui): исправлена сборка доки [#142](https://github.com/sberdevices/plasma/pull/142) ([@IgorAntonov](https://github.com/IgorAntonov))
+  - fix(ui): Типизация пропсов Button [#132](https://github.com/sberdevices/plasma/pull/132) ([@fanisco](https://github.com/fanisco))
+  - ci: добавлен билд документации [#127](https://github.com/sberdevices/plasma/pull/127) ([@IgorAntonov](https://github.com/IgorAntonov))
+  - chore(ui): добавлено дефолтное время отображения Toast [#125](https://github.com/sberdevices/plasma/pull/125) ([@IgorAntonov](https://github.com/IgorAntonov))
+  - Доработка Header, Carousel, DeviceDetection и пр. [#112](https://github.com/sberdevices/plasma/pull/112) ([@fanisco](https://github.com/fanisco))
+  - fix(ui): Исправлен отступ от иконки 4рх в Badge [#113](https://github.com/sberdevices/plasma/pull/113) ([@fanisco](https://github.com/fanisco))
+  - chore: gitignore для идеи [#90](https://github.com/sberdevices/plasma/pull/90) ([@fanisco](https://github.com/fanisco))
+  - Стандартные атрибуты для компонентов [#90](https://github.com/sberdevices/plasma/pull/90) ([@fanisco](https://github.com/fanisco))
+  - Документация и рефакторинг для mixins, hocs, utils [#88](https://github.com/sberdevices/plasma/pull/88) ([@fanisco](https://github.com/fanisco))
+  - fix(ui): Исправлена сториз card detail [#86](https://github.com/sberdevices/plasma/pull/86) ([@fanisco](https://github.com/fanisco))
+  - Добавлены новые иконки, создан пакет plasma-icons [#76](https://github.com/sberdevices/plasma/pull/76) ([@IgorAntonov](https://github.com/IgorAntonov))
+  - docs(ui): improve theme exmpl [#80](https://github.com/sberdevices/plasma/pull/80) ([@Yeti-or](https://github.com/Yeti-or))
+  - docs: Пример смены персонажа [#80](https://github.com/sberdevices/plasma/pull/80) ([@snyuryev](https://github.com/snyuryev) [@Yeti-or](https://github.com/Yeti-or))
+  - fix(ui): удалить CardPrice из поставки [#82](https://github.com/sberdevices/plasma/pull/82) ([@Yeti-or](https://github.com/Yeti-or))
+  - feat(ui): Переработан Header под rem-ы [#68](https://github.com/sberdevices/plasma/pull/68) ([@fanisco](https://github.com/fanisco))
+  - UI: добавлены index.ts, изменены импорты иконок внутри библиотеки [#71](https://github.com/sberdevices/plasma/pull/71) ([@IgorAntonov](https://github.com/IgorAntonov))
+  - fix(ui): Удалено свойство color, вместо view [#70](https://github.com/sberdevices/plasma/pull/70) ([@fanisco](https://github.com/fanisco))
+  - docs: добавить описание импортов [#64](https://github.com/sberdevices/plasma/pull/64) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-icons@0.2.1`, `@sberdevices/plasma-tokens@0.4.1`, `@sberdevices/ui@0.20.1`
+  - chore: изменены ссылки на документацию [#136](https://github.com/sberdevices/plasma/pull/136) ([@IgorAntonov](https://github.com/IgorAntonov))
+- `@sberdevices/plasma-icons@0.2.1`
+  - fix(plasma-icons): добавлены styled-components [#122](https://github.com/sberdevices/plasma/pull/122) ([@IgorAntonov](https://github.com/IgorAntonov))
+  - chore(plasma-icons): иконки Info и Share [#115](https://github.com/sberdevices/plasma/pull/115) ([@IgorAntonov](https://github.com/IgorAntonov))
+  - Добавлены новые иконки, создан пакет plasma-icons [#76](https://github.com/sberdevices/plasma/pull/76) ([@IgorAntonov](https://github.com/IgorAntonov))
+- `@sberdevices/plasma-icons@0.2.1`, `@sberdevices/ui@0.20.1`
+  - Убраны rem-ы из html svg [#122](https://github.com/sberdevices/plasma/pull/122) ([@IgorAntonov](https://github.com/IgorAntonov))
+  - Добавлены новые иконки, создан пакет plasma-icons [#76](https://github.com/sberdevices/plasma/pull/76) ([@IgorAntonov](https://github.com/IgorAntonov))
+- `@sberdevices/plasma-tokens@0.4.1`, `@sberdevices/ui@0.20.1`
+  - Добавить бейджики, поправить установку из npm тега @rc [#66](https://github.com/sberdevices/plasma/pull/66) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### 📝 Documentation
+
+- `@sberdevices/ui@0.20.1`
+  - docs(ui): Обновленные Grid и Carousel [#100](https://github.com/sberdevices/plasma/pull/100) ([@fanisco](https://github.com/fanisco))
+  - docs(ui): Документация для хоков [#88](https://github.com/sberdevices/plasma/pull/88) ([@fanisco](https://github.com/fanisco))
+  - Документация и рефакторинг для mixins, hocs, utils [#88](https://github.com/sberdevices/plasma/pull/88) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 6
+
+- [@IgorAntonov](https://github.com/IgorAntonov)
+- Anton Vinogradov ([@awinogradov](https://github.com/awinogradov))
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+- Sergey Yuryev ([@snyuryev](https://github.com/snyuryev))
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # (Wed Nov 11 2020)
 
 #### 🚀 Enhancement
