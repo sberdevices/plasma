@@ -1,0 +1,59 @@
+---
+name: Pickers
+menu: Components
+route: /components/Pickers
+---
+
+import { Playground, Props } from 'docz'
+
+import { ThemeSelect, TypoSelect } from '../../helpers/ThemeSelect'
+import { ThemeBackground } from '../../helpers/ThemeBackground'
+import { Filler } from '../../helpers/Filler'
+
+import { DatePicker, TimePicker } from '.'
+
+<TypoSelect />
+<ThemeSelect />
+
+# Pickers
+Набор контролов для выбора даты и времени.
+
+## DatePicker
+Компонент для выбора даты.
+
+### Props
+<Props of={DatePicker} />
+
+### Пример
+<Playground>
+    <ThemeBackground>
+        <DatePicker
+            value={new Date(1980, 8, 1)}
+            max={new Date(1985, 12, 31)}
+            min={new Date(1975, 0, 1)}
+            disabled={false}
+            controls={false}
+            visibleItems={5}
+            onChange={(date) => console.log(date)}
+        />
+    </ThemeBackground>
+</Playground>
+
+## TimePicker
+Компонент для выбора времени.
+
+### Props
+<Props of={TimePicker} />
+
+### Пример
+<Playground>
+    <ThemeBackground>
+        <TimePicker
+            value={new Date(1980, 8, 1, 0, 30, 59)}
+            min={new Date(1980, 8, 1, 0, 15, 29)}
+            max={new Date(1980, 8, 1, 12, 45, 59)}
+            controls={false}
+            onChange={(date) => console.log(date)}
+        />
+    </ThemeBackground>
+</Playground>
