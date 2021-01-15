@@ -38,8 +38,8 @@ export const IconRoot: React.FC<IconRootProps> = ({ icon: IconComponent, size, c
     const w = `${sizeMap[size]}rem`;
 
     return (
-        <StyledRoot w={w}>
-            <IconComponent color={c} className={className} size={size} />
+        <StyledRoot w={w} className={className}>
+            <IconComponent color={c} size={size} />
         </StyledRoot>
     );
 };
