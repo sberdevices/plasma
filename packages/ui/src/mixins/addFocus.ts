@@ -6,10 +6,16 @@ export interface FocusProps {
      * Компонент в фокусе
      */
     focused?: boolean;
+}
+
+export interface OutlinedProps {
     /**
      * Добавить рамку при фокусе
      */
     outlined?: boolean;
+}
+
+interface OutlineProps {
     /**
      * Размер фокусной рамки
      */
@@ -59,7 +65,7 @@ export const syntheticFocus = (
  *  outlineColor: 'greenyellow',
  * });
  */
-export const addFocus: InterpolationFunction<FocusProps> = ({
+export const addFocus: InterpolationFunction<FocusProps & OutlinedProps & OutlineProps> = ({
     focused,
     outlined = true,
     outlineSize = '0.125rem',

@@ -12,9 +12,9 @@ export const StyledHeaderBackButton = styled(HeaderButton)`
     left: calc(var(--plasma-grid-margin) * -1 + ${16 / scalingPixelBasis}rem);
 `;
 
-export interface HeaderBackProps extends ButtonProps {
+export type HeaderBackProps = ButtonProps & {
     iconSize?: IconSize;
-}
+};
 
 export const HeaderBack: React.FC<HeaderBackProps> = ({ iconSize = 's', ...rest }) => (
     <StyledHeaderBackButton {...rest}>

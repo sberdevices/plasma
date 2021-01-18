@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 import { scalingPixelBasis } from '@sberdevices/plasma-tokens';
 
-import { addFocus, FocusProps } from '../../mixins/addFocus';
+import { addFocus, FocusProps, OutlinedProps } from '../../mixins/addFocus';
 import { applyView, ViewProps } from '../../mixins/applyView';
 import { applyInteraction, InteractionProps } from '../../mixins/applyInteraction';
 import { applyDisabled, DisabledProps } from '../../mixins/applyDisabled';
@@ -49,6 +49,7 @@ interface StyledButtonProps
         PinProps,
         InteractionProps,
         FocusProps,
+        OutlinedProps,
         DisabledProps,
         ShiftProps {
     /**
@@ -140,12 +141,13 @@ const StyledText = styled.span<StyledTextProps>`
 `;
 
 export interface ButtonProps
-    extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-        PickOptional<StyledButtonProps, 'fullWidth' | 'size' | 'view' | 'pin'>,
-        InteractionProps,
+    extends InteractionProps,
+        OutlinedProps,
         FocusProps,
         DisabledProps,
-        ShiftProps {
+        ShiftProps,
+        PickOptional<StyledButtonProps, 'fullWidth' | 'size' | 'view' | 'pin'>,
+        React.ButtonHTMLAttributes<HTMLButtonElement> {
     /**
      * Слот для контента слева, например <Icon/>
      */

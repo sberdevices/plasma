@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { surfaceLiquid01 } from '@sberdevices/plasma-tokens';
 
-import { addFocus, FocusProps, applyRoundness, RoundnessProps, radiuses } from '../../mixins';
+import { addFocus, FocusProps, OutlinedProps, applyRoundness, RoundnessProps, radiuses } from '../../mixins';
 import { syntheticFocus } from '../../mixins/addFocus';
 import { Body1 } from '../Typography';
 
@@ -20,7 +20,7 @@ interface ScaleOnFocusProps {
      */
     scaleOnFocus?: boolean;
 }
-interface StyledRootProps extends FocusProps, RoundnessProps, ScaleOnFocusProps {}
+interface StyledRootProps extends FocusProps, OutlinedProps, RoundnessProps, ScaleOnFocusProps {}
 
 export const StyledCard = styled(Body1)<StyledRootProps>`
     ${applyRoundness};
@@ -62,10 +62,11 @@ export const StyledCard = styled(Body1)<StyledRootProps>`
 `;
 
 export interface CardProps
-    extends React.HTMLAttributes<HTMLDivElement>,
-        FocusProps,
+    extends FocusProps,
+        OutlinedProps,
         ScaleOnFocusProps,
-        Partial<RoundnessProps> {}
+        Partial<RoundnessProps>,
+        React.HTMLAttributes<HTMLDivElement> {}
 
 // eslint-disable-next-line prefer-arrow-callback
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(function Card(
