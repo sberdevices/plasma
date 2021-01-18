@@ -1,5 +1,5 @@
 export { addFocus, syntheticFocus } from './addFocus';
-export type { FocusProps } from './addFocus';
+export type { FocusProps, OutlinedProps } from './addFocus';
 
 export { applyDisabled } from './applyDisabled';
 export type { DisabledProps } from './applyDisabled';
