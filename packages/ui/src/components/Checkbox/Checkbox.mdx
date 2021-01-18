@@ -1,0 +1,40 @@
+---
+name: Checkbox
+menu: Components
+route: /components/Checkbox
+---
+
+import { Playground, Props } from 'docz'
+
+import { ThemeSelect, TypoSelect } from '../../helpers/ThemeSelect'
+import { ThemeBackground } from '../../helpers/ThemeBackground'
+
+import { Checkbox, CheckboxList } from '.'
+
+<TypoSelect />
+<ThemeSelect />
+
+# Checkbox
+Флажок или *чекбокс*. Позволяет пользователю управлять параметром с двумя состояниями — ☑ включено и ☐ отключено.
+
+## Props
+<Props of={Checkbox} />
+
+## Пример
+<Playground>
+    {() => {
+        const [checked, setChecked] = React.useState(false);
+        return (
+            <ThemeBackground>
+                <Checkbox
+                    id="agreement"
+                    name="agreement"
+                    value="yes"
+                    label="Чекбокс"
+                    checked={checked}
+                    onChange={(event) => setChecked(event.target.checked)}
+                />
+            </ThemeBackground>
+        );
+    }}
+</Playground>
