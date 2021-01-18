@@ -52,6 +52,6 @@ export const ActionButton = () => (
         onFocus={action('onFocus')}
         onBlur={action('onBlur')}
     >
-        <Icon icon={text('Icon name', 'download') as any} size={select('iconSize', ['xs', 's', 'm'], 's')} />
+        <Icon icon={text('Icon name', 'download') as any} size={select('iconSize', ['xs', 's'], 's')} />
     </ActionButtonComponent>
 );

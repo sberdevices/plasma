@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { addFocus, FocusProps } from '../../mixins/addFocus';
+import { addFocus, FocusProps, OutlinedProps } from '../../mixins/addFocus';
 import { applyView, ViewProps } from '../../mixins/applyView';
 import { applyInteraction, InteractionProps } from '../../mixins/applyInteraction';
 import { applyDisabled, DisabledProps } from '../../mixins/applyDisabled';
@@ -31,10 +31,19 @@ const sizes = {
     },
 };
 
+interface StyledActionButtonsProps
+    extends SizeProps,
+        PinProps,
+        FocusProps,
+        OutlinedProps,
+        ViewProps,
+        InteractionProps,
+        DisabledProps {}
+
 /**
  * Миксин размеров кнопки по параметрам
  */
-const applySizes = ({ pin, size, focused, outlined }: SizeProps & PinProps & FocusProps) => {
+const applySizes = ({ pin, size, focused, outlined }: StyledActionButtonsProps) => {
     const { width, height, outline } = sizes[size];
     const radius = height / 2;
     const elemRadius = convertRoundnessMatrix(pin, `${radius}em`, `${radius}em`);
@@ -55,14 +64,6 @@ const applySizes = ({ pin, size, focused, outlined }: SizeProps & PinProps & Foc
     `;
 };
 
-interface StyledActionButtonsProps
-    extends SizeProps,
-        ViewProps,
-        PinProps,
-        InteractionProps,
-        FocusProps,
-        DisabledProps {}
-
 const StyledActionButton = styled.button<StyledActionButtonsProps>`
     ${buttonBase}
     ${applyView}
@@ -72,11 +73,12 @@ const StyledActionButton = styled.button<StyledActionButtonsProps>`
 `;
 
 export interface ActionButtonProps
-    extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-        PickOptional<StyledActionButtonsProps, 'size' | 'view' | 'pin'>,
-        InteractionProps,
+    extends InteractionProps,
         FocusProps,
-        DisabledProps {}
+        OutlinedProps,
+        DisabledProps,
+        PickOptional<StyledActionButtonsProps, 'size' | 'view' | 'pin'>,
+        React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
 export const ActionButton: React.FC<ActionButtonProps> = ({
     children,

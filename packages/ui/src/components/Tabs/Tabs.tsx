@@ -9,7 +9,7 @@ import {
     scalingPixelBasis,
 } from '@sberdevices/plasma-tokens';
 
-import { addFocus, FocusProps } from '../../mixins/addFocus';
+import { addFocus, FocusProps, OutlinedProps } from '../../mixins/addFocus';
 import { applyInteraction, InteractionProps } from '../../mixins/applyInteraction';
 import { applyDisabled, DisabledProps } from '../../mixins/applyDisabled';
 import { ShiftProps } from '../../types';
@@ -88,7 +88,7 @@ const views = {
 export type TabsView = keyof typeof views;
 export type TabsSize = keyof typeof sizes;
 
-interface StyledTabsProps extends FocusProps, InteractionProps, DisabledProps, ShiftProps {
+interface StyledTabsProps extends FocusProps, OutlinedProps, InteractionProps, DisabledProps, ShiftProps {
     $size: TabsSize;
     $view: TabsView;
     $fixedWidth: boolean;
@@ -174,11 +174,12 @@ const StyledTabs = styled.ul<StyledTabsProps>`
 `;
 
 export interface TabsProps
-    extends React.HTMLAttributes<HTMLUListElement>,
-        FocusProps,
+    extends FocusProps,
+        OutlinedProps,
         InteractionProps,
         DisabledProps,
-        ShiftProps {
+        ShiftProps,
+        React.HTMLAttributes<HTMLUListElement> {
     /**
      * Размер компонента
      */
