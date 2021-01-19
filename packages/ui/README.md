@@ -19,10 +19,10 @@
 ```bash
 $ npm install --save react react-dom
 $ npm install --save styled-components
-$ npm install --save @sberdevices/ui@rc @sberdevices/plasma-tokens@rc
+$ npm install --save @sberdevices/ui@rc @sberdevices/plasma-tokens@rc @sberdevices/plasma-icons@rc
 ```
 
-### Использование компонент
+### Использование компонентов
 
 Все компоненты доступны из папки `components` или напрямую из пакета:
 
@@ -35,13 +35,24 @@ export const App = () => {
     return (
         <Container>
             <Button>Hello, Plasma!</Button>
-        <Container>
+        </Container>
     );
 };
 ```
 
+Библиотека предоставляет вспомогательную функциональность - `utils`, `mixins`, `hocs`, доступную в соответствующих директориях.
+Пример импорта:
+
+```jsx
+import { animatedScrollToX } from '@sberdevices/ui/utils';
+import { addFocus } from '@sberdevices/ui/mixins';
+import { withAutoFocus } from '@sberdevices/ui/hocs';
+```
+
+Подробнее можно ознакомиться на страницах документации по [hocs](https://plasma.sberdevices.ru/current/?path=/docs/core-high-order-components--page), [mixins](https://plasma.sberdevices.ru/current/?path=/docs/core-mixins--page) и [utils](https://plasma.sberdevices.ru/current/?path=/docs/core-utils--page).
+
 ## Полезные ссылки:
 
-Витрина с компонентами [storybook](https://rc--5f96ec813d800900227e3b93.chromatic.com).
+Витрина с компонентами [Storybook](https://rc--5f96ec813d800900227e3b93.chromatic.com).
 
 [Документация](https://plasma.sberdevices.ru/).

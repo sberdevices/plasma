@@ -8,6 +8,7 @@
 
 ## Состав:
 
+-   @sberdevices/plasma-core
 -   @sberdevices/ui
 -   @sberdevices/plasma-tokens
 -   @sberdevices/plasma-icons
@@ -18,7 +19,7 @@
 
 ### plasma-tokens
 
-Пакет с набором `дизайн-токенов`. В пакет входят типографические и цветовые константы. `Дизайн-токены` поставляются в качестве `css` [custom propperties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) и `js` переменных. Перед использованием `ui` рекомендуется ознакомится с содержимым этого [пакета](./packages/plasma-tokens/README.md)
+Пакет с набором `дизайн-токенов`. В пакет входят типографические и цветовые константы. `Дизайн-токены` поставляются в качестве `css` [custom propperties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) и `js` переменных. Перед использованием `ui` рекомендуется ознакомится с содержимым этого [пакета](./packages/plasma-tokens/README.md).
 
 ### ui
 
