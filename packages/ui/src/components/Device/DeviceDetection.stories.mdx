@@ -1,0 +1,40 @@
+import { Meta, Description, ArgsTable } from '@storybook/addon-docs/blocks';
+
+import { DeviceThemeProvider } from './DeviceDetection';
+
+<Meta title="DeviceThemeProvider" component={DeviceThemeProvider} />
+
+# DeviceThemeProvider
+
+<Description of={DeviceThemeProvider} />
+
+<ArgsTable of={DeviceThemeProvider} />
+
+## Пример
+
+```tsx
+// index.tsx
+import ReactDOM from 'react-dom';
+import { DeviceThemeProvider } from '@sberdevices/ui/components/Device';
+import { detectDevice } from '@sberdevices/ui/utils'; // Стандартная функция определения поверхности на основе `userAgent`
+
+import { App } from './App';
+
+// Если стилизованным компонентам необходимо передать свой объект темы
+const myFancyTheme = {
+    brandColor: '#BADA55'
+};
+
+// Если стандартная функция определения поверхности не подходит, можно передать свою
+const detectDeviceCallback = () => {
+    // Здесь проводится проверка, например, на основе userAgent.
+    window.navigator.userAgent.toLowerCase().includes('sberbox') ? 'sberBox' : 'touch';
+};
+
+ReactDOM.render(
+    <DeviceThemeProvider theme={myFancyTheme} detectDeviceCallback={detectDeviceCallback}>
+        <App />
+    </DeviceThemeProvider>,
+    document.getElementById('root')
+);
+```
