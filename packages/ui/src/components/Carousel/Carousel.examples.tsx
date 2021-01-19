@@ -1,29 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
-import { whitePrimary } from '@sberdevices/plasma-tokens';
 
 import { useRemoteListener, useSmartThrottle } from '../../hooks';
-import { Card, CardBody, CardMedia } from '../Card';
-import { Body1 } from '../Typography/Body';
+import type { SnapType } from '../../types';
+import { isSberBox } from '../../utils';
+import { MusicCard } from '../Card/Card.examples';
+import { Row } from '../Grid';
+import { Body3 } from '../Typography/Body';
 
-import { CarouselCol } from './CarouselCol';
-import { Axis, ToPrev, ToNext } from './Carousel.types';
+import { Axis } from './Carousel.types';
+import { CarouselItemProps } from './CarouselItem';
+
+import { CarouselWrapper, Carousel, CarouselCol } from '.';
 
 const scaleDelta = 0.37;
 
-const StyledCol = styled(CarouselCol)<{ isActive?: boolean }>`
-    scroll-snap-align: center;
-`;
 const StyledColInner = styled.div`
-    transition: transform 0.1s ease;
+    transition: transform 0.1s ease 0s;
 `;
-const StyledCard = styled(Card)`
-    transition: transform 0.1s ease;
-`;
-const StyledItemTitle = styled(Body1)`
-    margin-top: 0.75rem;
-    color: ${whitePrimary};
-    text-align: center;
+
+const StyledMusicCard = styled(MusicCard)`
+    transition: transform 0.1s ease 0s;
 `;
 
 /**
@@ -63,30 +60,53 @@ export const scaleCallback = (itemEl: HTMLDivElement, slot: number) => {
 };
 
 export interface ScalingColCardProps {
+    scrollSnapAlign?: CarouselItemProps['scrollSnapAlign'];
     isActive: boolean;
     item: {
         title: string;
-        image: string;
+        imageSrc: string;
     };
 }
 
-export const ScalingColCard: React.FC<ScalingColCardProps> = ({ isActive, item }) => (
-    <StyledCol size={2} sizeM={1.5} isActive={isActive}>
+export const ScalingColCard: React.FC<ScalingColCardProps> = ({ isActive, scrollSnapAlign, item }) => (
+    <CarouselCol size={2} sizeM={1.5} scrollSnapAlign={scrollSnapAlign}>
         <StyledColInner>
-            <StyledCard roundness={12} focused={isActive}>
-                <CardBody>
-                    <CardMedia src={item.image} ratio="1:1" />
-                </CardBody>
-            </StyledCard>
-            <StyledItemTitle>{item.title}</StyledItemTitle>
+            <StyledMusicCard
+                title={item.title}
+                focused={isActive}
+                imageSrc={item.imageSrc}
+                imageRatio="1:1"
+                textAlign="center"
+            />
         </StyledColInner>
-    </StyledCol>
+    </CarouselCol>
+);
+
+/**
+ * Пример карусели с вариативными колонками в сетке.
+ */
+export const CarouselSection: React.FC<{
+    heading: string;
+    scrollSnap: boolean;
+    scrollSnapType: SnapType;
+}> = ({ heading, scrollSnap, scrollSnapType, children }) => (
+    <section style={{ margin: '1.75rem 0' }}>
+        <Body3 style={{ marginBottom: '1rem' }}>{heading}</Body3>
+        <CarouselWrapper inContainer>
+            <Row>
+                <Carousel axis="x" index={0} scrollSnap={scrollSnap} scrollSnapType={scrollSnapType}>
+                    {children}
+                </Carousel>
+            </Row>
+        </CarouselWrapper>
+    </section>
 );
 
 /**
  * Пример вызыва хука, который слушает вызовы пульта.
  */
 export function useRemoteHandlers(axis: Axis, min: number, max: number) {
+    const isSberbox = isSberBox();
     const indexState = React.useState(0);
     const smartThrottle = useSmartThrottle<Array<string>>(
         (cmd: '+' | '-') =>
@@ -99,8 +119,8 @@ export function useRemoteHandlers(axis: Axis, min: number, max: number) {
                 }
                 return prevIndex;
             }),
-        100,
-        700,
+        isSberbox ? 10 : 10,
+        isSberbox ? 800 : 100,
     );
 
     const toPrev = React.useCallback(() => smartThrottle('-'), []);
