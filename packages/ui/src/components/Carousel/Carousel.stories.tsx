@@ -1,261 +1,120 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
 import { boolean, number, select } from '@storybook/addon-knobs';
-import { whitePrimary, whiteSecondary, whiteTertiary } from '@sberdevices/plasma-tokens';
 
 import { GridLines } from '../../helpers/GridLines';
-import { Filler } from '../../helpers/Filler';
-import { applyMaxLines, MaxLinesProps } from '../../mixins';
 import type { SnapType, SnapAlign } from '../../types';
-import { Card, CardBody, CardMedia, CardContent } from '../Card';
+import { isSberBox } from '../../utils';
+import { ProductCard, MusicCard } from '../Card/Card.examples';
 import { Container, Row } from '../Grid';
-import { Body1, Body3, Footnote1 } from '../Typography';
 
-import { ScalingColCard, scaleCallback, scaleResetCallback, useRemoteHandlers } from './Carousel.examples';
+import {
+    CarouselSection,
+    ScalingColCard,
+    scaleCallback,
+    scaleResetCallback,
+    useRemoteHandlers,
+} from './Carousel.examples';
 
-import { CarouselWrapper, Carousel, CarouselItem, CarouselCol } from '.';
+import { CarouselWrapper, Carousel, CarouselCol } from '.';
 
-const itemSize = '20vw';
-const items = Array(30).fill({
-    title: 'Untitled track',
-    descr: 'Unnamed artist',
-    image: '/images/card1.png',
-});
+const items = Array(100)
+    .fill({
+        title: 'Заголовок',
+        subtitle: 'Описание уравнение времени, сублимиpуя с повеpхности ядpа кометы, вращает реликтовый ледник',
+        imageSrc: '/images/320_480_n.jpg',
+    })
+    .map(({ title, subtitle, imageSrc }, i) => ({
+        title: `${title} ${i}`,
+        subtitle: `${subtitle} ${i}`,
+        imageSrc: imageSrc.replace('n', i % 6),
+    }));
 
 const snapTypes = ['mandatory', 'proximity'] as SnapType[];
 const snapAlign = ['start', 'center', 'end'] as SnapAlign[];
-
-const StyledSquareFiller = styled(Filler)`
-    width: ${itemSize};
-    height: ${itemSize};
-`;
-
-const SpacedCarousel = styled(Carousel)`
-    padding-top: 10rem;
-    padding-bottom: 5rem;
-`;
-
-const StyledSection = styled.section`
-    margin-bottom: 1.75rem;
-
-    &:first-child {
-        margin-top: 1.75rem;
-    }
-`;
-
-const StyledSectionHeading = styled(Body3)`
-    margin-bottom: 1rem;
-`;
-
-const StyledItemTitle = styled(Body1)<{ textAlign?: string }>`
-    margin-top: 0.75rem;
-    color: ${whitePrimary};
-
-    ${({ textAlign }) =>
-        textAlign &&
-        css`
-            text-align: ${textAlign};
-        `}
-`;
-
-const StyledItemDescr = styled(Footnote1)<MaxLinesProps>`
-    ${applyMaxLines}
-
-    margin-top: 0.25rem;
-    color: ${whiteSecondary};
-`;
-
-const StyledItemNote = styled(Footnote1)`
-    margin-top: 0.25rem;
-    color: ${whiteTertiary};
-`;
 
 export default {
     title: 'Carousel',
     decorators: [
         (Story) => (
             <div style={{ margin: '-16px' }}>
-                <Story />
+                {boolean('Display grid', true) && <GridLines />}
+                <Container>
+                    <Story />
+                </Container>
             </div>
         ),
     ],
 };
 
 export const Basic = () => {
-    const axis = select('axis', ['x', 'y'], 'x');
-    const index = number('index', 100);
+    const axis = 'x';
+    const [index, setIndex] = useRemoteHandlers('x', 0, items.length - 1);
 
-    const style = React.useMemo(
-        () => ({
-            paddingTop: axis === 'x' ? '3rem' : 0,
-            paddingBottom: axis === 'x' ? '3rem' : 0,
-            width: axis === 'x' ? '100%' : itemSize,
-            height: axis === 'y' ? '100vh' : itemSize,
-        }),
-        [axis],
-    );
+    const isSberbox = isSberBox();
+    const animatedScrollByIndex = boolean('animatedScrollByIndex', isSberbox);
+    const scrollSnap = boolean('scrollSnap', !isSberbox);
+    const scrollSnapType = select('scrollSnapType', snapTypes, 'mandatory');
+    const detectCentral = boolean('detectCentral', !isSberbox);
+    const detectThreshold = number('detectThreshold', 0.5);
 
     return (
-        <>
-            <CarouselWrapper>
-                <Carousel axis={axis} index={index} style={style}>
-                    {items.map((_, i) => (
-                        <CarouselItem key={`item:${i}`}>
-                            <StyledSquareFiller bordered fullHeight view={i === index ? 'primary' : 'secondary'}>
-                                Item {i}
-                            </StyledSquareFiller>
-                        </CarouselItem>
-                    ))}
-                </Carousel>
-            </CarouselWrapper>
-        </>
-    );
-};
-
-export const WithGrid = () => {
-    const index = number('index', 0);
-    return (
-        <>
-            {boolean('Display grid', true) && <GridLines />}
-            <Container>
-                <CarouselWrapper>
-                    <Row>
-                        <Carousel axis="x" index={index}>
-                            {items.map((_, i) => (
-                                <CarouselCol key={`item:${i}`} size={number('size', 2)}>
-                                    <Filler view={i === index ? 'primary' : 'secondary'}>Item {i}</Filler>
-                                </CarouselCol>
-                            ))}
-                        </Carousel>
-                    </Row>
-                </CarouselWrapper>
-            </Container>
-        </>
-    );
-};
-
-interface CarouselSectionProps {
-    heading: string;
-}
-
-const CarouselSection: React.FC<CarouselSectionProps> = ({ heading, children }) => (
-    <StyledSection>
-        <StyledSectionHeading>{heading}</StyledSectionHeading>
         <CarouselWrapper inContainer>
             <Row>
                 <Carousel
-                    axis="x"
-                    index={0}
-                    scrollSnap={boolean('scrollSnap', true)}
-                    scrollSnapType={select('scrollSnapType', snapTypes, 'mandatory')}
+                    axis={axis}
+                    index={index}
+                    animatedScrollByIndex={animatedScrollByIndex}
+                    scrollSnap={scrollSnap}
+                    scrollSnapType={scrollSnapType}
+                    detectCentral={detectCentral}
+                    detectThreshold={detectThreshold}
+                    onIndexChange={(i) => setIndex(i)}
+                    style={{ paddingTop: '1.25rem', paddingBottom: '1.25rem' }}
                 >
-                    {children}
+                    {items.map(({ title, subtitle }, i) => (
+                        <CarouselCol key={`item:${i}`} size={3} sizeXL={4} scrollSnapAlign="start">
+                            <ProductCard
+                                title={title}
+                                subtitle={subtitle}
+                                focused={i === index}
+                                imageSrc={`/images/96_96_${i % 6}.jpg`}
+                            />
+                        </CarouselCol>
+                    ))}
                 </Carousel>
             </Row>
         </CarouselWrapper>
-    </StyledSection>
-);
+    );
+};
 
 export const MusicPage: React.FC = () => {
+    const scrollSnap = boolean('scrollSnap', true);
+    const scrollSnapType = select('scrollSnapType', snapTypes, 'mandatory');
     const scrollSnapAlign = select('scrollSnapAlign', snapAlign, 'start');
 
     return (
         <>
-            {boolean('Display grid', true) && <GridLines />}
-            <Container>
-                <CarouselSection heading="Новые альбомы">
-                    {items.map((item, i) => (
-                        <CarouselCol key={`item:${i}`} size={2} sizeM={1.5} scrollSnapAlign={scrollSnapAlign}>
-                            <Card roundness={12}>
-                                <CardBody>
-                                    <CardMedia src={item.image} ratio="1:1" />
-                                </CardBody>
-                            </Card>
-                            <StyledItemTitle>{item.title}</StyledItemTitle>
-                            <StyledItemDescr>{item.descr}</StyledItemDescr>
-                        </CarouselCol>
-                    ))}
-                </CarouselSection>
-                <CarouselSection heading="Хиты и чарты">
-                    {items.map((item, i) => (
-                        <CarouselCol key={`item:${i}`} size={4} sizeM={3} scrollSnapAlign={scrollSnapAlign}>
-                            <Card roundness={12}>
-                                <CardBody>
-                                    <CardMedia src={item.image} ratio="9:16" />
-                                </CardBody>
-                            </Card>
-                            <StyledItemTitle>{item.title}</StyledItemTitle>
-                            <StyledItemDescr maxLines={2}>{item.descr}</StyledItemDescr>
-                            <StyledItemNote>{item.descr}</StyledItemNote>
-                        </CarouselCol>
-                    ))}
-                </CarouselSection>
-                <CarouselSection heading="Лучшее за 2020">
-                    {items.map((item, i) => (
-                        <CarouselCol key={`item:${i}`} size={2} sizeM={1.5} scrollSnapAlign={scrollSnapAlign}>
-                            <Card roundness={12}>
-                                <CardBody>
-                                    <CardMedia src={item.image} ratio="1:1" />
-                                </CardBody>
-                            </Card>
-                            <StyledItemTitle>{item.title}</StyledItemTitle>
-                            <StyledItemDescr>{item.descr}</StyledItemDescr>
-                        </CarouselCol>
-                    ))}
-                </CarouselSection>
-                <CarouselSection heading="Топ артисты">
-                    {items.map((item, i) => (
-                        <CarouselCol key={`item:${i}`} size={2} sizeM={1.5} scrollSnapAlign={scrollSnapAlign}>
-                            <Card roundness={250}>
-                                <CardBody>
-                                    <CardMedia src={item.image} ratio="1:1" />
-                                </CardBody>
-                            </Card>
-                            <StyledItemTitle textAlign="center">{item.title}</StyledItemTitle>
-                        </CarouselCol>
-                    ))}
-                </CarouselSection>
-                <CarouselSection heading="Жанры и настроения">
-                    {items.map((item, i) => (
-                        <CarouselCol key={`item:${i}`} size={3} sizeM={2} scrollSnapAlign={scrollSnapAlign}>
-                            <Card roundness={12}>
-                                <CardBody>
-                                    <CardMedia src={item.image} ratio="9:16" />
-                                    <CardContent cover>
-                                        <StyledItemTitle>{item.title}</StyledItemTitle>
-                                    </CardContent>
-                                </CardBody>
-                            </Card>
-                        </CarouselCol>
-                    ))}
-                </CarouselSection>
-                <CarouselSection heading="Подкасты">
-                    {items.map((item, i) => (
-                        <CarouselCol key={`item:${i}`} size={2} sizeM={1.5} scrollSnapAlign={scrollSnapAlign}>
-                            <Card roundness={12}>
-                                <CardBody>
-                                    <CardMedia src={item.image} ratio="1:1" />
-                                </CardBody>
-                            </Card>
-                            <StyledItemTitle>{item.title}</StyledItemTitle>
-                            <StyledItemDescr>{item.descr}</StyledItemDescr>
-                        </CarouselCol>
-                    ))}
-                </CarouselSection>
-                <CarouselSection heading="Новое в подкастах">
-                    {items.map((item, i) => (
-                        <CarouselCol key={`item:${i}`} size={4} sizeM={3} scrollSnapAlign={scrollSnapAlign}>
-                            <Card roundness={12}>
-                                <CardBody>
-                                    <CardMedia src={item.image} customRatio="55.7575" />
-                                </CardBody>
-                            </Card>
-                            <StyledItemTitle>{item.title}</StyledItemTitle>
-                            <StyledItemDescr maxLines={2}>{item.descr}</StyledItemDescr>
-                        </CarouselCol>
-                    ))}
-                </CarouselSection>
-            </Container>
+            <CarouselSection heading="Новые альбомы" scrollSnap={scrollSnap} scrollSnapType={scrollSnapType}>
+                {items.map((item, i) => (
+                    <CarouselCol key={`item:${i}`} size={2} sizeM={1.5} scrollSnapAlign={scrollSnapAlign}>
+                        <MusicCard {...item} imageRatio="1:1" />
+                    </CarouselCol>
+                ))}
+            </CarouselSection>
+            <CarouselSection heading="Хиты и чарты" scrollSnap={scrollSnap} scrollSnapType={scrollSnapType}>
+                {items.map((item, i) => (
+                    <CarouselCol key={`item:${i}`} size={4} sizeM={3} scrollSnapAlign={scrollSnapAlign}>
+                        <MusicCard {...item} imageRatio="9:16" />
+                    </CarouselCol>
+                ))}
+            </CarouselSection>
+            <CarouselSection heading="Жанры и настроения" scrollSnap={scrollSnap} scrollSnapType={scrollSnapType}>
+                {items.map((item, i) => (
+                    <CarouselCol key={`item:${i}`} size={3} sizeM={2} scrollSnapAlign={scrollSnapAlign}>
+                        <MusicCard {...item} imageRatio="9:16" />
+                    </CarouselCol>
+                ))}
+            </CarouselSection>
         </>
     );
 };
@@ -263,45 +122,44 @@ export const MusicPage: React.FC = () => {
 export const CenterItem: React.FC = () => {
     const [index, setIndex] = useRemoteHandlers('x', 0, items.length - 1);
 
-    const animatedScrollByIndex = boolean('animatedScrollByIndex', false);
-    const scrollSnap = boolean('scrollSnap', true);
+    const isSberbox = isSberBox();
+    const animatedScrollByIndex = boolean('animatedScrollByIndex', isSberbox);
+    const scrollSnap = boolean('scrollSnap', !isSberbox);
     const scrollSnapType = select('scrollSnapType', snapTypes, 'mandatory');
-    const detectCentral = boolean('detectCentral', true);
+    const scrollSnapAlign = select('scrollSnapAlign', snapAlign, 'center');
+    const detectCentral = boolean('detectCentral', !isSberbox);
     const detectThreshold = number('detectThreshold', 0.5);
     const scaleCentral = boolean('scaleCentral', true);
 
     return (
-        <>
-            {boolean('Display grid', true) && <GridLines />}
-            <Container>
-                <CarouselWrapper inContainer>
-                    <Row>
-                        <SpacedCarousel
-                            axis="x"
-                            index={index}
-                            animatedScrollByIndex={animatedScrollByIndex}
-                            scrollSnap={scrollSnap}
-                            scrollSnapType={scrollSnapType}
-                            detectCentral={detectCentral}
-                            detectThreshold={detectThreshold}
-                            scaleCentral={scaleCentral}
-                            scaleCallback={scaleCallback}
-                            scaleResetCallback={scaleResetCallback}
-                            onIndexChange={(i) => setIndex(i)}
-                            overscrollLeft="50%"
-                            overscrollRight="50%"
-                        >
-                            {items.map((item, i) => (
-                                <ScalingColCard
-                                    key={`item:${i}`}
-                                    isActive={i === index}
-                                    item={{ ...item, title: `${item.title} #${i}` }}
-                                />
-                            ))}
-                        </SpacedCarousel>
-                    </Row>
-                </CarouselWrapper>
-            </Container>
-        </>
+        <CarouselWrapper inContainer>
+            <Row>
+                <Carousel
+                    axis="x"
+                    index={index}
+                    animatedScrollByIndex={animatedScrollByIndex}
+                    scrollSnap={scrollSnap}
+                    scrollSnapType={scrollSnapType}
+                    detectCentral={detectCentral}
+                    detectThreshold={detectThreshold}
+                    scaleCentral={scaleCentral}
+                    scaleCallback={scaleCallback}
+                    scaleResetCallback={scaleResetCallback}
+                    onIndexChange={(i) => setIndex(i)}
+                    overscrollLeft="50%"
+                    overscrollRight="50%"
+                    style={{ paddingTop: '5rem' }}
+                >
+                    {items.map((item, i) => (
+                        <ScalingColCard
+                            key={`item:${i}`}
+                            scrollSnapAlign={scrollSnapAlign}
+                            isActive={i === index}
+                            item={item}
+                        />
+                    ))}
+                </Carousel>
+            </Row>
+        </CarouselWrapper>
     );
 };
