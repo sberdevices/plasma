@@ -6,6 +6,7 @@ route: /components/Card
 
 import { Playground, Props } from 'docz'
 
+import image from '../../../.storybook/public/images/cat.png'
 import { ThemeSelect } from '../../helpers/ThemeSelect'
 import { ThemeBackground } from '../../helpers/ThemeBackground'
 import { IconPlaceholder } from '../../helpers/IconPlaceholder'
@@ -70,7 +71,7 @@ import { CardHeadline1, CardHeadline3, CardFootnote1, CardParagraph1 } from './C
     <ThemeBackground>
         <Card style={{ width: '20rem' }}>
             <CardBody>
-                <CardMedia src="http://placekitten.com/640/340" ratio="9:16" />
+                <CardMedia src={image} ratio="9:16" />
                 <CardContent>
                     <CardHeadline3>Потребительский кредит</CardHeadline3>
                     <CardHeadline1 style={{ marginTop: '0.75rem' }}>до 230 000 ₽</CardHeadline1>
