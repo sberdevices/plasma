@@ -2,12 +2,9 @@ import fs from 'fs';
 import path from 'path';
 
 import * as CSS from 'csstype';
-import { paramCase } from 'param-case'
+import { paramCase } from 'param-case';
 
-import {
-    DesignLanguage,
-    Typography,
-    Typograph} from './design-language/build/diez-plasma-tokens-web';
+import { DesignLanguage, Typography, Typograph } from './design-language/build/diez-plasma-tokens-web';
 import {
     humanizeColor,
     normalizeTypographyStyle,
@@ -19,9 +16,7 @@ import {
     scalingPixelBasis,
 } from './utils';
 
-
 const ds = new DesignLanguage();
-
 
 /*============================================*/
 /*=                 THEME                    =*/
@@ -33,29 +28,28 @@ interface Token<T = {}> {
 }
 
 export interface TokenGroup<T = {}> {
-    [key: string]: Token<T>
+    [key: string]: Token<T>;
 }
 
 type TColor = string;
-
 
 /*============================================*/
 /*=                 COLORS                   =*/
 /*============================================*/
 
 interface BaseColors extends TokenGroup<TColor> {
-    white: Token<TColor>,
-    whitePrimary: Token<TColor>,
-    whiteSecondary: Token<TColor>,
-    whiteTertiary: Token<TColor>,
+    white: Token<TColor>;
+    whitePrimary: Token<TColor>;
+    whiteSecondary: Token<TColor>;
+    whiteTertiary: Token<TColor>;
 
-    black: Token<TColor>,
-    blackPrimary: Token<TColor>,
-    blackSecondary: Token<TColor>,
-    blackTertiary: Token<TColor>,
+    black: Token<TColor>;
+    blackPrimary: Token<TColor>;
+    blackSecondary: Token<TColor>;
+    blackTertiary: Token<TColor>;
 
-    transparent: Token<TColor>,
-};
+    transparent: Token<TColor>;
+}
 
 const baseColors: BaseColors = {
     white: {
@@ -96,8 +90,7 @@ const baseColors: BaseColors = {
         value: humanizeColor(ds.colors.transparent.color),
         comment: 'Прозрачный цвет',
     },
-}
-
+};
 
 /*========================================*/
 /*=  Modes:( dark/light & sber/eva/joy ) =*/
@@ -142,9 +135,9 @@ const themeColorsComments = {
     voicePhraseGradient: 'Градиент подсказок о голосовых запросах',
 };
 
-export type ThemeTokens = {[key in keyof typeof themeColorsComments]: Token<TColor>};
+export type ThemeTokens = { [key in keyof typeof themeColorsComments]: Token<TColor> };
 
-type baseTheme = Omit<ThemeTokens, 'accent' | 'gradient' | 'voicePhraseGradient' |'buttonAccent' | 'buttonFocused'>
+type baseTheme = Omit<ThemeTokens, 'accent' | 'gradient' | 'voicePhraseGradient' | 'buttonAccent' | 'buttonFocused'>;
 
 const dark: baseTheme = {
     text: {
@@ -297,7 +290,6 @@ const light: baseTheme = {
         comment: themeColorsComments.overlay,
     },
 
-
     surfaceLiquid01: {
         value: humanizeColor(ds.theme.light_surface_Liquid01.color),
         comment: themeColorsComments.surfaceLiquid01,
@@ -345,7 +337,7 @@ const light: baseTheme = {
         value: humanizeColor(ds.theme.light_speech_bubble_received.color),
         comment: themeColorsComments.speechBubbleReceived,
     },
-}
+};
 
 const darkSber: ThemeTokens = {
     ...dark,
@@ -510,11 +502,9 @@ const lightJoy: ThemeTokens = {
     },
 };
 
-
 /*========================================*/
 /*=         TYPOGRAPHY & FONTS           =*/
 /*========================================*/
-
 
 type CSSProperties = CSS.Properties<string | number>;
 type Typos = keyof Typography;
@@ -522,19 +512,18 @@ type Typos = keyof Typography;
 // because diez/ds needs document =(
 require('jsdom-global')();
 
-export type TypoStyles =  {[key in Typos]: CSSProperties};
+export type TypoStyles = { [key in Typos]: CSSProperties };
 export type Typo = {
-    fontSizes: number[],
-    fonts: Record<string, string>,
-    fontWeights: Record<string, number>,
-    lineHeights: number[],
-    letterSpacings: string[],
+    fontSizes: number[];
+    fonts: Record<string, string>;
+    fontWeights: Record<string, number>;
+    lineHeights: number[];
+    letterSpacings: string[];
 
-    text: TypoStyles,
-    styles?: {[key: string]: CSSProperties },
-}
+    text: TypoStyles;
+    styles?: { [key: string]: CSSProperties };
+};
 const collectTypography = (): Typo => {
-    
     const text = {} as TypoStyles;
     const fonts = {} as Record<string, string>;
     const fontWeights = {} as Record<string, number>;
@@ -545,32 +534,32 @@ const collectTypography = (): Typo => {
     for (let entry of Object.entries(ds.typography)) {
         const [key, tv] = entry as [Typos, Typograph];
         let style = normalizeTypographyStyle(tv.style);
-    
+
         if (key === 'underline') {
             style.textTransform = 'uppercase';
         }
-    
+
         const { fontFamily, fontSize, fontWeight, lineHeight, letterSpacing } = style;
         const fontType = matchFont(style);
-        
+
         // https://system-ui.com/theme/
         fonts[fontType] = fontFamily;
         fontWeights[fontType] = fontWeight;
-    
+
         fontSizeSet.add(parseFloat(fontSize));
         lineHeightSet.add(parseFloat(lineHeight || fontSize));
         letterSpacingSet.add(String(letterSpacing));
-    
+
         text[key] = style;
     }
-    
+
     const fontSizes = [...fontSizeSet].sort((a, b) => a - b);
     const lineHeights = [...lineHeightSet].sort((a, b) => a - b);
     const letterSpacings = [...letterSpacingSet].sort((a, b) => {
         // treat 'normal' as 0
         const aa = isNaN(parseFloat(a)) ? 0 : parseFloat(a);
         const bb = isNaN(parseFloat(b)) ? 0 : parseFloat(b);
-    
+
         return aa - bb;
     });
 
@@ -580,19 +569,18 @@ const collectTypography = (): Typo => {
         fontWeights,
         lineHeights,
         letterSpacings,
-    
+
         text,
     };
 };
-
 
 /*========================================*/
 /*=         GENERATION OF TS             =*/
 /*========================================*/
 fs.existsSync('src') || fs.mkdirSync('src');
 
-const roboComment = '\n// Generated by robots, don\'t change by hand\n\n';
-type TokenType = string | CSSProperties | Array<string|number> | Record<string, string>
+const roboComment = "\n// Generated by robots, don't change by hand\n\n";
+type TokenType = string | CSSProperties | Array<string | number> | Record<string, string>;
 
 const generateTokens = (tokens: TokenGroup<TokenType>, css?: boolean, cssPrefix?: string) => {
     return Object.entries(tokens).reduce((acc, [key, token]) => {
@@ -607,16 +595,17 @@ const generateTokens = (tokens: TokenGroup<TokenType>, css?: boolean, cssPrefix?
             const v = css ? toVarValue(`${cssPrefix}-${paramCase(key)}`, value) : value;
             acc += `export const ${key} = '${v}'\n`;
         } else {
-             // css param is used for typography values only
-            const replacer =  (key: string, value: string) => {
+            // css param is used for typography values only
+            const replacer = (key: string, value: string) => {
                 if (key === 'fontSize' || key === 'lineHeight') {
                     return toVarValue(`${cssPrefix}-${paramCase(key)}`, value);
                 }
                 return value;
             };
-            const objToStr = (
-                css ? JSON.stringify(value, replacer, 4) : JSON.stringify(value, null, 4)
-            ).replace(/"/g, '\'');
+            const objToStr = (css ? JSON.stringify(value, replacer, 4) : JSON.stringify(value, null, 4)).replace(
+                /"/g,
+                "'",
+            );
             acc += `export const ${key} = ${objToStr};`;
         }
 
@@ -624,19 +613,29 @@ const generateTokens = (tokens: TokenGroup<TokenType>, css?: boolean, cssPrefix?
 
         return acc;
     }, roboComment);
-}
+};
 
 // Генерация цветов и тем
 fs.existsSync('src/colors') || fs.mkdirSync('src/colors');
-fs.writeFileSync(path.join('src', 'colors', 'index.ts'), generateTokens({
-    ...baseColors,
-    ...darkSber,
-}, true, 'colors'));
+fs.writeFileSync(
+    path.join('src', 'colors', 'index.ts'),
+    generateTokens(
+        {
+            ...baseColors,
+            ...darkSber,
+        },
+        true,
+        'colors',
+    ),
+);
 
-fs.writeFileSync(path.join('src', 'colors', 'values.ts'), generateTokens({
-    ...baseColors,
-    ...darkSber,
-}));
+fs.writeFileSync(
+    path.join('src', 'colors', 'values.ts'),
+    generateTokens({
+        ...baseColors,
+        ...darkSber,
+    }),
+);
 
 const themes = {
     darkSber,
@@ -647,7 +646,7 @@ const themes = {
     lightJoy,
 };
 
-type themeGenerator = (theme: ThemeTokens & TokenGroup<TColor>, themeName: string, ) => string;
+type themeGenerator = (theme: ThemeTokens & TokenGroup<TColor>, themeName: string) => string;
 const generateThemes = (themes_dir: string, generator: themeGenerator, needIndex: boolean = true) => {
     fs.existsSync(themes_dir) || fs.mkdirSync(themes_dir);
 
@@ -655,23 +654,26 @@ const generateThemes = (themes_dir: string, generator: themeGenerator, needIndex
     for (let [themeName, theme] of Object.entries(themes)) {
         themeIndexes += `export { ${themeName} } from './${themeName}';\n`;
 
-        const themeTS = generator(theme, themeName)
+        const themeTS = generator(theme, themeName);
         fs.writeFileSync(path.join(themes_dir, `${themeName}.ts`), themeTS);
     }
 
-    needIndex && fs.writeFileSync(path.join(themes_dir, 'index.ts'), themeIndexes);   
-}
+    needIndex && fs.writeFileSync(path.join(themes_dir, 'index.ts'), themeIndexes);
+};
 
 generateThemes(path.join('themes'), (theme, themeName) => {
     const themeStyles = createThemeStyles(withOutComments(theme));
 
-    return roboComment +
-        `export const ${themeName} = ${JSON.stringify(themeStyles, null, 4)};\n`;
+    return roboComment + `export const ${themeName} = ${JSON.stringify(themeStyles, null, 4)};\n`;
 });
 
-generateThemes(path.join('themesValues'), (theme) => {
-    return generateTokens(theme);
-}, false);
+generateThemes(
+    path.join('themesValues'),
+    (theme) => {
+        return generateTokens(theme);
+    },
+    false,
+);
 
 // Генерация типографической сетки
 const generateTypography = (typography_dir: string, typo: Typo, tokens: boolean = false) => {
@@ -679,14 +681,7 @@ const generateTypography = (typography_dir: string, typo: Typo, tokens: boolean 
     fs.existsSync(typography_dir_values) || fs.mkdirSync(typography_dir_values);
 
     let typoIndexes = roboComment;
-    const {
-        fontSizes,
-        fonts,
-        fontWeights,
-        lineHeights,
-        letterSpacings,
-        text
-    } = typo;
+    const { fontSizes, fonts, fontWeights, lineHeights, letterSpacings, text } = typo;
 
     for (let [name, styles] of Object.entries({
         fontSizes,
@@ -697,7 +692,7 @@ const generateTypography = (typography_dir: string, typo: Typo, tokens: boolean 
     })) {
         typoIndexes += `export { ${name} } from './${name}';\n`;
 
-        const textTS = generateTokens({ [name] : { value: styles }});
+        const textTS = generateTokens({ [name]: { value: styles } });
         fs.writeFileSync(path.join(typography_dir_values, `${name}.ts`), textTS);
     }
 
@@ -710,12 +705,10 @@ const generateTypography = (typography_dir: string, typo: Typo, tokens: boolean 
     fs.existsSync(typography_dir) || fs.mkdirSync(typography_dir);
     typoIndexes = roboComment;
 
-    for (let [name, styles] of Object.entries(
-        text
-    )) {
+    for (let [name, styles] of Object.entries(text)) {
         typoIndexes += `export { ${name} } from './${name}';\n`;
 
-        const textTS = generateTokens({ [name] : { value: styles }}, true, `typo-${name}`);
+        const textTS = generateTokens({ [name]: { value: styles } }, true, `typo-${name}`);
         fs.writeFileSync(path.join(typography_dir, `${name}.ts`), textTS);
     }
 
@@ -739,17 +732,16 @@ for (let [typoName, typoScale] of Object.entries(typos)) {
     typoIndexes += `export { ${typoName} } from './${typoName}';\n`;
 
     const typoStyles = createTypoStyles(typo, typoScale);
-    const typoTS = roboComment +
-        `export const ${typoName} = ${JSON.stringify(typoStyles, null, 4)};\n`;
+    const typoTS = roboComment + `export const ${typoName} = ${JSON.stringify(typoStyles, null, 4)};\n`;
 
     fs.writeFileSync(path.join(typo_dir, `${typoName}.ts`), typoTS);
 }
 
 fs.writeFileSync(path.join(typo_dir, 'index.ts'), typoIndexes);
 
-
-const indexTS = roboComment +
-`
+const indexTS =
+    roboComment +
+    `
 import * as colors from './colors';
 import * as colorValues from './colors/values';
 import * as typography from './typography';
@@ -772,14 +764,65 @@ export * from './typographyValues';
 
 fs.writeFileSync(path.join('src', 'index.ts'), indexTS);
 
+/*========================================*/
+/*=       GENERATION OF AMZN DICT        =*/
+/*========================================*/
+const amznDictPropsDir = path.join('properties');
+fs.existsSync(amznDictPropsDir) || fs.mkdirSync(amznDictPropsDir);
 
+// Colors
+const amznDictPropsColorsDir = path.join(amznDictPropsDir, 'color');
+fs.existsSync(amznDictPropsColorsDir) || fs.mkdirSync(amznDictPropsColorsDir);
 
+// BASE Colors
+fs.writeFileSync(
+    path.join(amznDictPropsColorsDir, 'base.json'),
+    JSON.stringify(
+        {
+            color: {
+                base: baseColors,
+            },
+        },
+        null,
+        2,
+    ),
+);
+
+const removeGrads = () => {
+    const fixThemes = {} as Record<string, ThemeTokens>;
+
+    for (let [themeName, theme] of Object.entries(themes)) {
+        const fixTheme = {} as ThemeTokens;
+
+        for (let [k, v] of Object.entries(theme)) {
+            if (k !== 'gradient' && k !== 'voicePhraseGradient') {
+                fixTheme[k as keyof ThemeTokens] = v;
+            }
+        }
+
+        fixThemes[themeName] = fixTheme;
+    }
+
+    return fixThemes;
+};
+
+// Themes Colors
+fs.writeFileSync(
+    path.join(amznDictPropsColorsDir, 'theme.json'),
+    JSON.stringify(
+        {
+            color: removeGrads(),
+        },
+        null,
+        2,
+    ),
+);
 
 /*========================================*/
 /*=       GENERATION OF theme.json       =*/
 /*========================================*/
 
-const colors  = {
+const colors = {
     ...withOutComments(baseColors),
     // Dark Sber is default
     ...withOutComments(darkSber),
@@ -791,7 +834,7 @@ const colors  = {
         lightSber: withOutComments(lightSber),
         lightEva: withOutComments(lightEva),
         lightJoy: withOutComments(lightJoy),
-    }
+    },
 };
 
 // https://theme-ui.com/theme-spec/#styles
@@ -805,19 +848,19 @@ const addStylesToTypo = (typo: Typo) => {
         },
         h2: {
             ...text.headline2,
-            margin: 0
+            margin: 0,
         },
         h3: {
             ...text.headline3,
-            margin: 0
+            margin: 0,
         },
         h4: {
             ...text.headline4,
-            margin: 0
+            margin: 0,
         },
         p: {
             ...text.paragraph1,
-            margin: 0
+            margin: 0,
         },
         root: {
             ...text.body1,
@@ -840,13 +883,10 @@ const generateThemeJSON = (typo: Typo) => {
     };
 
     return JSON.stringify(theme, null, 4) + '\n';
-}
+};
 
 fs.writeFileSync('theme.json', generateThemeJSON(typo));
 
-
-
-    
 // TODO: Забрать сетки из figma
 // theme: {
 //   breakpoints: [],
