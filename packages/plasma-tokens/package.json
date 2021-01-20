@@ -12,9 +12,9 @@
         "build:ds": "npm run build --prefix='./design-language'",
         "prebuild:tokens": "npm run build:ds",
         "build:tokens": "npm run generate",
-        "clean": "rm -rf src && rm -rf lib && rm -rf typo && rm -rf themes && rm -rf themesValues",
+        "clean": "rm -rf src && rm -rf lib && rm -rf typo && rm -rf themes && rm -rf themesValues && rm -rf build && rm -rf properties",
         "pregenerate": "npm run clean && rm -rf ../../node_modules/@types/webpack",
-        "generate": "npx ts-node ./generate.ts",
+        "generate": "npx ts-node ./generate.ts && npx style-dictionary build",
         "postgenerate": "npx tsc src/index.ts -d --outDir lib && npx tsc -d typo/index.ts && npx tsc -d themes/index.ts && npx tsc -d themesValues/*.ts",
         "figma": "npm run extract --prefix='./design-language'"
     },
@@ -33,6 +33,7 @@
         "jsdom": "16.4.0",
         "jsdom-global": "3.0.2",
         "param-case": "3.0.3",
+        "style-dictionary": "2.10.2",
         "ts-node": "^9.0.0",
         "typescript": "^4.0.2"
     },
