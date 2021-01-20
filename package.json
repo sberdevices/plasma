@@ -4,7 +4,7 @@
   "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
   "license": "Sber Public License at-nc-sa v.2",
   "scripts": {
-    "release": "npm whoami && tsc -p auto-plugins/tsconfig.json && auto shipit",
+    "release": "npm whoami && tsc -p auto-plugins/tsconfig.json && git diff && auto shipit",
     "chromatic": "lerna run chromatic",
     "build-storybook": "lerna run build-storybook",
     "build-docz": "lerna bootstrap --scope=@sberdevices/ui && lerna run docz:build",
@@ -57,6 +57,14 @@
     ],
     "plugins": [
       [
+        "upload-assets",
+        {
+          "assets": [
+            "./packages/plasma-tokens/tokens.tar.gz"
+          ]
+        }
+      ],
+      [
         "npm",
         {
           "setRcToken": false
@@ -64,7 +72,6 @@
       ],
       "conventional-commits",
       "slack",
-       ["upload-assets", { "assets": ["./packages/plasma-tokens/build/**"] }],
       "./auto-plugins/dist/update-deps.js"
     ]
   }

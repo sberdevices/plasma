@@ -14,8 +14,9 @@
         "build:tokens": "npm run generate",
         "clean": "rm -rf src && rm -rf lib && rm -rf typo && rm -rf themes && rm -rf themesValues && rm -rf build && rm -rf properties",
         "pregenerate": "npm run clean && rm -rf ../../node_modules/@types/webpack",
-        "generate": "npx ts-node ./generate.ts && npx style-dictionary build",
+        "generate": "npx ts-node ./generate.ts && npm run generate:amzn",
         "postgenerate": "npx tsc src/index.ts -d --outDir lib && npx tsc -d typo/index.ts && npx tsc -d themes/index.ts && npx tsc -d themesValues/*.ts",
+        "generate:amzn": "npx style-dictionary build && tar -czvf tokens.tar.gz build",
         "figma": "npm run extract --prefix='./design-language'"
     },
     "publishConfig": {
