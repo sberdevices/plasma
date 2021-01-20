@@ -15,7 +15,7 @@ import {
     useRemoteHandlers,
 } from './Carousel.examples';
 
-import { CarouselWrapper, Carousel, CarouselCol } from '.';
+import { CarouselGridWrapper, Carousel, CarouselCol } from '.';
 
 const items = Array(100)
     .fill({
@@ -58,32 +58,31 @@ export const Basic = () => {
     const detectThreshold = number('detectThreshold', 0.49);
 
     return (
-        <CarouselWrapper inContainer>
-            <Row>
-                <Carousel
-                    axis={axis}
-                    index={index}
-                    animatedScrollByIndex={animatedScrollByIndex}
-                    scrollSnap={scrollSnap}
-                    scrollSnapType={scrollSnapType}
-                    detectCentral={detectCentral}
-                    detectThreshold={detectThreshold}
-                    onIndexChange={(i) => setIndex(i)}
-                    style={{ paddingTop: '1.25rem', paddingBottom: '1.25rem' }}
-                >
-                    {items.map(({ title, subtitle }, i) => (
-                        <CarouselCol key={`item:${i}`} size={3} sizeXL={4} scrollSnapAlign="start">
-                            <ProductCard
-                                title={title}
-                                subtitle={subtitle}
-                                focused={i === index}
-                                imageSrc={`/images/96_96_${i % 6}.jpg`}
-                            />
-                        </CarouselCol>
-                    ))}
-                </Carousel>
-            </Row>
-        </CarouselWrapper>
+        <CarouselGridWrapper>
+            <Carousel
+                as={Row}
+                axis={axis}
+                index={index}
+                animatedScrollByIndex={animatedScrollByIndex}
+                scrollSnap={scrollSnap}
+                scrollSnapType={scrollSnapType}
+                detectCentral={detectCentral}
+                detectThreshold={detectThreshold}
+                onIndexChange={(i) => setIndex(i)}
+                style={{ paddingTop: '1.25rem', paddingBottom: '1.25rem' }}
+            >
+                {items.map(({ title, subtitle }, i) => (
+                    <CarouselCol key={`item:${i}`} size={3} sizeXL={4} scrollSnapAlign="start">
+                        <ProductCard
+                            title={title}
+                            subtitle={subtitle}
+                            focused={i === index}
+                            imageSrc={`/images/96_96_${i % 6}.jpg`}
+                        />
+                    </CarouselCol>
+                ))}
+            </Carousel>
+        </CarouselGridWrapper>
     );
 };
 
@@ -132,34 +131,33 @@ export const CenterItem: React.FC = () => {
     const scaleCentral = boolean('scaleCentral', true);
 
     return (
-        <CarouselWrapper inContainer>
-            <Row>
-                <Carousel
-                    axis="x"
-                    index={index}
-                    animatedScrollByIndex={animatedScrollByIndex}
-                    scrollSnap={scrollSnap}
-                    scrollSnapType={scrollSnapType}
-                    detectCentral={detectCentral}
-                    detectThreshold={detectThreshold}
-                    scaleCentral={scaleCentral}
-                    scaleCallback={scaleCallback}
-                    scaleResetCallback={scaleResetCallback}
-                    onIndexChange={(i) => setIndex(i)}
-                    overscrollLeft="50%"
-                    overscrollRight="50%"
-                    style={{ paddingTop: '5rem' }}
-                >
-                    {items.map((item, i) => (
-                        <ScalingColCard
-                            key={`item:${i}`}
-                            scrollSnapAlign={scrollSnapAlign}
-                            isActive={i === index}
-                            item={item}
-                        />
-                    ))}
-                </Carousel>
-            </Row>
-        </CarouselWrapper>
+        <CarouselGridWrapper>
+            <Carousel
+                as={Row}
+                axis="x"
+                index={index}
+                animatedScrollByIndex={animatedScrollByIndex}
+                scrollSnap={scrollSnap}
+                scrollSnapType={scrollSnapType}
+                detectCentral={detectCentral}
+                detectThreshold={detectThreshold}
+                scaleCentral={scaleCentral}
+                scaleCallback={scaleCallback}
+                scaleResetCallback={scaleResetCallback}
+                onIndexChange={(i) => setIndex(i)}
+                overscrollLeft="50%"
+                overscrollRight="50%"
+                style={{ paddingTop: '5rem' }}
+            >
+                {items.map((item, i) => (
+                    <ScalingColCard
+                        key={`item:${i}`}
+                        scrollSnapAlign={scrollSnapAlign}
+                        isActive={i === index}
+                        item={item}
+                    />
+                ))}
+            </Carousel>
+        </CarouselGridWrapper>
     );
 };

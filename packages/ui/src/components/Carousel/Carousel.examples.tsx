@@ -12,7 +12,7 @@ import { Body3 } from '../Typography/Body';
 import { Axis } from './Carousel.types';
 import { CarouselItemProps } from './CarouselItem';
 
-import { CarouselWrapper, Carousel, CarouselCol } from '.';
+import { CarouselGridWrapper, Carousel, CarouselCol } from '.';
 
 const scaleDelta = 0.37;
 
@@ -93,13 +93,11 @@ export const CarouselSection: React.FC<{
 }> = ({ heading, scrollSnap, scrollSnapType, children }) => (
     <section style={{ margin: '1.75rem 0' }}>
         <Body3 style={{ marginBottom: '1rem' }}>{heading}</Body3>
-        <CarouselWrapper inContainer>
-            <Row>
-                <Carousel axis="x" index={0} scrollSnap={scrollSnap} scrollSnapType={scrollSnapType}>
-                    {children}
-                </Carousel>
-            </Row>
-        </CarouselWrapper>
+        <CarouselGridWrapper>
+            <Carousel as={Row} axis="x" index={0} scrollSnap={scrollSnap} scrollSnapType={scrollSnapType}>
+                {children}
+            </Carousel>
+        </CarouselGridWrapper>
     </section>
 );
 

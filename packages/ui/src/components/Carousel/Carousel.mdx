@@ -6,7 +6,7 @@ route: /components/Carousel
 
 import { Playground, Props } from 'docz'
 
-import image from '../../../.storybook/public/images/card1.png'
+import image from '../../../.storybook/public/images/320_180_0.jpg'
 import { ThemeSelect, TypoSelect } from '../../helpers/ThemeSelect'
 import { ThemeBackground } from '../../helpers/ThemeBackground'
 import { Filler } from '../../helpers/Filler'
@@ -15,7 +15,7 @@ import { Container, Row } from '../Grid'
 
 import { ScalingColCard, scaleCallback, scaleResetCallback } from './Carousel.examples';
 
-import { CarouselWrapper, Carousel, CarouselItem, CarouselCol } from '.';
+import { CarouselGridWrapper, Carousel, CarouselItem, CarouselCol } from '.';
 
 <TypoSelect />
 <ThemeSelect />
@@ -31,8 +31,8 @@ import { CarouselWrapper, Carousel, CarouselItem, CarouselCol } from '.';
 ### Props
 <Props of={Carousel} />
 
-## CarouselWrapper
-Обертка над ``Carousel`` для компенсации отрицательных отступов.
+## CarouselGridWrapper
+Обертка над ``Carousel`` для компенсации отрицательных отступов в сетке.
 
 ## CarouselItem
 Компонент для создания обычных каруселей.
@@ -121,7 +121,6 @@ const scaleResetCallback = (itemEl: HTMLDivElement) => {
 * В корне приложения необходимо разместить DeviceThemeProvider.
 * В качестве основного блока лэйаута используется контейнер ([Container](/components/Grid#container)),
 а колонки ([Col](/components/Grid#col)) помещаются в строки ([Row](/components/Grid#row)).
-* Опция inContainer у CarouselWrapper необходима для того, чтобы компенсировать отступы контейнера.
 * Карусель поддерживает определение (``detectCentral``) и увеличение (``scaleCentral``) центрального элемента.
 
 <Playground>
@@ -131,36 +130,35 @@ const scaleResetCallback = (itemEl: HTMLDivElement) => {
             <DeviceThemeProvider detectDeviceCallback={() => 'sberBox'}>
                 <ThemeBackground>
                     <Container>
-                        <CarouselWrapper inContainer>
-                            <Row>
-                                <Carousel
-                                    style={{ paddingTop: '3.5rem' }}
-                                    axis="x"
-                                    index={index}
-                                    scrollSnap
-                                    scrollSnapType="mandatory"
-                                    detectCentral
-                                    detectThreshold={0.5}
-                                    scaleCentral
-                                    scaleCallback={scaleCallback}
-                                    scaleResetCallback={scaleResetCallback}
-                                    onIndexChange={(i) => setIndex(i)}
-                                    overscrollLeft="50%"
-                                    overscrollRight="50%"
-                                >
-                                    {Array(12)
-                                        .fill(0)
-                                        .map((item, i) => (
-                                            <ScalingColCard
-                                                key={`item:${i}`}
-                                                isActive={i === index}
-                                                item={{ title: `Song #${i}`, image }}
-                                            />
-                                        ))
-                                    }
-                                </Carousel>
-                            </Row>
-                        </CarouselWrapper>
+                        <CarouselGridWrapper>
+                            <Carousel
+                                style={{ paddingTop: '3.5rem' }}
+                                as={Row}
+                                axis="x"
+                                index={index}
+                                scrollSnap
+                                scrollSnapType="mandatory"
+                                detectCentral
+                                detectThreshold={0.5}
+                                scaleCentral
+                                scaleCallback={scaleCallback}
+                                scaleResetCallback={scaleResetCallback}
+                                onIndexChange={(i) => setIndex(i)}
+                                overscrollLeft="50%"
+                                overscrollRight="50%"
+                            >
+                                {Array(12)
+                                    .fill(0)
+                                    .map((item, i) => (
+                                        <ScalingColCard
+                                            key={`item:${i}`}
+                                            isActive={i === index}
+                                            item={{ title: `Song #${i}`, imageSrc: image }}
+                                        />
+                                    ))
+                                }
+                            </Carousel>
+                        </CarouselGridWrapper>
                     </Container>
                 </ThemeBackground>
             </DeviceThemeProvider>
