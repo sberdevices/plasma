@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import throttle from 'lodash.throttle';
 
-import { useRemoteListener, useSmartThrottle } from '../../hooks';
+import { useRemoteListener } from '../../hooks';
 import type { SnapType } from '../../types';
 import { isSberBox } from '../../utils';
 import { MusicCard } from '../Card/Card.examples';
@@ -107,24 +108,27 @@ export const CarouselSection: React.FC<{
  */
 export function useRemoteHandlers(axis: Axis, min: number, max: number) {
     const isSberbox = isSberBox();
+    const delay = isSberbox ? 300 : 30;
+    const longDelay = isSberbox ? 1500 : 150;
     const indexState = React.useState(0);
-    const smartThrottle = useSmartThrottle<Array<string>>(
-        (cmd: '+' | '-') =>
-            indexState[1]((prevIndex) => {
-                if (cmd === '+') {
-                    return prevIndex + 1 <= max ? prevIndex + 1 : min;
-                }
-                if (cmd === '-') {
-                    return prevIndex - 1 >= min ? prevIndex - 1 : max;
-                }
-                return prevIndex;
-            }),
-        isSberbox ? 10 : 10,
-        isSberbox ? 800 : 100,
-    );
+    const [, setIndex] = indexState;
 
-    const toPrev = React.useCallback(() => smartThrottle('-'), []);
-    const toNext = React.useCallback(() => smartThrottle('+'), []);
+    const toPrev = React.useCallback(
+        throttle(() => setIndex((prevIndex) => (prevIndex - 1 >= min ? prevIndex - 1 : max)), delay),
+        [],
+    );
+    const toNext = React.useCallback(
+        throttle(() => setIndex((prevIndex) => (prevIndex + 1 <= max ? prevIndex + 1 : min)), delay),
+        [],
+    );
+    const toFarPrev = React.useCallback(
+        throttle(() => setIndex((prevIndex) => (prevIndex - 5 >= min ? prevIndex - 5 : max)), longDelay),
+        [],
+    );
+    const toFarNext = React.useCallback(
+        throttle(() => setIndex((prevIndex) => (prevIndex + 5 <= max ? prevIndex + 5 : min)), longDelay),
+        [],
+    );
 
     useRemoteListener((key, ev) => {
         ev.preventDefault();
@@ -136,6 +140,12 @@ export function useRemoteHandlers(axis: Axis, min: number, max: number) {
                 case 'RIGHT':
                     toNext();
                     break;
+                case 'LONG_LEFT':
+                    toFarPrev();
+                    break;
+                case 'LONG_RIGHT':
+                    toFarNext();
+                    break;
                 default:
                     break;
             }
@@ -146,6 +156,12 @@ export function useRemoteHandlers(axis: Axis, min: number, max: number) {
                     break;
                 case 'DOWN':
                     toNext();
+                    break;
+                case 'LONG_UP':
+                    toFarPrev();
+                    break;
+                case 'LONG_DOWN':
+                    toFarNext();
                     break;
                 default:
                     break;
