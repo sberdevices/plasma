@@ -26,7 +26,7 @@ export const BasicValue = () => {
             scaleOnFocus={boolean('scaleOnFocus', true)}
         >
             <CardBody>
-                <CardMedia src="./images/cat.png" ratio="9:16" />
+                <CardMedia src="http://placekitten.com/640/340?image=15" ratio="9:16" />
                 <CardContent cover={cover}>
                     <CardHeadline3>{text('h3', 'Потребительский кредит')}</CardHeadline3>
                     <CardHeadline1 style={{ marginTop: '0.75rem' }}>{text('h1', 'до 230 000 ₽')}</CardHeadline1>
