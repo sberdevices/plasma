@@ -79,25 +79,27 @@ export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
 const THROTTLE_DEFAULT_MS = 100;
 const DEBOUNCE_DEFAULT_MS = 150;
 
-const getInitPos = (axis: Axis, scroll: Element, track: Element) => {
+/**
+ * Подсчет смещения из-за паддингов.
+ */
+const calcOffset = (axis: Axis, scroll: Element, track: Element) => {
     const paddingProp = axis === 'x' ? 'paddingLeft' : 'paddingTop';
     return parseInt(getComputedStyle(scroll)[paddingProp], 10) + parseInt(getComputedStyle(track)[paddingProp], 10);
 };
 
+/**
+ * Подсчет скролла до определенного индекса.
+ */
 const calcPos = (
+    offset: number,
     axis: Axis,
     index: number,
     scroll: HTMLElement,
-    track: HTMLElement,
     items: React.MutableRefObject<HTMLElement | null>[],
 ) => {
-    let pos = getInitPos(axis, scroll, track);
+    let pos = offset;
     let carouselSize;
     let itemSize;
-
-    if (!items.length) {
-        return pos;
-    }
 
     for (let i = index - 1; i >= 0; i--) {
         if (axis === 'x') {
@@ -118,6 +120,28 @@ const calcPos = (
     pos -= carouselSize / 2 - itemSize / 2;
 
     return pos;
+};
+
+/**
+ * Прокрутка к указанной позиции
+ */
+const toPos = (pos: number, axis: Axis, animated: boolean, scroll: HTMLElement) => {
+    if (Math.abs(pos - scroll.scrollLeft) > 1) {
+        if (axis === 'x') {
+            if (animated) {
+                animatedScrollToX(scroll, pos);
+            } else {
+                scroll.scrollTo({ left: pos });
+            }
+        }
+        if (axis === 'y') {
+            if (animated) {
+                animatedScrollToY(scroll, pos);
+            } else {
+                scroll.scrollTo({ top: pos });
+            }
+        }
+    }
 };
 
 export const StyledCarousel = styled.div<PickOptional<CarouselProps, 'axis' | 'scrollSnap' | 'scrollSnapType'>>`
@@ -148,9 +172,7 @@ export const StyledCarousel = styled.div<PickOptional<CarouselProps, 'axis' | 's
     }
 `;
 
-export const StyledCarouselTrack = styled.div<
-    PickOptional<CarouselProps, 'axis' | 'overscrollLeft' | 'overscrollRight'>
->`
+const StyledCarouselTrack = styled.div<PickOptional<CarouselProps, 'axis' | 'overscrollLeft' | 'overscrollRight'>>`
     ${({ axis }) =>
         axis === 'x'
             ? css`
@@ -161,18 +183,6 @@ export const StyledCarouselTrack = styled.div<
                   display: flex;
                   flex-direction: column;
               `}
-
-    ${({ overscrollLeft }) =>
-        overscrollLeft &&
-        css`
-            padding-left: ${overscrollLeft};
-        `}
-
-    ${({ overscrollRight }) =>
-        overscrollRight &&
-        css`
-            padding-right: ${overscrollRight};
-        `}
 `;
 
 // eslint-disable-next-line prefer-arrow-callback
@@ -199,6 +209,9 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
     },
     ref,
 ) {
+    const prevIndex = React.useRef(-1);
+    const direction = React.useRef<boolean | null>(null);
+    const offset = React.useRef(0);
     const refs = React.useMemo(() => new CarouselItemRefs(), []);
     const scrollRef = React.useRef<HTMLDivElement | null>(null);
     const handleRef = useForkRef(scrollRef, ref);
@@ -221,29 +234,56 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
             if (!scrollRef.current || !trackRef.current || (!scaleCentral && !detectCentral)) {
                 return;
             }
+
+            /**
+             * Правая (или нижняя для Оу) граница элемента.
+             */
+            let itemPos = offset.current;
+
+            /**
+             * Смещение (отрицательный или положительный отступ)
+             * и размер карусели (для Ox - ширина, для Oy - высота).
+             */
             const scrollPos = scrollRef.current[axis === 'x' ? 'scrollLeft' : 'scrollTop'];
             const scrollSize = scrollRef.current[axis === 'x' ? 'offsetWidth' : 'offsetHeight'];
+
+            /**
+             * Граница и центр скролла (видимой части).
+             * Смещение + размер.
+             */
             const scrollEdge = scrollPos + scrollSize;
             const scrollCenter = scrollPos + scrollSize / 2;
-            let itemPos = getInitPos(axis, scrollRef.current, trackRef.current);
 
+            /**
+             * Элементы перед, после и в видимой части.
+             * перед [ ВИДИМЫЕ ] после
+             */
+            const prevItems: HTMLElement[] = [];
+            const nextItems: HTMLElement[] = [];
             let viewportCount = 0;
-            const leftItems: HTMLElement[] = [];
-            const rightItems: HTMLElement[] = [];
 
+            /**
+             * Проходим по всему списку, суммируя ширины элементов,
+             * пока не найдем один элемент, чей центр будет в центре карусели.
+             */
             refs.items.forEach((itemRef, i) => {
                 if (!itemRef.current) {
                     return;
                 }
 
+                /**
+                 * Для Ox - ширина, для Oy - высота.
+                 */
                 const itemSize = itemRef.current[axis === 'x' ? 'offsetWidth' : 'offsetHeight'];
 
                 /**
                  * Все элементы правее вьюпорта выпадают из процедуры.
+                 * Сравниваем по предыдущему элементу.
+                 * [ ... ] ...|n| <- Левый край элемента за пределами начала видимой части
                  */
                 if (itemPos > scrollEdge) {
                     if (scaleCentral && scaleCallback) {
-                        rightItems.push(itemRef.current);
+                        nextItems.push(itemRef.current);
                     }
                     return;
                 }
@@ -252,10 +292,12 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
 
                 /**
                  * Все элементы левее вьюпорта выпадают из процедуры.
+                 * Сравниваем по текущему элементу.
+                 * Правый край элемента за пределами начала видимой части -> |p|... [ ... ]
                  */
                 if (scrollPos > itemPos) {
                     if (scaleCentral && scaleCallback) {
-                        leftItems.push(itemRef.current);
+                        prevItems.push(itemRef.current);
                     }
                     return;
                 }
@@ -269,15 +311,29 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
 
                 if (scaleCentral && scaleCallback) {
                     scaleCallback(itemRef.current, itemSlot);
+                    /**
+                     * Количество айтемов в видимой части.
+                     */
                     viewportCount++;
                 }
             });
 
-            if (scaleCentral && scaleCallback) {
+            if (scaleCentral && scaleCallback && scaleResetCallback) {
                 window.requestAnimationFrame(() => {
-                    // viewportItems.forEach((entry) => scaleCallback(entry[0], entry[1]));
-                    leftItems.forEach((elem) => scaleCallback(elem, viewportCount * -1));
-                    rightItems.forEach((elem) => scaleCallback(elem, viewportCount));
+                    if (direction.current) {
+                        if (nextItems.length) {
+                            nextItems.splice(0, viewportCount).forEach((elem) => scaleCallback(elem, viewportCount));
+                            if (nextItems.length) {
+                                nextItems.splice(0, viewportCount).forEach((elem) => scaleResetCallback(elem));
+                            }
+                        }
+                    } else if (prevItems.length) {
+                        const prItemsRev = prevItems.reverse();
+                        prItemsRev.splice(0, viewportCount).forEach((elem) => scaleCallback(elem, viewportCount * -1));
+                        if (prItemsRev.length) {
+                            prItemsRev.splice(0, viewportCount).forEach((elem) => scaleResetCallback(elem));
+                        }
+                    }
                 });
             }
         }, throttleMs),
@@ -296,43 +352,58 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
     );
 
     /**
-     * Прокрутка к указанной позиции
+     * Прокрутка до нужной позиции индекса.
      */
-    const toPos = React.useCallback(
-        (pos: number) => {
-            if (!scrollRef.current) {
-                return;
-            }
-            if (Math.abs(pos - scrollRef.current.scrollLeft) > 1) {
-                if (axis === 'x') {
-                    if (animatedScrollByIndex) {
-                        animatedScrollToX(scrollRef.current, pos);
-                    } else {
-                        scrollRef.current.scrollTo({ left: pos });
-                    }
-                }
-                if (axis === 'y') {
-                    if (animatedScrollByIndex) {
-                        animatedScrollToY(scrollRef.current, pos);
-                    } else {
-                        scrollRef.current.scrollTo({ top: pos });
-                    }
-                }
-            }
-        },
-        [axis],
-    );
+    const toIndex = React.useCallback((i: number) => {
+        if (scrollRef.current && trackRef.current && refs.items.length) {
+            toPos(
+                calcPos(offset.current, axis, i, scrollRef.current, refs.items),
+                axis,
+                /**
+                 * Без анимации при переходе на другой конец списка
+                 */
+                animatedScrollByIndex && Math.abs(i - prevIndex.current) !== refs.items.length - 1,
+                scrollRef.current,
+            );
+            prevIndex.current = i;
+        }
+    }, []);
 
     /**
-     * Прокрутка к начальному элементу
+     * Операции на маунте/анмаунте компонента.
+     * Здесь нужно сделать кешируемые вычисления,
+     * Создать слушатели событи и т.п.
      */
     React.useEffect(() => {
-        setTimeout(() => {
-            if (scrollRef.current && trackRef.current) {
-                toPos(calcPos(axis, index, scrollRef.current, trackRef.current, refs.items));
-            }
-        });
-    }, [index]);
+        if (scrollRef.current && trackRef.current) {
+            offset.current = calcOffset(axis, scrollRef.current, trackRef.current);
+
+            setTimeout(() => {
+                /**
+                 * Прокрутка до начального индекса.
+                 */
+                toIndex(index);
+
+                /**
+                 * Если на момент запуска карусель уже находится на нужной позиции,
+                 * событие скролла не произойдет, не сработает и определение центра,
+                 * необходимо вызвать его вручную.
+                 */
+                centralDetection();
+            });
+        }
+    }, []);
+
+    /**
+     * Прокрутка до нужной позиции индекса, если индекс изменился.
+     * Данный участок кода призван ускорить работу карусели,
+     * потому что вызов useEffect весьма затратен по времени
+     * для устройств по типу SberBox.
+     */
+    if (index !== prevIndex.current && prevIndex.current !== -1) {
+        direction.current = index !== prevIndex.current ? index > prevIndex.current : null;
+        toIndex(index);
+    }
 
     return (
         <CarouselContext.Provider value={{ axis, refs }}>
