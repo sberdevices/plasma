@@ -1,0 +1,71 @@
+{
+    "source": ["properties/**/*.json"],
+    "platforms": {
+        "android": {
+            "transformGroup": "android",
+            "buildPath": "build/android/",
+            "files": [
+                {
+                    "destination": "colors.xml",
+                    "format": "android/colors"
+                }
+            ]
+        },
+        "ios": {
+            "transformGroup": "ios",
+            "buildPath": "build/ios/",
+            "files": [
+                {
+                    "destination": "PlasmaTokensColor.h",
+                    "format": "ios/colors.h",
+                    "className": "PlasmaTokensColor",
+                    "type": "PlasmaTokensColorName",
+                    "filter": {
+                        "attributes": {
+                            "category": "color"
+                        }
+                    }
+                },
+                {
+                    "destination": "PlasmaTokensColor.m",
+                    "format": "ios/colors.m",
+                    "className": "PlasmaTokensColor",
+                    "type": "PlasmaTokensColorName",
+                    "filter": {
+                        "attributes": {
+                            "category": "color"
+                        }
+                    }
+                }
+            ]
+        },
+        "ios-swift": {
+            "transformGroup": "ios-swift",
+            "buildPath": "build/ios-swift/",
+            "files": [
+                {
+                    "destination": "PlasmaTokens.swift",
+                    "format": "ios-swift/class.swift",
+                    "className": "PlasmaTokens",
+                    "filter": {}
+                }
+            ]
+        },
+        "ios-swift-separate-enums": {
+            "transformGroup": "ios-swift-separate",
+            "buildPath": "build/ios-swift/",
+            "files": [
+                {
+                    "destination": "PlasmaTokensColor.swift",
+                    "format": "ios-swift/enum.swift",
+                    "className": "PlasmaTokensColor",
+                    "filter": {
+                        "attributes": {
+                            "category": "color"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

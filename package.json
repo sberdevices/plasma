@@ -14,6 +14,7 @@
     "@auto-it/conventional-commits": "9.60.1",
     "@auto-it/npm": "9.60.1",
     "@auto-it/slack": "9.60.1",
+    "@auto-it/upload-assets": "10.11.0",
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
     "@storybook/addon-actions": "6.0.0-rc.13",
@@ -63,6 +64,7 @@
       ],
       "conventional-commits",
       "slack",
+       ["upload-assets", { "assets": ["./packages/plasma-tokens/build/**"] }],
       "./auto-plugins/dist/update-deps.js"
     ]
   }
