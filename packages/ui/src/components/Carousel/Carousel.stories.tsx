@@ -55,7 +55,7 @@ export const Basic = () => {
     const scrollSnap = boolean('scrollSnap', !isSberbox);
     const scrollSnapType = select('scrollSnapType', snapTypes, 'mandatory');
     const detectCentral = boolean('detectCentral', !isSberbox);
-    const detectThreshold = number('detectThreshold', 0.5);
+    const detectThreshold = number('detectThreshold', 0.49);
 
     return (
         <CarouselWrapper inContainer>
