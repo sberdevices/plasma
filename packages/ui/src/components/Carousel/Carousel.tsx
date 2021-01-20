@@ -10,6 +10,7 @@ import { CarouselContext, CarouselItemRefs } from './CarouselContext';
 import type { Axis } from './Carousel.types';
 
 export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
+    as?: React.ComponentType<any>;
     /**
      * Ось скроллирования
      */
@@ -150,7 +151,6 @@ export const StyledCarousel = styled.div<PickOptional<CarouselProps, 'axis' | 's
     ${({ axis }) =>
         axis === 'x'
             ? css`
-                  width: 100%;
                   overflow-x: auto;
                   overflow-y: hidden;
               `

@@ -1,6 +1,6 @@
 export { CarouselContext, CarouselItemRefs } from './CarouselContext';
 export { useCarouselItem, useCarouselContext } from './Carousel.hooks';
-export { CarouselWrapper } from './CarouselWrapper';
+export { CarouselGridWrapper } from './CarouselGridWrapper';
 
 export { Carousel } from './Carousel';
 export type { CarouselProps } from './Carousel';
