@@ -145,8 +145,8 @@ export const CenterItem: React.FC = () => {
                 scaleCallback={scaleCallback}
                 scaleResetCallback={scaleResetCallback}
                 onIndexChange={(i) => setIndex(i)}
-                overscrollLeft="50%"
-                overscrollRight="50%"
+                paddingStart="50%"
+                paddingEnd="50%"
                 style={{ paddingTop: '5rem' }}
             >
                 {items.map((item, i) => (

@@ -60,13 +60,13 @@ export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
      */
     scrollSnapType?: SnapType;
     /**
-     * Отступ слева, используется при центрировании крайних элементов
+     * Отступ с переднего края, используется при центрировании крайних элементов
      */
-    overscrollLeft?: string;
+    paddingStart?: string;
     /**
-     * Отступ справа, используется при центрировании крайних элементов
+     * Отступ с заднего края, используется при центрировании крайних элементов
      */
-    overscrollRight?: string;
+    paddingEnd?: string;
     /**
      * Throttling внутренних обработчиков события onScroll
      */
@@ -172,16 +172,22 @@ export const StyledCarousel = styled.div<PickOptional<CarouselProps, 'axis' | 's
     }
 `;
 
-const StyledCarouselTrack = styled.div<PickOptional<CarouselProps, 'axis' | 'overscrollLeft' | 'overscrollRight'>>`
-    ${({ axis }) =>
+const StyledCarouselTrack = styled.div<PickOptional<CarouselProps, 'axis' | 'paddingStart' | 'paddingEnd'>>`
+    ${({ axis, paddingStart, paddingEnd }) =>
         axis === 'x'
             ? css`
                   display: inline-flex;
                   flex-direction: row;
+
+                  ${paddingStart && `padding-left: ${paddingStart};`}
+                  ${paddingEnd && `padding-right: ${paddingEnd};`}
               `
             : css`
                   display: flex;
                   flex-direction: column;
+
+                  ${paddingStart && `padding-top: ${paddingStart};`}
+                  ${paddingEnd && `padding-bottom: ${paddingEnd};`}
               `}
 `;
 
@@ -198,8 +204,8 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
         scaleCentral = false,
         scaleCallback,
         scaleResetCallback,
-        overscrollLeft,
-        overscrollRight,
+        paddingStart,
+        paddingEnd,
         children,
         onScroll,
         onIndexChange,
@@ -415,12 +421,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
                 onScroll={handleScroll}
                 {...rest}
             >
-                <StyledCarouselTrack
-                    ref={trackRef}
-                    axis={axis}
-                    overscrollLeft={overscrollLeft}
-                    overscrollRight={overscrollRight}
-                >
+                <StyledCarouselTrack ref={trackRef} axis={axis} paddingStart={paddingStart} paddingEnd={paddingEnd}>
                     {children}
                 </StyledCarouselTrack>
             </StyledCarousel>
