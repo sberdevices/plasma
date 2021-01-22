@@ -10,42 +10,46 @@ const navKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Enter'];
  * Создает слушателя событий клавиатуры,
  * который вызывает коллбек при нажатии кнопок навигации.
  * @param {Function} cb
+ * @param {number} keypressTimeMs
  * @return {void}
  */
-export const useRemoteListener = (cb: (key: RemoteKey, event: KeyboardEvent) => void) => {
-    const keydown = useRef(false);
+export const useRemoteListener = (cb: (key: RemoteKey, event: KeyboardEvent) => void, keypressTimeMs = 150) => {
+    const keydown = useRef<number | null>(null);
 
     useEffect(() => {
         const handleKeydown = (event: KeyboardEvent): void => {
             if (navKeys.indexOf(event.key) === -1) {
                 return;
             }
+
+            const isLong = keydown.current && Date.now() - keydown.current < keypressTimeMs;
+
             switch (event.key) {
                 case 'ArrowUp':
-                    cb(keydown.current ? 'LONG_UP' : 'UP', event);
+                    cb(isLong ? 'LONG_UP' : 'UP', event);
                     break;
                 case 'ArrowDown':
-                    cb(keydown.current ? 'LONG_DOWN' : 'DOWN', event);
+                    cb(isLong ? 'LONG_DOWN' : 'DOWN', event);
                     break;
                 case 'ArrowLeft':
-                    cb(keydown.current ? 'LONG_LEFT' : 'LEFT', event);
+                    cb(isLong ? 'LONG_LEFT' : 'LEFT', event);
                     break;
                 case 'ArrowRight':
-                    cb(keydown.current ? 'LONG_RIGHT' : 'RIGHT', event);
+                    cb(isLong ? 'LONG_RIGHT' : 'RIGHT', event);
                     break;
                 case 'Enter':
-                    cb(keydown.current ? 'LONG_OK' : 'OK', event);
+                    cb(isLong ? 'LONG_OK' : 'OK', event);
                     break;
                 default:
                     break;
             }
-            keydown.current = true;
+            keydown.current = Date.now();
         };
         const handleKeyup = (event: KeyboardEvent): void => {
             if (navKeys.indexOf(event.key) === -1) {
                 return;
             }
-            keydown.current = false;
+            keydown.current = null;
         };
 
         window.addEventListener('keydown', handleKeydown);
