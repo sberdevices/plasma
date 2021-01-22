@@ -1,15 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import throttle from 'lodash.throttle';
 
-import { useRemoteListener } from '../../hooks';
 import type { SnapType } from '../../types';
-import { isSberBox } from '../../utils';
 import { MusicCard } from '../Card/Card.examples';
 import { Row } from '../Grid';
 import { Body3 } from '../Typography/Body';
 
-import { Axis } from './Carousel.types';
 import { CarouselItemProps } from './CarouselItem';
 
 import { CarouselGridWrapper, Carousel, CarouselCol } from '.';
@@ -100,72 +96,3 @@ export const CarouselSection: React.FC<{
         </CarouselGridWrapper>
     </section>
 );
-
-/**
- * Пример вызыва хука, который слушает вызовы пульта.
- */
-export function useRemoteHandlers(axis: Axis, min: number, max: number) {
-    const isSberbox = isSberBox();
-    const delay = isSberbox ? 300 : 30;
-    const longDelay = isSberbox ? 1500 : 150;
-    const indexState = React.useState(0);
-    const [, setIndex] = indexState;
-
-    const toPrev = React.useCallback(
-        throttle(() => setIndex((prevIndex) => (prevIndex - 1 >= min ? prevIndex - 1 : max)), delay),
-        [],
-    );
-    const toNext = React.useCallback(
-        throttle(() => setIndex((prevIndex) => (prevIndex + 1 <= max ? prevIndex + 1 : min)), delay),
-        [],
-    );
-    const toFarPrev = React.useCallback(
-        throttle(() => setIndex((prevIndex) => (prevIndex - 5 >= min ? prevIndex - 5 : max)), longDelay),
-        [],
-    );
-    const toFarNext = React.useCallback(
-        throttle(() => setIndex((prevIndex) => (prevIndex + 5 <= max ? prevIndex + 5 : min)), longDelay),
-        [],
-    );
-
-    useRemoteListener((key, ev) => {
-        ev.preventDefault();
-        if (axis === 'x') {
-            switch (key) {
-                case 'LEFT':
-                    toPrev();
-                    break;
-                case 'RIGHT':
-                    toNext();
-                    break;
-                case 'LONG_LEFT':
-                    toFarPrev();
-                    break;
-                case 'LONG_RIGHT':
-                    toFarNext();
-                    break;
-                default:
-                    break;
-            }
-        } else {
-            switch (key) {
-                case 'UP':
-                    toPrev();
-                    break;
-                case 'DOWN':
-                    toNext();
-                    break;
-                case 'LONG_UP':
-                    toFarPrev();
-                    break;
-                case 'LONG_DOWN':
-                    toFarNext();
-                    break;
-                default:
-                    break;
-            }
-        }
-    });
-
-    return indexState;
-}

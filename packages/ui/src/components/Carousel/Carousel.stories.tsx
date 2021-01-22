@@ -7,15 +7,9 @@ import { isSberBox } from '../../utils';
 import { ProductCard, MusicCard } from '../Card/Card.examples';
 import { Container, Row } from '../Grid';
 
-import {
-    CarouselSection,
-    ScalingColCard,
-    scaleCallback,
-    scaleResetCallback,
-    useRemoteHandlers,
-} from './Carousel.examples';
+import { CarouselSection, ScalingColCard, scaleCallback, scaleResetCallback } from './Carousel.examples';
 
-import { CarouselGridWrapper, Carousel, CarouselCol } from '.';
+import { CarouselGridWrapper, Carousel, CarouselCol, useRemoteHandlers } from '.';
 
 const items = Array(100)
     .fill({
@@ -48,9 +42,18 @@ export default {
 
 export const Basic = () => {
     const axis = 'x';
-    const [index, setIndex] = useRemoteHandlers('x', 0, items.length - 1);
-
     const isSberbox = isSberBox();
+    const delay = isSberbox ? 300 : 30;
+    const longDelay = isSberbox ? 1500 : 150;
+    const [index, setIndex] = useRemoteHandlers({
+        initialIndex: 0,
+        axis,
+        delay,
+        longDelay,
+        min: 0,
+        max: items.length - 1,
+    });
+
     const animatedScrollByIndex = boolean('animatedScrollByIndex', isSberbox);
     const scrollSnap = boolean('scrollSnap', !isSberbox);
     const scrollSnapType = select('scrollSnapType', snapTypes, 'mandatory');
@@ -119,9 +122,18 @@ export const MusicPage: React.FC = () => {
 };
 
 export const CenterItem: React.FC = () => {
-    const [index, setIndex] = useRemoteHandlers('x', 0, items.length - 1);
-
     const isSberbox = isSberBox();
+    const delay = isSberbox ? 300 : 30;
+    const longDelay = isSberbox ? 1500 : 150;
+    const [index, setIndex] = useRemoteHandlers({
+        initialIndex: 0,
+        axis: 'x',
+        delay,
+        longDelay,
+        min: 0,
+        max: items.length - 1,
+    });
+
     const animatedScrollByIndex = boolean('animatedScrollByIndex', isSberbox);
     const scrollSnap = boolean('scrollSnap', !isSberbox);
     const scrollSnapType = select('scrollSnapType', snapTypes, 'mandatory');
