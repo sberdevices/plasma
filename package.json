@@ -61,7 +61,8 @@
         {
           "assets": [
             "./packages/plasma-tokens/tokens.tar.gz"
-          ]
+          ],
+          "maxCanaryAssets": 0
         }
       ],
       [
