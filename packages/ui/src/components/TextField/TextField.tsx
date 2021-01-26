@@ -14,6 +14,29 @@ import {
 
 import { DisabledProps } from '../../mixins';
 
+export interface FieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+    /**
+     * Надпись лейбла.
+     */
+    title?: string;
+    /**
+     * Подсказка для поля ввода.
+     */
+    helperText?: string;
+    /**
+     * Слот для контента слева.
+     */
+    contentLeft?: React.ReactElement;
+    /**
+     * Слот для контента справа.
+     */
+    contentRight?: React.ReactElement;
+    /**
+     * Статус компонента: заполнен успешно или с ошибкой.
+     */
+    status?: 'success' | 'error';
+}
+
 /**
  * Значения в ремах храним тут,
  * чтобы не считать их каждый раз при перерисовке.
@@ -29,17 +52,6 @@ const labelTopEmpty = `${18 / scalingPixelBasis}rem`;
 const labelTopFullfilled = `${6 / scalingPixelBasis}rem`;
 const contentTop = `${16 / scalingPixelBasis}rem`;
 const helperTop = `${4 / scalingPixelBasis}rem`;
-
-interface ValidationProps {
-    /**
-     * Компонент заполнен успешно.
-     */
-    hasSuccess?: boolean;
-    /**
-     * Ошибки валидации.
-     */
-    hasError?: boolean;
-}
 
 interface IsContentProps {
     isContentLeft?: boolean;
@@ -143,24 +155,26 @@ const StyledHelperText = styled.span`
     padding-right: ${paddingX};
 `;
 
-const StyledRoot = styled.div<ValidationProps & DisabledProps & IsContentProps>`
+const StyledRoot = styled.div<Pick<FieldProps, 'status'> & DisabledProps & IsContentProps>`
     display: flex;
     flex-direction: column;
 
     caret-color: ${accent};
     color: ${whiteSecondary};
 
-    ${({ hasSuccess }) =>
-        hasSuccess &&
-        css`
-            color: ${accent};
-        `}
-
-    ${({ hasError }) =>
-        hasError &&
-        css`
-            color: ${critical};
-        `}
+    ${({ status }) => {
+        if (status === 'success') {
+            return css`
+                color: ${accent};
+            `;
+        }
+        if (status === 'error') {
+            return css`
+                color: ${critical};
+            `;
+        }
+        return '';
+    }}
 
     ${({ disabled }) =>
         disabled &&
@@ -191,48 +205,13 @@ const StyledRoot = styled.div<ValidationProps & DisabledProps & IsContentProps>`
         `}
 `;
 
-export interface FieldProps extends ValidationProps, React.InputHTMLAttributes<HTMLInputElement> {
-    /**
-     * Надпись лейбла.
-     */
-    title?: string;
-    /**
-     * Слот для контента слева.
-     */
-    contentLeft?: React.ReactElement;
-    /**
-     * Слот для контента справа.
-     */
-    contentRight?: React.ReactElement;
-    /**
-     * Подсказка для поля ввода.
-     */
-    helperText?: string;
-}
-
 /**
  * Компонент ввода с подписью (caption) сверху.
  */
 export const TextField = React.forwardRef<HTMLInputElement, FieldProps>(
-    (
-        {
-            value,
-            title,
-            helperText,
-            disabled,
-            contentLeft,
-            contentRight,
-            hasSuccess,
-            hasError,
-            style,
-            className,
-            ...rest
-        },
-        ref,
-    ) => (
+    ({ value, title, helperText, disabled, contentLeft, contentRight, status, style, className, ...rest }, ref) => (
         <StyledRoot
-            hasSuccess={hasSuccess}
-            hasError={hasError}
+            status={status}
             disabled={disabled}
             style={style}
             className={className}
