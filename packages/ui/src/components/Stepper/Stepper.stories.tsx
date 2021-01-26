@@ -6,7 +6,7 @@ import { IconMinus, IconPlus } from '@sberdevices/plasma-icons';
 import { Stepper, StepperRoot, StepperButton, StepperValue } from '.';
 
 export const Default = () => {
-    const [value, setValue] = useState(number('value', 5));
+    const [value, setValue] = useState(number('value', 1));
     return (
         <Stepper
             disabled={boolean('disabled', false)}
@@ -14,7 +14,7 @@ export const Default = () => {
             step={number('step', 1)}
             min={number('min', 1)}
             max={number('max', 10)}
-            remover={boolean('remover', true)}
+            remover={boolean('remover', true) as true}
             onChange={(v) => setValue(v)}
             onRemove={action('onRemove')}
             onFocus={action('onFocus')}

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { text, boolean } from '@storybook/addon-knobs';
+import { text, boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { IconSettings } from '@sberdevices/plasma-icons';
 
 import { InSpacing } from '../../helpers/StoryDecorators';
 
-import { TextField } from './TextField';
+import { TextField } from '.';
 
 export default {
     title: 'Controls/TextField',
@@ -21,8 +21,7 @@ export const Default = () => {
             title={text('title', 'Label')}
             helperText={text('helperText', 'Helper text')}
             disabled={boolean('disabled', false)}
-            hasSuccess={boolean('hasSuccess', false)}
-            hasError={boolean('hasError', false)}
+            status={select('status', ['success', 'error', undefined], undefined)}
             onChange={(v) => setValue(v.target.value)}
             onFocus={action('onFocus')}
             onBlur={action('onBlur')}
@@ -40,8 +39,7 @@ export const LongText = () => {
             title={text('title', 'Label has enormous text that will be shortened by dots')}
             helperText={text('helperText', 'Helper text very long text that can not be displayed by dots')}
             disabled={boolean('disabled', false)}
-            hasSuccess={boolean('hasSuccess', false)}
-            hasError={boolean('hasError', false)}
+            status={select('status', ['success', 'error', undefined], undefined)}
             onChange={(v) => setValue(v.target.value)}
             onFocus={action('onFocus')}
             onBlur={action('onBlur')}
