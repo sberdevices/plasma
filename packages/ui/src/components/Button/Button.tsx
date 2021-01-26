@@ -140,35 +140,68 @@ const StyledText = styled.span<StyledTextProps>`
         `}
 `;
 
-export interface ButtonProps
-    extends InteractionProps,
-        OutlinedProps,
-        FocusProps,
-        DisabledProps,
-        ShiftProps,
-        PickOptional<StyledButtonProps, 'fullWidth' | 'size' | 'view' | 'pin'>,
-        React.ButtonHTMLAttributes<HTMLButtonElement> {
+/**
+ * С текстом и/или контентом слева.
+ */
+interface TextAndLeftProps {
+    /**
+     * Текстовая надпись на кнопке
+     */
+    text: string | number;
+    /**
+     * Кастомный контент кнопки. При указании этого свойства contentLeft, contentRight и text не применяются
+     */
+    children?: never;
     /**
      * Слот для контента слева, например <Icon/>
      */
     contentLeft?: React.ReactNode;
+}
+/**
+ * С текстом и/или контентом справа.
+ */
+interface TextAndRightProps {
+    text: string | number;
+    children?: never;
     /**
      * Слот для контента справа, например <Icon/>
      */
     contentRight?: React.ReactNode;
-    /**
-     * Текстовая надпись на кнопке
-     */
-    text?: string;
-    /**
-     * Кастомный контент кнопки. При указании этого свойства contentLeft, contentRight и text не применяются
-     */
-    children?: React.ReactNode;
-    /**
-     * Сменить рендер на другой тип компонента
-     */
-    as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
 }
+/**
+ * С контентом слева.
+ */
+interface LeftProps {
+    children?: never;
+    contentLeft: React.ReactNode;
+}
+/**
+ * Через ``children``.
+ */
+interface ChildrenProps {
+    children: React.ReactNode;
+}
+/**
+ * Для внутреннего использования.
+ */
+interface AllContentProps
+    extends TextAndLeftProps,
+        Pick<TextAndRightProps, 'contentRight'>,
+        Pick<TextAndRightProps, 'children'> {}
+
+export type ButtonProps = PickOptional<StyledButtonProps, 'fullWidth' | 'size' | 'view' | 'pin'> &
+    (TextAndLeftProps | TextAndRightProps | LeftProps | ChildrenProps) &
+    InteractionProps &
+    FocusProps &
+    OutlinedProps &
+    DisabledProps &
+    ShiftProps &
+    React.ButtonHTMLAttributes<HTMLButtonElement> & {
+        /**
+         * Сменить рендер на другой тип компонента
+         */
+        as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
+    };
 
 /**
  * Основной компонент для создания кнопок.
@@ -176,20 +209,11 @@ export interface ButtonProps
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     // eslint-disable-next-line prefer-arrow-callback
     function Button(
-        {
-            text,
-            children,
-            contentLeft,
-            contentRight,
-            view = 'secondary',
-            size = 'l',
-            pin = 'square-square',
-            scaleOnInteraction = true,
-            outlined = true,
-            ...rest
-        },
+        { view = 'secondary', size = 'l', pin = 'square-square', scaleOnInteraction = true, outlined = true, ...props },
         ref,
     ) {
+        const { text, contentLeft, contentRight, children, ...rest } = props as AllContentProps;
+
         return (
             <StyledButton
                 view={view}
