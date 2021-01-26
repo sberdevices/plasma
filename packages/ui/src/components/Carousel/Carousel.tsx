@@ -127,20 +127,18 @@ const calcPos = (
  * Прокрутка к указанной позиции
  */
 const toPos = (pos: number, axis: Axis, animated: boolean, scroll: HTMLElement) => {
-    if (Math.abs(pos - scroll.scrollLeft) > 1) {
-        if (axis === 'x') {
-            if (animated) {
-                animatedScrollToX(scroll, pos);
-            } else {
-                scroll.scrollTo({ left: pos });
-            }
+    if (axis === 'x' && Math.abs(pos - scroll.scrollLeft) > 1) {
+        if (animated) {
+            animatedScrollToX(scroll, pos);
+        } else {
+            scroll.scrollTo({ left: pos });
         }
-        if (axis === 'y') {
-            if (animated) {
-                animatedScrollToY(scroll, pos);
-            } else {
-                scroll.scrollTo({ top: pos });
-            }
+    }
+    if (axis === 'y' && Math.abs(pos - scroll.scrollTop) > 1) {
+        if (animated) {
+            animatedScrollToY(scroll, pos);
+        } else {
+            scroll.scrollTo({ top: pos });
         }
     }
 };
