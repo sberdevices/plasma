@@ -93,7 +93,7 @@ const ResponsiveContent = () => (
 
 export const Default = () => (
     <Header
-        back={boolean('Back button', true)}
+        back={boolean('Back button', true) as true}
         logo={boolean('Logo', true) && './images/logo.png'}
         logoAlt="Logo"
         title={text('title', 'Header title text')}
