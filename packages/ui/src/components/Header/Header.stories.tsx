@@ -10,14 +10,16 @@ import { Button } from '../Button';
 import { Container } from '../Grid';
 import { Tabs, TabItem } from '../Tabs';
 
-import { Header } from './Header';
-import { HeaderRoot } from './HeaderRoot';
-import { HeaderBack } from './HeaderBack';
-import { HeaderLogo } from './HeaderLogo';
-import { HeaderTitleWrapper } from './HeaderTitleWrapper';
-import { HeaderTitle } from './HeaderTitle';
-import { HeaderSubtitle } from './HeaderSubtitle';
-import { HeaderContent } from './HeaderContent';
+import {
+    Header,
+    HeaderRoot,
+    HeaderBack,
+    HeaderLogo,
+    HeaderTitleWrapper,
+    HeaderSubtitle,
+    HeaderTitle,
+    HeaderContent,
+} from '.';
 
 const MobileHeaderButtons = styled.div`
     display: none;
