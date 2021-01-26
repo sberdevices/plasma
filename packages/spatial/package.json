@@ -1,0 +1,37 @@
+{
+  "name": "@sberdevices/spatial",
+  "version": "1.0.0",
+  "description": "spatial",
+  "main": "dist",
+  "scripts": {
+    "prepare": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run clean && npm run compile",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo",
+    "compile": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sberdevices/pashka.git"
+  },
+  "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/sberdevices/pashka/issues"
+  },
+  "homepage": "https://github.com/sberdevices/pashka#readme",
+  "files": [
+    "dist"
+  ],
+  "browserslist": [
+    "last 1 Chrome versions"
+  ],
+  "devDependencies": {
+    "@types/node": "^14.14.22",
+    "@types/react": "^17.0.0",
+    "@types/styled-components": "^5.1.7",
+    "react-use": "13.27.0",
+    "typescript": "^3.9.2"
+  },
+  "keywords": []
+}
