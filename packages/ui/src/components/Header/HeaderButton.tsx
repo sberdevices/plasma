@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { PickOptional } from '../../types';
 import { Button, ButtonProps } from '../Button/Button';
 
 const StyledHeaderButton = styled(Button)`
@@ -11,18 +12,16 @@ const StyledHeaderButton = styled(Button)`
     padding: 0;
 `;
 
+export interface HeaderButtonProps
+    extends PickOptional<ButtonProps, 'as' | 'size' | 'scaleOnInteraction' | 'disabled'>,
+        React.ButtonHTMLAttributes<HTMLButtonElement> {}
+
 /**
  * Кнопка без внутренних отступов, границ и цвета фона.
  */
-export const HeaderButton: React.FC<ButtonProps> = ({
-    size = 'm',
-    view = 'clear',
-    outlined = false,
-    children,
-    ...rest
-}) => {
+export const HeaderButton: React.FC<HeaderButtonProps> = ({ size = 'm', children, ...rest }) => {
     return (
-        <StyledHeaderButton size={size} view={view} outlined={outlined} {...rest}>
+        <StyledHeaderButton size={size} view="clear" outlined={false} {...rest}>
             {children}
         </StyledHeaderButton>
     );
