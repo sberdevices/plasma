@@ -1,7 +1,9 @@
 export { Header } from './Header';
+export { HeaderRoot } from './HeaderRoot';
 export { HeaderBack } from './HeaderBack';
 export { HeaderButton } from './HeaderButton';
 export { HeaderContent } from './HeaderContent';
 export { HeaderLogo } from './HeaderLogo';
-export { HeaderSubtitle } from './HeaderSubtitle';
+export { HeaderTitleWrapper } from './HeaderTitleWrapper';
 export { HeaderTitle } from './HeaderTitle';
+export { HeaderSubtitle } from './HeaderSubtitle';
