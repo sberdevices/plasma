@@ -8,6 +8,7 @@ import { ProductCard, MusicCard } from '../Card/Card.examples';
 import { Container, Row } from '../Grid';
 
 import { CarouselSection, ScalingColCard, scaleCallback, scaleResetCallback } from './Carousel.examples';
+import { CarouselItem } from './CarouselItem';
 
 import { CarouselGridWrapper, Carousel, CarouselCol, useRemoteHandlers } from '.';
 
@@ -171,5 +172,49 @@ export const CenterItem: React.FC = () => {
                 ))}
             </Carousel>
         </CarouselGridWrapper>
+    );
+};
+
+export const VerticalScroll: React.FC = () => {
+    const scrollSnap = boolean('scrollSnap', true);
+    const scrollSnapType = select('scrollSnapType', snapTypes, 'mandatory');
+    const scrollSnapAlign = select('scrollSnapAlign', snapAlign, 'start');
+    const isSberbox = isSberBox();
+    const delay = isSberbox ? 300 : 30;
+    const longDelay = isSberbox ? 1500 : 150;
+
+    const [currentIndex, setCurrentIndex] = useRemoteHandlers({
+        initialIndex: 0,
+        axis: 'y',
+        delay,
+        longDelay,
+        min: 0,
+        max: items.length - 1,
+    });
+
+    return (
+        <>
+            <Carousel
+                animatedScrollByIndex
+                axis="y"
+                index={currentIndex}
+                scrollSnap={scrollSnap}
+                scrollSnapType={scrollSnapType}
+                style={{ height: '100vh', padding: '16px', boxSizing: 'border-box' }}
+                onIndexChange={(i) => setCurrentIndex(i)}
+            >
+                {items.map(({ title, subtitle }, i) => (
+                    <CarouselItem scrollSnapAlign={scrollSnapAlign} key={i}>
+                        <ProductCard
+                            style={{ marginBottom: 10, marginTop: 10 }}
+                            title={title}
+                            subtitle={subtitle}
+                            focused={currentIndex === i}
+                            imageSrc={`/images/96_96_${i % 6}.jpg`}
+                        />
+                    </CarouselItem>
+                ))}
+            </Carousel>
+        </>
     );
 };
