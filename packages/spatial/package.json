@@ -1,8 +1,8 @@
 {
   "name": "@sberdevices/spatial",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "spatial",
-  "main": "dist/index.js",
+  "main": "dist/utils/spatialUtils.ts",
   "scripts": {
     "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
