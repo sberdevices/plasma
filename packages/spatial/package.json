@@ -2,7 +2,7 @@
   "name": "@sberdevices/spatial",
   "version": "1.0.0",
   "description": "spatial",
-  "main": "dist",
+  "main": "dist/index.js",
   "scripts": {
     "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",

@@ -8,6 +8,7 @@ module.exports = {
     ],
     parser: "@typescript-eslint/parser",
     plugins: ["react", "import", "prettier"],
+    ignorePatterns: ['packages/spatial'],
     rules: {
         "@typescript-eslint/no-empty-function": "off",
         "no-restricted-syntax": "off", // В for...of циклах ничего плохого нет
