@@ -185,6 +185,7 @@ const StyledCarouselTrack = styled.div<PickOptional<CarouselProps, 'axis' | 'pad
             : css`
                   display: flex;
                   flex-direction: column;
+                  width: 100%;
 
                   ${paddingStart && `padding-top: ${paddingStart};`}
                   ${paddingEnd && `padding-bottom: ${paddingEnd};`}

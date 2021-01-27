@@ -4,12 +4,12 @@ import { boolean, number, select } from '@storybook/addon-knobs';
 import { GridLines } from '../../helpers/GridLines';
 import type { SnapType, SnapAlign } from '../../types';
 import { isSberBox } from '../../utils';
-import { ProductCard, MusicCard } from '../Card/Card.examples';
+import { ProductCard, MusicCard, GalleryCard } from '../Card/Card.examples';
 import { Container, Row } from '../Grid';
 
 import { CarouselSection, ScalingColCard, scaleCallback, scaleResetCallback } from './Carousel.examples';
 
-import { CarouselGridWrapper, Carousel, CarouselCol, useRemoteHandlers } from '.';
+import { CarouselGridWrapper, Carousel, CarouselItem, CarouselCol, useRemoteHandlers } from '.';
 
 const items = Array(100)
     .fill({
@@ -86,6 +86,60 @@ export const Basic = () => {
                 ))}
             </Carousel>
         </CarouselGridWrapper>
+    );
+};
+
+export const Vertical = () => {
+    const axis = 'y';
+    const [index, setIndex] = useRemoteHandlers({
+        initialIndex: 0,
+        axis,
+        delay: 30,
+        longDelay: 150,
+        min: 0,
+        max: items.length - 1,
+    });
+
+    const animatedScrollByIndex = boolean('animatedScrollByIndex', false);
+    const scrollSnapType = select('scrollSnapType', snapTypes, 'mandatory');
+    const scrollSnapAlign = select('scrollSnapAlign', snapAlign, 'center');
+    const detectCentral = boolean('detectCentral', true);
+    const detectThreshold = number('detectThreshold', 0.5);
+
+    return (
+        <Carousel
+            as={Row}
+            axis={axis}
+            index={index}
+            animatedScrollByIndex={animatedScrollByIndex}
+            scrollSnapType={scrollSnapType}
+            detectCentral={detectCentral}
+            detectThreshold={detectThreshold}
+            onIndexChange={(i) => setIndex(i)}
+            paddingStart="50%"
+            paddingEnd="50%"
+            style={{
+                height: '100vh',
+                maxHeight: '40rem',
+                width: '100%',
+                maxWidth: '22.5rem',
+                margin: '0 auto',
+                padding: '0.75rem',
+            }}
+        >
+            {items.map(({ title, subtitle }, i) => (
+                <CarouselItem key={`item:${i}`} scrollSnapAlign={scrollSnapAlign} style={{ padding: '0.75rem 0' }}>
+                    <GalleryCard
+                        title={title}
+                        subtitle={subtitle}
+                        focused={i === index}
+                        imageSrc={`/images/320_480_${i % 6}.jpg`}
+                        imageRatio="1:1"
+                        scaleOnFocus
+                    />
+                </CarouselItem>
+            ))}
+        </Carousel>
     );
 };
 

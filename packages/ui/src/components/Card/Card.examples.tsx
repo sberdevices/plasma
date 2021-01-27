@@ -14,6 +14,19 @@ interface TextAlignProps {
     textAlign?: 'left' | 'center' | 'right';
 }
 
+interface ContentProps {
+    title: string;
+    subtitle?: string;
+}
+
+interface ImageProps {
+    imageSrc: string;
+    imageRatio?: string;
+    imageCustomRatio?: string;
+}
+
+interface CardExampleProps extends Omit<CardProps, 'title'>, ContentProps, ImageProps, TextAlignProps {}
+
 const applyTextAlign: InterpolationFunction<TextAlignProps> = ({ textAlign }) =>
     textAlign &&
     css`
@@ -55,33 +68,19 @@ const StyledItemTitle = styled(Body1)<MaxLinesProps & TextAlignProps>`
     }
 `;
 
-export const ProductCard: React.FC<
-    CardProps & {
-        title: string;
-        subtitle: string;
-        imageSrc: string;
-    }
-> = ({ title, subtitle, imageSrc, ...rest }) => (
+export const ProductCard: React.FC<CardExampleProps> = ({ title, subtitle, imageSrc, ...rest }) => (
     <Card {...rest}>
         <CardBody>
             <CardContent>
                 <StyledProductIcon src={imageSrc} />
-                <StyledItemDescr maxLines={1}>{subtitle}</StyledItemDescr>
+                {subtitle && <StyledItemDescr maxLines={1}>{subtitle}</StyledItemDescr>}
                 <StyledItemTitle maxLines={1}>{title}</StyledItemTitle>
             </CardContent>
         </CardBody>
     </Card>
 );
 
-interface MusicCardProps extends CardProps, TextAlignProps {
-    title: string;
-    subtitle?: string;
-    imageSrc: string;
-    imageRatio?: string;
-    imageCustomRatio?: string;
-}
-
-export const MusicCard: React.FC<MusicCardProps> = ({
+export const MusicCard: React.FC<CardExampleProps> = ({
     title,
     subtitle,
     roundness = 12,
@@ -105,5 +104,33 @@ export const MusicCard: React.FC<MusicCardProps> = ({
                 {subtitle}
             </StyledItemDescr>
         )}
+    </>
+);
+
+export const GalleryCard: React.FC<CardExampleProps> = ({
+    title,
+    subtitle,
+    imageSrc,
+    imageRatio,
+    imageCustomRatio,
+    textAlign,
+    ...rest
+}) => (
+    <>
+        <Card {...rest}>
+            <CardBody>
+                <CardMedia src={imageSrc} ratio={imageRatio as any} customRatio={imageCustomRatio as any} />
+                <CardContent cover>
+                    <StyledItemTitle maxLines={1} textAlign={textAlign}>
+                        {title}
+                    </StyledItemTitle>
+                    {subtitle && (
+                        <StyledItemDescr maxLines={1} textAlign={textAlign}>
+                            {subtitle}
+                        </StyledItemDescr>
+                    )}
+                </CardContent>
+            </CardBody>
+        </Card>
     </>
 );
