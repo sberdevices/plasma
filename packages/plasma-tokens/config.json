@@ -11,46 +11,6 @@
                 }
             ]
         },
-        "ios": {
-            "transformGroup": "ios",
-            "buildPath": "build/ios/",
-            "files": [
-                {
-                    "destination": "PlasmaTokensColor.h",
-                    "format": "ios/colors.h",
-                    "className": "PlasmaTokensColor",
-                    "type": "PlasmaTokensColorName",
-                    "filter": {
-                        "attributes": {
-                            "category": "color"
-                        }
-                    }
-                },
-                {
-                    "destination": "PlasmaTokensColor.m",
-                    "format": "ios/colors.m",
-                    "className": "PlasmaTokensColor",
-                    "type": "PlasmaTokensColorName",
-                    "filter": {
-                        "attributes": {
-                            "category": "color"
-                        }
-                    }
-                }
-            ]
-        },
-        "ios-swift": {
-            "transformGroup": "ios-swift",
-            "buildPath": "build/ios-swift/",
-            "files": [
-                {
-                    "destination": "PlasmaTokens.swift",
-                    "format": "ios-swift/class.swift",
-                    "className": "PlasmaTokens",
-                    "filter": {}
-                }
-            ]
-        },
         "ios-swift-separate-enums": {
             "transformGroup": "ios-swift-separate",
             "buildPath": "build/ios-swift/",
