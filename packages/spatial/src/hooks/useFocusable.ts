@@ -1,6 +1,7 @@
 import { useContext } from 'react';
-import spatialContext from '../../src//spatialContext';
 import { useMount } from 'react-use';
+
+import { spatialContext } from '../spatialContext';
 
 function useFocusable(defaultSectionId: string): void {
     const sn = useContext(spatialContext);

@@ -1,4 +1,4 @@
-import { Rect, Partition, Center } from '../../src/utils/types';
+import { Rect, Partition, Center } from '../utils/types';
 
 function partition(rects: Rect[], targetRect: Rect, straightOverlapThreshold: number): Partition;
 

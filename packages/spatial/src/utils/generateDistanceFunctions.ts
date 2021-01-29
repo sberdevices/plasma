@@ -1,4 +1,4 @@
-import { Rect, DistanceFunctions } from '../../src/utils/types';
+import { Rect, DistanceFunctions } from '../utils/types';
 
 function generateDistanceFunctions(targetRect: Rect): DistanceFunctions {
     return {

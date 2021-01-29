@@ -1,8 +1,9 @@
 import { useContext, useEffect, useMemo } from 'react';
-import spatialContext from '../../src/spatialContext';
 import { useMount } from 'react-use';
-import { Config } from '../../src/utils/types';
-import SpatialNavigation from '../../src/spts';
+
+import { spatialContext } from '../spatialContext';
+import { Config } from '../utils/types';
+import { SpatialNavigation } from '../spts';
 
 interface SectionFocusableProp {
     section: {

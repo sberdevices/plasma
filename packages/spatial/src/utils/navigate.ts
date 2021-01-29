@@ -1,8 +1,8 @@
-import { getRect } from '../../src/utils/getRect';
-import { generateDistanceFunctions } from '../../src/utils/generateDistanceFunctions';
-import { partition } from '../../src/utils/partition';
-import { prioritize } from '../../src/utils/prioritize';
-import { Rect, Priority, Config } from '../../src/utils/types';
+import { getRect } from '../utils/getRect';
+import { generateDistanceFunctions } from '../utils/generateDistanceFunctions';
+import { partition } from '../utils/partition';
+import { prioritize } from '../utils/prioritize';
+import { Rect, Priority, Config } from '../utils/types';
 
 function navigate(
     target: HTMLElement,

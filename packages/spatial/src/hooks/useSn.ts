@@ -1,9 +1,10 @@
 import { useContext } from 'react';
-import spatialContext from '../../src/spatialContext';
-import SpatialNavigation from '../../src/spts';
+
+import { spatialContext } from '../spatialContext';
+import { SpatialNavigation } from '../spts';
 
 function useSn(): SpatialNavigation {
     return useContext(spatialContext);
 }
 
-export default useSn;
+export { useSn };

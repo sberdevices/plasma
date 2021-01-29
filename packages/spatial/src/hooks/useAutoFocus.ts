@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
-import spatialContext from '../../src/spatialContext';
 import { useMount } from 'react-use';
+
+import { spatialContext } from '../spatialContext';
 
 function useAutoFocus(sectionId: string): void {
     const sn = useContext(spatialContext);
@@ -17,4 +18,4 @@ function useAutoFocus(sectionId: string): void {
     });
 }
 
-export default useAutoFocus;
+export { useAutoFocus };

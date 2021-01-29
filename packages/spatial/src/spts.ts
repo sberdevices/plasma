@@ -6,8 +6,8 @@ import {
     navigate,
     isHTMLElement,
     isNavKey,
-} from '../src/utils/spatialUtils';
-import { Config, Section, DIRECTION, ENTER_TO, ExtendedSelector, RESTRICT, NAV_KEYS } from '../src/utils/types';
+} from './utils/spatialUtils';
+import { Config, Section, DIRECTION, ENTER_TO, ExtendedSelector, RESTRICT, NAV_KEYS } from './utils/types';
 
 interface SpatialNavigationConfig {
     config?: Config;
@@ -588,8 +588,11 @@ class SpatialNavigation {
     }
 
     boundedOnKeyDown = this.onKeyDown.bind(this);
+
     boundedOnKeyUp = this.onKeyUp.bind(this);
+
     boundedOnFocus = this.onFocus.bind(this);
+
     boundedOnBlur = this.onBlur.bind(this);
 
     init(defaultSectionId = ''): void {
@@ -856,4 +859,4 @@ class SpatialNavigation {
     }
 }
 
-export default SpatialNavigation;
+export { SpatialNavigation };

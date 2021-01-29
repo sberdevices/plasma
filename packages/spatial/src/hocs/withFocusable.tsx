@@ -1,6 +1,6 @@
 import React, { ComponentType, forwardRef } from 'react';
-import { StyledComponent, isStyledComponent } from 'styled-components/macro';
-import { isReactComponent } from '../../src/utils/isReactComponent';
+import { isStyledComponent, StyledComponent } from 'styled-components';
+import { isReactComponent } from '../utils/isReactComponent';
 
 export interface FocusableProps {
     /**
@@ -147,7 +147,7 @@ function handleClickOrTap<P extends BaseComponentProps>(
  * const Focusable = withFocusable(BaseComponent);
  */
 function withFocusable<P extends BaseComponentProps>(
-    BaseComponent: ComponentType<P>,
+    BaseComponent: ComponentType<P>
 ): ComponentType<P & FocusableProps>; // BUG: accepts component without BaseComponentProps props
 
 function withFocusable<
@@ -174,21 +174,11 @@ function withFocusable<
         const onClick = handleClickOrTap.bind(null, props);
 
         if (isStyledComponent(BaseComponent)) {
-            return (
-                <BaseComponent
-                    ref={ref}
-                    data-focusable
-                    {...props}
-                    onClick={onClick}
-                    onKeyDown={onKeyDown}
-                />
-            );
+            return <BaseComponent ref={ref} tabIndex={-1} data-focusable {...props} onClick={onClick} onKeyDown={onKeyDown} />;
         }
 
         if (isReactComponent<typeof props>(BaseComponent)) {
-            return (
-                <BaseComponent ref={ref} {...props} onClick={onClick} onKeyDown={onKeyDown} />
-            );
+            return <BaseComponent ref={ref} focusable tabIndex={-1} {...props} onClick={onClick} onKeyDown={onKeyDown} />;
         }
         throw Error('BaseComponent in not a StyledComponent nor ReactComponent');
     });

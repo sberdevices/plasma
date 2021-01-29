@@ -2,13 +2,15 @@
   "name": "@sberdevices/spatial",
   "version": "1.0.1",
   "description": "spatial",
-  "main": "dist/utils/spatialUtils.ts",
+  "main": "dist/index.js",
   "scripts": {
     "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run clean && npm run compile",
     "clean": "rm -rf dist tsconfig.tsbuildinfo",
-    "compile": "tsc"
+    "compile": "tsc",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lintFix": "eslint src --ext .ts,.tsx --fix"
   },
   "repository": {
     "type": "git",
@@ -30,6 +32,10 @@
     "@types/node": "^14.14.22",
     "@types/react": "^17.0.0",
     "@types/styled-components": "^5.1.7",
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
+    "eslint": "^7.18.0",
+    "eslint-plugin-react": "^7.22.0",
     "react-use": "13.27.0",
     "typescript": "^3.9.2"
   },

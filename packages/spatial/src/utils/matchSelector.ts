@@ -1,4 +1,4 @@
-import { ExtendedSelector } from '../../src/utils/types';
+import { ExtendedSelector } from '../utils/types';
 
 function matchSelector(element: HTMLElement, extSelector: ExtendedSelector): boolean {
     if (typeof extSelector === 'string') {

@@ -1,5 +1,5 @@
-import { isHTMLElement } from '../../src/utils/isHTMLElement';
-import { ExtendedSelector } from '../../src/utils/types';
+import { isHTMLElement } from '../utils/isHTMLElement';
+import { ExtendedSelector } from '../utils/types';
 
 function parseSelector(extSelector: ExtendedSelector): HTMLElement[] {
     if (typeof extSelector === 'string') {
