@@ -39,6 +39,7 @@ export const Default = () => {
                         <Cell
                             left={<CellIcon as="img" src="./images/avocado.png" alt="avocado" />}
                             content={<TextBox title={title} subTitle={subTitle} />}
+                            withBorder={boolean('withBorder', false)}
                         />
                     </Example>
                 </Col>
