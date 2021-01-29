@@ -1,0 +1,46 @@
+import { Meta, Props, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+
+import { InSpacing, InContainer } from '../../helpers/StoryDecorators';
+
+import * as stories from './Icon.stories';
+
+<Meta title="Content/Icon" decorators={[InSpacing, InContainer]} />
+
+# Icon
+SVG-пиктограммы. Могут быть монохромными или цветными.
+
+## Использование
+Установите пакет ``@sberdevices/plasma-icons``:
+```bash
+npm i -s @sberdevices/plasma-icons
+```
+> Используйте именной импорт.
+Например, чтобы в проекте появилась иконка ``download``, сделайте импорт ``IconDownload``:
+
+```tsx
+// App.tsx
+import { IconDownload } from '@sberdevices/plasma-icons';
+
+export const App = () =>  (
+    <IconDownload />
+);
+```
+
+> Большинство иконок создавались с определенными размерами и используются только с ними.
+
+## Примеры
+
+### Размер XS
+<Canvas>
+    <Story name="XsSize" story={stories.XsSize} />
+</Canvas>
+
+### Размер S
+<Canvas>
+    <Story name="SmallSize" story={stories.SmallSize} />
+</Canvas>
+
+### Пользовательский цвет
+<Canvas>
+    <Story name="CustomColor" story={stories.CustomColor} />
+</Canvas>

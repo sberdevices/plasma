@@ -2,6 +2,8 @@ import React from 'react';
 import { boolean, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
+import { InSpacing } from '../../helpers/StoryDecorators';
+
 import { Switch } from '.';
 
 const onChangeAction = action('onChange');
@@ -9,8 +11,9 @@ const onFocusAction = action('onFocus');
 const onBlurAction = action('onBlur');
 
 export default {
-    title: 'Switch',
+    title: 'Controls/Switch',
     component: Switch,
+    decorators: [InSpacing],
 };
 
 export const Default = () => {

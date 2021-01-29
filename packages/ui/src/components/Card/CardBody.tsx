@@ -18,7 +18,8 @@ const StyledCardBody = styled.div`
 export interface CardBodyProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 /**
- * Используется для скругления рамок содержимого внутри Card.
+ * Помещается в ``<Card />`` и скругляет рамки содержимого внутри него.
+ * Обязательно к использованию для корректного отображения скругленных углов контента.
  */
 export const CardBody: React.FC<CardBodyProps> = ({ children, className, ...rest }) => {
     return (

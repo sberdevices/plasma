@@ -26,6 +26,10 @@ export interface TextSkeletonProps extends TextSizeProps, Partial<RoundnessProps
     width?: string | number;
 }
 
+/**
+ * Компонент для создания плейсхолдера нескольких строк текста.
+ * Размеры компонента задаются с помощью констант и соответствуют размерам [типографических элементов](/?path=/docs/).
+ */
 export const TextSkeleton: React.FC<TextSkeletonProps & React.HTMLAttributes<HTMLDivElement>> = ({
     lines,
     width,

@@ -2,37 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 import { Icon, iconSectionsSet, IconName as IName, IconSize } from '@sberdevices/plasma-icons';
 
-const StyledRoot = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
+import { Cell } from '../Cell';
+import { Row, Col } from '../Grid';
+import { TextBox } from '../TextBox';
+import { Headline3 } from '../Typography';
 
-const Section = styled.div`
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 16px;
-`;
-
-const IconList = styled.div`
-    display: flex;
+const StyledRow = styled(Row)`
     flex-wrap: wrap;
 `;
 
-const StyledContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    margin: 10px;
+const StyledIcon = styled(Icon)`
+    margin: 0.125rem 0.75rem 0.125rem 0;
 `;
 
-const IconName = styled.div`
-    padding-bottom: 8px;
-`;
-
-const SectionName = styled.div`
-    font-size: 24px;
-    text-align: center;
+const StyledHeading = styled(Headline3)`
+    margin: 2rem 0 1rem;
+    color: ${({ color }) => color};
 `;
 
 interface IconSetProps {
@@ -44,7 +29,7 @@ interface IconSetProps {
 
 export const IconSet: React.FC<IconSetProps> = ({ size, color, exclude, include }) => {
     return (
-        <StyledRoot>
+        <StyledRow>
             {Object.entries(iconSectionsSet).map(([sectionName, section]) => {
                 const filteredIcons = Object.keys(section).filter((icon) => {
                     if (exclude) {
@@ -55,20 +40,19 @@ export const IconSet: React.FC<IconSetProps> = ({ size, color, exclude, include 
                 return (
                     filteredIcons &&
                     filteredIcons.length > 0 && (
-                        <Section key={sectionName}>
-                            <SectionName>{sectionName}</SectionName>
-                            <IconList>
-                                {filteredIcons.map((icon) => (
-                                    <StyledContainer key={icon}>
-                                        <IconName>{icon}</IconName>
-                                        <Icon icon={icon as IName} size={size} color={color} />
-                                    </StyledContainer>
-                                ))}
-                            </IconList>
-                        </Section>
+                        <Col key={sectionName} size={2}>
+                            <StyledHeading>{sectionName}</StyledHeading>
+                            {filteredIcons.map((icon) => (
+                                <Cell
+                                    key={icon}
+                                    left={<StyledIcon icon={icon as IName} size={size} color={color} />}
+                                    content={<TextBox title={icon} />}
+                                />
+                            ))}
+                        </Col>
                     )
                 );
             })}
-        </StyledRoot>
+        </StyledRow>
     );
 };

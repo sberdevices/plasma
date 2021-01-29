@@ -1,0 +1,177 @@
+import { Meta, Props, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+
+import { WithGridLines, InContainer } from '../../helpers/StoryDecorators';
+
+import * as stories from './Carousel.stories';
+
+import { CarouselGridWrapper, Carousel, CarouselItem, CarouselCol } from '.';
+
+<Meta title="Controls/Carousel" decorators={[InContainer, WithGridLines]} />
+
+# Carousel
+Набор компонентов для создания списков с прокруткой.
+
+## Carousel
+<Description of={Carousel} />
+<Props of={Carousel} />
+
+## CarouselGridWrapper
+<Description of={CarouselGridWrapper} />
+
+## CarouselItem
+<Description of={CarouselItem} />
+<Props of={CarouselItem} />
+
+## CarouselCol
+<Description of={CarouselCol} />
+<Props of={CarouselCol} />
+
+## Использование
+
+### CSS Scroll Snap
+В компоненте ``Carousel`` укажите свойство ``scrollSnapType``:
+```tsx
+// MyGallery.tsx
+import React from 'react';
+import { Carousel } from '@sberdevices/ui';
+
+export const MyGallery = () = (
+    <Carousel scrollSnapType="mandatory">
+        // Элементы карусели помещаются здесь
+    </Carousel>
+);
+```
+Также укажите свойство ``scrollSnapAlign`` для элемента карусели:
+```tsx
+// MyGalleryItem.tsx
+import React from 'react';
+import { CarouselItem } from '@sberdevices/ui';
+
+export const MyGalleryItem = ({ children }) => (
+    <CarouselItem scrollSnapAlign="center">{children}</CarouselItem>
+);
+```
+
+### Определение центрального элемента
+Карусель может определять активный элемент при прокрутке.
+Для этого укажите свойства ``detectActive``, ``detectThreshold`` и обработчик ``onIndexChange``.
+```tsx
+// MyGallery.tsx
+import React from 'react';
+import { Carousel } from '@sberdevices/ui';
+
+export const MyGallery = () = (
+    <Carousel detectActive detectThreshold={0.5} onIndexChange={(index) => console.log(index)}>
+        // Элементы карусели помещаются здесь
+    </Carousel>
+);
+```
+
+### Стилизация центрального элемента
+Элементы во видимой части (``viewport``) можно подвергать стилизовать.
+Например, увеличивать или менять непрозрачность.
+Свойства для определения элементов во вьюпорте:
+* ``stylingCallback`` - обработчик для стилизации элементов во вьюпорте
+* ``stylingResetCallback`` - обработчик для элементов вне вьюпорта.
+
+Для обозначения позиции элемента во вьюпорте, карусель оперирует значением ``slot``:
+* ``0`` равен центральному элементу;
+* ``-1`` и ``1`` первый слева и справа от центрального;
+* ``-2`` и ``2`` и т.д., соответственно, для второго и далее.
+
+```tsx
+// MyGallery.tsx
+import React from 'react';
+import { Carousel } from '@sberdevices/ui';
+
+/**
+ * Функция увеличения центрального элемента.
+ * Предположим, что у нас 5 элементов во вьюпорте.
+ * Тогда ряд slots будет таким: -2 -1 0 1 2.
+ * Центральный элемент примет opacity = 1, боковые - opacity = 0.5, а крайние слева и справа - opacity = 0
+ */
+const stylingCallback = (itemEl: HTMLDivElement, slot: number) => {
+    itemEl.style.opacity = `${1 - Math.abs(slot) / 2}`;
+};
+
+/**
+ * Функция сброса стилей элементов вне вьюпорта
+ */
+const stylingResetCallback = (itemEl: HTMLDivElement) => {
+    itemEl.style.opacity = '';
+};
+
+export const MyGallery = () = (
+    <Carousel stylingCallback={stylingCallback} stylingResetCallback={stylingResetCallback}>
+        // Элементы карусели помещаются здесь
+    </Carousel>
+);
+```
+
+* В данном примере используются ``Grid`` и ``CSS Scroll Snap``.
+* В корне приложения необходимо разместить ``DeviceThemeProvider``.
+* В качестве основного блока лэйаута используется контейнер ([Container](/docs/layout-grid--default#container)),
+а колонки ([Col](/docs/layout-grid--default#col)) помещаются в строки ([Row](/docs/layout-grid--default#row)).
+* Карусель поддерживает определение (``detectActive``) активного элемента.
+* Каждый элемент списка должен использовать ``CarouselContext`` для регистрации ``ref``
+— это необходимо для расчета динамической ширины и положения элементов на экране (см. [CarouselItem](#carouselitem)).
+
+```tsx
+// App.tsx
+import React from 'react';
+import { DeviceThemeProvider, CarouselGridWrapper, Carousel, CarouselCol } from '@sberdevices/ui';
+
+const items = [{ title: 'Item 1' }, { title: 'Item 2' }, { title: 'Item 3' }, { title: 'Item 4' }];
+
+export const App = () =>  {
+    const [index, setIndex] = React.useState(index);
+
+    return (
+        <DeviceThemeProvider detectDeviceCallback={() => 'sberBox'}>
+            <Container>
+                <CarouselGridWrapper>
+                    <Carousel
+                        as={Row}
+                        axis="x"
+                        index={index}
+                        scrollSnapType="mandatory"
+                        detectActive
+                        detectThreshold={0.5}
+                        stylingCallback={stylingCallback}
+                        stylingResetCallback={stylingResetCallback}
+                        onIndexChange={(i) => setIndex(i)}
+                        paddingStart="50%"
+                        paddingEnd="50%"
+                    >
+                        {items.map(({ title }, i) => (
+                            <CarouselCol key={`item:${i}`}>{title}</CarouselCol>
+                        ))}
+                    </Carousel>
+                </CarouselGridWrapper>
+            </Container>
+        </DeviceThemeProvider>
+    );
+};
+```
+
+## Примеры
+
+### Базовое применение
+<Canvas>
+    <Story name="Basic" story={stories.Basic} />
+</Canvas>
+
+### Вертикальная прокрутка
+<Canvas>
+    <Story name="Vertical" story={stories.Vertical} />
+</Canvas>
+
+### Несколько каруселей на одной странице
+<Canvas>
+    <Story name="MusicPage" story={stories.MusicPage} />
+</Canvas>
+
+### Центрирование и увеличение активного элемента
+<Canvas>
+    <Story name="CenterItem" story={stories.CenterItem} />
+</Canvas>

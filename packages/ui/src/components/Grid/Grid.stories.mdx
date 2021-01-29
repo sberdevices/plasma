@@ -1,0 +1,73 @@
+import { Meta, Props, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+
+import { Filler } from '../../helpers/Filler';
+
+import * as stories from './Grid.stories';
+
+import { Container, Row, Col } from '.';
+
+<Meta title="Layout/Grid" />
+
+# Grid
+Набор компонентов для создания сетки.
+
+## Брейкпоинты
+Каждый брейкпоинт разрешения содержит собственное максимальное количество колонок:
+
+### ``deviceScale = 2``
+| Поверхность        | Обозначение | Ширина от, пикс | Ширина до, пикс | Кол-во колонок |
+| ------------------ |-------------| --------------- | --------------- | -------------- |
+| SberBox Full HD    | XL          | 1920            | -               | 12             |
+| SberBox HD         | L           | 1538            | 1918            | 8              |
+| SberPortal         | M           | 1120            | 1536            | 6              |
+| Other              | S           | 0               | 1118            | 4              |
+
+### ``deviceScale = 1``
+| Поверхность        | Обозначение | Ширина от, пикс | Ширина до, пикс | Кол-во колонок |
+| ------------------ |-------------| --------------- | --------------- | -------------- |
+| Desktop            | XL          | 960             | -               | 12             |
+| Tablet (landscape) | L           | 769             | 959             | 8              |
+| Tablet (portrait)  | M           | 560             | 768             | 6              |
+| Mobile             | S           | 0               | 559             | 4              |
+
+## Container
+<Description of={Container} />
+
+## Row
+<Description of={Row} />
+
+## Col
+<Description of={Col} />
+<Props of={Col} />
+
+## Использование
+
+```tsx
+// App.tsx
+import { Container, Row, Col }  from '@sberdevices/ui';
+
+export const App = () => (
+    <Container>
+        <Row>
+            <Col size={4}>Hello, world!<Col>
+        </Row>
+    </Container>
+);
+```
+
+## Примеры
+
+### Базовое применение
+<Canvas>
+    <Story name="Default" story={stories.Default} />
+</Canvas>
+
+### Адаптивные размеры и отступы колонок
+<Canvas>
+    <Story name="Adaptive" story={stories.Adaptive} />
+</Canvas>
+
+### Вычисляемая ширина колонок
+<Canvas>
+    <Story name="Default" story={stories.Calculatable} />
+</Canvas>

@@ -111,6 +111,16 @@ export interface ColProps extends MediaProps, OffsetProps, React.HTMLAttributes<
     offset?: ColCount;
 }
 
+/**
+ * Блок для размещения контента или строк (``Row``) внутри себя.
+ *
+ * ``<Col type="rel" />`` — предназначается для верстки с страниц. Поведение по умолчанию.
+ * Ширина и отступ данного подтипа колонок имеют относительное значение, которое выражается в процентах.
+ *
+ * ``<Col type="calc" />`` — предназначается для верстки каруселей.
+ * Ширина и отступ данного подтипа колонок рассчитываются на основе ширины контейнера и хранятся в ``CSS Variables``.
+ * С примером использования можно ознакомиться в документации по [каруселям](/?path=/docs/controls-carousel--basic).
+ */
 export const Col = React.forwardRef<HTMLDivElement, ColProps>(
     ({ type = 'rel', size, offset, children, ...props }, ref) => {
         if (size) {

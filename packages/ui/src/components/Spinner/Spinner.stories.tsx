@@ -1,10 +1,14 @@
 import React from 'react';
 import { number } from '@storybook/addon-knobs';
 
+import { InSpacing } from '../../helpers/StoryDecorators';
+
 import { Spinner } from './Spinner';
 
 export default {
-    title: 'Spinner',
+    title: 'Content/Spinner',
+    component: Spinner,
+    decorators: [InSpacing],
 };
 
 export const Default = () => <Spinner />;

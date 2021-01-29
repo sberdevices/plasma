@@ -38,6 +38,9 @@ const StyledHeaderRoot = styled.header`
     `}
 `;
 
+/**
+ * Корневой узел для шапки.
+ */
 export const HeaderRoot: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children, ...rest }) => {
     return <StyledHeaderRoot {...rest}>{children}</StyledHeaderRoot>;
 };

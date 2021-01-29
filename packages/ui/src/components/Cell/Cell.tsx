@@ -92,6 +92,9 @@ export interface CellProps extends React.HTMLAttributes<HTMLDivElement> {
     as?: React.ComponentType<any>;
 }
 
+/**
+ * Базовый компонент для отображения блоков контента в списках и карточках.
+ */
 export const Cell: React.FC<CellProps & React.HTMLAttributes<HTMLDivElement>> = (props) => {
     const { left, content, right, alignLeft = 'center', alignRight = 'center', ...rest } = props;
 

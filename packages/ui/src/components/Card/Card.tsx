@@ -68,6 +68,9 @@ export interface CardProps
         Partial<RoundnessProps>,
         React.HTMLAttributes<HTMLDivElement> {}
 
+/**
+ * Контейнер со скругленными углами с возможностью фокусировки на нем.
+ */
 // eslint-disable-next-line prefer-arrow-callback
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(function Card(
     { roundness = DEFAULT_ROUNDNESS, children, ...rest },

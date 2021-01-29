@@ -7,6 +7,9 @@ export const StyledHeaderTitleWrapper = styled.div`
     align-self: center;
 `;
 
+/**
+ * Обертывающий компонент для заголовка и подзаголовка.
+ */
 export const HeaderTitleWrapper: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children, ...rest }) => (
     <StyledHeaderTitleWrapper {...rest}>{children}</StyledHeaderTitleWrapper>
 );

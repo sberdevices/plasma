@@ -170,6 +170,9 @@ export interface ButtonProps
     as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
 }
 
+/**
+ * Основной компонент для создания кнопок.
+ */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     // eslint-disable-next-line prefer-arrow-callback
     function Button(

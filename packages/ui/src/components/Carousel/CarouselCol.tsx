@@ -12,6 +12,10 @@ const StyledCol = styled(Col)<Pick<CarouselItemProps, 'scrollSnapAlign'>>`
 
 export interface CarouselColProps extends ColProps, CarouselItemProps, React.HTMLAttributes<HTMLDivElement> {}
 
+/**
+ * Элемент списка. В рамках интерфейса элемент наследуется от ``Col`` и ``CarouselItem``.
+ * Используется для каруселей с сеткой.
+ */
 export const CarouselCol: React.FC<CarouselColProps> = ({ children, ...rest }) => {
     const itemRef = useCarouselItem<HTMLDivElement>();
 

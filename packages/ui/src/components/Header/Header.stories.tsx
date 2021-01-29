@@ -91,52 +91,29 @@ const ResponsiveContent = () => (
     </>
 );
 
-export default {
-    title: 'Header',
-    decorators: [
-        (Story) => (
-            <div style={{ margin: '-16px' }}>
-                <Story />
-            </div>
-        ),
-    ],
-};
-
-export const Default = () => {
-    return (
-        <>
-            {boolean('Display grid', true) && <GridLines />}
-            <Container>
-                <Header
-                    back={boolean('Back button', true)}
-                    logo={boolean('Logo', true) && './images/logo.png'}
-                    logoAlt="Logo"
-                    title={text('title', 'Header title text')}
-                    subtitle={text('subtitle', 'Subtitle text')}
-                    onBackClick={action('onBackClick')}
-                >
-                    <AppBarContent />
-                </Header>
-            </Container>
-        </>
-    );
-};
+export const Default = () => (
+    <Header
+        back={boolean('Back button', true)}
+        logo={boolean('Logo', true) && './images/logo.png'}
+        logoAlt="Logo"
+        title={text('title', 'Header title text')}
+        subtitle={text('subtitle', 'Subtitle text')}
+        onBackClick={action('onBackClick')}
+    >
+        <AppBarContent />
+    </Header>
+);
 
 export const CustomWithResponsiveContent = () => (
-    <>
-        {boolean('Display grid', true) && <GridLines />}
-        <Container>
-            <HeaderRoot>
-                <HeaderBack onClick={action('onBackClick')} />
-                <HeaderLogo src="./images/logo.png" alt="Logo" />
-                <HeaderTitleWrapper>
-                    <HeaderTitle>{text('title', 'Header title text')}</HeaderTitle>
-                    <HeaderSubtitle>{text('subtitle', 'Subtitle text')}</HeaderSubtitle>
-                </HeaderTitleWrapper>
-                <HeaderContent>
-                    <ResponsiveContent />
-                </HeaderContent>
-            </HeaderRoot>
-        </Container>
-    </>
+    <HeaderRoot>
+        <HeaderBack onClick={action('onBackClick')} />
+        <HeaderLogo src="./images/logo.png" alt="Logo" />
+        <HeaderTitleWrapper>
+            <HeaderTitle>{text('title', 'Header title text')}</HeaderTitle>
+            <HeaderSubtitle>{text('subtitle', 'Subtitle text')}</HeaderSubtitle>
+        </HeaderTitleWrapper>
+        <HeaderContent>
+            <ResponsiveContent />
+        </HeaderContent>
+    </HeaderRoot>
 );

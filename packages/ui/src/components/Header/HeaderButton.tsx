@@ -11,6 +11,9 @@ const StyledHeaderButton = styled(Button)`
     padding: 0;
 `;
 
+/**
+ * Кнопка без внутренних отступов, границ и цвета фона.
+ */
 export const HeaderButton: React.FC<ButtonProps> = ({
     size = 'm',
     view = 'clear',

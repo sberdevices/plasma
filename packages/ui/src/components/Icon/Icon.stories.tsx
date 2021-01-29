@@ -3,17 +3,6 @@ import { text } from '@storybook/addon-knobs';
 
 import { IconSet } from './IconSet';
 
-export default {
-    title: 'Icon',
-    decorators: [
-        (Story) => (
-            <div style={{ fontSize: '16px' }}>
-                <Story />
-            </div>
-        ),
-    ],
-};
-
 export const XsSize = () => <IconSet size="xs" include={['chevronUp', 'chevronDown', 'disclosureRight']} />;
 
 export const SmallSize = () => <IconSet size="s" exclude={['chevronUp', 'chevronDown']} />;

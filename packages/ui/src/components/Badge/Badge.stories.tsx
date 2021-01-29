@@ -2,20 +2,15 @@ import React from 'react';
 import { text, boolean, select } from '@storybook/addon-knobs';
 import { IconSettings } from '@sberdevices/plasma-icons';
 
+import { InSpacing } from '../../helpers/StoryDecorators';
 import { View, views } from '../../mixins/applyView';
 
 import { Badge, badgeSizes, BadgeSize } from './Badge';
 
 export default {
-    title: 'Badge',
+    title: 'Content/Badge',
     component: Badge,
-    decorators: [
-        (Story) => (
-            <div style={{ display: 'flex' }}>
-                <Story />
-            </div>
-        ),
-    ],
+    decorators: [InSpacing],
 };
 
 const sizeKeys = Object.keys(badgeSizes) as BadgeSize[];

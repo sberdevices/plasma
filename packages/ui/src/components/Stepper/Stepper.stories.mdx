@@ -1,0 +1,66 @@
+import { Meta, Props, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+
+import { InSpacing } from '../../helpers/StoryDecorators';
+
+import * as stories from './Stepper.stories';
+
+import { Stepper, StepperRoot, StepperButton, StepperValue } from '.';
+
+<Meta title="Controls/Stepper" decorators={[InSpacing]} />
+
+# Stepper
+Набор компонентов для создания элементов управления количеством, суммой и другими численными показателями.
+
+## Stepper
+<Description of={Stepper} />
+<Props of={Stepper} />
+
+### Модификаторы
+При использовании модификатора ``remover``, по достижению
+минимального количества кнопка **минус** заменяется на **удалить**.
+По нажатию на кнопку **удалить** вызывается обработчик **удаления**.
+
+## StepperRoot
+<Description of={StepperRoot} />
+
+## StepperButton
+<Description of={StepperButton} />
+<Props of={StepperButton} />
+
+## StepperValue
+<Description of={StepperValue} />
+<Props of={StepperValue} />
+
+## Использование
+Используйте или скомпанованный компонент ``<Stepper />``,
+или составные части, где корневым узлом будет являться ``<StepperRoot />``.
+
+```tsx
+// App.tsx
+import { Stepper }  from '@sberdevices/ui';
+
+export const App = () => (
+    <Stepper
+      remover
+      value={5}
+      step={1}
+      min={0}
+      max={10}
+      disabled={false}
+      onChange={() => {}}
+      onRemove={() => {}}
+    />
+);
+```
+
+## Примеры
+
+### Базовое применение
+<Canvas>
+    <Story name="Default" story={stories.Default} />
+</Canvas>
+
+### Использование составных компонентов
+<Canvas>
+    <Story name="Custom" story={stories.Custom} />
+</Canvas>

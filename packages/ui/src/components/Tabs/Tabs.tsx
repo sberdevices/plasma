@@ -201,7 +201,7 @@ export interface TabsProps
 }
 
 /**
- * Основной компонент, контейнер табов.
+ * Контейнер вкладок.
  */
 export const Tabs: React.FC<TabsProps> = ({
     size = 'l',

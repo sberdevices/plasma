@@ -2,11 +2,14 @@ import React from 'react';
 import { IconDone, IconLock } from '@sberdevices/plasma-icons';
 import { accent, whitePrimary, whiteTertiary } from '@sberdevices/plasma-tokens';
 
+import { InSpacing } from '../../helpers/StoryDecorators';
+
 import { MarkedList, MarkedItem } from '.';
 
 export default {
-    title: 'MarkedList',
+    title: 'Content/MarkedList',
     component: MarkedList,
+    decorators: [InSpacing],
 };
 
 export const Default = () => (

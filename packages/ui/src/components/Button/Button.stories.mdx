@@ -1,0 +1,122 @@
+import { Meta, Props, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+
+import { InSpacing } from '../../helpers/StoryDecorators';
+
+import * as stories from './Button.stories';
+
+import { Button, ActionButton } from '.';
+
+<Meta title="Controls/Button" decorators={[InSpacing]} />
+
+# Кнопки
+Кнопки могут отображаться в нескольких размерах и цветах, могут содержать текст и/или иконку.
+
+## Button
+<Description of={Button} />
+
+<Canvas>
+    <Story name="Default" story={stories.Default} />
+</Canvas>
+
+<Props of={Button} />
+
+## ActionButton
+<Description of={ActionButton} />
+
+<Canvas>
+    <Story name="ActionButton" story={stories.ActionButton} />
+</Canvas>
+
+<Props of={ActionButton} />
+
+## Использование
+Компонент ``Button`` может содержать текст, который указывается в
+свойстве ``text``, или любой контент напрямую через ``children``.
+
+Свойство ``text`` может быть использовано совместно
+со свойствами ``contentLeft`` и ``contentRight``.
+Таким образом, можно помещать **иконку** слева или справа от текста.
+
+Для создания квадратных кнопок с иконкой или текстом используйте свойство ``contentLeft``,
+передавая туда рендер иконки или текста.
+
+```tsx
+// App.tsx
+import React from 'react';
+import { IconDownload } from '@sberdevices/plasma-icons';
+import { Button } from '@sberdevices/ui';
+
+export const App = () => (
+    <>
+        <Button text="Текст" />
+        <Button text="Текст" contentLeft={<IconDownload />} />
+        <Button text="Текст" contentRight={<IconDownload />} />
+        <Button contentLeft={<IconDownload />} />
+        <Button>
+            <IconDownload />
+            <span>Текст</span>
+        </Button>
+    </>
+);
+```
+
+### Размер кнопки
+Размер кнопки задаётся с помощью свойства ``size``. Свойство принимает значения ``"l"``, ``"m"`` или ``"s"``.
+```tsx
+// App.tsx
+import React from 'react';
+import { Button } from '@sberdevices/ui';
+
+export const App = () => (
+    <>
+        <Button text="Button" size="l" />
+        <Button text="Button" size="m" />
+        <Button text="Button" size="s" />
+    </>
+);
+```
+
+### Вид кнопки
+Вид кнопки изменяется с помощью свойства ``view``. Возможные значения свойства ``view``:
+* ``"primary"``
+* ``"secondary"``
+* ``"warning"``
+* ``"critical"``
+* ``"checked"``
+* ``"clear"``
+```tsx
+// App.tsx
+import React from 'react';
+import { Button } from '@sberdevices/ui';
+
+export const App = () => (
+    <>
+        <Button text="Button" view="primary" />
+        <Button text="Button" view="secondary" />
+        <Button text="Button" view="warning" />
+        <Button text="Button" view="critical" />
+        <Button text="Button" view="checked" />
+        <Button text="Button" view="clear" />
+    </>
+);
+```
+
+### Границы кнопки
+Чтобы изменить границы кнопки, установите свойство ``pin`` в одно из допустимых значений.
+```tsx
+// App.tsx
+import React from 'react';
+import { Button } from '@sberdevices/ui';
+
+export const App = () => (
+    <>
+        <Button pin="square-square">Button</Button>
+        <Button pin="square-clear">Button</Button>
+        <Button pin="clear-square">Button</Button>
+        <Button pin="clear-clear">Button</Button>
+        <Button pin="clear-circle">Button</Button>
+        <Button pin="circle-clear">Button</Button>
+        <Button pin="circle-circle">Button</Button>
+    </>
+);
+```

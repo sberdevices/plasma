@@ -4,6 +4,7 @@ import { StyledCarousel, StyledCarouselTrack } from './Carousel';
 
 /**
  * Компонент применяется, если требуется компенсировать отступы контейнера в сетке.
+ * Стилизованный компонент, обладающий всеми свойствами ``div``.
  */
 export const CarouselGridWrapper = styled.div`
     overflow: hidden;

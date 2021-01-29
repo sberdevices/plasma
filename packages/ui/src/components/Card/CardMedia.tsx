@@ -68,6 +68,9 @@ export type CardMediaProps = (HeightProps | RatioProps | CustomRatioProps) & {
     disabled?: boolean;
 };
 
+/**
+ * Компонент для отображения картинок.
+ */
 export const CardMedia: React.FC<CardMediaProps & React.HTMLAttributes<HTMLDivElement>> = ({
     children,
     src,

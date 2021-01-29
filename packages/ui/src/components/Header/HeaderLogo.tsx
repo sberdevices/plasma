@@ -19,6 +19,9 @@ export interface HeaderLogoProps extends React.HTMLAttributes<HTMLDivElement> {
     alt?: string;
 }
 
+/**
+ * Компонент для размещения логотипа.
+ */
 export const HeaderLogo: React.FC<HeaderLogoProps> = ({ alt = 'logo', ...rest }) => (
     <StyledHeaderLogo alt={alt} {...rest} />
 );
