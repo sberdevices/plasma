@@ -14,15 +14,8 @@ import { Disclosure } from './CellDisclosure';
 import { CellListItem as ListItem } from './CellListItem';
 
 export default {
-    title: 'Cell',
+    title: 'Content/Cell',
     component: Cell,
-    decorators: [
-        (Story) => (
-            <div style={{ paddingTop: '40px' }}>
-                <Story />
-            </div>
-        ),
-    ],
 };
 
 const Example = styled.div`

@@ -16,18 +16,6 @@ const StyledBackground = styled.div<{ background: string }>`
     background: ${({ background }) => background};
 `;
 
-export default {
-    title: 'Palette',
-    component: Palette,
-    decorators: [
-        (Story) => (
-            <div style={{ margin: '-16px' }}>
-                <Story />
-            </div>
-        ),
-    ],
-};
-
 export const Default = () => {
     return (
         <StyledContainer>
@@ -36,7 +24,7 @@ export const Default = () => {
                     <>
                         <Palette
                             key={`item:${i}`}
-                            theme={theme}
+                            theme={theme as 'darkSber'}
                             title={i === 0 ? '🌚 Dark Theme Colors' : ''}
                             heading={theme}
                         />
@@ -48,7 +36,7 @@ export const Default = () => {
                     <>
                         <Palette
                             key={`item:${i}`}
-                            theme={theme}
+                            theme={theme as 'lightSber'}
                             title={i === 0 ? '🌝 Light Theme Colors' : ''}
                             heading={theme}
                         />

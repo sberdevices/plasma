@@ -40,6 +40,9 @@ const StyledLine = styled.div<StyledTextSizeProps>`
 
 export interface LineSkeletonProps extends TextSizeProps, Partial<RoundnessProps> {}
 
+/**
+ * Размеры компонента задаются с помощью констант и соответствуют размерам [типографических элементов](/?path=/docs/).
+ */
 export const LineSkeleton: React.FC<LineSkeletonProps & React.HTMLAttributes<HTMLDivElement>> = ({
     size = DEFAULT_TEXT_SIZE,
     roundness = DEFAULT_ROUNDNESS,

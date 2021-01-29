@@ -71,6 +71,9 @@ export interface TimePickerProps extends PickOptional<PickerProps, 'focused' | '
     options?: typeof defaultOptions;
 }
 
+/**
+ * Компонент для выбора времени.
+ */
 export const TimePicker: React.FC<TimePickerProps> = ({ options = defaultOptions, value, min, max, onChange }) => {
     const [[hours, minutes, seconds], setState] = React.useState(getValues(value));
 

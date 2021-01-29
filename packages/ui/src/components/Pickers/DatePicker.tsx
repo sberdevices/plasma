@@ -44,6 +44,9 @@ export interface DatePickerProps
     options?: typeof defaultOptions;
 }
 
+/**
+ * Компонент для выбора даты.
+ */
 export const DatePicker: React.FC<DatePickerProps> = ({
     options = defaultOptions,
     value,

@@ -1,0 +1,30 @@
+import { Meta, Props, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+
+import { InSpacing } from '../../helpers/StoryDecorators';
+
+import * as stories from './Pickers.stories';
+
+import { DatePicker, TimePicker } from '.';
+
+<Meta title="Controls/Pickers" decorators={[InSpacing]} />
+
+# Pickers
+Набор элементов управления для выбора даты и времени.
+
+## DatePicker
+<Description of={DatePicker} />
+
+<Canvas>
+    <Story name="DatePicker" story={stories.DatePicker} />
+</Canvas>
+
+<Props of={DatePicker} />
+
+## TimePicker
+<Description of={TimePicker} />
+
+<Canvas>
+    <Story name="TimePicker" story={stories.TimePicker} />
+</Canvas>
+
+<Props of={TimePicker} />

@@ -16,4 +16,8 @@ const StyledRoot = styled(Footnote1)`
     background: ${background};
 `;
 
+/**
+ * Короткие текстовые подсказки.
+ * Вызываются только в текущем запущенном приложении как реакция на выполнение действия пользователем.
+ */
 export const Toast: React.FC<ToastProps> = ({ text }) => <StyledRoot>{text}</StyledRoot>;

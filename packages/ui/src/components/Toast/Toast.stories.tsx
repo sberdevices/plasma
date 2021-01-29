@@ -1,14 +1,9 @@
 import React from 'react';
-import { text, select, number, boolean } from '@storybook/addon-knobs';
+import { text, select, number } from '@storybook/addon-knobs';
 
 import { Button } from '../Button';
 
-import { useToast } from './useToast';
-import { Toast } from './Toast';
-
-export default {
-    title: 'Toast',
-};
+import { Toast, useToast } from '.';
 
 export const ToastComponent = () => {
     return <Toast text={text('text', 'Short Text Message Without Action')} />;

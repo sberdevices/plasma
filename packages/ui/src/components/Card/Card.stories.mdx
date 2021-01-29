@@ -1,0 +1,85 @@
+import { Meta, Props, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+
+import { InSpacing } from '../../helpers/StoryDecorators';
+
+import * as stories from './Card.stories';
+
+import {
+    Card,
+    CardBody,
+    CardContent,
+    CardMedia,
+    CardHeadline1,
+    CardParagraph1
+} from '.';
+
+<Meta title="Content/Card" decorators={[InSpacing]} />
+
+# Card
+Набор компонентов для создания карточек.
+
+## Card
+<Description of={Card} />
+<Props of={Card} />
+
+## CardBody
+<Description of={CardBody} />
+
+## CardContent
+<Description of={CardContent} />
+<Props of={CardContent} />
+
+## CardMedia
+<Description of={CardMedia} />
+<Props of={CardMedia} />
+
+## CardHeadline1, ...
+``... CardHeadline2, CardHeadline3, CardFootnote1, CardFootnote2`` — типографика, поддерживающая изменение цвета с помощью свойства ``view``.
+<Props of={CardHeadline1} />
+
+## CardParagraph1, ...
+``... CardParagraph2, CardBody1, CardBody2`` — типографика, которой можно указать количество строк с помощью свойства ``lines`` и изменить цвет с помощью свойства ``view``.
+<Props of={CardParagraph1} />
+
+## Использование
+
+```tsx
+// App.tsx
+import {
+    Card,
+    CardBody,
+    CardContent,
+    CardMedia,
+    CardHeadline1
+ } from '@sberdevices/ui';
+
+export const App = () =>  (
+    <Card>
+        <CardBody>
+            <CardMedia src="/path-to-image.jpg" ratio="1:1" />
+            <CardContent>
+                <CardHeadline1>Hello, world!</CardHeadline1>
+            </CardContent>
+        </CardBody>
+    </Card>
+);
+```
+
+## Примеры
+
+### Базовое применение
+<Canvas>
+    <Story name="BasicValue" story={stories.BasicValue} />
+    <Story name="BasicDefault" story={stories.BasicDefault} />
+</Canvas>
+
+### Список
+<Canvas>
+    <Story name="ListCard" story={stories.ListCard} />
+    <Story name="ListAndHeader" story={stories.ListAndHeader} />
+</Canvas>
+
+### Короткий ответ
+<Canvas>
+    <Story name="FastAnswer" story={stories.FastAnswer} />
+</Canvas>

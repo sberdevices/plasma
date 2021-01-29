@@ -44,6 +44,9 @@ export interface StepperProps
     onChange: (value: number) => void;
 }
 
+/**
+ * Готовый компонент для создания счетчика, подобного ``input[type="range"]``.
+ */
 export const Stepper: React.FC<StepperProps> = ({
     value,
     remover,

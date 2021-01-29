@@ -3,11 +3,15 @@ import { text, number, select, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { Icon } from '@sberdevices/plasma-icons';
 
+import { InSpacing } from '../../helpers/StoryDecorators';
+
 import { Tabs, TabsSize, TabsView } from './Tabs';
 import { TabItem } from './TabItem';
 
 export default {
-    title: 'Tabs',
+    title: 'Controls/Tabs',
+    component: Tabs,
+    decorators: [InSpacing],
 };
 
 const sizeKeys = ['l', 'm', 's'] as TabsSize[];

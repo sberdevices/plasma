@@ -12,7 +12,7 @@ import type { Axis } from './Carousel.types';
 export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
     as?: React.ComponentType<any>;
     /**
-     * Ось скроллирования
+     * Ось прокрутки
      */
     axis: Axis;
     /**
@@ -199,6 +199,9 @@ export const StyledCarouselTrack = styled.div<PickOptional<CarouselProps, 'axis'
               `}
 `;
 
+/**
+ * Компонент для создания списков с прокруткой.
+ */
 // eslint-disable-next-line prefer-arrow-callback
 export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carousel(
     {

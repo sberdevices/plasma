@@ -1,0 +1,77 @@
+import { Meta, Props, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+
+import { InSpacing } from '../../helpers/StoryDecorators';
+
+import * as stories from './Toast.stories';
+
+import { Toast } from '.';
+
+<Meta title="Controls/Toast" decorators={[InSpacing]} />
+
+# Toast
+<Description of={Toast} />
+<Props of={Toast} />
+
+## Использование
+Компонент ``Toast`` может использоваться для создания собственной системы подсказок.  
+```tsx
+// App.tsx
+import React from 'react';
+import { Toast } from '@sberdevices/ui';
+
+export const App = () => (
+    <Toast text="Short Text Message Without Action" />
+);
+```
+
+## Система подсказок
+Существует готовая система текстовых подсказок,
+для использования которой необходимо обернуть приложение в ``ToastProvider``:
+```jsx
+// App.tsx
+import React from 'react';
+import { ToastProvider } from '@sberdevices/ui';
+
+export const App = () => (
+    <ToastProvider>
+        <div className="App">Hello, world!</div>
+    </ToastProvider>
+);
+```
+
+После этого, с помощью хука ``useToast`` можно получить доступ к управлению подсказками.
+
+```jsx
+// MyComponent.tsx
+import React from 'react'
+import { useToast, Button } from '@sberdevices/ui'
+
+export const MyComponent = () => {
+    const { showToast, hideToast } = useToast()
+    
+    return (
+        <Button onClick={() => showToast('text message')} />
+    )
+}
+```
+
+``showToast`` имеет необязательный аргумент ``position``, отвечающий за позиционирование подсказки.
+```jsx
+type Position = 'top' | 'bottom';
+```
+
+``showToast`` имеет необязательный аргумент timeout, отвечающий за время отображения подсказки.
+Если аргумент не передаётся, время отображения подсказки по умолчанию равно 3 секундам. 
+Скрыть текущую подсказку в любой момент можно с помощью функции ``hideToast``.  
+
+## Примеры
+
+### Базовое применение
+<Canvas>
+    <Story name="ToastComponent" story={stories.ToastComponent} />
+</Canvas>
+
+### Вызов с помощью контекста/хука
+<Canvas>
+    <Story name="ToastContext" story={stories.ToastContext} />
+</Canvas>

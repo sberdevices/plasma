@@ -80,6 +80,12 @@ export interface ActionButtonProps
         PickOptional<StyledActionButtonsProps, 'size' | 'view' | 'pin'>,
         React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
+/**
+ * Кнопка для размещения внутри карточек.
+ * Упрощенная версия ``Button`` для создания квадратных кнопок (с соотношением сторон 1:1).
+ * Размеры ``ActionButton`` меньше размеров ``Button``.
+ * Обладает теми же цветами, размерами и модификаторами, что и основная кнопка.
+ */
 export const ActionButton: React.FC<ActionButtonProps> = ({
     children,
     view = 'secondary',

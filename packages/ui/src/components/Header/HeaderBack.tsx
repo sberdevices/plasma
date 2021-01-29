@@ -16,6 +16,9 @@ export type HeaderBackProps = ButtonProps & {
     iconSize?: IconSize;
 };
 
+/**
+ * Кнопка назад.
+ */
 export const HeaderBack: React.FC<HeaderBackProps> = ({ iconSize = 's', ...rest }) => (
     <StyledHeaderBackButton {...rest}>
         <IconChevronLeft size={iconSize} />

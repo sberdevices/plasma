@@ -1,0 +1,86 @@
+import { Meta, Props, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+
+import { WithGridLines, InContainer } from '../../helpers/StoryDecorators';
+
+import * as stories from './Header.stories';
+
+import {
+    Header,
+    HeaderRoot,
+    HeaderBack,
+    HeaderLogo,
+    HeaderTitleWrapper,
+    HeaderSubtitle,
+    HeaderTitle,
+    HeaderContent,
+} from '.';
+
+<Meta title="Layout/Header" decorators={[InContainer, WithGridLines]} />
+
+# Header
+Набор компонентов для создания шапки.
+
+## Header
+<Description of={Header} />
+<Props of={Header} />
+
+## HeaderRoot
+<Description of={HeaderRoot} />
+
+## HeaderBack
+<Description of={HeaderBack} />
+<Props of={HeaderBack} />
+
+## HeaderLogo
+<Description of={HeaderLogo} />
+<Props of={HeaderLogo} />
+
+## HeaderTitleWrapper
+<Description of={HeaderTitleWrapper} />
+
+## HeaderSubtitle
+<Description of={HeaderSubtitle} />
+
+## HeaderTitleWrapper
+<Description of={HeaderTitle} />
+
+## HeaderContent
+<Description of={HeaderContent} />
+
+## Использование
+> Используйте или скомпанованный компонент ``<Header />``,
+или составные части, где корневым узлом будет являться ``<HeaderRoot />``.
+
+> Шапка всегда используется вместе с ``<Container />``.
+
+```tsx
+// App.tsx
+import { Container, Header }  from '@sberdevices/ui';
+
+export const App = () => (
+    <Container>
+        <Header
+            back={true}
+            logo="./images/logo.png"
+            logoAlt="Logo"
+            title="Header title text"
+            subtitle="Subtitle text"
+            onBackClick={() => console.log('Back click!')}
+        >
+            <div>Header content</div>
+        </Header>
+    </Container>
+);
+```
+
+## Примеры
+
+### Базовое применение
+<Canvas>
+    <Story name="Default" story={stories.Default} />
+</Canvas>
+
+### Использование составных компонентов
+<Canvas>
+    <Story name="CustomWithResponsiveContent" story={stories.CustomWithResponsiveContent} />
+</Canvas>

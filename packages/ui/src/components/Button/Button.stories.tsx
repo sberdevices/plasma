@@ -6,19 +6,8 @@ import { IconClock, IconDownload, Icon } from '@sberdevices/plasma-icons';
 import { View } from '../../mixins/applyView';
 
 import { ButtonSize } from './ButtonBase';
-import { Button } from './Button';
-import { ActionButton as ActionButtonComponent } from './ActionButton';
 
-export default {
-    title: 'Button',
-    decorators: [
-        (Story) => (
-            <div style={{ display: 'flex', padding: '40px' }}>
-                <Story />
-            </div>
-        ),
-    ],
-};
+import { Button, ActionButton as ActionButtonComponent } from '.';
 
 const sizeKeys = ['l', 'm', 's'] as ButtonSize[];
 const viewKeys = ['primary', 'secondary', 'checked', 'warning', 'critical', 'clear'] as View[];

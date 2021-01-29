@@ -53,6 +53,9 @@ export interface TextPttrnProps {
     size?: 'm' | 'l';
 }
 
+/**
+ * Компонент для отображения текста в скомпанованном блоке.
+ */
 export const TextBox: React.FC<TextPttrnProps> = ({
     label,
     title,
