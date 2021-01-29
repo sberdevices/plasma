@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { primary, secondary } from '@sberdevices/plasma-tokens';
 
-import { Body1, Footnote1, Headline1, Headline3 } from '../Typography';
+import { Body1, Footnote1, Headline1, Headline2, Headline3, Caption as CaptionText } from '../Typography';
 
 export const Title = styled(Body1)`
     margin: 0.125rem 0;
@@ -19,6 +19,11 @@ export const BiggerTitle = styled(Headline1)`
     color: ${primary};
 `;
 
+export const Headline = styled(Headline2)`
+    margin: 0.5rem 0;
+    color: ${primary};
+`;
+
 export const Label = styled.div`
     margin: 0.375rem 0;
     color: ${({ color }) => color || secondary};
@@ -29,7 +34,7 @@ export const SubTitle = styled(Footnote1)`
     color: ${({ color }) => color || secondary};
 `;
 
-export const Caption = styled.div`
+export const Caption = styled(CaptionText)`
     margin: 0.25rem 0;
     color: ${({ color }) => color || secondary};
 `;

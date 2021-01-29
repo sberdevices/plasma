@@ -8,8 +8,8 @@ const ListItem = styled.li`
     list-style: none;
 
     ${CellContentWrapper} {
-        padding-top: 1rem;
-        padding-bottom: 1rem;
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
     }
 
     &:not(:last-child) ${CellContentWrapper} {

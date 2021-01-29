@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { text, select } from '@storybook/addon-knobs';
+import { text, select, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { accent, footnote1 } from '@sberdevices/plasma-tokens';
 
@@ -47,6 +47,7 @@ export const Default = () => {
                             onClick={action('cell clicked')}
                             left={<CellIcon as="img" src="./images/avocado.png" alt="avocado" />}
                             content={<TextBox title={title} subTitle={subTitle} />}
+                            withBorder={boolean('withBorder', false)}
                         />
                     </Example>
                 </Col>

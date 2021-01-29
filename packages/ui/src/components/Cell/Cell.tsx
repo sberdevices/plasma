@@ -1,6 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { SelfPosition } from 'csstype';
+import { surfaceLiquid03 } from '@sberdevices/plasma-tokens';
 
 export const CellRoot = styled.div`
     display: flex;
@@ -30,7 +31,7 @@ const alignToFlex: Record<alignLeftProp, SelfPosition> = {
 export const CellLeft = styled.div<{ align: alignLeftProp }>`
     display: flex;
     align-items: ${({ align = 'center' }) => alignToFlex[align]};
-    padding: 0.375rem 0;
+    padding: 0.75rem 0;
 `;
 
 export const CellRight = styled.div<{ align: alignRightProp }>`
@@ -41,12 +42,18 @@ export const CellRight = styled.div<{ align: alignRightProp }>`
 `;
 
 /** Оборачивает ( content + right ) */
-export const CellContentWrapper = styled.div`
+export const CellContentWrapper = styled.div<{ withBorder: boolean }>`
     display: flex;
     flex: auto;
     justify-content: space-between;
 
-    padding: 0.375rem 0;
+    padding: 0.75rem 0;
+
+    ${({ withBorder }) =>
+        withBorder &&
+        css`
+            border-bottom: 0.0625rem solid ${surfaceLiquid03};
+        `}
 `;
 
 export const CellContent = styled.div`
@@ -85,6 +92,7 @@ export interface CellProps extends React.HTMLAttributes<HTMLDivElement> {
     left?: React.ReactNode;
     content: React.ReactNode;
     right?: React.ReactNode;
+    withBorder?: boolean;
 
     alignLeft?: alignLeftProp;
     alignRight?: alignRightProp;
@@ -93,12 +101,12 @@ export interface CellProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const Cell: React.FC<CellProps & React.HTMLAttributes<HTMLDivElement>> = (props) => {
-    const { left, content, right, alignLeft = 'center', alignRight = 'center', ...rest } = props;
+    const { left, content, right, alignLeft = 'center', alignRight = 'center', withBorder = false, ...rest } = props;
 
     return (
         <CellRoot {...rest}>
             {left && <CellLeft align={alignLeft}>{left}</CellLeft>}
-            <CellContentWrapper>
+            <CellContentWrapper withBorder={withBorder}>
                 <CellContent>{content}</CellContent>
                 {right && <CellRight align={alignRight}>{right}</CellRight>}
             </CellContentWrapper>
