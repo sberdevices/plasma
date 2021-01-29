@@ -1,0 +1,42 @@
+import { Meta, Props, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+
+import { InSpacing } from '../../helpers/StoryDecorators';
+
+import * as stories from './Typography.stories';
+
+<Meta title="Content/Typography" decorators={[InSpacing]} />
+
+# Типографическая система
+
+## Примеры использования
+
+### Как компонент
+```tsx
+// App.tsx
+import React from 'react';
+import { Body1 } from '@sberdevices/ui/components/Typography';
+
+const App = () => (
+  <Body1>some text</Body1>
+);
+
+export default App;
+```
+
+### Как объект стиля
+```tsx
+// App.tsx
+import React from 'react';
+import { body1 } from '@sberdevices/plasma-tokens';
+
+const App = () => (
+  <div style={ body1 }>some text</div>
+);
+
+export default App;
+```
+
+## Варианты
+<Canvas>
+    <Story name="Default" story={stories.Default} />
+</Canvas>

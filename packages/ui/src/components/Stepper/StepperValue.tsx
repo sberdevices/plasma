@@ -48,6 +48,9 @@ export interface StepperValueProps
     value: number;
 }
 
+/**
+ * Компонент для отображения значения степпера.
+ */
 export const StepperValue: React.FC<StepperValueProps> = ({ value, disabled, isWarning, ...rest }) => (
     <StyledValue disabled={disabled} isWarning={isWarning} {...rest}>
         {value}

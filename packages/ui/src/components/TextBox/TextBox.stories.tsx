@@ -9,15 +9,8 @@ import { Container, Row, Col } from '../Grid';
 import { TextBox, Title, BigTitle, SubTitle, Label, Caption } from './TextBox';
 
 export default {
-    title: 'TextBox',
+    title: 'Content/TextBox',
     component: TextBox,
-    decorators: [
-        (Story) => (
-            <div style={{ paddingTop: '40px' }}>
-                <Story />
-            </div>
-        ),
-    ],
 };
 
 const Template = (args) => <TextBox {...args} />;

@@ -1,11 +1,10 @@
 import React from 'react';
 import { boolean, number, select } from '@storybook/addon-knobs';
 
-import { GridLines } from '../../helpers/GridLines';
 import type { SnapType, SnapAlign } from '../../types';
 import { isSberBox } from '../../utils';
 import { ProductCard, MusicCard, GalleryCard } from '../Card/Card.examples';
-import { Container, Row } from '../Grid';
+import { Row } from '../Grid';
 
 import { CarouselSection, ScalingColCard, scaleCallback, scaleResetCallback } from './Carousel.examples';
 
@@ -25,20 +24,6 @@ const items = Array(100)
 
 const snapTypes = ['mandatory', 'proximity'] as SnapType[];
 const snapAlign = ['start', 'center', 'end'] as SnapAlign[];
-
-export default {
-    title: 'Carousel',
-    decorators: [
-        (Story) => (
-            <div style={{ margin: '-16px' }}>
-                {boolean('Display grid', true) && <GridLines />}
-                <Container>
-                    <Story />
-                </Container>
-            </div>
-        ),
-    ],
-};
 
 export const Basic = () => {
     const axis = 'x';

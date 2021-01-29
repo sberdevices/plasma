@@ -100,6 +100,7 @@ const StyledLabel = styled.span<StyledLabelProps>`
 
     transition: all 0.1s ease-in-out;
 
+    /* stylelint-disable-next-line selector-nested-pattern, selector-type-no-unknown */
     ${StyledInput}:focus ~ & {
         ${caption};
 
@@ -121,6 +122,8 @@ const StyledContent = styled.div`
     left: 0;
     margin: 0 ${paddingX};
 
+    /* stylelint-disable-next-line max-line-length */
+    /* stylelint-disable-next-line declaration-block-semicolon-newline-after, rule-empty-line-before, selector-nested-pattern */
     ${StyledInput} ~ & {
         left: auto;
         right: 0;
@@ -207,6 +210,9 @@ export interface FieldProps extends ValidationProps, React.InputHTMLAttributes<H
     helperText?: string;
 }
 
+/**
+ * Компонент ввода с подписью (caption) сверху.
+ */
 export const TextField = React.forwardRef<HTMLInputElement, FieldProps>(
     (
         {

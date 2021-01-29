@@ -8,10 +8,6 @@ import { DatePicker as DatePickerComponent, TimePicker as TimePickerComponent } 
 
 const now = new Date();
 
-export default {
-    title: 'Pickers',
-};
-
 export const DatePicker = () => {
     const isSberbox = isSberBox();
 

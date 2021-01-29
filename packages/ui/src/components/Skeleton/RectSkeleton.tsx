@@ -29,6 +29,9 @@ export interface RectSkeletonProps extends Partial<RoundnessProps> {
     height: string | number;
 }
 
+/**
+ * Компонент для создания прямоугольного плейсхолдера.
+ */
 export const RectSkeleton: React.FC<RectSkeletonProps & React.HTMLAttributes<HTMLDivElement>> = ({
     width,
     height,

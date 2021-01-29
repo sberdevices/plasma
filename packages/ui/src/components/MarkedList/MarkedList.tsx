@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { footnote1, scalingPixelBasis } from '@sberdevices/plasma-tokens';
 
+/**
+ * Компонент для создания маркированных списков.
+ */
 export const MarkedList = styled.ul`
     list-style-type: none;
     margin: 0;

@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 
 import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
+import { Title, Subtitle, Description, Primary, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
 
 import { text, background, gradient } from '@sberdevices/plasma-tokens';
 import { darkEva, darkJoy, darkSber, lightEva, lightJoy, lightSber } from '@sberdevices/plasma-tokens/themes';
@@ -129,5 +130,19 @@ export const globalTypes = {
         toolbar: {
             items: ['touch', 'sberBox', 'sberPortal'],
         },
+    },
+};
+
+export const parameters = {
+    docs: {
+        page: () => (
+            <>
+                <Title />
+                <Subtitle />
+                <Description />
+                <Primary />
+                <ArgsTable story={PRIMARY_STORY} />
+            </>
+        ),
     },
 };

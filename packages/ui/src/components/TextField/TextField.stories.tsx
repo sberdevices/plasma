@@ -3,10 +3,14 @@ import { text, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { IconSettings } from '@sberdevices/plasma-icons';
 
+import { InSpacing } from '../../helpers/StoryDecorators';
+
 import { TextField } from './TextField';
 
 export default {
-    title: 'TextField',
+    title: 'Controls/TextField',
+    component: TextField,
+    decorators: [InSpacing],
 };
 
 export const Default = () => {

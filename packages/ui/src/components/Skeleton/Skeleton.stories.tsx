@@ -20,10 +20,6 @@ const ButtonSkeleton = withSkeleton<ButtonProps & WithSkeletonProps>(Button);
 const h1Style = { marginTop: '0.75rem' };
 const f1Style = { marginTop: '0.375rem' };
 
-export default {
-    title: 'Skeleton',
-};
-
 export const Line = () => <LineSkeleton size={select('size', textSizes, 'body1')} roundness={useRoundnessKnob()} />;
 
 export const Text = () => (

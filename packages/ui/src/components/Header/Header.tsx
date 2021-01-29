@@ -35,6 +35,9 @@ export interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
     onBackClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
+/**
+ * Шапка страницы.
+ */
 export const Header: React.FC<HeaderProps> = ({
     back,
     logo,

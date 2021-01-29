@@ -23,6 +23,9 @@ export interface CarouselItemProps extends ScrollSnapProps, React.HTMLAttributes
     as?: React.ComponentType<any>;
 }
 
+/**
+ * Элемент списка. Используется для каруселей без сетки.
+ */
 export const CarouselItem: React.FC<CarouselItemProps> = ({ children, ...rest }) => {
     const itemRef = useCarouselItem<HTMLDivElement>();
 

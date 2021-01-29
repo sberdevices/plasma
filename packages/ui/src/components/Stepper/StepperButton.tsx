@@ -11,6 +11,9 @@ export interface StepperButtonProps
     icon?: React.ReactElement;
 }
 
+/**
+ * Стилизованная кнопка, применяемая для контроля над значением степпера.
+ */
 export const StepperButton: React.FC<StepperButtonProps> = ({
     pin = 'circle-circle',
     view = 'secondary',

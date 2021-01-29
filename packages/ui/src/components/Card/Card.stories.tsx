@@ -12,10 +12,6 @@ import { CardContent } from './CardContent';
 import { CardMedia } from './CardMedia';
 import { CardHeadline1, CardHeadline3, CardFootnote1, CardParagraph1 } from './CardTypography';
 
-export default {
-    title: 'Card',
-};
-
 export const BasicValue = () => {
     const cover = boolean('cover', false);
     return (
