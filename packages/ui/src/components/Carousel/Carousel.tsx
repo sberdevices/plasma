@@ -214,7 +214,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
     },
     ref,
 ) {
-    const prevIndex = React.useRef(-1);
+    const prevIndex = React.useRef<number | null>(null);
     const direction = React.useRef<boolean | null>(null);
     const offset = React.useRef(0);
     const refs = React.useMemo(() => new CarouselItemRefs(), []);
@@ -360,14 +360,15 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
      * Прокрутка до нужной позиции индекса.
      */
     const toIndex = React.useCallback((i: number) => {
-        if (scrollRef.current && trackRef.current && refs.items.length) {
+        if (scrollRef.current && trackRef.current && refs.items.length && i >= 0) {
             toPos(
                 calcPos(offset.current, axis, i, scrollRef.current, refs.items),
                 axis,
                 /**
                  * Без анимации при переходе на другой конец списка
                  */
-                animatedScrollByIndex && Math.abs(i - prevIndex.current) !== refs.items.length - 1,
+                animatedScrollByIndex &&
+                    (prevIndex.current === null || Math.abs(i - prevIndex.current) !== refs.items.length - 1),
                 scrollRef.current,
             );
             prevIndex.current = i;
@@ -405,8 +406,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
      * потому что вызов useEffect весьма затратен по времени
      * для устройств по типу SberBox.
      */
-    if (index !== prevIndex.current && prevIndex.current !== -1) {
-        direction.current = index !== prevIndex.current ? index > prevIndex.current : null;
+    if (index !== prevIndex.current) {
         toIndex(index);
     }
 
