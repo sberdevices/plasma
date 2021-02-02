@@ -152,7 +152,7 @@ export const Picker: React.FC<PickerProps> = ({
                 animatedScrollByIndex={controls}
                 scrollSnap={!controls}
                 scrollSnapType="mandatory"
-                detectCentral={!controls}
+                detectActive={!controls}
                 detectThreshold={0.5}
                 onIndexChange={(i) => onChange?.(items[i])}
                 paddingStart={sizes[size][visibleItems].padding}
