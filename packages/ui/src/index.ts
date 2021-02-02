@@ -11,6 +11,7 @@ export * from './components/Pickers';
 export * from './components/Skeleton';
 export * from './components/Spinner';
 export * from './components/Stepper';
+export * from './components/Switch';
 export * from './components/TextBox';
 export * from './components/TextField';
 export * from './components/Theme';
