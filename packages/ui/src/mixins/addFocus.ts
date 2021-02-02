@@ -15,6 +15,8 @@ export interface OutlinedProps {
     outlined?: boolean;
 }
 
+type SynthesizeFocus = (ruleset: FlattenSimpleInterpolation, focused?: boolean) => FlattenSimpleInterpolation;
+
 interface OutlineProps {
     /**
      * Размер фокусной рамки
@@ -32,12 +34,13 @@ interface OutlineProps {
      * Радиус фокусной рамки
      */
     outlineRadius?: string;
+    /**
+     * Пользовательская функция синтетического фокуса
+     */
+    synthesizeFocus?: SynthesizeFocus;
 }
 
-export const syntheticFocus = (
-    ruleset: FlattenSimpleInterpolation,
-    focused?: boolean,
-): FlattenSimpleInterpolation => css`
+export const syntheticFocus: SynthesizeFocus = (ruleset, focused) => css`
     &:focus {
         ${ruleset}
     }
@@ -72,6 +75,7 @@ export const addFocus: InterpolationFunction<FocusProps & OutlinedProps & Outlin
     outlineOffset = outlineSize,
     outlineColor = buttonFocused,
     outlineRadius = 0,
+    synthesizeFocus = syntheticFocus,
 }) =>
     outlined &&
     css`
@@ -100,7 +104,7 @@ export const addFocus: InterpolationFunction<FocusProps & OutlinedProps & Outlin
             pointer-events: none;
         }
 
-        ${syntheticFocus(
+        ${synthesizeFocus(
             css`
                 &::before {
                     box-shadow: 0 0 0 ${outlineSize} ${outlineColor};
