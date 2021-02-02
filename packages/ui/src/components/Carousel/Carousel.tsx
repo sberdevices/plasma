@@ -24,11 +24,11 @@ export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
      */
     animatedScrollByIndex?: boolean;
     /**
-     * Вычислять центральный элемент
+     * Вычислять активный элемент
      */
-    detectCentral?: boolean;
+    detectActive?: boolean;
     /**
-     * Пороговое значение определения центрального элемента (0-1)
+     * Пороговое значение определения активного элемента (0-1)
      */
     detectThreshold?: number;
     /**
@@ -75,10 +75,16 @@ export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
      * Debounce внутренних обработчиков события onScroll
      */
     debounceMs?: number;
+    /**
+     * Центрирование активного элемента при скролле
+     */
+    scrollAlign?: 'start' | 'center';
 }
 
 const THROTTLE_DEFAULT_MS = 100;
 const DEBOUNCE_DEFAULT_MS = 150;
+
+const round = (n: number) => Math.round(n * 100) / 100;
 
 /**
  * Подсчет смещения из-за паддингов.
@@ -97,12 +103,13 @@ const calcPos = (
     index: number,
     scroll: HTMLElement,
     items: React.MutableRefObject<HTMLElement | null>[],
+    scrollAlign: 'start' | 'center',
 ) => {
-    let pos = offset;
+    let pos = scrollAlign === 'center' ? offset : 0;
     let carouselSize;
     let itemSize;
 
-    for (let i = index - 1; i >= 0; i--) {
+    for (let i = 0; i < index; i++) {
         if (axis === 'x') {
             pos += items[i].current?.offsetWidth || 0;
         } else {
@@ -110,15 +117,17 @@ const calcPos = (
         }
     }
 
-    if (axis === 'x') {
-        carouselSize = scroll.offsetWidth;
-        itemSize = items[index].current?.offsetWidth || 0;
-    } else {
-        carouselSize = scroll.offsetHeight;
-        itemSize = items[index].current?.offsetHeight || 0;
-    }
+    if (scrollAlign === 'center') {
+        if (axis === 'x') {
+            carouselSize = scroll.offsetWidth;
+            itemSize = items[index].current?.offsetWidth || 0;
+        } else {
+            carouselSize = scroll.offsetHeight;
+            itemSize = items[index].current?.offsetHeight || 0;
+        }
 
-    pos -= carouselSize / 2 - itemSize / 2;
+        pos -= carouselSize / 2 - itemSize / 2;
+    }
 
     return pos;
 };
@@ -170,7 +179,7 @@ export const StyledCarousel = styled.div<PickOptional<CarouselProps, 'axis' | 's
     }
 `;
 
-const StyledCarouselTrack = styled.div<PickOptional<CarouselProps, 'axis' | 'paddingStart' | 'paddingEnd'>>`
+export const StyledCarouselTrack = styled.div<PickOptional<CarouselProps, 'axis' | 'paddingStart' | 'paddingEnd'>>`
     ${({ axis, paddingStart, paddingEnd }) =>
         axis === 'x'
             ? css`
@@ -198,7 +207,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
         animatedScrollByIndex = false,
         scrollSnap = false,
         scrollSnapType = 'mandatory',
-        detectCentral = false,
+        detectActive = false,
         detectThreshold = 0.5,
         scaleCentral = false,
         scaleCallback,
@@ -210,6 +219,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
         onIndexChange,
         throttleMs = THROTTLE_DEFAULT_MS,
         debounceMs = DEBOUNCE_DEFAULT_MS,
+        scrollAlign = 'center',
         ...rest
     },
     ref,
@@ -234,16 +244,16 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
      * Подсчет: от 0 до 1, какое количество ширины/высоты
      * каждого элемента находится по центру скролла.
      */
-    const centralDetection = React.useCallback(
+    const detectActiveItem = React.useCallback(
         throttle(() => {
-            if (!scrollRef.current || !trackRef.current || (!scaleCentral && !detectCentral)) {
+            if (!scrollRef.current || !trackRef.current || (!scaleCentral && !detectActive)) {
                 return;
             }
 
             /**
              * Правая (или нижняя для Оу) граница элемента.
              */
-            let itemPos = offset.current;
+            let itemEdge = offset.current;
 
             /**
              * Смещение (отрицательный или положительный отступ)
@@ -286,31 +296,37 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
                  * Сравниваем по предыдущему элементу.
                  * [ ... ] ...|n| <- Левый край элемента за пределами начала видимой части
                  */
-                if (itemPos > scrollEdge) {
+                if (itemEdge > scrollEdge) {
                     if (scaleCentral && scaleCallback) {
                         nextItems.push(itemRef.current);
                     }
                     return;
                 }
 
-                itemPos += itemSize;
+                itemEdge += itemSize;
 
                 /**
                  * Все элементы левее вьюпорта выпадают из процедуры.
                  * Сравниваем по текущему элементу.
                  * Правый край элемента за пределами начала видимой части -> |p|... [ ... ]
                  */
-                if (scrollPos > itemPos) {
+                if (scrollPos > itemEdge) {
                     if (scaleCentral && scaleCallback) {
                         prevItems.push(itemRef.current);
                     }
                     return;
                 }
 
-                const itemCenter = itemPos - itemSize / 2;
-                const itemSlot = Math.round(((itemCenter - scrollCenter) / itemSize) * 100) / 100;
+                const itemCenter = itemEdge - itemSize / 2;
+                let itemSlot;
 
-                if (detectCentral && detectThreshold && Math.abs(itemSlot) <= detectThreshold) {
+                if (scrollAlign === 'center') {
+                    itemSlot = round((itemCenter - scrollCenter) / itemSize);
+                } else {
+                    itemSlot = round((itemEdge - itemSize - scrollPos) / itemSize);
+                }
+
+                if (detectActive && detectThreshold && Math.abs(itemSlot) <= detectThreshold) {
                     debouncedOnIndexChange(i);
                 }
 
@@ -350,10 +366,10 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
      */
     const handleScroll = React.useCallback(
         (event) => {
-            centralDetection();
+            detectActiveItem();
             onScroll?.(event);
         },
-        [centralDetection, onScroll],
+        [detectActiveItem, onScroll],
     );
 
     /**
@@ -362,7 +378,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
     const toIndex = React.useCallback((i: number) => {
         if (scrollRef.current && trackRef.current && refs.items.length && i >= 0) {
             toPos(
-                calcPos(offset.current, axis, i, scrollRef.current, refs.items),
+                calcPos(offset.current, axis, i, scrollRef.current, refs.items, scrollAlign),
                 axis,
                 /**
                  * Без анимации при переходе на другой конец списка
@@ -395,7 +411,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
                  * событие скролла не произойдет, не сработает и определение центра,
                  * необходимо вызвать его вручную.
                  */
-                centralDetection();
+                detectActiveItem();
             });
         }
     }, []);
