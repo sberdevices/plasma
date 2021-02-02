@@ -55,9 +55,10 @@ export const Basic = () => {
     });
 
     const animatedScrollByIndex = boolean('animatedScrollByIndex', isSberbox);
+    const scrollAlign = select('scrollAlign', ['center', 'start'], 'start');
     const scrollSnap = boolean('scrollSnap', !isSberbox);
     const scrollSnapType = select('scrollSnapType', snapTypes, 'mandatory');
-    const detectCentral = boolean('detectCentral', !isSberbox);
+    const detectActive = boolean('detectActive', !isSberbox);
     const detectThreshold = number('detectThreshold', 0.49);
 
     return (
@@ -67,9 +68,10 @@ export const Basic = () => {
                 axis={axis}
                 index={index}
                 animatedScrollByIndex={animatedScrollByIndex}
+                scrollAlign={scrollAlign}
                 scrollSnap={scrollSnap}
                 scrollSnapType={scrollSnapType}
-                detectCentral={detectCentral}
+                detectActive={detectActive}
                 detectThreshold={detectThreshold}
                 onIndexChange={(i) => setIndex(i)}
                 style={{ paddingTop: '1.25rem', paddingBottom: '1.25rem' }}
@@ -101,9 +103,10 @@ export const Vertical = () => {
     });
 
     const animatedScrollByIndex = boolean('animatedScrollByIndex', false);
+    const scrollAlign = select('scrollAlign', ['center', 'start'], 'center');
     const scrollSnapType = select('scrollSnapType', snapTypes, 'mandatory');
     const scrollSnapAlign = select('scrollSnapAlign', snapAlign, 'center');
-    const detectCentral = boolean('detectCentral', true);
+    const detectActive = boolean('detectActive', true);
     const detectThreshold = number('detectThreshold', 0.5);
 
     return (
@@ -112,8 +115,9 @@ export const Vertical = () => {
             axis={axis}
             index={index}
             animatedScrollByIndex={animatedScrollByIndex}
+            scrollAlign={scrollAlign}
             scrollSnapType={scrollSnapType}
-            detectCentral={detectCentral}
+            detectActive={detectActive}
             detectThreshold={detectThreshold}
             onIndexChange={(i) => setIndex(i)}
             paddingStart="50%"
@@ -192,7 +196,8 @@ export const CenterItem: React.FC = () => {
     const scrollSnap = boolean('scrollSnap', !isSberbox);
     const scrollSnapType = select('scrollSnapType', snapTypes, 'mandatory');
     const scrollSnapAlign = select('scrollSnapAlign', snapAlign, 'center');
-    const detectCentral = boolean('detectCentral', !isSberbox);
+    const scrollAlign = select('scrollAlign', ['center', 'start'], 'center');
+    const detectActive = boolean('detectActive', !isSberbox);
     const detectThreshold = number('detectThreshold', 0.5);
     const scaleCentral = boolean('scaleCentral', true);
 
@@ -205,7 +210,8 @@ export const CenterItem: React.FC = () => {
                 animatedScrollByIndex={animatedScrollByIndex}
                 scrollSnap={scrollSnap}
                 scrollSnapType={scrollSnapType}
-                detectCentral={detectCentral}
+                scrollAlign={scrollAlign}
+                detectActive={detectActive}
                 detectThreshold={detectThreshold}
                 scaleCentral={scaleCentral}
                 scaleCallback={scaleCallback}

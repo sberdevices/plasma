@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { StyledCarousel } from './Carousel';
+import { StyledCarousel, StyledCarouselTrack } from './Carousel';
 
 /**
  * Компонент применяется, если требуется компенсировать отступы контейнера в сетке.
@@ -14,6 +14,10 @@ export const CarouselGridWrapper = styled.div`
     ${StyledCarousel} {
         scroll-padding: 0 var(--plasma-grid-margin);
         padding-left: var(--plasma-grid-margin);
+    }
+
+    /* stylelint-disable-next-line selector-nested-pattern */
+    ${StyledCarouselTrack} {
         padding-right: var(--plasma-grid-margin);
     }
 `;
