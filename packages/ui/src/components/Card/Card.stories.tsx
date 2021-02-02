@@ -10,25 +10,34 @@ import { Card } from './Card';
 import { CardBody } from './CardBody';
 import { CardContent } from './CardContent';
 import { CardMedia } from './CardMedia';
-import { CardHeadline1, CardHeadline3, CardFootnote1, CardParagraph1 } from './CardTypography';
+import { CardParagraph1 } from './CardTypography';
+
+const longText = `Канадский актёр, кинопродюсер, и музыкант. Наиболее известен своими ролями в киносериях «Матрица» и
+«Джон Уик», а также в фильмах «На гребне волны», «Мой личный штат Айдахо», «Дракула», «Скорость»,
+«Джонни-мнемоник», «Адвокат дьявола», «Константин: Повелитель тьмы» и «Короли улиц».`;
 
 export const BasicValue = () => {
     const cover = boolean('cover', false);
+
     return (
         <Card
-            style={{ width: '20rem' }}
+            style={{ width: '22.5rem' }}
             tabIndex={-1}
             outlined={boolean('outlined', true)}
             scaleOnFocus={boolean('scaleOnFocus', true)}
         >
             <CardBody>
-                <CardMedia src="/images/320_320_1.jpg" ratio="16:9" />
+                <CardMedia
+                    src="./images/320_320_0.jpg"
+                    placeholder="./images/320_320_1.jpg"
+                    ratio={cover ? '1 / 1' : '16 / 9'}
+                />
                 <CardContent cover={cover}>
-                    <CardHeadline3>{text('h3', 'Потребительский кредит')}</CardHeadline3>
-                    <CardHeadline1 style={{ marginTop: '0.75rem' }}>{text('h1', 'до 230 000 ₽')}</CardHeadline1>
-                    <CardFootnote1 style={{ marginTop: '0.375rem' }} view="secondary">
-                        {text('footer', 'На 18 месяцев, ставка 13,9%')}
-                    </CardFootnote1>
+                    <TextBox>
+                        <TextBoxBigTitle>{text('subTitle', 'Потребительский кредит')}</TextBoxBigTitle>
+                        <TextBoxBiggerTitle>{text('title', 'до 230 000 ₽')}</TextBoxBiggerTitle>
+                        <TextBoxSubTitle>{text('description', 'На 18 месяцев, ставка 13,9%')}</TextBoxSubTitle>
+                    </TextBox>
                     <Button
                         text="Label"
                         view="primary"
@@ -45,27 +54,31 @@ export const BasicValue = () => {
     );
 };
 
-export const BasicDefault = () => (
-    <Card style={{ width: '20rem' }}>
-        <CardBody>
-            <CardMedia src="/images/320_320_0.jpg" ratio="4:3" />
-            <CardContent>
-                <CardHeadline3>{text('h3', 'Киану Ривз')}</CardHeadline3>
-                <CardFootnote1 style={{ marginTop: '0.5rem' }} view="secondary">
-                    {text('footer1', 'Актёр')}
-                </CardFootnote1>
-                <CardParagraph1 style={{ marginTop: '0.75rem' }} lines={4}>
-                    Канадский актёр, кинопродюсер, и музыкант. Наиболее известен своими ролями в киносериях «Матрица» и
-                    «Джон Уик», а также в фильмах «На гребне волны», «Мой личный штат Айдахо», «Дракула», «Скорость»,
-                    «Джонни-мнемоник», «Адвокат дьявола», «Константин: Повелитель тьмы» и «Короли улиц».
-                </CardParagraph1>
-                <CardFootnote1 style={{ marginTop: '0.5625rem' }} view="tertiary">
-                    {text('footer2', 'ru.wikipedia.org')}
-                </CardFootnote1>
-            </CardContent>
-        </CardBody>
-    </Card>
-);
+export const BasicDefault = () => {
+    const cover = boolean('cover', false);
+
+    return (
+        <Card style={{ width: '20rem' }}>
+            <CardBody>
+                <CardMedia
+                    src="./images/320_320_2.jpg"
+                    placeholder="./images/320_320_3.jpg"
+                    ratio={cover ? '1 / 1' : '16 / 9'}
+                />
+                <CardContent cover={cover}>
+                    <TextBox>
+                        <TextBoxBigTitle>{text('title', 'Киану Ривз')}</TextBoxBigTitle>
+                        <TextBoxSubTitle>{text('footer1', 'Актёр')}</TextBoxSubTitle>
+                        <CardParagraph1 style={{ marginTop: '0.75rem' }} lines={4}>
+                            {longText}
+                        </CardParagraph1>
+                        <TextBoxSubTitle>{text('footer2', 'ru.wikipedia.org')}</TextBoxSubTitle>
+                    </TextBox>
+                </CardContent>
+            </CardBody>
+        </Card>
+    );
+};
 
 export const ListCard = () => (
     <Card style={{ width: '20rem' }}>
