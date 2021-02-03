@@ -86,25 +86,32 @@ export interface ActionButtonProps
  * Размеры ``ActionButton`` меньше размеров ``Button``.
  * Обладает теми же цветами, размерами и модификаторами, что и основная кнопка.
  */
-export const ActionButton: React.FC<ActionButtonProps> = ({
-    children,
-    view = 'secondary',
-    size = 'm',
-    pin = 'square-square',
-    scaleOnInteraction = true,
-    outlined = true,
-    ...rest
-}) => {
-    return (
-        <StyledActionButton
-            view={view}
-            size={size}
-            pin={pin}
-            scaleOnInteraction={scaleOnInteraction}
-            outlined={outlined}
-            {...rest}
-        >
-            {children}
-        </StyledActionButton>
-    );
-};
+export const ActionButton = React.forwardRef<HTMLButtonElement, ActionButtonProps>(
+    // eslint-disable-next-line prefer-arrow-callback
+    function ActionButton(
+        {
+            children,
+            view = 'secondary',
+            size = 'm',
+            pin = 'square-square',
+            scaleOnInteraction = true,
+            outlined = true,
+            ...rest
+        },
+        ref,
+    ) {
+        return (
+            <StyledActionButton
+                view={view}
+                size={size}
+                pin={pin}
+                scaleOnInteraction={scaleOnInteraction}
+                outlined={outlined}
+                ref={ref}
+                {...rest}
+            >
+                {children}
+            </StyledActionButton>
+        );
+    },
+);
