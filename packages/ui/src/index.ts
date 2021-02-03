@@ -8,6 +8,7 @@ export * from './components/Device';
 export * from './components/Grid';
 export * from './components/Header';
 export * from './components/MarkedList';
+export * from './components/PaginationDots';
 export * from './components/Pickers';
 export * from './components/Radiobox';
 export * from './components/Skeleton';
