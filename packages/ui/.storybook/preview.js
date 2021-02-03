@@ -8,9 +8,16 @@ import { Title, Subtitle, Description, Primary, ArgsTable, PRIMARY_STORY } from 
 import { text, background, gradient } from '@sberdevices/plasma-tokens';
 import { darkEva, darkJoy, darkSber, lightEva, lightJoy, lightSber } from '@sberdevices/plasma-tokens/themes';
 
+import storybookTheme from './theme';
+
 import { DeviceThemeProvider } from '../src/components/Device';
 
 import { ToastProvider } from '../src/components/Toast';
+
+const isDocs = () => {
+    const params = new URL(document.location).searchParams;
+    return params.get('viewMode') === 'docs';
+};
 
 const DocumentStyle = createGlobalStyle`
     /* stylelint-disable-next-line selector-nested-pattern */
@@ -19,15 +26,6 @@ const DocumentStyle = createGlobalStyle`
         color: ${text};
         background-color: ${background};
         background-image: ${gradient};
-    }
-
-    /* stylelint-disable-next-line selector-nested-pattern */
-    body {
-        margin: 0;
-        padding: 16px !important;
-
-        /* stylelint-disable-next-line string-quotes */
-        font-family: "SB Sans Text", Helvetica, Arial, sans-serif;
     }
 `;
 
@@ -126,7 +124,7 @@ export const globalTypes = {
     typoSize: {
         name: 'Device kind',
         description: 'Global typography size for components',
-        defaultValue: 'sberBox',
+        defaultValue: isDocs() ? 'touch' : 'sberBox',
         toolbar: {
             items: ['touch', 'sberBox', 'sberPortal'],
         },
@@ -144,5 +142,12 @@ export const parameters = {
                 <ArgsTable story={PRIMARY_STORY} />
             </>
         ),
+        theme: storybookTheme,
+    },
+    options: {
+        storySort: {
+            method: 'alphabetical',
+            order: ['Plasma', 'Layout', 'Content', 'Controls', 'MobileShowcase'],
+        },
     },
 };
