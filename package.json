@@ -22,6 +22,7 @@
     "@storybook/addon-toolbars": "6.0.22",
     "@storybook/addon-viewport": "6.0.0-rc.13",
     "@storybook/react": "6.0.0-rc.13",
+    "@storybook/theming": "6.1.16",
     "@typescript-eslint/eslint-plugin": "2.29.0",
     "@typescript-eslint/parser": "2.29.0",
     "auto": "9.60.1",
