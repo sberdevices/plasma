@@ -1,5 +1,61 @@
-import { FlattenSimpleInterpolation, css } from 'styled-components';
+import styled, { FlattenSimpleInterpolation, css } from 'styled-components';
 import { scalingPixelBasis, sberPortalScale } from '@sberdevices/plasma-tokens';
+
+export const bps = {
+    S: (ruleset: FlattenSimpleInterpolation) => css`
+        @media (max-width: 559px) {
+            ${ruleset};
+        }
+        @media (max-width: 1118px) {
+            ${ruleset};
+        }
+    `,
+    M: (ruleset: FlattenSimpleInterpolation) => css`
+        @media (min-width: 560px) and (max-width: 768px) {
+            ${ruleset};
+        }
+        @media (min-width: 1120px) and (max-width: 1536px) {
+            ${ruleset};
+        }
+    `,
+    L: (ruleset: FlattenSimpleInterpolation) => css`
+        @media (min-width: 769px) and (max-width: 959px) {
+            ${ruleset};
+        }
+        @media (min-width: 1538px) and (max-width: 1918px) {
+            ${ruleset};
+        }
+    `,
+    XL: (ruleset: FlattenSimpleInterpolation) => css`
+        @media (min-width: 960px) {
+            ${ruleset};
+        }
+        @media (min-width: 1920px) {
+            ${ruleset};
+        }
+    `,
+};
+
+type MediaQuery = (
+    queryTemplates: TemplateStringsArray,
+    ...queryExpressions: string[]
+) => (
+    ruleTemplates: TemplateStringsArray,
+    ...ruleExpressions: Array<string | number | false | undefined>
+) => FlattenSimpleInterpolation;
+
+export const mediaQuerie: MediaQuery = (queryTmpls, ...queryExprs) => (ruleTmpls, ...ruleExprs) => css`
+    @media ${css(queryTmpls, ...queryExprs)} {
+        ${css(ruleTmpls, ...ruleExprs)}
+    }
+`;
+
+export const media = {
+    XL: mediaQuerie`(min-width: 960px), (min-width: 1920px)`, // SberBox FHD • 12 cols
+    L: mediaQuerie`((min-width: 769px) and (max-width: 959px)), ((min-width: 1538px) and (max-width: 1918px))`, // SberBox HD • 8 cols
+    M: mediaQuerie`((min-width: 560px) and (max-width: 768px)), ((min-width: 1120px) and (max-width: 1536px))`, // Portal • 6 cols
+    S: mediaQuerie`(max-width: 559px), (max-width: 1118px)`, // Mobile • 4 cols
+};
 
 export const breakpoints = {
     XL: 960, // TV

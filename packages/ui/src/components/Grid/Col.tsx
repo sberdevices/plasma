@@ -1,7 +1,7 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-import { mediaQuery, gridSizes, gridColumns, Breakpoint } from '../../utils';
+import { media, gridSizes, gridColumns, Breakpoint } from '../../utils';
 
 type ColCount =
     | 1
@@ -84,15 +84,12 @@ const StyledCol = styled(StyledColBase)<StyledColProps>`
         gridSizes.map((breakpoint) => {
             const size = props[sizes[breakpoint]];
             const offset = props[offsets[breakpoint]];
-            return mediaQuery(
-                breakpoint,
-                theme.deviceScale,
-            )(css`
+            return media[breakpoint]`
                 ${$type === 'rel' && size && `width: ${(100 / gridColumns[breakpoint]) * size}%;`}
                 ${$type === 'rel' && offset && `margin-left: ${(100 / gridColumns[breakpoint]) * offset}%;`}
                 ${$type === 'calc' && size && `width: calc(var(--plasma-grid-column-width) * ${size});`}
                 ${$type === 'calc' && offset && `margin-left: calc(var(--plasma-grid-column-width) * ${offset});`}
-            `);
+            `;
         })}
 `;
 

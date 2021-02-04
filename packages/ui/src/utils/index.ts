@@ -7,6 +7,7 @@ export { detectDevice, deviceScales, isSberBox, isSberPortal } from './deviceDet
 export type { DeviceKind } from './deviceDetection';
 
 export {
+    media,
     mediaQuery,
     breakpoints as gridBreakpoints,
     columns as gridColumns,
