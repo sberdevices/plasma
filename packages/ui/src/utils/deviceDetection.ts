@@ -13,7 +13,11 @@ export type DeviceKind = keyof typeof deviceScales;
  * @return {boolean}
  */
 export const isSberPortal = (): boolean => {
-    const ua = navigator?.userAgent?.toLowerCase();
+    if (typeof navigator === 'undefined') {
+        return false;
+    }
+
+    const ua = navigator.userAgent.toLowerCase();
 
     return ua.includes('sberportal') || ua.includes('stargate');
 };
@@ -22,7 +26,15 @@ export const isSberPortal = (): boolean => {
  * Проверка в браузере на устройство "SberBox".
  * @return {boolean}
  */
-export const isSberBox = (): boolean => navigator?.userAgent?.toLowerCase()?.includes('sberbox');
+export const isSberBox = (): boolean => {
+    if (typeof navigator === 'undefined') {
+        return false;
+    }
+
+    const ua = navigator.userAgent.toLowerCase();
+
+    return ua.includes('sberbox');
+};
 
 /**
  * Вернет тип устройства, под которым запустилось приложение.
@@ -30,7 +42,7 @@ export const isSberBox = (): boolean => navigator?.userAgent?.toLowerCase()?.inc
  * @return {DeviceKind}
  */
 export const detectDevice = (): DeviceKind => {
-    if (typeof navigator === undefined) {
+    if (typeof navigator === 'undefined') {
         return 'sberBox';
     }
     switch (true) {
