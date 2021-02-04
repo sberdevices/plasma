@@ -12,7 +12,11 @@ export type DeviceKind = keyof typeof deviceScales;
  * Проверка в браузере на устройство "SberPortal".
  * @return {boolean}
  */
-export const isSberPortal = (): boolean => navigator?.userAgent?.toLowerCase()?.includes('stargate');
+export const isSberPortal = (): boolean => {
+    const ua = navigator?.userAgent?.toLowerCase();
+
+    return ua.includes('sberportal') || ua.includes('stargate');
+};
 
 /**
  * Проверка в браузере на устройство "SberBox".
