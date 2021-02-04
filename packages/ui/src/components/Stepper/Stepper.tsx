@@ -3,7 +3,9 @@ import { IconMinus, IconPlus, IconTrash } from '@sberdevices/plasma-icons';
 
 import { PickOptional } from '../../types';
 
-import { StepperButton, StepperButtonProps, StepperRoot, StepperValue } from '.';
+import { StepperButton, StepperButtonProps } from './StepperButton';
+import { StepperRoot } from './StepperRoot';
+import { StepperValue } from './StepperValue';
 
 export interface StepperProps
     extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onFocus' | 'onBlur'>,
