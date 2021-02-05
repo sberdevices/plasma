@@ -48,7 +48,7 @@ export const InCard = () => {
                 {s ? (
                     <RectSkeleton width="100%" height="12rem" roundness={0} />
                 ) : (
-                    <CardMedia src="./images/card1.png" height="12rem" />
+                    <CardMedia src="./images/320_320_2.jpg" height="12rem" />
                 )}
                 <CardContent>
                     {s ? (
