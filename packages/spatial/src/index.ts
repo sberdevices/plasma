@@ -5,4 +5,5 @@ export { sp } from './instance';
 export { spatialContext } from './spatialContext';
 export { useAutoFocus } from './hooks/useAutoFocus';
 export { useSn } from './hooks/useSn';
+export { exclude, getCurrentFocusedElement, matchSelector, parseSelector, navigate, isHTMLElement, isNavKey } from './utils/spatialUtils';
 export { Center, Rect, Partition, DistanceFunctions, Priority, ENTER_TO, NAV_KEYS, RESTRICT, DIRECTION, ExtendedSelector, Config, Section } from './utils/types';

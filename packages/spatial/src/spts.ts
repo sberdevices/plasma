@@ -327,6 +327,8 @@ class SpatialNavigation {
     }
 
     private gotoLeaveFor(sectionId: string, direction: DIRECTION): boolean | null {
+        console.log(sectionId, direction);
+
         const section = this.sections[sectionId];
         if (section.leaveFor) {
             let next: string | HTMLElement | NodeList | HTMLElement[] | undefined | void;
@@ -461,8 +463,16 @@ class SpatialNavigation {
         this.throttleKeyDown = false;
     };
 
+    public outerThrottleKeyDown = false;
+    // метод для добавления задержки при зажатой кнопке
+    public setKeyDownSleep = (sleepTime: number) => {
+        this.outerThrottleKeyDown = true;
+        setTimeout(() => {
+            this.outerThrottleKeyDown = false;
+        }, sleepTime);
+    };
     private onKeyDown(event: KeyboardEvent): boolean {
-        if (this.throttleKeyDown) {
+        if (this.throttleKeyDown || this.outerThrottleKeyDown) {
             return this.preventDefault(event);
         }
 
@@ -476,13 +486,15 @@ class SpatialNavigation {
 
         let currentFocusedElement: HTMLElement | null;
 
-        const direction = isNavKey(event.code) ? this.KEY_MAPPING[event.code] : undefined;
+        const code = event.code || event.key;
+
+        const direction = isNavKey(code) ? this.KEY_MAPPING[code] : undefined;
 
         if (!direction) {
-            if (event.code === 'Enter' || event.code === 'Escape') {
+            if (code === 'Enter' || code === 'Escape') {
                 currentFocusedElement = getCurrentFocusedElement();
                 if (currentFocusedElement && this.getSectionId(currentFocusedElement)) {
-                    if (!this.fireEvent(currentFocusedElement, event.code === 'Enter' ? 'enter-down' : 'escape-down')) {
+                    if (!this.fireEvent(currentFocusedElement, code === 'Enter' ? 'enter-down' : 'escape-down')) {
                         return this.preventDefault(event);
                     }
                 }
@@ -521,13 +533,17 @@ class SpatialNavigation {
     }
 
     private onKeyUp(event: KeyboardEvent): undefined {
+        this.outerThrottleKeyDown = false;
         if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
             return undefined;
         }
-        if (!this.pause && this.sectionCount && (event.code === 'Enter' || event.code === 'Escape')) {
+
+        const code = event.code || event.key;
+
+        if (!this.pause && this.sectionCount && (code === 'Enter' || code === 'Escape')) {
             const currentFocusedElement = getCurrentFocusedElement();
             if (currentFocusedElement && this.getSectionId(currentFocusedElement)) {
-                if (!this.fireEvent(currentFocusedElement, event.code === 'Enter' ? 'enter-up' : 'escape-up')) {
+                if (!this.fireEvent(currentFocusedElement, code === 'Enter' ? 'enter-up' : 'escape-up')) {
                     event.preventDefault();
                     // event.stopPropagation();
                 }
@@ -588,11 +604,8 @@ class SpatialNavigation {
     }
 
     boundedOnKeyDown = this.onKeyDown.bind(this);
-
     boundedOnKeyUp = this.onKeyUp.bind(this);
-
     boundedOnFocus = this.onFocus.bind(this);
-
     boundedOnBlur = this.onBlur.bind(this);
 
     init(defaultSectionId = ''): void {
