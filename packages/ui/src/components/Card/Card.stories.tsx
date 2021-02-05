@@ -22,7 +22,7 @@ export const BasicValue = () => {
             scaleOnFocus={boolean('scaleOnFocus', true)}
         >
             <CardBody>
-                <CardMedia src="http://placekitten.com/640/340?image=15" ratio="9:16" />
+                <CardMedia src="./images/320_320_1.jpg" ratio="9:16" />
                 <CardContent cover={cover}>
                     <CardHeadline3>{text('h3', 'Потребительский кредит')}</CardHeadline3>
                     <CardHeadline1 style={{ marginTop: '0.75rem' }}>{text('h1', 'до 230 000 ₽')}</CardHeadline1>
@@ -48,7 +48,7 @@ export const BasicValue = () => {
 export const BasicDefault = () => (
     <Card style={{ width: '20rem' }}>
         <CardBody>
-            <CardMedia src="./images/card1.png" height="12rem" />
+            <CardMedia src="./images/320_320_0.jpg" height="12rem" />
             <CardContent>
                 <CardHeadline3>{text('h3', 'Киану Ривз')}</CardHeadline3>
                 <CardFootnote1 style={{ marginTop: '0.5rem' }} view="secondary">

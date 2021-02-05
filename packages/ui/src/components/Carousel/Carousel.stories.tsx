@@ -14,12 +14,12 @@ const items = Array(100)
     .fill({
         title: 'Заголовок',
         subtitle: 'Описание уравнение времени, сублимиpуя с повеpхности ядpа кометы, вращает реликтовый ледник',
-        imageSrc: '/images/320_480_n.jpg',
+        imageSrc: '/images/320_320_n.jpg',
     })
     .map(({ title, subtitle, imageSrc }, i) => ({
         title: `${title} ${i}`,
         subtitle: `${subtitle} ${i}`,
-        imageSrc: imageSrc.replace('n', i % 6),
+        imageSrc: imageSrc.replace('n', i % 12),
     }));
 
 const snapTypes = ['mandatory', 'proximity'] as SnapType[];
@@ -67,7 +67,7 @@ export const Basic = () => {
                             title={title}
                             subtitle={subtitle}
                             focused={i === index}
-                            imageSrc={`/images/96_96_${i % 6}.jpg`}
+                            imageSrc={`/images/320_320_${i % 12}.jpg`}
                         />
                     </CarouselCol>
                 ))}
@@ -122,7 +122,7 @@ export const Vertical = () => {
                         title={title}
                         subtitle={subtitle}
                         focused={i === index}
-                        imageSrc={`/images/320_480_${i % 6}.jpg`}
+                        imageSrc={`/images/320_320_${i % 12}.jpg`}
                         imageRatio="1:1"
                         scaleOnFocus
                     />
