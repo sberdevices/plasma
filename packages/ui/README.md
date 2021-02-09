@@ -30,7 +30,6 @@ $ npm install --save @sberdevices/ui@rc @sberdevices/plasma-tokens@rc
 ### Использование компонент
 
 Все компоненты доступны из папки `components` или напрямую из пакета:
-Пример:
 
 ```jsx
 // App.tsx
@@ -40,7 +39,7 @@ import { Button } from '@sberdevices/ui';
 export const App = () => {
     return (
         <Container>
-            <Button>Hello, Plasma!</Button>;
+            <Button>Hello, Plasma!</Button>
         <Container>
     );
 };
@@ -50,4 +49,6 @@ export const App = () => {
 
 Витрина с компонентами [storybook](https://rc--5f96ec813d800900227e3b93.chromatic.com).
 
-Документация по библиотеке: http://plasma.sberdevices.ru/
+[Документация](https://rc--5f96ec813d800900227e3b93.chromatic.com/?path=/docs/).
+
+Старая версия документации: http://plasma.sberdevices.ru/
