@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconMinus, IconPlus, IconTrash } from '@sberdevices/plasma-icons';
+import { IconMinus, IconPlus, IconClose } from '@sberdevices/plasma-icons';
 
 import { PickOptional } from '../../types';
 
@@ -22,7 +22,7 @@ interface NoRemoverProps {
 }
 
 export type StepperProps = (RemoverProps | NoRemoverProps) &
-    PickOptional<StepperButtonProps, 'onFocus' | 'onBlur'> &
+    PickOptional<StepperButtonProps, 'pin' | 'onFocus' | 'onBlur'> &
     Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onFocus' | 'onBlur'> & {
         /**
          * Числовое значение
@@ -59,6 +59,7 @@ export const Stepper: React.FC<StepperProps> = ({
     min = 0,
     max = Infinity,
     disabled,
+    pin,
     onChange,
     onFocus,
     onBlur,
@@ -77,8 +78,11 @@ export const Stepper: React.FC<StepperProps> = ({
         <StepperRoot {...rest}>
             <StepperButton
                 disabled={disabled || (!remover && lessDisabled)}
-                icon={isMin && remover ? <IconTrash color="inherit" /> : <IconMinus color="inherit" />}
+                icon={
+                    isMin && remover ? <IconClose color="inherit" size="xs" /> : <IconMinus color="inherit" size="xs" />
+                }
                 view={isMin && remover ? 'critical' : 'secondary'}
+                pin={pin}
                 onClick={isMin && remover ? onRemoveClick : onLessClick}
                 onFocus={onFocus}
                 onBlur={onBlur}
@@ -86,7 +90,8 @@ export const Stepper: React.FC<StepperProps> = ({
             <StepperValue value={value} disabled={disabled} isWarning={isMax} />
             <StepperButton
                 disabled={disabled || moreDisabled}
-                icon={<IconPlus />}
+                icon={<IconPlus color="inherit" size="xs" />}
+                pin={pin}
                 onClick={onMoreClick}
                 onFocus={onFocus}
                 onBlur={onBlur}
