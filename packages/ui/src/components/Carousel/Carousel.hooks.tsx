@@ -37,7 +37,7 @@ interface UseRemoteHandlersProps {
     max: number;
     count?: number;
     longCount?: number;
-    throttlingParams: typeof throttlingParamsDefault;
+    throttlingParams?: typeof throttlingParamsDefault;
 }
 
 /**

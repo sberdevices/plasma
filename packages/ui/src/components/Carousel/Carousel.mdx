@@ -82,7 +82,6 @@ import { Carousel } from '@sberdevices/ui';
 ## Стилизация центрального элемента
 Элементы во вьюпорте можно подвергать стилизации. Например, увеличивать или менять непрозрачность.
 Свойства для определения элементов во вьюпорте:
-* scaleCentral
 * scaleCallback - обработчик для стилизации элементов во вьюпорте
 * scaleResetCallback - для элементов, находящихся вне вьюпорта
 
@@ -111,7 +110,7 @@ const scaleResetCallback = (itemEl: HTMLDivElement) => {
     itemEl.style.opacity = '';
 };
 
-<Carousel scaleCentral scaleCallback={scaleCallback} scaleResetCallback={scaleResetCallback}>
+<Carousel scaleCallback={scaleCallback} scaleResetCallback={scaleResetCallback}>
     // Карточки карусели помещаются здесь
 </Carousel>
 ```
@@ -121,7 +120,7 @@ const scaleResetCallback = (itemEl: HTMLDivElement) => {
 * В корне приложения необходимо разместить DeviceThemeProvider.
 * В качестве основного блока лэйаута используется контейнер ([Container](/components/Grid#container)),
 а колонки ([Col](/components/Grid#col)) помещаются в строки ([Row](/components/Grid#row)).
-* Карусель поддерживает определение (``detectCentral``) и увеличение (``scaleCentral``) центрального элемента.
+* Карусель поддерживает определение (``detectActive``) активного элемента.
 
 <Playground>
     {() => {
@@ -138,9 +137,8 @@ const scaleResetCallback = (itemEl: HTMLDivElement) => {
                                 index={index}
                                 scrollSnap
                                 scrollSnapType="mandatory"
-                                detectCentral
+                                detectActive
                                 detectThreshold={0.5}
-                                scaleCentral
                                 scaleCallback={scaleCallback}
                                 scaleResetCallback={scaleResetCallback}
                                 onIndexChange={(i) => setIndex(i)}

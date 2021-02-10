@@ -9,77 +9,77 @@ import { animatedScrollToX, animatedScrollToY } from '../../utils';
 import { CarouselContext, CarouselItemRefs } from './CarouselContext';
 import type { Axis } from './Carousel.types';
 
-export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
-    as?: React.ComponentType<any>;
-    /**
-     * Ось прокрутки
-     */
-    axis: Axis;
-    /**
-     * Индекс текущего элемента
-     */
-    index: number;
-    /**
-     * Анимированная прокрутка с помощью requestAnimationFrame
-     */
-    animatedScrollByIndex?: boolean;
-    /**
-     * Вычислять активный элемент
-     */
-    detectActive?: boolean;
-    /**
-     * Пороговое значение определения активного элемента (0-1)
-     */
-    detectThreshold?: number;
-    /**
-     * Коллбек изменения индекса
-     */
-    onIndexChange?: (index: number) => void;
-    /**
-     * Плавное увеличение к центру
-     */
-    scaleCentral?: boolean;
-    /**
-     * Величина плавного увеличения к центру
-     */
-    scaleDelta?: number;
-    /**
-     * Обработчик увеличения элемента
-     */
-    scaleCallback?: (itemEl: HTMLElement, slot: number) => void;
-    /**
-     * Обработчик для сброса стилей элементов, находящихся вне вьюпорта
-     */
-    scaleResetCallback?: (itemEl: HTMLElement) => void;
-    /**
-     * Включить поддержку CSS Scroll Snap
-     */
-    scrollSnap?: boolean;
-    /**
-     * Тип Scroll Snap
-     */
-    scrollSnapType?: SnapType;
-    /**
-     * Отступ с переднего края, используется при центрировании крайних элементов
-     */
-    paddingStart?: string;
-    /**
-     * Отступ с заднего края, используется при центрировании крайних элементов
-     */
-    paddingEnd?: string;
-    /**
-     * Throttling внутренних обработчиков события onScroll
-     */
-    throttleMs?: number;
-    /**
-     * Debounce внутренних обработчиков события onScroll
-     */
-    debounceMs?: number;
-    /**
-     * Центрирование активного элемента при скролле
-     */
-    scrollAlign?: 'start' | 'center';
-}
+type DetectionProps =
+    | {
+          /**
+           * Вычислять активный элемент
+           */
+          detectActive: true;
+          /**
+           * Пороговое значение определения центрального элемента (0-1)
+           */
+          detectThreshold: number;
+          /**
+           * Коллбек изменения индекса
+           */
+          onIndexChange?: (index: number) => void;
+          /**
+           * Обработчик стилизации элемента во вьюпорте
+           */
+          scaleCallback?: (itemEl: HTMLElement, slot: number) => void;
+          /**
+           * Обработчик для сброса стилей элементов, находящихся вне вьюпорта
+           */
+          scaleResetCallback?: (itemEl: HTMLElement) => void;
+      }
+    | {
+          detectActive?: false;
+          detectThreshold?: never;
+          onIndexChange?: never;
+          scaleCallback?: never;
+          scaleResetCallback?: never;
+      };
+
+export type CarouselProps = DetectionProps &
+    React.HTMLAttributes<HTMLDivElement> & {
+        as?: React.ComponentType<any>;
+        /**
+         * Ось прокрутки
+         */
+        axis: Axis;
+        /**
+         * Индекс текущего элемента
+         */
+        index: number;
+        /**
+         * Анимированная прокрутка с помощью requestAnimationFrame
+         */
+        animatedScrollByIndex?: boolean;
+        /**
+         * Центрирование активного элемента при скролле
+         */
+        scrollAlign?: 'start' | 'center';
+        /**
+         * Тип CSS Scroll Snap
+         */
+        scrollSnapType?: SnapType;
+        /**
+         * Отступ с переднего края, используется при центрировании крайних элементов
+         */
+        paddingStart?: string;
+        /**
+         * Отступ с заднего края, используется при центрировании крайних элементов
+         */
+        paddingEnd?: string;
+        /**
+         * Throttling внутренних обработчиков события onScroll
+         */
+        throttleMs?: number;
+        /**
+         * Debounce внутренних обработчиков события onScroll
+         */
+        debounceMs?: number;
+    };
 
 const THROTTLE_DEFAULT_MS = 100;
 const DEBOUNCE_DEFAULT_MS = 150;
@@ -152,7 +152,7 @@ const toPos = (pos: number, axis: Axis, animated: boolean, scroll: HTMLElement) 
     }
 };
 
-export const StyledCarousel = styled.div<PickOptional<CarouselProps, 'axis' | 'scrollSnap' | 'scrollSnapType'>>`
+export const StyledCarousel = styled.div<PickOptional<CarouselProps, 'axis' | 'scrollSnapType'>>`
     position: relative;
 
     ${({ axis }) =>
@@ -167,8 +167,8 @@ export const StyledCarousel = styled.div<PickOptional<CarouselProps, 'axis' | 's
                   overflow-y: auto;
               `}
 
-    ${({ scrollSnap, scrollSnapType, axis }) =>
-        scrollSnap &&
+    ${({ scrollSnapType, axis }) =>
+        scrollSnapType &&
         css`
             scroll-snap-type: ${axis} ${scrollSnapType};
         `}
@@ -208,11 +208,9 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
         index = 0,
         axis = 'x',
         animatedScrollByIndex = false,
-        scrollSnap = false,
         scrollSnapType = 'mandatory',
         detectActive = false,
         detectThreshold = 0.5,
-        scaleCentral = false,
         scaleCallback,
         scaleResetCallback,
         paddingStart,
@@ -249,7 +247,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
      */
     const detectActiveItem = React.useCallback(
         throttle(() => {
-            if (!scrollRef.current || !trackRef.current || (!scaleCentral && !detectActive)) {
+            if (!scrollRef.current || !trackRef.current || !detectActive) {
                 return;
             }
 
@@ -278,7 +276,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
              */
             const prevItems: HTMLElement[] = [];
             const nextItems: HTMLElement[] = [];
-            let viewportCount = 0;
+            let count = 0;
 
             /**
              * Проходим по всему списку, суммируя ширины элементов,
@@ -300,7 +298,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
                  * [ ... ] ...|n| <- Левый край элемента за пределами начала видимой части
                  */
                 if (itemEdge > scrollEdge) {
-                    if (scaleCentral && scaleCallback) {
+                    if (scaleCallback && scaleResetCallback) {
                         nextItems.push(itemRef.current);
                     }
                     return;
@@ -314,7 +312,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
                  * Правый край элемента за пределами начала видимой части -> |p|... [ ... ]
                  */
                 if (scrollPos > itemEdge) {
-                    if (scaleCentral && scaleCallback) {
+                    if (scaleCallback && scaleResetCallback) {
                         prevItems.push(itemRef.current);
                     }
                     return;
@@ -329,33 +327,33 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
                     itemSlot = round((itemEdge - itemSize - scrollPos) / itemSize);
                 }
 
-                if (detectActive && detectThreshold && Math.abs(itemSlot) <= detectThreshold) {
+                if (detectThreshold && Math.abs(itemSlot) <= detectThreshold) {
                     debouncedOnIndexChange(i);
                 }
 
-                if (scaleCentral && scaleCallback) {
+                if (scaleCallback) {
                     scaleCallback(itemRef.current, itemSlot);
                     /**
                      * Количество айтемов в видимой части.
                      */
-                    viewportCount++;
+                    count++;
                 }
             });
 
-            if (scaleCentral && scaleCallback && scaleResetCallback) {
+            if (scaleCallback && scaleResetCallback) {
                 window.requestAnimationFrame(() => {
                     if (direction.current) {
                         if (nextItems.length) {
-                            nextItems.splice(0, viewportCount).forEach((elem) => scaleCallback(elem, viewportCount));
+                            nextItems.splice(0, count).forEach((elem) => scaleCallback(elem, count));
                             if (nextItems.length) {
-                                nextItems.splice(0, viewportCount).forEach((elem) => scaleResetCallback(elem));
+                                nextItems.splice(0, count).forEach((elem) => scaleResetCallback(elem));
                             }
                         }
                     } else if (prevItems.length) {
                         const prItemsRev = prevItems.reverse();
-                        prItemsRev.splice(0, viewportCount).forEach((elem) => scaleCallback(elem, viewportCount * -1));
+                        prItemsRev.splice(0, count).forEach((elem) => scaleCallback(elem, count * -1));
                         if (prItemsRev.length) {
-                            prItemsRev.splice(0, viewportCount).forEach((elem) => scaleResetCallback(elem));
+                            prItemsRev.splice(0, count).forEach((elem) => scaleResetCallback(elem));
                         }
                     }
                 });
@@ -434,7 +432,6 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
             <StyledCarousel
                 ref={handleRef}
                 axis={axis}
-                scrollSnap={scrollSnap}
                 scrollSnapType={scrollSnapType}
                 onScroll={handleScroll}
                 {...rest}
