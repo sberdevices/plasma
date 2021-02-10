@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { surfaceLiquid03, scalingPixelBasis } from '@sberdevices/plasma-tokens';
+import { surfaceCard, scalingPixelBasis } from '@sberdevices/plasma-tokens';
 
 interface StyledTabsProps {
     isActive?: boolean;
@@ -58,7 +58,8 @@ export const StyledTabItem = styled.li<StyledTabsProps>`
     ${({ isActive }) =>
         isActive &&
         css`
-            background-color: ${surfaceLiquid03};
+            background-color: ${surfaceCard};
+            box-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.05);
         `}
 
     /**

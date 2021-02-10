@@ -33,8 +33,8 @@ export const Default = () => (
         outlined={boolean('outlined', true)}
         disabled={boolean('disabled', false)}
         fullWidth={boolean('fullWidth', false)}
-        contentLeft={boolean('contentLeft', false) && <IconClock />}
-        contentRight={boolean('contentRight', false) && ((<IconDownload />) as never)}
+        contentLeft={boolean('contentLeft', false) && <IconClock color="inherit" />}
+        contentRight={boolean('contentRight', false) && ((<IconDownload color="inherit" />) as never)}
         onClick={onClickAction}
         onFocus={onFocusAction}
         onBlur={onBlurAction}
@@ -53,6 +53,6 @@ export const ActionButton = () => (
         onFocus={onFocusAction}
         onBlur={onBlurAction}
     >
-        <Icon icon={text('Icon name', 'download') as any} size={select('iconSize', ['xs', 's'], 's')} />
+        <Icon icon={text('Icon name', 'download') as any} size={select('iconSize', ['xs', 's'], 's')} color="inherit" />
     </ActionButtonComponent>
 );

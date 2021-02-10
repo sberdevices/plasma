@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconDone, IconLock } from '@sberdevices/plasma-icons';
-import { accent, whitePrimary, whiteTertiary } from '@sberdevices/plasma-tokens';
+import { accent, primary, tertiary } from '@sberdevices/plasma-tokens';
 
 import { InSpacing } from '../../helpers/StoryDecorators';
 
@@ -14,17 +14,17 @@ export default {
 
 export const Default = () => (
     <MarkedList>
-        <MarkedItem text="Музыка без ограничений" style={{ color: whitePrimary }}>
+        <MarkedItem text="Музыка без ограничений" style={{ color: primary }}>
             <IconDone size="xs" color={accent} />
         </MarkedItem>
-        <MarkedItem text="Ежедневные рекомендации" style={{ color: whitePrimary }}>
+        <MarkedItem text="Ежедневные рекомендации" style={{ color: primary }}>
             <IconDone size="xs" color={accent} />
         </MarkedItem>
-        <MarkedItem text="Коллекции и плейлисты" style={{ color: whiteTertiary }}>
-            <IconLock size="xs" color={whiteTertiary} />
+        <MarkedItem text="Коллекции и плейлисты" style={{ color: tertiary }}>
+            <IconLock size="xs" color={tertiary} />
         </MarkedItem>
-        <MarkedItem text="Без рекламы" style={{ color: whiteTertiary }}>
-            <IconLock size="xs" color={whiteTertiary} />
+        <MarkedItem text="Без рекламы" style={{ color: tertiary }}>
+            <IconLock size="xs" color={tertiary} />
         </MarkedItem>
     </MarkedList>
 );

@@ -77,7 +77,7 @@ export const Stepper: React.FC<StepperProps> = ({
         <StepperRoot {...rest}>
             <StepperButton
                 disabled={disabled || (!remover && lessDisabled)}
-                icon={isMin && remover ? <IconTrash /> : <IconMinus />}
+                icon={isMin && remover ? <IconTrash color="inherit" /> : <IconMinus color="inherit" />}
                 view={isMin && remover ? 'critical' : 'secondary'}
                 onClick={isMin && remover ? onRemoveClick : onLessClick}
                 onFocus={onFocus}

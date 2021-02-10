@@ -7,8 +7,8 @@ import {
     critical,
     surfaceLiquid01,
     surfaceLiquid02,
-    whitePrimary,
-    whiteSecondary,
+    primary,
+    secondary,
     scalingPixelBasis,
 } from '@sberdevices/plasma-tokens';
 
@@ -78,7 +78,7 @@ const StyledInput = styled.input`
     background-color: ${surfaceLiquid01};
     border: 0 none;
     border-radius: ${inputBorderRadius};
-    color: ${whitePrimary};
+    color: ${primary};
 
     transition-duration: 0.1s;
     transition-property: background-color, color;
@@ -90,7 +90,7 @@ const StyledInput = styled.input`
     }
 
     &:disabled {
-        color: ${whiteSecondary};
+        color: ${secondary};
     }
 `;
 
@@ -160,7 +160,7 @@ const StyledRoot = styled.div<Pick<FieldProps, 'status'> & DisabledProps & IsCon
     flex-direction: column;
 
     caret-color: ${accent};
-    color: ${whiteSecondary};
+    color: ${secondary};
 
     ${({ status }) => {
         if (status === 'success') {

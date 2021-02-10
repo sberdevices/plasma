@@ -21,7 +21,7 @@ export const Default = () => (
         text={text('text', 'Badge')}
         size={select('size', sizeKeys, 'l')}
         view={select('view', viewKeys, 'primary')}
-        contentLeft={boolean('Enable icon', false) && <IconSettings size="xs" />}
+        contentLeft={boolean('Enable icon', false) && <IconSettings color="inherit" size="xs" />}
     />
 );
 

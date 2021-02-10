@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { surfaceLiquid01 } from '@sberdevices/plasma-tokens';
+import { surfaceCard } from '@sberdevices/plasma-tokens';
 
 import { addFocus, FocusProps, OutlinedProps, applyRoundness, RoundnessProps, radiuses } from '../../mixins';
 import { syntheticFocus } from '../../mixins/addFocus';
@@ -32,7 +32,7 @@ export const StyledCard = styled(Body1)<StyledRootProps>`
     flex-direction: column;
     flex-shrink: 0;
 
-    background: ${surfaceLiquid01};
+    background: ${surfaceCard};
     box-shadow: 0 ${shadowOffset}em ${shadowSize}em rgba(0, 0, 0, 0.1);
 
     transition: transform 0.4s ease-in-out;
