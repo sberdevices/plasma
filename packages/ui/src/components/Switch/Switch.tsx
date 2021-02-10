@@ -6,9 +6,14 @@ import { applyDisabled, DisabledProps, addFocus, FocusProps, OutlinedProps } fro
 import { InputHTMLAttributes } from '../../types';
 import { Item } from '../Checkbox/Basebox';
 
+interface PressedProps {
+    pressed?: boolean;
+}
+
 export interface SwitchProps
     extends Item,
         DisabledProps,
+        PressedProps,
         FocusProps,
         OutlinedProps,
         Omit<React.LabelHTMLAttributes<HTMLLabelElement>, 'htmlFor' | 'onChange' | 'onFocus' | 'onBlur'>,
@@ -17,8 +22,8 @@ export interface SwitchProps
 const StyledRoot = styled.label<DisabledProps>`
     position: relative;
     display: flex;
-    width: 100%;
     align-items: center;
+    justify-content: space-between;
     cursor: pointer;
 
     ${applyDisabled}
@@ -41,11 +46,13 @@ const synthesizeFocus = (ruleset: FlattenSimpleInterpolation, focused?: boolean)
     ${focused && ruleset};
 `;
 
-const StyledTrigger = styled.div<DisabledProps & FocusProps & OutlinedProps>`
+const StyledTrigger = styled.div<DisabledProps & PressedProps & FocusProps & OutlinedProps>`
     position: relative;
     display: flex;
     flex: 0 0 2.75rem;
+    width: 2.75rem;
     height: 1.75rem;
+    margin-left: auto;
     border-radius: 0.875rem;
     background-color: ${surfaceLiquid03};
     transition: background-color 0.15s ease-in-out 0.1s;
@@ -66,13 +73,20 @@ const StyledTrigger = styled.div<DisabledProps & FocusProps & OutlinedProps>`
         transition: width 0.15s ease-in-out, left 0.3s ease-in-out, right 0.3s ease-in-out;
     }
 
-    ${({ disabled }) =>
+    ${({ disabled, pressed }) =>
         !disabled &&
         css`
             /* stylelint-disable-next-line selector-nested-pattern, selector-type-no-unknown */
             ${StyledRoot}:active &::after {
                 width: 1.875rem;
             }
+
+            ${pressed &&
+            css`
+                &::after {
+                    width: 1.875rem;
+                }
+            `}
         `}
 
     /* stylelint-disable-next-line selector-nested-pattern, selector-type-no-unknown */
@@ -96,18 +110,10 @@ const StyledTrigger = styled.div<DisabledProps & FocusProps & OutlinedProps>`
 const StyledLabel = styled.span`
     ${body1};
     margin-right: 0.75rem;
-    width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     user-select: none;
     white-space: nowrap;
-
-    /* stylelint-disable-next-line max-line-length */
-    /* stylelint-disable-next-line selector-nested-pattern, declaration-block-semicolon-newline-after, rule-empty-line-before */
-    ${StyledTrigger} ~ & {
-        margin-left: 0.75rem;
-        margin-right: 0;
-    }
 `;
 
 /**
@@ -115,7 +121,22 @@ const StyledLabel = styled.span`
  */
 // eslint-disable-next-line prefer-arrow-callback
 export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(function Switch(
-    { id, name, value, label, checked, disabled, focused, outlined, tabIndex, onChange, onFocus, onBlur, ...rest },
+    {
+        id,
+        name,
+        value,
+        label,
+        checked,
+        disabled,
+        pressed,
+        focused,
+        outlined,
+        tabIndex,
+        onChange,
+        onFocus,
+        onBlur,
+        ...rest
+    },
     ref,
 ) {
     return (
@@ -134,7 +155,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(function S
                 onBlur={onBlur}
             />
             {label && <StyledLabel>{label}</StyledLabel>}
-            <StyledTrigger disabled={disabled} focused={focused} outlined={outlined} />
+            <StyledTrigger disabled={disabled} pressed={pressed} focused={focused} outlined={outlined} />
         </StyledRoot>
     );
 });
