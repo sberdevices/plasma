@@ -4,7 +4,7 @@ import { IconProps } from '../IconRoot';
 
 export const Play: React.FC<IconProps> = (props) => (
     <svg width="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-        <g filter="url(#ic_24_play_svg__filter0_b)">
+        <g>
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -12,21 +12,5 @@ export const Play: React.FC<IconProps> = (props) => (
                 fill="currentColor"
             />
         </g>
-        <defs>
-            <filter
-                id="ic_24_play_svg__filter0_b"
-                x={-101.731}
-                y={-104.486}
-                width={230.189}
-                height={232.972}
-                filterUnits="userSpaceOnUse"
-                colorInterpolationFilters="sRGB"
-            >
-                <feFlood floodOpacity={0} result="BackgroundImageFix" />
-                <feGaussianBlur in="BackgroundImage" stdDeviation={54.366} />
-                <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur" />
-                <feBlend in="SourceGraphic" in2="effect1_backgroundBlur" result="shape" />
-            </filter>
-        </defs>
     </svg>
 );
