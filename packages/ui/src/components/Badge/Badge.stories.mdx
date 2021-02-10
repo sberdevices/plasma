@@ -1,0 +1,19 @@
+import { Meta, Props, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+
+import { InSpacingDecorator } from '../../helpers';
+
+import * as stories from './Badge.stories';
+
+import { Badge } from '.';
+
+<Meta title="Content/Badge" decorators={[InSpacingDecorator]} />
+
+# Badge
+<Description of={Badge} />
+<Props of={Badge} />
+
+## Пример
+<Canvas>
+    <Story name="Default" story={stories.Default} />
+    <Story name="Quantity" story={stories.Quantity} />
+</Canvas>

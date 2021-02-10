@@ -1,15 +1,19 @@
 import { Meta, Props, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
 
-import { InSpacing } from '../../helpers/StoryDecorators';
+import { InSpacingDecorator } from '../../helpers';
 
 import * as stories from './Stepper.stories';
 
 import { Stepper, StepperRoot, StepperButton, StepperValue } from '.';
 
-<Meta title="Controls/Stepper" decorators={[InSpacing]} />
+<Meta title="Controls/Stepper" decorators={[InSpacingDecorator]} />
 
 # Stepper
 Набор компонентов для создания элементов управления количеством, суммой и другими численными показателями.
+
+<Canvas>
+    <Story name="Default" story={stories.Default} />
+</Canvas>
 
 ## Stepper
 <Description of={Stepper} />
@@ -53,12 +57,7 @@ export const App = () => (
 );
 ```
 
-## Примеры
-
-### Базовое применение
-<Canvas>
-    <Story name="Default" story={stories.Default} />
-</Canvas>
+## Пример
 
 ### Использование составных компонентов
 <Canvas>

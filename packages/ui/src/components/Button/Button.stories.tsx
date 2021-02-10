@@ -1,58 +1,305 @@
 import React from 'react';
-import { text, boolean, select } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
-import { IconClock, IconDownload, Icon } from '@sberdevices/plasma-icons';
+import styled, { css } from 'styled-components';
+import { boolean, select } from '@storybook/addon-knobs';
+import { IconMic } from '@sberdevices/plasma-icons';
+import {
+    buttonAccent,
+    buttonSecondary,
+    buttonWarning,
+    buttonCritical,
+    buttonChecked,
+} from '@sberdevices/plasma-tokens';
 
+import { actionWithPersistedEvent } from '../../helpers';
 import { View } from '../../mixins/applyView';
+import { Body1 } from '../Typography';
 
 import { ButtonSize } from './ButtonBase';
 
 import { Button, ActionButton as ActionButtonComponent } from '.';
 
-const actionWithPersistedEvent = (name: string) => {
-    const calledAction = action(name);
+const onClick = actionWithPersistedEvent('onClick');
+const onFocus = actionWithPersistedEvent('onFocus');
+const onBlur = actionWithPersistedEvent('onBlur');
 
-    return (event) => {
-        event.persist();
-        calledAction(event);
-    };
-};
-const onClickAction = actionWithPersistedEvent('onClick');
-const onFocusAction = actionWithPersistedEvent('onFocus');
-const onBlurAction = actionWithPersistedEvent('onBlur');
+const StyledGrid = styled.div<{ isMobile: boolean }>`
+    --horizontal-spacing: var(--plasma-docs-buttons-horizontal-spacing, 2rem);
+    --vertical-spacing: var(--plasma-docs-buttons-vertical-spacing, 2rem);
+    --cell-spacing: var(--plasma-docs-buttons-cell-spacing, 1rem);
+    --border-spacing: var(--plasma-docs-buttons-border-spacing, 1.25rem);
 
-const sizeKeys = ['l', 'm', 's'] as ButtonSize[];
-const viewKeys = ['primary', 'secondary', 'checked', 'warning', 'critical', 'clear'] as View[];
+    display: grid;
+    grid-template-columns: ${({ isMobile }) => css`
+        max-content repeat(${!isMobile ? 3 : 2}, 13.75rem) repeat(${!isMobile ? 3 : 2}, max-content)
+    `};
+    grid-column-gap: var(--horizontal-spacing);
+    grid-row-gap: var(--vertical-spacing);
+`;
+const StyledRow = styled.div`
+    display: contents;
+`;
+const StyledMarker = styled(Body1)<{ bg?: string; isFirstRow: boolean; isLastRow: boolean }>`
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    margin-right: 1.75rem;
+    padding-right: 1.625rem;
 
-export const Default = () => (
-    <Button
-        text={text('text', 'Button')}
-        size={select('size', sizeKeys, 'l')}
-        view={select('view', viewKeys, 'primary')}
-        scaleOnInteraction={boolean('scaleOnInteraction', true)}
-        outlined={boolean('outlined', true)}
-        disabled={boolean('disabled', false)}
-        fullWidth={boolean('fullWidth', false)}
-        contentLeft={boolean('contentLeft', false) && <IconClock color="inherit" />}
-        contentRight={boolean('contentRight', false) && ((<IconDownload color="inherit" />) as never)}
-        onClick={onClickAction}
-        onFocus={onFocusAction}
-        onBlur={onBlurAction}
-    />
+    ${({ isFirstRow, isLastRow }) => css`
+        ${isFirstRow &&
+        css`
+            &:first-child {
+                margin-top: var(--border-spacing);
+            }
+        `}
+        ${isLastRow &&
+        css`
+            &:last-child {
+                margin-bottom: var(--border-spacing);
+            }
+        `}
+    `}
+
+    &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        content: '';
+        width: 0.125rem;
+        height: 100%;
+        background: ${({ bg }) => bg};
+    }
+`;
+const StyledCell = styled.div<{ isFirstRow: boolean; isLastRow: boolean }>`
+    --horizontal-stretch: calc(var(--horizontal-spacing) / 2);
+    --vertical-stretch: calc(var(--vertical-spacing) / 2);
+
+    display: grid;
+    grid-row-gap: var(--cell-spacing);
+    margin: calc(var(--vertical-stretch) * -1) calc(var(--horizontal-stretch) * -1);
+    padding: var(--vertical-stretch) var(--horizontal-stretch);
+    border: 0 dashed #7765f6;
+
+    ${({ isFirstRow, isLastRow }) => css`
+        ${isFirstRow &&
+        css`
+            margin-top: 0;
+            padding-top: var(--border-spacing);
+            border-top-width: 0.0625rem;
+
+            &:nth-child(2) {
+                border-top-left-radius: 1.25rem;
+            }
+
+            &:last-child {
+                border-top-right-radius: 1.25rem;
+            }
+        `}
+        ${isLastRow &&
+        css`
+            margin-bottom: 0;
+            padding-bottom: var(--border-spacing);
+            border-bottom-width: 0.0625rem;
+
+            &:nth-child(2) {
+                border-bottom-left-radius: 1.25rem;
+            }
+
+            &:last-child {
+                border-bottom-right-radius: 1.25rem;
+            }
+        `}
+    `}
+
+    &:nth-child(2) {
+        padding-left: var(--border-spacing);
+        border-left-width: 0.0625rem;
+    }
+
+    &:last-child {
+        padding-right: var(--border-spacing);
+        border-right-width: 0.0625rem;
+    }
+`;
+const StyledHead = styled(Body1)`
+    &:nth-child(2) {
+        padding-left: var(--horizontal-spacing);
+    }
+`;
+const StyledCubicGrid = styled.div<{ isMobile: boolean }>`
+    display: grid;
+    grid-column-gap: var(--plasma-docs-buttons-horizontal-spacing, 2rem);
+    grid-row-gap: var(--plasma-docs-buttons-cell-spacing, 1rem);
+    grid-template-columns: ${({ isMobile }) => css`
+        repeat(${!isMobile ? 3 : 2}, max-content)
+    `};
+`;
+
+const contentLeft = <IconMic color="inherit" size="s" />;
+
+const headers = ['Normal', 'Focused', 'Disabled', 'Normal', 'Focused', 'Disabled'];
+const sizes = ['l', 'm', 's'] as ButtonSize[];
+const views = ['primary', 'secondary', 'warning', 'critical', 'checked', 'clear'];
+const colors = [buttonAccent, buttonSecondary, buttonWarning, buttonCritical, buttonChecked];
+const items = [
+    { outlined: true, focused: false, disabled: false, fullWidth: true, contentLeft: null },
+    { outlined: true, focused: true, disabled: false, fullWidth: true, contentLeft: null },
+    { outlined: true, focused: false, disabled: true, fullWidth: true, contentLeft: null },
+    { outlined: true, focused: false, disabled: false, fullWidth: false, contentLeft: null },
+    { outlined: true, focused: true, disabled: false, fullWidth: false, contentLeft: null },
+    { outlined: true, focused: false, disabled: true, fullWidth: false, contentLeft: null },
+];
+const regular = items.map((item) => [item, { ...item, contentLeft }]);
+const cubics = items.slice(0, 3).map((item) => ({ ...item, contentLeft }));
+
+const filterViews = (v: typeof views, isMobile: boolean) => v.filter((view) => !isMobile || view !== 'clear');
+const filterHeaders = (h: typeof headers, isMobile: boolean) => h.filter((header) => !isMobile || header !== 'Focused');
+const filterItems = (i: any, isMobile: boolean) =>
+    i.filter((entry) => !isMobile || (Array.isArray(entry) ? !entry[0].focused : !entry.focused));
+
+const capit = (str: string) => str[0].toUpperCase() + str.slice(1);
+
+const Showcase = ({ render, size, isMobile }) => (
+    <StyledGrid isMobile={isMobile}>
+        <Body1>&nbsp;</Body1>
+        {filterHeaders(headers, isMobile).map((header, i) => (
+            <StyledHead key={`header${i}`}>{header}</StyledHead>
+        ))}
+        {filterViews(views, isMobile).map((view, i) => {
+            const isFirst = i === 0;
+            const isLast = i === views.length - 1;
+
+            return (
+                <React.Fragment key={`${view}`}>
+                    <StyledRow>
+                        <StyledMarker bg={colors[i]} isFirstRow={isFirst} isLastRow={isLast}>
+                            {capit(view)}
+                        </StyledMarker>
+                        {filterItems(regular, isMobile).map((pair, j) => (
+                            <StyledCell key={`${view}${j}`} isFirstRow={isFirst} isLastRow={isLast}>
+                                {pair.map((item, k) =>
+                                    render(
+                                        {
+                                            ...item,
+                                            view,
+                                            size: size || select('size', sizes, 'l'),
+                                        },
+                                        `${view}${j}${k}`,
+                                    ),
+                                )}
+                            </StyledCell>
+                        ))}
+                    </StyledRow>
+                </React.Fragment>
+            );
+        })}
+    </StyledGrid>
 );
+
+const CubicShowcase = ({ render, size, isMobile }) => (
+    <StyledCubicGrid isMobile={isMobile}>
+        {filterViews(views, isMobile).map((view) =>
+            filterItems(cubics, isMobile).map((item, i) =>
+                render(
+                    {
+                        ...item,
+                        view,
+                        size: size || select('size', sizes, 'l'),
+                    },
+                    `${view}${i}`,
+                ),
+            ),
+        )}
+    </StyledCubicGrid>
+);
+
+/* eslint-disable prefer-rest-params */
+export function Default() {
+    return (
+        <Showcase
+            {...arguments[0]}
+            render={(props, key) => (
+                <Button
+                    key={key}
+                    text="Label"
+                    size={props.size}
+                    view={props.view}
+                    outlined={props.outlined}
+                    focused={props.focused}
+                    disabled={props.disabled}
+                    fullWidth={props.fullWidth}
+                    contentLeft={props.contentLeft}
+                    onClick={onClick}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                />
+            )}
+        />
+    );
+}
+
+export function Squared() {
+    return (
+        <CubicShowcase
+            {...arguments[0]}
+            render={(props, key) => (
+                <Button
+                    pin="square-square"
+                    key={key}
+                    size={props.size}
+                    view={props.view}
+                    outlined={props.outlined}
+                    focused={props.focused}
+                    disabled={props.disabled}
+                    fullWidth={props.fullWidth}
+                    contentLeft={props.contentLeft}
+                    onClick={onClick}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                />
+            )}
+        />
+    );
+}
+
+export function Circled() {
+    return (
+        <CubicShowcase
+            {...arguments[0]}
+            render={(props, key) => (
+                <Button
+                    key={key}
+                    pin="circle-circle"
+                    size={props.size}
+                    view={props.view}
+                    outlined={props.outlined}
+                    focused={props.focused}
+                    disabled={props.disabled}
+                    fullWidth={props.fullWidth}
+                    contentLeft={props.contentLeft}
+                    onClick={onClick}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                />
+            )}
+        />
+    );
+}
+/* eslint-enable prefer-rest-params */
 
 export const ActionButton = () => (
     <ActionButtonComponent
-        size={select('size', sizeKeys, 'm')}
-        view={select('view', viewKeys, 'primary')}
+        size={select('size', sizes, 'm')}
+        view={select('view', Object.keys(views), 'primary') as View}
         scaleOnInteraction={boolean('scaleOnInteraction', true)}
         outlined={boolean('outlined', true)}
         disabled={boolean('disabled', false)}
         tabIndex={0}
-        onClick={onClickAction}
-        onFocus={onFocusAction}
-        onBlur={onBlurAction}
+        onClick={onClick}
+        onFocus={onFocus}
+        onBlur={onBlur}
     >
-        <Icon icon={text('Icon name', 'download') as any} size={select('iconSize', ['xs', 's'], 's')} color="inherit" />
+        <IconMic size="xs" color="inherit" />
     </ActionButtonComponent>
 );
