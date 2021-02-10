@@ -17,16 +17,19 @@ const sizes = {
     l: {
         width: 36 / fontSizeL,
         height: 36 / fontSizeL,
+        squareRadius: 12 / fontSizeL,
         outline: 2 / fontSizeL,
     },
     m: {
         width: 32 / fontSizeM,
         height: 32 / fontSizeM,
+        squareRadius: 10 / fontSizeL,
         outline: 2 / fontSizeM,
     },
     s: {
         width: 28 / fontSizeS,
         height: 28 / fontSizeS,
+        squareRadius: 8 / fontSizeS,
         outline: 2 / fontSizeS,
     },
 };
@@ -44,10 +47,10 @@ interface StyledActionButtonsProps
  * Миксин размеров кнопки по параметрам
  */
 const applySizes = ({ pin, size, focused, outlined }: StyledActionButtonsProps) => {
-    const { width, height, outline } = sizes[size];
+    const { width, height, squareRadius, outline } = sizes[size];
     const radius = height / 2;
-    const elemRadius = convertRoundnessMatrix(pin, `${radius}em`, `${radius}em`);
-    const outlineRadius = convertRoundnessMatrix(pin, `${radius + outline}em`, `${radius + outline}em`);
+    const elemRadius = convertRoundnessMatrix(pin, `${squareRadius}em`, `${radius}em`);
+    const outlineRadius = convertRoundnessMatrix(pin, `${squareRadius + outline}em`, `${radius + outline}em`);
 
     return css`
         width: ${width}em;
