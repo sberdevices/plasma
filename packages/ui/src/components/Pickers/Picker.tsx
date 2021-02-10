@@ -146,11 +146,9 @@ export const Picker: React.FC<PickerProps> = ({
                 visibleItems={visibleItems}
                 axis="y"
                 index={index}
-                scaleCentral
                 scaleCallback={size === 's' ? scaleCallbackS : scaleCallbackL}
                 scaleResetCallback={scaleResetCallback}
                 animatedScrollByIndex={controls}
-                scrollSnap={!controls}
                 scrollSnapType="mandatory"
                 detectActive={!controls}
                 detectThreshold={0.5}
