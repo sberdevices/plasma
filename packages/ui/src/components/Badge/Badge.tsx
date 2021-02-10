@@ -98,7 +98,8 @@ export interface BadgeProps extends StyledBadgeProps, React.HTMLAttributes<HTMLD
 }
 
 /**
- * Бейдж. Компонент может отображаться в нескольких размерах и цветах, может содержать текст и/или иконку.
+ * Небольшая бирка для ячеек и карточек.
+ * Компонент может отображаться в нескольких размерах и цветах, может содержать текст и/или иконку.
  */
 export const Badge: React.FC<BadgeProps> = ({ size = 'l', view = 'secondary', text, contentLeft, ...rest }) => (
     <StyledBadge size={size} view={view} {...rest}>

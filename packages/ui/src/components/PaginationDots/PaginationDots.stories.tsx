@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { number } from '@storybook/addon-knobs';
 import { IconChevronLeft, IconChevronRight } from '@sberdevices/plasma-icons';
 
+import { ShowcaseComponentRow, InSpacingDecorator } from '../../helpers';
 import { ActionButton } from '../Button';
 import { Caption } from '../Typography';
 
@@ -12,27 +13,30 @@ const StyledWrapper = styled.div`
     display: flex;
     flex-direction: column;
 `;
-
 const StyledButtonGroup = styled.div`
     display: flex;
     align-self: center;
     align-items: center;
 `;
-
 const StyledGhostButton = styled(ActionButton).attrs(() => ({ view: 'clear', size: 's', outlined: false }))`
     padding: 0;
 `;
 
-export const Default = () => {
-    const index = number('index', 0);
-    const items = Array(number('Items count', 4)).fill(0);
+const rows = Array.from({ length: 4 }, () => [0, 0, 0, 0]);
 
+export const Default = () => {
     return (
-        <PaginationDots>
-            {items.map((_, i) => (
-                <PaginationDot key={`item:${i}`} isActive={i === index} />
+        <>
+            {rows.map((items, i) => (
+                <ShowcaseComponentRow key={`row:${i}`}>
+                    <PaginationDots>
+                        {items.map((_, j) => (
+                            <PaginationDot key={`item:${i}${j}`} isActive={j === i} />
+                        ))}
+                    </PaginationDots>
+                </ShowcaseComponentRow>
             ))}
-        </PaginationDots>
+        </>
     );
 };
 
