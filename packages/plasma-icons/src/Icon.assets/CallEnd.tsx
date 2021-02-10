@@ -4,7 +4,7 @@ import { IconProps } from '../IconRoot';
 
 export const CallEnd: React.FC<IconProps> = (props) => (
     <svg width="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-        <g filter="url(#ic_24_call_end_svg__filter0_d)" clipPath="url(#ic_24_call_end_svg__clip0)">
+        <g clipPath="url(#ic_24_call_end_svg__clip0)">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -16,23 +16,6 @@ export const CallEnd: React.FC<IconProps> = (props) => (
             <clipPath id="ic_24_call_end_svg__clip0">
                 <path fill="currentColor" d="M0 0h24v24H0z" />
             </clipPath>
-            <filter
-                id="ic_24_call_end_svg__filter0_d"
-                x={-1.745}
-                y={2.22}
-                width={27.491}
-                height={17.032}
-                filterUnits="userSpaceOnUse"
-                colorInterpolationFilters="sRGB"
-            >
-                <feFlood floodOpacity={0} result="BackgroundImageFix" />
-                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
-                <feOffset />
-                <feGaussianBlur stdDeviation={2.5} />
-                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0.484007 0 0 0 0 0.456084 0 0 0 0.1 0" />
-                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow" />
-                <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
-            </filter>
         </defs>
     </svg>
 );
