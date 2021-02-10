@@ -1,4 +1,4 @@
-import { Meta, Props, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+import { Meta, ArgsTable, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
 
 import { InSpacing } from '../../helpers/StoryDecorators';
 
@@ -16,9 +16,11 @@ import { Button, ActionButton } from '.';
 
 <Canvas>
     <Story name="Default" story={stories.Default} />
+    <Story name="Squared" story={stories.Squared} />
+    <Story name="Circled" story={stories.Circled} />
 </Canvas>
 
-<Props of={Button} />
+<ArgsTable of={Button} />
 
 ## ActionButton
 <Description of={ActionButton} />
@@ -27,7 +29,7 @@ import { Button, ActionButton } from '.';
     <Story name="ActionButton" story={stories.ActionButton} />
 </Canvas>
 
-<Props of={ActionButton} />
+<ArgsTable of={ActionButton} />
 
 ## Использование
 Компонент ``<Button>`` может содержать текст, который указывается в

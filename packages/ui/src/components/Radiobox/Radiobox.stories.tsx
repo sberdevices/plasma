@@ -1,59 +1,63 @@
 import React from 'react';
-import { boolean, number, text } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
 
-import { InSpacing } from '../../helpers/StoryDecorators';
+import { actionWithPersistedEvent, ShowcaseComponentGrid, InSpacingDecorator } from '../../helpers';
 
 import { Radiobox } from '.';
-
-const onChangeAction = action('onChange');
-const onFocusAction = action('onFocus');
-const onBlurAction = action('onBlur');
 
 export default {
     title: 'Controls/Radiobox',
     component: Radiobox,
-    decorators: [InSpacing],
+    decorators: [InSpacingDecorator],
 };
 
-export const Default = () => {
-    const [checked, setChecked] = React.useState(true);
+const onChange = actionWithPersistedEvent('onChange');
+const onFocus = actionWithPersistedEvent('onFocus');
+const onBlur = actionWithPersistedEvent('onBlur');
+
+const rows = [
+    [
+        { name: 'radio-1', value: 1, label: 'Radiobox 1', disabled: false },
+        { name: 'radio-1', value: 2, label: 'Radiobox 2', disabled: false },
+    ],
+    [
+        { name: 'radio-2', value: 3, label: 'Radiobox 3', disabled: true },
+        { name: 'radio-2', value: 4, label: 'Radiobox 4', disabled: true, checked: true },
+    ],
+];
+
+const Showcase = ({ render, withLabels = true }) => (
+    <ShowcaseComponentGrid>
+        {rows.map((items) =>
+            items.map((item, j) => render({ ...item, label: withLabels ? item.label : '' }, `item:${j}`)),
+        )}
+    </ShowcaseComponentGrid>
+);
+
+/* eslint-disable prefer-rest-params */
+export function Default() {
+    const [value, setValue] = React.useState(2);
 
     return (
-        <Radiobox
-            value={0}
-            label={text('label', 'Radiobox')}
-            checked={checked}
-            disabled={boolean('disabled', false)}
-            onChange={(event) => {
-                setChecked(event.target.checked);
-                onChangeAction(event.target.checked);
-            }}
-            onFocus={() => onFocusAction()}
-            onBlur={() => onBlurAction()}
+        <Showcase
+            {...arguments[0]}
+            render={(props, key) => (
+                <Radiobox
+                    key={key}
+                    style={{ margin: 0 }}
+                    name={props.name}
+                    value={props.value}
+                    label={props.label}
+                    disabled={props.disabled}
+                    checked={props.checked || props.value === value}
+                    onChange={(event) => {
+                        setValue(props.value);
+                        onChange(event);
+                    }}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                />
+            )}
         />
     );
-};
-
-export const List = () => {
-    const items = Array(number('Items count', 5))
-        .fill(0)
-        .map((_, i) => ({ value: i, label: `Item ${i}` }));
-    const [value, setValue] = React.useState(0);
-
-    return (
-        <>
-            {items.map((item, i) => (
-                <Radiobox
-                    key={`item:${i}`}
-                    checked={value === item.value}
-                    onChange={() => {
-                        setValue(item.value);
-                        onChangeAction(item.value);
-                    }}
-                    {...item}
-                />
-            ))}
-        </>
-    );
-};
+}
+/* eslint-enable prefer-rest-params */

@@ -153,7 +153,7 @@ interface TextAndLeftProps {
      */
     children?: never;
     /**
-     * Слот для контента слева, например <Icon/>
+     * Слот для контента слева
      */
     contentLeft?: React.ReactNode;
 }
@@ -164,7 +164,7 @@ interface TextAndRightProps {
     text: string | number;
     children?: never;
     /**
-     * Слот для контента справа, например <Icon/>
+     * Слот для контента справа
      */
     contentRight?: React.ReactNode;
 }
