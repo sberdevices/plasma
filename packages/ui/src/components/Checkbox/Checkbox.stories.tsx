@@ -26,6 +26,7 @@ export const Default = () => {
             value="yes"
             label={text('label', 'Checkbox')}
             checked={checked}
+            focused={boolean('focused', false)}
             disabled={boolean('disabled', false)}
             onChange={(event) => {
                 setChecked(event.target.checked);
