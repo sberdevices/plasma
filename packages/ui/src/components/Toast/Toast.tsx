@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { background } from '@sberdevices/plasma-tokens';
+import { black, white } from '@sberdevices/plasma-tokens';
 
 import { Footnote1 } from '../Typography';
 
@@ -13,7 +13,8 @@ const StyledRoot = styled(Footnote1)`
     padding: 0.75rem 1.25rem;
     border-radius: 1.25rem;
 
-    background: ${background};
+    background: ${black};
+    color: ${white};
 `;
 
 /**

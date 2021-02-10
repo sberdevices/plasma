@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { body1, accent, whiteSecondary, white } from '@sberdevices/plasma-tokens';
+import { body1, accent, secondary, white } from '@sberdevices/plasma-tokens';
 import { IconDone } from '@sberdevices/plasma-icons';
 
 import { applyDisabled, DisabledProps, FocusProps, InteractionProps } from '../../mixins';
@@ -71,30 +71,51 @@ const StyledTrigger = styled.div<StyledTriggerProps>`
     position: relative;
     width: 1.25rem;
     height: 1.25rem;
-    border: 0.125rem solid ${whiteSecondary};
+    border: 0.125rem solid ${secondary};
+    color: ${white};
     transition: all 0.1s ease-in-out;
     cursor: pointer;
 
     ${({ $type, $focused }) => {
         const borderRadius = $type === 'checkbox' ? '0.25rem' : '1.25rem';
+        const outlineRadius = $type === 'checkbox' ? '0.375rem' : '1.375rem';
 
         return css`
             border-radius: ${borderRadius};
 
             ${StyledInput}:focus ~ & {
-                border-color: ${accent};
+                border-color: transparent;
+
+                &::before {
+                    box-shadow: 0 0 0 0.125rem ${accent};
+                }
             }
 
-            ${StyledInput}:checked:focus ~ & {
-                border-color: ${white};
+            &::before {
+                content: '';
+
+                position: absolute;
+                top: -0.25rem;
+                left: -0.25rem;
+                right: -0.25rem;
+                bottom: -0.25rem;
+
+                display: block;
+
+                border: 0.125rem solid transparent;
+                border-radius: ${outlineRadius};
+
+                transition: box-shadow 0.2s ease-in-out;
+
+                pointer-events: none;
             }
 
             ${$focused &&
             css`
-                border-color: ${accent};
+                border-color: transparent;
 
-                ${StyledInput}:checked ~ & {
-                    border-color: ${white};
+                &::before {
+                    box-shadow: 0 0 0 0.125rem ${accent};
                 }
             `}
         `;
@@ -199,7 +220,7 @@ export const Basebox = React.forwardRef<HTMLInputElement, BaseboxProps>(function
                 onBlur={onBlur}
             />
             <StyledTrigger $type={type} $focused={focused} scaleOnInteraction={scaleOnInteraction}>
-                {type === 'checkbox' ? <StyledMark size="xs" /> : <StyledEllipse />}
+                {type === 'checkbox' ? <StyledMark color="inherit" size="xs" /> : <StyledEllipse />}
             </StyledTrigger>
             {label && <StyledLabel>{label}</StyledLabel>}
         </StyledRoot>

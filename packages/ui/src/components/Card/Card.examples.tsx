@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css, InterpolationFunction } from 'styled-components';
-import { whitePrimary, whiteSecondary } from '@sberdevices/plasma-tokens';
+import { primary, secondary } from '@sberdevices/plasma-tokens';
 
 import { applyMaxLines, MaxLinesProps } from '../../mixins';
 import { Body1, Footnote1 } from '../Typography';
@@ -45,7 +45,7 @@ const StyledItemDescr = styled(Footnote1)<MaxLinesProps & TextAlignProps>`
     ${applyTextAlign}
 
     margin-top: 0.25rem;
-    color: ${whiteSecondary};
+    color: ${secondary};
 
     /* stylelint-disable-next-line max-line-length */
     /* stylelint-disable-next-line declaration-block-semicolon-newline-after, rule-empty-line-before, selector-nested-pattern */
@@ -59,7 +59,7 @@ const StyledItemTitle = styled(Body1)<MaxLinesProps & TextAlignProps>`
     ${applyTextAlign}
 
     margin-top: 0.75rem;
-    color: ${whitePrimary};
+    color: ${primary};
 
     /* stylelint-disable-next-line max-line-length */
     /* stylelint-disable-next-line declaration-block-semicolon-newline-after, rule-empty-line-before, selector-nested-pattern */
