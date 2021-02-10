@@ -84,13 +84,12 @@ export const ScalingColCard: React.FC<ScalingColCardProps> = ({ isActive, scroll
  */
 export const CarouselSection: React.FC<{
     heading: string;
-    scrollSnap: boolean;
     scrollSnapType: SnapType;
-}> = ({ heading, scrollSnap, scrollSnapType, children }) => (
+}> = ({ heading, scrollSnapType, children }) => (
     <section style={{ margin: '1.75rem 0' }}>
         <Body3 style={{ marginBottom: '1rem' }}>{heading}</Body3>
         <CarouselGridWrapper>
-            <Carousel as={Row} axis="x" index={0} scrollSnap={scrollSnap} scrollSnapType={scrollSnapType}>
+            <Carousel as={Row} axis="x" index={0} scrollSnapType={scrollSnapType}>
                 {children}
             </Carousel>
         </CarouselGridWrapper>

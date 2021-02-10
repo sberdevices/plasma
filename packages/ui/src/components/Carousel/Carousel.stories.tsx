@@ -41,10 +41,10 @@ export const Basic = () => {
 
     const animatedScrollByIndex = boolean('animatedScrollByIndex', isSberbox);
     const scrollAlign = select('scrollAlign', ['center', 'start'], 'start');
-    const scrollSnap = boolean('scrollSnap', !isSberbox);
-    const scrollSnapType = select('scrollSnapType', snapTypes, 'mandatory');
-    const detectActive = boolean('detectActive', !isSberbox);
-    const detectThreshold = number('detectThreshold', 0.49);
+    const scrollSnapType = !isSberbox ? select('scrollSnapType', snapTypes, 'mandatory') : undefined;
+    const scrollSnapAlign = !isSberbox ? select('scrollSnapAlign', snapAlign, 'start') : undefined;
+    const detectActive = boolean('detectActive', true) as true;
+    const detectThreshold = number('detectThreshold', 0.5);
 
     return (
         <CarouselGridWrapper>
@@ -54,7 +54,6 @@ export const Basic = () => {
                 index={index}
                 animatedScrollByIndex={animatedScrollByIndex}
                 scrollAlign={scrollAlign}
-                scrollSnap={scrollSnap}
                 scrollSnapType={scrollSnapType}
                 detectActive={detectActive}
                 detectThreshold={detectThreshold}
@@ -62,7 +61,7 @@ export const Basic = () => {
                 style={{ paddingTop: '1.25rem', paddingBottom: '1.25rem' }}
             >
                 {items.map(({ title, subtitle }, i) => (
-                    <CarouselCol key={`item:${i}`} size={3} sizeXL={4} scrollSnapAlign="start">
+                    <CarouselCol key={`item:${i}`} size={3} sizeXL={4} scrollSnapAlign={scrollSnapAlign}>
                         <ProductCard
                             title={title}
                             subtitle={subtitle}
@@ -91,7 +90,7 @@ export const Vertical = () => {
     const scrollAlign = select('scrollAlign', ['center', 'start'], 'center');
     const scrollSnapType = select('scrollSnapType', snapTypes, 'mandatory');
     const scrollSnapAlign = select('scrollSnapAlign', snapAlign, 'center');
-    const detectActive = boolean('detectActive', true);
+    const detectActive = boolean('detectActive', true) as true;
     const detectThreshold = number('detectThreshold', 0.5);
 
     return (
@@ -133,27 +132,27 @@ export const Vertical = () => {
 };
 
 export const MusicPage: React.FC = () => {
-    const scrollSnap = boolean('scrollSnap', true);
-    const scrollSnapType = select('scrollSnapType', snapTypes, 'mandatory');
-    const scrollSnapAlign = select('scrollSnapAlign', snapAlign, 'start');
+    const isSberbox = isSberBox();
+    const scrollSnapType = !isSberbox ? select('scrollSnapType', snapTypes, 'mandatory') : undefined;
+    const scrollSnapAlign = !isSberbox ? select('scrollSnapAlign', snapAlign, 'start') : undefined;
 
     return (
         <>
-            <CarouselSection heading="Новые альбомы" scrollSnap={scrollSnap} scrollSnapType={scrollSnapType}>
+            <CarouselSection heading="Новые альбомы" scrollSnapType={scrollSnapType}>
                 {items.map((item, i) => (
                     <CarouselCol key={`item:${i}`} size={2} sizeM={1.5} scrollSnapAlign={scrollSnapAlign}>
                         <MusicCard {...item} imageRatio="1:1" />
                     </CarouselCol>
                 ))}
             </CarouselSection>
-            <CarouselSection heading="Хиты и чарты" scrollSnap={scrollSnap} scrollSnapType={scrollSnapType}>
+            <CarouselSection heading="Хиты и чарты" scrollSnapType={scrollSnapType}>
                 {items.map((item, i) => (
                     <CarouselCol key={`item:${i}`} size={4} sizeM={3} scrollSnapAlign={scrollSnapAlign}>
                         <MusicCard {...item} imageRatio="9:16" />
                     </CarouselCol>
                 ))}
             </CarouselSection>
-            <CarouselSection heading="Жанры и настроения" scrollSnap={scrollSnap} scrollSnapType={scrollSnapType}>
+            <CarouselSection heading="Жанры и настроения" scrollSnapType={scrollSnapType}>
                 {items.map((item, i) => (
                     <CarouselCol key={`item:${i}`} size={3} sizeM={2} scrollSnapAlign={scrollSnapAlign}>
                         <MusicCard {...item} imageRatio="9:16" />
@@ -178,13 +177,10 @@ export const CenterItem: React.FC = () => {
     });
 
     const animatedScrollByIndex = boolean('animatedScrollByIndex', isSberbox);
-    const scrollSnap = boolean('scrollSnap', !isSberbox);
-    const scrollSnapType = select('scrollSnapType', snapTypes, 'mandatory');
-    const scrollSnapAlign = select('scrollSnapAlign', snapAlign, 'center');
-    const scrollAlign = select('scrollAlign', ['center', 'start'], 'center');
-    const detectActive = boolean('detectActive', !isSberbox);
+    const scrollSnapType = !isSberbox ? select('scrollSnapType', snapTypes, 'mandatory') : undefined;
+    const scrollSnapAlign = !isSberbox ? select('scrollSnapAlign', snapAlign, 'center') : undefined;
+    const detectActive = boolean('detectActive', true) as true;
     const detectThreshold = number('detectThreshold', 0.5);
-    const scaleCentral = boolean('scaleCentral', true);
 
     return (
         <CarouselGridWrapper>
@@ -193,12 +189,9 @@ export const CenterItem: React.FC = () => {
                 axis="x"
                 index={index}
                 animatedScrollByIndex={animatedScrollByIndex}
-                scrollSnap={scrollSnap}
                 scrollSnapType={scrollSnapType}
-                scrollAlign={scrollAlign}
                 detectActive={detectActive}
                 detectThreshold={detectThreshold}
-                scaleCentral={scaleCentral}
                 scaleCallback={scaleCallback}
                 scaleResetCallback={scaleResetCallback}
                 onIndexChange={(i) => setIndex(i)}
