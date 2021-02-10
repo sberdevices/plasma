@@ -4,7 +4,7 @@ import { IconProps } from '../IconRoot';
 
 export const Alarm: React.FC<IconProps> = (props) => (
     <svg width="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-        <g filter="url(#ic_24_alarm_svg__filter0_b)">
+        <g>
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -12,21 +12,5 @@ export const Alarm: React.FC<IconProps> = (props) => (
                 fill="currentColor"
             />
         </g>
-        <defs>
-            <filter
-                id="ic_24_alarm_svg__filter0_b"
-                x={-72.559}
-                y={-72.559}
-                width={168.402}
-                height={169.119}
-                filterUnits="userSpaceOnUse"
-                colorInterpolationFilters="sRGB"
-            >
-                <feFlood floodOpacity={0} result="BackgroundImageFix" />
-                <feGaussianBlur in="BackgroundImage" stdDeviation={37.28} />
-                <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur" />
-                <feBlend in="SourceGraphic" in2="effect1_backgroundBlur" result="shape" />
-            </filter>
-        </defs>
     </svg>
 );
