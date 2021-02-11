@@ -30,32 +30,72 @@ import { Button, ActionButton } from '.';
 <Props of={ActionButton} />
 
 ## Использование
-Компонент ``Button`` может содержать текст, который указывается в
+Компонент ``<Button>`` может содержать текст, который указывается в
 свойстве ``text``, или любой контент напрямую через ``children``.
 
 Свойство ``text`` может быть использовано совместно
 со свойствами ``contentLeft`` и ``contentRight``.
 Таким образом, можно помещать **иконку** слева или справа от текста.
 
-Для создания квадратных кнопок с иконкой или текстом используйте свойство ``contentLeft``,
-передавая туда рендер иконки или текста.
+Компонент ``<ActionButton>`` принимает только ``children``.
 
 ```tsx
 // App.tsx
 import React from 'react';
 import { IconDownload } from '@sberdevices/plasma-icons';
-import { Button } from '@sberdevices/ui';
+import { Button, ActionButton } from '@sberdevices/ui';
 
 export const App = () => (
     <>
-        <Button text="Текст" />
-        <Button text="Текст" contentLeft={<IconDownload />} />
-        <Button text="Текст" contentRight={<IconDownload />} />
-        <Button contentLeft={<IconDownload />} />
-        <Button>
+        <Button text="Текст" /> // Только текст
+
+        <Button text="Текст" contentLeft={<IconDownload />} /> // Текст + иконка слева
+
+        <Button text="Текст" contentRight={<IconDownload />} /> // Текст + иконка справа
+
+        <Button contentLeft={<IconDownload />} /> // Только иконка
+
+        <Button> // Стандартный способ передачи контента
             <IconDownload />
             <span>Текст</span>
         </Button>
+
+        <ActionButton> // Контент в такую кнопку можно передать только так
+            <IconDownload />
+        </ActionButton>
+    </>
+);
+```
+
+### Квадратные и круглые кнопки
+Для отображения иконок и/или текста в квадратных или круглых кнопках с **равными сторонами**,
+используйте компонент ``<Button>`` и свойство ``contentLeft``, передавая в него нужное содержимое.
+
+При использовании ``<ActionButton>`` указывайте контент через ``children``.
+
+**Круглыми** границы кнопки можно сделать, указав ``pin="circle-circle"``.
+**Квадратными** (со скругленными углами) границы кнопки являются по умолчанию — ``pin="square-square"``
+(cм. раздел [Границы кнопки](#границы-кнопки)).
+
+```tsx
+// App.tsx
+import React from 'react';
+import { IconDownload } from '@sberdevices/plasma-icons';
+import { Button, ActionButton } from '@sberdevices/ui';
+
+export const App = () => (
+    <>
+        <Button contentLeft={<IconDownload />} /> // Квадратная кнопка
+
+        <Button contentLeft={<IconDownload />} pin="circle-circle" /> // Круглая кнопка
+
+        <ActionButton> // Квадратная кнопка
+            <IconDownload />
+        </ActionButton>
+
+        <ActionButton pin="circle-circle"> // Круглая кнопка
+            <IconDownload />
+        </ActionButton>
     </>
 );
 ```
