@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { text, boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import { IconSettings } from '@sberdevices/plasma-icons';
+import { IconSleep, IconEye } from '@sberdevices/plasma-icons';
 
 import { InSpacing } from '../../helpers/StoryDecorators';
+import { ActionButton } from '../Button';
 
 import { TextField } from '.';
 
@@ -25,8 +26,14 @@ export const Default = () => {
             onChange={(v) => setValue(v.target.value)}
             onFocus={action('onFocus')}
             onBlur={action('onBlur')}
-            contentLeft={boolean('Content left', false) && <IconSettings size="s" />}
-            contentRight={boolean('Content right', false) && <IconSettings size="s" />}
+            contentLeft={boolean('contentLeft', true) && <IconSleep color="inherit" size="s" />}
+            contentRight={
+                boolean('contentRight', true) && (
+                    <ActionButton view="clear">
+                        <IconEye color="inherit" size="s" />
+                    </ActionButton>
+                )
+            }
         />
     );
 };
