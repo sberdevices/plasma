@@ -10,18 +10,11 @@ import {
 } from '@sberdevices/plasma-tokens';
 
 import { addFocus, FocusProps, OutlinedProps } from '../../mixins/addFocus';
-import { applyInteraction, InteractionProps } from '../../mixins/applyInteraction';
 import { applyDisabled, DisabledProps } from '../../mixins/applyDisabled';
+import { applyInteraction, InteractionProps } from '../../mixins/applyInteraction';
 import { ShiftProps } from '../../types';
 
 import { StyledTabItem } from './TabItem';
-
-/**
- * Размеры в ремах
- */
-const padding = `${2 / scalingPixelBasis}rem`;
-const pilledRadius = `${100 / scalingPixelBasis}rem`;
-const pilledOutlineRadius = `${102 / scalingPixelBasis}rem`;
 
 /**
  * Размеры для контейнера и айтемов (в css vars).
@@ -33,46 +26,46 @@ const sizes = {
     l: (fixedWidth: boolean) => css`
         --tabs-shifting: -${((fixedWidth ? 12 : 24) + 2) / scalingPixelBasis}rem;
         --tab-item-padding-x: ${(fixedWidth ? 12 : 24) / scalingPixelBasis}rem;
-        --tab-item-padding-y: ${14 / scalingPixelBasis}rem;
-        --tab-item-padding-y-reduced: ${12 / scalingPixelBasis}rem;
-        --tab-item-height: ${48 / scalingPixelBasis}rem;
-        --tab-item-border-radius: ${16 / scalingPixelBasis}rem;
-        height: ${52 / scalingPixelBasis}rem;
-        border-radius: ${18 / scalingPixelBasis}rem;
+        --tab-item-padding-y: 0.875rem;
+        --tab-item-padding-y-reduced: 0.75rem;
+        --tab-item-height: 3rem;
+        --tab-item-border-radius: 1rem;
+        height: 3.25rem;
+        border-radius: 1.125rem;
         ${button1};
     `,
     m: (fixedWidth: boolean) => css`
         --tabs-shifting: -${((fixedWidth ? 12 : 20) + 2) / scalingPixelBasis}rem;
         --tab-item-padding-x: ${(fixedWidth ? 12 : 20) / scalingPixelBasis}rem;
-        --tab-item-padding-y: ${12 / scalingPixelBasis}rem;
-        --tab-item-padding-y-reduced: ${8 / scalingPixelBasis}rem;
-        --tab-item-height: ${40 / scalingPixelBasis}rem;
-        --tab-item-border-radius: ${12 / scalingPixelBasis}rem;
-        height: ${44 / scalingPixelBasis}rem;
-        border-radius: ${14 / scalingPixelBasis}rem;
+        --tab-item-padding-y: 0.75rem;
+        --tab-item-padding-y-reduced: 0.5rem;
+        --tab-item-height: 2.5rem;
+        --tab-item-border-radius: 0.75rem;
+        height: 2.75rem;
+        border-radius: 0.875rem;
         ${button2};
     `,
     s: (fixedWidth: boolean) => css`
         --tabs-shifting: -${((fixedWidth ? 10 : 16) + 2) / scalingPixelBasis}rem;
         --tab-item-padding-x: ${(fixedWidth ? 10 : 16) / scalingPixelBasis}rem;
-        --tab-item-padding-y: ${10 / scalingPixelBasis}rem;
-        --tab-item-padding-y-reduced: ${6 / scalingPixelBasis}rem;
-        --tab-item-height: ${36 / scalingPixelBasis}rem;
-        --tab-item-border-radius: ${12 / scalingPixelBasis}rem;
-        height: ${40 / scalingPixelBasis}rem;
-        border-radius: ${14 / scalingPixelBasis}rem;
+        --tab-item-padding-y: 0.625rem;
+        --tab-item-padding-y-reduced: 0.375rem;
+        --tab-item-height: 2.25rem;
+        --tab-item-border-radius: 0.75rem;
+        height: 2.5rem;
+        border-radius: 0.875rem;
         ${button2};
     `,
 };
 const outlineSizes = {
     l: {
-        radius: `${18 / scalingPixelBasis}rem`,
+        radius: '1.125rem',
     },
     m: {
-        radius: `${14 / scalingPixelBasis}rem`,
+        radius: '0.875rem',
     },
     s: {
-        radius: `${14 / scalingPixelBasis}rem`,
+        radius: '0.875rem',
     },
 };
 
@@ -88,11 +81,12 @@ const views = {
 export type TabsView = keyof typeof views;
 export type TabsSize = keyof typeof sizes;
 
-interface StyledTabsProps extends FocusProps, OutlinedProps, InteractionProps, DisabledProps, ShiftProps {
+interface StyledTabsProps extends InteractionProps, FocusProps, OutlinedProps, DisabledProps, ShiftProps {
     $size: TabsSize;
     $view: TabsView;
     $fixedWidth: boolean;
     $pilled: boolean;
+    $scaleOnPress?: boolean;
 }
 
 /**
@@ -102,7 +96,7 @@ const applyFocus = ({ $size, $pilled, focused, outlined }: StyledTabsProps) => c
     ${addFocus({
         focused,
         outlined,
-        outlineRadius: $pilled ? pilledOutlineRadius : outlineSizes[$size].radius,
+        outlineRadius: $pilled ? '6.375rem' : outlineSizes[$size].radius,
     })}
 `;
 
@@ -114,13 +108,14 @@ const StyledTabs = styled.ul<StyledTabsProps>`
     justify-content: stretch;
 
     margin: 0;
-    padding: ${padding};
+    padding: 0.125rem 0;
     width: max-content;
 
     list-style-type: none;
     user-select: none;
 
     background-color: ${({ $view }) => views[$view]};
+    transition: background-color 0.3s ease-in-out, transform 0.1s ease-in-out;
 
     ${({ $size, $fixedWidth, shiftLeft, shiftRight }) =>
         css`
@@ -150,8 +145,8 @@ const StyledTabs = styled.ul<StyledTabsProps>`
              * а при минимальном количестве занимают максимум половину ширины.
              */
             & ${StyledTabItem} {
-                min-width: 25%;
-                max-width: 50%;
+                min-width: calc(25% - 0.25rem);
+                max-width: calc(50% - 0.25rem);
                 width: 100%;
             }
         `}
@@ -159,26 +154,29 @@ const StyledTabs = styled.ul<StyledTabsProps>`
     ${({ $pilled }) =>
         $pilled &&
         css`
-            border-radius: ${pilledRadius};
+            border-radius: 6.25rem;
 
             & ${StyledTabItem} {
-                border-radius: ${pilledRadius};
+                border-radius: 6.25rem;
             }
         `}
 
     & ${StyledTabItem} {
         ${applyFocus}
-        ${applyInteraction}
         ${applyDisabled}
+        ${applyInteraction}
+
+        margin-left: 0.125rem;
+        margin-right: 0.125rem;
     }
 `;
 
 export interface TabsProps
     extends FocusProps,
         OutlinedProps,
-        InteractionProps,
         DisabledProps,
         ShiftProps,
+        Pick<InteractionProps, 'scaleOnPress'>,
         React.HTMLAttributes<HTMLUListElement> {
     /**
      * Размер компонента
@@ -208,7 +206,7 @@ export const Tabs: React.FC<TabsProps> = ({
     view = 'secondary',
     fixedWidth = false,
     pilled = false,
-    scaleOnInteraction = true,
+    scaleOnPress = true,
     children,
     ...rest
 }) => (
@@ -217,7 +215,7 @@ export const Tabs: React.FC<TabsProps> = ({
         $view={view}
         $fixedWidth={fixedWidth}
         $pilled={pilled}
-        scaleOnInteraction={scaleOnInteraction}
+        scaleOnPress={scaleOnPress}
         {...rest}
     >
         {children}
