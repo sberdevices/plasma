@@ -9,7 +9,6 @@ import {
     surfaceLiquid02,
     primary,
     secondary,
-    scalingPixelBasis,
 } from '@sberdevices/plasma-tokens';
 
 import { DisabledProps } from '../../mixins';
@@ -37,22 +36,6 @@ export interface FieldProps extends React.InputHTMLAttributes<HTMLInputElement> 
     status?: 'success' | 'error';
 }
 
-/**
- * Значения в ремах храним тут,
- * чтобы не считать их каждый раз при перерисовке.
- * Числа в числителях соответствуют значениям в макетах.
- */
-const paddingX = `${16 / scalingPixelBasis}rem`;
-const paddingXWithContent = `${(16 * 2 + 24) / scalingPixelBasis}rem`;
-const inputHeight = `${56 / scalingPixelBasis}rem`;
-const inputPaddingT = `${26 / scalingPixelBasis}rem`;
-const inputPaddingB = `${10 / scalingPixelBasis}rem`;
-const inputBorderRadius = `${16 / scalingPixelBasis}rem`;
-const labelTopEmpty = `${18 / scalingPixelBasis}rem`;
-const labelTopFullfilled = `${6 / scalingPixelBasis}rem`;
-const contentTop = `${16 / scalingPixelBasis}rem`;
-const helperTop = `${4 / scalingPixelBasis}rem`;
-
 interface IsContentProps {
     isContentLeft?: boolean;
     isContentRight?: boolean;
@@ -60,7 +43,7 @@ interface IsContentProps {
 
 const StyledInputWrapper = styled.label`
     position: relative;
-    cursor: pointer;
+    cursor: text;
 `;
 
 const StyledInput = styled.input`
@@ -71,13 +54,13 @@ const StyledInput = styled.input`
     text-overflow: ellipsis;
     white-space: nowrap;
 
-    padding: ${inputPaddingT} ${paddingX} ${inputPaddingB};
+    padding: 1.625rem 1rem 0.625rem;
     width: 100%;
-    height: ${inputHeight};
+    height: 3.5rem;
 
     background-color: ${surfaceLiquid01};
     border: 0 none;
-    border-radius: ${inputBorderRadius};
+    border-radius: 1rem;
     color: ${primary};
 
     transition-duration: 0.1s;
@@ -106,9 +89,9 @@ const StyledLabel = styled.span<StyledLabelProps>`
     white-space: nowrap;
 
     position: absolute;
-    top: ${labelTopEmpty};
-    left: ${paddingX};
-    right: ${paddingX};
+    top: 1.125rem;
+    left: 1rem;
+    right: 1rem;
 
     transition: all 0.1s ease-in-out;
 
@@ -116,7 +99,7 @@ const StyledLabel = styled.span<StyledLabelProps>`
     ${StyledInput}:focus ~ & {
         ${caption};
 
-        top: ${labelTopFullfilled};
+        top: 0.375rem;
     }
 
     ${({ isValue }) =>
@@ -124,15 +107,19 @@ const StyledLabel = styled.span<StyledLabelProps>`
         css`
             ${caption};
 
-            top: ${labelTopFullfilled};
+            top: 0.375rem;
         `}
 `;
 
 const StyledContent = styled.div`
     position: absolute;
-    top: ${contentTop};
+    top: 0;
     left: 0;
-    margin: 0 ${paddingX};
+    bottom: 0;
+    margin: 0 1rem;
+    color: ${primary};
+    display: flex;
+    align-items: center;
 
     /* stylelint-disable-next-line max-line-length */
     /* stylelint-disable-next-line declaration-block-semicolon-newline-after, rule-empty-line-before, selector-nested-pattern */
@@ -150,9 +137,9 @@ const StyledHelperText = styled.span`
     text-overflow: ellipsis;
     white-space: nowrap;
 
-    margin-top: ${helperTop};
-    padding-left: ${paddingX};
-    padding-right: ${paddingX};
+    margin-top: 0.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 `;
 
 const StyledRoot = styled.div<Pick<FieldProps, 'status'> & DisabledProps & IsContentProps>`
@@ -186,10 +173,10 @@ const StyledRoot = styled.div<Pick<FieldProps, 'status'> & DisabledProps & IsCon
         isContentLeft &&
         css`
             & ${StyledInput} {
-                padding-left: ${paddingXWithContent};
+                padding-left: 3.5rem;
             }
             & ${StyledLabel} {
-                left: ${paddingXWithContent};
+                left: 3.5rem;
             }
         `}
 
@@ -197,10 +184,10 @@ const StyledRoot = styled.div<Pick<FieldProps, 'status'> & DisabledProps & IsCon
         isContentRight &&
         css`
             & ${StyledInput} {
-                padding-right: ${paddingXWithContent};
+                padding-right: 3.5rem;
             }
             & ${StyledLabel} {
-                right: ${paddingXWithContent};
+                right: 3.5rem;
             }
         `}
 `;
