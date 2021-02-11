@@ -35,7 +35,7 @@ export const Default = () => {
             view={select('view', viewKeys, 'secondary')}
             fixedWidth={fixedWidth}
             pilled={pilled}
-            scaleOnInteraction={boolean('scaleOnInteraction', true)}
+            scaleOnPress={boolean('scaleOnInteraction', true)}
             outlined={!disabled && outlined}
             disabled={disabled}
         >
