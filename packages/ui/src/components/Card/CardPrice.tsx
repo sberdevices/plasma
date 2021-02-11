@@ -1,44 +1,39 @@
 import React from 'react'; // eslint-disable-line
 import styled from 'styled-components';
-import { buttonAccent } from '@sberdevices/plasma-tokens';
+import { buttonAccent, primary, tertiary } from '@sberdevices/plasma-tokens';
 
+import { Price, PriceProps } from '../Price';
 import { Body2 } from '../Typography';
-import { formatCurrency } from '../../helpers/formatCurrency';
 
 export interface CardPriceProps extends React.HTMLAttributes<HTMLDivElement> {
     price: number;
     oldPrice?: number;
-    currency?: string;
+    currency?: PriceProps['currency'];
     count?: number;
 }
 
-const StyledRoot = styled.div`
+const StyledRoot = styled(Body2)`
     display: flex;
     box-sizing: border-box;
 
-    margin-top: 12px;
+    margin-top: 0.75rem;
 `;
 
-const StyledPrice = styled(Body2)`
-    box-sizing: border-box;
-    height: 40px;
-
-    color: #fff;
+const StyledPrice = styled(Price)`
+    height: 2.5rem;
+    color: ${primary};
 `;
 
-const StyledOldPrice = styled(StyledPrice)`
-    box-sizing: border-box;
-    margin-left: 8px;
-
-    text-decoration: line-through;
-
-    opacity: 0.24;
+const StyledOldPrice = styled(Price)`
+    height: 2.5rem;
+    margin-left: 0.5rem;
+    color: ${tertiary};
 `;
 
 const StyledCount = styled(Body2)`
     box-sizing: border-box;
-    height: 40px;
-    margin-left: 8px;
+    height: 2.5rem;
+    margin-left: 0.5rem;
 
     color: ${buttonAccent};
 `;
@@ -46,8 +41,12 @@ const StyledCount = styled(Body2)`
 export const CardPrice: React.FC<CardPriceProps> = ({ count, currency, oldPrice, price, ...rest }) => {
     return (
         <StyledRoot {...rest}>
-            <StyledPrice>{formatCurrency(price, currency)}</StyledPrice>
-            {oldPrice && <StyledOldPrice>{formatCurrency(oldPrice, currency)}</StyledOldPrice>}
+            <StyledPrice currency={currency}>{price}</StyledPrice>
+            {oldPrice && (
+                <StyledOldPrice currency={currency} stroke>
+                    {oldPrice}
+                </StyledOldPrice>
+            )}
             {count ? <StyledCount>×{count}</StyledCount> : ''}
         </StyledRoot>
     );
