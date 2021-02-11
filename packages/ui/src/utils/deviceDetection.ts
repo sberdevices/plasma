@@ -35,6 +35,20 @@ export const isSberBox = (): boolean => {
 };
 
 /**
+ * Проверка в браузере на устройство "SberBoxTV".
+ * @return {boolean}
+ */
+export const isTV = (): boolean => {
+    if (typeof navigator === 'undefined') {
+        return false;
+    }
+
+    const ua = navigator.userAgent.toLowerCase();
+
+    return ua.includes('(tv; tv)');
+};
+
+/**
  * Вернет тип устройства, под которым запустилось приложение.
  * В случае запуска в серверном окружении, возвращает "sberBox".
  * @return {DeviceKind}
@@ -47,6 +61,7 @@ export const detectDevice = (): DeviceKind => {
         case isSberPortal():
             return 'sberPortal';
         case isSberBox():
+        case isTV():
             return 'sberBox';
         default:
             return 'touch';
