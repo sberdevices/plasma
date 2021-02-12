@@ -1,5 +1,5 @@
 import React from 'react';
-import { text, select, number } from '@storybook/addon-knobs';
+import { text, select, number, boolean } from '@storybook/addon-knobs';
 
 import { Button } from '../Button';
 
@@ -23,12 +23,13 @@ export const ToastContext = () => {
     );
 
     const timeout = number('timeout', 3000);
+    const fade = boolean('fade', true);
 
     return (
         <div>
             <Button
                 onClick={() => {
-                    showToast(toastText, position, timeout);
+                    showToast(toastText, position, timeout, fade);
                 }}
             >
                 Показать уведомление

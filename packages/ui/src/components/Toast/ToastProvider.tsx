@@ -4,7 +4,7 @@ import { ToastInfo, Position } from './types';
 import { ToastController } from './ToastController';
 
 type ContextType = ToastInfo & {
-    showToast: (text: string, position?: Position, timeout?: number) => void;
+    showToast: (text: string, position?: Position, timeout?: number, fade?: boolean) => void;
     hideToast: () => void;
 };
 
@@ -16,13 +16,20 @@ export const ToastContext = createContext<ContextType>({
     hideToast: () => undefined,
 });
 
-const defaultTimeout = 3000;
+const DEFAULT_POSITION = 'bottom';
+const DEFAULT_TIMEOUT = 3000;
+const DEFAULT_FADE = true;
 
 export const ToastProvider: React.FC = ({ children }) => {
     const [value, setValue] = useState<ToastInfo>({ text: null, position: null, timeout: null });
 
-    const showToast = useCallback((text: string, position?: Position, timeout?: number) => {
-        setValue({ text, position: position || 'bottom', timeout: timeout || defaultTimeout });
+    const showToast = useCallback((text: string, position?: Position, timeout?: number, fade?: boolean) => {
+        setValue({
+            text,
+            position: position || DEFAULT_POSITION,
+            timeout: timeout !== undefined ? timeout : DEFAULT_TIMEOUT,
+            fade: fade !== undefined ? fade : DEFAULT_FADE,
+        });
     }, []);
 
     const hideToast = useCallback(() => {
