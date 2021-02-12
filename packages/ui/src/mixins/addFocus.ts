@@ -93,9 +93,6 @@ export const addFocus: InterpolationFunction<FocusProps & OutlinedProps & Outlin
             display: block;
             box-sizing: content-box;
 
-            width: 100%;
-            height: 100%;
-
             border: ${outlineSize} solid transparent;
             border-radius: ${outlineRadius};
 
