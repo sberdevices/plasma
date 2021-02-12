@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { footnote1, scalingPixelBasis } from '@sberdevices/plasma-tokens';
+import { footnote1 } from '@sberdevices/plasma-tokens';
 
 /**
  * Компонент для создания маркированных списков.
@@ -15,13 +15,13 @@ const StyledMarkedItem = styled.li`
     ${footnote1};
     display: flex;
     align-items: center;
-    margin-top: ${12 / scalingPixelBasis}rem;
+    margin-top: 0.75rem;
 `;
 
 const StyledItemText = styled.span`
     /* stylelint-disable-next-line selector-max-universal, selector-nested-pattern */
     * + & {
-        margin-left: ${4 / scalingPixelBasis}rem;
+        margin-left: 0.75rem;
     }
 `;
 
