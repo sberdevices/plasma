@@ -2,12 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { text, number, boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import { Icon } from '@sberdevices/plasma-icons';
+import { IconMic, IconPlus, IconTrash } from '@sberdevices/plasma-icons';
 
-import { GridLines } from '../../helpers/GridLines';
-import { mediaQuery } from '../../utils';
 import { Button } from '../Button';
-import { Container } from '../Grid';
 import { Tabs, TabItem } from '../Tabs';
 
 import {
@@ -21,75 +18,68 @@ import {
     HeaderContent,
 } from '.';
 
-const MobileHeaderButtons = styled.div`
-    display: none;
+const contentTypes = ['None', 'Buttons', 'Tabs', 'MobileButtons'];
 
-    ${mediaQuery('S')(`
-        display: flex;
-    `)}
-`;
-const RegularHeaderButtons = styled.div`
-    display: flex;
-
-    ${mediaQuery('S')(`
-        display: none;
-    `)}
+const StyledContentWrapper = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3, max-content);
+    grid-column-gap: 0.75rem;
+    width: 1fr;
 `;
 
-const icons = ['clock', 'settings', 'house', 'trash'];
-const contentTypes = ['None', 'Buttons', 'Tabs'];
-
-const AppBarContent = () => {
-    const contentType = select('Content type', contentTypes, 'None');
-    const contentItems = Array(number('Content items', 3)).fill(text('Content text', 'Label'));
-    const enableIcons = boolean('Enable icons', true);
+const Content = () => {
+    const contentType = select('Content type', contentTypes, 'Buttons');
+    const contentItems = contentType !== 'None' && Array(number('Content items', 3)).fill(0);
+    const enableIcons = contentType !== 'None' && boolean('Enable icons', true);
     const [activeTab, setActiveTab] = React.useState(0);
 
     return (
-        <>
+        <StyledContentWrapper>
             {contentType === 'Buttons' &&
-                contentItems.map((label, i) => (
+                contentItems.map((_, i) => (
                     <Button
                         key={`item:${i}`}
                         size="s"
                         view="clear"
                         shiftRight={i === contentItems.length - 1}
-                        contentLeft={enableIcons && <Icon icon={icons[i % icons.length]} size="s" />}
-                        text={label}
-                        style={{ marginLeft: 12 }}
+                        contentLeft={enableIcons && <IconMic color="inherit" size="s" />}
+                        text="Button"
                     />
                 ))}
             {contentType === 'Tabs' && (
-                <Tabs size="m" view="clear" pilled scaleOnInteraction shiftRight>
-                    {contentItems.map((label, i) => (
+                <Tabs size="m" view="clear" pilled scaleOnPress shiftRight>
+                    {contentItems.map((_, i) => (
                         <TabItem
                             key={`item:${i}`}
                             isActive={i === activeTab}
                             onClick={() => setActiveTab(i)}
-                            contentLeft={enableIcons && <Icon icon={icons[i % icons.length]} size="s" />}
+                            contentLeft={enableIcons && <IconMic color="inherit" size="s" />}
                         >
-                            {label}
+                            Tab
                         </TabItem>
                     ))}
                 </Tabs>
             )}
-        </>
+            {contentType === 'MobileButtons' && (
+                <>
+                    <Button
+                        view="clear"
+                        size="s"
+                        pin="circle-circle"
+                        contentLeft={<IconPlus color="inherit" size="s" />}
+                    />
+                    <Button
+                        view="clear"
+                        size="s"
+                        pin="circle-circle"
+                        contentLeft={<IconTrash color="inherit" size="s" />}
+                        shiftRight
+                    />
+                </>
+            )}
+        </StyledContentWrapper>
     );
 };
-
-const ResponsiveContent = () => (
-    <>
-        <MobileHeaderButtons>
-            <Button view="clear" size="s" pin="circle-circle" contentLeft={<Icon icon="plus" size="s" />} />
-            <Button view="clear" size="s" pin="circle-circle" contentLeft={<Icon icon="trash" size="s" />} shiftRight />
-        </MobileHeaderButtons>
-        <RegularHeaderButtons>
-            <Button view="clear" shiftRight>
-                {text('content', 'Regular button')}
-            </Button>
-        </RegularHeaderButtons>
-    </>
-);
 
 export const Default = () => (
     <Header
@@ -99,13 +89,14 @@ export const Default = () => (
         title={text('title', 'Header title text')}
         subtitle={text('subtitle', 'Subtitle text')}
         onBackClick={action('onBackClick')}
+        style={{ minWidth: 1056 }}
     >
-        <AppBarContent />
+        <Content />
     </Header>
 );
 
-export const CustomWithResponsiveContent = () => (
-    <HeaderRoot>
+export const CustomAssembly = () => (
+    <HeaderRoot style={{ minWidth: 1056 }}>
         <HeaderBack onClick={action('onBackClick')} />
         <HeaderLogo src="./images/logo.png" alt="Logo" />
         <HeaderTitleWrapper>
@@ -113,7 +104,7 @@ export const CustomWithResponsiveContent = () => (
             <HeaderSubtitle>{text('subtitle', 'Subtitle text')}</HeaderSubtitle>
         </HeaderTitleWrapper>
         <HeaderContent>
-            <ResponsiveContent />
+            <Content />
         </HeaderContent>
     </HeaderRoot>
 );
