@@ -2,8 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 import { SelfPosition } from 'csstype';
 
-export const CellRoot = styled.div`
+import { addFocus, FocusProps, OutlinedProps } from '../../mixins';
+
+export const CellRoot = styled.div<FocusProps & OutlinedProps>`
     display: flex;
+
+    &:focus {
+        outline: 0 none;
+    }
+
+    ${({ focused, outlined }) =>
+        addFocus({
+            focused,
+            outlined,
+            outlineOffset: '0.25rem',
+            outlineRadius: '0.125rem',
+        })};
 `;
 
 export type CellSize = 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl';
@@ -81,7 +95,7 @@ export const CellIcon = styled.div<CellIconProps>`
     }
 `;
 
-export interface CellProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface CellProps extends FocusProps, OutlinedProps {
     left?: React.ReactNode;
     content: React.ReactNode;
     right?: React.ReactNode;
@@ -89,7 +103,7 @@ export interface CellProps extends React.HTMLAttributes<HTMLDivElement> {
     alignLeft?: alignLeftProp;
     alignRight?: alignRightProp;
 
-    as?: React.ComponentType<any>;
+    as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
 }
 
 /**

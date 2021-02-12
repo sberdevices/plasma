@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { text, select } from '@storybook/addon-knobs';
+import { text, select, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { accent, footnote1 } from '@sberdevices/plasma-tokens';
 
@@ -37,7 +37,6 @@ export const Default = () => {
                 <Col size={4}>
                     <Example>
                         <Cell
-                            onClick={action('cell clicked')}
                             left={<CellIcon as="img" src="./images/avocado.png" alt="avocado" />}
                             content={<TextBox title={title} subTitle={subTitle} />}
                         />
@@ -271,7 +270,9 @@ export const CellListItem = () => {
                     <Example color="rgba(0,0,0,0)">
                         <Variation>With Disclosure</Variation>
                         <ListItem
-                            onClick={action('cell clicked')}
+                            onClick={action('onClick')}
+                            outlined={boolean('outlined', true)}
+                            tabIndex={0}
                             left={left}
                             content={
                                 <TextBox>
@@ -279,10 +280,12 @@ export const CellListItem = () => {
                                     <TextBoxSubTitle>+7 (495) 500-55-50</TextBoxSubTitle>
                                 </TextBox>
                             }
-                            right={<Disclosure onClick={action('disclosure clicked')} />}
+                            right={<Disclosure tabIndex={-1} />}
                         />
                         <ListItem
-                            onClick={action('cell clicked')}
+                            onClick={action('onClick')}
+                            outlined={boolean('outlined', true)}
+                            tabIndex={0}
                             left={left}
                             content={
                                 <TextBox>
@@ -290,10 +293,12 @@ export const CellListItem = () => {
                                     <TextBoxSubTitle>+7 (495) 500-55-50</TextBoxSubTitle>
                                 </TextBox>
                             }
-                            right={<Disclosure onClick={action('disclosure clicked')} />}
+                            right={<Disclosure tabIndex={-1} />}
                         />
                         <ListItem
-                            onClick={action('cell clicked')}
+                            onClick={action('onClick')}
+                            outlined={boolean('outlined', true)}
+                            tabIndex={0}
                             left={left}
                             content={
                                 <TextBox>
@@ -301,7 +306,7 @@ export const CellListItem = () => {
                                     <TextBoxSubTitle>+7 (495) 500-55-50</TextBoxSubTitle>
                                 </TextBox>
                             }
-                            right={<Disclosure onClick={action('disclosure clicked')} />}
+                            right={<Disclosure tabIndex={-1} />}
                         />
                     </Example>
                 </Col>
@@ -311,6 +316,9 @@ export const CellListItem = () => {
                     <Example>
                         <Variation>With Disclosure + Title</Variation>
                         <ListItem
+                            onClick={action('onClick')}
+                            outlined={boolean('outlined', true)}
+                            tabIndex={0}
                             left={left}
                             content={
                                 <TextBox>
@@ -320,7 +328,7 @@ export const CellListItem = () => {
                             right={
                                 <>
                                     <TextBox title="Details" />
-                                    <Disclosure />
+                                    <Disclosure tabIndex={-1} />
                                 </>
                             }
                         />
