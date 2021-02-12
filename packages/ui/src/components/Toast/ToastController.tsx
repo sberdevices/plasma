@@ -1,6 +1,8 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 
+import { Fade } from '../Fade';
+
 import { ToastInfo } from './types';
 import { Toast } from './Toast';
 import { useToast } from './useToast';
@@ -36,6 +38,31 @@ const hideAnimation = (position: string) => keyframes`
     }
 `;
 
+const fadeIn = keyframes`
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+`;
+const fadeOut = keyframes`
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+`;
+
+const StyledFade = styled(Fade)<{ isVisible: boolean }>`
+    ${({ isVisible }) => css`
+        animation: 300ms ${isVisible ? fadeIn : fadeOut};
+    `};
+`;
+
 const StyledRoot = styled.div<{ position: string; isVisible: boolean }>`
     position: fixed;
     left: 50%;
@@ -52,7 +79,7 @@ const StyledRoot = styled.div<{ position: string; isVisible: boolean }>`
  * Создаёт <div />, который внутри себя содержит тост.
  * Цикл: show => timeout => hide.
  */
-export const ToastController: React.FC<ToastInfo> = ({ text, position = 'bottom', timeout }) => {
+export const ToastController: React.FC<ToastInfo> = ({ text, position, timeout, fade }) => {
     const { hideToast } = useToast();
     const [isVisible, setIsVisible] = useState(true);
     const hideTimeout = useRef<number | null>(null);
@@ -68,6 +95,7 @@ export const ToastController: React.FC<ToastInfo> = ({ text, position = 'bottom'
                 setIsVisible(false);
             }, timeout);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [timeout, isVisible]);
 
     useEffect(() => {
@@ -83,8 +111,11 @@ export const ToastController: React.FC<ToastInfo> = ({ text, position = 'bottom'
     }
 
     return (
-        <StyledRoot key={toastKey} position={position} isVisible={isVisible} onAnimationEnd={animationEndHandler}>
-            <Toast text={text} />
-        </StyledRoot>
+        <>
+            {fade && <StyledFade isVisible={isVisible} />}
+            <StyledRoot key={toastKey} position={position} isVisible={isVisible} onAnimationEnd={animationEndHandler}>
+                <Toast text={text} />
+            </StyledRoot>
+        </>
     );
 };
