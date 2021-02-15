@@ -72,7 +72,7 @@ export const ScalingColCard: React.FC<ScalingColCardProps> = ({ isActive, scroll
                 title={item.title}
                 focused={isActive}
                 imageSrc={item.imageSrc}
-                imageRatio="1:1"
+                imageRatio="1 / 1"
                 textAlign="center"
             />
         </StyledColInner>

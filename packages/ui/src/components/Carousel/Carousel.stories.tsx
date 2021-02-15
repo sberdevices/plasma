@@ -122,7 +122,7 @@ export const Vertical = () => {
                         subtitle={subtitle}
                         focused={i === index}
                         imageSrc={`/images/320_320_${i % 12}.jpg`}
-                        imageRatio="1:1"
+                        imageRatio="1 / 1"
                         scaleOnFocus
                     />
                 </CarouselItem>
@@ -141,21 +141,21 @@ export const MusicPage: React.FC = () => {
             <CarouselSection heading="Новые альбомы" scrollSnapType={scrollSnapType}>
                 {items.map((item, i) => (
                     <CarouselCol key={`item:${i}`} size={2} sizeM={1.5} scrollSnapAlign={scrollSnapAlign}>
-                        <MusicCard {...item} imageRatio="1:1" />
+                        <MusicCard {...item} imageRatio="1 / 1" />
                     </CarouselCol>
                 ))}
             </CarouselSection>
             <CarouselSection heading="Хиты и чарты" scrollSnapType={scrollSnapType}>
                 {items.map((item, i) => (
                     <CarouselCol key={`item:${i}`} size={4} sizeM={3} scrollSnapAlign={scrollSnapAlign}>
-                        <MusicCard {...item} imageRatio="9:16" />
+                        <MusicCard {...item} imageRatio="16 / 9" />
                     </CarouselCol>
                 ))}
             </CarouselSection>
             <CarouselSection heading="Жанры и настроения" scrollSnapType={scrollSnapType}>
                 {items.map((item, i) => (
                     <CarouselCol key={`item:${i}`} size={3} sizeM={2} scrollSnapAlign={scrollSnapAlign}>
-                        <MusicCard {...item} imageRatio="9:16" />
+                        <MusicCard {...item} imageRatio="16 / 9" />
                     </CarouselCol>
                 ))}
             </CarouselSection>
