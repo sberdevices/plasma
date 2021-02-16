@@ -7,6 +7,7 @@ import type { PickOptional, SnapType } from '../../types';
 import { animatedScrollToX, animatedScrollToY } from '../../utils';
 
 import { CarouselContext, CarouselItemRefs } from './CarouselContext';
+import { CarouselGridWrapper } from './CarouselGridWrapper';
 import type { Axis } from './Carousel.types';
 
 type DetectionProps =
@@ -177,6 +178,12 @@ export const StyledCarousel = styled.div<PickOptional<CarouselProps, 'axis' | 's
     ::-webkit-scrollbar {
         display: none;
     }
+
+    /* stylelint-disable-next-line */
+    ${CarouselGridWrapper} & {
+        scroll-padding: 0 var(--plasma-grid-margin);
+        padding-left: var(--plasma-grid-margin);
+    }
 `;
 
 export const StyledCarouselTrack = styled.div<PickOptional<CarouselProps, 'axis' | 'paddingStart' | 'paddingEnd'>>`
@@ -187,7 +194,14 @@ export const StyledCarouselTrack = styled.div<PickOptional<CarouselProps, 'axis'
                   flex-direction: row;
 
                   ${paddingStart && `padding-left: ${paddingStart};`}
-                  ${paddingEnd && `padding-right: ${paddingEnd};`}
+                  ${paddingEnd
+                      ? `padding-right: ${paddingEnd};`
+                      : css`
+                            /* stylelint-disable-next-line selector-nested-pattern */
+                            ${CarouselGridWrapper} & {
+                                padding-right: var(--plasma-grid-margin);
+                            }
+                        `}
               `
             : css`
                   display: flex;
