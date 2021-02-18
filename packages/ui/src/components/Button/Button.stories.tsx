@@ -14,8 +14,6 @@ import { View } from '@sberdevices/plasma-core/mixins';
 import { actionWithPersistedEvent } from '../../helpers';
 import { Body1 } from '../Typography';
 
-import { ButtonSize } from './ButtonBase';
-
 import { Button, ActionButton as ActionButtonComponent } from '.';
 
 const onClick = actionWithPersistedEvent('onClick');
@@ -139,16 +137,16 @@ const StyledCubicGrid = styled.div<{ isMobile: boolean }>`
 const contentLeft = <IconMic color="inherit" size="s" />;
 
 const headers = ['Normal', 'Focused', 'Disabled', 'Normal', 'Focused', 'Disabled'];
-const sizes = ['l', 'm', 's'] as ButtonSize[];
+const sizes = ['l', 'm', 's'];
 const views = ['primary', 'secondary', 'warning', 'critical', 'checked', 'clear'];
 const colors = [buttonAccent, buttonSecondary, buttonWarning, buttonCritical, buttonChecked];
 const items = [
-    { outlined: true, focused: false, disabled: false, fullWidth: true, contentLeft: null },
-    { outlined: true, focused: true, disabled: false, fullWidth: true, contentLeft: null },
-    { outlined: true, focused: false, disabled: true, fullWidth: true, contentLeft: null },
-    { outlined: true, focused: false, disabled: false, fullWidth: false, contentLeft: null },
-    { outlined: true, focused: true, disabled: false, fullWidth: false, contentLeft: null },
-    { outlined: true, focused: false, disabled: true, fullWidth: false, contentLeft: null },
+    { outlined: true, focused: false, disabled: false, resizible: true, contentLeft: null },
+    { outlined: true, focused: true, disabled: false, resizible: true, contentLeft: null },
+    { outlined: true, focused: false, disabled: true, resizible: true, contentLeft: null },
+    { outlined: true, focused: false, disabled: false, resizible: false, contentLeft: null },
+    { outlined: true, focused: true, disabled: false, resizible: false, contentLeft: null },
+    { outlined: true, focused: false, disabled: true, resizible: false, contentLeft: null },
 ];
 const regular = items.map((item) => [item, { ...item, contentLeft }]);
 const cubics = items.slice(0, 3).map((item) => ({ ...item, contentLeft }));
@@ -183,7 +181,7 @@ const Showcase = ({ render, size, isMobile }) => (
                                         {
                                             ...item,
                                             view,
-                                            size: size || select('size', sizes, 'l'),
+                                            size: size || select('size', sizes, 'm'),
                                         },
                                         `${view}${j}${k}`,
                                     ),
@@ -205,7 +203,7 @@ const CubicShowcase = ({ render, size, isMobile }) => (
                     {
                         ...item,
                         view,
-                        size: size || select('size', sizes, 'l'),
+                        size: size || select('size', sizes, 'm'),
                     },
                     `${view}${i}`,
                 ),
@@ -228,7 +226,7 @@ export function Default() {
                     outlined={props.outlined}
                     focused={props.focused}
                     disabled={props.disabled}
-                    fullWidth={props.fullWidth}
+                    resizible={props.resizible}
                     contentLeft={props.contentLeft}
                     onClick={onClick}
                     onFocus={onFocus}
@@ -252,7 +250,7 @@ export function Squared() {
                     outlined={props.outlined}
                     focused={props.focused}
                     disabled={props.disabled}
-                    fullWidth={props.fullWidth}
+                    resizible={props.resizible}
                     contentLeft={props.contentLeft}
                     onClick={onClick}
                     onFocus={onFocus}
@@ -276,7 +274,7 @@ export function Circled() {
                     outlined={props.outlined}
                     focused={props.focused}
                     disabled={props.disabled}
-                    fullWidth={props.fullWidth}
+                    resizible={props.resizible}
                     contentLeft={props.contentLeft}
                     onClick={onClick}
                     onFocus={onFocus}
@@ -290,8 +288,8 @@ export function Circled() {
 
 export const ActionButton = () => (
     <ActionButtonComponent
-        size={select('size', sizes, 'm')}
-        view={select('view', Object.keys(views), 'primary') as View}
+        size={select('size', sizes, 'm') as 'm'}
+        view={select('view', Object.keys(views), 'primary') as 'primary'}
         scaleOnInteraction={boolean('scaleOnInteraction', true)}
         outlined={boolean('outlined', true)}
         disabled={boolean('disabled', false)}
