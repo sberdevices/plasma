@@ -1,6 +1,6 @@
 import React from 'react';
+import type { PickOptional } from '@sberdevices/plasma-core/types';
 
-import { PickOptional } from '../../types/PickOptional';
 import { ActionButton, ButtonProps } from '../Button';
 
 export interface StepperButtonProps

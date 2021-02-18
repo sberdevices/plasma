@@ -1,13 +1,14 @@
 import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 import { scalingPixelBasis } from '@sberdevices/plasma-tokens';
+import { addFocus, applyView, applyDisabled } from '@sberdevices/plasma-core/mixins';
+import type { FocusProps, OutlinedProps, ViewProps, DisabledProps } from '@sberdevices/plasma-core/mixins';
+import { convertRoundnessMatrix } from '@sberdevices/plasma-core/utils';
+import type { PinProps } from '@sberdevices/plasma-core/utils';
+import type { PickOptional, ShiftProps, AsProps } from '@sberdevices/plasma-core/types';
 
-import { addFocus, FocusProps, OutlinedProps } from '../../mixins/addFocus';
-import { applyView, ViewProps } from '../../mixins/applyView';
-import { applyInteraction, InteractionProps } from '../../mixins/applyInteraction';
-import { applyDisabled, DisabledProps } from '../../mixins/applyDisabled';
-import { convertRoundnessMatrix, PinProps } from '../../utils';
-import { PickOptional, ShiftProps } from '../../types';
+import { applyInteraction } from '../../mixins';
+import type { InteractionProps } from '../../mixins';
 
 import { SizeProps, buttonBase, buttonTypography, fontSizeL, fontSizeM, fontSizeS } from './ButtonBase';
 
@@ -196,12 +197,8 @@ export type ButtonProps = PickOptional<StyledButtonProps, 'fullWidth' | 'size' |
     OutlinedProps &
     DisabledProps &
     ShiftProps &
-    React.ButtonHTMLAttributes<HTMLButtonElement> & {
-        /**
-         * Сменить рендер на другой тип компонента
-         */
-        as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
-    };
+    AsProps &
+    React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 /**
  * Основной компонент для создания кнопок.

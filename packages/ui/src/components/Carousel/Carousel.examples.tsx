@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import type { SnapType } from '@sberdevices/plasma-core/types';
 
-import type { SnapType } from '../../types';
 import { MusicCard } from '../Card/Card.examples';
 import { Row } from '../Grid';
 import { Body3 } from '../Typography/Body';

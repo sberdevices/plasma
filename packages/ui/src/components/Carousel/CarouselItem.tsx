@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css, InterpolationFunction } from 'styled-components';
-
-import type { SnapAlign } from '../../types';
+import type { SnapAlign, AsProps } from '@sberdevices/plasma-core/types';
 
 import { useCarouselItem } from './Carousel.hooks';
 
@@ -19,9 +18,7 @@ const StyledCarouselItem = styled.div`
     ${applyScrollSnap};
 `;
 
-export interface CarouselItemProps extends ScrollSnapProps, React.HTMLAttributes<HTMLDivElement> {
-    as?: React.ComponentType<any>;
-}
+export interface CarouselItemProps extends ScrollSnapProps, AsProps, React.HTMLAttributes<HTMLDivElement> {}
 
 /**
  * Элемент списка. Используется для каруселей без сетки.

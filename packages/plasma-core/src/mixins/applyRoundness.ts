@@ -1,20 +1,19 @@
 import { css, InterpolationFunction } from 'styled-components';
-import { scalingPixelBasis } from '@sberdevices/plasma-tokens';
 
 /**
  * Набор часто встречающихся скруглений.
  */
 export const radiuses = {
-    250: 250 / scalingPixelBasis,
-    32: 32 / scalingPixelBasis,
-    28: 28 / scalingPixelBasis,
-    24: 24 / scalingPixelBasis,
-    20: 20 / scalingPixelBasis,
-    18: 18 / scalingPixelBasis,
-    16: 16 / scalingPixelBasis,
-    14: 14 / scalingPixelBasis,
-    12: 12 / scalingPixelBasis,
-    8: 8 / scalingPixelBasis,
+    250: 15.625,
+    32: 2,
+    28: 1.75,
+    24: 1.5,
+    20: 1.25,
+    18: 1.125,
+    16: 1,
+    14: 0.875,
+    12: 0.75,
+    8: 0.5,
     0: 0,
 };
 
@@ -31,5 +30,5 @@ export interface RoundnessProps {
  */
 export const applyRoundness: InterpolationFunction<RoundnessProps> = ({ roundness }) =>
     css`
-        border-radius: ${radiuses[roundness]}rem;
+        border-radius: ${radiuses[roundness]};
     `;

@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Plasma/Utils" />
+<Meta title="Core/Utils" />
 
 # Утилиты
 
@@ -8,7 +8,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 Плавная прокрутка по оси X и Y.
 ```tsx
 import React from 'react';
-import { animatedScrollToX } from '@sberdevices/ui/utils';
+import { animatedScrollToX } from '@sberdevices/plasma-core/utils';
 
 const ScrollComponent: React.FC = ({ children }) => {
     const ref = React.useRef(null);
@@ -31,7 +31,7 @@ const ScrollComponent: React.FC = ({ children }) => {
 Значение символов: ``r`` - радиус стандартный, ``h`` - радиус округлый (вычисляемый из высоты).
 ```tsx
 import styled from 'styled-components';
-import { convertRoundnessMatrix } from '@sberdevices/ui/utils';
+import { convertRoundnessMatrix } from '@sberdevices/plasma-core/utils';
 
 // Выведет значение для border-radius, равное '1em 2em 2em 1em'
 const Box = styled.div`
@@ -44,7 +44,7 @@ const Box = styled.div`
 В случае запуска в серверном окружении, возвращает "sberBox".
 Для детектирования устройства используется ``navigator.userAgent``.
 ```tsx
-import { detectDevice } from '@sberdevices/ui/utils';
+import { detectDevice } from '@sberdevices/plasma-core/utils';
 
 // Вернет "SberPortal" или "SberBox" или "touch" (для всех остальных устройств)
 const deviceKind = detectDevice();
@@ -56,7 +56,7 @@ const deviceKind = detectDevice();
 
 ```tsx
 import styled, { css } from 'styled-components';
-import { mediaQuery, breakpoints } from '@sberdevices/ui/utils';
+import { mediaQuery, breakpoints } from '@sberdevices/plasma-core/utils';
 
 // Определяем поверхность
 const deviceScale = 2;
