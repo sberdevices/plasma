@@ -1,9 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { scalingPixelBasis } from '@sberdevices/plasma-tokens';
-
-import { monthLongName } from '../../utils/formatters';
-import { PickOptional } from '../../types';
+import { monthLongName } from '@sberdevices/plasma-core/utils';
+import type { PickOptional } from '@sberdevices/plasma-core/types';
 
 import { Picker, PickerProps } from './Picker';
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-
-import { mediaQuery, gridSizes, gridColumns, Breakpoint } from '../../utils';
+import { mediaQuery, gridSizes, gridColumns, Breakpoint } from '@sberdevices/plasma-core/utils';
 
 type ColCount =
     | 1

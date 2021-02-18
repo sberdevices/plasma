@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import { RoundnessProps } from '../../mixins';
+import type { RoundnessProps } from '@sberdevices/plasma-core/mixins';
 
 import { TextSizeProps, DEFAULT_TEXT_SIZE } from './Skeleton';
 import { LineSkeleton } from './LineSkeleton';

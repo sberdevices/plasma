@@ -1,10 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import throttle from 'lodash.throttle';
+import type { PickOptional, SnapType, AsProps } from '@sberdevices/plasma-core/types';
+import { animatedScrollToX, animatedScrollToY } from '@sberdevices/plasma-core/utils';
 
 import { useForkRef, useDebouncedFunction } from '../../hooks';
-import type { PickOptional, SnapType } from '../../types';
-import { animatedScrollToX, animatedScrollToY } from '../../utils';
 
 import { CarouselContext, CarouselItemRefs } from './CarouselContext';
 import { CarouselGridWrapper } from './CarouselGridWrapper';
@@ -41,9 +41,9 @@ type DetectionProps =
           scaleResetCallback?: never;
       };
 
-export type CarouselProps = DetectionProps &
-    React.HTMLAttributes<HTMLDivElement> & {
-        as?: React.ComponentType<any>;
+export type CarouselProps = React.HTMLAttributes<HTMLDivElement> &
+    DetectionProps &
+    AsProps & {
         /**
          * Ось прокрутки
          */

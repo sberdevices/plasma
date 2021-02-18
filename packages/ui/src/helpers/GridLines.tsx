@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { mediaQuery } from '@sberdevices/plasma-core/utils';
 
-import { mediaQuery } from '../utils';
 import { Container, Row, Col } from '../components/Grid';
 
 const StyledFullHeightContainer = styled(Container)`

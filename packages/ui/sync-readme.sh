@@ -6,6 +6,6 @@ rm -f README.stories.mdx
 cat - README.md > README.stories.mdx <<- EOM
 import { Meta } from "@storybook/addon-docs/blocks";
 
-<Meta title="Plasma/About" />
+<Meta title="About" />
 
 EOM

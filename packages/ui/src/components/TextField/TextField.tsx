@@ -10,8 +10,7 @@ import {
     primary,
     secondary,
 } from '@sberdevices/plasma-tokens';
-
-import { DisabledProps } from '../../mixins';
+import type { DisabledProps } from '@sberdevices/plasma-core/mixins';
 
 export interface FieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
     /**

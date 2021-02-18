@@ -1,9 +1,10 @@
 import React from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { accent, white, surfaceLiquid03, body1 } from '@sberdevices/plasma-tokens';
+import { applyDisabled, addFocus } from '@sberdevices/plasma-core/mixins';
+import type { DisabledProps, FocusProps, OutlinedProps } from '@sberdevices/plasma-core/mixins';
+import type { InputHTMLAttributes } from '@sberdevices/plasma-core/types';
 
-import { applyDisabled, DisabledProps, addFocus, FocusProps, OutlinedProps } from '../../mixins';
-import { InputHTMLAttributes } from '../../types';
 import { Item } from '../Checkbox/Basebox';
 
 interface PressedProps {

@@ -1,6 +1,9 @@
 build
 node_modules
 
+packages/plasma-core/*
+!packages/plasma-core/src
+
 packages/plasma-tokens
 examples/**
 

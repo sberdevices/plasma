@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-
-import { mediaQuery } from '../../utils/mediaQuery';
+import { mediaQuery } from '@sberdevices/plasma-core/utils';
 
 export const StyledHeaderLogo = styled.img`
     width: 2.25rem;

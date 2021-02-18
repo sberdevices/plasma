@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
-
-import { applyView, ViewProps } from '../mixins/applyView';
+import { applyView, ViewProps } from '@sberdevices/plasma-core/mixins';
 
 interface FillerProps extends ViewProps {
     radius?: boolean;
