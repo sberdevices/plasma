@@ -29,8 +29,9 @@ export interface PinProps {
  * // Выведет значение для border-radius, равное '1em 2em 2em 1em'
  * convertPinsMatrix('r h h r', '1em', '2em');
  */
-export const convertRoundnessMatrix = (matrixKey: Pin, r?: string, h?: string): string => {
-    return pins[matrixKey]
+export const convertRoundnessMatrix = (matrixKey?: Pin, r?: string, h?: string): string | undefined =>
+    matrixKey &&
+    pins[matrixKey]
         .split(' ')
         .map((char) => {
             switch (char) {
@@ -43,4 +44,3 @@ export const convertRoundnessMatrix = (matrixKey: Pin, r?: string, h?: string): 
             }
         })
         .join(' ');
-};

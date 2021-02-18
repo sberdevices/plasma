@@ -15,6 +15,7 @@ export const applyDisabled: InterpolationFunction<DisabledProps> = ({ disabled }
         opacity: 0.4;
         cursor: not-allowed;
 
+        /* stylelint-disable-next-line selector-nested-pattern */
         &:hover,
         &:active {
             transform: none;

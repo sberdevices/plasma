@@ -1,13 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import type { AsProps } from '@sberdevices/plasma-core/types';
+import { formatCurrency } from '@sberdevices/plasma-core/utils';
 
-import { formatCurrency } from '../../utils';
-
-export interface PriceProps extends React.HTMLAttributes<HTMLSpanElement> {
-    /**
-     * Сменить рендер на другой тип компонента.
-     */
-    as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
+export interface PriceProps extends React.HTMLAttributes<HTMLSpanElement>, AsProps {
     /**
      * Значение контрола.
      */

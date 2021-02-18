@@ -1,7 +1,7 @@
 import React from 'react';
 import { boolean, number, select } from '@storybook/addon-knobs';
+import type { SnapType, SnapAlign } from '@sberdevices/plasma-core/types';
 
-import type { SnapType, SnapAlign } from '../../types';
 import { isSberBox } from '../../utils';
 import { ProductCard, MusicCard, GalleryCard } from '../Card/Card.examples';
 import { Row } from '../Grid';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { setRef } from '../utils/setRef';
+import { setRef } from '../utils';
 
 export interface UseForkRefHook {
     <T>(refOne: React.Ref<T>, refTwo: React.Ref<T>): React.Ref<T>;

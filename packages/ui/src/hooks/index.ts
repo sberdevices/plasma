@@ -1,3 +1,3 @@
-export { useDebouncedFunction } from './useDebouncedFunction';
-export { useForkRef } from './useForkRef';
+export * from '@sberdevices/plasma-core/hooks';
+
 export { useRemoteListener } from './useRemoteListener';

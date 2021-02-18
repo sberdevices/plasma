@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Plasma/Mixins" />
+<Meta title="Core/Mixins" />
 
 import { addFocus, applyDisabled, applyInteraction, applyRoundness, applyView } from '.'
 
@@ -13,7 +13,7 @@ import { addFocus, applyDisabled, applyInteraction, applyRoundness, applyView } 
 Добавляет фокусную рамку компонентам, для которых возможно фокусирование или если передан флаг ``focused``.
 ```tsx
 import styled from 'styled-components';
-import { FocusProps, addFocus } from '@sberdevices/ui/mixins';
+import { FocusProps, addFocus } from '@sberdevices/plasma-core/mixins';
 
 // Способ 1. Передача props напрямую в вызываемый компонент
 const Button1 = styled.button<FocusProps>`
@@ -48,7 +48,7 @@ const Button2 = styled.button<FocusProps>`
 Делает компонент недоступным для взаимодействия, если компонент может быть задизейблен или если передан флаг ``disabled``.
 ```tsx
 import styled from 'styled-components';
-import { DisabledProps, applyDisabled } from '@sberdevices/ui/mixins';
+import { DisabledProps, applyDisabled } from '@sberdevices/plasma-core/mixins';
 
 const Button = styled.button<DisabledProps>`
     ${applyDisabled}
@@ -61,7 +61,7 @@ const Button = styled.button<DisabledProps>`
 Увеличивает/уменьшает компонент при таких видах взаимодействия, как наведение (:hover) и нажатие (:active).
 ```tsx
 import styled from 'styled-components';
-import { InteractionProps, applyInteraction } from '@sberdevices/ui/mixins';
+import { InteractionProps, applyInteraction } from '@sberdevices/plasma-core/mixins';
 
 const Button = styled.button<InteractionProps>`
     ${applyInteraction}
@@ -77,7 +77,7 @@ const Button = styled.button<InteractionProps>`
 Пример, ``roundness={16}`` = ``1rem`` = ``16px`` (при ``deviceScale = 1``) = **32px** (при ``deviceScale = 2``).
 ```tsx
 import styled from 'styled-components';
-import { RoundnessProps, applyRoundness } from '@sberdevices/ui/mixins';
+import { RoundnessProps, applyRoundness } from '@sberdevices/plasma-core/mixins';
 
 const Button = styled.button<RoundnessProps>`
     ${applyRoundness}
@@ -90,7 +90,7 @@ const Button = styled.button<RoundnessProps>`
 Применяет цвет фона и текста при передаче соответствующего значения в свойство ``view``.
 ```tsx
 import styled from 'styled-components';
-import { ViewProps, applyView } from '@sberdevices/ui/mixins';
+import { ViewProps, applyView } from '@sberdevices/plasma-core/mixins';
 
 const Button = styled.button<ViewProps>`
     ${applyView}

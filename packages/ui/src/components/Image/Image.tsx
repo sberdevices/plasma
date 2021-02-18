@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-
-import { toCssSize } from '../../utils';
+import { toCssSize } from '@sberdevices/plasma-core/utils';
 
 const ratios = {
     '1 / 1': '100',

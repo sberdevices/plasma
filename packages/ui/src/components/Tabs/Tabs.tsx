@@ -8,11 +8,12 @@ import {
     button2,
     scalingPixelBasis,
 } from '@sberdevices/plasma-tokens';
+import { addFocus, applyDisabled } from '@sberdevices/plasma-core/mixins';
+import type { FocusProps, OutlinedProps, DisabledProps } from '@sberdevices/plasma-core/mixins';
+import { ShiftProps } from '@sberdevices/plasma-core/types';
 
-import { addFocus, FocusProps, OutlinedProps } from '../../mixins/addFocus';
-import { applyDisabled, DisabledProps } from '../../mixins/applyDisabled';
-import { applyInteraction, InteractionProps } from '../../mixins/applyInteraction';
-import { ShiftProps } from '../../types';
+import { applyInteraction } from '../../mixins';
+import type { InteractionProps } from '../../mixins';
 
 import { StyledTabItem } from './TabItem';
 

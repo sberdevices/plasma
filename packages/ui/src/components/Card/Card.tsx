@@ -1,9 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { surfaceCard } from '@sberdevices/plasma-tokens';
+import { addFocus, applyRoundness, radiuses, syntheticFocus } from '@sberdevices/plasma-core/mixins';
+import type { FocusProps, OutlinedProps, RoundnessProps } from '@sberdevices/plasma-core/mixins';
 
-import { addFocus, FocusProps, OutlinedProps, applyRoundness, RoundnessProps, radiuses } from '../../mixins';
-import { syntheticFocus } from '../../mixins/addFocus';
 import { Body1 } from '../Typography';
 
 // В этих константах задаем размеры в em, чтобы не зависеть напрямую от пикселей

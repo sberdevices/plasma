@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import { PickOptional } from '../../types';
+import type { PickOptional } from '@sberdevices/plasma-core/types';
 
 import { SimpleDatePicker } from './SimpleDatePicker';
 import type { PickerProps } from './Picker';

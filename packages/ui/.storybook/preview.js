@@ -147,7 +147,7 @@ export const parameters = {
     options: {
         storySort: {
             method: 'alphabetical',
-            order: ['Plasma', 'Layout', 'Content', 'Controls', 'Showcase'],
+            order: ['Plasma', ['Intro', 'Colors'], 'Layout', 'Content', 'Controls', 'Showcase'],
         },
     },
 };

@@ -1,9 +1,9 @@
 import React from 'react';
 import { boolean, select, number } from '@storybook/addon-knobs';
 import { typography } from '@sberdevices/plasma-tokens';
+import { radiuses, Roundness } from '@sberdevices/plasma-core/mixins';
 
 import { withSkeleton, WithSkeletonProps } from '../../hocs';
-import { radiuses, Roundness } from '../../mixins';
 import { Button, ButtonProps } from '../Button';
 import { Card, CardBody, CardMedia, CardContent, CardHeadline1, CardHeadline3, CardFootnote1 } from '../Card';
 

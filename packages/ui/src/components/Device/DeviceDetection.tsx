@@ -3,7 +3,7 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { sberPortal, sberBox, touch } from '@sberdevices/plasma-tokens/typo';
 import { sberPortalScale } from '@sberdevices/plasma-tokens';
 
-import { detectDevice, deviceScales, DeviceKind } from '../../utils/deviceDetection';
+import { detectDevice, deviceScales, DeviceKind } from '../../utils';
 
 const typoSizes = {
     sberBox: createGlobalStyle(sberBox),
