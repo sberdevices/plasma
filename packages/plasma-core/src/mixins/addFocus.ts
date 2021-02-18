@@ -1,5 +1,6 @@
 import { css, FlattenSimpleInterpolation, InterpolationFunction } from 'styled-components';
-import { buttonFocused } from '@sberdevices/plasma-tokens';
+
+import { buttonFocused } from '../tokens/colors';
 
 export interface FocusProps {
     /**

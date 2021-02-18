@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { accent } from '@sberdevices/plasma-tokens';
-
-import { PickOptional } from '../../types';
+import type { PickOptional } from '@sberdevices/plasma-core/types';
 
 import { SimpleTimePicker } from './SimpleTimePicker';
 import type { PickerProps } from './Picker';

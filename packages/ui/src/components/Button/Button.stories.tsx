@@ -9,9 +9,9 @@ import {
     buttonCritical,
     buttonChecked,
 } from '@sberdevices/plasma-tokens';
+import { View } from '@sberdevices/plasma-core/mixins';
 
 import { actionWithPersistedEvent } from '../../helpers';
-import { View } from '../../mixins/applyView';
 import { Body1 } from '../Typography';
 
 import { ButtonSize } from './ButtonBase';

@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Plasma/High order components" />
+<Meta title="Core/High order components" />
 
 # Компоненты высшего порядка
 
@@ -10,7 +10,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 ### Использование
 ```tsx
 import React from 'react';
-import { withAutoFocus } from '@sberdevices/ui/hocs';
+import { withAutoFocus } from '@sberdevices/plasma-core/hocs';
 
 const Button: React.FC = (props) => <Button {...props} />
 const AutoFocusButton = withAutoFocus(Button);
@@ -23,8 +23,8 @@ const AutoFocusButton = withAutoFocus(Button);
 ### Использование
 ```tsx
 import React from 'react';
-import { Button, ButtonProps } from '@sberdevices/ui/components/Button';
-import { withSkeleton, WithSkeletonProps } from '@sberdevices/ui/hocs';
+import { Button, ButtonProps } from '@sberdevices/plasma-core/components/Button';
+import { withSkeleton, WithSkeletonProps } from '@sberdevices/plasma-core/hocs';
 
 const ButtonSkeleton = withSkeleton<ButtonProps & WithSkeletonProps>(Button);
 

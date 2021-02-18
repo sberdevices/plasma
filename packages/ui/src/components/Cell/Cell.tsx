@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { SelfPosition } from 'csstype';
-
-import { addFocus, FocusProps, OutlinedProps } from '../../mixins';
+import { addFocus, FocusProps, OutlinedProps } from '@sberdevices/plasma-core/mixins';
+import type { AsProps } from '@sberdevices/plasma-core/types';
 
 export const CellRoot = styled.div<FocusProps & OutlinedProps>`
     display: flex;
@@ -95,15 +95,13 @@ export const CellIcon = styled.div<CellIconProps>`
     }
 `;
 
-export interface CellProps extends FocusProps, OutlinedProps {
+export interface CellProps extends FocusProps, OutlinedProps, AsProps {
     left?: React.ReactNode;
     content: React.ReactNode;
     right?: React.ReactNode;
 
     alignLeft?: alignLeftProp;
     alignRight?: alignRightProp;
-
-    as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
 }
 
 /**
