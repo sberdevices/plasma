@@ -6,7 +6,12 @@ import * as stories from './Button.stories';
 
 import { Button, ActionButton } from '.';
 
-<Meta title="Controls/Button" decorators={[InSpacing]} />
+<Meta
+    title="Controls/Button"
+    component={Button}
+    subcomponents={{ ActionButton }}
+    decorators={[InSpacing]}
+/>
 
 # Кнопки
 Кнопки могут отображаться в нескольких размерах и цветах, могут содержать текст и/или иконку.
