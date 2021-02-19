@@ -58,8 +58,11 @@
         "build": "npm run clean && tsc",
         "build-storybook": "npm run storybook:build",
         "build:storybook": "npm run storybook:build && npm run storybook:extract",
+        "prestorybook": "./sync-readme.sh",
         "storybook": "start-storybook -s .storybook/public -p ${PORT:-6006} -c .storybook",
+        "prestorybook:build": "./sync-readme.sh",
         "storybook:build": "build-storybook --quiet -s .storybook/public -c .storybook -o build-sb",
+        "prestorybook:build:docs": "./sync-readme.sh",
         "storybook:build:docs": "DOCS=true build-storybook --quiet -s .storybook/public -c .storybook -o build-sb-docs --docs",
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
         "chromatic": "npx chromatic"
