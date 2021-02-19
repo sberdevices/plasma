@@ -5,11 +5,24 @@ import { sberPortalScale } from '@sberdevices/plasma-tokens';
 
 import { detectDevice, deviceScales, DeviceKind } from '../../utils';
 
+/* stylelint-disable */
+const uppercaseCheck = /([A-Z])/;
+const uppercasePattern = /([A-Z])/g;
+const prefixAndLowerCase = (char: string): string => `-${char.toLowerCase()}`;
+const hyphenate = (str: string) => (uppercaseCheck.test(str) ? str.replace(uppercasePattern, prefixAndLowerCase) : str);
+const transformStyles = (styles: { ':root': object }) => `
+:root {
+    ${Object.entries(styles[':root'])
+        .map(([key, value]) => `${hyphenate(key)}: ${value}`)
+        .join(';')}
+}`;
+
 const typoSizes = {
-    sberBox: createGlobalStyle(sberBox),
-    sberPortal: createGlobalStyle(sberPortal),
-    touch: createGlobalStyle(touch),
+    sberBox: createGlobalStyle`${transformStyles(sberBox)}`,
+    sberPortal: createGlobalStyle`${transformStyles(sberPortal)}`,
+    touch: createGlobalStyle`${transformStyles(touch)}`,
 };
+/* stylelint-enable */
 
 export interface DeviceThemeProps {
     theme?: object;

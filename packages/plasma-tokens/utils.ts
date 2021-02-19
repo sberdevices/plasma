@@ -1,15 +1,14 @@
 import Color from 'color';
 import * as CSS from 'csstype';
-import { css } from '@theme-ui/css'
+import { css } from '@theme-ui/css';
 // import { serializeStyles } from '@emotion/serialize';
 import { ThemeTokens, TokenGroup, Typo, TypoStyles } from './generate';
 import { Theme } from './design-language/build/diez-plasma-tokens-web';
 
-
 /**
  * Convert color to hex or rgba for alpha channel
- * 
- * @param clr color string to convert 
+ *
+ * @param clr color string to convert
  */
 export const humanizeColor = (clr: string) => {
     const color = Color(clr);
@@ -24,24 +23,23 @@ export const humanizeColor = (clr: string) => {
     } else {
         return humanizeColor.rgb().toString();
     }
-}
+};
 
 // export const toLGRgba = (linearGradient: string) => {
 //     return linearGradient.replace(/hsla\([^)]*\)/g, humanizeColor);
 // }
 
-
 export type TypographStyle = {
-    color?: string,
-    fontSize: string,
-    fontFamily: string,
-    fontWeight: number,
-    fontStyle?: string,
-    lineHeight?: string,
-    letterSpacing: string | number,
-    textAlign?: CSS.Properties['textAlign'],
-    textDecoration?: string,
-    textTransform?: CSS.Properties['textTransform'],
+    color?: string;
+    fontSize: string;
+    fontFamily: string;
+    fontWeight: number;
+    fontStyle?: string;
+    lineHeight?: string;
+    letterSpacing: string | number;
+    textAlign?: CSS.Properties['textAlign'];
+    textDecoration?: string;
+    textTransform?: CSS.Properties['textTransform'];
 };
 
 export const normalizeLetterSpace = (style: TypographStyle) => {
@@ -52,7 +50,7 @@ export const normalizeLetterSpace = (style: TypographStyle) => {
         style.letterSpacing = 'normal';
     } else {
         const letterSpacingInEm = (letterSpacing / fontSize).toPrecision(3);
-        style.letterSpacing= `${letterSpacingInEm}em`;
+        style.letterSpacing = `${letterSpacingInEm}em`;
     }
 
     return style;
@@ -74,15 +72,15 @@ export enum FontType {
     Medium = 'Medium',
     Semibold = 'Semibold',
     Bold = 'Bold',
-    Unwnown = 'Unwnown'
-};
+    Unwnown = 'Unwnown',
+}
 
 export enum FontTypeWeight {
     Regular = 400,
     Medium = 500,
     Semibold = 600,
     Bold = 700,
-};
+}
 
 export const matchFont = (style: TypographStyle) => {
     const { fontFamily, fontWeight } = style;
@@ -100,7 +98,7 @@ export const matchFont = (style: TypographStyle) => {
     }
 
     return FontType.Unwnown;
-}
+};
 
 export const normalizeFontWeight = (style: TypographStyle) => {
     const type = matchFont(style);
@@ -108,7 +106,7 @@ export const normalizeFontWeight = (style: TypographStyle) => {
     switch (type) {
         case FontType.Regular:
             style.fontWeight = FontTypeWeight.Regular;
-            return style
+            return style;
         case FontType.Medium:
             style.fontWeight = FontTypeWeight.Medium;
             return style;
@@ -122,7 +120,6 @@ export const normalizeFontWeight = (style: TypographStyle) => {
 
     return style;
 };
-
 
 export const scaleTypograpyForDevices = (style: TypographStyle) => {
     const fontSize = parseInt(String(style.fontSize));
@@ -145,12 +142,12 @@ export const normalizeFontNames = (style: TypographStyle) => {
     return style;
 };
 
-/** 
+/**
  * Размер шрифта на <html>, принятый за базу.
  */
 export const scalingPixelBasis = 16;
 
-/** 
+/**
  * Конвертация значений fontSize и lineHeight из пикселей в ремы.
  * @param {TypographStyle} style
  * @return {TypographStyle}
@@ -164,7 +161,7 @@ export const convertPixelsToRems = (style: TypographStyle) => {
     }
 
     return style;
-}
+};
 
 /**
  * Переведет пиксели в ремы.
@@ -175,7 +172,7 @@ export const convertPixelsToRems = (style: TypographStyle) => {
  */
 const pixelsToRems = (value: string, basis: number = scalingPixelBasis): string => {
     return parseInt(value.replace(/\D+$/, ''), 10) / basis + 'rem';
-}
+};
 
 export const normalizeTypographyStyle = (style: TypographStyle) => {
     // right to left: first we transform "LetterSpace" only then we scale "fontSize"
@@ -192,76 +189,69 @@ export const normalizeTypographyStyle = (style: TypographStyle) => {
 type tfn = (s: TypographStyle) => TypographStyle;
 function _c(...funcs: Array<tfn>) {
     return funcs.reduceRight((prev, curr) => (...values) => curr(prev(...values)));
-} 
+}
 
+const toVarName = (key: string) => `--plasma-${key}`;
+export const toVarValue = (key: string, value: string | number) => `var(${toVarName(key)}, ${value})`;
 
-
-const toVarName = (key: string) => `--plasma-${key}`
-export const toVarValue = (key: string, value: string | number) =>
-    `var(${toVarName(key)}, ${value})`
-
-const join = (...args: (string | undefined)[]) => args.filter(Boolean).join('-')
+const join = (...args: (string | undefined)[]) => args.filter(Boolean).join('-');
 
 const numberScales = {
     fontWeights: true,
     lineHeights: true,
-}
+};
 const reservedKeys = {
     modes: true,
-}
+};
 
 const toPixel = (key: string, value: string | number) => {
-    if (typeof value !== 'number') return value
-    if (numberScales[key as keyof typeof numberScales]) return value
-    return value + 'px'
-}
+    if (typeof value !== 'number') return value;
+    if (numberScales[key as keyof typeof numberScales]) return value;
+    return value + 'px';
+};
 
 // convert theme values to custom properties
-export const toCustomProperties = <R>(
-    obj: Record<string, any> | undefined,
-    parent?: string,
-    themeKey?: string
-) => {
-    const next: Record<string, any> = Array.isArray(obj) ? [] : {}
+export const toCustomProperties = <R>(obj: Record<string, any> | undefined, parent?: string, themeKey?: string) => {
+    const next: Record<string, any> = Array.isArray(obj) ? [] : {};
 
     for (let key in obj) {
-        const value = obj[key]
-        const name = join(parent, key)
+        const value = obj[key];
+        const name = join(parent, key);
 
         if (reservedKeys[key as keyof typeof reservedKeys]) {
-            next[key] = value
-            continue
+            next[key] = value;
+            continue;
         }
 
         if (value && typeof value === 'object') {
-            next[key] = toCustomProperties(value, name, key)
-            continue
+            next[key] = toCustomProperties(value, name, key);
+            continue;
         }
 
-        const val = toPixel(themeKey || key, value)
-        next[key] = toVarValue(name, val)
+        const val = toPixel(themeKey || key, value);
+        next[key] = toVarValue(name, val);
     }
 
     return next as R;
-}
+};
 
 export const objectToVars = (parent: string, obj: Record<string, any>) => {
-    let vars: Record<string, object> = {}
+    let vars: Record<string, object> = {};
     for (let key in obj) {
-        if (key === 'modes' || key === 'comment') continue
-        const name = join(parent, key)
-        const value = obj[key]
+        if (key === 'modes' || key === 'comment') continue;
+        const name = join(parent, key);
+        const value = obj[key];
         if (value && typeof value === 'object') {
             vars = {
                 ...vars,
                 ...objectToVars(name, value),
-            }
+            };
         } else {
-            vars[toVarName(name)] = value
+            vars[toVarName(name)] = value;
         }
     }
-    return vars
-}
+    return vars;
+};
 
 // // TODO: Export to pure CSS
 // export const toCSS = (style: any = {}) => {
@@ -269,16 +259,16 @@ export const objectToVars = (parent: string, obj: Record<string, any>) => {
 // };
 
 export const createColorStyles = (theme: any = {}) => {
-    const { colors } = theme
-    const modes = colors.modes || {}
-    const styles = objectToVars('colors', colors)
+    const { colors } = theme;
+    const modes = colors.modes || {};
+    const styles = objectToVars('colors', colors);
 
     Object.keys(modes).forEach((mode) => {
         const key = `&[theme="${mode}"]`;
         styles[key] = {
             ...objectToVars('colors', modes[mode]),
         };
-    })
+    });
 
     return css({
         body: {
@@ -286,9 +276,8 @@ export const createColorStyles = (theme: any = {}) => {
             color: 'text',
             bg: 'background',
         },
-    })(theme)
+    })(theme);
 };
-
 
 export type SimpleTokens = {
     [key in keyof ThemeTokens]: ThemeTokens[key]['value'];
@@ -307,7 +296,14 @@ export const createThemeStyles = (theme: SimpleTokens) => {
 export const createTypoStyles = (typo: Typo, typoScale: number) => {
     const typoText = Object.entries(typo.text).reduce((acc, [text, styles]) => {
         styles = Object.entries(styles).reduce((acc, [key, prop]) => {
-            if (key === 'fontSize' || key === 'lineHeight') {
+            if (
+                key === 'fontFamily' ||
+                key === 'fontSize' ||
+                key === 'fontStyle' ||
+                key === 'fontWeight' ||
+                key === 'letterSpacing' ||
+                key === 'lineHeight'
+            ) {
                 acc[key] = prop;
             }
 
@@ -325,12 +321,13 @@ export const createTypoStyles = (typo: Typo, typoScale: number) => {
             ...objectToVars('typo', typoText),
         },
     })() as {};
-}
-
+};
 
 export const withOutComments = <T extends TokenGroup = TokenGroup>(theme: T) => {
     return Object.entries(theme).reduce((acc, [key, token]) => {
         acc[key as keyof T] = token.value;
         return acc;
-    }, {} as { [key in keyof T]: T[key]["value"]});
+    }, {} as { [key in keyof T]: T[key]['value'] });
 };
+
+export const capit = (str: string) => str[0].toUpperCase() + str.slice(1);
