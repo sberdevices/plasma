@@ -3,3 +3,4 @@ dist
 *.js
 *.d.ts
 examples
+packages/plasma-temple
