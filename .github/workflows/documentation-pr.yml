@@ -42,10 +42,10 @@ jobs:
 
       - name: Build documentation
         run: |
-          cd ./packages/ui && npm run docz:build -- --base /${PR_NAME}/ --dest ./.docz/dist/${PR_NAME}/
+          cd ./packages/ui && npm run storybook:build:docs
           cd ../../.
           mkdir ../build
-          cp -R ./packages/ui/.docz/dist/${PR_NAME} ../build
+          cp -R ./packages/ui/build-sb-docs ../build
 
       - name: Clean old documentation
         uses: appleboy/ssh-action@master
