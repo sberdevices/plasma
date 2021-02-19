@@ -60,7 +60,7 @@
         "build:storybook": "npm run storybook:build && npm run storybook:extract",
         "storybook": "start-storybook -s .storybook/public -p ${PORT:-6006} -c .storybook",
         "storybook:build": "build-storybook --quiet -s .storybook/public -c .storybook -o build-sb",
-        "storybook:build:docs": "build-storybook --quiet -s .storybook/public -c .storybook -o build-sb-docs --docs",
+        "storybook:build:docs": "DOCS=true build-storybook --quiet -s .storybook/public -c .storybook -o build-sb-docs --docs",
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
         "chromatic": "npx chromatic"
     },
