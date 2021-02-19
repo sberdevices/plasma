@@ -1,3 +1,16 @@
+# (Fri Feb 19 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@0.1.0`
+  - feat(plasma-temple): add new package [#5](https://github.com/sberdevices/pashka/pull/5) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Fri Feb 05 2021)
 
 #### 🐛 Bug Fix
