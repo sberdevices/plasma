@@ -14,7 +14,7 @@ const items = Array(100)
     .fill({
         title: 'Заголовок',
         subtitle: 'Описание уравнение времени, сублимиpуя с повеpхности ядpа кометы, вращает реликтовый ледник',
-        imageSrc: '/images/320_320_n.jpg',
+        imageSrc: `${process.env.PUBLIC_URL}/images/320_320_n.jpg`,
     })
     .map(({ title, subtitle, imageSrc }, i) => ({
         title: `${title} ${i}`,
@@ -66,7 +66,7 @@ export const Basic = () => {
                             title={title}
                             subtitle={subtitle}
                             focused={i === index}
-                            imageSrc={`/images/320_320_${i % 12}.jpg`}
+                            imageSrc={`${process.env.PUBLIC_URL}/images/320_320_${i % 12}.jpg`}
                         />
                     </CarouselCol>
                 ))}
@@ -121,7 +121,7 @@ export const Vertical = () => {
                         title={title}
                         subtitle={subtitle}
                         focused={i === index}
-                        imageSrc={`/images/320_320_${i % 12}.jpg`}
+                        imageSrc={`${process.env.PUBLIC_URL}/images/320_320_${i % 12}.jpg`}
                         imageRatio="1 / 1"
                         scaleOnFocus
                     />

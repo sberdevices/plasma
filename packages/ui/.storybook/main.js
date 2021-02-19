@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-    stories: ['../src/**/*.stories.tsx', '../src/**/*.stories.mdx'],
+    stories: process.env.DOCS ? ['../src/!(showcase)/**/*.stories.@(mdx|tsx)'] : ['../src/**/*.stories.@(mdx|tsx)'],
     addons: [
         '@storybook/preset-create-react-app',
         '@storybook/addon-backgrounds/register',

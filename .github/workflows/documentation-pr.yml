@@ -45,7 +45,7 @@ jobs:
           cd ./packages/ui && npm run storybook:build:docs
           cd ../../.
           mkdir ../build
-          cp -R ./packages/ui/build-sb-docs ../build
+          cp -R ./packages/ui/build-sb-docs ../build/${PR_NAME}
 
       - name: Clean old documentation
         uses: appleboy/ssh-action@master
