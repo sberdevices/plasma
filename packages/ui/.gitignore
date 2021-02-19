@@ -10,4 +10,5 @@
 /dist
 /.docz
 build-sb
+build-sb-docs
 build-storybook.log

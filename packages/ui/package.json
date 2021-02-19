@@ -40,10 +40,10 @@
         "@types/styled-components": "5.1.0",
         "babel-loader": "8.1.0",
         "chromatic": "5.2.0",
-        "docz": "2.3.1",
         "react": "16.13.1",
         "react-dom": "16.13.1",
         "react-scripts": "3.4.1",
+        "lodash.throttle": "4.1.1",
         "sb": "6.0.0-rc.13",
         "styled-components": "5.1.1",
         "typescript": "3.9.5"
@@ -60,11 +60,8 @@
         "build:storybook": "npm run storybook:build && npm run storybook:extract",
         "storybook": "start-storybook -s .storybook/public -p ${PORT:-6006} -c .storybook",
         "storybook:build": "build-storybook --quiet -s .storybook/public -c .storybook -o build-sb",
+        "storybook:build:docs": "build-storybook --quiet -s .storybook/public -c .storybook -o build-sb-docs --docs",
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
-        "docz:dev": "docz dev",
-        "predocz:build": "npm i --no-save typescript@3.5.3 && npx lerna link",
-        "docz:build": "docz build",
-        "docz:serve": "docz serve",
         "chromatic": "npx chromatic"
     },
     "storybook": {
