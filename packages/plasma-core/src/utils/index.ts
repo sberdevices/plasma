@@ -19,3 +19,5 @@ export type { Breakpoint } from './mediaQuery';
 export { setRef } from './setRef';
 
 export { toCssSize } from './toCssSize';
+
+export { transformStyles } from './transformStyles';
