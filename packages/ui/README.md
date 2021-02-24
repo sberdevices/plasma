@@ -1,6 +1,6 @@
 # Библиотека компонентов Plasma UI
 
-Реализация компонент для создания смартаппов.
+Реализация компонентов для создания смартаппов.
 
 <p align="center">
   <img width="800" src="https://user-images.githubusercontent.com/1813468/98609687-ea20fc80-22fe-11eb-8d84-cd26385f01ed.png" alt="plasma-ui" />
