@@ -1,12 +1,12 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { body1, accent, secondary, white } from '@sberdevices/plasma-tokens';
-import { IconDone } from '@sberdevices/plasma-icons';
-import { applyDisabled } from '@sberdevices/plasma-core/mixins';
-import type { DisabledProps, FocusProps } from '@sberdevices/plasma-core/mixins';
-import type { InputHTMLAttributes } from '@sberdevices/plasma-core/types';
 
-import type { InteractionProps } from '../../mixins';
+import { applyDisabled } from '../../mixins';
+import type { DisabledProps, FocusProps } from '../../mixins';
+import type { InputHTMLAttributes } from '../../types';
+import { body1, accent, white, transparent } from '../../tokens';
+
+import { IconDone } from './IconDone';
 
 export type Value = string | number;
 export type Item = {
@@ -36,7 +36,6 @@ export interface BaseboxProps
         InputTypeProps,
         FocusProps,
         DisabledProps,
-        InteractionProps,
         Omit<React.LabelHTMLAttributes<HTMLLabelElement>, 'htmlFor' | 'onChange' | 'onFocus' | 'onBlur'>,
         Pick<InputHTMLAttributes<HTMLInputElement>, 'name' | 'checked' | 'onChange' | 'onFocus' | 'onBlur'> {}
 
@@ -63,17 +62,37 @@ const StyledInput = styled.input`
     }
 `;
 
-interface StyledTriggerProps extends InteractionProps {
+interface StyledTriggerProps {
     $type: InputTypeProps['type'];
     $focused?: FocusProps['focused'];
 }
 
-const StyledTrigger = styled.div<StyledTriggerProps>`
+/**
+ * Локальные токены.
+ */
+const trigger = {
+    normal: {
+        background: `var(--plasma-basebox-trigger-background, ${transparent})`,
+        border: 'var(--plasma-basebox-trigger-border)',
+        color: `var(--plasma-basebox-trigger-color, ${white})`,
+    },
+    disabled: {
+        background: 'var(--plasma-basebox-trigger-disabled-background)',
+        border: 'var(--plasma-basebox-trigger-disabled-border)',
+    },
+    checkedDisabled: {
+        background: 'var(--plasma-basebox-trigger-checked-disabled-background)',
+        border: 'var(--plasma-basebox-trigger-checked-disabled-border)',
+        color: 'var(--plasma-basebox-trigger-checked-disabled-color)',
+    },
+};
+
+export const StyledTrigger = styled.div<StyledTriggerProps>`
     box-sizing: border-box;
     position: relative;
     width: 1.25rem;
     height: 1.25rem;
-    border: 0.125rem solid ${secondary};
+    box-shadow: inset 0 0 0 0.125rem ${trigger.normal.border};
     color: ${white};
     transition: all 0.1s ease-in-out;
     cursor: pointer;
@@ -86,7 +105,7 @@ const StyledTrigger = styled.div<StyledTriggerProps>`
             border-radius: ${borderRadius};
 
             ${StyledInput}:focus ~ & {
-                border-color: transparent;
+                box-shadow: none;
 
                 &::before {
                     box-shadow: 0 0 0 0.125rem ${accent};
@@ -97,10 +116,10 @@ const StyledTrigger = styled.div<StyledTriggerProps>`
                 content: '';
 
                 position: absolute;
-                top: -0.25rem;
-                left: -0.25rem;
-                right: -0.25rem;
-                bottom: -0.25rem;
+                top: -0.125rem;
+                left: -0.125rem;
+                right: -0.125rem;
+                bottom: -0.125rem;
 
                 display: block;
 
@@ -123,22 +142,22 @@ const StyledTrigger = styled.div<StyledTriggerProps>`
         `;
     }}
 
-    ${({ scaleOnInteraction }) =>
-        scaleOnInteraction &&
-        css`
-            ${StyledRoot}:hover & {
-                transform: scale(1.04);
-            }
-
-            ${StyledRoot}:active & {
-                transform: scale(0.96);
-            }
-        `}
+    /* stylelint-disable-next-line selector-nested-pattern, selector-type-no-unknown */
+    ${StyledInput}:disabled ~ & {
+        background: ${trigger.disabled.background};
+        box-shadow: inset 0 0 0 0.125rem ${trigger.disabled.border};
+    }
 
     /* stylelint-disable-next-line selector-nested-pattern, selector-type-no-unknown */
     ${StyledInput}:checked ~ & {
         background: ${accent};
-        border-color: ${accent};
+        box-shadow: inset 0 0 0 0.125rem ${accent};
+    }
+    /* stylelint-disable-next-line selector-nested-pattern, selector-type-no-unknown */
+    ${StyledInput}:checked:disabled ~ & {
+        background: ${trigger.checkedDisabled.background};
+        color: ${trigger.checkedDisabled.color};
+        box-shadow: inset 0 0 0 0.125rem ${trigger.checkedDisabled.border};
     }
 `;
 
@@ -188,22 +207,7 @@ const StyledLabel = styled.span`
 
 // eslint-disable-next-line prefer-arrow-callback
 export const Basebox = React.forwardRef<HTMLInputElement, BaseboxProps>(function Basebox(
-    {
-        id,
-        type,
-        name,
-        value,
-        label,
-        checked,
-        focused,
-        disabled,
-        tabIndex,
-        scaleOnInteraction = true,
-        onChange,
-        onFocus,
-        onBlur,
-        ...rest
-    },
+    { id, type, name, value, label, checked, focused, disabled, tabIndex, onChange, onFocus, onBlur, ...rest },
     ref,
 ) {
     return (
@@ -221,7 +225,7 @@ export const Basebox = React.forwardRef<HTMLInputElement, BaseboxProps>(function
                 onFocus={onFocus}
                 onBlur={onBlur}
             />
-            <StyledTrigger $type={type} $focused={focused} scaleOnInteraction={scaleOnInteraction}>
+            <StyledTrigger $type={type} $focused={focused}>
                 {type === 'checkbox' ? <StyledMark color="inherit" size="xs" /> : <StyledEllipse />}
             </StyledTrigger>
             {label && <StyledLabel>{label}</StyledLabel>}

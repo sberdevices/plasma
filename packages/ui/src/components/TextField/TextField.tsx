@@ -1,53 +1,32 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import {
-    body1,
-    caption,
-    accent,
-    critical,
-    surfaceLiquid01,
-    surfaceLiquid02,
-    primary,
-    secondary,
-} from '@sberdevices/plasma-tokens';
-import type { DisabledProps } from '@sberdevices/plasma-core/mixins';
+import { caption, accent, surfaceLiquid01, surfaceLiquid02, primary, secondary } from '@sberdevices/plasma-tokens';
+import { TextFieldRoot, TextFieldHelper } from '@sberdevices/plasma-core/components/TextField';
+import type { TextFieldProps as BaseTextFieldProps } from '@sberdevices/plasma-core/components/TextField';
 
-export interface FieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    /**
-     * Надпись лейбла.
-     */
-    title?: string;
-    /**
-     * Подсказка для поля ввода.
-     */
-    helperText?: string;
+export interface TextFieldProps
+    extends BaseTextFieldProps,
+        Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onFocus' | 'onBlur'> {
     /**
      * Слот для контента слева.
      */
     contentLeft?: React.ReactElement;
-    /**
-     * Слот для контента справа.
-     */
-    contentRight?: React.ReactElement;
-    /**
-     * Статус компонента: заполнен успешно или с ошибкой.
-     */
-    status?: 'success' | 'error';
 }
 
-interface IsContentProps {
+interface StyledRootProps {
     isContentLeft?: boolean;
     isContentRight?: boolean;
+}
+interface StyledLabelProps {
+    isValue?: boolean;
 }
 
 const StyledInputWrapper = styled.label`
     position: relative;
+    display: block;
     cursor: text;
 `;
-
 const StyledInput = styled.input`
-    ${body1};
-
     box-sizing: border-box;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -61,6 +40,11 @@ const StyledInput = styled.input`
     border: 0 none;
     border-radius: 1rem;
     color: ${primary};
+    caret-color: ${accent};
+
+    font: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
 
     transition-duration: 0.1s;
     transition-property: background-color, color;
@@ -75,14 +59,7 @@ const StyledInput = styled.input`
         color: ${secondary};
     }
 `;
-
-interface StyledLabelProps {
-    isValue?: boolean;
-}
-
 const StyledLabel = styled.span<StyledLabelProps>`
-    ${body1};
-
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -109,64 +86,26 @@ const StyledLabel = styled.span<StyledLabelProps>`
             top: 0.375rem;
         `}
 `;
-
 const StyledContent = styled.div`
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     margin: 0 1rem;
-    color: ${primary};
+
     display: flex;
     align-items: center;
 
-    /* stylelint-disable-next-line max-line-length */
-    /* stylelint-disable-next-line declaration-block-semicolon-newline-after, rule-empty-line-before, selector-nested-pattern */
+    color: ${secondary};
+
+    /* stylelint-disable-next-line */
     ${StyledInput} ~ & {
         left: auto;
         right: 0;
     }
 `;
-
-const StyledHelperText = styled.span`
-    ${caption};
-
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    margin-top: 0.25rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-`;
-
-const StyledRoot = styled.div<Pick<FieldProps, 'status'> & DisabledProps & IsContentProps>`
-    display: flex;
-    flex-direction: column;
-
-    caret-color: ${accent};
+const StyledRoot = styled(TextFieldRoot)<StyledRootProps>`
     color: ${secondary};
-
-    ${({ status }) => {
-        if (status === 'success') {
-            return css`
-                color: ${accent};
-            `;
-        }
-        if (status === 'error') {
-            return css`
-                color: ${critical};
-            `;
-        }
-        return '';
-    }}
-
-    ${({ disabled }) =>
-        disabled &&
-        css`
-            opacity: 0.4;
-        `}
 
     ${({ isContentLeft }) =>
         isContentLeft &&
@@ -194,23 +133,32 @@ const StyledRoot = styled.div<Pick<FieldProps, 'status'> & DisabledProps & IsCon
 /**
  * Компонент ввода с подписью (caption) сверху.
  */
-export const TextField = React.forwardRef<HTMLInputElement, FieldProps>(
-    ({ value, title, helperText, disabled, contentLeft, contentRight, status, style, className, ...rest }, ref) => (
+export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
+    (
+        { value, label, helperText, disabled, contentLeft, contentRight, status, onChange, onFocus, onBlur, ...rest },
+        ref,
+    ) => (
         <StyledRoot
             status={status}
             disabled={disabled}
-            style={style}
-            className={className}
             isContentLeft={!!contentLeft}
             isContentRight={!!contentRight}
+            {...rest}
         >
             <StyledInputWrapper>
                 {contentLeft && <StyledContent>{contentLeft}</StyledContent>}
-                <StyledInput ref={ref} value={value} disabled={disabled} {...rest} />
-                {title && <StyledLabel isValue={!!value}>{title}</StyledLabel>}
+                <StyledInput
+                    ref={ref}
+                    value={value}
+                    disabled={disabled}
+                    onChange={onChange}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                />
+                {label && <StyledLabel isValue={!!value}>{label}</StyledLabel>}
                 {contentRight && <StyledContent>{contentRight}</StyledContent>}
             </StyledInputWrapper>
-            {helperText && <StyledHelperText>{helperText}</StyledHelperText>}
+            {helperText && <TextFieldHelper status={status}>{helperText}</TextFieldHelper>}
         </StyledRoot>
     ),
 );
