@@ -138,9 +138,11 @@ const themeColorsComments = {
 
 export type ThemeTokens = { [key in keyof typeof themeColorsComments]: Token<TColor> };
 
-type baseTheme = Omit<ThemeTokens, 'accent' | 'gradient' | 'voicePhraseGradient' | 'buttonAccent' | 'buttonFocused'>;
+type BaseTheme = Omit<ThemeTokens, 'accent' | 'gradient' | 'voicePhraseGradient' | 'buttonAccent' | 'buttonFocused'>;
 
-const dark: baseTheme = {
+const dark: BaseTheme = {
+    ...baseColors,
+
     text: {
         value: humanizeColor(ds.theme.dark_primary.color),
         comment: themeColorsComments.text,
@@ -240,7 +242,9 @@ const dark: baseTheme = {
     },
 };
 
-const light: baseTheme = {
+const light: BaseTheme = {
+    ...baseColors,
+
     text: {
         value: humanizeColor(ds.theme.light_primary.color),
         comment: themeColorsComments.text,

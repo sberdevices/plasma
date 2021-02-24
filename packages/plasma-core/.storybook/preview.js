@@ -9,34 +9,33 @@ addDecorator(withKnobs);
 
 addParameters({
     viewport: {
-        defaultViewport: 'SberBox',
         viewports: {
-            '360': {
-                name: '360',
+            '375': {
+                name: '375x812',
                 styles: {
-                    width: '360px',
-                    height: '640px',
+                    width: '375px',
+                    height: '812px',
                 },
             },
-            '720': {
-                name: '720',
+            '768': {
+                name: '768x576',
                 styles: {
-                    width: '720px',
-                    height: '405px',
-                },
-            },
-            '860': {
-                name: '860',
-                styles: {
-                    width: '860px',
-                    height: '640px',
+                    width: '768px',
+                    height: '576px',
                 },
             },
             '1024': {
-                name: '1024',
+                name: '1024x768',
                 styles: {
                     width: '1024px',
                     height: '768px',
+                },
+            },
+            '1920': {
+                name: '1920x1080',
+                styles: {
+                    width: '1920px',
+                    height: '1080px',
                 },
             },
         },

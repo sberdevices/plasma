@@ -2,25 +2,19 @@ import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { sberPortal, sberBox, touch } from '@sberdevices/plasma-tokens/typo';
 import { sberPortalScale } from '@sberdevices/plasma-tokens';
+import { transformStyles } from '@sberdevices/plasma-core/utils';
 
 import { detectDevice, deviceScales, DeviceKind } from '../../utils';
 
 /* stylelint-disable */
-const uppercaseCheck = /([A-Z])/;
-const uppercasePattern = /([A-Z])/g;
-const prefixAndLowerCase = (char: string): string => `-${char.toLowerCase()}`;
-const hyphenate = (str: string) => (uppercaseCheck.test(str) ? str.replace(uppercasePattern, prefixAndLowerCase) : str);
-const transformStyles = (styles: { ':root': object }) => `
+const transformWithRoot = (typo: typeof sberBox) => `
 :root {
-    ${Object.entries(styles[':root'])
-        .map(([key, value]) => `${hyphenate(key)}: ${value}`)
-        .join(';')}
+    ${transformStyles(typo[':root'])}
 }`;
-
 const typoSizes = {
-    sberBox: createGlobalStyle`${transformStyles(sberBox)}`,
-    sberPortal: createGlobalStyle`${transformStyles(sberPortal)}`,
-    touch: createGlobalStyle`${transformStyles(touch)}`,
+    sberBox: createGlobalStyle`${transformWithRoot(sberBox)}`,
+    sberPortal: createGlobalStyle`${transformWithRoot(sberPortal)}`,
+    touch: createGlobalStyle`${transformWithRoot(touch)}`,
 };
 /* stylelint-enable */
 
