@@ -1,3 +1,12 @@
+export const body1 = `
+    font-family: var(--plasma-typo-body1-font-family);
+    font-weight: var(--plasma-typo-body1-font-weight);
+    font-style: var(--plasma-typo-body1-font-style);
+    font-size: var(--plasma-typo-body1-font-size);
+    letter-spacing: var(--plasma-typo-body1-letter-spacing);
+    line-height: var(--plasma-typo-body1-line-height);
+`;
+
 export const button1 = `
     font-family: var(--plasma-typo-button1-font-family);
     font-weight: var(--plasma-typo-button1-font-weight);

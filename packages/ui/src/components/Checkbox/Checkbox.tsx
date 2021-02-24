@@ -1,10 +1,22 @@
-import React from 'react';
+import styled from 'styled-components';
+import {
+    Checkbox as BaseCheckbox,
+    CheckboxProps as BaseCheckboxProps,
+} from '@sberdevices/plasma-core/components/Checkbox';
 
-import { Basebox, BaseboxProps } from './Basebox';
+import type { InteractionProps } from '../../mixins';
+import { basebox } from '../Basebox';
 
-export type CheckboxProps = Omit<BaseboxProps, 'type'>;
+export interface CheckboxProps extends BaseCheckboxProps, InteractionProps {}
 
 /**
  * Флажок или *чекбокс*. Позволяет пользователю управлять параметром с двумя состояниями — ☑ включено и ☐ отключено.
  */
-export const Checkbox: React.FC<CheckboxProps> = (props) => <Basebox type="checkbox" {...props} />;
+export const Checkbox = styled(BaseCheckbox)<CheckboxProps>`
+    ${basebox};
+`;
+
+Checkbox.defaultProps = {
+    ...BaseCheckbox.defaultProps,
+    scaleOnInteraction: true,
+};
