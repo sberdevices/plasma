@@ -11,8 +11,8 @@ module.exports = {
     plugins: ['react', 'import', 'prettier', 'cypress'],
     rules: {
         '@typescript-eslint/no-empty-function': 'off',
-        'no-restricted-syntax': 'off', // В for...of циклах ничего плохого нет
-        'spaced-comment': ['error', 'always', { markers: ['/'] }], /// разрешаем ts-require directive
+        'no-restricted-syntax': 'off', // for...of
+        'spaced-comment': ['error', 'always', { markers: ['/'] }], // ts-require directive
         'comma-dangle': ['error', 'always-multiline'],
         'arrow-parens': ['error', 'always'],
 
@@ -75,7 +75,7 @@ module.exports = {
         'jsx-a11y/click-events-have-key-events': 'off',
         'jsx-a11y/no-noninteractive-tabindex': 'off',
 
-        'import/prefer-default-export': 'off', // @grape: https://humanwhocodes.com/blog/2019/01/stop-using-default-exports-javascript-module/
+        'import/prefer-default-export': 'off', // https://humanwhocodes.com/blog/2019/01/stop-using-default-exports-javascript-module/
         'import/order': [
             'error',
             {
@@ -85,11 +85,11 @@ module.exports = {
         ],
         'import/no-unresolved': 'off',
         'import/extensions': 'off',
-        'import/no-extraneous-dependencies': ['off'], //можно включить тока нужно резолвы разрулить
+        'import/no-extraneous-dependencies': ['off'],
         'arrow-body-style': 'off',
         'padding-line-between-statements': 'off',
         'no-unused-expressions': 'off',
-        'no-use-before-define': 'off', // TODO: Убрать после ПРа про eslint
+        'no-use-before-define': 'off',
         '@typescript-eslint/no-empty-function': 'off',
         '@typescript-eslint/no-empty-interface': 'off',
     },
