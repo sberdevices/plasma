@@ -4,12 +4,12 @@ import { action } from '@storybook/addon-actions';
 
 import { Button } from '.';
 
-const onChange = action('onChange');
+const onClick = action('onClick');
 const onFocus = action('onFocus');
 const onBlur = action('onBlur');
 
 export default {
-    title: 'Core/Button',
+    title: 'Button',
     component: Button,
 };
 
@@ -33,7 +33,7 @@ export const Default = () => (
         disabled={boolean('disabled', false)}
         outlined={boolean('outlined', false)}
         focused={boolean('focused', false)}
-        onChange={onChange}
+        onClick={onClick}
         onFocus={onFocus}
         onBlur={onBlur}
     >

@@ -9,7 +9,6 @@ import {
     buttonCritical,
     buttonChecked,
 } from '@sberdevices/plasma-tokens';
-import { View } from '@sberdevices/plasma-core/mixins';
 
 import { actionWithPersistedEvent } from '../../helpers';
 import { Body1 } from '../Typography';
@@ -139,6 +138,15 @@ const contentLeft = <IconMic color="inherit" size="s" />;
 const headers = ['Normal', 'Focused', 'Disabled', 'Normal', 'Focused', 'Disabled'];
 const sizes = ['l', 'm', 's'];
 const views = ['primary', 'secondary', 'warning', 'critical', 'checked', 'clear'];
+const pins = [
+    'square-square',
+    'square-circle',
+    'circle-square',
+    'circle-circle',
+    'circle-clear',
+    'clear-circle',
+    'clear-clear',
+];
 const colors = [buttonAccent, buttonSecondary, buttonWarning, buttonCritical, buttonChecked];
 const items = [
     { outlined: true, focused: false, disabled: false, resizible: true, contentLeft: null },
@@ -181,7 +189,7 @@ const Showcase = ({ render, size, isMobile }) => (
                                         {
                                             ...item,
                                             view,
-                                            size: size || select('size', sizes, 'm'),
+                                            size: size || select('size', sizes, 'l'),
                                         },
                                         `${view}${j}${k}`,
                                     ),
@@ -290,6 +298,7 @@ export const ActionButton = () => (
     <ActionButtonComponent
         size={select('size', sizes, 'm') as 'm'}
         view={select('view', Object.keys(views), 'primary') as 'primary'}
+        pin={select('pin', pins, 'square-square') as 'square-square'}
         scaleOnInteraction={boolean('scaleOnInteraction', true)}
         outlined={boolean('outlined', true)}
         disabled={boolean('disabled', false)}

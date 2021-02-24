@@ -1,19 +1,17 @@
 import React from 'react';
-import { ButtonProps as BaseButtonProps } from '@sberdevices/plasma-core/components/Button';
+import styled from 'styled-components';
+import { Button as BaseButton, ButtonProps as BaseButtonProps } from '@sberdevices/plasma-core/components/Button';
+import { PickOptional } from '@sberdevices/plasma-core/types';
 
-import { InteractionProps } from '../../mixins';
-
-import { StyledBaseButton } from './Button';
+import { applyInteraction, InteractionProps } from '../../mixins';
 
 /**
  * Интерфейс кнопки.
  */
 export interface ActionButtonProps
-    extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-        Partial<BaseButtonProps>,
-        Pick<InteractionProps, 'scaleOnInteraction'> {
-    size?: 'l' | 'm' | 's';
-}
+    extends PickOptional<BaseButtonProps<'l' | 'm' | 's'>, 'view' | 'size' | 'pin'>,
+        InteractionProps,
+        React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
 const downsize: Record<string, BaseButtonProps['size']> = {
     l: 'xs',
@@ -21,36 +19,27 @@ const downsize: Record<string, BaseButtonProps['size']> = {
     s: 'xxxs',
 };
 
-export const ActionButton = React.forwardRef<HTMLButtonElement, ActionButtonProps>(
-    // eslint-disable-next-line prefer-arrow-callback
-    function ActionButton(
-        {
-            view = 'secondary',
-            size = 'm',
-            pin = 'circle-circle',
-            outlined = true,
-            resizible = false,
-            square = true,
-            scaleOnInteraction = true,
-            children,
-            ...rest
-        },
-        ref,
-    ) {
-        return (
-            <StyledBaseButton
-                view={view}
-                size={downsize[size]}
-                pin={pin}
-                outlined={outlined}
-                square={square}
-                resizible={resizible}
-                scaleOnInteraction={scaleOnInteraction}
-                ref={ref}
-                {...rest}
-            >
-                {children}
-            </StyledBaseButton>
-        );
-    },
-);
+/**
+ * Кнопка для размещения внутри карточек.
+ * Упрощенная версия ``Button`` для создания квадратных кнопок (с соотношением сторон 1:1).
+ * Размеры ``ActionButton`` меньше размеров ``Button``.
+ * Обладает теми же цветами, размерами и модификаторами, что и основная кнопка.
+ */
+export const ActionButton = styled(BaseButton).attrs(({ size, ...rest }) => {
+    /**
+     * Перевод в уменьшенные размеры
+     */
+    if (!size) {
+        return rest;
+    }
+    return { size: downsize[size], ...rest };
+})<ActionButtonProps>`
+    ${applyInteraction}
+`;
+
+ActionButton.defaultProps = {
+    ...BaseButton.defaultProps,
+    size: 'm',
+    outlined: true,
+    scaleOnInteraction: true,
+};

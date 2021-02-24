@@ -1,12 +1,18 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { applyView, applyDisabled, addFocus } from '../../mixins';
-import type { ViewProps, DisabledProps, FocusProps, OutlinedProps } from '../../mixins';
-import { convertRoundnessMatrix } from '../../utils';
-import type { PinProps } from '../../utils';
+import { views, applyView, applyDisabled, addFocus } from '../../mixins';
 import { button1, button2, caption } from '../../tokens';
-import { ShiftProps } from '../../types';
+import { convertRoundnessMatrix } from '../../utils';
+
+import type {
+    WithTextAndContentLeft,
+    WithTextAndContentRight,
+    WithContentLeft,
+    WithChildren,
+    AllContentProps,
+    StyledButtonProps,
+} from './Button.types';
 
 /**
  * Размерные параметры шрифта
@@ -86,46 +92,59 @@ const buttonSizes = {
     },
 };
 
-/**
- * Размер кнопки
- */
 type ButtonSize = keyof typeof buttonSizes;
-interface SizeProps {
-    /**
-     * Размер кнопки
-     */
-    size: ButtonSize;
-    /**
-     * Квадратная кнопка (со сторанами 1:1)
-     */
-    square?: boolean;
-    /**
-     * Растягиваемость кнопки
-     */
-    resizible?: boolean;
-}
+
+/**
+ * Цветовые стили
+ */
+export const buttonViews = {
+    primary: views.primary,
+    secondary: views.secondary,
+    warning: views.warning,
+    critical: views.critical,
+    checked: views.checked,
+    clear: views.clear,
+};
+
+type ButtonView = keyof typeof buttonViews;
 
 /**
  * Интерфейс кнопки.
  */
-export interface ButtonProps
-    extends SizeProps,
-        ViewProps,
-        PinProps,
-        FocusProps,
-        OutlinedProps,
-        DisabledProps,
-        ShiftProps {
-    /**
-     * Сменить рендер на другой тип компонента
-     */
-    as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
+export type ButtonProps<S = ButtonSize, V = ButtonView> = (
+    | WithTextAndContentLeft
+    | WithTextAndContentRight
+    | WithContentLeft
+    | WithChildren
+) &
+    Partial<StyledButtonProps<S, V>> &
+    React.ButtonHTMLAttributes<HTMLButtonElement>;
+
+interface StyledTextProps {
+    isContentLeft?: boolean;
+    isContentRight?: boolean;
 }
+
+const StyledText = styled.span<StyledTextProps>`
+    box-sizing: border-box;
+
+    ${({ isContentLeft }) => isContentLeft && 'margin-left: 0.375rem;'}
+    ${({ isContentRight }) => isContentRight && 'margin-right: 0.375rem;'}
+`;
 
 /**
  * Миксин размеров кнопки по параметрам
  */
-const applySizes = ({ size, pin, outlined, focused, shiftLeft, shiftRight, square, resizible }: ButtonProps) => {
+const applySizes = ({
+    size,
+    pin,
+    outlined,
+    focused,
+    shiftLeft,
+    shiftRight,
+    square,
+    resizible,
+}: StyledButtonProps<ButtonSize, ButtonView>) => {
     const sizes = buttonSizes[size];
     // eslint-disable-next-line no-nested-ternary
     const paddingX = square ? sizes.paddingY : resizible ? sizes.paddingXResizible : sizes.paddingX;
@@ -137,9 +156,9 @@ const applySizes = ({ size, pin, outlined, focused, shiftLeft, shiftRight, squar
         border-radius: ${convertRoundnessMatrix(pin, sizes.squareRadius, sizes.circleRadius)};
 
         ${resizible && 'width: 100%;'}
-        ${square && ` width: ${sizes.height};`};
-        ${shiftLeft && `margin-left: -${paddingX};`};
-        ${shiftRight && `margin-right: -${paddingX};`};
+        ${square && ` width: ${sizes.height};`}
+        ${shiftLeft && `margin-left: -${paddingX};`}
+        ${shiftRight && `margin-right: -${paddingX};`}
         ${buttonTypography[size]}
         ${addFocus({
             focused,
@@ -149,10 +168,7 @@ const applySizes = ({ size, pin, outlined, focused, shiftLeft, shiftRight, squar
     `;
 };
 
-/**
- * Базовая кнопка.
- */
-export const Button = styled.button<ButtonProps>`
+const StyledButton = styled.button<StyledButtonProps<ButtonSize, ButtonView>>`
     position: relative;
 
     display: inline-flex;
@@ -172,3 +188,36 @@ export const Button = styled.button<ButtonProps>`
     ${applySizes}
     ${applyDisabled}
 `;
+
+/**
+ * Базовая кнопка.
+ */
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+    // eslint-disable-next-line prefer-arrow-callback
+    function Button({ square, ...props }, ref) {
+        const { text, contentLeft, contentRight, children, ...rest } = props as AllContentProps;
+
+        return (
+            <StyledButton
+                square={square !== undefined ? square : !text && !children}
+                ref={ref}
+                {...(rest as StyledButtonProps<ButtonSize, ButtonView>)}
+            >
+                {children}
+                {!children && contentLeft}
+                {!children && text && (
+                    <StyledText isContentLeft={!!contentLeft} isContentRight={!!contentRight}>
+                        {text}
+                    </StyledText>
+                )}
+                {!children && contentRight}
+            </StyledButton>
+        );
+    },
+);
+
+Button.defaultProps = {
+    view: 'secondary',
+    size: 'l',
+    pin: 'square-square',
+};
