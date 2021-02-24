@@ -1,10 +1,22 @@
-import React from 'react';
+import {
+    Radiobox as BaseRadiobox,
+    RadioboxProps as BaseRadioboxProps,
+} from '@sberdevices/plasma-core/components/Radiobox';
+import styled from 'styled-components';
 
-import { Basebox, BaseboxProps } from '../Checkbox/Basebox';
+import type { InteractionProps } from '../../mixins';
+import { basebox } from '../Basebox';
 
-export type RadioboxProps = Omit<BaseboxProps, 'type'>;
+export interface RadioboxProps extends BaseRadioboxProps, InteractionProps {}
 
 /**
  * Переключатель, или *радиокнопка*.
  */
-export const Radiobox: React.FC<RadioboxProps> = (props) => <Basebox type="radio" {...props} />;
+export const Radiobox = styled(BaseRadiobox)<RadioboxProps>`
+    ${basebox};
+`;
+
+Radiobox.defaultProps = {
+    ...BaseRadiobox.defaultProps,
+    scaleOnInteraction: true,
+};

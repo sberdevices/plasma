@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Value, Item } from '../Checkbox/Basebox';
+import { Value, Item } from '../Basebox/Basebox';
 
 import { Radiobox } from './Radiobox';
 
