@@ -30,5 +30,5 @@ export interface RoundnessProps {
  */
 export const applyRoundness: InterpolationFunction<RoundnessProps> = ({ roundness }) =>
     css`
-        border-radius: ${radiuses[roundness]};
+        border-radius: ${radiuses[roundness]}rem;
     `;
