@@ -139,9 +139,10 @@ export const Gallery: React.FC<PageProps<GalleryViewPayload>> = ({
                             tabIndex={0}
                             onClick={() => onClickHandler(item)}
                             onFocus={() => onFocusHandler(index)}
+                            data-cy={`gallery-card-${index}`}
                         >
                             <CardBody>
-                                <CardMedia src={imageSrc} ratio={item.image.ratio ?? '1:1'}>
+                                <CardMedia src={imageSrc} ratio={item.image.ratio ?? '1:1'} data-cy="gallery-card-media">
                                     {item.position && (
                                         <StyledCardIndex view="index" size="l" circled text={String(item.position)} />
                                     )}
