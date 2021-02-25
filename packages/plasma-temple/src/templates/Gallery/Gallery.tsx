@@ -166,7 +166,7 @@ export const Gallery: React.FC<PageProps<GalleryViewPayload>> = ({
 
     return (
         <>
-            <Header title={header.title} logo={header.logo} />
+            <Header {...header} />
             {data && (
                 <>
                     {isSberPortal() ? null : <Headline3>{data.title}</Headline3>}
