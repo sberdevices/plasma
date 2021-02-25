@@ -1,7 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { typography } from '@sberdevices/plasma-tokens';
-import { applyRoundness, RoundnessProps, applySkeletonGradient } from '@sberdevices/plasma-core/mixins';
+import { applyRoundness, RoundnessProps } from '@sberdevices/plasma-core/mixins';
+
+import { applySkeletonGradient } from '../../mixins';
 
 import { TextSizeProps, DEFAULT_TEXT_SIZE, DEFAULT_ROUNDNESS } from './Skeleton';
 
