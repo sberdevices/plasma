@@ -1,3 +1,17 @@
+# (Thu Feb 25 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@0.2.0`
+  - feat(plasma-template): add e2e test attributes [#8](https://github.com/sberdevices/pashka/pull/8) (kvpolyanskiy@sberbank.ru [@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Konstantin Polyanskiy (kvpolyanskiy@sberbank.ru)
+
+---
+
 # (Fri Feb 19 2021)
 
 #### 🚀 Enhancement
