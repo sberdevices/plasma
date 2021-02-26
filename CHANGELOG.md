@@ -2,6 +2,20 @@
 
 #### 🐛 Bug Fix
 
+- `@sberdevices/plasma-temple@0.2.2`
+  - fix(plasma-template): set default focus on gallery card [#9](https://github.com/sberdevices/pashka/pull/9) (kvpolyanskiy@sberbank.ru [@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Konstantin Polyanskiy (kvpolyanskiy@sberbank.ru)
+
+---
+
+# (Fri Feb 26 2021)
+
+#### 🐛 Bug Fix
+
 - `@sberdevices/plasma-temple@0.2.1`
   - fix(plasma-template): use all header props [#10](https://github.com/sberdevices/pashka/pull/10) (kvpolyanskiy@sberbank.ru [@kvpolyanskiy](https://github.com/kvpolyanskiy))
   - fix(plasma-temple): add package docs [#6](https://github.com/sberdevices/pashka/pull/6) ([@LamaEats](https://github.com/LamaEats))
