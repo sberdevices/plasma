@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { keyframes, css } from 'styled-components';
 
 import { SpinnerSvg } from './SpinnerSvg';
+import { WhiteSpinnerSvg } from './WhiteSpinnerSvg';
 
 const rotateAnimation = keyframes`
     from {
@@ -27,12 +28,13 @@ const StyledRoot = styled.div<{ $size: number }>`
 
 interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
     size?: number;
+    color?: 'white';
 }
 
-export const Spinner: React.FC<SpinnerProps> = ({ size = 56, ...rest }) => {
+export const Spinner: React.FC<SpinnerProps> = ({ size = 56, color, ...rest }) => {
     return (
         <StyledRoot $size={size} {...rest}>
-            <SpinnerSvg width={size} height={size} />
+            {color ? <WhiteSpinnerSvg width={size} height={size} /> : <SpinnerSvg width={size} height={size} />}
         </StyledRoot>
     );
 };
