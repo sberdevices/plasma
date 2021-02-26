@@ -1,3 +1,17 @@
+# v0.2.2 (Fri Feb 26 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-template): set default focus on gallery card [#9](https://github.com/sberdevices/pashka/pull/9) (kvpolyanskiy@sberbank.ru [@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- fix(plasma-template): set default focus on gallery card (kvpolyanskiy@sberbank.ru)
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Konstantin Polyanskiy (kvpolyanskiy@sberbank.ru)
+
+---
+
 # v0.2.1 (Fri Feb 26 2021)
 
 #### 🐛 Bug Fix
