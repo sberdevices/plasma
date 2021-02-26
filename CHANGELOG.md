@@ -1,3 +1,19 @@
+# (Fri Feb 26 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@0.2.1`
+  - fix(plasma-template): use all header props [#10](https://github.com/sberdevices/pashka/pull/10) (kvpolyanskiy@sberbank.ru [@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - fix(plasma-temple): add package docs [#6](https://github.com/sberdevices/pashka/pull/6) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 3
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Konstantin Polyanskiy (kvpolyanskiy@sberbank.ru)
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Thu Feb 25 2021)
 
 #### 🚀 Enhancement
