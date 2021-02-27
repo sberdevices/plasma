@@ -10,5 +10,8 @@ examples/**
 packages/ui/*
 !packages/ui/src
 
+packages/plasma-web/*
+!packages/plasma-web/src
+
 packages/plasma-icons/*
 !packages/plasma-icons/src
