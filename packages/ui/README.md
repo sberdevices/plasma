@@ -22,6 +22,54 @@ $ npm install --save styled-components
 $ npm install --save @sberdevices/ui@rc @sberdevices/plasma-tokens@rc @sberdevices/plasma-icons@rc
 ```
 
+### Настройка
+
+Подключите цветовую схему с помощью глобальных стилей и типографическую систему с помощью `DeviceThemeProvider`:
+
+```jsx
+// GlobalStyle.tsx
+import { createGlobalStyle } from 'styled-components';
+import { darkSber } from '@sberdevices/plasma-tokens/themes'; // Или один из списка: darkEva, darkJoy, lightEva, lightJoy, lightSber
+import {
+    text, // Цвет текста
+    background, // Цвет подложки
+    gradient, // Градиент
+} from '@sberdevices/plasma-tokens';
+
+const DocumentStyle = createGlobalStyle`
+    html:root {
+        min-height: 100vh;
+        color: ${text};
+        background-color: ${background};
+        background-image: ${gradient};
+    }
+`;
+const ThemeStyle = createGlobalStyle(darkSber);
+export const GlobalStyle = () => (
+    <>
+        <DocumentStyle />
+        <ThemeStyle />
+    </>
+);
+```
+
+```jsx
+// index.tsx
+import { DeviceThemeProvider } from '@sberdevices/ui/components/Device'; // Типографика, имеющая размеры, зависимые от типа устройства
+import { GlobalStyle } from './GlobalStyle'; // Тема оформления (цветовая схема)
+import { App } from './App';
+
+ReactDOM.render(
+    <DeviceThemeProvider>
+        <GlobalStyle />
+        <App />
+    </DeviceThemeProvider>,
+    document.getElementById('root'),
+);
+```
+
+> Подробнее о [стилях и типографике](https://github.com/sberdevices/plasma/tree/rc/packages/plasma-tokens).
+
 ### Использование компонентов
 
 Все компоненты доступны из папки `components` или напрямую из пакета:
