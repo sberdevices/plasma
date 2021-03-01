@@ -26,6 +26,6 @@ export const ShowcaseDashedBorder = styled.div`
     justify-content: center;
     padding: 1.25rem;
     /* stylelint-disable-next-line number-max-precision */
-    border: 0.0625px dashed #7765f6;
+    border: 0.0625rem dashed #7765f6;
     border-radius: 1.25rem;
 `;

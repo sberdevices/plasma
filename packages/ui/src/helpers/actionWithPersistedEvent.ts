@@ -1,3 +1,4 @@
+import React from 'react';
 import { action } from '@storybook/addon-actions';
 
 /**
@@ -8,7 +9,7 @@ import { action } from '@storybook/addon-actions';
 export const actionWithPersistedEvent = (name: string) => {
     const calledAction = action(name);
 
-    return (event) => {
+    return (event: React.SyntheticEvent) => {
         event.persist();
         calledAction(event);
     };

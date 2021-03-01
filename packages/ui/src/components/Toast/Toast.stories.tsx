@@ -37,3 +37,9 @@ export const ToastContext = () => {
         </div>
     );
 };
+
+ToastContext.parameters = {
+    chromatic: {
+        disable: true,
+    },
+};

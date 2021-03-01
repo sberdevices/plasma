@@ -108,3 +108,9 @@ export const CustomAssembly = () => (
         </HeaderContent>
     </HeaderRoot>
 );
+
+CustomAssembly.parameters = {
+    chromatic: {
+        disable: true,
+    },
+};

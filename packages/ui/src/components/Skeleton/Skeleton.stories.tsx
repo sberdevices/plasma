@@ -82,3 +82,9 @@ export const InCard = () => {
         </Card>
     );
 };
+
+InCard.parameters = {
+    chromatic: {
+        disable: true,
+    },
+};
