@@ -1,12 +1,6 @@
----
-name: Смена персонажа ассистента
-route: /theme
----
+import { Meta } from '@storybook/addon-docs/blocks';
 
-import { ThemeSelect } from '../helpers/ThemeSelect'
-
-
-<ThemeSelect />
+<Meta title="Theming" />
 
 # Смена персонажа ассистента
 
@@ -24,10 +18,10 @@ import { darkJoy, darkEva, darkSber } from '@sberdevices/plasma-tokens/themes';
 
 ```js
 assistantClient.on('data', (command) => {
-  if (command.type === 'character') {
-    // 'sber' | 'eva' | 'joy';
-    setCharacter(command.character.id);
-  }
+    if (command.type === 'character') {
+        // 'sber' | 'eva' | 'joy';
+        setCharacter(command.character.id);
+    }
 });
 ```
 
@@ -35,69 +29,68 @@ assistantClient.on('data', (command) => {
 
 ```tsx
 import React, { FC, useRef, useEffect, useState } from 'react';
+import { createGlobalStyle } from 'styled-components';
 import { createAssistant, AssistantAppState, AssistantCharacterType } from '@sberdevices/assistant-client';
 import { darkJoy, darkEva, darkSber } from '@sberdevices/plasma-tokens/themes';
 import { text, background, gradient } from '@sberdevices/plasma-tokens';
-import { createGlobalStyle } from 'styled-components';
 
 const ThemeBackgroundEva = createGlobalStyle(darkEva);
 const ThemeBackgroundSber = createGlobalStyle(darkSber);
 const ThemeBackgroundJoy = createGlobalStyle(darkJoy);
 
 const DocStyles = createGlobalStyle`
-  html {
+html {
     color: ${text};
     background-color: ${background};
     background-image: ${gradient};
     min-height: 100vh;
-  }
+}
 `;
 
 const initializeAssistant = (getState: any) => {
-  return createAssistant({ getState });
+    return createAssistant({ getState });
 };
 
 export const App: FC = () => {
+    const [character, setCharacter] = useState('sber' as AssistantCharacterType);
 
-  const [character, setCharacter] = useState('sber' as AssistantCharacterType);
-  
-  const assistantStateRef = useRef<AssistantAppState>();
-  const assistantRef = useRef<ReturnType<typeof createAssistant>>();
+    const assistantStateRef = useRef<AssistantAppState>();
+    const assistantRef = useRef<ReturnType<typeof createAssistant>>();
 
-  useEffect(() => {
-    assistantRef.current = initializeAssistant(() => assistantStateRef.current);
-    assistantRef.current.on('data', (command) => {
-      switch (command.type) {
-        case 'character':
-          setCharacter(command.character.id);
-          // 'sber' | 'eva' | 'joy';
-          break;
-        case 'navigation':
-          break;
-        case 'smart_app_data':
-          break;
-        default:
-          return;
-      }
-    });
-  }, []);
+    useEffect(() => {
+        assistantRef.current = initializeAssistant(() => assistantStateRef.current);
+        assistantRef.current.on('data', (command) => {
+            switch (command.type) {
+                case 'character':
+                    setCharacter(command.character.id);
+                    // 'sber' | 'eva' | 'joy';
+                    break;
+                case 'navigation':
+                    break;
+                case 'smart_app_data':
+                    break;
+                default:
+                    return;
+            }
+        });
+    }, []);
 
-  return (
-    <div>
-      <DocStyles />
-      {(() => {
-        switch (character) {
-          case 'sber':
-            return <ThemeBackgroundSber />;
-          case 'eva':
-            return <ThemeBackgroundEva />;
-          case 'joy':
-            return <ThemeBackgroundJoy />;
-          default:
-            return;
-        }
-      })()}
-    </div>
-  );
+    return (
+        <div>
+            <DocStyles />
+            {(() => {
+                switch (character) {
+                    case 'sber':
+                        return <ThemeBackgroundSber />;
+                    case 'eva':
+                        return <ThemeBackgroundEva />;
+                    case 'joy':
+                        return <ThemeBackgroundJoy />;
+                    default:
+                        return;
+                }
+            })()}
+        </div>
+    );
 };
 ```

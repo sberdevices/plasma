@@ -39,7 +39,7 @@ const Showcase = ({ render, withLabels = true }) => (
 
 /* eslint-disable prefer-rest-params */
 export function Default() {
-    const [values, setValues] = React.useState([2, 4]);
+    const [values, setValues] = React.useState([2, 4, 6]);
 
     return (
         <Showcase
