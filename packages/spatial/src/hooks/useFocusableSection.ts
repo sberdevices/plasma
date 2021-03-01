@@ -1,6 +1,4 @@
 import { useContext, useEffect, useMemo } from 'react';
-import { useMount } from 'react-use';
-
 import { spatialContext } from '../spatialContext';
 import { Config } from '../utils/types';
 import { SpatialNavigation } from '../spts';
