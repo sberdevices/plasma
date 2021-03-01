@@ -1,8 +1,13 @@
 {
   "name": "@sberdevices/cra-template-plasma-basic-template",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
-  "keywords": ["react", "create-react-app", "template", "typescript"],
+  "keywords": [
+    "react",
+    "create-react-app",
+    "template",
+    "typescript"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sberdevices/pashka.git",
@@ -15,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/sberdevices/pashka/issues"
   },
-  "files": ["template", "template.json"]
+  "files": [
+    "template",
+    "template.json"
+  ]
 }
