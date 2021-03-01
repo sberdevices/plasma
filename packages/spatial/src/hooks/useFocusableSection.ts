@@ -28,7 +28,7 @@ function useFocusableSection(
 ): SectionFocusableProp {
     const sn = useContext(spatialContext);
 
-    useMount(() => {
+    useEffect(() => {
         if (!sn.has(sectionId)) {
             sn.add(sectionId, {
                 selector: options.noWrapper
@@ -42,7 +42,7 @@ function useFocusableSection(
             sn.focus(sectionId);
             sn.setDefaultSection(sectionId);
         }
-    });
+    }, []);
 
     useEffect(() => {
         if (options.isDefaultSection && document.activeElement === document.body) {
