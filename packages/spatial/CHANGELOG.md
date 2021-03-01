@@ -1,3 +1,23 @@
+# v1.1.0 (Mon Mar 01 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-basic-template): CRA template for Salute [#7](https://github.com/sberdevices/pashka/pull/7) ([@LamaEats](https://github.com/LamaEats))
+
+#### 🐛 Bug Fix
+
+- fix: spatial pack [#12](https://github.com/sberdevices/pashka/pull/12) ([@ayymkozb](https://github.com/ayymkozb))
+- fix: spatial pack ([@ayymkozb](https://github.com/ayymkozb))
+- fix: Delete react-use in spatial pack [#11](https://github.com/sberdevices/pashka/pull/11) ([@ayymkozb](https://github.com/ayymkozb))
+- fix: Delete react-use in spatial pack ([@ayymkozb](https://github.com/ayymkozb))
+
+#### Authors: 2
+
+- [@ayymkozb](https://github.com/ayymkozb)
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v1.0.2 (Fri Feb 05 2021)
 
 #### 🐛 Bug Fix
