@@ -18,7 +18,7 @@ const StyledButtonGroup = styled.div`
     align-self: center;
     align-items: center;
 `;
-const StyledGhostButton = styled(ActionButton).attrs(() => ({ view: 'clear', size: 's', outlined: false }))`
+const StyledGhostButton = styled(ActionButton).attrs(() => ({ view: 'clear', outlined: false }))`
     padding: 0;
 `;
 
@@ -52,14 +52,20 @@ export const Limited = () => {
         <StyledWrapper>
             <SmartPaginationDots items={items} index={index} visibleItems={number('visibleItems', 7)} />
             <StyledButtonGroup>
-                <StyledGhostButton onClick={() => setIndex(index - 1 >= minIndex ? index - 1 : maxIndex)}>
+                <StyledGhostButton onClick={() => setIndex(index - 1 >= minIndex ? index - 1 : maxIndex)} size="s">
                     <IconChevronLeft size="xs" />
                 </StyledGhostButton>
                 <Caption>{index}</Caption>
-                <StyledGhostButton onClick={() => setIndex(index + 1 <= maxIndex ? index + 1 : minIndex)}>
+                <StyledGhostButton onClick={() => setIndex(index + 1 <= maxIndex ? index + 1 : minIndex)} size="s">
                     <IconChevronRight size="xs" />
                 </StyledGhostButton>
             </StyledButtonGroup>
         </StyledWrapper>
     );
+};
+
+Limited.parameters = {
+    chromatic: {
+        disable: true,
+    },
 };

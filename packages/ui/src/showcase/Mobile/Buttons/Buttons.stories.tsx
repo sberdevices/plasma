@@ -5,8 +5,7 @@ import {
     Default as ButtonStoryDefault,
     Squared as ButtonStorySquared,
     Circled as ButtonStoryCircled,
-} from '../../../components/Button/Button.stories';
-import { ShowcaseDashedBorder } from '../../../helpers';
+} from '../../../components/Button/Button.examples';
 import { Panel } from '../../Panel';
 import { Divider } from '../../Divider';
 import { SectionName } from '../../SectionName';
@@ -33,9 +32,6 @@ const StyledPanel = styled(Panel)`
     flex-wrap: nowrap;
     align-items: initial;
 `;
-const StyledDashedBorder = styled(ShowcaseDashedBorder)`
-    padding: 2.5rem;
-`;
 
 const ButtonsSizeGroup: React.FC<{ size: 's' | 'm' }> = ({ size }) => {
     return (
@@ -44,12 +40,8 @@ const ButtonsSizeGroup: React.FC<{ size: 's' | 'm' }> = ({ size }) => {
                 <ButtonStoryDefault size={size} isMobile />
             </StyledPanel>
             <StyledPanel style={{ display: 'flex', marginBottom: '3.75rem' }}>
-                <StyledDashedBorder style={{ marginRight: '1.25rem' }}>
-                    <ButtonStorySquared size={size} isMobile />
-                </StyledDashedBorder>
-                <StyledDashedBorder>
-                    <ButtonStoryCircled size={size} isMobile />
-                </StyledDashedBorder>
+                <ButtonStorySquared style={{ marginRight: '1.25rem' }} size={size} isMobile />
+                <ButtonStoryCircled size={size} isMobile />
             </StyledPanel>
         </>
     );

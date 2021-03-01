@@ -55,7 +55,7 @@ export const Default = () => {
     );
 };
 
-export const Custom = () => {
+export const CustomAssembly = () => {
     const [value, setValue] = useState(5);
     const step = number('step', 1);
     const min = number('min', 1);
@@ -80,4 +80,10 @@ export const Custom = () => {
             />
         </StepperRoot>
     );
+};
+
+CustomAssembly.parameters = {
+    chromatic: {
+        disable: true,
+    },
 };

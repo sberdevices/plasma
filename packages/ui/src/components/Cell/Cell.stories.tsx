@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { accent, footnote1 } from '@sberdevices/plasma-tokens';
 
 import { Footnote1, Headline1 } from '../Typography';
-import { Custom as Stepper } from '../Stepper/Stepper.stories';
+import { CustomAssembly as Stepper } from '../Stepper/Stepper.stories';
 import { Container, Row, Col } from '../Grid';
 import { TextBox, TextBoxTitle, TextBoxSubTitle, TextBoxLabel, TextBoxCaption } from '../TextBox';
 

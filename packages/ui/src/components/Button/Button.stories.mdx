@@ -3,6 +3,7 @@ import { Meta, ArgsTable, Canvas, Story, Description } from '@storybook/addon-do
 import { InSpacing } from '../../helpers/StoryDecorators';
 
 import * as stories from './Button.stories';
+import { ButtonDecorator } from './Button.examples';
 
 import { Button, ActionButton } from '.';
 
@@ -10,7 +11,7 @@ import { Button, ActionButton } from '.';
     title="Controls/Button"
     component={Button}
     subcomponents={{ ActionButton }}
-    decorators={[InSpacing]}
+    decorators={[ButtonDecorator, InSpacing]}
 />
 
 # Кнопки
@@ -21,8 +22,6 @@ import { Button, ActionButton } from '.';
 
 <Canvas>
     <Story name="Default" story={stories.Default} />
-    <Story name="Squared" story={stories.Squared} />
-    <Story name="Circled" story={stories.Circled} />
 </Canvas>
 
 <ArgsTable of={Button} />
@@ -31,7 +30,7 @@ import { Button, ActionButton } from '.';
 <Description of={ActionButton} />
 
 <Canvas>
-    <Story name="ActionButton" story={stories.ActionButton} />
+    <Story name="ActionButton" story={stories.Action_Button} />
 </Canvas>
 
 <ArgsTable of={ActionButton} />
