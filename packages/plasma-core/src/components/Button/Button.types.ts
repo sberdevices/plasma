@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import type { DisabledProps, FocusProps, OutlinedProps } from '../../mixins';
+import type { DisabledProps, FocusProps, OutlinedProps, BlurProps } from '../../mixins';
 import type { PinProps } from '../../utils';
 import type { ShiftProps, AsProps } from '../../types';
 
@@ -96,4 +96,5 @@ export interface StyledButtonProps<S, V>
         OutlinedProps,
         DisabledProps,
         ShiftProps,
+        BlurProps,
         AsProps {}

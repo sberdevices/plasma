@@ -1,6 +1,9 @@
 export { addFocus, syntheticFocus } from './addFocus';
 export type { FocusProps, OutlinedProps } from './addFocus';
 
+export { applyBlur, blurs } from './blur';
+export type { BlurProps } from './blur';
+
 export { applyDisabled } from './applyDisabled';
 export type { DisabledProps } from './applyDisabled';
 

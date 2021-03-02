@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { views, applyView, applyDisabled, addFocus } from '../../mixins';
+import { views, applyView, applyDisabled, addFocus, applyBlur } from '../../mixins';
 import { button1, button2, caption } from '../../tokens';
 import { convertRoundnessMatrix } from '../../utils';
 
@@ -188,6 +188,7 @@ const StyledButton = styled.button<StyledButtonProps<ButtonSize, ButtonView>>`
     ${applyView}
     ${applySizes}
     ${applyDisabled}
+    ${applyBlur}
 `;
 
 /**
