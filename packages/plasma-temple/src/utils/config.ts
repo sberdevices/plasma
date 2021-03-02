@@ -6,7 +6,7 @@ export const defaultConfig: CanvasAppConfig = {
     routes: [
         {
             type: Screen.gallery,
-            component: React.lazy(() => import('../templates/Gallery/Gallery')),
+            component: React.lazy(() => import('../templates/GalleryList/GalleryList')),
         },
         {
             type: Screen.entity,
