@@ -1,51 +1,59 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import styled from 'styled-components';
+import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
+import { applyBlur, BlurProps } from '@sberdevices/plasma-core/mixins';
+
+import * as stories from './mixins.stories';
 
 <Meta title="Core/Mixins" />
-
-import { addFocus, applyDisabled, applyInteraction, applyRoundness, applyView } from '.'
 
 # Миксины (примеси)
 Раздел содержит функции-примеси для компонентов, которые стилизуются с помощью ``styled-components``.
 
-> Для удобства типизации, каждый модуль, в котором лежит миксин, дополнительно экспортирует соответствующий интерфейс ``props``.
+Для удобства типизации, каждый модуль, в котором лежит миксин, дополнительно экспортирует соответствующий интерфейс ``props``.
 
-## addFocus
+## `addFocus`
 Добавляет фокусную рамку компонентам, для которых возможно фокусирование или если передан флаг ``focused``.
+
+### Свойства
+<ArgsTable of={stories.OutlinedComponent} />
+
+### Пример
 ```tsx
 import styled from 'styled-components';
-import { FocusProps, addFocus } from '@sberdevices/plasma-core/mixins';
+import { FocusProps, OutlinedProps, addFocus } from '@sberdevices/plasma-core/mixins';
 
-// Способ 1. Передача props напрямую в вызываемый компонент
-const Button1 = styled.button<FocusProps>`
+const Button = styled.button<FocusProps>`
     ${addFocus}
 `;
 
-<Button1
-    outlined={true}
-    outlineSize="2px"
-    outlineOffset="2px"
-    outlineColor="green"
-    outlineRadius="5px"
->
-    Hello!
-</Button1>
-
-// Способ 2. Передача props на стороне стилизуемого компонента
-const Button2 = styled.button<FocusProps>`
-    ${addFocus({
-        outlined: true,
-        outlineSize: '2px',
-        outlineOffset: '2px',
-        outlineColor: 'green',
-        outlineRadius: '5px',
-    })}
-`;
-
-<Button2>Hello!</Button2>
+<Button outlined={true}>Hello!</Button>
 ```
 
-## applyDisabled
+## `applyBlur`
+Позволяет применять фильтр размытия к фону компонента.
+
+### Свойства
+<ArgsTable of={stories.BlurredComponent} />
+
+### Пример
+```tsx
+import styled from 'styled-components';
+import { BlurProps, applyBlur } from '@sberdevices/plasma-core/mixins';
+
+const Button = styled.button<BlurProps>`
+    ${applyBlur}
+`;
+
+<Button blur="small">Blur on the background</Button>
+```
+
+## `applyDisabled`
 Делает компонент недоступным для взаимодействия, если компонент может быть задизейблен или если передан флаг ``disabled``.
+
+### Свойства
+<ArgsTable of={stories.DisabledComponent} />
+
+### Пример
 ```tsx
 import styled from 'styled-components';
 import { DisabledProps, applyDisabled } from '@sberdevices/plasma-core/mixins';
@@ -57,11 +65,16 @@ const Button = styled.button<DisabledProps>`
 <Button disabled>I'm disabled</Button>
 ```
 
-## applyInteraction
+## `applyInteraction`
 Увеличивает/уменьшает компонент при таких видах взаимодействия, как наведение (:hover) и нажатие (:active).
+
+### Свойства
+<ArgsTable of={stories.InteractionComponent} />
+
+### Пример
 ```tsx
 import styled from 'styled-components';
-import { InteractionProps, applyInteraction } from '@sberdevices/plasma-core/mixins';
+import { InteractionProps, applyInteraction } from '@sberdevices/ui/mixins';
 
 const Button = styled.button<InteractionProps>`
     ${applyInteraction}
@@ -70,11 +83,16 @@ const Button = styled.button<InteractionProps>`
 <Button scaleOnInteraction>Button!</Button>
 ```
 
-## applyRoundness
+## `applyRoundness`
 Применяет к компоненту скругление из списка ``radiuses``.
 
 Скругление указывается в пикселях.
 Пример, ``roundness={16}`` = ``1rem`` = ``16px`` (при ``deviceScale = 1``) = **32px** (при ``deviceScale = 2``).
+
+### Свойства
+<ArgsTable of={stories.RoundnessComponent} />
+
+### Пример
 ```tsx
 import styled from 'styled-components';
 import { RoundnessProps, applyRoundness } from '@sberdevices/plasma-core/mixins';
@@ -86,8 +104,13 @@ const Button = styled.button<RoundnessProps>`
 <Button roundness={16}>Button!</Button>
 ```
 
-## applyView
+## `applyView`
 Применяет цвет фона и текста при передаче соответствующего значения в свойство ``view``.
+
+### Свойства
+<ArgsTable of={stories.ViewComponent} />
+
+### Пример
 ```tsx
 import styled from 'styled-components';
 import { ViewProps, applyView } from '@sberdevices/plasma-core/mixins';
