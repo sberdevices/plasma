@@ -13,7 +13,7 @@ export default {
     component: Button,
 };
 
-const views = ['primary', 'secondary', 'warning', 'critical', 'checked', 'clear'];
+const views = ['primary', 'secondary', 'warning', 'critical', 'checked', 'overlay', 'clear'];
 const sizes = ['l', 'm', 's', 'xs', 'xxs', 'xxxs'];
 const pins = [
     'square-square',

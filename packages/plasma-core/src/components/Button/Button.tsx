@@ -103,6 +103,7 @@ export const buttonViews = {
     warning: views.warning,
     critical: views.critical,
     checked: views.checked,
+    overlay: views.overlay,
     clear: views.clear,
 };
 

@@ -49,9 +49,9 @@ export const views = {
         background-color: ${transparent};
         color: ${text};
     `,
-    index: css`
+    overlay: css`
         background-color: ${blackSecondary};
-        color: ${text};
+        color: ${white};
     `,
 };
 
