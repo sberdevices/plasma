@@ -69,6 +69,7 @@ export interface EntityPayload extends MetaPayload, HeaderPropsPayload {
 }
 
 export interface GalleryViewPayload extends MetaPayload, HeaderPropsPayload {
+    id: string;
     items: Array<GalleryItemViewPayload>;
     title: string;
 }
