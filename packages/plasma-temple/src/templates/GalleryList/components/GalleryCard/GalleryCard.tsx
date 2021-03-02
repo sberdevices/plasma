@@ -75,7 +75,7 @@ export const GalleryCard: React.FC<GalleryCardProps> = ({card, position, index, 
         if (position === index && isSberBox()) {
             cardRef.current?.focus({ preventScroll: true });
         }
-    }, []);
+    }, [position, index]);
 
     const handleClick = React.useCallback(() => onClick(card), [card, onClick]);
     const handleFocus = React.useCallback(() => onFocus(index), [index, onFocus]);
