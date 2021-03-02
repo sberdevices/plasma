@@ -136,7 +136,7 @@ const StyledDashedBorder = styled(ShowcaseDashedBorder)`
 const contentLeft = <IconMic color="inherit" size="s" />;
 
 export const sizes = ['l', 'm', 's'];
-export const views = ['primary', 'secondary', 'warning', 'critical', 'checked', 'clear'];
+export const views = ['primary', 'secondary', 'warning', 'critical', 'checked', 'overlay', 'clear'];
 export const pins = [
     'square-square',
     'square-clear',
