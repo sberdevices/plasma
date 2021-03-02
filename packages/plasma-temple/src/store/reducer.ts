@@ -13,7 +13,7 @@ interface HistoryRecord<T extends Screen, D> {
 }
 
 export type CurrentHistory =
-    | HistoryRecord<Screen.gallery, GalleryViewPayload>
+    | HistoryRecord<Screen.gallery, GalleryViewPayload[]>
     | HistoryRecord<Screen.entity, EntityPayload>
     | HistoryRecord<Screen.detail, DetailPayload>;
 
