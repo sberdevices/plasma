@@ -29,6 +29,7 @@ const StyledRoot = styled.div<{ w: string }>`
     ${({ w }) => css`
         width: ${w};
         height: ${w};
+        flex: 0 0 ${w};
     `}
 `;
 
