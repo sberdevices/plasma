@@ -24,6 +24,7 @@ export const Default = () => (
         focused={boolean('focused', false)}
         disabled={boolean('disabled', false)}
         square={boolean('square', false)}
+        resizible={boolean('resizible', false)}
         onClick={onClick}
         onFocus={onFocus}
         onBlur={onBlur}
@@ -39,6 +40,7 @@ export const Action_Button = () => (
         scaleOnInteraction={boolean('scaleOnInteraction', true)}
         outlined={boolean('outlined', true)}
         disabled={boolean('disabled', false)}
+        resizible={boolean('resizible', false)}
         tabIndex={0}
         onClick={onClick}
         onFocus={onFocus}
