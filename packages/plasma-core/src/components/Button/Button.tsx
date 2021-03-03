@@ -129,6 +129,10 @@ interface StyledTextProps {
 const StyledText = styled.span<StyledTextProps>`
     box-sizing: border-box;
 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
     ${({ isContentLeft }) => isContentLeft && 'margin-left: 0.375rem;'}
     ${({ isContentRight }) => isContentRight && 'margin-right: 0.375rem;'}
 `;
