@@ -1,9 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { Image, ImageProps } from '../Image';
+import { Image, ImageBaseProps } from '../Image';
 
-export type CardMediaProps = ImageProps & {
+export type CardMediaProps = ImageBaseProps & {
     disabled?: boolean;
     placeholder?: string;
 };
@@ -18,9 +18,31 @@ const StyledImage = styled(Image)<{ $disabled?: boolean }>`
         `}
 `;
 
+const StyledRoot = styled.div`
+    position: relative;
+`;
+
 /**
  * Компонент для отображения картинок.
  */
-export const CardMedia: React.FC<CardMediaProps> = ({ disabled, placeholder, style, ...props }) => (
-    <StyledImage $disabled={disabled} style={{ ...style, backgroundImage: `url('${placeholder}')` }} {...props} />
-);
+export const CardMedia: React.FC<CardMediaProps> = ({
+    disabled,
+    placeholder,
+    style,
+    children,
+    className,
+    ...props
+}) => {
+    const imgStyle: React.CSSProperties = { ...style };
+
+    if (placeholder) {
+        imgStyle.backgroundImage = `url('${placeholder}')`;
+    }
+
+    return (
+        <StyledRoot className={className}>
+            <StyledImage $disabled={disabled} style={imgStyle} {...props} />
+            {children}
+        </StyledRoot>
+    );
+};
