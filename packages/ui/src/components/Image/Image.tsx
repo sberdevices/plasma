@@ -31,12 +31,15 @@ interface CustomRatioProps {
     customRatio?: string;
 }
 
-export type ImageProps = (HeightProps | RatioProps | CustomRatioProps) &
+export type ImageBaseProps = (HeightProps | RatioProps | CustomRatioProps) &
     React.ImgHTMLAttributes<HTMLImageElement> & {
         src: string;
         alt?: string;
-        children?: never;
     };
+
+export type ImageProps = ImageBaseProps & {
+    children?: never;
+};
 
 const StyledRoot = styled.div<StyledRootProps>`
     display: block;
@@ -44,6 +47,8 @@ const StyledRoot = styled.div<StyledRootProps>`
     overflow: hidden;
 
     width: 100%;
+    height: inherit;
+    border-radius: inherit;
 
     ${({ $ratio, $customRatio }) =>
         ($ratio || $customRatio) &&
