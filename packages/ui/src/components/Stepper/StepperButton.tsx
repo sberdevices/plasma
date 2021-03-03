@@ -14,13 +14,13 @@ export interface StepperButtonProps
 /**
  * Стилизованная кнопка, применяемая для контроля над значением степпера.
  */
-export const StepperButton: React.FC<StepperButtonProps> = ({
-    pin = 'circle-circle',
-    view = 'secondary',
-    icon,
-    ...rest
-}) => (
-    <ActionButton size="m" pin={pin} view={view} {...rest}>
-        {icon}
-    </ActionButton>
+export const StepperButton = React.forwardRef<HTMLButtonElement, StepperButtonProps>(
+    // eslint-disable-next-line prefer-arrow-callback
+    function StepperButton({ pin = 'circle-circle', view = 'secondary', icon, ...rest }, ref) {
+        return (
+            <ActionButton size="m" ref={ref} pin={pin} view={view} {...rest}>
+                {icon}
+            </ActionButton>
+        );
+    },
 );
