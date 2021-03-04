@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Container } from '@sberdevices/ui';
 import { Carousel, CarouselGridWrapper, CarouselItem } from '@sberdevices/ui/components/Carousel';
 
 import { Gallery } from './components/Gallery/Gallery';
@@ -9,9 +10,17 @@ import { PageProps, GalleryViewPayload, Screen, GalleryItemViewPayload } from '.
 import { useAssistantState } from '../../hooks/useAssistantState';
 import { useRemoteHandlers } from '../../hooks/useRemoteHandlers';
 import { setPositionAction, setStepAction } from '../../store/actions';
+import { isSberPortal } from '@sberdevices/ui/utils';
 
 const StyledCarouselGridWrapper = styled(CarouselGridWrapper)`
     height: 100vh;
+`;
+
+const StyledFixedHeader = styled(Container)`
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
 `;
 
 export const GalleryList: React.FC<PageProps<GalleryViewPayload[]>> = ({
@@ -70,24 +79,36 @@ export const GalleryList: React.FC<PageProps<GalleryViewPayload[]>> = ({
     });
 
     const savePosition = React.useCallback((index: number) => {
-        dispatch(setStepAction({ step: galleryIndex}));
+        dispatch(setStepAction({ step: galleryIndex }));
         dispatch(setPositionAction({ position: index }));
-    }, [galleryIndex, dispatch]);
+    }, [dispatch, galleryIndex]);
+
+    const detectActiveProps = React.useMemo(() => isSberPortal()
+        ? {
+            detectActive: true as const,
+            detectThreshold: 0.5,
+            onIndexChange: setGalleryIndex,
+        } : undefined, [setGalleryIndex]);
+
+    const isMultiGallery = data.length > 1;
 
     return (
         <>
-            <Header {...header} />
+            {isMultiGallery ? (
+                <StyledFixedHeader>
+                    <Header {...header} title="" />
+                </StyledFixedHeader>
+            ): (
+                <Header { ...header } />
+            )}
             <StyledCarouselGridWrapper>
                 <Carousel
                     axis="y"
                     index={galleryIndex}
                     scrollSnapType="mandatory"
                     scrollAlign="start"
-                    animatedScrollByIndex
-                    onIndexChange={setGalleryIndex}
-                    detectActive={true}
-                    detectThreshold={0.5}
                     paddingEnd="50vh"
+                    { ...detectActiveProps }
                 >
                     {data.map((gallery, index) => (
                         <CarouselItem key={gallery.id} data-cy={`gallery-${index}`} scrollSnapAlign="start">
@@ -95,6 +116,7 @@ export const GalleryList: React.FC<PageProps<GalleryViewPayload[]>> = ({
                                 data={gallery}
                                 position={position}
                                 active={galleryIndex === index}
+                                multiGallery={isMultiGallery}
                                 onClickGalleryCard={onClickGalleryCard}
                                 savePosition={savePosition}
                             />
