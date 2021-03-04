@@ -1,3 +1,17 @@
+# v0.3.0 (Thu Mar 04 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-template): support multi gallery [#13](https://github.com/sberdevices/pashka/pull/13) (kvpolyanskiy@sberbank.ru [@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-template): support multi gallery (kvpolyanskiy@sberbank.ru)
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Konstantin Polyanskiy (kvpolyanskiy@sberbank.ru)
+
+---
+
 # v0.2.2 (Fri Feb 26 2021)
 
 #### 🐛 Bug Fix
