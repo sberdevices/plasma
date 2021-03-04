@@ -1,3 +1,17 @@
+# (Thu Mar 04 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@0.3.0`
+  - feat(plasma-template): support multi gallery [#13](https://github.com/sberdevices/pashka/pull/13) (kvpolyanskiy@sberbank.ru [@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Konstantin Polyanskiy (kvpolyanskiy@sberbank.ru)
+
+---
+
 # (Mon Mar 01 2021)
 
 #### 🚀 Enhancement
