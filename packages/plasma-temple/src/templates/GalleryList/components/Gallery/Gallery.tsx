@@ -3,11 +3,11 @@ import styled, { css } from 'styled-components';
 
 import { Headline3, Row } from '@sberdevices/ui';
 import { Carousel, CarouselGridWrapper } from '@sberdevices/ui/components/Carousel';
-import { isSberPortal, mediaQuery } from '@sberdevices/ui/utils';
+import { isSberPortal } from '@sberdevices/ui/utils';
 
 import { GalleryCard } from '../GalleryCard/GalleryCard';
 import { GalleryViewPayload, GalleryItemViewPayload } from '../../../../types';
-import { Header, headerPaddingYM } from '../../../../components/Header/Header';
+import { Header } from '../../../../components/Header/Header';
 
 import { useRemoteHandlers } from '../../../../hooks/useRemoteHandlers';
 
@@ -29,9 +29,6 @@ const StyledTitle = styled(Header)<{ active: boolean }>`
     transition: transform 0.35s linear;
     transform: translateX(${({ active }) => (active ? 3 : 0)}rem);
 
-    ${mediaQuery('M')(css`
-        padding-top: ${headerPaddingYM}rem;
-    `)}
 
     ${({ active }) => !active &&
         css`

@@ -6,7 +6,7 @@ import { Carousel, CarouselGridWrapper, CarouselItem } from '@sberdevices/ui/com
 import { Gallery } from './components/Gallery/Gallery';
 import { Header } from '../../components/Header/Header';
 
-import { PageProps, GalleryViewPayload, Screen, GalleryItemViewPayload } from '../../types';
+import { PageProps, MultiGalleryViewPayload, Screen, GalleryItemViewPayload } from '../../types';
 import { useAssistantState } from '../../hooks/useAssistantState';
 import { useRemoteHandlers } from '../../hooks/useRemoteHandlers';
 import { setPositionAction, setStepAction } from '../../store/actions';
@@ -23,7 +23,7 @@ const StyledFixedHeader = styled(Container)`
     z-index: 10;
 `;
 
-export const GalleryList: React.FC<PageProps<GalleryViewPayload[]>> = ({
+export const GalleryList: React.FC<PageProps<MultiGalleryViewPayload>> = ({
     data,
     step,
     position,
@@ -32,6 +32,8 @@ export const GalleryList: React.FC<PageProps<GalleryViewPayload[]>> = ({
     dispatch,
     sendData,
 }) => {
+    const galleries = Array.isArray(data) ? data : [{ ...data, id: 'id'}];
+
     const onClickGalleryCard = React.useCallback(
         (item: GalleryItemViewPayload) => {
             sendData({
@@ -48,7 +50,7 @@ export const GalleryList: React.FC<PageProps<GalleryViewPayload[]>> = ({
     useAssistantState(stateRef, {
         screen: Screen.gallery,
         item_selector: {
-            items: data.flatMap(({ items }) => items.map((item) => ({
+            items: galleries.flatMap(({ items }) => items.map((item) => ({
                 title: item.label,
                 number: Number(item.position),
                 id: item.id,
@@ -74,7 +76,7 @@ export const GalleryList: React.FC<PageProps<GalleryViewPayload[]>> = ({
         initialIndex: step,
         axis: 'y',
         min: 0,
-        max: data.length - 1,
+        max: galleries.length - 1,
         repeat: false,
     });
 
@@ -90,7 +92,7 @@ export const GalleryList: React.FC<PageProps<GalleryViewPayload[]>> = ({
             onIndexChange: setGalleryIndex,
         } : undefined, [setGalleryIndex]);
 
-    const isMultiGallery = data.length > 1;
+    const isMultiGallery = galleries.length > 1;
 
     return (
         <>
@@ -110,7 +112,7 @@ export const GalleryList: React.FC<PageProps<GalleryViewPayload[]>> = ({
                     paddingEnd="50vh"
                     { ...detectActiveProps }
                 >
-                    {data.map((gallery, index) => (
+                    {galleries.map((gallery, index) => (
                         <CarouselItem key={gallery.id} data-cy={`gallery-${index}`} scrollSnapAlign="start">
                             <Gallery
                                 data={gallery}
