@@ -4,7 +4,16 @@ node_modules
 packages/plasma-core/*
 !packages/plasma-core/src
 
-packages/plasma-tokens
+packages/plasma-tokens/*
+!packages/plasma-tokens/data.ts
+!packages/plasma-tokens/generate.ts
+!packages/plasma-tokens/utils.ts
+
+packages/plasma-tokens-web/*
+!packages/plasma-tokens-web/data.ts
+!packages/plasma-tokens-web/generate.ts
+
+packages/**/jest.config.*
 examples/**
 
 packages/ui/*
