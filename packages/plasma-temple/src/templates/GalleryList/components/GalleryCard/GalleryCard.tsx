@@ -91,7 +91,7 @@ export const GalleryCard: React.FC<GalleryCardProps> = ({card, position, index, 
                 ref={cardRef}
             >
                 <CardBody>
-                    <CardMedia src={imageSrc} ratio={card.image.ratio ?? '1:1'} data-cy="gallery-card-media">
+                    <CardMedia src={imageSrc} ratio={card.image.ratio ?? '1 / 1'} data-cy="gallery-card-media" >
                         {card.position && (
                             <StyledCardIndex view="index" size="l" circled text={String(card.position)} />
                         )}

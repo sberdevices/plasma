@@ -33,7 +33,7 @@ export const ItemEntity = React.forwardRef<HTMLDivElement, ItemEntityProps>(
             <StyledCol sizeXL={3} sizeM={2}>
                 <Card outlined={isSberBox()} tabIndex={0} onClick={onClick} ref={ref} data-cy="item-entity-card">
                     <CardBody>
-                        <CardMedia src={url} ratio="1:1" data-cy="item-entity-card-media" />
+                        <CardMedia src={url} ratio="1 / 1" data-cy="item-entity-card-media" />
                         <StyledCardBadge view="index" size="l" text={`${order}`} />
                     </CardBody>
                 </Card>
