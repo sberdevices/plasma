@@ -3,7 +3,7 @@ import { AssistantCharacterType } from '@sberdevices/assistant-client/dist/typin
 
 import { last, replaceLast } from '../utils/last';
 import { closeApp } from '../hooks/usePopHistoryListener';
-import { GalleryViewPayload, DetailPayload, EntityPayload, Screen } from '../types';
+import { DetailPayload, EntityPayload, Screen, MultiGalleryViewPayload } from '../types';
 
 interface HistoryRecord<T extends Screen, D> {
     data: D;
@@ -13,7 +13,7 @@ interface HistoryRecord<T extends Screen, D> {
 }
 
 export type CurrentHistory =
-    | HistoryRecord<Screen.gallery, GalleryViewPayload[]>
+    | HistoryRecord<Screen.gallery, MultiGalleryViewPayload>
     | HistoryRecord<Screen.entity, EntityPayload>
     | HistoryRecord<Screen.detail, DetailPayload>;
 
