@@ -4,14 +4,22 @@ import { toCssSize } from '@sberdevices/plasma-core/utils';
 
 const ratios = {
     '1 / 1': '100',
+    '1/1': '100',
     '1 / 2': '50',
+    '1/2': '50',
     '2 / 1': '100',
+    '2/1': '100',
     '3 / 4': '133.3333',
+    '3/4': '133.3333',
     '4 / 3': '75',
+    '4/3': '75',
     '9 / 16': '177.7778',
+    '9/16': '177.7778',
     '16 / 9': '56.25',
+    '16/9': '56.25',
 };
-type Ratio = keyof typeof ratios;
+
+export type Ratio = keyof typeof ratios;
 
 interface StyledRootProps {
     $ratio?: Ratio;
