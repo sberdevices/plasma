@@ -27,7 +27,7 @@
     "@sberdevices/assistant-client": "^2.2.2",
     "@sberdevices/plasma-icons": "0.2.0",
     "@sberdevices/plasma-tokens": "0.4.0",
-    "@sberdevices/ui": "1.0.0-rc.52",
+    "@sberdevices/ui": "^1.0.0-rc.69",
     "@storybook/addon-actions": "6.0.0-rc.13",
     "@storybook/addon-backgrounds": "6.0.0-rc.13",
     "@storybook/addon-docs": "6.1.15",

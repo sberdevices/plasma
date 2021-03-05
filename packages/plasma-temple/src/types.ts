@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { AssistantSmartAppData, createAssistant } from '@sberdevices/assistant-client';
+import { Ratio } from '@sberdevices/ui/components/Image';
 
 import { InitializeParams } from './assistant';
 import { CurrentHistory, SetPositionPayload, SetStatePayload, SetStepPayload, AppStateAction } from './store/reducer';
@@ -23,7 +24,7 @@ export interface AssistantDataAction extends AssistantSmartAppData {
 export type AssistantInstance = ReturnType<typeof createAssistant>;
 
 export type PickOptional<S, K extends keyof S> = Partial<Pick<S, K>>;
-export type AspectRatio = '1:1' | '4:3' | '16:9';
+export type AspectRatio = Ratio;
 export interface MetaPayload {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     meta?: Record<string, any>;
