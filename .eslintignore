@@ -5,3 +5,4 @@ dist
 examples
 packages/plasma-temple
 packages/plasma-basic-template
+packages/plasma-tokens-utils
