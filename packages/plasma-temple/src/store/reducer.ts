@@ -2,7 +2,6 @@ import { Reducer } from 'react';
 import { AssistantCharacterType } from '@sberdevices/assistant-client/dist/typings';
 
 import { last, replaceLast } from '../utils/last';
-import { closeApp } from '../hooks/usePopHistoryListener';
 import { DetailPayload, EntityPayload, Screen, MultiGalleryViewPayload } from '../types';
 
 interface HistoryRecord<T extends Screen, D> {
@@ -22,6 +21,7 @@ export enum AppStateActions {
     character = 'character',
     navigation = 'navigation',
     popState = 'pop state',
+    popStateWithUpdateHistory = 'pop state with update history',
     pushState = 'push state',
     setState = 'set state',
     setPosition = 'set position',
@@ -48,6 +48,7 @@ export interface SetStepPayload {
 
 type HistoryAction =
     | { type: AppStateActions.popState }
+    | { type: AppStateActions.popStateWithUpdateHistory, payload: CurrentHistory }
     | { type: AppStateActions.pushState; payload: CurrentHistory }
     | { type: AppStateActions.setState; payload: SetStatePayload }
     | { type: AppStateActions.setPosition; payload: SetPositionPayload }
@@ -65,21 +66,12 @@ interface AppState {
 
 export const reducer: Reducer<AppState, AppStateAction> = (state, action) => {
     const { history } = state;
-    const len = history.length;
     const currentState = last(state.history);
 
-    const popState = () => {
-        if (len > 1) {
-            history.pop();
-        } else {
-            closeApp();
-        }
-
-        return {
-            ...state,
-            history,
-        };
-    };
+    const popState = () => ({
+        ...state,
+        history: history.slice(0, -1),
+    });
 
     switch (action.type) {
         case AppStateActions.character:
@@ -109,6 +101,12 @@ export const reducer: Reducer<AppState, AppStateAction> = (state, action) => {
 
         case AppStateActions.popState:
             return popState();
+
+        case AppStateActions.popStateWithUpdateHistory:
+            return {
+                ...state,
+                history: replaceLast(history.slice(0, -1), action.payload),
+            };
 
         case AppStateActions.setStep:
             return {
