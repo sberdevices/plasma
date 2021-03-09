@@ -12,6 +12,7 @@ import { Root } from './components/Root/Root';
 
 const mergeConfigs = (source: CanvasAppConfig): CanvasAppConfig => {
     return {
+        ...source,
         routes: defaultConfig.routes.map((route) => {
             const { type } = route;
             const sourceRoute = source.routes.find((srcRoute) => srcRoute.type === type);
@@ -74,7 +75,7 @@ export const createApp = (conf?: CanvasAppConfig): React.FC => {
 
         const getState = React.useCallback(() => stateRef.current, []);
 
-        usePopHistoryListener(state.history.length);
+        usePopHistoryListener(state.history.length, config.onPopState);
         useHistoryUpdater(record);
         useStore(dispatch);
         useAssistantAction(assistantRef, { ...config.assistant, getState }, config.assistant.onStart);
