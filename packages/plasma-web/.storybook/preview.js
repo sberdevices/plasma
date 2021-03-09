@@ -3,10 +3,8 @@ import { createGlobalStyle } from 'styled-components';
 import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { Title, Subtitle, Description, Primary, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
-import { transformStyles } from '@sberdevices/plasma-core/utils';
-
-import { typoTheme } from '../src/tokens/typoTheme';
-import { light } from '../src/tokens/colorThemes';
+import { light } from '@sberdevices/plasma-tokens-web/themes';
+import { web } from '@sberdevices/plasma-tokens-web/typo';
 
 import storybookTheme from './theme';
 
@@ -16,11 +14,9 @@ const DocumentStyle = createGlobalStyle`
         min-height: 100vh;
     }
 `;
-const TypoThemeStyle = createGlobalStyle`:root {
-    ${transformStyles(typoTheme[':root'])}
-}`;
 /* stylelint-enable */
 
+const TypoThemeStyle = createGlobalStyle(web);
 const ColorThemeStyle = createGlobalStyle(light);
 
 const withTheme = (Story, context) => (

@@ -14,7 +14,8 @@
         "directory": "packages/plasma-web"
     },
     "dependencies": {
-        "@sberdevices/plasma-core": "^1.0.1-rc.0"
+        "@sberdevices/plasma-core": "^1.0.1-rc.0",
+        "@sberdevices/plasma-tokens-web": "0.1.0"
     },
     "peerDependencies": {
         "@sberdevices/plasma-icons": "^0.2.0",
