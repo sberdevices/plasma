@@ -1,10 +1,17 @@
 import React from 'react';
+import { CurrentHistory } from '../store/reducer';
 
-import { Route } from '../types';
-
-export const useHistoryUpdater = (currentStateItem: Route): void =>
+export const useHistoryUpdater = (currentStateItem: CurrentHistory): void =>
     React.useEffect(() => {
-        if (currentStateItem) {
-            window.history.pushState(currentStateItem, currentStateItem.type.toLowerCase());
+        if (!currentStateItem) {
+            return;
+        }
+
+        const title = currentStateItem.type.toLowerCase();
+
+        if (currentStateItem.type === window.history.state?.type) {
+            window.history.replaceState(currentStateItem, title);
+        } else {
+            window.history.pushState(currentStateItem, title);
         }
     }, [currentStateItem]);

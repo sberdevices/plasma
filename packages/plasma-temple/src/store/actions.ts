@@ -9,6 +9,9 @@ interface ActionCreator<T extends string, P> {
 
 export const popStateAction: EmptyAction<AppStateActions.popState> = createEmptyAction(AppStateActions.popState);
 
+export const popStateWithUpdateHistoryAction: ActionCreator<AppStateActions.popStateWithUpdateHistory, CurrentHistory> = (payload) =>
+    createAction(AppStateActions.popStateWithUpdateHistory, payload);
+
 export const pushStateAction: ActionCreator<AppStateActions.pushState, CurrentHistory> = (payload) =>
     createAction(AppStateActions.pushState, payload);
 

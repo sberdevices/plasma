@@ -119,10 +119,13 @@ export interface Route {
     assistant?: PickOptional<AssistantConfig, 'onData'>;
 }
 
+export type onPopStateFn = (historyState: CurrentHistory) => Promise<CurrentHistory> | CurrentHistory;
+
 export interface CanvasAppConfig {
     routes: Route[];
     header: HeaderPropsPayload;
     assistant: AssistantConfig;
+    onPopState?: onPopStateFn;
 }
 
 export interface AppStateItem {
