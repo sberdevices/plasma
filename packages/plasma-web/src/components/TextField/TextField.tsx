@@ -2,8 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { TextFieldRoot, TextFieldHelper } from '@sberdevices/plasma-core/components/TextField';
 import type { TextFieldProps as BaseTextFieldProps } from '@sberdevices/plasma-core/components/TextField';
-
-import { accent, critical, primary, secondary, white, text, tertiary, formBorder, body1 } from '../../tokens';
+import { accent, critical, primary, secondary, white, text, tertiary, body1 } from '@sberdevices/plasma-tokens-web';
 
 export interface TextFieldProps
     extends BaseTextFieldProps,
@@ -49,7 +48,7 @@ const StyledInput = styled.input<StyledInputProps>`
     transition: border-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
 
     &:hover {
-        border-color: ${formBorder};
+        border-color: rgba(0, 0, 0, 0.32);
     }
 
     &:focus {

@@ -1,17 +1,15 @@
 import styled, { css } from 'styled-components';
 import { Button as BaseButton, ButtonProps as BaseButtonProps } from '@sberdevices/plasma-core/components/Button';
 
-import { buttonAccentHover, buttonSecondaryHover, buttonCriticalHover } from '../../tokens';
-
 type ButtonSizes = 'l' | 'm' | 's';
 type ButtonViews = 'primary' | 'secondary' | 'critical';
 
 export type ButtonProps = BaseButtonProps<ButtonSizes, ButtonViews> & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const hovers = {
-    primary: buttonAccentHover,
-    secondary: buttonSecondaryHover,
-    critical: buttonCriticalHover,
+    primary: '#6194F5',
+    secondary: 'rgba(8, 8, 8, 0.048)',
+    critical: '#E75F6C',
 };
 
 /**

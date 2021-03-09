@@ -1,7 +1,6 @@
 import { css, InterpolationFunction } from 'styled-components';
 import type { BaseboxProps } from '@sberdevices/plasma-core/components/Basebox';
-
-import { tertiary, transparent } from '../../tokens';
+import { tertiary, transparent } from '@sberdevices/plasma-tokens-web';
 
 /**
  * Input-type agnostic mixin for "boolean" inputs.
