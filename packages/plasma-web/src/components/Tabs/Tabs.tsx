@@ -5,8 +5,7 @@ import {
     TabItem as BaseTabItem,
     TabItemProps as BaseTabItemProps,
 } from '@sberdevices/plasma-core/components/Tabs';
-
-import { accent, secondary, footnote2 } from '../../tokens';
+import { accent, secondary, footnote2 } from '@sberdevices/plasma-tokens-web';
 
 export interface TabsProps extends BaseTabsProps {}
 
