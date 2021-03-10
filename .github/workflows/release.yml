@@ -44,5 +44,8 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Test
+        run: npx lerna run test
+
       - name: Create Release
         run: npm run release
