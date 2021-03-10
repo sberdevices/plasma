@@ -1,5 +1,19 @@
 # (Wed Mar 10 2021)
 
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@0.4.0`
+  - feat(plasma-template): set header title for an active gallery [#14](https://github.com/sberdevices/pashka/pull/14) (kvpolyanskiy@sberbank.ru [@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Konstantin Polyanskiy (kvpolyanskiy@sberbank.ru)
+
+---
+
+# (Wed Mar 10 2021)
+
 #### 🐛 Bug Fix
 
 - `@sberdevices/plasma-temple@0.3.1`
