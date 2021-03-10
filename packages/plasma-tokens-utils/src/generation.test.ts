@@ -1,4 +1,5 @@
 import {
+    generateToken,
     generateTokens,
     generateThemes,
     generateTypography,
@@ -63,6 +64,30 @@ const light = {
     buttonChecked: "#FFFFFF",
     buttonFocused: "#FFFFFF",
 };
+
+describe("generateToken", () => {
+    const value = generateToken({
+        token: { value: { fontSize: "1rem" } },
+        type: "value",
+        name: "h1",
+        withType: true,
+    });
+    const css = generateToken({
+        token: { value: "#FFFFFF" },
+        type: "css",
+        name: "white",
+        prefix: "colors",
+    });
+
+    it("Should return value token with type", () => {
+        expect(value).toMatch(/type H1 = .+;/gs);
+        expect(value).toMatch(/export const h1: H1 = .+'fontSize': '1rem'/gs);
+    });
+
+    it("Should return simple CSS token", () => {
+        expect(css).toContain("export const white = 'var(--plasma-colors-white, #FFFFFF)'");
+    });
+});
 
 describe("generateTokens", () => {
     it("Should return value token", () => {

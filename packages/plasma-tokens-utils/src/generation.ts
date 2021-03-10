@@ -20,28 +20,51 @@ type GeneratedFiles = Array<{
  * @param {TokenData<TokenType>} token Входные данные
  * @param {GeneratedTokenType} type Тип выводимого токена
  * @param {string} prefix Префикс в CSS-токене
- * @param {boolean} generateTypes Генерировать типы для токенов
+ * @param {boolean} withType Генерировать типы для токенов
  * @return {string}
  */
-const generateToken = (
-    { comment, value }: TokenData<TokenType>,
-    type: GeneratedTokenType,
-    key: string,
-    prefix?: string,
-    generateTypes?: boolean
-) => {
-    let token = "";
+export const generateToken = ({
+    token,
+    type,
+    name,
+    prefix,
+    withType,
+}: {
+    token: TokenData<TokenType>;
+    type: GeneratedTokenType;
+    name: string;
+    prefix?: string;
+    withType?: boolean;
+}) => {
+    let { comment, value } = token;
+    let out = "";
+    let typeHint = "";
 
     if (comment) {
-        token += `/** ${comment} */\n`;
+        out += `/** ${comment} */\n`;
+    }
+
+    if (withType) {
+        const typeName = capitalize(name);
+        typeHint = `: ${typeName}`;
+
+        if (typeof value === "string" || typeof value === "number") {
+            out += `type ${typeName} = ${typeof value};`;
+        } else {
+            out += `type ${typeName} = {\n${Object.keys(value)
+                .map((k) => `    ${k}: any`)
+                .join(";\n")};\n};`;
+        }
+
+        out += "\n\n";
     }
 
     if (typeof value === "string") {
         // type=css param is used for colors values only
         if (type === "css") {
-            value = toCSSVarTokenWithValue(`${prefix}-${paramCase(key)}`, value);
+            value = toCSSVarTokenWithValue(`${prefix}-${paramCase(name)}`, value);
         }
-        token += `export const ${key} = '${value}';\n`;
+        out += `export const ${name}${typeHint} = '${value}';\n`;
     } else {
         // type=css param is used for typography values only
         const replacer = (k: string, val: string) => {
@@ -55,17 +78,9 @@ const generateToken = (
             "'"
         );
 
-        if (generateTypes) {
-            const typeName = capitalize(key);
-            token += `type ${typeName} = {\n${Object.keys(value)
-                .map((k) => `    ${k}: any`)
-                .join(";\n")};\n};\n\n`;
-            token += `export const ${key}: ${typeName} = ${objToStr};`;
-        } else {
-            token += `export const ${key} = ${objToStr};`;
-        }
+        out += `export const ${name}${typeHint} = ${objToStr};`;
     }
-    return token;
+    return out;
 };
 
 /**
@@ -73,17 +88,17 @@ const generateToken = (
  * @param {TokenGroup<TokenType>} tokens Объект токенов
  * @param {GeneratedTokenType} type Тип выводимого токена
  * @param {string} prefix Префикс в CSS-токене
- * @param {boolean} generateTypes Генерировать типы для токенов
+ * @param {boolean} withType Генерировать типы для токенов
  * @return {string}
  */
 export const generateTokens = (
     tokens: TokenGroup<TokenType>,
     type: GeneratedTokenType = "value",
     prefix?: string,
-    generateTypes?: boolean
+    withType?: boolean
 ) =>
     Object.entries(tokens).reduce(
-        (acc, [key, token]) => `${acc}${generateToken(token, type, key, prefix, generateTypes)}\n`,
+        (acc, [name, token]) => `${acc}${generateToken({ token, type, name, prefix, withType })}\n`,
         ROBO_COMMENT
     );
 
@@ -145,7 +160,13 @@ export const generateTypography = <TK extends string>(typoSystem: Pick<TypoSyste
 
         out.push({
             file: `${name}.ts`,
-            content: generateToken({ value: styles } as TokenData, "css", name, `typo-${name}`, true),
+            content: generateToken({
+                token: { value: styles } as TokenData,
+                type: "css",
+                name,
+                prefix: `typo-${name}`,
+                withType: true,
+            }),
         });
     }
 
@@ -178,7 +199,12 @@ export const generateTypographyValues = <TK extends string>(typoSystem: Omit<Typ
 
         out.push({
             file: `${name}.ts`,
-            content: generateToken({ value: styles }, "css", name, `typo-${name}`),
+            content: generateToken({
+                token: { value: styles },
+                type: "css",
+                name,
+                prefix: `typo-${name}`,
+            }),
         });
     }
 
