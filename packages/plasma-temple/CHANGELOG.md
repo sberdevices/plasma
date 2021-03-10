@@ -1,3 +1,18 @@
+# v0.4.0 (Wed Mar 10 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-template): set header title for an active gallery [#14](https://github.com/sberdevices/pashka/pull/14) (kvpolyanskiy@sberbank.ru [@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-template): make id required only for multi gallery (kvpolyanskiy@sberbank.ru)
+- feat(plasma-template): set header title for an active gallery (kvpolyanskiy@sberbank.ru)
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Konstantin Polyanskiy (kvpolyanskiy@sberbank.ru)
+
+---
+
 # v0.3.1 (Wed Mar 10 2021)
 
 #### 🐛 Bug Fix
