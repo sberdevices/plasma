@@ -1,31 +1,48 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+import { Headline3, Row } from '@sberdevices/ui';
 import { Carousel, CarouselGridWrapper } from '@sberdevices/ui/components/Carousel';
-import { Row } from '@sberdevices/ui/components/Grid';
 import { isSberPortal } from '@sberdevices/ui/utils';
-import { Headline3 } from '@sberdevices/ui/components/Typography';
 
 import { GalleryCard } from '../GalleryCard/GalleryCard';
-import { useRemoteHandlers } from '../../../../hooks/useRemoteHandlers';
 import { GalleryViewPayload, GalleryItemViewPayload } from '../../../../types';
+import { Header } from '../../../../components/Header/Header';
+
+import { useRemoteHandlers } from '../../../../hooks/useRemoteHandlers';
+
+interface GalleryProps {
+    data: GalleryViewPayload;
+    position: number;
+    active: boolean;
+    multiGallery: boolean;
+    onClickGalleryCard: (item: GalleryItemViewPayload) => void
+    savePosition: (position: number) => void;
+}
 
 const StyledRow = styled(Row)`
     padding: 1rem 0;
     box-sizing: border-box;
 `;
 
-interface GalleryProps {
-    data: GalleryViewPayload;
-    position: number;
-    active: boolean;
-    onClickGalleryCard: (item: GalleryItemViewPayload) => void
-    savePosition: (position: number) => void;
-}
+const StyledTitle = styled(Header)<{ active: boolean }>`
+    transition: transform 0.35s linear;
+    transform: translateX(${({ active }) => (active ? 3 : 0)}rem);
+
+
+    ${({ active }) => !active &&
+        css`
+            padding-bottom: 0;
+            padding-top: 0;
+        `
+    }
+`;
 
 export const Gallery: React.FC<GalleryProps> = ({
     data,
     position,
     active,
+    multiGallery,
     onClickGalleryCard,
     savePosition,
 }) => {
@@ -83,7 +100,10 @@ export const Gallery: React.FC<GalleryProps> = ({
 
     return (
         <>
-            {isSberPortal() ? null : <Headline3>{data.title}</Headline3>}
+            {multiGallery
+                ? <StyledTitle active={active} title={data.title} />
+                : isSberPortal() ? null : <Headline3>{data.title}</Headline3>
+            }
             <CarouselGridWrapper>
                 <Carousel as={StyledRow} axis="x" index={currentCardIndex} detectActive={false} animatedScrollByIndex>
                     {galleryItems}

@@ -1,20 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Container } from '@sberdevices/ui';
 import { Carousel, CarouselGridWrapper, CarouselItem } from '@sberdevices/ui/components/Carousel';
 
 import { Gallery } from './components/Gallery/Gallery';
 import { Header } from '../../components/Header/Header';
 
-import { PageProps, GalleryViewPayload, Screen, GalleryItemViewPayload } from '../../types';
+import { PageProps, MultiGalleryViewPayload, Screen, GalleryItemViewPayload } from '../../types';
 import { useAssistantState } from '../../hooks/useAssistantState';
 import { useRemoteHandlers } from '../../hooks/useRemoteHandlers';
 import { setPositionAction, setStepAction } from '../../store/actions';
+import { isSberPortal } from '@sberdevices/ui/utils';
 
 const StyledCarouselGridWrapper = styled(CarouselGridWrapper)`
     height: 100vh;
 `;
 
-export const GalleryList: React.FC<PageProps<GalleryViewPayload[]>> = ({
+const StyledFixedHeader = styled(Container)`
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+`;
+
+export const GalleryList: React.FC<PageProps<MultiGalleryViewPayload>> = ({
     data,
     step,
     position,
@@ -23,6 +32,8 @@ export const GalleryList: React.FC<PageProps<GalleryViewPayload[]>> = ({
     dispatch,
     sendData,
 }) => {
+    const galleries = Array.isArray(data) ? data : [{ ...data, id: 'id'}];
+
     const onClickGalleryCard = React.useCallback(
         (item: GalleryItemViewPayload) => {
             sendData({
@@ -39,7 +50,7 @@ export const GalleryList: React.FC<PageProps<GalleryViewPayload[]>> = ({
     useAssistantState(stateRef, {
         screen: Screen.gallery,
         item_selector: {
-            items: data.flatMap(({ items }) => items.map((item) => ({
+            items: galleries.flatMap(({ items }) => items.map((item) => ({
                 title: item.label,
                 number: Number(item.position),
                 id: item.id,
@@ -65,36 +76,49 @@ export const GalleryList: React.FC<PageProps<GalleryViewPayload[]>> = ({
         initialIndex: step,
         axis: 'y',
         min: 0,
-        max: data.length - 1,
+        max: galleries.length - 1,
         repeat: false,
     });
 
     const savePosition = React.useCallback((index: number) => {
-        dispatch(setStepAction({ step: galleryIndex}));
+        dispatch(setStepAction({ step: galleryIndex }));
         dispatch(setPositionAction({ position: index }));
-    }, [galleryIndex, dispatch]);
+    }, [dispatch, galleryIndex]);
+
+    const detectActiveProps = React.useMemo(() => isSberPortal()
+        ? {
+            detectActive: true as const,
+            detectThreshold: 0.5,
+            onIndexChange: setGalleryIndex,
+        } : undefined, [setGalleryIndex]);
+
+    const isMultiGallery = galleries.length > 1;
 
     return (
         <>
-            <Header {...header} />
+            {isMultiGallery ? (
+                <StyledFixedHeader>
+                    <Header {...header} title="" />
+                </StyledFixedHeader>
+            ): (
+                <Header { ...header } />
+            )}
             <StyledCarouselGridWrapper>
                 <Carousel
                     axis="y"
                     index={galleryIndex}
                     scrollSnapType="mandatory"
                     scrollAlign="start"
-                    animatedScrollByIndex
-                    onIndexChange={setGalleryIndex}
-                    detectActive={true}
-                    detectThreshold={0.5}
                     paddingEnd="50vh"
+                    { ...detectActiveProps }
                 >
-                    {data.map((gallery, index) => (
+                    {galleries.map((gallery, index) => (
                         <CarouselItem key={gallery.id} data-cy={`gallery-${index}`} scrollSnapAlign="start">
                             <Gallery
                                 data={gallery}
                                 position={position}
                                 active={galleryIndex === index}
+                                multiGallery={isMultiGallery}
                                 onClickGalleryCard={onClickGalleryCard}
                                 savePosition={savePosition}
                             />
