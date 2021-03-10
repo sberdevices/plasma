@@ -2,6 +2,27 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-tokens-utils@0.2.0`
+  - feat: Пакет plasma-tokens-utils [#17](https://github.com/sberdevices/pashka/pull/17) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-tokens-utils@0.2.0`
+  - fix(plasma-tokens-utils): Генерация типа для токена [#20](https://github.com/sberdevices/pashka/pull/20) ([@fanisco](https://github.com/fanisco))
+  - chore(plasma-tokens-utils): Bump version [#19](https://github.com/sberdevices/pashka/pull/19) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/nanoevents@0.3.0`, `@sberdevices/spatial@1.2.0`
+  - chore: Добавлен шаг с тестами [#17](https://github.com/sberdevices/pashka/pull/17) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Wed Mar 10 2021)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-temple@0.4.0`
   - feat(plasma-template): set header title for an active gallery [#14](https://github.com/sberdevices/pashka/pull/14) (kvpolyanskiy@sberbank.ru [@kvpolyanskiy](https://github.com/kvpolyanskiy))
 

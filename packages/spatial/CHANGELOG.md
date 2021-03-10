@@ -1,3 +1,15 @@
+# v1.2.0 (Wed Mar 10 2021)
+
+#### 🐛 Bug Fix
+
+- chore: Добавлен шаг с тестами [#17](https://github.com/sberdevices/pashka/pull/17) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.1.0 (Mon Mar 01 2021)
 
 #### 🚀 Enhancement
