@@ -73,7 +73,6 @@ const runCommand = (command: AssistantClientCustomizedCommand<AssistantDataActio
     const viewAction = getViewAction(command);
 
     if (viewAction) {
-
         store.dispatch(viewAction);
     }
 };
@@ -112,13 +111,12 @@ export const useAssistantAction: UseAssistantAction = (assistantRef, params, onS
 
                 const handledResult = onData(action, methods);
 
-
                 if (handledResult instanceof Promise) {
                     handledResult.then((result) => {
                         if (result) {
                             store.dispatch(result);
                         }
-                    })
+                    });
                 } else if (handledResult) {
                     store.dispatch(handledResult);
                 }
