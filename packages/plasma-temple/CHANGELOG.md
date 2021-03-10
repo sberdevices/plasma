@@ -1,3 +1,16 @@
+# v0.3.1 (Wed Mar 10 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): CardMedia children [#16](https://github.com/sberdevices/pashka/pull/16) ([@Yeti-or](https://github.com/Yeti-or))
+- fix(plasma-temple): CardMedia children ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v0.3.0 (Thu Mar 04 2021)
 
 #### 🚀 Enhancement
