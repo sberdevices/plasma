@@ -6,11 +6,12 @@ import { Carousel, CarouselGridWrapper, CarouselItem } from '@sberdevices/ui/com
 import { Gallery } from './components/Gallery/Gallery';
 import { Header } from '../../components/Header/Header';
 
-import { PageProps, MultiGalleryViewPayload, Screen, GalleryItemViewPayload } from '../../types';
+import { PageProps, MultiGalleryViewPayload, Screen, GalleryItemViewPayload, Axis } from '../../types';
 import { useAssistantState } from '../../hooks/useAssistantState';
 import { useRemoteHandlers } from '../../hooks/useRemoteHandlers';
 import { setPositionAction, setStepAction } from '../../store/actions';
 import { isSberPortal } from '@sberdevices/ui/utils';
+import { useVoiceNavigation } from '../../hooks/useVoiceNavigation';
 
 const StyledCarouselGridWrapper = styled(CarouselGridWrapper)`
     height: 100vh;
@@ -74,7 +75,7 @@ export const GalleryList: React.FC<PageProps<MultiGalleryViewPayload>> = ({
 
     const [galleryIndex, setGalleryIndex] = useRemoteHandlers({
         initialIndex: step,
-        axis: 'y',
+        axis: Axis.Y,
         min: 0,
         max: galleries.length - 1,
         repeat: false,
@@ -90,9 +91,20 @@ export const GalleryList: React.FC<PageProps<MultiGalleryViewPayload>> = ({
             detectActive: true as const,
             detectThreshold: 0.5,
             onIndexChange: setGalleryIndex,
-        } : undefined, [setGalleryIndex]);
+        } : { detectActive: undefined }, [setGalleryIndex]);
 
     const isMultiGallery = galleries.length > 1;
+
+    useVoiceNavigation({
+        index: galleryIndex,
+        setIndex: setGalleryIndex,
+        minIndex: 0,
+        maxIndex: galleries.length - 1,
+        stepSize: 1,
+        axis: Axis.Y,
+        main: true,
+        disabled: !isMultiGallery,
+    });
 
     return (
         <>
