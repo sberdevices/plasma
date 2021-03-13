@@ -1,8 +1,7 @@
 import { isSberBox } from '@sberdevices/ui/utils';
 import throttle from 'lodash.throttle';
 import React, { useState, useCallback, useEffect, useRef } from 'react';
-
-export type Axis = 'x' | 'y';
+import { Axis } from '../types';
 
 type ShortKey = 'UP' | 'DOWN' | 'LEFT' | 'RIGHT' | 'OK';
 type LongKey = 'LONG_UP' | 'LONG_DOWN' | 'LONG_LEFT' | 'LONG_RIGHT' | 'LONG_OK';
@@ -157,7 +156,7 @@ export function useRemoteHandlers({
                 }
             };
 
-            if (axis === 'x') {
+            if (axis === Axis.X) {
                 switch (key) {
                     case 'LEFT':
                         preventDefault(currentIndex > 0);
