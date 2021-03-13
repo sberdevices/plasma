@@ -6,10 +6,11 @@ import { Carousel, CarouselGridWrapper } from '@sberdevices/ui/components/Carous
 import { isSberPortal } from '@sberdevices/ui/utils';
 
 import { GalleryCard } from '../GalleryCard/GalleryCard';
-import { GalleryViewPayload, GalleryItemViewPayload } from '../../../../types';
+import { GalleryViewPayload, GalleryItemViewPayload, Axis } from '../../../../types';
 import { Header } from '../../../../components/Header/Header';
 
 import { useRemoteHandlers } from '../../../../hooks/useRemoteHandlers';
+import { useVoiceNavigation } from '../../../../hooks/useVoiceNavigation';
 
 interface GalleryProps {
     data: GalleryViewPayload;
@@ -48,7 +49,7 @@ export const Gallery: React.FC<GalleryProps> = ({
 }) => {
     const [currentCardIndex, setCurrentCardIndex] = useRemoteHandlers({
         initialIndex: active ? position : 0,
-        axis: 'x',
+        axis: Axis.X,
         min: 0,
         max: Math.max(data.items.length - 1, 0),
         disable: !active,
@@ -97,6 +98,16 @@ export const Gallery: React.FC<GalleryProps> = ({
             },
         );
     }, [data.items, onClickGalleryCard, setCurrentCardIndex, active, currentCardIndex]);
+
+    useVoiceNavigation({
+        index: currentCardIndex,
+        setIndex: setCurrentCardIndex,
+        minIndex: 0,
+        maxIndex: data.items.length - 1,
+        axis: Axis.X,
+        main: !multiGallery,
+        disabled: !active,
+    });
 
     return (
         <>
