@@ -12,6 +12,20 @@ export enum Screen {
     detail = 'Screen.Detail',
 }
 
+export enum Axis {
+    X = 'x',
+    Y = 'y',
+}
+
+export enum Direction {
+    LEFT = 'LEFT',
+    RIGHT = 'RIGHT',
+    DOWN = 'DOWN',
+    UP = 'UP',
+    FORWARD = 'FORWARD',
+    BACK = 'BACK',
+}
+
 export interface AssistantAction {
     type: string;
     payload: Record<string, unknown>;

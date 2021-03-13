@@ -2,14 +2,29 @@ import React from 'react';
 
 import { useAssistantState, createButtonAction } from '../../hooks/useAssistantState';
 import { useRegistry } from '../../hooks/useRegistry';
-import { PageProps, EntityPayload, Screen } from '../../types';
+import { PageProps, EntityPayload, Screen, Axis } from '../../types';
 import { Header } from '../../components/Header/Header';
+import { useSpatNav } from '../../hooks/useSpatNav';
+import { useVoiceNavigationWithSpatNav } from '../../hooks/useVoiceNavigation';
+import { scroll } from '../../utils/scroll';
 
 export type { ItemMainSectionProps } from './components/ItemMainSection/ItemMainSection';
 export type { ItemEntitiesProps } from './components/ItemEntities/ItemEntities';
 
 const getImageSrc = (src: string | string[]) => {
     return Array.isArray(src) ? src[0] : src;
+};
+
+const scrollToWithOffset = (offset: number) => {
+    const targetOffset = offset <= 0 ? offset : offset - 100;
+
+    scroll({
+        element: window,
+        startPosition: window.scrollY,
+        offset: targetOffset - window.scrollY,
+        duration: 300,
+        axis: Axis.Y,
+    });
 };
 
 export const Item: React.FC<PageProps<EntityPayload>> = ({ data, header, stateRef, sendData }) => {
@@ -62,6 +77,15 @@ export const Item: React.FC<PageProps<EntityPayload>> = ({ data, header, stateRe
             })),
         [data.entities, onItemShow],
     );
+
+
+    useVoiceNavigationWithSpatNav({ axis: Axis.Y, main: true });
+    useSpatNav<HTMLElement>(({ offsetTop }) => scrollToWithOffset(offsetTop));
+
+    // Необходимо сбросить первоночально установленную точку, чтобы старт навигации был с сфокусированного элемента
+    React.useEffect(() => {
+       window.__spatialNavigation__?.setStartingPoint();
+    }, []);
 
     return (
         <>

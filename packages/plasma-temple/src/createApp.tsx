@@ -9,6 +9,7 @@ import { useHistoryUpdater } from './hooks/useHistoryUpdater';
 import { usePopHistoryListener } from './hooks/usePopHistoryListener';
 import { useStore } from './hooks/useStore';
 import { Root } from './components/Root/Root';
+import { AssistantContext } from './assistant';
 
 const mergeConfigs = (source: CanvasAppConfig): CanvasAppConfig => {
     return {
@@ -127,17 +128,19 @@ export const createApp = (conf?: CanvasAppConfig): React.FC => {
         }, [configRoute, record]);
 
         return (
-            <Root
-                theme={state.theme}
-                dispatch={dispatch}
-                sendData={sendData}
-                step={record?.step}
-                stateRef={stateRef}
-                nextRoute={configRoute?.next}
-                position={record?.position}
-                Component={Component}
-                {...dataProps}
-            />
+            <AssistantContext.Provider value={assistantRef.current}>
+                <Root
+                    theme={state.theme}
+                    dispatch={dispatch}
+                    sendData={sendData}
+                    step={record?.step}
+                    stateRef={stateRef}
+                    nextRoute={configRoute?.next}
+                    position={record?.position}
+                    Component={Component}
+                    {...dataProps}
+                />
+            </AssistantContext.Provider>
         );
     });
 };

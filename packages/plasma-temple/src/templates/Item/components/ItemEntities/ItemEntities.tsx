@@ -13,7 +13,7 @@ export interface ItemEntitiesProps {
 }
 
 const StyledSection = styled(Section)`
-    padding-bottom: 200px;
+    padding-bottom: 50vh;
 `;
 
 export const ItemEntities: React.FC<UnifiedComponentProps<ItemEntitiesProps>> = React.memo(
