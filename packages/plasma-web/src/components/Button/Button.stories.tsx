@@ -21,13 +21,14 @@ export const Default = () => {
     const sizes = ['l', 'm', 's'];
     const pins = [
         'square-square',
-        'square-circle',
-        'circle-square',
-        'circle-circle',
-        'circle-clear',
-        'clear-circle',
+        'square-clear',
+        'clear-square',
         'clear-clear',
+        'clear-circle',
+        'circle-clear',
+        'circle-circle',
     ];
+
     const contentTypes = ['Text', 'Text+Left', 'Text+Right', 'Left'];
     const contentType = select('Content type', contentTypes, 'Text');
 
@@ -39,6 +40,8 @@ export const Default = () => {
             disabled={boolean('disabled', false)}
             outlined={boolean('outlined', false)}
             focused={boolean('focused', false)}
+            square={boolean('square', false)}
+            resizible={boolean('resizible', false)}
             text={contentType !== 'Left' && text('text', 'Label')}
             contentLeft={(contentType === 'Left' || contentType === 'Text+Left') && <IconPlaceholder />}
             contentRight={contentType === 'Text+Right' && <IconPlaceholder />}

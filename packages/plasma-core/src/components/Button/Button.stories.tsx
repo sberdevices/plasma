@@ -17,12 +17,12 @@ const views = ['primary', 'secondary', 'warning', 'critical', 'checked', 'overla
 const sizes = ['l', 'm', 's', 'xs', 'xxs', 'xxxs'];
 const pins = [
     'square-square',
-    'square-circle',
-    'circle-square',
-    'circle-circle',
-    'circle-clear',
-    'clear-circle',
+    'square-clear',
+    'clear-square',
     'clear-clear',
+    'clear-circle',
+    'circle-clear',
+    'circle-circle',
 ];
 
 export const Default = () => (

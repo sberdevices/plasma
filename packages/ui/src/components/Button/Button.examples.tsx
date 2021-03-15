@@ -175,7 +175,7 @@ interface ShowcaseHelperProps extends ShowcaseProps, React.HTMLAttributes<HTMLDi
     render: (props: ButtonProps & any, key: string) => object;
 }
 interface ShowcaseStoryProps extends Partial<ShowcaseProps>, React.HTMLAttributes<HTMLDivElement> {
-    component?: React.FC<ButtonProps>;
+    component?: any;
 }
 
 /**

@@ -1,18 +1,15 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { views, applyView, applyDisabled, addFocus, applyBlur } from '../../mixins';
-import { button1, button2, caption } from '../../tokens';
+import { addFocus } from '../../mixins/addFocus';
+import type { FocusProps, OutlinedProps, OutlineProps } from '../../mixins/addFocus';
+import { applyDisabled } from '../../mixins/applyDisabled';
+import type { DisabledProps } from '../../mixins/applyDisabled';
+import { views as baseViews } from '../../mixins/applyView';
+import { button1, button2 } from '../../tokens';
+import type { AsProps, ShiftProps } from '../../types';
 import { convertRoundnessMatrix } from '../../utils';
-
-import type {
-    WithTextAndContentLeft,
-    WithTextAndContentRight,
-    WithContentLeft,
-    WithChildren,
-    AllContentProps,
-    StyledButtonProps,
-} from './Button.types';
+import type { PinProps } from '../../utils';
 
 /**
  * Размерные параметры шрифта
@@ -21,13 +18,10 @@ const buttonTypography = {
     l: button1,
     m: button1,
     s: button2,
-    xs: button2,
-    xxs: caption,
-    xxxs: caption,
 };
 
 /**
- * Размеры в пикселях по макету
+ * Размеры.
  */
 const buttonSizes = {
     l: {
@@ -35,145 +29,203 @@ const buttonSizes = {
         paddingY: '1rem',
         paddingX: '1.625rem',
         paddingXResizible: '1.25rem',
-        squareRadius: '1rem',
-        sOutlineRadius: '1.125rem',
-        circleRadius: '1.75rem',
-        cOutlineRadius: '1.875rem',
     },
     m: {
         height: '3rem',
         paddingY: '0.75rem',
         paddingX: '1.375rem',
         paddingXResizible: '1.25rem',
-        squareRadius: '0.75rem',
-        sOutlineRadius: '0.875rem',
-        circleRadius: '1.5rem',
-        cOutlineRadius: '1.625rem',
     },
     s: {
         height: '2.5rem',
         paddingY: '0.5rem',
         paddingX: '1.125rem',
         paddingXResizible: '1.25rem',
+    },
+};
+
+/**
+ * Скругления.
+ */
+const buttonRadiuses = {
+    l: {
+        squareRadius: '1rem',
+        sOutlineRadius: '1.125rem',
+        circleRadius: '1.75rem',
+        cOutlineRadius: '1.875rem',
+    },
+    m: {
+        squareRadius: '0.75rem',
+        sOutlineRadius: '0.875rem',
+        circleRadius: '1.5rem',
+        cOutlineRadius: '1.625rem',
+    },
+    s: {
         squareRadius: '0.75rem',
         sOutlineRadius: '0.875rem',
         circleRadius: '1.25rem',
         cOutlineRadius: '1.375rem',
     },
-    xs: {
-        height: '2.25rem',
-        paddingY: '0.5rem',
-        paddingX: '0.625rem',
-        paddingXResizible: '1.25',
-        squareRadius: '0.625rem',
-        sOutlineRadius: '0.75rem',
-        circleRadius: '1.125rem',
-        cOutlineRadius: '1.25rem',
-    },
-    xxs: {
-        height: '2rem',
-        paddingY: '0.4375rem',
-        paddingX: '0.5rem',
-        paddingXResizible: '0.875rem',
-        squareRadius: '0.5625rem',
-        sOutlineRadius: '0.6875rem',
-        circleRadius: '1rem',
-        cOutlineRadius: '1.125rem',
-    },
-    xxxs: {
-        height: '1.75rem',
-        paddingY: '0.3125rem',
-        paddingX: '0.375rem',
-        paddingXResizible: '0.875rem',
-        squareRadius: '0.5rem',
-        sOutlineRadius: '0.625rem',
-        circleRadius: '0.875rem',
-        cOutlineRadius: '1rem',
-    },
 };
 
-type ButtonSize = keyof typeof buttonSizes;
+/**
+ * Размеры кнопки
+ */
+interface SizeProps {
+    /**
+     * Размер кнопки
+     */
+    size: keyof typeof buttonSizes;
+    /**
+     * Квадратная кнопка (со сторанами 1:1)
+     */
+    square?: boolean;
+    /**
+     * Растягиваемость кнопки
+     */
+    resizible?: boolean;
+}
 
 /**
  * Цветовые стили
  */
 export const buttonViews = {
-    primary: views.primary,
-    secondary: views.secondary,
-    warning: views.warning,
-    critical: views.critical,
-    checked: views.checked,
-    overlay: views.overlay,
-    clear: views.clear,
+    primary: baseViews.primary,
+    secondary: baseViews.secondary,
+    warning: baseViews.warning,
+    critical: baseViews.critical,
+    checked: baseViews.checked,
+    overlay: baseViews.overlay,
+    clear: baseViews.clear,
 };
 
-type ButtonView = keyof typeof buttonViews;
+/**
+ * Виды кнопки
+ */
+interface ViewProps {
+    /**
+     * Вид кнопки
+     */
+    view: keyof typeof buttonViews;
+}
+
+/**
+ * Интерфейс для обхода контентных опций
+ */
+export type ButtonContentProps =
+    | {
+          /**
+           * Контент кнопки. При указании этого свойства contentLeft, contentRight и text не применяются
+           */
+          children?: React.ReactNode;
+          /**
+           * Текстовая надпись на кнопке
+           */
+          text?: never;
+          /**
+           * Слот для контента слева, например Icon
+           */
+          contentLeft?: never;
+          /**
+           * Слот для контента справа, например Icon
+           */
+          contentRight?: never;
+      }
+    | {
+          children?: never;
+          text?: string | number;
+          contentLeft?: React.ReactNode;
+          contentRight?: never;
+      }
+    | {
+          children?: never;
+          text?: string | number;
+          contentRight?: React.ReactNode;
+          contentLeft?: never;
+      };
+
+/**
+ * Интерфейс для стилизованного компонента, не включая контентных свойств
+ */
+export interface StyledButtonProps
+    extends SizeProps,
+        ViewProps,
+        PinProps,
+        FocusProps,
+        OutlinedProps,
+        ShiftProps,
+        DisabledProps {}
 
 /**
  * Интерфейс кнопки.
  */
-export type ButtonProps<S = ButtonSize, V = ButtonView> = (
-    | WithTextAndContentLeft
-    | WithTextAndContentRight
-    | WithContentLeft
-    | WithChildren
-) &
-    Partial<StyledButtonProps<S, V>> &
-    React.ButtonHTMLAttributes<HTMLButtonElement>;
+export type ButtonProps = Partial<StyledButtonProps> &
+    AsProps &
+    (JSX.IntrinsicElements['button'] & Omit<JSX.IntrinsicElements['a'], 'type'> & JSX.IntrinsicElements['span']) &
+    ButtonContentProps;
 
-interface StyledTextProps {
+/**
+ * Миксин размеров кнопки по параметрам
+ */
+export const getSizesMixin = (sizes: any, typography: any) => ({
+    size,
+    shiftLeft,
+    shiftRight,
+    square,
+    resizible,
+}: StyledButtonProps) => {
+    // eslint-disable-next-line no-nested-ternary
+    const paddingX = square ? sizes[size].paddingY : resizible ? sizes[size].paddingXResizible : sizes[size].paddingX;
+    const padding = `${sizes[size].paddingY} ${paddingX}`;
+
+    return css`
+        height: ${sizes[size].height};
+        padding: ${padding};
+
+        ${resizible && 'width: 100%;'}
+        ${square && ` width: ${sizes[size].height};`}
+        ${shiftLeft && `margin-left: -${paddingX};`}
+        ${shiftRight && `margin-right: -${paddingX};`}
+        ${typography[size]}
+    `;
+};
+const applySizes = getSizesMixin(buttonSizes, buttonTypography);
+
+/**
+ * Миксин для скругления кнопки.
+ */
+export const getRadiusesMixin = (radiuses: any) => ({ size, pin, outlined, focused }: StyledButtonProps) => css`
+    border-radius: ${convertRoundnessMatrix(pin, radiuses[size].squareRadius, radiuses[size].circleRadius)};
+
+    ${addFocus({
+        focused,
+        outlined,
+        outlineRadius: convertRoundnessMatrix(pin, radiuses[size].sOutlineRadius, radiuses[size].cOutlineRadius),
+    } as FocusProps & OutlinedProps & OutlineProps)}
+`;
+const applyRadiuses = getRadiusesMixin(buttonRadiuses);
+
+/**
+ * Миксин внешнего вида.
+ */
+const applyViews = ({ view }: StyledButtonProps) => buttonViews[view];
+
+export const ButtonText = styled.span<{
     isContentLeft?: boolean;
     isContentRight?: boolean;
-}
-
-const StyledText = styled.span<StyledTextProps>`
+}>`
     box-sizing: border-box;
 
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    user-select: no-select;
 
     ${({ isContentLeft }) => isContentLeft && 'margin-left: 0.375rem;'}
     ${({ isContentRight }) => isContentRight && 'margin-right: 0.375rem;'}
 `;
 
-/**
- * Миксин размеров кнопки по параметрам
- */
-const applySizes = ({
-    size,
-    pin,
-    outlined,
-    focused,
-    shiftLeft,
-    shiftRight,
-    square,
-    resizible,
-}: StyledButtonProps<ButtonSize, ButtonView>) => {
-    const sizes = buttonSizes[size];
-    // eslint-disable-next-line no-nested-ternary
-    const paddingX = square ? sizes.paddingY : resizible ? sizes.paddingXResizible : sizes.paddingX;
-    const padding = `${sizes.paddingY} ${paddingX}`;
-
-    return css`
-        height: ${sizes.height};
-        padding: ${padding};
-        border-radius: ${convertRoundnessMatrix(pin, sizes.squareRadius, sizes.circleRadius)};
-
-        ${resizible && 'width: 100%;'}
-        ${square && ` width: ${sizes.height};`}
-        ${shiftLeft && `margin-left: -${paddingX};`}
-        ${shiftRight && `margin-right: -${paddingX};`}
-        ${buttonTypography[size]}
-        ${addFocus({
-            focused,
-            outlined,
-            outlineRadius: convertRoundnessMatrix(pin, sizes.sOutlineRadius, sizes.cOutlineRadius),
-        })}
-    `;
-};
-
-const StyledButton = styled.button<StyledButtonProps<ButtonSize, ButtonView>>`
+export const Button = styled.button<StyledButtonProps>`
     position: relative;
 
     display: inline-flex;
@@ -189,41 +241,10 @@ const StyledButton = styled.button<StyledButtonProps<ButtonSize, ButtonView>>`
         outline: none;
     }
 
-    ${applyView}
     ${applySizes}
+    ${applyRadiuses}
+    ${applyViews}
     ${applyDisabled}
-    ${applyBlur}
 `;
 
-/**
- * Базовая кнопка.
- */
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    // eslint-disable-next-line prefer-arrow-callback
-    function Button({ square, ...props }, ref) {
-        const { text, contentLeft, contentRight, children, ...rest } = props as AllContentProps;
-
-        return (
-            <StyledButton
-                square={square !== undefined ? square : !text && !children}
-                ref={ref}
-                {...(rest as StyledButtonProps<ButtonSize, ButtonView>)}
-            >
-                {children}
-                {!children && contentLeft}
-                {!children && text && (
-                    <StyledText isContentLeft={!!contentLeft} isContentRight={!!contentRight}>
-                        {text}
-                    </StyledText>
-                )}
-                {!children && contentRight}
-            </StyledButton>
-        );
-    },
-);
-
-Button.defaultProps = {
-    view: 'secondary',
-    size: 'l',
-    pin: 'square-square',
-};
+export type AsElement = HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement;

@@ -18,7 +18,7 @@ export interface OutlinedProps {
 
 type SynthesizeFocus = (ruleset: FlattenSimpleInterpolation, focused?: boolean) => FlattenSimpleInterpolation;
 
-interface OutlineProps {
+export interface OutlineProps {
     /**
      * Размер фокусной рамки
      */
