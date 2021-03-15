@@ -4,9 +4,8 @@ import type { SnapType, SnapAlign } from '@sberdevices/plasma-core/types';
 
 import { isSberBox } from '../../utils';
 import { ProductCard, MusicCard, GalleryCard } from '../Card/Card.examples';
-import { Row } from '../Grid';
 
-import { CarouselSection, ScalingColCard, scaleCallback, scaleResetCallback } from './Carousel.examples';
+import { CarouselSection, ScalingColCard, scaleCallback } from './Carousel.examples';
 
 import { CarouselGridWrapper, Carousel, CarouselItem, CarouselCol, useRemoteHandlers } from '.';
 
@@ -49,7 +48,6 @@ export const Basic = () => {
     return (
         <CarouselGridWrapper>
             <Carousel
-                as={Row}
                 axis={axis}
                 index={index}
                 animatedScrollByIndex={animatedScrollByIndex}
@@ -95,7 +93,6 @@ export const Vertical = () => {
 
     return (
         <Carousel
-            as={Row}
             axis={axis}
             index={index}
             animatedScrollByIndex={animatedScrollByIndex}
@@ -185,7 +182,6 @@ export const CenterItem: React.FC = () => {
     return (
         <CarouselGridWrapper>
             <Carousel
-                as={Row}
                 axis="x"
                 index={index}
                 animatedScrollByIndex={animatedScrollByIndex}
@@ -193,7 +189,6 @@ export const CenterItem: React.FC = () => {
                 detectActive={detectActive}
                 detectThreshold={detectThreshold}
                 scaleCallback={scaleCallback}
-                scaleResetCallback={scaleResetCallback}
                 onIndexChange={(i) => setIndex(i)}
                 paddingStart="50%"
                 paddingEnd="50%"

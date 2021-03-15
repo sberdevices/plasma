@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import type { SnapType } from '@sberdevices/plasma-core/types';
 
 import { MusicCard } from '../Card/Card.examples';
-import { Row } from '../Grid';
 import { Body3 } from '../Typography/Body';
 
 import { CarouselItemProps } from './CarouselItem';
@@ -21,18 +20,6 @@ const StyledMusicCard = styled(MusicCard)`
 `;
 
 /**
- * Функция сброса стилей элементов вне вьюпорта
- */
-export const scaleResetCallback = (itemEl: HTMLDivElement) => {
-    if (itemEl.children[0]) {
-        const inner = itemEl.children[0] as HTMLDivElement;
-        const card = inner.children[0] as HTMLDivElement;
-        inner.style.transform = '';
-        card.style.transform = '';
-    }
-};
-
-/**
  * Функция увеличения центрального элемента
  */
 export const scaleCallback = (itemEl: HTMLDivElement, slot: number) => {
@@ -48,12 +35,18 @@ export const scaleCallback = (itemEl: HTMLDivElement, slot: number) => {
      */
     const innerOffset = (scaleDelta * Math.min(absSlot, 1) * Math.sign(slot) * itemEl.offsetWidth) / 2;
 
+    const inner = itemEl.children[0] as HTMLDivElement;
+    const card = inner.children[0] as HTMLDivElement;
+
     if (itemEl.children[0]) {
-        const inner = itemEl.children[0] as HTMLDivElement;
-        const card = inner.children[0] as HTMLDivElement;
         inner.style.transform = `translate3d(${innerOffset}px,0,0)`;
         card.style.transform = `scale(${cardScale}) translate3d(0,${cardOffset}px,0)`;
     }
+
+    return () => {
+        inner.style.transform = '';
+        card.style.transform = '';
+    };
 };
 
 export interface ScalingColCardProps {
@@ -89,7 +82,7 @@ export const CarouselSection: React.FC<{
     <section style={{ margin: '1.75rem 0' }}>
         <Body3 style={{ marginBottom: '1rem' }}>{heading}</Body3>
         <CarouselGridWrapper>
-            <Carousel as={Row} axis="x" index={0} scrollSnapType={scrollSnapType}>
+            <Carousel axis="x" index={0} scrollSnapType={scrollSnapType}>
                 {children}
             </Carousel>
         </CarouselGridWrapper>

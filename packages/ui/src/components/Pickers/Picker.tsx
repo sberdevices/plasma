@@ -7,15 +7,7 @@ import { applyDisabled, DisabledProps } from '@sberdevices/plasma-core/mixins';
 import { Button } from '../Button';
 import { Carousel } from '../Carousel';
 
-import {
-    PickerItem,
-    Item,
-    SizeProps,
-    scaleCallbackS,
-    scaleCallbackL,
-    scaleResetCallback,
-    StyledWhiteText,
-} from './PickerItem';
+import { PickerItem, Item, SizeProps, scaleCallbackS, scaleCallbackL, StyledWhiteText } from './PickerItem';
 
 const StyledDivButton = styled.div`
     height: auto;
@@ -147,7 +139,6 @@ export const Picker: React.FC<PickerProps> = ({
                 axis="y"
                 index={index}
                 scaleCallback={size === 's' ? scaleCallbackS : scaleCallbackL}
-                scaleResetCallback={scaleResetCallback}
                 animatedScrollByIndex={controls}
                 scrollSnapType="mandatory"
                 detectActive={!controls}

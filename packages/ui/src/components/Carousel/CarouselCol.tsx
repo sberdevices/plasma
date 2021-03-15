@@ -8,6 +8,8 @@ import { CarouselItemProps, applyScrollSnap } from './CarouselItem';
 
 const StyledCol = styled(Col)<Pick<CarouselItemProps, 'scrollSnapAlign'>>`
     ${applyScrollSnap};
+
+    margin-left: calc(-1 * var(--plasma-grid-gutter));
 `;
 
 export interface CarouselColProps extends ColProps, CarouselItemProps, React.HTMLAttributes<HTMLDivElement> {}
