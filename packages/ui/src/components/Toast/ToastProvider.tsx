@@ -1,20 +1,8 @@
-import React, { createContext, useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import { ToastInfo, Position } from './types';
 import { ToastController } from './ToastController';
-
-type ContextType = ToastInfo & {
-    showToast: (text: string, position?: Position, timeout?: number, fade?: boolean) => void;
-    hideToast: () => void;
-};
-
-export const ToastContext = createContext<ContextType>({
-    text: null,
-    position: null,
-    timeout: null,
-    showToast: () => undefined,
-    hideToast: () => undefined,
-});
+import { ToastContext } from './ToastContext';
 
 const DEFAULT_POSITION = 'bottom';
 const DEFAULT_TIMEOUT = 3000;
