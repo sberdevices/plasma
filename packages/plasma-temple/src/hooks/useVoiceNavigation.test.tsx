@@ -1,9 +1,9 @@
 import React from 'react';
 import { renderHook } from '@testing-library/react-hooks/dom';
-import { createAssistantDev, createAssistantHostMock } from '@sberdevices/assistant-client';
+import { createAssistant, createAssistantHostMock } from '@sberdevices/assistant-client';
 import { useVoiceNavigation, useVoiceNavigationWithSpatNav } from './useVoiceNavigation';
-import { AssistantContext } from '../assistant';
 import { AssistantInstance, Axis, Direction } from '../types';
+import { CanvasAppContext } from '../canvasAppContext';
 
 
 describe('useVoiceNavigationHook', () => {
@@ -18,17 +18,12 @@ describe('useVoiceNavigationHook', () => {
   };
 
   const setIndex = jest.fn();
-  const wrapper: React.FC = ({ children }) => <AssistantContext.Provider value={assistantMock}>{children}</AssistantContext.Provider>;
+  const wrapper: React.FC = ({ children }) => (
+    <CanvasAppContext.Provider value={{ assistant: assistantMock }}>{children}</CanvasAppContext.Provider>
+  );
 
   beforeEach(() => {
-    assistantMock = createAssistantDev({
-      getState: () => ({}),
-      url: 'wss://vpstest2.online.sberbank.ru:443/vpsdemo2/',
-      userChannel: 'userChannel',
-      surface: 'surface',
-      initPhrase: 'initPhrase',
-    });
-
+    assistantMock = createAssistant({ getState: () => ({}) });
     assistantHostMock = createAssistantHostMock({ context: window });
   });
 
@@ -355,20 +350,16 @@ describe('useVoiceNavigationWithSpatNav', () => {
     });
   };
 
-  const wrapper: React.FC = ({ children }) => <AssistantContext.Provider value={assistantMock}>{children}</AssistantContext.Provider>;
+  const wrapper: React.FC = ({ children }) => (
+    <CanvasAppContext.Provider value={{ assistant: assistantMock }}>{children}</CanvasAppContext.Provider>
+  );
+
   const navigateMock = jest.fn();
   Object.defineProperty(window, 'navigate', { value: navigateMock });
 
 
   beforeEach(() => {
-    assistantMock = createAssistantDev({
-      getState: () => ({}),
-      url: 'wss://vpstest2.online.sberbank.ru:443/vpsdemo2/',
-      userChannel: 'userChannel',
-      surface: 'surface',
-      initPhrase: 'initPhrase',
-    });
-
+    assistantMock = createAssistant({ getState: () => ({}) });
     assistantHostMock = createAssistantHostMock({ context: window });
   });
 

@@ -6,11 +6,12 @@ import { Carousel, CarouselGridWrapper } from '@sberdevices/ui/components/Carous
 import { isSberPortal } from '@sberdevices/ui/utils';
 
 import { GalleryCard } from '../GalleryCard/GalleryCard';
-import { GalleryViewPayload, GalleryItemViewPayload, Axis } from '../../../../types';
 import { Header } from '../../../../components/Header/Header';
+import { CanvasAppContext } from '../../../../canvasAppContext';
 
 import { useRemoteHandlers } from '../../../../hooks/useRemoteHandlers';
 import { useVoiceNavigation } from '../../../../hooks/useVoiceNavigation';
+import { GalleryViewPayload, GalleryItemViewPayload, Axis, Screen } from '../../../../types';
 
 interface GalleryProps {
     data: GalleryViewPayload;
@@ -47,6 +48,11 @@ export const Gallery: React.FC<GalleryProps> = ({
     onClickGalleryCard,
     savePosition,
 }) => {
+    const { configRoute } = React.useContext(CanvasAppContext);
+    const  CardComponent = configRoute?.type === Screen.gallery && configRoute?.galleryCard
+        ? configRoute.galleryCard
+        : GalleryCard;
+
     const [currentCardIndex, setCurrentCardIndex] = useRemoteHandlers({
         initialIndex: active ? position : 0,
         axis: Axis.X,
@@ -79,25 +85,22 @@ export const Gallery: React.FC<GalleryProps> = ({
         }
     }, [active, currentCardIndex, savePosition]);
 
+    const activeCardIndex = active ? currentCardIndex : -1;
+
     const galleryItems: React.ReactChild[] = React.useMemo(() => {
         return data.items.map(
-            (item, index): React.ReactChild => {
-                const imageSrc = Array.isArray(item.image.src) ? item.image.src[0] : item.image.src;
-
-                return (
-                    <GalleryCard
-                        key={item.id}
-                        card={item}
-                        position={active ? currentCardIndex : -1}
-                        index={index}
-                        imageSrc={imageSrc}
-                        onClick={onClickGalleryCard}
-                        onFocus={setCurrentCardIndex}
-                    />
-                );
-            },
+            (item, index): React.ReactChild => (
+                <CardComponent
+                    key={item.id}
+                    card={item}
+                    activeCardIndex={activeCardIndex}
+                    index={index}
+                    onClick={onClickGalleryCard}
+                    onFocus={setCurrentCardIndex}
+                />
+            ),
         );
-    }, [data.items, onClickGalleryCard, setCurrentCardIndex, active, currentCardIndex]);
+    }, [data.items, onClickGalleryCard, setCurrentCardIndex, activeCardIndex]);
 
     useVoiceNavigation({
         index: currentCardIndex,
