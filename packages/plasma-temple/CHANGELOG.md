@@ -1,3 +1,16 @@
+# v0.6.0 (Tue Mar 16 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): add unit tests [#21](https://github.com/sberdevices/pashka/pull/21) ([@LamaEats](https://github.com/LamaEats))
+- feat(plasma-temple): add unit tests ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v0.5.1 (Tue Mar 16 2021)
 
 #### 🐛 Bug Fix
