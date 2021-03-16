@@ -1,3 +1,17 @@
+# v0.5.1 (Tue Mar 16 2021)
+
+#### 🐛 Bug Fix
+
+- Apply the voice navigation [#22](https://github.com/sberdevices/pashka/pull/22) (kvpolyanskiy@sberbank.ru [@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- Apply the voice navigation (kvpolyanskiy@sberbank.ru)
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Konstantin Polyanskiy (kvpolyanskiy@sberbank.ru)
+
+---
+
 # v0.5.0 (Thu Mar 11 2021)
 
 #### 🚀 Enhancement
