@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import React from 'react';
 import { AssistantSmartAppData, createAssistant } from '@sberdevices/assistant-client';
 import { Ratio } from '@sberdevices/ui/components/Image';
 
@@ -124,14 +125,28 @@ export interface NextRoute {
     type: Screen;
     pathToParam: string | Array<string>;
 }
-export interface Route {
-    type: Screen;
+
+export interface BaseRoute<T extends Screen> {
+    type: T;
     next?: NextRoute;
     header?: Partial<HeaderPropsPayload>;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     component?: React.ComponentType<any> | React.LazyExoticComponent<React.ComponentType<any>>;
     assistant?: PickOptional<AssistantConfig, 'onData'>;
 }
+
+export interface GalleryCardProps {
+    card: GalleryItemViewPayload;
+    index: number;
+    activeCardIndex: number;
+    onClick: (card: GalleryItemViewPayload) => void;
+    onFocus: (index: number) => void;
+}
+export interface GalleryRoute extends BaseRoute<Screen.gallery> {
+    galleryCard?: React.FC<GalleryCardProps>;
+}
+
+export type Route = BaseRoute<Screen.entity> | BaseRoute<Screen.detail> | GalleryRoute;
 
 export type onPopStateFn = (historyState: CurrentHistory) => Promise<CurrentHistory> | CurrentHistory;
 

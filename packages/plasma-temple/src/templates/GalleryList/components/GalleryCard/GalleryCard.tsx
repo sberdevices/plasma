@@ -4,16 +4,7 @@ import { CarouselCol, Card, CardBody, CardMedia, CardBody1, CardBadge, CardConte
 import { IconClock } from '@sberdevices/plasma-icons';
 import { overlay, primary } from '@sberdevices/plasma-tokens';
 import { isSberBox } from '@sberdevices/ui/utils';
-import { GalleryItemViewPayload } from '../../../..';
-
-interface GalleryCardProps {
-    card: GalleryItemViewPayload;
-    position: number;
-    index: number;
-    imageSrc: string;
-    onClick: (card: GalleryItemViewPayload) => void;
-    onFocus: (index: number) => void;
-}
+import { GalleryCardProps } from '../../../../types';
 
 const StyledCardIndex = styled(CardBadge)`
     position: absolute;
@@ -68,14 +59,15 @@ const Time: React.FC<{ time: string }> = ({ time }) => (
     </>
 );
 
-export const GalleryCard: React.FC<GalleryCardProps> = ({card, position, index, imageSrc, onClick, onFocus }) => {
+export const GalleryCard: React.FC<GalleryCardProps> = ({ card, activeCardIndex, index, onClick, onFocus }) => {
     const cardRef = React.useRef<HTMLDivElement | null>(null);
+    const imageSrc = Array.isArray(card.image.src) ? card.image.src[0] : card.image.src;
 
     React.useLayoutEffect(() => {
-        if (position === index && isSberBox()) {
+        if (activeCardIndex === index && isSberBox()) {
             cardRef.current?.focus({ preventScroll: true });
         }
-    }, [position, index]);
+    }, [activeCardIndex, index]);
 
     const handleClick = React.useCallback(() => onClick(card), [card, onClick]);
     const handleFocus = React.useCallback(() => onFocus(index), [index, onFocus]);
@@ -83,7 +75,7 @@ export const GalleryCard: React.FC<GalleryCardProps> = ({card, position, index, 
     return (
         <CarouselCol sizeXL={3} sizeL={2} sizeM={2}>
             <Card
-                focused={position === index}
+                focused={activeCardIndex === index}
                 tabIndex={0}
                 onClick={handleClick}
                 onFocus={handleFocus}
