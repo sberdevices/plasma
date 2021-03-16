@@ -6,13 +6,7 @@ export declare global {
         'all',
     }
 
-    enum SpatialNavigationDirection {
-        'up',
-        'down',
-        'left',
-        'right',
-    }
-
+    type SpatialNavigationDirection = 'up' | 'down' | 'left' | 'right';
     interface SpatialNavigationSearchOptions {
         candidates: Node[];
         container: Node;
@@ -26,11 +20,16 @@ export declare global {
         sendData: (command: string, message?: any) => void;
     }
 
+    interface SpatialNavigation {
+        setStartingPoint: (x?: number, y?: number) => void;
+    }
+
     interface Window extends AssistantWindow {
         navigate(dir: SpatialNavigationDirection): void;
         AssistantHost: AssistantHost;
         AssistantClient: AssistantClient;
         Cypress?: Record<string, any>;
+        __spatialNavigation__?: SpatialNavigation;
     }
 
     interface Element {
