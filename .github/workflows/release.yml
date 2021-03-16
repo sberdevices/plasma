@@ -47,5 +47,8 @@ jobs:
       - name: Test
         run: npx lerna run test
 
+      - name: Update Test Coverage
+        run: npm run coverage --if-present
+
       - name: Create Release
         run: npm run release

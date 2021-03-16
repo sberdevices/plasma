@@ -59,7 +59,7 @@ export type AppStateAction =
     | { type: AppStateActions.character; payload: ThemePayload }
     | { type: AppStateActions.navigation; payload: NavigationPayload };
 
-interface AppState {
+export interface AppState {
     history: Array<CurrentHistory>;
     theme: AssistantCharacterType;
 }
