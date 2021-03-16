@@ -1,3 +1,17 @@
+# (Tue Mar 16 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@0.5.1`
+  - Apply the voice navigation [#22](https://github.com/sberdevices/pashka/pull/22) (kvpolyanskiy@sberbank.ru [@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Konstantin Polyanskiy (kvpolyanskiy@sberbank.ru)
+
+---
+
 # (Thu Mar 11 2021)
 
 #### 🚀 Enhancement
