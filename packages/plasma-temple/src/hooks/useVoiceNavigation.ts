@@ -1,6 +1,6 @@
 import { isSberPortal } from '@sberdevices/ui/utils';
 import { useContext, useEffect } from 'react';
-import { AssistantContext } from '../assistant';
+import { CanvasAppContext } from '../canvasAppContext';
 import { AppStateActions } from '../store/reducer';
 import { Axis, Direction } from '../types';
 
@@ -27,7 +27,7 @@ export const useVoiceNavigation = ({
     axis,
     main,
 }: UseGalleryVoiceNavigationProps) => {
-    const assistant = useContext(AssistantContext);
+    const { assistant } = useContext(CanvasAppContext);
 
     useEffect(() => {
         const removeListener = assistant?.on(
@@ -55,7 +55,7 @@ export const useVoiceNavigation = ({
 };
 
 export const useVoiceNavigationWithSpatNav = ({ axis, main }: { axis: Axis, main?: boolean }) => {
-    const assistant = useContext(AssistantContext);
+    const { assistant } = useContext(CanvasAppContext);
 
     useEffect(() => {
         const removeListener = assistant?.on(

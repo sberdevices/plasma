@@ -1,4 +1,3 @@
-import { createContext } from 'react';
 import { createAssistant, createAssistantDev } from '@sberdevices/assistant-client';
 
 import { logger } from './utils/logger';
@@ -11,8 +10,6 @@ export type InitializeParams = PickOptional<
     'token' | 'getRecoveryState' | 'url' | 'userChannel' | 'surface'
 > &
     Pick<AssistantProps, 'initPhrase' | 'nativePanel' | 'getState'>;
-
-export const AssistantContext = createContext<AssistantInstance | null>(null);
 
 export const initializeAssistant = (params: InitializeParams): AssistantInstance => {
     let assistant: AssistantInstance;
