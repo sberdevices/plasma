@@ -9,7 +9,7 @@ import { useHistoryUpdater } from './hooks/useHistoryUpdater';
 import { usePopHistoryListener } from './hooks/usePopHistoryListener';
 import { useStore } from './hooks/useStore';
 import { Root } from './components/Root/Root';
-import { AssistantContext } from './assistant';
+import { CanvasAppContext } from './canvasAppContext';
 
 const mergeConfigs = (source: CanvasAppConfig): CanvasAppConfig => {
     return {
@@ -128,7 +128,7 @@ export const createApp = (conf?: CanvasAppConfig): React.FC => {
         }, [configRoute, record]);
 
         return (
-            <AssistantContext.Provider value={assistantRef.current}>
+            <CanvasAppContext.Provider value={{ assistant: assistantRef.current, configRoute  }}>
                 <Root
                     theme={state.theme}
                     dispatch={dispatch}
@@ -140,7 +140,7 @@ export const createApp = (conf?: CanvasAppConfig): React.FC => {
                     Component={Component}
                     {...dataProps}
                 />
-            </AssistantContext.Provider>
+            </CanvasAppContext.Provider>
         );
     });
 };
