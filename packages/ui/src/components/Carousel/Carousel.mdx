@@ -13,7 +13,7 @@ import { Filler } from '../../helpers/Filler'
 import { DeviceThemeProvider } from '../Device'
 import { Container, Row } from '../Grid'
 
-import { ScalingColCard, scaleCallback, scaleResetCallback } from './Carousel.examples';
+import { ScalingColCard } from './Carousel.examples';
 
 import { CarouselGridWrapper, Carousel, CarouselItem, CarouselCol } from '.';
 
@@ -77,43 +77,8 @@ import { Carousel } from '@sberdevices/ui';
 <Carousel detectCentral detectThreshold={0.5} onCentralChange={(index) => console.log(index)}>
     // Карточки карусели помещаются здесь
 </Carousel>
-```
 
-## Стилизация центрального элемента
-Элементы во вьюпорте можно подвергать стилизации. Например, увеличивать или менять непрозрачность.
-Свойства для определения элементов во вьюпорте:
-* scaleCallback - обработчик для стилизации элементов во вьюпорте
-* scaleResetCallback - для элементов, находящихся вне вьюпорта
-
-Для обозначения позиции элемента во вьюпорте, карусель оперирует значением ``slot``:
-* ``0`` равен центральному элементу;
-* ``-1`` и ``1`` первый слева и справа от центрального;
-* ``-2`` и ``2`` и т.д., соответственно, для второго и далее.
-
-```tsx
 import { Carousel } from '@sberdevices/ui';
-
-/**
- * Функция увеличения центрального элемента.
- * Предположим, что у нас 5 элементов во вьюпорте.
- * Тогда ряд slots будет таким: -2 -1 0 1 2.
- * Центральный элемент примет opacity = 1, боковые - opacity = 0.5, а крайние слева и справа - opacity = 0
- */
-const scaleCallback = (itemEl: HTMLDivElement, slot: number) => {
-    itemEl.style.opacity = `${1 - Math.abs(slot) / 2}`;
-};
-
-/**
- * Функция сброса стилей элементов вне вьюпорта
- */
-const scaleResetCallback = (itemEl: HTMLDivElement) => {
-    itemEl.style.opacity = '';
-};
-
-<Carousel scaleCallback={scaleCallback} scaleResetCallback={scaleResetCallback}>
-    // Карточки карусели помещаются здесь
-</Carousel>
-```
 
 ## Пример
 * В данном примере используются Grid и CSS Scroll Snap.
@@ -132,15 +97,12 @@ const scaleResetCallback = (itemEl: HTMLDivElement) => {
                         <CarouselGridWrapper>
                             <Carousel
                                 style={{ paddingTop: '3.5rem' }}
-                                as={Row}
                                 axis="x"
                                 index={index}
                                 scrollSnap
                                 scrollSnapType="mandatory"
                                 detectActive
                                 detectThreshold={0.5}
-                                scaleCallback={scaleCallback}
-                                scaleResetCallback={scaleResetCallback}
                                 onIndexChange={(i) => setIndex(i)}
                                 paddingStart="50%"
                                 paddingEnd="50%"

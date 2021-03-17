@@ -14,25 +14,25 @@ const tfs = {
  * Плавная прокрутка по горизонтали
  * @param {Element} elem
  * @param {number} pos
+ * @param {number} prevPosition
  * @param {number} duration
  * @param {string} timingFunction
  */
 export const animatedScrollToX = (
     elem: Element,
     pos: number,
+    prevPosition: number,
     duration: number = DEFAULT_DURATION,
     timingFunction: keyof typeof tfs = 'easeIn',
 ): void => {
     let startTime: number;
-    const startX = elem.scrollLeft;
-    const endX = Math.max(0, Math.min(elem.scrollWidth - elem.clientWidth, pos));
 
     const handleNewAnimationFrame = (): void => {
         startTime = startTime || Date.now();
         const timePos = Math.min(1, Math.max(1, Date.now() - startTime) / duration);
         const scrollPos = tfs[timingFunction](timePos);
-        const left = startX + (endX - startX) * scrollPos;
-        elem.scrollTo({ left });
+        const left = prevPosition + (pos - prevPosition) * scrollPos;
+        elem.scrollTo(left, 0);
         if (timePos !== 1) window.requestAnimationFrame(handleNewAnimationFrame);
     };
 
@@ -43,25 +43,25 @@ export const animatedScrollToX = (
  * Плавная прокрутка по вертикали
  * @param {Element} elem
  * @param {number} pos
+ * @param {number} prevPosition
  * @param {number} duration
  * @param {string} timingFunction
  */
 export const animatedScrollToY = (
     elem: Element,
     pos: number,
+    prevPosition: number,
     duration: number = DEFAULT_DURATION,
     timingFunction: keyof typeof tfs = 'easeInOut',
 ): void => {
     let startTime: number;
-    const startY = elem.scrollTop;
-    const endY = Math.max(0, Math.min(elem.scrollHeight - elem.clientHeight, pos));
 
     const handleNewAnimationFrame = (): void => {
         startTime = startTime || Date.now();
         const timePos = Math.min(1, Math.max(1, Date.now() - startTime) / duration);
         const scrollPos = tfs[timingFunction](timePos);
-        const top = startY + (endY - startY) * scrollPos;
-        elem.scrollTo({ top });
+        const top = prevPosition + (pos - prevPosition) * scrollPos;
+        elem.scrollTo(0, top);
         if (timePos !== 1) window.requestAnimationFrame(handleNewAnimationFrame);
     };
 

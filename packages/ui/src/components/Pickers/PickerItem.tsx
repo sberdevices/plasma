@@ -91,23 +91,6 @@ const scaleCallback = (x0Scale: number, x1Scale: number, x2Scale: number, offset
 export const scaleCallbackL = scaleCallback(1, 0.8, 0.8, 0.5);
 export const scaleCallbackS = scaleCallback(1, 0.75, 0.5, 0.5);
 
-/**
- * Сброс стилей
- */
-export const scaleResetCallback = (itemEl: HTMLElement) => {
-    if (itemEl.children[0] instanceof HTMLElement) {
-        const transformable = itemEl.children[0];
-        transformable.style.transform = '';
-
-        if (transformable.children[0] instanceof HTMLElement) {
-            transformable.children[0].style.opacity = '';
-        }
-        if (transformable.children[1] instanceof HTMLElement) {
-            transformable.children[1].style.opacity = '';
-        }
-    }
-};
-
 interface StyledSizeProps {
     $size: keyof typeof sizes;
 }
