@@ -1,3 +1,17 @@
+# v0.7.0 (Wed Mar 17 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-template): render custom gallery card [#23](https://github.com/sberdevices/pashka/pull/23) (kvpolyanskiy@sberbank.ru [@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-template): render custom gallery card (kvpolyanskiy@sberbank.ru)
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Konstantin Polyanskiy (kvpolyanskiy@sberbank.ru)
+
+---
+
 # v0.6.0 (Tue Mar 16 2021)
 
 #### 🚀 Enhancement
