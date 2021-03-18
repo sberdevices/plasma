@@ -127,11 +127,14 @@ export const createApp = (conf?: CanvasAppConfig): React.FC => {
         }, [record]);
 
         const dataProps = React.useMemo(() => {
+            const headerFromRoute =
+                typeof configRoute?.header === 'function' ? configRoute.header(record) : configRoute?.header;
+
             return {
                 data: record?.data,
                 header: {
                     ...config.header,
-                    ...configRoute?.header,
+                    ...headerFromRoute,
                 },
             };
         }, [configRoute, record]);

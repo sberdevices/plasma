@@ -30,18 +30,16 @@ const StyledTag = styled(CardBadge)`
 `;
 
 const StyledCardContent = styled(CardContent)`
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-
     min-height: 200px;
 `;
 
-const StyledAdditionalContent = styled.div`
+const StyledAdditionalContent = styled.div<Record<'toBottom', boolean>>`
     display: flex;
     align-items: center;
 
-    margin-top: auto;
+    ${({ toBottom }) => toBottom && ({
+        marginTop: 'auto'
+    })}
 
     opacity: 0.47;
     color: ${primary};
@@ -84,16 +82,16 @@ export const GalleryCard: React.FC<GalleryCardProps> = ({ card, activeCardIndex,
             >
                 <CardBody>
                     <CardMedia src={imageSrc} ratio={card.image.ratio ?? '1 / 1'} data-cy="gallery-card-media" >
-                        {card.position && (
+                        {!!card.position && (
                             <StyledCardIndex view="index" size="l" circled text={String(card.position)} />
                         )}
                         {typeof card.tag === 'string' && (
                             <StyledTag view="secondary" size="s" text={card.tag} />
                         )}
                     </CardMedia>
-                    <StyledCardContent>
+                    <StyledCardContent cover={card.image.covered}>
                         <CardBody1 lines={2}>{card.label}</CardBody1>
-                        <StyledAdditionalContent>
+                        <StyledAdditionalContent toBottom={!card.image.covered}>
                             {card.time != null && <Time time={card.time} />}
                         </StyledAdditionalContent>
                     </StyledCardContent>
