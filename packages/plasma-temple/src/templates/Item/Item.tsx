@@ -11,7 +11,7 @@ import { scroll } from '../../utils/scroll';
 export type { ItemMainSectionProps } from './components/ItemMainSection/ItemMainSection';
 export type { ItemEntitiesProps } from './components/ItemEntities/ItemEntities';
 
-const getImageSrc = (src: string | string[]) => {
+const getImageSrc = (src: string | string[]): string => {
     return Array.isArray(src) ? src[0] : src;
 };
 

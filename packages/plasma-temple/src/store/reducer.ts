@@ -2,9 +2,9 @@ import { Reducer } from 'react';
 import { AssistantCharacterType, AssistantInsetsCommand } from '@sberdevices/assistant-client/dist/typings';
 
 import { last, replaceLast } from '../utils/last';
-import { DetailPayload, EntityPayload, Screen, MultiGalleryViewPayload, VideoViewPayload } from '../types';
+import { DetailPayload, EntityPayload, Screen, MultiGalleryViewPayload, MetaPayload, VideoViewPayload } from '../types';
 
-interface HistoryRecord<T extends Screen, D> {
+interface HistoryRecord<T extends Screen, D> extends MetaPayload {
     data: D;
     type: T;
     step: number;
