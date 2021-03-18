@@ -61,7 +61,7 @@ export const ItemMainSection: React.FC<UnifiedComponentProps<ItemMainSectionProp
 
     return (
         <Container withSpatNav>
-            {cover && <FullScreenBackground src={cover} />}
+            {cover ? <FullScreenBackground src={cover} /> : null}
             <Title>{title}</Title>
             <Subtitle>{subtitle}</Subtitle>
             {description && (
