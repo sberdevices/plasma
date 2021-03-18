@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Container } from '@sberdevices/ui';
+import { Container } from '@sberdevices/ui/components/Grid';
 import { Carousel, CarouselGridWrapper, CarouselItem } from '@sberdevices/ui/components/Carousel';
 
 import { Gallery } from './components/Gallery/Gallery';
 import { Header } from '../../components/Header/Header';
 
-import { PageProps, MultiGalleryViewPayload, Screen, GalleryItemViewPayload, Axis } from '../../types';
+import { PageProps, MultiGalleryViewPayload, Screen, GalleryItemViewPayload, GalleryViewPayload, Axis } from '../../types';
 import { useAssistantState } from '../../hooks/useAssistantState';
 import { useRemoteHandlers } from '../../hooks/useRemoteHandlers';
 import { setPositionAction, setStepAction } from '../../store/actions';
@@ -33,7 +33,7 @@ export const GalleryList: React.FC<PageProps<MultiGalleryViewPayload>> = ({
     dispatch,
     sendData,
 }) => {
-    const galleries = Array.isArray(data) ? data : [{ ...data, id: 'id'}];
+    const galleries: Array<GalleryViewPayload & { id: string }> = Array.isArray(data) ? data : [{ ...data, id: 'id'}];
 
     const onClickGalleryCard = React.useCallback(
         (item: GalleryItemViewPayload) => {

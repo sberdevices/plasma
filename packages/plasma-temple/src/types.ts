@@ -58,6 +58,7 @@ export interface HeaderPropsPayload {
 export interface MediaObject {
     src: string[] | string;
     ratio?: AspectRatio;
+    covered?: boolean;
 }
 
 export interface GalleryItemViewPayload extends MetaPayload {
@@ -143,7 +144,7 @@ export interface NextRoute {
 export interface BaseRoute<T extends Screen> {
     type: T;
     next?: NextRoute;
-    header?: Partial<HeaderPropsPayload>;
+    header?: ((data: CurrentHistory) => Partial<HeaderPropsPayload>) | Partial<HeaderPropsPayload>;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     component?: React.ComponentType<any> | React.LazyExoticComponent<React.ComponentType<any>>;
     assistant?: PickOptional<AssistantConfig, 'onData'>;
