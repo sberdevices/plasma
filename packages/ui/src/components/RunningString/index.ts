@@ -1,0 +1,1 @@
+export { RunningString } from './RunningString';
