@@ -2,9 +2,9 @@
     "name": "@sberdevices/ui",
     "version": "0.20.0",
     "description": "SberDevices Design System",
-    "main": "dist/index.js",
-    "module": "dist/ui.esm.js",
-    "types": "dist/index.d.ts",
+    "main": "index.js",
+    "module": "es/index.js",
+    "types": "index.d.ts",
     "repository": {
         "type": "git",
         "url": "ssh://git@github.com:sberdevices/plasma.git"
@@ -27,6 +27,9 @@
     },
     "devDependencies": {
         "@mdx-js/mdx": "^1.6.16",
+        "@rollup/plugin-babel": "5.3.0",
+        "@rollup/plugin-node-resolve": "11.2.0",
+        "@rollup/plugin-typescript": "8.2.0",
         "@sberdevices/plasma-icons": "0.2.0",
         "@sberdevices/plasma-tokens": "0.4.0",
         "@storybook/addon-actions": "6.0.0-rc.13",
@@ -43,13 +46,14 @@
         "@types/react-dom": "16.9.8",
         "@types/styled-components": "5.1.0",
         "babel-loader": "8.1.0",
+        "babel-plugin-annotate-pure-calls": "0.4.0",
         "chromatic": "5.2.0",
         "react": "16.13.1",
         "react-dom": "16.13.1",
         "react-scripts": "3.4.1",
+        "rollup": "2.42.1",
         "sb": "6.0.0-rc.13",
         "styled-components": "5.1.1",
-        "tsdx": "0.14.1",
         "typescript": "3.9.5"
     },
     "publishConfig": {
@@ -57,10 +61,10 @@
     },
     "scripts": {
         "prepare": "npm run build",
-        "clean": "rm -rf ./components && rm -rf ./helpers && rm -rf ./hocs && rm -rf ./hooks && rm -rf ./mixins && rm -rf ./types && rm -rf ./utils",
-        "build:tsc": "npm run clean && tsc --module CommonJS",
-        "build:tsdx": "tsdx build --transpileOnly",
-        "build": "npm run build:tsdx && npm run build:tsc",
+        "clean": "rm -rf ./components ./helpers ./hocs ./hooks ./mixins ./types ./utils ./es index.d.ts index.d.ts.map index.js index.js.map",
+        "build:cjs": "tsc",
+        "build:es": "rollup -c",
+        "build": "npm run clean && npm run build:es && npm run build:cjs",
         "build-storybook": "npm run storybook:build",
         "build:storybook": "npm run storybook:build && npm run storybook:extract",
         "prestorybook": "./sync-readme.sh",
@@ -72,7 +76,11 @@
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
         "chromatic": "npx chromatic"
     },
-    "files": ["components", "hocs", "hooks", "mixins", "types", "utils", "index.d.ts", "index.js"],
+    "storybook": {
+        "title": "SberDevices Design System",
+        "url": "https://5f96ec813d800900227e3b93-eobodfvrnh.chromatic.com/"
+    },
+    "files": ["components", "hocs", "hooks", "mixins", "types", "utils", "index.d.ts", "index.js", "es"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Антонов Игорь Александрович",
