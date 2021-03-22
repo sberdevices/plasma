@@ -32,13 +32,13 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Build UI storybook
-        working-directory: ./packages/ui
+      - name: Build Storybook
+        working-directory: ./docs/showcase
         run: npm run build-storybook
       - uses: chromaui/action@v1
         # options required to the GitHub chromatic action
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GH_TOKEN }}
-          storybookBuildDir: ./packages/ui/build-sb
+          storybookBuildDir: ./docs/showcase/build-sb
 
