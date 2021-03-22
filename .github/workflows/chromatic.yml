@@ -34,7 +34,7 @@ jobs:
 
       - name: Build UI storybook
         working-directory: ./packages/ui
-        run: npm run build-storybook
+        run: npm run build-storybook && ls -GoAh build-sb
       - uses: chromaui/action@v1
         # options required to the GitHub chromatic action
         with:
