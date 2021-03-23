@@ -26,6 +26,15 @@ export const getViewAction = (
         };
     }
 
+    if (command.type === 'insets') {
+        return {
+            type: AppStateActions.insets,
+            payload: {
+                insets: command.insets,
+            },
+        };
+    }
+
     if (command.type === 'navigation') {
         return {
             type: AppStateActions.navigation,

@@ -53,7 +53,15 @@ export const createApp = (conf?: CanvasAppConfig): React.FC => {
     return React.memo(() => {
         const [state, dispatch] = React.useReducer(reducer, {
             history: [],
-            theme: 'sber',
+            ui: {
+                character: 'sber',
+                insets: {
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0,
+                },
+            }
         });
 
         const record = last(state.history);
@@ -130,13 +138,14 @@ export const createApp = (conf?: CanvasAppConfig): React.FC => {
         return (
             <CanvasAppContext.Provider value={{ assistant: assistantRef.current, configRoute  }}>
                 <Root
-                    theme={state.theme}
+                    theme={state.ui.character}
                     dispatch={dispatch}
                     sendData={sendData}
                     step={record?.step}
                     stateRef={stateRef}
                     nextRoute={configRoute?.next}
                     position={record?.position}
+                    uiState={state.ui}
                     Component={Component}
                     {...dataProps}
                 />
