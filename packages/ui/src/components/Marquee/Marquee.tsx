@@ -1,22 +1,22 @@
 import React, { FC } from 'react';
-import styled, { css, keyframes } from 'styled-components/macro';
+import styled, { css, keyframes } from 'styled-components';
 
-const runningString = keyframes`
+const marquee = keyframes`
     0% { transform: translateX(0%) }
     100% { transform: translateX(-100%) }
 `;
 
-const RunningStringText = styled.div<{ isPlaying?: boolean }>`
+const MarqueeText = styled.div<{ isPlaying?: boolean }>`
     width: max-content;
-    padding: 0 2.5rem;
+    padding-right: 4rem;
     animation: ${({ isPlaying }) =>
         isPlaying &&
         css`
-            ${runningString} 7s linear infinite;
+            ${marquee} 10s linear infinite;
         `};
 `;
 
-interface RunningStringProps {
+interface MarqueeProps {
     /**
      * Включить/выключить анимацию
      */
@@ -30,11 +30,11 @@ interface RunningStringProps {
 /**
  * Компонент для отображения бегущей строки
  */
-export const RunningString: FC<RunningStringProps> = ({ isPlaying = true, text, children }) => {
+export const Marquee: FC<MarqueeProps> = ({ isPlaying = true, text, children }) => {
     return (
         <>
-            <RunningStringText isPlaying={isPlaying}>{text || children}</RunningStringText>
-            <RunningStringText isPlaying={isPlaying}>{text || children}</RunningStringText>
+            <MarqueeText isPlaying={isPlaying}>{text || children}</MarqueeText>
+            <MarqueeText isPlaying={isPlaying}>{text || children}</MarqueeText>
         </>
     );
 };

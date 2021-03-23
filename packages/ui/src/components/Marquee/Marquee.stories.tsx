@@ -1,37 +1,37 @@
 import React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 import { InSpacing } from '../../helpers/StoryDecorators';
 import { Cell } from '../Cell';
 import { Footnote1 } from '../Typography';
 
-import { RunningString } from '.';
+import { Marquee } from '.';
 
 export default {
-    title: 'Content/RunningString',
-    component: RunningString,
+    title: 'Content/Marquee',
+    component: Marquee,
     decorators: [InSpacing],
 };
 
-const RunningStringWrapper = styled(Cell)`
+const MarqueeWrapper = styled(Cell)`
     width: 18rem;
     overflow: hidden;
 `;
 
 export const Default = () => {
     return (
-        <RunningStringWrapper
+        <MarqueeWrapper
             content={
-                <RunningString>
+                <Marquee>
                     <Footnote1>Очень очень длинный текст</Footnote1>
-                </RunningString>
+                </Marquee>
             }
         />
     );
 };
 
 export const Basic = () => {
-    return <RunningStringWrapper content={<RunningString text="Очень очень длинный текст" />} />;
+    return <MarqueeWrapper content={<Marquee text="Очень очень длинный текст" />} />;
 };
 
 Basic.parameters = {
