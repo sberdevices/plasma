@@ -1,8 +1,8 @@
 import { Reducer } from 'react';
-import { AssistantCharacterType } from '@sberdevices/assistant-client/dist/typings';
+import { AssistantCharacterType, AssistantInsetsCommand } from '@sberdevices/assistant-client/dist/typings';
 
 import { last, replaceLast } from '../utils/last';
-import { DetailPayload, EntityPayload, Screen, MultiGalleryViewPayload } from '../types';
+import { DetailPayload, EntityPayload, Screen, MultiGalleryViewPayload, VideoViewPayload } from '../types';
 
 interface HistoryRecord<T extends Screen, D> {
     data: D;
@@ -14,11 +14,13 @@ interface HistoryRecord<T extends Screen, D> {
 export type CurrentHistory =
     | HistoryRecord<Screen.gallery, MultiGalleryViewPayload>
     | HistoryRecord<Screen.entity, EntityPayload>
-    | HistoryRecord<Screen.detail, DetailPayload>;
+    | HistoryRecord<Screen.detail, DetailPayload>
+    | HistoryRecord<Screen.video, VideoViewPayload>;
 
 // eslint-disable-next-line no-shadow
 export enum AppStateActions {
     character = 'character',
+    insets = 'insets',
     navigation = 'navigation',
     popState = 'pop state',
     popStateWithUpdateHistory = 'pop state with update history',
@@ -30,6 +32,11 @@ export enum AppStateActions {
 
 export interface ThemePayload {
     theme: AssistantCharacterType;
+}
+
+type AssistantInsets = AssistantInsetsCommand['insets'];
+export interface InsetsPayload {
+    insets: AssistantInsets;
 }
 
 export interface NavigationPayload {
@@ -57,11 +64,16 @@ type HistoryAction =
 export type AppStateAction =
     | HistoryAction
     | { type: AppStateActions.character; payload: ThemePayload }
-    | { type: AppStateActions.navigation; payload: NavigationPayload };
+    | { type: AppStateActions.navigation; payload: NavigationPayload }
+    | { type: AppStateActions.insets; payload: InsetsPayload };
 
+export interface UIState {
+    character: AssistantCharacterType;
+    insets: AssistantInsets;
+}
 export interface AppState {
     history: Array<CurrentHistory>;
-    theme: AssistantCharacterType;
+    ui: UIState;
 }
 
 export const reducer: Reducer<AppState, AppStateAction> = (state, action) => {
@@ -77,7 +89,19 @@ export const reducer: Reducer<AppState, AppStateAction> = (state, action) => {
         case AppStateActions.character:
             return {
                 ...state,
-                theme: action.payload?.theme,
+                ui: {
+                    ...state.ui,
+                    character: action.payload?.theme,
+                },
+            };
+
+        case AppStateActions.insets:
+            return {
+                ...state,
+                ui: {
+                    ...state.ui,
+                    insets: action.payload.insets,
+                },
             };
 
         case AppStateActions.navigation:

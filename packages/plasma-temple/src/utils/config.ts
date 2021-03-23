@@ -15,6 +15,10 @@ export const defaultConfig: CanvasAppConfig = {
         {
             type: Screen.detail,
         },
+        {
+            type: Screen.video,
+            component: React.lazy(() => import('../templates/Video/Video')),
+        }
     ],
     header: {
         title: 'SmartApp Simple Temlate',

@@ -4,13 +4,16 @@ import { AssistantSmartAppData, createAssistant } from '@sberdevices/assistant-c
 import { Ratio } from '@sberdevices/ui/components/Image';
 
 import { InitializeParams } from './assistant';
-import { CurrentHistory, SetPositionPayload, SetStatePayload, SetStepPayload, AppStateAction } from './store/reducer';
+import { CurrentHistory, SetPositionPayload, SetStatePayload, SetStepPayload, AppStateAction, UIState } from './store/reducer';
+import { VideoPlayerProps } from './components/VideoPlayer/VideoPlayer';
+import { RenderMediaPlayerControlsFn } from './components/MediaPlayer/types';
 
 // eslint-disable-next-line no-shadow
 export enum Screen {
     gallery = 'Screen.Gallery',
     entity = 'Screen.Entity',
     detail = 'Screen.Detail',
+    video = 'Screen.Video',
 }
 
 export enum Axis {
@@ -95,6 +98,16 @@ export interface DetailPayload extends MetaPayload, HeaderPropsPayload {
     order?: string[];
 }
 
+export interface VideoItemViewPayload extends Pick<VideoPlayerProps, 'src' | 'startTime' | 'endTime' | 'poster'> {
+    id: string;
+    title: string;
+}
+export interface VideoViewPayload extends
+    MetaPayload,
+    Pick<VideoPlayerProps, 'autoPlay' | 'alwaysShowControls' | 'visibleControlList'> {
+    items: VideoItemViewPayload | VideoItemViewPayload[];
+}
+
 export interface OnDataApi {
     popState(): void;
     pushState(data: CurrentHistory): void;
@@ -146,7 +159,15 @@ export interface GalleryRoute extends BaseRoute<Screen.gallery> {
     galleryCard?: React.FC<GalleryCardProps>;
 }
 
-export type Route = BaseRoute<Screen.entity> | BaseRoute<Screen.detail> | GalleryRoute;
+export interface VideoRoute extends BaseRoute<Screen.video> {
+    renderCustomControls?: RenderMediaPlayerControlsFn<HTMLVideoElement>;
+}
+
+export type Route =
+    BaseRoute<Screen.entity>
+    | BaseRoute<Screen.detail>
+    | GalleryRoute
+    | VideoRoute;
 
 export type onPopStateFn = (historyState: CurrentHistory) => Promise<CurrentHistory> | CurrentHistory;
 
@@ -194,6 +215,7 @@ export interface PageProps<D = any> {
     sendData: AssistantInstance['sendData'];
     step: number;
     position: number;
+    uiState: UIState;
     stateRef: React.MutableRefObject<AppState>;
     nextRoute?: {
         type: Screen;
