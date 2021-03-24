@@ -7,13 +7,17 @@ const marquee = keyframes`
 `;
 
 const MarqueeText = styled.div<{ isPlaying?: boolean }>`
-    width: max-content;
     padding-right: 4rem;
     animation: ${({ isPlaying }) =>
         isPlaying &&
         css`
             ${marquee} 10s linear infinite;
         `};
+`;
+
+const Wrapper = styled.div`
+    width: max-content;
+    display: flex;
 `;
 
 interface MarqueeProps {
@@ -32,9 +36,9 @@ interface MarqueeProps {
  */
 export const Marquee: FC<MarqueeProps> = ({ isPlaying = true, text, children }) => {
     return (
-        <>
+        <Wrapper>
             <MarqueeText isPlaying={isPlaying}>{text || children}</MarqueeText>
-            <MarqueeText isPlaying={isPlaying}>{text || children}</MarqueeText>
-        </>
+            {isPlaying && <MarqueeText isPlaying={isPlaying}>{text || children}</MarqueeText>}
+        </Wrapper>
     );
 };
