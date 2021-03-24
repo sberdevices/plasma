@@ -1,15 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Cell, CellDisclosure, CellIcon } from '@sberdevices/ui/components/Cell';
+import { TextBox, TextBoxBiggerTitle, TextBoxSubTitle } from '@sberdevices/ui/components/TextBox';
 
-import { Cell, CellDisclosure, CellIcon } from '../../../components/Cell';
-import { TextBox, TextBoxBiggerTitle, TextBoxSubTitle } from '../../../components/TextBox';
-import { InContainerDecorator, ShowcaseDashedBorder } from '../../../helpers';
-import { SectionName } from '../../SectionName';
-import { ThemeProvider } from '../../ThemeProvider';
+import { ShowcasePanel, ShowcaseSectionName, UIStoryDecorator, InContainerDecorator } from '../../helpers';
 
 export default {
     title: 'Showcase/Mobile/Cells',
-    decorators: [InContainerDecorator],
+    decorators: [UIStoryDecorator, InContainerDecorator],
     parameters: {
         chromatic: {
             disable: true,
@@ -20,9 +18,12 @@ export default {
     },
 };
 
-const ContentWrapper = styled.div`
-    display: flex;
-    padding: 40px 80px;
+const StyledPanel = styled(ShowcasePanel)`
+    width: 20rem;
+    flex-direction: column;
+`;
+const StyledRow = styled.div`
+    margin-bottom: 1.875rem;
 `;
 
 const variants = [
@@ -45,7 +46,7 @@ const variants = [
     />,
     <Cell
         content={<TextBoxBiggerTitle>Headline 1</TextBoxBiggerTitle>}
-        left={<CellIcon as="img" src="./images/avocado.png" alt="avocado" />}
+        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
     />,
     <Cell
         content={
@@ -54,22 +55,18 @@ const variants = [
                 <TextBoxSubTitle>SubTitle</TextBoxSubTitle>
             </TextBox>
         }
-        left={<CellIcon as="img" src="./images/avocado.png" alt="avocado" />}
+        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
         alignLeft="top"
     />,
 ];
 
 export const SectionHeader = () => (
-    <ThemeProvider>
-        <SectionName title="Section Header" description="Заглавные ячейки для списков и других смысловых групп" />
-        <ContentWrapper>
-            <ShowcaseDashedBorder style={{ width: 320 }}>
-                {variants.map((variant, i) => (
-                    <div key={i} style={{ marginBottom: 30 }}>
-                        {variant}
-                    </div>
-                ))}
-            </ShowcaseDashedBorder>
-        </ContentWrapper>
-    </ThemeProvider>
+    <>
+        <ShowcaseSectionName title="Section Header" subTitle="Заглавные ячейки для списков и других смысловых групп" />
+        <StyledPanel>
+            {variants.map((variant, i) => (
+                <StyledRow key={i}>{variant}</StyledRow>
+            ))}
+        </StyledPanel>
+    </>
 );

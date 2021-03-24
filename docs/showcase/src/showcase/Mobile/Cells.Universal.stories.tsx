@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { primary, tertiary } from '@sberdevices/plasma-tokens';
-import { IconPlus, IconSearch, IconCross } from '@sberdevices/plasma-icons';
-
-import { CellDisclosure, CellIcon, CellListItem, CellRight } from '../../../components/Cell';
+import { CellDisclosure, CellIcon, CellListItem, CellRight } from '@sberdevices/ui/components/Cell';
 import {
     TextBox,
     TextBoxBiggerTitle,
@@ -11,14 +9,21 @@ import {
     TextBoxTitle,
     TextBoxSubTitle,
     TextBoxCaption,
-} from '../../../components/TextBox';
-import { Stepper, StepperButton, StepperRoot, StepperValue } from '../../../components/Stepper';
-import { ShowcaseDashedBorder } from '../../../helpers';
-import { SectionName } from '../../SectionName';
-import { ThemeProvider } from '../../ThemeProvider';
+} from '@sberdevices/ui/components/TextBox';
+import { Stepper, StepperButton, StepperRoot, StepperValue } from '@sberdevices/ui/components/Stepper';
+
+import {
+    ShowcasePanel,
+    ShowcaseDashedBorder,
+    ShowcaseSectionName,
+    IconPlaceholder,
+    UIStoryDecorator,
+    InContainerDecorator,
+} from '../../helpers';
 
 export default {
     title: 'Showcase/Mobile/Cells',
+    decorators: [UIStoryDecorator, InContainerDecorator],
     parameters: {
         chromatic: {
             disable: true,
@@ -29,15 +34,10 @@ export default {
     },
 };
 
-const Container = styled.div`
-    padding: 0 80px;
+const StyledPanel = styled(ShowcasePanel)`
+    width: 22.5rem;
+    flex-direction: column;
 `;
-
-const ContentWrapper = styled.div`
-    display: flex;
-    padding: 40px 80px;
-`;
-
 const HeightBox = styled.div<{ h: number }>`
     height: ${({ h = 0 }) => h}px;
 `;
@@ -63,7 +63,7 @@ const variantsSimple = [
     />,
     <CellListItem
         content={<TextBox title="Title" />}
-        left={<CellIcon as="img" src="./images/avocado.png" alt="avocado" />}
+        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
         right={
             <>
                 <TextBox title="Detail" />
@@ -73,7 +73,7 @@ const variantsSimple = [
     />,
     <CellListItem
         content={<TextBox title="Title" subTitle="SubTitle" />}
-        left={<CellIcon as="img" src="./images/avocado.png" alt="avocado" />}
+        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
         right={
             <>
                 <TextBox title="Detail" />
@@ -85,11 +85,11 @@ const variantsSimple = [
     <CellListItem content={<TextBox title="Title" subTitle="SubTitle" />} />,
     <CellListItem
         content={<TextBox title="Title" />}
-        left={<CellIcon as="img" src="./images/avocado.png" alt="avocado" />}
+        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
     />,
     <CellListItem
         content={<TextBox title="Title" subTitle="SubTitle" />}
-        left={<CellIcon as="img" src="./images/avocado.png" alt="avocado" />}
+        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
     />,
 ];
 
@@ -114,7 +114,7 @@ const variantsSimpleWithoutBorder = [
     />,
     <CellListItem
         content={<TextBox title="Title" />}
-        left={<CellIcon as="img" src="./images/avocado.png" alt="avocado" />}
+        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
         right={
             <>
                 <TextBox title="Detail" />
@@ -124,7 +124,7 @@ const variantsSimpleWithoutBorder = [
     />,
     <CellListItem
         content={<TextBox title="Title" subTitle="SubTitle" />}
-        left={<CellIcon as="img" src="./images/avocado.png" alt="avocado" />}
+        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
         right={
             <>
                 <TextBox title="Detail" />
@@ -136,11 +136,11 @@ const variantsSimpleWithoutBorder = [
     <CellListItem content={<TextBox title="Title" subTitle="SubTitle" />} />,
     <CellListItem
         content={<TextBox title="Title" />}
-        left={<CellIcon as="img" src="./images/avocado.png" alt="avocado" />}
+        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
     />,
     <CellListItem
         content={<TextBox title="Title" subTitle="SubTitle" />}
-        left={<CellIcon as="img" src="./images/avocado.png" alt="avocado" />}
+        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
     />,
 ];
 
@@ -154,7 +154,7 @@ const variantsComplex = [
                 <TextBoxCaption>Status</TextBoxCaption>
             </TextBox>
         }
-        left={<CellIcon as="img" src="./images/avocado.png" alt="avocado" />}
+        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
         alignLeft="top"
         alignRight="top"
         right={<TextBox title="Detail" subTitle="Info" />}
@@ -179,7 +179,7 @@ const variantsComplex = [
                 <TextBoxCaption>Caption</TextBoxCaption>
             </TextBox>
         }
-        left={<CellIcon as="img" src="./images/avocado.png" alt="avocado" />}
+        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
         alignRight="top"
         right={<TextBox title="Detail" subTitle="Info" />}
     />,
@@ -197,83 +197,78 @@ const variantsComplex = [
 ];
 
 export const Universal = () => (
-    <ThemeProvider>
-        <SectionName title="Simple" description="Ячейки с небольшим набором полей" />
-        <ContentWrapper>
-            <ShowcaseDashedBorder style={{ padding: 20, width: 360 }}>
-                {variantsSimple.map((variant, i) => (
-                    <React.Fragment key={i}>{variant}</React.Fragment>
-                ))}
-                {variantsSimpleWithoutBorder.map((variant, i) => (
-                    <div key={`10${String(i)}`} style={{ marginBottom: 20 }}>
-                        {variant}
-                    </div>
-                ))}
-            </ShowcaseDashedBorder>
-        </ContentWrapper>
-        <SectionName title="Complex" description="Ячейки с большим набором полей" />
-        <ContentWrapper>
-            <ShowcaseDashedBorder style={{ padding: 20, width: 360 }}>
-                {variantsComplex.map((variant, i) => (
-                    <React.Fragment key={i}>{variant}</React.Fragment>
-                ))}
-                {variantsComplex.map((variant, i) => (
-                    <div key={`10${String(i)}`} style={{ marginBottom: 20 }}>
-                        {variant}
-                    </div>
-                ))}
-            </ShowcaseDashedBorder>
-        </ContentWrapper>
-        <SectionName title="TextBox" description="Текстовый блок, используемый в ячейках" />
-        <ContentWrapper>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <div style={{ paddingLeft: 20 }}>
-                    <TextBox title="Title" />
-                    <HeightBox h={20} />
-                    <TextBox title="Title" subTitle="SubTitle" />
-                    <HeightBox h={20} />
+    <>
+        <ShowcaseSectionName title="Simple" subTitle="Ячейки с небольшим набором полей" />
+        <StyledPanel>
+            {variantsSimple.map((variant, i) => (
+                <React.Fragment key={i}>{variant}</React.Fragment>
+            ))}
+            {variantsSimpleWithoutBorder.map((variant, i) => (
+                <div key={`10${String(i)}`} style={{ marginBottom: 20 }}>
+                    {variant}
                 </div>
-                <ShowcaseDashedBorder style={{ padding: 20, width: 200 }}>
-                    <TextBox>
-                        <TextBoxSubTitle color={primary}>Long text</TextBoxSubTitle>
-                    </TextBox>
-                    <HeightBox h={24} />
-                    <TextBox>
-                        <TextBoxSubTitle color={primary}>Long text</TextBoxSubTitle>
-                        <TextBoxSubTitle color={tertiary}>Description</TextBoxSubTitle>
-                    </TextBox>
-                </ShowcaseDashedBorder>
+            ))}
+        </StyledPanel>
+        <ShowcaseSectionName title="Complex" subTitle="Ячейки с большим набором полей" />
+        <StyledPanel>
+            {variantsComplex.map((variant, i) => (
+                <React.Fragment key={i}>{variant}</React.Fragment>
+            ))}
+            {variantsComplex.map((variant, i) => (
+                <div key={`10${String(i)}`} style={{ marginBottom: 20 }}>
+                    {variant}
+                </div>
+            ))}
+        </StyledPanel>
+        <ShowcaseSectionName title="TextBox" subTitle="Текстовый блок, используемый в ячейках" />
+        <StyledPanel>
+            <ShowcaseDashedBorder>
+                <TextBox title="Title" />
+                <HeightBox h={20} />
+                <TextBox title="Title" subTitle="SubTitle" />
+                <HeightBox h={20} />
+            </ShowcaseDashedBorder>
+            <HeightBox h={24} />
+            <ShowcaseDashedBorder>
+                <TextBox>
+                    <TextBoxSubTitle color={primary}>Long text</TextBoxSubTitle>
+                </TextBox>
                 <HeightBox h={24} />
-                <ShowcaseDashedBorder style={{ padding: 20, width: 200 }}>
-                    <TextBox title="Title" subTitle="SubTitle" />
-                    <HeightBox h={20} />
-                    <TextBox label="Label" title="Title" />
-                    <HeightBox h={20} />
-                    <TextBox title="Headline" subTitle="SubTitle" size="l" />
-                    <HeightBox h={20} />
-                    <TextBox title="Headline" label="Label" size="l" />
-                    <HeightBox h={20} />
-                    <TextBox>
-                        <TextBoxBiggerTitle>Value</TextBoxBiggerTitle>
-                        <TextBoxSubTitle>SubTitle</TextBoxSubTitle>
-                    </TextBox>
-                    <HeightBox h={20} />
-                    <TextBox>
-                        <TextBoxLabel>Label</TextBoxLabel>
-                        <TextBoxBiggerTitle>Value</TextBoxBiggerTitle>
-                    </TextBox>
-                </ShowcaseDashedBorder>
-                <HeightBox h={24} />
-                <ShowcaseDashedBorder style={{ padding: 20, width: 200 }}>
-                    <TextBox title="Title" subTitle="SubTitle" caption="Caption" />
-                    <HeightBox h={20} />
-                    <TextBox title="Title" subTitle="SubTitle" label="Label" />
-                </ShowcaseDashedBorder>
-            </div>
-        </ContentWrapper>
-        <SectionName title="Right" description="Правая часть ячейки, обычно это блок действий или информации" />
-        <ContentWrapper>
-            <ShowcaseDashedBorder style={{ padding: 20, width: 108, marginRight: 20 }}>
+                <TextBox>
+                    <TextBoxSubTitle color={primary}>Long text</TextBoxSubTitle>
+                    <TextBoxSubTitle color={tertiary}>Description</TextBoxSubTitle>
+                </TextBox>
+            </ShowcaseDashedBorder>
+            <HeightBox h={24} />
+            <ShowcaseDashedBorder>
+                <TextBox title="Title" subTitle="SubTitle" />
+                <HeightBox h={20} />
+                <TextBox label="Label" title="Title" />
+                <HeightBox h={20} />
+                <TextBox title="Headline" subTitle="SubTitle" size="l" />
+                <HeightBox h={20} />
+                <TextBox title="Headline" label="Label" size="l" />
+                <HeightBox h={20} />
+                <TextBox>
+                    <TextBoxBiggerTitle>Value</TextBoxBiggerTitle>
+                    <TextBoxSubTitle>SubTitle</TextBoxSubTitle>
+                </TextBox>
+                <HeightBox h={20} />
+                <TextBox>
+                    <TextBoxLabel>Label</TextBoxLabel>
+                    <TextBoxBiggerTitle>Value</TextBoxBiggerTitle>
+                </TextBox>
+            </ShowcaseDashedBorder>
+            <HeightBox h={24} />
+            <ShowcaseDashedBorder>
+                <TextBox title="Title" subTitle="SubTitle" caption="Caption" />
+                <HeightBox h={20} />
+                <TextBox title="Title" subTitle="SubTitle" label="Label" />
+            </ShowcaseDashedBorder>
+        </StyledPanel>
+        <ShowcaseSectionName title="Right" subTitle="Правая часть ячейки, обычно это блок действий или информации" />
+        <StyledPanel>
+            <ShowcaseDashedBorder>
                 <CellRight align="center">
                     <TextBox title="Detail" />
                 </CellRight>
@@ -292,32 +287,35 @@ export const Universal = () => (
                     <CellDisclosure />
                 </CellRight>
             </ShowcaseDashedBorder>
-            <ShowcaseDashedBorder style={{ padding: 20, width: 120, marginRight: 20 }}>
+            <HeightBox h={40} />
+            <ShowcaseDashedBorder>
                 <CellRight align="center">
-                    <IconPlus />
+                    <IconPlaceholder />
                 </CellRight>
                 <HeightBox h={20} />
                 <CellRight align="center">
-                    <IconPlus />
+                    <IconPlaceholder />
                     <div style={{ width: 16 }} />
-                    <IconSearch />
+                    <IconPlaceholder />
                 </CellRight>
             </ShowcaseDashedBorder>
-            <ShowcaseDashedBorder style={{ padding: 20, width: 64, marginRight: 20 }}>
+            <HeightBox h={40} />
+            <ShowcaseDashedBorder>
                 <CellRight align="center">
                     <CellDisclosure />
                 </CellRight>
             </ShowcaseDashedBorder>
-            <ShowcaseDashedBorder style={{ padding: 20, width: 108 }}>
+            <HeightBox h={40} />
+            <ShowcaseDashedBorder>
                 <CellRight align="center">
                     <Stepper value={2} onChange={() => undefined} />
                 </CellRight>
                 <HeightBox h={20} />
                 <CellRight align="center">
                     <StepperRoot>
-                        <StepperButton view="critical" icon={<IconCross />} onClick={() => undefined} />
+                        <StepperButton view="critical" icon={<IconPlaceholder size="xs" />} onClick={() => undefined} />
                         <StepperValue value={0} />
-                        <StepperButton icon={<IconPlus />} onClick={() => undefined} />
+                        <StepperButton icon={<IconPlaceholder size="xs" />} onClick={() => undefined} />
                     </StepperRoot>
                 </CellRight>
                 <HeightBox h={20} />
@@ -325,16 +323,16 @@ export const Universal = () => (
                     <Stepper max={3} value={3} onChange={() => undefined} />
                 </CellRight>
             </ShowcaseDashedBorder>
-        </ContentWrapper>
-        <SectionName title="Icon" description="Размерный ряд иконок для ячеек" />
-        <ContentWrapper>
-            <ShowcaseDashedBorder style={{ display: 'flex', alignItems: 'flex-start', width: 258, padding: 20 }}>
-                <CellIcon size="s" as="img" src="./images/avocado.png" alt="avocado" />
+        </StyledPanel>
+        <ShowcaseSectionName title="Icon" subTitle="Размерный ряд иконок для ячеек" />
+        <StyledPanel>
+            <ShowcaseDashedBorder>
+                <CellIcon size="s" as="img" src="./images/320_320_12.jpg" alt="avocado" />
                 <div style={{ display: 'inline-block', width: 1 }} />
-                <CellIcon size="m" as="img" src="./images/avocado.png" alt="avocado" />
+                <CellIcon size="m" as="img" src="./images/320_320_12.jpg" alt="avocado" />
                 <div style={{ display: 'inline-block', width: 1 }} />
-                <CellIcon size="l" as="img" src="./images/avocado.png" alt="avocado" />
+                <CellIcon size="l" as="img" src="./images/320_320_12.jpg" alt="avocado" />
             </ShowcaseDashedBorder>
-        </ContentWrapper>
-    </ThemeProvider>
+        </StyledPanel>
+    </>
 );
