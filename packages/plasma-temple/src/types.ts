@@ -76,7 +76,7 @@ export interface ItemViewEntity extends MetaPayload {
 }
 
 export interface EntityPayload extends MetaPayload, HeaderPropsPayload {
-    background: MediaObject;
+    background?: MediaObject;
     entities: Array<ItemViewEntity>;
     id: string | number;
     description: { title: string; content: string }[];
