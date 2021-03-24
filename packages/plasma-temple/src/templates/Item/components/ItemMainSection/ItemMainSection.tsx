@@ -15,7 +15,7 @@ interface ItemCellProps {
 export interface ItemMainSectionProps {
     title: string;
     subtitle: string;
-    cover: string;
+    cover?: string;
     description?: ItemCellProps[];
     itemShowButtonText: string;
     onItemShow: () => void;
@@ -61,7 +61,7 @@ export const ItemMainSection: React.FC<UnifiedComponentProps<ItemMainSectionProp
 
     return (
         <Container withSpatNav>
-            <FullScreenBackground src={cover} />
+            {cover && <FullScreenBackground src={cover} />}
             <Title>{title}</Title>
             <Subtitle>{subtitle}</Subtitle>
             {description && (
