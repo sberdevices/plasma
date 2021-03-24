@@ -92,7 +92,7 @@ export const Item: React.FC<PageProps<EntityPayload>> = ({ data, header, stateRe
             <Header {...header} />
 
             <ItemMainSection
-                cover={getImageSrc(data.background.src)}
+                cover={data.background && getImageSrc(data.background.src)}
                 title={data.title}
                 subtitle={data.meta?.provider.name}
                 description={data.description}
