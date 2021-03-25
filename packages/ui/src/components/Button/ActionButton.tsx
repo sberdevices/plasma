@@ -1,19 +1,15 @@
-import React from 'react';
 import styled from 'styled-components';
-import { Button as BaseButton, ButtonProps as BaseButtonProps } from '@sberdevices/plasma-core/components/Button';
-import { PickOptional } from '@sberdevices/plasma-core/types';
+import { Button as BaseButton } from '@sberdevices/plasma-core/components/Button';
+import type { ButtonProps as BaseProps, SizeProps, ViewProps } from '@sberdevices/plasma-core/components/Button/Button';
 
 import { applyInteraction, InteractionProps } from '../../mixins';
 
 /**
  * Интерфейс кнопки.
  */
-export interface ActionButtonProps
-    extends PickOptional<BaseButtonProps<'l' | 'm' | 's'>, 'view' | 'size' | 'pin'>,
-        InteractionProps,
-        React.ButtonHTMLAttributes<HTMLButtonElement> {}
+export type ActionButtonProps = BaseProps & Partial<SizeProps<'l' | 'm' | 's'> & ViewProps> & InteractionProps;
 
-const downsize: Record<string, BaseButtonProps['size']> = {
+const downsize: Record<string, SizeProps['size']> = {
     l: 'xs',
     m: 'xxs',
     s: 'xxxs',
@@ -25,7 +21,7 @@ const downsize: Record<string, BaseButtonProps['size']> = {
  * Размеры ``ActionButton`` меньше размеров ``Button``.
  * Обладает теми же цветами, размерами и модификаторами, что и основная кнопка.
  */
-export const ActionButton = styled(BaseButton).attrs(({ size, ...rest }) => {
+export const ActionButton = styled(BaseButton).attrs(({ size, ...rest }: ActionButtonProps) => {
     /**
      * Перевод в уменьшенные размеры
      */
@@ -39,6 +35,7 @@ export const ActionButton = styled(BaseButton).attrs(({ size, ...rest }) => {
 
 ActionButton.defaultProps = {
     ...BaseButton.defaultProps,
+    view: 'secondary',
     size: 'm',
     outlined: true,
     scaleOnInteraction: true,

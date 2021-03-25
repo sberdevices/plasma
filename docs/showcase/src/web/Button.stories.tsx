@@ -28,13 +28,13 @@ const defaults = { focused: false, disabled: false, resizible: true, text: 'Labe
 const cols = {
     // ToDo: Hover, Pressed
     Resizible: { ...defaults },
-    'Resizible + Focused': { ...defaults, focused: true },
+    'Resizible + Focused': { ...defaults, outlined: true, focused: true },
     'Resizible + Disabled': { ...defaults, disabled: true },
     Auto: { ...defaults, resizible: false },
     Squared: { ...defaults, square: true, text: '' },
-    'Squared + Focused': { ...defaults, square: true, text: '', focused: true },
+    'Squared + Focused': { ...defaults, square: true, text: '', outlined: true, focused: true },
     Circle: { ...defaults, square: true, text: '', pin: 'circle-circle' },
-    'Circle + Focused': { ...defaults, square: true, text: '', focused: true, pin: 'circle-circle' },
+    'Circle + Focused': { ...defaults, square: true, text: '', outlined: true, focused: true, pin: 'circle-circle' },
 };
 
 export const Default = () => (
