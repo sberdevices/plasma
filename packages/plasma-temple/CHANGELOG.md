@@ -1,3 +1,22 @@
+# v0.9.0 (Thu Mar 25 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-template): Video player [#25](https://github.com/sberdevices/pashka/pull/25) (kvpolyanskiy@sberbank.ru [@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-template): Video player (kvpolyanskiy@sberbank.ru)
+
+#### 🐛 Bug Fix
+
+- docs(plasma-temple): add storybook configs [#30](https://github.com/sberdevices/pashka/pull/30) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 3
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Konstantin Polyanskiy (kvpolyanskiy@sberbank.ru)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v0.8.0 (Thu Mar 25 2021)
 
 #### 🚀 Enhancement
