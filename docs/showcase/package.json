@@ -1,0 +1,56 @@
+{
+    "name": "@sberdevices/showcase",
+    "private": true,
+    "version": "0.1.0",
+    "description": "SberDevices Design System",
+    "main": "",
+    "files": [],
+    "repository": {
+        "type": "git",
+        "url": "ssh://git@github.com:sberdevices/plasma.git",
+        "directory": "docs/showcase"
+    },
+    "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
+    "license": "Sber Public License at-nc-sa v.2",
+    "publishConfig": {
+        "access": "restricted"
+    },
+    "dependencies": {},
+    "peerDependencies": {},
+    "devDependencies": {
+        "@sberdevices/plasma-core": "^0.5.0",
+        "@sberdevices/plasma-icons": "^0.2.0",
+        "@sberdevices/plasma-tokens": "^0.4.0",
+        "@sberdevices/plasma-tokens-web": "^0.1.0",
+        "@sberdevices/plasma-web": "^0.2.0",
+        "@sberdevices/ui": "^0.20.0",
+        "@storybook/addon-actions": "6.0.0-rc.13",
+        "@storybook/addon-backgrounds": "6.0.0-rc.13",
+        "@storybook/addon-docs": "6.1.15",
+        "@storybook/addon-knobs": "6.0.0-rc.13",
+        "@storybook/addon-toolbars": "6.0.22",
+        "@storybook/addon-viewport": "6.0.0-rc.13",
+        "@storybook/preset-create-react-app": "3.1.4",
+        "@storybook/react": "6.0.0-rc.13",
+        "@types/react": "16.9.38",
+        "@types/react-dom": "16.9.8",
+        "@types/styled-components": "5.1.0",
+        "babel-loader": "8.1.0",
+        "chromatic": "5.2.0",
+        "react": "16.13.1",
+        "react-dom": "16.13.1",
+        "react-scripts": "3.4.1",
+        "sb": "6.0.0-rc.13",
+        "styled-components": "5.1.1",
+        "typescript": "3.9.5"
+    },
+    "scripts": {
+        "build-storybook": "npm run storybook:build",
+        "build:storybook": "npm run storybook:build && npm run storybook:extract",
+        "storybook": "start-storybook -s .storybook/public -p ${PORT:-6006} -c .storybook",
+        "storybook:build": "build-storybook --quiet -s .storybook/public -c .storybook -o build-sb",
+        "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
+        "chromatic": "npx chromatic"
+    },
+    "contributors": ["Vasiliy Loginevskiy", "Anton Vinogradov", "Fanil Zubairov"]
+}
