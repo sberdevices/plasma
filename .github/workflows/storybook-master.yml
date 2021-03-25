@@ -53,9 +53,9 @@ jobs:
       - name: Update and clean storybook
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.SH_HOST }}
-          username: ${{ secrets.SH_LOGIN }}
-          key: ${{ secrets.SH_KEY }}
+          host: ${{ secrets.SB_HOST }}
+          username: ${{ secrets.SB_LOGIN }}
+          key: ${{ secrets.SB_KEY }}
           script: |
             cd ../../var/www/plasma
             rm -rf temple/
