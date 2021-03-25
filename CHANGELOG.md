@@ -2,6 +2,28 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-temple@0.9.0`
+  - feat(plasma-template): Video player [#25](https://github.com/sberdevices/pashka/pull/25) (kvpolyanskiy@sberbank.ru [@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### 🐛 Bug Fix
+
+- ci: fix gh-actions [#31](https://github.com/sberdevices/pashka/pull/31) ([@Yeti-or](https://github.com/Yeti-or))
+- ci(plasma-temple): add storybook workflow [#30](https://github.com/sberdevices/pashka/pull/30) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-temple@0.9.0`
+  - docs(plasma-temple): add storybook configs [#30](https://github.com/sberdevices/pashka/pull/30) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 3
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Konstantin Polyanskiy (kvpolyanskiy@sberbank.ru)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# (Thu Mar 25 2021)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-temple@0.8.0`
   - feat(plasma-template): entity background is optional [#29](https://github.com/sberdevices/pashka/pull/29) (kvpolyanskiy@sberbank.ru [@kvpolyanskiy](https://github.com/kvpolyanskiy))
 
