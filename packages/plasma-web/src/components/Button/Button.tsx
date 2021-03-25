@@ -5,12 +5,8 @@ import {
     ButtonText,
     buttonViews as baseViews,
     getRadiusesMixin,
-} from '@sberdevices/plasma-core/components/Button/Button';
-import type {
-    ButtonProps as BaseButtonProps,
-    AsElement as BaseAsElement,
-    ButtonContentProps,
-} from '@sberdevices/plasma-core/components/Button/Button';
+} from '@sberdevices/plasma-core/components/Button';
+import type { ButtonProps as BaseProps, AsElement as BaseElement } from '@sberdevices/plasma-core/components/Button';
 import type { DisabledProps } from '@sberdevices/plasma-core/mixins';
 import { black, white } from '@sberdevices/plasma-tokens-web';
 
@@ -66,7 +62,7 @@ const buttonViews = {
 };
 
 export interface ViewProps {
-    view: keyof typeof buttonViews;
+    view?: keyof typeof buttonViews;
 }
 
 const applyRadiuses = getRadiusesMixin({
@@ -97,12 +93,12 @@ const StyledButton = styled(BaseButton)<ViewProps>`
     transition: background-color 0.1s ease-in-out;
 `;
 
-export type AsElement = BaseAsElement;
+export type AsElement = BaseElement;
 
 /**
  * Интерфейс кнопки.
  */
-export type ButtonProps = BaseButtonProps & ButtonContentProps & ViewProps;
+export type ButtonProps = BaseProps<ViewProps>;
 
 /**
  * Основной компонент для создания кнопок.
@@ -124,7 +120,7 @@ export const Button = React.forwardRef<AsElement, ButtonProps>(
         const { text, contentLeft, contentRight, children, ...rest } = props;
 
         return (
-            <StyledButton<typeof as>
+            <StyledButton
                 as={as}
                 ref={ref}
                 view={view}

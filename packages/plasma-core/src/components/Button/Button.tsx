@@ -28,18 +28,21 @@ const buttonSizes = {
         height: '3.5rem',
         paddingY: '1rem',
         paddingX: '1.625rem',
+        paddingXContent: '1.625rem',
         paddingXResizible: '1.25rem',
     },
     m: {
         height: '3rem',
         paddingY: '0.75rem',
         paddingX: '1.375rem',
+        paddingXContent: '1.5rem',
         paddingXResizible: '1.25rem',
     },
     s: {
         height: '2.5rem',
         paddingY: '0.5rem',
         paddingX: '1.125rem',
+        paddingXContent: '1.25rem',
         paddingXResizible: '1.25rem',
     },
 };
@@ -112,7 +115,7 @@ interface ViewProps {
 /**
  * Интерфейс для обхода контентных опций
  */
-export type ButtonContentProps =
+type ContentProps =
     | {
           /**
            * Контент кнопки. При указании этого свойства contentLeft, contentRight и text не применяются
@@ -144,25 +147,37 @@ export type ButtonContentProps =
           contentLeft?: never;
       };
 
+interface IsContentProps {
+    isContentLeft: boolean;
+    isContentRight: boolean;
+}
+
 /**
  * Интерфейс для стилизованного компонента, не включая контентных свойств
  */
-export interface StyledButtonProps
+interface StyledButtonProps
     extends SizeProps,
         ViewProps,
         PinProps,
         FocusProps,
         OutlinedProps,
         ShiftProps,
-        DisabledProps {}
+        DisabledProps,
+        IsContentProps {}
 
 /**
  * Интерфейс кнопки.
  */
-export type ButtonProps = Partial<StyledButtonProps> &
+export type ButtonProps<P> = P &
+    Partial<SizeProps> &
+    Partial<PinProps> &
+    FocusProps &
+    OutlinedProps &
+    ShiftProps &
+    DisabledProps &
     AsProps &
     (JSX.IntrinsicElements['button'] & Omit<JSX.IntrinsicElements['a'], 'type'> & JSX.IntrinsicElements['span']) &
-    ButtonContentProps;
+    ContentProps;
 
 /**
  * Миксин размеров кнопки по параметрам
@@ -171,16 +186,24 @@ export const getSizesMixin = (sizes: any, typography: any) => ({
     size,
     shiftLeft,
     shiftRight,
+    isContentLeft,
+    isContentRight,
     square,
     resizible,
 }: StyledButtonProps) => {
-    // eslint-disable-next-line no-nested-ternary
-    const paddingX = square ? sizes[size].paddingY : resizible ? sizes[size].paddingXResizible : sizes[size].paddingX;
-    const padding = `${sizes[size].paddingY} ${paddingX}`;
+    let { paddingX } = sizes[size];
+
+    if (square) {
+        paddingX = sizes[size].paddingy;
+    } else if (resizible) {
+        paddingX = sizes[size].paddingXResizible;
+    } else if (isContentLeft || isContentRight) {
+        paddingX = sizes[size].paddingXContent;
+    }
 
     return css`
         height: ${sizes[size].height};
-        padding: ${padding};
+        padding: ${sizes[size].paddingY} ${paddingX};
 
         ${resizible && 'width: 100%;'}
         ${square && ` width: ${sizes[size].height};`}
@@ -210,10 +233,7 @@ const applyRadiuses = getRadiusesMixin(buttonRadiuses);
  */
 const applyViews = ({ view }: StyledButtonProps) => buttonViews[view];
 
-export const ButtonText = styled.span<{
-    isContentLeft?: boolean;
-    isContentRight?: boolean;
-}>`
+export const ButtonText = styled.span<IsContentProps>`
     box-sizing: border-box;
 
     overflow: hidden;
@@ -247,4 +267,4 @@ export const Button = styled.button<StyledButtonProps>`
     ${applyDisabled}
 `;
 
-export type AsElement = HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement;
+export type BaseElement = HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement;
