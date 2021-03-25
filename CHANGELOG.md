@@ -1,3 +1,17 @@
+# (Thu Mar 25 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@0.8.0`
+  - feat(plasma-template): entity background is optional [#29](https://github.com/sberdevices/pashka/pull/29) (kvpolyanskiy@sberbank.ru [@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Konstantin Polyanskiy (kvpolyanskiy@sberbank.ru)
+
+---
+
 # (Wed Mar 17 2021)
 
 #### 🚀 Enhancement
