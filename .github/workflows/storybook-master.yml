@@ -1,0 +1,63 @@
+name: Master storybook
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  storybook:
+    name: Build
+    runs-on: ubuntu-latest
+    env:
+      NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Prepare repository
+        run: git fetch --unshallow --tags
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: npm-deps-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            npm-deps-${{ hashFiles('package-lock.json') }}
+
+      - name: Setup plasma-temple
+        run: |
+          npm i
+          npx lerna bootstrap --scope="@sberdevices/plasma-temple"
+
+      - name: Build storybook
+        run: |
+          npm run build-storybook --prefix="./packages/plasma-temple"
+          mkdir ../build
+          cp -R ./packages/plasma-temple/build-sb ../build/temple-next
+
+      - name: Upload storybook build
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          host: ${{ secrets.SB_HOST }}
+          username: ${{ secrets.SB_LOGIN }}
+          privateKey: ${{ secrets.SB_KEY }}
+          local: "../build"
+          remote: "/var/www/plasma"
+
+      - name: Update and clean storybook
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SH_HOST }}
+          username: ${{ secrets.SH_LOGIN }}
+          key: ${{ secrets.SH_KEY }}
+          script: |
+            cd ../../var/www/plasma
+            rm -rf temple/
+            mv temple-next temple
+

@@ -1,0 +1,93 @@
+name: PR storybook
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  storybook:
+    name: Build
+    runs-on: ubuntu-latest
+    env:
+      NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
+      PR_NAME: pr-${{ github.event.number }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Prepare repository
+        run: git fetch --unshallow --tags
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: npm-deps-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            npm-deps-${{ hashFiles('package-lock.json') }}
+
+      - name: Selective
+        run: |
+          list=$(npx lerna changed -p)
+          if [ $? -eq 1 ]; then
+              echo "Publish storybook only for plasma-temple"
+              exit 0;
+          fi
+          echo $list
+          if [[ ! $list =~ "plasma-temple" ]]; then
+              echo "Other packages changed; Publish storybook only for plasma-temple"
+              exit 0;
+          fi
+          echo "Building storybook for plasma-temple"
+
+      - name: Setup plasma-temlpe
+        run: |
+          npm i
+          npx lerna bootstrap --scope="@sberdevices/plasma-temple"
+
+      - name: Build storybook
+        run: |
+          npm run build-storybook --prefix="./packages/plasma-temple"
+          mkdir ../build
+          cp -R ./packages/plasma-temple/build-sb ../build/temple-${PR_NAME}
+
+      - name: Clean old storybook build
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SB_HOST }}
+          username: ${{ secrets.SB_LOGIN }}
+          key: ${{ secrets.SB_KEY }}
+          envs: PR_NAME
+          script: |
+            cd ../../var/www/plasma
+            rm -rf temple-$PR_NAME/
+
+      - name: Upload storybook build
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          host: ${{ secrets.SB_HOST }}
+          username: ${{ secrets.SB_LOGIN }}
+          privateKey: ${{ secrets.SB_KEY }}
+          local: "../build"
+          remote: "/var/www/plasma"
+
+      - name: Post success comment
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Storybook deployed!
+
+              https://plasma.sberdevices.ru/temple-pr-${context.issue.number}/
+              `
+            })
+
