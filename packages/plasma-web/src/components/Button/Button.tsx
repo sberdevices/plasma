@@ -1,28 +1,109 @@
 import styled, { css } from 'styled-components';
-import { Button as BaseButton, ButtonProps as BaseButtonProps } from '@sberdevices/plasma-core/components/Button';
+import { Button as BaseButton, buttonViews as baseViews } from '@sberdevices/plasma-core/components/Button';
+import type {
+    ButtonProps as BaseProps,
+    SizeProps,
+    ViewProps,
+    ButtonContentProps,
+} from '@sberdevices/plasma-core/components/Button/Button';
+import type { DisabledProps } from '@sberdevices/plasma-core/mixins';
+import { convertRoundnessMatrix } from '@sberdevices/plasma-core/utils';
+import { black, white } from '@sberdevices/plasma-tokens-web';
 
-type ButtonSizes = 'l' | 'm' | 's';
-type ButtonViews = 'primary' | 'secondary' | 'critical';
+const viewInteractive = ({ disabled }: DisabledProps) =>
+    !disabled &&
+    css`
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: ${white};
+            border-radius: inherit;
+            opacity: 0;
+            pointer-events: none;
+        }
 
-export type ButtonProps = BaseButtonProps<ButtonSizes, ButtonViews> & React.ButtonHTMLAttributes<HTMLButtonElement>;
+        &:hover::after {
+            opacity: 0.1;
+        }
 
-const hovers = {
-    primary: '#6194F5',
-    secondary: 'rgba(8, 8, 8, 0.048)',
-    critical: '#E75F6C',
+        &:active::after {
+            opacity: 0.1;
+            background-color: ${black};
+        }
+    `;
+
+const buttonViews = {
+    primary: css`
+        ${baseViews.primary}
+        ${viewInteractive}
+    `,
+    critical: css`
+        ${baseViews.critical}
+        ${viewInteractive}
+    `,
+    secondary: css`
+        ${baseViews.secondary}
+
+        &:hover {
+            background-color: rgba(8, 8, 8, 0.04);
+            opacity: 0.8;
+        }
+
+        &:active {
+            background-color: rgba(8, 8, 8, 0.08);
+            opacity: 1;
+        }
+    `,
+    clear: baseViews.clear,
 };
+
+type ButtonView = keyof typeof buttonViews;
+
+const buttonSizes = {
+    l: ({ pin }: BaseProps) => css`
+        border-radius: ${convertRoundnessMatrix(pin, '0.75rem', '1.75rem')};
+
+        &::before {
+            border-radius: ${convertRoundnessMatrix(pin, '0.875rem', '1.875rem')};
+        }
+    `,
+    m: ({ pin }: BaseProps) => css`
+        border-radius: ${convertRoundnessMatrix(pin, '0.5rem', '1.5rem')};
+
+        &::before {
+            border-radius: ${convertRoundnessMatrix(pin, '0.625rem', '1.625rem')};
+        }
+    `,
+    s: ({ pin }: BaseProps) => css`
+        border-radius: ${convertRoundnessMatrix(pin, '0.5rem', '1.25rem')};
+
+        &::before {
+            border-radius: ${convertRoundnessMatrix(pin, '0.625rem', '1.375rem')};
+        }
+    `,
+};
+
+type ButtonSize = keyof typeof buttonSizes;
+
+export type ButtonProps = BaseProps & Partial<ViewProps<ButtonView> & SizeProps<ButtonSize>> & ButtonContentProps;
 
 /**
  * Основной компонент для создания кнопок.
  */
 export const Button = styled(BaseButton)<ButtonProps>`
-    transition: background-color 0.1s ease-in-out;
-
-    &:hover {
-        ${({ view }) =>
-            view &&
-            css`
-                background-color: ${hovers[view]};
-            `}
+    && {
+        ${({ view }) => buttonViews[view as ButtonView]}
+        ${({ size }) => buttonSizes[size as ButtonSize]}
+        transition: background-color 0.1s ease-in-out;
     }
 `;
+
+Button.defaultProps = {
+    ...BaseButton.defaultProps,
+    view: 'secondary',
+    size: 'm',
+};

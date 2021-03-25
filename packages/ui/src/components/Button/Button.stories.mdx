@@ -1,9 +1,8 @@
 import { Meta, ArgsTable, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
 
-import { InSpacing } from '../../helpers/StoryDecorators';
+import { InSpacingDecorator } from '../../helpers';
 
 import * as stories from './Button.stories';
-import { ButtonDecorator } from './Button.examples';
 
 import { Button, ActionButton } from '.';
 
@@ -11,7 +10,7 @@ import { Button, ActionButton } from '.';
     title="Controls/Button"
     component={Button}
     subcomponents={{ ActionButton }}
-    decorators={[ButtonDecorator, InSpacing]}
+    decorators={[InSpacingDecorator]}
 />
 
 # Кнопки

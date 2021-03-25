@@ -4,9 +4,19 @@ import { IconMic } from '@sberdevices/plasma-icons';
 
 import { actionWithPersistedEvent } from '../../helpers';
 
-import { sizes, views, pins } from './Button.examples';
-
 import { Button, ActionButton } from '.';
+
+const sizes = ['l', 'm', 's'];
+const views = ['primary', 'secondary', 'warning', 'critical', 'checked', 'overlay', 'clear'];
+const pins = [
+    'square-square',
+    'square-clear',
+    'clear-square',
+    'clear-clear',
+    'clear-circle',
+    'circle-clear',
+    'circle-circle',
+];
 
 const onClick = actionWithPersistedEvent('onClick');
 const onFocus = actionWithPersistedEvent('onFocus');
