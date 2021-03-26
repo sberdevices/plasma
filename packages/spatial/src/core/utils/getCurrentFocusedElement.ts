@@ -1,4 +1,4 @@
-import { isHTMLElement } from 'core/utils/isHTMLElement';
+import { isHTMLElement } from './isHTMLElement';
 
 export function getCurrentFocusedElement(): HTMLElement | null {
     const { activeElement } = document;

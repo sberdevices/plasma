@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, DependencyList } from 'react';
-import { spatnavInstance } from 'core';
+import { spatnavInstance } from '../../core';
 
 const emptyDependencyList: DependencyList = [];
 

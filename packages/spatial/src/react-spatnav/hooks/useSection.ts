@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef } from 'react';
-import { spatnavInstance, Config, Section, SectionName } from 'core';
+import { spatnavInstance, Config, Section, SectionName } from '../../core';
 
 type SectionProps<S extends SectionName = SectionName> = { 'data-focusable-section': S };
 

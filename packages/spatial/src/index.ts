@@ -13,5 +13,5 @@ export {
     SectionName,
     SpatialNavigation,
     spatnavInstance,
-} from 'core';
-export { FocusableProps, useSection, useSpatnavInitialization, withFocusable } from 'react-spatnav';
+} from './core';
+export { FocusableProps, useSection, useSpatnavInitialization, withFocusable } from './react-spatnav';

@@ -1,5 +1,5 @@
-import { isHTMLElement } from 'core/utils/isHTMLElement';
-import type { ExtendedSelector } from 'core/types';
+import { isHTMLElement } from './isHTMLElement';
+import type { ExtendedSelector } from '../types';
 
 export function parseSelector(extSelector: ExtendedSelector): HTMLElement[] {
     if (typeof extSelector === 'string') {

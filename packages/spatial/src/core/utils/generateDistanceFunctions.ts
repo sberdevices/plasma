@@ -1,4 +1,4 @@
-import type { Rect, DistanceFunctions } from 'core/types';
+import type { Rect, DistanceFunctions } from '../types';
 
 export function generateDistanceFunctions(targetRect: Rect): DistanceFunctions {
     return {

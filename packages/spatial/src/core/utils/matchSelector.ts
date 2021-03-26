@@ -1,4 +1,4 @@
-import { ExtendedSelector } from 'core/types';
+import { ExtendedSelector } from '../types';
 
 export function matchSelector(element: HTMLElement, extSelector: ExtendedSelector): boolean {
     if (typeof extSelector === 'string') {

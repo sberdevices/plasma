@@ -1,4 +1,4 @@
-import { NavigationKeyCodes } from 'core/types';
+import { NavigationKeyCodes } from '../types';
 
 const navigationKeyCodes: readonly NavigationKeyCodes[] = ['ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowUp'];
 

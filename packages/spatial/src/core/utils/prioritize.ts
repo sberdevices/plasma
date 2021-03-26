@@ -1,4 +1,4 @@
-import type { Priority, Rect } from 'core/types';
+import type { Priority, Rect } from '../types';
 
 export function prioritize(priorities: Priority[]): Rect[] | null {
     let destPriority = null;

@@ -1,4 +1,4 @@
-import type { Rect } from 'core/types';
+import type { Rect } from '../types';
 
 export function getRect(element: HTMLElement): Rect {
     const { left, top, right, bottom, width, height } = element.getBoundingClientRect();

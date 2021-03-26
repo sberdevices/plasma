@@ -1,5 +1,5 @@
-export { spatnavInstance } from 'core/helpers/spatnavInstance';
-export type { SpatialNavigation } from 'core/SpatialNavigation';
+export { spatnavInstance } from './helpers/spatnavInstance';
+export type { SpatialNavigation } from './SpatialNavigation';
 export type {
     Center,
     Config,
@@ -13,4 +13,4 @@ export type {
     Restrict,
     Section,
     SectionName,
-} from 'core/types';
+} from './types';

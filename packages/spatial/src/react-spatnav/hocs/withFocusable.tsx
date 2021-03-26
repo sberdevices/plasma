@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ComponentType, createElement, forwardRef } from 'react';
 import { isStyledComponent, StyledComponent } from 'styled-components';
-import { isReactComponent } from 'react-spatnav/utils/isReactComponent';
+import { isReactComponent } from '../../react-spatnav';
 
 export interface FocusableProps {
     /**

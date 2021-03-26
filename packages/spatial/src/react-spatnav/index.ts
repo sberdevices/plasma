@@ -1,3 +1,4 @@
-export { withFocusable, FocusableProps } from 'react-spatnav/hocs/withFocusable';
-export { useSpatnavInitialization } from 'react-spatnav/hooks/useSpatnavInitialization';
-export { useSection } from 'react-spatnav/hooks/useSection';
+export { withFocusable, FocusableProps } from './hocs/withFocusable';
+export { useSpatnavInitialization } from './hooks/useSpatnavInitialization';
+export { useSection } from './hooks/useSection';
+export { isReactComponent } from './utils/isReactComponent';

@@ -6,8 +6,8 @@ import {
     navigate,
     isHTMLElement,
     isNavKey,
-} from 'core/utils';
-import type { Config, Section, Direction, ExtendedSelector, NavigationKeyCodes, SectionName } from 'core/types';
+} from './utils';
+import type { Config, Section, Direction, ExtendedSelector, NavigationKeyCodes, SectionName } from './types';
 
 interface SpatialNavigationGlobalConfig {
     config?: Config;
