@@ -1,26 +1,15 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
-import { mediaQuery } from '@sberdevices/plasma-core/utils';
+import styled from 'styled-components';
 
-export const StyledHeaderLogo = styled.img`
-    width: 2.25rem;
-    height: 2.25rem;
-    margin-right: 0.75rem;
+import { Image, ImageProps } from '../Image';
 
-    ${mediaQuery('S')(css`
-        width: 1.75rem;
-        height: 1.75rem;
-    `)}
-`;
-
-export interface HeaderLogoProps extends React.HTMLAttributes<HTMLDivElement> {
-    src: string;
-    alt?: string;
-}
+export type HeaderLogoProps = ImageProps;
 
 /**
  * Компонент для размещения логотипа.
  */
-export const HeaderLogo: React.FC<HeaderLogoProps> = ({ alt = 'logo', ...rest }) => (
-    <StyledHeaderLogo alt={alt} {...rest} />
-);
+export const HeaderLogo = styled(Image)`
+    width: var(--plasma-header-height);
+    height: var(--plasma-header-height);
+    flex: 0 0 var(--plasma-header-height);
+    margin-right: 0.75rem;
+`;
