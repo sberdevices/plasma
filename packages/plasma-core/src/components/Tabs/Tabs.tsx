@@ -30,6 +30,8 @@ export const Tabs = styled.ul<TabsProps>`
     list-style-type: none;
     user-select: none;
 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
     /**
      * Стили айтемов, зависимые от модификаторов контейнера, определяем тут.
      */
