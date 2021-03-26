@@ -375,7 +375,7 @@ export class SpatialNavigation {
             allNavigableElements = allNavigableElements.concat(sectionNavigableElements[id]);
         }
 
-        const config = { ...this.globalConfig, ...this.sections[currentSectionId] };
+        const config = { ...this.globalConfig, ...this.sections[currentSectionId].config };
         let next: HTMLElement | null;
 
         if (config.restrict === 'self-only' || config.restrict === 'self-first') {
@@ -734,7 +734,7 @@ export class SpatialNavigation {
         this.sections[id] = {
             id,
             lastFocusedElement: undefined,
-            config: { ...this.globalConfig, ...config },
+            config: { ...this.globalConfig, ...config, previous: undefined },
         };
 
         if (this.sectionCount === 1) {

@@ -204,7 +204,7 @@ export type Config = {
     navigableFilter: NavigableFilter | null;
 
     /**
-     * НЕ ТЕСТИРОВАНО
+     * Этот объект не предназначен для прямого изменения и нужен только для работы внутренних событий
      */
     previous?: {
         target?: HTMLElement;
@@ -215,9 +215,17 @@ export type Config = {
 
 export interface Section<S extends SectionName = SectionName> {
     /**
-     * Последний активный элемент в данной секции
+     * id секции
      */
     id: S;
+
+    /**
+     * Конфиг текущей секции
+     */
     config: Config;
+
+    /**
+     * Последний элемент, который был активным в этой секции
+     */
     lastFocusedElement?: HTMLElement;
 }
