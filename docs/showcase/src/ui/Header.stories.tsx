@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Button } from '@sberdevices/ui/components/Button';
 import { Container } from '@sberdevices/ui/components/Grid';
 import { Header } from '@sberdevices/ui/components/Header';
@@ -16,8 +17,20 @@ const onBackClick = actionWithPersistedEvent('onBackClick');
 
 const contentItems = [0, 0, 0];
 
+const StyledContentGrid = styled.div<{ $colCount: number }>`
+    display: grid;
+    grid-template-columns: ${({ $colCount }) => `repeat(${$colCount}, max-content)`};
+    grid-column-gap: 0.75rem;
+`;
+
+const MobileButtonGroup = () => (
+    <StyledContentGrid $colCount={2}>
+        <Button view="clear" size="s" pin="circle-circle" contentLeft={<IconPlaceholder />} />
+        <Button view="clear" size="s" pin="circle-circle" contentLeft={<IconPlaceholder />} shiftRight />
+    </StyledContentGrid>
+);
 const ButtonGroup = () => (
-    <>
+    <StyledContentGrid $colCount={3}>
         {contentItems.map((_, i) => (
             <Button
                 key={`item:${i}`}
@@ -28,7 +41,7 @@ const ButtonGroup = () => (
                 text="Button"
             />
         ))}
-    </>
+    </StyledContentGrid>
 );
 const TabsGroup = () => {
     const [index, setIndex] = React.useState(0);
@@ -54,8 +67,7 @@ export const Default = () => (
         <Header title="Title" />
         <ShowcaseDivider />
         <Header back onBackClick={onBackClick} logo="./images/320_320_10.jpg" logoAlt="Logo" title="Header title text">
-            <Button view="clear" size="s" pin="circle-circle" contentLeft={<IconPlaceholder />} />
-            <Button view="clear" size="s" pin="circle-circle" contentLeft={<IconPlaceholder />} shiftRight />
+            <MobileButtonGroup />
         </Header>
         <ShowcaseDivider />
         <Header

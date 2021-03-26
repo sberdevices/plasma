@@ -18,25 +18,24 @@ import {
     HeaderContent,
 } from '.';
 
-const contentTypes = ['None', 'Buttons', 'Tabs', 'MobileButtons'];
+const contentTypes = ['Buttons', 'Tabs', 'MobileButtons', ''];
 
-const StyledContentWrapper = styled.div`
+const StyledContentGrid = styled.div<{ $colCount: number }>`
     display: grid;
-    grid-template-columns: repeat(3, max-content);
+    grid-template-columns: ${({ $colCount }) => `repeat(${$colCount}, max-content)`};
     grid-column-gap: 0.75rem;
-    width: 1fr;
 `;
 
 const Content = () => {
+    const [activeTab, setActiveTab] = React.useState(0);
     const contentType = select('Content type', contentTypes, 'Buttons');
     const contentItems = contentType !== 'None' && Array(number('Content items', 3)).fill(0);
     const enableIcons = contentType !== 'None' && boolean('Enable icons', true);
-    const [activeTab, setActiveTab] = React.useState(0);
 
-    return (
-        <StyledContentWrapper>
-            {contentType === 'Buttons' &&
-                contentItems.map((_, i) => (
+    if (contentType === 'Buttons') {
+        return (
+            <StyledContentGrid $colCount={contentItems.length}>
+                {contentItems.map((_, i) => (
                     <Button
                         key={`item:${i}`}
                         size="s"
@@ -46,39 +45,43 @@ const Content = () => {
                         text="Button"
                     />
                 ))}
-            {contentType === 'Tabs' && (
-                <Tabs size="m" view="clear" pilled scaleOnPress shiftRight>
-                    {contentItems.map((_, i) => (
-                        <TabItem
-                            key={`item:${i}`}
-                            isActive={i === activeTab}
-                            onClick={() => setActiveTab(i)}
-                            contentLeft={enableIcons && <IconMic color="inherit" size="s" />}
-                        >
-                            Tab
-                        </TabItem>
-                    ))}
-                </Tabs>
-            )}
-            {contentType === 'MobileButtons' && (
-                <>
-                    <Button
-                        view="clear"
-                        size="s"
-                        pin="circle-circle"
-                        contentLeft={<IconPlus color="inherit" size="s" />}
-                    />
-                    <Button
-                        view="clear"
-                        size="s"
-                        pin="circle-circle"
-                        contentLeft={<IconTrash color="inherit" size="s" />}
-                        shiftRight
-                    />
-                </>
-            )}
-        </StyledContentWrapper>
-    );
+            </StyledContentGrid>
+        );
+    }
+
+    if (contentType === 'Tabs') {
+        return (
+            <Tabs size="m" view="clear" pilled scaleOnPress shiftRight>
+                {contentItems.map((_, i) => (
+                    <TabItem
+                        key={`item:${i}`}
+                        isActive={i === activeTab}
+                        onClick={() => setActiveTab(i)}
+                        contentLeft={enableIcons && <IconMic color="inherit" size="s" />}
+                    >
+                        Tab
+                    </TabItem>
+                ))}
+            </Tabs>
+        );
+    }
+
+    if (contentType === 'Mobile') {
+        return (
+            <StyledContentGrid $colCount={2}>
+                <Button view="clear" size="s" pin="circle-circle" contentLeft={<IconPlus color="inherit" size="s" />} />
+                <Button
+                    view="clear"
+                    size="s"
+                    pin="circle-circle"
+                    contentLeft={<IconTrash color="inherit" size="s" />}
+                    shiftRight
+                />
+            </StyledContentGrid>
+        );
+    }
+
+    return null;
 };
 
 export const Default = () => (
@@ -89,14 +92,13 @@ export const Default = () => (
         title={text('title', 'Header title text')}
         subtitle={text('subtitle', 'Subtitle text')}
         onBackClick={action('onBackClick')}
-        style={{ minWidth: 1056 }}
     >
         <Content />
     </Header>
 );
 
 export const CustomAssembly = () => (
-    <HeaderRoot style={{ minWidth: 1056 }}>
+    <HeaderRoot>
         <HeaderBack onClick={action('onBackClick')} />
         <HeaderLogo src="./images/logo.png" alt="Logo" />
         <HeaderTitleWrapper>
