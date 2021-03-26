@@ -1,3 +1,17 @@
+# (Fri Mar 26 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@0.10.0`
+  - feat(plasma-templlate): Video page [#28](https://github.com/sberdevices/pashka/pull/28) (kvpolyanskiy@sberbank.ru [@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Konstantin Polyanskiy (kvpolyanskiy@sberbank.ru)
+
+---
+
 # (Thu Mar 25 2021)
 
 #### 🚀 Enhancement
