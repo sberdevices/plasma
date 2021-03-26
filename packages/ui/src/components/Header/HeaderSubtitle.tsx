@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { mediaQuery } from '@sberdevices/plasma-core/utils';
 
 import { TextBoxSubTitle } from '../TextBox';
 
@@ -7,4 +8,17 @@ import { TextBoxSubTitle } from '../TextBox';
  */
 export const HeaderSubtitle = styled(TextBoxSubTitle)`
     margin: 0;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    ${({ theme }) => css`
+        ${mediaQuery(
+            'S',
+            theme.deviceScale,
+        )(css`
+            display: none;
+        `)}
+    `}
 `;
