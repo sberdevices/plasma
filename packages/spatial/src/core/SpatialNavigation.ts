@@ -731,9 +731,11 @@ export class SpatialNavigation {
         if (this.sections[id]) {
             throw new Error(`Section "${id}" has already existed!`);
         }
-
-        this.sections[id].lastFocusedElement = undefined;
-        this.sections[id].config = { ...this.globalConfig, ...config };
+        this.sections[id] = {
+            id,
+            lastFocusedElement: undefined,
+            config: { ...this.globalConfig, ...config },
+        };
 
         if (this.sectionCount === 1) {
             this.setDefaultSection(id);
