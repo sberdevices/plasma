@@ -289,6 +289,8 @@ const StyledButton = styled.button<StyledButtonProps>`
     border: none;
     cursor: pointer;
 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
     &:focus {
         outline: none;
     }

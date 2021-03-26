@@ -27,6 +27,8 @@ const StyledRoot = styled.label<DisabledProps>`
     justify-content: space-between;
     cursor: pointer;
 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
     ${applyDisabled}
 `;
 const StyledInput = styled.input`
