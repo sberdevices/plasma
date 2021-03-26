@@ -147,11 +147,8 @@ export const Tabs = styled(BaseTabs)<TabsProps>`
     ${({ pilled }) =>
         pilled &&
         css`
+            --tab-item-border-radius: 6.25rem;
             border-radius: 6.25rem;
-
-            & > * {
-                border-radius: 6.25rem;
-            }
         `}
 
     /* stylelint-disable-next-line selector-max-universal */
