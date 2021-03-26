@@ -20,6 +20,7 @@ interface BackProps {
 }
 interface NoBackProps {
     back?: false;
+    onBackClick?: never;
 }
 interface LogoProps {
     /**
@@ -33,6 +34,7 @@ interface LogoProps {
 }
 interface NoLogoProps {
     logo?: undefined;
+    logoAlt?: never;
 }
 interface TitleProps {
     /**
@@ -46,6 +48,7 @@ interface TitleProps {
 }
 interface NoTitleProps {
     title?: undefined;
+    subtitle?: never;
 }
 
 export type HeaderProps = React.HTMLAttributes<HTMLDivElement> &
