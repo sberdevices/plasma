@@ -57,7 +57,11 @@ export const ItemMainSection: React.FC<UnifiedComponentProps<ItemMainSectionProp
     cover,
     platformComponents: { Container, Title, Subtitle },
 }) => {
-    const buttonRef = useFocusOnMount<HTMLButtonElement>();
+    const buttonRef = React.useRef<HTMLButtonElement>(null);
+
+    useFocusOnMount<HTMLButtonElement>(buttonRef, {
+        delay: 250,
+    });
 
     return (
         <Container withSpatNav>
