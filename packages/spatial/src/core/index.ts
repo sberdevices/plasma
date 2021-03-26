@@ -1,4 +1,5 @@
-export { spatnavInstance } from './helpers/spatnavInstance';
+export * from './helpers';
+export { isNavKey, isHTMLElement, getCurrentFocusedElement } from './utils';
 export type { SpatialNavigation } from './SpatialNavigation';
 export type {
     Center,

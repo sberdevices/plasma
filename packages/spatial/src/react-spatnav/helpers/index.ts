@@ -1,0 +1,1 @@
+export { setDefaultSectionByProps } from './setDefaultSectionByProps';
