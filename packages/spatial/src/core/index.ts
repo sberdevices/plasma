@@ -1,4 +1,6 @@
-export {
+export { spatnavInstance } from 'core/helpers/spatnavInstance';
+export type { SpatialNavigation } from 'core/SpatialNavigation';
+export type {
     Center,
     Config,
     Direction,
@@ -11,7 +13,4 @@ export {
     Restrict,
     Section,
     SectionName,
-    SpatialNavigation,
-    spatnavInstance,
-} from 'core';
-export { FocusableProps, useSection, useSpatnavInitialization, withFocusable } from 'react-spatnav';
+} from 'core/types';

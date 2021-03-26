@@ -1,6 +1,6 @@
-import { Rect, DistanceFunctions } from '../utils/types';
+import type { Rect, DistanceFunctions } from 'core/types';
 
-function generateDistanceFunctions(targetRect: Rect): DistanceFunctions {
+export function generateDistanceFunctions(targetRect: Rect): DistanceFunctions {
     return {
         nearPlumbLineIsBetter(rect: Rect) {
             let d;
@@ -52,7 +52,3 @@ function generateDistanceFunctions(targetRect: Rect): DistanceFunctions {
         },
     };
 }
-
-export { generateDistanceFunctions };
-
-export default generateDistanceFunctions;

@@ -1,6 +1,7 @@
-import React, { ComponentType, forwardRef } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ComponentType, createElement, forwardRef } from 'react';
 import { isStyledComponent, StyledComponent } from 'styled-components';
-import { isReactComponent } from '../utils/isReactComponent';
+import { isReactComponent } from 'react-spatnav/utils/isReactComponent';
 
 export interface FocusableProps {
     /**
@@ -55,10 +56,10 @@ export interface FocusableProps {
  * data-focusable and tabIndex needed to make element focusable by a browser.
  */
 export interface BaseComponentProps {
+    focusable: boolean;
+    tabIndex?: number;
     onClick?(event?: React.MouseEvent<HTMLElement | SVGElement>): void;
     onKeyDown?(event?: React.KeyboardEvent<HTMLElement | SVGElement>): void;
-    focusable: boolean;
-    tabIndex: number;
 }
 
 function handleEnterOrEscapeDown<P extends BaseComponentProps>(
@@ -147,38 +148,52 @@ function handleClickOrTap<P extends BaseComponentProps>(
  * const Focusable = withFocusable(BaseComponent);
  */
 function withFocusable<P extends BaseComponentProps>(
-    BaseComponent: ComponentType<P>
+    BaseComponent: ComponentType<P>,
 ): ComponentType<P & FocusableProps>; // BUG: accepts component without BaseComponentProps props
 
 function withFocusable<
     C extends keyof JSX.IntrinsicElements | React.ComponentType<unknown>,
-    T extends object,
-    O extends object = {},
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    T extends Record<string, unknown>,
+    O extends Record<string, unknown>,
     A extends keyof any = never
 >(BaseComponent: StyledComponent<C, T, O, A>): StyledComponent<C, T, O & FocusableProps, A>;
 
 function withFocusable<
     P extends BaseComponentProps,
     C extends keyof JSX.IntrinsicElements | React.ComponentType<unknown>,
-    T extends object,
-    O extends object = {},
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    T extends Record<string, unknown>,
+    O extends Record<string, unknown>,
     A extends keyof any = never
 >(
     BaseComponent: ComponentType<P> | StyledComponent<C, T, O, A>,
 ): React.ForwardRefExoticComponent<React.PropsWithoutRef<P & FocusableProps> & React.RefAttributes<unknown>> {
     const extendedComponent = forwardRef((props: P & FocusableProps, ref) => {
+        const { tabIndex, focusable, ...restProps } = props;
+
         const onKeyDown = handleEnterOrEscapeDown.bind(null, props);
 
         const onClick = handleClickOrTap.bind(null, props);
 
         if (isStyledComponent(BaseComponent)) {
-            return <BaseComponent ref={ref} tabIndex={-1} data-focusable {...props} onClick={onClick} onKeyDown={onKeyDown} />;
+            return createElement(BaseComponent, {
+                ref,
+                'data-focusable': true,
+                tabIndex: tabIndex ?? -1,
+                ...restProps,
+                onClick,
+                onKeyDown,
+            });
         }
 
-        if (isReactComponent<typeof props>(BaseComponent)) {
-            return <BaseComponent ref={ref} focusable tabIndex={-1} {...props} onClick={onClick} onKeyDown={onKeyDown} />;
+        if (isReactComponent<typeof restProps>(BaseComponent)) {
+            return createElement(BaseComponent, {
+                ref,
+                focusable: focusable ?? true,
+                tabIndex: tabIndex ?? -1,
+                ...restProps,
+                onClick,
+                onKeyDown,
+            });
         }
         throw Error('BaseComponent in not a StyledComponent nor ReactComponent');
     });
@@ -189,5 +204,3 @@ function withFocusable<
 }
 
 export { withFocusable };
-
-export default withFocusable;

@@ -1,6 +1,5 @@
 import { ComponentType, ComponentClass, FunctionComponent, Component } from 'react';
 
-// TODO: think about memoization
 export function isClassComponent<P>(component: unknown): component is ComponentClass<P> {
     return typeof component === 'function' && component.prototype && component.prototype instanceof Component;
 }

@@ -1,10 +1,10 @@
-import { getRect } from '../utils/getRect';
-import { generateDistanceFunctions } from '../utils/generateDistanceFunctions';
-import { partition } from '../utils/partition';
-import { prioritize } from '../utils/prioritize';
-import { Rect, Priority, Config } from '../utils/types';
+import { getRect } from 'core/utils/getRect';
+import { generateDistanceFunctions } from 'core/utils/generateDistanceFunctions';
+import { partition } from 'core/utils/partition';
+import { prioritize } from 'core/utils/prioritize';
+import type { Rect, Priority, Config } from 'core/types';
 
-function navigate(
+export function navigate(
     target: HTMLElement,
     direction: string,
     candidates: HTMLElement[],
@@ -16,8 +16,8 @@ function navigate(
 
     const rects: Rect[] = [];
 
-    for (let i = 0; i < candidates.length; i += 1) {
-        const rect = getRect(candidates[i]);
+    for (const candidate of candidates) {
+        const rect = getRect(candidate);
         if (rect) {
             rects.push(rect);
         }
@@ -152,8 +152,8 @@ function navigate(
         priorities.pop();
     }
 
-    const destGroup = prioritize(priorities);
-    if (!destGroup) {
+    const destGroups = prioritize(priorities);
+    if (!destGroups) {
         return null;
     }
 
@@ -164,21 +164,17 @@ function navigate(
         config.previous.destination === target &&
         config.previous.reverse === direction
     ) {
-        for (let j = 0; j < destGroup.length; j += 1) {
-            if (destGroup[j].element === config.previous.target) {
-                dest = destGroup[j].element;
+        for (const destGroup of destGroups) {
+            if (destGroup.element === config.previous.target) {
+                dest = destGroup.element;
                 break;
             }
         }
     }
 
     if (!dest) {
-        dest = destGroup[0].element;
+        dest = destGroups[0].element;
     }
 
     return dest;
 }
-
-export { navigate };
-
-export default navigate;

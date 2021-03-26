@@ -1,4 +1,4 @@
-import { Rect, Partition, Center } from '../utils/types';
+import type { Rect, Partition, Center } from 'core/types';
 
 function partition(rects: Rect[], targetRect: Rect, straightOverlapThreshold: number): Partition;
 
@@ -7,8 +7,7 @@ function partition(rects: Rect[], targetRect: Center, straightOverlapThreshold: 
 function partition(rects: Rect[], targetRectOrCenter: Rect | Center, straightOverlapThreshold: number): Partition {
     const groups: Partition = [[], [], [], [], [], [], [], [], []];
 
-    for (let i = 0; i < rects.length; i += 1) {
-        const rect = rects[i];
+    for (const rect of rects) {
         const { center } = rect;
         let x: number;
         let y: number;
@@ -73,5 +72,3 @@ function partition(rects: Rect[], targetRectOrCenter: Rect | Center, straightOve
 }
 
 export { partition };
-
-export default partition;

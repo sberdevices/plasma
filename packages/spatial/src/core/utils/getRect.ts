@@ -1,6 +1,6 @@
-import { Rect } from '../utils/types';
+import type { Rect } from 'core/types';
 
-function getRect(element: HTMLElement): Rect {
+export function getRect(element: HTMLElement): Rect {
     const { left, top, right, bottom, width, height } = element.getBoundingClientRect();
     const x = left + Math.floor(width / 2);
     const y = top + Math.floor(height / 2);
@@ -17,7 +17,3 @@ function getRect(element: HTMLElement): Rect {
 
     return rect;
 }
-
-export { getRect };
-
-export default getRect;
