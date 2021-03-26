@@ -15,7 +15,6 @@
     "publishConfig": {
         "access": "restricted"
     },
-    "dependencies": {},
     "peerDependencies": {},
     "devDependencies": {
         "@sberdevices/plasma-core": "^0.5.0",
