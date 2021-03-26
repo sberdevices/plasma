@@ -3,7 +3,7 @@ import { spatnavInstance, Config, Section, SectionName } from '../../core';
 
 type SectionProps<S extends SectionName = SectionName> = { 'data-focusable-section': S };
 
-type CustomizeConfig = (config: Config) => void;
+type CustomizeConfig = (config: Partial<Config>) => void;
 
 type SectionTuple<S extends SectionName = SectionName> = [SectionProps<S>, CustomizeConfig, S];
 
@@ -50,7 +50,7 @@ export function useSection<S extends SectionName = SectionName>(sectionName: S):
         function getSectionAndCustomizationFunction(): [Section<S>, CustomizeConfig] {
             const section = spatnavInstance.get(sectionName);
 
-            function customizeConfig(sectionConfig: Config) {
+            function customizeConfig(sectionConfig: Partial<Config>) {
                 spatnavInstance.set(sectionName, sectionConfig);
             }
 
