@@ -186,7 +186,7 @@ interface DetailPayload extends MetaPayload, HeaderPropsPayload {
 ```
 
 ---
-|Другие разделы |||||
-|---|---|---|---|---|
-| [Кофигурация](./config.md) | [Действия](./actions.md) | [Шаблоны](./templates.md) | [Хуки](./hooks.md) | Взаимодействие со сценарием |
+|Другие разделы ||||||
+|---|---|---|---|---|---|
+| [Кофигурация](./config.md) | [Действия](./actions.md) | [Шаблоны](./templates.md) | [Хуки](./hooks.md) | Взаимодействие со сценарием | [Формы](./forms.md) |
 ---

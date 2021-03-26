@@ -1,13 +1,25 @@
-import React, { useLayoutEffect } from 'react';
+import React from 'react';
 
-export const useFocusOnMount = <T extends HTMLElement>(preventScroll = false): React.RefObject<T> => {
-    const focusRef = React.useRef<T>(null);
+interface UseFocusOnMountParams {
+    preventScroll?: boolean;
+    delay?: number;
+    prevent?: boolean;
+}
 
-    useLayoutEffect(() => {
-        if (focusRef.current) {
-            focusRef.current.focus({ preventScroll });
-        }
-    }, [focusRef, preventScroll]);
+interface UseFocusOnMount {
+    <T>(ref: React.RefObject<T>, params: UseFocusOnMountParams): void;
+}
 
-    return focusRef;
-};
+export const useFocusOnMount: UseFocusOnMount = (ref, params = {}) => {
+    const { preventScroll, delay = 0, prevent = false } = params;
+
+    React.useLayoutEffect(() => {
+        const timer = setTimeout(() => {
+            if (!prevent && ref.current instanceof HTMLElement) {
+                ref.current.focus({ preventScroll });
+            }
+        }, delay);
+
+        return () => clearTimeout(timer);
+    }, [ref, prevent, preventScroll, delay]);
+}

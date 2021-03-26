@@ -1,6 +1,4 @@
 import React from 'react';
-import { boolean, text, array, object } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
 
 import { Header } from './Header';
 
