@@ -92,7 +92,7 @@ export type Config = {
      * Если `straightOnly` нажатия вниз элемент `next` будет пропущен и будет выбран `real next`
      *
      * @example
-     *
+     * ```
      *      ┏━━━━━━━━━┓
      *      ┃ focused ┃
      *      ┗━━━━━━━━━┛
@@ -104,7 +104,7 @@ export type Config = {
      *     ┏━━━━━━━━━━━┓
      *     ┃ real next ┃
      *     ┗━━━━━━━━━━━┛
-     *
+     * ```
      */
     straightOnly: boolean;
 
@@ -152,13 +152,14 @@ export type Config = {
      * - `left`, `right`, `up`, `down`: ExtendedSelector или callback, возвращающий ExtendedSelector или вовсе выполняющий произвольные действия
      *
      * @example
-     *
+     * ```typescript
      * mainSection.leaveFor = {
      *      top: '#header',
      *      right: '@mySection',
      *      left: () => { window.history.pop() },
      *      down: () => globalFlag ? '@' : document.querySelectorAll(".my-class")
      * }
+     * ```
      *
      * @description
      *
@@ -195,8 +196,10 @@ export type Config = {
      * возвращая соответствующий результат `true` или `false`
      *
      * @example
+     * ```typescript
      * // С вероятностью 50/50 будет игнорировать элементы в секции mainSection
      * mainSection.navigableFilter = () => Math.random() >= 0.5;
+     * ```
      */
     navigableFilter: NavigableFilter | null;
 

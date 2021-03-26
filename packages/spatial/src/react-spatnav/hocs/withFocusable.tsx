@@ -123,7 +123,7 @@ function handleClickOrTap<P extends BaseComponentProps>(
  * will call handleEnterPress callback on mouse click as well as on enter press
  *
  * @example
- *
+ * ```typescript
  * // use with styled component
  * const ExtendedComponent = withFocusable(BaseComponent);
  *
@@ -146,6 +146,7 @@ function handleClickOrTap<P extends BaseComponentProps>(
  * );
  *
  * const Focusable = withFocusable(BaseComponent);
+ * ```
  */
 function withFocusable<P extends BaseComponentProps>(
     BaseComponent: ComponentType<P>,

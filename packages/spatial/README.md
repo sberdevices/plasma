@@ -18,7 +18,7 @@ npm install react styled-components @types/styled-components
 
 По умолчанию объект SpatialNavigation уже создан и ждёт инициализации:
 
-```typescriptreact
+```typescript
 import { spatnavInstance } from '@sberdevices/spatial';
 
 spatnavInstance.init();
@@ -30,7 +30,7 @@ spatnavInstance.init();
 
 Hook `useSpatnavInitialization()` используется только один раз в корневом компоненте.
 
-```typescriptreact
+```typescript
 import React, { FC } from 'react';
 import { useSpatnavInitialization } from '@sberdevices/spatial';
 
@@ -51,7 +51,7 @@ export default App;
 
 В дочернем компоненте определяем секцию под названием `Page1SectionId`. Делаем кнопку из библиотеки компонентов активной с помощью HOC `withFocusable`. После рендера все 5 кнопок будет доступны для навигации клавишами.
 
-```typescriptreact
+```typescript
 import React, { FC } from 'react';
 import { useSection, withFocusable } from '@sberdevices/spatial';
 import { Button } from '@sberdevices/plasma';

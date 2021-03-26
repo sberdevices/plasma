@@ -11,7 +11,7 @@ export type SectionTuple<S extends SectionName = SectionName> = [SectionProps<S>
  * Создаёт или отдаёт существующий набор инструментов для работы с секцией.
  * Секция создаётся со стандартным конфигом, но для удобства расширяется двумя свойствами:
  * - `selector = "[data-focusable-section=sectionName] [data-focusable]`"
- * - `defaultElement: "[data-focusable-section=${sectionName}] [data-focusable-default]"`
+ * - `defaultElement = "[data-focusable-section=${sectionName}] [data-focusable-default]"`
  *
  * При пересоздании секции конфиг не передаётся в новую секцию.
  *
@@ -25,6 +25,7 @@ export type SectionTuple<S extends SectionName = SectionName> = [SectionProps<S>
  * Сам tuple и его содержимое мемоизированно с помощью useMemo и зависит только от `sectionName`.
  *
  * @example
+ * ```typescript
  * const Page1: FC = () => {
  *  const [sectionProps, customizeMySection, sectionId] = useSection('mySection');
  *
@@ -42,6 +43,7 @@ export type SectionTuple<S extends SectionName = SectionName> = [SectionProps<S>
  *      </div>
  *  );
  * };
+ * ```
  */
 export function useSection<S extends SectionName = SectionName>(sectionName: S): SectionTuple<S> {
     const previousSectionNameRef = useRef<string>(sectionName);
