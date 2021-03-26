@@ -51,7 +51,7 @@ import {
 > Используйте или скомпанованный компонент ``<Header />``,
 или составные части, где корневым узлом будет являться ``<HeaderRoot />``.
 
-> Шапка всегда используется вместе с ``<Container />``.
+> Шапка всегда используется там, где на странице присутствует ``<Container />``.
 
 ```tsx
 // App.tsx
@@ -71,6 +71,27 @@ export const App = () => (
         </Header>
     </Container>
 );
+```
+
+## Комбинация свойств шапки
+Шапка имеет свойства, которые недопустимо использовать без соответствующих им парных свойств:
+
+```tsx
+// Неправильно:
+const a = <Header subtitle="Subtitle" />;
+// Правильно:
+const b = <Header title="Title" />;
+const c = <Header title="Title" subtitle="Subtitle" />;
+
+// Неправильно:
+const d = <Header onBackClick={() => alert('Back click.')} />;
+// Правильно:
+const e = <Header back onBackClick={() => alert('Back click.')} />;
+
+// Неправильно:
+const f = <Header logoAlt="Fancy image." />;
+// Правильно:
+const g = <Header logo="/path/to/fancy-image.jpg" logoAlt="Fancy image." />;
 ```
 
 ## Примеры
