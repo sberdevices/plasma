@@ -18,6 +18,7 @@ interface GalleryProps {
     position: number;
     active: boolean;
     multiGallery: boolean;
+    withLogo: boolean;
     onClickGalleryCard: (item: GalleryItemViewPayload) => void
     savePosition: (position: number) => void;
 }
@@ -27,9 +28,9 @@ const StyledRow = styled(Row)`
     box-sizing: border-box;
 `;
 
-const StyledTitle = styled(Header)<{ active: boolean }>`
+const StyledTitle = styled(Header)<{ active: boolean; withLogo: boolean; }>`
     transition: transform 0.35s linear;
-    transform: translateX(${({ active }) => (active ? 3 : 0)}rem);
+    transform: translateX(${({ active, withLogo }) => (active && withLogo ? 3 : 0)}rem);
 
 
     ${({ active }) => !active &&
@@ -45,6 +46,7 @@ export const Gallery: React.FC<GalleryProps> = ({
     position,
     active,
     multiGallery,
+    withLogo,
     onClickGalleryCard,
     savePosition,
 }) => {
@@ -115,7 +117,7 @@ export const Gallery: React.FC<GalleryProps> = ({
     return (
         <>
             {multiGallery
-                ? <StyledTitle active={active} title={data.title} />
+                ? <StyledTitle active={active} withLogo={withLogo} title={data.title} back={false} />
                 : isSberPortal() ? null : <Headline3>{data.title}</Headline3>
             }
             <CarouselGridWrapper>
