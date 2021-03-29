@@ -131,6 +131,7 @@ export const GalleryList: React.FC<PageProps<MultiGalleryViewPayload>> = ({
                                 position={position}
                                 active={galleryIndex === index}
                                 multiGallery={isMultiGallery}
+                                withLogo={Boolean(header.logo)}
                                 onClickGalleryCard={onClickGalleryCard}
                                 savePosition={savePosition}
                             />
