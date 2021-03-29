@@ -1,10 +1,11 @@
 import React from 'react';
 import { DatePicker, TimePicker } from '@sberdevices/ui/components/Pickers';
 
-import { ShowcasePanel, ShowcaseDashedBorder, ShowcaseSectionName } from '../../helpers';
+import { ShowcasePanel, ShowcaseDashedBorder, ShowcaseSectionName, DeviceStoryDecorator } from '../../helpers';
 
 export default {
     title: 'Showcase/Device',
+    decorators: [DeviceStoryDecorator],
     parameters: {
         chromatic: {
             disable: true,

@@ -17,13 +17,12 @@ import {
     ShowcaseDashedBorder,
     ShowcaseSectionName,
     IconPlaceholder,
-    UIStoryDecorator,
-    InContainerDecorator,
+    DeviceStoryDecorator,
 } from '../../helpers';
 
 export default {
     title: 'Showcase/Device/Cells',
-    decorators: [UIStoryDecorator, InContainerDecorator],
+    decorators: [DeviceStoryDecorator],
     parameters: {
         chromatic: {
             disable: true,

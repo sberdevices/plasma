@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button } from '@sberdevices/ui/components/Button';
 
-import { ButtonShowcase, UIStoryDecorator, InContainerDecorator } from '../../helpers';
+import { ButtonShowcase, DeviceStoryDecorator } from '../../helpers';
 
 export default {
     title: 'Showcase/Device',
-    decorators: [UIStoryDecorator, InContainerDecorator],
+    decorators: [DeviceStoryDecorator],
     parameters: {
         chromatic: {
             disable: true,

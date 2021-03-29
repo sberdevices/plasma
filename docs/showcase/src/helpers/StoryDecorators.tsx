@@ -98,3 +98,18 @@ export const WebStoryDecorator: StoryDecorator = (Story, context) => {
         </>
     );
 };
+
+export const DeviceStoryDecorator: StoryDecorator = (Story, context) => {
+    const { theme } = context.globals;
+    const Typo = typos.sberPortal;
+    const Theme = themes[theme];
+
+    return (
+        <>
+            <Theme />
+            <Typo />
+            <WebStyle />
+            <Story {...context} />
+        </>
+    );
+};

@@ -7,13 +7,13 @@ import {
     ShowcaseDashedBorder,
     ShowcaseSectionName,
     IconPlaceholder,
-    UIStoryDecorator,
+    DeviceStoryDecorator,
     InContainerDecorator,
 } from '../../helpers';
 
 export default {
     title: 'Showcase/Device',
-    decorators: [UIStoryDecorator, InContainerDecorator],
+    decorators: [DeviceStoryDecorator, InContainerDecorator],
     parameters: {
         chromatic: {
             disable: true,

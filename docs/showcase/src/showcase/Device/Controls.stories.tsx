@@ -8,7 +8,7 @@ import { Default as RadioboxStory } from '../../ui/Radiobox.stories';
 import { Default as SwitchStory } from '../../ui/Switch.stories';
 import { Default as PaginationDotsStory } from '../../ui/PaginationDots.stories';
 import { Default as StepperStory } from '../../ui/Stepper.stories';
-import { ShowcasePanel, ShowcaseDashedBorder, ShowcaseSectionName } from '../../helpers';
+import { ShowcasePanel, ShowcaseDashedBorder, ShowcaseSectionName, DeviceStoryDecorator } from '../../helpers';
 
 const StyledDescription = styled.div`
     display: flex;
@@ -24,6 +24,7 @@ const StyledFootnote1 = styled(Footnote1)`
 
 export default {
     title: 'Showcase/Device',
+    decorators: [DeviceStoryDecorator],
     parameters: {
         chromatic: {
             disable: true,
