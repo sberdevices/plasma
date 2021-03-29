@@ -5,12 +5,17 @@ import { Container } from '@sberdevices/ui/components/Grid';
 import { Header } from '@sberdevices/ui/components/Header';
 import { Tabs, TabItem } from '@sberdevices/ui/components/Tabs';
 
-import { actionWithPersistedEvent, ShowcaseDivider, UIStoryDecorator, IconPlaceholder } from '../helpers';
+import {
+    actionWithPersistedEvent,
+    ShowcaseDivider,
+    UIStoryDecorator,
+    UIMobileDecorator,
+    IconPlaceholder,
+} from '../helpers';
 
 export default {
     title: 'UI/Layout/Header',
     component: Header,
-    decorators: [UIStoryDecorator],
 };
 
 const onBackClick = actionWithPersistedEvent('onBackClick');
@@ -66,9 +71,13 @@ export const Default = () => (
     <Container>
         <Header title="Title" />
         <ShowcaseDivider />
-        <Header back onBackClick={onBackClick} logo="./images/320_320_10.jpg" logoAlt="Logo" title="Header title text">
-            <MobileButtonGroup />
-        </Header>
+        <Header
+            back
+            onBackClick={onBackClick}
+            logo="./images/320_320_10.jpg"
+            logoAlt="Logo"
+            title="Header title text"
+        />
         <ShowcaseDivider />
         <Header
             back
@@ -91,5 +100,29 @@ export const Default = () => (
         >
             <TabsGroup />
         </Header>
+        <ShowcaseDivider />
     </Container>
 );
+
+Default.decorators = [UIStoryDecorator];
+
+export const Mobile = () => (
+    <Container>
+        <Header back onBackClick={onBackClick} logo="./images/320_320_10.jpg" logoAlt="Logo" title="AppName" />
+        <ShowcaseDivider />
+        <Header back onBackClick={onBackClick} logo="./images/320_320_11.jpg" logoAlt="Logo" title="AppName">
+            <MobileButtonGroup />
+        </Header>
+        <ShowcaseDivider />
+    </Container>
+);
+
+Mobile.decorators = [UIMobileDecorator];
+Mobile.parameters = {
+    viewport: {
+        defaultViewport: 'iphone5',
+    },
+    chromatic: {
+        viewports: [320],
+    },
+};

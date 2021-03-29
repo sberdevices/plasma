@@ -84,6 +84,25 @@ export const UIStoryDecorator: StoryDecorator = (Story, context) => {
         </>
     );
 };
+export const UIMobileDecorator: StoryDecorator = (Story, context) => {
+    let { theme } = context.globals;
+
+    if (theme === 'light') {
+        theme = 'darkSber';
+    }
+
+    const Theme = themes[theme];
+
+    return (
+        <>
+            <DeviceThemeProvider detectDeviceCallback={() => 'touch'}>
+                <Theme />
+                <PlasmaStyle />
+                <Story {...context} />
+            </DeviceThemeProvider>
+        </>
+    );
+};
 
 export const WebStoryDecorator: StoryDecorator = (Story, context) => {
     const Theme = themes.light;
