@@ -13,3 +13,8 @@ export const padZeroNumber = (value: number) => `${value}`.padStart(2, '0');
 export const monthLongName = (val: number): string =>
     last(new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'long' }).formatToParts(new Date().setMonth(val)))
         .value;
+
+export const monthShortName = (val: number): string =>
+    last(new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'short' }).formatToParts(new Date().setMonth(val)))
+        .value // Убираем `.` в конце: 'мар.' => 'мар', 'нояб.' => 'нояб'
+        .slice(0, -1);

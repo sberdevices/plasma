@@ -1,31 +1,20 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import { scalingPixelBasis } from '@sberdevices/plasma-tokens';
-import { monthLongName } from '@sberdevices/plasma-core/utils';
+import styled from 'styled-components';
+import { monthLongName, monthShortName } from '@sberdevices/plasma-core/utils';
 import type { PickOptional } from '@sberdevices/plasma-core/types';
 
 import { Picker, PickerProps } from './Picker';
 
-type PickerType = 'day' | 'month' | 'year';
+type PickerType = 'day' | 'month' | 'monthShort' | 'year';
 
 const labelFormatter = {
     day: (value: number) => `${value}`,
     year: (value: number) => `${value}`,
+    monthShort: monthShortName,
     month: monthLongName,
 };
 
-const width = {
-    day: 48 / scalingPixelBasis,
-    year: 80 / scalingPixelBasis,
-    month: 180 / scalingPixelBasis,
-};
-
-const StyledPicker = styled(Picker)<{ $width: keyof typeof width }>`
-    ${({ $width }) =>
-        css`
-            width: ${width[$width]}rem;
-        `}
-
+const StyledPicker = styled(Picker)`
     & + & {
         margin-left: 1rem;
     }
@@ -60,7 +49,6 @@ export const SimpleDatePicker: React.FC<SimpleDatePickerProps> = ({
 
     return (
         <StyledPicker
-            $width={type}
             size="s"
             items={items}
             value={value}

@@ -10,6 +10,7 @@ const getValues = (date: Date) => [date.getFullYear(), date.getMonth(), date.get
 const defaultOptions = {
     years: true,
     months: true,
+    monthsShort: false,
     days: true,
 };
 
@@ -40,7 +41,7 @@ export interface DatePickerProps
     /**
      * Формат выводимого значения
      */
-    options?: typeof defaultOptions;
+    options?: Partial<typeof defaultOptions>;
 }
 
 /**
@@ -178,6 +179,18 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             {options.months && (
                 <SimpleDatePicker
                     type="month"
+                    value={month}
+                    from={monthsInterval[0]}
+                    to={monthsInterval[1]}
+                    disabled={disabled}
+                    controls={controls}
+                    visibleItems={visibleItems}
+                    onChange={onMonthChange}
+                />
+            )}
+            {options.monthsShort && (
+                <SimpleDatePicker
+                    type="monthShort"
                     value={month}
                     from={monthsInterval[0]}
                     to={monthsInterval[1]}
