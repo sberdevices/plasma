@@ -125,6 +125,7 @@ export class SpatialNavigation {
                 return false;
             }
         }
+
         return true;
     }
 
@@ -987,5 +988,21 @@ export class SpatialNavigation {
      */
     focusDefaultSection(): boolean {
         return this.focusSection(this.defaultSectionId);
+    }
+
+    /**
+     *
+     * @returns находится ли хоть одна секция в фокусе
+     */
+    isAnySectionFocused(): boolean {
+        return Object.values(this.sections).some((section: Section) => {
+            const element = getCurrentFocusedElement();
+
+            if (!element) {
+                return false;
+            }
+
+            matchSelector(element, section.config.selector);
+        });
     }
 }
