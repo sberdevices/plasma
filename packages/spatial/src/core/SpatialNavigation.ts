@@ -32,7 +32,7 @@ const REVERSE: Record<Direction, Direction> = {
 
 export class SpatialNavigation {
     private constructor() {
-        // приветный конструктор для реализации singleton
+        // приватный конструктор для реализации паттерна singleton
     }
 
     private static instance: SpatialNavigation | null = null;
