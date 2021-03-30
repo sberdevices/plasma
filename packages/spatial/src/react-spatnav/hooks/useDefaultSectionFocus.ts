@@ -5,22 +5,21 @@ import { SectionProps } from './useSection';
 /**
  * Устанавливает секцию по умолчанию и переводит фокус на неё, в случае если фокус не находится ни на одной из секций
  *
- * @param sectionPropsOrName пропсы для компонента секции или имя секции
+ * @param sectionPropsOrName пропсы для компонента секции или имя секции. Если не передан, то не выполняет никаких действий
  */
-export function useDefaultSectionFocus(sectionPropsOrName: SectionProps | SectionName): void {
-    useEffect(
-        function setDefaultSection() {
-            const sectionName =
-                typeof sectionPropsOrName === 'string'
-                    ? sectionPropsOrName
-                    : sectionPropsOrName['data-focusable-section'];
+export function useDefaultSectionFocus(sectionPropsOrName?: SectionProps | SectionName): void {
+    useEffect(function setDefaultSection() {
+        if (typeof sectionPropsOrName === 'undefined') {
+            return;
+        }
 
-            spatnavInstance.setDefaultSection(sectionName);
+        const sectionName =
+            typeof sectionPropsOrName === 'string' ? sectionPropsOrName : sectionPropsOrName['data-focusable-section'];
 
-            if (!spatnavInstance.isAnySectionFocused()) {
-                spatnavInstance.focus(sectionName);
-            }
-        },
-        [sectionPropsOrName],
-    );
+        spatnavInstance.setDefaultSection(sectionName);
+
+        if (!spatnavInstance.isAnySectionFocused()) {
+            spatnavInstance.focus(sectionName);
+        }
+    });
 }

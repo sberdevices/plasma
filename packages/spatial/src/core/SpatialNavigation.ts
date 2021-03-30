@@ -995,14 +995,14 @@ export class SpatialNavigation {
      * @returns находится ли хоть одна секция в фокусе
      */
     isAnySectionFocused(): boolean {
-        return Object.values(this.sections).some((section: Section) => {
+        return Object.values(this.sections).some((section) => {
             const element = getCurrentFocusedElement();
 
             if (!element) {
                 return false;
             }
 
-            matchSelector(element, section.config.selector);
+            return matchSelector(element, section.config.selector);
         });
     }
 }
