@@ -16,9 +16,9 @@ export const StyledWrapper = styled.div`
 
 export const Video: React.FC<PageProps<VideoViewPayload>> = ({ data, position, uiState, dispatch }) => {
     const { configRoute } = React.useContext(CanvasAppContext);
-    const  renderCustomControls = configRoute?.type === Screen.video
-        ? configRoute?.renderCustomControls
-        : null;
+    const  customControls = configRoute?.type === Screen.video
+        ? configRoute?.customControls
+        : undefined;
 
     const { items, autoPlay, visibleControlList, alwaysShowControls } = data;
     const videos = Array.isArray(items) ? items : [items];
@@ -53,9 +53,8 @@ export const Video: React.FC<PageProps<VideoViewPayload>> = ({ data, position, u
                 goBack={onBack}
                 nextDisabled={position === videos.length - 1}
                 insets={uiState.insets}
-            >
-                {renderCustomControls}
-            </VideoPlayer>
+                customControls={customControls}
+            />
         </StyledWrapper>
     );
 };
