@@ -17,11 +17,24 @@ const updateStateCurrentTime = (state: MediaPlayerState, newCurrentTime: number,
 };
 
 const updateStateDuration = (state: MediaPlayerState, newDuration: number, buffered: TimeRanges, startTime: number, endTime: number) => {
+    if (Number.isNaN(newDuration)) {
+        return { ...state, duration: 0, buffered };
+    }
+
     const duration = endTime <= startTime || startTime >= newDuration
         ? newDuration
         : Math.min(endTime, newDuration) - startTime;
     return { ...state, duration, buffered };
 };
+
+const initMediaPlayerState = <T extends PlayerType>({ autoPlay }: MediaPlayerPropsMap[T]) => ({
+    currentTime: 0,
+    duration: 0,
+    paused: true,
+    muted: false,
+    volume: 1,
+    loading: Boolean(autoPlay),
+});
 
 export function useMediaPlayer<T extends PlayerType>(
     playerType: T,
@@ -29,20 +42,14 @@ export function useMediaPlayer<T extends PlayerType>(
 ) {
     const playerRef = useRef<PlayerTypeMap[T]>(null);
 
-    const [state, setState] = useState<MediaPlayerState>({
-        currentTime: 0,
-        duration: 0,
-        paused: true,
-        muted: false,
-        volume: 1,
-        loading: Boolean(props.autoPlay),
-    });
+    const [state, setState] = useState<MediaPlayerState>(initMediaPlayerState(props));
 
-    const onTogglePlayback = () => {
-        if (playerRef.current) {
-            const { paused } = playerRef.current;
-            setState((prevState) => ({ ...prevState, paused }));
-        }
+    const onPlay = () => {
+        setState((prevState) => ({ ...prevState, paused: false }));
+    }
+
+    const onPause = () => {
+        setState((prevState) => ({ ...prevState, paused: true }));
     }
 
     const onVolumeChange = () => {
@@ -160,13 +167,24 @@ export function useMediaPlayer<T extends PlayerType>(
             return;
         }
 
-        setState((prevState) => ({
-            ...prevState,
-            currentTime: 0,
-            duration: 0,
-        }));
+        const { duration, buffered, src } = playerRef.current;
+        const initState = initMediaPlayerState(props);
 
-        if (props.autoPlay && playerRef.current.paused) {
+        playerRef.current.pause();
+        playerRef.current.currentTime = 0;
+
+        setState(src !== props.src
+            ? initState
+            : updateStateDuration(
+                initState,
+                duration,
+                buffered,
+                startTime,
+                endTime ?? duration
+            ),
+        );
+
+        if (props.autoPlay) {
             actions.playback();
         }
     }, [props.src, startTime, endTime]);
@@ -175,8 +193,8 @@ export function useMediaPlayer<T extends PlayerType>(
         controls: false,
         ...props,
         ref: playerRef,
-        onPlay: wrapEventHandler(onTogglePlayback, props.onPlay),
-        onPause: wrapEventHandler(onTogglePlayback, props.onPause),
+        onPlay: wrapEventHandler(onPlay, props.onPlay),
+        onPause: wrapEventHandler(onPause, props.onPause),
         onVolumeChange: wrapEventHandler(onVolumeChange, props.onVolumeChange),
         onDurationChange: wrapEventHandler(onDurationChange, props.onDurationChange),
         onTimeUpdate: wrapEventHandler(onTimeUpdate, props.onTimeUpdate),

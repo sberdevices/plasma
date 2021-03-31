@@ -2,14 +2,15 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 import { Headline3, Spinner } from '@sberdevices/ui';
-import { MediaPlayerControls } from '../MediaPlayer/MediaPlayerControls';
+import { isControlVisible, MediaPlayerControls } from '../MediaPlayer/MediaPlayerControls';
 import { MediaPlayerTimeline } from '../MediaPlayer/MediaPlayerTimeline';
-import { ControlType, RenderMediaPlayerControlsFn } from '../MediaPlayer/types';
+import { ControlType, CustomMediaPlayerControlsProps } from '../MediaPlayer/types';
 
 import { useMediaPlayer } from '../MediaPlayer/hooks/useMediaPlayer';
 import { useMediaPlayerKeyboard } from '../MediaPlayer/hooks/useMediaPlayerKeyboard';
 import { useTimer } from '../MediaPlayer/hooks/useTimer';
 import { AssistantInsetsCommand } from '@sberdevices/assistant-client';
+import { gridMargins, gridSizes, mediaQuery } from '@sberdevices/ui/utils';
 
 type Insets = AssistantInsetsCommand['insets'];
 
@@ -23,7 +24,7 @@ export interface VideoPlayerProps extends React.VideoHTMLAttributes<HTMLVideoEle
     visibleControlList?: ControlType[];
     startTime?: number;
     endTime?: number;
-    children?: React.ReactNode | RenderMediaPlayerControlsFn<HTMLVideoElement>;
+    customControls?: React.ComponentType<CustomMediaPlayerControlsProps<HTMLVideoElement>>;
     insets?: Insets;
 }
 
@@ -31,6 +32,15 @@ const opacityMixin = css<{ hidden: boolean }>`
     transition: opacity 0.3s ease-in-out;
     opacity: ${({ hidden }) => hidden ? 0 : 1};
 `;
+
+const paddingsControlsMixin = gridSizes.map((breakpoint) => {
+    return mediaQuery(
+        breakpoint,
+    )(css`
+        padding-left: ${gridMargins[breakpoint]}rem;
+        padding-right: ${gridMargins[breakpoint]}rem;
+    `);
+});
 
 const StyledContainer = styled.div`
     position: relative;
@@ -60,11 +70,13 @@ const StyledOverlay = styled.div<{ transparent: boolean }>`
 const StyledControlsWrapper = styled.div<{ hidden: boolean; insets?: Insets }>`
     position: absolute;
     bottom: ${({ insets }) => insets?.bottom ?? 0}px;
-    width: 100%;
+    left: 0;
+    right: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     ${opacityMixin}
+    ${paddingsControlsMixin}
 `;
 
 const StyledSpinner = styled(Spinner)`
@@ -77,9 +89,9 @@ const StyledSpinner = styled(Spinner)`
 const StyledHeader = styled(Headline3)<{ hidden: boolean; insets?: Insets }>`
     display: inline-block;
     position: absolute;
-    top: ${({ insets }) => insets?.top ? `${insets?.top}px` : '0.75rem'};
-    left: ${({ insets }) => insets?.left ? `${insets?.top}px` : '0.75rem'};
+    top: ${({ insets }) => insets?.top ? `${insets?.top}px` : '2rem'};
     ${opacityMixin}
+    ${paddingsControlsMixin}
 `;
 
 const CONTROLS_HIDE_TIMEOUT = 5000;
@@ -91,7 +103,7 @@ export const VideoPlayer = React.memo(({
     backDisabled,
     nextDisabled,
     alwaysShowControls,
-    children,
+    customControls: CustomControlsComponent,
     visibleControlList,
     insets,
     ...restProps
@@ -104,7 +116,7 @@ export const VideoPlayer = React.memo(({
 
     const isControlsHidden = controlsHidden && !alwaysShowControls;
 
-    useMediaPlayerKeyboard(playback, isControlsHidden);
+    useMediaPlayerKeyboard(playback, isControlsHidden, () => !isControlsHidden && startTimer());
 
     React.useEffect(() => {
         if (!alwaysShowControls) {
@@ -112,16 +124,30 @@ export const VideoPlayer = React.memo(({
         }
     }, [alwaysShowControls, startTimer]);
 
+    const customControlsActions = React.useMemo(() => ({
+        ...actions,
+        goBack,
+        goNext,
+    }), [actions, goBack, goNext]);
+
+    const finished = Boolean(duration) && currentTime >= duration;
+
     return (
         <StyledContainer onClick={startTimer}>
             {element}
             {loading && <StyledSpinner />}
             <StyledOverlay transparent={controlsHidden || Boolean(alwaysShowControls)}>
-                {typeof children === 'function'
-                    ? children({ state, actions, playerRef, controlsHidden: isControlsHidden })
-                    : children
-                }
-                <StyledHeader hidden={isControlsHidden} insets={insets}>{header}</StyledHeader>
+                {CustomControlsComponent && (
+                    <CustomControlsComponent
+                        playerRef={playerRef}
+                        controlsHidden={isControlsHidden}
+                        state={{ ...state, backDisabled, nextDisabled, finished }}
+                        actions={customControlsActions}
+                    />
+                )}
+                {isControlVisible(ControlType.HEADER, visibleControlList) && (
+                    <StyledHeader hidden={isControlsHidden} insets={insets}>{header}</StyledHeader>
+                )}
                 <StyledControlsWrapper hidden={isControlsHidden} insets={insets}>
                     <MediaPlayerControls
                         playback={playback}
@@ -129,12 +155,14 @@ export const VideoPlayer = React.memo(({
                         goNext={goNext}
                         jumpTo={jumpTo}
                         paused={paused}
-                        finished={Boolean(duration) && currentTime >= duration}
-                        disabledBack={backDisabled}
-                        disabledNext={nextDisabled}
+                        finished={finished}
+                        backDisabled={backDisabled}
+                        nextDisabled={nextDisabled}
                         visibleControlList={visibleControlList}
                     />
-                    <MediaPlayerTimeline currentTime={currentTime} duration={duration} />
+                    {isControlVisible(ControlType.TIMELINE, visibleControlList) && (
+                        <MediaPlayerTimeline currentTime={currentTime} duration={duration} />
+                    )}
                 </StyledControlsWrapper>
             </StyledOverlay>
         </StyledContainer>

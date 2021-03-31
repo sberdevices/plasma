@@ -15,15 +15,15 @@ interface MediaPlayerControlsProps {
     goNext?: () => void;
     paused: boolean;
     finished: boolean;
-    disabledBack?: boolean;
-    disabledNext?: boolean;
+    backDisabled?: boolean;
+    nextDisabled?: boolean;
     visibleControlList?: ControlType[];
     className?: string;
 
 }
 
-const isControlVisible = (control: ControlType, controlList?: ControlType[]) => {
-    if (!controlList || !controlList.length) {
+export const isControlVisible = (control: ControlType, controlList?: ControlType[]) => {
+    if (!controlList) {
         return true;
     }
 
@@ -60,8 +60,8 @@ export const MediaPlayerControls = ({
     jumpTo,
     paused,
     finished,
-    disabledBack,
-    disabledNext,
+    backDisabled,
+    nextDisabled,
     visibleControlList,
     className,
 }: MediaPlayerControlsProps) => {
@@ -70,7 +70,7 @@ export const MediaPlayerControls = ({
         return (
         <StyledWrapper className={className}>
             <MediaPlayerButton
-                disabled={disabledBack}
+                disabled={backDisabled}
                 onClick={goBack}
                 visible={isControlVisible(ControlType.BACK, visibleControlList)}
             >
@@ -89,7 +89,7 @@ export const MediaPlayerControls = ({
                 forward
             />
             <MediaPlayerButton
-                disabled={disabledNext}
+                disabled={nextDisabled}
                 onClick={goNext}
                 visible={isControlVisible(ControlType.NEXT, visibleControlList)}
             >

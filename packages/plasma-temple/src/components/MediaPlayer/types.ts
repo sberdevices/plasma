@@ -4,6 +4,8 @@ export enum ControlType {
     JUMP_FORWARD = 'jumpForward',
     BACK = 'back',
     NEXT = 'next',
+    TIMELINE = 'timeline',
+    HEADER = 'header',
 }
 
 export interface PlayerTypeMap {
@@ -36,9 +38,9 @@ export interface MediaPlayerActions {
     jumpTo: (sign: 1 | -1) => void;
 }
 
-export type RenderMediaPlayerControlsFn<T extends HTMLVideoElement | HTMLAudioElement> = (props: {
-    state: MediaPlayerState;
-    actions: MediaPlayerActions;
+export interface CustomMediaPlayerControlsProps<T extends HTMLVideoElement | HTMLAudioElement> {
+    state: MediaPlayerState & { backDisabled?: boolean; nextDisabled?: boolean; finished: boolean; }
+    actions: MediaPlayerActions & { goBack?: () => void; goNext?: () => void; };
     playerRef: React.RefObject<T>;
     controlsHidden: boolean;
-}) => React.ReactNode;
+}
