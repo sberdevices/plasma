@@ -22,6 +22,11 @@ const sections = {
         '9 / 16': <Image key="9 / 16" src="./images/180_320_9.jpg" ratio="9 / 16" />,
         '1 / 2': <Image key="1 / 2" src="./images/160_320_9.jpg" ratio="1 / 2" />,
     },
+    Div: {
+        '1 / 1': <Image base="div" key="Div square" src={src} ratio="1 / 1" style={{ width: 320 }} />,
+        '4 / 3': <Image base="div" key="Div 4 / 4" src="./images/240_320_9.jpg" ratio="4 / 3" style={{ width: 320 }} />,
+        '3 / 4': <Image base="div" key="Div 3 / 4" src="./images/240_320_9.jpg" ratio="3 / 4" style={{ width: 320 }} />,
+    },
 };
 
 export const Default = () => <CardShowcase sections={sections} colWidth="10rem" />;
