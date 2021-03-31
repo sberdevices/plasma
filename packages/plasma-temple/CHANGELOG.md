@@ -1,3 +1,16 @@
+# v0.10.1 (Wed Mar 31 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-template): Get rid of header animation if logo is absent. … [#33](https://github.com/sberdevices/pashka/pull/33) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- fix(plasma-template): Get rid of header animation if logo is absent. Add header back button ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v0.10.0 (Fri Mar 26 2021)
 
 #### 🚀 Enhancement
