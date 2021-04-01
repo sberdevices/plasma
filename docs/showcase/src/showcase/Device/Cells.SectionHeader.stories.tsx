@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { Cell, CellDisclosure, CellIcon } from '@sberdevices/ui/components/Cell';
 import { TextBox, TextBoxBiggerTitle, TextBoxSubTitle } from '@sberdevices/ui/components/TextBox';
 
-import { ShowcasePanel, ShowcaseSectionName, DeviceStoryDecorator } from '../../helpers';
+import { ShowcasePanel, ShowcaseSectionName, DeviceStoryDecorator, InContainerDecorator } from '../../helpers';
 
 export default {
     title: 'Showcase/Device/Cells',
-    decorators: [DeviceStoryDecorator],
+    decorators: [DeviceStoryDecorator, InContainerDecorator],
     parameters: {
         chromatic: {
             disable: true,

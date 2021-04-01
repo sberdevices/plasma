@@ -6,6 +6,7 @@ import { TextBoxCardShowcase } from './TextBox';
 import { TextBoxImageCardShowcase } from './TextBoxImage';
 import { BasicCardShowcase } from './BasicCard';
 import { ListCardShowcase } from './ListCard';
+import { ImageCardShowcase } from './ImageCard';
 
 export default {
     title: 'Showcase/Device/Cards',
@@ -25,6 +26,7 @@ export function Cards() {
         <div>
             <TextBoxCardShowcase />
             <TextBoxImageCardShowcase />
+            <ImageCardShowcase />
             <BasicCardShowcase />
             <ListCardShowcase />
         </div>
