@@ -12,6 +12,18 @@ const Row = styled.div`
     justify-content: space-around;
     align-items: flex-start;
     margin-bottom: 40px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+`;
+
+const StyledCard = styled(Card)`
+    margin-right: 40px;
+
+    &:last-child {
+        margin-right: 0;
+    }
 `;
 
 function CardItem({
@@ -34,7 +46,7 @@ function CardItem({
     button?: string;
 }) {
     return (
-        <Card style={{ width: '640px', marginRight: '40px' }} tabIndex={-1} outlined scaleOnFocus>
+        <StyledCard style={{ width: '640px' }} tabIndex={-1} outlined scaleOnFocus>
             <CardBody>
                 <CardMedia src={image} ratio={ratio} customRatio={customRatio} />
                 <CardContent cover>
@@ -53,7 +65,7 @@ function CardItem({
                     )}
                 </CardContent>
             </CardBody>
-        </Card>
+        </StyledCard>
     );
 }
 

@@ -14,6 +14,10 @@ const Row = styled.div`
     justify-content: space-around;
     align-items: flex-start;
     margin-bottom: 40px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
 `;
 
 function CardItem({
@@ -24,6 +28,7 @@ function CardItem({
     subtitle,
     button,
     tag,
+    style,
 }: {
     image: string;
     ratio?: Ratio;
@@ -32,10 +37,11 @@ function CardItem({
     subtitle?: string;
     button?: string;
     tag?: string;
+    style?: React.CSSProperties;
 }) {
     const cardContentVisible = title && subtitle;
     return (
-        <Card style={{ width: '640px', marginRight: '40px' }} tabIndex={-1} outlined scaleOnFocus>
+        <Card style={{ width: '640px', ...style }} tabIndex={-1} outlined scaleOnFocus>
             <CardBody>
                 <CardMedia src={image} ratio={ratio} customRatio={customRatio} />
                 {cardContentVisible && (
@@ -72,8 +78,9 @@ function ImageCards() {
                     title="Title"
                     subtitle="Subtitle"
                     button="Label"
+                    style={{ marginRight: '40px' }}
                 />
-                <CardItem image="./images/320_320_9.jpg" ratio="1 / 1" />
+                <CardItem image="./images/320_320_9.jpg" ratio="1 / 1" style={{ marginRight: '40px' }} />
                 <CardItem image="./images/320_320_9.jpg" ratio="1 / 1" tag="tag" />
             </Row>
         </ShowcaseDashedBorder>

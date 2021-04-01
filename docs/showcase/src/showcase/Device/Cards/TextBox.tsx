@@ -10,6 +10,10 @@ const Row = styled.div`
     justify-content: space-around;
     align-items: flex-start;
     margin-bottom: 40px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
 `;
 
 const StretchRow = styled.div`
@@ -22,6 +26,10 @@ const StretchRow = styled.div`
 const StyledCard = styled(Card)`
     width: 10rem;
     margin-right: 40px;
+
+    &:last-child {
+        margin-right: 0;
+    }
 `;
 
 function CardItem({ icon, title, subtitle }: { icon?: string; title: string; subtitle: string }) {
@@ -40,9 +48,9 @@ function CardItem({ icon, title, subtitle }: { icon?: string; title: string; sub
     );
 }
 
-function CardsShowcase() {
+function CardsShowcase({ style }: { style?: React.CSSProperties }) {
     return (
-        <ShowcaseDashedBorder>
+        <ShowcaseDashedBorder style={style}>
             <Row>
                 <CardItem icon="./images/320_320_12.jpg" title="Title" subtitle="Subtitle" />
                 <CardItem title="Title" subtitle="Subtitle" />
@@ -63,7 +71,7 @@ export function TextBoxCardShowcase() {
                 subTitle="Простая карточка с текстовым блоком и опциональной иконкой. Могут иметь произвольный размер."
             />
             <ShowcasePanel>
-                <CardsShowcase />
+                <CardsShowcase style={{ marginRight: '80px' }} />
                 <CardsShowcase />
             </ShowcasePanel>
         </>

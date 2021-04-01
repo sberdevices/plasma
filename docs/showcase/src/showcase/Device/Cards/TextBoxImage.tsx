@@ -14,6 +14,10 @@ const Container = styled.div`
 
 const StyledCard = styled(Card)`
     margin-right: 40px;
+
+    &:last-child {
+        margin-right: 0;
+    }
 `;
 
 function CardItem({

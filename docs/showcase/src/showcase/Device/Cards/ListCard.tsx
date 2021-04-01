@@ -12,6 +12,18 @@ const Row = styled.div`
     justify-content: space-around;
     align-items: flex-start;
     margin-bottom: 40px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+`;
+
+const StyledCard = styled(Card)`
+    margin-right: 40px;
+
+    &:last-child {
+        margin-right: 0;
+    }
 `;
 
 function CardItemList({
@@ -24,7 +36,7 @@ function CardItemList({
     button?: string;
 }) {
     return (
-        <Card style={{ width: '640px', marginRight: '40px' }} tabIndex={-1} outlined scaleOnFocus>
+        <StyledCard style={{ width: '640px' }} tabIndex={-1} outlined scaleOnFocus>
             <CardContent compact>
                 <Cell content={<TextBoxBigTitle>{title}</TextBoxBigTitle>} />
                 {items.map((item, i) => (
@@ -47,13 +59,13 @@ function CardItemList({
                     </Button>
                 )}
             </CardContent>
-        </Card>
+        </StyledCard>
     );
 }
 
 function CardItemSingle({ title, subtitle, button }: { title: string; subtitle?: string; button?: string }) {
     return (
-        <Card style={{ width: '640px', marginRight: '40px' }} tabIndex={-1} outlined scaleOnFocus>
+        <StyledCard style={{ width: '640px' }} tabIndex={-1} outlined scaleOnFocus>
             <CardContent compact>
                 <Cell
                     content={
@@ -70,11 +82,11 @@ function CardItemSingle({ title, subtitle, button }: { title: string; subtitle?:
                     </Button>
                 )}
             </CardContent>
-        </Card>
+        </StyledCard>
     );
 }
 
-function ListCards() {
+function ListCards({ style }: { style: React.CSSProperties }) {
     const items = [
         {
             title: 'Title',
@@ -90,7 +102,7 @@ function ListCards() {
         },
     ];
     return (
-        <ShowcaseDashedBorder>
+        <ShowcaseDashedBorder style={style}>
             <Row>
                 <CardItemList items={items} />
                 <CardItemList items={items} title="Название раздела" />
@@ -117,9 +129,9 @@ function SingleCards() {
 export function ListCardShowcase() {
     return (
         <>
-            <ShowcaseSectionName title="Basic Card" subTitle="Нижняя шторка" />
-            <ShowcasePanel style={{ flexWrap: 'wrap' }}>
-                <ListCards />
+            <ShowcaseSectionName title="List Card" subTitle="Конструктор карточек списка" />
+            <ShowcasePanel style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
+                <ListCards style={{ marginBottom: '80px' }} />
                 <SingleCards />
             </ShowcasePanel>
         </>
