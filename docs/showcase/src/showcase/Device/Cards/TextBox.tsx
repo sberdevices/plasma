@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Card, CardBody, CardContent } from '@sberdevices/ui/components/Card';
-import { CellIcon } from '@sberdevices/ui/components/Cell';
 import { TextBox, TextBoxTitle, TextBoxSubTitle } from '@sberdevices/ui/components/TextBox';
 
-import { ShowcaseDashedBorder, ShowcaseSectionName, ShowcasePanel } from '../../../helpers';
+import { ShowcaseDashedBorder, ShowcaseSectionName, ShowcasePanel, IconPlaceholder } from '../../../helpers';
 
 const Row = styled.div`
     display: flex;
@@ -30,7 +29,7 @@ function CardItem({ icon, title, subtitle }: { icon?: string; title: string; sub
         <StyledCard outlined scaleOnFocus>
             <CardBody>
                 <CardContent>
-                    {icon && <CellIcon as="img" src={icon} alt="Card Icon" />}
+                    {icon && <IconPlaceholder size="m" />}
                     <TextBox>
                         <TextBoxTitle>{title}</TextBoxTitle>
                         <TextBoxSubTitle>{subtitle}</TextBoxSubTitle>

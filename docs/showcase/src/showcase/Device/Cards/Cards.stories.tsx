@@ -1,21 +1,11 @@
 import React from 'react';
-import { Button } from '@sberdevices/ui/components/Button';
-import { Card, CardBody, CardMedia, CardContent, CardParagraph1 } from '@sberdevices/ui/components/Card';
-import { Cell, CellListItem, CellIcon, CellDisclosure } from '@sberdevices/ui/components/Cell';
-import { Body1 } from '@sberdevices/ui/components/Typography';
-import {
-    TextBox,
-    TextBoxBigTitle,
-    TextBoxBiggerTitle,
-    TextBoxTitle,
-    TextBoxSubTitle,
-} from '@sberdevices/ui/components/TextBox';
 
-import { CardShowcase, IconPlaceholder, DeviceStoryDecorator, InContainerDecorator } from '../../../helpers';
+import { DeviceStoryDecorator, InContainerDecorator } from '../../../helpers';
 
 import { TextBoxCardShowcase } from './TextBox';
 import { TextBoxImageCardShowcase } from './TextBoxImage';
 import { BasicCardShowcase } from './BasicCard';
+import { ListCardShowcase } from './ListCard';
 
 export default {
     title: 'Showcase/Device/Cards',
@@ -36,6 +26,7 @@ export function Cards() {
             <TextBoxCardShowcase />
             <TextBoxImageCardShowcase />
             <BasicCardShowcase />
+            <ListCardShowcase />
         </div>
     );
 }
