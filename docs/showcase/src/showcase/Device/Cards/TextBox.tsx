@@ -1,14 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Card, CardBody, CardMedia, CardContent, CardParagraph1 } from '@sberdevices/ui/components/Card';
-import { Cell, CellIcon } from '@sberdevices/ui/components/Cell';
-import {
-    TextBox,
-    TextBoxBigTitle,
-    TextBoxBiggerTitle,
-    TextBoxTitle,
-    TextBoxSubTitle,
-} from '@sberdevices/ui/components/TextBox';
+import { Card, CardBody, CardContent } from '@sberdevices/ui/components/Card';
+import { CellIcon } from '@sberdevices/ui/components/Cell';
+import { TextBox, TextBoxTitle, TextBoxSubTitle } from '@sberdevices/ui/components/TextBox';
 
 import { ShowcaseDashedBorder, ShowcaseSectionName, ShowcasePanel } from '../../../helpers';
 
@@ -38,7 +32,7 @@ function CardItem({ icon, title, subtitle }: { icon?: string; title: string; sub
                 <CardContent>
                     {icon && <CellIcon as="img" src={icon} alt="Card Icon" />}
                     <TextBox>
-                        <TextBoxBigTitle>{title}</TextBoxBigTitle>
+                        <TextBoxTitle>{title}</TextBoxTitle>
                         <TextBoxSubTitle>{subtitle}</TextBoxSubTitle>
                     </TextBox>
                 </CardContent>
@@ -67,7 +61,7 @@ export function TextBoxCardShowcase() {
         <>
             <ShowcaseSectionName
                 title="TextBox"
-                subTitle="Простая карточка с текстовым блоком и опциональной иконкой. Могут иметь произваольный размер."
+                subTitle="Простая карточка с текстовым блоком и опциональной иконкой. Могут иметь произвольный размер."
             />
             <ShowcasePanel>
                 <CardsShowcase />

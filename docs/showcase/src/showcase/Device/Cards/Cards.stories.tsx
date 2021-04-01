@@ -15,6 +15,7 @@ import { CardShowcase, IconPlaceholder, DeviceStoryDecorator, InContainerDecorat
 
 import { TextBoxCardShowcase } from './TextBox';
 import { TextBoxImageCardShowcase } from './TextBoxImage';
+import { BasicCardShowcase } from './BasicCard';
 
 export default {
     title: 'Showcase/Device/Cards',
@@ -34,6 +35,7 @@ export function Cards() {
         <div>
             <TextBoxCardShowcase />
             <TextBoxImageCardShowcase />
+            <BasicCardShowcase />
         </div>
     );
 }
