@@ -31,6 +31,13 @@ addParameters({
                     height: '720px',
                 },
             },
+            '1440': {
+                name: '1440',
+                styles: {
+                    width: '1440px',
+                    height: '900px',
+                },
+            },
             ...INITIAL_VIEWPORTS,
         },
         defaultViewport: 'SberBox',
