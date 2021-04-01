@@ -26,15 +26,17 @@ function CardItem({
     customRatio,
     title,
     subtitle,
+    style,
 }: {
     image: string;
     ratio?: Ratio;
     customRatio?: string;
     title: string;
     subtitle: string;
+    style?: React.CSSProperties;
 }) {
     return (
-        <StyledCard outlined scaleOnFocus>
+        <StyledCard style={style} outlined scaleOnFocus>
             <CardBody>
                 <CardMedia src={image} placeholder={image} ratio={ratio} customRatio={customRatio} />
                 <CardContent>
@@ -52,9 +54,27 @@ function TextBoxImageCards() {
     return (
         <ShowcaseDashedBorder>
             <Container>
-                <CardItem image="./images/180_320_9.jpg" ratio="9 / 16" title="Title" subtitle="Subtitle" />
-                <CardItem image="./images/320_320_1.jpg" ratio="1 / 1" title="Title" subtitle="Subtitle" />
-                <CardItem image="./images/180_320_9.jpg" ratio="16 / 9" title="Title" subtitle="Subtitle" />
+                <CardItem
+                    style={{ width: '320px' }}
+                    image="./images/180_320_9.jpg"
+                    ratio="9 / 16"
+                    title="Title"
+                    subtitle="Subtitle"
+                />
+                <CardItem
+                    style={{ width: '320px' }}
+                    image="./images/320_320_1.jpg"
+                    ratio="1 / 1"
+                    title="Title"
+                    subtitle="Subtitle"
+                />
+                <CardItem
+                    style={{ width: '500px' }}
+                    image="./images/180_320_9.jpg"
+                    ratio="16 / 9"
+                    title="Title"
+                    subtitle="Subtitle"
+                />
             </Container>
         </ShowcaseDashedBorder>
     );
