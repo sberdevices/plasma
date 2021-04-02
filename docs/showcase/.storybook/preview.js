@@ -58,7 +58,7 @@ export const globalTypes = {
         description: 'Global typography size for components',
         defaultValue: isWeb() ? 'web' : 'sberBox',
         toolbar: {
-            items: ['sberPortal', 'sberBox', 'touch', 'web'],
+            items: ['sberPortal', 'sberBox', 'mobile', 'web'],
         },
     },
 };

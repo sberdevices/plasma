@@ -63,7 +63,7 @@ writeGeneratedToFS(
     generateTypo({
         sberBox: createTypoStyles(typoSystem, deviceScales.sberBox),
         sberPortal: createTypoStyles(typoSystem, deviceScales.sberPortal),
-        touch: createTypoStyles(typoSystem, deviceScales.touch),
+        mobile: createTypoStyles(typoSystem, deviceScales.mobile),
     }),
 );
 
@@ -83,7 +83,7 @@ export { typographyValues };
 
 export const sberPortalScale = ${deviceScales.sberPortal};
 export const sberBoxScale = ${deviceScales.sberBox};
-export const touchScale = ${deviceScales.touch};
+export const mobileScale = ${deviceScales.mobile};
 export const scalingPixelBasis = ${HTML_FONT_SIZE};
 
 export * from './colors';

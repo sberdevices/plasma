@@ -1,6 +1,6 @@
 import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import { sberPortal, sberBox, touch } from '@sberdevices/plasma-tokens/typo';
+import { sberPortal, sberBox, mobile } from '@sberdevices/plasma-tokens/typo';
 import { sberPortalScale } from '@sberdevices/plasma-tokens';
 import { transformStyles } from '@sberdevices/plasma-core/utils';
 
@@ -14,7 +14,7 @@ const transformWithRoot = (typo: typeof sberBox) => `
 const typoSizes = {
     sberBox: createGlobalStyle`${transformWithRoot(sberBox)}`,
     sberPortal: createGlobalStyle`${transformWithRoot(sberPortal)}`,
-    touch: createGlobalStyle`${transformWithRoot(touch)}`,
+    mobile: createGlobalStyle`${transformWithRoot(mobile)}`,
 };
 /* stylelint-enable */
 
@@ -29,11 +29,11 @@ export interface DeviceThemeProps {
     /**
      * Пользовательская функция определения устройства.
      *
-     * Должна возвращать 3 возможных значения - `sberBox` или `sberPortal` или `touch`.
+     * Должна возвращать 3 возможных значения - `sberBox` или `sberPortal` или `mobile`.
      *
      * Возвращаемое значение  по умолчанию - `sberBox`.
      *
-     * При значениях `sberBox` и `sberPortal` типографика примет размер **x2**, а при `touch` - **x1**.
+     * При значениях `sberBox` и `sberPortal` типографика примет размер **x2**, а при `mobile` - **x1**.
      */
     detectDeviceCallback?: () => DeviceKind;
 }
