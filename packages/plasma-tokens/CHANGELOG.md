@@ -1,3 +1,37 @@
+# v1.0.0 (Fri Apr 02 2021)
+
+#### 💥 Breaking Change
+
+- feat!: Делаем пакеты публичными [#279](https://github.com/sberdevices/plasma/pull/279) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### 🚀 Enhancement
+
+- feat(ui): DeviceDetect: touch => mobile. BREAKING [#279](https://github.com/sberdevices/plasma/pull/279) ([@Yeti-or](https://github.com/Yeti-or))
+- feat: Переход plasma-tokens на общие механизмы [#279](https://github.com/sberdevices/plasma/pull/279) ([@fanisco](https://github.com/fanisco))
+- feat: Лицензия для core, ui: DeviceDetection [#279](https://github.com/sberdevices/plasma/pull/279) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-tokens): Typography CSS Vars & Types [#279](https://github.com/sberdevices/plasma/pull/279) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-tokens): switch from ios/android assets to packages [#279](https://github.com/sberdevices/plasma/pull/279) ([@Yeti-or](https://github.com/Yeti-or))
+- feat(plasma-tokens): add tokens for android/ios [#279](https://github.com/sberdevices/plasma/pull/279) ([@Yeti-or](https://github.com/Yeti-or))
+- feat(plasma-tokens): Градиенты подсказок о голосовых запросах [#279](https://github.com/sberdevices/plasma/pull/279) ([@maderwin](https://github.com/maderwin))
+- feat(ui): Обновлены токены плазмы [#279](https://github.com/sberdevices/plasma/pull/279) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- fix: plasma doc before major [#279](https://github.com/sberdevices/plasma/pull/279) ([@Yeti-or](https://github.com/Yeti-or))
+- Create principles.md [#279](https://github.com/sberdevices/plasma/pull/279) ([@Yeti-or](https://github.com/Yeti-or))
+- ci(plasma-tokens): tar tokens [#279](https://github.com/sberdevices/plasma/pull/279) ([@Yeti-or](https://github.com/Yeti-or))
+- chore: изменены ссылки на документацию [#279](https://github.com/sberdevices/plasma/pull/279) ([@IgorAntonov](https://github.com/IgorAntonov))
+- docs: add badges to @rc [#279](https://github.com/sberdevices/plasma/pull/279) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 4
+
+- [@IgorAntonov](https://github.com/IgorAntonov)
+- Artyom Zakharov ([@maderwin](https://github.com/maderwin))
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v0.4.0 (Wed Nov 11 2020)
 
 #### 🐛 Bug Fix
