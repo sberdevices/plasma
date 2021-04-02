@@ -1,7 +1,7 @@
 {
     "name": "@sberdevices/showcase",
     "private": true,
-    "version": "0.1.0",
+    "version": "1.0.0",
     "description": "SberDevices Design System",
     "main": "",
     "files": [],
@@ -15,15 +15,13 @@
     "publishConfig": {
         "access": "restricted"
     },
-    "dependencies": {},
-    "peerDependencies": {},
     "devDependencies": {
         "@sberdevices/plasma-core": "^0.5.0",
-        "@sberdevices/plasma-icons": "^0.2.0",
-        "@sberdevices/plasma-tokens": "^0.4.0",
-        "@sberdevices/plasma-tokens-web": "^0.1.0",
-        "@sberdevices/plasma-web": "^0.5.0",
-        "@sberdevices/plasma-ui": "^0.97.3",
+        "@sberdevices/plasma-icons": "1.0.0",
+        "@sberdevices/plasma-tokens": "1.0.0",
+        "@sberdevices/plasma-tokens-web": "1.0.0",
+        "@sberdevices/plasma-ui": "1.0.0",
+        "@sberdevices/plasma-web": "1.0.0",
         "@storybook/addon-actions": "6.0.0-rc.13",
         "@storybook/addon-backgrounds": "6.0.0-rc.13",
         "@storybook/addon-docs": "6.1.15",
@@ -52,5 +50,9 @@
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
         "chromatic": "npx chromatic"
     },
-    "contributors": ["Vasiliy Loginevskiy", "Anton Vinogradov", "Fanil Zubairov"]
+    "contributors": [
+        "Vasiliy Loginevskiy",
+        "Anton Vinogradov",
+        "Fanil Zubairov"
+    ]
 }
