@@ -6,7 +6,7 @@ import { Ratio } from '@sberdevices/ui/components/Image';
 import { InitializeParams } from './assistant';
 import { CurrentHistory, SetPositionPayload, SetStatePayload, SetStepPayload, AppStateAction, UIState } from './store/reducer';
 import { VideoPlayerProps } from './components/VideoPlayer/VideoPlayer';
-import { RenderMediaPlayerControlsFn } from './components/MediaPlayer/types';
+import { CustomMediaPlayerControlsProps } from './components/MediaPlayer/types';
 
 // eslint-disable-next-line no-shadow
 export enum Screen {
@@ -104,6 +104,7 @@ export interface VideoItemViewPayload extends Pick<VideoPlayerProps, 'src' | 'st
 }
 export interface VideoViewPayload extends
     MetaPayload,
+    HeaderPropsPayload,
     Pick<VideoPlayerProps, 'autoPlay' | 'alwaysShowControls' | 'visibleControlList'> {
     items: VideoItemViewPayload | VideoItemViewPayload[];
 }
@@ -160,7 +161,7 @@ export interface GalleryRoute extends BaseRoute<Screen.gallery> {
 }
 
 export interface VideoRoute extends BaseRoute<Screen.video> {
-    renderCustomControls?: RenderMediaPlayerControlsFn<HTMLVideoElement>;
+    customControls?: React.ComponentType<CustomMediaPlayerControlsProps<HTMLVideoElement>>;
 }
 
 export type Route =

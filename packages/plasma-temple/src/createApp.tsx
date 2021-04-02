@@ -10,6 +10,7 @@ import { usePopHistoryListener } from './hooks/usePopHistoryListener';
 import { useStore } from './hooks/useStore';
 import { Root } from './components/Root/Root';
 import { CanvasAppContext } from './canvasAppContext';
+import { AppStateContext } from './AppStateContext';
 
 const mergeConfigs = (source: CanvasAppConfig): CanvasAppConfig => {
     return {
@@ -135,20 +136,32 @@ export const createApp = (conf?: CanvasAppConfig): React.FC => {
             };
         }, [configRoute, record]);
 
+        const canvasAppContext = React.useMemo(() => ({
+            assistant: assistantRef.current,
+            configRoute,
+        }), [configRoute]);
+
+        const appStateContext = React.useMemo(() => ({
+            state,
+            dispatch,
+        }), [state, dispatch]);
+
         return (
-            <CanvasAppContext.Provider value={{ assistant: assistantRef.current, configRoute  }}>
-                <Root
-                    theme={state.ui.character}
-                    dispatch={dispatch}
-                    sendData={sendData}
-                    step={record?.step}
-                    stateRef={stateRef}
-                    nextRoute={configRoute?.next}
-                    position={record?.position}
-                    uiState={state.ui}
-                    Component={Component}
-                    {...dataProps}
-                />
+            <CanvasAppContext.Provider value={canvasAppContext}>
+                <AppStateContext.Provider value={appStateContext}>
+                    <Root
+                        theme={state.ui.character}
+                        dispatch={dispatch}
+                        sendData={sendData}
+                        step={record?.step}
+                        stateRef={stateRef}
+                        nextRoute={configRoute?.next}
+                        position={record?.position}
+                        uiState={state.ui}
+                        Component={Component}
+                        {...dataProps}
+                    />
+                </AppStateContext.Provider>
             </CanvasAppContext.Provider>
         );
     });

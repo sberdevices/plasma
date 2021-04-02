@@ -8,19 +8,24 @@ interface MediaPlayerTimelineProps {
     className?: string;
 }
 
-const paddedString = (string: string) => string.padStart(2, '0');
+const formatNumber = (value: number) => value.toString().padStart(2, '0');
 
-const formatTime = (time: number) => {
-    const seconds = Math.floor(time % 60);
-    const minutes = Math.floor(time / 60);
+export const formatTime = (time: number) => {
+    const hours = Math.floor(time / 3600);
+    const minutes = Math.floor((time % 3600) / 60);
+    const seconds = Math.round(time % 60);
 
-    return [paddedString(minutes.toString()), paddedString(seconds.toString())].join(':');
+    const minutesAndSeconds = [formatNumber(minutes), formatNumber(seconds)].join(':');
+
+    return hours > 0
+        ? `${formatNumber(hours)}:${minutesAndSeconds}`
+        : minutesAndSeconds;
 };
 
 const StyledWrapper = styled.div`
     display: flex;
     align-items: center;
-    padding: 0.625rem 1rem;
+    padding: 0.625rem 0;
 `;
 
 const StyledTime = styled.span`
