@@ -3,7 +3,7 @@
 ## Установка
 
 ```sh
-npm install @sberdevices/spatial
+npm install --save @sberdevices/spatial
 ```
 
 Для использования с React и styled-components придётся установить `peerDependencies` самим.
@@ -54,7 +54,7 @@ export default App;
 ```typescript
 import React, { FC } from 'react';
 import { useSection, withFocusable } from '@sberdevices/spatial';
-import { Button } from '@sberdevices/plasma';
+import { Button } from '@sberdevices/plasma-ui';
 
 const FocusableButton = withFocusable(Button);
 
@@ -69,13 +69,16 @@ const Page1: FC = () => {
         })
     }, [])
 
+    const onSelect = useCallback((event: KeyboardEvent | MouseClick) => {
+        // ваша обработка
+    }, []);
+
     return (
       <div {...section}> // или <div data-focusable-section={sectionId}'>
-        <FocusableButton />
-        <FocusableButton />
-        <FocusableButton />
-        <FocusableButton />
-        <FocusableButton />
+        <FocusableButton handleEnterOrClick={onSelect} />
+        <FocusableButton handleEnterOrClick={onSelect} />
+        <FocusableButton handleEnterOrClick={onSelect} />
+        <FocusableButton handleEnterOrClick={onSelect} />
      </div>
     );
 };

@@ -27,21 +27,25 @@ export type SectionTuple<S extends SectionName = SectionName> = [SectionProps<S>
  * @example
  * ```typescript
  * const Page1: FC = () => {
- *  const [sectionProps, customizeMySection, sectionId] = useSection('mySection');
+ *      const [sectionProps, customizeMySection, sectionId] = useSection('mySection');
  *
- *  useEffect(() => {
- *      customizeMySection({
- *          enterTo: 'default-element',
- *          straightOnly: true
- *      })
- *  }, [])
+ *      useEffect(() => {
+ *          customizeMySection({
+ *              enterTo: 'default-element',
+ *              straightOnly: true
+ *          })
+ *      }, []);
  *
- *  return (
- *      <div {...sectionProps}> // или <div data-focusable-section={sectionId}>
- *         <FocusableButton />
- *         <FocusableButton />
- *      </div>
- *  );
+ *      const onSelect = useCallback((event: KeyboardEvent | MouseClick) => {
+ *          // ваша обработка
+ *      }, []);
+ *
+ *      return (
+ *          <div {...sectionProps}> // или <div data-focusable-section={sectionId}>
+ *             <FocusableButton handleEnterOrClick={onSelect} />
+ *             <FocusableButton handleEnterOrClick={onSelect} />
+ *          </div>
+ *      );
  * };
  * ```
  */

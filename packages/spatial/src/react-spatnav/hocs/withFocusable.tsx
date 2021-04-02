@@ -3,57 +3,86 @@ import { ComponentType, createElement, forwardRef } from 'react';
 import { isStyledComponent, StyledComponent } from 'styled-components';
 import { isReactComponent } from '../../react-spatnav';
 
-export interface FocusableProps {
+export interface SpatnavElementProps {
     /**
+     * Обработка кликов и тапов.
      *
-     * @param {MouseEvent} event Native HTML MouseEvent
+     * @param event Нативный HTML MouseEvent
      */
     handleClick?(event: MouseEvent): void;
-    /**
-     *
-     * @param {(KeyboardEvent|MouseEvent)} event Native HTML KeyboardEvent or MouseEvent
-     * this param depends on fact that you provide handleClick callback or not.
-     * If handleClick is provided handleEnterPress will accept KeyboardEvent.
-     * If handleClick is NOT provided handleEnterPress will accept MouseEvent.
-     */
-    handleEnterPress?(event: KeyboardEvent | MouseEvent): void;
-    /**
-     *
-     * @param {KeyboardEvent} event Native HTML KeyboardEvent
-     */
-    handleEscapePress?(event: KeyboardEvent): void;
 
     /**
+     * Обработка нажатия на кнопку Enter.
      *
-     * @param {KeyboardEvent} event Native HTML KeyboardEvent
+     * @param event Нативный HTML KeyboardEvent.
+     */
+    handleEnterPress?(event: KeyboardEvent): void;
+
+    /**
+     * Обработка нажатия на кнопку Enter и кликов одновременно.
+     *
+     * @param event Нативный HTML KeyboardEvent или MouseEvent.
+     */
+    handleEnterOrClick?(event: KeyboardEvent | MouseEvent): void;
+
+    /**
+     * Обработка стрелочки влево.
+     *
+     * @param event Нативный HTML KeyboardEvent
      */
     handleLeftPress?(event: KeyboardEvent): void;
 
     /**
+     * Обработка стрелочки вправо.
      *
-     * @param {KeyboardEvent} event Native HTML KeyboardEvent
+     * @param event Нативный HTML KeyboardEvent
      */
     handleRightPress?(event: KeyboardEvent): void;
 
     /**
+     * Обработка стрелочки вверх.
      *
-     * @param {KeyboardEvent} event Native HTML KeyboardEvent
+     * @param event Нативный HTML KeyboardEvent
      */
     handleUpPress?(event: KeyboardEvent): void;
 
     /**
+     * Обработка стрелочки вниз.
      *
-     * @param {KeyboardEvent} event Native HTML KeyboardEvent
+     * @param event Нативный HTML KeyboardEvent
      */
     handleDownPress?(event: KeyboardEvent): void;
 }
 
 /**
- * Props that Base Component must accept to be extended
+ * Необходимые пропсы расширяемого компонента.
  *
- * onClick and onKeyDown are basic React event handlers.
+ * @example
+ * ```typescript
+ * import React, { FC } from 'react';
+ * import { withFocusable } from '@sberdevices/spatial';
  *
- * data-focusable and tabIndex needed to make element focusable by a browser.
+ * interface MyFancyButtonProps {
+ *      color: string;
+ *      text: string;
+ * }
+ *
+ * const MyFancyButton: FC<MyFancyButtonProps & BaseComponentProps> = (props) => {
+ *      return (
+ *          <div
+ *              style={{borderColor: props.color}}
+ *              data-focusable={props.focusable}
+ *              tabIndex={props.tabIndex}
+ *              onClick={props.onClick}>
+ *              onKeyDown={props.onKeyDown}
+ *          >
+ *              {props.text}
+ *          </div>
+ *      )
+ * }
+ *
+ * export const FocusableFancyButton = withFocusable(MyFancyButton);
+ * ```
  */
 export interface BaseComponentProps {
     focusable: boolean;
@@ -62,102 +91,115 @@ export interface BaseComponentProps {
     onKeyDown?(event?: React.KeyboardEvent<HTMLElement | SVGElement>): void;
 }
 
-function handleEnterOrEscapeDown<P extends BaseComponentProps>(
-    props: React.PropsWithChildren<P & FocusableProps>,
+function handleNavigationKeys<P extends BaseComponentProps>(
+    props: React.PropsWithChildren<P & SpatnavElementProps>,
     event: React.KeyboardEvent<HTMLElement>,
 ): void {
-    const {
-        handleEnterPress,
-        handleEscapePress,
-        handleLeftPress,
-        handleRightPress,
-        handleUpPress,
-        handleDownPress,
-        onKeyDown,
-    } = props;
+    props.onKeyDown?.(event);
 
-    if (onKeyDown) {
-        onKeyDown(event);
-    }
-    if (event.nativeEvent.code === 'Enter') {
-        handleEnterPress?.(event.nativeEvent);
-    } else if (event.nativeEvent.code === 'Escape') {
-        handleEscapePress?.(event.nativeEvent);
-    } else if (event.nativeEvent.code === 'ArrowLeft') {
-        handleLeftPress?.(event.nativeEvent);
-        event.preventDefault();
-    } else if (event.nativeEvent.code === 'ArrowRight') {
-        handleRightPress?.(event.nativeEvent);
-        event.preventDefault();
-    } else if (event.nativeEvent.code === 'ArrowUp') {
-        handleUpPress?.(event.nativeEvent);
-        event.preventDefault();
-    } else if (event.nativeEvent.code === 'ArrowDown') {
-        handleDownPress?.(event.nativeEvent);
-        event.preventDefault();
+    const code = event.nativeEvent.code || event.nativeEvent.key;
+
+    switch (code) {
+        case 'ArrowDown':
+            props.handleDownPress?.(event.nativeEvent);
+            break;
+        case 'ArrowLeft':
+            props.handleLeftPress?.(event.nativeEvent);
+            break;
+        case 'ArrowRight':
+            props.handleRightPress?.(event.nativeEvent);
+            break;
+        case 'ArrowUp':
+            props.handleUpPress?.(event.nativeEvent);
+            break;
+        case 'Enter':
+            props.handleEnterOrClick?.(event.nativeEvent);
+            props.handleEnterPress?.(event.nativeEvent);
+            break;
+        default:
+            break;
     }
 }
 
 function handleClickOrTap<P extends BaseComponentProps>(
-    props: React.PropsWithChildren<P & FocusableProps>,
+    props: React.PropsWithChildren<P & SpatnavElementProps>,
     event: React.MouseEvent<HTMLElement>,
 ): void {
-    const { handleClick, handleEnterPress } = props;
-    if (typeof handleClick === 'undefined') {
-        handleEnterPress?.(event.nativeEvent);
-    } else {
-        handleClick(event.nativeEvent);
-    }
+    props.onClick?.(event);
+
+    props.handleClick?.(event.nativeEvent);
+    props.handleEnterOrClick?.(event.nativeEvent);
 }
 
 /**
- * @param {ComponentType<P>} BaseComponent
- * Base component must be a React Component
- * that accepts onClick or onKeyDown event as its props.
+ * Расширяет ваши компоненты с помощью пропсов необходимых для работы Spatial Navigation.
  *
- * @returns {ComponentType<P & FocusableProps>}
- * returns extendedComponent that now accept handleClick, handleEnterPress, handleEscapePress
- * callbacks, data-focusable=true tabIndex={-1} to make HTML element focusable,
- * and also every prop that BaseComponent accepts before extension.
- * You can pass only handleEnterPress prop and extendedComponent
- * will call handleEnterPress callback on mouse click as well as on enter press
+ *
+ * @param BaseComponent React компонент, который принимает и прокидывает дальше данные из BaseComponentProps.
+ *
+ * @returns расширенный компонент, который теперь принимает также и SpatnavElementProps.
  *
  * @example
  * ```typescript
- * // use with styled component
- * const ExtendedComponent = withFocusable(BaseComponent);
+ * import React, { FC } from 'react';
+ * import { withFocusable } from '@sberdevices/spatial';
  *
- * // later in JSX
- * <div>
- *  <ExtendedComponent handleEnterPress={callback} >
- *    <div/>
- *  </ExtendedComponent>
- * </div>
+ * interface MyFancyButtonProps {
+ *      color: string;
+ *      text: string;
+ * }
  *
- * // or with custom component
+ * const MyFancyButton: FC<MyFancyButtonProps & BaseComponentProps> = (props) => {
+ *      return (
+ *          <div
+ *              style={{borderColor: props.color}}
+ *              data-focusable={props.focusable}
+ *              tabIndex={props.tabIndex}
+ *              onClick={props.onClick}>
+ *              onKeyDown={props.onKeyDown}
+ *          >
+ *              {props.text}
+ *          </div>
+ *      )
+ * }
  *
- * const BaseComponent: FC<BaseComponentProps> = ({ focusable, tabIndex, onKeyDown }) => (
- *   <>
- *     <span>span</span>
- *     <div data-focusable={focusable} tabIndex={tabIndex} onKeyDown={onKeyDown}>
- *       now is focusable
- *     </div>
- *   </>
- * );
- *
- * const Focusable = withFocusable(BaseComponent);
+ * export const FocusableFancyButton = withFocusable(MyFancyButton);
  * ```
  */
 function withFocusable<P extends BaseComponentProps>(
     BaseComponent: ComponentType<P>,
-): ComponentType<P & FocusableProps>; // BUG: accepts component without BaseComponentProps props
+): ComponentType<P & SpatnavElementProps>;
 
+/**
+ * Расширяет styled-component с помощью пропсов необходимых для работы Spatial Navigation.
+ *
+ * @param BaseComponent любой styled-component.
+ *
+ * @returns расширенный styled-component, который теперь принимает также и SpatnavElementProps.
+ *
+ * @example
+ * ```typescript
+ * import React, { FC } from 'react';
+ * import styled from 'styled-components';
+ * import { withFocusable } from '@sberdevices/spatial';
+ *
+ * interface MyStyledButtonProps {
+ *      color: string;
+ * }
+ *
+ * const StyledButton = styled.div<MyStyledButtonProps>`
+ *      background-color: ${(props) => props.color};
+ * `;
+ *
+ * export const FocusableStyledButton = withFocusable(StyledButton);
+ * ```
+ */
 function withFocusable<
     C extends keyof JSX.IntrinsicElements | React.ComponentType<unknown>,
     T extends Record<string, unknown>,
     O extends Record<string, unknown>,
     A extends keyof any = never
->(BaseComponent: StyledComponent<C, T, O, A>): StyledComponent<C, T, O & FocusableProps, A>;
+>(BaseComponent: StyledComponent<C, T, O, A>): StyledComponent<C, T, O & SpatnavElementProps, A>;
 
 function withFocusable<
     P extends BaseComponentProps,
@@ -167,11 +209,11 @@ function withFocusable<
     A extends keyof any = never
 >(
     BaseComponent: ComponentType<P> | StyledComponent<C, T, O, A>,
-): React.ForwardRefExoticComponent<React.PropsWithoutRef<P & FocusableProps> & React.RefAttributes<unknown>> {
-    const extendedComponent = forwardRef((props: P & FocusableProps, ref) => {
+): React.ForwardRefExoticComponent<React.PropsWithoutRef<P & SpatnavElementProps> & React.RefAttributes<unknown>> {
+    const extendedComponent = forwardRef((props: P & SpatnavElementProps, ref) => {
         const { tabIndex, focusable, ...restProps } = props;
 
-        const onKeyDown = handleEnterOrEscapeDown.bind(null, props);
+        const onKeyDown = handleNavigationKeys.bind(null, props);
 
         const onClick = handleClickOrTap.bind(null, props);
 
@@ -189,7 +231,7 @@ function withFocusable<
         if (isReactComponent<typeof restProps>(BaseComponent)) {
             return createElement(BaseComponent, {
                 ref,
-                focusable: focusable ?? true,
+                focusable,
                 tabIndex: tabIndex ?? -1,
                 ...restProps,
                 onClick,
