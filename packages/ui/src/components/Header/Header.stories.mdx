@@ -1,4 +1,4 @@
-import { Meta, Props, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+import { Meta, ArgsTable, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
 
 import { WithGridLines, InContainer } from '../../helpers/StoryDecorators';
 
@@ -22,18 +22,18 @@ import {
 
 ## Header
 <Description of={Header} />
-<Props of={Header} />
+<ArgsTable of={Header} />
 
 ## HeaderRoot
 <Description of={HeaderRoot} />
 
 ## HeaderBack
 <Description of={HeaderBack} />
-<Props of={HeaderBack} />
+<ArgsTable of={HeaderBack} exclude={["theme", "as"]} />
 
 ## HeaderLogo
 <Description of={HeaderLogo} />
-<Props of={HeaderLogo} />
+<ArgsTable of={HeaderLogo} exclude={["theme", "forwardedAs", "as"]} />
 
 ## HeaderTitleWrapper
 <Description of={HeaderTitleWrapper} />
