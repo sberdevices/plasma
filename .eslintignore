@@ -16,8 +16,8 @@ packages/plasma-tokens-web/*
 packages/**/jest.config.*
 examples/**
 
-packages/ui/*
-!packages/ui/src
+packages/plasma-ui/*
+!packages/plasma-ui/src
 
 packages/plasma-web/*
 !packages/plasma-web/src
