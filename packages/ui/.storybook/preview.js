@@ -43,7 +43,7 @@ const withTheme = (Story, context) => {
 
     return (
         <>
-            <DeviceThemeProvider detectDeviceCallback={() => (isDocs() ? 'touch' : context.globals.typoSize)}>
+            <DeviceThemeProvider detectDeviceCallback={() => (isDocs() ? 'mobile' : context.globals.typoSize)}>
                 <Theme />
                 <DocumentStyle />
                 <Story {...context} />
@@ -126,7 +126,7 @@ export const globalTypes = {
         description: 'Global typography size for components',
         defaultValue: 'sberBox',
         toolbar: {
-            items: ['touch', 'sberBox', 'sberPortal'],
+            items: ['mobile', 'sberBox', 'sberPortal'],
         },
     },
 };

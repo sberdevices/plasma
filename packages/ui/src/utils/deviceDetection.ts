@@ -1,7 +1,7 @@
 export const deviceScales = {
     sberPortal: 2,
     sberBox: 2,
-    touch: 1,
+    mobile: 1,
 };
 
 export type DeviceKind = keyof typeof deviceScales;
@@ -64,6 +64,6 @@ export const detectDevice = (): DeviceKind => {
         case isTV():
             return 'sberBox';
         default:
-            return 'touch';
+            return 'mobile';
     }
 };

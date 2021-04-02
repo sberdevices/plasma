@@ -13,7 +13,7 @@ const sizes = {
         --plasma-header-pt: 1.625rem; /* 26px */
         --plasma-header-pb: 0.625rem; /* 10px */
     `,
-    touch: css`
+    mobile: css`
         --plasma-header-height: 1.75rem; /* 28px */
         --plasma-header-pt: 0.625rem; /* 26px */
         --plasma-header-pb: 0.625rem; /* 10px */
@@ -42,7 +42,7 @@ const StyledHeaderRoot = styled.header<StyledHeaderRootProps>`
         $size
             ? sizes[$size] // Выберет указанный размер или разложит размеры по брейкпоинтам
             : css`
-        ${mediaQuery('S', theme.deviceScale)(sizes.touch)}
+        ${mediaQuery('S', theme.deviceScale)(sizes.mobile)}
         ${mediaQuery('M', theme.deviceScale)(sizes.sberPortal)}
         ${mediaQuery('L', theme.deviceScale)(sizes.sberBox)}
         ${mediaQuery('XL', theme.deviceScale)(sizes.sberBox)}

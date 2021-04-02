@@ -2,7 +2,7 @@ import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { text, background, gradient } from '@sberdevices/plasma-tokens'; // FixMe: import from core
 import { darkEva, darkJoy, darkSber, lightEva, lightJoy, lightSber } from '@sberdevices/plasma-tokens/themes';
-import { sberPortal, sberBox, touch } from '@sberdevices/plasma-tokens/typo';
+import { sberPortal, sberBox, mobile } from '@sberdevices/plasma-tokens/typo';
 import { light } from '@sberdevices/plasma-tokens-web/themes';
 import { web } from '@sberdevices/plasma-tokens-web/typo';
 import { DeviceThemeProvider } from '@sberdevices/ui/components/Device';
@@ -20,7 +20,7 @@ const themes = {
 const typos = {
     sberPortal: createGlobalStyle(sberPortal),
     sberBox: createGlobalStyle(sberBox),
-    touch: createGlobalStyle(touch),
+    mobile: createGlobalStyle(mobile),
     web: createGlobalStyle(web),
 };
 
@@ -66,7 +66,7 @@ export const UIStoryDecorator: StoryDecorator = (Story, context) => {
     let { theme, typo } = context.globals;
 
     if (typo === 'web') {
-        typo = 'touch';
+        typo = 'mobile';
     }
     if (theme === 'light') {
         theme = 'darkSber';
@@ -95,7 +95,7 @@ export const UIMobileDecorator: StoryDecorator = (Story, context) => {
 
     return (
         <>
-            <DeviceThemeProvider detectDeviceCallback={() => 'touch'}>
+            <DeviceThemeProvider detectDeviceCallback={() => 'mobile'}>
                 <Theme />
                 <PlasmaStyle />
                 <Story {...context} />

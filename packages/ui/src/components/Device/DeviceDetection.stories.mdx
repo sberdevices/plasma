@@ -28,7 +28,7 @@ const myFancyTheme = {
 // Если стандартная функция определения поверхности не подходит, можно передать свою
 const detectDeviceCallback = () => {
     // Здесь проводится проверка, например, на основе userAgent.
-    window.navigator.userAgent.toLowerCase().includes('sberbox') ? 'sberBox' : 'touch';
+    window.navigator.userAgent.toLowerCase().includes('sberbox') ? 'sberBox' : 'mobile';
 };
 
 ReactDOM.render(
