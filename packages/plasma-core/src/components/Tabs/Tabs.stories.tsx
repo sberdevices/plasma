@@ -2,7 +2,7 @@ import React from 'react';
 import { text, number, select, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
-import { IconPlaceholder } from '../../helpers';
+import { IconPlaceholder } from '../../__helpers';
 
 import { Tabs, TabItem } from '.';
 
