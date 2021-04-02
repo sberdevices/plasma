@@ -19,7 +19,7 @@
 ```bash
 $ npm install --save react react-dom
 $ npm install --save styled-components
-$ npm install --save @sberdevices/ui@rc @sberdevices/plasma-tokens@rc @sberdevices/plasma-icons@rc
+$ npm install --save @sberdevices/plasma-ui @sberdevices/plasma-tokens @sberdevices/plasma-icons
 ```
 
 ### Настройка
@@ -55,7 +55,7 @@ export const GlobalStyle = () => (
 
 ```jsx
 // index.tsx
-import { DeviceThemeProvider } from '@sberdevices/ui/components/Device'; // Типографика, имеющая размеры, зависимые от типа устройства
+import { DeviceThemeProvider } from '@sberdevices/plasma-ui/components/Device'; // Типографика, имеющая размеры, зависимые от типа устройства
 import { GlobalStyle } from './GlobalStyle'; // Тема оформления (цветовая схема)
 import { App } from './App';
 
@@ -68,7 +68,7 @@ ReactDOM.render(
 );
 ```
 
-> Подробнее о [стилях и типографике](https://github.com/sberdevices/plasma/tree/rc/packages/plasma-tokens).
+> Подробнее о [стилях и типографике](https://github.com/sberdevices/plasma/tree/master/packages/plasma-tokens).
 
 ### Использование компонентов
 
@@ -76,8 +76,8 @@ ReactDOM.render(
 
 ```jsx
 // App.tsx
-import { Container } from '@sberdevices/ui/components/Grid';
-import { Button } from '@sberdevices/ui';
+import { Container } from '@sberdevices/plasma-ui/components/Grid';
+import { Button } from '@sberdevices/plasma-ui';
 
 export const App = () => {
     return (
@@ -92,15 +92,15 @@ export const App = () => {
 Пример импорта:
 
 ```jsx
-import { animatedScrollToX } from '@sberdevices/ui/utils';
-import { addFocus } from '@sberdevices/ui/mixins';
-import { withAutoFocus } from '@sberdevices/ui/hocs';
+import { animatedScrollToX } from '@sberdevices/plasma-ui/utils';
+import { addFocus } from '@sberdevices/plasma-ui/mixins';
+import { withAutoFocus } from '@sberdevices/plasma-ui/hocs';
 ```
 
 Подробнее можно ознакомиться на страницах документации по [hocs](https://plasma.sberdevices.ru/current/?path=/docs/core-high-order-components--page), [mixins](https://plasma.sberdevices.ru/current/?path=/docs/core-mixins--page) и [utils](https://plasma.sberdevices.ru/current/?path=/docs/core-utils--page).
 
 ## Полезные ссылки:
 
-Витрина с компонентами [Storybook](https://rc--5f96ec813d800900227e3b93.chromatic.com).
+Витрина с компонентами [Storybook](https://master--5f96ec813d800900227e3b93.chromatic.com).
 
 [Документация](https://plasma.sberdevices.ru/).
