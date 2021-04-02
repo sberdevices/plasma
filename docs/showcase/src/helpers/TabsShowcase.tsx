@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Headline4 } from '@sberdevices/ui/components/Typography';
+import { Headline4 } from '@sberdevices/plasma-ui/components/Typography';
 
 import { actionWithPersistedEvent } from './actionWithPersistedEvent';
 import { capitalize } from './capitalize';

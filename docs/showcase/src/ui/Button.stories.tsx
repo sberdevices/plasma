@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@sberdevices/ui/components/Button';
+import { Button } from '@sberdevices/plasma-ui/components/Button';
 
 import { actionWithPersistedEvent, ButtonShowcase, UIStoryDecorator, InSpacingDecorator } from '../helpers';
 

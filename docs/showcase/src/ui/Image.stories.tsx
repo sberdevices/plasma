@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from '@sberdevices/ui/components/Image';
+import { Image } from '@sberdevices/plasma-ui/components/Image';
 
 import { CardShowcase, UIStoryDecorator, InSpacingDecorator } from '../helpers';
 

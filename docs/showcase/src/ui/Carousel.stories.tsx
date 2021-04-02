@@ -7,13 +7,13 @@ import {
     CarouselItemProps,
     CarouselCol,
     useRemoteHandlers,
-} from '@sberdevices/ui/components/Carousel';
-import { Card, CardBody, CardMedia, CardContent } from '@sberdevices/ui/components/Card';
-import { Container, Row } from '@sberdevices/ui/components/Grid';
-import { Headline4 } from '@sberdevices/ui/components/Typography';
-import { isSberBox } from '@sberdevices/ui/utils/deviceDetection';
-import { TextBox, TextBoxBigTitle, TextBoxSubTitle } from '@sberdevices/ui/components/TextBox';
-import type { Ratio } from '@sberdevices/ui/components/Image';
+} from '@sberdevices/plasma-ui/components/Carousel';
+import { Card, CardBody, CardMedia, CardContent } from '@sberdevices/plasma-ui/components/Card';
+import { Container, Row } from '@sberdevices/plasma-ui/components/Grid';
+import { Headline4 } from '@sberdevices/plasma-ui/components/Typography';
+import { isSberBox } from '@sberdevices/plasma-ui/utils/deviceDetection';
+import { TextBox, TextBoxBigTitle, TextBoxSubTitle } from '@sberdevices/plasma-ui/components/TextBox';
+import type { Ratio } from '@sberdevices/plasma-ui/components/Image';
 
 import { UIStoryDecorator } from '../helpers';
 

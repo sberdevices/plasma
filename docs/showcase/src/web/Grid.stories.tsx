@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Container, Row, Col } from '@sberdevices/plasma-web/components/Grid';
-import { Headline4 } from '@sberdevices/ui/components/Typography';
+import { Headline4 } from '@sberdevices/plasma-ui/components/Typography';
 
 import { Filler, WebStoryDecorator } from '../helpers';
 

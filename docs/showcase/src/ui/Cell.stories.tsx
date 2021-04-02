@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Cell, CellListItem, CellIcon, CellDisclosure } from '@sberdevices/ui/components/Cell';
+import { Cell, CellListItem, CellIcon, CellDisclosure } from '@sberdevices/plasma-ui/components/Cell';
 import {
     TextBox,
     TextBoxTitle,
     TextBoxSubTitle,
     TextBoxLabel,
     TextBoxCaption,
-} from '@sberdevices/ui/components/TextBox';
-import { Body1 } from '@sberdevices/ui/components/Typography';
+} from '@sberdevices/plasma-ui/components/TextBox';
+import { Body1 } from '@sberdevices/plasma-ui/components/Typography';
 import { accent } from '@sberdevices/plasma-tokens';
 
 import { CardShowcase, UIStoryDecorator, InSpacingDecorator } from '../helpers';

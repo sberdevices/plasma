@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Badge } from '@sberdevices/ui/components/Badge';
+import { Badge } from '@sberdevices/plasma-ui/components/Badge';
 
 import {
     ShowcasePanel,

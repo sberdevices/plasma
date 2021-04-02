@@ -1,6 +1,6 @@
 import React from 'react';
 import { accent, primary, tertiary } from '@sberdevices/plasma-tokens';
-import { MarkedList, MarkedItem } from '@sberdevices/ui/components/MarkedList';
+import { MarkedList, MarkedItem } from '@sberdevices/plasma-ui/components/MarkedList';
 
 import { IconPlaceholder, UIStoryDecorator, InSpacingDecorator } from '../helpers';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Toast } from '@sberdevices/ui/components/Toast';
+import { Toast } from '@sberdevices/plasma-ui/components/Toast';
 
 import { UIStoryDecorator, InSpacingDecorator } from '../helpers';
 

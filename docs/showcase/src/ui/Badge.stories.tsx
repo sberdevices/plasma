@@ -1,5 +1,5 @@
 import React from 'react';
-import { Badge } from '@sberdevices/ui/components/Badge';
+import { Badge } from '@sberdevices/plasma-ui/components/Badge';
 
 import { CommonShowcase, IconPlaceholder, UIStoryDecorator, InSpacingDecorator } from '../helpers';
 

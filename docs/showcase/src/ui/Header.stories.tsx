@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '@sberdevices/ui/components/Button';
-import { Container } from '@sberdevices/ui/components/Grid';
-import { Header } from '@sberdevices/ui/components/Header';
-import { Tabs, TabItem } from '@sberdevices/ui/components/Tabs';
+import { Button } from '@sberdevices/plasma-ui/components/Button';
+import { Container } from '@sberdevices/plasma-ui/components/Grid';
+import { Header } from '@sberdevices/plasma-ui/components/Header';
+import { Tabs, TabItem } from '@sberdevices/plasma-ui/components/Tabs';
 
 import {
     actionWithPersistedEvent,

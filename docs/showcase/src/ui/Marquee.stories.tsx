@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Cell } from '@sberdevices/ui/components/Cell';
-import { Footnote1 } from '@sberdevices/ui/components/Typography';
-import { Marquee } from '@sberdevices/ui/components/Marquee';
+import { Cell } from '@sberdevices/plasma-ui/components/Cell';
+import { Footnote1 } from '@sberdevices/plasma-ui/components/Typography';
+import { Marquee } from '@sberdevices/plasma-ui/components/Marquee';
 
 import { UIStoryDecorator, InSpacingDecorator } from '../helpers';
 

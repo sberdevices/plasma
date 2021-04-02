@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { SmartPaginationDots, PaginationDots, PaginationDot } from '@sberdevices/ui/components/PaginationDots';
-import { Badge } from '@sberdevices/ui/components/Badge';
-import { ActionButton } from '@sberdevices/ui/components/Button';
+import { SmartPaginationDots, PaginationDots, PaginationDot } from '@sberdevices/plasma-ui/components/PaginationDots';
+import { Badge } from '@sberdevices/plasma-ui/components/Badge';
+import { ActionButton } from '@sberdevices/plasma-ui/components/Button';
 import isChromatic from 'chromatic/isChromatic';
 
 import { ShowcaseComponentRow, ShowcaseDashedBorder, UIStoryDecorator, InSpacingDecorator } from '../helpers';

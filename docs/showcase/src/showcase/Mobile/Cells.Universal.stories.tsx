@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { primary, tertiary } from '@sberdevices/plasma-tokens';
-import { CellDisclosure, CellIcon, CellListItem, CellRight } from '@sberdevices/ui/components/Cell';
+import { CellDisclosure, CellIcon, CellListItem, CellRight } from '@sberdevices/plasma-ui/components/Cell';
 import {
     TextBox,
     TextBoxBiggerTitle,
@@ -9,8 +9,8 @@ import {
     TextBoxTitle,
     TextBoxSubTitle,
     TextBoxCaption,
-} from '@sberdevices/ui/components/TextBox';
-import { Stepper, StepperButton, StepperRoot, StepperValue } from '@sberdevices/ui/components/Stepper';
+} from '@sberdevices/plasma-ui/components/TextBox';
+import { Stepper, StepperButton, StepperRoot, StepperValue } from '@sberdevices/plasma-ui/components/Stepper';
 
 import {
     ShowcasePanel,

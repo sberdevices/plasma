@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Icon, iconSectionsSet, IconName as IName, IconSize } from '@sberdevices/plasma-icons';
-import { Cell } from '@sberdevices/ui/components/Cell';
-import { TextBox } from '@sberdevices/ui/components/TextBox';
-import { Headline3, Body3 } from '@sberdevices/ui/components/Typography';
+import { Cell } from '@sberdevices/plasma-ui/components/Cell';
+import { TextBox } from '@sberdevices/plasma-ui/components/TextBox';
+import { Headline3, Body3 } from '@sberdevices/plasma-ui/components/Typography';
 import { secondary, accent } from '@sberdevices/plasma-tokens';
 
 import { UIStoryDecorator, InSpacingDecorator } from '../helpers';

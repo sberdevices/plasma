@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stepper } from '@sberdevices/ui/components/Stepper';
+import { Stepper } from '@sberdevices/plasma-ui/components/Stepper';
 
 import { actionWithPersistedEvent, ShowcaseComponentRow, UIStoryDecorator, InSpacingDecorator } from '../helpers';
 

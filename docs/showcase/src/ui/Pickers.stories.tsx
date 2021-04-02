@@ -4,8 +4,8 @@ import { action } from '@storybook/addon-actions';
 import {
     DatePicker as DatePickerComponent,
     TimePicker as TimePickerComponent,
-} from '@sberdevices/ui/components/Pickers';
-import { isSberBox } from '@sberdevices/ui/utils/deviceDetection';
+} from '@sberdevices/plasma-ui/components/Pickers';
+import { isSberBox } from '@sberdevices/plasma-ui/utils/deviceDetection';
 
 import { ShowcaseDashedBorder, UIStoryDecorator, InSpacingDecorator } from '../helpers';
 
