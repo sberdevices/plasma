@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { typography, scalingPixelBasis } from '@sberdevices/plasma-tokens';
-import { applyView, ViewProps } from '@sberdevices/plasma-core/mixins';
+import { views } from '@sberdevices/plasma-core/mixins';
 
 /**
  * Размеры в ремах.
@@ -16,6 +16,12 @@ export const badgeSizes = {
         textMarginLeftAfterContent: `${2 / scalingPixelBasis}rem`,
     },
 };
+
+export const badgeViews = {
+    primary: views.primary,
+    secondary: views.overlay,
+};
+
 export const badgeRootSizes = {
     l: {
         height: `${24 / scalingPixelBasis}rem`,
@@ -40,12 +46,17 @@ const StyledContent = styled.div`
 `;
 
 export type BadgeSize = keyof typeof badgeSizes;
+export type BadgeView = keyof typeof badgeViews;
 
-interface StyledBadgeProps extends ViewProps {
+interface StyledBadgeProps {
     /**
      * Размер компонента
      */
     size: BadgeSize;
+    /**
+     * Вид компонента
+     */
+    view?: BadgeView;
     /**
      * Компонент примет форму круга с соотношением сторон 1x1
      */
@@ -54,7 +65,6 @@ interface StyledBadgeProps extends ViewProps {
 
 const StyledBadge = styled.div<StyledBadgeProps>`
     ${typography.caption};
-    ${applyView};
 
     display: flex;
     align-items: center;
@@ -62,6 +72,8 @@ const StyledBadge = styled.div<StyledBadgeProps>`
     justify-content: center;
 
     width: max-content;
+
+    ${({ view }) => badgeViews[view!]};
 
     ${({ size, circled }) => css`
         ${badgeRootSizes[size]};
@@ -100,7 +112,7 @@ export interface BadgeProps extends StyledBadgeProps, React.HTMLAttributes<HTMLD
  * Небольшая бирка для ячеек и карточек.
  * Компонент может отображаться в нескольких размерах и цветах, может содержать текст и/или иконку.
  */
-export const Badge: React.FC<BadgeProps> = ({ size = 'l', view = 'secondary', text, contentLeft, ...rest }) => (
+export const Badge: React.FC<BadgeProps> = ({ size = 'l', view = 'primary', text, contentLeft, ...rest }) => (
     <StyledBadge size={size} view={view} {...rest}>
         {contentLeft && <StyledContent>{contentLeft}</StyledContent>}
         {text && <StyledText>{text}</StyledText>}

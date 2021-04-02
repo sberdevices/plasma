@@ -37,11 +37,11 @@ const Showcase: React.FC<React.HTMLAttributes<HTMLDivElement>> = (props) => (
                 <Badge circled text="11" size="s" view="primary" />
             </Row>
         </ShowcaseDashedBorder>
-        <Badge text="42:18" size="s" view="overlay" style={{ marginRight: 80 }} />
+        <Badge text="42:18" size="s" view="secondary" style={{ marginRight: 80 }} />
         <ShowcaseDashedBorder style={{ width: '3.375rem', marginRight: 80 }}>
             <Row>
-                <Badge circled text="1" size="l" view="overlay" style={{ marginRight: 20 }} />
-                <Badge circled text="1" size="s" view="overlay" />
+                <Badge circled text="1" size="l" view="secondary" style={{ marginRight: 20 }} />
+                <Badge circled text="1" size="s" view="secondary" />
             </Row>
         </ShowcaseDashedBorder>
         <ShowcaseDashedBorder style={{ width: '9rem' }}>
