@@ -44,7 +44,7 @@ export const BasicValue = () => {
                         size="s"
                         scaleOnInteraction={false}
                         outlined={false}
-                        fullWidth
+                        resizible
                         style={{ marginTop: '1em' }}
                         tabIndex={-1}
                     />

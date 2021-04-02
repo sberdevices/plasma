@@ -1,4 +1,4 @@
-import { Meta, Props, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+import { Meta, ArgsTable, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
 
 import { InSpacing } from '../../helpers/StoryDecorators';
 
@@ -20,26 +20,26 @@ import {
 
 ## Card
 <Description of={Card} />
-<Props of={Card} />
+<ArgsTable of={Card} />
 
 ## CardBody
 <Description of={CardBody} />
 
 ## CardContent
 <Description of={CardContent} />
-<Props of={CardContent} />
+<ArgsTable of={CardContent} />
 
 ## CardMedia
 <Description of={CardMedia} />
-<Props of={CardMedia} />
+<ArgsTable of={CardMedia} />
 
 ## CardHeadline1, ...
 ``... CardHeadline2, CardHeadline3, CardFootnote1, CardFootnote2`` — типографика, поддерживающая изменение цвета с помощью свойства ``view``.
-<Props of={CardHeadline1} />
+<ArgsTable of={CardHeadline1} exclude={["theme", "forwardedAs", "as"]} />
 
 ## CardParagraph1, ...
 ``... CardParagraph2, CardBody1, CardBody2`` — типографика, которой можно указать количество строк с помощью свойства ``lines`` и изменить цвет с помощью свойства ``view``.
-<Props of={CardParagraph1} />
+<ArgsTable of={CardParagraph1} exclude={["theme", "forwardedAs", "as"]} />
 
 ## Использование
 
