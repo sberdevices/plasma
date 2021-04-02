@@ -5,8 +5,8 @@ import { DeviceStoryDecorator, InContainerDecorator } from '../../../helpers';
 import { TopbarShowcase } from './Topbar';
 
 export default {
-    title: 'Showcase/Device/Topbar',
-    decorators: [DeviceStoryDecorator, InContainerDecorator],
+    title: 'Showcase/Device',
+    decorators: [DeviceStoryDecorator],
     parameters: {
         chromatic: {
             disable: true,

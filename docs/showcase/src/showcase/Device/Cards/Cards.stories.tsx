@@ -9,8 +9,8 @@ import { ListCardShowcase } from './ListCard';
 import { ImageCardShowcase } from './ImageCard';
 
 export default {
-    title: 'Showcase/Device/Cards',
-    decorators: [DeviceStoryDecorator, InContainerDecorator],
+    title: 'Showcase/Device',
+    decorators: [DeviceStoryDecorator],
     parameters: {
         chromatic: {
             disable: true,
