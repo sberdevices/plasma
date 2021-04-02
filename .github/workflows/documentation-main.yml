@@ -41,10 +41,10 @@ jobs:
 
       - name: Build documentation
         run: |
-          cd ./packages/ui && npm run storybook:build:docs
+          cd ./packages/plasma-ui && npm run storybook:build:docs
           cd ../../.
           mkdir ../build
-          cp -R ./packages/ui/build-sb-docs ../build/current-next
+          cp -R ./packages/plasma-ui/build-sb-docs ../build/current-next
 
       - name: Upload documentation build
         uses: garygrossgarten/github-action-scp@release
