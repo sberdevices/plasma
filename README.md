@@ -9,13 +9,13 @@
 ## Состав:
 
 -   @sberdevices/plasma-core
--   @sberdevices/ui
+-   @sberdevices/plasma-ui
 -   @sberdevices/plasma-tokens
 -   @sberdevices/plasma-icons
 
-[![npm ui](https://img.shields.io/npm/v/@sberdevices/ui/rc?label=%40sberdevices%2Fui%40rc&style=for-the-badge)](https://www.npmjs.com/package/@sberdevices/ui)
-[![npm ui](https://img.shields.io/npm/v/@sberdevices/plasma-tokens/rc?label=%40sberdevices%2Fplasma-tokens%40rc&style=for-the-badge)](https://www.npmjs.com/package/@sberdevices/plasma-tokens)
-[![npm ui](https://img.shields.io/npm/v/@sberdevices/plasma-icons/rc?label=%40sberdevices%2Fplasma-icons%40rc&style=for-the-badge)](https://www.npmjs.com/package/@sberdevices/plasma-icons)
+[![npm ui](https://img.shields.io/npm/v/@sberdevices/plasma-ui?label=%40sberdevices%2Fplasma-ui&style=for-the-badge)](https://www.npmjs.com/package/@sberdevices/plasma-ui)
+[![npm ui](https://img.shields.io/npm/v/@sberdevices/plasma-tokens?label=%40sberdevices%2Fplasma-tokens&style=for-the-badge)](https://www.npmjs.com/package/@sberdevices/plasma-tokens)
+[![npm ui](https://img.shields.io/npm/v/@sberdevices/plasma-icons?label=%40sberdevices%2Fplasma-icons&style=for-the-badge)](https://www.npmjs.com/package/@sberdevices/plasma-icons)
 
 ### plasma-tokens
 
@@ -23,11 +23,11 @@
 
 ### ui
 
-Пакет с набором готовых компонентов для создания `Canvas App`. Компоненты реализованы с помощью [React](https://reactjs.org/). Для компонентов доступна [витрина](https://rc--5f96ec813d800900227e3b93.chromatic.com) и [документация](https://plasma.sberdevices.ru/).
+Пакет с набором готовых компонентов для создания `Canvas App`. Компоненты реализованы с помощью [React](https://reactjs.org/). Для компонентов доступна [витрина](https://master--5f96ec813d800900227e3b93.chromatic.com) и [документация](https://plasma.sberdevices.ru/).
 
 ### plasma-icons
 
-Пакет с набором иконок для совместного использования с пакетом `ui`. Все иконки также доступны к просмотру в [витрине](https://rc--5f96ec813d800900227e3b93.chromatic.com) и [документации](https://plasma.sberdevices.ru/current/?path=/docs/content-icon--xs-size).
+Пакет с набором иконок для совместного использования с пакетом `ui`. Все иконки также доступны к просмотру в [витрине](https://master--5f96ec813d800900227e3b93.chromatic.com) и [документации](https://plasma.sberdevices.ru/current/?path=/docs/content-icon--xs-size).
 
 ## Быстрый старт
 
@@ -44,7 +44,7 @@
 После создания [основы приложения](https://create-react-app.dev/docs/getting-started#quick-start):
 
 ```sh
-npm i -S styled-components @sberdevices/ui@rc @sberdevices/plasma-tokens@rc @sberdevices/plasma-icons@rc
+npm i -S styled-components @sberdevices/plasma-ui @sberdevices/plasma-tokens @sberdevices/plasma-icons
 ```
 
 _Компоненты реализованы с помощью [styled-components](http://styled-components.com/). Поэтому необходимо поставить их в зависимость._
@@ -61,7 +61,7 @@ npm i -S react react-dom
 // ./src/App.jsx
 import React from 'react';
 
-import { Button } from '@sberdevices/ui/components/Button/Button';
+import { Button } from '@sberdevices/plasma-ui/components/Button/Button';
 
 function App() {
     return (

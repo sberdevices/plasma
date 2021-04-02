@@ -11,7 +11,7 @@
 _NB_ — Все примеры будут приведены с использованием [styled-components](https://styled-components.com/). Но использовать `plasma-tokens-web` можно и без этого инструмента.
 
 ```sh
-npm i --save @sberdevices/plasma-tokens-web@rc
+npm i --save @sberdevices/plasma-tokens-web
 ```
 
 ```jsx
