@@ -34,7 +34,7 @@ export const Default = () => (
         focused={boolean('focused', false)}
         disabled={boolean('disabled', false)}
         square={boolean('square', false)}
-        resizible={boolean('resizible', false)}
+        stretch={boolean('stretch', false)}
         onClick={onClick}
         onFocus={onFocus}
         onBlur={onBlur}

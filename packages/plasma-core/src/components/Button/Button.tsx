@@ -110,7 +110,7 @@ interface FlowProps {
     /**
      * Растягиваемость кнопки (кнопка занимает ширину контейнера)
      */
-    resizible?: boolean;
+    stretch?: boolean;
 }
 
 /**
@@ -247,13 +247,13 @@ const applySizes = ({
     shiftLeft,
     shiftRight,
     square,
-    resizible,
+    stretch,
 }: StyledButtonProps) => {
     let { paddingX } = sizes[size];
 
     if (square) {
         paddingX = sizes[size].paddingY;
-    } else if (resizible) {
+    } else if (stretch) {
         paddingX = sizes[size].paddingXResizible;
     } else if (isContentLeft || isContentRight) {
         paddingX = sizes[size].paddingXContent;
@@ -264,7 +264,7 @@ const applySizes = ({
         padding: ${sizes[size].paddingY} ${paddingX};
         border-radius: ${convertRoundnessMatrix(pin, sizes[size].squareRadius, sizes[size].circleRadius)};
 
-        ${resizible && 'width: 100%;'}
+        ${stretch && 'width: 100%;'}
         ${square && ` width: ${sizes[size].height};`}
         ${shiftLeft && `margin-left: -${paddingX};`}
         ${shiftRight && `margin-right: -${paddingX};`}

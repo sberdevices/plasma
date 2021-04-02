@@ -27,12 +27,12 @@ const rows = {
     Overlay: { view: 'overlay' },
     Clear: { view: 'clear' },
 };
-const defaults = { focused: false, disabled: false, resizible: true, text: 'Label', onClick, onFocus, onBlur };
+const defaults = { focused: false, disabled: false, stretch: true, text: 'Label', onClick, onFocus, onBlur };
 const cols = {
-    Resizible: { ...defaults },
-    'Resizible + Focused': { ...defaults, focused: true },
-    'Resizible + Disabled': { ...defaults, disabled: true },
-    Auto: { ...defaults, resizible: false },
+    Stretch: { ...defaults },
+    'Stretch + Focused': { ...defaults, focused: true },
+    'Stretch + Disabled': { ...defaults, disabled: true },
+    Auto: { ...defaults, stretch: false },
     Squared: { ...defaults, square: true, text: '' },
     'Squared + Focused': { ...defaults, square: true, focused: true, text: '' },
     Circle: { ...defaults, square: true, text: '', pin: 'circle-circle' },

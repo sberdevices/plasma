@@ -10,7 +10,7 @@ type Pin = Extract<PinProps['pin'], 'square-square' | 'circle-circle'>;
 /**
  * Интерфейс кнопки.
  */
-export type ActionButtonProps = Omit<BaseProps, 'resizible' | 'pin'> &
+export type ActionButtonProps = Omit<BaseProps, 'stretch' | 'pin'> &
     Partial<SizeProps<'l' | 'm' | 's'> & ViewProps & { pin: Pin }> &
     InteractionProps;
 

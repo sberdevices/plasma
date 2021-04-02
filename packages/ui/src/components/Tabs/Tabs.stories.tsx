@@ -19,7 +19,7 @@ const icons = ['clock', 'settings', 'house', 'trash'];
 
 export const Default = () => {
     const items = Array(number('Items', 4)).fill(0);
-    const fixedWidth = boolean('fixedWidth', true);
+    const stretch = boolean('stretch', true);
     const pilled = boolean('pilled', false);
     const outlined = boolean('outlined', false);
     const disabled = boolean('disabled', false);
@@ -29,7 +29,7 @@ export const Default = () => {
         <Tabs
             size={select('size', sizeKeys, 'l') as 'l'}
             view={select('view', viewKeys, 'secondary') as 'secondary'}
-            fixedWidth={fixedWidth}
+            stretch={stretch}
             pilled={pilled}
             scaleOnPress={boolean('scaleOnInteraction', true)}
             outlined={!disabled && outlined}

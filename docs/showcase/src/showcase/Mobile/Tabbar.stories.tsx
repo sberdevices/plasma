@@ -19,7 +19,7 @@ const makeTabs = (length: number, view: 'clear' | 'secondary', pilled?: boolean)
     const [active, setActive] = React.useState(0);
 
     return (
-        <Tabs size="s" fixedWidth pilled={pilled} view={view} style={{ marginBottom: 20 }}>
+        <Tabs size="s" stretch pilled={pilled} view={view} style={{ marginBottom: 20 }}>
             {Array.from({ length }, (_, i) => (
                 <TabItem key={i} isActive={i === active} onClick={() => setActive(i)}>
                     Label
