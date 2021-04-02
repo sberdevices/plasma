@@ -13,4 +13,4 @@ export default {
     component: Switch,
 };
 
-export const Default = () => <Switch onChange={onChange} onFocus={onFocus} onBlur={onBlur} />;
+export const Default = () => <Switch value="val" onChange={onChange} onFocus={onFocus} onBlur={onBlur} />;
