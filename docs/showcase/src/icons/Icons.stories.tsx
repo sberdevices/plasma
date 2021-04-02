@@ -60,7 +60,7 @@ const IconSet: React.FC<IconSetProps> = ({ size, color, exclude, include }) => {
                                 {filteredIcons.map((icon) => (
                                     <Cell
                                         key={icon}
-                                        left={<StyledIcon icon={icon as IName} size={size} color={color} />}
+                                        contentLeft={<StyledIcon icon={icon as IName} size={size} color={color} />}
                                         content={<TextBox title={icon} />}
                                     />
                                 ))}

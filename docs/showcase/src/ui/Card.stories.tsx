@@ -118,7 +118,7 @@ const sections = {
             <Card tabIndex={-1} outlined scaleOnFocus>
                 <CardContent compact>
                     <Cell
-                        left={
+                        contentLeft={
                             <CellIcon>
                                 <IconPlaceholder size="m" />
                             </CellIcon>
@@ -128,7 +128,7 @@ const sections = {
                                 <TextBoxTitle>Title</TextBoxTitle>
                             </TextBox>
                         }
-                        right={<CellDisclosure />}
+                        contentRight={<CellDisclosure />}
                     />
                 </CardContent>
             </Card>
@@ -137,7 +137,7 @@ const sections = {
             <Card tabIndex={-1} outlined scaleOnFocus>
                 <CardContent compact>
                     <Cell
-                        left={
+                        contentLeft={
                             <CellIcon>
                                 <IconPlaceholder size="m" />
                             </CellIcon>
@@ -148,7 +148,7 @@ const sections = {
                                 <TextBoxSubTitle>Subtitle</TextBoxSubTitle>
                             </TextBox>
                         }
-                        right={<CellDisclosure />}
+                        contentRight={<CellDisclosure />}
                     />
                 </CardContent>
             </Card>
@@ -161,7 +161,7 @@ const sections = {
                             outlined
                             tabIndex={i}
                             key={`item:${i}`}
-                            left={
+                            contentLeft={
                                 <CellIcon>
                                     <IconPlaceholder size="m" />
                                 </CellIcon>
@@ -172,7 +172,7 @@ const sections = {
                                     <TextBoxSubTitle>Subtitle</TextBoxSubTitle>
                                 </TextBox>
                             }
-                            right={<CellDisclosure />}
+                            contentRight={<CellDisclosure />}
                         />
                     ))}
                 </CardContent>
@@ -183,14 +183,14 @@ const sections = {
                 <CardContent compact>
                     <Cell
                         content={<TextBoxBigTitle>Название раздела</TextBoxBigTitle>}
-                        right={<Body1 style={{ marginTop: 5 }}>Detail</Body1>}
+                        contentRight={<Body1 style={{ marginTop: 5 }}>Detail</Body1>}
                     />
                     {cellList.map((_, i) => (
                         <CellListItem
                             outlined
                             tabIndex={i}
                             key={`item:${i}`}
-                            left={
+                            contentLeft={
                                 <CellIcon>
                                     <IconPlaceholder size="m" />
                                 </CellIcon>
@@ -201,7 +201,7 @@ const sections = {
                                     <TextBoxSubTitle>Subtitle</TextBoxSubTitle>
                                 </TextBox>
                             }
-                            right={<CellDisclosure />}
+                            contentRight={<CellDisclosure />}
                         />
                     ))}
                 </CardContent>
@@ -214,16 +214,16 @@ const sections = {
                 <CardContent compact>
                     <Cell
                         content={<TextBoxBigTitle>Название раздела</TextBoxBigTitle>}
-                        right={<Body1 style={{ marginTop: 5 }}>Detail</Body1>}
+                        contentRight={<Body1 style={{ marginTop: 5 }}>Detail</Body1>}
                     />
                     <Cell
-                        left={
+                        contentLeft={
                             <CellIcon>
                                 <IconPlaceholder size="m" />
                             </CellIcon>
                         }
                         content={<TextBoxBiggerTitle>Value</TextBoxBiggerTitle>}
-                        right={
+                        contentRight={
                             <CellIcon>
                                 <IconPlaceholder style={{ marginTop: '0.375rem' }} size="s" />
                             </CellIcon>
