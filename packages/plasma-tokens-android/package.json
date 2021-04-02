@@ -1,18 +1,24 @@
 {
     "name": "@sberdevices/plasma-tokens-android",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "Plasma tokens for android",
-    "files": ["tokens"],
+    "files": [
+        "tokens"
+    ],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/sberdevices/plasma.git"
     },
-    "keywords": ["plasma", "tokens", "android"],
+    "keywords": [
+        "plasma",
+        "tokens",
+        "android"
+    ],
     "scripts": {
         "prepare": "mkdir -p tokens && cp -R node_modules/@sberdevices/plasma-tokens/build/android/* tokens"
     },
     "devDependencies": {
-        "@sberdevices/plasma-tokens": "0.4.0"
+        "@sberdevices/plasma-tokens": "1.0.0"
     },
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
