@@ -12,7 +12,7 @@ export default {
 const sizes = { l: 'Badge L 24', s: 'Badge S 16' };
 const rows = {
     Primary: { view: 'primary' },
-    Overlay: { view: 'overlay' },
+    Secondary: { view: 'secondary' },
 };
 const cols = {
     Text: { text: 'Badge' },
