@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { DeviceStoryDecorator, InContainerDecorator } from '../../../helpers';
+import { DeviceStoryDecorator } from '../../../helpers';
 
 import { TextBoxCardShowcase } from './TextBox';
 import { TextBoxImageCardShowcase } from './TextBoxImage';

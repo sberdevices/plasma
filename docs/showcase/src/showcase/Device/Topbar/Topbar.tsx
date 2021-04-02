@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Header } from '@sberdevices/ui/components/Header';
 import { Button } from '@sberdevices/ui/components/Button';
 import { Tabs, TabItem } from '@sberdevices/ui/components/Tabs';
@@ -91,33 +90,15 @@ function TopbarBig() {
     return (
         <ShowcaseDashedBorder style={{ width: '2000px', flexShrink: 0 }}>
             <Container>
-                <Header
-                    onBackClick={onBackClick}
-                    logo="./images/320_320_11.jpg"
-                    logoAlt="Logo"
-                    title="Title"
-                    subtitle="Subtitle"
-                />
+                <Header logo="./images/320_320_11.jpg" logoAlt="Logo" title="Title" subtitle="Subtitle" />
             </Container>
             <Container>
-                <Header
-                    onBackClick={onBackClick}
-                    logo="./images/320_320_11.jpg"
-                    logoAlt="Logo"
-                    title="Title"
-                    subtitle="Subtitle"
-                >
+                <Header logo="./images/320_320_11.jpg" logoAlt="Logo" title="Title" subtitle="Subtitle">
                     <ButtonGroup />
                 </Header>
             </Container>
             <Container>
-                <Header
-                    onBackClick={onBackClick}
-                    logo="./images/320_320_11.jpg"
-                    logoAlt="Logo"
-                    title="Title"
-                    subtitle="Subtitle"
-                >
+                <Header logo="./images/320_320_11.jpg" logoAlt="Logo" title="Title" subtitle="Subtitle">
                     <TabsGroup />
                 </Header>
             </Container>
