@@ -1,13 +1,18 @@
 import styled from 'styled-components';
 import { Button as BaseButton } from '@sberdevices/plasma-core/components/Button';
 import type { ButtonProps as BaseProps, SizeProps, ViewProps } from '@sberdevices/plasma-core/components/Button/Button';
+import type { PinProps } from '@sberdevices/plasma-core/utils';
 
 import { applyInteraction, InteractionProps } from '../../mixins';
+
+type Pin = Extract<PinProps['pin'], 'square-square' | 'circle-circle'>;
 
 /**
  * Интерфейс кнопки.
  */
-export type ActionButtonProps = BaseProps & Partial<SizeProps<'l' | 'm' | 's'> & ViewProps> & InteractionProps;
+export type ActionButtonProps = Omit<BaseProps, 'resizible' | 'pin'> &
+    Partial<SizeProps<'l' | 'm' | 's'> & ViewProps & { pin: Pin }> &
+    InteractionProps;
 
 const downsize: Record<string, SizeProps['size']> = {
     l: 'xs',
@@ -34,9 +39,10 @@ export const ActionButton = styled(BaseButton).attrs(({ size, ...rest }: ActionB
 `;
 
 ActionButton.defaultProps = {
-    ...BaseButton.defaultProps,
+    pin: 'square-square',
     view: 'secondary',
     size: 'm',
+    square: true,
     outlined: true,
     scaleOnInteraction: true,
 };
