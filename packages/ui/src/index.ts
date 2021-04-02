@@ -19,6 +19,5 @@ export * from './components/Switch';
 export * from './components/Tabs';
 export * from './components/TextBox';
 export * from './components/TextField';
-export * from './components/Theme';
 export * from './components/Toast';
 export * from './components/Typography';
