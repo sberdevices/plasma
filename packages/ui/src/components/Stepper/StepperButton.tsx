@@ -1,14 +1,12 @@
 import React from 'react';
 import type { PickOptional } from '@sberdevices/plasma-core/types';
 
-import { ActionButton, ButtonProps } from '../Button';
+import { ActionButton, ButtonProps, ActionButtonProps } from '../Button';
 
 export interface StepperButtonProps
-    extends PickOptional<
-        ButtonProps,
-        'pin' | 'view' | 'disabled' | 'className' | 'style' | 'onFocus' | 'onBlur' | 'onClick'
-    > {
+    extends PickOptional<ButtonProps, 'view' | 'disabled' | 'className' | 'style' | 'onFocus' | 'onBlur' | 'onClick'> {
     icon?: React.ReactElement;
+    pin?: ActionButtonProps['pin'];
 }
 
 /**

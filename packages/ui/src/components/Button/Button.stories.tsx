@@ -46,11 +46,9 @@ export const Action_Button = () => (
     <ActionButton
         size={select('size', sizes, 'm') as 'm'}
         view={select('view', views, 'primary') as 'primary'}
-        pin={select('pin', pins, 'square-square') as 'square-square'}
+        pin={select('pin', [pins[0], pins[pins.length - 1]], 'square-square') as 'square-square'}
         scaleOnInteraction={boolean('scaleOnInteraction', true)}
-        outlined={boolean('outlined', true)}
         disabled={boolean('disabled', false)}
-        resizible={boolean('resizible', false)}
         tabIndex={0}
         onClick={onClick}
         onFocus={onFocus}
