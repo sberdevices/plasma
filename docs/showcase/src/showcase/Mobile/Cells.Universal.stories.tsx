@@ -45,7 +45,7 @@ const HeightBox = styled.div<{ h: number }>`
 const variantsSimple = [
     <CellListItem
         content={<TextBox title="Title" />}
-        right={
+        contentRight={
             <>
                 <TextBox title="Detail" />
                 <CellDisclosure />
@@ -54,7 +54,7 @@ const variantsSimple = [
     />,
     <CellListItem
         content={<TextBox title="Title" subTitle="SubTitle" />}
-        right={
+        contentRight={
             <>
                 <TextBox title="Detail" />
                 <CellDisclosure />
@@ -63,8 +63,8 @@ const variantsSimple = [
     />,
     <CellListItem
         content={<TextBox title="Title" />}
-        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
-        right={
+        contentLeft={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
+        contentRight={
             <>
                 <TextBox title="Detail" />
                 <CellDisclosure />
@@ -73,8 +73,8 @@ const variantsSimple = [
     />,
     <CellListItem
         content={<TextBox title="Title" subTitle="SubTitle" />}
-        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
-        right={
+        contentLeft={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
+        contentRight={
             <>
                 <TextBox title="Detail" />
                 <CellDisclosure />
@@ -85,18 +85,18 @@ const variantsSimple = [
     <CellListItem content={<TextBox title="Title" subTitle="SubTitle" />} />,
     <CellListItem
         content={<TextBox title="Title" />}
-        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
+        contentLeft={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
     />,
     <CellListItem
         content={<TextBox title="Title" subTitle="SubTitle" />}
-        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
+        contentLeft={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
     />,
 ];
 
 const variantsSimpleWithoutBorder = [
     <CellListItem
         content={<TextBox title="Title" />}
-        right={
+        contentRight={
             <>
                 <TextBox title="Detail" />
                 <CellDisclosure />
@@ -105,7 +105,7 @@ const variantsSimpleWithoutBorder = [
     />,
     <CellListItem
         content={<TextBox title="Title" subTitle="SubTitle" />}
-        right={
+        contentRight={
             <>
                 <TextBox title="Detail" />
                 <CellDisclosure />
@@ -114,8 +114,8 @@ const variantsSimpleWithoutBorder = [
     />,
     <CellListItem
         content={<TextBox title="Title" />}
-        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
-        right={
+        contentLeft={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
+        contentRight={
             <>
                 <TextBox title="Detail" />
                 <CellDisclosure />
@@ -124,8 +124,8 @@ const variantsSimpleWithoutBorder = [
     />,
     <CellListItem
         content={<TextBox title="Title" subTitle="SubTitle" />}
-        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
-        right={
+        contentLeft={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
+        contentRight={
             <>
                 <TextBox title="Detail" />
                 <CellDisclosure />
@@ -136,11 +136,11 @@ const variantsSimpleWithoutBorder = [
     <CellListItem content={<TextBox title="Title" subTitle="SubTitle" />} />,
     <CellListItem
         content={<TextBox title="Title" />}
-        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
+        contentLeft={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
     />,
     <CellListItem
         content={<TextBox title="Title" subTitle="SubTitle" />}
-        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
+        contentLeft={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
     />,
 ];
 
@@ -154,10 +154,10 @@ const variantsComplex = [
                 <TextBoxCaption>Status</TextBoxCaption>
             </TextBox>
         }
-        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
+        contentLeft={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
         alignLeft="top"
         alignRight="top"
-        right={<TextBox title="Detail" subTitle="Info" />}
+        contentRight={<TextBox title="Detail" subTitle="Info" />}
     />,
     <CellListItem
         content={
@@ -168,7 +168,7 @@ const variantsComplex = [
                 <TextBoxCaption>Status</TextBoxCaption>
             </TextBox>
         }
-        right={<TextBox title="Detail" subTitle="Info" />}
+        contentRight={<TextBox title="Detail" subTitle="Info" />}
         alignRight="top"
     />,
     <CellListItem
@@ -179,9 +179,9 @@ const variantsComplex = [
                 <TextBoxCaption>Caption</TextBoxCaption>
             </TextBox>
         }
-        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
+        contentLeft={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
         alignRight="top"
-        right={<TextBox title="Detail" subTitle="Info" />}
+        contentRight={<TextBox title="Detail" subTitle="Info" />}
     />,
     <CellListItem
         content={
@@ -192,7 +192,7 @@ const variantsComplex = [
             </TextBox>
         }
         alignRight="top"
-        right={<TextBox title="Detail" subTitle="Info" />}
+        contentRight={<TextBox title="Detail" subTitle="Info" />}
     />,
 ];
 

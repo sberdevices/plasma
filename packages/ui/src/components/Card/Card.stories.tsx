@@ -84,7 +84,7 @@ export const ListCard = () => (
     <Card style={{ width: '20rem' }}>
         <CardContent compact>
             <Cell
-                left={
+                contentLeft={
                     <CellIcon>
                         <IconPlaceholder size={2.25} />
                     </CellIcon>
@@ -95,7 +95,7 @@ export const ListCard = () => (
                         <TextBoxSubTitle>{text('subtitle', 'Subtitle')}</TextBoxSubTitle>
                     </TextBox>
                 }
-                right={<CellDisclosure />}
+                contentRight={<CellDisclosure />}
             />
         </CardContent>
     </Card>
@@ -108,12 +108,12 @@ export const ListAndHeader = () => {
             <CardContent compact>
                 <Cell
                     content={<TextBoxBigTitle>{text('header', 'Название раздела')}</TextBoxBigTitle>}
-                    right={<span style={{ marginTop: 5 }}>{text('details', 'Detail')}</span>}
+                    contentRight={<span style={{ marginTop: 5 }}>{text('details', 'Detail')}</span>}
                 />
                 {items.map((_, i) => (
                     <CellListItem
                         key={`item:${i}`}
-                        left={
+                        contentLeft={
                             <CellIcon>
                                 <IconPlaceholder size={2.25} />
                             </CellIcon>
@@ -124,7 +124,7 @@ export const ListAndHeader = () => {
                                 <TextBoxSubTitle>{text('subtitle', 'Subtitle')}</TextBoxSubTitle>
                             </TextBox>
                         }
-                        right={<CellDisclosure />}
+                        contentRight={<CellDisclosure />}
                     />
                 ))}
             </CardContent>
@@ -137,16 +137,16 @@ export const FastAnswer = () => (
         <CardContent compact>
             <Cell
                 content={<TextBoxBigTitle>{text('header', 'Название раздела')}</TextBoxBigTitle>}
-                right={<span style={{ marginTop: 5 }}>{text('details', 'Detail')}</span>}
+                contentRight={<span style={{ marginTop: 5 }}>{text('details', 'Detail')}</span>}
             />
             <Cell
-                left={
+                contentLeft={
                     <CellIcon>
                         <IconPlaceholder size={2.25} />
                     </CellIcon>
                 }
                 content={<TextBoxBiggerTitle>{text('value', 'Value')}</TextBoxBiggerTitle>}
-                right={
+                contentRight={
                     <CellIcon>
                         <IconPlaceholder style={{ marginTop: '0.375rem' }} size={1.5} />
                     </CellIcon>

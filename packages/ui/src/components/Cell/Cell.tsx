@@ -96,9 +96,9 @@ export const CellIcon = styled.div<CellIconProps>`
 `;
 
 export interface CellProps extends FocusProps, OutlinedProps, AsProps {
-    left?: React.ReactNode;
+    contentLeft?: React.ReactNode;
     content: React.ReactNode;
-    right?: React.ReactNode;
+    contentRight?: React.ReactNode;
 
     alignLeft?: alignLeftProp;
     alignRight?: alignRightProp;
@@ -108,7 +108,14 @@ export interface CellProps extends FocusProps, OutlinedProps, AsProps {
  * Базовый компонент для отображения блоков контента в списках и карточках.
  */
 export const Cell: React.FC<CellProps & React.HTMLAttributes<HTMLDivElement>> = (props) => {
-    const { left, content, right, alignLeft = 'center', alignRight = 'center', ...rest } = props;
+    const {
+        contentLeft: left,
+        content,
+        contentRight: right,
+        alignLeft = 'center',
+        alignRight = 'center',
+        ...rest
+    } = props;
 
     return (
         <CellRoot {...rest}>
