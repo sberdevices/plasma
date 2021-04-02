@@ -1,4 +1,4 @@
-import { Meta, Props, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+import { Meta, ArgsTable, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
 
 import { WithGridLines, InContainer } from '../../helpers/StoryDecorators';
 
@@ -13,18 +13,18 @@ import { CarouselGridWrapper, Carousel, CarouselItem, CarouselCol } from '.';
 
 ## Carousel
 <Description of={Carousel} />
-<Props of={Carousel} />
+<ArgsTable of={Carousel} exclude={["forwardedAs", "as"]} />
 
 ## CarouselGridWrapper
 <Description of={CarouselGridWrapper} />
 
 ## CarouselItem
 <Description of={CarouselItem} />
-<Props of={CarouselItem} />
+<ArgsTable of={CarouselItem} exclude={["forwardedAs", "as"]} />
 
 ## CarouselCol
 <Description of={CarouselCol} />
-<Props of={CarouselCol} />
+<ArgsTable of={CarouselCol} exclude={["forwardedAs", "as"]} />
 
 ## Использование
 
