@@ -1,3 +1,16 @@
+# (Fri Apr 02 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@0.11.0`
+  - feat(plasma-template): Improve video player customization. Fix small … [#34](https://github.com/sberdevices/pashka/pull/34) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # (Wed Mar 31 2021)
 
 #### 🐛 Bug Fix

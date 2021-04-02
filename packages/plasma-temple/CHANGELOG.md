@@ -1,3 +1,16 @@
+# v0.11.0 (Fri Apr 02 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-template): Improve video player customization. Fix small … [#34](https://github.com/sberdevices/pashka/pull/34) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-template): Improve video player customization. Fix small bugs ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v0.10.1 (Wed Mar 31 2021)
 
 #### 🐛 Bug Fix
