@@ -16,9 +16,9 @@ const rows = {
     Clear: { view: 'clear' },
 };
 const cols = {
-    Normal: [{ fixedWidth: true, outlined: true }, { children: 'Label' }],
-    Pilled: [{ fixedWidth: true, outlined: true, pilled: true }, { children: 'Label' }],
-    Disabled: [{ fixedWidth: true, outlined: true, disabled: true }, { children: 'Label' }],
+    Normal: [{ stretch: true, outlined: true }, { children: 'Label' }],
+    Pilled: [{ stretch: true, outlined: true, pilled: true }, { children: 'Label' }],
+    Disabled: [{ stretch: true, outlined: true, disabled: true }, { children: 'Label' }],
     Auto: [{ outlined: true }, { children: 'Label' }],
     AutoIcon: [{ outlined: true }, { children: <IconPlaceholder /> }],
 };

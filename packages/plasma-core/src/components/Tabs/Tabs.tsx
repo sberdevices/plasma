@@ -10,7 +10,7 @@ export interface TabsProps extends DisabledProps {
      * максимально равную 25% контейнера Tabs,
      * в количестве, максимально равном 4
      */
-    fixedWidth?: boolean;
+    stretch?: boolean;
 }
 
 /**
@@ -35,8 +35,8 @@ export const Tabs = styled.ul<TabsProps>`
     /**
      * Стили айтемов, зависимые от модификаторов контейнера, определяем тут.
      */
-    ${({ fixedWidth }) =>
-        fixedWidth &&
+    ${({ stretch }) =>
+        stretch &&
         css`
             width: 100%;
 

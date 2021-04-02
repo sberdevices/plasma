@@ -28,12 +28,12 @@ const rows = {
     Overlay: { view: 'overlay' },
     Clear: { view: 'clear' },
 };
-const defaults = { focused: false, disabled: false, resizible: true, text: 'Label' };
+const defaults = { focused: false, disabled: false, stretch: true, text: 'Label' };
 const cols = {
     Normal: { ...defaults },
     'Normal + Disabled': { ...defaults, disabled: true },
-    Auto: { ...defaults, resizible: false },
-    'Auto + Disabled': { ...defaults, resizible: false, disabled: true },
+    Auto: { ...defaults, stretch: false },
+    'Auto + Disabled': { ...defaults, stretch: false, disabled: true },
     Squared: { ...defaults, square: true, text: '' },
     Circle: { ...defaults, square: true, text: '', pin: 'circle-circle' },
 };

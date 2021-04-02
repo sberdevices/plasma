@@ -40,7 +40,7 @@ const sections = {
                             <TextBoxSubTitle>ru.wikipedia.org</TextBoxSubTitle>
                         </TextBox>
                         <Button
-                            resizible
+                            stretch
                             text="Label"
                             view="primary"
                             size="s"
@@ -84,7 +84,7 @@ const sections = {
                             <TextBoxSubTitle>На 18 месяцев, ставка 13,9%</TextBoxSubTitle>
                         </TextBox>
                         <Button
-                            resizible
+                            stretch
                             text="Label"
                             view="primary"
                             size="s"
