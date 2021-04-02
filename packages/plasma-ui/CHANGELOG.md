@@ -1,3 +1,16 @@
+# v1.0.0 (Fri Apr 02 2021)
+
+#### 🐛 Bug Fix
+
+- fix: plasma doc before major [#279](https://github.com/sberdevices/plasma/pull/279) ([@Yeti-or](https://github.com/Yeti-or))
+- build(plasma-ui): move files [#279](https://github.com/sberdevices/plasma/pull/279) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v0.20.0 (Wed Nov 11 2020)
 
 #### 🚀 Enhancement
