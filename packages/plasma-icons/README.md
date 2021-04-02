@@ -11,7 +11,7 @@
 ### Установка пакета
 
 ```sh
-npm i --save @sberdevices/plasma-icons@rc
+npm i --save @sberdevices/plasma-icons
 ```
 
 ### Использование компонентов

@@ -25,7 +25,7 @@ Plasma Core является единым источником данных о �
 ### Установка пакета
 
 ```bash
-$ npm install --save @sberdevices/plasma-core@rc
+$ npm install --save @sberdevices/plasma-core
 ```
 
 ### Использование компонент
@@ -43,6 +43,6 @@ export const App = () => {
 
 ## Полезные ссылки:
 
-Витрина с компонентами [storybook](https://rc--5f96ec813d800900227e3b93.chromatic.com).
+Витрина с компонентами [storybook](https://master--5f96ec813d800900227e3b93.chromatic.com).
 
-[Документация](https://rc--5f96ec813d800900227e3b93.chromatic.com/?path=/docs/).
+[Документация](https://master--5f96ec813d800900227e3b93.chromatic.com/?path=/docs/).
