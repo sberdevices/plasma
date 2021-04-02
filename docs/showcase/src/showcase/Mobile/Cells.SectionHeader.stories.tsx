@@ -31,22 +31,22 @@ const variants = [
     <Cell content={<TextBox size="l" title="Название раздела" subTitle="Описание раздела" />} />,
     <Cell
         content={<TextBox size="l" title="Название раздела" />}
-        right={<CellDisclosure onClick={() => undefined} />}
+        contentRight={<CellDisclosure onClick={() => undefined} />}
     />,
     <Cell
         content={<TextBox size="l" title="Название раздела" subTitle="Описание раздела" />}
-        right={<CellDisclosure onClick={() => undefined} />}
+        contentRight={<CellDisclosure onClick={() => undefined} />}
         alignRight="top"
     />,
-    <Cell content={<TextBox size="l" title="Название раздела" />} right={<TextBox title="Detail" />} />,
+    <Cell content={<TextBox size="l" title="Название раздела" />} contentRight={<TextBox title="Detail" />} />,
     <Cell
         content={<TextBox size="l" title="Название раздела" subTitle="Описание раздела" />}
-        right={<TextBox title="Detail" />}
+        contentRight={<TextBox title="Detail" />}
         alignRight="top"
     />,
     <Cell
         content={<TextBoxBiggerTitle>Headline 1</TextBoxBiggerTitle>}
-        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
+        contentLeft={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
     />,
     <Cell
         content={
@@ -55,7 +55,7 @@ const variants = [
                 <TextBoxSubTitle>SubTitle</TextBoxSubTitle>
             </TextBox>
         }
-        left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
+        contentLeft={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
         alignLeft="top"
     />,
 ];

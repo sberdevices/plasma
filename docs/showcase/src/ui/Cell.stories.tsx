@@ -31,17 +31,17 @@ const sections = {
         Disclosure: (
             <Cell
                 key="sh#1"
-                left={<CellIcon as="img" src="./images/320_320_7.jpg" alt="avocado" />}
+                contentLeft={<CellIcon as="img" src="./images/320_320_7.jpg" alt="avocado" />}
                 content={<TextBox size="l" title="Название раздела" subTitle="Описание раздела" />}
-                right={<CellDisclosure tabIndex={-1} />}
+                contentRight={<CellDisclosure tabIndex={-1} />}
             />
         ),
         Detail: (
             <Cell
                 key="sh#2"
-                left={<CellIcon as="img" src="./images/320_320_8.jpg" alt="avocado" />}
+                contentLeft={<CellIcon as="img" src="./images/320_320_8.jpg" alt="avocado" />}
                 content={<TextBox size="l" title="Название раздела" subTitle="Описание раздела" />}
-                right={<Body1>Detail</Body1>}
+                contentRight={<Body1>Detail</Body1>}
                 alignRight="top"
             />
         ),
@@ -52,32 +52,32 @@ const sections = {
                 <CellListItem
                     outlined
                     tabIndex={0}
-                    left={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
+                    contentLeft={<CellIcon as="img" src="./images/320_320_12.jpg" alt="avocado" />}
                     content={
                         <TextBox>
                             <TextBoxTitle>Title</TextBoxTitle>
                             <TextBoxSubTitle>Subtitle</TextBoxSubTitle>
                         </TextBox>
                     }
-                    right={<CellDisclosure tabIndex={-1} />}
+                    contentRight={<CellDisclosure tabIndex={-1} />}
                 />
                 <CellListItem
                     outlined
                     tabIndex={0}
-                    left={<CellIcon as="img" src="./images/320_320_11.jpg" alt="avocado" />}
+                    contentLeft={<CellIcon as="img" src="./images/320_320_11.jpg" alt="avocado" />}
                     content={
                         <TextBox>
                             <TextBoxTitle>Title</TextBoxTitle>
                             <TextBoxSubTitle>Subtitle</TextBoxSubTitle>
                         </TextBox>
                     }
-                    right={<Body1>Detail</Body1>}
+                    contentRight={<Body1>Detail</Body1>}
                     alignRight="top"
                 />
                 <CellListItem
                     outlined
                     tabIndex={0}
-                    left={<CellIcon as="img" src="./images/320_320_10.jpg" alt="avocado" />}
+                    contentLeft={<CellIcon as="img" src="./images/320_320_10.jpg" alt="avocado" />}
                     content={
                         <TextBox>
                             <TextBoxLabel>Label</TextBoxLabel>
@@ -86,7 +86,7 @@ const sections = {
                             <TextBoxCaption color={accent}>Accent caption</TextBoxCaption>
                         </TextBox>
                     }
-                    right={<TextBox title="Detail" subTitle="Info" />}
+                    contentRight={<TextBox title="Detail" subTitle="Info" />}
                 />
             </StyledList>
         ),

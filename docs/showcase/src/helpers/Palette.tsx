@@ -107,7 +107,7 @@ export const Palette: React.FC<PaletteProps> = ({ theme = 'darkSber', title, hea
                 return (
                     <Cell
                         key={name}
-                        left={<StyledTile background={value as string} />}
+                        contentLeft={<StyledTile background={value as string} />}
                         content={
                             <TextBox>
                                 <StyledVariable color={selectedTheme['--plasma-colors-secondary']}>
