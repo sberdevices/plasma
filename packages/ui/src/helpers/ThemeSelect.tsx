@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { darkEva, darkJoy, darkSber, lightEva, lightJoy, lightSber } from '@sberdevices/plasma-tokens/themes';
-import { sberBox, sberPortal, touch } from '@sberdevices/plasma-tokens/typo';
+import { sberBox, sberPortal, mobile } from '@sberdevices/plasma-tokens/typo';
 
 const StyledRoot = styled.div`
     display: flex;
@@ -50,12 +50,12 @@ export const ThemeSelect: React.FC = () => {
     );
 };
 
-const typoNames = ['sberBox', 'sberPortal', 'touch'];
+const typoNames = ['sberBox', 'sberPortal', 'mobile'];
 
 const typos = {
     sberBox: createGlobalStyle(sberBox),
     sberPortal: createGlobalStyle(sberPortal),
-    touch: createGlobalStyle(touch),
+    mobile: createGlobalStyle(mobile),
 };
 
 export const TypoSelect: React.FC = () => {

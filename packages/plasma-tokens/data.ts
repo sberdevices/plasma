@@ -445,5 +445,5 @@ export const typoSystem = mapDesignToTypography<TypographyTypes, TypographyData>
 export const deviceScales = {
     sberPortal: 2,
     sberBox: 2,
-    touch: 1,
+    mobile: 1,
 };
