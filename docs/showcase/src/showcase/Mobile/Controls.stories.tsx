@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Footnote1 } from '@sberdevices/ui';
+import { Footnote1 } from '@sberdevices/plasma-ui';
 import { secondary } from '@sberdevices/plasma-tokens';
 
 import { Default as CheckboxStory } from '../../ui/Checkbox.stories';

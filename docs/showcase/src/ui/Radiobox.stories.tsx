@@ -1,5 +1,5 @@
 import React from 'react';
-import { Radiobox } from '@sberdevices/ui/components/Radiobox';
+import { Radiobox } from '@sberdevices/plasma-ui/components/Radiobox';
 
 import { RadioboxShowcase, UIStoryDecorator, InSpacingDecorator } from '../helpers';
 

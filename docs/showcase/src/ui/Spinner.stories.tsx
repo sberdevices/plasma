@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner } from '@sberdevices/ui/components/Spinner';
+import { Spinner } from '@sberdevices/plasma-ui/components/Spinner';
 
 import { CommonShowcase, UIStoryDecorator, InSpacingDecorator } from '../helpers';
 

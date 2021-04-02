@@ -6,7 +6,7 @@ import {
     TextBoxCaption,
     TextBoxBigTitle,
     TextBoxLabel,
-} from '@sberdevices/ui/components/TextBox';
+} from '@sberdevices/plasma-ui/components/TextBox';
 
 import { CardShowcase, UIStoryDecorator, InSpacingDecorator } from '../helpers';
 

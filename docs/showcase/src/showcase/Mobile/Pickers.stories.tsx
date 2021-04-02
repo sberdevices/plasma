@@ -1,5 +1,5 @@
 import React from 'react';
-import { DatePicker, TimePicker } from '@sberdevices/ui/components/Pickers';
+import { DatePicker, TimePicker } from '@sberdevices/plasma-ui/components/Pickers';
 
 import { ShowcasePanel, ShowcaseDashedBorder, ShowcaseSectionName } from '../../helpers';
 
