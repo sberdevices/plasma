@@ -10,7 +10,7 @@ interface StyledValueProps {
     /**
      * Состояние, когда значение контрола близко к предельному
      */
-    isWarning?: boolean;
+    showWarning?: boolean;
 }
 
 const StyledValue = styled.span<StyledValueProps>`
@@ -26,8 +26,8 @@ const StyledValue = styled.span<StyledValueProps>`
 
     text-align: center;
 
-    ${({ isWarning }) =>
-        isWarning &&
+    ${({ showWarning }) =>
+        showWarning &&
         css`
             color: ${warning};
         `}
@@ -39,9 +39,7 @@ const StyledValue = styled.span<StyledValueProps>`
         `}
 `;
 
-export interface StepperValueProps
-    extends React.HTMLAttributes<HTMLDivElement>,
-        Pick<StyledValueProps, 'disabled' | 'isWarning'> {
+export interface StepperValueProps extends React.HTMLAttributes<HTMLDivElement>, StyledValueProps {
     /**
      * Выводимое значение
      */
@@ -51,8 +49,8 @@ export interface StepperValueProps
 /**
  * Компонент для отображения значения степпера.
  */
-export const StepperValue: React.FC<StepperValueProps> = ({ value, disabled, isWarning, ...rest }) => (
-    <StyledValue disabled={disabled} isWarning={isWarning} {...rest}>
+export const StepperValue: React.FC<StepperValueProps> = ({ value, disabled, showWarning, ...rest }) => (
+    <StyledValue disabled={disabled} showWarning={showWarning} {...rest}>
         {value}
     </StyledValue>
 );

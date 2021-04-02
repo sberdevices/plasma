@@ -10,14 +10,14 @@ interface RemoverProps {
     /**
      * При достижении минимального количества, кнопка минус превратится в удалить
      */
-    remover: true;
+    showRemove: true;
     /**
      * Обработчик клика по кнопке удаления
      */
     onRemove: React.MouseEventHandler<HTMLButtonElement>;
 }
 interface NoRemoverProps {
-    remover?: false;
+    showRemove?: false;
 }
 
 export type StepperProps = (RemoverProps | NoRemoverProps) &
@@ -64,7 +64,7 @@ export const Stepper: React.FC<StepperProps> = ({
     onBlur,
     ...props
 }) => {
-    const { remover, onRemove, ...rest } = props as RemoverProps;
+    const { showRemove: remover, onRemove, ...rest } = props as RemoverProps;
     const onLessClick = React.useCallback(() => onChange(value - step), [value, step, onChange]);
     const onMoreClick = React.useCallback(() => onChange(value + step), [value, step, onChange]);
     const onRemoveClick = React.useCallback((e) => onRemove?.(e), [onRemove]);
@@ -86,7 +86,7 @@ export const Stepper: React.FC<StepperProps> = ({
                 onFocus={onFocus}
                 onBlur={onBlur}
             />
-            <StepperValue value={value} disabled={disabled} isWarning={isMax} />
+            <StepperValue value={value} disabled={disabled} showWarning={isMax} />
             <StepperButton
                 disabled={disabled || moreDisabled}
                 icon={<IconPlus color="inherit" size="xs" />}

@@ -5,6 +5,8 @@ import { IconMinus, IconPlus, IconClose } from '@sberdevices/plasma-icons';
 
 import { actionWithPersistedEvent, ShowcaseComponentRow } from '../../helpers';
 
+import { Pin } from './StepperButton';
+
 import { Stepper, StepperRoot, StepperButton, StepperValue } from '.';
 
 const onChangeAction = action('onChange');
@@ -40,7 +42,8 @@ export const Default = () => {
                         value={values[i]}
                         min={item.min}
                         max={item.max}
-                        remover={item.remover}
+                        showRemove={item.remover}
+                        pin={item.pin as Pin}
                         onChange={(value) => {
                             setValues({ ...values, [i]: value });
                             onChangeAction(value);
@@ -70,7 +73,7 @@ export const CustomAssembly = () => {
             <StepperValue
                 value={value}
                 disabled={boolean('valueDisabled', false)}
-                isWarning={boolean('customWarning', false)}
+                showWarning={boolean('customWarning', false)}
             />
             <StepperButton
                 view="secondary"

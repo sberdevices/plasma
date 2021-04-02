@@ -14,6 +14,8 @@ const onRemove = actionWithPersistedEvent('onRemove');
 const onFocus = actionWithPersistedEvent('onFocus');
 const onBlur = actionWithPersistedEvent('onBlur');
 
+type Pin = 'circle-circle' | 'square-square';
+
 const items = [
     { min: 0, max: 5, remover: true, pin: 'circle-circle' },
     { min: 0, max: 5, remover: true, pin: 'square-square' },
@@ -42,7 +44,8 @@ export const Default = () => {
                         value={values[i]}
                         min={item.min}
                         max={item.max}
-                        remover={item.remover}
+                        pin={item.pin as Pin}
+                        showRemove={item.remover}
                         onChange={(value) => {
                             setValues({ ...values, [i]: value });
                             onChange(value as any);
