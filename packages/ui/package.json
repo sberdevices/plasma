@@ -1,5 +1,5 @@
 {
-    "name": "@sberdevices/ui",
+    "name": "@sberdevices/plasma-ui",
     "version": "0.97.3",
     "description": "SberDevices Design System",
     "main": "index.js",
