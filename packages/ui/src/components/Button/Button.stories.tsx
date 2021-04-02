@@ -24,7 +24,7 @@ const onBlur = actionWithPersistedEvent('onBlur');
 
 export const Default = () => (
     <Button
-        text={text('text', 'Label')}
+        text={text('text', 'Hello Plasma')}
         size={select('size', sizes, 'm') as 'm'}
         view={select('view', views, 'primary') as 'primary'}
         pin={select('pin', pins, 'square-square') as 'square-square'}

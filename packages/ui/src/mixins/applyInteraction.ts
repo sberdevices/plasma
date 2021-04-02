@@ -2,7 +2,8 @@ import { css, InterpolationFunction } from 'styled-components';
 
 export interface InteractionProps {
     /**
-     * Увеличение по ховеру нажатию / уменьшение по нажатию
+     * Увеличение по ховеру нажатию / уменьшение по нажатию.
+     * Задает одновременно `scaleOnHover` и `scaleOnPress`
      */
     scaleOnInteraction?: boolean;
     /**
