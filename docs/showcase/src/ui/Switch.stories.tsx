@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch } from '@sberdevices/ui/components/Switch';
+import { Switch } from '@sberdevices/plasma-ui/components/Switch';
 
 import { actionWithPersistedEvent, ShowcaseComponentGrid, UIStoryDecorator, InSpacingDecorator } from '../helpers';
 

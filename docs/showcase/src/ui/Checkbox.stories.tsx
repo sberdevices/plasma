@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox } from '@sberdevices/ui/components/Checkbox';
+import { Checkbox } from '@sberdevices/plasma-ui/components/Checkbox';
 
 import { CheckboxShowcase, UIStoryDecorator, InSpacingDecorator } from '../helpers';
 
