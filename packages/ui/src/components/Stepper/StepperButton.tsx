@@ -3,10 +3,11 @@ import type { PickOptional } from '@sberdevices/plasma-core/types';
 
 import { ActionButton, ButtonProps, ActionButtonProps } from '../Button';
 
+export type Pin = ActionButtonProps['pin'];
 export interface StepperButtonProps
     extends PickOptional<ButtonProps, 'view' | 'disabled' | 'className' | 'style' | 'onFocus' | 'onBlur' | 'onClick'> {
     icon?: React.ReactElement;
-    pin?: ActionButtonProps['pin'];
+    pin?: Pin;
 }
 
 /**

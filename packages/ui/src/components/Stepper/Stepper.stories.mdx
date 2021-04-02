@@ -20,7 +20,7 @@ import { Stepper, StepperRoot, StepperButton, StepperValue } from '.';
 <Props of={Stepper} />
 
 ### Модификаторы
-При использовании модификатора ``remover``, по достижению
+При использовании модификатора ``showRemove``, по достижению
 минимального количества кнопка **минус** заменяется на **удалить**.
 По нажатию на кнопку **удалить** вызывается обработчик **удаления**.
 
@@ -45,7 +45,7 @@ import { Stepper }  from '@sberdevices/ui';
 
 export const App = () => (
     <Stepper
-      remover
+      showRemove
       value={5}
       step={1}
       min={0}
