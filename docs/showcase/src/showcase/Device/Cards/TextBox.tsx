@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Card, CardBody, CardContent } from '@sberdevices/ui/components/Card';
 import { TextBox, TextBoxTitle, TextBoxSubTitle } from '@sberdevices/ui/components/TextBox';
+import { Cell } from '@sberdevices/ui/components/Cell';
+import { Icon } from '@sberdevices/plasma-icons';
+import { Button } from '@sberdevices/ui/components/Button';
 
 import { ShowcaseDashedBorder, ShowcaseSectionName, ShowcasePanel, IconPlaceholder } from '../../../helpers';
 
@@ -37,11 +40,23 @@ function CardItem({ icon, title, subtitle }: { icon?: string; title: string; sub
         <StyledCard outlined scaleOnFocus>
             <CardBody>
                 <CardContent>
-                    {icon && <IconPlaceholder size="m" />}
-                    <TextBox>
-                        <TextBoxTitle>{title}</TextBoxTitle>
-                        <TextBoxSubTitle>{subtitle}</TextBoxSubTitle>
-                    </TextBox>
+                    <Cell
+                        content={
+                            <div>
+                                {icon && <IconPlaceholder size="l" style={{ marginBottom: '0.5rem' }} />}
+                                <TextBox>
+                                    <TextBoxTitle>{title}</TextBoxTitle>
+                                    <TextBoxSubTitle>{subtitle}</TextBoxSubTitle>
+                                </TextBox>
+                            </div>
+                        }
+                        right={
+                            <Button square pin="circle-circle" size="s">
+                                <Icon icon="mic" />
+                            </Button>
+                        }
+                        alignRight="top"
+                    />
                 </CardContent>
             </CardBody>
         </StyledCard>

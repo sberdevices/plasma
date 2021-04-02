@@ -84,7 +84,7 @@ function BasicCards() {
                 />
                 <CardItem
                     image="./images/180_320_9.jpg"
-                    ratio="9 / 16"
+                    customRatio="190.77778"
                     title="Дэвид Боуи"
                     subtitle="Рок-певец"
                     description="Британский рок-певец и автор песен, а также продюсер, звукорежиссёр, художник и актёр. На протяжении ..."
@@ -112,7 +112,7 @@ function BasicCards() {
                 />
                 <CardItem
                     image="./images/180_320_9.jpg"
-                    ratio="9 / 16"
+                    customRatio="167.77778"
                     title="Дэвид Боуи"
                     subtitle="Рок-певец"
                     description="Британский рок-певец и автор песен, а также продюсер, звукорежиссёр, художник и актёр. На протяжении ..."
