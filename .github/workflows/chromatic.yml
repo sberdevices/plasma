@@ -11,7 +11,7 @@ jobs:
     env:
       DEBUG: chromatic-cli
       NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
-      # version of @storybook/react in packages/ui
+      # version of @storybook/react in packages/plasma-ui
       # CHROMATIC_STORYBOOK_VERSION: 'react@6.0.0-rc.13'
     steps:
       - uses: actions/checkout@v1
