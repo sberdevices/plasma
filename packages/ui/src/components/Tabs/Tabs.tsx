@@ -20,9 +20,9 @@ import type { InteractionProps } from '../../mixins';
  * а размеры (свойство size) задаются через компонент Tabs.
  */
 const sizes = {
-    l: (fixedWidth: boolean) => css`
-        --tabs-shifting: -${fixedWidth ? 0.875 : 1.625}rem;
-        --tab-item-padding-x: ${fixedWidth ? 0.75 : 1.5}rem;
+    l: (stretch: boolean) => css`
+        --tabs-shifting: -${stretch ? 0.875 : 1.625}rem;
+        --tab-item-padding-x: ${stretch ? 0.75 : 1.5}rem;
         --tab-item-padding-y: 0.875rem;
         --tab-item-padding-y-reduced: 0.75rem;
         --tab-item-height: 3rem;
@@ -30,9 +30,9 @@ const sizes = {
         height: 3.25rem;
         border-radius: 1.125rem;
     `,
-    m: (fixedWidth: boolean) => css`
-        --tabs-shifting: -${fixedWidth ? 0.875 : 1.375}rem;
-        --tab-item-padding-x: ${fixedWidth ? 0.75 : 1.25}rem;
+    m: (stretch: boolean) => css`
+        --tabs-shifting: -${stretch ? 0.875 : 1.375}rem;
+        --tab-item-padding-x: ${stretch ? 0.75 : 1.25}rem;
         --tab-item-padding-y: 0.75rem;
         --tab-item-padding-y-reduced: 0.5rem;
         --tab-item-height: 2.5rem;
@@ -40,9 +40,9 @@ const sizes = {
         height: 2.75rem;
         border-radius: 0.875rem;
     `,
-    s: (fixedWidth: boolean) => css`
-        --tabs-shifting: -${fixedWidth ? 0.75 : 1.125}rem;
-        --tab-item-padding-x: ${fixedWidth ? 0.625 : 1}rem;
+    s: (stretch: boolean) => css`
+        --tabs-shifting: -${stretch ? 0.75 : 1.125}rem;
+        --tab-item-padding-x: ${stretch ? 0.625 : 1}rem;
         --tab-item-padding-y: 0.625rem;
         --tab-item-padding-y-reduced: 0.375rem;
         --tab-item-height: 2.25rem;
@@ -115,12 +115,12 @@ export const Tabs = styled(BaseTabs)<TabsProps>`
 
     background-color: ${({ view = 'secondary' }) => views[view]};
 
-    ${({ size = 'l', fixedWidth = false, shiftLeft, shiftRight }) =>
+    ${({ size = 'l', stretch = false, shiftLeft, shiftRight }) =>
         css`
-            ${sizes[size](fixedWidth)};
+            ${sizes[size](stretch)};
 
             ${
-                fixedWidth &&
+                stretch &&
                 css`
                     & > * {
                         min-width: calc(25% - 0.25rem);

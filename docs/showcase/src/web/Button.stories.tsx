@@ -24,13 +24,13 @@ const rows = {
     Critical: { view: 'critical' },
     Clear: { view: 'clear' },
 };
-const defaults = { focused: false, disabled: false, resizible: true, text: 'Label', onClick, onFocus, onBlur };
+const defaults = { focused: false, disabled: false, stretch: true, text: 'Label', onClick, onFocus, onBlur };
 const cols = {
     // ToDo: Hover, Pressed
-    Resizible: { ...defaults },
-    'Resizible + Focused': { ...defaults, outlined: true, focused: true },
-    'Resizible + Disabled': { ...defaults, disabled: true },
-    Auto: { ...defaults, resizible: false },
+    Stretch: { ...defaults },
+    'Stretch + Focused': { ...defaults, outlined: true, focused: true },
+    'Stretch + Disabled': { ...defaults, disabled: true },
+    Auto: { ...defaults, stretch: false },
     Squared: { ...defaults, square: true, text: '' },
     'Squared + Focused': { ...defaults, square: true, text: '', outlined: true, focused: true },
     Circle: { ...defaults, square: true, text: '', pin: 'circle-circle' },

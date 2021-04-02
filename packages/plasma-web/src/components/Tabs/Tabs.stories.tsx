@@ -18,7 +18,7 @@ export const Default = () => {
     const [index, setIndex] = React.useState(0);
 
     return (
-        <Tabs fixedWidth={boolean('fixedWidth', true)} disabled={disabled}>
+        <Tabs stretch={boolean('stretch', true)} disabled={disabled}>
             {items.map((_, i) => (
                 <TabItem
                     key={`item:${i}`}

@@ -83,7 +83,7 @@ const InCard = ({ ...rest }) => {
                         </>
                     )}
                     <ButtonSkeleton
-                        resizible
+                        stretch
                         text={s ? 'Загрузка...' : 'Подробнее'}
                         view="primary"
                         size="s"

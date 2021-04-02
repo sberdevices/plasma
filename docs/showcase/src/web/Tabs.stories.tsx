@@ -16,8 +16,8 @@ const rows = {
     Three: {},
 };
 const cols = {
-    Normal: [{ fixedWidth: true }, { children: 'Label' }],
-    Disabled: [{ fixedWidth: true, disabled: true }, { children: 'Label' }],
+    Normal: [{ stretch: true }, { children: 'Label' }],
+    Disabled: [{ stretch: true, disabled: true }, { children: 'Label' }],
     Auto: [{}, { children: 'Label' }],
     AutoIcon: [{}, { children: <IconPlaceholder /> }],
 };
