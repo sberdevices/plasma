@@ -23,7 +23,8 @@ import { Button, ActionButton } from '.';
     <Story name="Default" story={stories.Default} />
 </Canvas>
 
-<ArgsTable of={Button} />
+<!-- TODO: Убрать `blur` или сделать публичным -->
+<ArgsTable of={Button} exclude={["blur", "theme", "forwardedAs", "focused"]} />
 
 ## ActionButton
 <Description of={ActionButton} />
@@ -32,7 +33,7 @@ import { Button, ActionButton } from '.';
     <Story name="ActionButton" story={stories.Action_Button} />
 </Canvas>
 
-<ArgsTable of={ActionButton} />
+<ArgsTable of={ActionButton} exclude={["blur", "view", "forwardedAs", "focused", "square", "outlined", "disabled", "shiftLeft", "shiftRight", "as", "square-square", "scaleOnInteraction", "scaleOnHover", "scaleOnPress"]} />
 
 ## Использование
 Компонент ``<Button>`` может содержать текст, который указывается в
@@ -47,11 +48,22 @@ import { Button, ActionButton } from '.';
 ```tsx
 // App.tsx
 import React from 'react';
+import { createGlobalStyle } from 'styled-components';
+
+import { sberBox } from '@sberdevices/plasma-tokens/typo';
+import { darkSber } from '@sberdevices/plasma-tokens/themes';
+
 import { IconDownload } from '@sberdevices/plasma-icons';
 import { Button, ActionButton } from '@sberdevices/ui';
 
+const TypoScale = createGlobalStyle(sberBox);
+const Theme = createGlobalStyle(darkSber);
+
 export const App = () => (
     <>
+        <TypoScale /> // Типографические константы
+        <Theme /> // Тема персонажа
+
         <Button text="Текст" /> // Только текст
 
         <Button text="Текст" contentLeft={<IconDownload />} /> // Текст + иконка слева
