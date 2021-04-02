@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledHeaderContent = styled.div`
+    flex: 1 0 max-content;
     margin-left: auto;
+    padding-left: 0.75rem;
 `;
 
 /**

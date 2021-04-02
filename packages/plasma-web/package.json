@@ -1,20 +1,20 @@
 {
     "name": "@sberdevices/plasma-web",
-    "version": "0.2.0",
+    "version": "0.5.0",
     "description": "SberDevices Design System / React UI kit for web applications",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
     "keywords": ["design-system", "react-components", "ui-kit", "react"],
     "main": "index.js",
     "types": "index.d.ts",
-    "files": ["components", "tokens", "index.d.ts", "index.js"],
+    "files": ["components", "tokens", "index.d.ts", "index.js", "es"],
     "repository": {
         "type": "git",
         "url": "ssh://git@github.com:sberdevices/plasma.git",
         "directory": "packages/plasma-web"
     },
     "dependencies": {
-        "@sberdevices/plasma-core": "0.5.0",
+        "@sberdevices/plasma-core": "0.8.1",
         "@sberdevices/plasma-tokens-web": "0.1.0"
     },
     "peerDependencies": {
@@ -25,6 +25,9 @@
     },
     "devDependencies": {
         "@mdx-js/mdx": "^1.6.16",
+        "@rollup/plugin-babel": "5.3.0",
+        "@rollup/plugin-node-resolve": "11.2.0",
+        "@rollup/plugin-typescript": "8.2.0",
         "@sberdevices/plasma-icons": "0.2.0",
         "@storybook/addon-actions": "6.0.0-rc.13",
         "@storybook/addon-backgrounds": "6.0.0-rc.13",
@@ -39,9 +42,11 @@
         "@types/react-dom": "16.9.8",
         "@types/styled-components": "5.1.0",
         "babel-loader": "8.1.0",
+        "babel-plugin-annotate-pure-calls": "0.4.0",
         "react": "16.13.1",
         "react-dom": "16.13.1",
         "react-scripts": "3.4.1",
+        "rollup": "2.42.2",
         "sb": "6.0.0-rc.13",
         "styled-components": "5.1.1",
         "typescript": "3.9.5"
@@ -51,10 +56,13 @@
     },
     "scripts": {
         "prepare": "npm run build",
-        "clean": "rm -rf ./components",
-        "build": "npm run clean && tsc",
+        "clean": "rm -rf ./components ./es",
+        "build:cjs": "tsc",
+        "build:es": "rollup -c",
+        "build": "npm run clean && npm run build:es && npm run build:cjs",
         "storybook": "start-storybook -s .storybook/public -p ${PORT:-7007} -c .storybook",
         "storybook:build": "build-storybook -s .storybook/public -c .storybook -o build-sb"
     },
-    "contributors": ["Vasiliy Loginevskiy", "Anton Vinogradov", "Fanil Zubairov"]
+    "contributors": ["Vasiliy Loginevskiy", "Anton Vinogradov", "Fanil Zubairov"],
+    "sideEffects": false
 }

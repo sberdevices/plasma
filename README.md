@@ -23,11 +23,11 @@
 
 ### ui
 
-Пакет с набором готовых компонентов для создания `Canvas App`. Компоненты реализованы с помощью [React](https://reactjs.org/). Для компонентов доступна [витрина](https://rc--5f96ec813d800900227e3b93.chromatic.com) и [документация](http://plasma.sberdevices.ru/).
+Пакет с набором готовых компонентов для создания `Canvas App`. Компоненты реализованы с помощью [React](https://reactjs.org/). Для компонентов доступна [витрина](https://rc--5f96ec813d800900227e3b93.chromatic.com) и [документация](https://plasma.sberdevices.ru/).
 
 ### plasma-icons
 
-Пакет с набором иконок для совместного использования с пакетом `ui`. Все иконки также доступны к просмотру в [витрине](https://rc--5f96ec813d800900227e3b93.chromatic.com) и [документации](http://plasma.sberdevices.ru/).
+Пакет с набором иконок для совместного использования с пакетом `ui`. Все иконки также доступны к просмотру в [витрине](https://rc--5f96ec813d800900227e3b93.chromatic.com) и [документации](https://plasma.sberdevices.ru/current/?path=/docs/content-icon--xs-size).
 
 ## Быстрый старт
 
@@ -77,7 +77,7 @@ export default App;
 ```
 
 Для каждого компонента есть документация описывающая его поведение и модификации.
-[Документация](http://plasma.sberdevices.ru/current/components/Button) для компонента `Button` из примера.
+[Документация](https://plasma.sberdevices.ru/current/?path=/docs/controls-button--default) для компонента `Button` из примера.
 
 ## Обратная связь
 

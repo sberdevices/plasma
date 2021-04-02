@@ -46,6 +46,8 @@ const StyledRoot = styled.label<DisabledProps>`
     max-width: 100%;
     cursor: pointer;
 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
     & + & {
         margin-top: 1.25rem;
     }

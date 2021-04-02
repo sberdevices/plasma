@@ -9,6 +9,7 @@
 /index.d.ts*
 /dist
 /.docz
+/es
 build-sb
 build-sb-docs
 build-storybook.log
