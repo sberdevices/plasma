@@ -1,3 +1,31 @@
+# v2.0.0 (Mon Apr 05 2021)
+
+#### 💥 Breaking Change
+
+- Изменяет target сборки с ESNext на ES6 [#27](https://github.com/sberdevices/pashka/pull/27) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+- BREAKING CHANGE: Изменяет имя hoc withFocusabe на withSpatnav [#27](https://github.com/sberdevices/pashka/pull/27) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+- feat!: spatial navigation 2.0 [#27](https://github.com/sberdevices/pashka/pull/27) ([@Yeti-or](https://github.com/Yeti-or))
+- BREAKING CHANGE: смена API withFocusable [#27](https://github.com/sberdevices/pashka/pull/27) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+- BREAKING CHANGE: spat nav 2 [#27](https://github.com/sberdevices/pashka/pull/27) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+- Исправляет опечатку [#27](https://github.com/sberdevices/pashka/pull/27) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+- Чинит функцию isAnySectionFocused [#27](https://github.com/sberdevices/pashka/pull/27) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+- Изменяет хук useDefaultSection на useDefaultSectionFocus [#27](https://github.com/sberdevices/pashka/pull/27) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+- Добавляет хук для автоматической фокусировки секций [#27](https://github.com/sberdevices/pashka/pull/27) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+- Чинит чтение кофига при навигации [#27](https://github.com/sberdevices/pashka/pull/27) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+- Чинит создание секций [#27](https://github.com/sberdevices/pashka/pull/27) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+- Добавляет генерацию документации [#27](https://github.com/sberdevices/pashka/pull/27) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+- Добавляет два хелпера [#27](https://github.com/sberdevices/pashka/pull/27) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+- Чинит тип функции кастомизации [#27](https://github.com/sberdevices/pashka/pull/27) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+- Чинит иморты в дистрибутиве пакета [#27](https://github.com/sberdevices/pashka/pull/27) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+- Новая версия Spatnav [#27](https://github.com/sberdevices/pashka/pull/27) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+#### Authors: 2
+
+- Arseny Kruglikov ([@arsenykruglikov](https://github.com/arsenykruglikov))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.2.0 (Wed Mar 10 2021)
 
 #### 🐛 Bug Fix
