@@ -71,11 +71,7 @@ export class SpatialNavigation {
 
     private pause = false;
 
-    private sections: { [index: string]: Section } = {};
-
-    private get sectionCount(): number {
-        return Object.keys(this.sections).length;
-    }
+    private sections: Map<string, Section> = new Map();
 
     private defaultSectionId = '';
 
@@ -91,7 +87,7 @@ export class SpatialNavigation {
         for (;;) {
             this.idPool += 1;
             id = this.ID_POOL_PREFIX + String(this.idPool);
-            if (!this.sections[id]) {
+            if (!this.sections.has(id)) {
                 break;
             }
         }
@@ -99,11 +95,15 @@ export class SpatialNavigation {
     }
 
     private isNavigable(element: HTMLElement, sectionId?: string, verifySectionSelector?: boolean): boolean {
-        if (!element || !sectionId || !this.sections[sectionId] || this.sections[sectionId].config.disabled) {
+        if (!element || !sectionId) {
             return false;
         }
 
-        const section = this.sections[sectionId];
+        const section = this.sections.get(sectionId);
+
+        if (!section || section.config.disabled) {
+            return false;
+        }
 
         // element has 0 by 0 size or has disabled attribute
         if (
@@ -130,48 +130,67 @@ export class SpatialNavigation {
     }
 
     private getSectionId(element: HTMLElement): string | undefined {
-        const entries = Object.entries(this.sections);
-        for (const [id, section] of entries) {
+        for (const [id, section] of this.sections) {
             if (!section.config.disabled && matchSelector(element, section.config.selector)) {
                 return id;
             }
         }
+
         return undefined;
     }
 
     private getSectionNavigableElements(sectionId: string): HTMLElement[] {
-        return parseSelector(this.sections[sectionId].config.selector).filter((element) => {
-            return this.isNavigable(element, sectionId);
-        });
+        const selector = this.sections.get(sectionId)?.config.selector;
+
+        const navigableElements: HTMLElement[] = [];
+
+        if (typeof selector === 'undefined') {
+            return navigableElements;
+        }
+
+        for (const element of parseSelector(selector)) {
+            if (this.isNavigable(element, sectionId, false)) {
+                navigableElements.push(element);
+            }
+        }
+
+        return navigableElements;
     }
 
     private getSectionDefaultElement(sectionId: string): HTMLElement | null {
         let element: HTMLElement | undefined;
-        const { defaultElement } = this.sections[sectionId].config;
+        const defaultElement = this.sections.get(sectionId)?.config.defaultElement;
+
         if (!defaultElement) {
             return null;
         }
+
         if (typeof defaultElement === 'string') {
             [element] = parseSelector(defaultElement);
         }
+
         if (defaultElement instanceof HTMLElement) {
             element = defaultElement;
         }
+
         if (defaultElement instanceof NodeList) {
             const node = defaultElement.item(0);
             element = isHTMLElement(node) ? node : undefined;
         }
+
         if (Array.isArray(defaultElement)) {
             [element] = defaultElement;
         }
+
         if (element instanceof HTMLElement && this.isNavigable(element, sectionId, true)) {
             return element;
         }
+
         return null;
     }
 
     private getSectionLastFocusedElement(sectionId: string): HTMLElement | null {
-        const { lastFocusedElement = null } = this.sections[sectionId];
+        const lastFocusedElement = this.sections.get(sectionId)?.lastFocusedElement;
         if (lastFocusedElement instanceof HTMLElement) {
             if (this.isNavigable(lastFocusedElement, sectionId, true)) {
                 return lastFocusedElement;
@@ -190,9 +209,14 @@ export class SpatialNavigation {
         if (!sectionId) {
             id = this.getSectionId(element);
         }
+
         if (id) {
-            this.sections[id].lastFocusedElement = element;
-            this.lastSectionId = id;
+            const section = this.sections.get(id);
+
+            if (section) {
+                section.lastFocusedElement = element;
+                this.lastSectionId = id;
+            }
         }
     }
 
@@ -258,27 +282,39 @@ export class SpatialNavigation {
         return true;
     }
 
-    private focusSection(sectionId?: string): boolean {
-        const range: string[] = [];
+    private readonly range: Set<string> = new Set();
 
-        const addRange = (id: string): void => {
-            if (id && !range.includes(id) && this.sections[id] && !this.sections[id].config.disabled) {
-                range.push(id);
-            }
-        };
+    private addRange(sectionId: string): void {
+        const section = this.sections.get(sectionId);
 
-        if (sectionId) {
-            addRange(sectionId);
-        } else {
-            addRange(this.defaultSectionId);
-            addRange(this.lastSectionId);
-            Object.keys(this.sections).map(addRange);
+        if (!section) {
+            return;
         }
 
-        for (const id of range) {
+        if (sectionId && !section.config.disabled) {
+            this.range.add(sectionId);
+        }
+    }
+
+    private fillRangesFromSections = (_section: Section, sectionId: string): void => {
+        this.addRange(sectionId);
+    };
+
+    private focusSection(sectionId?: string): boolean {
+        this.range.clear();
+
+        if (sectionId) {
+            this.addRange(sectionId);
+        } else {
+            this.addRange(this.defaultSectionId);
+            this.addRange(this.lastSectionId);
+            this.sections.forEach(this.fillRangesFromSections);
+        }
+
+        for (const id of this.range) {
             let next;
 
-            const { enterTo } = this.sections[id].config;
+            const enterTo = this.sections.get(id)?.config.enterTo;
 
             if (enterTo === 'last-focused') {
                 next =
@@ -333,12 +369,12 @@ export class SpatialNavigation {
     }
 
     private gotoLeaveFor(sectionId: string, direction: Direction): boolean | null {
-        console.log(sectionId, direction);
+        const leaveForObject = this.sections.get(sectionId)?.config.leaveFor;
 
-        const section = this.sections[sectionId];
-        if (section.config.leaveFor) {
+        if (leaveForObject) {
             let next: string | HTMLElement | NodeList | HTMLElement[] | undefined | void;
-            const leaveFor = section.config.leaveFor[direction];
+
+            const leaveFor = leaveForObject[direction];
             if (typeof leaveFor === 'function') {
                 next = leaveFor();
             } else {
@@ -369,14 +405,13 @@ export class SpatialNavigation {
 
         let allNavigableElements: HTMLElement[] = [];
 
-        const keys = Object.keys(this.sections);
-
-        for (const id of keys) {
+        for (const [id] of this.sections) {
             sectionNavigableElements[id] = this.getSectionNavigableElements(id);
             allNavigableElements = allNavigableElements.concat(sectionNavigableElements[id]);
         }
 
-        const config = { ...this.globalConfig, ...this.sections[currentSectionId].config };
+        const config = { ...this.globalConfig, ...this.sections.get(currentSectionId)?.config };
+
         let next: HTMLElement | null;
 
         if (config.restrict === 'self-only' || config.restrict === 'self-first') {
@@ -407,11 +442,15 @@ export class SpatialNavigation {
         }
 
         if (next) {
-            this.sections[currentSectionId].config.previous = {
-                target: currentFocusedElement,
-                destination: next,
-                reverse: REVERSE[direction],
-            };
+            const section = this.sections.get(currentSectionId);
+
+            if (section?.config) {
+                section.config.previous = {
+                    target: currentFocusedElement,
+                    destination: next,
+                    reverse: REVERSE[direction],
+                };
+            }
 
             const nextSectionId = this.getSectionId(next);
 
@@ -428,7 +467,7 @@ export class SpatialNavigation {
                 let enterToElement;
 
                 if (typeof nextSectionId === 'string') {
-                    const { enterTo } = this.sections[nextSectionId].config;
+                    const enterTo = this.sections.get(nextSectionId)?.config.enterTo;
 
                     switch (enterTo) {
                         case 'last-focused':
@@ -479,7 +518,7 @@ export class SpatialNavigation {
 
         this.throttleKeyDown = true;
 
-        if (!this.sectionCount || this.pause || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
+        if (!this.sections.size || this.pause || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
             return false;
         }
 
@@ -538,12 +577,11 @@ export class SpatialNavigation {
 
         const code = event.code || event.key;
 
-        if (!this.pause && this.sectionCount && (code === 'Enter' || code === 'Escape')) {
+        if (!this.pause && this.sections.size && (code === 'Enter' || code === 'Escape')) {
             const currentFocusedElement = getCurrentFocusedElement();
             if (currentFocusedElement && this.getSectionId(currentFocusedElement)) {
                 if (!this.fireEvent(currentFocusedElement, code === 'Enter' ? 'enter-up' : 'escape-up')) {
                     event.preventDefault();
-                    // event.stopPropagation();
                 }
             }
         }
@@ -552,7 +590,7 @@ export class SpatialNavigation {
 
     private onFocus(event: FocusEvent): void {
         const { target } = event;
-        if (isHTMLElement(target) && this.sectionCount && !this.duringFocusChange) {
+        if (isHTMLElement(target) && this.sections.size && !this.duringFocusChange) {
             const sectionId = this.getSectionId(target);
             if (sectionId) {
                 if (this.pause) {
@@ -582,7 +620,7 @@ export class SpatialNavigation {
         if (
             isHTMLElement(target) &&
             !this.pause &&
-            this.sectionCount &&
+            this.sections.size &&
             !this.duringFocusChange &&
             this.getSectionId(target)
         ) {
@@ -655,7 +693,7 @@ export class SpatialNavigation {
      * - удаляет последнюю активную секцию
      */
     clear(): void {
-        this.sections = {};
+        this.sections.clear();
         this.defaultSectionId = '';
         this.lastSectionId = '';
         this.duringFocusChange = false;
@@ -694,7 +732,7 @@ export class SpatialNavigation {
      * @returns `true` если секция существует
      */
     has(sectionId: string): boolean {
-        return sectionId in this.sections;
+        return this.sections.has(sectionId);
     }
 
     /**
@@ -703,7 +741,7 @@ export class SpatialNavigation {
      * @returns Section или undefined если секции с таким id нет
      */
     get<S extends SectionName = SectionName>(sectionId: S): Section<S> | undefined {
-        return this.sections[sectionId] as Section<S>;
+        return this.sections.get(sectionId) as Section<S>;
     }
 
     /**
@@ -714,7 +752,10 @@ export class SpatialNavigation {
      * @param config
      */
     set(sectionId: string, config: Partial<Config> = {}): void {
-        Object.assign(this.sections[sectionId].config, config);
+        const section = this.sections.get(sectionId);
+        if (section) {
+            Object.assign(section.config, config);
+        }
     }
 
     /**
@@ -729,20 +770,27 @@ export class SpatialNavigation {
     add<S extends SectionName = SectionName>(sectionId: S, config: Partial<Config>): Section<S> {
         const id = sectionId || this.generateId();
 
-        if (this.sections[id]) {
-            throw new Error(`Section "${id}" has already existed!`);
+        if (this.sections.has(id)) {
+            throw new Error(`Секция "${id}" уже существует`);
         }
-        this.sections[id] = {
+
+        this.sections.set(id, {
             id,
             lastFocusedElement: undefined,
             config: { ...this.globalConfig, ...config, previous: undefined },
-        };
+        });
 
-        if (this.sectionCount === 1) {
+        if (this.sections.size === 1) {
             this.setDefaultSection(id);
         }
 
-        return this.sections[id] as Section<S>;
+        const section = this.sections.get(id);
+
+        if (!section) {
+            throw new Error('Внутренняя ошибка создания секции');
+        }
+
+        return section as Section<S>;
     }
 
     /**
@@ -753,18 +801,13 @@ export class SpatialNavigation {
      * @returns `true` если секция была удалена
      */
     remove(sectionId: string): boolean {
-        if (!sectionId || typeof sectionId !== 'string') {
-            throw new Error('Please assign the "sectionId"!');
+        const deleted = this.sections.delete(sectionId);
+
+        if (deleted && this.lastSectionId === sectionId) {
+            this.lastSectionId = '';
         }
 
-        if (typeof this.sections[sectionId] !== 'undefined') {
-            delete this.sections[sectionId];
-            if (this.lastSectionId === sectionId) {
-                this.lastSectionId = '';
-            }
-            return true;
-        }
-        return false;
+        return deleted;
     }
 
     /**
@@ -775,10 +818,13 @@ export class SpatialNavigation {
      * @returns `true` если секция была выключена
      */
     disable(sectionId: string): boolean {
-        if (this.sections[sectionId]) {
-            this.sections[sectionId].config.disabled = true;
+        const config = this.sections.get(sectionId)?.config;
+
+        if (config) {
+            config.disabled = true;
             return true;
         }
+
         return false;
     }
 
@@ -790,10 +836,13 @@ export class SpatialNavigation {
      * @returns `true` если секция была включена
      */
     enable(sectionId: string): boolean {
-        if (this.sections[sectionId]) {
-            this.sections[sectionId].config.disabled = false;
+        const config = this.sections.get(sectionId)?.config;
+
+        if (config) {
+            config.disabled = false;
             return true;
         }
+
         return false;
     }
 
@@ -837,7 +886,7 @@ export class SpatialNavigation {
             silent = silentOrSectionIdOrExtSelector;
         } else if (
             typeof silentOrSectionIdOrExtSelector === 'string' &&
-            silentOrSectionIdOrExtSelector in this.sections
+            this.sections.has(silentOrSectionIdOrExtSelector)
         ) {
             sectionId = silentOrSectionIdOrExtSelector;
             silent = silentArgs;
@@ -851,8 +900,8 @@ export class SpatialNavigation {
         if (autoPause) {
             this.pauseNavigation();
         }
-        if (typeof sectionId === 'string' && sectionId in this.sections) {
-            this.focusSection(sectionId);
+        if (typeof sectionId === 'string' && this.sections.has(sectionId)) {
+            result = this.focusSection(sectionId);
         } else if (typeof extSelector !== 'undefined') {
             result = this.focusExtendedSelector(extSelector);
         } else {
@@ -936,15 +985,16 @@ export class SpatialNavigation {
         };
 
         if (sectionId) {
-            if (this.sections[sectionId]) {
-                doMakeFocusable(this.sections[sectionId]);
+            const section = this.sections.get(sectionId);
+            if (section) {
+                doMakeFocusable(section);
             } else {
-                throw new Error(`Section "${sectionId}" doesn't exist!`);
+                throw new Error(`Секция "${sectionId}" не существует`);
             }
         } else {
-            Object.values(this.sections).forEach((section) => {
+            for (const [, section] of this.sections) {
                 doMakeFocusable(section);
-            });
+            }
         }
     }
 
@@ -956,8 +1006,8 @@ export class SpatialNavigation {
     setDefaultSection(sectionId: string): void {
         if (!sectionId) {
             this.defaultSectionId = '';
-        } else if (!this.sections[sectionId]) {
-            throw new Error(`Section "${sectionId}" doesn't exist!`);
+        } else if (!this.sections.has(sectionId)) {
+            throw new Error(`Секция "${sectionId}" не существует`);
         } else {
             this.defaultSectionId = sectionId;
         }
@@ -969,8 +1019,10 @@ export class SpatialNavigation {
      * @param sectionId
      */
     forgetLastElementInSection(sectionId: string): void {
-        if (sectionId && this.sections[sectionId]) {
-            this.sections[sectionId].lastFocusedElement = undefined;
+        const section = this.sections.get(sectionId);
+
+        if (sectionId && section) {
+            section.lastFocusedElement = undefined;
         }
     }
 
@@ -978,9 +1030,9 @@ export class SpatialNavigation {
      * Забыть последний элемент во всех секциях
      */
     forgetLastElementInAllSections(): void {
-        Object.values(this.sections).forEach((section) => {
+        for (const [, section] of this.sections) {
             section.lastFocusedElement = undefined;
-        });
+        }
     }
 
     /**
@@ -995,14 +1047,19 @@ export class SpatialNavigation {
      * @returns находится ли хоть одна секция в фокусе
      */
     isAnySectionFocused(): boolean {
-        return Object.values(this.sections).some((section) => {
-            const element = getCurrentFocusedElement();
+        const element = getCurrentFocusedElement();
 
-            if (!element) {
-                return false;
+        if (!element) {
+            return false;
+        }
+
+        for (const [, section] of this.sections) {
+            const result = matchSelector(element, section.config.selector);
+            if (result) {
+                return result;
             }
+        }
 
-            return matchSelector(element, section.config.selector);
-        });
+        return false;
     }
 }
