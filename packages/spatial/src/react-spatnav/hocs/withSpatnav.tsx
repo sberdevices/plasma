@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ComponentType, createElement, forwardRef } from 'react';
 import { isStyledComponent, StyledComponent } from 'styled-components';
-import { isReactComponent } from '../../react-spatnav';
+import { isReactComponent } from '../../react-spatnav/utils/isReactComponent';
 
 export interface SpatnavElementProps {
     /**
@@ -60,7 +60,7 @@ export interface SpatnavElementProps {
  * @example
  * ```typescript
  * import React, { FC } from 'react';
- * import { withFocusable } from '@sberdevices/spatial';
+ * import { withSpatnav } from '@sberdevices/spatial';
  *
  * interface MyFancyButtonProps {
  *      color: string;
@@ -81,7 +81,7 @@ export interface SpatnavElementProps {
  *      )
  * }
  *
- * export const FocusableFancyButton = withFocusable(MyFancyButton);
+ * export const FocusableFancyButton = withSpatnav(MyFancyButton);
  * ```
  */
 export interface BaseComponentProps {
@@ -142,7 +142,7 @@ function handleClickOrTap<P extends BaseComponentProps>(
  * @example
  * ```typescript
  * import React, { FC } from 'react';
- * import { withFocusable } from '@sberdevices/spatial';
+ * import { withSpatnav } from '@sberdevices/spatial';
  *
  * interface MyFancyButtonProps {
  *      color: string;
@@ -163,10 +163,10 @@ function handleClickOrTap<P extends BaseComponentProps>(
  *      )
  * }
  *
- * export const FocusableFancyButton = withFocusable(MyFancyButton);
+ * export const FocusableFancyButton = withSpatnav(MyFancyButton);
  * ```
  */
-function withFocusable<P extends BaseComponentProps>(
+function withSpatnav<P extends BaseComponentProps>(
     BaseComponent: ComponentType<P>,
 ): ComponentType<P & SpatnavElementProps>;
 
@@ -181,7 +181,7 @@ function withFocusable<P extends BaseComponentProps>(
  * ```typescript
  * import React, { FC } from 'react';
  * import styled from 'styled-components';
- * import { withFocusable } from '@sberdevices/spatial';
+ * import { withSpatnav } from '@sberdevices/spatial';
  *
  * interface MyStyledButtonProps {
  *      color: string;
@@ -191,17 +191,17 @@ function withFocusable<P extends BaseComponentProps>(
  *      background-color: ${(props) => props.color};
  * `;
  *
- * export const FocusableStyledButton = withFocusable(StyledButton);
+ * export const FocusableStyledButton = withSpatnav(StyledButton);
  * ```
  */
-function withFocusable<
+function withSpatnav<
     C extends keyof JSX.IntrinsicElements | React.ComponentType<unknown>,
     T extends Record<string, unknown>,
     O extends Record<string, unknown>,
     A extends keyof any = never
 >(BaseComponent: StyledComponent<C, T, O, A>): StyledComponent<C, T, O & SpatnavElementProps, A>;
 
-function withFocusable<
+function withSpatnav<
     P extends BaseComponentProps,
     C extends keyof JSX.IntrinsicElements | React.ComponentType<unknown>,
     T extends Record<string, unknown>,
@@ -241,9 +241,9 @@ function withFocusable<
         throw Error('BaseComponent in not a StyledComponent nor ReactComponent');
     });
 
-    extendedComponent.displayName = `WithFocusable_${BaseComponent.displayName}`;
+    extendedComponent.displayName = `WithSpatnav_${BaseComponent.displayName}`;
 
     return extendedComponent;
 }
 
-export { withFocusable };
+export { withSpatnav };

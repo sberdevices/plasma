@@ -49,14 +49,14 @@ export default App;
 
 ### Использование секций
 
-В дочернем компоненте определяем секцию под названием `Page1SectionId`. Делаем кнопку из библиотеки компонентов активной с помощью HOC `withFocusable`. После рендера все 5 кнопок будет доступны для навигации клавишами.
+В дочернем компоненте определяем секцию под названием `Page1SectionId`. Делаем кнопку из библиотеки компонентов активной с помощью HOC `withSpatnav`. После рендера все 5 кнопок будет доступны для навигации клавишами.
 
 ```typescript
 import React, { FC } from 'react';
-import { useSection, withFocusable } from '@sberdevices/spatial';
+import { useSection, withSpatnav } from '@sberdevices/spatial';
 import { Button } from '@sberdevices/plasma-ui';
 
-const FocusableButton = withFocusable(Button);
+const FocusableButton = withSpatnav(Button);
 
 const Page1: FC = () => {
     const [sectionProps, customize, sectionId] = useSection('Page1SectionId');
