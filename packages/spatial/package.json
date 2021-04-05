@@ -1,7 +1,7 @@
 {
   "name": "@sberdevices/spatial",
   "version": "1.2.0",
-  "description": "spatial",
+  "description": "spatial navigation",
   "main": "dist/index.js",
   "scripts": {
     "prepare": "npm run build",
