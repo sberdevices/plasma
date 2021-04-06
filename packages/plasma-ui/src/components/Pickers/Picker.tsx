@@ -123,9 +123,8 @@ export const Picker: React.FC<PickerProps> = ({
     visibleItems = 5,
     ...rest
 }) => {
-    const count = items.length;
     const min = 0;
-    const max = count - 1;
+    const max = items.length - 1;
     const index = items.findIndex((item) => item.value === value);
     const toPrev = React.useCallback(() => onChange?.(items[getIndex(index, '-', min, max)]), [index, min, max]);
     const toNext = React.useCallback(() => onChange?.(items[getIndex(index, '+', min, max)]), [index, min, max]);

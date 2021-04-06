@@ -9,11 +9,12 @@ import { DatePicker as DatePickerComponent, TimePicker as TimePickerComponent } 
 const now = new Date();
 
 export const DatePicker = () => {
+    const [value, setValue] = React.useState(new Date(number('year', 1980), number('month', 8), number('date', 1)));
     const isSberbox = isSberBox();
 
     return (
         <DatePickerComponent
-            value={new Date(number('year', 1980), number('month', 8), number('date', 1))}
+            value={value}
             min={new Date(1975, 0, 1)}
             max={new Date(1985, 12, 31)}
             options={{
@@ -24,28 +25,22 @@ export const DatePicker = () => {
             disabled={boolean('disabled', false)}
             controls={boolean('controls', isSberbox)}
             visibleItems={select('visibleItems', [3, 5], 5)}
-            onChange={action('onChange')}
+            onChange={(newValue) => {
+                setValue(newValue);
+            }}
         />
     );
 };
 
 export const TimePicker = () => {
+    const [value, setValue] = React.useState(new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 30, 59));
     const isSberbox = isSberBox();
 
     return (
         <TimePickerComponent
-            value={
-                new Date(
-                    now.getFullYear(),
-                    now.getMonth(),
-                    now.getDate(),
-                    number('hours', 0),
-                    number('minutes', 30),
-                    number('seconds', 59),
-                )
-            }
+            value={value}
             min={new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 15, 29)}
-            max={new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 45, 59)}
+            max={new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 45, 50)}
             options={{
                 hours: boolean('options.hours', true),
                 minutes: boolean('options.minutes', true),
@@ -53,7 +48,10 @@ export const TimePicker = () => {
             }}
             disabled={boolean('disabled', false)}
             controls={boolean('controls', isSberbox)}
-            onChange={action('onChange')}
+            onChange={(val) => {
+                setValue(val);
+                action('onChange')(val);
+            }}
         />
     );
 };

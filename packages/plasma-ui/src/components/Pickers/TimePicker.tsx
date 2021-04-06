@@ -76,24 +76,50 @@ export interface TimePickerProps extends PickOptional<PickerProps, 'focused' | '
 export const TimePicker: React.FC<TimePickerProps> = ({ options = defaultOptions, value, min, max, onChange }) => {
     const [[hours, minutes, seconds], setState] = React.useState(getValues(value));
 
-    const intervals = React.useMemo(
-        () => [
-            [min.getHours(), max.getHours()],
-            [min.getMinutes(), max.getMinutes()],
-            [min.getSeconds(), max.getSeconds()],
-        ],
-        [min, max],
-    );
+    // Диапозоны для списков зависят от min и max,
+    // при чем min и max принимаются как возможные предельные значения,
+    // а не как контейнеры для компонент hours, minutes, seconds
+    const [[fromHours, toHours], [fromMins, toMins], [fromSecs, toSecs]] = React.useMemo(() => {
+        const minHours = min.getHours();
+        const maxHours = max.getHours();
+        let minMins = 0;
+        let maxMins = 59;
+        let minSecs = 0;
+        let maxSecs = 59;
 
-    /* eslint-disable @typescript-eslint/no-unused-vars */
-    const onHoursChange = React.useCallback(({ value: h }) => setState(([_, m, s]) => [h, m, s]), []);
-    const onMinutesChange = React.useCallback(({ value: m }) => setState(([h, _, s]) => [h, m, s]), []);
-    const onSecondsChange = React.useCallback(({ value: s }) => setState(([h, m, _]) => [h, m, s]), []);
-    /* eslint-enable @typescript-eslint/no-unused-vars */
+        if (hours === minHours) {
+            minMins = min.getMinutes();
+        }
 
+        if (minutes === min.getMinutes()) {
+            minSecs = min.getSeconds();
+        }
+
+        if (hours === maxHours) {
+            maxMins = max.getMinutes();
+        }
+
+        if (minutes === max.getMinutes()) {
+            maxSecs = max.getSeconds();
+        }
+
+        return [
+            [minHours, maxHours],
+            [minMins, maxMins],
+            [minSecs, maxSecs],
+        ];
+    }, [min, max, hours, minutes]);
+
+    const onHoursChange = React.useCallback(({ value: h }) => setState(([, m, s]) => [h, m, s]), []);
+    const onMinutesChange = React.useCallback(({ value: m }) => setState(([h, , s]) => [h, m, s]), []);
+    const onSecondsChange = React.useCallback(({ value: s }) => setState(([h, m]) => [h, m, s]), []);
+
+    // При очередном прогоне, если значения hours, minutes, seconds изменились,
+    // необходимо вызвать событие изменения, создав новый экземпляр Date
     React.useLayoutEffect(() => {
-        const [h, m, s] = getValues(value);
-        if (h !== hours || m !== minutes || s !== seconds) {
+        const [oldHours, oldMinutes, oldSeconds] = getValues(value);
+
+        if (oldHours !== hours || oldMinutes !== minutes || oldSeconds !== seconds) {
             const newValue = new Date(value);
             newValue.setHours(hours);
             newValue.setMinutes(minutes);
@@ -103,39 +129,38 @@ export const TimePicker: React.FC<TimePickerProps> = ({ options = defaultOptions
         }
     }, [hours, minutes, seconds]);
 
-    if (
-        hours < intervals[0][0] ||
-        hours > intervals[0][1] ||
-        minutes < intervals[1][0] ||
-        minutes > intervals[1][1] ||
-        seconds < intervals[2][0] ||
-        seconds > intervals[2][1]
-    ) {
-        return null;
+    // Для того, чтобы значение не выпадало из диапозона,
+    // надо выставить в соответствии с последним
+    if (hours < fromHours) {
+        // Часов меньше минимума
+        setState([fromHours, fromMins, fromSecs]);
+    } else if (hours > toHours) {
+        // Часов больше максимума
+        setState([toHours, toMins, toSecs]);
+    } else if (minutes < fromMins) {
+        // Минут меньше минимума
+        setState(([h]) => [h, fromMins, fromSecs]);
+    } else if (minutes > toMins) {
+        // Минут больше максимума
+        setState(([h]) => [h, toMins, toSecs]);
+    } else if (seconds < fromSecs) {
+        // Секунд меньше минимума
+        setState(([h, m]) => [h, m, fromSecs]);
+    } else if (seconds > toSecs) {
+        // Секунд больше максимума
+        setState(([h, m]) => [h, m, toSecs]);
     }
 
     return (
         <StyledWrapper>
-            {options.hours && (
-                <SimpleTimePicker from={intervals[0][0]} to={intervals[0][1]} value={hours} onChange={onHoursChange} />
-            )}
+            {options.hours && <SimpleTimePicker from={fromHours} to={toHours} value={hours} onChange={onHoursChange} />}
             {options.hours && options.minutes && <StyledDividers />}
             {options.minutes && (
-                <SimpleTimePicker
-                    from={intervals[1][0]}
-                    to={intervals[1][1]}
-                    value={minutes}
-                    onChange={onMinutesChange}
-                />
+                <SimpleTimePicker from={fromMins} to={toMins} value={minutes} onChange={onMinutesChange} />
             )}
             {options.minutes && options.seconds && <StyledDividers />}
             {options.seconds && (
-                <SimpleTimePicker
-                    from={intervals[2][0]}
-                    to={intervals[2][1]}
-                    value={seconds}
-                    onChange={onSecondsChange}
-                />
+                <SimpleTimePicker from={fromSecs} to={toSecs} value={seconds} onChange={onSecondsChange} />
             )}
         </StyledWrapper>
     );
