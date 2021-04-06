@@ -26,10 +26,14 @@ export const SimpleTimePicker: React.FC<SimpleTimePickerProps> = ({
     onChange,
     ...rest
 }) => {
-    const items = Array.from({ length: to - from + 1 }, (_, i) => ({
-        label: formatter(from + i),
-        value: from + i,
-    }));
+    const items = React.useMemo(
+        () =>
+            Array.from({ length: to - from + 1 }, (_, i) => ({
+                label: formatter(from + i),
+                value: from + i,
+            })),
+        [from, to],
+    );
 
     return (
         <StyledPicker

@@ -42,13 +42,14 @@ const DatePicker = () => {
 };
 
 const TimePicker = () => {
+    const [value, setValue] = React.useState(new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 30, 59));
     const isSberbox = isSberBox();
 
     return (
         <TimePickerComponent
-            value={new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 30, 59)}
+            value={value}
             min={new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 15, 29)}
-            max={new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 45, 59)}
+            max={new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 45, 50)}
             options={{
                 hours: true,
                 minutes: true,
@@ -56,7 +57,10 @@ const TimePicker = () => {
             }}
             disabled={false}
             controls={isSberbox}
-            onChange={action('onChange')}
+            onChange={(val) => {
+                setValue(val);
+                action('onChange')(val);
+            }}
         />
     );
 };
