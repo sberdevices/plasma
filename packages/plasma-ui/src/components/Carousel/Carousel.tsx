@@ -373,7 +373,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
                 });
             }
         }, throttleMs),
-        [axis, scrollRef],
+        [axis, scrollRef, onIndexChange],
     );
 
     /**
@@ -433,13 +433,12 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
 
     /**
      * Прокрутка до нужной позиции индекса, если индекс изменился.
-     * Данный участок кода призван ускорить работу карусели,
-     * потому что вызов useEffect весьма затратен по времени
-     * для устройств по типу SberBox.
      */
-    if (index !== prevIndex.current) {
-        toIndex(index);
-    }
+    React.useEffect(() => {
+        if (index !== prevIndex.current) {
+            toIndex(index);
+        }
+    }, [index]);
 
     return (
         <CarouselContext.Provider value={{ axis, refs }}>
