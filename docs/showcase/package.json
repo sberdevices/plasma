@@ -1,7 +1,7 @@
 {
     "name": "@sberdevices/showcase",
     "private": true,
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "SberDevices Design System",
     "main": "",
     "files": [],
@@ -20,7 +20,7 @@
         "@sberdevices/plasma-icons": "1.1.0",
         "@sberdevices/plasma-tokens": "1.1.0",
         "@sberdevices/plasma-tokens-web": "1.1.0",
-        "@sberdevices/plasma-ui": "1.1.0",
+        "@sberdevices/plasma-ui": "1.2.0",
         "@sberdevices/plasma-web": "1.1.0",
         "@storybook/addon-actions": "6.0.0-rc.13",
         "@storybook/addon-backgrounds": "6.0.0-rc.13",
