@@ -25,6 +25,10 @@ jobs:
       - name: Prepare repository
         run: git fetch --unshallow --tags
 
+      - name: Unset header
+        # https://github.com/intuit/auto/issues/1030
+        run: git config --local --unset http.https://github.com/.extraheader
+
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
