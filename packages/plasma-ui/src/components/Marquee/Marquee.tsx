@@ -6,13 +6,14 @@ const marquee = keyframes`
     100% { transform: translateX(-100%) }
 `;
 
-const MarqueeText = styled.div<{ isPlaying?: boolean }>`
+const MarqueeText = styled.div<{ isPlaying: boolean; duration: number }>`
     padding-right: 4rem;
     animation: ${({ isPlaying }) =>
         isPlaying &&
         css`
-            ${marquee} 10s linear infinite;
+            ${marquee} linear infinite;
         `};
+    animation-duration: ${({ duration }) => duration}s;
 `;
 
 const Wrapper = styled.div`
@@ -29,16 +30,26 @@ interface MarqueeProps {
      * Текст бегущей строки
      */
     text?: string;
+    /**
+     * Длительность анимации
+     */
+    duration?: number;
 }
 
 /**
  * Компонент для отображения бегущей строки
  */
-export const Marquee: FC<MarqueeProps> = ({ isPlaying = true, text, children }) => {
+export const Marquee: FC<MarqueeProps> = ({ isPlaying = true, duration = 10, text, children }) => {
     return (
         <Wrapper>
-            <MarqueeText isPlaying={isPlaying}>{text || children}</MarqueeText>
-            {isPlaying && <MarqueeText isPlaying={isPlaying}>{text || children}</MarqueeText>}
+            <MarqueeText isPlaying={isPlaying} duration={duration}>
+                {text || children}
+            </MarqueeText>
+            {isPlaying && (
+                <MarqueeText isPlaying={isPlaying} duration={duration}>
+                    {text || children}
+                </MarqueeText>
+            )}
         </Wrapper>
     );
 };
