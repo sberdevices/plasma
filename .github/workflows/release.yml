@@ -50,5 +50,8 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Release Info
+        run: npm whoami && auto info || echo 'auto info returned 1'
+
       - name: Create Release
         run: npm run release
