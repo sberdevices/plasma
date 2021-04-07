@@ -1,3 +1,15 @@
+# v2.0.1 (Wed Apr 07 2021)
+
+#### 🐛 Bug Fix
+
+- Делает храненеие секций в Map, а не в объекте [#36](https://github.com/sberdevices/pashka/pull/36) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+#### Authors: 1
+
+- Arseny Kruglikov ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+---
+
 # v2.0.0 (Mon Apr 05 2021)
 
 #### 💥 Breaking Change

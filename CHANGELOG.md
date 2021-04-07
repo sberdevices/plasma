@@ -2,6 +2,19 @@
 
 #### 🐛 Bug Fix
 
+- `@sberdevices/spatial@2.0.1`
+  - Делает храненеие секций в Map, а не в объекте [#36](https://github.com/sberdevices/pashka/pull/36) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+#### Authors: 1
+
+- Arseny Kruglikov ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+---
+
+# (Wed Apr 07 2021)
+
+#### 🐛 Bug Fix
+
 - `@sberdevices/plasma-temple@0.11.1`
   - fix(plasma-temple): мелкие исправления и доработки апи [#24](https://github.com/sberdevices/pashka/pull/24) ([@LamaEats](https://github.com/LamaEats))
 
