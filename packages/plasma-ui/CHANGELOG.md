@@ -1,3 +1,22 @@
+# v1.1.0 (Wed Apr 07 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): TimePicker: correct min and max behavior [#269](https://github.com/sberdevices/plasma/pull/269) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-ui): Carousel: dynamic options list refresh [#269](https://github.com/sberdevices/plasma/pull/269) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- Bump independent versions \[skip ci\] ([@Yeti-or](https://github.com/Yeti-or))
+- Update CHANGELOG.md \[skip ci\] ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.0.0 (Fri Apr 02 2021)
 
 #### 🐛 Bug Fix

@@ -1,3 +1,25 @@
+# (Wed Apr 07 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/showcase@0.2.0`, `@sberdevices/plasma-ui@1.1.0`
+  - feat(plasma-ui): TimePicker: correct min and max behavior [#269](https://github.com/sberdevices/plasma/pull/269) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-ui@1.1.0`
+  - feat(plasma-ui): Carousel: dynamic options list refresh [#269](https://github.com/sberdevices/plasma/pull/269) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/showcase@0.2.0`, `demo-tokens@0.4.0`
+  - chore: Bump dependencies versions [#269](https://github.com/sberdevices/plasma/pull/269) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/showcase@0.2.0`
+  - docs(showcase): Fix showcase helpers [#269](https://github.com/sberdevices/plasma/pull/269) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Fri Apr 02 2021)
 
 #### 💥 Breaking Change

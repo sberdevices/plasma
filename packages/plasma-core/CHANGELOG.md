@@ -1,3 +1,16 @@
+# v1.1.0 (Wed Apr 07 2021)
+
+#### 🐛 Bug Fix
+
+- Bump independent versions \[skip ci\] ([@Yeti-or](https://github.com/Yeti-or))
+- Update CHANGELOG.md \[skip ci\] ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.0.0 (Fri Apr 02 2021)
 
 #### 💥 Breaking Change
