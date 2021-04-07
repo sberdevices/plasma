@@ -3,7 +3,6 @@
     "private": true,
     "version": "0.4.0",
     "description": "SberDevices Design System Showcase",
-    "main": "",
     "files": [],
     "repository": {
         "type": "git",
@@ -50,9 +49,5 @@
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
         "chromatic": "npx chromatic"
     },
-    "contributors": [
-        "Vasiliy Loginevskiy",
-        "Anton Vinogradov",
-        "Fanil Zubairov"
-    ]
+    "contributors": ["Vasiliy Loginevskiy", "Anton Vinogradov", "Fanil Zubairov"]
 }
