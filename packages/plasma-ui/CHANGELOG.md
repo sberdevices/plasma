@@ -1,3 +1,27 @@
+# v1.2.0 (Wed Apr 07 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): Marquee: animation duration prop ([@ayymkozb](https://github.com/ayymkozb))
+- feat(plasma-ui): TimePicker: correct min and max behavior [#269](https://github.com/sberdevices/plasma/pull/269) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-ui): Carousel: dynamic options list refresh [#269](https://github.com/sberdevices/plasma/pull/269) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- Bump independent versions \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- Update CHANGELOG.md \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- Bump independent versions \[skip ci\] ([@Yeti-or](https://github.com/Yeti-or))
+- Update CHANGELOG.md \[skip ci\] ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 4
+
+- [@ayymkozb](https://github.com/ayymkozb)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.1.0 (Wed Apr 07 2021)
 
 #### 🚀 Enhancement
