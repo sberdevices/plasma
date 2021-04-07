@@ -2,6 +2,37 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-ui@1.3.0`
+  - feat(plasma-ui): Marquee: animation duration prop ([@ayymkozb](https://github.com/ayymkozb))
+  - feat(plasma-ui): Carousel: dynamic options list refresh [#269](https://github.com/sberdevices/plasma/pull/269) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/showcase@0.4.0`, `@sberdevices/plasma-ui@1.3.0`
+  - feat(plasma-ui): TimePicker: correct min and max behavior [#269](https://github.com/sberdevices/plasma/pull/269) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- fix: release ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/showcase@0.4.0`
+  - fix: release [#286](https://github.com/sberdevices/plasma/pull/286) ([@Yeti-or](https://github.com/Yeti-or))
+  - docs(showcase): Fix showcase helpers [#269](https://github.com/sberdevices/plasma/pull/269) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/showcase@0.4.0`, `demo-tokens@0.5.0`
+  - chore: Bump dependencies versions [#269](https://github.com/sberdevices/plasma/pull/269) ([@fanisco](https://github.com/fanisco))
+
+#### ⚠️ Pushed to `master`
+
+- ci: fix release ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 3
+
+- [@ayymkozb](https://github.com/ayymkozb)
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# (Wed Apr 07 2021)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-ui@1.2.0`
   - feat(plasma-ui): Marquee: animation duration prop ([@ayymkozb](https://github.com/ayymkozb))
   - feat(plasma-ui): Carousel: dynamic options list refresh [#269](https://github.com/sberdevices/plasma/pull/269) ([@fanisco](https://github.com/fanisco))
