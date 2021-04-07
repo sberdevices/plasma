@@ -70,7 +70,7 @@ jobs:
       - name: Post success comment
         uses: actions/github-script@v3
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
+          github-token: ${{secrets.GH_TOKEN}}
           script: |
             github.issues.createComment({
               issue_number: context.issue.number,

@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
@@ -51,7 +51,7 @@ jobs:
         run: npm run lint
 
       - name: Release Info
-        run: npm whoami && auto info || echo 'auto info returned 1'
+        run: npm whoami && npx auto info || echo 'auto info returned 1'
 
       - name: Create Release
         run: npm run release
