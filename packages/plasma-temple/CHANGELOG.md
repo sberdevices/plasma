@@ -1,3 +1,15 @@
+# v0.11.1 (Wed Apr 07 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): мелкие исправления и доработки апи [#24](https://github.com/sberdevices/pashka/pull/24) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v0.11.0 (Fri Apr 02 2021)
 
 #### 🚀 Enhancement
