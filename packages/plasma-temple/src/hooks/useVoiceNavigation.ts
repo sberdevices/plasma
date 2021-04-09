@@ -1,4 +1,4 @@
-import { isSberPortal } from '@sberdevices/ui/utils';
+import { isSberPortal } from '@sberdevices/plasma-ui/utils';
 import { useContext, useEffect } from 'react';
 import { CanvasAppContext } from '../canvasAppContext';
 import { AppStateActions } from '../store/reducer';

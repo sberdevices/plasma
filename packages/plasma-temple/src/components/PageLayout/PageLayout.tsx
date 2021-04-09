@@ -1,6 +1,5 @@
 import React from 'react';
-import { DeviceThemeProvider } from '@sberdevices/ui/components/Device/DeviceDetection';
-import { Container } from '@sberdevices/ui/components/Grid';
+import { DeviceThemeProvider, Container } from '@sberdevices/plasma-ui';
 
 export const PageLayout: React.FC = ({ children }) => (
     <DeviceThemeProvider>

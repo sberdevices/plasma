@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ActionButton } from '@sberdevices/ui';
+import { ActionButton } from '@sberdevices/plasma-ui';
 
 export interface MediaPlayerButtonProps {
     disabled?: boolean;

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { Headline3, Row } from '@sberdevices/ui';
-import { Carousel, CarouselGridWrapper } from '@sberdevices/ui/components/Carousel';
-import { isSberPortal } from '@sberdevices/ui/utils';
+import { Headline3, Row } from '@sberdevices/plasma-ui';
+import { Carousel, CarouselGridWrapper } from '@sberdevices/plasma-ui';
+import { isSberPortal } from '@sberdevices/plasma-ui/utils';
 
 import { GalleryCard } from '../GalleryCard/GalleryCard';
 import { Header } from '../../../../components/Header/Header';
