@@ -26,6 +26,11 @@
         "styled-components": "^5.1.1"
     },
     "devDependencies": {
+        "@babel/cli": "7.13.14",
+        "@babel/core": "7.13.15",
+        "@babel/preset-env": "7.13.15",
+        "@babel/preset-react": "7.13.13",
+        "@babel/preset-typescript": "7.13.0",
         "@mdx-js/mdx": "^1.6.16",
         "@rollup/plugin-babel": "5.3.0",
         "@rollup/plugin-node-resolve": "11.2.0",
@@ -47,6 +52,8 @@
         "@types/styled-components": "5.1.0",
         "babel-loader": "8.1.0",
         "babel-plugin-annotate-pure-calls": "0.4.0",
+        "babel-plugin-styled-components": "1.12.0",
+        "babel-plugin-transform-class-properties": "6.24.1",
         "chromatic": "5.2.0",
         "react": "16.13.1",
         "react-dom": "16.13.1",
@@ -62,7 +69,8 @@
     "scripts": {
         "prepare": "npm run build",
         "clean": "rm -rf ./components ./helpers ./hocs ./hooks ./mixins ./types ./utils ./es index.d.ts index.d.ts.map index.js index.js.map",
-        "build:cjs": "tsc",
+        "build:cjs": "tsc --emitDeclarationOnly && npm run babel",
+        "babel": "babel ./src --out-dir . --source-maps --extensions .ts,.tsx",
         "build:es": "rollup -c",
         "build": "npm run clean && npm run build:es && npm run build:cjs",
         "build-storybook": "npm run storybook:build",
@@ -80,17 +88,7 @@
         "title": "SberDevices Design System",
         "url": "https://5f96ec813d800900227e3b93-eobodfvrnh.chromatic.com/"
     },
-    "files": [
-        "components",
-        "hocs",
-        "hooks",
-        "mixins",
-        "types",
-        "utils",
-        "index.d.ts",
-        "index.js",
-        "es"
-    ],
+    "files": ["components", "hocs", "hooks", "mixins", "types", "utils", "index.d.ts", "index.js", "es"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Антонов Игорь Александрович",
