@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { secondary } from '@sberdevices/plasma-tokens';
-import { Headline1, Body1 } from '@sberdevices/ui';
+import { Headline1, Body1 } from '@sberdevices/plasma-ui';
 
 import { Section } from '../Section/Section';
 

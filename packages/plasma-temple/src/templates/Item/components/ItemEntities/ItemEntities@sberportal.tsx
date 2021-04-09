@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Headline3 } from '@sberdevices/ui/components/Typography';
+import { Headline3 } from '@sberdevices/plasma-ui';
 
 import { ItemEntities as DefaultItemEntities, ItemEntitiesProps } from './ItemEntities';
 

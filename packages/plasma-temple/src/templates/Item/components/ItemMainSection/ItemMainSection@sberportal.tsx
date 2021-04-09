@@ -1,5 +1,5 @@
 import { secondary } from '@sberdevices/plasma-tokens';
-import { Headline3, Body1 } from '@sberdevices/ui';
+import { Headline3, Body1 } from '@sberdevices/plasma-ui';
 import React from 'react';
 import styled from 'styled-components';
 
