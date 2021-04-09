@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Footnote1 } from '@sberdevices/ui/components/Typography';
-import { Col } from '@sberdevices/ui/components/Grid';
-import { Card, CardBadge, CardBody, CardMedia } from '@sberdevices/ui/components/Card';
-import { isSberBox } from "@sberdevices/ui/utils";
+import { Card, CardBadge, CardBody, CardMedia, Footnote1, Col } from '@sberdevices/plasma-ui';
+import { isSberBox } from '@sberdevices/plasma-ui/utils/deviceDetection';
 
 export interface ItemEntityProps {
     url: string;
@@ -34,7 +32,7 @@ export const ItemEntity = React.forwardRef<HTMLDivElement, ItemEntityProps>(
                 <Card outlined={isSberBox()} tabIndex={0} onClick={onClick} ref={ref} data-cy="item-entity-card">
                     <CardBody>
                         <CardMedia src={url} ratio="1 / 1" data-cy="item-entity-card-media" />
-                        <StyledCardBadge view="index" size="l" text={`${order}`} />
+                        <StyledCardBadge view="secondary" size="l" text={`${order}`} />
                     </CardBody>
                 </Card>
                 <StyledFootnote1>{title}</StyledFootnote1>
