@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { isSberBox, mediaQuery } from '@sberdevices/ui/utils';
-import { Header as UIKitHeader } from '@sberdevices/ui/components/Header/Header';
+import { isSberBox, mediaQuery } from '@sberdevices/plasma-ui/utils';
+import { Header as UIKitHeader } from '@sberdevices/plasma-ui';
 import { HeaderPropsPayload } from '../../types';
 
 const StyledHeader = styled(UIKitHeader)`
