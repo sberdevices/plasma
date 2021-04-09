@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Container } from '@sberdevices/ui/components/Grid';
-import { Carousel, CarouselGridWrapper, CarouselItem } from '@sberdevices/ui/components/Carousel';
+import { Carousel, CarouselGridWrapper, CarouselItem, Container } from '@sberdevices/plasma-ui';
 
 import { Gallery } from './components/Gallery/Gallery';
 import { Header } from '../../components/Header/Header';
@@ -10,7 +9,7 @@ import { PageProps, MultiGalleryViewPayload, Screen, GalleryItemViewPayload, Gal
 import { useAssistantState } from '../../hooks/useAssistantState';
 import { useRemoteHandlers } from '../../hooks/useRemoteHandlers';
 import { setPositionAction, setStepAction } from '../../store/actions';
-import { isSberPortal } from '@sberdevices/ui/utils';
+import { isSberPortal } from '@sberdevices/plasma-ui/utils';
 import { useVoiceNavigation } from '../../hooks/useVoiceNavigation';
 
 const StyledCarouselGridWrapper = styled(CarouselGridWrapper)`

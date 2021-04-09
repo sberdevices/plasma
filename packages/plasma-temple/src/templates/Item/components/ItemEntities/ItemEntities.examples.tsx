@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { Headline2 } from '@sberdevices/ui';
+import { Headline2 } from '@sberdevices/plasma-ui';
 
 import { ItemEntities } from './ItemEntities';
 

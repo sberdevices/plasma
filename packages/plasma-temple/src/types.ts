@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { AssistantSmartAppData, createAssistant } from '@sberdevices/assistant-client';
-import { Ratio } from '@sberdevices/ui/components/Image';
+import { Ratio } from '@sberdevices/plasma-ui';
 
 import { InitializeParams } from './assistant';
 import { CurrentHistory, SetPositionPayload, SetStatePayload, SetStepPayload, AppStateAction, UIState } from './store/reducer';
