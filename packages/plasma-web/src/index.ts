@@ -5,3 +5,4 @@ export * from './components/TextField';
 export * from './components/Radiobox';
 export * from './components/Switch';
 export * from './components/Tabs';
+export * from './components/TextArea';
