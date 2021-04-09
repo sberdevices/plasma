@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { TextFieldRoot, TextFieldHelper } from '@sberdevices/plasma-core/components/TextField';
+import { TextFieldRoot as BaseRoot, TextFieldHelper } from '@sberdevices/plasma-core/components/TextField';
 import type { TextFieldProps as BaseTextFieldProps } from '@sberdevices/plasma-core/components/TextField';
 import { accent, critical, primary, secondary, white, text, tertiary, body1 } from '@sberdevices/plasma-tokens-web';
 
@@ -15,17 +15,17 @@ interface StyledInputProps extends TextFieldProps {
     isContentRight?: boolean;
 }
 
-const StyledRoot = styled(TextFieldRoot)<StyledRootProps>`
+export const TextFieldRoot = styled(BaseRoot)<StyledRootProps>`
     ${body1};
 
     color: ${primary};
 `;
-const StyledInputWrapper = styled.label`
+export const TextFieldInputWrapper = styled.label`
     position: relative;
     display: block;
     cursor: text;
 `;
-const StyledInput = styled.input<StyledInputProps>`
+export const TextFieldInput = styled.input<StyledInputProps>`
     grid-area: input;
     box-sizing: border-box;
 
@@ -74,11 +74,12 @@ const StyledInput = styled.input<StyledInputProps>`
             padding-right: 3.25rem;
         `}
 `;
-const StyledContent = styled.div`
+export const TextFieldContent = styled.div`
     position: absolute;
     top: 0;
     right: 0.75rem;
     bottom: 0;
+    height: 3rem;
 
     display: flex;
     align-items: center;
@@ -92,9 +93,9 @@ const StyledContent = styled.div`
 export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     ({ value, placeholder, helperText, disabled, contentRight, status, onChange, onFocus, onBlur, ...rest }, ref) => {
         return (
-            <StyledRoot disabled={disabled} status={status} isContentRight={!!contentRight} {...rest}>
-                <StyledInputWrapper>
-                    <StyledInput
+            <TextFieldRoot disabled={disabled} status={status} isContentRight={!!contentRight} {...rest}>
+                <TextFieldInputWrapper>
+                    <TextFieldInput
                         ref={ref}
                         value={value}
                         placeholder={placeholder}
@@ -105,10 +106,10 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
                         onFocus={onFocus}
                         onBlur={onBlur}
                     />
-                    {contentRight && <StyledContent>{contentRight}</StyledContent>}
-                </StyledInputWrapper>
+                    {contentRight && <TextFieldContent>{contentRight}</TextFieldContent>}
+                </TextFieldInputWrapper>
                 {helperText && <TextFieldHelper status={status}>{helperText}</TextFieldHelper>}
-            </StyledRoot>
+            </TextFieldRoot>
         );
     },
 );
