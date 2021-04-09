@@ -26,6 +26,17 @@ export default {
     plugins: [
         nodeResolve(),
         typescript({ outDir, declaration: false, declarationMap: false, module: 'esnext' }),
-        getBabelOutputPlugin({ plugins: ['babel-plugin-annotate-pure-calls'] }),
+        getBabelOutputPlugin({
+            plugins: [
+                'babel-plugin-annotate-pure-calls',
+                [
+                    'babel-plugin-styled-components',
+                    {
+                        displayName: false,
+                        namespace: 'plasma-ui',
+                    },
+                ],
+            ],
+        }),
     ],
 };

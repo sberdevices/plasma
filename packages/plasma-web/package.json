@@ -4,21 +4,10 @@
     "description": "SberDevices Design System / React UI kit for web applications",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
-    "keywords": [
-        "design-system",
-        "react-components",
-        "ui-kit",
-        "react"
-    ],
+    "keywords": ["design-system", "react-components", "ui-kit", "react"],
     "main": "index.js",
     "types": "index.d.ts",
-    "files": [
-        "components",
-        "tokens",
-        "index.d.ts",
-        "index.js",
-        "es"
-    ],
+    "files": ["components", "tokens", "index.d.ts", "index.js", "es"],
     "repository": {
         "type": "git",
         "url": "ssh://git@github.com:sberdevices/plasma.git",
@@ -35,6 +24,11 @@
         "styled-components": "^5.1.1"
     },
     "devDependencies": {
+        "@babel/cli": "7.13.14",
+        "@babel/core": "7.13.15",
+        "@babel/preset-env": "7.13.15",
+        "@babel/preset-react": "7.13.13",
+        "@babel/preset-typescript": "7.13.0",
         "@mdx-js/mdx": "^1.6.16",
         "@rollup/plugin-babel": "5.3.0",
         "@rollup/plugin-node-resolve": "11.2.0",
@@ -54,6 +48,8 @@
         "@types/styled-components": "5.1.0",
         "babel-loader": "8.1.0",
         "babel-plugin-annotate-pure-calls": "0.4.0",
+        "babel-plugin-styled-components": "1.12.0",
+        "babel-plugin-transform-class-properties": "6.24.1",
         "react": "16.13.1",
         "react-dom": "16.13.1",
         "react-scripts": "3.4.1",
@@ -68,16 +64,13 @@
     "scripts": {
         "prepare": "npm run build",
         "clean": "rm -rf ./components ./es",
-        "build:cjs": "tsc",
+        "build:cjs": "tsc --emitDeclarationOnly && npm run babel",
+        "babel": "babel ./src --out-dir . --source-maps --extensions .ts,.tsx",
         "build:es": "rollup -c",
         "build": "npm run clean && npm run build:es && npm run build:cjs",
         "storybook": "start-storybook -s .storybook/public -p ${PORT:-7007} -c .storybook",
         "storybook:build": "build-storybook -s .storybook/public -c .storybook -o build-sb"
     },
-    "contributors": [
-        "Vasiliy Loginevskiy",
-        "Anton Vinogradov",
-        "Fanil Zubairov"
-    ],
+    "contributors": ["Vasiliy Loginevskiy", "Anton Vinogradov", "Fanil Zubairov"],
     "sideEffects": false
 }
