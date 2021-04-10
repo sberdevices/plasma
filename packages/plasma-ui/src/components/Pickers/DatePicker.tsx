@@ -2,16 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import type { PickOptional } from '@sberdevices/plasma-core/types';
 
-import { SimpleDatePicker } from './SimpleDatePicker';
+import { SimpleDatePicker, labelFormatter as defaultLabelFormatter } from './SimpleDatePicker';
 import type { PickerProps } from './Picker';
 
 const maxDayInMonth = (month: number, year: number): number => new Date(year, month + 1, 0).getDate();
 const getValues = (date: Date) => [date.getFullYear(), date.getMonth(), date.getDate()];
-const defaultOptions = {
-    years: true,
-    months: true,
-    days: true,
-};
 
 const StyledWrapper = styled.div`
     display: flex;
@@ -40,14 +35,14 @@ export interface DatePickerProps
     /**
      * Формат выводимого значения
      */
-    options?: typeof defaultOptions;
+    labelFormatter?: Partial<typeof defaultLabelFormatter>;
 }
 
 /**
  * Компонент для выбора даты.
  */
 export const DatePicker: React.FC<DatePickerProps> = ({
-    options = defaultOptions,
+    labelFormatter = defaultLabelFormatter,
     value,
     max,
     min,
@@ -163,7 +158,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
     return (
         <StyledWrapper>
-            {options.days && (
+            {labelFormatter.day && (
                 <SimpleDatePicker
                     type="day"
                     value={day}
@@ -173,9 +168,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                     controls={controls}
                     visibleItems={visibleItems}
                     onChange={onDayChange}
+                    formatter={labelFormatter.day}
                 />
             )}
-            {options.months && (
+            {labelFormatter.month && (
                 <SimpleDatePicker
                     type="month"
                     value={month}
@@ -185,9 +181,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                     controls={controls}
                     visibleItems={visibleItems}
                     onChange={onMonthChange}
+                    formatter={labelFormatter.month}
                 />
             )}
-            {options.years && (
+            {labelFormatter.year && (
                 <SimpleDatePicker
                     type="year"
                     value={year}
@@ -197,6 +194,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                     controls={controls}
                     visibleItems={visibleItems}
                     onChange={onYearChange}
+                    formatter={labelFormatter.year}
                 />
             )}
         </StyledWrapper>

@@ -28,11 +28,6 @@ const DatePicker = () => {
             value={new Date(1980, 8, 1)}
             min={new Date(1975, 0, 1)}
             max={new Date(1985, 12, 31)}
-            options={{
-                years: true,
-                months: true,
-                days: true,
-            }}
             disabled={false}
             controls={isSberbox}
             visibleItems={5}
@@ -57,7 +52,7 @@ const TimePicker = () => {
             }}
             disabled={false}
             controls={isSberbox}
-            onChange={(val) => {
+            onChange={(val: Date) => {
                 setValue(val);
                 action('onChange')(val);
             }}

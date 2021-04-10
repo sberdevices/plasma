@@ -1,13 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 import { padZeroNumber as formatter } from '@sberdevices/plasma-core/utils';
 import { PickOptional } from '@sberdevices/plasma-core/types';
 
 import { Picker, PickerProps } from './Picker';
-
-const StyledPicker = styled(Picker)`
-    width: 4.75rem;
-`;
 
 interface SimpleTimePickerProps
     extends Pick<PickerProps, 'value' | 'onChange'>,
@@ -36,8 +31,8 @@ export const SimpleTimePicker: React.FC<SimpleTimePickerProps> = ({
     );
 
     return (
-        <StyledPicker
-            size="l"
+        <Picker
+            size="s"
             items={items}
             value={value}
             disabled={disabled}

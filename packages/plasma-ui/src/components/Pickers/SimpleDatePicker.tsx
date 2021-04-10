@@ -1,31 +1,17 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import { scalingPixelBasis } from '@sberdevices/plasma-tokens';
+import styled from 'styled-components';
 import { monthLongName } from '@sberdevices/plasma-core/utils';
 import type { PickOptional } from '@sberdevices/plasma-core/types';
 
 import { Picker, PickerProps } from './Picker';
 
-type PickerType = 'day' | 'month' | 'year';
-
-const labelFormatter = {
+export const labelFormatter = {
     day: (value: number) => `${value}`,
     year: (value: number) => `${value}`,
     month: monthLongName,
 };
 
-const width = {
-    day: 48 / scalingPixelBasis,
-    year: 80 / scalingPixelBasis,
-    month: 180 / scalingPixelBasis,
-};
-
-const StyledPicker = styled(Picker)<{ $width: keyof typeof width }>`
-    ${({ $width }) =>
-        css`
-            width: ${width[$width]}rem;
-        `}
-
+const StyledPicker = styled(Picker)`
     & + & {
         margin-left: 1rem;
     }
@@ -37,7 +23,7 @@ interface SimpleDatePickerProps
         Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
     from: number;
     to: number;
-    type: PickerType;
+    formatter: (value: number) => string;
 }
 
 export const SimpleDatePicker: React.FC<SimpleDatePickerProps> = ({
@@ -49,10 +35,9 @@ export const SimpleDatePicker: React.FC<SimpleDatePickerProps> = ({
     controls,
     visibleItems,
     onChange,
+    formatter,
     ...rest
 }) => {
-    const formatter = labelFormatter[type];
-
     const items = Array.from({ length: to - from + 1 }, (_, i) => ({
         label: formatter(from + i),
         value: from + i,
@@ -60,7 +45,6 @@ export const SimpleDatePicker: React.FC<SimpleDatePickerProps> = ({
 
     return (
         <StyledPicker
-            $width={type}
             size="s"
             items={items}
             value={value}
