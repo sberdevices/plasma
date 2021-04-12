@@ -14,6 +14,7 @@ export const DatePicker = () => {
 
     return (
         <DatePickerComponent
+            size={select('size', ['l', 's'], 's')}
             value={value}
             min={new Date(1975, 0, 1)}
             max={new Date(1985, 12, 31)}
@@ -41,6 +42,8 @@ export const TimePicker = () => {
             value={value}
             min={new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 15, 29)}
             max={new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 45, 50)}
+            size={select('size', ['l', 's'], 'l')}
+            visibleItems={select('visibleItems', [3, 5], 3)}
             options={{
                 hours: boolean('options.hours', true),
                 minutes: boolean('options.minutes', true),
