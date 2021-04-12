@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { primary, scalingPixelBasis } from '@sberdevices/plasma-tokens';
+import { primary } from '@sberdevices/plasma-tokens';
 import { IconChevronUp, IconChevronDown } from '@sberdevices/plasma-icons';
 import { applyDisabled, DisabledProps } from '@sberdevices/plasma-core/mixins';
 
@@ -28,6 +28,10 @@ const StyledWrapper = styled.div<DisabledProps>`
     width: max-content;
     text-align: center;
 
+    & + & {
+        margin-left: 1rem;
+    }
+
     &:focus {
         outline: 0 none;
 
@@ -46,22 +50,22 @@ const StyledWrapper = styled.div<DisabledProps>`
 const sizes = {
     l: {
         3: {
-            height: `${200 / scalingPixelBasis}rem`,
-            padding: `${100 / scalingPixelBasis}rem`,
+            height: '12.5rem',
+            padding: '6.25rem',
         },
         5: {
-            height: '0',
-            padding: '0',
+            height: '12.5rem',
+            padding: '6.25rem',
         },
     },
     s: {
         3: {
-            height: `${112 / scalingPixelBasis}rem`,
-            padding: `${56 / scalingPixelBasis}rem`,
+            height: '7rem',
+            padding: '3.5rem',
         },
         5: {
-            height: `${168 / scalingPixelBasis}rem`,
-            padding: `${84 / scalingPixelBasis}rem`,
+            height: '10.5rem',
+            padding: '5.25rem',
         },
     },
 };

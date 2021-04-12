@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import type { PickOptional } from '@sberdevices/plasma-core/types';
 
-import { SimpleDatePicker } from './SimpleDatePicker';
-import type { PickerProps } from './Picker';
+import { SimpleDatePicker, SimpleDatePickerProps } from './SimpleDatePicker';
 
 const maxDayInMonth = (month: number, year: number): number => new Date(year, month + 1, 0).getDate();
 const getValues = (date: Date) => [date.getFullYear(), date.getMonth(), date.getDate()];
@@ -18,9 +16,7 @@ const StyledWrapper = styled.div`
     width: max-content;
 `;
 
-export interface DatePickerProps
-    extends PickOptional<PickerProps, 'disabled' | 'controls' | 'visibleItems'>,
-        Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
+export interface DatePickerProps extends Omit<SimpleDatePickerProps, 'type' | 'from' | 'to' | 'onChange'> {
     /**
      * Обработчик изменения
      */
@@ -48,6 +44,7 @@ export interface DatePickerProps
  */
 export const DatePicker: React.FC<DatePickerProps> = ({
     options = defaultOptions,
+    size,
     value,
     max,
     min,
@@ -165,6 +162,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         <StyledWrapper>
             {options.days && (
                 <SimpleDatePicker
+                    size={size}
                     type="day"
                     value={day}
                     from={daysInterval[0]}
@@ -177,6 +175,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             )}
             {options.months && (
                 <SimpleDatePicker
+                    size={size}
                     type="month"
                     value={month}
                     from={monthsInterval[0]}
@@ -189,6 +188,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             )}
             {options.years && (
                 <SimpleDatePicker
+                    size={size}
                     type="year"
                     value={year}
                     from={yearsInterval[0]}

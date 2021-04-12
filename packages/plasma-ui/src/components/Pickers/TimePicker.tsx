@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { accent } from '@sberdevices/plasma-tokens';
-import type { PickOptional } from '@sberdevices/plasma-core/types';
 
-import { SimpleTimePicker } from './SimpleTimePicker';
-import type { PickerProps } from './Picker';
+import { SimpleTimePicker, SimpleTimePickerProps } from './SimpleTimePicker';
 
 const StyledWrapper = styled.div`
     display: flex;
@@ -47,7 +45,7 @@ const defaultOptions = {
     seconds: true,
 };
 
-export interface TimePickerProps extends PickOptional<PickerProps, 'focused' | 'disabled' | 'controls'> {
+export interface TimePickerProps extends Omit<SimpleTimePickerProps, 'from' | 'to' | 'onChange'> {
     /**
      * Обработчик изменения
      */
@@ -73,7 +71,14 @@ export interface TimePickerProps extends PickOptional<PickerProps, 'focused' | '
 /**
  * Компонент для выбора времени.
  */
-export const TimePicker: React.FC<TimePickerProps> = ({ options = defaultOptions, value, min, max, onChange }) => {
+export const TimePicker: React.FC<TimePickerProps> = ({
+    options = defaultOptions,
+    size,
+    value,
+    min,
+    max,
+    onChange,
+}) => {
     const [[hours, minutes, seconds], setState] = React.useState(getValues(value));
 
     // Диапозоны для списков зависят от min и max,
@@ -153,14 +158,16 @@ export const TimePicker: React.FC<TimePickerProps> = ({ options = defaultOptions
 
     return (
         <StyledWrapper>
-            {options.hours && <SimpleTimePicker from={fromHours} to={toHours} value={hours} onChange={onHoursChange} />}
+            {options.hours && (
+                <SimpleTimePicker size={size} from={fromHours} to={toHours} value={hours} onChange={onHoursChange} />
+            )}
             {options.hours && options.minutes && <StyledDividers />}
             {options.minutes && (
-                <SimpleTimePicker from={fromMins} to={toMins} value={minutes} onChange={onMinutesChange} />
+                <SimpleTimePicker size={size} from={fromMins} to={toMins} value={minutes} onChange={onMinutesChange} />
             )}
             {options.minutes && options.seconds && <StyledDividers />}
             {options.seconds && (
-                <SimpleTimePicker from={fromSecs} to={toSecs} value={seconds} onChange={onSecondsChange} />
+                <SimpleTimePicker size={size} from={fromSecs} to={toSecs} value={seconds} onChange={onSecondsChange} />
             )}
         </StyledWrapper>
     );

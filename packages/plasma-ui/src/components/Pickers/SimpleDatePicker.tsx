@@ -1,8 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import { scalingPixelBasis } from '@sberdevices/plasma-tokens';
 import { monthLongName } from '@sberdevices/plasma-core/utils';
-import type { PickOptional } from '@sberdevices/plasma-core/types';
 
 import { Picker, PickerProps } from './Picker';
 
@@ -14,43 +11,13 @@ const labelFormatter = {
     month: monthLongName,
 };
 
-const width = {
-    day: 48 / scalingPixelBasis,
-    year: 80 / scalingPixelBasis,
-    month: 180 / scalingPixelBasis,
-};
-
-const StyledPicker = styled(Picker)<{ $width: keyof typeof width }>`
-    ${({ $width }) =>
-        css`
-            width: ${width[$width]}rem;
-        `}
-
-    & + & {
-        margin-left: 1rem;
-    }
-`;
-
-interface SimpleDatePickerProps
-    extends Pick<PickerProps, 'value' | 'onChange'>,
-        PickOptional<PickerProps, 'disabled' | 'controls' | 'visibleItems'>,
-        Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
+export interface SimpleDatePickerProps extends Omit<PickerProps, 'items'> {
     from: number;
     to: number;
     type: PickerType;
 }
 
-export const SimpleDatePicker: React.FC<SimpleDatePickerProps> = ({
-    value,
-    type,
-    from,
-    to,
-    disabled,
-    controls,
-    visibleItems,
-    onChange,
-    ...rest
-}) => {
+export const SimpleDatePicker: React.FC<SimpleDatePickerProps> = ({ type, from, to, ...rest }) => {
     const formatter = labelFormatter[type];
 
     const items = Array.from({ length: to - from + 1 }, (_, i) => ({
@@ -58,17 +25,5 @@ export const SimpleDatePicker: React.FC<SimpleDatePickerProps> = ({
         value: from + i,
     }));
 
-    return (
-        <StyledPicker
-            $width={type}
-            size="s"
-            items={items}
-            value={value}
-            disabled={disabled}
-            controls={controls}
-            visibleItems={visibleItems}
-            onChange={onChange}
-            {...rest}
-        />
-    );
+    return <Picker items={items} {...rest} />;
 };
