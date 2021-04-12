@@ -1,3 +1,15 @@
+# v1.2.1 (Mon Apr 12 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): missing root exports for Image & Marquee [#292](https://github.com/sberdevices/plasma/pull/292) ([@OgNellis](https://github.com/OgNellis))
+
+#### Authors: 1
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+
+---
+
 # v1.2.0 (Wed Apr 07 2021)
 
 #### 🚀 Enhancement
