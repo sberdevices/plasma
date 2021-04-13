@@ -1,8 +1,5 @@
 import React from 'react';
-import { Header } from '@sberdevices/plasma-ui/components/Header';
-import { Button } from '@sberdevices/plasma-ui/components/Button';
-import { Tabs, TabItem } from '@sberdevices/plasma-ui/components/Tabs';
-import { Container } from '@sberdevices/plasma-ui/components/Grid';
+import { Container, Header, Button, Tabs, TabItem } from '@sberdevices/plasma-ui';
 import { Icon } from '@sberdevices/plasma-icons';
 
 import { ShowcaseDashedBorder, ShowcaseSectionName, ShowcasePanel, actionWithPersistedEvent } from '../../../helpers';

@@ -5,9 +5,6 @@ import { formatCurrency } from '@sberdevices/plasma-core/utils';
 import { Icon } from '@sberdevices/plasma-icons';
 import {
     Stepper,
-    Footnote1,
-    Underline,
-    Button1,
     Card,
     CardBody,
     CardMedia,
@@ -17,6 +14,9 @@ import {
     Ratio,
     Button,
     TextBox,
+    Footnote1,
+    Underline,
+    Button1,
 } from '@sberdevices/plasma-ui';
 
 import { ShowcaseDashedBorder, ShowcaseSectionName, ShowcasePanel } from '../../../helpers';

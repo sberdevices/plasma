@@ -7,10 +7,10 @@ import {
     CardMedia,
     CardContent,
     CardParagraph1,
+    Ratio,
     TextBox,
     TextBoxBigTitle,
     TextBoxSubTitle,
-    Ratio,
 } from '@sberdevices/plasma-ui';
 
 import { ShowcaseDashedBorder, ShowcaseSectionName, ShowcasePanel } from '../../../helpers';
