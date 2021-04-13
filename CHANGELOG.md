@@ -1,3 +1,16 @@
+# (Tue Apr 13 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/showcase@0.6.0`, `@sberdevices/plasma-ui@1.3.0`
+  - feat(ui): Add base to props in Image component [#298](https://github.com/sberdevices/plasma/pull/298) ([@ayymkozb](https://github.com/ayymkozb))
+
+#### Authors: 1
+
+- [@ayymkozb](https://github.com/ayymkozb)
+
+---
+
 # (Mon Apr 12 2021)
 
 #### 🐛 Bug Fix
