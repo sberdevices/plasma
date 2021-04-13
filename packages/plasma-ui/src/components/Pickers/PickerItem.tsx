@@ -112,7 +112,7 @@ interface StyledSizeProps {
     $size: keyof typeof sizes;
 }
 
-const StyledPickerItem = styled.div<StyledSizeProps>`
+export const StyledPickerItem = styled.div<StyledSizeProps>`
     position: relative;
     box-sizing: border-box;
     overflow: hidden;

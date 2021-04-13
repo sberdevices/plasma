@@ -15,6 +15,7 @@ import {
     scaleCallbackS,
     scaleCallbackL,
     scaleResetCallback,
+    StyledPickerItem,
     StyledWhiteText,
 } from './PickerItem';
 
@@ -48,6 +49,14 @@ const StyledWrapper = styled.div<DisabledProps>`
     }
 
     ${applyDisabled}
+
+    ${({ disabled }) =>
+        disabled &&
+        css`
+            ${StyledPickerItem} {
+                cursor: not-allowed;
+            }
+        `}
 `;
 
 const sizes = {
@@ -73,7 +82,7 @@ const sizes = {
     },
 };
 
-interface StyledCarouselProps {
+interface StyledCarouselProps extends DisabledProps {
     visibleItems: 3 | 5;
     $size: 'l' | 's';
 }
@@ -82,6 +91,12 @@ const StyledCarousel = styled(Carousel)<StyledCarouselProps>`
     ${({ $size, visibleItems }) => css`
         height: ${sizes[$size][visibleItems].height};
     `};
+
+    ${({ disabled }) =>
+        disabled &&
+        css`
+            overflow: hidden;
+        `}
 
     -webkit-mask-image: linear-gradient(rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 10%, rgb(0, 0, 0) 90%, rgba(0, 0, 0, 0) 100%);
 `;
@@ -140,8 +155,16 @@ export const Picker: React.FC<PickerProps> = ({
     const max = items.length - 1;
     const index = items.findIndex((item) => item.value === value);
     const ref = React.useRef<HTMLDivElement | null>(null);
-    const toPrev = React.useCallback(() => onChange?.(items[getIndex(index, '-', min, max)]), [index, min, max]);
-    const toNext = React.useCallback(() => onChange?.(items[getIndex(index, '+', min, max)]), [index, min, max]);
+    const toPrev = React.useCallback(() => !disabled && onChange?.(items[getIndex(index, '-', min, max)]), [
+        index,
+        min,
+        max,
+    ]);
+    const toNext = React.useCallback(() => !disabled && onChange?.(items[getIndex(index, '+', min, max)]), [
+        index,
+        min,
+        max,
+    ]);
 
     // Навигация с помощью пульта/клавиатуры
     // Не перелистывает, если компонент неактивен
@@ -177,6 +200,7 @@ export const Picker: React.FC<PickerProps> = ({
                 <Button
                     forwardedAs={StyledDivButton}
                     view="clear"
+                    disabled={disabled}
                     outlined={false}
                     contentLeft={<IconChevronUp size="s" />}
                     onClick={toPrev}
@@ -185,6 +209,7 @@ export const Picker: React.FC<PickerProps> = ({
             <StyledCarousel
                 $size={size}
                 visibleItems={visibleItems}
+                disabled={disabled}
                 axis="y"
                 index={index}
                 scaleCallback={size === 's' ? scaleCallbackS : scaleCallbackL}
@@ -205,6 +230,7 @@ export const Picker: React.FC<PickerProps> = ({
                 <Button
                     forwardedAs={StyledDivButton}
                     view="clear"
+                    disabled={disabled}
                     outlined={false}
                     contentLeft={<IconChevronDown size="s" />}
                     onClick={toNext}
