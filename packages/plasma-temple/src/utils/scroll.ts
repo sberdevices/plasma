@@ -5,7 +5,7 @@ export function scroll<T extends Window | Element>({
     offset,
     startPosition = 0,
     duration = 400,
-    axis = Axis.X,
+    axis = 'x',
 }: {
     element: T;
     offset: number;

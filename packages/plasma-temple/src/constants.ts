@@ -1,0 +1,1 @@
+export const INNER_ASSISTANT_ACTION = 'REQUEST_DATA';

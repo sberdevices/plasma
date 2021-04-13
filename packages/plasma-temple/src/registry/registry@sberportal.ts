@@ -1,5 +1,5 @@
-import { ItemMainSection } from '../templates/Item/components/ItemMainSection/ItemMainSection@sberportal';
-import { ItemEntities } from '../templates/Item/components/ItemEntities/ItemEntities@sberportal';
+import { ItemMainSection } from '../pages/ItemPage/components/ItemMainSection/ItemMainSection@sberportal';
+import { ItemEntities } from '../pages/ItemPage/components/ItemEntities/ItemEntities@sberportal';
 
 import { Registry } from './types';
 

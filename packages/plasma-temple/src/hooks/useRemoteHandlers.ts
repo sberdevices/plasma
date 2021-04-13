@@ -1,6 +1,6 @@
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { isSberBox } from '@sberdevices/plasma-ui/utils';
 import throttle from 'lodash.throttle';
-import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { Axis } from '../types';
 
 type ShortKey = 'UP' | 'DOWN' | 'LEFT' | 'RIGHT' | 'OK';
@@ -126,7 +126,7 @@ export function useRemoteHandlers({
         ),
         [min, max],
     );
-    const jump = React.useCallback(
+    const jump = useCallback(
         throttle(
             (cmd: '+' | '-') =>
                 setIndex((prevIndex) => {
@@ -156,7 +156,7 @@ export function useRemoteHandlers({
                 }
             };
 
-            if (axis === Axis.X) {
+            if (axis === 'x') {
                 switch (key) {
                     case 'LEFT':
                         preventDefault(currentIndex > 0);

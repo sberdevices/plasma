@@ -1,8 +1,4 @@
-import React from 'react';
-
-import { store } from '../store';
-import { popStateAction, popStateWithUpdateHistoryAction } from '../store/actions';
-import { onPopStateFn } from '../types';
+import { useEffect } from 'react';
 
 export const closeApp = (): void => {
     // eslint-disable-next-line no-console
@@ -13,21 +9,14 @@ export const closeApp = (): void => {
     }
 };
 
-export const usePopHistoryListener = (historyLength: number, onPopState?: onPopStateFn): void =>
-    React.useEffect(() => {
-        const listener = async (event: PopStateEvent) => {
-            event.preventDefault();
-            if (historyLength > 1) {
-                if (!onPopState) {
-                    store.dispatch(popStateAction);
-                    return;
-                }
-
-                const state = await onPopState(event.state);
-                store.dispatch(popStateWithUpdateHistoryAction(state));
-            } else {
+export const usePopHistoryListener = (historyLength: number, onPopState: () => void) => {
+    useEffect(() => {
+        const listener = () => {
+            if (historyLength === 1) {
                 closeApp();
             }
+
+            onPopState();
         };
 
         window.addEventListener('popstate', listener);
@@ -35,4 +24,5 @@ export const usePopHistoryListener = (historyLength: number, onPopState?: onPopS
         return () => {
             window.removeEventListener('popstate', listener);
         };
-    }, [historyLength]);
+    }, [historyLength, onPopState]);
+};
