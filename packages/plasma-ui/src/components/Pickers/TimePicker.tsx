@@ -38,6 +38,32 @@ const StyledDividers = styled.div`
     }
 `;
 
+/**
+ * Вернет массив чисел от `from` до `to` с интервалом `step`.
+ */
+const getRange = (from: number, to: number, step: number) => {
+    const range = [];
+    for (let i = from; i <= to; i += step) {
+        range.push(i);
+    }
+    return range;
+};
+
+/**
+ * Сравнит число с массивом чисел и вернет значение массива,
+ * максимальное близкое заданному числу.
+ */
+const getClosestValue = (range: number[], value: number) => {
+    if (value === 0) {
+        return range[0];
+    }
+    const weights = range.map((i) => (value <= i ? value / i : i / value));
+    return range[weights.indexOf(Math.max(...weights))];
+};
+
+/**
+ * Вернет массив с временными компонентами переданной даты.
+ */
 const getValues = (date: Date) => [date.getHours(), date.getMinutes(), date.getSeconds()];
 const defaultOptions = {
     hours: true,
@@ -45,7 +71,7 @@ const defaultOptions = {
     seconds: true,
 };
 
-export interface TimePickerProps extends Omit<SimpleTimePickerProps, 'from' | 'to' | 'onChange'> {
+export interface TimePickerProps extends Omit<SimpleTimePickerProps, 'range' | 'onChange'> {
     /**
      * Обработчик изменения
      */
@@ -66,6 +92,15 @@ export interface TimePickerProps extends Omit<SimpleTimePickerProps, 'from' | 't
      * Формат выводимого значения
      */
     options?: typeof defaultOptions;
+    /**
+     * Интервалы в секундах.
+     * @example:
+     * 7200 = интервал в 2 часа
+     * 300 = интервал в 5 минут
+     * 5 = интервал в 5 секунд
+     * 7505 = интервалы 2 часа, 5 минут, 5 секунд
+     */
+    step?: number;
 }
 
 /**
@@ -73,6 +108,7 @@ export interface TimePickerProps extends Omit<SimpleTimePickerProps, 'from' | 't
  */
 export const TimePicker: React.FC<TimePickerProps> = ({
     options = defaultOptions,
+    step,
     size,
     value,
     min,
@@ -87,7 +123,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
     // Диапозоны для списков зависят от min и max,
     // при чем min и max принимаются как возможные предельные значения,
     // а не как контейнеры для компонент hours, minutes, seconds
-    const [[fromHours, toHours], [fromMins, toMins], [fromSecs, toSecs]] = React.useMemo(() => {
+    const [hoursRange, minsRange, secsRange] = React.useMemo(() => {
         const minHours = min.getHours();
         const maxHours = max.getHours();
         let minMins = 0;
@@ -111,12 +147,24 @@ export const TimePicker: React.FC<TimePickerProps> = ({
             maxSecs = max.getSeconds();
         }
 
+        let hoursStep = 1;
+        let minsStep = 1;
+        let secsStep = 1;
+
+        if (step) {
+            const hoursMod = step % 3600;
+            const minsMod = hoursMod % 60;
+            hoursStep = (step - hoursMod) / 3600 || 1;
+            minsStep = (hoursMod - minsMod) / 60 || 1;
+            secsStep = minsMod || 1;
+        }
+
         return [
-            [minHours, maxHours],
-            [minMins, maxMins],
-            [minSecs, maxSecs],
+            getRange(minHours, maxHours, hoursStep),
+            getRange(minMins, maxMins, minsStep),
+            getRange(minSecs, maxSecs, secsStep),
         ];
-    }, [min, max, hours, minutes]);
+    }, [min, max, hours, minutes, step]);
 
     const onHoursChange = React.useCallback(({ value: h }) => setState(([, m, s]) => [h, m, s]), []);
     const onMinutesChange = React.useCallback(({ value: m }) => setState(([h, , s]) => [h, m, s]), []);
@@ -139,24 +187,18 @@ export const TimePicker: React.FC<TimePickerProps> = ({
 
     // Для того, чтобы значение не выпадало из диапозона,
     // надо выставить в соответствии с последним
-    if (hours < fromHours) {
-        // Часов меньше минимума
-        setState([fromHours, fromMins, fromSecs]);
-    } else if (hours > toHours) {
-        // Часов больше максимума
-        setState([toHours, toMins, toSecs]);
-    } else if (minutes < fromMins) {
-        // Минут меньше минимума
-        setState(([h]) => [h, fromMins, fromSecs]);
-    } else if (minutes > toMins) {
-        // Минут больше максимума
-        setState(([h]) => [h, toMins, toSecs]);
-    } else if (seconds < fromSecs) {
-        // Секунд меньше минимума
-        setState(([h, m]) => [h, m, fromSecs]);
-    } else if (seconds > toSecs) {
-        // Секунд больше максимума
-        setState(([h, m]) => [h, m, toSecs]);
+    if (hoursRange.indexOf(hours) === -1 || minsRange.indexOf(minutes) === -1 || secsRange.indexOf(seconds) === -1) {
+        const newHours = hoursRange.indexOf(hours) === -1 ? getClosestValue(hoursRange, hours) : hours;
+        const newMins = minsRange.indexOf(minutes) === -1 ? getClosestValue(minsRange, minutes) : minutes;
+        const newSecs = secsRange.indexOf(seconds) === -1 ? getClosestValue(secsRange, seconds) : seconds;
+
+        // eslint-disable-next-line no-restricted-globals
+        if (isNaN(newHours) || isNaN(newMins) || isNaN(newSecs)) {
+            return null;
+        }
+        if (newHours !== hours || newMins !== minutes || newSecs !== seconds) {
+            setState([newHours, newMins, newSecs]);
+        }
     }
 
     return (
@@ -167,8 +209,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     disabled={disabled}
                     controls={controls}
                     size={size}
-                    from={fromHours}
-                    to={toHours}
+                    range={hoursRange}
                     value={hours}
                     onChange={onHoursChange}
                 />
@@ -180,8 +221,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     disabled={disabled}
                     controls={controls}
                     size={size}
-                    from={fromMins}
-                    to={toMins}
+                    range={minsRange}
                     value={minutes}
                     onChange={onMinutesChange}
                 />
@@ -193,8 +233,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     disabled={disabled}
                     controls={controls}
                     size={size}
-                    from={fromSecs}
-                    to={toSecs}
+                    range={secsRange}
                     value={seconds}
                     onChange={onSecondsChange}
                 />
