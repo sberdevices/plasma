@@ -1,8 +1,8 @@
+import { useCallback } from 'react';
 import { isSberPortal } from '@sberdevices/plasma-ui/utils';
-import { useContext, useEffect } from 'react';
-import { CanvasAppContext } from '../canvasAppContext';
-import { AppStateActions } from '../store/reducer';
-import { Axis, Direction } from '../types';
+import { AssistantNavigationCommand } from '@sberdevices/assistant-client';
+import { useAssistantOnNavigation } from './useAssistantOnNavigation';
+import { Axis } from '../types';
 
 const defaultStepSize = isSberPortal() ? 3 : 4;
 
@@ -27,84 +27,71 @@ export const useVoiceNavigation = ({
     axis,
     main,
 }: UseGalleryVoiceNavigationProps) => {
-    const { assistant } = useContext(CanvasAppContext);
+    const onNavigate = useCallback(
+        (command: AssistantNavigationCommand) => {
+            if (disabled) {
+                return;
+            }
 
-    useEffect(() => {
-        const removeListener = assistant?.on(
-            'data',
-            (command) => {
-                if (disabled || command.type !== AppStateActions.navigation) {
-                    return;
-                }
+            const direction = command.navigation.command;
 
-                const direction = command.navigation.command;
+            const isNext = axis === 'x' ? direction === 'RIGHT' : direction === 'DOWN';
+            const isPrevious = axis === 'x' ? direction === 'LEFT' : direction === 'UP';
 
-                const isNext = axis === Axis.X ? direction === Direction.RIGHT : direction === Direction.DOWN;
-                const isPrevious = axis === Axis.X ? direction === Direction.LEFT : direction === Direction.UP;
-
-                if (isNext || main && direction === Direction.FORWARD) {
-                    setIndex(maxIndex ? Math.min(maxIndex, index + stepSize) : index + stepSize);
-                } else if (isPrevious) {
-                    setIndex(Math.max(minIndex, index - stepSize));
-                }
-            },
-        );
-
-        return removeListener;
-    }, [assistant, axis, disabled, index, maxIndex, minIndex, setIndex, stepSize]);
+            if (isNext || (main && direction === 'FORWARD')) {
+                setIndex(maxIndex ? Math.min(maxIndex, index + stepSize) : index + stepSize);
+            } else if (isPrevious) {
+                setIndex(Math.max(minIndex, index - stepSize));
+            }
+        },
+        [axis, disabled, index, maxIndex, minIndex, setIndex, stepSize],
+    );
+    useAssistantOnNavigation(onNavigate);
 };
 
-export const useVoiceNavigationWithSpatNav = ({ axis, main }: { axis: Axis, main?: boolean }) => {
-    const { assistant } = useContext(CanvasAppContext);
+export const useVoiceNavigationWithSpatNav = ({ axis, main }: { axis: Axis; main?: boolean }) => {
+    const onNavigate = useCallback(
+        (command: AssistantNavigationCommand) => {
+            const direction = command.navigation.command;
 
-    useEffect(() => {
-        const removeListener = assistant?.on(
-            'data',
-            (command) => {
-                if (command.type !== AppStateActions.navigation) {
-                    return;
-                }
-
-                const direction = command.navigation.command;
-
-                if (axis === Axis.X) {
-                    switch(direction) {
-                        case Direction.LEFT:
-                            window.navigate('left');
-                            break;
-                        case Direction.RIGHT:
+            if (axis === 'x') {
+                switch (direction) {
+                    case 'LEFT':
+                        window.navigate('left');
+                        break;
+                    case 'RIGHT':
+                        window.navigate('right');
+                        break;
+                    case 'FORWARD': {
+                        if (main) {
                             window.navigate('right');
-                            break;
-                        case Direction.FORWARD: {
-                            if (main) {
-                                window.navigate('right');
-                            }
-                            break;
                         }
-                        default:
-                            return;
+                        break;
                     }
-                } else {
-                    switch(direction) {
-                        case Direction.DOWN:
-                            window.navigate('down');
-                            break;
-                        case Direction.UP:
-                            window.navigate('up');
-                            break;
-                        case Direction.FORWARD: {
-                            if (main) {
-                                window.navigate('down');
-                            }
-                            break;
-                        }
-                        default:
-                            return;
-                    }
+                    default:
+                        return;
                 }
-            },
-        );
+            } else {
+                switch (direction) {
+                    case 'DOWN':
+                        window.navigate('down');
+                        break;
+                    case 'UP':
+                        window.navigate('up');
+                        break;
+                    case 'FORWARD': {
+                        if (main) {
+                            window.navigate('down');
+                        }
+                        break;
+                    }
+                    default:
+                        return;
+                }
+            }
+        },
+        [axis, main],
+    );
 
-        return removeListener;
-    }, [assistant]);
+    useAssistantOnNavigation(onNavigate);
 };
