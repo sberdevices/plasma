@@ -33,11 +33,33 @@ const StyledTextArea = styled.textarea<TextAreaProps>`
  */
 export const TextArea = React.forwardRef<HTMLInputElement, TextAreaProps>(
     (
-        { value, placeholder, helperText, disabled, contentRight, status, resize, onChange, onFocus, onBlur, ...rest },
+        {
+            value,
+            placeholder,
+            helperText,
+            disabled,
+            contentRight,
+            status,
+            resize,
+            onChange,
+            onFocus,
+            onBlur,
+            style,
+            id,
+            className,
+            ...rest
+        },
         ref,
     ) => {
         return (
-            <TextFieldRoot disabled={disabled} status={status} isContentRight={!!contentRight} {...rest}>
+            <TextFieldRoot
+                disabled={disabled}
+                status={status}
+                isContentRight={!!contentRight}
+                className={className}
+                id={id}
+                style={style}
+            >
                 <StyledInputWrapper resize={resize}>
                     <TextFieldInput
                         as={StyledTextArea}
@@ -51,6 +73,7 @@ export const TextArea = React.forwardRef<HTMLInputElement, TextAreaProps>(
                         onChange={onChange}
                         onFocus={onFocus}
                         onBlur={onBlur}
+                        {...rest}
                     />
                     {contentRight && <TextFieldContent>{contentRight}</TextFieldContent>}
                 </StyledInputWrapper>

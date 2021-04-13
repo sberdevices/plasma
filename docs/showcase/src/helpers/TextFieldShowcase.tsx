@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import type { TextFieldProps } from '@sberdevices/plasma-ui/components/TextField';
 
 import { actionWithPersistedEvent } from './actionWithPersistedEvent';
 import { ShowcaseHead } from './Showcase';
@@ -19,20 +18,17 @@ const onFocus = actionWithPersistedEvent('onFocus');
 const onBlur = actionWithPersistedEvent('onBlur');
 const handlers = { onChange, onFocus, onBlur };
 
+interface ShowcaseProps<T> {
+    props: T;
+    rows: Record<string, T>;
+    cols: Record<string, T>;
+    component: React.ComponentType<T>;
+}
+
 /**
  * Шоукейсы - обертки для демонстрации / тестирования полной раскладки презентуемого компонента.
  */
-export const Showcase = ({
-    props,
-    rows,
-    cols,
-    component: TextField,
-}: {
-    props: TextFieldProps;
-    rows: Record<string, TextFieldProps>;
-    cols: Record<string, TextFieldProps>;
-    component: any;
-}) => {
+export function Showcase<T>({ props, rows, cols, component: TextField }: ShowcaseProps<T>) {
     const colsList = Object.entries(cols);
 
     return (
@@ -53,4 +49,4 @@ export const Showcase = ({
             ))}
         </StyledGrid>
     );
-};
+}

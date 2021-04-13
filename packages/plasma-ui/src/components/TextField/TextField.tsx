@@ -135,7 +135,23 @@ const StyledRoot = styled(TextFieldRoot)<StyledRootProps>`
  */
 export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     (
-        { value, label, helperText, disabled, contentLeft, contentRight, status, onChange, onFocus, onBlur, ...rest },
+        {
+            value,
+            label,
+            helperText,
+            disabled,
+            contentLeft,
+            contentRight,
+            status,
+            onChange,
+            onFocus,
+            onBlur,
+            className,
+            id,
+            style,
+            type = 'text',
+            ...rest
+        },
         ref,
     ) => (
         <StyledRoot
@@ -143,17 +159,21 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             disabled={disabled}
             isContentLeft={!!contentLeft}
             isContentRight={!!contentRight}
-            {...rest}
+            className={className}
+            style={style}
+            id={id}
         >
             <StyledInputWrapper>
                 {contentLeft && <StyledContent>{contentLeft}</StyledContent>}
                 <StyledInput
                     ref={ref}
                     value={value}
+                    type={type}
                     disabled={disabled}
                     onChange={onChange}
                     onFocus={onFocus}
                     onBlur={onBlur}
+                    {...rest}
                 />
                 {label && <StyledLabel isValue={!!value}>{label}</StyledLabel>}
                 {contentRight && <StyledContent>{contentRight}</StyledContent>}
