@@ -1,103 +1,72 @@
-import { Screen } from '../types';
-import { last } from '../utils/last';
-
-import { reducer, AppState } from './reducer';
-import * as actions from './actions';
+import { AppState, reducer } from './reducer';
+import { changeActiveScreenState, popHistory, pushHistory, setCharacter, setInsets } from './actions';
 
 describe('Testing reducer', () => {
-    let state: AppState = { history: [], theme: 'sber' };
-
-    const dispatch = (action) => {
-        state = reducer(state, action);
-
-        return action;
+    const initialState: AppState = {
+        history: [],
+        ui: { character: 'sber', insets: { top: 0, bottom: 0, left: 0, right: 0 } },
     };
 
-    it('pushState action', () => {
-        dispatch(
-            actions.pushStateAction({
-                type: Screen.gallery,
-                data: [],
-                step: 0,
-                position: 0,
-            }),
-        );
+    it('character action', () => {
+        const character = 'joy';
+        const action = setCharacter({ character });
+        const newState = reducer(initialState, action);
 
-        expect(state.history.length).toEqual(1);
-        expect(last(state.history).type).toEqual(Screen.gallery);
+        expect(newState).toEqual({
+            ...initialState,
+            ui: {
+                ...initialState.ui,
+                character,
+            },
+        });
     });
 
-    it('setStep action', () => {
-        dispatch(
-            actions.setStepAction({
-                step: 10,
-            }),
-        );
+    it('insets action', () => {
+        const insets = { top: 10, bottom: 20, left: 30, right: 40 };
+        const action = setInsets({ insets });
+        const newState = reducer(initialState, action);
 
-        expect(state.history.length).toEqual(1);
-        expect(last(state.history).step).toEqual(10);
+        expect(newState).toEqual({
+            ...initialState,
+            ui: {
+                ...initialState.ui,
+                insets,
+            },
+        });
     });
 
-    it('setPosition action', () => {
-        dispatch(
-            actions.setPositionAction({
-                position: 10,
-            }),
-        );
+    it('pushHistory action', () => {
+        const history = { name: 'name', data: 'data' };
+        const action = pushHistory({ history });
+        const newState = reducer(initialState, action);
 
-        expect(state.history.length).toEqual(1);
-        expect(last(state.history).position).toEqual(10);
+        expect(newState).toEqual({
+            ...initialState,
+            history: [history],
+        });
     });
 
-    it('pushState action again', () => {
-        dispatch(
-            actions.pushStateAction({
-                type: Screen.entity,
-                data: {
-                    background: {
-                        src: '',
-                    },
-                    entities: [],
-                    entitiesTitle: '',
-                    itemShowButtonText: 'Button',
-                    description: [{ title: "", content: "" }],
-                    id: '',
-                    title: '',
-                },
-                step: 0,
-                position: 0,
-            }),
-        );
+    it('popHistory action', () => {
+        const state = { ...initialState, history: [{ name: 'name', data: 'data' }] };
+        const action = popHistory();
+        const newState = reducer(state, action);
 
-        expect(state.history.length).toEqual(2);
-        expect(last(state.history).type).toEqual(Screen.entity);
+        expect(newState).toEqual({
+            ...initialState,
+            history: [],
+        });
     });
 
-    it('popState action', () => {
-        dispatch(actions.popStateAction);
+    it('changeActiveScreenState action', () => {
+        const newDataState = 'newDataState';
+        const history = { name: 'name', data: 'data' };
+        const state = { ...initialState, history: [history] };
+        const action = changeActiveScreenState({ data: newDataState });
+        const newState = reducer(state, action);
 
-        expect(state.history.length).toEqual(1);
-        expect(last(state.history).type).toEqual(Screen.gallery);
-    });
-
-    it('setState action', () => {
-        dispatch(
-            actions.setStateAction({
-                data: [
-                    {
-                        id: '',
-                        title: '',
-                        items: [],
-                    },
-                ],
-                step: 1,
-                position: 1,
-            }),
-        );
-
-        expect(state.history.length).toEqual(1);
-        expect(last(state.history).step).toEqual(1);
-        expect(last(state.history).position).toEqual(1);
-        expect((last(state.history).data as Array<any>).length).toEqual(1);
+        expect(newState).toEqual({
+            ...initialState,
+            history: [{ ...history, data: newDataState }],
+        });
     });
 });

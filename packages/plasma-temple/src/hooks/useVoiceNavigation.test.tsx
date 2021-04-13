@@ -3,518 +3,571 @@ import { renderHook } from '@testing-library/react-hooks/dom';
 import { createAssistant, createAssistantHostMock } from '@sberdevices/assistant-client';
 import { useVoiceNavigation, useVoiceNavigationWithSpatNav } from './useVoiceNavigation';
 import { AssistantInstance, Axis, Direction } from '../types';
-import { CanvasAppContext } from '../canvasAppContext';
-
+import { AssistantContext } from '../components/PlasmaApp/AssistantContext';
 
 describe('useVoiceNavigationHook', () => {
-  let assistantMock: AssistantInstance;
-  let assistantHostMock: ReturnType<typeof createAssistantHostMock>;
+    let assistantMock: AssistantInstance;
+    let assistantHostMock: ReturnType<typeof createAssistantHostMock>;
 
-  const sendNavigationCommand = (command: Direction) => {
-    return assistantHostMock.receiveCommand({
-      type: 'navigation',
-      navigation: { command },
-    });
-  };
-
-  const setIndex = jest.fn();
-  const wrapper: React.FC = ({ children }) => (
-    <CanvasAppContext.Provider value={{ assistant: assistantMock }}>{children}</CanvasAppContext.Provider>
-  );
-
-  beforeEach(() => {
-    assistantMock = createAssistant({ getState: () => ({}) });
-    assistantHostMock = createAssistantHostMock({ context: window });
-  });
-
-  afterEach(() => {
-    jest.resetAllMocks();
-  });
-
-  describe('when voice navigation is disabled', () => {
-    it('then should do nothing', (done) => {
-      renderHook(() => useVoiceNavigation({
-        index: 0,
-        setIndex,
-        maxIndex: 10,
-        stepSize: 1,
-        axis: Axis.Y,
-        disabled: true,
-      }), { wrapper });
-
-      assistantHostMock.onReady(async () => {
-        await sendNavigationCommand(Direction.DOWN);
-        expect(setIndex).toBeCalledTimes(0);
-        done();
-      });
-    });
-  });
-
-  describe('when assistant command is not a navigation command', () => {
-    it('then should do nothing', (done) => {
-      renderHook(() => useVoiceNavigation({
-        index: 0,
-        setIndex,
-        maxIndex: 10,
-        stepSize: 1,
-        axis: Axis.Y,
-      }), { wrapper });
-
-      assistantHostMock.onReady(async () => {
-        await assistantHostMock.receiveCommand({
-          type: 'smart_app_data',
-          action: { type: 'NAVIGATE', direction: Direction.DOWN }
+    const sendNavigationCommand = (command: Direction) => {
+        return assistantHostMock.receiveCommand({
+            type: 'navigation',
+            navigation: { command },
         });
+    };
 
-        expect(setIndex).toBeCalledTimes(0);
-        done();
-      });
-    });
-  });
+    const setIndex = jest.fn();
+    const wrapper: React.FC = ({ children }) => (
+        <AssistantContext.Provider value={{ assistant: assistantMock, setAssistantState: () => {} }}>
+            {children}
+        </AssistantContext.Provider>
+    );
 
-  describe('when axis is X', () => {
-    const axis = Axis.X;
-
-    describe('and direction is right', () => {
-      const direction = Direction.RIGHT;
-
-      it('then should increase index on value of stepSize if index is less than max index', (done) => {
-        renderHook(() => useVoiceNavigation({
-          index: 1,
-          setIndex,
-          maxIndex: 10,
-          stepSize: 5,
-          axis,
-        }), { wrapper });
-
-        assistantHostMock.onReady(async () => {
-          await sendNavigationCommand(direction);
-          expect(setIndex).toBeCalledWith(6);
-          done();
-        });
-      });
-
-      it('then should increase index but not more than max index', (done) => {
-        renderHook(() => useVoiceNavigation({
-          index: 9,
-          setIndex,
-          maxIndex: 10,
-          stepSize: 5,
-          axis,
-        }), { wrapper });
-
-        assistantHostMock.onReady(async () => {
-          await sendNavigationCommand(direction);
-          expect(setIndex).toBeCalledWith(10);
-          done();
-        });
-      });
+    beforeEach(() => {
+        assistantMock = createAssistant({ getState: () => ({}) });
+        assistantHostMock = createAssistantHostMock({ context: window });
     });
 
-    describe('and direction is left', () => {
-      const direction = Direction.LEFT;
-
-      it('then should decrease index on value of stepSize if index is more than min index', (done) => {
-        renderHook(() => useVoiceNavigation({
-          index: 10,
-          setIndex,
-          minIndex: 0,
-          maxIndex: 10,
-          stepSize: 5,
-          axis,
-        }), { wrapper });
-
-        assistantHostMock.onReady(async () => {
-          await sendNavigationCommand(direction);
-          expect(setIndex).toBeCalledWith(5);
-          done();
-        });
-      });
-
-      it('then should decrease index, but not more than min index', (done) => {
-        renderHook(() => useVoiceNavigation({
-          index: 3,
-          setIndex,
-          minIndex: 0,
-          maxIndex: 10,
-          stepSize: 5,
-          axis,
-        }), { wrapper });
-
-        assistantHostMock.onReady(async () => {
-          await sendNavigationCommand(direction);
-          expect(setIndex).toBeCalledWith(0);
-          done();
-        });
-      });
+    afterEach(() => {
+        jest.resetAllMocks();
     });
 
-    describe('and direction is forward', () => {
-      const direction = Direction.FORWARD;
+    describe('when voice navigation is disabled', () => {
+        it('then should do nothing', (done) => {
+            renderHook(
+                () =>
+                    useVoiceNavigation({
+                        index: 0,
+                        setIndex,
+                        maxIndex: 10,
+                        stepSize: 1,
+                        axis: 'y',
+                        disabled: true,
+                    }),
+                { wrapper },
+            );
 
-      it('then should increase index on value of stepSize if axis is main', (done) => {
-        renderHook(() => useVoiceNavigation({
-          index: 1,
-          setIndex,
-          maxIndex: 10,
-          stepSize: 2,
-          axis,
-          main: true,
-        }), { wrapper });
-
-        assistantHostMock.onReady(async () => {
-          await sendNavigationCommand(direction);
-          expect(setIndex).toBeCalledWith(3);
-          done();
+            assistantHostMock.onReady(async () => {
+                await sendNavigationCommand('DOWN');
+                expect(setIndex).toBeCalledTimes(0);
+                done();
+            });
         });
-      });
-
-      it('then should do nothing if axis is not main', (done) => {
-        renderHook(() => useVoiceNavigation({
-          index: 1,
-          setIndex,
-          maxIndex: 10,
-          stepSize: 2,
-          axis,
-        }), { wrapper });
-
-        assistantHostMock.onReady(async () => {
-          await sendNavigationCommand(direction);
-          expect(setIndex).toBeCalledTimes(0);
-          done();
-        });
-      });
     });
 
-    describe('and direction is down', () => {
-      it('then should do nothing', (done) => {
-        renderHook(() => useVoiceNavigation({
-          index: 0,
-          setIndex,
-          maxIndex: 10,
-          stepSize: 5,
-          axis,
-        }), { wrapper });
+    describe('when assistant command is not a navigation command', () => {
+        it('then should do nothing', (done) => {
+            renderHook(
+                () =>
+                    useVoiceNavigation({
+                        index: 0,
+                        setIndex,
+                        maxIndex: 10,
+                        stepSize: 1,
+                        axis: 'y',
+                    }),
+                { wrapper },
+            );
 
-        assistantHostMock.onReady(async () => {
-          await sendNavigationCommand(Direction.DOWN);
-          expect(setIndex).toBeCalledTimes(0);
-          done();
+            assistantHostMock.onReady(async () => {
+                await assistantHostMock.receiveCommand({
+                    type: 'smart_app_data',
+                    action: { type: 'NAVIGATE', direction: 'DOWN' },
+                });
+
+                expect(setIndex).toBeCalledTimes(0);
+                done();
+            });
         });
-      });
-    });
-  });
-
-  describe('when axis is Y', () => {
-    const axis = Axis.Y;
-
-    describe('and direction is down', () => {
-      const direction = Direction.DOWN;
-
-      it('then should increase index on value of stepSize if index is less than max index', (done) => {
-        renderHook(() => useVoiceNavigation({
-          index: 1,
-          setIndex,
-          maxIndex: 10,
-          stepSize: 5,
-          axis,
-        }), { wrapper });
-
-        assistantHostMock.onReady(async () => {
-          await sendNavigationCommand(direction);
-          expect(setIndex).toBeCalledWith(6);
-          done();
-        });
-      });
-
-      it('then should increase index but not more than max index', (done) => {
-        renderHook(() => useVoiceNavigation({
-          index: 9,
-          setIndex,
-          maxIndex: 10,
-          stepSize: 5,
-          axis,
-        }), { wrapper });
-
-        assistantHostMock.onReady(async () => {
-          await sendNavigationCommand(direction);
-          expect(setIndex).toBeCalledWith(10);
-          done();
-        });
-      });
     });
 
-    describe('and direction is up', () => {
-      const direction = Direction.UP;
+    describe('when axis is X', () => {
+        const axis: Axis = 'x';
 
-      it('then should decrease index on value of stepSize if index is more than min index', (done) => {
-        renderHook(() => useVoiceNavigation({
-          index: 10,
-          setIndex,
-          minIndex: 0,
-          maxIndex: 10,
-          stepSize: 5,
-          axis,
-        }), { wrapper });
+        describe('and direction is right', () => {
+            const direction = 'RIGHT';
 
-        assistantHostMock.onReady(async () => {
-          await sendNavigationCommand(direction);
-          expect(setIndex).toBeCalledWith(5);
-          done();
+            it('then should increase index on value of stepSize if index is less than max index', (done) => {
+                renderHook(
+                    () =>
+                        useVoiceNavigation({
+                            index: 1,
+                            setIndex,
+                            maxIndex: 10,
+                            stepSize: 5,
+                            axis,
+                        }),
+                    { wrapper },
+                );
+
+                assistantHostMock.onReady(async () => {
+                    await sendNavigationCommand(direction);
+                    expect(setIndex).toBeCalledWith(6);
+                    done();
+                });
+            });
+
+            it('then should increase index but not more than max index', (done) => {
+                renderHook(
+                    () =>
+                        useVoiceNavigation({
+                            index: 9,
+                            setIndex,
+                            maxIndex: 10,
+                            stepSize: 5,
+                            axis,
+                        }),
+                    { wrapper },
+                );
+
+                assistantHostMock.onReady(async () => {
+                    await sendNavigationCommand(direction);
+                    expect(setIndex).toBeCalledWith(10);
+                    done();
+                });
+            });
         });
-      });
 
-      it('then should decrease index, but not more than min index', (done) => {
-        renderHook(() => useVoiceNavigation({
-          index: 3,
-          setIndex,
-          minIndex: 0,
-          maxIndex: 10,
-          stepSize: 5,
-          axis,
-        }), { wrapper });
+        describe('and direction is left', () => {
+            const direction = 'LEFT';
 
-        assistantHostMock.onReady(async () => {
-          await sendNavigationCommand(direction);
-          expect(setIndex).toBeCalledWith(0);
-          done();
+            it('then should decrease index on value of stepSize if index is more than min index', (done) => {
+                renderHook(
+                    () =>
+                        useVoiceNavigation({
+                            index: 10,
+                            setIndex,
+                            minIndex: 0,
+                            maxIndex: 10,
+                            stepSize: 5,
+                            axis,
+                        }),
+                    { wrapper },
+                );
+
+                assistantHostMock.onReady(async () => {
+                    await sendNavigationCommand(direction);
+                    expect(setIndex).toBeCalledWith(5);
+                    done();
+                });
+            });
+
+            it('then should decrease index, but not more than min index', (done) => {
+                renderHook(
+                    () =>
+                        useVoiceNavigation({
+                            index: 3,
+                            setIndex,
+                            minIndex: 0,
+                            maxIndex: 10,
+                            stepSize: 5,
+                            axis,
+                        }),
+                    { wrapper },
+                );
+
+                assistantHostMock.onReady(async () => {
+                    await sendNavigationCommand(direction);
+                    expect(setIndex).toBeCalledWith(0);
+                    done();
+                });
+            });
         });
-      });
+
+        describe('and direction is forward', () => {
+            const direction = 'FORWARD';
+
+            it('then should increase index on value of stepSize if axis is main', (done) => {
+                renderHook(
+                    () =>
+                        useVoiceNavigation({
+                            index: 1,
+                            setIndex,
+                            maxIndex: 10,
+                            stepSize: 2,
+                            axis,
+                            main: true,
+                        }),
+                    { wrapper },
+                );
+
+                assistantHostMock.onReady(async () => {
+                    await sendNavigationCommand(direction);
+                    expect(setIndex).toBeCalledWith(3);
+                    done();
+                });
+            });
+
+            it('then should do nothing if axis is not main', (done) => {
+                renderHook(
+                    () =>
+                        useVoiceNavigation({
+                            index: 1,
+                            setIndex,
+                            maxIndex: 10,
+                            stepSize: 2,
+                            axis,
+                        }),
+                    { wrapper },
+                );
+
+                assistantHostMock.onReady(async () => {
+                    await sendNavigationCommand(direction);
+                    expect(setIndex).toBeCalledTimes(0);
+                    done();
+                });
+            });
+        });
+
+        describe('and direction is down', () => {
+            it('then should do nothing', (done) => {
+                renderHook(
+                    () =>
+                        useVoiceNavigation({
+                            index: 0,
+                            setIndex,
+                            maxIndex: 10,
+                            stepSize: 5,
+                            axis,
+                        }),
+                    { wrapper },
+                );
+
+                assistantHostMock.onReady(async () => {
+                    await sendNavigationCommand('DOWN');
+                    expect(setIndex).toBeCalledTimes(0);
+                    done();
+                });
+            });
+        });
     });
 
-    describe('and direction is forward', () => {
-      const direction = Direction.FORWARD;
+    describe('when axis is Y', () => {
+        const axis: Axis = 'y';
 
-      it('then should increase index on value of stepSize if axis is main', (done) => {
-        renderHook(() => useVoiceNavigation({
-          index: 1,
-          setIndex,
-          maxIndex: 10,
-          stepSize: 2,
-          axis,
-          main: true,
-        }), { wrapper });
+        describe('and direction is down', () => {
+            const direction = 'DOWN';
 
-        assistantHostMock.onReady(async () => {
-          await sendNavigationCommand(direction);
-          expect(setIndex).toBeCalledWith(3);
-          done();
+            it('then should increase index on value of stepSize if index is less than max index', (done) => {
+                renderHook(
+                    () =>
+                        useVoiceNavigation({
+                            index: 1,
+                            setIndex,
+                            maxIndex: 10,
+                            stepSize: 5,
+                            axis,
+                        }),
+                    { wrapper },
+                );
+
+                assistantHostMock.onReady(async () => {
+                    await sendNavigationCommand(direction);
+                    expect(setIndex).toBeCalledWith(6);
+                    done();
+                });
+            });
+
+            it('then should increase index but not more than max index', (done) => {
+                renderHook(
+                    () =>
+                        useVoiceNavigation({
+                            index: 9,
+                            setIndex,
+                            maxIndex: 10,
+                            stepSize: 5,
+                            axis,
+                        }),
+                    { wrapper },
+                );
+
+                assistantHostMock.onReady(async () => {
+                    await sendNavigationCommand(direction);
+                    expect(setIndex).toBeCalledWith(10);
+                    done();
+                });
+            });
         });
-      });
 
-      it('then should do nothing if axis is not main', (done) => {
-        renderHook(() => useVoiceNavigation({
-          index: 1,
-          setIndex,
-          maxIndex: 10,
-          stepSize: 2,
-          axis,
-        }), { wrapper });
+        describe('and direction is up', () => {
+            const direction = 'UP';
 
-        assistantHostMock.onReady(async () => {
-          await sendNavigationCommand(direction);
-          expect(setIndex).toBeCalledTimes(0);
-          done();
+            it('then should decrease index on value of stepSize if index is more than min index', (done) => {
+                renderHook(
+                    () =>
+                        useVoiceNavigation({
+                            index: 10,
+                            setIndex,
+                            minIndex: 0,
+                            maxIndex: 10,
+                            stepSize: 5,
+                            axis,
+                        }),
+                    { wrapper },
+                );
+
+                assistantHostMock.onReady(async () => {
+                    await sendNavigationCommand(direction);
+                    expect(setIndex).toBeCalledWith(5);
+                    done();
+                });
+            });
+
+            it('then should decrease index, but not more than min index', (done) => {
+                renderHook(
+                    () =>
+                        useVoiceNavigation({
+                            index: 3,
+                            setIndex,
+                            minIndex: 0,
+                            maxIndex: 10,
+                            stepSize: 5,
+                            axis,
+                        }),
+                    { wrapper },
+                );
+
+                assistantHostMock.onReady(async () => {
+                    await sendNavigationCommand(direction);
+                    expect(setIndex).toBeCalledWith(0);
+                    done();
+                });
+            });
         });
-      });
+
+        describe('and direction is forward', () => {
+            const direction = 'FORWARD';
+
+            it('then should increase index on value of stepSize if axis is main', (done) => {
+                renderHook(
+                    () =>
+                        useVoiceNavigation({
+                            index: 1,
+                            setIndex,
+                            maxIndex: 10,
+                            stepSize: 2,
+                            axis,
+                            main: true,
+                        }),
+                    { wrapper },
+                );
+
+                assistantHostMock.onReady(async () => {
+                    await sendNavigationCommand(direction);
+                    expect(setIndex).toBeCalledWith(3);
+                    done();
+                });
+            });
+
+            it('then should do nothing if axis is not main', (done) => {
+                renderHook(
+                    () =>
+                        useVoiceNavigation({
+                            index: 1,
+                            setIndex,
+                            maxIndex: 10,
+                            stepSize: 2,
+                            axis,
+                        }),
+                    { wrapper },
+                );
+
+                assistantHostMock.onReady(async () => {
+                    await sendNavigationCommand(direction);
+                    expect(setIndex).toBeCalledTimes(0);
+                    done();
+                });
+            });
+        });
+
+        describe('and direction is right', () => {
+            it('then should do nothing', (done) => {
+                renderHook(
+                    () =>
+                        useVoiceNavigation({
+                            index: 0,
+                            setIndex,
+                            maxIndex: 10,
+                            stepSize: 5,
+                            axis,
+                        }),
+                    { wrapper },
+                );
+
+                assistantHostMock.onReady(async () => {
+                    await sendNavigationCommand('RIGHT');
+                    expect(setIndex).toBeCalledTimes(0);
+                    done();
+                });
+            });
+        });
     });
-
-    describe('and direction is right', () => {
-      it('then should do nothing', (done) => {
-        renderHook(() => useVoiceNavigation({
-          index: 0,
-          setIndex,
-          maxIndex: 10,
-          stepSize: 5,
-          axis,
-        }), { wrapper });
-
-        assistantHostMock.onReady(async () => {
-          await sendNavigationCommand(Direction.RIGHT);
-          expect(setIndex).toBeCalledTimes(0);
-          done();
-        });
-      });
-    });
-  });
 });
 
 describe('useVoiceNavigationWithSpatNav', () => {
-  let assistantMock: AssistantInstance;
-  let assistantHostMock: ReturnType<typeof createAssistantHostMock>;
+    let assistantMock: AssistantInstance;
+    let assistantHostMock: ReturnType<typeof createAssistantHostMock>;
 
-  const sendNavigationCommand = (command: Direction) => {
-    return assistantHostMock.receiveCommand({
-      type: 'navigation',
-      navigation: { command },
-    });
-  };
-
-  const wrapper: React.FC = ({ children }) => (
-    <CanvasAppContext.Provider value={{ assistant: assistantMock }}>{children}</CanvasAppContext.Provider>
-  );
-
-  const navigateMock = jest.fn();
-  Object.defineProperty(window, 'navigate', { value: navigateMock });
-
-
-  beforeEach(() => {
-    assistantMock = createAssistant({ getState: () => ({}) });
-    assistantHostMock = createAssistantHostMock({ context: window });
-  });
-
-  afterEach(() => {
-    jest.resetAllMocks();
-  });
-
-  describe('when assistant command is not a navigation command', () => {
-    it('then should do nothing', (done) => {
-      renderHook(() => useVoiceNavigationWithSpatNav({ axis: Axis.Y }), { wrapper });
-
-      assistantHostMock.onReady(async () => {
-        await assistantHostMock.receiveCommand({
-          type: 'smart_app_data',
-          action: { type: 'NAVIGATE', direction: Direction.DOWN }
+    const sendNavigationCommand = (command: Direction) => {
+        return assistantHostMock.receiveCommand({
+            type: 'navigation',
+            navigation: { command },
         });
+    };
 
-        expect(navigateMock).toBeCalledTimes(0);
-        done();
-      });
-    });
-  });
-
-  describe('when axis is Y', () => {
-    const axis = Axis.Y;
-
-    describe.each([
-      [Direction.DOWN, 'down'],
-      [Direction.UP, 'up'],
-    ])(
-      'and direction is %s',
-      (direction, expected) => {
-        it(`then should navigate ${expected}`, (done) => {
-          renderHook(() => useVoiceNavigationWithSpatNav({ axis }), { wrapper });
-
-          assistantHostMock.onReady(async () => {
-            await sendNavigationCommand(direction);
-            expect(navigateMock).toBeCalledWith(expected);
-            done();
-          });
-        });
-      }
+    const wrapper: React.FC = ({ children }) => (
+        <AssistantContext.Provider value={{ assistant: assistantMock, setAssistantState: () => {} }}>
+            {children}
+        </AssistantContext.Provider>
     );
 
-    describe.each([Direction.LEFT, Direction.RIGHT])(
-      'and direction is %s',
-      (direction) => {
-        it('then should not navigate', (done) => {
-          renderHook(() => useVoiceNavigationWithSpatNav({ axis }), { wrapper });
+    const navigateMock = jest.fn();
+    Object.defineProperty(window, 'navigate', { value: navigateMock });
 
-          assistantHostMock.onReady(async () => {
-            await sendNavigationCommand(direction);
-            expect(navigateMock).toBeCalledTimes(0);
-            done();
-          });
-        });
-      }
-    );
-
-    describe('and direction is forward', () => {
-      const direction = Direction.FORWARD;
-
-      describe('and axis is main', () => {
-        const main = true;
-
-        it('then should navigate down', (done) => {
-          renderHook(() => useVoiceNavigationWithSpatNav({ axis, main }), { wrapper });
-
-          assistantHostMock.onReady(async () => {
-            await sendNavigationCommand(direction);
-            expect(navigateMock).toBeCalledWith('down');
-            done();
-          });
-        });
-      });
-
-      describe('and axis is not main', () => {
-        it('then should not navigate', (done) => {
-          renderHook(() => useVoiceNavigationWithSpatNav({ axis }), { wrapper });
-
-          assistantHostMock.onReady(async () => {
-            await sendNavigationCommand(direction);
-            expect(navigateMock).toBeCalledTimes(0);
-            done();
-          });
-        });
-      });
+    beforeEach(() => {
+        assistantMock = createAssistant({ getState: () => ({}) });
+        assistantHostMock = createAssistantHostMock({ context: window });
     });
-  });
 
-
-  describe('when axis is X', () => {
-    const axis = Axis.X;
-
-    describe.each([
-      [Direction.LEFT, 'left'],
-      [Direction.RIGHT, 'right'],
-    ])(
-      'and direction is %s',
-      (direction, expected) => {
-        it(`then should navigate ${expected}`, (done) => {
-          renderHook(() => useVoiceNavigationWithSpatNav({ axis }), { wrapper });
-
-          assistantHostMock.onReady(async () => {
-            await sendNavigationCommand(direction);
-            expect(navigateMock).toBeCalledWith(expected);
-            done();
-          });
-        });
-      }
-    );
-
-    describe.each([Direction.UP, Direction.DOWN])(
-      'and direction is %s',
-      (direction) => {
-        it('then should not navigate', (done) => {
-          renderHook(() => useVoiceNavigationWithSpatNav({ axis }), { wrapper });
-
-          assistantHostMock.onReady(async () => {
-            await sendNavigationCommand(direction);
-            expect(navigateMock).toBeCalledTimes(0);
-            done();
-          });
-        });
-      }
-    );
-
-    describe('and direction is forward', () => {
-      const direction = Direction.FORWARD;
-
-      describe('and axis is main', () => {
-        const main = true;
-
-        it('then should navigate right', (done) => {
-          renderHook(() => useVoiceNavigationWithSpatNav({ axis, main }), { wrapper });
-
-          assistantHostMock.onReady(async () => {
-            await sendNavigationCommand(direction);
-            expect(navigateMock).toBeCalledWith('right');
-            done();
-          });
-        });
-      });
-
-      describe('and axis is not main', () => {
-        it('then should not navigate', (done) => {
-          renderHook(() => useVoiceNavigationWithSpatNav({ axis }), { wrapper });
-
-          assistantHostMock.onReady(async () => {
-            await sendNavigationCommand(direction);
-            expect(navigateMock).toBeCalledTimes(0);
-            done();
-          });
-        });
-      });
+    afterEach(() => {
+        jest.resetAllMocks();
     });
-  });
+
+    describe('when assistant command is not a navigation command', () => {
+        it('then should do nothing', (done) => {
+            renderHook(() => useVoiceNavigationWithSpatNav({ axis: 'y' }), { wrapper });
+
+            assistantHostMock.onReady(async () => {
+                await assistantHostMock.receiveCommand({
+                    type: 'smart_app_data',
+                    action: { type: 'NAVIGATE', direction: 'DOWN' },
+                });
+
+                expect(navigateMock).toBeCalledTimes(0);
+                done();
+            });
+        });
+    });
+
+    describe('when axis is Y', () => {
+        const axis: Axis = 'y';
+
+        describe.each([
+            ['DOWN', 'down'],
+            ['UP', 'up'],
+        ])('and direction is %s', (direction, expected) => {
+            it(`then should navigate ${expected}`, (done) => {
+                renderHook(() => useVoiceNavigationWithSpatNav({ axis }), { wrapper });
+
+                assistantHostMock.onReady(async () => {
+                    await sendNavigationCommand(direction);
+                    expect(navigateMock).toBeCalledWith(expected);
+                    done();
+                });
+            });
+        });
+
+        describe.each(['LEFT', 'RIGHT'])('and direction is %s', (direction) => {
+            it('then should not navigate', (done) => {
+                renderHook(() => useVoiceNavigationWithSpatNav({ axis }), { wrapper });
+
+                assistantHostMock.onReady(async () => {
+                    await sendNavigationCommand(direction);
+                    expect(navigateMock).toBeCalledTimes(0);
+                    done();
+                });
+            });
+        });
+
+        describe('and direction is forward', () => {
+            const direction: Direction = 'FORWARD';
+
+            describe('and axis is main', () => {
+                const main = true;
+
+                it('then should navigate down', (done) => {
+                    renderHook(() => useVoiceNavigationWithSpatNav({ axis, main }), { wrapper });
+
+                    assistantHostMock.onReady(async () => {
+                        await sendNavigationCommand(direction);
+                        expect(navigateMock).toBeCalledWith('down');
+                        done();
+                    });
+                });
+            });
+
+            describe('and axis is not main', () => {
+                it('then should not navigate', (done) => {
+                    renderHook(() => useVoiceNavigationWithSpatNav({ axis }), { wrapper });
+
+                    assistantHostMock.onReady(async () => {
+                        await sendNavigationCommand(direction);
+                        expect(navigateMock).toBeCalledTimes(0);
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
+    describe('when axis is X', () => {
+        const axis: Axis = 'x';
+
+        describe.each([
+            ['LEFT', 'left'],
+            ['RIGHT', 'right'],
+        ])('and direction is %s', (direction, expected) => {
+            it(`then should navigate ${expected}`, (done) => {
+                renderHook(() => useVoiceNavigationWithSpatNav({ axis }), { wrapper });
+
+                assistantHostMock.onReady(async () => {
+                    await sendNavigationCommand(direction);
+                    expect(navigateMock).toBeCalledWith(expected);
+                    done();
+                });
+            });
+        });
+
+        describe.each(['UP', 'DOWN'])('and direction is %s', (direction) => {
+            it('then should not navigate', (done) => {
+                renderHook(() => useVoiceNavigationWithSpatNav({ axis }), { wrapper });
+
+                assistantHostMock.onReady(async () => {
+                    await sendNavigationCommand(direction);
+                    expect(navigateMock).toBeCalledTimes(0);
+                    done();
+                });
+            });
+        });
+
+        describe('and direction is forward', () => {
+            const direction: Direction = 'FORWARD';
+
+            describe('and axis is main', () => {
+                const main = true;
+
+                it('then should navigate right', (done) => {
+                    renderHook(() => useVoiceNavigationWithSpatNav({ axis, main }), { wrapper });
+
+                    assistantHostMock.onReady(async () => {
+                        await sendNavigationCommand(direction);
+                        expect(navigateMock).toBeCalledWith('right');
+                        done();
+                    });
+                });
+            });
+
+            describe('and axis is not main', () => {
+                it('then should not navigate', (done) => {
+                    renderHook(() => useVoiceNavigationWithSpatNav({ axis }), { wrapper });
+
+                    assistantHostMock.onReady(async () => {
+                        await sendNavigationCommand(direction);
+                        expect(navigateMock).toBeCalledTimes(0);
+                        done();
+                    });
+                });
+            });
+        });
+    });
 });
