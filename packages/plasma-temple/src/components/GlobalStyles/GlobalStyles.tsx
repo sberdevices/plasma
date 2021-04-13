@@ -45,11 +45,11 @@ const charactersTheme: Record<AssistantCharacterType, React.ComponentType> = {
 };
 
 interface GlogalStylesProps {
-    theme: AssistantCharacterType;
+    character: AssistantCharacterType;
 }
 
-export const GlobalStyles: React.FC<GlogalStylesProps> = ({ theme }) => {
-    const Theme = React.useMemo(() => charactersTheme[theme], [theme]);
+export const GlobalStyles: React.FC<GlogalStylesProps> = ({ character }) => {
+    const Theme = React.useMemo(() => charactersTheme[character], [character]);
 
     return (
         <>
