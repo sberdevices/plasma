@@ -1,5 +1,5 @@
 import React from 'react';
-import { boolean, number, select } from '@storybook/addon-knobs';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
 import { isSberBox } from '../../utils';
@@ -35,14 +35,31 @@ export const DatePicker = () => {
 };
 
 export const TimePicker = () => {
-    const [value, setValue] = React.useState(new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 30, 59));
+    const [value, setValue] = React.useState(
+        new Date(now.getFullYear(), now.getMonth(), now.getDate(), ...text('value', '0:28:59').split(':').map(Number)),
+    );
     const isSberbox = isSberBox();
 
     return (
         <TimePickerComponent
             value={value}
-            min={new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 15, 29)}
-            max={new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 45, 50)}
+            min={
+                new Date(
+                    now.getFullYear(),
+                    now.getMonth(),
+                    now.getDate(),
+                    ...text('min', '0:15:29').split(':').map(Number),
+                )
+            }
+            max={
+                new Date(
+                    now.getFullYear(),
+                    now.getMonth(),
+                    now.getDate(),
+                    ...text('max', '12:45:50').split(':').map(Number),
+                )
+            }
+            step={number('step', 1)}
             size={select('size', ['l', 's'], 'l')}
             visibleItems={select('visibleItems', [3, 5], 3)}
             options={{
