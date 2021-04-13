@@ -28,6 +28,18 @@ export interface InputHTMLAttributes<T> extends DisabledProps {
      */
     placeholder?: string;
     /**
+     * Флаг обязательности поля
+     */
+    required?: boolean;
+    /**
+     * Минимальная длина значения поля
+     */
+    minLength?: number;
+    /**
+     * Максимальная длина значения поля
+     */
+    maxLength?: number;
+    /**
      * Обработчик изменения элемента формы
      */
     onChange?: React.InputHTMLAttributes<T>['onChange'];

@@ -91,9 +91,33 @@ export const TextFieldContent = styled.div`
  * Поле ввода текста.
  */
 export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
-    ({ value, placeholder, helperText, disabled, contentRight, status, onChange, onFocus, onBlur, ...rest }, ref) => {
+    (
+        {
+            value,
+            placeholder,
+            helperText,
+            disabled,
+            contentRight,
+            status,
+            onChange,
+            onFocus,
+            onBlur,
+            style,
+            id,
+            className,
+            ...rest
+        },
+        ref,
+    ) => {
         return (
-            <TextFieldRoot disabled={disabled} status={status} isContentRight={!!contentRight} {...rest}>
+            <TextFieldRoot
+                disabled={disabled}
+                status={status}
+                isContentRight={!!contentRight}
+                className={className}
+                id={id}
+                style={style}
+            >
                 <TextFieldInputWrapper>
                     <TextFieldInput
                         ref={ref}
@@ -105,6 +129,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
                         onChange={onChange}
                         onFocus={onFocus}
                         onBlur={onBlur}
+                        {...rest}
                     />
                     {contentRight && <TextFieldContent>{contentRight}</TextFieldContent>}
                 </TextFieldInputWrapper>
