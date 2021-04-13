@@ -1,26 +1,20 @@
-import { createEmptyAction, createAction, Action, EmptyAction } from '../utils/createAction';
+import { createAction, createEmptyAction } from '../utils/createAction';
 
-import { AppStateActions, CurrentHistory, SetStatePayload, SetPositionPayload, SetStepPayload } from './reducer';
+import {
+    CharacterPayload,
+    AppStateActionType,
+    InsetsPayload,
+    PushHistoryPayload,
+    ChangeActiveScreenStatePayload,
+} from './reducer';
 
-interface ActionCreator<T extends string, P> {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    (payload: P): Action<T, P>;
-}
+export const setCharacter = (payload: CharacterPayload) => createAction(AppStateActionType.CHARACTER, payload);
 
-export const popStateAction: EmptyAction<AppStateActions.popState> = createEmptyAction(AppStateActions.popState);
+export const setInsets = (payload: InsetsPayload) => createAction(AppStateActionType.INSETS, payload);
 
-export const popStateWithUpdateHistoryAction: ActionCreator<AppStateActions.popStateWithUpdateHistory, CurrentHistory> = (payload) =>
-    createAction(AppStateActions.popStateWithUpdateHistory, payload);
+export const pushHistory = (payload: PushHistoryPayload) => createAction(AppStateActionType.PUSH_HISTORY, payload);
 
-export const pushStateAction: ActionCreator<AppStateActions.pushState, CurrentHistory> = (payload) =>
-    createAction(AppStateActions.pushState, payload);
+export const popHistory = () => createEmptyAction(AppStateActionType.POP_HISTORY);
 
-export const setStateAction: ActionCreator<AppStateActions.setState, SetStatePayload> = (payload: SetStatePayload) =>
-    createAction(AppStateActions.setState, payload);
-
-export const setPositionAction: ActionCreator<AppStateActions.setPosition, SetPositionPayload> = (
-    payload: SetPositionPayload,
-) => createAction(AppStateActions.setPosition, payload);
-
-export const setStepAction: ActionCreator<AppStateActions.setStep, SetStepPayload> = (payload: SetStepPayload) =>
-    createAction(AppStateActions.setStep, payload);
+export const changeActiveScreenState = (payload: ChangeActiveScreenStatePayload) =>
+    createAction(AppStateActionType.CHANGE_ACTIVE_SCREEN_STATE, payload);

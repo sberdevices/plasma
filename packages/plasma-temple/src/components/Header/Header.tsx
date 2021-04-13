@@ -1,27 +1,17 @@
 import React from 'react';
-import styled from 'styled-components';
-import { isSberBox, mediaQuery } from '@sberdevices/plasma-ui/utils';
+import { isSberBox } from '@sberdevices/plasma-ui/utils';
 import { Header as UIKitHeader } from '@sberdevices/plasma-ui';
-import { HeaderPropsPayload } from '../../types';
-
-const StyledHeader = styled(UIKitHeader)`
-    ${mediaQuery('M')`
-        padding-top: 1.125rem;
-        padding-bottom: 1.125rem;
-    `}
-`;
-
-interface HeaderProps extends HeaderPropsPayload {
-    back?: boolean;
-}
+import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 
 export const Header = (props: HeaderProps) => {
-    const backProps = React.useMemo(() => isSberBox()
-        ? {}
-        : {
-            back: true,
-            onBackClick: () => window.history.back(),
-        }, []);
+    const withBackProps =
+        isSberBox() || props.back !== undefined
+            ? props
+            : {
+                  ...props,
+                  back: true as const,
+                  onBackClick: () => window.history.back(),
+              };
 
-    return <StyledHeader {...backProps} {...props} />
-}
+    return <UIKitHeader {...withBackProps} />;
+};

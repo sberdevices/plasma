@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { ItemMainSectionProps, ItemEntitiesProps } from '../templates/Item/Item';
+import { ItemMainSectionProps } from '../pages/ItemPage/components/ItemMainSection/ItemMainSection';
+import { ItemEntitiesProps } from '../pages/ItemPage/components/ItemEntities/ItemEntities';
 
 export type UnifiedComponentProps<T> = T & {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     platformComponents: Record<string, React.ComponentType<any>>;
 };
 

@@ -1,154 +1,115 @@
-import { Reducer } from 'react';
-import { AssistantCharacterType, AssistantInsetsCommand } from '@sberdevices/assistant-client/dist/typings';
-
-import { last, replaceLast } from '../utils/last';
-import { DetailPayload, EntityPayload, Screen, MultiGalleryViewPayload, MetaPayload, VideoViewPayload } from '../types';
-
-interface HistoryRecord<T extends Screen, D> extends MetaPayload {
-    data: D;
-    type: T;
-    step: number;
-    position: number;
-}
-
-export type CurrentHistory =
-    | HistoryRecord<Screen.gallery, MultiGalleryViewPayload>
-    | HistoryRecord<Screen.entity, EntityPayload>
-    | HistoryRecord<Screen.detail, DetailPayload>
-    | HistoryRecord<Screen.video, VideoViewPayload>;
-
-// eslint-disable-next-line no-shadow
-export enum AppStateActions {
-    character = 'character',
-    insets = 'insets',
-    navigation = 'navigation',
-    popState = 'pop state',
-    popStateWithUpdateHistory = 'pop state with update history',
-    pushState = 'push state',
-    setState = 'set state',
-    setPosition = 'set position',
-    setStep = 'set step',
-}
-
-export interface ThemePayload {
-    theme: AssistantCharacterType;
-}
+import { AssistantCharacterType, AssistantInsetsCommand } from '@sberdevices/assistant-client';
+import { last } from '../utils/last';
 
 type AssistantInsets = AssistantInsetsCommand['insets'];
-export interface InsetsPayload {
-    insets: AssistantInsets;
-}
-
-export interface NavigationPayload {
-    direction: 'UP' | 'DOWN' | 'LEFT' | 'RIGHT' | 'BACK' | 'FORWARD';
-}
-
-export type SetStatePayload = Omit<CurrentHistory, 'type'>;
-
-export interface SetPositionPayload {
-    position: number;
-}
-
-export interface SetStepPayload {
-    step: number;
-}
-
-type HistoryAction =
-    | { type: AppStateActions.popState }
-    | { type: AppStateActions.popStateWithUpdateHistory, payload: CurrentHistory }
-    | { type: AppStateActions.pushState; payload: CurrentHistory }
-    | { type: AppStateActions.setState; payload: SetStatePayload }
-    | { type: AppStateActions.setPosition; payload: SetPositionPayload }
-    | { type: AppStateActions.setStep; payload: SetStepPayload };
-
-export type AppStateAction =
-    | HistoryAction
-    | { type: AppStateActions.character; payload: ThemePayload }
-    | { type: AppStateActions.navigation; payload: NavigationPayload }
-    | { type: AppStateActions.insets; payload: InsetsPayload };
 
 export interface UIState {
     character: AssistantCharacterType;
     insets: AssistantInsets;
 }
+
+export interface History<T = unknown> {
+    name: string;
+    data: T;
+}
+
 export interface AppState {
-    history: Array<CurrentHistory>;
+    history: History[];
     ui: UIState;
 }
 
-export const reducer: Reducer<AppState, AppStateAction> = (state, action) => {
-    const { history } = state;
-    const currentState = last(state.history);
+export interface InsetsPayload {
+    insets: AssistantInsets;
+}
 
-    const popState = () => ({
-        ...state,
-        history: history.slice(0, -1),
-    });
+export interface CharacterPayload {
+    character: AssistantCharacterType;
+}
 
+export interface PushHistoryPayload {
+    history: History;
+}
+
+export interface ChangeActiveScreenStatePayload {
+    data: any;
+}
+
+export enum AppStateActionType {
+    CHARACTER = 'character',
+    INSETS = 'insets',
+    PUSH_HISTORY = 'pushHistory',
+    POP_HISTORY = 'popHistory',
+    CHANGE_ACTIVE_SCREEN_STATE = 'changeActiveScreenState',
+}
+
+export type AppStateAction =
+    | { type: AppStateActionType.CHARACTER; payload: CharacterPayload }
+    | { type: AppStateActionType.INSETS; payload: InsetsPayload }
+    | { type: AppStateActionType.PUSH_HISTORY; payload: PushHistoryPayload }
+    | { type: AppStateActionType.POP_HISTORY }
+    | { type: AppStateActionType.CHANGE_ACTIVE_SCREEN_STATE; payload: ChangeActiveScreenStatePayload };
+
+export const initialState: AppState = {
+    history: [],
+    ui: {
+        character: 'sber',
+        insets: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+        },
+    },
+};
+
+export const reducer = (state: AppState, action: AppStateAction): AppState => {
     switch (action.type) {
-        case AppStateActions.character:
+        case AppStateActionType.CHARACTER:
+            const { character } = action.payload;
             return {
                 ...state,
                 ui: {
                     ...state.ui,
-                    character: action.payload?.theme,
+                    character,
                 },
             };
 
-        case AppStateActions.insets:
+        case AppStateActionType.INSETS:
+            const { insets } = action.payload;
             return {
                 ...state,
                 ui: {
                     ...state.ui,
-                    insets: action.payload.insets,
+                    insets,
                 },
             };
 
-        case AppStateActions.navigation:
-            if (action.payload?.direction === 'BACK') {
-                return popState();
+        case AppStateActionType.PUSH_HISTORY:
+            const { history } = action.payload;
+            return {
+                ...state,
+                history: [...state.history, history],
+            };
+
+        case AppStateActionType.POP_HISTORY:
+            return {
+                ...state,
+                history: state.history.slice(0, -1),
+            };
+
+        case AppStateActionType.CHANGE_ACTIVE_SCREEN_STATE: {
+            const { data } = action.payload;
+            const screen = last(state.history);
+
+            if (!screen) {
+                return state;
             }
 
-            return state;
-
-        case AppStateActions.pushState:
             return {
                 ...state,
-                history: history.concat(action.payload),
+                history: [...state.history.slice(0, -1), { ...screen, data }],
             };
-
-        case AppStateActions.setState:
-            return {
-                ...state,
-                history: history.slice(0, -1).concat({ ...action.payload, type: currentState.type } as CurrentHistory),
-            };
-
-        case AppStateActions.popState:
-            return popState();
-
-        case AppStateActions.popStateWithUpdateHistory:
-            return {
-                ...state,
-                history: replaceLast(history.slice(0, -1), action.payload),
-            };
-
-        case AppStateActions.setStep:
-            return {
-                ...state,
-                history: replaceLast(history, {
-                    ...currentState,
-                    step: action.payload.step,
-                }),
-            };
-
-        case AppStateActions.setPosition:
-            return {
-                ...state,
-                history: replaceLast(history, {
-                    ...currentState,
-                    position: action.payload.position,
-                }),
-            };
+        }
 
         default:
             return state;
