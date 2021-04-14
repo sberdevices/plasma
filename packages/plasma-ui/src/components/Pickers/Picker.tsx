@@ -19,10 +19,12 @@ import {
 } from './PickerItem';
 
 const StyledDivButton = styled.div`
-    height: auto;
-    padding: 0;
-    opacity: 0;
-    color: ${primary};
+    && {
+        height: auto;
+        padding: 0;
+        opacity: 0;
+        color: ${primary};
+    }
 `;
 
 const StyledWrapper = styled.div<DisabledProps>`
@@ -173,10 +175,10 @@ export const Picker: React.FC<PickerProps> = ({
         <StyledWrapper ref={ref} disabled={disabled} tabIndex={tabIndex} {...rest}>
             {controls && (
                 <Button
-                    as={StyledDivButton}
+                    forwardedAs={StyledDivButton}
                     view="clear"
                     outlined={false}
-                    contentLeft={<IconChevronUp />}
+                    contentLeft={<IconChevronUp size="s" />}
                     onClick={toPrev}
                 />
             )}
@@ -189,7 +191,7 @@ export const Picker: React.FC<PickerProps> = ({
                 scaleResetCallback={scaleResetCallback}
                 animatedScrollByIndex={controls}
                 scrollSnapType="mandatory"
-                detectActive={!controls}
+                detectActive
                 detectThreshold={0.5}
                 onIndexChange={(i) => onChange?.(items[i])}
                 paddingStart={sizes[size][visibleItems].padding}
@@ -201,10 +203,10 @@ export const Picker: React.FC<PickerProps> = ({
             </StyledCarousel>
             {controls && (
                 <Button
-                    as={StyledDivButton}
+                    forwardedAs={StyledDivButton}
                     view="clear"
                     outlined={false}
-                    contentLeft={<IconChevronDown />}
+                    contentLeft={<IconChevronDown size="s" />}
                     onClick={toNext}
                 />
             )}
