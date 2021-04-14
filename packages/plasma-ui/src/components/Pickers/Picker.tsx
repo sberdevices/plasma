@@ -218,7 +218,11 @@ export const Picker: React.FC<PickerProps> = ({
                 scrollSnapType="mandatory"
                 detectActive
                 detectThreshold={0.5}
-                onIndexChange={(i) => onChange?.(items[i])}
+                onIndexChange={(i) => {
+                    if (items[i] && items[i].value !== value) {
+                        onChange?.(items[i]);
+                    }
+                }}
                 paddingStart={sizes[size][visibleItems].padding}
                 paddingEnd={sizes[size][visibleItems].padding}
             >
