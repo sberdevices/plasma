@@ -41,7 +41,7 @@ interface UseRemoteHandlersProps {
 }
 
 /**
- * Хук, который слушает вызовы пульта.
+ * Хук для навигации. Слушает нажатие кнопок на пульте/клавиатуре.
  */
 export function useRemoteHandlers({
     initialIndex = 0,

@@ -4,6 +4,7 @@ import { primary } from '@sberdevices/plasma-tokens';
 import { IconChevronUp, IconChevronDown } from '@sberdevices/plasma-icons';
 import { applyDisabled, DisabledProps } from '@sberdevices/plasma-core/mixins';
 
+import { useRemoteListener } from '../../hooks';
 import { Button } from '../Button';
 import { Carousel } from '../Carousel';
 
@@ -112,9 +113,13 @@ export interface PickerProps extends SizeProps, DisabledProps, Omit<React.HTMLAt
      */
     onChange?: (value: Item) => void;
     /**
-     * Компонент в фокусе
+     * Компонент в фокусе (визуально, независимо от tabIndex)
      */
     focused?: boolean;
+    /**
+     * Автофокус на компоненте.
+     */
+    autofocus?: boolean;
 }
 
 export const Picker: React.FC<PickerProps> = ({
@@ -122,19 +127,50 @@ export const Picker: React.FC<PickerProps> = ({
     value,
     items,
     controls,
+    autofocus,
     disabled,
-    onChange,
     visibleItems = 5,
+    tabIndex = 0,
+    onChange,
     ...rest
 }) => {
     const min = 0;
     const max = items.length - 1;
     const index = items.findIndex((item) => item.value === value);
+    const ref = React.useRef<HTMLDivElement | null>(null);
     const toPrev = React.useCallback(() => onChange?.(items[getIndex(index, '-', min, max)]), [index, min, max]);
     const toNext = React.useCallback(() => onChange?.(items[getIndex(index, '+', min, max)]), [index, min, max]);
 
+    // Навигация с помощью пульта/клавиатуры
+    // Не перелистывает, если компонент неактивен
+    useRemoteListener((key, event) => {
+        if (ref.current !== document.activeElement) {
+            return;
+        }
+        if (key !== 'UP' && key !== 'DOWN') {
+            return;
+        }
+        event.preventDefault();
+        switch (key) {
+            case 'UP':
+                toPrev();
+                break;
+            case 'DOWN':
+                toNext();
+                break;
+            default:
+                break;
+        }
+    });
+
+    React.useEffect(() => {
+        if (autofocus && ref.current) {
+            ref.current.focus();
+        }
+    }, []);
+
     return (
-        <StyledWrapper disabled={disabled} tabIndex={0} {...rest}>
+        <StyledWrapper ref={ref} disabled={disabled} tabIndex={tabIndex} {...rest}>
             {controls && (
                 <Button
                     as={StyledDivButton}

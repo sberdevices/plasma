@@ -50,6 +50,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     min,
     disabled,
     controls,
+    autofocus,
     visibleItems,
     onChange,
 }) => {
@@ -162,6 +163,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         <StyledWrapper>
             {options.days && (
                 <SimpleDatePicker
+                    autofocus={autofocus}
                     size={size}
                     type="day"
                     value={day}
@@ -175,6 +177,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             )}
             {options.months && (
                 <SimpleDatePicker
+                    autofocus={autofocus && !options.days}
                     size={size}
                     type="month"
                     value={month}
@@ -188,6 +191,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             )}
             {options.years && (
                 <SimpleDatePicker
+                    autofocus={autofocus && !options.days && !options.months}
                     size={size}
                     type="year"
                     value={year}
