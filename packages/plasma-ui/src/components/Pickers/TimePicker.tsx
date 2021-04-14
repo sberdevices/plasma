@@ -77,6 +77,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
     value,
     min,
     max,
+    autofocus,
     onChange,
 }) => {
     const [[hours, minutes, seconds], setState] = React.useState(getValues(value));
@@ -159,15 +160,36 @@ export const TimePicker: React.FC<TimePickerProps> = ({
     return (
         <StyledWrapper>
             {options.hours && (
-                <SimpleTimePicker size={size} from={fromHours} to={toHours} value={hours} onChange={onHoursChange} />
+                <SimpleTimePicker
+                    autofocus={autofocus}
+                    size={size}
+                    from={fromHours}
+                    to={toHours}
+                    value={hours}
+                    onChange={onHoursChange}
+                />
             )}
             {options.hours && options.minutes && <StyledDividers />}
             {options.minutes && (
-                <SimpleTimePicker size={size} from={fromMins} to={toMins} value={minutes} onChange={onMinutesChange} />
+                <SimpleTimePicker
+                    autofocus={autofocus && !options.hours}
+                    size={size}
+                    from={fromMins}
+                    to={toMins}
+                    value={minutes}
+                    onChange={onMinutesChange}
+                />
             )}
             {options.minutes && options.seconds && <StyledDividers />}
             {options.seconds && (
-                <SimpleTimePicker size={size} from={fromSecs} to={toSecs} value={seconds} onChange={onSecondsChange} />
+                <SimpleTimePicker
+                    autofocus={autofocus && !options.hours && !options.minutes}
+                    size={size}
+                    from={fromSecs}
+                    to={toSecs}
+                    value={seconds}
+                    onChange={onSecondsChange}
+                />
             )}
         </StyledWrapper>
     );

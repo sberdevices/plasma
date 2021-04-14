@@ -14,10 +14,11 @@ export const DatePicker = () => {
 
     return (
         <DatePickerComponent
-            size={select('size', ['l', 's'], 's')}
             value={value}
             min={new Date(1975, 0, 1)}
             max={new Date(1985, 12, 31)}
+            size={select('size', ['l', 's'], 's')}
+            visibleItems={select('visibleItems', [3, 5], 5)}
             options={{
                 years: boolean('options.years', true),
                 months: boolean('options.months', true),
@@ -25,7 +26,7 @@ export const DatePicker = () => {
             }}
             disabled={boolean('disabled', false)}
             controls={boolean('controls', isSberbox)}
-            visibleItems={select('visibleItems', [3, 5], 5)}
+            autofocus={boolean('autofocus', true)}
             onChange={(newValue) => {
                 setValue(newValue);
             }}
@@ -51,6 +52,7 @@ export const TimePicker = () => {
             }}
             disabled={boolean('disabled', false)}
             controls={boolean('controls', isSberbox)}
+            autofocus={boolean('autofocus', true)}
             onChange={(val) => {
                 setValue(val);
                 action('onChange')(val);
