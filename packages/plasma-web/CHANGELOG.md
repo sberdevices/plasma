@@ -1,3 +1,15 @@
+# v1.2.0 (Wed Apr 14 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-web): Added TextArea component [#290](https://github.com/sberdevices/plasma/pull/290) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.1.0 (Wed Apr 07 2021)
 
 #### 🐛 Bug Fix
