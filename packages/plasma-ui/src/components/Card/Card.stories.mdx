@@ -67,19 +67,28 @@ export const App = () =>  (
 
 ## Примеры
 
-### Базовое применение
+### Простая карточка
+
+Представляет ответ в виде карточки, которая может содержать ячейку с изображением. Представляет собой класс карточек нескольких видов.
+
 <Canvas>
     <Story name="BasicValue" story={stories.BasicValue} />
     <Story name="BasicDefault" story={stories.BasicDefault} />
 </Canvas>
 
-### Список
+### Карточка-список
+
+Конструктор класса карточек, состоящих из списка ячеек (``Cells``).
+Представляет собой набор стилей и параметров для обертки списка ячеек в карточку.
+Карточка-список может быть представлена в нескольких вариантах.
+
 <Canvas>
     <Story name="ListCard" story={stories.ListCard} />
     <Story name="ListAndHeader" story={stories.ListAndHeader} />
 </Canvas>
 
-### Короткий ответ
+### Карточка с коротким ответом
+
 <Canvas>
     <Story name="FastAnswer" story={stories.FastAnswer} />
 </Canvas>

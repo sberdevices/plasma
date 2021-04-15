@@ -10,7 +10,7 @@ import { basebox } from '../Basebox';
 export interface RadioboxProps extends BaseRadioboxProps, InteractionProps {}
 
 /**
- * Переключатель, или *радиокнопка*.
+ * Переключатель (радиокнопка). С помощью ``RadioboxList`` можно создавать списки радиокнопок.
  */
 export const Radiobox = styled(BaseRadiobox)<RadioboxProps>`
     ${basebox};
