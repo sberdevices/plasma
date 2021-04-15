@@ -39,8 +39,8 @@ export interface MediaPlayerActions {
 }
 
 export interface CustomMediaPlayerControlsProps<T extends HTMLVideoElement | HTMLAudioElement> {
-    state: MediaPlayerState & { backDisabled?: boolean; nextDisabled?: boolean; finished: boolean; }
-    actions: MediaPlayerActions & { goBack?: () => void; goNext?: () => void; };
+    state: MediaPlayerState & { backDisabled?: boolean; nextDisabled?: boolean; finished: boolean };
+    actions: MediaPlayerActions & { goBack?: () => void; goNext?: () => void };
     playerRef: React.RefObject<T>;
     controlsHidden: boolean;
 }

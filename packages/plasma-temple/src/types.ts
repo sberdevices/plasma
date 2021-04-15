@@ -45,6 +45,7 @@ export interface AssistantAppStateItem {
 }
 
 export interface AssistantAppState {
+    // eslint-disable-next-line camelcase
     item_selector: {
         items: Array<AssistantAppStateItem>;
     };
