@@ -1,3 +1,15 @@
+# v1.1.1 (Thu Apr 15 2021)
+
+#### 🐛 Bug Fix
+
+- fix: bump peerDeps [#307](https://github.com/sberdevices/plasma/pull/307) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.1.0 (Wed Apr 07 2021)
 
 #### 🐛 Bug Fix
