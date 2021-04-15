@@ -1,4 +1,5 @@
 import { AssistantCharacterType, AssistantInsetsCommand } from '@sberdevices/assistant-client';
+
 import { last } from '../utils/last';
 
 type AssistantInsets = AssistantInsetsCommand['insets'];
@@ -31,7 +32,7 @@ export interface PushHistoryPayload {
 }
 
 export interface ChangeActiveScreenStatePayload {
-    data: any;
+    data: unknown;
 }
 
 export enum AppStateActionType {
@@ -42,12 +43,16 @@ export enum AppStateActionType {
     CHANGE_ACTIVE_SCREEN_STATE = 'changeActiveScreenState',
 }
 
-export type AppStateAction =
-    | { type: AppStateActionType.CHARACTER; payload: CharacterPayload }
-    | { type: AppStateActionType.INSETS; payload: InsetsPayload }
-    | { type: AppStateActionType.PUSH_HISTORY; payload: PushHistoryPayload }
-    | { type: AppStateActionType.POP_HISTORY }
-    | { type: AppStateActionType.CHANGE_ACTIVE_SCREEN_STATE; payload: ChangeActiveScreenStatePayload };
+export type CharacterAction = { type: AppStateActionType.CHARACTER; payload: CharacterPayload };
+export type InsetsAction = { type: AppStateActionType.INSETS; payload: InsetsPayload };
+export type PushHistoryAction = { type: AppStateActionType.PUSH_HISTORY; payload: PushHistoryPayload };
+export type PopHistoryAction = { type: AppStateActionType.POP_HISTORY };
+export type ChangeStateAction = {
+    type: AppStateActionType.CHANGE_ACTIVE_SCREEN_STATE;
+    payload: ChangeActiveScreenStatePayload;
+};
+
+export type AppStateAction = CharacterAction | InsetsAction | PushHistoryAction | PopHistoryAction | ChangeStateAction;
 
 export const initialState: AppState = {
     history: [],
@@ -64,7 +69,7 @@ export const initialState: AppState = {
 
 export const reducer = (state: AppState, action: AppStateAction): AppState => {
     switch (action.type) {
-        case AppStateActionType.CHARACTER:
+        case AppStateActionType.CHARACTER: {
             const { character } = action.payload;
             return {
                 ...state,
@@ -73,9 +78,11 @@ export const reducer = (state: AppState, action: AppStateAction): AppState => {
                     character,
                 },
             };
+        }
 
-        case AppStateActionType.INSETS:
+        case AppStateActionType.INSETS: {
             const { insets } = action.payload;
+
             return {
                 ...state,
                 ui: {
@@ -83,13 +90,16 @@ export const reducer = (state: AppState, action: AppStateAction): AppState => {
                     insets,
                 },
             };
+        }
 
-        case AppStateActionType.PUSH_HISTORY:
+        case AppStateActionType.PUSH_HISTORY: {
             const { history } = action.payload;
+
             return {
                 ...state,
                 history: [...state.history, history],
             };
+        }
 
         case AppStateActionType.POP_HISTORY:
             return {

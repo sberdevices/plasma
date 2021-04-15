@@ -4,23 +4,30 @@ import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 
 import { InitializeParams, useInitializeAssistant } from '../../hooks/useInitializeAssistant';
 import { PageProps } from '../Page/Page';
-import { AssistantContext } from './AssistantContext';
-import { AppStateContext } from './AppStateContext';
 import { usePopHistoryListener } from '../../hooks/usePopHistoryListener';
 import { GlobalStyles } from '../GlobalStyles/GlobalStyles';
 import { initialState as initialPlasmaAppState, reducer } from '../../store/reducer';
 import * as Actions from '../../store/actions';
 import { PageLayout } from '../PageLayout/PageLayout';
 import { last } from '../../utils/last';
+import { AnyObject, PushScreenParams } from '../Page/types';
+
+import { AssistantContext } from './AssistantContext';
+import { AppStateContext } from './AppStateContext';
+
+export type OnStartFn<
+    PageStateType extends AnyObject = AnyObject,
+    PageParamsType extends Partial<Record<keyof PageStateType, unknown>> = Partial<Record<keyof PageStateType, unknown>>
+> = (params: {
+    pushHistory: <T extends keyof PageStateType>(name: T, data: PageStateType[T]) => void;
+    pushScreen: <T extends keyof PageStateType>(...args: PushScreenParams<PageStateType, PageParamsType, T>) => void;
+}) => void;
 
 export interface PlasmaAppProps<Name extends string = string> {
     children: React.ReactElement<PageProps<Name>> | React.ReactElement<PageProps<Name>>[];
     assistantParams: Omit<InitializeParams, 'getState'>;
     header?: HeaderProps;
-    onStart: (params: {
-        pushScreen: <T extends string, P = unknown>(name: T, params?: P) => void;
-        pushHistory: <T extends string, P = unknown>(name: T, history: P) => void;
-    }) => void;
+    onStart: OnStartFn;
 }
 
 export function PlasmaApp<Name extends string, T extends AssistantSmartAppData = AssistantSmartAppData>({
@@ -28,7 +35,7 @@ export function PlasmaApp<Name extends string, T extends AssistantSmartAppData =
     assistantParams,
     header,
     onStart,
-}: React.PropsWithChildren<PlasmaAppProps<Name>>) {
+}: React.PropsWithChildren<PlasmaAppProps<Name>>): React.ReactElement {
     const [state, dispatch] = useReducer(reducer, initialPlasmaAppState);
 
     const pushHistory = React.useCallback((name, data) => {
@@ -61,7 +68,6 @@ export function PlasmaApp<Name extends string, T extends AssistantSmartAppData =
                     dispatch(Actions.setCharacter({ character: command.character.id }));
                     break;
                 default:
-                    return;
             }
         },
     });
@@ -77,7 +83,7 @@ export function PlasmaApp<Name extends string, T extends AssistantSmartAppData =
             popScreen,
             dispatch,
         }),
-        [state, pushScreen, popScreen],
+        [state, header, pushScreen, popScreen, pushHistory],
     );
 
     const activeScreen = last(state.history);

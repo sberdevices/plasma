@@ -9,7 +9,5 @@ export default {
 };
 
 export const Default = () => {
-    return (
-        <Header logo="./images/320_320_2.jpg" title="Hello" subtitle="plasma-temple"/>
-    );
+    return <Header logo="./images/320_320_2.jpg" title="Hello" subtitle="plasma-temple" />;
 };
