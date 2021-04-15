@@ -1,12 +1,12 @@
 import React from 'react';
 import { Badge } from '@sberdevices/plasma-web/components/Badge';
 
-import { CommonShowcase, IconPlaceholder, UIStoryDecorator, InSpacingDecorator } from '../helpers';
+import { CommonShowcase, IconPlaceholder, WebStoryDecorator, InSpacingDecorator } from '../helpers';
 
 export default {
     title: 'Web/Content/Badge',
     component: Badge,
-    decorators: [UIStoryDecorator, InSpacingDecorator],
+    decorators: [WebStoryDecorator, InSpacingDecorator],
 };
 
 const sizes = { l: 'Badge L 24', s: 'Badge S 16' };
