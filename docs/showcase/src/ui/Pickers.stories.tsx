@@ -75,3 +75,7 @@ export const Default = () => (
         </ShowcaseDashedBorder>
     </StyledWrapper>
 );
+
+Default.parameters = {
+    chromatic: { pauseAnimationAtEnd: true },
+};
