@@ -285,3 +285,7 @@ export const Default = () => (
         <ScaledCentralItem />
     </Container>
 );
+
+Default.parameters = {
+    chromatic: { pauseAnimationAtEnd: true },
+};
