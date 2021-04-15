@@ -1,3 +1,22 @@
+# v1.3.0 (Thu Apr 15 2021)
+
+#### 🚀 Enhancement
+
+- feat: Moved Typography to plasma-core / plasma-web [#280](https://github.com/sberdevices/plasma/pull/280) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui, plasma-web): Fix setting props in TextField & TextArea [#299](https://github.com/sberdevices/plasma/pull/299) ([@LamaEats](https://github.com/LamaEats))
+- fix(plasma-ui, plasma-web): Added SC babel plugin to avoid classname collision [#280](https://github.com/sberdevices/plasma/pull/280) ([@fanisco](https://github.com/fanisco))
+- chore(plasma-core, plasma-web): Added components to index files [#280](https://github.com/sberdevices/plasma/pull/280) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v1.2.1 (Thu Apr 15 2021)
 
 #### 🐛 Bug Fix

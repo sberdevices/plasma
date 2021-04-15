@@ -1,3 +1,15 @@
+# v1.2.0 (Thu Apr 15 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-icons): Using plasma-core's tokens [#280](https://github.com/sberdevices/plasma/pull/280) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.1.1 (Thu Apr 15 2021)
 
 #### 🐛 Bug Fix

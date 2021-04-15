@@ -1,5 +1,33 @@
 # (Thu Apr 15 2021)
 
+#### 🚀 Enhancement
+
+- `@sberdevices/showcase@0.8.0`, `@sberdevices/plasma-core@1.2.0`, `@sberdevices/plasma-ui@1.4.0`, `@sberdevices/plasma-web@1.3.0`
+  - feat: Moved Typography to plasma-core / plasma-web [#280](https://github.com/sberdevices/plasma/pull/280) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/showcase@0.8.0`, `@sberdevices/plasma-icons@1.2.0`
+  - feat(plasma-icons): Using plasma-core's tokens [#280](https://github.com/sberdevices/plasma/pull/280) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/showcase@0.8.0`, `@sberdevices/plasma-core@1.2.0`, `@sberdevices/plasma-ui@1.4.0`, `@sberdevices/plasma-web@1.3.0`
+  - fix(plasma-ui, plasma-web): Fix setting props in TextField & TextArea [#299](https://github.com/sberdevices/plasma/pull/299) ([@LamaEats](https://github.com/LamaEats))
+- `@sberdevices/showcase@0.8.0`
+  - docs(showcase): Disable animations in sliders [#280](https://github.com/sberdevices/plasma/pull/280) ([@fanisco](https://github.com/fanisco))
+  - chore(showcase): Updated dependencies versions, babel config [#280](https://github.com/sberdevices/plasma/pull/280) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-ui@1.4.0`, `@sberdevices/plasma-web@1.3.0`
+  - fix(plasma-ui, plasma-web): Added SC babel plugin to avoid classname collision [#280](https://github.com/sberdevices/plasma/pull/280) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-core@1.2.0`, `@sberdevices/plasma-web@1.3.0`
+  - chore(plasma-core, plasma-web): Added components to index files [#280](https://github.com/sberdevices/plasma/pull/280) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
+# (Thu Apr 15 2021)
+
 #### 🐛 Bug Fix
 
 - `@sberdevices/plasma-icons@1.1.1`, `@sberdevices/plasma-ui@1.3.1`, `@sberdevices/plasma-web@1.2.1`
