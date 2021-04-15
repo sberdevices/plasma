@@ -1,11 +1,13 @@
-import { useEffect } from 'react';
-import { useAssistant } from './useAssistant';
+import React from 'react';
+
 import { AssistantAppState } from '../types';
 
-export function useAssistantAppState(state: AssistantAppState) {
+import { useAssistant } from './useAssistant';
+
+export function useAssistantAppState(state: AssistantAppState): void {
     const { setAssistantState } = useAssistant();
 
-    useEffect(() => {
+    React.useEffect(() => {
         setAssistantState(state);
     }, [setAssistantState, state]);
 }

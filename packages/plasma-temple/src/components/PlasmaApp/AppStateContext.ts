@@ -1,5 +1,6 @@
 import { createContext } from 'react';
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
+
 import { AppState, AppStateAction, initialState } from '../../store/reducer';
 
 export interface AppStateContextValue {

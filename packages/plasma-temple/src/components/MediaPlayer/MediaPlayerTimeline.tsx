@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components';
 import { buttonFocused, primary, secondary } from '@sberdevices/plasma-tokens';
 
@@ -17,9 +17,7 @@ export const formatTime = (time: number) => {
 
     const minutesAndSeconds = [formatNumber(minutes), formatNumber(seconds)].join(':');
 
-    return hours > 0
-        ? `${formatNumber(hours)}:${minutesAndSeconds}`
-        : minutesAndSeconds;
+    return hours > 0 ? `${formatNumber(hours)}:${minutesAndSeconds}` : minutesAndSeconds;
 };
 
 const StyledWrapper = styled.div`
@@ -42,7 +40,6 @@ const StyledProgress = styled.div`
     border-radius: 2px;
     background-color: ${primary};
 `;
-
 
 const StyledTimelineTick = styled.span`
     position: absolute;
@@ -72,7 +69,7 @@ const StyledTimeLine = styled.div`
 `;
 
 export const MediaPlayerTimeline = ({ currentTime, duration, className }: MediaPlayerTimelineProps) => {
-    const timelinePosition = Math.min(currentTime / duration * 100, 100);
+    const timelinePosition = Math.min((currentTime / duration) * 100, 100);
 
     return (
         <StyledWrapper className={className}>
@@ -83,5 +80,5 @@ export const MediaPlayerTimeline = ({ currentTime, duration, className }: MediaP
             </StyledTimeLine>
             <StyledTime>{formatTime(duration)}</StyledTime>
         </StyledWrapper>
-    )
-}
+    );
+};

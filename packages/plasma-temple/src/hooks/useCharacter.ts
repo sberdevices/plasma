@@ -1,12 +1,14 @@
-import { useContext } from 'react';
+import { AssistantCharacterType } from '@sberdevices/assistant-client';
+import React from 'react';
+
 import { AppStateContext } from '../components/PlasmaApp/AppStateContext';
 
-export function useCharacter() {
+export function useCharacter(): AssistantCharacterType {
     const {
         state: {
             ui: { character },
         },
-    } = useContext(AppStateContext);
+    } = React.useContext(AppStateContext);
 
     return character;
 }

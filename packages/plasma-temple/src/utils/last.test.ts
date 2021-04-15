@@ -1,6 +1,6 @@
 import { last, replaceLast } from './last';
 
-describe("Testing util `last` & `replaceLast`", () => {
+describe('Testing util `last` & `replaceLast`', () => {
     describe('last fn', () => {
         it('last fn with filled array', () => {
             expect(last(['first', 'second', 'last'])).toBe('last');
@@ -12,9 +12,12 @@ describe("Testing util `last` & `replaceLast`", () => {
     });
 
     describe('replaceLast fn', () => {
-
         it('replaceLast with correct arguments', () => {
-            expect(replaceLast(['first', 'second', 'last'], 'replacedLast')).toStrictEqual(['first', 'second', 'replacedLast']);
+            expect(replaceLast(['first', 'second', 'last'], 'replacedLast')).toStrictEqual([
+                'first',
+                'second',
+                'replacedLast',
+            ]);
         });
 
         it('replaceLast with empty array', () => {

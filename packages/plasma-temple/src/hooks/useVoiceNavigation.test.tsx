@@ -1,9 +1,11 @@
 import React from 'react';
 import { renderHook } from '@testing-library/react-hooks/dom';
 import { createAssistant, createAssistantHostMock } from '@sberdevices/assistant-client';
-import { useVoiceNavigation, useVoiceNavigationWithSpatNav } from './useVoiceNavigation';
+
 import { AssistantInstance, Axis, Direction } from '../types';
 import { AssistantContext } from '../components/PlasmaApp/AssistantContext';
+
+import { useVoiceNavigation, useVoiceNavigationWithSpatNav } from './useVoiceNavigation';
 
 describe('useVoiceNavigationHook', () => {
     let assistantMock: AssistantInstance;

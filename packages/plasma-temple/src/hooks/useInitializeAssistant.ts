@@ -8,6 +8,7 @@ import {
 
 import { logger } from '../utils/logger';
 import { AssistantInstance, PickOptional } from '../types';
+
 import { useMount } from './useMount';
 
 export type AssistantProps = Parameters<typeof createAssistantDev>[0];
@@ -62,11 +63,16 @@ export const useInitializeAssistant = <T extends AssistantSmartAppData>({
     assistantParams: Omit<InitializeParams, 'getState'>;
     onStart?: () => void;
     onData?: (command: AssistantClientCustomizedCommand<AssistantSmartAppData>) => void;
-}) => {
+}): {
+    assistant: AssistantInstance | null;
+    setAssistantState: (newState: unknown) => void;
+} => {
     const [assistant, setAssistant] = useState<AssistantInstance | null>(null);
     const assistantStateRef = useRef({ item_selector: { items: [] } });
     const getAssistantState = useCallback(() => assistantStateRef.current, []);
-    const setAssistantState = useCallback((newState) => (assistantStateRef.current = newState), []);
+    const setAssistantState = useCallback((newState) => {
+        assistantStateRef.current = newState;
+    }, []);
 
     useMount(() => {
         const assistantInstance = initializeAssistant<T>({ ...assistantParams, getState: getAssistantState });

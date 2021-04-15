@@ -1,6 +1,7 @@
-import { useContext } from 'react';
-import { AssistantContext } from '../components/PlasmaApp/AssistantContext';
+import React from 'react';
 
-export const useAssistant = () => {
-    return useContext(AssistantContext);
+import { AssistantContext, AssistantContextType } from '../components/PlasmaApp/AssistantContext';
+
+export const useAssistant = (): AssistantContextType => {
+    return React.useContext(AssistantContext);
 };
