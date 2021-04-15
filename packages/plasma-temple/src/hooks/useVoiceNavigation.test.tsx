@@ -452,7 +452,7 @@ describe('useVoiceNavigationWithSpatNav', () => {
     describe('when axis is Y', () => {
         const axis: Axis = 'y';
 
-        describe.each([
+        describe.each<[Direction, string]>([
             ['DOWN', 'down'],
             ['UP', 'up'],
         ])('and direction is %s', (direction, expected) => {
@@ -467,7 +467,7 @@ describe('useVoiceNavigationWithSpatNav', () => {
             });
         });
 
-        describe.each(['LEFT', 'RIGHT'])('and direction is %s', (direction) => {
+        describe.each<Direction>(['LEFT', 'RIGHT'])('and direction is %s', (direction) => {
             it('then should not navigate', (done) => {
                 renderHook(() => useVoiceNavigationWithSpatNav({ axis }), { wrapper });
 
@@ -513,7 +513,7 @@ describe('useVoiceNavigationWithSpatNav', () => {
     describe('when axis is X', () => {
         const axis: Axis = 'x';
 
-        describe.each([
+        describe.each<[Direction, string]>([
             ['LEFT', 'left'],
             ['RIGHT', 'right'],
         ])('and direction is %s', (direction, expected) => {
@@ -528,7 +528,7 @@ describe('useVoiceNavigationWithSpatNav', () => {
             });
         });
 
-        describe.each(['UP', 'DOWN'])('and direction is %s', (direction) => {
+        describe.each<Direction>(['UP', 'DOWN'])('and direction is %s', (direction) => {
             it('then should not navigate', (done) => {
                 renderHook(() => useVoiceNavigationWithSpatNav({ axis }), { wrapper });
 

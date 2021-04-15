@@ -1,5 +1,8 @@
 import React from 'react';
+import styled from 'styled-components';
 
+import { Spinner } from '@sberdevices/plasma-ui';
+import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 import { AppStateContext } from '../PlasmaApp/AppStateContext';
 import { changeActiveScreenState } from '../../store/actions';
 import { AssistantInstance } from '../../types';
@@ -7,22 +10,26 @@ import { useAssistant } from '../../hooks/useAssistant';
 
 import { last } from '../../utils/last';
 import { INNER_ASSISTANT_ACTION } from '../../constants';
-import { PageComponent } from './types';
-import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
+import { AnyObject, PageComponent } from './types';
 
 export interface PageProps<Name extends string> {
     name: Name;
-    component: PageComponent<Name>;
+    component: PageComponent<AnyObject, Name>;
     fallbackComponent?: React.ReactNode;
     header?: HeaderProps;
 }
 
-const Loading = () => <span>Loading ...</span>;
+const StyledSpinner = styled(Spinner)`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50);
+`;
 
 export function Page<Name extends string>({
     name,
     component: Component,
-    fallbackComponent = <Loading />,
+    fallbackComponent = <StyledSpinner />,
     header,
 }: PageProps<Name>) {
     const { state: appState, header: appHeader, pushHistory, pushScreen, popScreen, dispatch } = React.useContext(
