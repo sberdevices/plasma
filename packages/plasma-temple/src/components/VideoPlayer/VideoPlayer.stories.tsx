@@ -2,8 +2,9 @@ import React from 'react';
 import { boolean, text, array, object } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
-import { VideoPlayer } from './VideoPlayer';
 import { ControlType } from '../MediaPlayer/types';
+
+import { VideoPlayer } from './VideoPlayer';
 
 export default {
     title: 'Video Player',
@@ -26,7 +27,6 @@ export const Default = () => (
             right: 0,
         })}
     />
-
 );
 
 export const WithAutoplay = () => (

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React from 'react';
 
 export const closeApp = (): void => {
     // eslint-disable-next-line no-console
@@ -9,8 +9,8 @@ export const closeApp = (): void => {
     }
 };
 
-export const usePopHistoryListener = (historyLength: number, onPopState: () => void) => {
-    useEffect(() => {
+export const usePopHistoryListener = (historyLength: number, onPopState: () => void): void => {
+    React.useEffect(() => {
         const listener = () => {
             if (historyLength === 1) {
                 closeApp();

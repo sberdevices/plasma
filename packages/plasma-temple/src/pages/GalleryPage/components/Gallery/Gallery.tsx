@@ -1,15 +1,12 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-
 import { Headline3, Row, Carousel, CarouselGridWrapper, CarouselItem } from '@sberdevices/plasma-ui';
 import { isSberPortal } from '@sberdevices/plasma-ui/utils';
 
 import { GalleryCard, GalleryCardProps } from '../GalleryCard/GalleryCard';
 import { Header } from '../../../../components/Header/Header';
-
 import { useRemoteHandlers } from '../../../../hooks/useRemoteHandlers';
 import { useVoiceNavigation } from '../../../../hooks/useVoiceNavigation';
-
 import { Gallery as GalleryType } from '../../types';
 
 interface GalleryProps {
@@ -71,10 +68,12 @@ export const Gallery: React.FC<GalleryProps> = React.memo(
         }, [handleEnter]);
 
         React.useEffect(() => {
-            changeActiveCard(cardIndex);
-        }, [cardIndex]);
+            if (cardIndex !== activeCardIndex) {
+                changeActiveCard(cardIndex);
+            }
+        }, [cardIndex, activeCardIndex, changeActiveCard]);
 
-        const galleryItems: React.ReactChild[] = React.useMemo(() => {
+        const galleryItems = React.useMemo<React.ReactChild[]>(() => {
             return galleryCards.map(
                 (card, index): React.ReactChild => (
                     <CarouselItem key={card.id} scrollSnapAlign="center">
@@ -88,7 +87,7 @@ export const Gallery: React.FC<GalleryProps> = React.memo(
                     </CarouselItem>
                 ),
             );
-        }, [active, galleryCards, CardComponent, activeCardIndex, onCardClick, changeCardIndex]);
+        }, [active, cardIndex, galleryCards, CardComponent, onCardClick, changeCardIndex]);
 
         useVoiceNavigation({
             index: cardIndex,
@@ -104,8 +103,8 @@ export const Gallery: React.FC<GalleryProps> = React.memo(
             <>
                 {multiGallery ? (
                     <StyledTitle active={active} withLogo={withLogo} title={title} back={false} />
-                ) : isSberPortal() ? null : (
-                    <Headline3>{title}</Headline3>
+                ) : (
+                    !isSberPortal() && <Headline3>{title}</Headline3>
                 )}
                 <CarouselGridWrapper>
                     <Carousel

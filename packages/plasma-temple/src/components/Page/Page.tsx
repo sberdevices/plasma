@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import { Spinner } from '@sberdevices/plasma-ui';
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
+
 import { AppStateContext } from '../PlasmaApp/AppStateContext';
 import { changeActiveScreenState } from '../../store/actions';
 import { AssistantInstance } from '../../types';
 import { useAssistant } from '../../hooks/useAssistant';
-
 import { last } from '../../utils/last';
 import { INNER_ASSISTANT_ACTION } from '../../constants';
+
 import { AnyObject, PageComponent } from './types';
 
 export interface PageProps<Name extends string> {
@@ -31,7 +31,7 @@ export function Page<Name extends string>({
     component: Component,
     fallbackComponent = <StyledSpinner />,
     header,
-}: PageProps<Name>) {
+}: PageProps<Name>): React.ReactElement {
     const { state: appState, header: appHeader, pushHistory, pushScreen, popScreen, dispatch } = React.useContext(
         AppStateContext,
     );
@@ -67,6 +67,7 @@ export function Page<Name extends string>({
                         type: 'smart_app_data',
                         smart_app_data: smartAppData,
                         // Для обратной совместимости
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                         // @ts-ignore
                         action: smartAppData,
                     });

@@ -1,13 +1,14 @@
-import { useEffect } from 'react';
+import React from 'react';
 import { AssistantClientCustomizedCommand, AssistantSmartAppData } from '@sberdevices/assistant-client';
+
 import { useAssistant } from './useAssistant';
 
 export const useAssistantOnData = <T extends AssistantSmartAppData = AssistantSmartAppData>(
     onData: (command: AssistantClientCustomizedCommand<T>) => void,
-) => {
+): void => {
     const { assistant } = useAssistant();
 
-    useEffect(() => {
+    React.useEffect(() => {
         if (!assistant) {
             return;
         }

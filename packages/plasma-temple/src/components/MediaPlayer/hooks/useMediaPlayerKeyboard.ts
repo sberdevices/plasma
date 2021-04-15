@@ -2,7 +2,11 @@ import { useEffect } from 'react';
 
 const OK_KEY = 'Enter';
 
-export const useMediaPlayerKeyboard = (playback: () => void, controlsHidden: boolean, cb?: (event: KeyboardEvent) => void) => {
+export const useMediaPlayerKeyboard = (
+    playback: () => void,
+    controlsHidden: boolean,
+    cb?: (event: KeyboardEvent) => void,
+): void => {
     useEffect(() => {
         const keydownHandler = (event: KeyboardEvent) => {
             if (event.key === OK_KEY) {
@@ -23,5 +27,5 @@ export const useMediaPlayerKeyboard = (playback: () => void, controlsHidden: boo
         return () => {
             document.removeEventListener('keydown', keydownHandler);
         };
-    }, [playback, controlsHidden]);
+    }, [playback, controlsHidden, cb]);
 };

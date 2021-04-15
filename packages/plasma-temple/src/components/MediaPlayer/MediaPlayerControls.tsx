@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import { IconRoot, IconPause, IconPlay, IconPrevious, IconNext, IconRepeat } from '@sberdevices/plasma-icons';
-import { MediaPlayerButton, MediaPlayerButtonProps } from './MediaPlayerButton';
 
+import { MediaPlayerButton, MediaPlayerButtonProps } from './MediaPlayerButton';
 import { ControlType, MediaPlayerActions } from './types';
 import { ForwardIcon } from './MediaPlayer.assets/ForwardIcon';
 import { ReplayIcon } from './MediaPlayer.assets/ReplayIcon';
@@ -19,7 +18,6 @@ interface MediaPlayerControlsProps {
     nextDisabled?: boolean;
     visibleControlList?: ControlType[];
     className?: string;
-
 }
 
 export const isControlVisible = (control: ControlType, controlList?: ControlType[]) => {
@@ -28,7 +26,7 @@ export const isControlVisible = (control: ControlType, controlList?: ControlType
     }
 
     return controlList.includes(control);
-}
+};
 
 const StyledWrapper = styled.div`
     display: inline-flex;
@@ -65,9 +63,9 @@ export const MediaPlayerControls = ({
     visibleControlList,
     className,
 }: MediaPlayerControlsProps) => {
-        const IconPlayComponent = finished ? IconRepeat : IconPlay;
+    const IconPlayComponent = finished ? IconRepeat : IconPlay;
 
-        return (
+    return (
         <StyledWrapper className={className}>
             <MediaPlayerButton
                 disabled={backDisabled}

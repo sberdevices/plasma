@@ -1,29 +1,38 @@
 import React, { useRef, useState, createElement, useMemo, useEffect } from 'react';
+
 import { MediaPlayerActions, MediaPlayerPropsMap, MediaPlayerState, PlayerType, PlayerTypeMap } from '../types';
 
 const wrapEventHandler = <T extends PlayerType>(
     eventHandler: React.ReactEventHandler<PlayerTypeMap[T]>,
-    userEventHandler?: React.ReactEventHandler<PlayerTypeMap[T]>
+    userEventHandler?: React.ReactEventHandler<PlayerTypeMap[T]>,
 ) => (event: React.SyntheticEvent<PlayerTypeMap[T]>) => {
     eventHandler(event);
     userEventHandler?.(event);
 };
 
-const updateStateCurrentTime = (state: MediaPlayerState, newCurrentTime: number, startTime: number, endTime: number) => {
-    const currentTime = endTime <= startTime
-        ? newCurrentTime
-        : Math.max(0, newCurrentTime - startTime);
+const updateStateCurrentTime = (
+    state: MediaPlayerState,
+    newCurrentTime: number,
+    startTime: number,
+    endTime: number,
+) => {
+    const currentTime = endTime <= startTime ? newCurrentTime : Math.max(0, newCurrentTime - startTime);
     return { ...state, currentTime };
 };
 
-const updateStateDuration = (state: MediaPlayerState, newDuration: number, buffered: TimeRanges, startTime: number, endTime: number) => {
+const updateStateDuration = (
+    state: MediaPlayerState,
+    newDuration: number,
+    buffered: TimeRanges,
+    startTime: number,
+    endTime: number,
+) => {
     if (Number.isNaN(newDuration)) {
         return { ...state, duration: 0, buffered };
     }
 
-    const duration = endTime <= startTime || startTime >= newDuration
-        ? newDuration
-        : Math.min(endTime, newDuration) - startTime;
+    const duration =
+        endTime <= startTime || startTime >= newDuration ? newDuration : Math.min(endTime, newDuration) - startTime;
     return { ...state, duration, buffered };
 };
 
@@ -46,11 +55,11 @@ export function useMediaPlayer<T extends PlayerType>(
 
     const onPlay = () => {
         setState((prevState) => ({ ...prevState, paused: false }));
-    }
+    };
 
     const onPause = () => {
         setState((prevState) => ({ ...prevState, paused: true }));
-    }
+    };
 
     const onVolumeChange = () => {
         if (playerRef.current) {
@@ -62,13 +71,7 @@ export function useMediaPlayer<T extends PlayerType>(
     const onDurationChange = () => {
         if (playerRef.current) {
             const { duration, buffered } = playerRef.current;
-            setState((prevState) => updateStateDuration(
-                prevState,
-                duration,
-                buffered,
-                startTime,
-                endTime ?? duration,
-            ));
+            setState((prevState) => updateStateDuration(prevState, duration, buffered, startTime, endTime ?? duration));
         }
     };
 
@@ -80,12 +83,9 @@ export function useMediaPlayer<T extends PlayerType>(
                 return;
             }
 
-            setState((prevState) => updateStateCurrentTime(
-                prevState,
-                currentTime,
-                startTime,
-                Math.min(endTime ?? duration, duration),
-            ));
+            setState((prevState) =>
+                updateStateCurrentTime(prevState, currentTime, startTime, Math.min(endTime ?? duration, duration)),
+            );
 
             if (!paused && currentTime >= Math.min(duration, endTime ?? duration)) {
                 playerRef.current.pause();
@@ -117,50 +117,52 @@ export function useMediaPlayer<T extends PlayerType>(
         }
     };
 
-    const actions: MediaPlayerActions = useMemo(() => ({
-        playback: () => {
-            if (!playerRef.current) {
-                return;
-            }
-
-            const { currentTime, paused, duration } = playerRef.current;
-
-            if (paused) {
-                if (currentTime >= Math.min(endTime ?? duration, duration)) {
-                    playerRef.current.currentTime = startTime;
+    const actions: MediaPlayerActions = useMemo(
+        () => ({
+            playback: () => {
+                if (!playerRef.current) {
+                    return;
                 }
-                playerRef.current.play();
-            } else {
-                playerRef.current.pause();
-            }
-        },
-        seekTo: (time: number) => {
-            if (playerRef.current) {
-                const { duration } = playerRef.current;
-                playerRef.current.currentTime = Math.min(duration, Math.max(0, time));
-            }
-        },
-        volume: (volume: number) => {
-            if (playerRef.current) {
-                playerRef.current.volume = Math.min(1, Math.max(0, volume));
-            }
-        },
-        mute: () => {
-            if (playerRef.current) {
-                playerRef.current.muted = !playerRef.current.muted;
-            }
-        },
-        jumpTo: (sign: 1 | -1) => {
-            if (playerRef.current) {
-                const { duration } = playerRef.current;
-                const time = playerRef.current.currentTime + 10 * sign;
 
-                playerRef.current.currentTime = sign === 1
-                    ? Math.min(time, duration, endTime ?? duration)
-                    : Math.max(startTime, time);
-            }
-        },
-    }), [startTime, endTime]);
+                const { currentTime, paused, duration } = playerRef.current;
+
+                if (paused) {
+                    if (currentTime >= Math.min(endTime ?? duration, duration)) {
+                        playerRef.current.currentTime = startTime;
+                    }
+                    playerRef.current.play();
+                } else {
+                    playerRef.current.pause();
+                }
+            },
+            seekTo: (time: number) => {
+                if (playerRef.current) {
+                    const { duration } = playerRef.current;
+                    playerRef.current.currentTime = Math.min(duration, Math.max(0, time));
+                }
+            },
+            volume: (volume: number) => {
+                if (playerRef.current) {
+                    playerRef.current.volume = Math.min(1, Math.max(0, volume));
+                }
+            },
+            mute: () => {
+                if (playerRef.current) {
+                    playerRef.current.muted = !playerRef.current.muted;
+                }
+            },
+            jumpTo: (sign: 1 | -1) => {
+                if (playerRef.current) {
+                    const { duration } = playerRef.current;
+                    const time = playerRef.current.currentTime + 10 * sign;
+
+                    playerRef.current.currentTime =
+                        sign === 1 ? Math.min(time, duration, endTime ?? duration) : Math.max(startTime, time);
+                }
+            },
+        }),
+        [startTime, endTime],
+    );
 
     useEffect(() => {
         if (!playerRef.current) {
@@ -173,21 +175,17 @@ export function useMediaPlayer<T extends PlayerType>(
         playerRef.current.pause();
         playerRef.current.currentTime = 0;
 
-        setState(src !== props.src
-            ? initState
-            : updateStateDuration(
-                initState,
-                duration,
-                buffered,
-                startTime,
-                endTime ?? duration
-            ),
+        setState(
+            src !== props.src
+                ? initState
+                : updateStateDuration(initState, duration, buffered, startTime, endTime ?? duration),
         );
 
         if (props.autoPlay) {
             actions.playback();
         }
-    }, [props.src, startTime, endTime]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [startTime, endTime, actions]);
 
     const element = createElement<MediaPlayerPropsMap[T]>(playerType, {
         controls: false,
@@ -200,8 +198,8 @@ export function useMediaPlayer<T extends PlayerType>(
         onTimeUpdate: wrapEventHandler(onTimeUpdate, props.onTimeUpdate),
         onProgress: wrapEventHandler(onProgress, props.onProgress),
         onEnded: props.onEnded,
-        onWaiting: onWaiting,
-        onPlaying: onPlaying,
+        onWaiting,
+        onPlaying,
     });
 
     return {
