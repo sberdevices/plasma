@@ -96,11 +96,26 @@ export const CellIcon = styled.div<CellIconProps>`
 `;
 
 export interface CellProps extends FocusProps, OutlinedProps, AsProps {
+    /**
+     * Слот для контента слева.
+     */
     contentLeft?: React.ReactNode;
+    /**
+     * Контент.
+     */
     content: React.ReactNode;
+    /**
+     * Слот для контента слева.
+     */
     contentRight?: React.ReactNode;
 
+    /**
+     * Вертикальное выравнивание контента слева.
+     */
     alignLeft?: alignLeftProp;
+    /**
+     * Вертикальное выравнивание контента справа.
+     */
     alignRight?: alignRightProp;
 }
 
