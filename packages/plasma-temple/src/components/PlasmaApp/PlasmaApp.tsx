@@ -31,9 +31,9 @@ export function PlasmaApp<Name extends string, T extends AssistantSmartAppData =
 }: React.PropsWithChildren<PlasmaAppProps<Name>>) {
     const [state, dispatch] = useReducer(reducer, initialPlasmaAppState);
 
-    const pushHistory = React.useCallback((name, history) => {
+    const pushHistory = React.useCallback((name, data) => {
         window.history.pushState(null, name);
-        dispatch(Actions.pushHistory({ history }));
+        dispatch(Actions.pushHistory({ history: { name, data } }));
     }, []);
 
     const pushScreen = React.useCallback((name: string, params) => {
