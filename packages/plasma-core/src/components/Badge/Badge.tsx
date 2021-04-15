@@ -25,19 +25,19 @@ export const badgeViews = {
 
 export const badgeRootSizes = {
     l: {
-        height: '1,5rem',
-        padding: '0,25rem',
-        'min-width': '1,5rem',
-        'border-radius': '0,75rem',
-        'font-size': '0,75rem',
+        height: '1.5rem',
+        padding: '0.25rem',
+        'min-width': '1.5rem',
+        'border-radius': '0.75rem',
+        'font-size': '0.75rem',
     },
     s: {
         height: '1rem',
-        padding: '0,125rem',
+        padding: '0.125rem',
         'min-width': '1rem',
-        'padding-left': '0,25rem',
-        'border-radius': '0,5rem',
-        'font-size': '0,625rem',
+        'padding-left': '0.25rem',
+        'border-radius': '0.5rem',
+        'font-size': '0.625rem',
     },
 };
 
