@@ -1,12 +1,12 @@
 import { createContext } from 'react';
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
-import { AppState, History, AppStateAction, initialState } from '../../store/reducer';
+import { AppState, AppStateAction, initialState } from '../../store/reducer';
 
 export interface AppStateContextValue {
     state: AppState;
     header?: HeaderProps;
     dispatch: React.Dispatch<AppStateAction>;
-    pushHistory: (name: string, state: History) => void;
+    pushHistory: (name: string, data: unknown) => void;
     pushScreen: (name: string, params: unknown) => void;
     popScreen: () => void;
 }

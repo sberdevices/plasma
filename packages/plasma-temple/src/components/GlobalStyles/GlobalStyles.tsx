@@ -44,11 +44,11 @@ const charactersTheme: Record<AssistantCharacterType, React.ComponentType> = {
     sber: createGlobalStyle(darkSber),
 };
 
-interface GlogalStylesProps {
+interface GlobalStylesProps {
     character: AssistantCharacterType;
 }
 
-export const GlobalStyles: React.FC<GlogalStylesProps> = ({ character }) => {
+export const GlobalStyles: React.FC<GlobalStylesProps> = ({ character }) => {
     const Theme = React.useMemo(() => charactersTheme[character], [character]);
 
     return (

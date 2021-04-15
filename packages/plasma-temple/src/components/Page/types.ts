@@ -1,18 +1,22 @@
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 import { AssistantAppState, AssistantInstance } from '../../types';
 
-type PushScreenParams<Name extends string, Params extends Record<string, any>> = Name extends keyof Params
-    ? [Name, Params[Name]]
-    : [Name];
+export type AnyObject = Record<string, any>;
+
+type PushScreenParams<
+    PageStateType extends AnyObject,
+    Params extends Record<keyof PageStateType, unknown>,
+    Name extends keyof Params
+> = Name extends keyof Params ? [Name, Params[Name]] : [Name];
 
 export interface PageMethods<
-    State = unknown,
-    PageType extends string = string,
-    PageStateType extends Record<PageType, any> = any,
-    PageParamsType extends Partial<Record<PageType, any>> = any
+    State,
+    PageStateType extends AnyObject,
+    PageParamsType extends Partial<Record<keyof PageStateType, unknown>>,
+    PageType extends keyof PageStateType = keyof PageStateType
 > {
-    pushHistory: <T extends PageType>(name: T, history: PageStateType[T]) => void;
-    pushScreen: <T extends PageType>(...args: PushScreenParams<T, PageParamsType>) => void;
+    pushHistory: <T extends PageType>(name: T, data: PageStateType[T]) => void;
+    pushScreen: <T extends PageType>(...args: PushScreenParams<PageStateType, PageParamsType, T>) => void;
     popScreen: () => void;
     changeState: (data: State) => void;
     sendData: AssistantInstance['sendData'];
@@ -20,12 +24,11 @@ export interface PageMethods<
 }
 
 export type PageComponent<
-    Name extends PageType,
-    PageType extends string = string,
-    PageStateType extends Record<PageType, any> = any,
-    PageParamsType extends Partial<Record<PageType, any>> = any
+    PageStateType extends AnyObject,
+    Name extends keyof PageStateType,
+    PageParamsType extends Partial<Record<keyof PageStateType, unknown>> = Partial<Record<keyof PageStateType, any>>
 > = React.ComponentType<
-    PageMethods<PageStateType[Name], PageType, PageStateType, PageParamsType> & {
+    PageMethods<PageStateType[Name], PageStateType, PageParamsType> & {
         name: Name;
         state: PageStateType[Name];
         params: PageParamsType[Name];
