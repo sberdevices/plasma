@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import React from 'react';
 import { isSberBox } from '@sberdevices/plasma-ui/utils';
 import throttle from 'lodash.throttle';
+
 import { Axis } from '../types';
 
 type ShortKey = 'UP' | 'DOWN' | 'LEFT' | 'RIGHT' | 'OK';
@@ -23,11 +24,11 @@ interface UseRemoteListenerProps {
     disable?: boolean;
 }
 
-export const useRemoteListener = (cb: UseRemoteListenerCallback, params: UseRemoteListenerProps) => {
+export const useRemoteListener = (cb: UseRemoteListenerCallback, params: UseRemoteListenerProps): void => {
     const { keypressTimeMs = 150, disable = false } = params || {};
-    const keydown = useRef<number | null>(null);
+    const keydown = React.useRef<number | null>(null);
 
-    useEffect(() => {
+    React.useEffect(() => {
         const handleKeydown = (event: KeyboardEvent): void => {
             if (disable || navKeys.indexOf(event.key) === -1) {
                 return;
@@ -106,11 +107,12 @@ export function useRemoteHandlers({
     throttlingParams = throttlingParamsDefault,
     disable = false,
     repeat = true,
-}: UseRemoteHandlersProps) {
-    const indexState = useState(initialIndex);
+}: UseRemoteHandlersProps): [number, React.Dispatch<React.SetStateAction<number>>] {
+    const indexState = React.useState(initialIndex);
     const [currentIndex, setIndex] = indexState;
 
-    const step = useCallback(
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const step = React.useCallback(
         throttle(
             (cmd: '+' | '-') =>
                 setIndex((prevIndex) => {
@@ -126,7 +128,9 @@ export function useRemoteHandlers({
         ),
         [min, max],
     );
-    const jump = useCallback(
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const jump = React.useCallback(
         throttle(
             (cmd: '+' | '-') =>
                 setIndex((prevIndex) => {

@@ -2,9 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { VideoPlayer } from '../../components/VideoPlayer/VideoPlayer';
-import { VideoPageState } from './types';
 import { CustomMediaPlayerControlsProps } from '../../components/MediaPlayer';
 import { useInsets } from '../../hooks';
+import { useGetState } from '../../hooks/useGetState';
+
+import { VideoPageState } from './types';
 
 interface VideoPageProps {
     state: VideoPageState;
@@ -26,19 +28,22 @@ export const Video: React.FC<VideoPageProps> = ({ state, customControls, changeS
     const { src, title, startTime, endTime, poster } = videos[position];
 
     const insets = useInsets();
+
+    const getState = useGetState(state);
+
     const onNext = React.useCallback(() => {
         if (position < videos.length - 1) {
-            changeState({ ...state, position: position + 1 });
+            changeState({ ...getState(), position: position + 1 });
         }
-    }, [state, position]);
+    }, [position, videos.length, changeState, getState]);
 
     const onBack = React.useCallback(() => {
         if (position > 0) {
-            changeState({ ...state, position: position - 1 });
+            changeState({ ...getState(), position: position - 1 });
         } else {
             window.history.back();
         }
-    }, [state, position]);
+    }, [position, changeState, getState]);
 
     return (
         <StyledWrapper>

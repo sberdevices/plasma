@@ -1,8 +1,7 @@
 import React from 'react';
-
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
-import { Header } from '../../components/Header/Header';
 
+import { Header } from '../../components/Header/Header';
 import { useRegistry } from '../../hooks/useRegistry';
 import { useSpatNav } from '../../hooks/useSpatNav';
 import { useVoiceNavigationWithSpatNav } from '../../hooks/useVoiceNavigation';
@@ -54,6 +53,7 @@ export const ItemPage: React.FC<ItemPageProps> = ({ state, header, onItemShow })
 
     // Необходимо сбросить первоночально установленную точку, чтобы старт навигации был с сфокусированного элемента
     React.useEffect(() => {
+        // eslint-disable-next-line no-underscore-dangle
         window.__spatialNavigation__?.setStartingPoint();
     }, []);
 

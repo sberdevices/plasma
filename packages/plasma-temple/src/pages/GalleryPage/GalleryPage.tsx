@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import { Carousel, CarouselGridWrapper, CarouselItem, Container } from '@sberdevices/plasma-ui';
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 import { isSberPortal } from '@sberdevices/plasma-ui/utils';
 
+import { useRemoteHandlers } from '../../hooks/useRemoteHandlers';
+import { useGetState } from '../../hooks/useGetState';
+import { Header } from '../../components/Header/Header';
+
 import { Gallery } from './components/Gallery/Gallery';
 import { GalleryCardProps } from './components/GalleryCard/GalleryCard';
-import { Header } from '../../components/Header/Header';
-import { useRemoteHandlers } from '../../hooks/useRemoteHandlers';
-
 import { GalleryPageState } from './types';
 
 interface GalleryPageProps {
@@ -43,26 +43,32 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ state, header, changeS
         repeat: false,
     });
 
+    const getState = useGetState(state);
+
     React.useEffect(() => {
-        changeState({ ...state, activeGalleryIndex: galleryIndex });
-    }, [galleryIndex]);
+        const currentState = getState();
+        if (currentState.activeGalleryIndex !== galleryIndex) {
+            changeState({ ...currentState, activeGalleryIndex: galleryIndex });
+        }
+    }, [changeState, getState, galleryIndex]);
 
     const changeActiveCard = React.useCallback(
         (index: number) => {
-            if (!Array.isArray(gallery)) {
-                changeState({ ...state, gallery: { ...gallery, activeCardIndex: index } });
+            const currentState = getState();
+            if (!Array.isArray(currentState.gallery)) {
+                changeState({ ...currentState, gallery: { ...currentState.gallery, activeCardIndex: index } });
             } else {
                 changeState({
-                    ...state,
+                    ...currentState,
                     gallery: [
-                        ...gallery.slice(0, galleryIndex),
-                        { ...gallery[galleryIndex], activeCardIndex: index },
-                        ...gallery.slice(galleryIndex + 1),
+                        ...currentState.gallery.slice(0, galleryIndex),
+                        { ...currentState.gallery[galleryIndex], activeCardIndex: index },
+                        ...currentState.gallery.slice(galleryIndex + 1),
                     ],
                 });
             }
         },
-        [gallery, galleryIndex],
+        [changeState, galleryIndex, getState],
     );
 
     const detectActiveProps = React.useMemo(

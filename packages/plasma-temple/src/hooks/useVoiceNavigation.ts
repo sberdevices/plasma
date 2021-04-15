@@ -1,8 +1,10 @@
 import { useCallback } from 'react';
 import { isSberPortal } from '@sberdevices/plasma-ui/utils';
 import { AssistantNavigationCommand } from '@sberdevices/assistant-client';
-import { useAssistantOnNavigation } from './useAssistantOnNavigation';
+
 import { Axis } from '../types';
+
+import { useAssistantOnNavigation } from './useAssistantOnNavigation';
 
 const defaultStepSize = isSberPortal() ? 3 : 4;
 
@@ -26,7 +28,7 @@ export const useVoiceNavigation = ({
     disabled,
     axis,
     main,
-}: UseGalleryVoiceNavigationProps) => {
+}: UseGalleryVoiceNavigationProps): void => {
     const onNavigate = useCallback(
         (command: AssistantNavigationCommand) => {
             if (disabled) {
@@ -44,12 +46,12 @@ export const useVoiceNavigation = ({
                 setIndex(Math.max(minIndex, index - stepSize));
             }
         },
-        [axis, disabled, index, maxIndex, minIndex, setIndex, stepSize],
+        [axis, disabled, index, maxIndex, minIndex, setIndex, stepSize, main],
     );
     useAssistantOnNavigation(onNavigate);
 };
 
-export const useVoiceNavigationWithSpatNav = ({ axis, main }: { axis: Axis; main?: boolean }) => {
+export const useVoiceNavigationWithSpatNav = ({ axis, main }: { axis: Axis; main?: boolean }): void => {
     const onNavigate = useCallback(
         (command: AssistantNavigationCommand) => {
             const direction = command.navigation.command;
@@ -69,7 +71,6 @@ export const useVoiceNavigationWithSpatNav = ({ axis, main }: { axis: Axis; main
                         break;
                     }
                     default:
-                        return;
                 }
             } else {
                 switch (direction) {
@@ -86,7 +87,6 @@ export const useVoiceNavigationWithSpatNav = ({ axis, main }: { axis: Axis; main
                         break;
                     }
                     default:
-                        return;
                 }
             }
         },

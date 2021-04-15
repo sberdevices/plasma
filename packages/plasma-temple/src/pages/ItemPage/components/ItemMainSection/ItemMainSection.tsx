@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import { Cell, TextBox, TextBoxLabel, TextBoxTitle, Button } from '@sberdevices/plasma-ui';
 import { IconPlay } from '@sberdevices/plasma-icons/Icons/IconPlay';
 import { isSberBox } from '@sberdevices/plasma-ui/utils';
