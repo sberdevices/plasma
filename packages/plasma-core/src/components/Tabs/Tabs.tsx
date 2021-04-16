@@ -69,7 +69,7 @@ export interface TabItemProps extends React.LiHTMLAttributes<HTMLLIElement> {
      */
     isActive?: boolean;
     /**
-     * Слот для контента слева, например <Icon/>
+     * Слот для контента слева, например `Icon`
      */
     contentLeft?: React.ReactNode;
     onFocus?: React.FocusEventHandler<HTMLLIElement>;

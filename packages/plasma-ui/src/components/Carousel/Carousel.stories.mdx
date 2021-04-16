@@ -33,7 +33,7 @@ import { CarouselGridWrapper, Carousel, CarouselItem, CarouselCol } from '.';
 ```tsx
 // MyGallery.tsx
 import React from 'react';
-import { Carousel } from '@sberdevices/ui';
+import { Carousel } from '@sberdevices/plasma-ui';
 
 export const MyGallery = () = (
     <Carousel scrollSnapType="mandatory">
@@ -45,7 +45,7 @@ export const MyGallery = () = (
 ```tsx
 // MyGalleryItem.tsx
 import React from 'react';
-import { CarouselItem } from '@sberdevices/ui';
+import { CarouselItem } from '@sberdevices/plasma-ui';
 
 export const MyGalleryItem = ({ children }) => (
     <CarouselItem scrollSnapAlign="center">{children}</CarouselItem>
@@ -58,7 +58,7 @@ export const MyGalleryItem = ({ children }) => (
 ```tsx
 // MyGallery.tsx
 import React from 'react';
-import { Carousel } from '@sberdevices/ui';
+import { Carousel } from '@sberdevices/plasma-ui';
 
 export const MyGallery = () = (
     <Carousel detectActive detectThreshold={0.5} onIndexChange={(index) => console.log(index)}>
@@ -82,7 +82,7 @@ export const MyGallery = () = (
 ```tsx
 // MyGallery.tsx
 import React from 'react';
-import { Carousel } from '@sberdevices/ui';
+import { Carousel } from '@sberdevices/plasma-ui';
 
 /**
  * Функция увеличения центрального элемента.
@@ -119,7 +119,7 @@ export const MyGallery = () = (
 ```tsx
 // App.tsx
 import React from 'react';
-import { DeviceThemeProvider, CarouselGridWrapper, Carousel, CarouselCol } from '@sberdevices/ui';
+import { DeviceThemeProvider, CarouselGridWrapper, Carousel, CarouselCol } from '@sberdevices/plasma-ui';
 
 const items = [{ title: 'Item 1' }, { title: 'Item 2' }, { title: 'Item 3' }, { title: 'Item 4' }];
 

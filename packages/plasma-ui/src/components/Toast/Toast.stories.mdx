@@ -17,7 +17,7 @@ import { Toast } from '.';
 ```tsx
 // App.tsx
 import React from 'react';
-import { Toast } from '@sberdevices/ui';
+import { Toast } from '@sberdevices/plasma-ui';
 
 export const App = () => (
     <Toast text="Short Text Message Without Action" />
@@ -30,7 +30,7 @@ export const App = () => (
 ```jsx
 // App.tsx
 import React from 'react';
-import { ToastProvider } from '@sberdevices/ui';
+import { ToastProvider } from '@sberdevices/plasma-ui';
 
 export const App = () => (
     <ToastProvider>
@@ -44,7 +44,7 @@ export const App = () => (
 ```jsx
 // MyComponent.tsx
 import React from 'react'
-import { useToast, Button } from '@sberdevices/ui'
+import { useToast, Button } from '@sberdevices/plasma-ui'
 
 export const MyComponent = () => {
     const { showToast, hideToast } = useToast()
