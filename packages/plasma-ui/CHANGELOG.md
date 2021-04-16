@@ -1,3 +1,15 @@
+# v1.5.0 (Fri Apr 16 2021)
+
+#### 🚀 Enhancement
+
+- feat(core): made reexport in ui & web, added showcase for web [#308](https://github.com/sberdevices/plasma/pull/308) (VSProkopyev@sberbank.ru)
+
+#### Authors: 1
+
+- Viktor Prokopyev (VSProkopyev@sberbank.ru)
+
+---
+
 # v1.4.0 (Thu Apr 15 2021)
 
 #### 🚀 Enhancement

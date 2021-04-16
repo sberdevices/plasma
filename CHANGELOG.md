@@ -1,3 +1,28 @@
+# (Fri Apr 16 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/showcase@0.9.0`, `@sberdevices/plasma-core@1.3.0`, `@sberdevices/plasma-ui@1.5.0`, `@sberdevices/plasma-web@1.4.0`
+  - feat(core): made reexport in ui & web, added showcase for web [#308](https://github.com/sberdevices/plasma/pull/308) (VSProkopyev@sberbank.ru)
+- `@sberdevices/plasma-core@1.3.0`
+  - feat(core): added component badge in core [#308](https://github.com/sberdevices/plasma/pull/308) (VSProkopyev@sberbank.ru)
+
+#### 🐛 Bug Fix
+
+- Update CONTRIBUTING.md [#311](https://github.com/sberdevices/plasma/pull/311) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/showcase@0.9.0`
+  - docs(core): changed UIStoryDecorator for WebStoryDecorator [#308](https://github.com/sberdevices/plasma/pull/308) (VSProkopyev@sberbank.ru)
+  - docs: Showcase/Mobile/Cards added [#281](https://github.com/sberdevices/plasma/pull/281) ([@OgNellis](https://github.com/OgNellis))
+  - docs: Showcase/Device added [#281](https://github.com/sberdevices/plasma/pull/281) ([@OgNellis](https://github.com/OgNellis))
+
+#### Authors: 3
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+- Viktor Prokopyev (VSProkopyev@sberbank.ru)
+
+---
+
 # (Thu Apr 15 2021)
 
 #### 🚀 Enhancement

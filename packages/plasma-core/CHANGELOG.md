@@ -1,3 +1,16 @@
+# v1.3.0 (Fri Apr 16 2021)
+
+#### 🚀 Enhancement
+
+- feat(core): made reexport in ui & web, added showcase for web [#308](https://github.com/sberdevices/plasma/pull/308) (VSProkopyev@sberbank.ru)
+- feat(core): added component badge in core [#308](https://github.com/sberdevices/plasma/pull/308) (VSProkopyev@sberbank.ru)
+
+#### Authors: 1
+
+- Viktor Prokopyev (VSProkopyev@sberbank.ru)
+
+---
+
 # v1.2.0 (Thu Apr 15 2021)
 
 #### 🚀 Enhancement
