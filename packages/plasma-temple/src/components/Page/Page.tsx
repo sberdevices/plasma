@@ -5,12 +5,12 @@ import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 
 import { AppStateContext } from '../PlasmaApp/AppStateContext';
 import { changeActiveScreenState } from '../../store/actions';
-import { AssistantInstance } from '../../types';
+import { AnyObject, AssistantInstance } from '../../types';
 import { useAssistant } from '../../hooks/useAssistant';
 import { last } from '../../utils/last';
 import { INNER_ASSISTANT_ACTION } from '../../constants';
 
-import { AnyObject, PageComponent } from './types';
+import { PageComponent } from './types';
 
 export interface PageProps<Name extends string> {
     name: Name;
