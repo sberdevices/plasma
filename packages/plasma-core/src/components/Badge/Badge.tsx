@@ -1,19 +1,20 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { typography, scalingPixelBasis } from '@sberdevices/plasma-tokens';
-import { views } from '@sberdevices/plasma-core/mixins';
+
+import { caption } from '../../tokens/typography';
+import { views } from '../../mixins';
 
 /**
  * Размеры в ремах.
  */
 export const badgeSizes = {
     l: {
-        textMarginX: `${4 / scalingPixelBasis}rem`,
-        textMarginLeftAfterContent: `${4 / scalingPixelBasis}rem`,
+        textMarginX: '0.25rem',
+        textMarginLeftAfterContent: '0.25rem',
     },
     s: {
-        textMarginX: `${2 / scalingPixelBasis}rem`,
-        textMarginLeftAfterContent: `${2 / scalingPixelBasis}rem`,
+        textMarginX: '0.125rem',
+        textMarginLeftAfterContent: '0.125rem',
     },
 };
 
@@ -24,19 +25,19 @@ export const badgeViews = {
 
 export const badgeRootSizes = {
     l: {
-        height: `${24 / scalingPixelBasis}rem`,
-        padding: `${4 / scalingPixelBasis}rem`,
-        'min-width': `${24 / scalingPixelBasis}rem`,
-        'border-radius': `${12 / scalingPixelBasis}rem`,
-        'font-size': `${12 / scalingPixelBasis}rem`,
+        height: '1.5rem',
+        padding: '0.25rem',
+        'min-width': '1.5rem',
+        'border-radius': '0.75rem',
+        'font-size': '0.75rem',
     },
     s: {
-        height: `${16 / scalingPixelBasis}rem`,
-        padding: `${2 / scalingPixelBasis}rem`,
-        'min-width': `${16 / scalingPixelBasis}rem`,
-        'padding-left': `${4 / scalingPixelBasis}rem`,
-        'border-radius': `${8 / scalingPixelBasis}rem`,
-        'font-size': `${10 / scalingPixelBasis}rem`,
+        height: '1rem',
+        padding: '0.125rem',
+        'min-width': '1rem',
+        'padding-left': '0.25rem',
+        'border-radius': '0.5rem',
+        'font-size': '0.625rem',
     },
 };
 
@@ -64,7 +65,7 @@ interface StyledBadgeProps {
 }
 
 const StyledBadge = styled.div<StyledBadgeProps>`
-    ${typography.caption};
+    ${caption};
 
     display: flex;
     align-items: center;
