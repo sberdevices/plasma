@@ -4,14 +4,14 @@
 
 ## Commit step
 
-Мы используем conventional commits (https://www.conventionalcommits.org/). Description коммита должен быть на русском языке.
+Мы используем conventional commits (https://www.conventionalcommits.org/). Git commit message должен быть на английском языке.
 Изменения в коммите должны затрагивать только один пакет.
 Версионирование пакетов происходит автоматически, руками версию в `package.json` не поднимаем.
 
 Пример коммита в пакет plasma-ui:
 
 ```sh
-git commit -m "feat(ui): Добавлен новый компонент"
+git commit -m "feat(plasma-ui): Component X added"
 ```
 
 ## Pull request
@@ -26,4 +26,4 @@ git commit -m "feat(ui): Добавлен новый компонент"
 -   Поднята версия
 -   Собран `CHANGELOG.md` (+ общий для всего монорепозитория)
 -   Выпущена новая версия в npm-registry
--   Собран storybook для пакета ui (https://5f96ec813d800900227e3b93-eobodfvrnh.chromatic.com/)
+-   Собран storybook для пакета plasma-ui (https://5f96ec813d800900227e3b93-eobodfvrnh.chromatic.com/)
