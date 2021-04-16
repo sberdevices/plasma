@@ -4,19 +4,15 @@ import { InSpacingDecorator } from '../../helpers';
 
 import * as stories from './Button.stories';
 
-import { Button, ActionButton } from '.';
+import { Button } from '.';
 
 <Meta
     title="Controls/Button"
     component={Button}
-    subcomponents={{ ActionButton }}
     decorators={[InSpacingDecorator]}
 />
 
-# Кнопки
-Кнопки могут отображаться в нескольких размерах и цветах, могут содержать текст и/или иконку.
-
-## Button
+# Button
 <Description of={Button} />
 
 <Canvas>
@@ -26,15 +22,6 @@ import { Button, ActionButton } from '.';
 <!-- TODO: Убрать `blur` или сделать публичным -->
 <ArgsTable of={Button} exclude={["blur", "theme", "forwardedAs", "focused"]} />
 
-## ActionButton
-<Description of={ActionButton} />
-
-<Canvas>
-    <Story name="ActionButton" story={stories.Action_Button} />
-</Canvas>
-
-<!-- <ArgsTable of={ActionButton} exclude={["blur", "view", "forwardedAs", "focused", "outlined", "disabled", "shiftLeft", "shiftRight", "as", "scaleOnInteraction", "scaleOnHover", "scaleOnPress"]} /> -->
-
 ## Использование
 Компонент ``<Button>`` может содержать текст, который указывается в
 свойстве ``text``, или любой контент напрямую через ``children``.
@@ -43,26 +30,24 @@ import { Button, ActionButton } from '.';
 со свойствами ``contentLeft`` и ``contentRight``.
 Таким образом, можно помещать **иконку** слева или справа от текста.
 
-Компонент ``<ActionButton>`` принимает только ``children``.
-
 ```tsx
 // App.tsx
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 
-import { sberBox } from '@sberdevices/plasma-tokens/typo';
-import { darkSber } from '@sberdevices/plasma-tokens/themes';
+import { web } from '@sberdevices/plasma-tokens-web/typo';
+import { light } from '@sberdevices/plasma-tokens-web/themes';
 
 import { IconDownload } from '@sberdevices/plasma-icons';
-import { Button, ActionButton } from '@sberdevices/plasma-ui';
+import { Button } from '@sberdevices/plasma-web';
 
-const TypoScale = createGlobalStyle(sberBox);
-const Theme = createGlobalStyle(darkSber);
+const TypoScale = createGlobalStyle(web);
+const Theme = createGlobalStyle(light);
 
 export const App = () => (
     <>
         <TypoScale /> // Типографические константы
-        <Theme /> // Тема персонажа
+        <Theme /> // Цветовая тема
 
         <Button text="Текст" /> // Только текст
 
@@ -76,10 +61,6 @@ export const App = () => (
             <IconDownload />
             <span>Текст</span>
         </Button>
-
-        <ActionButton> // Контент в такую кнопку можно передать только так
-            <IconDownload />
-        </ActionButton>
     </>
 );
 ```
@@ -87,8 +68,6 @@ export const App = () => (
 ### Квадратные и круглые кнопки
 Для отображения иконок и/или текста в квадратных или круглых кнопках с **равными сторонами**,
 используйте компонент ``<Button>`` и свойство ``contentLeft``, передавая в него нужное содержимое.
-
-При использовании ``<ActionButton>`` указывайте контент через ``children``.
 
 **Круглыми** границы кнопки можно сделать, указав ``pin="circle-circle"``.
 **Квадратными** (со скругленными углами) границы кнопки являются по умолчанию — ``pin="square-square"``
@@ -98,21 +77,13 @@ export const App = () => (
 // App.tsx
 import React from 'react';
 import { IconDownload } from '@sberdevices/plasma-icons';
-import { Button, ActionButton } from '@sberdevices/plasma-ui';
+import { Button } from '@sberdevices/plasma-web';
 
 export const App = () => (
     <>
         <Button contentLeft={<IconDownload />} /> // Квадратная кнопка
 
         <Button contentLeft={<IconDownload />} pin="circle-circle" /> // Круглая кнопка
-
-        <ActionButton> // Квадратная кнопка
-            <IconDownload />
-        </ActionButton>
-
-        <ActionButton pin="circle-circle"> // Круглая кнопка
-            <IconDownload />
-        </ActionButton>
     </>
 );
 ```
@@ -122,7 +93,7 @@ export const App = () => (
 ```tsx
 // App.tsx
 import React from 'react';
-import { Button } from '@sberdevices/plasma-ui';
+import { Button } from '@sberdevices/plasma-web';
 
 export const App = () => (
     <>
@@ -137,14 +108,12 @@ export const App = () => (
 Вид кнопки изменяется с помощью свойства ``view``. Возможные значения свойства ``view``:
 * ``"primary"``
 * ``"secondary"``
-* ``"warning"``
 * ``"critical"``
-* ``"checked"``
 * ``"clear"``
 ```tsx
 // App.tsx
 import React from 'react';
-import { Button } from '@sberdevices/plasma-ui';
+import { Button } from '@sberdevices/plasma-web';
 
 export const App = () => (
     <>
@@ -163,7 +132,7 @@ export const App = () => (
 ```tsx
 // App.tsx
 import React from 'react';
-import { Button } from '@sberdevices/plasma-ui';
+import { Button } from '@sberdevices/plasma-web';
 
 export const App = () => (
     <>

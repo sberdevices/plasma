@@ -92,7 +92,8 @@ type ButtonSize = keyof typeof buttonSizes;
 export type ButtonProps = BaseProps & Partial<ViewProps<ButtonView> & SizeProps<ButtonSize>> & ButtonContentProps;
 
 /**
- * Основной компонент для создания кнопок.
+ * Кнопка.
+ * Поддерживает текстовое и контентное наполнение.
  */
 export const Button = styled(BaseButton)<ButtonProps>`
     && {

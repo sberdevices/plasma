@@ -1,16 +1,8 @@
 import React from 'react';
-import { text, number, select, boolean } from '@storybook/addon-knobs';
+import { text, number, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
-import { IconPlaceholder, InSpacingDecorator } from '../../helpers';
-
 import { Tabs, TabItem } from '.';
-
-export default {
-    title: 'Controls/Tabs',
-    component: Tabs,
-    decorators: [InSpacingDecorator],
-};
 
 export const Default = () => {
     const items = Array(number('Items', 4)).fill(0);

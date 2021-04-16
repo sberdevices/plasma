@@ -2,19 +2,13 @@ import React from 'react';
 import { select, boolean, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
-import { IconPlaceholder, InSpacingDecorator } from '../../helpers';
+import { IconPlaceholder } from '../../helpers';
 
 import { Button } from '.';
 
 const onClick = action('onClick');
 const onFocus = action('onFocus');
 const onBlur = action('onBlur');
-
-export default {
-    title: 'Controls/Button',
-    component: Button,
-    decorators: [InSpacingDecorator],
-};
 
 export const Default = () => {
     const views = ['primary', 'secondary', 'critical'];
