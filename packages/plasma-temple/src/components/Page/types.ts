@@ -1,8 +1,6 @@
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 
-import { AssistantAppState, AssistantInstance } from '../../types';
-
-export type AnyObject = Record<string, any>;
+import { AnyObject, AssistantAppState, AssistantInstance } from '../../types';
 
 export type PushScreenParams<
     PageStateType extends AnyObject,

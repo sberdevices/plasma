@@ -10,7 +10,8 @@ import { initialState as initialPlasmaAppState, reducer } from '../../store/redu
 import * as Actions from '../../store/actions';
 import { PageLayout } from '../PageLayout/PageLayout';
 import { last } from '../../utils/last';
-import { AnyObject, PushScreenParams } from '../Page/types';
+import { PushScreenParams } from '../Page/types';
+import { AnyObject } from '../../types';
 
 import { AssistantContext } from './AssistantContext';
 import { AppStateContext } from './AppStateContext';

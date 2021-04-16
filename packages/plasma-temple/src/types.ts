@@ -1,6 +1,9 @@
 import { AssistantNavigationCommand, AssistantSmartAppData, createAssistant } from '@sberdevices/assistant-client';
 import { Ratio } from '@sberdevices/plasma-ui';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AnyObject = Record<string, any>;
+
 export type PickOptional<S, K extends keyof S> = Partial<Pick<S, K>>;
 export type AspectRatio = Ratio;
 
