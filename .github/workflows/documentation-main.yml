@@ -39,12 +39,18 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Build documentation
+      - name: Prepare directory for documentation builds
+        run: mkdir ../build
+
+      - name: Build Plasma UI documentation
         run: |
-          cd ./packages/plasma-ui && npm run storybook:build:docs
-          cd ../../.
-          mkdir ../build
+          npm run storybook:build:docs --prefix="./packages/plasma-ui"
           cp -R ./packages/plasma-ui/build-sb-docs ../build/current-next
+
+      - name: Build Plasma Web documentation
+        run: |
+          npm run storybook:build:docs --prefix="./packages/plasma-web"
+          cp -R ./packages/plasma-web/build-sb-docs ../build/web-next
 
       - name: Upload documentation build
         uses: garygrossgarten/github-action-scp@release
@@ -65,4 +71,6 @@ jobs:
             cd ../../var/www/plasma
             rm -rf current/
             mv current-next current
+            rm -rf web/
+            mv web-next web
 
