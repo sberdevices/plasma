@@ -1,3 +1,15 @@
+# v1.5.1 (Sat Apr 17 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): fix detection Huawei TV [#312](https://github.com/sberdevices/plasma/pull/312) ([@OgNellis](https://github.com/OgNellis))
+
+#### Authors: 1
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+
+---
+
 # v1.5.0 (Fri Apr 16 2021)
 
 #### 🚀 Enhancement
