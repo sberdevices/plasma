@@ -27,3 +27,23 @@ git commit -m "feat(plasma-ui): Component X added"
 -   Собран `CHANGELOG.md` (+ общий для всего монорепозитория)
 -   Выпущена новая версия в npm-registry
 -   Собран storybook для пакета plasma-ui (https://5f96ec813d800900227e3b93-eobodfvrnh.chromatic.com/)
+
+## Запуск тестов со скриншотами
+
+В `packages/plasma-ui`:
+
+```sh
+npm run storybook
+```
+
+После этого в корне:
+
+```sh
+npm run cy:run
+```
+
+Принять изменения в скриншотах:
+
+```sh
+npm run cy:accept-diffs
+```

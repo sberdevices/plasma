@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "lib": ["esnext", "dom"],
+        "types": ["cypress", "@testing-library/cypress", "@types/cypress-image-snapshot"],
+        "typeRoots": ["./@types"],
+        "resolveJsonModule": true
+    },
+    "include": ["**/*.ts"]
+}

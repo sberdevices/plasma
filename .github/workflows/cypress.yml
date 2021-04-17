@@ -1,0 +1,33 @@
+name: Cypress
+
+on: push
+
+jobs:
+  cypress:
+    runs-on: ubuntu-latest
+    env:
+      NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
+    steps: 
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+
+    - name: Setup packages
+      run: |
+        npm i
+        npx lerna bootstrap
+
+    - name: Run Storybook
+      run: |
+        cd packages/plasma-ui
+        npm run storybook:build
+        cd ../..
+        npx http-server ./packages/plasma-ui/build-sb -p 6006 &
+    - name: Cypress run
+      uses: cypress-io/github-action@v2
+      with:
+        browser: chrome
+        config-file: cypress.json
