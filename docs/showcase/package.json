@@ -1,9 +1,7 @@
 {
     "name": "@sberdevices/showcase",
     "private": true,
-    "version": "0.9.1",
     "description": "SberDevices Design System Showcase",
-    "files": [],
     "repository": {
         "type": "git",
         "url": "ssh://git@github.com:sberdevices/plasma.git",
@@ -50,9 +48,5 @@
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
         "chromatic": "npx chromatic"
     },
-    "contributors": [
-        "Vasiliy Loginevskiy",
-        "Anton Vinogradov",
-        "Fanil Zubairov"
-    ]
+    "contributors": ["Vasiliy Loginevskiy", "Anton Vinogradov", "Fanil Zubairov"]
 }
