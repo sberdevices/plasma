@@ -35,7 +35,6 @@ export const badgeRootSizes = {
         height: '1rem',
         padding: '0.125rem',
         'min-width': '1rem',
-        'padding-left': '0.25rem',
         'border-radius': '0.5rem',
         'font-size': '0.625rem',
     },
