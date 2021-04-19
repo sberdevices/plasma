@@ -59,7 +59,7 @@ export type CarouselProps = React.HTMLAttributes<HTMLDivElement> &
         /**
          * Центрирование активного элемента при скролле
          */
-        scrollAlign?: 'start' | 'center';
+        scrollAlign?: 'start' | 'center' | 'end' | 'activeDirection';
         /**
          * Тип CSS Scroll Snap
          */
@@ -95,6 +95,40 @@ const calcOffset = (axis: Axis, scroll: Element, track: Element) => {
     return parseInt(getComputedStyle(scroll)[paddingProp], 10) + parseInt(getComputedStyle(track)[paddingProp], 10);
 };
 
+interface PositionModByScrollAlignProps {
+    scrollAlign: 'start' | 'center' | 'end' | 'activeDirection';
+    position: number;
+    carouselSize: number;
+    itemSize: number;
+    offset: number;
+    scrollStart: number;
+}
+
+const positionModByScrollAlign = ({
+    scrollAlign,
+    position,
+    carouselSize,
+    itemSize,
+    offset,
+    scrollStart,
+}: PositionModByScrollAlignProps) => {
+    if (scrollAlign === 'center') {
+        return position - carouselSize / 2 + itemSize / 2;
+    }
+    if (scrollAlign === 'end') {
+        return position - carouselSize + itemSize + offset;
+    }
+    if (scrollAlign === 'activeDirection') {
+        if (position >= scrollStart + carouselSize - itemSize) {
+            return position - carouselSize + itemSize + offset;
+        }
+        if (position > scrollStart) {
+            return scrollStart;
+        }
+    }
+    return position;
+};
+
 /**
  * Подсчет скролла до определенного индекса.
  */
@@ -104,33 +138,32 @@ const calcPos = (
     index: number,
     scroll: HTMLElement,
     items: React.MutableRefObject<HTMLElement | null>[],
-    scrollAlign: 'start' | 'center',
+    scrollAlign: 'start' | 'center' | 'end' | 'activeDirection',
 ) => {
-    let pos = scrollAlign === 'center' ? offset : 0;
+    let position = scrollAlign === 'center' ? offset : 0;
+    const scrollStart = axis === 'x' ? scroll.scrollLeft : scroll.scrollTop;
     let carouselSize;
     let itemSize;
 
     for (let i = 0; i < index; i++) {
         if (axis === 'x') {
-            pos += items[i].current?.offsetWidth || 0;
+            position += items[i].current?.offsetWidth || 0;
         } else {
-            pos += items[i].current?.offsetHeight || 0;
+            position += items[i].current?.offsetHeight || 0;
         }
     }
-
-    if (scrollAlign === 'center') {
-        if (axis === 'x') {
-            carouselSize = scroll.offsetWidth;
-            itemSize = items[index].current?.offsetWidth || 0;
-        } else {
-            carouselSize = scroll.offsetHeight;
-            itemSize = items[index].current?.offsetHeight || 0;
-        }
-
-        pos -= carouselSize / 2 - itemSize / 2;
+    if (scrollAlign === 'start') {
+        return position;
+    }
+    if (axis === 'x') {
+        carouselSize = scroll.offsetWidth;
+        itemSize = items[index].current?.offsetWidth || 0;
+    } else {
+        carouselSize = scroll.offsetHeight;
+        itemSize = items[index].current?.offsetHeight || 0;
     }
 
-    return pos;
+    return positionModByScrollAlign({ scrollAlign, position, carouselSize, itemSize, offset, scrollStart });
 };
 
 /**
@@ -213,6 +246,59 @@ export const StyledCarouselTrack = styled.div<PickOptional<CarouselProps, 'axis'
               `}
 `;
 
+interface GetItemSlotProps {
+    scrollAlign: string;
+    itemEdge: number;
+    prevIndex: React.MutableRefObject<number | null>;
+    offset: React.MutableRefObject<number>;
+    itemSize: number;
+    scrollPos: number;
+    scrollSize: number;
+    itemIndex: number;
+}
+
+const getItemSlot = ({
+    scrollAlign,
+    itemEdge,
+    prevIndex,
+    offset,
+    itemSize,
+    scrollPos,
+    scrollSize,
+    itemIndex,
+}: GetItemSlotProps) => {
+    /**
+     * Граница и центр скролла (видимой части).
+     * Смещение + размер.
+     */
+    const scrollEdge = scrollPos + scrollSize;
+    const scrollCenter = scrollPos + scrollSize / 2;
+
+    const itemCenter = itemEdge - itemSize / 2;
+    if (scrollAlign === 'center') {
+        return round((itemCenter - scrollCenter) / itemSize);
+    }
+    if (scrollAlign === 'start') {
+        return round((itemEdge - itemSize - scrollPos) / itemSize);
+    }
+    if (scrollAlign === 'end') {
+        return round((itemEdge - (scrollSize + scrollPos)) / itemSize);
+    }
+    if (scrollAlign === 'activeDirection') {
+        const prevIndexValue = prevIndex?.current || 0;
+        const prevEdge = offset.current + itemSize * prevIndexValue;
+        const prevEdgeEnd = prevEdge + itemSize;
+        const prevVisible = prevEdgeEnd > scrollPos && prevEdge < scrollEdge;
+        if (!prevVisible) {
+            if (prevIndexValue < itemIndex) {
+                return round((itemEdge - (scrollSize + scrollPos)) / itemSize);
+            }
+            return round((itemEdge - itemSize - scrollPos) / itemSize);
+        }
+    }
+    return null;
+};
+
 /**
  * Компонент для создания списков с прокруткой.
  */
@@ -278,11 +364,10 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
             const scrollSize = scrollRef.current[axis === 'x' ? 'offsetWidth' : 'offsetHeight'];
 
             /**
-             * Граница и центр скролла (видимой части).
+             * Граница скролла (видимой части).
              * Смещение + размер.
              */
             const scrollEdge = scrollPos + scrollSize;
-            const scrollCenter = scrollPos + scrollSize / 2;
 
             /**
              * Элементы перед, после и в видимой части.
@@ -296,7 +381,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
              * Проходим по всему списку, суммируя ширины элементов,
              * пока не найдем один элемент, чей центр будет в центре карусели.
              */
-            refs.items.forEach((itemRef, i) => {
+            refs.items.forEach((itemRef, itemIndex) => {
                 if (!itemRef.current) {
                     return;
                 }
@@ -332,25 +417,29 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
                     return;
                 }
 
-                const itemCenter = itemEdge - itemSize / 2;
-                let itemSlot;
+                const itemSlot = getItemSlot({
+                    scrollAlign,
+                    itemEdge,
+                    prevIndex,
+                    offset,
+                    itemSize,
+                    scrollPos,
+                    scrollSize,
+                    itemIndex,
+                });
 
-                if (scrollAlign === 'center') {
-                    itemSlot = round((itemCenter - scrollCenter) / itemSize);
-                } else {
-                    itemSlot = round((itemEdge - itemSize - scrollPos) / itemSize);
-                }
+                if (itemSlot) {
+                    if (detectThreshold && Math.abs(itemSlot) <= detectThreshold) {
+                        debouncedOnIndexChange(itemIndex);
+                    }
 
-                if (detectThreshold && Math.abs(itemSlot) <= detectThreshold) {
-                    debouncedOnIndexChange(i);
-                }
-
-                if (scaleCallback) {
-                    scaleCallback(itemRef.current, itemSlot);
-                    /**
-                     * Количество айтемов в видимой части.
-                     */
-                    count++;
+                    if (scaleCallback) {
+                        scaleCallback(itemRef.current, itemSlot);
+                        /**
+                         * Количество айтемов в видимой части.
+                         */
+                        count++;
+                    }
                 }
             });
 
