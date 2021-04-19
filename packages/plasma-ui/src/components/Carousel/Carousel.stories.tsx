@@ -40,7 +40,7 @@ export const Basic = () => {
     });
 
     const animatedScrollByIndex = boolean('animatedScrollByIndex', isSberbox);
-    const scrollAlign = select('scrollAlign', ['center', 'start'], 'start');
+    const scrollAlign = select('scrollAlign', ['center', 'start', 'end', 'activeDirection'], 'start');
     const scrollSnapType = !isSberbox ? select('scrollSnapType', snapTypes, 'mandatory') : undefined;
     const scrollSnapAlign = !isSberbox ? select('scrollSnapAlign', snapAlign, 'start') : undefined;
     const detectActive = boolean('detectActive', true) as true;
@@ -87,7 +87,7 @@ export const Vertical = () => {
     });
 
     const animatedScrollByIndex = boolean('animatedScrollByIndex', false);
-    const scrollAlign = select('scrollAlign', ['center', 'start'], 'center');
+    const scrollAlign = select('scrollAlign', ['center', 'start', 'end', 'activeDirection'], 'center');
     const scrollSnapType = select('scrollSnapType', snapTypes, 'mandatory');
     const scrollSnapAlign = select('scrollSnapAlign', snapAlign, 'center');
     const detectActive = boolean('detectActive', true) as true;
