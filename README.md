@@ -1,4 +1,4 @@
-# Plasma
+# Plasma test
 
 <p align="center">
   <img width="800" src="https://user-images.githubusercontent.com/1813468/98610527-d37ba500-2300-11eb-87c3-80cc1c08ecb4.png" alt="plasma" />
