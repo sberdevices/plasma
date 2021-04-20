@@ -1,3 +1,25 @@
+# v0.12.0 (Tue Apr 20 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): move AnyObject to common types [#38](https://github.com/sberdevices/pashka/pull/38) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-temple): fix eslint rules [#38](https://github.com/sberdevices/pashka/pull/38) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-temple): refactor types [#38](https://github.com/sberdevices/pashka/pull/38) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-template): Refactor API [#38](https://github.com/sberdevices/pashka/pull/38) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### 🐛 Bug Fix
+
+- Bump independent versions \[skip ci\] ([@LamaEats](https://github.com/LamaEats))
+- chore: update deps [#37](https://github.com/sberdevices/pashka/pull/37) ([@OgNellis](https://github.com/OgNellis))
+
+#### Authors: 3
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v0.11.1 (Wed Apr 07 2021)
 
 #### 🐛 Bug Fix
