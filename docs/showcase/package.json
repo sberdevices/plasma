@@ -1,7 +1,9 @@
 {
     "name": "@sberdevices/showcase",
     "private": true,
+    "version": "0.9.1",
     "description": "SberDevices Design System Showcase",
+    "files": [],
     "repository": {
         "type": "git",
         "url": "ssh://git@github.com:sberdevices/plasma.git",
