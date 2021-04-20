@@ -4,6 +4,7 @@ import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { sberBox as sberBoxTypo } from '@sberdevices/plasma-tokens/typo';
 import { darkSber } from '@sberdevices/plasma-tokens/themes';
+import { Container } from '@sberdevices/plasma-ui';
 
 const Typo = createGlobalStyle(sberBoxTypo);
 const Color = createGlobalStyle(darkSber);
@@ -12,7 +13,7 @@ const withGlobalStyles = (storyFn) => (
     <>
         <Typo />
         <Color />
-        {storyFn ? storyFn() : null}
+        <Container>{storyFn ? storyFn() : null}</Container>
     </>
 );
 
