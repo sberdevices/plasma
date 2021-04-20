@@ -7,16 +7,20 @@ import { isSberBox } from '../../utils';
 import { DatePicker as DatePickerComponent, TimePicker as TimePickerComponent } from '.';
 
 const now = new Date();
+const dateFromHumanized = (date: string) => {
+    const parsed = date.split('.').map(Number);
+    return new Date(parsed[2], parsed[1] - 1, parsed[0]);
+};
 
 export const DatePicker = () => {
-    const [value, setValue] = React.useState(new Date(number('year', 1980), number('month', 8), number('date', 1)));
+    const [value, setValue] = React.useState(dateFromHumanized(text('value', '01.09.1980')));
     const isSberbox = isSberBox();
 
     return (
         <DatePickerComponent
             value={value}
-            min={new Date(1975, 0, 1)}
-            max={new Date(1985, 12, 31)}
+            min={dateFromHumanized(text('min', '01.01.1975'))}
+            max={dateFromHumanized(text('max', '31.12.1985'))}
             size={select('size', ['l', 's'], 's')}
             visibleItems={select('visibleItems', [3, 5], 5)}
             options={{
