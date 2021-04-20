@@ -1,3 +1,25 @@
+# v1.6.0 (Tue Apr 20 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): TimePicker: values interval [#300](https://github.com/sberdevices/plasma/pull/300) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-ui): Date/TimePicker control by keyboard/remote [#300](https://github.com/sberdevices/plasma/pull/300) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-ui): TimePicker / DatePicker: l and s sizes for both components [#300](https://github.com/sberdevices/plasma/pull/300) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- docs(plasma-ui): remove docz [#304](https://github.com/sberdevices/plasma/pull/304) ([@OgNellis](https://github.com/OgNellis))
+- perf(plasma-ui): Picker: prevent form unnecessary onChange call [#300](https://github.com/sberdevices/plasma/pull/300) ([@fanisco](https://github.com/fanisco))
+- fix(plasma-ui): Picker disabled state [#300](https://github.com/sberdevices/plasma/pull/300) ([@fanisco](https://github.com/fanisco))
+- fix(plasma-ui): Date/TimePickers controls [#300](https://github.com/sberdevices/plasma/pull/300) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.5.2 (Tue Apr 20 2021)
 
 #### 🐛 Bug Fix

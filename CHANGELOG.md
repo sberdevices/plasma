@@ -1,5 +1,35 @@
 # (Tue Apr 20 2021)
 
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-ui@1.6.0`
+  - feat(plasma-ui): TimePicker: values interval [#300](https://github.com/sberdevices/plasma/pull/300) ([@fanisco](https://github.com/fanisco))
+  - feat(plasma-ui): Date/TimePicker control by keyboard/remote [#300](https://github.com/sberdevices/plasma/pull/300) ([@fanisco](https://github.com/fanisco))
+  - feat(plasma-ui): TimePicker / DatePicker: l and s sizes for both components [#300](https://github.com/sberdevices/plasma/pull/300) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-core@1.4.0`
+  - fix(plasma-core): Badge: fix padding for size s [#318](https://github.com/sberdevices/plasma/pull/318) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/showcase@0.10.0`
+  - chore(showcase): Continue publishing in case of no bump version issue [#318](https://github.com/sberdevices/plasma/pull/318) ([@fanisco](https://github.com/fanisco))
+  - docs(showcase): Pickers story [#300](https://github.com/sberdevices/plasma/pull/300) ([@fanisco](https://github.com/fanisco))
+  - chore(showcase): Update dependent versions [#300](https://github.com/sberdevices/plasma/pull/300) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-ui@1.6.0`
+  - docs(plasma-ui): remove docz [#304](https://github.com/sberdevices/plasma/pull/304) ([@OgNellis](https://github.com/OgNellis))
+  - perf(plasma-ui): Picker: prevent form unnecessary onChange call [#300](https://github.com/sberdevices/plasma/pull/300) ([@fanisco](https://github.com/fanisco))
+  - fix(plasma-ui): Picker disabled state [#300](https://github.com/sberdevices/plasma/pull/300) ([@fanisco](https://github.com/fanisco))
+  - fix(plasma-ui): Date/TimePickers controls [#300](https://github.com/sberdevices/plasma/pull/300) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Tue Apr 20 2021)
+
 #### 🐛 Bug Fix
 
 - `@sberdevices/plasma-ui@1.5.2`, `@sberdevices/plasma-web@1.4.1`

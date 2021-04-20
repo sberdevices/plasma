@@ -1,3 +1,15 @@
+# v1.4.0 (Tue Apr 20 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-core): Badge: fix padding for size s [#318](https://github.com/sberdevices/plasma/pull/318) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.3.0 (Fri Apr 16 2021)
 
 #### 🚀 Enhancement
