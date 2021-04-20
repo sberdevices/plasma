@@ -25,3 +25,4 @@ jobs:
           script: |
             cd ../../var/www/plasma
             rm -rf $PR_NAME/
+            rm -rf web-$PR_NAME/

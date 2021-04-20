@@ -1,0 +1,27 @@
+import { Meta, Props, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+import { Icon } from '@sberdevices/plasma-icons'
+
+import { Tabs, TabItem } from './Tabs.tsx';
+import * as stories from './Tabs.stories.tsx';
+
+<Meta title="Controls/Tabs" />
+
+# Tabs
+Набор компонентов для создания вкладок.
+Структура для вкладок похожа на структуру маркированных списков, которые создаются с помощью HTML-тегов ``ul`` и ``li``.
+
+<Canvas>
+    <Story name="Default" story={stories.Default} />
+</Canvas>
+
+## Tabs
+Основной компонент, контейнер вкладок.
+
+### Props
+<Props of={Tabs} />
+
+## TabItem
+Элемент списка. Нельзя использовать вне компонента ``Tabs``.
+
+### Props
+<Props of={TabItem} />

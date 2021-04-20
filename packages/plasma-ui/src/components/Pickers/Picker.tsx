@@ -1,9 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { primary, scalingPixelBasis } from '@sberdevices/plasma-tokens';
+import { primary } from '@sberdevices/plasma-tokens';
 import { IconChevronUp, IconChevronDown } from '@sberdevices/plasma-icons';
 import { applyDisabled, DisabledProps } from '@sberdevices/plasma-core/mixins';
 
+import { useRemoteListener } from '../../hooks';
 import { Button } from '../Button';
 import { Carousel } from '../Carousel';
 
@@ -14,19 +15,26 @@ import {
     scaleCallbackS,
     scaleCallbackL,
     scaleResetCallback,
+    StyledPickerItem,
     StyledWhiteText,
 } from './PickerItem';
 
 const StyledDivButton = styled.div`
-    height: auto;
-    padding: 0;
-    opacity: 0;
-    color: ${primary};
+    && {
+        height: auto;
+        padding: 0;
+        opacity: 0;
+        color: ${primary};
+    }
 `;
 
 const StyledWrapper = styled.div<DisabledProps>`
     width: max-content;
     text-align: center;
+
+    & + & {
+        margin-left: 1rem;
+    }
 
     &:focus {
         outline: 0 none;
@@ -41,32 +49,40 @@ const StyledWrapper = styled.div<DisabledProps>`
     }
 
     ${applyDisabled}
+
+    ${({ disabled }) =>
+        disabled &&
+        css`
+            ${StyledPickerItem} {
+                cursor: not-allowed;
+            }
+        `}
 `;
 
 const sizes = {
     l: {
         3: {
-            height: `${200 / scalingPixelBasis}rem`,
-            padding: `${100 / scalingPixelBasis}rem`,
+            height: '12.5rem',
+            padding: '6.25rem',
         },
         5: {
-            height: '0',
-            padding: '0',
+            height: '12.5rem',
+            padding: '6.25rem',
         },
     },
     s: {
         3: {
-            height: `${112 / scalingPixelBasis}rem`,
-            padding: `${56 / scalingPixelBasis}rem`,
+            height: '7rem',
+            padding: '3.5rem',
         },
         5: {
-            height: `${168 / scalingPixelBasis}rem`,
-            padding: `${84 / scalingPixelBasis}rem`,
+            height: '10.5rem',
+            padding: '5.25rem',
         },
     },
 };
 
-interface StyledCarouselProps {
+interface StyledCarouselProps extends DisabledProps {
     visibleItems: 3 | 5;
     $size: 'l' | 's';
 }
@@ -75,6 +91,12 @@ const StyledCarousel = styled(Carousel)<StyledCarouselProps>`
     ${({ $size, visibleItems }) => css`
         height: ${sizes[$size][visibleItems].height};
     `};
+
+    ${({ disabled }) =>
+        disabled &&
+        css`
+            overflow: hidden;
+        `}
 
     -webkit-mask-image: linear-gradient(rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 10%, rgb(0, 0, 0) 90%, rgba(0, 0, 0, 0) 100%);
 `;
@@ -108,9 +130,13 @@ export interface PickerProps extends SizeProps, DisabledProps, Omit<React.HTMLAt
      */
     onChange?: (value: Item) => void;
     /**
-     * Компонент в фокусе
+     * Компонент в фокусе (визуально, независимо от tabIndex)
      */
     focused?: boolean;
+    /**
+     * Автофокус на компоненте.
+     */
+    autofocus?: boolean;
 }
 
 export const Picker: React.FC<PickerProps> = ({
@@ -118,40 +144,85 @@ export const Picker: React.FC<PickerProps> = ({
     value,
     items,
     controls,
+    autofocus,
     disabled,
-    onChange,
     visibleItems = 5,
+    tabIndex = 0,
+    onChange,
     ...rest
 }) => {
     const min = 0;
     const max = items.length - 1;
     const index = items.findIndex((item) => item.value === value);
-    const toPrev = React.useCallback(() => onChange?.(items[getIndex(index, '-', min, max)]), [index, min, max]);
-    const toNext = React.useCallback(() => onChange?.(items[getIndex(index, '+', min, max)]), [index, min, max]);
+    const ref = React.useRef<HTMLDivElement | null>(null);
+    const toPrev = React.useCallback(() => !disabled && onChange?.(items[getIndex(index, '-', min, max)]), [
+        index,
+        min,
+        max,
+    ]);
+    const toNext = React.useCallback(() => !disabled && onChange?.(items[getIndex(index, '+', min, max)]), [
+        index,
+        min,
+        max,
+    ]);
+
+    // Навигация с помощью пульта/клавиатуры
+    // Не перелистывает, если компонент неактивен
+    useRemoteListener((key, event) => {
+        if (ref.current !== document.activeElement) {
+            return;
+        }
+        if (key !== 'UP' && key !== 'DOWN') {
+            return;
+        }
+        event.preventDefault();
+        switch (key) {
+            case 'UP':
+                toPrev();
+                break;
+            case 'DOWN':
+                toNext();
+                break;
+            default:
+                break;
+        }
+    });
+
+    React.useEffect(() => {
+        if (autofocus && ref.current) {
+            ref.current.focus();
+        }
+    }, []);
 
     return (
-        <StyledWrapper disabled={disabled} tabIndex={0} {...rest}>
+        <StyledWrapper ref={ref} disabled={disabled} tabIndex={tabIndex} {...rest}>
             {controls && (
                 <Button
-                    as={StyledDivButton}
+                    forwardedAs={StyledDivButton}
                     view="clear"
+                    disabled={disabled}
                     outlined={false}
-                    contentLeft={<IconChevronUp />}
+                    contentLeft={<IconChevronUp size="s" />}
                     onClick={toPrev}
                 />
             )}
             <StyledCarousel
                 $size={size}
                 visibleItems={visibleItems}
+                disabled={disabled}
                 axis="y"
                 index={index}
                 scaleCallback={size === 's' ? scaleCallbackS : scaleCallbackL}
                 scaleResetCallback={scaleResetCallback}
                 animatedScrollByIndex={controls}
                 scrollSnapType="mandatory"
-                detectActive={!controls}
+                detectActive
                 detectThreshold={0.5}
-                onIndexChange={(i) => onChange?.(items[i])}
+                onIndexChange={(i) => {
+                    if (items[i] && items[i].value !== value) {
+                        onChange?.(items[i]);
+                    }
+                }}
                 paddingStart={sizes[size][visibleItems].padding}
                 paddingEnd={sizes[size][visibleItems].padding}
             >
@@ -161,10 +232,11 @@ export const Picker: React.FC<PickerProps> = ({
             </StyledCarousel>
             {controls && (
                 <Button
-                    as={StyledDivButton}
+                    forwardedAs={StyledDivButton}
                     view="clear"
+                    disabled={disabled}
                     outlined={false}
-                    contentLeft={<IconChevronDown />}
+                    contentLeft={<IconChevronDown size="s" />}
                     onClick={toNext}
                 />
             )}

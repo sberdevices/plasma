@@ -31,6 +31,9 @@ interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
     color?: 'white';
 }
 
+/**
+ * Компонент для отображения индикатора загрузки.
+ */
 export const Spinner: React.FC<SpinnerProps> = ({ size = 56, color, ...rest }) => {
     return (
         <StyledRoot $size={size} {...rest}>
