@@ -1,3 +1,20 @@
+# (Tue Apr 20 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-ui@1.5.2`, `@sberdevices/plasma-web@1.4.1`
+  - fix(plasma-ui, plasma-web): Badge: correct reexport & const creation [#313](https://github.com/sberdevices/plasma/pull/313) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-web@1.4.1`
+  - ci: Deploy documentation for plasma-web [#313](https://github.com/sberdevices/plasma/pull/313) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/showcase@null`
+  - ci: Prevent showcase from publishing [#316](https://github.com/sberdevices/plasma/pull/316) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Sat Apr 17 2021)
 
 #### 🐛 Bug Fix

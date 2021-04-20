@@ -1,3 +1,16 @@
+# v1.4.1 (Tue Apr 20 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui, plasma-web): Badge: correct reexport & const creation [#313](https://github.com/sberdevices/plasma/pull/313) ([@fanisco](https://github.com/fanisco))
+- ci: Deploy documentation for plasma-web [#313](https://github.com/sberdevices/plasma/pull/313) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.4.0 (Fri Apr 16 2021)
 
 #### 🚀 Enhancement
