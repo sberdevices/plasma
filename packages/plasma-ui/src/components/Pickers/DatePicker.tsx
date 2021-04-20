@@ -147,15 +147,15 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     const onDayChange = React.useCallback(({ value: d }) => setState(([y, m]) => [y, m, d]), []);
     /* eslint-enable @typescript-eslint/no-unused-vars */
 
+    /**
+     * При очередном прогоне, если значения year, month, day изменились,
+     * необходимо вызвать событие изменения, создав новый экземпляр Date
+     */
     React.useLayoutEffect(() => {
-        const [y, m, d] = getValues(value);
-        if (y !== year || m !== month || d !== day) {
-            const newValue = new Date(value);
-            newValue.setFullYear(year);
-            newValue.setMonth(month);
-            newValue.setDate(day);
-
-            onChange?.(newValue);
+        const [oldYear, oldMonth, oldDay] = getValues(value);
+        const isChanged = oldYear !== year || oldMonth !== month || oldDay !== day;
+        if (onChange && isChanged) {
+            onChange(new Date(year, month, day));
         }
     }, [year, month, day]);
 
