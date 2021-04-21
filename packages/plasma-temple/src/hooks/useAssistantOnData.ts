@@ -9,10 +9,6 @@ export const useAssistantOnData = <T extends AssistantSmartAppData = AssistantSm
     const { assistant } = useAssistant();
 
     React.useEffect(() => {
-        if (!assistant) {
-            return;
-        }
-
         const removeListener = assistant.on(
             'data',
             onData as (command: AssistantClientCustomizedCommand<AssistantSmartAppData>) => void,
