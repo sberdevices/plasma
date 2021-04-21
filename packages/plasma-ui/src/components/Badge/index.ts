@@ -1,4 +1,5 @@
-export { badgeSizes, badgeRootSizes, badgeViews } from '@sberdevices/plasma-core/components/Badge';
-export type { BadgeProps, BadgeSize, BadgeView } from '@sberdevices/plasma-core/components/Badge';
+export { badgeSizes } from '@sberdevices/plasma-core/components/Badge';
+export type { BadgeSize } from '@sberdevices/plasma-core/components/Badge';
 
-export { Badge } from './Badge';
+export { Badge, badgeViews } from './Badge';
+export type { BadgeProps, BadgeView } from './Badge';
