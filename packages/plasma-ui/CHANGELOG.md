@@ -1,3 +1,15 @@
+# v1.6.2 (Wed Apr 21 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): DatePicker: fix 30-31 february [#322](https://github.com/sberdevices/plasma/pull/322) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.6.1 (Wed Apr 21 2021)
 
 #### 🐛 Bug Fix

@@ -2,6 +2,19 @@
 
 #### 🐛 Bug Fix
 
+- `@sberdevices/plasma-ui@1.6.2`
+  - fix(plasma-ui): DatePicker: fix 30-31 february [#322](https://github.com/sberdevices/plasma/pull/322) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Wed Apr 21 2021)
+
+#### 🐛 Bug Fix
+
 - `@sberdevices/plasma-ui@1.6.1`
   - fix(plasma-ui): update @storybook/react version [#323](https://github.com/sberdevices/plasma/pull/323) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
 
