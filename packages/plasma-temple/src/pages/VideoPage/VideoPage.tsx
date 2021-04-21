@@ -1,17 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { VideoPlayer } from '../../components/VideoPlayer/VideoPlayer';
+import { VideoPlayer, VideoPlayerProps } from '../../components/VideoPlayer/VideoPlayer';
 import { CustomMediaPlayerControlsProps } from '../../components/MediaPlayer';
 import { useInsets } from '../../hooks';
 import { useGetState } from '../../hooks/useGetState';
+import { AnyObject } from '../../types';
 
 import { VideoPageState } from './types';
 
-interface VideoPageProps {
-    state: VideoPageState;
+interface VideoPageProps<T extends AnyObject = AnyObject>
+    extends Pick<VideoPlayerProps, 'autoPlay' | 'alwaysShowControls' | 'visibleControlList'> {
+    state: VideoPageState<T>;
     customControls?: React.ComponentType<CustomMediaPlayerControlsProps<HTMLVideoElement>>;
-    changeState: (state: VideoPageState) => void;
+    children?: (props: CustomMediaPlayerControlsProps<HTMLVideoElement>) => React.ReactElement;
+    changeState: (state: VideoPageState<T>) => void;
 }
 
 export const StyledWrapper = styled.div`
@@ -22,8 +25,16 @@ export const StyledWrapper = styled.div`
     left: 50%;
 `;
 
-export const Video: React.FC<VideoPageProps> = ({ state, customControls, changeState }) => {
-    const { items, autoPlay, visibleControlList, alwaysShowControls, position } = state;
+export function VideoPage<T extends AnyObject = AnyObject>({
+    state,
+    customControls,
+    autoPlay,
+    visibleControlList,
+    alwaysShowControls,
+    children,
+    changeState,
+}: VideoPageProps<T>): React.ReactElement {
+    const { items, position } = state;
     const videos = Array.isArray(items) ? items : [items];
     const { src, title, startTime, endTime, poster } = videos[position];
 
@@ -61,9 +72,11 @@ export const Video: React.FC<VideoPageProps> = ({ state, customControls, changeS
                 nextDisabled={position === videos.length - 1}
                 insets={insets}
                 customControls={customControls}
-            />
+            >
+                {children}
+            </VideoPlayer>
         </StyledWrapper>
     );
-};
+}
 
-export default Video;
+export default VideoPage;
