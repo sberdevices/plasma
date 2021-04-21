@@ -2,7 +2,6 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 import { caption } from '../../tokens/typography';
-import { views } from '../../mixins';
 
 /**
  * Размеры в ремах.
@@ -18,25 +17,20 @@ export const badgeSizes = {
     },
 };
 
-export const badgeViews = {
-    primary: views.primary,
-    secondary: views.overlay,
-};
-
 export const badgeRootSizes = {
     l: {
         height: '1.5rem',
         padding: '0.25rem',
-        'min-width': '1.5rem',
-        'border-radius': '0.75rem',
-        'font-size': '0.75rem',
+        minWidth: '1.5rem',
+        borderRadius: '0.75rem',
+        fontSize: '0.75rem',
     },
     s: {
         height: '1rem',
         padding: '0.125rem',
-        'min-width': '1rem',
-        'border-radius': '0.5rem',
-        'font-size': '0.625rem',
+        minWidth: '1rem',
+        borderRadius: '0.5rem',
+        fontSize: '0.625rem',
     },
 };
 
@@ -46,17 +40,12 @@ const StyledContent = styled.div`
 `;
 
 export type BadgeSize = keyof typeof badgeSizes;
-export type BadgeView = keyof typeof badgeViews;
 
 interface StyledBadgeProps {
     /**
      * Размер компонента
      */
     size: BadgeSize;
-    /**
-     * Вид компонента
-     */
-    view?: BadgeView;
     /**
      * Компонент примет форму круга с соотношением сторон 1x1
      */
@@ -73,14 +62,12 @@ const StyledBadge = styled.div<StyledBadgeProps>`
 
     width: max-content;
 
-    ${({ view }) => badgeViews[view!]};
-
     ${({ size, circled }) => css`
         ${badgeRootSizes[size]};
         ${
             circled &&
             css`
-                width: ${badgeRootSizes[size]['min-width']};
+                width: ${badgeRootSizes[size].minWidth};
                 padding-left: 0;
                 padding-right: 0;
             `
@@ -112,8 +99,8 @@ export interface BadgeProps extends StyledBadgeProps, React.HTMLAttributes<HTMLD
  * Небольшая бирка для ячеек и карточек.
  * Компонент может отображаться в нескольких размерах и цветах, может содержать текст и/или иконку.
  */
-export const Badge: React.FC<BadgeProps> = ({ size = 'l', view = 'primary', text, contentLeft, ...rest }) => (
-    <StyledBadge size={size} view={view} {...rest}>
+export const Badge: React.FC<BadgeProps> = ({ size = 'l', text, contentLeft, ...rest }) => (
+    <StyledBadge size={size} {...rest}>
         {contentLeft && <StyledContent>{contentLeft}</StyledContent>}
         {text && <StyledText>{text}</StyledText>}
     </StyledBadge>
