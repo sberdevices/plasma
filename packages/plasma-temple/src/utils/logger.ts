@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export const logger = <T>(title: string, data: T, color = '#2AC673'): void => {
     if (process.env.NODE_ENV === 'development') {
@@ -22,6 +22,6 @@ export const reducerLogger = <S, A>(reducer: React.Reducer<S, A>): React.Reducer
 
         return nextState;
     }
-    
+
     return reducer(state, action);
-}
+};
