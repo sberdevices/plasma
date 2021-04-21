@@ -4,4 +4,4 @@ export function isNonNullableValue<T>(value: T, deep = false): value is NonNulla
     }
 
     return Object.values(value).every((v) => v != null);
-};
+}

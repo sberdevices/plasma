@@ -15,7 +15,7 @@ export default {
     title: 'AssistantActionConfirm',
 };
 
-export const SingleSuggestWithDescription = () => (
+export const SingleSuggestWithDescription: React.FC = () => (
     <AssistantActionConfirmWrapper>
         <AssistantActionConfirmLabel>Имя</AssistantActionConfirmLabel>
         <AssistantActionConfirmResult>Inav</AssistantActionConfirmResult>
@@ -31,7 +31,7 @@ export const SingleSuggestWithDescription = () => (
     </AssistantActionConfirmWrapper>
 );
 
-export const SingleSuggestWithoutDescription = () => (
+export const SingleSuggestWithoutDescription: React.FC = () => (
     <AssistantActionConfirmWrapper>
         <AssistantActionConfirmLabel>Номер паспорта РФ</AssistantActionConfirmLabel>
         <AssistantActionConfirmResult>6111 456788</AssistantActionConfirmResult>
@@ -43,7 +43,7 @@ export const SingleSuggestWithoutDescription = () => (
     </AssistantActionConfirmWrapper>
 );
 
-export const MultipleSuggestsWithRejection = () => (
+export const MultipleSuggestsWithRejection: React.FC = () => (
     <AssistantActionConfirmWrapper>
         <AssistantActionConfirmTitle>Выберите имя</AssistantActionConfirmTitle>
         <AssistantActionConfirmDescription>
@@ -58,16 +58,13 @@ export const MultipleSuggestsWithRejection = () => (
     </AssistantActionConfirmWrapper>
 );
 
-export const MultipleSuggestsWithoutRejection = () => (
+export const MultipleSuggestsWithoutRejection: React.FC = () => (
     <AssistantActionConfirmWrapper>
         <AssistantActionConfirmTitle>Выберите имя</AssistantActionConfirmTitle>
         <AssistantActionConfirmDescription>
             Для покупки авиабилета по загранпаспорту РФ фамилия должна полностью соответствовать тому, что написано в
             документе. Для покупки по паспорту РФ — в произвольной форме латинскими буквами.
         </AssistantActionConfirmDescription>
-        <AssistantActionConfirmResults
-            onConfirm={action('onConfirm')}
-            suggests={['Аnastasiia', 'Аnastasiya']}
-        />
+        <AssistantActionConfirmResults onConfirm={action('onConfirm')} suggests={['Аnastasiia', 'Аnastasiya']} />
     </AssistantActionConfirmWrapper>
 );

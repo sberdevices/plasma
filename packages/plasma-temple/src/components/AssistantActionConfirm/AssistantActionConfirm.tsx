@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Body1, Display3, Footnote1, Headline1, Button, Carousel, CarouselItem } from '@sberdevices/plasma-ui';
 import { primary, secondary } from '@sberdevices/plasma-tokens';
@@ -71,7 +71,7 @@ const StyledControlsWrapper = styled.div`
     margin-top: 64px;
 `;
 
-const StyledButton = styled(Button) <{ wide?: boolean; }>`
+const StyledButton = styled(Button)<{ wide?: boolean }>`
     ${({ wide }) => {
         if (wide) {
             return {
@@ -101,7 +101,7 @@ export function AssistantActionConfirmControls<T>({
     confirmText = 'Да, всё верно',
     rejectText = 'Нет, ввести другой',
     confirmDisable,
-}: Exclude<AssistantActionConfirmControlsProps<T>, "canRejected">) {
+}: Exclude<AssistantActionConfirmControlsProps<T>, 'canRejected'>) {
     const mountRef = React.useRef<HTMLButtonElement>(null);
 
     useFocusOnMount<HTMLButtonElement>(mountRef, {
@@ -131,11 +131,7 @@ const StyledItem = styled(CarouselItem)`
 `;
 
 const SelectItem: React.FC = ({ children, ...props }) => {
-    return (
-        <StyledItem {...props}>
-            {children}
-        </StyledItem>
-    );
+    return <StyledItem {...props}>{children}</StyledItem>;
 };
 
 export function AssistantActionConfirmResults<T>({
@@ -144,17 +140,11 @@ export function AssistantActionConfirmResults<T>({
     onReject,
     labelFormatter,
 }: AssistantActionConfirmResultsProps<T>) {
-    const items = useMemo(() => suggests, [suggests]);
+    const [selectedIndex, setSelectedIndex] = React.useState(0);
     const mountRef = React.useRef<HTMLButtonElement>(null);
-    
-    const [selectedIndex, setSelectedIndex] = useState(0);
 
-    useFocusOnMount<HTMLButtonElement>(mountRef, {
-        delay: 250,
-    });
-
-    const itemsToRender = useMemo(() => {
-        const list = items.map((item) => ({
+    const itemsToRender = React.useMemo(() => {
+        const list = suggests.map((item) => ({
             label: labelFormatter?.(item) ?? String(item),
             onClick: () => onConfirm(item),
         }));
@@ -167,7 +157,11 @@ export function AssistantActionConfirmResults<T>({
         }
 
         return list;
-    }, [items, onConfirm, onReject, labelFormatter]);
+    }, [suggests, onConfirm, onReject, labelFormatter]);
+
+    useFocusOnMount<HTMLButtonElement>(mountRef, {
+        delay: 250,
+    });
 
     return (
         <StyledList axis="y" index={selectedIndex}>
