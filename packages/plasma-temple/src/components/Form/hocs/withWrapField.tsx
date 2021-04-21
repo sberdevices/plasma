@@ -14,22 +14,15 @@ import type { ValidityStateKeys, FieldPropsWithRef, FieldProps } from '../types'
 /**
  * Хок для унификации работы с полями ввода и их валидации
  */
-export function withWrapField<V, P extends React.PropsWithChildren<{}> = {}>(
+export function withWrapField<V, P extends React.PropsWithChildren<Record<string, unknown>> = Record<string, unknown>>(
     Component: React.ComponentType<FieldPropsWithRef<V, P> & P>,
-    type: FieldComponentProps['type'] = 'text'
+    type: FieldComponentProps['type'] = 'text',
 ): React.FC<FieldProps<V> & P> {
-    const component: React.FC<FieldProps<V> & P> = ({
-        label,
-        onSubmit,
-        onChange,
-        validationMessages,
-        customValidate,
-        description,
-        ...props
-    }) => {
-        const [errors, setErrors] = React.useState<ValidityStateKeys[]>([]);
+    return ({ label, onSubmit, onChange, validationMessages, customValidate, description, value, ...props }) => {
+        const [errors, setErrors] = React.useState<ValidityStateKeys[]>(() => []);
 
         const fieldRef = React.useRef<HTMLInputElement>(null);
+
         useFocusOnMount(fieldRef, {
             delay: 250,
         });
@@ -69,18 +62,34 @@ export function withWrapField<V, P extends React.PropsWithChildren<{}> = {}>(
 
                 onChange(val);
             },
-            [fieldRef, onChange]
+            [fieldRef, onChange],
         );
+
+        const validateInput: () => string | boolean = React.useCallback(() => {
+            if (fieldRef.current != null) {
+                const field = fieldRef.current;
+
+                if (!customValidate?.(value)) {
+                    return validationMessages?.typeMismatch ?? '';
+                }
+
+                return field.validity.valid;
+            }
+
+            return true;
+        }, [customValidate, validationMessages?.typeMismatch, value]);
 
         const onSubmitCallback = React.useCallback(() => {
             if (fieldRef.current != null) {
                 const field = fieldRef.current;
 
-                if (!customValidate?.(props.value)) {
-                    field.setCustomValidity(validationMessages?.typeMismatch || '');
+                const res = validateInput();
+
+                if (typeof res === 'string') {
+                    field.setCustomValidity(res);
                 }
 
-                if (field.validity.valid) {
+                if (typeof res === 'boolean' && res) {
                     onSubmit();
 
                     return;
@@ -90,12 +99,12 @@ export function withWrapField<V, P extends React.PropsWithChildren<{}> = {}>(
             } else {
                 onSubmit();
             }
-        }, [fieldRef, customValidate, props.value, checkValidityField, validationMessages, onSubmit]);
+        }, [validateInput, checkValidityField, onSubmit]);
 
         const comp = React.useMemo(
             () => (
                 <Component
-                    {...props as unknown as FieldPropsWithRef<V, P> & P}
+                    {...((props as unknown) as FieldPropsWithRef<V, P> & P)}
                     label={label}
                     innerRef={fieldRef}
                     onSubmit={onSubmitCallback}
@@ -104,7 +113,7 @@ export function withWrapField<V, P extends React.PropsWithChildren<{}> = {}>(
                     checkInput={checkValidityField}
                 />
             ),
-            [props, onSubmitCallback, onChangeHandler, validationMessages, checkValidityField],
+            [props, label, onSubmitCallback, onChangeHandler, validationMessages, checkValidityField],
         );
 
         const errorComp = React.useMemo(
@@ -124,8 +133,4 @@ export function withWrapField<V, P extends React.PropsWithChildren<{}> = {}>(
             </FieldWrapper>
         );
     };
-
-    component.displayName = `withWrapField(${Component.displayName || Component.name || 'Component'})`;
-
-    return component;
 }
