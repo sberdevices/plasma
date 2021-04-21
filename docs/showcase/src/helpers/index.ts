@@ -6,6 +6,7 @@ export { IconPlaceholder } from './IconPlaceholder';
 
 export * from './StoryDecorators';
 export * from './Showcase';
+export { BadgeShowcase } from './BadgeShowcase';
 export { Showcase as ButtonShowcase } from './ButtonShowcase';
 export { Showcase as CardShowcase } from './CardShowcase';
 export { CheckboxShowcase } from './CheckboxShowcase';

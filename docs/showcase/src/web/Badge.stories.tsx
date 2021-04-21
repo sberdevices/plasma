@@ -1,7 +1,7 @@
 import React from 'react';
 import { Badge } from '@sberdevices/plasma-web/components/Badge';
 
-import { CommonShowcase, IconPlaceholder, WebStoryDecorator, InSpacingDecorator } from '../helpers';
+import { BadgeShowcase, IconPlaceholder, WebStoryDecorator, InSpacingDecorator } from '../helpers';
 
 export default {
     title: 'Web/Content/Badge',
@@ -9,10 +9,12 @@ export default {
     decorators: [WebStoryDecorator, InSpacingDecorator],
 };
 
-const sizes = { l: 'Badge L 24', s: 'Badge S 16' };
 const rows = {
     Primary: { view: 'primary' },
     Secondary: { view: 'secondary' },
+    Success: { view: 'success' },
+    Warning: { view: 'warning' },
+    Critical: { view: 'critical' },
 };
 const cols = {
     Text: { text: 'Badge' },
@@ -20,4 +22,4 @@ const cols = {
     Quantity: { text: '#', circled: true },
 };
 
-export const Default = () => <CommonShowcase sizes={sizes} rows={rows} cols={cols} component={Badge} />;
+export const Default = () => <BadgeShowcase rows={rows} cols={cols} component={Badge} />;
