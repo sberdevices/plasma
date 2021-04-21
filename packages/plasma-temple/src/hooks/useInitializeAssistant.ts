@@ -1,4 +1,4 @@
-import { useMemo, useCallback, useRef, useState } from 'react';
+import { useMemo, useCallback, useRef } from 'react';
 import {
     AssistantClientCustomizedCommand,
     AssistantSmartAppData,
@@ -64,20 +64,27 @@ export const useInitializeAssistant = <T extends AssistantSmartAppData>({
     onStart?: () => void;
     onData?: (command: AssistantClientCustomizedCommand<AssistantSmartAppData>) => void;
 }): {
-    assistant: AssistantInstance | null;
+    getAssistant: () => AssistantInstance;
     setAssistantState: (newState: unknown) => void;
 } => {
-    const [assistant, setAssistant] = useState<AssistantInstance | null>(null);
     const assistantStateRef = useRef({ item_selector: { items: [] } });
     const getAssistantState = useCallback(() => assistantStateRef.current, []);
     const setAssistantState = useCallback((newState) => {
         assistantStateRef.current = newState;
     }, []);
 
-    useMount(() => {
-        const assistantInstance = initializeAssistant<T>({ ...assistantParams, getState: getAssistantState });
+    const assistantRef = useRef<AssistantInstance | null>(null);
+    const getAssistant = useCallback(() => {
+        if (!assistantRef.current) {
+            assistantRef.current = initializeAssistant<T>({ ...assistantParams, getState: getAssistantState });
+        }
 
-        const offStartListener = assistantInstance.on('start', () => {
+        return assistantRef.current;
+    }, [assistantParams, getAssistantState]);
+
+    useMount(() => {
+        const assistant = getAssistant();
+        const offStartListener = assistant.on('start', () => {
             if (onStart) {
                 onStart();
             }
@@ -87,19 +94,17 @@ export const useInitializeAssistant = <T extends AssistantSmartAppData>({
         let removeListener = () => {};
 
         if (onData) {
-            removeListener = assistantInstance.on('data', onData);
+            removeListener = assistant.on('data', onData);
         }
-
-        setAssistant(assistantInstance);
 
         return () => removeListener();
     });
 
     return useMemo(
         () => ({
-            assistant,
+            getAssistant,
             setAssistantState,
         }),
-        [assistant, setAssistantState],
+        [getAssistant, setAssistantState],
     );
 };

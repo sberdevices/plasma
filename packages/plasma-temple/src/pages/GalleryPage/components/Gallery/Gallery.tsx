@@ -8,13 +8,14 @@ import { Header } from '../../../../components/Header/Header';
 import { useRemoteHandlers } from '../../../../hooks/useRemoteHandlers';
 import { useVoiceNavigation } from '../../../../hooks/useVoiceNavigation';
 import { Gallery as GalleryType } from '../../types';
+import { AnyObject } from '../../../../types';
 
-interface GalleryProps {
-    gallery: GalleryType;
+interface GalleryProps<T extends AnyObject = AnyObject> {
+    gallery: GalleryType<T>;
     active: boolean;
     multiGallery: boolean;
     withLogo: boolean;
-    galleryCard?: React.ComponentType<GalleryCardProps>;
+    galleryCard?: React.ComponentType<GalleryCardProps<T>>;
     onCardClick: (id: string) => void;
     changeActiveCard: (index: number) => void;
 }
@@ -36,89 +37,97 @@ const StyledTitle = styled(Header)<{ active: boolean; withLogo: boolean }>`
         `}
 `;
 
-export const Gallery: React.FC<GalleryProps> = React.memo(
-    ({ gallery, active, multiGallery, withLogo, galleryCard, onCardClick, changeActiveCard }) => {
-        const { activeCardIndex, items: galleryCards, title } = gallery;
-        const CardComponent = galleryCard ?? GalleryCard;
+const GalleryComponent = <T extends AnyObject = AnyObject>({
+    gallery,
+    active,
+    multiGallery,
+    withLogo,
+    galleryCard,
+    onCardClick,
+    changeActiveCard,
+}: GalleryProps<T>): React.ReactElement => {
+    const { activeCardIndex, items: galleryCards, title } = gallery;
+    const CardComponent = galleryCard ?? GalleryCard;
 
-        const [cardIndex, changeCardIndex] = useRemoteHandlers({
-            initialIndex: activeCardIndex,
-            axis: 'x',
-            min: 0,
-            max: Math.max(galleryCards.length - 1, 0),
-            disable: !active,
-            repeat: false,
-        });
+    const [cardIndex, changeCardIndex] = useRemoteHandlers({
+        initialIndex: activeCardIndex,
+        axis: 'x',
+        min: 0,
+        max: Math.max(galleryCards.length - 1, 0),
+        disable: !active,
+        repeat: false,
+    });
 
-        const handleEnter = React.useCallback(
-            (e: KeyboardEvent) => {
-                if (active && cardIndex && e.key === 'Enter') {
-                    onCardClick(galleryCards[cardIndex].id);
-                }
-            },
-            [active, cardIndex, onCardClick, galleryCards],
-        );
-
-        React.useEffect(() => {
-            window.addEventListener('keydown', handleEnter);
-
-            return () => {
-                window.removeEventListener('keydown', handleEnter);
-            };
-        }, [handleEnter]);
-
-        React.useEffect(() => {
-            if (cardIndex !== activeCardIndex) {
-                changeActiveCard(cardIndex);
+    const handleEnter = React.useCallback(
+        (e: KeyboardEvent) => {
+            if (active && cardIndex && e.key === 'Enter') {
+                onCardClick(galleryCards[cardIndex].id);
             }
-        }, [cardIndex, activeCardIndex, changeActiveCard]);
+        },
+        [active, cardIndex, onCardClick, galleryCards],
+    );
 
-        const galleryItems = React.useMemo<React.ReactChild[]>(() => {
-            return galleryCards.map(
-                (card, index): React.ReactChild => (
-                    <CarouselItem key={card.id} scrollSnapAlign="center">
-                        <CardComponent
-                            card={card}
-                            activeCardIndex={active ? cardIndex : -1}
-                            index={index}
-                            onClick={onCardClick}
-                            onFocus={changeCardIndex}
-                        />
-                    </CarouselItem>
-                ),
-            );
-        }, [active, cardIndex, galleryCards, CardComponent, onCardClick, changeCardIndex]);
+    React.useEffect(() => {
+        window.addEventListener('keydown', handleEnter);
 
-        useVoiceNavigation({
-            index: cardIndex,
-            setIndex: changeCardIndex,
-            minIndex: 0,
-            maxIndex: galleryCards.length - 1,
-            axis: 'x',
-            main: !multiGallery,
-            disabled: !active,
-        });
+        return () => {
+            window.removeEventListener('keydown', handleEnter);
+        };
+    }, [handleEnter]);
 
-        return (
-            <>
-                {multiGallery ? (
-                    <StyledTitle active={active} withLogo={withLogo} title={title} back={false} />
-                ) : (
-                    !isSberPortal() && <Headline3>{title}</Headline3>
-                )}
-                <CarouselGridWrapper>
-                    <Carousel
-                        scrollSnapType="mandatory"
-                        as={StyledRow}
-                        axis="x"
-                        index={cardIndex}
-                        detectActive={false}
-                        animatedScrollByIndex
-                    >
-                        {galleryItems}
-                    </Carousel>
-                </CarouselGridWrapper>
-            </>
+    React.useEffect(() => {
+        if (cardIndex !== activeCardIndex) {
+            changeActiveCard(cardIndex);
+        }
+    }, [cardIndex, activeCardIndex, changeActiveCard]);
+
+    const galleryItems = React.useMemo<React.ReactChild[]>(() => {
+        return galleryCards.map(
+            (card, index): React.ReactChild => (
+                <CarouselItem key={card.id} scrollSnapAlign="center">
+                    <CardComponent
+                        card={card}
+                        activeCardIndex={active ? cardIndex : -1}
+                        index={index}
+                        onClick={onCardClick}
+                        onFocus={changeCardIndex}
+                    />
+                </CarouselItem>
+            ),
         );
-    },
-);
+    }, [active, cardIndex, galleryCards, CardComponent, onCardClick, changeCardIndex]);
+
+    useVoiceNavigation({
+        index: cardIndex,
+        setIndex: changeCardIndex,
+        minIndex: 0,
+        maxIndex: galleryCards.length - 1,
+        axis: 'x',
+        main: !multiGallery,
+        disabled: !active,
+    });
+
+    return (
+        <>
+            {multiGallery ? (
+                <StyledTitle active={active} withLogo={withLogo} title={title} back={false} />
+            ) : (
+                !isSberPortal() && <Headline3>{title}</Headline3>
+            )}
+            <CarouselGridWrapper>
+                <Carousel
+                    scrollSnapType="mandatory"
+                    as={StyledRow}
+                    axis="x"
+                    index={cardIndex}
+                    detectActive={false}
+                    animatedScrollByIndex
+                >
+                    {galleryItems}
+                </Carousel>
+            </CarouselGridWrapper>
+        </>
+    );
+};
+
+export const Gallery = React.memo(GalleryComponent) as typeof GalleryComponent;
