@@ -1,3 +1,16 @@
+# (Wed Apr 21 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-ui@1.6.1`
+  - fix(plasma-ui): update @storybook/react version [#323](https://github.com/sberdevices/plasma/pull/323) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # (Tue Apr 20 2021)
 
 #### 🚀 Enhancement
