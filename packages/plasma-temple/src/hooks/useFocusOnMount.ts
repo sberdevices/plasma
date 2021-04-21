@@ -22,4 +22,4 @@ export const useFocusOnMount: UseFocusOnMount = (ref, params = {}) => {
 
         return () => clearTimeout(timer);
     }, [ref, prevent, preventScroll, delay]);
-}
+};

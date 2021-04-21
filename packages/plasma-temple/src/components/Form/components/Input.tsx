@@ -5,13 +5,17 @@ import styled from 'styled-components';
 import { withWrapField } from '../hocs/withWrapField';
 import { FieldComponentProps } from '../types';
 
-type InputProps = FieldComponentProps<TextFieldProps, 'onChange' | 'onSubmit', {
-    onSubmit?: () => void;
-    onChange?: (val: string) => void;
-    pattern?: string;
-    required?: boolean;
-    innerRef?: React.RefObject<HTMLInputElement>;
-}>
+type InputProps = FieldComponentProps<
+    TextFieldProps,
+    'onChange' | 'onSubmit',
+    {
+        onSubmit?: () => void;
+        onChange?: (val: string) => void;
+        pattern?: string;
+        required?: boolean;
+        innerRef?: React.RefObject<HTMLInputElement>;
+    }
+>;
 
 const StyledTextField = styled(TextField)`
     display: flex;
@@ -23,20 +27,19 @@ const StyledTextField = styled(TextField)`
     }
 `;
 
-const filterEnterKeyEvent = (cb?: (ev: React.KeyboardEvent<HTMLInputElement>) => void) => (
-    event: React.KeyboardEvent<HTMLInputElement>,
-): void => {
-    if (event.keyCode === 13) {
-        cb?.(event);
-    }
-};
-
 export const Input = withWrapField<string, InputProps>(
     // eslint-disable-next-line prefer-arrow-callback
     function Input(props): React.ReactElement {
         const { onChange, onSubmit, value, innerRef, label, ...rest } = props;
 
-        const keyDownHandler = React.useCallback(filterEnterKeyEvent(onSubmit), [onSubmit]);
+        const keyDownHandler: React.KeyboardEventHandler<HTMLInputElement> = React.useCallback(
+            (event) => {
+                if (event.keyCode === 13) {
+                    onSubmit?.(event);
+                }
+            },
+            [onSubmit],
+        );
 
         const onChangeHandler: React.ChangeEventHandler<HTMLInputElement> = React.useCallback(
             (event) => {
