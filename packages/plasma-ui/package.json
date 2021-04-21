@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-ui",
-    "version": "1.6.0",
+    "version": "1.6.1",
     "description": "SberDevices Design System",
     "main": "index.js",
     "module": "es/index.js",
@@ -88,7 +88,17 @@
         "title": "SberDevices Design System",
         "url": "https://5f96ec813d800900227e3b93-eobodfvrnh.chromatic.com/"
     },
-    "files": ["components", "hocs", "hooks", "mixins", "types", "utils", "index.d.ts", "index.js", "es"],
+    "files": [
+        "components",
+        "hocs",
+        "hooks",
+        "mixins",
+        "types",
+        "utils",
+        "index.d.ts",
+        "index.js",
+        "es"
+    ],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Антонов Игорь Александрович",
