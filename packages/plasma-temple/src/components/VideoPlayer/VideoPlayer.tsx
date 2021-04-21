@@ -24,6 +24,7 @@ export interface VideoPlayerProps extends React.VideoHTMLAttributes<HTMLVideoEle
     startTime?: number;
     endTime?: number;
     customControls?: React.ComponentType<CustomMediaPlayerControlsProps<HTMLVideoElement>>;
+    children?: (props: CustomMediaPlayerControlsProps<HTMLVideoElement>) => React.ReactElement;
     insets?: Insets;
 }
 
@@ -104,6 +105,7 @@ export const VideoPlayer = React.memo(
         customControls: CustomControlsComponent,
         visibleControlList,
         insets,
+        children,
         ...restProps
     }: VideoPlayerProps) => {
         const { element, actions, state, playerRef } = useMediaPlayer('video', restProps);
@@ -133,6 +135,7 @@ export const VideoPlayer = React.memo(
         );
 
         const finished = Boolean(duration) && currentTime >= duration;
+        const playerState = { ...state, backDisabled, nextDisabled, finished };
 
         return (
             <StyledContainer onClick={startTimer}>
@@ -143,10 +146,12 @@ export const VideoPlayer = React.memo(
                         <CustomControlsComponent
                             playerRef={playerRef}
                             controlsHidden={isControlsHidden}
-                            state={{ ...state, backDisabled, nextDisabled, finished }}
+                            state={playerState}
                             actions={customControlsActions}
                         />
                     )}
+                    {children &&
+                        children({ playerRef, controlsHidden, state: playerState, actions: customControlsActions })}
                     {isControlVisible(ControlType.HEADER, visibleControlList) && (
                         <StyledHeader hidden={isControlsHidden} insets={insets}>
                             {header}

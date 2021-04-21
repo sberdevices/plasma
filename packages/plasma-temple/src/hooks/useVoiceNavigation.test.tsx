@@ -20,7 +20,7 @@ describe('useVoiceNavigationHook', () => {
 
     const setIndex = jest.fn();
     const wrapper: React.FC = ({ children }) => (
-        <AssistantContext.Provider value={{ assistant: assistantMock, setAssistantState: () => {} }}>
+        <AssistantContext.Provider value={{ getAssistant: () => assistantMock, setAssistantState: () => {} }}>
             {children}
         </AssistantContext.Provider>
     );
@@ -418,7 +418,7 @@ describe('useVoiceNavigationWithSpatNav', () => {
     };
 
     const wrapper: React.FC = ({ children }) => (
-        <AssistantContext.Provider value={{ assistant: assistantMock, setAssistantState: () => {} }}>
+        <AssistantContext.Provider value={{ getAssistant: () => assistantMock, setAssistantState: () => {} }}>
             {children}
         </AssistantContext.Provider>
     );
