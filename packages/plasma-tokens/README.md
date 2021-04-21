@@ -1,6 +1,6 @@
-# Plasma-tokens
+# Plasma Tokens
 
-Пакет предоставляет набор `дизайн-токенов` реализующих дизайн «Plasma» для разных устройств.
+Пакет предоставляет набор _дизайн-токенов_ реализующих дизайн «Plasma» для разных устройств.
 
 <p align="center">
   <img width="768" src="https://user-images.githubusercontent.com/1813468/98609049-8cd87b80-22fd-11eb-826c-2279f4f3f1bd.png" alt="plasma-tokens" />
@@ -146,7 +146,7 @@ export default App;
 
 #### Установка шрифта
 
-Типографическая система основана на фирменном шрифте `SB Sans Text`. Для того чтобы шрифт было удобно поставлять в web-приложения, шрифт был загружен на [cdn](https://ru.wikipedia.org/wiki/Content_Delivery_Network).
+Типографическая система основана на фирменном шрифте `SB Sans Text`. Для того чтобы шрифт было удобно поставлять в web-приложения, шрифт был загружен на [CDN](https://ru.wikipedia.org/wiki/Content_Delivery_Network).
 
 Для использования типографической системы вам достаточно загрузить один `css` файл:
 Его необходимо добавить внутрь тега `head`. Если в качестве основы web-приложения вы используете [create-react-app](https://create-react-app.dev), вам необходимо изменить файл `./public/index.html`.
@@ -372,8 +372,8 @@ export default App;
 
 ## Готовый пример
 
-Все описанные выше примеры можно посмотреть в [демо-приложении](../../examples/demo-tokens/src/App.tsx)
+Все описанные выше примеры можно посмотреть в [демо-приложении](https://github.com/sberdevices/plasma/blob/master/examples/demo-tokens/src/App.tsx).
 
-Приложение основано на [create-react-app](https://create-react-app.dev) c использованием [typescript](https://www.typescriptlang.org/) и [styled-components](https://styled-components.com/)
+Приложение основано на [create-react-app](https://create-react-app.dev) c использованием [typescript](https://www.typescriptlang.org/) и [styled-components](https://styled-components.com/).
 
-Для запуска приложение прочитайте [README](../../examples/demo-tokens/README.md)
+Для запуска приложение прочитайте [README](https://github.com/sberdevices/plasma/blob/master/examples/demo-tokens/README.md).

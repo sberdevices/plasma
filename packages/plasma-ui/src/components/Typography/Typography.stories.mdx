@@ -4,17 +4,17 @@ import { InSpacing } from '../../helpers/StoryDecorators';
 
 import * as stories from './Typography.stories';
 
-<Meta title="Content/Typography" decorators={[InSpacing]} />
+<Meta title="Typography" decorators={[InSpacing]} />
 
 # Типографическая система
+PlasmaUI предоставляет удобную [типографическую систему](/?path=/docs/tokens--page#типографическая-система) — набор констант (_токенов_) и компонентов.
+Последние представляют собой замену обычным HTML-тегам, таким как `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, а также `p` и некоторым другим.
 
-## Примеры использования
-
-### Как компонент
+## Компонент
 ```tsx
 // App.tsx
 import React from 'react';
-import { Body1 } from '@sberdevices/plasma-ui/components/Typography';
+import { Body1 } from '@sberdevices/plasma-ui';
 
 const App = () => (
   <Body1>some text</Body1>
@@ -23,7 +23,7 @@ const App = () => (
 export default App;
 ```
 
-### Как объект стиля
+## Токен — может использоваться как объект стиля
 ```tsx
 // App.tsx
 import React from 'react';
@@ -34,6 +34,23 @@ const App = () => (
 );
 
 export default App;
+```
+
+## Установка шрифта
+Типографическая система основана на фирменном шрифте `SB Sans Text`. Для того чтобы шрифт было удобно поставлять в web-приложения, шрифт был загружен на [CDN](https://ru.wikipedia.org/wiki/Content_Delivery_Network).
+
+Для использования типографической системы вам достаточно загрузить один `css` файл:
+Его необходимо добавить внутрь тега `head`. Если в качестве основы web-приложения вы используете [create-react-app](https://create-react-app.dev), вам необходимо изменить файл `./public/index.html`.
+
+```html
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansText.0.1.0.css" />
+    </head>
+    <body>
+        ...
+    </body>
+</html>
 ```
 
 ## Варианты
