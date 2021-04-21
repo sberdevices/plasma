@@ -45,7 +45,7 @@ const StyledField = styled.div<Pick<FieldProps, 'type'>>`
     align-items: center;
     justify-content: center;
 
-    align-self: ${({ type }) => type === 'text' ? 'flex-start' : 'center'};
+    align-self: ${({ type }) => (type === 'text' ? 'flex-start' : 'center')};
 `;
 
 const StyledErrorMessage = styled(Caption)`
@@ -97,9 +97,9 @@ export const FieldErrorMessages: React.FC<FieldErrorMessagesProps> = ({ messages
 
     return (
         <>
-            {messagesToRender.map((message) => message != null && (
-                <StyledErrorMessage key={message}>{message}</StyledErrorMessage>
-            ))}
+            {messagesToRender.map(
+                (message) => message != null && <StyledErrorMessage key={message}>{message}</StyledErrorMessage>,
+            )}
         </>
     );
 };

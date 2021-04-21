@@ -14,7 +14,7 @@ export default {
     title: 'AssistantSuggest',
 };
 
-export const Default = () => (
+export const Default: React.FC = () => (
     <AssistantSuggestWrapper>
         <AssistantSuggestIcon size="s" />
         <AssistantSuggestActionText>Нажмите кнопку на пульте и скажите</AssistantSuggestActionText>
@@ -22,7 +22,7 @@ export const Default = () => (
     </AssistantSuggestWrapper>
 );
 
-export const VoiceFill = () => (
+export const VoiceFill: React.FC = () => (
     <AssistantSuggestWrapper>
         <AssistantSuggestIcon size="m" />
         <AssistantSuggestActionText>Нажмите кнопку на пульте и скажите</AssistantSuggestActionText>
