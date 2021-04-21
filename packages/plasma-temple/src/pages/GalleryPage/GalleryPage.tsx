@@ -7,17 +7,18 @@ import { isSberPortal } from '@sberdevices/plasma-ui/utils';
 import { useRemoteHandlers } from '../../hooks/useRemoteHandlers';
 import { useGetState } from '../../hooks/useGetState';
 import { Header } from '../../components/Header/Header';
+import { AnyObject } from '../../types';
 
 import { Gallery } from './components/Gallery/Gallery';
 import { GalleryCardProps } from './components/GalleryCard/GalleryCard';
 import { GalleryPageState } from './types';
 
-interface GalleryPageProps {
-    state: GalleryPageState;
-    changeState: (state: GalleryPageState) => void;
+interface GalleryPageProps<T extends AnyObject = AnyObject> {
+    state: GalleryPageState<T>;
+    changeState: (state: GalleryPageState<T>) => void;
     onCardClick: (id: string) => void;
     header?: HeaderProps;
-    galleryCard?: React.ComponentType<GalleryCardProps>;
+    galleryCard?: React.ComponentType<GalleryCardProps<T>>;
 }
 
 const StyledCarouselGridWrapper = styled(CarouselGridWrapper)`
@@ -31,7 +32,13 @@ const StyledFixedHeader = styled(Container)`
     z-index: 10;
 `;
 
-export const GalleryPage: React.FC<GalleryPageProps> = ({ state, header, changeState, onCardClick, galleryCard }) => {
+export const GalleryPage = <T extends AnyObject = AnyObject>({
+    state,
+    header,
+    changeState,
+    onCardClick,
+    galleryCard,
+}: GalleryPageProps<T>): React.ReactElement => {
     const { gallery, activeGalleryIndex } = state;
     const galleries = React.useMemo(() => (Array.isArray(gallery) ? gallery : [{ id: 'id', ...gallery }]), [gallery]);
 

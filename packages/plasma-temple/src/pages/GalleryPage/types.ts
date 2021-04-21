@@ -1,6 +1,6 @@
-import { MediaObject } from '../../types';
+import { AnyObject, MediaObject } from '../../types';
 
-export interface GalleryCard {
+export type GalleryCard<T extends AnyObject = AnyObject> = T & {
     id: string;
     label: string;
     position: number;
@@ -8,16 +8,16 @@ export interface GalleryCard {
     description?: string;
     tag?: string;
     time?: string;
-}
+};
 
-export interface Gallery {
+export interface Gallery<T extends AnyObject = AnyObject> {
     id?: string;
     title: string;
-    items: GalleryCard[];
+    items: GalleryCard<T>[];
     activeCardIndex: number;
 }
 
-export interface GalleryPageState {
+export interface GalleryPageState<T extends AnyObject = AnyObject> {
     activeGalleryIndex: number;
-    gallery: Gallery | Required<Gallery>[];
+    gallery: Gallery<T> | Required<Gallery<T>>[];
 }

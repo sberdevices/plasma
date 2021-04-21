@@ -53,7 +53,7 @@ export function Page<Name extends string>({
              * параметры экшена будут переданы в AssistantClient.onData в виде `smart_app_data` экшена
              */
             if (params.name !== INNER_ASSISTANT_ACTION) {
-                assistant?.sendData(params);
+                assistant.sendData(params);
             } else {
                 const { action } = params;
 
