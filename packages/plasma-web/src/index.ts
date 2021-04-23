@@ -7,6 +7,7 @@ export * from './components/Notification';
 export * from './components/Price';
 export * from './components/Progress';
 export * from './components/Radiobox';
+export * from './components/Spinner';
 export * from './components/Switch';
 export * from './components/Tabs';
 export * from './components/TextArea';
