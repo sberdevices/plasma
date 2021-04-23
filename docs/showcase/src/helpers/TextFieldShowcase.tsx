@@ -28,7 +28,7 @@ interface ShowcaseProps<T> {
 /**
  * Шоукейсы - обертки для демонстрации / тестирования полной раскладки презентуемого компонента.
  */
-export function Showcase<T>({ props, rows, cols, component: TextField }: ShowcaseProps<T>) {
+export function Showcase<T>({ props, rows, cols, component: Component }: ShowcaseProps<T>) {
     const colsList = Object.entries(cols);
 
     return (
@@ -43,7 +43,7 @@ export function Showcase<T>({ props, rows, cols, component: TextField }: Showcas
                 <StyledRow>
                     <ShowcaseHead key={`head:${i}`}>{head}</ShowcaseHead>
                     {colsList.map(([, colProps], j) => (
-                        <TextField key={`${i}${j}`} {...handlers} {...props} {...rowProps} {...colProps} />
+                        <Component key={`${i}${j}`} {...handlers} {...props} {...rowProps} {...colProps} />
                     ))}
                 </StyledRow>
             ))}
