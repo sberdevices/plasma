@@ -15,7 +15,7 @@ jobs:
       NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
       PR_NAME: pr-${{ github.event.number }}
     steps:
-      - name: Clean old documentation
+      - name: Clean old documentation / sb
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.DOCS_HOST }}
@@ -25,4 +25,6 @@ jobs:
           script: |
             cd ../../var/www/plasma
             rm -rf $PR_NAME/
+            rm -rf ui-storybook-$PR_NAME/
             rm -rf web-$PR_NAME/
+            rm -rf web-storybook-$PR_NAME/
