@@ -34,6 +34,9 @@ const applyStatusColor: InterpolationFunction<TextFieldProps> = ({ status }) => 
     `};
 `;
 
+/**
+ * ToDo: Переименовать в Field, т.к. данный функционал теперь используется и в Select.
+ */
 export const TextFieldRoot = styled.div<Pick<TextFieldProps, 'status' | 'disabled'>>`
     ${body1};
 
