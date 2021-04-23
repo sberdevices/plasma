@@ -1,11 +1,11 @@
 import React from 'react';
-import { Spinner } from '@sberdevices/plasma-ui/components/Spinner';
+import { Spinner } from '@sberdevices/plasma-web/components/Spinner';
 
-import { CommonShowcase, UIStoryDecorator, InSpacingDecorator } from '../helpers';
+import { CommonShowcase, WebStoryDecorator, InSpacingDecorator } from '../helpers';
 
 export default {
-    title: 'UI/Content/Spinner',
-    decorators: [UIStoryDecorator, InSpacingDecorator],
+    title: 'Web/Content/Spinner',
+    decorators: [WebStoryDecorator, InSpacingDecorator],
 };
 
 const rows = {
@@ -13,7 +13,7 @@ const rows = {
     White: { color: 'white' },
 };
 const cols = {
-    14: { size: 14 },
+    16: { size: 16 },
     24: { size: 24 },
     56: { size: 56 },
     84: { size: 84 },

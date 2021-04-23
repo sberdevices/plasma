@@ -6,4 +6,4 @@ export interface SpinnerProps extends SpinnerPropsBase {}
 /**
  * Компонент для отображения индикатора загрузки.
  */
-export const Spinner = styled(SpinnerBase)``;
+export const Spinner = styled(SpinnerBase)<SpinnerProps>``;
