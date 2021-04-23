@@ -1,3 +1,23 @@
+# v0.14.0 (Fri Apr 23 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Add reusable components for product pages [#41](https://github.com/sberdevices/pashka/pull/41) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-temple): Enhance state of Video and Gallery pages, refactor useInitializeAssistant hook [#43](https://github.com/sberdevices/pashka/pull/43) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-temple): Form components [#26](https://github.com/sberdevices/pashka/pull/26) ([@LamaEats](https://github.com/LamaEats))
+
+#### 🐛 Bug Fix
+
+- Bump independent versions \[skip ci\] ([@LamaEats](https://github.com/LamaEats))
+- chore(plasma-temple): apply code style rules [#26](https://github.com/sberdevices/pashka/pull/26) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v0.12.0 (Tue Apr 20 2021)
 
 #### 🚀 Enhancement
