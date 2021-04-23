@@ -4,6 +4,7 @@ export * from './components/Grid';
 export * from './components/Image';
 export * from './components/Price';
 export * from './components/Radiobox';
+export * from './components/Spinner';
 export * from './components/Switch';
 export * from './components/Tabs';
 export * from './components/TextField';
