@@ -55,3 +55,21 @@ jobs:
 
       - name: Create Release
         run: npm run release
+
+      - name: Update package-lock's
+        if: github.event_name != 'pull_request'
+        run: lerna exec -- npm i --package-lock-only
+
+      - name: Extract branch name
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - name: Commit & Push package-lock's
+        if: github.event_name != 'pull_request'
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          message: 'chore: update package-locks'
+          branch: ${{ steps.extract_branch.outputs.branch }}
