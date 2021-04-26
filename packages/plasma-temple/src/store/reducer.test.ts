@@ -1,4 +1,5 @@
-import { AppState, reducer } from './reducer';
+import { reducer } from './reducer';
+import { AppState } from './types';
 import { changeActiveScreenState, popHistory, pushHistory, setCharacter, setInsets } from './actions';
 
 describe('Testing reducer', () => {
@@ -9,7 +10,7 @@ describe('Testing reducer', () => {
 
     it('character action', () => {
         const character = 'joy';
-        const action = setCharacter({ character });
+        const action = setCharacter(character);
         const newState = reducer(initialState, action);
 
         expect(newState).toEqual({
@@ -23,7 +24,7 @@ describe('Testing reducer', () => {
 
     it('insets action', () => {
         const insets = { top: 10, bottom: 20, left: 30, right: 40 };
-        const action = setInsets({ insets });
+        const action = setInsets(insets);
         const newState = reducer(initialState, action);
 
         expect(newState).toEqual({
@@ -37,7 +38,7 @@ describe('Testing reducer', () => {
 
     it('pushHistory action', () => {
         const history = { name: 'name', data: 'data' };
-        const action = pushHistory({ history });
+        const action = pushHistory(history.name, history.data);
         const newState = reducer(initialState, action);
 
         expect(newState).toEqual({
@@ -61,7 +62,7 @@ describe('Testing reducer', () => {
         const newDataState = 'newDataState';
         const history = { name: 'name', data: 'data' };
         const state = { ...initialState, history: [history] };
-        const action = changeActiveScreenState({ data: newDataState });
+        const action = changeActiveScreenState(newDataState);
         const newState = reducer(state, action);
 
         expect(newState).toEqual({
