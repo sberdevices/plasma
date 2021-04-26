@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { AssistantSmartAppData } from '@sberdevices/assistant-client';
+import { AssistantClientCustomizedCommand, AssistantSmartAppData } from '@sberdevices/assistant-client';
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 
 import { InitializeParams, useInitializeAssistant } from '../../hooks/useInitializeAssistant';
@@ -12,6 +12,8 @@ import { PageLayout } from '../PageLayout/PageLayout';
 import { last } from '../../utils/last';
 import { PushScreenParams } from '../Page/types';
 import { AnyObject } from '../../types';
+import { isPlasmaAppAction, isPopHistoryAction, isPushHistoryAction } from '../../store/guards';
+import { AppStateAction } from '../../store/types';
 
 import { AssistantContext } from './AssistantContext';
 import { AppStateContext } from './AppStateContext';
@@ -28,7 +30,7 @@ export interface PlasmaAppProps<Name extends string = string> {
     children: React.ReactElement<PageProps<Name>> | React.ReactElement<PageProps<Name>>[];
     assistantParams: Omit<InitializeParams, 'getState'>;
     header?: HeaderProps;
-    onStart: OnStartFn;
+    onStart?: OnStartFn;
 }
 
 export function PlasmaApp<Name extends string, T extends AssistantSmartAppData = AssistantSmartAppData>({
@@ -41,12 +43,12 @@ export function PlasmaApp<Name extends string, T extends AssistantSmartAppData =
 
     const pushHistory = React.useCallback((name, data) => {
         window.history.pushState(null, name);
-        dispatch(Actions.pushHistory({ history: { name, data } }));
+        dispatch(Actions.pushHistory(name, data));
     }, []);
 
     const pushScreen = React.useCallback((name: string, params) => {
         window.history.pushState(params, name);
-        dispatch(Actions.pushHistory({ history: { name, data: null } }));
+        dispatch(Actions.pushHistory(name, null));
     }, []);
 
     const onPopScreen = React.useCallback(() => {
@@ -57,20 +59,37 @@ export function PlasmaApp<Name extends string, T extends AssistantSmartAppData =
         window.history.back();
     }, []);
 
+    const onData = (command: AssistantClientCustomizedCommand<AssistantSmartAppData>) => {
+        switch (command.type) {
+            case 'insets':
+                dispatch(Actions.setInsets(command.insets));
+                return;
+            case 'character':
+                dispatch(Actions.setCharacter(command.character.id));
+                return;
+            case 'smart_app_data': {
+                if (!isPlasmaAppAction(command.smart_app_data)) {
+                    return;
+                }
+
+                if (isPushHistoryAction(command.smart_app_data)) {
+                    const { name, data } = command.smart_app_data.payload.history;
+                    pushHistory(name, data);
+                } else if (isPopHistoryAction(command.smart_app_data)) {
+                    popScreen();
+                } else {
+                    dispatch(command.smart_app_data?.payload as AppStateAction);
+                }
+                break;
+            }
+            default:
+        }
+    };
+
     const assistantContextValue = useInitializeAssistant<T>({
         assistantParams,
-        onStart: () => onStart({ pushScreen, pushHistory }),
-        onData: (command) => {
-            switch (command.type) {
-                case 'insets':
-                    dispatch(Actions.setInsets({ insets: command.insets }));
-                    break;
-                case 'character':
-                    dispatch(Actions.setCharacter({ character: command.character.id }));
-                    break;
-                default:
-            }
-        },
+        onStart: () => onStart?.({ pushScreen, pushHistory }),
+        onData,
     });
 
     usePopHistoryListener(state.history.length, onPopScreen);
