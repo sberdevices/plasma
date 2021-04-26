@@ -1,58 +1,6 @@
-import { AssistantCharacterType, AssistantInsetsCommand } from '@sberdevices/assistant-client';
-
 import { last } from '../utils/last';
 
-type AssistantInsets = AssistantInsetsCommand['insets'];
-
-export interface UIState {
-    character: AssistantCharacterType;
-    insets: AssistantInsets;
-}
-
-export interface History<T = unknown> {
-    name: string;
-    data: T;
-}
-
-export interface AppState {
-    history: History[];
-    ui: UIState;
-}
-
-export interface InsetsPayload {
-    insets: AssistantInsets;
-}
-
-export interface CharacterPayload {
-    character: AssistantCharacterType;
-}
-
-export interface PushHistoryPayload {
-    history: History;
-}
-
-export interface ChangeActiveScreenStatePayload {
-    data: unknown;
-}
-
-export enum AppStateActionType {
-    CHARACTER = 'character',
-    INSETS = 'insets',
-    PUSH_HISTORY = 'pushHistory',
-    POP_HISTORY = 'popHistory',
-    CHANGE_ACTIVE_SCREEN_STATE = 'changeActiveScreenState',
-}
-
-export type CharacterAction = { type: AppStateActionType.CHARACTER; payload: CharacterPayload };
-export type InsetsAction = { type: AppStateActionType.INSETS; payload: InsetsPayload };
-export type PushHistoryAction = { type: AppStateActionType.PUSH_HISTORY; payload: PushHistoryPayload };
-export type PopHistoryAction = { type: AppStateActionType.POP_HISTORY };
-export type ChangeStateAction = {
-    type: AppStateActionType.CHANGE_ACTIVE_SCREEN_STATE;
-    payload: ChangeActiveScreenStatePayload;
-};
-
-export type AppStateAction = CharacterAction | InsetsAction | PushHistoryAction | PopHistoryAction | ChangeStateAction;
+import { AppState, AppStateAction, AppStateActionType } from './types';
 
 export const initialState: AppState = {
     history: [],
