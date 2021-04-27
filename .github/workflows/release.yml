@@ -73,3 +73,5 @@ jobs:
           github_token: ${{ secrets.GH_TOKEN }}
           message: 'chore: update package-locks [skip ci]'
           branch: ${{ steps.extract_branch.outputs.branch }}
+          author_name: SberDevices Frontend Team
+          author_email: sberdevices.frontend@gmail.com
