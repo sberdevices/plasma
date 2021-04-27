@@ -70,6 +70,6 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: actions-js/push@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GH_TOKEN }}
           message: 'chore: update package-locks'
           branch: ${{ steps.extract_branch.outputs.branch }}
