@@ -1,3 +1,20 @@
+# vnull (Tue Apr 27 2021)
+
+#### 🐛 Bug Fix
+
+- docs(plasma-ui): Linked doc for plasma-tokens and added information about font [#324](https://github.com/sberdevices/plasma/pull/324) ([@fanisco](https://github.com/fanisco))
+
+#### ⚠️ Pushed to `master`
+
+- {chore: update package-locks} ([@github-actions[bot]](https://github.com/github-actions[bot]))
+
+#### Authors: 2
+
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.6.2 (Wed Apr 21 2021)
 
 #### 🐛 Bug Fix

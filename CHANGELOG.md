@@ -1,3 +1,30 @@
+# (Tue Apr 27 2021)
+
+#### 🐛 Bug Fix
+
+- chore: fix github token [#333](https://github.com/sberdevices/plasma/pull/333) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- chore: auto update package-locks [#329](https://github.com/sberdevices/plasma/pull/329) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- chore: add cypress and image snapshot [#315](https://github.com/sberdevices/plasma/pull/315) ([@OgNellis](https://github.com/OgNellis))
+- ci: Deploy storybook [#327](https://github.com/sberdevices/plasma/pull/327) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-tokens@1.1.1`, `@sberdevices/plasma-ui@1.6.3`
+  - docs(plasma-ui): Linked doc for plasma-tokens and added information about font [#324](https://github.com/sberdevices/plasma/pull/324) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/showcase@0.10.3`
+  - docs(showcase): Badge showcase [#325](https://github.com/sberdevices/plasma/pull/325) ([@fanisco](https://github.com/fanisco))
+
+#### ⚠️ Pushed to `master`
+
+- `@sberdevices/showcase@0.10.3`, `@sberdevices/plasma-icons@1.4.1`, `@sberdevices/plasma-tokens-android@2.1.1`, `@sberdevices/plasma-tokens-ios-swift@2.1.1`, `@sberdevices/plasma-ui@1.6.3`, `@sberdevices/plasma-web@1.5.1`
+  - {chore: update package-locks} ([@github-actions[bot]](https://github.com/github-actions[bot]))
+
+#### Authors: 4
+
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Wed Apr 21 2021)
 
 #### 🐛 Bug Fix
