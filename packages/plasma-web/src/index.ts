@@ -2,6 +2,7 @@ export * from './components/Button';
 export * from './components/Checkbox';
 export * from './components/Grid';
 export * from './components/Image';
+export * from './components/Notification';
 export * from './components/Price';
 export * from './components/Progress';
 export * from './components/Radiobox';
