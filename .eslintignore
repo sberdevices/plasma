@@ -24,3 +24,9 @@ packages/plasma-web/*
 
 packages/plasma-icons/*
 !packages/plasma-icons/src
+
+utils/plasma-tokens-utils/*
+!utils/plasma-tokens-utils/src
+
+utils/plasma-tokens-ios-swift/*
+utils/plasma-tokens-android/*
