@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-tokens-ios-swift",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "Plasma tokens for ios (swift)",
     "files": [
         "tokens"
