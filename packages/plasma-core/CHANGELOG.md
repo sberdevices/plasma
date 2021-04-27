@@ -1,3 +1,15 @@
+# v1.5.0 (Tue Apr 27 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-web): Added Select component [#328](https://github.com/sberdevices/plasma/pull/328) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.4.0 (Tue Apr 20 2021)
 
 #### 🐛 Bug Fix

@@ -1,5 +1,18 @@
 # (Tue Apr 27 2021)
 
+#### 🚀 Enhancement
+
+- `@sberdevices/showcase@0.11.0`, `@sberdevices/plasma-core@1.5.0`, `@sberdevices/plasma-web@1.6.0`
+  - feat(plasma-web): Added Select component [#328](https://github.com/sberdevices/plasma/pull/328) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Tue Apr 27 2021)
+
 #### 🐛 Bug Fix
 
 - chore: fix github token [#333](https://github.com/sberdevices/plasma/pull/333) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
