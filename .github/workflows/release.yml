@@ -71,5 +71,5 @@ jobs:
         uses: actions-js/push@master
         with:
           github_token: ${{ secrets.GH_TOKEN }}
-          message: 'chore: update package-locks'
+          message: 'chore: update package-locks [skip ci]'
           branch: ${{ steps.extract_branch.outputs.branch }}
