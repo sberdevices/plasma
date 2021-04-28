@@ -1,3 +1,22 @@
+# (Wed Apr 28 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-ui@1.8.0`
+  - feat(plasma-ui): Add new scrollAlign values for Carousel [#317](https://github.com/sberdevices/plasma/pull/317) (nsvoevodin@sberbank.ru)
+
+#### 🐛 Bug Fix
+
+- chore: Add author info for package-locks commit [#334](https://github.com/sberdevices/plasma/pull/334) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- chore: update package-locks commit message [#334](https://github.com/sberdevices/plasma/pull/334) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 2
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- nsvoevodin (nsvoevodin@sberbank.ru)
+
+---
+
 # (Tue Apr 27 2021)
 
 #### 🚀 Enhancement
