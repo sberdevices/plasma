@@ -58,7 +58,7 @@ jobs:
 
       - name: Update package-lock's
         if: github.event_name != 'pull_request'
-        run: lerna exec -- npm i --package-lock-only
+        run: lerna clean -y && lerna exec -- npm i --package-lock-only
 
       - name: Extract branch name
         if: github.event_name != 'pull_request'
