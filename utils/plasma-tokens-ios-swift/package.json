@@ -2,18 +2,12 @@
     "name": "@sberdevices/plasma-tokens-ios-swift",
     "version": "2.1.1",
     "description": "Plasma tokens for ios (swift)",
-    "files": [
-        "tokens"
-    ],
+    "files": ["tokens"],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/sberdevices/plasma.git"
     },
-    "keywords": [
-        "plasma",
-        "tokens",
-        "ios"
-    ],
+    "keywords": ["plasma", "tokens", "ios"],
     "scripts": {
         "prepare": "mkdir -p tokens && cp -R node_modules/@sberdevices/plasma-tokens/build/ios-swift/* tokens"
     },
