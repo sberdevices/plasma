@@ -2,18 +2,12 @@
     "name": "@sberdevices/plasma-tokens-android",
     "version": "2.1.1",
     "description": "Plasma tokens for android",
-    "files": [
-        "tokens"
-    ],
+    "files": ["tokens"],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/sberdevices/plasma.git"
     },
-    "keywords": [
-        "plasma",
-        "tokens",
-        "android"
-    ],
+    "keywords": ["plasma", "tokens", "android"],
     "scripts": {
         "prepare": "mkdir -p tokens && cp -R node_modules/@sberdevices/plasma-tokens/build/android/* tokens"
     },
