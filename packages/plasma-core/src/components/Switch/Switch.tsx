@@ -129,6 +129,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(function S
         value,
         label,
         checked,
+        defaultChecked,
         disabled,
         pressed,
         focused,
@@ -150,6 +151,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(function S
                 name={name}
                 value={value}
                 checked={checked}
+                defaultChecked={defaultChecked}
                 disabled={disabled}
                 tabIndex={tabIndex}
                 onChange={onChange}

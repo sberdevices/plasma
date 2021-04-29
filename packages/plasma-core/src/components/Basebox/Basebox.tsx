@@ -231,6 +231,7 @@ export const Basebox = React.forwardRef<HTMLInputElement, BaseboxProps>(function
         label,
         description,
         checked,
+        defaultChecked,
         focused,
         disabled,
         tabIndex,
@@ -250,6 +251,7 @@ export const Basebox = React.forwardRef<HTMLInputElement, BaseboxProps>(function
                 name={name}
                 value={value}
                 checked={checked}
+                defaultChecked={defaultChecked}
                 disabled={disabled}
                 tabIndex={tabIndex}
                 onChange={onChange}
