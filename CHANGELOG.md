@@ -1,3 +1,16 @@
+# (Thu Apr 29 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@0.15.0`
+  - feat(plasma-temple): Support dispatching standart app actions via assistant [#44](https://github.com/sberdevices/pashka/pull/44) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # (Fri Apr 23 2021)
 
 #### 🚀 Enhancement
