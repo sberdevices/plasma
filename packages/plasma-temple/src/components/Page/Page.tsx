@@ -39,12 +39,7 @@ export function Page<Name extends string>({
 
     const screen = last(appState.history);
 
-    const changeState = React.useCallback(
-        (data) => {
-            dispatch(changeActiveScreenState({ data }));
-        },
-        [dispatch],
-    );
+    const changeState = React.useCallback((data) => dispatch(changeActiveScreenState(data)), [dispatch]);
 
     const sendData = React.useCallback<AssistantInstance['sendData']>(
         (params) => {
