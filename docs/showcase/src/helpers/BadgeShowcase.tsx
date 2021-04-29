@@ -14,6 +14,7 @@ export const BadgeShowcase = ({
     sections?: { title?: string; subTitle?: string; props?: object }[];
     rows: Record<string, object>;
     cols: Record<string, object>;
+    columns?: string;
     component: React.ComponentType<any>;
 }) => (
     <>
@@ -30,12 +31,14 @@ const ShowcaseGrid = ({
     props,
     rows,
     cols,
+    columns = 'repeat(3, max-content)',
     component: Badge,
     ...rest
 }: {
     props?: object;
     rows: Record<string, object>;
     cols: Record<string, object>;
+    columns?: string;
     component: React.ComponentType<any>;
 } & AsProps) => {
     const colsList = Object.entries(cols);
@@ -45,5 +48,5 @@ const ShowcaseGrid = ({
         colsList.map(([, colProps]) => <Badge {...({ ...props, ...rowProps, ...colProps } as any)} />),
     );
 
-    return <ShowcaseGridTable {...rest} cols={c} rows={r} data={d} templateColumns="repeat(3, max-content)" />;
+    return <ShowcaseGridTable {...rest} cols={c} rows={r} data={d} templateColumns={columns} />;
 };
