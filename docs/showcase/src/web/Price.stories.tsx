@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { Price } from '@sberdevices/plasma-web/components/Price';
 
-import { ShowcaseDashedBorder, WebStoryDecorator, InSpacingDecorator } from '../helpers';
+import { ShowcaseDashedBorder, UIStoryDecorator, InSpacingDecorator } from '../helpers';
 
 export default {
-    title: 'Web/Content/Price',
+    title: 'UI/Content/Price',
     component: Price,
-    decorators: [WebStoryDecorator, InSpacingDecorator],
+    decorators: [UIStoryDecorator, InSpacingDecorator],
 };
 
 const StyledDashedBorder = styled(ShowcaseDashedBorder)`
