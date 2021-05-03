@@ -1,0 +1,15 @@
+name: Get Current Pull Request
+description: Find a PR associated with the current commit.
+inputs:
+  github-token:
+    description: The GitHub token used to create an authenticated client.
+    required: true
+outputs:
+  pr:
+    description: The PR if one was found.
+runs:
+  using: node12
+  main: 'getCurrentPR.js'
+branding:
+  icon: git-pull-request
+  color: green

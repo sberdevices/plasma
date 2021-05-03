@@ -1,7 +1,10 @@
 # name of our action
 name: 'Chromatic Deployment'
 # the event that will trigger the action
-on: push
+on: 
+  push:
+  pull_request:
+    types: [ready_for_review]
 
 # what the action will do
 jobs:
@@ -29,16 +32,30 @@ jobs:
           npm i
           npx lerna bootstrap
 
+      - name: Get PR
+        uses: ./.github/js-actions/getPullRequest
+        id: getPR
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Pull request data
+        run: echo "Pull request is work in progress = ${draft}"
+        env:
+          draft: ${{ !!steps.getPR.outputs.pull_request && fromJSON(steps.getPR.outputs.pull_request).draft }}
+
       - name: Lint
+        if: ${{ !steps.getPR.outputs.pull_request || !fromJSON(steps.getPR.outputs.pull_request).draft }}
         run: npm run lint
 
       - name: Build Storybook
+        if: ${{ !steps.getPR.outputs.pull_request || !fromJSON(steps.getPR.outputs.pull_request).draft }}
         working-directory: ./docs/showcase
         run: npm run build-storybook
+
       - uses: chromaui/action@v1
+        if: ${{ !steps.getPR.outputs.pull_request || !fromJSON(steps.getPR.outputs.pull_request).draft }}
         # options required to the GitHub chromatic action
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GH_TOKEN }}
           storybookBuildDir: ./docs/showcase/build-sb
-
