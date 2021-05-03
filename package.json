@@ -14,6 +14,8 @@
     "lint": "eslint --ext .js,.ts,.tsx ."
   },
   "devDependencies": {
+    "@actions/core": "1.2.7",
+    "@actions/github": "4.0.0",
     "@auto-it/conventional-commits": "9.60.1",
     "@auto-it/npm": "9.60.1",
     "@auto-it/slack": "9.60.1",
