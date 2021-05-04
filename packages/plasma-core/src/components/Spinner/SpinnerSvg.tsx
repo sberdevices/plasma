@@ -3,9 +3,10 @@ import React from 'react';
 interface SpinnerSvgProps {
     width: number;
     height: number;
+    color: string;
 }
 
-export const SpinnerSvg: React.FC<SpinnerSvgProps> = (props) => (
+export const SpinnerSvg: React.FC<SpinnerSvgProps> = ({ color, ...props }) => (
     <svg viewBox="0 0 56 56" fill="none" {...props}>
         <path
             fillRule="evenodd"
@@ -19,16 +20,16 @@ export const SpinnerSvg: React.FC<SpinnerSvgProps> = (props) => (
         />
         <defs>
             <linearGradient id="prefix__paint0_linear" x1={0} y1={56} x2={0} y2={0} gradientUnits="userSpaceOnUse">
-                <stop stopColor="#20E79F" stopOpacity={0} />
-                <stop offset={0.048} stopColor="#20E79F" stopOpacity={0} />
-                <stop offset={0.952} stopColor="#20E79F" stopOpacity={0.5} />
-                <stop offset={1} stopColor="#20E79F" stopOpacity={0.5} />
+                <stop stopColor={color} stopOpacity={0} />
+                <stop offset={0.048} stopColor={color} stopOpacity={0} />
+                <stop offset={0.952} stopColor={color} stopOpacity={0.5} />
+                <stop offset={1} stopColor={color} stopOpacity={0.5} />
             </linearGradient>
             <linearGradient id="prefix__paint1_linear" x1={28} y1={56} x2={28} y2={0} gradientUnits="userSpaceOnUse">
-                <stop stopColor="#09A553" />
-                <stop offset={0.048} stopColor="#38C96D" />
-                <stop offset={0.952} stopColor="#20E79F" stopOpacity={0.5} />
-                <stop offset={1} stopColor="#20E79F" stopOpacity={0.5} />
+                <stop stopColor={color} />
+                <stop offset={0.048} stopColor={color} />
+                <stop offset={0.952} stopColor={color} stopOpacity={0.5} />
+                <stop offset={1} stopColor={color} stopOpacity={0.5} />
             </linearGradient>
         </defs>
     </svg>

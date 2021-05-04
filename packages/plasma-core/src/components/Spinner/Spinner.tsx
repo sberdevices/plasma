@@ -1,8 +1,9 @@
 import React from 'react';
 import styled, { keyframes, css } from 'styled-components';
 
+import { accent } from '../../tokens';
+
 import { SpinnerSvg } from './SpinnerSvg';
-import { WhiteSpinnerSvg } from './WhiteSpinnerSvg';
 
 const rotateAnimation = keyframes`
     from {
@@ -28,16 +29,16 @@ const StyledRoot = styled.div<{ $size: number }>`
 
 export interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
     size?: number;
-    color?: 'white';
+    color?: string;
 }
 
 /**
  * Компонент для отображения индикатора загрузки.
  */
-export const Spinner: React.FC<SpinnerProps> = ({ size = 56, color, ...rest }) => {
+export const Spinner: React.FC<SpinnerProps> = ({ size = 56, color = accent, ...rest }) => {
     return (
         <StyledRoot $size={size} {...rest}>
-            {color ? <WhiteSpinnerSvg width={size} height={size} /> : <SpinnerSvg width={size} height={size} />}
+            <SpinnerSvg width={size} height={size} color={color} />
         </StyledRoot>
     );
 };
