@@ -1,3 +1,16 @@
+# (Tue May 04 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@0.15.1`
+  - fix(plasma-temple): Fix changeState [#45](https://github.com/sberdevices/pashka/pull/45) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # (Thu Apr 29 2021)
 
 #### 🚀 Enhancement
