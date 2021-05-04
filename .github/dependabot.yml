@@ -1,0 +1,36 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "npm"
+    directory: "packages/plasma-core"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "npm"
+    directory: "packages/plasma-icons"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "npm"
+    directory: "packages/plasma-tokens"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "npm"
+    directory: "packages/plasma-tokens-web"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "npm"
+    directory: "packages/plasma-ui"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "npm"
+    directory: "packages/plasma-web"
+    schedule:
+      interval: "daily"
