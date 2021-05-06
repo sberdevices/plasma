@@ -1,3 +1,32 @@
+# (Thu May 06 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-tokens-android@2.2.0`, `@sberdevices/plasma-tokens-ios-swift@2.2.0`, `@sberdevices/plasma-tokens-utils@0.3.0`
+  - feat: add plasma-tokens-utils [#331](https://github.com/sberdevices/plasma/pull/331) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- chore: add utils to lint ignore [#331](https://github.com/sberdevices/plasma/pull/331) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- ci: fix generation of pck-locks [#337](https://github.com/sberdevices/plasma/pull/337) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-core@1.6.0`
+  - fix(plasma-core): Image: rendering image with background instead of src [#342](https://github.com/sberdevices/plasma/pull/342) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/showcase@0.13.0`, `@sberdevices/plasma-core@1.6.0`, `@sberdevices/plasma-ui@1.9.0`, `@sberdevices/plasma-web@1.7.0`
+  - feat(plasma-core, plasma-ui, plasma-ui): Moved Image component [#342](https://github.com/sberdevices/plasma/pull/342) ([@fanisco](https://github.com/fanisco))
+  - feat(plasma-core, plasma-ui, plasma-ui): Moved Price component [#342](https://github.com/sberdevices/plasma/pull/342) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/showcase@0.13.0`, `@sberdevices/plasma-icons@1.6.0`, `@sberdevices/plasma-tokens@1.2.0`, `@sberdevices/plasma-ui@1.9.0`, `@sberdevices/plasma-web@1.7.0`
+  - build: fix package-locks [#337](https://github.com/sberdevices/plasma/pull/337) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-ui@1.9.0`
+  - docs: fix grid misspell [#336](https://github.com/sberdevices/plasma/pull/336) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 3
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # (Wed Apr 28 2021)
 
 #### 🚀 Enhancement

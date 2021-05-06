@@ -1,3 +1,15 @@
+# v1.6.0 (Thu May 06 2021)
+
+#### 🐛 Bug Fix
+
+- build: fix package-locks [#337](https://github.com/sberdevices/plasma/pull/337) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # vnull (Tue Apr 27 2021)
 
 #### ⚠️ Pushed to `master`

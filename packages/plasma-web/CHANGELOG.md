@@ -1,3 +1,18 @@
+# v1.7.0 (Thu May 06 2021)
+
+#### 🐛 Bug Fix
+
+- feat(plasma-core, plasma-ui, plasma-ui): Moved Image component [#342](https://github.com/sberdevices/plasma/pull/342) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-core, plasma-ui, plasma-ui): Moved Price component [#342](https://github.com/sberdevices/plasma/pull/342) ([@fanisco](https://github.com/fanisco))
+- build: fix package-locks [#337](https://github.com/sberdevices/plasma/pull/337) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.6.0 (Tue Apr 27 2021)
 
 #### 🚀 Enhancement

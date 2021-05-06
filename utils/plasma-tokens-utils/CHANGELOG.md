@@ -1,3 +1,20 @@
+# v0.3.0 (Thu May 06 2021)
+
+#### 🚀 Enhancement
+
+- feat: add plasma-tokens-utils [#331](https://github.com/sberdevices/plasma/pull/331) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v0.2.0 (Wed Mar 10 2021)
 
 #### 🚀 Enhancement

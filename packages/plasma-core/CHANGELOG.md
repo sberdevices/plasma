@@ -1,3 +1,17 @@
+# v1.6.0 (Thu May 06 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-core): Image: rendering image with background instead of src [#342](https://github.com/sberdevices/plasma/pull/342) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-core, plasma-ui, plasma-ui): Moved Image component [#342](https://github.com/sberdevices/plasma/pull/342) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-core, plasma-ui, plasma-ui): Moved Price component [#342](https://github.com/sberdevices/plasma/pull/342) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.5.0 (Tue Apr 27 2021)
 
 #### 🚀 Enhancement
