@@ -79,11 +79,10 @@ const StyledImg = styled.img`
     width: 100%;
 `;
 
-const StyledDivImg = styled.div<{ src: string }>`
+const StyledDivImg = styled.div`
     width: 100%;
     height: 100%;
     position: absolute;
-    background-image: ${({ src }) => `url(${src})`};
     background-position: center;
     background-size: cover;
 `;
@@ -99,6 +98,6 @@ export const Image: React.FC<ImageProps> = ({ src, base = 'img', alt, ...props }
         {...props}
     >
         {base === 'img' && <StyledImg src={src} alt={alt} />}
-        {base === 'div' && <StyledDivImg src={src} />}
+        {base === 'div' && <StyledDivImg style={{ backgroundImage: `url(${src})` }} />}
     </StyledRoot>
 );
