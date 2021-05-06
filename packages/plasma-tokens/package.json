@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-tokens",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
@@ -32,7 +32,7 @@
     ],
     "devDependencies": {
         "@emotion/serialize": "0.11.16",
-        "@sberdevices/plasma-tokens-utils": "0.2.0",
+        "@sberdevices/plasma-tokens-utils": "0.3.0",
         "@theme-ui/css": "0.3.1",
         "@types/color": "3.0.1",
         "@types/node": "^14.11.1",
