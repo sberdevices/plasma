@@ -1,0 +1,53 @@
+import React from 'react';
+import styled from 'styled-components';
+import { background } from '@sberdevices/plasma-tokens-web';
+import { IconClose } from '@sberdevices/plasma-icons';
+
+import { Button } from '../Button';
+
+export interface ModalViewProps extends React.HTMLAttributes<HTMLDivElement> {
+    /**
+     * Содержимое модального окна.
+     */
+    children?: React.ReactNode;
+    /**
+     * Обработчик клика по кнопке "закрыть".
+     */
+    onClose?: React.HTMLAttributes<HTMLElement>['onClick'];
+}
+
+const StyledBody = styled.div`
+    position: relative;
+
+    width: 25rem;
+    max-width: 100%;
+
+    border-radius: 1.25rem;
+    background-color: ${background};
+`;
+const StyledContent = styled.div`
+    padding: 2rem;
+`;
+const StyledButtonClose = styled(Button).attrs(() => ({ view: 'clear' }))`
+    float: right;
+
+    margin: 2rem;
+
+    && {
+        width: auto;
+        height: auto;
+        padding: 0;
+    }
+`;
+
+/**
+ * Визуальная часть модального окна.
+ */
+export const ModalView = React.forwardRef<HTMLDivElement, ModalViewProps>(({ children, onClose, ...rest }, ref) => {
+    return (
+        <StyledBody ref={ref} {...rest}>
+            <StyledButtonClose onClick={onClose} contentLeft={<IconClose size="s" color="inherit" />} />
+            <StyledContent>{children}</StyledContent>
+        </StyledBody>
+    );
+});
