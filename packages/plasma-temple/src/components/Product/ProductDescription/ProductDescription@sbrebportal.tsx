@@ -11,6 +11,7 @@ const StyledDescriptionItem = styled.div`
 
 const StyledContent = styled(Footnote1)`
     color: ${secondary};
+    margin-top: 4px;
 `;
 
 const ColumnProductDescription: React.FC<Pick<ProductDescriptionProps, 'items'>> = ({ items }) => (
