@@ -36,3 +36,52 @@ export const Default = () => {
         />
     );
 };
+
+export const TextDescription = () => {
+    const value = 0;
+    const [checked, setChecked] = React.useState(true);
+
+    return (
+        <Radiobox
+            name={text('name', 'Radiobox')}
+            value={value}
+            label={text('label', 'Label')}
+            description={text('description', 'Description')}
+            disabled={boolean('disabled', false)}
+            checked={checked}
+            onChange={(event) => {
+                setChecked(event.target.checked);
+                onChange(event);
+            }}
+            onFocus={onFocus}
+            onBlur={onBlur}
+        />
+    );
+};
+
+export const NodeDescription = () => {
+    const value = 0;
+    const [checked, setChecked] = React.useState(true);
+    const description = (
+        <div>
+            Description with <a href="/#">link</a>{' '}
+        </div>
+    );
+
+    return (
+        <Radiobox
+            name={text('name', 'Radiobox')}
+            value={value}
+            label={text('label', 'Label')}
+            description={description}
+            disabled={boolean('disabled', false)}
+            checked={checked}
+            onChange={(event) => {
+                setChecked(event.target.checked);
+                onChange(event);
+            }}
+            onFocus={onFocus}
+            onBlur={onBlur}
+        />
+    );
+};
