@@ -7,6 +7,8 @@ export type { BlurProps } from './blur';
 export { applyDisabled } from './applyDisabled';
 export type { DisabledProps } from './applyDisabled';
 
+export { applyEllipsis } from './applyEllipsis';
+
 export { applyMaxLines } from './applyMaxLines';
 export type { MaxLinesProps } from './applyMaxLines';
 
