@@ -1,3 +1,15 @@
+# v1.7.0 (Fri May 07 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-core): Added applyEllipsis mixin [#348](https://github.com/sberdevices/plasma/pull/348) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.6.0 (Thu May 06 2021)
 
 #### 🐛 Bug Fix

@@ -1,3 +1,20 @@
+# v1.8.0 (Fri May 07 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-web): Added Progress component [#340](https://github.com/sberdevices/plasma/pull/340) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.7.0 (Thu May 06 2021)
 
 #### 🐛 Bug Fix

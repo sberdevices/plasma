@@ -1,3 +1,18 @@
+# (Fri May 07 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-core@1.7.0`, `@sberdevices/plasma-ui@1.10.0`
+  - feat(plasma-core): Added applyEllipsis mixin [#348](https://github.com/sberdevices/plasma/pull/348) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/showcase@0.14.0`, `@sberdevices/plasma-web@1.8.0`
+  - feat(plasma-web): Added Progress component [#340](https://github.com/sberdevices/plasma/pull/340) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Thu May 06 2021)
 
 #### 🚀 Enhancement
