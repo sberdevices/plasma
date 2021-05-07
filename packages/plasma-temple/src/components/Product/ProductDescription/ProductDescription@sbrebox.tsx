@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Col, ParagraphText1, ParagraphText2, Row, TextBox } from '@sberdevices/plasma-ui';
+import { Col, ParagraphText1, ParagraphText2, Row } from '@sberdevices/plasma-ui';
 import { secondary } from '@sberdevices/plasma-tokens';
 
 import { ProductDescriptionProps } from './types';
@@ -11,6 +11,7 @@ const StyledDescriptionItem = styled.div`
 
 const StyledContent = styled(ParagraphText1)`
     color: ${secondary};
+    margin-top: 4px;
 `;
 
 const ColumnProductDescription: React.FC<Pick<ProductDescriptionProps, 'items'>> = ({ items }) => (
@@ -28,7 +29,8 @@ const RowProductDescription: React.FC<Pick<ProductDescriptionProps, 'items'>> = 
     <>
         {items.map(({ title, content }) => (
             <Col key={title}>
-                <TextBox size="m" title={content} subTitle={title} />
+                <ParagraphText2>{content}</ParagraphText2>
+                <StyledContent>{title}</StyledContent>
             </Col>
         ))}
     </>
