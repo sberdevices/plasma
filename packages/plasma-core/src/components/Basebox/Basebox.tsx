@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
 import { applyDisabled } from '../../mixins';
 import type { DisabledProps, FocusProps } from '../../mixins';
 import type { InputHTMLAttributes } from '../../types';
-import { body1, accent, white, transparent } from '../../tokens';
+import { body1, accent, white, transparent, blackSecondary } from '../../tokens';
 
 import { IconDone } from './IconDone';
 
@@ -22,6 +22,10 @@ export type Item = {
      * Метка-подпись к элементу
      */
     label?: string | number;
+    /**
+     * Описание элемента
+     */
+    description?: string | number | ReactNode;
 };
 
 interface InputTypeProps {
@@ -42,6 +46,7 @@ export interface BaseboxProps
 const StyledRoot = styled.label<DisabledProps>`
     position: relative;
     display: flex;
+    flex-wrap: wrap;
     width: max-content;
     max-width: 100%;
     cursor: pointer;
@@ -207,9 +212,33 @@ const StyledLabel = styled.span`
     user-select: none;
 `;
 
+const StyledDescription = styled.div`
+    ${body1};
+    margin-top: 0.42rem;
+    margin-left: 2rem;
+    flex-basis: 100%;
+    user-select: none;
+    color: ${blackSecondary};
+`;
+
 // eslint-disable-next-line prefer-arrow-callback
 export const Basebox = React.forwardRef<HTMLInputElement, BaseboxProps>(function Basebox(
-    { id, type, name, value, label, checked, focused, disabled, tabIndex, onChange, onFocus, onBlur, ...rest },
+    {
+        id,
+        type,
+        name,
+        value,
+        label,
+        description,
+        checked,
+        focused,
+        disabled,
+        tabIndex,
+        onChange,
+        onFocus,
+        onBlur,
+        ...rest
+    },
     ref,
 ) {
     return (
@@ -231,6 +260,7 @@ export const Basebox = React.forwardRef<HTMLInputElement, BaseboxProps>(function
                 {type === 'checkbox' ? <StyledMark color="inherit" size="xs" /> : <StyledEllipse />}
             </StyledTrigger>
             {label && <StyledLabel>{label}</StyledLabel>}
+            {description && <StyledDescription>{description}</StyledDescription>}
         </StyledRoot>
     );
 });
