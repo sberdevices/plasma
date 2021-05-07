@@ -121,3 +121,18 @@ const Button = styled.button<ViewProps>`
 
 <Button view="primary">Primary button</Button>
 ```
+
+## `applyEllipsis`
+С помощью многоточия сокращает в элементе текст, если последний не помещается в одной строке.
+
+### Пример
+```tsx
+import styled from 'styled-components';
+import { applyEllipsis } from '@sberdevices/plasma-core/mixins';
+
+const ShortenedLine = styled.span`
+    ${applyEllipsis}
+`;
+
+<ShortenedLine>Текст сократится, если не поместится в строке</ShortenedLine>
+```

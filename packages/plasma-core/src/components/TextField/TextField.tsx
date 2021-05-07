@@ -1,6 +1,6 @@
 import styled, { css, InterpolationFunction } from 'styled-components';
 
-import { applyDisabled } from '../../mixins';
+import { applyDisabled, applyEllipsis } from '../../mixins';
 import { accent, critical, secondary, body1, caption } from '../../tokens';
 import { InputHTMLAttributes } from '../../types';
 
@@ -51,9 +51,6 @@ export const TextFieldHelper = styled.span<Pick<TextFieldProps, 'status' | 'disa
     ${caption};
 
     display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 
     margin-top: 0.25rem;
     padding-left: 1rem;
@@ -62,4 +59,5 @@ export const TextFieldHelper = styled.span<Pick<TextFieldProps, 'status' | 'disa
     color: ${secondary};
 
     ${applyStatusColor};
+    ${applyEllipsis}
 `;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { views, applyView, applyDisabled, addFocus, applyBlur } from '../../mixins';
+import { views, applyView, applyDisabled, addFocus, applyBlur, applyEllipsis } from '../../mixins';
 import { button1, button2, caption } from '../../tokens';
 import { convertRoundnessMatrix } from '../../utils';
 import type { DisabledProps, FocusProps, OutlinedProps, BlurProps } from '../../mixins';
@@ -226,9 +226,7 @@ export interface ButtonProps
 const StyledText = styled.span<IsContentProps>`
     box-sizing: border-box;
 
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    ${applyEllipsis}
 
     ${({ isContentLeft }) => isContentLeft && 'margin-left: 0.375rem;'}
     ${({ isContentRight }) => isContentRight && 'margin-right: 0.375rem;'}

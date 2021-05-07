@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
 import { body1 } from '../../tokens';
-import { applyDisabled, addFocus, shadows } from '../../mixins';
+import { applyDisabled, addFocus, shadows, applyEllipsis } from '../../mixins';
 import type { DisabledProps, FocusProps, OutlinedProps } from '../../mixins';
 import type { InputHTMLAttributes } from '../../types';
 import type { Item } from '../Basebox/Basebox';
@@ -113,10 +113,9 @@ const StyledTrigger = styled.div<DisabledProps & PressedProps & FocusProps & Out
 const StyledLabel = styled.span`
     ${body1};
     margin-right: 0.75rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
     user-select: none;
-    white-space: nowrap;
+
+    ${applyEllipsis}
 `;
 
 /**

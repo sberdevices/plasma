@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { applyDisabled } from '../../mixins';
+import { applyDisabled, applyEllipsis } from '../../mixins';
 import type { DisabledProps } from '../../mixins';
 
 export interface TabsProps extends DisabledProps {
@@ -92,9 +92,8 @@ const StyledTabItemContentLeft = styled.span`
  */
 const StyledTabItemText = styled.span`
     display: inline;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+
+    ${applyEllipsis}
 
     /* stylelint-disable-next-line */
     ${StyledTabItemContentLeft} ~ & {
