@@ -13,6 +13,7 @@ import { ShowcaseDashedBorder, ShowcaseHead, UIStoryDecorator, InSpacingDecorato
 export default {
     title: 'UI/Controls/Pickers',
     decorators: [UIStoryDecorator, InSpacingDecorator],
+    chromatic: { delay: 700 },
 };
 
 const now = new Date();
@@ -110,7 +111,3 @@ export const Default = () => (
         </StyledRow>
     </>
 );
-
-Default.parameters = {
-    chromatic: { pauseAnimationAtEnd: true },
-};

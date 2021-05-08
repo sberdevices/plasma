@@ -21,6 +21,7 @@ export default {
     title: 'UI/Controls/Carousel',
     component: Carousel,
     decorators: [UIStoryDecorator],
+    chromatic: { delay: 700 },
 };
 
 const items = Array(25)
@@ -285,7 +286,3 @@ export const Default = () => (
         <ScaledCentralItem />
     </Container>
 );
-
-Default.parameters = {
-    chromatic: { pauseAnimationAtEnd: true },
-};
