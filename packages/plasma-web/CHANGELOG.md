@@ -1,3 +1,21 @@
+# v1.9.0 (Tue May 11 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-web): Added Modal component [#339](https://github.com/sberdevices/plasma/pull/339) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-web): Added Notification component [#339](https://github.com/sberdevices/plasma/pull/339) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.8.0 (Fri May 07 2021)
 
 #### 🚀 Enhancement

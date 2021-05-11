@@ -1,3 +1,17 @@
+# (Tue May 11 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/showcase@0.15.0`, `@sberdevices/plasma-web@1.9.0`
+  - feat(plasma-web): Added Modal component [#339](https://github.com/sberdevices/plasma/pull/339) ([@fanisco](https://github.com/fanisco))
+  - feat(plasma-web): Added Notification component [#339](https://github.com/sberdevices/plasma/pull/339) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Fri May 07 2021)
 
 #### 🚀 Enhancement
