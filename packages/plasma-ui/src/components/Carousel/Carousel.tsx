@@ -428,7 +428,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
                     itemIndex,
                 });
 
-                if (itemSlot) {
+                if (itemSlot !== null) {
                     if (detectThreshold && Math.abs(itemSlot) <= detectThreshold) {
                         debouncedOnIndexChange(itemIndex);
                     }
