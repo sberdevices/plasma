@@ -8,7 +8,7 @@ import type { InteractionProps } from '../../mixins';
 /**
  * Input-type agnostic mixin for "boolean" inputs.
  */
-export const basebox: InterpolationFunction<Omit<BaseboxProps, 'type'> & InteractionProps> = ({
+export const basebox: InterpolationFunction<Omit<BaseboxProps, 'type' | 'description'> & InteractionProps> = ({
     scaleOnInteraction,
 }) => css`
     --plasma-basebox-trigger-border: ${secondary};
