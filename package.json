@@ -16,7 +16,7 @@
   "devDependencies": {
     "@auto-it/conventional-commits": "9.60.1",
     "@auto-it/npm": "9.60.1",
-    "@auto-it/slack": "9.60.1",
+    "@auto-it/slack": "10.27.1",
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
     "@storybook/addon-actions": "6.0.0-rc.13",
