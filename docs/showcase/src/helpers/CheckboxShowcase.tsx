@@ -12,6 +12,11 @@ const props = {
     onFocus,
     onBlur,
 };
+const elementDescription = (
+    <div>
+        Description with <a href="/#">link</a>
+    </div>
+);
 const rows = [
     [
         { ...props, name: 'check', value: 1, label: 'Checkbox 1', disabled: false },
@@ -20,6 +25,10 @@ const rows = [
     [
         { ...props, name: 'check', value: 3, label: 'Checkbox 3', disabled: true },
         { ...props, name: 'check', value: 4, label: 'Checkbox 4', disabled: true },
+    ],
+    [
+        { ...props, name: 'check', value: 5, label: 'Checkbox 5', disabled: false, description: 'text description' },
+        { ...props, name: 'check', value: 6, label: 'Checkbox 6', disabled: false, description: elementDescription },
     ],
 ];
 
