@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import { applyDisabled } from '../../mixins';
 import type { DisabledProps, FocusProps } from '../../mixins';
 import type { InputHTMLAttributes } from '../../types';
-import { body1, accent, white, transparent, blackSecondary } from '../../tokens';
+import { body1, footnote1, accent, white, transparent, blackSecondary } from '../../tokens';
 
 import { IconDone } from './IconDone';
 
@@ -213,7 +213,7 @@ const StyledLabel = styled.span`
 `;
 
 const StyledDescription = styled.div`
-    ${body1};
+    ${footnote1};
     margin-top: 0.42rem;
     margin-left: 2rem;
     flex-basis: 100%;
