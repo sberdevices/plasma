@@ -12,6 +12,11 @@ const props = {
     onFocus,
     onBlur,
 };
+const elementDescription = (
+    <div>
+        Description with <a href="/#">link</a>
+    </div>
+);
 const rows = [
     [
         { ...props, name: 'radio-1', value: 1, label: 'Radiobox 1', disabled: false, checked: false },
@@ -20,6 +25,26 @@ const rows = [
     [
         { ...props, name: 'radio-2', value: 3, label: 'Radiobox 3', disabled: true, checked: false },
         { ...props, name: 'radio-2', value: 4, label: 'Radiobox 4', disabled: true, checked: true },
+    ],
+    [
+        {
+            ...props,
+            name: 'radio-1',
+            value: 5,
+            label: 'Radiobox 5',
+            disabled: false,
+            checked: false,
+            description: 'text description',
+        },
+        {
+            ...props,
+            name: 'radio-1',
+            value: 6,
+            label: 'Radiobox 6',
+            disabled: false,
+            checked: false,
+            description: elementDescription,
+        },
     ],
 ];
 
