@@ -7,7 +7,18 @@
     "main": "lib/index.js",
     "module": "es/index.js",
     "types": "lib/index.d.ts",
-    "files": ["components", "hocs", "hooks", "mixins", "tokens", "types", "utils", "index.d.ts", "index.js", "es"],
+    "files": [
+        "components",
+        "hocs",
+        "hooks",
+        "mixins",
+        "tokens",
+        "types",
+        "utils",
+        "index.d.ts",
+        "index.js",
+        "es"
+    ],
     "peerDependencies": {
         "@types/node": "^12.12.30",
         "@types/react": "^16.9.38",
@@ -60,6 +71,10 @@
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
         "chromatic": "npx chromatic"
     },
-    "contributors": ["Vasiliy Loginevskiy", "Виноградов Антон Александрович", "Зубаиров Фаниль Асхатович"],
+    "contributors": [
+        "Vasiliy Loginevskiy",
+        "Виноградов Антон Александрович",
+        "Зубаиров Фаниль Асхатович"
+    ],
     "sideEffects": false
 }
