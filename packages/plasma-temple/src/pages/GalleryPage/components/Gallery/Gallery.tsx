@@ -16,7 +16,7 @@ interface GalleryProps<T extends AnyObject = AnyObject> {
     multiGallery: boolean;
     withLogo: boolean;
     galleryCard?: React.ComponentType<GalleryCardProps<T>>;
-    onCardClick: (id: string) => void;
+    onCardClick: <T1 extends T>(cardProps: T1) => void;
     changeActiveCard: (index: number) => void;
 }
 
@@ -60,8 +60,8 @@ const GalleryComponent = <T extends AnyObject = AnyObject>({
 
     const handleEnter = React.useCallback(
         (e: KeyboardEvent) => {
-            if (active && cardIndex && e.key === 'Enter') {
-                onCardClick(galleryCards[cardIndex].id);
+            if (active && cardIndex >= 0 && e.key === 'Enter') {
+                onCardClick(galleryCards[cardIndex]);
             }
         },
         [active, cardIndex, onCardClick, galleryCards],
