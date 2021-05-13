@@ -1,0 +1,34 @@
+import { Meta, Props, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+
+import { InSpacingDecorator } from '../../helpers';
+
+import * as stories from './PaginationDots.stories';
+
+import { SmartPaginationDots, PaginationDots, PaginationDot } from '.';
+
+<Meta title="Controls/PaginationDots" decorators={[InSpacingDecorator]} />
+
+# PaginationDots
+Набор компонентов для отображения точечных индикаторов постраничной навигации.
+
+## PaginationDots
+<Description of={PaginationDots} />
+
+## PaginationDot
+<Description of={PaginationDot} />
+
+## SmartPaginationDots
+<Description of={SmartPaginationDots} />
+<Props of={SmartPaginationDots} />
+
+## Использование
+
+### Пользовательская верстка
+<Canvas>
+    <Story name="Default" story={stories.Default} />
+</Canvas>
+
+### Ограничение с помощью компонента SmartPaginationDots
+<Canvas>
+    <Story name="Limited" story={stories.Limited} />
+</Canvas>

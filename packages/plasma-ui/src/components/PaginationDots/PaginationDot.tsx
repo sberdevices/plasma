@@ -1,37 +1,10 @@
-import styled, { css } from 'styled-components';
-import { primary, surfaceLiquid03 } from '@sberdevices/plasma-tokens';
+import styled from 'styled-components';
+import { PaginationDot as DotBase, PaginationDotProps as BaseProps } from '@sberdevices/plasma-core';
 
-export interface PaginationDotProps extends React.LiHTMLAttributes<HTMLLIElement> {
-    /**
-     * Элемент активен
-     */
-    isActive: boolean;
-}
+export interface PaginationDotProps extends BaseProps {}
 
 /**
  * Элемент пагинации точками.
  * Стилизованный компонент, обладающий всеми свойствами ``div``.
  */
-export const PaginationDot = styled.li<PaginationDotProps>`
-    width: 0.375rem;
-    height: 0.375rem;
-    border-radius: 1rem;
-    background: ${surfaceLiquid03};
-    transition: width 0.1s ease-in-out, background 0.3s ease-in-out;
-    font-size: 8px;
-
-    & + & {
-        margin-left: 0.375rem;
-    }
-
-    &:focus {
-        outline: 0 none;
-    }
-
-    ${({ isActive }) =>
-        isActive &&
-        css`
-            width: 1.75rem;
-            background: ${primary};
-        `}
-`;
+export const PaginationDot = styled(DotBase)<PaginationDotProps>``;
