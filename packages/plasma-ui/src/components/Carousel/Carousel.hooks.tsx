@@ -1,44 +1,15 @@
 import React from 'react';
 import throttle from 'lodash.throttle';
+import { ScrollAxis } from '@sberdevices/plasma-core';
 
 import { useRemoteListener } from '../../hooks';
-
-import { Axis } from './Carousel.types';
-import { CarouselContext } from './CarouselContext';
-
-export const useCarouselContext = () => React.useContext(CarouselContext);
-
-/**
- * Хук для передачи рефа айтема в контекст карусели.
- */
-export function useCarouselItem<T extends HTMLElement | null>() {
-    const innerRef = React.useRef<T>(null);
-    const { refs } = useCarouselContext();
-
-    React.useEffect(() => {
-        refs?.register(innerRef);
-        return () => refs?.unregister(innerRef);
-    }, [refs]);
-
-    return innerRef;
-}
 
 const throttlingParamsDefault = {
     leading: true,
     trailing: false,
 };
 
-interface UseRemoteHandlersProps {
-    initialIndex: number;
-    axis: Axis;
-    delay: number;
-    longDelay: number;
-    min: number;
-    max: number;
-    count?: number;
-    longCount?: number;
-    throttlingParams?: typeof throttlingParamsDefault;
-}
+export { useCarouselContext, useCarouselItem } from '@sberdevices/plasma-core';
 
 /**
  * Хук для навигации. Слушает нажатие кнопок на пульте/клавиатуре.
@@ -53,7 +24,17 @@ export function useRemoteHandlers({
     count = 1,
     longCount = 5,
     throttlingParams = throttlingParamsDefault,
-}: UseRemoteHandlersProps) {
+}: {
+    initialIndex: number;
+    axis: ScrollAxis;
+    delay: number;
+    longDelay: number;
+    min: number;
+    max: number;
+    count?: number;
+    longCount?: number;
+    throttlingParams?: typeof throttlingParamsDefault;
+}) {
     const indexState = React.useState(initialIndex);
     const [, setIndex] = indexState;
 

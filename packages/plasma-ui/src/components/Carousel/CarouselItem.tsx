@@ -1,18 +1,8 @@
 import React from 'react';
-import styled, { css, InterpolationFunction } from 'styled-components';
-import type { SnapAlign, AsProps } from '@sberdevices/plasma-core/types';
-
-import { useCarouselItem } from './Carousel.hooks';
-
-interface ScrollSnapProps {
-    scrollSnapAlign?: SnapAlign;
-}
-
-export const applyScrollSnap: InterpolationFunction<ScrollSnapProps> = ({ scrollSnapAlign }) =>
-    scrollSnapAlign &&
-    css`
-        scroll-snap-align: ${scrollSnapAlign};
-    `;
+import styled from 'styled-components';
+import { useCarouselItem } from '@sberdevices/plasma-core';
+import { applyScrollSnap, ScrollSnapProps } from '@sberdevices/plasma-core/mixins';
+import type { AsProps } from '@sberdevices/plasma-core/types';
 
 const StyledCarouselItem = styled.div`
     ${applyScrollSnap};

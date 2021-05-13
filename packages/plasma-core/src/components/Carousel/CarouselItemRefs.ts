@@ -1,13 +1,10 @@
-import React from 'react';
-import type { PickOptional } from '@sberdevices/plasma-core/types';
-
-import type { CarouselProps } from './Carousel';
+import { MutableRefObject } from 'react';
 
 /**
  * Хранилище элементов карусели.
  */
 export class CarouselItemRefs {
-    public items: React.MutableRefObject<HTMLElement | null>[] = [];
+    public items: MutableRefObject<HTMLElement | null>[] = [];
 
     private order() {
         const children = this.items.find((item) => item.current?.parentNode?.children)?.current?.parentNode?.children;
@@ -26,7 +23,7 @@ export class CarouselItemRefs {
         });
     }
 
-    public register(ref: React.MutableRefObject<HTMLElement | null>): number {
+    public register(ref: MutableRefObject<HTMLElement | null>): number {
         this.items.push(ref);
         this.order();
 
@@ -38,13 +35,3 @@ export class CarouselItemRefs {
         this.order();
     }
 }
-
-export interface CarouselContextType extends PickOptional<CarouselProps, 'axis'> {
-    refs?: CarouselItemRefs;
-}
-
-const carouselContextDefaultValue: CarouselContextType = {
-    axis: 'x',
-};
-
-export const CarouselContext = React.createContext<CarouselContextType>(carouselContextDefaultValue);

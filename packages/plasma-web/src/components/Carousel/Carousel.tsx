@@ -10,40 +10,38 @@ import {
 } from '@sberdevices/plasma-core';
 import type { AsProps } from '@sberdevices/plasma-core/types';
 
-import { useForkRef } from '../../hooks';
-
-export type CarouselProps = BaseProps & AsProps & React.HTMLAttributes<HTMLDivElement> & {};
+export type CarouselProps = Omit<BaseProps, 'axis' | 'animatedScrollByIndex' | 'throttleMs' | 'debounceMs'> &
+    AsProps &
+    React.HTMLAttributes<HTMLDivElement> & {};
 
 export const CarouselGridWrapper = styled(BaseWrapper)``;
 const StyledCarousel = styled(BaseCarousel)``;
-const StyledCarouselTrack = styled(BaseTrack)``;
+const StyledCarouselTrack = styled(BaseTrack)`
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+`;
 
 /**
  * Компонент для создания списков с прокруткой.
  */
-// eslint-disable-next-line prefer-arrow-callback
-export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carousel(
-    {
-        index = 0,
-        axis = 'x',
-        scrollSnapType = 'mandatory',
-        scrollAlign,
-        detectActive,
-        detectThreshold,
-        scaleCallback,
-        scaleResetCallback,
-        onScroll,
-        onIndexChange,
-        paddingStart,
-        paddingEnd,
-        throttleMs,
-        debounceMs,
-        animatedScrollByIndex,
-        children,
-        ...rest
-    },
-    ref,
-) {
+export const Carousel: React.FC<CarouselProps> = ({
+    index,
+    scrollSnapType = 'mandatory',
+    scrollAlign,
+    detectActive,
+    detectThreshold,
+    scaleCallback,
+    scaleResetCallback,
+    onScroll,
+    onIndexChange,
+    paddingStart,
+    paddingEnd,
+    children,
+    ...rest
+}) => {
+    const axis = 'x';
     const { scrollRef, trackRef, refs, handleScroll } = useCarousel({
         index,
         axis,
@@ -54,23 +52,20 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
         scaleResetCallback,
         onScroll,
         onIndexChange,
-        throttleMs,
-        debounceMs,
-        animatedScrollByIndex,
     });
-    const handleRef = useForkRef(scrollRef, ref);
 
     return (
         <CarouselContext.Provider value={{ axis, refs }}>
             <StyledCarousel
-                ref={handleRef}
+                ref={scrollRef}
                 axis={axis}
                 scrollSnapType={scrollSnapType}
                 onScroll={handleScroll}
                 {...rest}
             >
                 <StyledCarouselTrack
-                    ref={trackRef as React.MutableRefObject<HTMLDivElement | null>}
+                    as="ul"
+                    ref={trackRef as React.MutableRefObject<HTMLUListElement | null>}
                     axis={axis}
                     paddingStart={paddingStart}
                     paddingEnd={paddingEnd}
@@ -80,4 +75,4 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
             </StyledCarousel>
         </CarouselContext.Provider>
     );
-});
+};
