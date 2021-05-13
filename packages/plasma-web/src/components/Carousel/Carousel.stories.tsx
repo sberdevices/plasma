@@ -5,6 +5,7 @@ import { boolean, number, select } from '@storybook/addon-knobs';
 import { InSpacingDecorator } from '../../helpers';
 import { Button } from '../Button';
 import { Image } from '../Image';
+import { SmartPaginationDots } from '../PaginationDots';
 import { Headline4, Footnote1 } from '../Typography';
 
 import { Carousel, CarouselItem } from '.';
@@ -22,6 +23,7 @@ const items = Array(25)
         imageSrc: `${process.env.PUBLIC_URL}/images/320_320_n.jpg`,
     })
     .map(({ title, subtitle, imageSrc }, i) => ({
+        id: i,
         title: `${title} ${i}`,
         subtitle: `${subtitle} ${i}`,
         imageSrc: imageSrc.replace('n', i % 12),
@@ -77,8 +79,9 @@ export const Default = () => {
                     </CarouselItem>
                 ))}
             </Carousel>
+            <SmartPaginationDots items={items} index={index} visibleItems={7} onIndexChange={(i) => setIndex(i)} />
             <StyledButtonGroup>
-                <Button text="Prev" onClick={() => setIndex((i) => (i > 0 ? i - 1 : items.length))} />
+                <Button text="Prev" onClick={() => setIndex((i) => (i > 0 ? i - 1 : items.length - 1))} />
                 <Headline4>{index}</Headline4>
                 <Button text="Next" onClick={() => setIndex((i) => (i < items.length - 1 ? i + 1 : 0))} />
             </StyledButtonGroup>
