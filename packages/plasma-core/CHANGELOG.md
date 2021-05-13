@@ -1,3 +1,23 @@
+# v1.8.0 (Thu May 13 2021)
+
+#### 🚀 Enhancement
+
+- feat: add description to Basebox [#347](https://github.com/sberdevices/plasma/pull/347) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- fix: fix Basebox styles [#347](https://github.com/sberdevices/plasma/pull/347) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- chore: update package-locks [#344](https://github.com/sberdevices/plasma/pull/344) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- chore: soft peerDependencies only [#344](https://github.com/sberdevices/plasma/pull/344) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.7.0 (Fri May 07 2021)
 
 #### 🚀 Enhancement

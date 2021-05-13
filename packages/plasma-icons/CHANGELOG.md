@@ -1,3 +1,16 @@
+# v1.9.0 (Thu May 13 2021)
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks [#344](https://github.com/sberdevices/plasma/pull/344) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- chore: soft peerDependencies only [#344](https://github.com/sberdevices/plasma/pull/344) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.8.0 (Tue May 11 2021)
 
 #### 🐛 Bug Fix

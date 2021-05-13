@@ -1,3 +1,18 @@
+# v1.10.0 (Thu May 13 2021)
+
+#### 🐛 Bug Fix
+
+- docs: description in checkbox and radiobox storybook [#347](https://github.com/sberdevices/plasma/pull/347) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- chore: soft peerDependencies only [#344](https://github.com/sberdevices/plasma/pull/344) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.9.0 (Tue May 11 2021)
 
 #### 🚀 Enhancement

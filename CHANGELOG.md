@@ -1,3 +1,34 @@
+# (Thu May 13 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-core@1.8.0`
+  - feat: add description to Basebox [#347](https://github.com/sberdevices/plasma/pull/347) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- chore: add dependabot [#344](https://github.com/sberdevices/plasma/pull/344) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- `@sberdevices/showcase@0.16.0`
+  - fix: type errors in docs/showcase [#347](https://github.com/sberdevices/plasma/pull/347) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - docs: add description for radioboxes in showcase [#347](https://github.com/sberdevices/plasma/pull/347) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - docs: add description for checkboxes in showcase [#347](https://github.com/sberdevices/plasma/pull/347) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- `@sberdevices/plasma-ui@1.12.0`
+  - fix: exclude description from Basebox in plasma-ui [#347](https://github.com/sberdevices/plasma/pull/347) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- `@sberdevices/plasma-core@1.8.0`
+  - fix: fix Basebox styles [#347](https://github.com/sberdevices/plasma/pull/347) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- `@sberdevices/plasma-web@1.10.0`
+  - docs: description in checkbox and radiobox storybook [#347](https://github.com/sberdevices/plasma/pull/347) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- `@sberdevices/plasma-core@1.8.0`, `@sberdevices/plasma-icons@1.9.0`, `@sberdevices/plasma-ui@1.12.0`
+  - chore: update package-locks [#344](https://github.com/sberdevices/plasma/pull/344) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- `@sberdevices/plasma-core@1.8.0`, `@sberdevices/plasma-icons@1.9.0`, `@sberdevices/plasma-ui@1.12.0`, `@sberdevices/plasma-web@1.10.0`
+  - chore: soft peerDependencies only [#344](https://github.com/sberdevices/plasma/pull/344) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # (Tue May 11 2021)
 
 #### 🚀 Enhancement
