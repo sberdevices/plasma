@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { applyScrollSnap, ScrollSnapProps } from '@sberdevices/plasma-core/mixins';
 
 import { Col, ColProps } from '../Grid';
 
 import { useCarouselItem } from './Carousel.hooks';
-import { CarouselItemProps, applyScrollSnap } from './CarouselItem';
+import { CarouselItemProps } from './CarouselItem';
 
-const StyledCol = styled(Col)<Pick<CarouselItemProps, 'scrollSnapAlign'>>`
+const StyledCol = styled(Col)<ScrollSnapProps>`
     ${applyScrollSnap};
 `;
 

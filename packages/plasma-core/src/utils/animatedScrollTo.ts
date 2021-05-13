@@ -10,6 +10,8 @@ const tfs = {
     easeInOut: (t: number) => 0.5 * (Math.sin((t - 0.5) * Math.PI) + 1),
 };
 
+export type TimingFunction = keyof typeof tfs;
+
 /**
  * Плавная прокрутка по горизонтали
  * @param {Element} elem
@@ -21,7 +23,7 @@ export const animatedScrollToX = (
     elem: Element,
     pos: number,
     duration: number = DEFAULT_DURATION,
-    timingFunction: keyof typeof tfs = 'easeIn',
+    timingFunction: TimingFunction = 'easeInOut',
 ): void => {
     let startTime: number;
     const startX = elem.scrollLeft;
@@ -50,7 +52,7 @@ export const animatedScrollToY = (
     elem: Element,
     pos: number,
     duration: number = DEFAULT_DURATION,
-    timingFunction: keyof typeof tfs = 'easeInOut',
+    timingFunction: TimingFunction = 'easeInOut',
 ): void => {
     let startTime: number;
     const startY = elem.scrollTop;

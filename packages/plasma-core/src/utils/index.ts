@@ -1,4 +1,5 @@
 export { animatedScrollToX, animatedScrollToY } from './animatedScrollTo';
+export type { TimingFunction } from './animatedScrollTo';
 
 export { convertRoundnessMatrix } from './roundness';
 export type { PinProps } from './roundness';

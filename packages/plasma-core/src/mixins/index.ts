@@ -18,5 +18,8 @@ export type { RoundnessProps, Roundness } from './applyRoundness';
 export { applyView, views } from './applyView';
 export type { ViewProps, View } from './applyView';
 
+export { applyScrollSnap } from './applyScrollSnap';
+export type { ScrollSnapProps } from './applyScrollSnap';
+
 export * from './shadows';
 export * from './spacing';
