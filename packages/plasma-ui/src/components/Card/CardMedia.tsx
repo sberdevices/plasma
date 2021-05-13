@@ -35,7 +35,7 @@ export const CardMedia: React.FC<CardMediaProps> = ({
 }) => {
     const imgStyle: React.CSSProperties = { ...style };
 
-    if (placeholder) {
+    if (placeholder && !props.src) {
         imgStyle.backgroundImage = `url('${placeholder}')`;
     }
 
