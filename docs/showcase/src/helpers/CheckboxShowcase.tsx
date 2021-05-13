@@ -19,12 +19,12 @@ const elementDescription = (
 );
 const rows = [
     [
-        { ...props, name: 'check', value: 1, label: 'Checkbox 1', disabled: false },
-        { ...props, name: 'check', value: 2, label: 'Checkbox 2', disabled: false },
+        { ...props, name: 'check', value: 1, label: 'Checkbox 1', disabled: false, description: '' },
+        { ...props, name: 'check', value: 2, label: 'Checkbox 2', disabled: false, description: '' },
     ],
     [
-        { ...props, name: 'check', value: 3, label: 'Checkbox 3', disabled: true },
-        { ...props, name: 'check', value: 4, label: 'Checkbox 4', disabled: true },
+        { ...props, name: 'check', value: 3, label: 'Checkbox 3', disabled: true, description: '' },
+        { ...props, name: 'check', value: 4, label: 'Checkbox 4', disabled: true, description: '' },
     ],
     [
         { ...props, name: 'check', value: 5, label: 'Checkbox 5', disabled: false, description: 'text description' },
