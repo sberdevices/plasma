@@ -1,3 +1,24 @@
+# (Fri May 14 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@0.16.0`
+  - feat(plasma-temple): Order Success page [#48](https://github.com/sberdevices/pashka/pull/48) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): description conent can be node. Add export product components [#46](https://github.com/sberdevices/pashka/pull/46) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@0.16.0`
+  - build(plasma-temple): Build via rollup [#50](https://github.com/sberdevices/pashka/pull/50) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - chore(plasma-temple): improve gallery page api [#47](https://github.com/sberdevices/pashka/pull/47) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Tue May 04 2021)
 
 #### 🐛 Bug Fix
