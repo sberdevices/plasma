@@ -1,4 +1,4 @@
-import { FlattenSimpleInterpolation, css } from 'styled-components';
+import { FlattenSimpleInterpolation, FlattenInterpolation, ThemedStyledProps, css } from 'styled-components';
 
 export const breakpoints = {
     XL: 960, // TV
@@ -25,7 +25,7 @@ export const gutters = {
     S: 0.5,
 };
 
-export type MediaQueryFunction = (content: FlattenSimpleInterpolation | string) => FlattenSimpleInterpolation;
+export type MediaQueryFunction = (content: FlattenInterpolation<ThemedStyledProps<{}, any>> | FlattenSimpleInterpolation | string) => FlattenSimpleInterpolation;
 export type Breakpoint = keyof typeof breakpoints;
 
 export const sizes = Object.keys(breakpoints) as Breakpoint[];
