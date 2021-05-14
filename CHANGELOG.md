@@ -2,6 +2,19 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-temple@0.17.0`
+  - feat(plasma-temple): Confirm Order page [#49](https://github.com/sberdevices/pashka/pull/49) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
+# (Fri May 14 2021)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-temple@0.16.0`
   - feat(plasma-temple): Order Success page [#48](https://github.com/sberdevices/pashka/pull/48) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
   - feat(plasma-temple): description conent can be node. Add export product components [#46](https://github.com/sberdevices/pashka/pull/46) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
