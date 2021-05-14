@@ -27,6 +27,10 @@
         "@babel/preset-react": "7.12.13",
         "@babel/preset-typescript": "7.13.0",
         "@mdx-js/mdx": "^1.6.16",
+        "@rollup/plugin-commonjs": "19.0.0",
+        "@rollup/plugin-image": "2.0.6",
+        "@rollup/plugin-node-resolve": "13.0.0",
+        "@rollup/plugin-typescript": "8.2.1",
         "@sberdevices/assistant-client": "2.11.6",
         "@sberdevices/plasma-icons": "1.1.0",
         "@sberdevices/plasma-tokens": "1.1.0",
@@ -53,8 +57,12 @@
         "react-dom": "16.13.1",
         "react-scripts": "^4.0.2",
         "react-test-renderer": "17.0.1",
+        "rollup": "2.47.0",
+        "rollup-plugin-peer-deps-external": "2.2.4",
+        "rollup-plugin-typescript2": "0.30.0",
         "sb": "6.0.0-rc.13",
         "styled-components": "5.1.1",
+        "tslib": "2.2.0",
         "typescript": "3.9.5"
     },
     "publishConfig": {
@@ -67,7 +75,7 @@
     "scripts": {
         "prepare": "npm run build",
         "clean": "rm -rf dist",
-        "build": "npm run clean && tsc -p tsconfig.build.json",
+        "build": "npm run clean && rollup -c",
         "build-storybook": "npm run storybook:build",
         "build:storybook": "npm run storybook:build && npm run storybook:extract",
         "storybook": "start-storybook -s .storybook/public -p ${PORT:-6006} -c .storybook",
@@ -76,9 +84,7 @@
         "test": "jest --coverage && npm run coverage",
         "coverage": "node ../../scripts/updateCoverage.js --url=https://api.keyvalue.xyz/9237dc02/coverage"
     },
-    "files": [
-        "dist"
-    ],
+    "files": ["dist"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Виноградов Антон Александрович",
