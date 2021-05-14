@@ -9,8 +9,8 @@ export default {
 };
 
 const rows = {
-    Default: {},
-    White: { color: 'white' },
+    Default: { id: 'accent' },
+    White: { id: 'black', color: 'black' },
 };
 const cols = {
     16: { size: 16 },
