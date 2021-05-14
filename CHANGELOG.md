@@ -1,3 +1,16 @@
+# (Fri May 14 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/showcase@0.17.0`, `@sberdevices/plasma-web@1.11.0`
+  - feat(plasma-web): Added Tooltip component [#345](https://github.com/sberdevices/plasma/pull/345) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Thu May 13 2021)
 
 #### 🚀 Enhancement
