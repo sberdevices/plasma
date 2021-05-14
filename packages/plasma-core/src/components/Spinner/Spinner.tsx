@@ -35,10 +35,10 @@ export interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
 /**
  * Компонент для отображения индикатора загрузки.
  */
-export const Spinner: React.FC<SpinnerProps> = ({ size = 56, color = accent, ...rest }) => {
+export const Spinner: React.FC<SpinnerProps> = ({ id, size = 56, color = accent, ...rest }) => {
     return (
-        <StyledRoot $size={size} {...rest}>
-            <SpinnerSvg width={size} height={size} color={color} />
+        <StyledRoot id={id} $size={size} {...rest}>
+            <SpinnerSvg id={id} width={size} height={size} color={color} />
         </StyledRoot>
     );
 };
