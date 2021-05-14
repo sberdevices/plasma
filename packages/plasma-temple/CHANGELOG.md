@@ -1,3 +1,15 @@
+# v0.17.0 (Fri May 14 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Confirm Order page [#49](https://github.com/sberdevices/pashka/pull/49) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v0.16.0 (Fri May 14 2021)
 
 #### 🚀 Enhancement
