@@ -9,8 +9,6 @@ export default {
     decorators: [UIStoryDecorator, InSpacingDecorator],
 };
 
-/* eslint-disable prefer-rest-params */
-export function Default() {
-    return <RadioboxShowcase {...arguments[0]} component={Radiobox} />;
-}
-/* eslint-enable prefer-rest-params */
+export const Default = ({ withLabels, withDescription = false }: { withLabels: boolean; withDescription: boolean }) => {
+    return <RadioboxShowcase withLabels={withLabels} withDescription={withDescription} component={Radiobox} />;
+};

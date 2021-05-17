@@ -35,30 +35,34 @@ const rows = [
 export const CheckboxShowcase = ({
     component: Component,
     withLabels = true,
+    withDescription = true,
 }: {
     component: React.FC<any>;
     withLabels: boolean;
+    withDescription: boolean;
 }) => {
     const [values, setValues] = React.useState([2, 4]);
 
     return (
         <ShowcaseComponentGrid>
             {rows.map((items) =>
-                items.map((item, j) => (
-                    <Component
-                        {...item}
-                        key={`item:${j}`}
-                        style={{ margin: 0 }}
-                        label={withLabels ? item.label : ''}
-                        checked={values.indexOf(item.value) !== -1}
-                        onChange={(event: any) => {
-                            setValues(
-                                [...values, item.value].filter((val) => event.target.checked || val !== item.value),
-                            );
-                            onChange(event);
-                        }}
-                    />
-                )),
+                items
+                    .filter((item) => !(!withDescription && item.description))
+                    .map((item, j) => (
+                        <Component
+                            {...item}
+                            key={`item:${j}`}
+                            style={{ margin: 0 }}
+                            label={withLabels ? item.label : ''}
+                            checked={values.indexOf(item.value) !== -1}
+                            onChange={(event: any) => {
+                                setValues(
+                                    [...values, item.value].filter((val) => event.target.checked || val !== item.value),
+                                );
+                                onChange(event);
+                            }}
+                        />
+                    )),
             )}
         </ShowcaseComponentGrid>
     );

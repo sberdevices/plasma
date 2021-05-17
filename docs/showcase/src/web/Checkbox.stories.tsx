@@ -9,8 +9,6 @@ export default {
     decorators: [WebStoryDecorator, InSpacingDecorator],
 };
 
-/* eslint-disable prefer-rest-params */
-export function Default() {
-    return <CheckboxShowcase {...arguments[0]} component={Checkbox} />;
-}
-/* eslint-enable prefer-rest-params */
+export const Default = (props: { withLabels: boolean; withDescription: boolean }) => {
+    return <CheckboxShowcase {...props} component={Checkbox} />;
+};
