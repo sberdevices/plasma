@@ -1,14 +1,14 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import { Headline3, Row, Carousel, CarouselGridWrapper, CarouselItem } from '@sberdevices/plasma-ui';
+import styled from 'styled-components';
+import { Headline3, Carousel, CarouselGridWrapper, CarouselItem } from '@sberdevices/plasma-ui';
 import { isSberPortal } from '@sberdevices/plasma-ui/utils';
 
-import { GalleryCard, GalleryCardProps } from '../GalleryCard/GalleryCard';
-import { Header } from '../../../../components/Header/Header';
-import { useRemoteHandlers } from '../../../../hooks/useRemoteHandlers';
-import { useVoiceNavigation } from '../../../../hooks/useVoiceNavigation';
-import { Gallery as GalleryType } from '../../types';
-import { AnyObject } from '../../../../types';
+import { GalleryCard, GalleryCardProps } from '../../../components/GalleryCard/GalleryCard';
+import { Header } from '../../../components/Header/Header';
+import { useRemoteHandlers } from '../../../hooks/useRemoteHandlers';
+import { useVoiceNavigation } from '../../../hooks/useVoiceNavigation';
+import { Gallery as GalleryType } from '../types';
+import { AnyObject } from '../../../types';
 
 interface GalleryProps<T extends AnyObject = AnyObject> {
     gallery: GalleryType<T>;
@@ -20,21 +20,13 @@ interface GalleryProps<T extends AnyObject = AnyObject> {
     changeActiveCard: (index: number) => void;
 }
 
-const StyledRow = styled(Row)`
-    padding: 1rem 0;
-    box-sizing: border-box;
+const StyledCarousel = styled(Carousel)`
+    padding: 0.25rem 0;
 `;
 
 const StyledTitle = styled(Header)<{ active: boolean; withLogo: boolean }>`
     transition: transform 0.35s linear;
     transform: translateX(${({ active, withLogo }) => (active && withLogo ? 3 : 0)}rem);
-
-    ${({ active }) =>
-        !active &&
-        css`
-            padding-bottom: 0;
-            padding-top: 0;
-        `}
 `;
 
 const GalleryComponent = <T extends AnyObject = AnyObject>({
@@ -115,16 +107,15 @@ const GalleryComponent = <T extends AnyObject = AnyObject>({
                 !isSberPortal() && <Headline3>{title}</Headline3>
             )}
             <CarouselGridWrapper>
-                <Carousel
+                <StyledCarousel
                     scrollSnapType="mandatory"
-                    as={StyledRow}
                     axis="x"
                     index={cardIndex}
                     detectActive={false}
                     animatedScrollByIndex
                 >
                     {galleryItems}
-                </Carousel>
+                </StyledCarousel>
             </CarouselGridWrapper>
         </>
     );

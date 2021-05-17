@@ -1,7 +1,7 @@
 import { AnyObject, MediaObject } from '../../types';
 
-export type GalleryCard<T extends AnyObject = AnyObject> = T & {
-    id: string;
+export type GalleryCardParams<T extends AnyObject = AnyObject> = T & {
+    id: string | number;
     label: string;
     position: number;
     image: MediaObject;
@@ -13,7 +13,7 @@ export type GalleryCard<T extends AnyObject = AnyObject> = T & {
 export interface Gallery<T extends AnyObject = AnyObject> {
     id?: string;
     title: string;
-    items: GalleryCard<T>[];
+    items: GalleryCardParams<T>[];
     activeCardIndex: number;
 }
 

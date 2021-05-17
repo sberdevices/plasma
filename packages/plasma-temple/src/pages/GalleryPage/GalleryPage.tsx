@@ -7,10 +7,10 @@ import { isSberPortal } from '@sberdevices/plasma-ui/utils';
 import { useRemoteHandlers } from '../../hooks/useRemoteHandlers';
 import { useGetState } from '../../hooks/useGetState';
 import { Header } from '../../components/Header/Header';
+import { GalleryCardProps } from '../../components/GalleryCard/GalleryCard';
 import { AnyObject } from '../../types';
 
-import { Gallery } from './components/Gallery/Gallery';
-import { GalleryCardProps } from './components/GalleryCard/GalleryCard';
+import { Gallery } from './components/Gallery';
 import { GalleryPageState } from './types';
 
 interface GalleryPageProps<T extends AnyObject = AnyObject> {
@@ -30,6 +30,10 @@ const StyledFixedHeader = styled(Container)`
     top: 0;
     left: 0;
     z-index: 10;
+`;
+
+const StyledCarousel = styled(Carousel)`
+    padding-right: var(--plasma-grid-margin);
 `;
 
 export interface GalleryPageControl {
@@ -84,7 +88,7 @@ export const GalleryPage = React.forwardRef<GalleryPageControl, GalleryPageProps
                 isSberPortal()
                     ? {
                           detectActive: true as const,
-                          detectThreshold: 0.5,
+                          detectThreshold: 0.4,
                           onIndexChange: changeGallery,
                       }
                     : { detectActive: undefined },
@@ -110,7 +114,7 @@ export const GalleryPage = React.forwardRef<GalleryPageControl, GalleryPageProps
                     <Header {...header} />
                 )}
                 <StyledCarouselGridWrapper>
-                    <Carousel
+                    <StyledCarousel
                         axis="y"
                         index={galleryIndex}
                         scrollSnapType="mandatory"
@@ -131,7 +135,7 @@ export const GalleryPage = React.forwardRef<GalleryPageControl, GalleryPageProps
                                 />
                             </CarouselItem>
                         ))}
-                    </Carousel>
+                    </StyledCarousel>
                 </StyledCarouselGridWrapper>
             </>
         );

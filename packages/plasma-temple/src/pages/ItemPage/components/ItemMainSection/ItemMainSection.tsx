@@ -48,7 +48,9 @@ const ItemCell: React.FC<ItemCellProps> = ({ title, content }) => (
     />
 );
 
-export const ItemMainSection: React.FC<UnifiedComponentProps<ItemMainSectionProps>> = ({
+export const ItemMainSection: React.FC<
+    UnifiedComponentProps<ItemMainSectionProps, 'Container' | 'Title' | 'Subtitle'>
+> = ({
     title,
     subtitle,
     description,
