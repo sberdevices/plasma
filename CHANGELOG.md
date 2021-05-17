@@ -1,5 +1,18 @@
 # (Mon May 17 2021)
 
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-ui@1.14.1`
+  - fix(plasma-ui): fix simultaneous src&placeholder display [#390](https://github.com/sberdevices/plasma/pull/390) ([@ayymkozb](https://github.com/ayymkozb))
+
+#### Authors: 1
+
+- [@ayymkozb](https://github.com/ayymkozb)
+
+---
+
+# (Mon May 17 2021)
+
 #### 🚀 Enhancement
 
 - `@sberdevices/plasma-core@1.9.0`

@@ -1,3 +1,17 @@
+# v1.14.1 (Mon May 17 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): fix simultaneous src&placeholder display [#390](https://github.com/sberdevices/plasma/pull/390) ([@ayymkozb](https://github.com/ayymkozb))
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@ayymkozb](https://github.com/ayymkozb)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
 # v1.14.0 (Mon May 17 2021)
 
 #### 🐛 Bug Fix
