@@ -1,3 +1,17 @@
+# v1.14.0 (Mon May 17 2021)
+
+#### 🐛 Bug Fix
+
+- feat(plasma-core, plasma-ui): Moved Spinner to core [#326](https://github.com/sberdevices/plasma/pull/326) (VSProkopyev@sberbank.ru)
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Viktor Prokopyev (VSProkopyev@sberbank.ru)
+
+---
+
 # v1.13.0 (Fri May 14 2021)
 
 #### 🐛 Bug Fix

@@ -1,3 +1,29 @@
+# (Mon May 17 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-core@1.9.0`
+  - feat: Support setting color for Spinner [#326](https://github.com/sberdevices/plasma/pull/326) ([@nyet-ty](https://github.com/nyet-ty))
+- `@sberdevices/plasma-web@1.12.0`
+  - feat(plasma-web): Added Spinner to web [#326](https://github.com/sberdevices/plasma/pull/326) (VSProkopyev@sberbank.ru)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/showcase@0.18.0`, `@sberdevices/plasma-core@1.9.0`
+  - fix(plasma-core): Id for Spinner's gradient [#326](https://github.com/sberdevices/plasma/pull/326) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/showcase@0.18.0`, `@sberdevices/plasma-web@1.12.0`
+  - docs(showcase): Added Spinner showcase web [#326](https://github.com/sberdevices/plasma/pull/326) (VSProkopyev@sberbank.ru)
+- `@sberdevices/plasma-core@1.9.0`, `@sberdevices/plasma-ui@1.14.0`
+  - feat(plasma-core, plasma-ui): Moved Spinner to core [#326](https://github.com/sberdevices/plasma/pull/326) (VSProkopyev@sberbank.ru)
+
+#### Authors: 3
+
+- [@nyet-ty](https://github.com/nyet-ty)
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+- Viktor Prokopyev (VSProkopyev@sberbank.ru)
+
+---
+
 # (Fri May 14 2021)
 
 #### 🚀 Enhancement

@@ -1,3 +1,22 @@
+# v1.9.0 (Mon May 17 2021)
+
+#### 🚀 Enhancement
+
+- feat: Support setting color for Spinner [#326](https://github.com/sberdevices/plasma/pull/326) ([@nyet-ty](https://github.com/nyet-ty))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-core): Id for Spinner's gradient [#326](https://github.com/sberdevices/plasma/pull/326) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-core, plasma-ui): Moved Spinner to core [#326](https://github.com/sberdevices/plasma/pull/326) (VSProkopyev@sberbank.ru)
+
+#### Authors: 3
+
+- [@nyet-ty](https://github.com/nyet-ty)
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+- Viktor Prokopyev (VSProkopyev@sberbank.ru)
+
+---
+
 # v1.8.0 (Thu May 13 2021)
 
 #### 🚀 Enhancement
