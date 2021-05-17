@@ -51,28 +51,32 @@ const rows = [
 export const RadioboxShowcase = ({
     component: Component,
     withLabels = true,
+    withDescription = true,
 }: {
     component: React.FC<any>;
     withLabels: boolean;
+    withDescription: boolean;
 }) => {
     const [value, setValue] = React.useState(2);
 
     return (
         <ShowcaseComponentGrid>
             {rows.map((items) =>
-                items.map((item, j) => (
-                    <Component
-                        {...item}
-                        key={`item:${j}`}
-                        style={{ margin: 0 }}
-                        label={withLabels ? item.label : ''}
-                        checked={item.checked || item.value === value}
-                        onChange={(event: any) => {
-                            setValue(item.value);
-                            onChange(event);
-                        }}
-                    />
-                )),
+                items
+                    .filter((item) => !(!withDescription && item.description))
+                    .map((item, j) => (
+                        <Component
+                            {...item}
+                            key={`item:${j}`}
+                            style={{ margin: 0 }}
+                            label={withLabels ? item.label : ''}
+                            checked={item.checked || item.value === value}
+                            onChange={(event: any) => {
+                                setValue(item.value);
+                                onChange(event);
+                            }}
+                        />
+                    )),
             )}
         </ShowcaseComponentGrid>
     );
