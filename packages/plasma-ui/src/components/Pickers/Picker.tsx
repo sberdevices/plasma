@@ -88,6 +88,8 @@ interface StyledCarouselProps extends DisabledProps {
 }
 
 const StyledCarousel = styled(Carousel)<StyledCarouselProps>`
+    scroll-behavior: unset;
+
     ${({ $size, visibleItems }) => css`
         height: ${sizes[$size][visibleItems].height};
     `};
@@ -227,7 +229,14 @@ export const Picker: React.FC<PickerProps> = ({
                 paddingEnd={sizes[size][visibleItems].padding}
             >
                 {items.map((item, i) => (
-                    <PickerItem key={`item:${i}`} item={item} size={size} onClick={() => onChange?.(item)} />
+                    <PickerItem
+                        key={`item:${i}`}
+                        item={item}
+                        index={i}
+                        activeIndex={index}
+                        size={size}
+                        onClick={() => onChange?.(item)}
+                    />
                 ))}
             </StyledCarousel>
             {controls && (
