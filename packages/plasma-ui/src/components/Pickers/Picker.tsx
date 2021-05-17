@@ -88,8 +88,6 @@ interface StyledCarouselProps extends DisabledProps {
 }
 
 const StyledCarousel = styled(Carousel)<StyledCarouselProps>`
-    scroll-behavior: unset;
-
     ${({ $size, visibleItems }) => css`
         height: ${sizes[$size][visibleItems].height};
     `};
@@ -101,6 +99,10 @@ const StyledCarousel = styled(Carousel)<StyledCarouselProps>`
         `}
 
     -webkit-mask-image: linear-gradient(rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 10%, rgb(0, 0, 0) 90%, rgba(0, 0, 0, 0) 100%);
+
+    &[data-no-scroll-behavior='true'] {
+        scroll-behavior: unset;
+    }
 `;
 
 const getIndex = (index: number, cmd: '+' | '-', min: number, max: number) => {
@@ -156,7 +158,9 @@ export const Picker: React.FC<PickerProps> = ({
     const min = 0;
     const max = items.length - 1;
     const index = items.findIndex((item) => item.value === value);
-    const ref = React.useRef<HTMLDivElement | null>(null);
+    const noScrollBehavior = React.useRef(true);
+    const wrapperRef = React.useRef<HTMLDivElement | null>(null);
+    const carouselRef = React.useRef<HTMLDivElement | null>(null);
     const toPrev = React.useCallback(() => !disabled && onChange?.(items[getIndex(index, '-', min, max)]), [
         index,
         min,
@@ -171,7 +175,7 @@ export const Picker: React.FC<PickerProps> = ({
     // Навигация с помощью пульта/клавиатуры
     // Не перелистывает, если компонент неактивен
     useRemoteListener((key, event) => {
-        if (ref.current !== document.activeElement) {
+        if (wrapperRef.current !== document.activeElement) {
             return;
         }
         if (key !== 'UP' && key !== 'DOWN') {
@@ -191,13 +195,20 @@ export const Picker: React.FC<PickerProps> = ({
     });
 
     React.useEffect(() => {
-        if (autofocus && ref.current) {
-            ref.current.focus();
+        if (autofocus && wrapperRef.current) {
+            wrapperRef.current.focus();
         }
+        /**
+         * Удаляем аттрибут отключения анимации без перерендера компонента.
+         */
+        if (carouselRef.current) {
+            carouselRef.current.removeAttribute('data-no-scroll-behavior');
+        }
+        noScrollBehavior.current = false;
     }, []);
 
     return (
-        <StyledWrapper ref={ref} disabled={disabled} tabIndex={tabIndex} {...rest}>
+        <StyledWrapper ref={wrapperRef} disabled={disabled} tabIndex={tabIndex} {...rest}>
             {controls && (
                 <Button
                     forwardedAs={StyledDivButton}
@@ -209,6 +220,7 @@ export const Picker: React.FC<PickerProps> = ({
                 />
             )}
             <StyledCarousel
+                ref={carouselRef}
                 $size={size}
                 visibleItems={visibleItems}
                 disabled={disabled}
@@ -216,7 +228,6 @@ export const Picker: React.FC<PickerProps> = ({
                 index={index}
                 scaleCallback={size === 's' ? scaleCallbackS : scaleCallbackL}
                 scaleResetCallback={scaleResetCallback}
-                animatedScrollByIndex={controls}
                 scrollSnapType="mandatory"
                 detectActive
                 detectThreshold={0.5}
@@ -227,6 +238,7 @@ export const Picker: React.FC<PickerProps> = ({
                 }}
                 paddingStart={sizes[size][visibleItems].padding}
                 paddingEnd={sizes[size][visibleItems].padding}
+                {...(noScrollBehavior.current ? { 'data-no-scroll-behavior': true } : {})}
             >
                 {items.map((item, i) => (
                     <PickerItem
