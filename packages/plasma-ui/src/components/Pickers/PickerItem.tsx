@@ -17,6 +17,27 @@ const sizes = {
         height: `${36 / scalingPixelBasis}rem`,
     },
 };
+const slotSizes = {
+    l: {
+        // Размер (transform: scale) при slot = 0
+        x0Scale: 1,
+        // Размер при slot = 1
+        x1Scale: 0.8,
+        // Размер при slot = 2
+        x2Scale: 0.8,
+        // Коэффициент смещения по oY
+        offsetFactor: 0.5,
+        // Высота элемента
+        height: 120,
+    },
+    s: {
+        x0Scale: 1,
+        x1Scale: 0.75,
+        x2Scale: 0.5,
+        offsetFactor: 0.5,
+        height: 72,
+    },
+};
 
 const round = (n: number) => Math.round(n * 100) / 100;
 
@@ -24,72 +45,98 @@ export type Item = {
     value: string | number | Date;
     label: string | number;
 };
-
+export type Size = keyof typeof sizes;
 export interface SizeProps {
     /**
      * Размер компонента
      */
-    size?: keyof typeof sizes;
+    size?: Size;
 }
 
 const fullOpacity = 1;
 const noneOpacity = 0;
 
 /**
- * Малый размер => большой размер
- * Серый текст => белый текст
+ * Абстрактный просчет стилей в зависимости от слота,
+ * не основываясь на реальном элементе списка.
  */
-const scaleCallback = (x0Scale: number, x1Scale: number, x2Scale: number, offsetDelta: number) => (
-    itemEl: HTMLElement,
-    slot: number,
-) => {
+const getStyles = (slot: number, size: Size) => {
     const absSlot = Math.abs(slot);
     const ceilSlot = Math.ceil(absSlot) || 1;
     const normSlot = Math.min(absSlot, ceilSlot); // Нормализованное значение
     const progSlot = ceilSlot - normSlot; // Прогресс (от X до 0)
-    const shift = (offsetDelta * itemEl.offsetHeight) / 2;
+    const shift = (slotSizes[size].offsetFactor * slotSizes[size].height) / 2;
     let opacity;
     let offset;
     let scale;
 
     switch (true) {
         case absSlot <= 1:
-            scale = round(progSlot * (x0Scale - x1Scale) + x1Scale);
+            scale = round(progSlot * (slotSizes[size].x0Scale - slotSizes[size].x1Scale) + slotSizes[size].x1Scale);
             offset = round(slot * shift);
             opacity = round(progSlot * (fullOpacity - noneOpacity) + noneOpacity);
             break;
         case absSlot <= 2:
-            scale = round(progSlot * (x1Scale - x2Scale) + x2Scale);
+            scale = round(progSlot * (slotSizes[size].x1Scale - slotSizes[size].x2Scale) + slotSizes[size].x2Scale);
             offset = round(progSlot * shift * Math.sign(slot));
             opacity = noneOpacity;
             break;
         default:
-            scale = round(progSlot * x2Scale);
-            offset = round(((normSlot - 2) / (ceilSlot - 2)) * Math.sign(slot) * -1 * itemEl.offsetHeight);
+            scale = round(progSlot * slotSizes[size].x2Scale);
+            offset = round(((normSlot - 2) / (ceilSlot - 2)) * Math.sign(slot) * -1 * slotSizes[size].height);
             opacity = noneOpacity;
     }
 
+    return {
+        wrapper: {
+            /*
+             * Размер плавно уменьшается с увеличением значения slot
+             */
+            transform: `scale(${scale}) translate3d(0,${offset}px,0)`,
+        },
+        text: {
+            /*
+             * Непрозрачность уменьшается с увеличением значения slot
+             */
+            opacity: `${1 - opacity}`,
+        },
+        whiteText: {
+            /*
+             * Непрозрачность увеличивается с увеличением значения slot
+             */
+            opacity: `${opacity}`,
+        },
+    };
+};
+
+/**
+ * Малый размер => большой размер
+ * Серый текст => белый текст
+ */
+const scaleCallback = (size: Size) => (itemEl: HTMLElement, slot: number) => {
+    const styles = getStyles(slot, size);
+
     if (itemEl.children[0] instanceof HTMLElement) {
-        const transformable = itemEl.children[0];
-        transformable.style.transform = `scale(${scale}) translate3d(0,${offset}px,0)`;
+        const wrapper = itemEl.children[0];
+        wrapper.style.transform = styles.wrapper.transform;
 
         /**
          * Серый текст
          */
-        if (transformable.children[0] instanceof HTMLElement) {
-            transformable.children[0].style.opacity = `${1 - opacity}`;
+        if (wrapper.children[0] instanceof HTMLElement) {
+            wrapper.children[0].style.opacity = styles.text.opacity;
         }
         /**
          * Белый текст
          */
-        if (transformable.children[1] instanceof HTMLElement) {
-            transformable.children[1].style.opacity = `${opacity}`;
+        if (wrapper.children[1] instanceof HTMLElement) {
+            wrapper.children[1].style.opacity = styles.whiteText.opacity;
         }
     }
 };
 
-export const scaleCallbackL = scaleCallback(1, 0.8, 0.8, 0.5);
-export const scaleCallbackS = scaleCallback(1, 0.75, 0.5, 0.5);
+export const scaleCallbackL = scaleCallback('l');
+export const scaleCallbackS = scaleCallback('s');
 
 /**
  * Сброс стилей
@@ -167,16 +214,23 @@ export const StyledWhiteText = styled.div`
 
 export interface PickerItemProps extends React.HTMLAttributes<HTMLDivElement>, SizeProps {
     item: Item;
+    index: number;
+    activeIndex: number;
 }
 
-export const PickerItem: React.FC<PickerItemProps> = ({ size = 's', item, ...rest }) => {
+export const PickerItem: React.FC<PickerItemProps> = ({ size = 's', item, index, activeIndex, ...rest }) => {
     const itemRef = useCarouselItem<HTMLDivElement>();
+    /*
+     * Выведем стили еще до того, как отработает коллбек стилей.
+     * Тут важно, что для `slot` идут целочисленные значения.
+     */
+    const styles = React.useMemo(() => getStyles(index - activeIndex, size), [index, activeIndex, size]);
 
     return (
         <StyledPickerItem ref={itemRef} $size={size} {...rest}>
-            <StyledTransformable $size={size}>
-                <StyledText>{item.label}</StyledText>
-                <StyledWhiteText>{item.label}</StyledWhiteText>
+            <StyledTransformable $size={size} style={styles.wrapper}>
+                <StyledText style={styles.text}>{item.label}</StyledText>
+                <StyledWhiteText style={styles.whiteText}>{item.label}</StyledWhiteText>
             </StyledTransformable>
         </StyledPickerItem>
     );
