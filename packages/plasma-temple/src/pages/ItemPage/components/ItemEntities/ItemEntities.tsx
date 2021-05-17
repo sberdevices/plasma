@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Row } from '@sberdevices/plasma-ui';
 
 import { ItemEntity, ItemEntityProps } from '../ItemEntity/ItemEntity';
@@ -12,19 +11,15 @@ export interface ItemEntitiesProps {
     title: string;
 }
 
-const StyledSection = styled(Section)`
-    padding-bottom: 50vh;
-`;
-
-export const ItemEntities: React.FC<UnifiedComponentProps<ItemEntitiesProps>> = React.memo(
+export const ItemEntities: React.FC<UnifiedComponentProps<ItemEntitiesProps, 'Title'>> = React.memo(
     ({ list, platformComponents: { Title }, title }) => (
-        <StyledSection>
+        <Section>
             <Title>{title}</Title>
             <Row>
                 {list.map((item) => (
                     <ItemEntity key={item.uuid} {...item} />
                 ))}
             </Row>
-        </StyledSection>
+        </Section>
     ),
 );
