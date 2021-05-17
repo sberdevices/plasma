@@ -1,0 +1,35 @@
+<svg viewBox="0 0 118 116" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="97.5" cy="58.5" r="97.5" fill="url(#paint0_linear)" fill-opacity="0.12"/>
+<ellipse cx="105" cy="58.5" rx="81" ry="81.5" fill="url(#paint1_linear)" fill-opacity="0.12"/>
+<g opacity="0.56" filter="url(#filter0_d)">
+<rect x="81" y="45.8574" width="19" height="19" rx="5" transform="rotate(-180 81 45.8574)" fill="url(#paint2_linear)"/>
+<rect x="81" y="89.2856" width="19" height="36.6428" rx="5" transform="rotate(-180 81 89.2856)" fill="url(#paint3_linear)"/>
+</g>
+<defs>
+<filter id="filter0_d" x="38" y="0.857422" width="79" height="122.428" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+<feOffset dx="6" dy="4"/>
+<feGaussianBlur stdDeviation="15"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.1715 0 0 0 0 0 0 0 0 0 0.175 0 0 0 0.4 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+</filter>
+<linearGradient id="paint0_linear" x1="97.5" y1="-39" x2="97.5" y2="156" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="0.800876" stop-color="white" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint1_linear" x1="105" y1="-23" x2="105" y2="170.451" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="0.707125" stop-color="white" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint2_linear" x1="81" y1="41.1074" x2="97.7425" y2="70.3502" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint3_linear" x1="64.5729" y1="74.5312" x2="94.5397" y2="130.067" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0.19"/>
+</linearGradient>
+</defs>
+</svg>

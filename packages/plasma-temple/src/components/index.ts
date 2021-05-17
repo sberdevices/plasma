@@ -4,3 +4,4 @@ export * from './MediaPlayer';
 export * from './Form';
 export * from './Product';
 export * from './Header/Header';
+export * from './GalleryCard/GalleryCard';
