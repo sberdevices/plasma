@@ -3,3 +3,4 @@ export * from './ItemPage';
 export * from './VideoPage';
 export * from './OrderSuccess';
 export * from './ConfirmOrder';
+export * from './ShopLandingPage';

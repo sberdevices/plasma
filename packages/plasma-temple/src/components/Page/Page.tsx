@@ -9,6 +9,7 @@ import { AnyObject, AssistantInstance } from '../../types';
 import { useAssistant } from '../../hooks/useAssistant';
 import { last } from '../../utils/last';
 import { INNER_ASSISTANT_ACTION } from '../../constants';
+import { Layout } from '../../components/Layout/Layout';
 
 import { PageComponent } from './types';
 
@@ -77,20 +78,22 @@ export function Page<Name extends string>({
     return (
         <>
             <React.Suspense fallback={fallbackComponent}>
-                <Component
-                    name={name}
-                    params={window.history.state}
-                    state={screen?.data}
-                    assistant={assistant}
-                    setAssistantState={setAssistantState}
-                    changeState={changeState}
-                    pushHistory={pushHistory}
-                    pushScreen={pushScreen}
-                    popScreen={popScreen}
-                    sendData={sendData}
-                    fallbackComponent={fallbackComponent}
-                    header={header ?? appHeader}
-                />
+                <Layout>
+                    <Component
+                        name={name}
+                        params={window.history.state}
+                        state={screen?.data}
+                        assistant={assistant}
+                        setAssistantState={setAssistantState}
+                        changeState={changeState}
+                        pushHistory={pushHistory}
+                        pushScreen={pushScreen}
+                        popScreen={popScreen}
+                        sendData={sendData}
+                        fallbackComponent={fallbackComponent}
+                        header={header ?? appHeader}
+                    />
+                </Layout>
             </React.Suspense>
         </>
     );
