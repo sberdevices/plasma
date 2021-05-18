@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { VideoPlayer, VideoPlayerProps } from '../../components/VideoPlayer/VideoPlayer';
 import { CustomMediaPlayerControlsProps } from '../../components/MediaPlayer';
 import { useInsets } from '../../hooks';
-import { useGetState } from '../../hooks/useGetState';
+import { useGetMutableValue } from '../../hooks/useGetMutableValue';
 import { AnyObject } from '../../types';
 
 import { VideoPageState } from './types';
@@ -40,7 +40,7 @@ export function VideoPage<T extends AnyObject = AnyObject>({
 
     const insets = useInsets();
 
-    const getState = useGetState(state);
+    const getState = useGetMutableValue(state);
 
     const onNext = React.useCallback(() => {
         if (position < videos.length - 1) {
