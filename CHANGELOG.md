@@ -1,3 +1,16 @@
+# (Tue May 18 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@0.18.0`
+  - feat(plasma-temple): ShopLandingPage components [#51](https://github.com/sberdevices/pashka/pull/51) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Fri May 14 2021)
 
 #### 🚀 Enhancement
