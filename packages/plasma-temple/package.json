@@ -45,6 +45,7 @@
         "@storybook/react": "6.1.21",
         "@testing-library/react-hooks": "5.1.0",
         "@types/jest": "26.0.20",
+        "@types/lodash": "4.14.160",
         "@types/lodash.throttle": "4.1.6",
         "@types/node": "12.12.30",
         "@types/react": "16.9.38",
@@ -84,13 +85,14 @@
         "test": "jest --coverage && npm run coverage",
         "coverage": "node ../../scripts/updateCoverage.js --url=https://api.keyvalue.xyz/9237dc02/coverage"
     },
-    "files": [
-        "dist"
-    ],
+    "files": ["dist"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Виноградов Антон Александрович",
         "Зубаиров Фаниль Асхатович",
         "Sviridov Maksim"
-    ]
+    ],
+    "dependencies": {
+        "lodash.throttle": "4.1.1"
+    }
 }
