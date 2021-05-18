@@ -1,3 +1,15 @@
+# v0.18.1 (Tue May 18 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): Fix action button clicks with spatial navigation [#53](https://github.com/sberdevices/pashka/pull/53) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v0.18.0 (Tue May 18 2021)
 
 #### 🚀 Enhancement
