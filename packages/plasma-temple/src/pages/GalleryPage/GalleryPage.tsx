@@ -5,7 +5,7 @@ import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 import { isSberPortal } from '@sberdevices/plasma-ui/utils';
 
 import { useRemoteHandlers } from '../../hooks/useRemoteHandlers';
-import { useGetState } from '../../hooks/useGetState';
+import { useGetMutableValue } from '../../hooks/useGetMutableValue';
 import { Header } from '../../components/Header/Header';
 import { GalleryCardProps } from '../../components/GalleryCard/GalleryCard';
 import { AnyObject } from '../../types';
@@ -55,7 +55,7 @@ export const GalleryPage = React.forwardRef<GalleryPageControl, GalleryPageProps
             repeat: false,
         });
 
-        const getState = useGetState(state);
+        const getState = useGetMutableValue(state);
 
         React.useEffect(() => {
             const currentState = getState();

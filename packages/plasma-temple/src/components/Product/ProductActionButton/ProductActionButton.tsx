@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { IconMinus, IconPlus } from '@sberdevices/plasma-icons';
 import { Col, ActionButton, Body2, Button, Row } from '@sberdevices/plasma-ui';
 
-import { useMount } from '../../../hooks';
+import { useMount, useThrottledCallback } from '../../../hooks';
+import { useGetMutableValue } from '../../../hooks/useGetMutableValue';
 
 export type ChangeQuantityFn = (plus: 1 | -1) => void;
 
@@ -36,22 +37,61 @@ const StyledContentRight = styled.span`
     white-space: pre-wrap;
 `;
 
+const throttleWait = 450;
+const throttleParams = {
+    leading: true,
+    trailing: false,
+};
+
 export const ProductActionButton: React.FC<ProductActionButtonProps> = React.memo(
-    ({ autoFocus, actionButtonText, contentRight, quantity, withQuantity, onChangeQuantity, onClick, className }) => {
+    ({
+        autoFocus,
+        actionButtonText,
+        contentRight,
+        quantity = 0,
+        withQuantity,
+        onChangeQuantity,
+        onClick,
+        className,
+    }) => {
         const buttonRef = React.useRef<HTMLButtonElement>(null);
 
+        const getQuantity = useGetMutableValue(quantity);
+
         useMount(() => {
-            if (autoFocus && buttonRef.current) {
-                buttonRef.current.focus({ preventScroll: true });
-            }
+            const timer = setTimeout(() => {
+                if (autoFocus && buttonRef.current) {
+                    buttonRef.current.focus({ preventScroll: true });
+                }
+            }, throttleWait);
+
+            return () => clearTimeout(timer);
         });
+
+        const onDecreaseQuantity = useThrottledCallback(
+            () => {
+                if (getQuantity() > 0) {
+                    onChangeQuantity?.(-1);
+                }
+            },
+            throttleWait,
+            [getQuantity, onChangeQuantity],
+            throttleParams,
+        );
+
+        const onIncreaseQuantity = useThrottledCallback(
+            () => onChangeQuantity?.(1),
+            throttleWait,
+            [onChangeQuantity],
+            throttleParams,
+        );
 
         return (
             <StyledRow className={className}>
                 {withQuantity && (
                     <>
                         <Col>
-                            <ActionButton size="l" onClick={() => onChangeQuantity?.(-1)}>
+                            <ActionButton size="l" onClick={onDecreaseQuantity}>
                                 <IconMinus size="xs" />
                             </ActionButton>
                         </Col>
@@ -59,7 +99,7 @@ export const ProductActionButton: React.FC<ProductActionButtonProps> = React.mem
                             <Body2>{quantity}</Body2>
                         </Col>
                         <Col>
-                            <ActionButton size="l" onClick={() => onChangeQuantity?.(1)}>
+                            <ActionButton size="l" onClick={onIncreaseQuantity}>
                                 <IconPlus size="xs" />
                             </ActionButton>
                         </Col>
