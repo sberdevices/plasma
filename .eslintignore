@@ -1,6 +1,11 @@
 build
 node_modules
 
+packages/plasma-colors/*
+!packages/plasma-colors/additional.ts
+!packages/plasma-colors/general.ts
+!packages/plasma-colors/index.ts
+
 packages/plasma-core/*
 !packages/plasma-core/src
 
