@@ -34,6 +34,7 @@ import { Maximize } from './Icon.assets/Maximize';
 import { Minus } from './Icon.assets/Minus';
 import { MoreHorizontal } from './Icon.assets/MoreHorizontal';
 import { MoreVertical } from './Icon.assets/MoreVertical';
+import { PercentStroke } from './Icon.assets/PercentStroke';
 import { Persone } from './Icon.assets/Persone';
 import { Plus } from './Icon.assets/Plus';
 import { PlusCircle } from './Icon.assets/PlusCircle';
@@ -186,6 +187,7 @@ export const iconSectionsSet = {
         minus: Minus,
         moreHorizontal: MoreHorizontal,
         moreVertical: MoreVertical,
+        percentStroke: PercentStroke,
         persone: Persone,
         plus: Plus,
         plusCircle: PlusCircle,
