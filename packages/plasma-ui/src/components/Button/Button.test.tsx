@@ -27,6 +27,10 @@ describe('Button component', () => {
         const buttonText = 'sample text';
         const button = renderer.create(<Button text={buttonText} />).root;
         expect(button.findByType('span').children.includes(buttonText)).toBeTruthy();
+        const buttonContentLeft = renderer.create(<Button text={buttonText} contentLeft />).root;
+        expect(buttonContentLeft.findByType('span').children.includes(buttonText)).toBeTruthy();
+        const buttonContentRight = renderer.create(<Button text={buttonText} contentRight />).root;
+        expect(buttonContentRight.findByType('span').children.includes(buttonText)).toBeTruthy();
     });
 
     it('applies size styles', () => {
