@@ -160,11 +160,13 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         }
     }, [year, month, day]);
 
-    const daysOption = typeof options.days === 'boolean' ? options.days : defaultOptions.days;
-    const monthsOption = typeof options.months === 'boolean' ? options.months : defaultOptions.months;
-    const yearsOption = typeof options.years === 'boolean' ? options.years : defaultOptions.years;
-    const shortMonthNameOption =
-        typeof options.shortMonthName === 'boolean' ? options.shortMonthName : defaultOptions.shortMonthName;
+    const getOption = (key: keyof typeof defaultOptions) =>
+        typeof options[key] === 'boolean' ? options[key] : defaultOptions[key];
+
+    const daysOption = getOption('days');
+    const monthsOption = getOption('months');
+    const yearsOption = getOption('years');
+    const shortMonthNameOption = getOption('shortMonthName');
     const monthNameFormat = shortMonthNameOption ? 'short' : 'long';
     return (
         <StyledWrapper>
