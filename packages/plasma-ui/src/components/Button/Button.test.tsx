@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import _ from 'jest-styled-components';
+import 'jest-styled-components';
 import {
     background,
     blackSecondary,
