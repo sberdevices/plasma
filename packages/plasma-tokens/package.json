@@ -35,7 +35,7 @@
         "@sberdevices/plasma-tokens-utils": "0.3.0",
         "@theme-ui/css": "0.3.1",
         "@types/color": "3.0.1",
-        "@types/node": "^14.11.1",
+        "@types/node": "^15.3.1",
         "@types/param-case": "1.1.2",
         "color": "^3.1.2",
         "csstype": "3.0.3",
