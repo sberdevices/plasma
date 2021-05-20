@@ -1,3 +1,17 @@
+# v1.15.1 (Thu May 20 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui) Add Huawei TV UA [#403](https://github.com/sberdevices/plasma/pull/403) ([@SemyonMakhaev](https://github.com/SemyonMakhaev))
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Махаев Семён ([@SemyonMakhaev](https://github.com/SemyonMakhaev))
+
+---
+
 # v1.15.0 (Thu May 20 2021)
 
 #### 🚀 Enhancement
