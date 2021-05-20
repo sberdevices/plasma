@@ -1,3 +1,21 @@
+# v1.15.0 (Thu May 20 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): Increase Picker performance with preset item styles [#389](https://github.com/sberdevices/plasma/pull/389) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): Disabled animation in Picker in first render [#389](https://github.com/sberdevices/plasma/pull/389) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-core, plasma-ui, plasma-web): Moved PaginationDots to core [#389](https://github.com/sberdevices/plasma/pull/389) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-core, plasma-ui, plasma-web): Moved Carousel to core [#389](https://github.com/sberdevices/plasma/pull/389) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.14.2 (Tue May 18 2021)
 
 #### 🐛 Bug Fix

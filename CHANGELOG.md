@@ -1,3 +1,28 @@
+# (Thu May 20 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-ui@1.15.0`
+  - feat(plasma-ui): Increase Picker performance with preset item styles [#389](https://github.com/sberdevices/plasma/pull/389) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- chore: add condition for chromatic github job [#343](https://github.com/sberdevices/plasma/pull/343) ([@OgNellis](https://github.com/OgNellis))
+- `@sberdevices/plasma-ui@1.15.0`
+  - fix(plasma-ui): Disabled animation in Picker in first render [#389](https://github.com/sberdevices/plasma/pull/389) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/showcase@0.19.0`, `@sberdevices/plasma-core@1.10.0`, `@sberdevices/plasma-ui@1.15.0`, `@sberdevices/plasma-web@1.13.0`
+  - feat(plasma-core, plasma-ui, plasma-web): Moved PaginationDots to core [#389](https://github.com/sberdevices/plasma/pull/389) ([@fanisco](https://github.com/fanisco))
+  - feat(plasma-core, plasma-ui, plasma-web): Moved Carousel to core [#389](https://github.com/sberdevices/plasma/pull/389) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/showcase@0.19.0`
+  - docs(showcase): Fix carousel/pickers animation with delay [#389](https://github.com/sberdevices/plasma/pull/389) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Tue May 18 2021)
 
 #### 🐛 Bug Fix

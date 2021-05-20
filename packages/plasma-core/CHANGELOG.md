@@ -1,3 +1,16 @@
+# v1.10.0 (Thu May 20 2021)
+
+#### 🐛 Bug Fix
+
+- feat(plasma-core, plasma-ui, plasma-web): Moved PaginationDots to core [#389](https://github.com/sberdevices/plasma/pull/389) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-core, plasma-ui, plasma-web): Moved Carousel to core [#389](https://github.com/sberdevices/plasma/pull/389) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.9.0 (Mon May 17 2021)
 
 #### 🚀 Enhancement
