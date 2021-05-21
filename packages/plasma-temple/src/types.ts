@@ -1,5 +1,5 @@
 import { AssistantNavigationCommand, AssistantSmartAppData, createAssistant } from '@sberdevices/assistant-client';
-import { Ratio } from '@sberdevices/plasma-ui';
+import { PriceProps, Ratio } from '@sberdevices/plasma-ui';
 import { detectDevice } from '@sberdevices/plasma-ui/utils';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -13,6 +13,8 @@ export type Axis = 'x' | 'y';
 export type Direction = AssistantNavigationCommand['navigation']['command'];
 
 export type DeviceFamily = ReturnType<typeof detectDevice>;
+
+export type Currency = PriceProps['currency'];
 
 export interface AssistantAction {
     type: string;
@@ -45,7 +47,7 @@ export interface AssistantAppStateItem {
     title: string;
     number?: number;
     id?: string;
-    action: {
+    action?: {
         type: string;
         payload?: Record<string, unknown>;
     };
@@ -58,4 +60,9 @@ export interface AssistantAppState {
     };
     screen?: string;
     [key: string]: unknown;
+}
+
+export interface Entity<ID = string> {
+    name: string;
+    id: ID;
 }
