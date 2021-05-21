@@ -51,13 +51,16 @@ type SetChangedFlag = {
 type Action<T> = SetSuggestionsAction<T> | SetManualInput | SetErrorVoiceInputAction<T> | SetChangedFlag;
 
 type AssistantVoiceFillAction<T> =
-    | { type: 'CONFIRM' }
-    | { type: 'SKIP' }
-    | { type: 'REJECT' }
-    | { type: 'FILLING'; payload: { value: T[] } }
-    | { type: 'FILLING_ERROR'; payload: { value: T[] } };
+    | { type: 'confirm' }
+    | { type: 'skip' }
+    | { type: 'reject' }
+    | { type: 'fieldFill'; payload: { value: T[] } }
+    | { type: 'fieldFillError'; payload: { value: T[] } };
 
-type AssistantVoiceAction<T> = { action: AssistantVoiceFillAction<T> } & AssistantSmartAppData;
+interface AssistantVoiceAction<T> extends AssistantSmartAppData {
+    // eslint-disable-next-line camelcase
+    smart_app_data: AssistantVoiceFillAction<T>;
+}
 
 function reducer<T>(state: State<T>, action: Action<T>) {
     switch (action.type) {
@@ -188,7 +191,7 @@ export function VoiceField<T>({
     );
 
     useAssistantOnSmartAppData<AssistantVoiceAction<T>>((command) => {
-        const { action } = command;
+        const { smart_app_data: action } = command;
 
         if (!action) {
             return;
@@ -196,7 +199,7 @@ export function VoiceField<T>({
 
         // TODO: затипизировать это
         switch (action.type) {
-            case 'CONFIRM':
+            case 'confirm':
                 if (suggestions.length === 1) {
                     onChange?.(suggestions[0]);
                     dispatch({
@@ -206,20 +209,20 @@ export function VoiceField<T>({
 
                 break;
 
-            case 'SKIP':
+            case 'skip':
                 onSubmit?.();
                 break;
 
-            case 'REJECT':
+            case 'reject':
                 handleRejectInput();
                 break;
 
-            case 'FILLING':
-                handleFilling(action.payload.value as T[], StateActionType.setSuggests);
+            case 'fieldFill':
+                handleFilling(action.payload.value, StateActionType.setSuggests);
                 break;
 
-            case 'FILLING_ERROR':
-                handleFilling(action.payload.value as T[], StateActionType.setError);
+            case 'fieldFillError':
+                handleFilling(action.payload.value, StateActionType.setError);
                 break;
 
             default:
