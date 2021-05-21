@@ -5,6 +5,7 @@ import { Col, ActionButton, Body2, Button, Row } from '@sberdevices/plasma-ui';
 
 import { useMount, useThrottledCallback } from '../../../hooks';
 import { useGetMutableValue } from '../../../hooks/useGetMutableValue';
+import { THROTTLE_WAIT } from '../../../hooks/useThrottledCallback';
 
 export type ChangeQuantityFn = (plus: 1 | -1) => void;
 
@@ -37,12 +38,6 @@ const StyledContentRight = styled.span`
     white-space: pre-wrap;
 `;
 
-const throttleWait = 450;
-const throttleParams = {
-    leading: true,
-    trailing: false,
-};
-
 export const ProductActionButton: React.FC<ProductActionButtonProps> = React.memo(
     ({
         autoFocus,
@@ -63,28 +58,18 @@ export const ProductActionButton: React.FC<ProductActionButtonProps> = React.mem
                 if (autoFocus && buttonRef.current) {
                     buttonRef.current.focus({ preventScroll: true });
                 }
-            }, throttleWait);
+            }, THROTTLE_WAIT);
 
             return () => clearTimeout(timer);
         });
 
-        const onDecreaseQuantity = useThrottledCallback(
-            () => {
-                if (getQuantity() > 0) {
-                    onChangeQuantity?.(-1);
-                }
-            },
-            throttleWait,
-            [getQuantity, onChangeQuantity],
-            throttleParams,
-        );
+        const onDecreaseQuantity = useThrottledCallback(() => {
+            if (getQuantity() > 0) {
+                onChangeQuantity?.(-1);
+            }
+        }, [getQuantity, onChangeQuantity]);
 
-        const onIncreaseQuantity = useThrottledCallback(
-            () => onChangeQuantity?.(1),
-            throttleWait,
-            [onChangeQuantity],
-            throttleParams,
-        );
+        const onIncreaseQuantity = useThrottledCallback(() => onChangeQuantity?.(1), [onChangeQuantity]);
 
         return (
             <StyledRow className={className}>

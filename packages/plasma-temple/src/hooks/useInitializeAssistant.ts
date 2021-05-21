@@ -32,6 +32,18 @@ export const initializeAssistant = <T extends AssistantSmartAppData>({
     let assistant: AssistantInstance;
 
     if (process.env.NODE_ENV === 'development') {
+        const environmentProps = token
+            ? {
+                  userChannel: 'B2C',
+                  surface: 'SBERBOX',
+                  url: 'wss://nlp2vps.online.sberbank.ru/vps/',
+              }
+            : {
+                  url,
+                  userChannel,
+                  surface,
+              };
+
         assistant = createAssistantDev<T>({
             getState: () => {
                 const state = getState();
@@ -41,10 +53,11 @@ export const initializeAssistant = <T extends AssistantSmartAppData>({
             getRecoveryState,
             initPhrase,
             nativePanel,
-            url,
-            userChannel,
-            surface,
             token,
+            settings: {
+                authConnector: 'developer_portal_jwt',
+            },
+            ...environmentProps,
         });
 
         assistant.on('data', (action) => logger('Assistant Action', action));
