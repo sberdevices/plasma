@@ -15,7 +15,7 @@ const labelFormatter = {
 
 const getFormatterKey = (type: PickerType, monthNameFormat?: MonthNameFormat): keyof typeof labelFormatter => {
     const isMonth = type === 'month';
-    const isShortFormat = monthNameFormat && monthNameFormat === 'short';
+    const isShortFormat = monthNameFormat === 'short';
     if (isMonth && isShortFormat) {
         return 'monthShort';
     }
