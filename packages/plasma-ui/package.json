@@ -62,7 +62,7 @@
         "react": "16.13.1",
         "react-dom": "16.13.1",
         "react-scripts": "3.4.1",
-        "react-test-renderer": "17.0.2",
+        "react-test-renderer": "16.13.1",
         "rollup": "2.42.1",
         "sb": "6.0.0-rc.13",
         "styled-components": "^5.1.1",
@@ -93,6 +93,11 @@
     "storybook": {
         "title": "SberDevices Design System",
         "url": "https://5f96ec813d800900227e3b93-eobodfvrnh.chromatic.com/"
+    },
+    "jest": {
+        "moduleNameMapper": {
+            "^styled-components": "<rootDir>/node_modules/styled-components"
+        }
     },
     "files": ["components", "hocs", "hooks", "mixins", "types", "utils", "index.d.ts", "index.js", "es"],
     "contributors": [
