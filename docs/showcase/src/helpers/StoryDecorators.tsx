@@ -1,8 +1,19 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
-import { text, background, gradient } from '@sberdevices/plasma-tokens'; // FixMe: import from core
-import { darkEva, darkJoy, darkSber, lightEva, lightJoy, lightSber } from '@sberdevices/plasma-tokens/themes';
-import { sberPortal, sberBox, mobile } from '@sberdevices/plasma-tokens/typo';
+import {
+    text,
+    background,
+    gradient,
+    darkEva,
+    darkJoy,
+    darkSber,
+    lightEva,
+    lightJoy,
+    lightSber,
+    sberPortal,
+    sberBox,
+    mobile,
+} from '@sberdevices/plasma-tokens';
 import { light } from '@sberdevices/plasma-tokens-web/themes';
 import { web } from '@sberdevices/plasma-tokens-web/typo';
 import { DeviceThemeProvider } from '@sberdevices/plasma-ui/components/Device';

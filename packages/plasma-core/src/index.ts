@@ -17,6 +17,7 @@ export * from './components/Image';
 export * from './components/Typography';
 export * from './components/Basebox';
 export * from './types';
+export * from './tokens';
 export * from './utils';
 export * from './hocs';
 export * from './hooks';
