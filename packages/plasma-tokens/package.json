@@ -17,7 +17,7 @@
         "clean": "rm -rf src && rm -rf lib && rm -rf typo && rm -rf themes && rm -rf themesValues && rm -rf build && rm -rf properties",
         "pregenerate": "npm run clean && rm -rf ../../node_modules/@types/webpack",
         "generate": "npx ts-node ./generate.ts && npm run generate:amzn",
-        "postgenerate": "npx tsc src/index.ts -d --outDir lib",
+        "postgenerate": "npx tsc src/index.ts -d --outDir lib && npm run build:es",
         "generate:amzn": "npx style-dictionary build",
         "figma": "npm run extract --prefix='./design-language'"
     },
