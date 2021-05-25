@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { darkEva, darkJoy, darkSber, lightEva, lightJoy, lightSber } from '@sberdevices/plasma-tokens/themes';
+import { darkEva, darkJoy, darkSber, lightEva, lightJoy, lightSber } from '@sberdevices/plasma-tokens';
 
 import { Cell, CellIcon } from '../components/Cell';
 import { TextBox } from '../components/TextBox';

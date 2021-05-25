@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import { darkEva, darkJoy, darkSber, lightEva, lightJoy, lightSber } from '@sberdevices/plasma-tokens/themes';
-import { sberBox, sberPortal, mobile } from '@sberdevices/plasma-tokens/typo';
+import {
+    darkEva,
+    darkJoy,
+    darkSber,
+    lightEva,
+    lightJoy,
+    lightSber,
+    sberBox,
+    sberPortal,
+    mobile,
+} from '@sberdevices/plasma-tokens';
 
 const StyledRoot = styled.div`
     display: flex;

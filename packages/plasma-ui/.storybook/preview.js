@@ -6,7 +6,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { Title, Subtitle, Description, Primary, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
 
 import { text, background, gradient } from '@sberdevices/plasma-tokens';
-import { darkEva, darkJoy, darkSber, lightEva, lightJoy, lightSber } from '@sberdevices/plasma-tokens/themes';
+import { darkEva, darkJoy, darkSber, lightEva, lightJoy, lightSber } from '@sberdevices/plasma-tokens';
 
 import storybookTheme from './theme';
 

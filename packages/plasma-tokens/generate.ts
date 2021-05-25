@@ -20,11 +20,11 @@ import type { ThemeTokens, TypographyTypes } from './data';
 
 const OUT_DIR = 'src';
 const COLORS_DIR = path.join(OUT_DIR, 'colors');
-const THEMES_DIR = 'themes';
-const THEMES_VALUES_DIR = 'themesValues';
+const THEMES_DIR = path.join(OUT_DIR, 'themes');
+const THEMES_VALUES_DIR = path.join(OUT_DIR, 'themesValues');
 const TYPOGRAPHY_DIR = path.join(OUT_DIR, 'typography');
 const TYPOGRAPHY_VALUES_DIR = path.join(OUT_DIR, 'typographyValues');
-const TYPO_DIR = 'typo';
+const TYPO_DIR = path.join(OUT_DIR, 'typo');
 const ROOT_INDEX_TS = path.join(OUT_DIR, 'index.ts');
 
 fs.existsSync(OUT_DIR) || fs.mkdirSync(OUT_DIR);
@@ -89,6 +89,8 @@ export const scalingPixelBasis = ${HTML_FONT_SIZE};
 export * from './colors';
 export * from './typography';
 export * from './typographyValues';
+export * from './typo';
+export * from './themes';
 `;
 
 fs.writeFileSync(ROOT_INDEX_TS, indexTsContent);

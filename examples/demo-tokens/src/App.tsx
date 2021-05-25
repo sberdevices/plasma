@@ -8,7 +8,7 @@ import { sberBox } from '@sberdevices/plasma-tokens/typo';
 import { body1, headline2 } from '@sberdevices/plasma-tokens';
 
 // получаем тему персонажа
-import { darkJoy } from '@sberdevices/plasma-tokens/themes';
+import { darkJoy } from '@sberdevices/plasma-tokens';
 // получаем цвета для нашего интерфейса
 import { text, background, gradient } from '@sberdevices/plasma-tokens';
 
