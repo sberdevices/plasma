@@ -10,8 +10,13 @@ export const padZeroNumber = (value: number) => `${value}`.padStart(2, '0');
  * в котором находятся части даты, форматированной на основнии `options`.
  * То есть в данном случае вернется массив [`day`, `separator`, `month`]
  */
-export const monthLongName = (val: number): string =>
-    last(new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'long' }).formatToParts(new Date().setMonth(val)))
-        .value;
+export const monthName = (val: number, monthFormat: Intl.DateTimeFormatOptions['month']): string =>
+    last(
+        new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: monthFormat }).formatToParts(
+            new Date().setMonth(val),
+        ),
+    ).value;
 
-export const monthShortName = (val: number): string => monthLongName(val).substring(0, 3);
+export const monthLongName = (val: number): string => monthName(val, 'long');
+
+export const monthShortName = (val: number): string => monthName(val, 'short').slice(0, -1);
