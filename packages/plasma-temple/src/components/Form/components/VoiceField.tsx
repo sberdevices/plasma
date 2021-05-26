@@ -1,6 +1,6 @@
 import React from 'react';
-import { AssistantSmartAppData } from '@sberdevices/assistant-client';
 
+import { Action as CommonAction } from '../../../store/types';
 import { isNonNullableValue } from '../../../utils/isNonNullableValue';
 import { useAssistantOnSmartAppData } from '../../../hooks';
 import { VoiceLabels, FieldPropsWithRef } from '../types';
@@ -51,16 +51,11 @@ type SetChangedFlag = {
 type Action<T> = SetSuggestionsAction<T> | SetManualInput | SetErrorVoiceInputAction<T> | SetChangedFlag;
 
 type AssistantVoiceFillAction<T> =
-    | { type: 'confirm' }
-    | { type: 'skip' }
-    | { type: 'reject' }
-    | { type: 'fieldFill'; payload: { value: T[] } }
-    | { type: 'fieldFillError'; payload: { value: T[] } };
-
-interface AssistantVoiceAction<T> extends AssistantSmartAppData {
-    // eslint-disable-next-line camelcase
-    smart_app_data: AssistantVoiceFillAction<T>;
-}
+    | CommonAction<{ type: 'confirm' }>
+    | CommonAction<{ type: 'skip' }>
+    | CommonAction<{ type: 'reject' }>
+    | CommonAction<{ type: 'fieldFill'; payload: { value: T[] } }>
+    | CommonAction<{ type: 'fieldFillError'; payload: { value: T[] } }>;
 
 function reducer<T>(state: State<T>, action: Action<T>) {
     switch (action.type) {
@@ -190,9 +185,7 @@ export function VoiceField<T>({
         [dispatch],
     );
 
-    useAssistantOnSmartAppData<AssistantVoiceAction<T>>((command) => {
-        const { smart_app_data: action } = command;
-
+    useAssistantOnSmartAppData<AssistantVoiceFillAction<T>>((action) => {
         if (!action) {
             return;
         }

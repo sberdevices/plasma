@@ -5,6 +5,7 @@ import {
     ChangeStateAction,
     CharacterAction,
     InsetsAction,
+    PlasmaActionData,
     PopHistoryAction,
     PushHistoryAction,
 } from './types';
@@ -42,16 +43,10 @@ export const isChangeStateAction = (
     return action?.type === AppStateActionType.CHANGE_ACTIVE_SCREEN_STATE && Boolean(action.payload?.data);
 };
 
-export const isPlasmaAppAction = (action: AssistantSmartAppData['smart_app_data']): boolean => {
+export const isPlasmaAppAction = (action: unknown): action is PlasmaActionData => {
     if (!action) {
         return false;
     }
 
-    return [
-        isPushHistoryAction,
-        isPopHistoryAction,
-        isCharacterAction,
-        isInsetsAction,
-        isChangeStateAction,
-    ].some((guard) => guard(action));
+    return [isPushHistoryAction, isPopHistoryAction, isChangeStateAction].some((guard) => guard(action));
 };
