@@ -20,9 +20,9 @@ import { AnyObject } from '../../types';
 export interface GalleryCardProps<T extends AnyObject = AnyObject> {
     card: GalleryCardType<T>;
     index: number;
-    activeCardIndex: number;
     onClick: <T1 extends T>(cardProps: T1) => void;
-    onFocus: (index: number) => void;
+    onFocus: () => void;
+    focused?: boolean;
 }
 
 const StyledCardIndex = styled(CardBadge)`
@@ -80,7 +80,7 @@ const Time: React.FC<{ time: string }> = ({ time }) => (
 
 const GalleryCardComponent = <T extends AnyObject = AnyObject>({
     card,
-    activeCardIndex,
+    focused,
     index,
     onClick,
     onFocus,
@@ -89,14 +89,13 @@ const GalleryCardComponent = <T extends AnyObject = AnyObject>({
     const imageSrc = Array.isArray(card.image.src) ? card.image.src[0] : card.image.src;
 
     React.useLayoutEffect(() => {
-        if (activeCardIndex === index && isSberBox()) {
+        if (focused && isSberBox()) {
             cardRef.current?.focus({ preventScroll: true });
         }
-    }, [activeCardIndex, index]);
+    }, [focused]);
 
     const handleClick = React.useCallback(() => onClick(card), [card, onClick]);
-    const handleFocus = React.useCallback(() => onFocus(index), [index, onFocus]);
-    const isFocused = isSberBox() && activeCardIndex === index;
+    const isFocused = isSberBox() && focused;
 
     return (
         <CarouselCol sizeXL={3} sizeL={2} sizeM={2}>
@@ -104,7 +103,7 @@ const GalleryCardComponent = <T extends AnyObject = AnyObject>({
                 focused={isFocused}
                 tabIndex={0}
                 onClick={handleClick}
-                onFocus={handleFocus}
+                onFocus={onFocus}
                 data-cy={`gallery-card-${index}`}
                 ref={cardRef}
             >
