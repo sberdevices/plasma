@@ -10,6 +10,7 @@
     "scripts": {
         "prepare": "npm run build:tokens",
         "prebuild:ds": "npm ci --prefix='design-language'",
+        "build:cjs": "tsc --emitDeclarationOnly && npm run babel",
         "build:ds": "npm run build --prefix='./design-language'",
         "build:es": "rollup -c",
         "prebuild:tokens": "npm run build:ds",
@@ -24,7 +25,14 @@
     "publishConfig": {
         "access": "public"
     },
-    "files": ["lib", "typo", "themes", "themesValues", "theme.json", "theme@2x.json"],
+    "files": [
+        "lib",
+        "typo",
+        "themes",
+        "themesValues",
+        "theme.json",
+        "theme@2x.json"
+    ],
     "devDependencies": {
         "@emotion/serialize": "0.11.16",
         "@sberdevices/plasma-tokens-utils": "0.3.0",
@@ -47,5 +55,10 @@
         "ts-node": "^9.0.0",
         "typescript": "^4.0.2"
     },
-    "contributors": ["Виноградов Антон Александрович", "Зубаиров Фаниль Асхатович", "Vasiliy Loginevskiy"]
+    "contributors": [
+        "Виноградов Антон Александрович",
+        "Зубаиров Фаниль Асхатович",
+        "Vasiliy Loginevskiy"
+    ],
+    "sideEffects": false
 }
