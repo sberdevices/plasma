@@ -10,6 +10,9 @@ import { useRegistry } from '../../hooks/useRegistry';
 
 import { ShopLandingPageState } from './types';
 
+const StyledCarousel = styled(Carousel)`
+    padding: 0.25rem 0;
+`;
 export interface ShopLandingPageProps<T extends AnyObject = AnyObject> {
     header?: HeaderProps;
     onCatalogOpen: () => void;
@@ -19,9 +22,6 @@ export interface ShopLandingPageProps<T extends AnyObject = AnyObject> {
     galleryCard?: React.ComponentType<GalleryCardProps<T>>;
 }
 
-const StyledCarousel = styled(Carousel)`
-    padding: 0.25rem 0;
-`;
 export const ShopLandingPage: React.FC<ShopLandingPageProps> = ({
     galleryCard,
     state,
@@ -45,7 +45,7 @@ export const ShopLandingPage: React.FC<ShopLandingPageProps> = ({
                 <CarouselItem key={item.id} scrollSnapAlign="start">
                     <Component
                         card={item}
-                        activeCardIndex={activeIndex}
+                        focused={activeIndex === index}
                         index={index}
                         onClick={open}
                         onFocus={setFocused}
@@ -59,7 +59,7 @@ export const ShopLandingPage: React.FC<ShopLandingPageProps> = ({
         <>
             <Header {...header} />
             <CarouselGridWrapper>
-                <StyledCarousel index={activeIndex} axis="x" animatedScrollByIndex>
+                <StyledCarousel index={activeIndex} axis="x" animatedScrollByIndex style={{ scrollBehavior: 'smooth' }}>
                     <NavCol
                         onFocus={() => setActiveIndex(0)}
                         onCatalogOpen={onCatalogOpen}
