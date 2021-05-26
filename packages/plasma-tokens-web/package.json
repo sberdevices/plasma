@@ -43,5 +43,6 @@
         "Vasiliy Loginevskiy",
         "Anton Vinogradov",
         "Fanil Zubairov"
-    ]
+    ],
+    "sideEffects": false
 }
