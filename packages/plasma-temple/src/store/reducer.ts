@@ -1,6 +1,6 @@
 import { last } from '../utils/last';
 
-import { AppState, AppStateAction, AppStateActionType } from './types';
+import { AppState, PlasmaActionData, AppStateActionType } from './types';
 
 export const initialState: AppState = {
     history: [],
@@ -15,7 +15,7 @@ export const initialState: AppState = {
     },
 };
 
-export const reducer = (state: AppState, action: AppStateAction): AppState => {
+export const reducer = (state: AppState, action: PlasmaActionData): AppState => {
     switch (action.type) {
         case AppStateActionType.CHARACTER: {
             const { character } = action.payload;
