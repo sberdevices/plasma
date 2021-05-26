@@ -1,3 +1,16 @@
+# (Wed May 26 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@0.19.0`
+  - feat(plasma-temple): Cart page [#54](https://github.com/sberdevices/pashka/pull/54) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # (Tue May 18 2021)
 
 #### 🐛 Bug Fix
