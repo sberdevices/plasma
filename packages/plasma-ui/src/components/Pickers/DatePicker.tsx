@@ -160,8 +160,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         }
     }, [year, month, day]);
 
-    const getOption = (key: keyof typeof defaultOptions) =>
-        typeof options[key] === 'boolean' ? options[key] : defaultOptions[key];
+    const getOption = (key: keyof typeof defaultOptions) => (key in options ? options[key] : defaultOptions[key]);
 
     const daysOption = getOption('days');
     const monthsOption = getOption('months');
