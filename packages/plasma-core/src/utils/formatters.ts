@@ -19,4 +19,4 @@ export const monthName = (val: number, monthFormat: Intl.DateTimeFormatOptions['
 
 export const monthLongName = (val: number): string => monthName(val, 'long');
 
-export const monthShortName = (val: number): string => monthName(val, 'short').slice(0, -1);
+export const monthShortName = (val: number): string => monthName(val, 'short').replace('.', '');
