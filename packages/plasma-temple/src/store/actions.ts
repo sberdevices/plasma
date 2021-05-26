@@ -11,6 +11,7 @@ import {
     PopHistoryAction,
     ChangeStateAction,
     AssistantInsets,
+    History,
 } from './types';
 
 export const setCharacter = (character: AssistantCharacterType): CharacterAction =>
@@ -28,7 +29,7 @@ export const pushHistory = <
 
 export const popHistory = (): PopHistoryAction => createEmptyAction(AppStateActionType.POP_HISTORY);
 
-export const changeActiveScreenState = (data: unknown): ChangeStateAction =>
+export const changeActiveScreenState = (data: History['data']): ChangeStateAction =>
     createAction(AppStateActionType.CHANGE_ACTIVE_SCREEN_STATE, { data });
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
