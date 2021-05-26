@@ -1,4 +1,6 @@
-import { AssistantCharacterType, AssistantInsetsCommand } from '@sberdevices/assistant-client';
+import { AssistantCharacterType, AssistantInsetsCommand, AssistantSmartAppData } from '@sberdevices/assistant-client';
+
+import { EmptyAction, Action as StateAction } from '../utils/createAction';
 
 export type AssistantInsets = AssistantInsetsCommand['insets'];
 
@@ -25,13 +27,15 @@ export enum AppStateActionType {
     CHANGE_ACTIVE_SCREEN_STATE = 'changeActiveScreenState',
 }
 
-export type CharacterAction = { type: AppStateActionType.CHARACTER; payload: { character: AssistantCharacterType } };
-export type InsetsAction = { type: AppStateActionType.INSETS; payload: { insets: AssistantInsets } };
-export type PushHistoryAction = { type: AppStateActionType.PUSH_HISTORY; payload: { history: History } };
-export type PopHistoryAction = { type: AppStateActionType.POP_HISTORY };
-export type ChangeStateAction = {
-    type: AppStateActionType.CHANGE_ACTIVE_SCREEN_STATE;
-    payload: { data: unknown };
-};
+export interface Action<A extends Record<any, any>> extends AssistantSmartAppData {
+    // eslint-disable-next-line camelcase
+    smart_app_data: A;
+}
 
-export type AppStateAction = CharacterAction | InsetsAction | PushHistoryAction | PopHistoryAction | ChangeStateAction;
+export type CharacterAction = StateAction<AppStateActionType.CHARACTER, { character: AssistantCharacterType }>;
+export type InsetsAction = StateAction<AppStateActionType.INSETS, { insets: AssistantInsets }>;
+export type PushHistoryAction = StateAction<AppStateActionType.PUSH_HISTORY, { history: History }>;
+export type PopHistoryAction = EmptyAction<AppStateActionType.POP_HISTORY>;
+export type ChangeStateAction = StateAction<AppStateActionType.CHANGE_ACTIVE_SCREEN_STATE, { data: History['data'] }>;
+export type PlasmaAction = Action<PushHistoryAction> | Action<ChangeStateAction> | Action<PopHistoryAction>;
+export type PlasmaActionData = CharacterAction | InsetsAction | PlasmaAction['smart_app_data'];
