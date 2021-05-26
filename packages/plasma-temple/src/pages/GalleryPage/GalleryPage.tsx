@@ -1,17 +1,20 @@
-import React, { useImperativeHandle } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { Carousel, CarouselGridWrapper, CarouselItem, Container } from '@sberdevices/plasma-ui';
+import { CarouselGridWrapper, CarouselItem, Container, Headline3 } from '@sberdevices/plasma-ui';
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
-import { isSberPortal } from '@sberdevices/plasma-ui/utils';
 
 import { useRemoteHandlers } from '../../hooks/useRemoteHandlers';
 import { useGetMutableValue } from '../../hooks/useGetMutableValue';
 import { Header } from '../../components/Header/Header';
 import { GalleryCardProps } from '../../components/GalleryCard/GalleryCard';
 import { AnyObject } from '../../types';
+import { GalleryWithNavigation } from '../../components/Gallery/Gallery';
+import { GalleryProps } from '../../components/Gallery/types';
+import { useRegistry } from '../../hooks/useRegistry';
 
-import { Gallery } from './components/Gallery';
 import { GalleryPageState } from './types';
+
+const ActiveGalleryContext = React.createContext(0);
 
 interface GalleryPageProps<T extends AnyObject = AnyObject> {
     state: GalleryPageState<T>;
@@ -25,6 +28,10 @@ const StyledCarouselGridWrapper = styled(CarouselGridWrapper)`
     height: 100vh;
 `;
 
+const StyledSectionWrapper = styled(CarouselItem)`
+    scroll-snap-align: start;
+`;
+
 const StyledFixedHeader = styled(Container)`
     position: fixed;
     top: 0;
@@ -32,9 +39,58 @@ const StyledFixedHeader = styled(Container)`
     z-index: 10;
 `;
 
-const StyledCarousel = styled(Carousel)`
-    padding-right: var(--plasma-grid-margin);
+const StyledSectionTitle = styled(Headline3)<{ active: boolean }>`
+    padding-bottom: 56px;
+    padding-top: 72px;
+    transition: transform 0.35s linear;
+    transform: translateX(${(props) => (props.active ? '3rem' : undefined)});
 `;
+
+interface FocusableGalleryProps {
+    index: number;
+    title: string;
+    activeCardIndex?: number;
+    isMultiple?: boolean;
+}
+
+const FocusableGallery: React.FC<FocusableGalleryProps & GalleryProps> = ({
+    index,
+    title,
+    activeCardIndex = -1,
+    isMultiple = false,
+    ...props
+}) => {
+    const activeIndex = React.useContext(ActiveGalleryContext);
+    const isActive = index === activeIndex;
+    const ref = React.useRef<HTMLDivElement>(null);
+
+    React.useEffect(() => {
+        if (isActive) {
+            ref.current?.focus();
+        } else {
+            ref.current?.blur();
+        }
+    }, [isActive]);
+
+    const titleToRender = React.useMemo(() => {
+        if (!title) {
+            return null;
+        }
+
+        if (isMultiple) {
+            return <StyledSectionTitle active={isActive}>{title}</StyledSectionTitle>;
+        }
+
+        return <Headline3>{title}</Headline3>;
+    }, [isActive, isMultiple, title]);
+
+    return (
+        <StyledSectionWrapper data-cy={`gallery-${index}`} scrollSnapAlign="start">
+            {titleToRender}
+            <GalleryWithNavigation {...props} activeIndex={activeCardIndex} ref={ref} />
+        </StyledSectionWrapper>
+    );
+};
 
 export interface GalleryPageControl {
     changeActiveGallery: (index: number) => void;
@@ -47,6 +103,9 @@ export const GalleryPage = React.forwardRef<GalleryPageControl, GalleryPageProps
             gallery,
         ]);
 
+        const isMultipleGalleries = galleries.length > 1;
+        const { Carousel } = useRegistry();
+
         const [galleryIndex, changeGallery] = useRemoteHandlers({
             initialIndex: activeGalleryIndex,
             axis: 'y',
@@ -57,87 +116,78 @@ export const GalleryPage = React.forwardRef<GalleryPageControl, GalleryPageProps
 
         const getState = useGetMutableValue(state);
 
-        React.useEffect(() => {
-            const currentState = getState();
-            if (currentState.activeGalleryIndex !== galleryIndex) {
-                changeState({ ...currentState, activeGalleryIndex: galleryIndex });
-            }
-        }, [changeState, getState, galleryIndex]);
-
         const changeActiveCard = React.useCallback(
             (index: number) => {
                 const currentState = getState();
                 if (!Array.isArray(currentState.gallery)) {
-                    changeState({ ...currentState, gallery: { ...currentState.gallery, activeCardIndex: index } });
-                } else {
                     changeState({
                         ...currentState,
-                        gallery: [
-                            ...currentState.gallery.slice(0, galleryIndex),
-                            { ...currentState.gallery[galleryIndex], activeCardIndex: index },
-                            ...currentState.gallery.slice(galleryIndex + 1),
-                        ],
+                        gallery: { ...currentState.gallery, activeCardIndex: index },
+                    });
+                } else {
+                    const galleryList = currentState.gallery.slice();
+                    galleryList[galleryIndex] = { ...currentState.gallery[galleryIndex], activeCardIndex: index };
+
+                    changeState({
+                        ...currentState,
+                        gallery: galleryList,
+                        activeGalleryIndex: galleryIndex, // меняем индекс активной галлерии в стейте
                     });
                 }
             },
             [changeState, galleryIndex, getState],
         );
 
-        const detectActiveProps = React.useMemo(
-            () =>
-                isSberPortal()
-                    ? {
-                          detectActive: true as const,
-                          detectThreshold: 0.4,
-                          onIndexChange: changeGallery,
-                      }
-                    : { detectActive: undefined },
-            [changeGallery],
-        );
-
-        useImperativeHandle(
+        React.useImperativeHandle(
             ref,
             (): GalleryPageControl => ({
                 changeActiveGallery: (index) => changeGallery(index),
             }),
         );
 
-        const isMultiGallery = galleries.length > 1;
+        const handleItemClick = React.useCallback<(card: Parameters<typeof onCardClick>[0], index: number) => void>(
+            (card, index) => {
+                changeActiveCard(index);
+                onCardClick(card);
+            },
+            [changeActiveCard, onCardClick],
+        );
+
+        const innerCarousels = React.useMemo(() => {
+            return galleries.map((galleryData, index) => (
+                <FocusableGallery
+                    key={galleryData.id}
+                    isMultiple={isMultipleGalleries}
+                    index={index}
+                    items={galleryData.items}
+                    title={galleryData.title}
+                    activeCardIndex={galleryData.activeCardIndex}
+                    onItemFocus={() => changeGallery(index)}
+                    onItemClick={handleItemClick}
+                    Component={galleryCard}
+                />
+            ));
+        }, [changeGallery, galleries, galleryCard, handleItemClick, isMultipleGalleries]);
+
+        const headerToRender = React.useMemo(() => {
+            return isMultipleGalleries ? (
+                <StyledFixedHeader>
+                    <Header {...header} title="" />
+                </StyledFixedHeader>
+            ) : (
+                <Header {...header} />
+            );
+        }, [header, isMultipleGalleries]);
 
         return (
-            <>
-                {isMultiGallery ? (
-                    <StyledFixedHeader>
-                        <Header {...header} title="" />
-                    </StyledFixedHeader>
-                ) : (
-                    <Header {...header} />
-                )}
+            <ActiveGalleryContext.Provider value={galleryIndex}>
+                {headerToRender}
                 <StyledCarouselGridWrapper>
-                    <StyledCarousel
-                        axis="y"
-                        index={galleryIndex}
-                        scrollSnapType="mandatory"
-                        scrollAlign="start"
-                        paddingEnd="50vh"
-                        {...detectActiveProps}
-                    >
-                        {galleries.map((item, index) => (
-                            <CarouselItem key={item.id} data-cy={`gallery-${index}`} scrollSnapAlign="start">
-                                <Gallery
-                                    gallery={item}
-                                    active={galleryIndex === index}
-                                    multiGallery={isMultiGallery}
-                                    withLogo={Boolean(header?.logo)}
-                                    onCardClick={onCardClick}
-                                    changeActiveCard={changeActiveCard}
-                                    galleryCard={galleryCard}
-                                />
-                            </CarouselItem>
-                        ))}
-                    </StyledCarousel>
+                    <Carousel axis="y" index={galleryIndex} onIndexChange={changeGallery}>
+                        {innerCarousels}
+                    </Carousel>
                 </StyledCarouselGridWrapper>
-            </>
+            </ActiveGalleryContext.Provider>
         );
     },
 );
