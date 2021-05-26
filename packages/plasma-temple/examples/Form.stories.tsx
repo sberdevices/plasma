@@ -1,7 +1,6 @@
 import React from 'react';
 import { object } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import { useRef } from '@storybook/addons';
 
 import { FormField, Form, Input, VoiceField } from '../src';
 
@@ -10,11 +9,10 @@ interface FormData {
     email: string;
 }
 
-
 const initialData: FormData = {
     name: '',
     email: '',
-}
+};
 
 export const FormSample = () => {
     return (

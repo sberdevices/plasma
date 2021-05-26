@@ -6,6 +6,8 @@ import { isSberPortal } from '@sberdevices/plasma-ui/utils';
 import { AssistantCharacterType } from '@sberdevices/assistant-client';
 import { sberBox, sberPortal } from '@sberdevices/plasma-tokens/typo';
 
+import { AppStateContext } from '../PlasmaApp/AppStateContext';
+
 const DocumentStyles = createGlobalStyle`
     /* stylelint-disable selector-nested-pattern */
     :root {
@@ -44,12 +46,9 @@ const charactersTheme: Record<AssistantCharacterType, React.ComponentType> = {
     sber: createGlobalStyle(darkSber),
 };
 
-interface GlobalStylesProps {
-    character: AssistantCharacterType;
-}
-
-export const GlobalStyles: React.FC<GlobalStylesProps> = ({ character }) => {
-    const Theme = React.useMemo(() => charactersTheme[character], [character]);
+export const GlobalStyles: React.FC = React.memo(() => {
+    const { state } = React.useContext(AppStateContext);
+    const Theme = React.useMemo(() => charactersTheme[state.ui.character], [state.ui.character]);
 
     return (
         <>
@@ -58,4 +57,4 @@ export const GlobalStyles: React.FC<GlobalStylesProps> = ({ character }) => {
             <DocumentStyles />
         </>
     );
-};
+});

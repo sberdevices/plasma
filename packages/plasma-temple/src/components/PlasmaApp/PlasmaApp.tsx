@@ -33,7 +33,7 @@ export interface PlasmaAppProps<Name extends string = string> {
     onStart?: OnStartFn;
 }
 
-export function PlasmaApp<Name extends string>({
+export function App<Name extends string>({
     children,
     assistantParams,
     header,
@@ -107,19 +107,26 @@ export function PlasmaApp<Name extends string>({
 
     const activeScreen = last(state.history);
 
+    const childToRender = React.useMemo(() => {
+        const childArray = React.Children.toArray(children) as React.ReactElement<PageProps<Name>>[];
+
+        if (childArray.length === 1 && state.history.length > 0) {
+            return childArray[0];
+        }
+
+        return childArray.find((child) => child.props.name === activeScreen?.name) as NonNullable<
+            typeof childArray[number]
+        >;
+    }, [activeScreen?.name, children, state.history.length]);
+
     return (
         <AssistantContext.Provider value={assistantContextValue}>
             <AppStateContext.Provider value={appStateContextValue}>
-                <GlobalStyles character={state.ui.character} />
-                <PageLayout>
-                    {React.Children.count(children) === 1
-                        ? state.history.length > 0 && children
-                        : React.Children.map(children, (child) => {
-                              const elementChild = child as React.ReactElement<PageProps<Name>>;
-                              return elementChild.props.name === activeScreen?.name ? child : null;
-                          })}
-                </PageLayout>
+                <GlobalStyles />
+                <PageLayout>{childToRender}</PageLayout>
             </AppStateContext.Provider>
         </AssistantContext.Provider>
     );
 }
+
+export const PlasmaApp = React.memo(App);
