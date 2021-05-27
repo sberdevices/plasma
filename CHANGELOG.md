@@ -1,5 +1,18 @@
 # (Thu May 27 2021)
 
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@0.20.0`
+  - feat(plasma-temple): Improve GalleryPage components [#56](https://github.com/sberdevices/pashka/pull/56) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
+# (Thu May 27 2021)
+
 #### 🐛 Bug Fix
 
 - `@sberdevices/plasma-temple@0.19.1`
