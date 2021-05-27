@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import { Button } from '@sberdevices/plasma-ui';
 import { IconEdit } from '@sberdevices/plasma-icons';
 
-import { ConfirmOrder } from './ConfirmOrder';
+import { ConfirmOrderPage } from './ConfirmOrderPage';
 
 export default {
     title: 'Pages/Confirm Order',
@@ -26,7 +26,7 @@ const address = {
 
 export const Default = (): React.ReactElement => {
     return (
-        <ConfirmOrder
+        <ConfirmOrderPage
             delivery={delivery}
             recipient={recipient}
             address={address}
