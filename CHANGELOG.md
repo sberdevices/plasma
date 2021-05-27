@@ -1,3 +1,18 @@
+# (Thu May 27 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@0.19.1`
+  - fix(plasma-temple): Fix twice button click and input form submit [#57](https://github.com/sberdevices/pashka/pull/57) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - chore(plasma-temple): assistant-client up version [#55](https://github.com/sberdevices/pashka/pull/55) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Wed May 26 2021)
 
 #### 🚀 Enhancement
