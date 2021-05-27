@@ -20,13 +20,11 @@ export const ProductPriceCommon: React.FC<ProductPriceProps> = ({ price, oldPric
     return (
         <Row className={className}>
             <Col>
-                <StyledPrice currency={currency} minimumFractionDigits={2}>
-                    {price}
-                </StyledPrice>
+                <StyledPrice currency={currency}>{price}</StyledPrice>
             </Col>
             {oldPrice && (
                 <Col>
-                    <StyledPrice currency={currency} minimumFractionDigits={2} old>
+                    <StyledPrice currency={currency} old>
                         {oldPrice}
                     </StyledPrice>
                 </Col>
