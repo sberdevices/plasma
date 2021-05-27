@@ -1,12 +1,11 @@
 import React from 'react';
-import { AssistantClientCustomizedCommand } from '@sberdevices/assistant-client';
+import { AssistantClientCustomizedCommand, AssistantSmartAppData } from '@sberdevices/assistant-client';
 
 import { isPlasmaAppAction } from '../store/guards';
-import { Action } from '../store';
 
 import { useAssistantOnData } from './useAssistantOnData';
 
-export function useAssistantOnSmartAppData<T extends Action<Record<any, any>>>(
+export function useAssistantOnSmartAppData<T extends AssistantSmartAppData = AssistantSmartAppData>(
     callback: (command: T['smart_app_data']) => void,
 ): void {
     const onDataHandler = React.useCallback(
