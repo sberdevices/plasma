@@ -71,6 +71,8 @@ export const ProductActionButton: React.FC<ProductActionButtonProps> = React.mem
 
         const onIncreaseQuantity = useThrottledCallback(() => onChangeQuantity?.(1), [onChangeQuantity]);
 
+        const handleClick = useThrottledCallback(() => onClick(), [onClick]);
+
         return (
             <StyledRow className={className}>
                 {withQuantity && (
@@ -96,7 +98,7 @@ export const ProductActionButton: React.FC<ProductActionButtonProps> = React.mem
                         size="s"
                         view="primary"
                         disabled={withQuantity && !quantity}
-                        onClick={onClick}
+                        onClick={handleClick}
                     >
                         {actionButtonText}
                         {contentRight && <StyledContentRight>{` ${contentRight}`}</StyledContentRight>}
