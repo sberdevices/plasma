@@ -43,7 +43,7 @@ export const isChangeStateAction = (
     return action?.type === AppStateActionType.CHANGE_ACTIVE_SCREEN_STATE && Boolean(action.payload?.data);
 };
 
-export const isPlasmaAppAction = (action: unknown): action is PlasmaActionData => {
+export const isPlasmaAppAction = (action: AssistantSmartAppData['smart_app_data']): action is PlasmaActionData => {
     if (!action) {
         return false;
     }

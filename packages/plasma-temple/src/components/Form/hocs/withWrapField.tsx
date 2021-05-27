@@ -69,7 +69,7 @@ export function withWrapField<V, P extends React.PropsWithChildren<Record<string
             if (fieldRef.current != null) {
                 const field = fieldRef.current;
 
-                if (!customValidate?.(value)) {
+                if (customValidate && !customValidate(value)) {
                     return validationMessages?.typeMismatch ?? '';
                 }
 

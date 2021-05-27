@@ -10,6 +10,7 @@ import { useCart } from '../../hooks';
 import { useThrottledCallback } from '../../../../hooks';
 import { CartItem } from '../../types';
 import { useGetMutableValue } from '../../../../hooks/useGetMutableValue';
+import { THROTTLE_WAIT } from '../../../../hooks/useThrottledCallback';
 
 export interface CartItemProps {
     item: CartItem;
@@ -61,13 +62,17 @@ export const QuantityButton: React.FC<{
     const onRemove = useThrottledCallback(() => removeItem(id), [id, removeItem]);
 
     React.useEffect(() => {
-        if (
-            isSberBox() &&
-            active &&
-            (document.activeElement !== plusRef.current || document.activeElement !== minusRef.current)
-        ) {
-            plusRef.current?.focus();
-        }
+        const timer = setTimeout(() => {
+            if (
+                isSberBox() &&
+                active &&
+                (document.activeElement !== plusRef.current || document.activeElement !== minusRef.current)
+            ) {
+                plusRef.current?.focus();
+            }
+        }, THROTTLE_WAIT);
+
+        return () => clearTimeout(timer);
     }, [active]);
 
     const isMin = quantity <= 0;
