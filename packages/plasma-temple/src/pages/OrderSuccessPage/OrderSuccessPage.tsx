@@ -38,7 +38,7 @@ const StyledImageContainer = styled.div`
     )}
 `;
 
-export const OrderSuccess: React.FC<OrderSuccessProps> = ({ header, imageSrc = '', onGoBack }) => {
+export const OrderSuccessPage: React.FC<OrderSuccessProps> = ({ header, imageSrc = '', onGoBack }) => {
     return (
         <>
             {header && <Header {...header} />}

@@ -1,1 +1,0 @@
-export { ConfirmOrder } from './ConfirmOrder';
