@@ -9,8 +9,8 @@ import { Header } from '../../components/Header/Header';
 import { DeviceFamily } from '../../types';
 
 import { ConfirmOrderCard } from './components/ConfirmOrderCard/ConfirmOrderCard';
-import { LocationIcon } from './ConfirmOrder.assets/LocationIcon';
-import defaultBackground from './ConfirmOrder.assets/map.png';
+import { LocationIcon } from './ConfirmOrderPage.assets/LocationIcon';
+import defaultBackground from './ConfirmOrderPage.assets/map.png';
 
 interface ConfirmOrderProps {
     delivery: {
@@ -99,7 +99,7 @@ const defaultHeader = {
     title: 'Оформление заказа',
 };
 
-export const ConfirmOrder: React.FC<ConfirmOrderProps> = ({
+export const ConfirmOrderPage: React.FC<ConfirmOrderProps> = ({
     delivery,
     recipient,
     address,
