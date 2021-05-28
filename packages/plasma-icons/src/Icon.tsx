@@ -55,6 +55,8 @@ import { Lock } from './Icon.assets/Lock';
 import { Power } from './Icon.assets/Power';
 import { Refresh } from './Icon.assets/Refresh';
 import { Reset } from './Icon.assets/Reset';
+import { Star } from './Icon.assets/Star';
+import { StarFill } from './Icon.assets/StarFill';
 import { SyncProblem } from './Icon.assets/SyncProblem';
 import { TimerStroke } from './Icon.assets/TimerStroke';
 import { TimerFill } from './Icon.assets/TimerFill';
@@ -207,6 +209,8 @@ export const iconSectionsSet = {
         refresh: Refresh,
         reset: Reset,
         syncProblem: SyncProblem,
+        star: Star,
+        starFill: StarFill,
         timerStroke: TimerStroke,
         timerFill: TimerFill,
         eye: Eye,

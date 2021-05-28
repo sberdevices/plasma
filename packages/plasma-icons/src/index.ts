@@ -52,6 +52,8 @@ export { IconLock } from './Icons/IconLock';
 export { IconPower } from './Icons/IconPower';
 export { IconRefresh } from './Icons/IconRefresh';
 export { IconReset } from './Icons/IconReset';
+export { IconStar } from './Icons/IconStar';
+export { IconStarFill } from './Icons/IconStarFill';
 export { IconSyncProblem } from './Icons/IconSyncProblem';
 export { IconTimerStroke } from './Icons/IconTimerStroke';
 export { IconTimerFill } from './Icons/IconTimerFill';
