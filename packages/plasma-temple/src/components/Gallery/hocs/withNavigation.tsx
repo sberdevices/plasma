@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import { useVoiceNavigation, useRemoteHandlers } from '../../../hooks';
 import { GalleryProps } from '../types';
@@ -9,6 +10,10 @@ export interface WithNavigationProps {
     axis?: 'x' | 'y';
     activeIndex?: number;
 }
+
+const StyledFocusableContainer = styled.div`
+    outline: none;
+`;
 
 export const withNavigation = (
     Component: React.ComponentType<GalleryProps>,
@@ -68,11 +73,11 @@ export const withNavigation = (
             }, [handleEnter]);
 
             return (
-                <div tabIndex={0} onFocus={handleFocus} onBlur={handleMissFocus} ref={ref}>
+                <StyledFocusableContainer tabIndex={0} onFocus={handleFocus} onBlur={handleMissFocus} ref={ref}>
                     <GalleryIndexContext.Provider value={galleryInFocus ? currentCardIndex : -1}>
                         <Component {...props} />
                     </GalleryIndexContext.Provider>
-                </div>
+                </StyledFocusableContainer>
             );
         },
     );

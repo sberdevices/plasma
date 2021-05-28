@@ -7,6 +7,7 @@ import { AnyObject } from '../../types';
 import { GalleryCard as CardComponent } from '../../components/GalleryCard/GalleryCard';
 import type { GalleryCardProps } from '../../components/GalleryCard/GalleryCard';
 import { useRegistry } from '../../hooks/useRegistry';
+import { useFocused } from '../../hooks/useFocused';
 
 import { ShopLandingPageState } from './types';
 
@@ -30,6 +31,9 @@ export const ShopLandingPage: React.FC<ShopLandingPageProps> = ({
     onCatalogOpen,
     onStoreInfoClick,
 }) => {
+    const focusedContainerRef = React.useRef<HTMLDivElement>(null);
+    const focused = useFocused(focusedContainerRef);
+
     const [activeIndex, setActiveIndex] = React.useState(0);
     const Component = galleryCard ?? CardComponent;
 
@@ -45,7 +49,7 @@ export const ShopLandingPage: React.FC<ShopLandingPageProps> = ({
                 <CarouselItem key={item.id} scrollSnapAlign="start">
                     <Component
                         card={item}
-                        focused={activeIndex === index}
+                        focused={focused && activeIndex === index}
                         index={index}
                         onClick={open}
                         onFocus={setFocused}
@@ -53,12 +57,12 @@ export const ShopLandingPage: React.FC<ShopLandingPageProps> = ({
                 </CarouselItem>
             );
         });
-    }, [state.items, Component, activeIndex, onItemClick]);
+    }, [focused, state.items, Component, activeIndex, onItemClick]);
 
     return (
         <>
             <Header {...header} />
-            <CarouselGridWrapper>
+            <CarouselGridWrapper ref={focusedContainerRef}>
                 <StyledCarousel index={activeIndex} axis="x" animatedScrollByIndex style={{ scrollBehavior: 'smooth' }}>
                     <NavCol
                         onFocus={() => setActiveIndex(0)}
