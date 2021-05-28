@@ -1,6 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
-import { CarouselCol } from '@sberdevices/plasma-ui';
+import styled, { css } from 'styled-components';
+import { CarouselItem } from '@sberdevices/plasma-ui';
+import { mediaQuery } from '@sberdevices/plasma-ui/utils';
 
 import { UnifiedComponentProps } from '../../../../registry/types';
 
@@ -15,9 +16,20 @@ export interface StoreCellProps {
     onFocus: React.FocusEventHandler<HTMLDivElement>;
 }
 
-const StyledCol = styled(CarouselCol)`
+const StyledCarouselItem = styled(CarouselItem)`
     flex-direction: column;
     display: flex;
+    margin-right: 1rem;
+    width: 392px;
+
+    ${mediaQuery(
+        'M',
+        2,
+    )(
+        css`
+            width: 512px;
+        `,
+    )}
 `;
 
 export interface NavColProps {
@@ -37,9 +49,9 @@ export const NavCol: React.FC<UnifiedComponentProps<NavColProps, 'CatalogCard' |
     const { CatalogCard, StoreCard } = platformComponents;
 
     return (
-        <StyledCol sizeXL={3} sizeM={3} key="main-card" scrollSnapAlign="start">
+        <StyledCarouselItem key="main-card" scrollSnapAlign="start">
             <CatalogCard onClick={onCatalogOpen} onFocus={onFocus} image={catalogImage} />
             <StoreCard onClick={onStoreInfoClick} onFocus={onFocus} />
-        </StyledCol>
+        </StyledCarouselItem>
     );
 };
