@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const useFocused = <T extends HTMLElement>(ref: React.RefObject<T>): boolean => {
+export const useFocusedState = <T extends HTMLElement>(ref: React.RefObject<T>): boolean => {
     const [focused, setFocused] = React.useState(false);
 
     const onFocus = React.useCallback(() => {

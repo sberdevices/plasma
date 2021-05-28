@@ -7,13 +7,18 @@ import { AnyObject } from '../../types';
 import { GalleryCard as CardComponent } from '../../components/GalleryCard/GalleryCard';
 import type { GalleryCardProps } from '../../components/GalleryCard/GalleryCard';
 import { useRegistry } from '../../hooks/useRegistry';
-import { useFocused } from '../../hooks/useFocused';
+import { useFocusedState } from '../../hooks/useFocusedState';
 
 import { ShopLandingPageState } from './types';
 
 const StyledCarousel = styled(Carousel)`
     padding: 0.25rem 0;
 `;
+
+const StyledCarouselItem = styled(CarouselItem)`
+    margin-right: 1rem;
+`;
+
 export interface ShopLandingPageProps<T extends AnyObject = AnyObject> {
     header?: HeaderProps;
     onCatalogOpen: () => void;
@@ -32,7 +37,7 @@ export const ShopLandingPage: React.FC<ShopLandingPageProps> = ({
     onStoreInfoClick,
 }) => {
     const focusedContainerRef = React.useRef<HTMLDivElement>(null);
-    const focused = useFocused(focusedContainerRef);
+    const focused = useFocusedState(focusedContainerRef);
 
     const [activeIndex, setActiveIndex] = React.useState(0);
     const Component = galleryCard ?? CardComponent;
@@ -46,7 +51,7 @@ export const ShopLandingPage: React.FC<ShopLandingPageProps> = ({
             const open = () => onItemClick(item);
 
             return (
-                <CarouselItem key={item.id} scrollSnapAlign="start">
+                <StyledCarouselItem key={item.id} scrollSnapAlign="start">
                     <Component
                         card={item}
                         focused={focused && activeIndex === index}
@@ -54,7 +59,7 @@ export const ShopLandingPage: React.FC<ShopLandingPageProps> = ({
                         onClick={open}
                         onFocus={setFocused}
                     />
-                </CarouselItem>
+                </StyledCarouselItem>
             );
         });
     }, [focused, state.items, Component, activeIndex, onItemClick]);
