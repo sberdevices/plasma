@@ -1,3 +1,15 @@
+# v1.5.1 (Mon May 31 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-tokens): backward compatibility [#419](https://github.com/sberdevices/plasma/pull/419) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.5.0 (Mon May 31 2021)
 
 #### 🐛 Bug Fix

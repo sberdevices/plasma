@@ -1,5 +1,18 @@
 # (Mon May 31 2021)
 
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-tokens@1.5.1`
+  - fix(plasma-tokens): backward compatibility [#419](https://github.com/sberdevices/plasma/pull/419) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# (Mon May 31 2021)
+
 #### 🚀 Enhancement
 
 - `@sberdevices/plasma-icons@1.14.0`
