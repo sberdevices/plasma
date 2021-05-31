@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { action } from '@storybook/addon-actions';
+import { withKnobs, boolean } from '@storybook/addon-knobs';
 import {
     DatePicker as DatePickerComponent,
     DatePickerProps,
@@ -45,6 +46,7 @@ const DatePicker: React.FC<Omit<DatePickerProps, 'value' | 'max' | 'min'>> = (pr
                 years: true,
                 months: true,
                 days: true,
+                shortMonthName: boolean('options.shortMonthName', false),
             }}
             visibleItems={5}
             onChange={(val) => {

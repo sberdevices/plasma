@@ -1,24 +1,37 @@
 import React from 'react';
-import { monthShortName } from '@sberdevices/plasma-core';
+import { monthShortName, monthLongName } from '@sberdevices/plasma-core';
 
 import { Picker, PickerProps } from './Picker';
 
 type PickerType = 'day' | 'month' | 'year';
+type MonthNameFormat = 'long' | 'short';
 
 const labelFormatter = {
     day: (value: number) => `${value}`,
     year: (value: number) => `${value}`,
-    month: monthShortName,
+    month: monthLongName,
+    monthShort: monthShortName,
+};
+
+const getFormatterKey = (type: PickerType, monthNameFormat?: MonthNameFormat): keyof typeof labelFormatter => {
+    const isMonth = type === 'month';
+    const isShortFormat = monthNameFormat && monthNameFormat === 'short';
+    if (isMonth && isShortFormat) {
+        return 'monthShort';
+    }
+    return type;
 };
 
 export interface SimpleDatePickerProps extends Omit<PickerProps, 'items'> {
     from: number;
     to: number;
     type: PickerType;
+    monthNameFormat?: MonthNameFormat;
 }
 
-export const SimpleDatePicker: React.FC<SimpleDatePickerProps> = ({ type, from, to, ...rest }) => {
-    const formatter = labelFormatter[type];
+export const SimpleDatePicker: React.FC<SimpleDatePickerProps> = ({ type, from, to, monthNameFormat, ...rest }) => {
+    const formatterKey = getFormatterKey(type, monthNameFormat);
+    const formatter = labelFormatter[formatterKey];
 
     const items = Array.from({ length: to - from + 1 }, (_, i) => ({
         label: formatter(from + i),

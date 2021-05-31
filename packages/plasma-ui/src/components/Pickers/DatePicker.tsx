@@ -9,6 +9,7 @@ const defaultOptions = {
     years: true,
     months: true,
     days: true,
+    shortMonthName: false,
 };
 
 const StyledWrapper = styled.div`
@@ -36,7 +37,7 @@ export interface DatePickerProps extends Omit<SimpleDatePickerProps, 'type' | 'f
     /**
      * Формат выводимого значения
      */
-    options?: typeof defaultOptions;
+    options?: Partial<typeof defaultOptions>;
 }
 
 /**
@@ -159,9 +160,15 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         }
     }, [year, month, day]);
 
+    const daysOption = typeof options.days === 'boolean' ? options.days : defaultOptions.days;
+    const monthsOption = typeof options.months === 'boolean' ? options.months : defaultOptions.months;
+    const yearsOption = typeof options.years === 'boolean' ? options.years : defaultOptions.years;
+    const shortMonthNameOption =
+        typeof options.shortMonthName === 'boolean' ? options.shortMonthName : defaultOptions.shortMonthName;
+    const monthNameFormat = shortMonthNameOption ? 'short' : 'long';
     return (
         <StyledWrapper>
-            {options.days && (
+            {daysOption && (
                 <SimpleDatePicker
                     autofocus={autofocus}
                     size={size}
@@ -175,11 +182,12 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                     onChange={onDayChange}
                 />
             )}
-            {options.months && (
+            {monthsOption && (
                 <SimpleDatePicker
                     autofocus={autofocus && !options.days}
                     size={size}
                     type="month"
+                    monthNameFormat={monthNameFormat}
                     value={month}
                     from={monthsInterval[0]}
                     to={monthsInterval[1]}
@@ -189,7 +197,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                     onChange={onMonthChange}
                 />
             )}
-            {options.years && (
+            {yearsOption && (
                 <SimpleDatePicker
                     autofocus={autofocus && !options.days && !options.months}
                     size={size}
