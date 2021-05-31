@@ -4,7 +4,7 @@ export type { TimingFunction } from './animatedScrollTo';
 export { convertRoundnessMatrix } from './roundness';
 export type { PinProps } from './roundness';
 
-export { padZeroNumber, monthLongName } from './formatters';
+export { padZeroNumber, monthLongName, monthShortName } from './formatters';
 export { formatCurrency } from './formatCurrency';
 
 export {
