@@ -4,6 +4,11 @@ import { GalleryCardParams } from '../../pages';
 import { AnyObject } from '../../types';
 import { GalleryCardProps } from '../GalleryCard/GalleryCard';
 
+export interface WithNavigationProps {
+    axis?: 'x' | 'y';
+    activeIndex?: number;
+}
+
 export interface GalleryPropsWithChildren {
     children: React.ReactNode;
     items?: never;
