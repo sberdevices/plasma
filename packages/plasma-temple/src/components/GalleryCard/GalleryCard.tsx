@@ -1,18 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
-import {
-    CarouselCol,
-    Card,
-    CardBody,
-    CardMedia,
-    CardBody1,
-    CardBadge,
-    CardContent,
-    Caption,
-} from '@sberdevices/plasma-ui';
+import styled, { css } from 'styled-components';
+import { Card, CardBody, CardMedia, CardBody1, CardBadge, CardContent, Caption } from '@sberdevices/plasma-ui';
 import { IconClock } from '@sberdevices/plasma-icons';
 import { overlay, primary } from '@sberdevices/plasma-tokens';
-import { isSberBox } from '@sberdevices/plasma-ui/utils';
+import { isSberBox, mediaQuery } from '@sberdevices/plasma-ui/utils';
 
 import { GalleryCardParams as GalleryCardType } from '../../pages/GalleryPage/types';
 import { AnyObject } from '../../types';
@@ -78,6 +69,19 @@ const Time: React.FC<{ time: string }> = ({ time }) => (
     </>
 );
 
+const StyledCard = styled(Card)`
+    width: 392px;
+
+    ${mediaQuery(
+        'M',
+        2,
+    )(
+        css`
+            width: 332px;
+        `,
+    )}
+`;
+
 const GalleryCardComponent = <T extends AnyObject = AnyObject>({
     card,
     focused,
@@ -98,36 +102,27 @@ const GalleryCardComponent = <T extends AnyObject = AnyObject>({
     const isFocused = isSberBox() && focused;
 
     return (
-        <CarouselCol sizeXL={3} sizeL={2} sizeM={2}>
-            <Card
-                focused={isFocused}
-                tabIndex={0}
-                onClick={handleClick}
-                onFocus={onFocus}
-                data-cy={`gallery-card-${index}`}
-                ref={cardRef}
-            >
-                <CardBody>
-                    <CardMedia
-                        base="div"
-                        src={imageSrc}
-                        ratio={card.image.ratio ?? '1 / 1'}
-                        data-cy="gallery-card-media"
-                    >
-                        {card.position && (
-                            <StyledCardIndex view="secondary" size="l" circled text={String(card.position)} />
-                        )}
-                        {typeof card.tag === 'string' && <StyledTag view="secondary" size="s" text={card.tag} />}
-                    </CardMedia>
-                    <StyledCardContent>
-                        <CardBody1 lines={2}>{card.label}</CardBody1>
-                        <StyledAdditionalContent>
-                            {card.time != null && <Time time={card.time} />}
-                        </StyledAdditionalContent>
-                    </StyledCardContent>
-                </CardBody>
-            </Card>
-        </CarouselCol>
+        <StyledCard
+            focused={isFocused}
+            tabIndex={0}
+            onClick={handleClick}
+            onFocus={onFocus}
+            data-cy={`gallery-card-${index}`}
+            ref={cardRef}
+        >
+            <CardBody>
+                <CardMedia base="div" src={imageSrc} ratio={card.image.ratio ?? '1 / 1'} data-cy="gallery-card-media">
+                    {card.position && (
+                        <StyledCardIndex view="secondary" size="l" circled text={String(card.position)} />
+                    )}
+                    {typeof card.tag === 'string' && <StyledTag view="secondary" size="s" text={card.tag} />}
+                </CardMedia>
+                <StyledCardContent>
+                    <CardBody1 lines={2}>{card.label}</CardBody1>
+                    <StyledAdditionalContent>{card.time != null && <Time time={card.time} />}</StyledAdditionalContent>
+                </StyledCardContent>
+            </CardBody>
+        </StyledCard>
     );
 };
 
