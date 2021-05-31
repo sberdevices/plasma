@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { caption } from '../../tokens/typography';
+import { caption } from '../../tokens';
 
 /**
  * Размеры в ремах.
