@@ -10,7 +10,7 @@ export type GalleryCardParams<T extends AnyObject = AnyObject> = T & {
     time?: string;
 };
 
-export interface Gallery<T extends AnyObject = AnyObject> {
+export interface GalleryData<T extends AnyObject = AnyObject> {
     id?: string;
     title: string;
     items: GalleryCardParams<T>[];
@@ -19,5 +19,5 @@ export interface Gallery<T extends AnyObject = AnyObject> {
 
 export interface GalleryPageState<T extends AnyObject = AnyObject> {
     activeGalleryIndex: number;
-    gallery: Gallery<T> | Required<Gallery<T>>[];
+    gallery: GalleryData<T> | Required<GalleryData<T>>[];
 }
