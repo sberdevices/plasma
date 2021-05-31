@@ -1,3 +1,23 @@
+# v1.14.0 (Mon May 31 2021)
+
+#### 🚀 Enhancement
+
+- feat: update plus circle icon [#412](https://github.com/sberdevices/plasma/pull/412) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- feat: update heart stroke icon [#412](https://github.com/sberdevices/plasma/pull/412) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- feat: add percent stroke icon [#412](https://github.com/sberdevices/plasma/pull/412) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- feat: update plis circle icon [#412](https://github.com/sberdevices/plasma/pull/412) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.13.0 (Mon May 31 2021)
 
 #### 🐛 Bug Fix

@@ -2,6 +2,22 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-icons@1.14.0`
+  - feat: update plus circle icon [#412](https://github.com/sberdevices/plasma/pull/412) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - feat: update heart stroke icon [#412](https://github.com/sberdevices/plasma/pull/412) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - feat: add percent stroke icon [#412](https://github.com/sberdevices/plasma/pull/412) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - feat: update plis circle icon [#412](https://github.com/sberdevices/plasma/pull/412) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
+# (Mon May 31 2021)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/showcase@0.20.0`, `demo-tokens@0.5.0`, `@sberdevices/plasma-core@1.11.0`, `@sberdevices/plasma-tokens@1.4.0`, `@sberdevices/plasma-ui@1.16.0`
   - feat: es module build for plasma-tokens [#341](https://github.com/sberdevices/plasma/pull/341) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
 - `@sberdevices/plasma-core@1.11.0`
