@@ -1,5 +1,39 @@
 # (Mon May 31 2021)
 
+#### 🚀 Enhancement
+
+- `@sberdevices/showcase@0.20.0`, `demo-tokens@0.5.0`, `@sberdevices/plasma-core@1.11.0`, `@sberdevices/plasma-tokens@1.4.0`, `@sberdevices/plasma-ui@1.16.0`
+  - feat: es module build for plasma-tokens [#341](https://github.com/sberdevices/plasma/pull/341) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- `@sberdevices/plasma-core@1.11.0`
+  - feat: add root Spinner export [#341](https://github.com/sberdevices/plasma/pull/341) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - feat: add Basebox export from root [#341](https://github.com/sberdevices/plasma/pull/341) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- `@sberdevices/plasma-core@1.11.0`, `@sberdevices/plasma-ui@1.16.0`
+  - feat: add es module exports for plasma-ui [#341](https://github.com/sberdevices/plasma/pull/341) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-ui@1.16.0`
+  - fix: es module import in CarouselCol [#341](https://github.com/sberdevices/plasma/pull/341) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - chore: update plasma-core version for plasma-ui [#341](https://github.com/sberdevices/plasma/pull/341) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- `@sberdevices/plasma-tokens@1.4.0`
+  - build: es5 target for plasma-tokens [#341](https://github.com/sberdevices/plasma/pull/341) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - fix: es build in tokens by default [#341](https://github.com/sberdevices/plasma/pull/341) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- `@sberdevices/plasma-tokens-web@1.4.0`, `@sberdevices/plasma-tokens@1.4.0`
+  - fix: sideEffects false for tokens [#341](https://github.com/sberdevices/plasma/pull/341) ([@KateKate](https://github.com/KateKate))
+- `@sberdevices/plasma-icons@1.13.0`
+  - fix: import es module from core in icons [#341](https://github.com/sberdevices/plasma/pull/341) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- `@sberdevices/plasma-core@1.11.0`, `@sberdevices/plasma-ui@1.16.0`
+  - fix: all at once exports [#341](https://github.com/sberdevices/plasma/pull/341) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 2
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Ekaterina Anishkina ([@KateKate](https://github.com/KateKate))
+
+---
+
+# (Mon May 31 2021)
+
 #### 🐛 Bug Fix
 
 - `@sberdevices/plasma-icons@1.12.2`

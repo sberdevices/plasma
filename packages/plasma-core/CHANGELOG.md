@@ -1,3 +1,22 @@
+# v1.11.0 (Mon May 31 2021)
+
+#### 🚀 Enhancement
+
+- feat: es module build for plasma-tokens [#341](https://github.com/sberdevices/plasma/pull/341) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- feat: add root Spinner export [#341](https://github.com/sberdevices/plasma/pull/341) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- feat: add Basebox export from root [#341](https://github.com/sberdevices/plasma/pull/341) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- feat: add es module exports for plasma-ui [#341](https://github.com/sberdevices/plasma/pull/341) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- fix: all at once exports [#341](https://github.com/sberdevices/plasma/pull/341) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.10.0 (Thu May 20 2021)
 
 #### 🐛 Bug Fix

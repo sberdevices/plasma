@@ -1,3 +1,15 @@
+# v1.13.0 (Mon May 31 2021)
+
+#### 🐛 Bug Fix
+
+- fix: import es module from core in icons [#341](https://github.com/sberdevices/plasma/pull/341) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.12.2 (Mon May 31 2021)
 
 #### 🐛 Bug Fix

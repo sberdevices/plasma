@@ -1,3 +1,15 @@
+# v1.4.0 (Mon May 31 2021)
+
+#### 🐛 Bug Fix
+
+- fix: sideEffects false for tokens [#341](https://github.com/sberdevices/plasma/pull/341) ([@KateKate](https://github.com/KateKate))
+
+#### Authors: 1
+
+- Ekaterina Anishkina ([@KateKate](https://github.com/KateKate))
+
+---
+
 # v1.3.0 (Fri May 07 2021)
 
 #### 🐛 Bug Fix

@@ -1,3 +1,22 @@
+# v1.4.0 (Mon May 31 2021)
+
+#### 🚀 Enhancement
+
+- feat: es module build for plasma-tokens [#341](https://github.com/sberdevices/plasma/pull/341) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- build: es5 target for plasma-tokens [#341](https://github.com/sberdevices/plasma/pull/341) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- fix: sideEffects false for tokens [#341](https://github.com/sberdevices/plasma/pull/341) ([@KateKate](https://github.com/KateKate))
+- fix: es build in tokens by default [#341](https://github.com/sberdevices/plasma/pull/341) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 2
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Ekaterina Anishkina ([@KateKate](https://github.com/KateKate))
+
+---
+
 # v1.3.0 (Fri May 07 2021)
 
 #### 🐛 Bug Fix
