@@ -27,6 +27,7 @@ export const DatePicker = () => {
                 years: boolean('options.years', true),
                 months: boolean('options.months', true),
                 days: boolean('options.days', true),
+                shortMonthName: boolean('options.shortMonthName', false),
             }}
             disabled={boolean('disabled', false)}
             controls={boolean('controls', isSberbox)}
