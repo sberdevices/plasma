@@ -1,8 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { surfaceCard } from '@sberdevices/plasma-tokens';
-import { addFocus, applyRoundness, radiuses, syntheticFocus } from '@sberdevices/plasma-core/mixins';
-import type { FocusProps, OutlinedProps, RoundnessProps } from '@sberdevices/plasma-core/mixins';
+import { addFocus, applyRoundness, radiuses, syntheticFocus } from '@sberdevices/plasma-core';
+import type { FocusProps, OutlinedProps, RoundnessProps } from '@sberdevices/plasma-core';
 
 import { Body1 } from '../Typography';
 

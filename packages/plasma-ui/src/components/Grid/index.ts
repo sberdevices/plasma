@@ -1,4 +1,4 @@
-export { Row } from '@sberdevices/plasma-core/components/Grid';
+export { Row } from '@sberdevices/plasma-core';
 
 export { Container } from './Container';
 export { Col } from './Col';

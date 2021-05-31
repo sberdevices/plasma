@@ -1,5 +1,5 @@
 import React from 'react';
-import type { PickOptional } from '@sberdevices/plasma-core/types';
+import type { PickOptional } from '@sberdevices/plasma-core';
 
 import { ActionButton, ButtonProps, ActionButtonProps } from '../Button';
 

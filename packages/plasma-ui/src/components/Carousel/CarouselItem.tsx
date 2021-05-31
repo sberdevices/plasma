@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useCarouselItem } from '@sberdevices/plasma-core';
-import { applyScrollSnap, ScrollSnapProps } from '@sberdevices/plasma-core/mixins';
-import type { AsProps } from '@sberdevices/plasma-core/types';
+import { useCarouselItem, AsProps, applyScrollSnap, ScrollSnapProps } from '@sberdevices/plasma-core';
 
 const StyledCarouselItem = styled.div`
     ${applyScrollSnap};

@@ -1,5 +1,5 @@
 import React from 'react';
-import { monthLongName } from '@sberdevices/plasma-core/utils';
+import { monthLongName } from '@sberdevices/plasma-core';
 
 import { Picker, PickerProps } from './Picker';
 

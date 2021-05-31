@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import type { PickOptional } from '@sberdevices/plasma-core/types';
+import type { PickOptional } from '@sberdevices/plasma-core';
 
 import { Button, ButtonProps } from '../Button';
 

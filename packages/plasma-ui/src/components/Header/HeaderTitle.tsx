@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { body2 } from '@sberdevices/plasma-tokens';
-import { mediaQuery } from '@sberdevices/plasma-core/utils';
+import { mediaQuery } from '@sberdevices/plasma-core';
 
 import { Headline4 } from '../Typography';
 

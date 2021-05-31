@@ -8,7 +8,7 @@ import {
     CarouselTrack as BaseTrack,
     CarouselProps as BaseProps,
 } from '@sberdevices/plasma-core';
-import type { AsProps } from '@sberdevices/plasma-core/types';
+import type { AsProps } from '@sberdevices/plasma-core';
 
 import { useForkRef } from '../../hooks';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { mediaQuery } from '@sberdevices/plasma-core/utils';
+import { mediaQuery } from '@sberdevices/plasma-core';
 
 const sizes = {
     sberBox: css`

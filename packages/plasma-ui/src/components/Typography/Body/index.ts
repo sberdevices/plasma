@@ -1,1 +1,1 @@
-export * from '@sberdevices/plasma-core/components/Typography';
+export { Body1, Body2, Body3 } from '@sberdevices/plasma-core';

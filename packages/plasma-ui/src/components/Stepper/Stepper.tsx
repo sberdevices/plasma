@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconMinus, IconPlus, IconClose } from '@sberdevices/plasma-icons';
-import type { PickOptional } from '@sberdevices/plasma-core/types';
+import type { PickOptional } from '@sberdevices/plasma-core';
 
 import { StepperButton, StepperButtonProps } from './StepperButton';
 import { StepperRoot } from './StepperRoot';
