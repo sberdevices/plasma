@@ -5,6 +5,7 @@ import { primary, tertiary } from '@sberdevices/plasma-tokens';
 import { useRemoteHandlers } from '../../hooks';
 import { HeroSlideProps } from '../HeroSlide/HeroSlide';
 import { useRegistry } from '../../hooks/useRegistry';
+import { useTouchHandler } from '../../hooks/useTouchHander';
 
 export interface HeroItemSliderProps extends Pick<HeroSlideProps, 'title' | 'src'> {
     id: string | number;
@@ -116,6 +117,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
 }) => {
     const childLen = React.useRef(items.length);
     const timerRef = React.useRef<number>(Infinity);
+    const containerRef = React.useRef<HTMLDivElement>(null);
 
     const { HeroSlide } = useRegistry();
 
@@ -126,6 +128,16 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
         max: childLen.current - 1,
         repeat: true,
         longCount: 1,
+    });
+
+    useTouchHandler(containerRef, (dir) => {
+        setActiveIndex((prev) => {
+            if (prev === 0 || childLen.current - 1 === prev) {
+                return prev;
+            }
+
+            return prev + dir;
+        });
     });
 
     React.useLayoutEffect(() => {
@@ -149,7 +161,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
     }, [item, onItemClick]);
 
     return (
-        <StyledWrapper>
+        <StyledWrapper ref={containerRef}>
             <HeroSlide {...item} onClick={handleClick} buttonText={buttonText}>
                 {withTimeline && <HeroDots count={childLen.current} current={activeIndex} time={time} />}
             </HeroSlide>
