@@ -1,3 +1,15 @@
+# v1.12.2 (Mon May 31 2021)
+
+#### 🐛 Bug Fix
+
+- add Star icons [#418](https://github.com/sberdevices/plasma/pull/418) ([@Kud8](https://github.com/Kud8))
+
+#### Authors: 1
+
+- [@Kud8](https://github.com/Kud8)
+
+---
+
 # v1.12.1 (Thu May 20 2021)
 
 #### 🐛 Bug Fix

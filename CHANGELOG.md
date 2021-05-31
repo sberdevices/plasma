@@ -1,3 +1,16 @@
+# (Mon May 31 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-icons@1.12.2`
+  - add Star icons [#418](https://github.com/sberdevices/plasma/pull/418) ([@Kud8](https://github.com/Kud8))
+
+#### Authors: 1
+
+- [@Kud8](https://github.com/Kud8)
+
+---
+
 # (Thu May 20 2021)
 
 #### 🐛 Bug Fix
