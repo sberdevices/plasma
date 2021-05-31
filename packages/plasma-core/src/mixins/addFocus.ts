@@ -1,6 +1,6 @@
 import { css, FlattenSimpleInterpolation, InterpolationFunction } from 'styled-components';
 
-import { buttonFocused } from '../tokens/colors';
+import { buttonFocused } from '../tokens';
 
 export interface FocusProps {
     /**
