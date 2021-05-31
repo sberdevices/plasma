@@ -1,8 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { caption, accent, surfaceLiquid01, surfaceLiquid02, primary, secondary } from '@sberdevices/plasma-tokens';
-import { TextFieldRoot, TextFieldHelper } from '@sberdevices/plasma-core/components/TextField';
-import type { TextFieldProps as BaseTextFieldProps } from '@sberdevices/plasma-core/components/TextField';
+import { TextFieldRoot, TextFieldHelper } from '@sberdevices/plasma-core';
+import type { TextFieldProps as BaseTextFieldProps } from '@sberdevices/plasma-core';
 
 export interface TextFieldProps
     extends BaseTextFieldProps,

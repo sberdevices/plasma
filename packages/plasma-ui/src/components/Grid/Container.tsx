@@ -1,7 +1,13 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Container as BaseContainer } from '@sberdevices/plasma-core/components/Grid';
-import { mediaQuery, gridSizes, gridColumns, gridMargins, gridGutters } from '@sberdevices/plasma-core/utils';
+import {
+    Container as BaseContainer,
+    mediaQuery,
+    gridSizes,
+    gridColumns,
+    gridMargins,
+    gridGutters,
+} from '@sberdevices/plasma-core';
 
 interface StyledContainerProps {
     $width: number;

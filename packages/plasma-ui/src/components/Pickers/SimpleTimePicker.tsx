@@ -1,5 +1,5 @@
 import React from 'react';
-import { padZeroNumber as formatter } from '@sberdevices/plasma-core/utils';
+import { padZeroNumber as formatter } from '@sberdevices/plasma-core';
 
 import { Picker, PickerProps } from './Picker';
 

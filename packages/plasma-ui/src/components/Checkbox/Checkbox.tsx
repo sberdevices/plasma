@@ -1,8 +1,5 @@
 import styled from 'styled-components';
-import {
-    Checkbox as BaseCheckbox,
-    CheckboxProps as BaseCheckboxProps,
-} from '@sberdevices/plasma-core/components/Checkbox';
+import { Checkbox as BaseCheckbox, CheckboxProps as BaseCheckboxProps } from '@sberdevices/plasma-core';
 
 import type { InteractionProps } from '../../mixins';
 import { basebox } from '../Basebox';

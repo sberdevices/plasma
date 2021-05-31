@@ -4,11 +4,10 @@ import {
     TabsProps as BaseTabsProps,
     TabItem as BaseTabItem,
     TabItemProps as BaseTabItemProps,
-} from '@sberdevices/plasma-core/components/Tabs';
+    addFocus,
+} from '@sberdevices/plasma-core';
 import { button2, surfaceCard, surfaceLiquid01, blackSecondary, transparent } from '@sberdevices/plasma-tokens';
-import { addFocus } from '@sberdevices/plasma-core/mixins';
-import type { FocusProps, OutlinedProps } from '@sberdevices/plasma-core/mixins';
-import type { ShiftProps } from '@sberdevices/plasma-core/types';
+import type { FocusProps, OutlinedProps, ShiftProps } from '@sberdevices/plasma-core';
 
 import { applyInteraction } from '../../mixins';
 import type { InteractionProps } from '../../mixins';

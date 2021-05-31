@@ -2,7 +2,7 @@ import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { sberPortal, sberBox, mobile } from '@sberdevices/plasma-tokens/typo';
 import { sberPortalScale } from '@sberdevices/plasma-tokens';
-import { transformStyles } from '@sberdevices/plasma-core/utils';
+import { transformStyles } from '@sberdevices/plasma-core';
 
 import { detectDevice, deviceScales, DeviceKind } from '../../utils';
 

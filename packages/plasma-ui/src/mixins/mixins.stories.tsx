@@ -6,7 +6,7 @@ import type {
     DisabledProps,
     RoundnessProps,
     ViewProps,
-} from '@sberdevices/plasma-core/mixins';
+} from '@sberdevices/plasma-core';
 
 import { InteractionProps } from '.';
 

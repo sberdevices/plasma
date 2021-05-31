@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { Button as BaseButton } from '@sberdevices/plasma-core/components/Button';
-import type { ButtonProps as BaseProps, SizeProps, ViewProps } from '@sberdevices/plasma-core/components/Button/Button';
-import type { PinProps } from '@sberdevices/plasma-core/utils';
+import { Button as BaseButton } from '@sberdevices/plasma-core';
+import type { ButtonProps as BaseProps, SizeProps, ViewProps, PinProps } from '@sberdevices/plasma-core';
 
 import { applyInteraction, InteractionProps } from '../../mixins';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css, InterpolationFunction } from 'styled-components';
 import { primary, secondary } from '@sberdevices/plasma-tokens';
-import { applyMaxLines, MaxLinesProps } from '@sberdevices/plasma-core/mixins';
+import { applyMaxLines, MaxLinesProps } from '@sberdevices/plasma-core';
 
 import { Body1, Footnote1 } from '../Typography';
 
