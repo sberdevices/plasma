@@ -4,6 +4,7 @@ import type { ItemMainSectionProps } from '../pages/ItemPage/components/ItemMain
 import type { ItemEntitiesProps } from '../pages/ItemPage/components/ItemEntities/ItemEntities';
 import type { NavColProps } from '../pages/ShopLandingPage/components/NavCol/NavCol';
 import type { CarouselProps } from '../pages/GalleryPage/components/Carousel';
+import { HeroSlideProps } from '../components/HeroSlide/HeroSlide';
 
 export type UnifiedComponentProps<T, K extends string> = T & {
     platformComponents: Record<K, React.ComponentType<any>>;
@@ -16,4 +17,5 @@ export interface Registry {
     Carousel: React.ForwardRefExoticComponent<
         React.PropsWithChildren<CarouselProps> & React.RefAttributes<HTMLDivElement>
     >;
+    HeroSlide: React.ComponentType<HeroSlideProps>;
 }

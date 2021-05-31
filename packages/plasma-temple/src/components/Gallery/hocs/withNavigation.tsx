@@ -2,14 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { useVoiceNavigation, useRemoteHandlers } from '../../../hooks';
-import { GalleryProps } from '../types';
+import { GalleryProps, WithNavigationProps } from '../types';
 
 export const GalleryIndexContext = React.createContext(0);
-
-export interface WithNavigationProps {
-    axis?: 'x' | 'y';
-    activeIndex?: number;
-}
 
 const StyledFocusableContainer = styled.div`
     outline: none;
