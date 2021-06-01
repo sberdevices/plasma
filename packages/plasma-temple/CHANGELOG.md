@@ -1,3 +1,21 @@
+# v0.21.0 (Tue Jun 01 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): temp [#58](https://github.com/sberdevices/pashka/pull/58) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): Remove redundant padding [#58](https://github.com/sberdevices/pashka/pull/58) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- fix(plasma-temple): Fix gallery focus [#58](https://github.com/sberdevices/pashka/pull/58) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- refactor(plasma-temple): Rename ConfirmOrder and OrderSuccess [#58](https://github.com/sberdevices/pashka/pull/58) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v0.20.0 (Thu May 27 2021)
 
 #### 🚀 Enhancement
