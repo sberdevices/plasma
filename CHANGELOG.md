@@ -2,6 +2,20 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-temple@0.23.0`
+  - feat(plasma-temple): HeroSlider touch events [#60](https://github.com/sberdevices/pashka/pull/60) ([@LamaEats](https://github.com/LamaEats))
+  - feat(plasma-temple): HeroSlider components [#60](https://github.com/sberdevices/pashka/pull/60) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
+# (Tue Jun 01 2021)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-temple@0.22.0`
   - feat(plasma-temple): Cart bubble [#59](https://github.com/sberdevices/pashka/pull/59) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
 
