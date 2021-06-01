@@ -11,6 +11,8 @@ export interface HeroSlideProps {
     onClick: React.MouseEventHandler<HTMLButtonElement>;
     title: string;
     buttonText: string;
+    onFocus: React.FocusEventHandler<HTMLButtonElement>;
+    onBlur: React.FocusEventHandler<HTMLButtonElement>;
 }
 
 const StyledRow = styled(Row)`
@@ -23,6 +25,8 @@ export const HeroSlide: React.FC<UnifiedComponentProps<HeroSlideProps, 'Title' |
     buttonText,
     src,
     onClick,
+    onFocus,
+    onBlur,
     platformComponents,
     children,
 }) => {
@@ -36,7 +40,7 @@ export const HeroSlide: React.FC<UnifiedComponentProps<HeroSlideProps, 'Title' |
                 <Col sizeXL={6} sizeM={4}>
                     <Suggest>Попробуйте спросить</Suggest>
                     <Title>{title}</Title>
-                    <Button onClick={onClick} ref={mountRef}>
+                    <Button onClick={onClick} onFocus={onFocus} onBlur={onBlur} ref={mountRef}>
                         {buttonText}
                     </Button>
                 </Col>

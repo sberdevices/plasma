@@ -22,6 +22,10 @@ const StyledCarousel = styled(Carousel)`
 
 const StyledCarouselItem = styled(CarouselItem)`
     padding-right: 32px;
+
+    &:last-child {
+        padding-right: 0;
+    }
 `;
 
 export function Gallery<T extends AnyObject>({
@@ -30,6 +34,7 @@ export function Gallery<T extends AnyObject>({
     onItemFocus,
     Component,
     children,
+    className,
 }: GalleryProps<T>): React.ReactElement {
     const currentCardIndex = React.useContext(GalleryIndexContext);
     const ComponentToRender = React.useMemo(() => {
@@ -62,7 +67,7 @@ export function Gallery<T extends AnyObject>({
 
     return React.useMemo(
         () => (
-            <StyledCarouselWrapper data-cy="gallery">
+            <StyledCarouselWrapper data-cy="gallery" className={className}>
                 <StyledCarousel
                     index={currentCardIndex}
                     axis="x"
@@ -75,7 +80,7 @@ export function Gallery<T extends AnyObject>({
                 </StyledCarousel>
             </StyledCarouselWrapper>
         ),
-        [currentCardIndex, galleryItems, children],
+        [currentCardIndex, galleryItems, children, className],
     );
 }
 

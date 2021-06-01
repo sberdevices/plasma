@@ -167,7 +167,7 @@ export function useRemoteHandlers({
                         step('-');
                         break;
                     case 'RIGHT':
-                        preventDefault(currentIndex < max);
+                        preventDefault(currentIndex <= max);
                         step('+');
                         break;
                     case 'LONG_LEFT':
@@ -175,7 +175,7 @@ export function useRemoteHandlers({
                         jump('-');
                         break;
                     case 'LONG_RIGHT':
-                        preventDefault(currentIndex < max);
+                        preventDefault(currentIndex <= max);
                         jump('+');
                         break;
                     default:
@@ -188,7 +188,7 @@ export function useRemoteHandlers({
                         step('-');
                         break;
                     case 'DOWN':
-                        preventDefault(currentIndex < max);
+                        preventDefault(currentIndex <= max);
                         step('+');
                         break;
                     case 'LONG_UP':
@@ -196,7 +196,7 @@ export function useRemoteHandlers({
                         jump('-');
                         break;
                     case 'LONG_DOWN':
-                        preventDefault(currentIndex < max);
+                        preventDefault(currentIndex <= max);
                         jump('+');
                         break;
                     default:
