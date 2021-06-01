@@ -23,20 +23,15 @@ const StyledIconCount = styled.div`
 
 export const CartButton: React.FC<CartButtonProps> = ({ screen, withPrice }) => {
     const { pushScreen } = React.useContext(AppStateContext);
-    const { items, currency } = useCart();
+    const { quantity, price, currency } = useCart();
 
     const onClick = React.useCallback(() => pushScreen(screen, null), [screen, pushScreen]);
-
-    const { count, price } = items.reduce(
-        (acc, item) => ({ count: acc.count + item.quantity, price: acc.price + item.price * item.quantity }),
-        { count: 0, price: 0 },
-    );
 
     return (
         <Button
             contentLeft={
                 <StyledIconCount>
-                    {count > 0 && <StyledBadge text={String(count)} size="s" view="primary" circled />}
+                    {quantity > 0 && <StyledBadge text={String(quantity)} size="s" view="primary" circled />}
                     <IconCart />
                 </StyledIconCount>
             }

@@ -30,6 +30,8 @@ interface ConfirmOrderProps {
     header?: HeaderProps;
     background?: string;
     onPay: () => void;
+    onChangeRecipient: () => void;
+    onChangeDelivery?: () => void;
 }
 
 const StyledLocationCol = styled(Col)`
@@ -105,6 +107,8 @@ export const ConfirmOrderPage: React.FC<ConfirmOrderProps> = ({
     address,
     amount,
     onPay,
+    onChangeRecipient,
+    onChangeDelivery,
     header = defaultHeader,
     background = defaultBackground,
 }) => {
@@ -114,8 +118,18 @@ export const ConfirmOrderPage: React.FC<ConfirmOrderProps> = ({
             <Header {...header} />
             <Row>
                 <Col sizeXL={5.5} sizeM={3}>
-                    <ConfirmOrderCard title="Доставка" content={delivery.details} price={delivery.amount} />
-                    <ConfirmOrderCard title="Данные получателя" content={recipient.name} caption={recipient.email} />
+                    <ConfirmOrderCard
+                        title="Доставка"
+                        content={delivery.details}
+                        price={delivery.amount}
+                        onClick={onChangeDelivery}
+                    />
+                    <ConfirmOrderCard
+                        title="Данные получателя"
+                        content={recipient.name}
+                        caption={recipient.email}
+                        onClick={onChangeRecipient}
+                    />
                     <StyledButton
                         autoFocus
                         stretch

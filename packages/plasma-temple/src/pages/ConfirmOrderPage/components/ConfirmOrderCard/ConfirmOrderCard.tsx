@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Body1, Caption, Card, CardBody, CardContent, Footnote1, Price } from '@sberdevices/plasma-ui';
+import { IconChevronRight } from '@sberdevices/plasma-icons';
 import { secondary } from '@sberdevices/plasma-tokens';
 import { detectDevice } from '@sberdevices/plasma-ui/utils';
 
@@ -11,6 +12,7 @@ interface ConfirmOrderCardProps {
     content: string;
     price?: number;
     caption?: string;
+    onClick?: () => void;
 }
 
 const StyledCard = styled(Card)`
@@ -35,17 +37,22 @@ const mapDeviceToContent: Record<DeviceFamily, React.FC> = {
 
 const Content = mapDeviceToContent[detectDevice()];
 
-export const ConfirmOrderCard: React.FC<ConfirmOrderCardProps> = ({ title, content, caption, price = 0 }) => {
+const StyledContentContainer = styled.div`
+    margin-right: auto;
+`;
+
+export const ConfirmOrderCard: React.FC<ConfirmOrderCardProps> = ({ title, content, caption, price = 0, onClick }) => {
     return (
-        <StyledCard>
+        <StyledCard onClick={onClick} outlined tabIndex={0}>
             <CardBody>
                 <StyledCardContent>
-                    <div>
+                    <StyledContentContainer>
                         <StyledCaption>{title}</StyledCaption>
                         <Content>{content}</Content>
                         {caption && <StyledCaption>{caption}</StyledCaption>}
-                    </div>
+                    </StyledContentContainer>
                     {price > 0 && <Price>{price}</Price>}
+                    <IconChevronRight />
                 </StyledCardContent>
             </CardBody>
         </StyledCard>

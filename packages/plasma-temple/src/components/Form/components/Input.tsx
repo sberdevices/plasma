@@ -18,8 +18,6 @@ type InputProps = FieldComponentProps<
 >;
 
 const StyledTextField = styled(TextField)`
-    display: flex;
-
     & input:read-only {
         user-select: none;
         touch-action: none;
