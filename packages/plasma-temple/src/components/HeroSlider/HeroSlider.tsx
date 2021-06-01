@@ -12,7 +12,7 @@ export interface HeroItemSliderProps extends Pick<HeroSlideProps, 'title' | 'src
 }
 
 export interface HeroSliderProps {
-    time: number;
+    time?: number;
     withTimeline?: boolean;
     items: HeroItemSliderProps[];
     onItemClick?: (item: HeroItemSliderProps) => void;
@@ -100,7 +100,7 @@ const HeroDots: React.FC<HeroDotsProps> = ({ count, current, time }) => {
     return (
         <StyledDotsWrapper>
             {itemsToRender.map((_, i) => (
-                <StyledTimline count={count} filled={i < current}>
+                <StyledTimline count={count} filled={i < current} key={i}>
                     {i === current && <StyledTimelineProgress time={time} />}
                 </StyledTimline>
             ))}
@@ -115,6 +115,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
     onItemClick,
     buttonText,
 }) => {
+    const [isActive, setIsActive] = React.useState(false);
     const childLen = React.useRef(items.length);
     const timerRef = React.useRef<number>(Infinity);
     const containerRef = React.useRef<HTMLDivElement>(null);
@@ -126,8 +127,8 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
         initialIndex: 0,
         min: 0,
         max: childLen.current - 1,
-        repeat: true,
         longCount: 1,
+        disable: !isActive,
     });
 
     useTouchHandler(containerRef, (dir) => {
@@ -143,7 +144,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
     React.useLayoutEffect(() => {
         timerRef.current = window.setTimeout(() => {
             let nextIndex = activeIndex + 1;
-            if (nextIndex >= childLen.current) {
+            if (nextIndex >= childLen.current - 1) {
                 nextIndex = 0;
             }
             setActiveIndex(nextIndex);
@@ -160,9 +161,23 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
         onItemClick?.(item);
     }, [item, onItemClick]);
 
+    const handleFocus = React.useCallback(() => {
+        setIsActive(true);
+    }, []);
+
+    const handleBlur = React.useCallback(() => {
+        setIsActive(false);
+    }, []);
+
     return (
         <StyledWrapper ref={containerRef}>
-            <HeroSlide {...item} onClick={handleClick} buttonText={buttonText}>
+            <HeroSlide
+                {...item}
+                onClick={handleClick}
+                buttonText={buttonText}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+            >
                 {withTimeline && <HeroDots count={childLen.current} current={activeIndex} time={time} />}
             </HeroSlide>
         </StyledWrapper>
