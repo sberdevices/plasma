@@ -13,7 +13,7 @@ import { ShowcaseDashedBorder, ShowcaseHead, UIStoryDecorator, InSpacingDecorato
 
 export default {
     title: 'UI/Controls/Pickers',
-    decorators: [UIStoryDecorator, InSpacingDecorator],
+    decorators: [UIStoryDecorator, InSpacingDecorator, withKnobs],
     chromatic: { delay: 700 },
 };
 
