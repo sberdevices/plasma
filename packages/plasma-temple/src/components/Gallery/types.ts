@@ -9,6 +9,10 @@ export interface WithNavigationProps {
     activeIndex?: number;
 }
 
+type GalleryClassNameProps<T> = T & {
+    className?: string;
+};
+
 export interface GalleryPropsWithChildren {
     children: React.ReactNode;
     items?: never;
@@ -19,10 +23,12 @@ export interface GalleryPropsWithChildren {
 
 export interface GalleryPropsWithComponent<T extends AnyObject = AnyObject> {
     items: GalleryCardParams<T>[];
-    onItemFocus: () => void;
+    onItemFocus?: () => void;
     onItemClick: (val: T, index: number) => void;
     Component?: React.ComponentType<GalleryCardProps<T>>;
     children?: never;
 }
 
-export type GalleryProps<T extends AnyObject = AnyObject> = GalleryPropsWithChildren | GalleryPropsWithComponent<T>;
+export type GalleryProps<T extends AnyObject = AnyObject> = GalleryClassNameProps<
+    GalleryPropsWithChildren | GalleryPropsWithComponent<T>
+>;
