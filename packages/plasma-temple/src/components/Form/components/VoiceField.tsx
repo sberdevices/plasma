@@ -98,6 +98,7 @@ interface VoiceFieldProps<T> {
     onSubmit: () => void;
     value: T;
     component?: React.FC<FieldPropsWithRef<T>>;
+    manualMode?: boolean;
 }
 
 export function VoiceField<T>({
@@ -107,7 +108,9 @@ export function VoiceField<T>({
     onSubmit,
     value,
     component: Component,
-}: VoiceFieldProps<T>): React.ReactElement | null {
+    children,
+    manualMode,
+}: React.PropsWithChildren<VoiceFieldProps<T>>): React.ReactElement | null {
     const [{ suggestions, manual, error, valueHasChange }, dispatch] = React.useReducer<
         React.Reducer<State<T>, Action<T>>
     >(reducer, {
@@ -241,7 +244,7 @@ export function VoiceField<T>({
 
     return (
         <VoiceFilling
-            manual={manual}
+            manual={manualMode || manual}
             confirmDisable={error}
             onManualFill={handlerManualFill}
             onChange={handleVoiceInput}
@@ -251,6 +254,7 @@ export function VoiceField<T>({
             formatter={formatValue}
         >
             {componentToRender}
+            {children}
         </VoiceFilling>
     );
 }

@@ -39,6 +39,8 @@ interface VoiceLabelsConfirm {
     one: string;
     many?: string;
     description?: string;
+    confirm?: string;
+    reject?: string;
 }
 
 export interface VoiceLabels extends VoiceLabelsSuggest, VoiceLabelsConfirm {}

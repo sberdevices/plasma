@@ -34,7 +34,7 @@ const StyledCarouselGridWrapper = styled.div`
 `;
 
 export const CartPage: React.FC<CartPageProps> = ({ header, name, emptyCart, onMakeOrder }) => {
-    const { items, currency, minDeliveryPrice = 0 } = useCart();
+    const { items, quantity, price, currency, minDeliveryPrice = 0 } = useCart();
 
     const [currentCartItem] = useRemoteHandlers({
         initialIndex: 0,
@@ -44,16 +44,12 @@ export const CartPage: React.FC<CartPageProps> = ({ header, name, emptyCart, onM
         repeat: false,
     });
 
-    const handleMakeOrder = React.useCallback(() => onMakeOrder({ items, currency, minDeliveryPrice }), [
-        onMakeOrder,
-        items,
-        currency,
-        minDeliveryPrice,
-    ]);
+    const handleMakeOrder = React.useCallback(
+        () => onMakeOrder({ items, quantity, price, currency, minDeliveryPrice }),
+        [onMakeOrder, items, quantity, price, currency, minDeliveryPrice],
+    );
 
     useCartAssistantState(items, name);
-
-    const price = items.reduce((amount, item) => amount + item.price * item.quantity, 0);
 
     return (
         <>
