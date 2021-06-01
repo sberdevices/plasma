@@ -1,3 +1,16 @@
+# v0.23.0 (Tue Jun 01 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): HeroSlider touch events [#60](https://github.com/sberdevices/pashka/pull/60) ([@LamaEats](https://github.com/LamaEats))
+- feat(plasma-temple): HeroSlider components [#60](https://github.com/sberdevices/pashka/pull/60) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v0.22.0 (Tue Jun 01 2021)
 
 #### 🚀 Enhancement
