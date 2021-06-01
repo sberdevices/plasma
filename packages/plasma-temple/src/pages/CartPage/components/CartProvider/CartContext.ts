@@ -8,7 +8,10 @@ const throwFn = () => {
 
 export const CartContext = React.createContext<Cart>({
     items: [],
+    quantity: 0,
+    price: 0,
     addItem: throwFn,
     removeItem: throwFn,
     changeItemQuantity: throwFn,
+    clearCart: throwFn,
 });

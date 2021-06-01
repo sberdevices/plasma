@@ -105,6 +105,7 @@ export function withWrapField<V, P extends React.PropsWithChildren<Record<string
             () => (
                 <Component
                     {...((props as unknown) as FieldPropsWithRef<V, P> & P)}
+                    value={value}
                     label={label}
                     innerRef={fieldRef}
                     onSubmit={onSubmitCallback}
@@ -113,7 +114,7 @@ export function withWrapField<V, P extends React.PropsWithChildren<Record<string
                     checkInput={checkValidityField}
                 />
             ),
-            [props, label, onSubmitCallback, onChangeHandler, validationMessages, checkValidityField],
+            [props, value, label, onSubmitCallback, onChangeHandler, validationMessages, checkValidityField],
         );
 
         const errorComp = React.useMemo(

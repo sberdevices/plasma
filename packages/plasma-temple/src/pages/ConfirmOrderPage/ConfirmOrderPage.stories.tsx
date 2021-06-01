@@ -32,6 +32,8 @@ export const Default = (): React.ReactElement => {
             address={address}
             amount={10456}
             onPay={action('onPay')}
+            onChangeRecipient={action('onChangeRecipient')}
+            onChangeDelivery={action('onChangeDelivery')}
             header={{
                 title: 'Оформление заказа',
                 children: (

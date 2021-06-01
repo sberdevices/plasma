@@ -1,1 +1,1 @@
-export { ConfirmOrderPage as ConfirmOrder } from './ConfirmOrderPage';
+export { ConfirmOrderPage } from './ConfirmOrderPage';
