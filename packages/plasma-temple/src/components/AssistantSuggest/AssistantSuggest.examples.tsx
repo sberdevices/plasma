@@ -1,33 +1,16 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 
-import {
-    AssistantSuggestWrapper,
-    AssistantSuggestIcon,
-    AssistantSuggestActionText,
-    AssistantSuggestIntent,
-    AssistantSuggestIntentHint,
-    AssistantSuggestHint,
-} from './AssistantSuggest';
+import { AssistantSuggest } from './AssistantSuggest';
 
 export default {
     title: 'AssistantSuggest',
 };
 
 export const Default: React.FC = () => (
-    <AssistantSuggestWrapper>
-        <AssistantSuggestIcon size="s" />
-        <AssistantSuggestActionText>Нажмите кнопку на пульте и скажите</AssistantSuggestActionText>
-        <AssistantSuggestIntent>Билеты в Новосибирск на 13 ноября</AssistantSuggestIntent>
-    </AssistantSuggestWrapper>
+    <AssistantSuggest suggestion="Имя и фамилию" onManualFill={action('onManualFill')} />
 );
 
 export const VoiceFill: React.FC = () => (
-    <AssistantSuggestWrapper>
-        <AssistantSuggestIcon size="m" />
-        <AssistantSuggestActionText>Нажмите кнопку на пульте и скажите</AssistantSuggestActionText>
-        <AssistantSuggestIntent>фамилию</AssistantSuggestIntent>
-        <AssistantSuggestIntentHint>Скажите что-нибудь</AssistantSuggestIntentHint>
-        <AssistantSuggestHint onOkClick={action('on ok click')} />
-    </AssistantSuggestWrapper>
+    <AssistantSuggest suggestion="Имя и фамилию" onManualFill={action('onManualFill')} hint="Скажите что-нибудь" />
 );

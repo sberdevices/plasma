@@ -63,6 +63,8 @@ export const CartProvider: React.FC<React.PropsWithChildren<CartProviderProps>> 
         [getItems],
     );
 
+    const clearCart = React.useCallback(() => setCartItems([]), []);
+
     const value = React.useMemo(
         () => ({
             items: cartItems,
@@ -70,8 +72,16 @@ export const CartProvider: React.FC<React.PropsWithChildren<CartProviderProps>> 
             addItem,
             removeItem,
             changeItemQuantity,
+            clearCart,
+            ...cartItems.reduce(
+                (acc, item) => ({
+                    quantity: acc.quantity + item.quantity,
+                    price: acc.price + item.price * item.quantity,
+                }),
+                { quantity: 0, price: 0 },
+            ),
         }),
-        [cartItems, currency, addItem, removeItem, changeItemQuantity],
+        [cartItems, currency, addItem, removeItem, changeItemQuantity, clearCart],
     );
 
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

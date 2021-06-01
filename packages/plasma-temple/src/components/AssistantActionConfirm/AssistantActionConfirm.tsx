@@ -1,9 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Body1, Display3, Footnote1, Headline1, Button, Carousel, CarouselItem } from '@sberdevices/plasma-ui';
+import styled, { css } from 'styled-components';
+import { Body1, Footnote1, Headline1, Button, Carousel, CarouselItem, Headline2 } from '@sberdevices/plasma-ui';
 import { primary, secondary } from '@sberdevices/plasma-tokens';
+import { mediaQuery } from '@sberdevices/plasma-ui/utils';
 
 import { useFocusOnMount } from '../../hooks/useFocusOnMount';
+import { DeviceFamily } from '../../types';
+import { deviceFamily } from '../../utils/deviceFamily';
 
 const StyledList = styled(Carousel)`
     box-sizing: border-box;
@@ -24,16 +27,21 @@ const StyledList = styled(Carousel)`
 `;
 
 export const AssistantActionConfirmWrapper = styled.div`
-    box-sizing: border-box;
-    height: 100%;
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    padding: 0 270px;
-
     text-align: center;
+
+    padding-top: 2rem;
+
+    ${mediaQuery(
+        'M',
+        2,
+    )(
+        css`
+            padding-top: 1rem;
+        `,
+    )}
 `;
 
 export const AssistantActionConfirmLabel = styled(Body1)`
@@ -47,6 +55,7 @@ export const AssistantActionConfirmTitle = styled(Headline1)`
 `;
 
 export const AssistantActionConfirmDescription = styled(Footnote1)`
+    margin-top: 2rem;
     color: ${secondary};
 `;
 
@@ -57,9 +66,14 @@ interface AssistantActionConfirmResultsProps<T> {
     labelFormatter?: (val: T) => string;
 }
 
-export const AssistantActionConfirmResult = styled(Display3)`
-    color: ${primary};
-    margin-bottom: 24px;
+const mapDeviceToResult: Record<DeviceFamily, React.FC> = {
+    sberBox: Headline1,
+    sberPortal: Headline2,
+    mobile: Headline2,
+};
+
+export const AssistantActionConfirmResult = styled(mapDeviceToResult[deviceFamily])`
+    text-transform: capitalize;
 `;
 
 const StyledControlsWrapper = styled.div`

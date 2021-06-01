@@ -9,14 +9,7 @@ import {
     AssistantActionConfirmResults,
     AssistantActionConfirmTitle,
 } from '../../AssistantActionConfirm/AssistantActionConfirm';
-import {
-    AssistantSuggestWrapper,
-    AssistantSuggestIcon,
-    AssistantSuggestActionText,
-    AssistantSuggestIntent,
-    AssistantSuggestIntentHint,
-    AssistantSuggestHint,
-} from '../../AssistantSuggest/AssistantSuggest';
+import { AssistantSuggest } from '../../AssistantSuggest/AssistantSuggest';
 import { VoiceLabels } from '../types';
 
 interface VoiceFillingProps<T> {
@@ -61,6 +54,8 @@ export function VoiceFilling<T>({
                     onReject={onReject}
                     suggests={suggestions}
                     confirmDisable={confirmDisable}
+                    confirmText={label.confirm}
+                    rejectText={label.reject}
                 />
             </AssistantActionConfirmWrapper>
         );
@@ -83,13 +78,5 @@ export function VoiceFilling<T>({
         );
     }
 
-    return (
-        <AssistantSuggestWrapper>
-            <AssistantSuggestIcon size="m" />
-            <AssistantSuggestActionText>Нажмите кнопку на пульте и скажите</AssistantSuggestActionText>
-            <AssistantSuggestIntent>{label.suggestion}</AssistantSuggestIntent>
-            {label.hint ? <AssistantSuggestIntentHint>{label.hint}</AssistantSuggestIntentHint> : null}
-            {children == null ? null : <AssistantSuggestHint onOkClick={onManualFill} />}
-        </AssistantSuggestWrapper>
-    );
+    return <AssistantSuggest suggestion={label.suggestion} hint={label.hint} onManualFill={onManualFill} />;
 }
