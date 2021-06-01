@@ -1,3 +1,15 @@
+# v0.22.0 (Tue Jun 01 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Cart bubble [#59](https://github.com/sberdevices/pashka/pull/59) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v0.21.0 (Tue Jun 01 2021)
 
 #### 🚀 Enhancement
