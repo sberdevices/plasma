@@ -1,1 +1,1 @@
-export { OrderSuccessPage as OrderSuccess } from './OrderSuccessPage';
+export { OrderSuccessPage } from './OrderSuccessPage';

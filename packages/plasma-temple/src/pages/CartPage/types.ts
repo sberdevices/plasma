@@ -11,6 +11,8 @@ export type ChangeItemQuantityFn<ID = string | number> = (id: ID, quantity: numb
 
 export interface Order<ID = string | number> {
     items: CartItem<ID>[];
+    price: number;
+    quantity: number;
     currency?: Currency;
     minDeliveryPrice?: number;
 }
@@ -19,4 +21,5 @@ export interface Cart<ID = string | number> extends Order<ID> {
     addItem: (item: CartItem) => void;
     removeItem: (id: ID) => void;
     changeItemQuantity: ChangeItemQuantityFn<ID>;
+    clearCart: () => void;
 }

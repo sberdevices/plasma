@@ -18,7 +18,7 @@ export default {
 export const SingleSuggestWithDescription: React.FC = () => (
     <AssistantActionConfirmWrapper>
         <AssistantActionConfirmLabel>Имя</AssistantActionConfirmLabel>
-        <AssistantActionConfirmResult>Inav</AssistantActionConfirmResult>
+        <AssistantActionConfirmResult>Inav petrov</AssistantActionConfirmResult>
         <AssistantActionConfirmDescription>
             Для покупки авиабилета по загранпаспорту РФ фамилия должна полностью соответствовать тому, что написано в
             документе. Для покупки по паспорту РФ — в произвольной форме латинскими буквами.
