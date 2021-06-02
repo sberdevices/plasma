@@ -67,8 +67,9 @@ export function Gallery<T extends AnyObject>({
 
     return React.useMemo(
         () => (
-            <StyledCarouselWrapper data-cy="gallery" className={className}>
+            <StyledCarouselWrapper data-cy="gallery">
                 <StyledCarousel
+                    className={className}
                     index={currentCardIndex}
                     axis="x"
                     tabIndex={-1}
