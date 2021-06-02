@@ -2,7 +2,7 @@ import { ItemMainSection } from '../pages/ItemPage/components/ItemMainSection/It
 import { ItemEntities } from '../pages/ItemPage/components/ItemEntities/ItemEntities@sberportal';
 import { NavCol } from '../pages/ShopLandingPage/components/NavCol/NavCol@sberportal';
 import { Carousel } from '../pages/GalleryPage/components/Carousel@sberportal';
-import { HeroSlide } from '../components/HeroSlide/HeroSlide@sberportal';
+import { HeroSliderSberportal as Slider } from '../components/HeroSlider/HeroSlider@sberportal';
 
 import { Registry } from './types';
 
@@ -11,7 +11,7 @@ const registry: Registry = {
     ItemMainSection,
     NavCol,
     Carousel,
-    HeroSlide,
+    Slider,
 };
 
 export default registry;
