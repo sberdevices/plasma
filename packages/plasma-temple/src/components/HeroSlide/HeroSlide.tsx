@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Col, Row } from '@sberdevices/plasma-ui';
+import { isSberBox } from '@sberdevices/plasma-ui/utils';
 
 import { FullScreenBackground } from '../../components/FullScreenBackground/FullScreenBackground';
 import { useFocusOnMount } from '../../hooks/useFocusOnMount';
@@ -40,7 +41,7 @@ export const HeroSlide: React.FC<UnifiedComponentProps<HeroSlideProps, 'Title' |
                 <Col sizeXL={6} sizeM={4}>
                     <Suggest>Попробуйте спросить</Suggest>
                     <Title>{title}</Title>
-                    <Button onClick={onClick} onFocus={onFocus} onBlur={onBlur} ref={mountRef}>
+                    <Button onClick={onClick} onFocus={onFocus} onBlur={onBlur} ref={isSberBox() ? mountRef : null}>
                         {buttonText}
                     </Button>
                 </Col>
