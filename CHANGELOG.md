@@ -1,3 +1,17 @@
+# (Wed Jun 02 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@0.23.1`
+  - fix(plasma-temple): adopt HeroSlider for portal [#62](https://github.com/sberdevices/pashka/pull/62) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): useRemoteHandlers conditions [#62](https://github.com/sberdevices/pashka/pull/62) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Tue Jun 01 2021)
 
 #### 🚀 Enhancement
