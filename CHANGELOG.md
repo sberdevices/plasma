@@ -1,3 +1,16 @@
+# (Fri Jun 04 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@0.24.0`
+  - feat(plasma-temple): Add posibility to change recipient data add form validation for voice field [#63](https://github.com/sberdevices/pashka/pull/63) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # (Wed Jun 02 2021)
 
 #### 🐛 Bug Fix
