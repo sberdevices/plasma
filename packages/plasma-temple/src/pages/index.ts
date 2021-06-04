@@ -1,4 +1,5 @@
 export * from './GalleryPage';
+export * from './GridPage';
 export * from './ItemPage';
 export * from './VideoPage';
 export * from './OrderSuccessPage';
