@@ -1,3 +1,15 @@
+# v0.25.0 (Mon Jun 07 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): add grid page [#64](https://github.com/sberdevices/pashka/pull/64) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v0.24.0 (Fri Jun 04 2021)
 
 #### 🚀 Enhancement
