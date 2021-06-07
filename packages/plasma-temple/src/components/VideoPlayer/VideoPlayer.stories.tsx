@@ -1,5 +1,5 @@
 import React from 'react';
-import { boolean, text, array, object } from '@storybook/addon-knobs';
+import { boolean, text, array } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
 import { ControlType } from '../MediaPlayer/types';
@@ -20,12 +20,7 @@ export const Default = () => (
         backDisabled={boolean('back disabled', false)}
         nextDisabled={boolean('next disabled', false)}
         alwaysShowControls={boolean('always show controls', false)}
-        insets={object('insets', {
-            top: 0,
-            bottom: 144,
-            left: 0,
-            right: 0,
-        })}
+        muted
     />
 );
 

@@ -37,7 +37,7 @@ export const useTouchHandler: UseTouchHandler = (ref, callback, params) => {
     const { axis = 'x', callDistance = 25 } = params || {};
 
     useLayoutEffect(() => {
-        if (ref.current == null || isSberBox()) {
+        if (!ref.current || isSberBox()) {
             return;
         }
 
