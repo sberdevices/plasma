@@ -18,6 +18,7 @@ import type {
     Typography as TypographySet,
     Typograph as TypographyData,
 } from './design-language/build/diez-plasma-tokens-web';
+import { dataColors } from './dataColors';
 
 const ds = new DesignLanguage();
 
@@ -88,12 +89,16 @@ const darkTheme: BaseTheme = {
         comment: themeColorsComments.backgroundTertiary,
     },
 
+    success: {
+        value: dataColors.dark.statusSuccess,
+        comment: themeColorsComments.success,
+    },
     warning: {
-        value: humanizeColor(ds.theme.dark_warning.color),
+        value: dataColors.dark.statusWarning,
         comment: themeColorsComments.warning,
     },
     critical: {
-        value: humanizeColor(ds.theme.dark_critical.color),
+        value: dataColors.dark.statusCritical,
         comment: themeColorsComments.critical,
     },
 
@@ -128,12 +133,16 @@ const darkTheme: BaseTheme = {
         comment: themeColorsComments.buttonSecondary,
     },
 
+    buttonSuccess: {
+        value: dataColors.dark.buttonSuccess,
+        comment: themeColorsComments.buttonSuccess,
+    },
     buttonWarning: {
-        value: humanizeColor(ds.theme.dark_button_warning.color),
+        value: dataColors.dark.buttonWarning,
         comment: themeColorsComments.buttonWarning,
     },
     buttonCritical: {
-        value: humanizeColor(ds.theme.dark_button_critical.color),
+        value: dataColors.dark.buttonCritical,
         comment: themeColorsComments.buttonCritical,
     },
     buttonChecked: {
@@ -189,12 +198,16 @@ const lightTheme: BaseTheme = {
         comment: themeColorsComments.backgroundTertiary,
     },
 
+    success: {
+        value: dataColors.light.statusSuccess,
+        comment: themeColorsComments.success,
+    },
     warning: {
-        value: humanizeColor(ds.theme.light_warning.color),
+        value: dataColors.light.statusWarning,
         comment: themeColorsComments.warning,
     },
     critical: {
-        value: humanizeColor(ds.theme.light_critical.color),
+        value: dataColors.light.statusCritical,
         comment: themeColorsComments.critical,
     },
 
@@ -229,12 +242,16 @@ const lightTheme: BaseTheme = {
         comment: themeColorsComments.buttonSecondary,
     },
 
+    buttonSuccess: {
+        value: dataColors.light.buttonSuccess,
+        comment: themeColorsComments.buttonSuccess,
+    },
     buttonWarning: {
-        value: humanizeColor(ds.theme.light_button_warning.color),
+        value: dataColors.light.buttonWarning,
         comment: themeColorsComments.buttonWarning,
     },
     buttonCritical: {
-        value: humanizeColor(ds.theme.light_button_critical.color),
+        value: dataColors.light.buttonCritical,
         comment: themeColorsComments.buttonCritical,
     },
     buttonChecked: {
@@ -255,15 +272,15 @@ const lightTheme: BaseTheme = {
 const darkSber: ThemeTokens = {
     ...darkTheme,
     accent: {
-        value: humanizeColor(ds.theme.dark_sber.color),
+        value: dataColors.dark.accentSber,
         comment: themeColorsComments.accent,
     },
     buttonAccent: {
-        value: humanizeColor(ds.theme.dark_button_sber.color),
+        value: dataColors.dark.buttonSber,
         comment: themeColorsComments.buttonAccent,
     },
     buttonFocused: {
-        value: humanizeColor(ds.theme.dark_focus_sber.color),
+        value: dataColors.dark.focusSber,
         comment: themeColorsComments.buttonFocused,
     },
     // TODO: export from figma is broken (#135)
@@ -274,22 +291,22 @@ const darkSber: ThemeTokens = {
     },
     voicePhraseGradient: {
         // value: ds.gradients.voice_phrase_sber.linearGradient,
-        value: 'linear-gradient(93.97deg, #2FD65C 6.49%, #20C1C7 93.51%)',
+        value: 'linear-gradient(93.97deg, #1DD13B 6.49%, #27C6E5 93.51%)',
         comment: themeColorsComments.voicePhraseGradient,
     },
 };
 const darkEva: ThemeTokens = {
     ...darkTheme,
     accent: {
-        value: humanizeColor(ds.theme.dark_eva.color),
+        value: dataColors.dark.accentAthena,
         comment: themeColorsComments.accent,
     },
     buttonAccent: {
-        value: humanizeColor(ds.theme.dark_button_eva.color),
+        value: dataColors.dark.buttonAthena,
         comment: themeColorsComments.buttonAccent,
     },
     buttonFocused: {
-        value: humanizeColor(ds.theme.dark_focus_eva.color),
+        value: dataColors.dark.focusAthena,
         comment: themeColorsComments.buttonFocused,
     },
     // TODO: export from figma is broken (#135)
@@ -300,22 +317,22 @@ const darkEva: ThemeTokens = {
     },
     voicePhraseGradient: {
         // value: ds.gradients.voice_phrase_eva.linearGradient,
-        value: 'linear-gradient(93.97deg, #52C0FF 6.49%, #A193FD 93.51%)',
+        value: 'linear-gradient(93.97deg, #50C1FA 6.49%, #ADADFF 93.51%)',
         comment: themeColorsComments.voicePhraseGradient,
     },
 };
 const darkJoy: ThemeTokens = {
     ...darkTheme,
     accent: {
-        value: humanizeColor(ds.theme.dark_joy.color),
+        value: dataColors.dark.accentJoy,
         comment: themeColorsComments.accent,
     },
     buttonAccent: {
-        value: humanizeColor(ds.theme.dark_button_joy.color),
+        value: dataColors.dark.buttonJoy,
         comment: themeColorsComments.buttonAccent,
     },
     buttonFocused: {
-        value: humanizeColor(ds.theme.dark_focus_joy.color),
+        value: dataColors.dark.focusJoy,
         comment: themeColorsComments.buttonFocused,
     },
     // TODO: export from figma is broken (#135)
@@ -326,22 +343,22 @@ const darkJoy: ThemeTokens = {
     },
     voicePhraseGradient: {
         // value: ds.gradients.voice_phrase_joy.linearGradient,
-        value: 'linear-gradient(93.97deg, #F5AE4C 6.49%, #FA8CAE 93.51%)',
+        value: 'linear-gradient(93.97deg, #FF9E6E 6.49%, #FC95DA 93.51%)',
         comment: themeColorsComments.voicePhraseGradient,
     },
 };
 const lightSber: ThemeTokens = {
     ...lightTheme,
     accent: {
-        value: humanizeColor(ds.theme.light_sber.color),
+        value: dataColors.light.accentSber,
         comment: themeColorsComments.accent,
     },
     buttonAccent: {
-        value: humanizeColor(ds.theme.light_button_sber.color),
+        value: dataColors.light.buttonSber,
         comment: themeColorsComments.buttonAccent,
     },
     buttonFocused: {
-        value: humanizeColor(ds.theme.light_focus_sber.color),
+        value: dataColors.light.focusSber,
         comment: themeColorsComments.buttonFocused,
     },
     // TODO: export from figma is broken (#135)
@@ -352,22 +369,22 @@ const lightSber: ThemeTokens = {
     },
     voicePhraseGradient: {
         // value: ds.gradients.voice_phrase_sber.linearGradient,
-        value: 'linear-gradient(93.97deg, #2FD65C 6.49%, #20C1C7 93.51%)',
+        value: 'linear-gradient(89.83deg, #0EB029 0%, #00A6C7 100%)',
         comment: themeColorsComments.voicePhraseGradient,
     },
 };
 const lightEva: ThemeTokens = {
     ...lightTheme,
     accent: {
-        value: humanizeColor(ds.theme.light_eva.color),
+        value: dataColors.light.accentAthena,
         comment: themeColorsComments.accent,
     },
     buttonAccent: {
-        value: humanizeColor(ds.theme.light_button_eva.color),
+        value: dataColors.light.buttonAthena,
         comment: themeColorsComments.buttonAccent,
     },
     buttonFocused: {
-        value: humanizeColor(ds.theme.light_focus_eva.color),
+        value: dataColors.light.focusAthena,
         comment: themeColorsComments.buttonFocused,
     },
     // TODO: export from figma is broken (#135)
@@ -378,22 +395,22 @@ const lightEva: ThemeTokens = {
     },
     voicePhraseGradient: {
         // value: ds.gradients.voice_phrase_eva.linearGradient,
-        value: 'linear-gradient(93.97deg, #52C0FF 6.49%, #A193FD 93.51%)',
+        value: 'linear-gradient(89.83deg, #1BA0E3 0%, #7A7AFF 100%)',
         comment: themeColorsComments.voicePhraseGradient,
     },
 };
 const lightJoy: ThemeTokens = {
     ...lightTheme,
     accent: {
-        value: humanizeColor(ds.theme.light_joy.color),
+        value: dataColors.light.accentJoy,
         comment: themeColorsComments.accent,
     },
     buttonAccent: {
-        value: humanizeColor(ds.theme.light_button_joy.color),
+        value: dataColors.light.buttonJoy,
         comment: themeColorsComments.buttonAccent,
     },
     buttonFocused: {
-        value: humanizeColor(ds.theme.light_focus_joy.color),
+        value: dataColors.light.focusJoy,
         comment: themeColorsComments.buttonFocused,
     },
     // TODO: export from figma is broken (#135)
@@ -405,7 +422,7 @@ const lightJoy: ThemeTokens = {
     },
     voicePhraseGradient: {
         // value: ds.gradients.voice_phrase_joy.linearGradient,
-        value: 'linear-gradient(93.97deg, #F5AE4C 6.49%, #FA8CAE 93.51%)',
+        value: 'linear-gradient(89.83deg, #FCA349 0%, #FF52C5 100%)',
         comment: themeColorsComments.voicePhraseGradient,
     },
 };

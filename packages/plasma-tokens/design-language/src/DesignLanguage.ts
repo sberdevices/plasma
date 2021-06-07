@@ -116,7 +116,7 @@ const theme = {
 
     // light_focus_sber: plasmaStylesTokens.colors.textIconsBrandSber,
     // TODO: diez doesn't work with border-colors =/
-    light_focus_sber: Color.hex('#1AC76B'),
+    light_focus_sber: plasmaStylesTokens.colors.textIconsBrandSber,
     light_focus_eva: plasmaStylesTokens.colors.textIconsBrandEva,
     light_focus_joy: plasmaStylesTokens.colors.textIconsBrandJoy,
 
