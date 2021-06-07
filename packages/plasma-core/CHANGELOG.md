@@ -1,3 +1,22 @@
+# v1.12.0 (Mon Jun 07 2021)
+
+#### 🚀 Enhancement
+
+- feat: bump plasma-core [#432](https://github.com/sberdevices/plasma/pull/432) ([@Yeti-or](https://github.com/Yeti-or))
+- feat: user Intl short month format for formatting [#392](https://github.com/sberdevices/plasma/pull/392) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- feat: short month name in datepicker [#392](https://github.com/sberdevices/plasma/pull/392) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- fix: correct point deletion in short month name [#392](https://github.com/sberdevices/plasma/pull/392) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 2
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.11.0 (Mon May 31 2021)
 
 #### 🚀 Enhancement

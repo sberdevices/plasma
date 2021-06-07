@@ -1,3 +1,24 @@
+# v1.18.0 (Mon Jun 07 2021)
+
+#### 🚀 Enhancement
+
+- feat: switchable month name format in DatePicker [#392](https://github.com/sberdevices/plasma/pull/392) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- feat: short month name in datepicker [#392](https://github.com/sberdevices/plasma/pull/392) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- refactor: change style of default options checking in DatePicker [#392](https://github.com/sberdevices/plasma/pull/392) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- refactor: remove unimportant check from getFormatterKey [#392](https://github.com/sberdevices/plasma/pull/392) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- refactor: unified options getting in DatePicker [#392](https://github.com/sberdevices/plasma/pull/392) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.17.1 (Mon May 31 2021)
 
 #### 🐛 Bug Fix

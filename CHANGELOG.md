@@ -1,3 +1,33 @@
+# (Mon Jun 07 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-core@1.12.0`
+  - feat: bump plasma-core [#432](https://github.com/sberdevices/plasma/pull/432) ([@Yeti-or](https://github.com/Yeti-or))
+  - feat: user Intl short month format for formatting [#392](https://github.com/sberdevices/plasma/pull/392) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- `@sberdevices/showcase@0.22.0`, `@sberdevices/plasma-ui@1.18.0`
+  - feat: switchable month name format in DatePicker [#392](https://github.com/sberdevices/plasma/pull/392) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- `@sberdevices/plasma-core@1.12.0`, `@sberdevices/plasma-ui@1.18.0`
+  - feat: short month name in datepicker [#392](https://github.com/sberdevices/plasma/pull/392) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/showcase@0.22.0`
+  - docs: knobs for pickers in showcase [#392](https://github.com/sberdevices/plasma/pull/392) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- `@sberdevices/plasma-core@1.12.0`
+  - fix: correct point deletion in short month name [#392](https://github.com/sberdevices/plasma/pull/392) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- `@sberdevices/plasma-ui@1.18.0`
+  - refactor: change style of default options checking in DatePicker [#392](https://github.com/sberdevices/plasma/pull/392) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - refactor: remove unimportant check from getFormatterKey [#392](https://github.com/sberdevices/plasma/pull/392) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - refactor: unified options getting in DatePicker [#392](https://github.com/sberdevices/plasma/pull/392) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 2
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # (Mon May 31 2021)
 
 #### 🐛 Bug Fix
