@@ -1,8 +1,18 @@
 import { useCallback, useRef, useState } from 'react';
 
-export const useTimer = (timeout: number) => {
+interface UseTimer {
+    (timeout: number): {
+        stopped: boolean;
+        startTimer: () => void;
+        stopTimer: () => void;
+    };
+}
+
+export const useTimer: UseTimer = (timeout) => {
     const timer = useRef<number>(0);
     const [stopped, setStopped] = useState(false);
+
+    const stopTimer = useCallback(() => clearTimeout(timer.current), []);
 
     const startTimer = useCallback(() => {
         setStopped(false);
@@ -13,5 +23,6 @@ export const useTimer = (timeout: number) => {
     return {
         stopped,
         startTimer,
+        stopTimer,
     };
 };
