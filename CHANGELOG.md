@@ -2,6 +2,19 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-temple@0.26.0`
+  - feat(plasma-temple): Ability to disable payment [#66](https://github.com/sberdevices/pashka/pull/66) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
+# (Mon Jun 07 2021)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-temple@0.25.0`
   - feat(plasma-temple): add grid page [#64](https://github.com/sberdevices/pashka/pull/64) ([@Yeti-or](https://github.com/Yeti-or))
 
