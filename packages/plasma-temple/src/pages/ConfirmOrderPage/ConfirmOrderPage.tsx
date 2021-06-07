@@ -3,10 +3,12 @@ import styled, { css } from 'styled-components';
 import { Body1, Body2, Button, Col, Footnote1, Headline3, Price, Row } from '@sberdevices/plasma-ui';
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 import { secondary } from '@sberdevices/plasma-tokens';
-import { detectDevice, mediaQuery } from '@sberdevices/plasma-ui/utils';
+import { detectDevice, isSberBox, mediaQuery } from '@sberdevices/plasma-ui/utils';
 
 import { Header } from '../../components/Header/Header';
 import { DeviceFamily } from '../../types';
+import { useFocusOnMount } from '../../hooks/useFocusOnMount';
+import { THROTTLE_WAIT, useThrottledCallback } from '../../hooks/useThrottledCallback';
 
 import { ConfirmOrderCard } from './components/ConfirmOrderCard/ConfirmOrderCard';
 import { LocationIcon } from './ConfirmOrderPage.assets/LocationIcon';
@@ -29,6 +31,7 @@ interface ConfirmOrderProps {
     amount: number;
     header?: HeaderProps;
     background?: string;
+    paymentDisabled?: boolean;
     onPay: () => void;
     onChangeRecipient: () => void;
     onChangeDelivery?: () => void;
@@ -106,12 +109,22 @@ export const ConfirmOrderPage: React.FC<ConfirmOrderProps> = ({
     recipient,
     address,
     amount,
+    paymentDisabled,
     onPay,
     onChangeRecipient,
     onChangeDelivery,
     header = defaultHeader,
     background = defaultBackground,
 }) => {
+    const buttonRef = React.useRef<HTMLButtonElement>(null);
+
+    useFocusOnMount<HTMLButtonElement>(buttonRef, {
+        delay: THROTTLE_WAIT,
+        prevent: !isSberBox(),
+    });
+
+    const handlePay = useThrottledCallback(() => onPay(), [onPay]);
+
     return (
         <>
             <StyledBackground background={background} />
@@ -131,12 +144,13 @@ export const ConfirmOrderPage: React.FC<ConfirmOrderProps> = ({
                         onClick={onChangeRecipient}
                     />
                     <StyledButton
-                        autoFocus
+                        ref={buttonRef}
                         stretch
                         view="primary"
                         text="К оплате"
+                        disabled={paymentDisabled}
                         contentRight={<Price>{amount}</Price>}
-                        onClick={onPay}
+                        onClick={handlePay}
                     />
                 </Col>
                 <StyledLocationCol sizeXL={5.5} sizeM={3} offsetXL={1}>
