@@ -44,12 +44,23 @@ export enum ThemeColorsList {
     secondary = 'Вторичный цвет текста',
     tertiary = 'Третичный цвет текста',
 
+    white = '',
+    whitePrimary = 'Основной, не зависит от темы',
+    whiteSecondary = 'Второстепенный, не зависит от темы',
+    whiteTertiary = 'Третичный, не зависит от темы',
+
+    black = '',
+    blackPrimary = 'Основной чёрный, не зависит от темы',
+    blackSecondary = 'Второстепенный чёрный, не зависит от темы',
+    blackTertiary = 'Третичный чёрный, не зависит от темы',
+
     background = 'Базовый цвет фона, совпадает с backgroundPrimary',
     backgroundPrimary = 'Первичный цвет фона',
     backgroundSecondary = 'Вторичный цвет фона',
     backgroundTertiary = 'Третичный цвет текста',
 
     accent = 'Акцентный цвет призыва к действию',
+    success = 'Обозначение успешного сценария',
     warning = 'Цвет предупреждения',
     critical = 'Цвет ошибки',
 
@@ -66,6 +77,7 @@ export enum ThemeColorsList {
     buttonSecondary = 'Вторичный цвет контролов',
 
     buttonAccent = 'Акцентный цвет у контролов',
+    buttonSuccess = 'Кнопка для успешного сценария',
     buttonWarning = 'Цвет предупреждения у контролов',
     buttonCritical = 'Цвет ошибки у контролов',
     buttonChecked = 'Цвет зажатого контрола',

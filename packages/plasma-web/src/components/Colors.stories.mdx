@@ -1,0 +1,26 @@
+import { Meta, Props, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+
+import { InSpacingDecorator } from '../helpers';
+
+import * as stories from './Colors.stories';
+
+<Meta title="Colors" decorators={[InSpacingDecorator]} />
+
+# Цветовая палитра
+
+О том, как применять цветовые схемы можно ознакомиться на страницах [Смена персонажа ассистента](/?path=/docs/theming--page) и [Цветовая палитра](/?path=/docs/tokens--page#цветовая-палитра).
+
+## Светлая и темная темы
+<Canvas>
+    <Story name="Default" story={stories.Default} />
+</Canvas>
+
+## Основная цветовая палитра
+<Canvas>
+    <Story name="General" story={stories.General} />
+</Canvas>
+
+## Дополнительная цветовая палитра
+<Canvas>
+    <Story name="Additional" story={stories.Additional} />
+</Canvas>

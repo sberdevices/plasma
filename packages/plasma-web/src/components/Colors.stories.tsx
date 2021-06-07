@@ -2,12 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { general, additional } from '@sberdevices/plasma-colors';
 
-import { InSpacingDecorator, ThemeColors, ThemeBG, PaletteGrid, flattenPalette } from '../helpers';
-
-export default {
-    title: 'Colors',
-    decorators: [InSpacingDecorator],
-};
+import { ThemeColors, ThemeBG, PaletteGrid, flattenPalette } from '../helpers';
 
 const darkThemes = ['dark'];
 const lightThemes = ['light'];
