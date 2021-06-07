@@ -2,6 +2,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Button } from '@sberdevices/plasma-ui';
 import { IconEdit } from '@sberdevices/plasma-icons';
+import { boolean } from '@storybook/addon-knobs';
 
 import { ConfirmOrderPage } from './ConfirmOrderPage';
 
@@ -45,6 +46,7 @@ export const Default = (): React.ReactElement => {
                     />
                 ),
             }}
+            paymentDisabled={boolean('Payment Disabled', false)}
         />
     );
 };
