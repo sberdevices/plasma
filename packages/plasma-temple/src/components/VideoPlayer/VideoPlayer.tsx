@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Headline3, Spinner } from '@sberdevices/plasma-ui';
-import { AssistantInsetsCommand } from '@sberdevices/assistant-client';
 import { gridMargins, gridSizes, mediaQuery } from '@sberdevices/plasma-ui/utils';
 
 import { isControlVisible, MediaPlayerControls } from '../MediaPlayer/MediaPlayerControls';
@@ -10,8 +9,8 @@ import { ControlType, CustomMediaPlayerControlsProps } from '../MediaPlayer/type
 import { useMediaPlayer } from '../MediaPlayer/hooks/useMediaPlayer';
 import { useMediaPlayerKeyboard } from '../MediaPlayer/hooks/useMediaPlayerKeyboard';
 import { useTimer } from '../MediaPlayer/hooks/useTimer';
-
-type Insets = AssistantInsetsCommand['insets'];
+import { MediaPlayer } from '../MediaPlayer/MediaPlayer';
+import { useInsets, Insets } from '../../hooks';
 
 export interface VideoPlayerProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
     header?: React.ReactNode;
@@ -25,7 +24,7 @@ export interface VideoPlayerProps extends React.VideoHTMLAttributes<HTMLVideoEle
     endTime?: number;
     customControls?: React.ComponentType<CustomMediaPlayerControlsProps<HTMLVideoElement>>;
     children?: (props: CustomMediaPlayerControlsProps<HTMLVideoElement>) => React.ReactElement;
-    insets?: Insets;
+    src: string;
 }
 
 const opacityMixin = css<{ hidden: boolean }>`
@@ -104,15 +103,25 @@ export const VideoPlayer = React.memo(
         alwaysShowControls,
         customControls: CustomControlsComponent,
         visibleControlList,
-        insets,
         children,
+        startTime,
+        endTime,
+        autoPlay,
+        muted,
         ...restProps
     }: VideoPlayerProps) => {
-        const { element, actions, state, playerRef } = useMediaPlayer('video', restProps);
+        const insets = useInsets();
+        const playerRef = React.useRef<HTMLVideoElement>(null);
+        const { actions, state } = useMediaPlayer(playerRef, {
+            start: startTime,
+            end: endTime,
+            autoPlay,
+            muted,
+        });
         const { playback, jumpTo } = actions;
         const { currentTime, duration, loading, paused } = state;
 
-        const { stopped: controlsHidden, startTimer } = useTimer(CONTROLS_HIDE_TIMEOUT);
+        const { stopped: controlsHidden, startTimer, stopTimer } = useTimer(CONTROLS_HIDE_TIMEOUT);
 
         const isControlsHidden = controlsHidden && !alwaysShowControls;
 
@@ -123,7 +132,11 @@ export const VideoPlayer = React.memo(
             if (!alwaysShowControls) {
                 startTimer();
             }
-        }, [alwaysShowControls, startTimer]);
+
+            return () => {
+                stopTimer();
+            };
+        }, [alwaysShowControls, startTimer, stopTimer]);
 
         const customControlsActions = React.useMemo(
             () => ({
@@ -139,9 +152,9 @@ export const VideoPlayer = React.memo(
 
         return (
             <StyledContainer onClick={startTimer}>
-                {element}
+                <MediaPlayer type="video" {...restProps} innerRef={playerRef} />
                 {loading && <StyledSpinner />}
-                <StyledOverlay transparent={controlsHidden || Boolean(alwaysShowControls)}>
+                <StyledOverlay transparent={isControlsHidden}>
                     {CustomControlsComponent && (
                         <CustomControlsComponent
                             playerRef={playerRef}
@@ -151,7 +164,12 @@ export const VideoPlayer = React.memo(
                         />
                     )}
                     {children &&
-                        children({ playerRef, controlsHidden, state: playerState, actions: customControlsActions })}
+                        children({
+                            playerRef,
+                            controlsHidden: isControlsHidden,
+                            state: playerState,
+                            actions: customControlsActions,
+                        })}
                     {isControlVisible(ControlType.HEADER, visibleControlList) && (
                         <StyledHeader hidden={isControlsHidden} insets={insets}>
                             {header}
@@ -168,9 +186,10 @@ export const VideoPlayer = React.memo(
                             backDisabled={backDisabled}
                             nextDisabled={nextDisabled}
                             visibleControlList={visibleControlList}
+                            canPlay={!loading}
                         />
                         {isControlVisible(ControlType.TIMELINE, visibleControlList) && (
-                            <MediaPlayerTimeline currentTime={currentTime} duration={duration} />
+                            <MediaPlayerTimeline playerRef={playerRef} />
                         )}
                     </StyledControlsWrapper>
                 </StyledOverlay>

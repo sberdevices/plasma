@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import { VideoPlayer, VideoPlayerProps } from '../../components/VideoPlayer/VideoPlayer';
 import { CustomMediaPlayerControlsProps } from '../../components/MediaPlayer';
-import { useInsets } from '../../hooks';
 import { useGetMutableValue } from '../../hooks/useGetMutableValue';
 import { AnyObject } from '../../types';
 
@@ -38,8 +37,6 @@ export function VideoPage<T extends AnyObject = AnyObject>({
     const videos = Array.isArray(items) ? items : [items];
     const { src, title, startTime, endTime, poster } = videos[position];
 
-    const insets = useInsets();
-
     const getState = useGetMutableValue(state);
 
     const onNext = React.useCallback(() => {
@@ -70,7 +67,6 @@ export function VideoPage<T extends AnyObject = AnyObject>({
                 goNext={onNext}
                 goBack={onBack}
                 nextDisabled={position === videos.length - 1}
-                insets={insets}
                 customControls={customControls}
             >
                 {children}
