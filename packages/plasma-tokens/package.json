@@ -25,20 +25,13 @@
     "publishConfig": {
         "access": "public"
     },
-    "files": [
-        "lib",
-        "es",
-        "typo",
-        "themes",
-        "themesValues",
-        "theme.json",
-        "theme@2x.json"
-    ],
+    "files": ["lib", "es", "typo", "themes", "themesValues", "theme.json", "theme@2x.json"],
     "devDependencies": {
         "@emotion/serialize": "0.11.16",
         "@rollup/plugin-babel": "5.3.0",
         "@rollup/plugin-node-resolve": "11.2.0",
         "@rollup/plugin-typescript": "8.2.0",
+        "@sberdevices/plasma-colors": "0.0.1",
         "@sberdevices/plasma-tokens-utils": "0.3.0",
         "@theme-ui/css": "0.3.1",
         "@types/color": "3.0.1",
@@ -56,10 +49,6 @@
         "ts-node": "^9.0.0",
         "typescript": "^4.0.2"
     },
-    "contributors": [
-        "Виноградов Антон Александрович",
-        "Зубаиров Фаниль Асхатович",
-        "Vasiliy Loginevskiy"
-    ],
+    "contributors": ["Виноградов Антон Александрович", "Зубаиров Фаниль Асхатович", "Vasiliy Loginevskiy"],
     "sideEffects": false
 }
