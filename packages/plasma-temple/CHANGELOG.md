@@ -1,3 +1,15 @@
+# v0.26.0 (Mon Jun 07 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Ability to disable payment [#66](https://github.com/sberdevices/pashka/pull/66) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v0.25.0 (Mon Jun 07 2021)
 
 #### 🚀 Enhancement
