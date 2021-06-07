@@ -3,24 +3,11 @@ import styled from 'styled-components';
 import { IconRoot, IconPause, IconPlay, IconPrevious, IconNext, IconRepeat } from '@sberdevices/plasma-icons';
 
 import { MediaPlayerButton, MediaPlayerButtonProps } from './MediaPlayerButton';
-import { ControlType, MediaPlayerActions } from './types';
-import { ForwardIcon } from './MediaPlayer.assets/ForwardIcon';
-import { ReplayIcon } from './MediaPlayer.assets/ReplayIcon';
+import { ControlType, MediaPlayerControlsProps } from './types';
+import { ForwardIcon } from './assets/ForwardIcon';
+import { ReplayIcon } from './assets/ReplayIcon';
 
-interface MediaPlayerControlsProps {
-    playback: () => void;
-    jumpTo: MediaPlayerActions['jumpTo'];
-    goBack?: () => void;
-    goNext?: () => void;
-    paused: boolean;
-    finished: boolean;
-    backDisabled?: boolean;
-    nextDisabled?: boolean;
-    visibleControlList?: ControlType[];
-    className?: string;
-}
-
-export const isControlVisible = (control: ControlType, controlList?: ControlType[]) => {
+export const isControlVisible = (control: ControlType, controlList?: ControlType[]): boolean => {
     if (!controlList) {
         return true;
     }
@@ -51,18 +38,19 @@ const TimeTravelButton = ({ forward, ...restProps }: MediaPlayerButtonProps & { 
     );
 };
 
-export const MediaPlayerControls = ({
+export const MediaPlayerControls: React.FC<MediaPlayerControlsProps> = ({
     playback,
     goBack,
     goNext,
     jumpTo,
     paused,
     finished,
+    canPlay,
     backDisabled,
     nextDisabled,
     visibleControlList,
     className,
-}: MediaPlayerControlsProps) => {
+}) => {
     const IconPlayComponent = finished ? IconRepeat : IconPlay;
 
     return (
@@ -78,7 +66,11 @@ export const MediaPlayerControls = ({
                 onClick={() => jumpTo(-1)}
                 visible={isControlVisible(ControlType.JUMP_BACK, visibleControlList)}
             />
-            <MediaPlayerButton onClick={playback} visible={isControlVisible(ControlType.PLAYBACK, visibleControlList)}>
+            <MediaPlayerButton
+                onClick={playback}
+                visible={isControlVisible(ControlType.PLAYBACK, visibleControlList)}
+                disabled={!canPlay}
+            >
                 {paused ? <IconPlayComponent size="xs" /> : <IconPause size="xs" />}
             </MediaPlayerButton>
             <TimeTravelButton

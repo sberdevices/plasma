@@ -13,7 +13,7 @@ export interface PlayerTypeMap {
     video: HTMLVideoElement;
 }
 
-export type PlayerType = keyof PlayerTypeMap;
+export type PlayerType = keyof PlayerTypeMap; // audio | video
 
 export interface MediaPlayerPropsMap {
     audio: React.VideoHTMLAttributes<HTMLAudioElement>;
@@ -25,16 +25,12 @@ export interface MediaPlayerState {
     paused: boolean;
     muted: boolean;
     currentTime: number;
-    volume: number;
     loading: boolean;
-    buffered?: TimeRanges;
 }
 
 export interface MediaPlayerActions {
     playback: () => void;
     seekTo: (time: number) => void;
-    volume: (volume: number) => void;
-    mute: () => void;
     jumpTo: (sign: 1 | -1) => void;
 }
 
@@ -43,4 +39,26 @@ export interface CustomMediaPlayerControlsProps<T extends HTMLVideoElement | HTM
     actions: MediaPlayerActions & { goBack?: () => void; goNext?: () => void };
     playerRef: React.RefObject<T>;
     controlsHidden: boolean;
+}
+
+export interface MediaPlayerTimelineProps<T extends PlayerType> {
+    className?: string;
+    playerRef: React.RefObject<PlayerTypeMap[T]>;
+    onTimeUpdate?: (time: number) => void;
+    currentTime?: number;
+    duration?: number;
+}
+
+export interface MediaPlayerControlsProps {
+    playback: () => void;
+    jumpTo: MediaPlayerActions['jumpTo'];
+    goBack?: () => void;
+    goNext?: () => void;
+    paused: boolean;
+    finished: boolean;
+    backDisabled?: boolean;
+    nextDisabled?: boolean;
+    canPlay: boolean;
+    visibleControlList?: ControlType[];
+    className?: string;
 }

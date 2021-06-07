@@ -3,7 +3,9 @@ import React from 'react';
 
 import { AppStateContext } from '../components/PlasmaApp/AppStateContext';
 
-export function useInsets(): AssistantInsetsCommand['insets'] {
+export type Insets = AssistantInsetsCommand['insets'];
+
+export function useInsets(): Insets {
     const {
         state: {
             ui: { insets },
