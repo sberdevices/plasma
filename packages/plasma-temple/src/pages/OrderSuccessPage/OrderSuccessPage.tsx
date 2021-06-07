@@ -2,10 +2,12 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { Button, Col, Headline1, Headline2, Row, Image } from '@sberdevices/plasma-ui';
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
-import { detectDevice, mediaQuery } from '@sberdevices/plasma-ui/utils';
+import { detectDevice, isSberBox, mediaQuery } from '@sberdevices/plasma-ui/utils';
 
 import { Header } from '../../components/Header/Header';
 import { DeviceFamily } from '../../types';
+import { useFocusOnMount } from '../../hooks/useFocusOnMount';
+import { THROTTLE_WAIT } from '../../hooks/useThrottledCallback';
 
 interface OrderSuccessProps {
     header?: HeaderProps;
@@ -39,13 +41,20 @@ const StyledImageContainer = styled.div`
 `;
 
 export const OrderSuccessPage: React.FC<OrderSuccessProps> = ({ header, imageSrc = '', onGoBack }) => {
+    const buttonRef = React.useRef<HTMLButtonElement>(null);
+
+    useFocusOnMount<HTMLButtonElement>(buttonRef, {
+        delay: THROTTLE_WAIT,
+        prevent: !isSberBox(),
+    });
+
     return (
         <>
             {header && <Header {...header} />}
             <Row>
                 <Col sizeXL={6} sizeM={3}>
                     <StyledHeadline>Заказ успешно оформлен! Статус заказа будет отправлен на E-mail</StyledHeadline>
-                    <Button view="primary" onClick={onGoBack}>
+                    <Button view="primary" onClick={onGoBack} ref={buttonRef}>
                         Вернуться в магазин
                     </Button>
                 </Col>
