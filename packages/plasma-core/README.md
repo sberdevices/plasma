@@ -46,3 +46,5 @@ export const App = () => {
 Витрина с компонентами [storybook](https://master--5f96ec813d800900227e3b93.chromatic.com).
 
 [Документация](https://master--5f96ec813d800900227e3b93.chromatic.com/?path=/docs/).
+
+
