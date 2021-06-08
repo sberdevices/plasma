@@ -77,6 +77,7 @@
         "prepare": "npm run build",
         "clean": "rm -rf dist",
         "build": "npm run clean && rollup -c",
+        "build:watch": "rollup -c -w",
         "build-storybook": "npm run storybook:build",
         "build:storybook": "npm run storybook:build && npm run storybook:extract",
         "storybook": "start-storybook -s .storybook/public -p ${PORT:-6006} -c .storybook",
@@ -85,9 +86,7 @@
         "test": "jest --coverage && npm run coverage",
         "coverage": "node ../../scripts/updateCoverage.js --url=https://api.keyvalue.xyz/9237dc02/coverage"
     },
-    "files": [
-        "dist"
-    ],
+    "files": ["dist"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Виноградов Антон Александрович",
