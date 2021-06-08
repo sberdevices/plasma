@@ -14,6 +14,7 @@ export interface GalleryCardProps<T extends AnyObject = AnyObject> {
     onClick: <T1 extends T>(cardProps: T1) => void;
     onFocus: () => void;
     focused?: boolean;
+    tabIndex?: number;
 }
 
 const StyledCardIndex = styled(CardBadge)`
@@ -86,6 +87,7 @@ const GalleryCardComponent = <T extends AnyObject = AnyObject>({
     card,
     focused,
     index,
+    tabIndex = 0,
     onClick,
     onFocus,
 }: GalleryCardProps<T>): React.ReactElement => {
@@ -104,7 +106,7 @@ const GalleryCardComponent = <T extends AnyObject = AnyObject>({
     return (
         <StyledCard
             focused={isFocused}
-            tabIndex={0}
+            tabIndex={tabIndex}
             onClick={handleClick}
             onFocus={onFocus}
             data-cy={`gallery-card-${index}`}
