@@ -2,7 +2,7 @@ import React from 'react';
 
 import { DisabledProps } from '../mixins';
 
-export interface InputHTMLAttributes<T> extends DisabledProps {
+export interface InputHTMLAttributes<T> extends DisabledProps, React.HTMLAttributes<T> {
     /**
      * Тип элемента формы
      */

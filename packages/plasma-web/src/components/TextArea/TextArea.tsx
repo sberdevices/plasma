@@ -1,42 +1,31 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import { TextFieldHelper } from '@sberdevices/plasma-core/components/TextField';
-import type { TextFieldProps as BaseTextFieldProps } from '@sberdevices/plasma-core/components/TextField';
+import {
+    TextFieldRoot,
+    TextFieldTextarea,
+    TextFieldHelper,
+    TextAreaProps as BaseProps,
+} from '@sberdevices/plasma-core';
 
-import { TextFieldRoot, TextFieldInputWrapper, TextFieldInput, TextFieldContent } from '../TextField/TextField';
+import { FieldInput, FieldContent, FieldHelperBlock } from '../Field/Field';
 
-export interface TextAreaProps
-    extends Omit<BaseTextFieldProps, 'type'>,
-        Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onFocus' | 'onBlur'> {
+export interface TextAreaProps extends BaseProps {
     /**
-     * Изменение размера текстового поля.
+     * Слот для вспомогательного блока снизу.
      */
-    resize?: 'none' | 'both' | 'horizontal' | 'vertical';
+    helperBlock?: React.ReactElement;
 }
-
-const StyledInputWrapper = styled(TextFieldInputWrapper)<Pick<TextAreaProps, 'resize'>>`
-    ${({ resize }) => (resize === 'both' || resize === 'horizontal') && 'display: inline-flex;'}
-`;
-const StyledTextArea = styled.textarea<TextAreaProps>`
-    display: block;
-    height: 9.375rem; /* 150px */
-    min-height: 3rem; /* 48px */
-    ${({ resize }) =>
-        css`
-            ${resize && `resize: ${resize};`}
-            ${resize !== 'both' && resize !== 'horizontal' && 'min-width: 100%;max-width: 100%;'}
-        `}
-`;
 
 /**
  * Поле ввода многострочного текста.
  */
-export const TextArea = React.forwardRef<HTMLInputElement, TextAreaProps>(
+export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     (
         {
             value,
             placeholder,
+            label,
             helperText,
+            helperBlock,
             disabled,
             contentRight,
             status,
@@ -53,31 +42,31 @@ export const TextArea = React.forwardRef<HTMLInputElement, TextAreaProps>(
     ) => {
         return (
             <TextFieldRoot
-                disabled={disabled}
                 status={status}
-                isContentRight={!!contentRight}
+                $disabled={disabled}
+                $isContentRight={!!contentRight}
+                $isValue={!!value}
+                $isHelper={!!helperText}
                 className={className}
-                id={id}
                 style={style}
             >
-                <StyledInputWrapper resize={resize}>
-                    <TextFieldInput
-                        as={StyledTextArea}
-                        ref={ref}
-                        value={value}
-                        placeholder={placeholder}
-                        disabled={disabled}
-                        status={status}
-                        isContentRight={!!contentRight}
-                        resize={resize}
-                        onChange={onChange}
-                        onFocus={onFocus}
-                        onBlur={onBlur}
-                        {...rest}
-                    />
-                    {contentRight && <TextFieldContent>{contentRight}</TextFieldContent>}
-                </StyledInputWrapper>
+                <FieldInput
+                    as={TextFieldTextarea}
+                    ref={ref}
+                    id={id}
+                    value={value}
+                    placeholder={label || placeholder}
+                    disabled={disabled}
+                    status={status}
+                    $resize={resize}
+                    onChange={onChange}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    {...rest}
+                />
+                {contentRight && <FieldContent pos="right">{contentRight}</FieldContent>}
                 {helperText && <TextFieldHelper status={status}>{helperText}</TextFieldHelper>}
+                {helperBlock && <FieldHelperBlock>{helperBlock}</FieldHelperBlock>}
             </TextFieldRoot>
         );
     },
