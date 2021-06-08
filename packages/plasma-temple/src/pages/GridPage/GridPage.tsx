@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 import { Row } from '@sberdevices/plasma-ui';
 
@@ -7,7 +8,6 @@ import { useSpatNav } from '../../hooks/useSpatNav';
 import { useVoiceNavigationWithSpatNav } from '../../hooks/useVoiceNavigation';
 import { scroll } from '../../utils/scroll';
 import { FullScreenBackground } from '../ItemPage/components/FullScreenBackground/FullScreenBackground';
-import { Section } from '../ItemPage/components/Section/Section';
 
 import { GridPageState } from './types';
 import { GridCard, GridCardProps } from './components/GridCard';
@@ -30,6 +30,11 @@ const scrollToWithOffset = (offset: number) => {
         axis: 'y',
     });
 };
+
+// TODO: do we actually need  `--spatial-navigation-contain: contain;` ??
+const ContentSection = styled.section`
+    margin-top: 1.5rem;
+`;
 
 export const GridPage: React.FC<GridPageProps> = ({ state, header, onItemShow, children }) => {
     const { items, background } = state;
@@ -62,7 +67,7 @@ export const GridPage: React.FC<GridPageProps> = ({ state, header, onItemShow, c
 
             {background && <FullScreenBackground src={background.src} />}
 
-            <Section>
+            <ContentSection>
                 <Row>
                     {list.map((item) => {
                         if (children) {
@@ -72,7 +77,7 @@ export const GridPage: React.FC<GridPageProps> = ({ state, header, onItemShow, c
                         return <GridCard key={item.uuid} {...item} />;
                     })}
                 </Row>
-            </Section>
+            </ContentSection>
         </>
     );
 };
