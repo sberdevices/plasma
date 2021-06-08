@@ -79,6 +79,7 @@
     ],
     "sideEffects": false,
     "dependencies": {
+        "focus-visible": "5.2.0",
         "lodash.throttle": "4.1.1"
     }
 }

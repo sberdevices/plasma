@@ -2,6 +2,8 @@ import { css, FlattenSimpleInterpolation, InterpolationFunction } from 'styled-c
 
 import { buttonFocused } from '../tokens';
 
+import 'focus-visible';
+
 export interface FocusProps {
     /**
      * Компонент в фокусе
@@ -42,7 +44,8 @@ interface OutlineProps {
 }
 
 export const syntheticFocus: SynthesizeFocus = (ruleset, focused) => css`
-    &:focus {
+    &.focus-visible:focus {
+        outline: none;
         ${ruleset}
     }
 
