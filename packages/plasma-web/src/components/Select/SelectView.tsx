@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { TextFieldRoot, TextFieldHelper } from '@sberdevices/plasma-core/components/TextField';
-import { syntheticFocus } from '@sberdevices/plasma-core/mixins';
+import { syntheticFocus, applyDisabled } from '@sberdevices/plasma-core/mixins';
 import type { FocusProps } from '@sberdevices/plasma-core/mixins';
 import type { InputHTMLAttributes } from '@sberdevices/plasma-core/types';
 import type { TextFieldProps } from '@sberdevices/plasma-core/components/TextField';
@@ -26,6 +26,8 @@ const StyledRoot = styled(TextFieldRoot)`
     color: ${secondary};
 
     user-select: none;
+
+    ${applyDisabled}
 `;
 const StyledLabel = styled.span`
     overflow: hidden;

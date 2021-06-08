@@ -18,15 +18,18 @@ export default {
 
 export const Default = () => {
     const [value, setValue] = React.useState('Title 🌝');
-    const status = select('status', ['error', ''], '');
 
     return (
         <TextField
+            size={select('size', ['m', 'l'], 'm')}
             value={value}
             placeholder={text('placeholder', 'Label')}
             helperText={text('helperText', 'Helper text')}
+            contentLeft={boolean('contentLeft', true) && <IconPlaceholder />}
             contentRight={boolean('contentRight', true) && <IconPlaceholder />}
-            status={status === 'error' ? status : undefined}
+            status={select('status', ['', 'success', 'error'], '') || undefined}
+            disabled={boolean('disabled', false)}
+            readOnly={boolean('readOnly', false)}
             onChange={(e) => {
                 setValue(e.target.value);
                 onChange(e);

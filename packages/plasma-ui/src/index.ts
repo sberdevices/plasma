@@ -19,6 +19,7 @@ export * from './components/Spinner';
 export * from './components/Stepper';
 export * from './components/Switch';
 export * from './components/Tabs';
+export * from './components/TextArea';
 export * from './components/TextBox';
 export * from './components/TextField';
 export * from './components/Toast';

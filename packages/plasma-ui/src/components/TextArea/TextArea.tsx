@@ -1,32 +1,30 @@
 import React from 'react';
 import {
     TextFieldRoot,
-    TextFieldInput,
-    TextFieldPlaceholder,
+    TextFieldTextarea,
     TextFieldContent,
     TextFieldHelper,
-    TextFieldProps as BaseProps,
+    TextAreaProps as BaseProps,
 } from '@sberdevices/plasma-core';
 
 import { FieldInput } from '../Field/Field';
 
-export interface TextFieldProps extends BaseProps {}
+export interface TextAreaProps extends BaseProps {}
 
 /**
- * Поле ввода текста.
+ * Поле ввода многострочного текста.
  */
-export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
+export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     (
         {
-            size = 'l',
             value,
             placeholder,
             label,
             helperText,
             disabled,
-            contentLeft,
             contentRight,
             status,
+            resize,
             onChange,
             onFocus,
             onBlur,
@@ -39,27 +37,23 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     ) => {
         return (
             <TextFieldRoot
-                $size={size}
+                status={status}
                 $disabled={disabled}
-                $isContentLeft={!!contentLeft}
                 $isContentRight={!!contentRight}
                 $isValue={!!value}
                 $isHelper={!!helperText}
-                status={status}
                 className={className}
                 style={style}
             >
-                {contentLeft && <TextFieldContent pos="left">{contentLeft}</TextFieldContent>}
-                {(label || placeholder) && (
-                    <TextFieldPlaceholder htmlFor={id}>{label || placeholder}</TextFieldPlaceholder>
-                )}
                 <FieldInput
+                    as={TextFieldTextarea}
                     ref={ref}
                     id={id}
-                    as={TextFieldInput}
                     value={value}
+                    placeholder={label || placeholder}
                     disabled={disabled}
                     status={status}
+                    $resize={resize}
                     onChange={onChange}
                     onFocus={onFocus}
                     onBlur={onBlur}
