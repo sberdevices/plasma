@@ -1,3 +1,16 @@
+# (Wed Jun 09 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@0.27.0`
+  - feat(plasma-temple): Add posibility to set tab index for carousel card [#67](https://github.com/sberdevices/pashka/pull/67) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # (Mon Jun 07 2021)
 
 #### 🚀 Enhancement
