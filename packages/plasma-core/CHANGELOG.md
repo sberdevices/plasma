@@ -1,3 +1,15 @@
+# v1.12.1 (Wed Jun 09 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-core): pass defaultChecked to Switch and Basebox [#338](https://github.com/sberdevices/plasma/pull/338) ([@tsumo](https://github.com/tsumo))
+
+#### Authors: 1
+
+- [@tsumo](https://github.com/tsumo)
+
+---
+
 # v1.12.0 (Mon Jun 07 2021)
 
 #### 🚀 Enhancement
