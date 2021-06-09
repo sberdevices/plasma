@@ -41,6 +41,10 @@ const buttonViews = {
         ${baseViews.primary}
         ${viewInteractive}
     `,
+    success: css`
+        ${baseViews.success}
+        ${viewInteractive}
+    `,
     critical: css`
         ${baseViews.critical}
         ${viewInteractive}

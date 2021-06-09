@@ -119,6 +119,7 @@ interface FlowProps {
 export const buttonViews = {
     primary: views.primary,
     secondary: views.secondary,
+    success: views.success,
     warning: views.warning,
     critical: views.critical,
     checked: views.checked,
