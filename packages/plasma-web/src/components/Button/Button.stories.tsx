@@ -11,7 +11,7 @@ const onFocus = action('onFocus');
 const onBlur = action('onBlur');
 
 export const Default = () => {
-    const views = ['primary', 'secondary', 'critical'];
+    const views = ['primary', 'secondary', 'success', 'critical'];
     const sizes = ['l', 'm', 's'];
     const pins = [
         'square-square',

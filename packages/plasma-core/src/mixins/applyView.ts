@@ -6,6 +6,7 @@ import {
     text,
     buttonAccent,
     buttonSecondary,
+    buttonSuccess,
     buttonWarning,
     buttonCritical,
     buttonChecked,
@@ -29,6 +30,10 @@ export const views = {
     secondary: css`
         background-color: ${buttonSecondary};
         color: ${text};
+    `,
+    success: css`
+        background-color: ${buttonSuccess};
+        color: ${white};
     `,
     warning: css`
         background-color: ${buttonWarning};
