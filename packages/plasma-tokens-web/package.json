@@ -1,14 +1,14 @@
 {
     "name": "@sberdevices/plasma-tokens-web",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "description": "",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
     "main": "index.js",
     "types": "index.d.ts",
     "devDependencies": {
-        "@sberdevices/plasma-colors": "0.0.1",
-        "@sberdevices/plasma-tokens-utils": "0.3.0",
+        "@sberdevices/plasma-colors": "0.1.0",
+        "@sberdevices/plasma-tokens-utils": "0.4.0",
         "@types/node": "^14.11.1",
         "jsdom": "16.4.0",
         "jsdom-global": "3.0.2",
@@ -40,6 +40,10 @@
         "index.js",
         "theme.json"
     ],
-    "contributors": ["Vasiliy Loginevskiy", "Anton Vinogradov", "Fanil Zubairov"],
+    "contributors": [
+        "Vasiliy Loginevskiy",
+        "Anton Vinogradov",
+        "Fanil Zubairov"
+    ],
     "sideEffects": false
 }
