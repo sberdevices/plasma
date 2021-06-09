@@ -1,3 +1,22 @@
+# v1.17.0 (Wed Jun 09 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-tokens-web): Using plasma-colors, dark theme [#398](https://github.com/sberdevices/plasma/pull/398) ([@fanisco](https://github.com/fanisco))
+- feat: Added plasma-colors package [#398](https://github.com/sberdevices/plasma/pull/398) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- docs(plasma-web): Added themes story [#398](https://github.com/sberdevices/plasma/pull/398) ([@fanisco](https://github.com/fanisco))
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.16.1 (Wed Jun 09 2021)
 
 #### 🐛 Bug Fix

@@ -1,3 +1,15 @@
+# v0.4.0 (Wed Jun 09 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-tokens-web): Using plasma-colors, dark theme [#398](https://github.com/sberdevices/plasma/pull/398) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v0.3.0 (Thu May 06 2021)
 
 #### 🚀 Enhancement

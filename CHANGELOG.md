@@ -1,5 +1,27 @@
 # (Wed Jun 09 2021)
 
+#### 🚀 Enhancement
+
+- `@sberdevices/showcase@0.23.0`, `@sberdevices/plasma-tokens-web@1.5.0`, `@sberdevices/plasma-web@1.17.0`, `@sberdevices/plasma-tokens-utils@0.4.0`
+  - feat(plasma-tokens-web): Using plasma-colors, dark theme [#398](https://github.com/sberdevices/plasma/pull/398) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-tokens@1.6.0`
+  - feat(plasma-tokens): Using plasma-colors [#398](https://github.com/sberdevices/plasma/pull/398) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-colors@0.1.0`, `@sberdevices/plasma-web@1.17.0`
+  - feat: Added plasma-colors package [#398](https://github.com/sberdevices/plasma/pull/398) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-web@1.17.0`
+  - docs(plasma-web): Added themes story [#398](https://github.com/sberdevices/plasma/pull/398) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Wed Jun 09 2021)
+
 #### 🐛 Bug Fix
 
 - `@sberdevices/plasma-core@1.12.1`
