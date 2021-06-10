@@ -12,7 +12,7 @@ export interface GalleryCardProps<T extends AnyObject = AnyObject> {
     card: GalleryCardType<T>;
     index: number;
     onClick: <T1 extends T>(cardProps: T1) => void;
-    onFocus: () => void;
+    onFocus?: () => void;
     focused?: boolean;
     tabIndex?: number;
 }
@@ -87,7 +87,7 @@ const GalleryCardComponent = <T extends AnyObject = AnyObject>({
     card,
     focused,
     index,
-    tabIndex = 0,
+    tabIndex = -1,
     onClick,
     onFocus,
 }: GalleryCardProps<T>): React.ReactElement => {

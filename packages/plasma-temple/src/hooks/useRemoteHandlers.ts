@@ -1,14 +1,15 @@
 import React from 'react';
 import { isSberBox } from '@sberdevices/plasma-ui/utils';
-import throttle from 'lodash.throttle';
 
 import { Axis } from '../types';
+
+import { useThrottledCallback } from './useThrottledCallback';
 
 type ShortKey = 'UP' | 'DOWN' | 'LEFT' | 'RIGHT' | 'OK';
 type LongKey = 'LONG_UP' | 'LONG_DOWN' | 'LONG_LEFT' | 'LONG_RIGHT' | 'LONG_OK';
 export type RemoteKey = ShortKey | LongKey;
 
-const navKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+const navKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Enter'];
 
 interface UseRemoteListenerProps {
     keypressTimeMs?: number;
@@ -35,7 +36,6 @@ export const useRemoteListener = (cb: UseRemoteListenerCallback, params: UseRemo
             }
 
             const isLong = keydown.current && Date.now() - keydown.current < keypressTimeMs;
-
             switch (event.key) {
                 case 'ArrowUp':
                     cb(isLong ? 'LONG_UP' : 'UP', event);
@@ -48,6 +48,9 @@ export const useRemoteListener = (cb: UseRemoteListenerCallback, params: UseRemo
                     break;
                 case 'ArrowRight':
                     cb(isLong ? 'LONG_RIGHT' : 'RIGHT', event);
+                    break;
+                case 'Enter':
+                    cb(isLong ? 'LONG_OK' : 'OK', event);
                     break;
                 default:
                     break;
@@ -111,40 +114,34 @@ export function useRemoteHandlers({
     const indexState = React.useState(initialIndex);
     const [currentIndex, setIndex] = indexState;
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const step = React.useCallback(
-        throttle(
-            (cmd: '+' | '-') =>
-                setIndex((prevIndex) => {
-                    if (cmd === '+') {
-                        const indexAfterLimit = repeat ? min : max;
-                        return prevIndex + count <= max ? prevIndex + count : indexAfterLimit;
-                    }
-                    const indexAfterLimit = repeat ? max : min;
-                    return prevIndex - count >= min ? prevIndex - count : indexAfterLimit;
-                }),
-            delay,
-            throttlingParams,
-        ),
+    const step = useThrottledCallback(
+        (cmd: '+' | '-') =>
+            setIndex((prevIndex) => {
+                if (cmd === '+') {
+                    const indexAfterLimit = repeat ? min : max;
+                    return prevIndex + count <= max ? prevIndex + count : indexAfterLimit;
+                }
+                const indexAfterLimit = repeat ? max : min;
+                return prevIndex - count >= min ? prevIndex - count : indexAfterLimit;
+            }),
         [min, max],
+        delay,
+        throttlingParams,
     );
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const jump = React.useCallback(
-        throttle(
-            (cmd: '+' | '-') =>
-                setIndex((prevIndex) => {
-                    if (cmd === '+') {
-                        const indexAfterLimit = repeat ? min : max;
-                        return prevIndex + longCount <= max ? prevIndex + longCount : indexAfterLimit;
-                    }
-                    const indexAfterLimit = repeat ? max : min;
-                    return prevIndex - longCount >= min ? prevIndex - longCount : indexAfterLimit;
-                }),
-            longDelay,
-            throttlingParams,
-        ),
+    const jump = useThrottledCallback(
+        (cmd: '+' | '-') =>
+            setIndex((prevIndex) => {
+                if (cmd === '+') {
+                    const indexAfterLimit = repeat ? min : max;
+                    return prevIndex + longCount <= max ? prevIndex + longCount : indexAfterLimit;
+                }
+                const indexAfterLimit = repeat ? max : min;
+                return prevIndex - longCount >= min ? prevIndex - longCount : indexAfterLimit;
+            }),
         [min, max],
+        longDelay,
+        throttlingParams,
     );
 
     useRemoteListener(

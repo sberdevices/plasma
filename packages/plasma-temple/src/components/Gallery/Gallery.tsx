@@ -4,10 +4,10 @@ import { CarouselGridWrapper, Carousel, CarouselItem } from '@sberdevices/plasma
 import { isSberPortal } from '@sberdevices/plasma-ui/utils';
 
 import { AnyObject } from '../../types';
-import { GalleryCard } from '../GalleryCard/GalleryCard';
+import { GalleryCard as DefaultGalleryCard, GalleryCardProps } from '../GalleryCard/GalleryCard';
 
 import { GalleryIndexContext, withNavigation } from './hocs/withNavigation';
-import { GalleryProps } from './types';
+import { GalleryProps, GalleryPropsWithComponent } from './types';
 
 const StyledCarouselWrapper = styled(CarouselGridWrapper)`
     margin-top: -8px;
@@ -18,6 +18,8 @@ const StyledCarousel = styled(Carousel)`
     padding-top: 8px;
     padding-bottom: 8px;
     outline: none;
+    scroll-snap-type: none;
+    scroll-behavior: smooth;
 `;
 
 const StyledCarouselItem = styled(CarouselItem)`
@@ -28,61 +30,63 @@ const StyledCarouselItem = styled(CarouselItem)`
     }
 `;
 
+/*  TODO: Нужен рефакторинг сейчас у нас слишком сложный интерфейс.
+    Компонент GalleryCard используется по сути как дефолтный компонент его логика не учитывается,
+    в итоге в кастомных компонентах вся логика повторяется. По хорошему кастомный компонент
+    должен переопределять только верстку
+*/
+const GalleryCard = <T extends AnyObject>({
+    card,
+    index,
+    focused,
+    onItemClick,
+    onFocus,
+    Component,
+}: Omit<GalleryCardProps<T>, 'onClick'> & Pick<GalleryPropsWithComponent<T>, 'Component' | 'onItemClick'>) => {
+    const GalleryCardComponent = Component ?? DefaultGalleryCard;
+
+    const handleClick = React.useCallback(() => onItemClick(card, index), [card, index, onItemClick]);
+
+    return <GalleryCardComponent card={card} index={index} onClick={handleClick} onFocus={onFocus} focused={focused} />;
+};
+
 export function Gallery<T extends AnyObject>({
     items = [],
-    onItemClick,
-    onItemFocus,
+    onItemClick = () => {},
+    onItemFocus = () => {},
     Component,
     children,
     className,
 }: GalleryProps<T>): React.ReactElement {
     const currentCardIndex = React.useContext(GalleryIndexContext);
-    const ComponentToRender = React.useMemo(() => {
-        if (children) {
-            return () => null;
-        }
+    const canBeFocused = currentCardIndex > -1;
 
-        return Component ?? GalleryCard;
-    }, [Component, children]);
-
-    const galleryItems = React.useMemo(() => {
-        const canBeFocused = currentCardIndex > -1;
-
-        if (typeof children !== 'undefined') {
-            return null;
-        }
-
-        return items.map((card, index) => (
-            <StyledCarouselItem key={index} scrollSnapAlign={isSberPortal() ? 'start' : undefined}>
-                <ComponentToRender
-                    index={index}
-                    onClick={() => onItemClick?.(card, index)}
-                    onFocus={() => onItemFocus?.()}
-                    card={card}
-                    focused={canBeFocused && currentCardIndex === index}
-                />
-            </StyledCarouselItem>
-        ));
-    }, [ComponentToRender, currentCardIndex, items, onItemClick, onItemFocus, children]);
-
-    return React.useMemo(
-        () => (
-            <StyledCarouselWrapper data-cy="gallery">
-                <StyledCarousel
-                    className={className}
-                    index={currentCardIndex}
-                    axis="x"
-                    tabIndex={-1}
-                    scrollSnapType="mandatory"
-                    scrollAlign="start"
-                    animatedScrollByIndex
-                >
-                    {!children ? galleryItems : children}
-                </StyledCarousel>
-            </StyledCarouselWrapper>
-        ),
-        [currentCardIndex, galleryItems, children, className],
+    return (
+        <StyledCarouselWrapper data-cy="gallery">
+            <StyledCarousel
+                className={className}
+                index={currentCardIndex}
+                axis="x"
+                tabIndex={-1}
+                scrollSnapType="mandatory"
+                scrollAlign="start"
+            >
+                {children ??
+                    items.map((card, index) => (
+                        <StyledCarouselItem key={index} scrollSnapAlign={isSberPortal() ? 'start' : undefined}>
+                            <GalleryCard<T>
+                                Component={Component}
+                                index={index}
+                                onItemClick={onItemClick}
+                                onFocus={onItemFocus}
+                                card={card}
+                                focused={canBeFocused && currentCardIndex === index}
+                            />
+                        </StyledCarouselItem>
+                    ))}
+            </StyledCarousel>
+        </StyledCarouselWrapper>
     );
 }
 
-export const GalleryWithNavigation = withNavigation(Gallery);
+export const GalleryWithNavigation = React.memo(withNavigation(Gallery));
