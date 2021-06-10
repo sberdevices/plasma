@@ -7,7 +7,6 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
         <CommonCarousel
             axis={axis}
             index={index}
-            animatedScrollByIndex
             detectActive
             detectThreshold={0.4}
             onIndexChange={onIndexChange}

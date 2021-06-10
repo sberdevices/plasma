@@ -37,9 +37,9 @@ const InfoIcon = styled.img`
     right: 0;
 `;
 
-const CatalogCell: React.FC<CatalogCellProps> = ({ onClick, onFocus, image }) => {
+const CatalogCell: React.FC<CatalogCellProps> = ({ onClick, image }) => {
     return (
-        <StyledCard onClick={onClick} onFocus={onFocus} tabIndex={0}>
+        <StyledCard onClick={onClick}>
             <CardBody>
                 <CardMedia data-cy="main-card-image-mock" src={image} base="div" ratio="1 / 1" />
                 <StyledCardContent>
@@ -50,8 +50,8 @@ const CatalogCell: React.FC<CatalogCellProps> = ({ onClick, onFocus, image }) =>
     );
 };
 
-export const StoreCell: React.FC<StoreCellProps> = ({ onClick, onFocus }) => (
-    <StyledCard data-cy="main-card" onClick={onClick} onFocus={onFocus} tabIndex={0}>
+export const StoreCell: React.FC<StoreCellProps> = ({ onClick }) => (
+    <StyledCard data-cy="main-card" onClick={onClick}>
         <CardBody>
             <StyledCardContent>
                 <Cell content={<CardBody1>О магазине</CardBody1>} />
