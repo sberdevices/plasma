@@ -7,7 +7,7 @@ interface UseFocusOnMountParams {
 }
 
 interface UseFocusOnMount {
-    <T>(ref: React.RefObject<T>, params: UseFocusOnMountParams): void;
+    <T>(ref: React.RefObject<T>, params?: UseFocusOnMountParams): void;
 }
 
 export const useFocusOnMount: UseFocusOnMount = (ref, params = {}) => {
