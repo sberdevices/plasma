@@ -42,7 +42,7 @@ const StyledFixedHeader = styled(Container)`
 const StyledSectionTitle = styled(Headline3)<{ active: boolean }>`
     padding-bottom: 56px;
     padding-top: 72px;
-    transition: transform 0.35s linear;
+    transition: transform 0.15s linear;
     transform: translateX(${(props) => (props.active ? '3rem' : undefined)});
 `;
 
@@ -115,10 +115,12 @@ export const GalleryPage = React.forwardRef<GalleryPageControl, GalleryPageProps
         });
 
         const getState = useGetMutableValue(state);
+        const getGalleryIndex = useGetMutableValue(galleryIndex);
 
         const changeActiveCard = React.useCallback(
             (index: number) => {
                 const currentState = getState();
+                const currentGalleryIndex = getGalleryIndex();
                 if (!Array.isArray(currentState.gallery)) {
                     changeState({
                         ...currentState,
@@ -126,16 +128,19 @@ export const GalleryPage = React.forwardRef<GalleryPageControl, GalleryPageProps
                     });
                 } else {
                     const galleryList = currentState.gallery.slice();
-                    galleryList[galleryIndex] = { ...currentState.gallery[galleryIndex], activeCardIndex: index };
+                    galleryList[currentGalleryIndex] = {
+                        ...currentState.gallery[currentGalleryIndex],
+                        activeCardIndex: index,
+                    };
 
                     changeState({
                         ...currentState,
                         gallery: galleryList,
-                        activeGalleryIndex: galleryIndex, // меняем индекс активной галлерии в стейте
+                        activeGalleryIndex: currentGalleryIndex, // меняем индекс активной галлерии в стейте
                     });
                 }
             },
-            [changeState, galleryIndex, getState],
+            [changeState, getGalleryIndex, getState],
         );
 
         React.useImperativeHandle(
