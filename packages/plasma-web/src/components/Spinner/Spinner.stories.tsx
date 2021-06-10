@@ -1,5 +1,5 @@
 import React from 'react';
-import { number } from '@storybook/addon-knobs';
+import { text } from '@storybook/addon-knobs';
 
 import { InSpacing } from '../../helpers/StoryDecorators';
 
@@ -14,6 +14,5 @@ export default {
 export const Default = () => <Spinner />;
 
 export const CustomSize = () => {
-    const size = number('size', 32);
-    return <Spinner size={size || undefined} />;
+    return <Spinner size={text('size', '32px') || undefined} />;
 };

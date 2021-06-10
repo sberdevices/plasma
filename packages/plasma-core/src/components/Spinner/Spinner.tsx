@@ -15,20 +15,20 @@ const rotateAnimation = keyframes`
     }
 `;
 
-const StyledRoot = styled.div<{ $size: number }>`
+const StyledRoot = styled.div<{ $size: string }>`
     display: flex;
     box-sizing: border-box;
 
     ${({ $size }) => css`
-        width: ${$size}px;
-        height: ${$size}px;
+        width: ${$size};
+        height: ${$size};
     `}
 
     animation: ${rotateAnimation} 1s linear infinite;
 `;
 
 export interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
-    size?: number;
+    size?: number | string;
     color?: string;
 }
 
@@ -37,7 +37,7 @@ export interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
  */
 export const Spinner: React.FC<SpinnerProps> = ({ id, size = 56, color = accent, ...rest }) => {
     return (
-        <StyledRoot id={id} $size={size} {...rest}>
+        <StyledRoot id={id} $size={typeof size === 'number' ? `${size}px` : size} {...rest}>
             <SpinnerSvg id={id} width={size} height={size} color={color} />
         </StyledRoot>
     );
