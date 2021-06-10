@@ -2,8 +2,8 @@ import React from 'react';
 
 interface SpinnerSvgProps {
     id?: string;
-    width: number;
-    height: number;
+    width: number | string;
+    height: number | string;
     color: string;
 }
 
