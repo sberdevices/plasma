@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Price, Button, Footnote1, Headline1, Body1 } from '@sberdevices/plasma-ui';
 
+import { useFocusOnMount } from '../../../../hooks/useFocusOnMount';
+
 import {
     Agreement,
     deliveryDescriptionText,
@@ -34,6 +36,9 @@ export const CartOrderSberBox: React.FC<CartOrderProps> = ({
     minDeliveryPrice = 0,
     onMakeOrder,
 }) => {
+    const buttonRef = React.useRef(null);
+    useFocusOnMount(buttonRef);
+
     return (
         <>
             <Footnote1>{amountText}</Footnote1>
@@ -43,7 +48,7 @@ export const CartOrderSberBox: React.FC<CartOrderProps> = ({
             <Body1>
                 <StyledDeliveryPrice currency={currency} minDeliveryPrice={minDeliveryPrice} />
             </Body1>
-            <Button view="primary" stretch onClick={onMakeOrder} size="m" disabled={disabled}>
+            <Button view="primary" stretch onClick={onMakeOrder} size="m" disabled={disabled} ref={buttonRef}>
                 Оформить заказ
             </Button>
             <StyledDeliveryDescription>{deliveryDescriptionText}</StyledDeliveryDescription>

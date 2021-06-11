@@ -1,11 +1,12 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Button, Col, Headline1, Headline2, Row, Image, ButtonProps } from '@sberdevices/plasma-ui';
-import { mediaQuery } from '@sberdevices/plasma-ui/utils';
+import { isSberBox, mediaQuery } from '@sberdevices/plasma-ui/utils';
 
 import { deviceFamily } from '../../../../utils/deviceFamily';
 import { DeviceFamily } from '../../../../types';
 import { withProps } from '../../../../components/hocs/withProps';
+import { useFocusOnMount } from '../../../../hooks/useFocusOnMount';
 
 interface EmptyCartProps {
     imageSrc?: string;
@@ -31,10 +32,13 @@ const StyledTitle = styled(mapDeviceToTitle[deviceFamily])`
     )}
 `;
 
-const ButtonSberPortal = withProps<ButtonProps>({ size: 's' })(Button);
-const ButtonSberBox = withProps<ButtonProps>({ size: 'm' })(Button);
+const ButtonSberPortal = withProps<ButtonProps, HTMLButtonElement>({ size: 's' })(Button);
+const ButtonSberBox = withProps<ButtonProps, HTMLButtonElement>({ size: 'm' })(Button);
 
-const mapDeviceButton: Record<DeviceFamily, React.FC<ButtonProps>> = {
+const mapDeviceButton: Record<
+    DeviceFamily,
+    React.ForwardRefExoticComponent<ButtonProps & React.RefAttributes<HTMLButtonElement>>
+> = {
     sberBox: ButtonSberBox,
     sberPortal: ButtonSberPortal,
     mobile: ButtonSberPortal,
@@ -65,12 +69,15 @@ const StyledCol = styled(Col)`
 `;
 
 export const EmptyCart: React.FC<EmptyCartProps> = ({ imageSrc = '', onGoToCatalog }) => {
+    const buttonRef = React.useRef<HTMLButtonElement>(null);
+    useFocusOnMount<HTMLButtonElement>(buttonRef, { prevent: !isSberBox() });
+
     return (
         <Row>
             <StyledCol sizeXL={5} sizeM={3}>
                 <StyledTitle>В корзине пусто</StyledTitle>
                 {onGoToCatalog && (
-                    <StyledButton view="primary" onClick={onGoToCatalog}>
+                    <StyledButton ref={buttonRef} view="primary" onClick={onGoToCatalog}>
                         Перейти в каталог
                     </StyledButton>
                 )}

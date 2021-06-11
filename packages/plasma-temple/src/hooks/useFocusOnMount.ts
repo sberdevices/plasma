@@ -11,7 +11,7 @@ interface UseFocusOnMount {
 }
 
 export const useFocusOnMount: UseFocusOnMount = (ref, params = {}) => {
-    const { preventScroll, delay = 0, prevent = false } = params;
+    const { preventScroll, delay = 150, prevent = false } = params;
 
     React.useLayoutEffect(() => {
         const timer = setTimeout(() => {
