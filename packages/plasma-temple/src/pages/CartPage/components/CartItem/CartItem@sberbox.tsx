@@ -36,7 +36,7 @@ const StyledQuantityButton = styled(QuantityButton)`
     margin-left: 1rem;
 `;
 
-export const CartItemSberBox: React.FC<CartItemProps> = ({ item, currency, active }) => {
+export const CartItemSberBox: React.FC<CartItemProps> = ({ item, currency, ...props }) => {
     const { id, name, price, nameDetails, quantity, imageSrc = '' } = item;
 
     return (
@@ -57,7 +57,7 @@ export const CartItemSberBox: React.FC<CartItemProps> = ({ item, currency, activ
                     </StyledPriceContainer>
                 </TextBox>
             }
-            contentRight={<StyledQuantityButton id={id} quantity={quantity} active={active} />}
+            contentRight={<StyledQuantityButton id={id} quantity={quantity} {...props} />}
         />
     );
 };
