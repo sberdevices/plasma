@@ -5,20 +5,23 @@ import { body1 } from '../../tokens';
 import { applyDisabled, addFocus, shadows, applyEllipsis } from '../../mixins';
 import type { DisabledProps, FocusProps, OutlinedProps } from '../../mixins';
 import type { InputHTMLAttributes } from '../../types';
-import type { Item } from '../Basebox/Basebox';
+import type { ControlProps } from '../Checkbox/Checkbox';
 
 interface PressedProps {
     pressed?: boolean;
 }
 
 export interface SwitchProps
-    extends Item,
+    extends ControlProps,
         DisabledProps,
         PressedProps,
         FocusProps,
         OutlinedProps,
         Omit<React.LabelHTMLAttributes<HTMLLabelElement>, 'onChange' | 'onFocus' | 'onBlur'>,
-        Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'value'> {}
+        Pick<
+            InputHTMLAttributes<HTMLInputElement>,
+            'name' | 'value' | 'checked' | 'disabled' | 'onChange' | 'onFocus' | 'onBlur'
+        > {}
 
 const StyledRoot = styled.label<DisabledProps>`
     position: relative;
