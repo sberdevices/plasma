@@ -5,7 +5,6 @@ import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 import { mediaQuery } from '@sberdevices/plasma-ui/utils';
 
 import { Header } from '../../components';
-import { useRemoteHandlers } from '../../hooks';
 
 import { CartItem } from './components/CartItem/CartItem';
 import { CartOrder } from './components/CartOrder/CartOrder';
@@ -33,16 +32,13 @@ const StyledCarouselGridWrapper = styled.div`
     )}
 `;
 
+const StyledRow = styled(Row)`
+    scroll-behavior: smooth;
+`;
+
 export const CartPage: React.FC<CartPageProps> = ({ header, name, emptyCart, onMakeOrder }) => {
     const { items, quantity, price, currency, minDeliveryPrice = 0 } = useCart();
-
-    const [currentCartItem] = useRemoteHandlers({
-        initialIndex: 0,
-        axis: 'y',
-        min: 0,
-        max: items.length ? items.length - 1 : 0,
-        repeat: false,
-    });
+    const [currentCartItem, setCurrentCartItem] = React.useState(0);
 
     const handleMakeOrder = React.useCallback(
         () => onMakeOrder({ items, quantity, price, currency, minDeliveryPrice }),
@@ -62,15 +58,21 @@ export const CartPage: React.FC<CartPageProps> = ({ header, name, emptyCart, onM
                         <StyledCarouselGridWrapper>
                             <Carousel
                                 axis="y"
-                                as={Row}
+                                as={StyledRow}
                                 index={currentCartItem}
                                 scrollAlign="center"
                                 scrollSnapType="mandatory"
                                 paddingEnd="50%"
+                                tabIndex={-1}
                             >
                                 {items.map((item, index) => (
                                     <CarouselCol key={item.id} scrollSnapAlign="center">
-                                        <CartItem item={item} currency={currency} active={currentCartItem === index} />
+                                        <CartItem
+                                            index={index}
+                                            item={item}
+                                            currency={currency}
+                                            setActiveIndex={setCurrentCartItem}
+                                        />
                                     </CarouselCol>
                                 ))}
                             </Carousel>

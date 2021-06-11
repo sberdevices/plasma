@@ -3,18 +3,17 @@ import { css } from 'styled-components';
 import { IconClose, IconMinus, IconPlus } from '@sberdevices/plasma-icons';
 import { secondary, white } from '@sberdevices/plasma-tokens';
 import { StepperButton, StepperRoot, StepperValue } from '@sberdevices/plasma-ui';
-import { isSberBox } from '@sberdevices/plasma-ui/utils';
 
 import { Currency } from '../../../../types';
 import { useCart } from '../../hooks';
 import { useThrottledCallback } from '../../../../hooks';
 import { CartItem } from '../../types';
 import { useGetMutableValue } from '../../../../hooks/useGetMutableValue';
-import { THROTTLE_WAIT } from '../../../../hooks/useThrottledCallback';
 
 export interface CartItemProps {
     item: CartItem;
-    active: boolean;
+    index: number;
+    setActiveIndex: (index: number) => void;
     currency?: Currency;
 }
 
@@ -38,12 +37,10 @@ export const priceMixin = css`
 export const QuantityButton: React.FC<{
     id: CartItem['id'];
     quantity: number;
-    active: boolean;
+    index: number;
+    setActiveIndex: (index: number) => void;
     className?: string;
-}> = React.memo(({ id, quantity, active, className }) => {
-    const plusRef = React.useRef<HTMLButtonElement>(null);
-    const minusRef = React.useRef<HTMLButtonElement>(null);
-
+}> = React.memo(({ id, quantity, index, setActiveIndex, className }) => {
     const { removeItem, changeItemQuantity } = useCart();
     const getQuantity = useGetMutableValue(quantity);
 
@@ -53,40 +50,29 @@ export const QuantityButton: React.FC<{
         getQuantity,
     ]);
 
-    const onMinus = useThrottledCallback(() => changeItemQuantity(id, getQuantity() - 1), [
-        id,
-        changeItemQuantity,
-        getQuantity,
-    ]);
-
-    const onRemove = useThrottledCallback(() => removeItem(id), [id, removeItem]);
-
-    React.useEffect(() => {
-        const timer = setTimeout(() => {
-            if (
-                isSberBox() &&
-                active &&
-                (document.activeElement !== plusRef.current || document.activeElement !== minusRef.current)
-            ) {
-                plusRef.current?.focus();
-            }
-        }, THROTTLE_WAIT);
-
-        return () => clearTimeout(timer);
-    }, [active]);
-
     const isMin = quantity <= 0;
+
+    const onMinus = useThrottledCallback(() => {
+        const qty = getQuantity();
+        if (qty <= 0) {
+            removeItem(id);
+        } else {
+            changeItemQuantity(id, qty - 1);
+        }
+    }, [id, removeItem, changeItemQuantity, getQuantity]);
+
+    const handlerFocus = React.useCallback(() => setActiveIndex(index), [index, setActiveIndex]);
 
     return (
         <StepperRoot className={className}>
             <StepperButton
-                ref={minusRef}
                 icon={isMin ? <IconClose color="inherit" size="xs" /> : <IconMinus color="inherit" size="xs" />}
                 view={isMin ? 'critical' : 'secondary'}
-                onClick={isMin ? onRemove : onMinus}
+                onClick={onMinus}
+                onFocus={handlerFocus}
             />
             <StepperValue value={quantity} />
-            <StepperButton ref={plusRef} icon={<IconPlus color="inherit" size="xs" />} onClick={onPlus} />
+            <StepperButton icon={<IconPlus color="inherit" size="xs" />} onClick={onPlus} onFocus={handlerFocus} />
         </StepperRoot>
     );
 });
