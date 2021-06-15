@@ -1,3 +1,18 @@
+# v0.27.2 (Tue Jun 15 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): Fix focus and scroll gallery and landing page behaviour [#69](https://github.com/sberdevices/pashka/pull/69) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- Bump independent versions \[skip ci\] ([@LamaEats](https://github.com/LamaEats))
+- refactor(plasma-temple): Media/Video players improve [#65](https://github.com/sberdevices/pashka/pull/65) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v0.27.0 (Wed Jun 09 2021)
 
 #### 🚀 Enhancement
