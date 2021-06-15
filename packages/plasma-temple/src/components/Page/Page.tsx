@@ -11,6 +11,7 @@ import { useAssistant } from '../../hooks/useAssistant';
 import { last } from '../../utils/last';
 import { INNER_ASSISTANT_ACTION } from '../../constants';
 import { Layout } from '../../components/Layout/Layout';
+import { useMount } from '../../hooks';
 
 import { PageComponent as PageComp } from './types';
 
@@ -28,12 +29,39 @@ const StyledSpinner = styled(Spinner)`
     transform: translate(-50%, -50%);
 `;
 
-function PageComponent<Name extends string>({
+interface GetInitialProps<P, R> {
+    (context: P): Promise<R> | R;
+}
+
+interface InitialPropsGetter<P, S> {
+    getInitialProps?: GetInitialProps<P, S>;
+}
+
+interface PageLazyParams<
+    C extends PageComp<AnyObject, string>,
+    P extends React.ComponentProps<C> = React.ComponentProps<C>,
+    Pp = Pick<P, 'params'>,
+    Ss = P['state']
+> extends InitialPropsGetter<Pp, Ss> {
+    default: C & InitialPropsGetter<Pp, Ss>;
+}
+
+interface PageLazy {
+    lazy<T extends PageLazyParams<PageComp<AnyObject, any>>>(
+        factory: () => Promise<T>,
+    ): React.LazyExoticComponent<React.MemoExoticComponent<T['default']>>;
+}
+
+interface PageFunctionComponent extends PageLazy {
+    <N extends keyof AnyObject>(props: PageProps<N>): React.ReactElement;
+}
+
+export const Page: PageFunctionComponent = ({
     name,
     component: Component,
     fallbackComponent = <StyledSpinner />,
     header,
-}: PageProps<Name>): React.ReactElement {
+}) => {
     const { assistant, setAssistantState } = useAssistant();
 
     const sendData = React.useCallback<AssistantInstance['sendData']>(
@@ -93,6 +121,40 @@ function PageComponent<Name extends string>({
             </Layout>
         </React.Suspense>
     );
-}
+};
 
-export const Page = React.memo(PageComponent) as typeof PageComponent;
+Page.lazy = (factory) => {
+    return React.lazy(async () => {
+        const { default: Component, getInitialProps } = await factory();
+
+        const Wrapper = (props: React.ComponentProps<typeof Component>) => {
+            const { state, changeState, params } = props;
+
+            useMount(() => {
+                const promiseGetter = Component.getInitialProps ?? getInitialProps;
+
+                const promise = promiseGetter?.({ params });
+
+                if (!promise || state) {
+                    return;
+                }
+
+                if (typeof promise.then === 'function') {
+                    promise.then(changeState);
+                } else {
+                    changeState(promise);
+                }
+            });
+
+            if (!state) {
+                return null;
+            }
+
+            return <Component {...props} />;
+        };
+
+        return {
+            default: React.memo(Wrapper),
+        };
+    });
+};
