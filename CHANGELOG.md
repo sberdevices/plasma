@@ -1,3 +1,18 @@
+# (Tue Jun 15 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@0.27.2`
+  - fix(plasma-temple): Fix focus and scroll gallery and landing page behaviour [#69](https://github.com/sberdevices/pashka/pull/69) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - refactor(plasma-temple): Media/Video players improve [#65](https://github.com/sberdevices/pashka/pull/65) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Wed Jun 09 2021)
 
 #### 🚀 Enhancement
