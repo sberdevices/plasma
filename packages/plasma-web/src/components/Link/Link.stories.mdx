@@ -1,0 +1,22 @@
+import { Meta, ArgsTable, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+
+import { InSpacingDecorator } from '../../helpers';
+
+import * as stories from './Link.stories';
+
+import { Link } from '.';
+
+<Meta
+    title="Content/Link"
+    component={Link}
+    decorators={[InSpacingDecorator]}
+/>
+
+# Link
+<Description of={Link} />
+
+<Canvas>
+    <Story name="Default" story={stories.Default} />
+</Canvas>
+
+<ArgsTable of={Link} exclude={["$isHover", "$isPressed"]} />

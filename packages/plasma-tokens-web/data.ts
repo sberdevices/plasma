@@ -41,13 +41,39 @@ const themeColorsComments = {
 };
 
 export type ThemeTokens = { [key in keyof typeof themeColorsComments]: TokenData<TColor> };
+export type ExtendedTokens = {
+    link: TokenData<TColor>;
+    linkHover: TokenData<TColor>;
+    linkActive: TokenData<TColor>;
+    linkVisited: TokenData<TColor>;
+    linkVisitedHover: TokenData<TColor>;
+    linkVisitedActive: TokenData<TColor>;
+};
 
-const light: ThemeTokens = {
+const light: ThemeTokens & ExtendedTokens = {
     ...baseColors,
 
     text: {
         value: humanizeColor(ds.theme.light_primary.color),
         comment: themeColorsComments.text,
+    },
+    link: {
+        value: dataColors.light.link,
+    },
+    linkHover: {
+        value: dataColors.light.linkHover,
+    },
+    linkActive: {
+        value: dataColors.light.linkActive,
+    },
+    linkVisited: {
+        value: dataColors.light.linkVisited,
+    },
+    linkVisitedHover: {
+        value: dataColors.light.linkVisitedHover,
+    },
+    linkVisitedActive: {
+        value: dataColors.light.linkVisitedActive,
     },
 
     primary: {
@@ -159,12 +185,30 @@ const light: ThemeTokens = {
         comment: themeColorsComments.gradient,
     },
 };
-const dark: ThemeTokens = {
+const dark: ThemeTokens & ExtendedTokens = {
     ...baseColors,
 
     text: {
         value: humanizeColor(ds.theme.dark_primary.color),
         comment: themeColorsComments.text,
+    },
+    link: {
+        value: dataColors.dark.link,
+    },
+    linkHover: {
+        value: dataColors.dark.linkHover,
+    },
+    linkActive: {
+        value: dataColors.dark.linkActive,
+    },
+    linkVisited: {
+        value: dataColors.dark.linkVisited,
+    },
+    linkVisitedHover: {
+        value: dataColors.dark.linkVisitedHover,
+    },
+    linkVisitedActive: {
+        value: dataColors.dark.linkVisitedActive,
     },
 
     primary: {
