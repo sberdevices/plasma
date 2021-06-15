@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { Title, Subtitle, Description, Primary, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
-import { light } from '@sberdevices/plasma-tokens-web/themes';
+import { light, dark } from '@sberdevices/plasma-tokens-web/themes';
 import { web } from '@sberdevices/plasma-tokens-web/typo';
 
 import storybookTheme from './theme';
@@ -16,17 +16,25 @@ const DocumentStyle = createGlobalStyle`
 `;
 /* stylelint-enable */
 
-const TypoThemeStyle = createGlobalStyle(web);
-const ColorThemeStyle = createGlobalStyle(light);
+const TypoStyle = createGlobalStyle(web);
 
-const withTheme = (Story, context) => (
-    <>
-        <TypoThemeStyle />
-        <ColorThemeStyle />
-        <DocumentStyle />
-        <Story {...context} />
-    </>
-);
+const themes = {
+    light: createGlobalStyle(light),
+    dark: createGlobalStyle(dark),
+};
+
+const withTheme = (Story, context) => {
+    const Theme = themes[context.globals.theme];
+
+    return (
+        <>
+            <TypoStyle />
+            <Theme />
+            <DocumentStyle />
+            <Story {...context} />
+        </>
+    );
+};
 
 addDecorator(withKnobs);
 addDecorator(withTheme);
@@ -65,6 +73,17 @@ addParameters({
         },
     },
 });
+
+export const globalTypes = {
+    theme: {
+        name: 'Theme',
+        description: 'Global theme for components',
+        defaultValue: 'light',
+        toolbar: {
+            items: ['light', 'dark'],
+        },
+    },
+};
 
 export const parameters = {
     docs: {

@@ -50,7 +50,7 @@ export const globalTypes = {
         description: 'Global theme for components',
         defaultValue: isWeb() ? 'light' : 'darkSber',
         toolbar: {
-            items: ['darkSber', 'darkEva', 'darkJoy', 'lightSber', 'lightEva', 'lightJoy', 'light'],
+            items: ['darkSber', 'darkEva', 'darkJoy', 'lightSber', 'lightEva', 'lightJoy', 'light', 'dark'],
         },
     },
     typo: {

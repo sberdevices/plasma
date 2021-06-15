@@ -14,10 +14,11 @@ import {
     sberBox,
     mobile,
 } from '@sberdevices/plasma-tokens';
-import { light } from '@sberdevices/plasma-tokens-web/themes';
+import { light, dark } from '@sberdevices/plasma-tokens-web/themes';
 import { web } from '@sberdevices/plasma-tokens-web/typo';
 import { DeviceThemeProvider } from '@sberdevices/plasma-ui/components/Device';
 import { Container } from '@sberdevices/plasma-ui/components/Grid';
+import isChromatic from 'chromatic/isChromatic';
 
 const themes = {
     darkSber: createGlobalStyle(darkSber),
@@ -27,6 +28,7 @@ const themes = {
     lightEva: createGlobalStyle(lightEva),
     lightJoy: createGlobalStyle(lightJoy),
     light: createGlobalStyle(light),
+    dark: createGlobalStyle(dark),
 };
 const typos = {
     sberPortal: createGlobalStyle(sberPortal),
@@ -82,6 +84,9 @@ export const UIStoryDecorator: StoryDecorator = (Story, context) => {
     if (theme === 'light') {
         theme = 'darkSber';
     }
+    if (theme === 'dark') {
+        theme = 'darkSber';
+    }
 
     const Theme = themes[theme];
 
@@ -99,6 +104,9 @@ export const UIMobileDecorator: StoryDecorator = (Story, context) => {
     let { theme } = context.globals;
 
     if (theme === 'light') {
+        theme = 'lightSber';
+    }
+    if (theme === 'dark') {
         theme = 'darkSber';
     }
 
@@ -116,7 +124,16 @@ export const UIMobileDecorator: StoryDecorator = (Story, context) => {
 };
 
 export const WebStoryDecorator: StoryDecorator = (Story, context) => {
-    const Theme = themes.light;
+    let { theme } = context.globals;
+
+    if (isChromatic() || theme === 'lightSber' || theme === 'lightEva' || theme === 'lightJoy') {
+        theme = 'light';
+    }
+    if (theme === 'darkSber' || theme === 'darkEva' || theme === 'darkJoy') {
+        theme = 'dark';
+    }
+
+    const Theme = themes[theme];
     const Typo = typos.web;
 
     return (
