@@ -1,9 +1,10 @@
 import React from 'react';
 import { isSberBox } from '@sberdevices/plasma-ui/utils';
 import { Header as UIKitHeader } from '@sberdevices/plasma-ui';
-import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 
-export const Header = (props: HeaderProps) => {
+import { HeaderProps } from './types';
+
+export const Header: React.FC<HeaderProps> = (props) => {
     const withBackProps =
         isSberBox() || props.back !== undefined
             ? props
