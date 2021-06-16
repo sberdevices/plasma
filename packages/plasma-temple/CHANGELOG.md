@@ -1,3 +1,15 @@
+# v0.28.0 (Wed Jun 16 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): implements Page lazy api [#71](https://github.com/sberdevices/pashka/pull/71) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v0.27.2 (Tue Jun 15 2021)
 
 #### 🐛 Bug Fix
