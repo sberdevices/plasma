@@ -146,7 +146,7 @@ Page.lazy = (factory) => {
                 }
             });
 
-            if (!state) {
+            if (getInitialProps && !state) {
                 return null;
             }
 
