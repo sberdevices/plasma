@@ -4,7 +4,8 @@ import type { ItemMainSectionProps } from '../pages/ItemPage/components/ItemMain
 import type { ItemEntitiesProps } from '../pages/ItemPage/components/ItemEntities/ItemEntities';
 import type { NavColProps } from '../pages/ShopLandingPage/components/NavCol/NavCol';
 import type { CarouselProps } from '../pages/GalleryPage/components/Carousel';
-import { HeroSliderProps } from '../components/HeroSlider';
+import type { HeroSliderProps } from '../components/HeroSlider';
+import type { StateLayoutProps } from '../components/StateLayout';
 
 export type UnifiedComponentProps<T, K extends string> = T & {
     platformComponents: Record<K, React.ComponentType<any>>;
@@ -18,4 +19,5 @@ export interface Registry {
         React.PropsWithChildren<CarouselProps> & React.RefAttributes<HTMLDivElement>
     >;
     Slider: React.ComponentType<HeroSliderProps>;
+    StateLayout: React.ComponentType<StateLayoutProps>;
 }
