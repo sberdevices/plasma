@@ -1,3 +1,15 @@
+# v0.28.1 (Wed Jun 16 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): Fix cart page behavior [#70](https://github.com/sberdevices/pashka/pull/70) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v0.28.0 (Wed Jun 16 2021)
 
 #### 🚀 Enhancement
