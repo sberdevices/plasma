@@ -1,16 +1,17 @@
 import React from 'react';
 
-export const useDelayedActivation = (delay = 150, cb?: () => void): boolean => {
+import { useMount } from './useMount';
+
+export const useDelayedActivation = (delay = 150): boolean => {
     const [activated, setActivated] = React.useState(false);
 
-    React.useEffect(() => {
+    useMount(() => {
         const timer = setTimeout(() => {
             setActivated(true);
-            cb?.();
         }, delay);
 
         return () => clearTimeout(timer);
-    }, [delay, cb]);
+    });
 
     return activated;
 };
