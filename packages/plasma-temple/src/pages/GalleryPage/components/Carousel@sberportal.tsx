@@ -1,6 +1,7 @@
+import { CarouselProps } from '@sberdevices/plasma-ui';
 import React from 'react';
 
-import { CommonCarousel, CarouselProps } from './Carousel';
+import { CommonCarousel } from './Carousel';
 
 export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
     ({ axis, onIndexChange, index, children }, ref) => (
