@@ -5,6 +5,7 @@ import { isSberPortal } from '@sberdevices/plasma-ui/utils';
 
 import { AnyObject } from '../../types';
 import { GalleryCard as DefaultGalleryCard, GalleryCardProps } from '../GalleryCard/GalleryCard';
+import { useDelayedActivation } from '../../hooks/useDelayedActivation';
 
 import { GalleryIndexContext, withNavigation } from './hocs/withNavigation';
 import { GalleryProps, GalleryPropsWithComponent } from './types';
@@ -13,13 +14,13 @@ const StyledCarouselWrapper = styled(CarouselGridWrapper)`
     margin-top: -8px;
 `;
 
-const StyledCarousel = styled(Carousel)`
+const StyledCarousel = styled(Carousel)<{ initialized: boolean }>`
     box-sizing: border-box;
     padding-top: 8px;
     padding-bottom: 8px;
     outline: none;
     scroll-snap-type: none;
-    scroll-behavior: smooth;
+    scroll-behavior: ${({ initialized }) => (initialized ? 'smooth' : 'unset')};
 `;
 
 const StyledCarouselItem = styled(CarouselItem)`
@@ -59,6 +60,8 @@ export function Gallery<T extends AnyObject>({
     className,
 }: GalleryProps<T>): React.ReactElement {
     const currentCardIndex = React.useContext(GalleryIndexContext);
+    const initialized = useDelayedActivation();
+
     const canBeFocused = currentCardIndex > -1;
 
     return (
@@ -70,6 +73,7 @@ export function Gallery<T extends AnyObject>({
                 tabIndex={-1}
                 scrollSnapType="mandatory"
                 scrollAlign="start"
+                initialized={initialized}
             >
                 {children ??
                     items.map((card, index) => (
