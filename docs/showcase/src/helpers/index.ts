@@ -14,5 +14,3 @@ export { Showcase as CommonShowcase } from './CommonShowcase';
 export { RadioboxShowcase } from './RadioboxShowcase';
 export { Showcase as TabsShowcase } from './TabsShowcase';
 export { Showcase as TextFieldShowcase } from './TextFieldShowcase';
-
-export { Palette } from './Palette';

@@ -30,6 +30,9 @@ packages/plasma-web/*
 packages/plasma-icons/*
 !packages/plasma-icons/src
 
+utils/plasma-sb-utils/*
+!utils/plasma-sb-utils/src
+
 utils/plasma-tokens-utils/*
 !utils/plasma-tokens-utils/src
 

@@ -4,21 +4,10 @@
     "description": "SberDevices Design System / React UI kit for web applications",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
-    "keywords": [
-        "design-system",
-        "react-components",
-        "ui-kit",
-        "react"
-    ],
+    "keywords": ["design-system", "react-components", "ui-kit", "react"],
     "main": "index.js",
     "types": "index.d.ts",
-    "files": [
-        "components",
-        "tokens",
-        "index.d.ts",
-        "index.js",
-        "es"
-    ],
+    "files": ["components", "tokens", "index.d.ts", "index.js", "es"],
     "repository": {
         "type": "git",
         "url": "ssh://git@github.com:sberdevices/plasma.git",
@@ -49,6 +38,7 @@
         "@rollup/plugin-typescript": "8.2.0",
         "@sberdevices/plasma-colors": "0.1.0",
         "@sberdevices/plasma-icons": "1.16.1",
+        "@sberdevices/plasma-sb-utils": "0.1.0",
         "@storybook/addon-actions": "6.0.0-rc.13",
         "@storybook/addon-backgrounds": "6.0.0-rc.13",
         "@storybook/addon-docs": "6.1.15",
@@ -87,10 +77,6 @@
         "storybook:build": "build-storybook -s .storybook/public -c .storybook -o build-sb",
         "storybook:build:docs": "DOCS=true build-storybook --quiet -s .storybook/public -c .storybook -o build-sb-docs --docs"
     },
-    "contributors": [
-        "Vasiliy Loginevskiy",
-        "Anton Vinogradov",
-        "Fanil Zubairov"
-    ],
+    "contributors": ["Vasiliy Loginevskiy", "Anton Vinogradov", "Fanil Zubairov"],
     "sideEffects": false
 }
