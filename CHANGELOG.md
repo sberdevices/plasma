@@ -1,5 +1,26 @@
 # (Thu Jun 17 2021)
 
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@0.29.0`
+  - feat(plasma-temple): StateLayout component [#73](https://github.com/sberdevices/pashka/pull/73) ([@LamaEats](https://github.com/LamaEats))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@0.29.0`
+  - fix(plasma-temple): return component from `lazy fn` if `getInitialProps` is not defined [#74](https://github.com/sberdevices/pashka/pull/74) ([@LamaEats](https://github.com/LamaEats))
+  - chore(plasma-temple): lil fixes + story for new component [#73](https://github.com/sberdevices/pashka/pull/73) ([@LamaEats](https://github.com/LamaEats))
+  - chore(plasma-temple): apply new component for existing page layout [#73](https://github.com/sberdevices/pashka/pull/73) ([@LamaEats](https://github.com/LamaEats))
+  - chore(plasma-temple): utility type for Header component props [#73](https://github.com/sberdevices/pashka/pull/73) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
+# (Thu Jun 17 2021)
+
 #### 🐛 Bug Fix
 
 - `@sberdevices/plasma-temple@0.28.2`
