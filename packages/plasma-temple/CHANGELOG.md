@@ -1,3 +1,15 @@
+# v0.28.2 (Thu Jun 17 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): add margin for GridPage Content [#68](https://github.com/sberdevices/pashka/pull/68) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v0.28.1 (Wed Jun 16 2021)
 
 #### 🐛 Bug Fix
