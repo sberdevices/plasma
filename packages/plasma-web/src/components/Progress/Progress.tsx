@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { caption, tertiary } from '@sberdevices/plasma-tokens-web';
+import { caption, tertiary, surfaceLiquid02 } from '@sberdevices/plasma-tokens-web';
 
 const statuses = {
     success: css`
@@ -37,7 +37,7 @@ const StyledTrack = styled.div`
     width: 100%;
     height: 0.25rem;
 
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: ${surfaceLiquid02};
     border-radius: 0.125rem;
 `;
 const StyledProgress = styled.div<Pick<ProgressProps, 'value' | 'status'>>`

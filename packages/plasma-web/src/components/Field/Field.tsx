@@ -1,6 +1,15 @@
 import styled, { css, InterpolationFunction } from 'styled-components';
 import { TextFieldProps, TextFieldContent } from '@sberdevices/plasma-core';
-import { secondary, background, accent, success, warning, critical } from '@sberdevices/plasma-tokens-web';
+import {
+    secondary,
+    background,
+    accent,
+    success,
+    warning,
+    critical,
+    inputBorder,
+    inputBorderHover,
+} from '@sberdevices/plasma-tokens-web';
 
 const statuses = {
     success,
@@ -28,11 +37,11 @@ const applyInputStatus: InterpolationFunction<Pick<TextFieldProps, 'status'>> = 
 
 export const FieldInput = styled.input<Pick<TextFieldProps, 'status'> & { $isFocused?: boolean }>`
     background: ${background};
-    border-color: rgba(8, 8, 8, 0.16);
+    border-color: ${inputBorder};
     border-radius: 0.25rem;
 
     &:hover {
-        border-color: rgba(0, 0, 0, 0.32);
+        border-color: ${inputBorderHover};
     }
 
     &:focus {
@@ -43,7 +52,7 @@ export const FieldInput = styled.input<Pick<TextFieldProps, 'status'> & { $isFoc
     &:disabled,
     &:read-only,
     &:read-only:focus {
-        border-color: rgba(8, 8, 8, 0.16);
+        border-color: ${inputBorder};
     }
 
     ${({ $isFocused }) =>

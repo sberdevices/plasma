@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { accent, secondary, surfaceCard, text } from '@sberdevices/plasma-tokens-web';
+import { accent, secondary, background, text } from '@sberdevices/plasma-tokens-web';
 import { IconChevronRight, IconDone } from '@sberdevices/plasma-icons';
+import { shadows } from '@sberdevices/plasma-core';
 
 import { SelectDropdown } from './SelectDropdown';
 
@@ -29,9 +30,9 @@ const StyledList = styled.ul`
     border-radius: 0.25rem;
     list-style: none;
 
-    background: ${surfaceCard};
+    background: ${background};
     color: ${secondary};
-    box-shadow: 5px 0px 14px rgba(155, 155, 155, 0.15);
+    box-shadow: ${shadows.medium};
 `;
 const StyledItem = styled.li<{ isActive?: boolean }>`
     position: relative;

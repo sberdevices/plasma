@@ -17,6 +17,15 @@ const colors = {
     black: plasmaStylesTokens.colors.textIconsGlblBlackPrimary,
 
     transparent: Color.rgba(0, 0, 0, 0),
+
+    button_clear: Color.rgba(0, 0, 0, 0),
+
+    button_black: plasmaStylesTokens.colors.buttonGlblBlackDefault,
+    button_black_secondary: plasmaStylesTokens.colors.buttonGlblBlackSecondary,
+    button_black_transparent: plasmaStylesTokens.colors.buttonGlblBlackTransparent,
+
+    button_white: plasmaStylesTokens.colors.buttonGblWhiteDefault,
+    button_white_secondary: plasmaStylesTokens.colors.buttonGblWhiteSecondary,
 };
 
 const theme = {
@@ -24,6 +33,9 @@ const theme = {
     light_primary: plasmaStylesTokens.colors.textIconsPrimary6,
     light_secondary: plasmaStylesTokens.colors.textIconsSecondary4,
     light_tertiary: plasmaStylesTokens.colors.textIconsTertiary1,
+
+    light_paragraph: plasmaStylesTokens.colors.textIconsParagraph,
+    light_inverse: plasmaStylesTokens.colors.textIconsInverse,
 
     light_accent: plasmaStylesTokens.colors.textIconsAccentBrand,
     light_success: plasmaStylesTokens.colors.textIconsStatusSuccess,
@@ -36,6 +48,9 @@ const theme = {
     light_bg_primary: Color.rgba(255, 255, 255, 1),
     light_bg_secondary: Color.rgba(255, 255, 255, 1),
     light_bg_tertiary: Color.rgba(255, 255, 255, 1),
+
+    light_input_border: Color.rgba(8, 8, 8, 0.16),
+    light_input_border_hover: Color.rgba(8, 8, 8, 0.32),
 
     light_surface_Liquid01: Color.rgba(8, 8, 8, 0.02), // FixMe: v2.0 переименовать в transparent01
     light_surface_Liquid02: Color.rgba(8, 8, 8, 0.06), // FixMe: v2.0 переименовать в transparent02
@@ -65,6 +80,9 @@ const theme = {
     dark_secondary: plasmaStylesTokens.colors.textIconsSecondary1,
     dark_tertiary: plasmaStylesTokens.colors.textIconsTertiary,
 
+    dark_paragraph: plasmaStylesTokens.colors.textIconsParagraph1,
+    dark_inverse: plasmaStylesTokens.colors.textIconsInverse1,
+
     dark_accent: plasmaStylesTokens.colors.textIconsAccentBrand1,
     dark_success: plasmaStylesTokens.colors.textIconsStatusSuccess1,
     dark_warning: plasmaStylesTokens.colors.textIconsStatusWarning1,
@@ -76,6 +94,9 @@ const theme = {
     dark_bg_primary: Color.rgba(23, 23, 23, 1),
     dark_bg_secondary: Color.rgba(35, 35, 35, 1),
     dark_bg_tertiary: Color.rgba(54, 54, 54, 1),
+
+    dark_input_border: Color.rgba(255, 255, 255, 0.16),
+    dark_input_border_hover: Color.rgba(255, 255, 255, 0.32),
 
     dark_surface_Liquid01: Color.rgba(255, 255, 255, 0.06), // FixMe: v2.0 переименовать в transparent01
     dark_surface_Liquid02: Color.rgba(255, 255, 255, 0.12), // FixMe: v2.0 переименовать в transparent02
@@ -95,7 +116,7 @@ const theme = {
 
     dark_button_accent: plasmaStylesTokens.colors.buttonPrimaryBrand1,
     dark_button_success: plasmaStylesTokens.colors.buttonStatusSuccess1,
-    dark_button_warning: Color.rgba(243, 113, 43, 1), // не попало
+    dark_button_warning: plasmaStylesTokens.colors.buttonStatusWarning,
     dark_button_critical: plasmaStylesTokens.colors.buttonStatusCritical1,
     dark_button_checked: plasmaStylesTokens.colors.buttonStatusChecked1,
     dark_button_focused: plasmaStylesTokens.colors.buttonPrimaryBrand1,
