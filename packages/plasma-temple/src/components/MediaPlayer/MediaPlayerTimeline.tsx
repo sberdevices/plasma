@@ -92,7 +92,7 @@ export const MediaPlayerTimeline = <T extends PlayerType>({
 
     const timelinePosition = (mediaData.currentTime / mediaData.duration) * 100;
 
-    React.useEffect(() => {
+    React.useLayoutEffect(() => {
         if (!playerRef.current) {
             return;
         }
@@ -117,7 +117,8 @@ export const MediaPlayerTimeline = <T extends PlayerType>({
         return () => {
             node.removeEventListener('timeupdate', updateTime);
         };
-    }, [playerRef, updateTime, currentTime, duration]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [playerRef.current, updateTime, currentTime, duration]);
 
     return (
         <StyledWrapper className={className}>
