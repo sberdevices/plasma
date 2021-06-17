@@ -1,3 +1,15 @@
+# v0.29.1 (Thu Jun 17 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): fix effects MediaTimeLine component [#76](https://github.com/sberdevices/pashka/pull/76) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v0.29.0 (Thu Jun 17 2021)
 
 #### 🚀 Enhancement
