@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { caption, primary, white } from '@sberdevices/plasma-tokens-web';
+import { caption, buttonChecked, inverse } from '@sberdevices/plasma-tokens-web';
 import { shadows } from '@sberdevices/plasma-core/mixins';
 import { usePopper } from 'react-popper';
 
@@ -153,10 +153,10 @@ const StyledTooltip = styled.span<Pick<TooltipProps, 'isVisible' | 'animated' | 
 
     padding: 0.375rem 0.5rem;
 
-    background-color: ${primary};
+    background-color: ${buttonChecked};
     border-radius: 0.25rem;
     box-shadow: ${shadows.small};
-    color: ${white};
+    color: ${inverse};
 
     white-space: pre;
 
@@ -183,7 +183,7 @@ const StyledArrow = styled.span<Pick<TooltipProps, 'placement'>>`
 
     border-style: solid;
     border-width: 0.375rem;
-    border-color: ${primary};
+    border-color: ${buttonChecked};
 
     ${({ placement }) => placement && arrowPlacements[placement]}
 

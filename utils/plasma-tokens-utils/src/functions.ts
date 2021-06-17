@@ -24,6 +24,27 @@ export const humanizeColor = (clr: string) => {
 };
 
 /**
+ * Осветлить/затемнить на x процентных пунктов.
+ */
+export const lightenColor = (color: string, value: number) => {
+    const hsl = Color(color).hsl();
+    const res = hsl.lightness(hsl.lightness() + value);
+
+    if (res.alpha() === 1) {
+        return res.hex().toString();
+    }
+    return res.rgb().toString();
+};
+
+/**
+ * Изменить непрозрачность цвета на x.
+ */
+export const alphenColor = (color: string, value: number) => {
+    const rgb = Color(color).rgb();
+    return humanizeColor(rgb.alpha(rgb.alpha() + value).toString());
+};
+
+/**
  * Переведет пиксели в ремы.
  * @param {string} value
  * @param {number} basis По-умолчанию взято 16, потому что предполагается скалирование

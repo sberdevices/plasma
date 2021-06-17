@@ -1,14 +1,15 @@
 import styled, { css } from 'styled-components';
 import { Badge as BaseBadge, BadgeProps as BaseProps } from '@sberdevices/plasma-core/components/Badge';
+import { surfaceLiquid02, text } from '@sberdevices/plasma-tokens-web';
 
 export const badgeViews = {
     primary: css`
         color: #226af1;
-        background-color: #f0f5fe;
+        background-color: rgba(34, 106, 241, 0.09);
     `,
     secondary: css`
-        color: #080808;
-        background-color: rgba(0, 0, 0, 0.05);
+        color: ${text};
+        background-color: ${surfaceLiquid02};
     `,
     success: css`
         color: #09a552;
@@ -16,7 +17,7 @@ export const badgeViews = {
     `,
     warning: css`
         color: #ee6820;
-        background-color: #fdf1eb;
+        background-color: rgba(238, 104, 32, 0.08);
     `,
     critical: css`
         color: #df2638;
