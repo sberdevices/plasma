@@ -104,3 +104,5 @@ import { withAutoFocus } from '@sberdevices/plasma-ui/hocs';
 Витрина с компонентами [Storybook](https://master--5f96ec813d800900227e3b93.chromatic.com).
 
 [Документация](https://plasma.sberdevices.ru/).
+
+[Репозиторий](https://github.com/sberdevices/plasma).
