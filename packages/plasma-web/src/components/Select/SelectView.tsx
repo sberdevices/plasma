@@ -5,7 +5,7 @@ import { syntheticFocus } from '@sberdevices/plasma-core/mixins';
 import type { FocusProps } from '@sberdevices/plasma-core/mixins';
 import type { InputHTMLAttributes } from '@sberdevices/plasma-core/types';
 import type { TextFieldProps } from '@sberdevices/plasma-core/components/TextField';
-import { accent, secondary, white, text, tertiary, critical } from '@sberdevices/plasma-tokens-web';
+import { accent, secondary, surfaceCard, text, tertiary, critical } from '@sberdevices/plasma-tokens-web';
 import { IconChevronDown } from '@sberdevices/plasma-icons';
 
 import { SelectDropdown } from './SelectDropdown';
@@ -56,7 +56,7 @@ const StyledLabelWrapper = styled.div<Pick<SelectViewProps, 'disabled' | 'focuse
     border: 0.0625rem solid ${tertiary};
     border-radius: 0.25rem;
 
-    background: ${white};
+    background: ${surfaceCard};
 
     cursor: pointer;
 

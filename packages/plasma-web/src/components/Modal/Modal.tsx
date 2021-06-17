@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled, { css, keyframes } from 'styled-components';
+import { overlay } from '@sberdevices/plasma-tokens-web';
 
 import { ModalsContext } from './ModalsContext';
 import { ModalView, ModalViewProps } from './ModalView';
@@ -68,7 +69,7 @@ const StyledOverlay = styled.div<{ transparent?: boolean }>`
     width: 100%;
     height: 100%;
 
-    background-color: ${({ transparent }) => (transparent ? 'transparent' : 'rgba(8, 8, 8, 0.2)')};
+    background-color: ${({ transparent }) => (transparent ? 'transparent' : overlay)};
 
     cursor: pointer;
 `;
