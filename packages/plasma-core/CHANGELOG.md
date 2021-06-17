@@ -1,3 +1,15 @@
+# v1.12.2 (Thu Jun 17 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-core): remove focus on click in button [#437](https://github.com/sberdevices/plasma/pull/437) ([@OgNellis](https://github.com/OgNellis))
+
+#### Authors: 1
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+
+---
+
 # v1.12.1 (Wed Jun 09 2021)
 
 #### 🐛 Bug Fix
