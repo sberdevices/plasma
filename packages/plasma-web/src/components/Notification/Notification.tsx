@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { secondary, warning, critical, footnote1 } from '@sberdevices/plasma-tokens-web';
+import { surfaceCard, secondary, warning, critical, footnote1 } from '@sberdevices/plasma-tokens-web';
 import type { AsProps } from '@sberdevices/plasma-core/types';
 
 import { Headline5 } from '../Typography';
@@ -41,7 +41,7 @@ const StyledRoot = styled.div`
     max-width: 18.75rem;
     padding: 1rem 1.25rem;
 
-    background: #fff;
+    background: ${surfaceCard};
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05), 0px 4px 14px rgba(0, 0, 0, 0.08);
     border-radius: 0.5rem;
 `;
