@@ -1,5 +1,5 @@
-import { CarouselProps } from '@sberdevices/plasma-ui';
 import React from 'react';
+import { CarouselProps } from '@sberdevices/plasma-ui';
 
 import { CommonCarousel } from './Carousel';
 
