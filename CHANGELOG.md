@@ -1,3 +1,18 @@
+# (Fri Jun 18 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@0.30.0`
+  - feat(plasma-temple): remove gallery animation for portal [#72](https://github.com/sberdevices/pashka/pull/72) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): temp [#72](https://github.com/sberdevices/pashka/pull/72) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Get rid of first gallery scroll [#72](https://github.com/sberdevices/pashka/pull/72) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # (Thu Jun 17 2021)
 
 #### 🐛 Bug Fix
