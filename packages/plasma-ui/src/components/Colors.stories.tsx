@@ -1,48 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import { Palette } from '../helpers/Palette';
-
-const darkThemes = ['darkEva', 'darkJoy', 'darkSber'];
-const lightThemes = ['lightEva', 'lightJoy', 'lightSber'];
+import { ThemeColors, extractCanvasThemeColors } from '@sberdevices/plasma-sb-utils';
+import { darkEva, darkJoy, darkSber, lightEva, lightJoy, lightSber } from '@sberdevices/plasma-tokens';
 
 const StyledContainer = styled.div`
     display: flex;
 `;
 
-const StyledBackground = styled.div<{ background: string }>`
-    width: 50%;
-    padding: 1rem;
-    background: ${({ background }) => background};
-`;
+const colors = extractCanvasThemeColors(
+    { Sber: darkSber, Athena: darkEva, Joy: darkJoy },
+    { Sber: lightSber, Athena: lightEva, Joy: lightJoy },
+);
 
 export const Default = () => {
     return (
         <StyledContainer>
-            <StyledBackground background="#292929">
-                {darkThemes.map((theme, i) => (
-                    <>
-                        <Palette
-                            key={`item:${i}`}
-                            theme={theme as 'darkSber'}
-                            title={i === 0 ? '🌚 Dark Theme Colors' : ''}
-                            heading={theme}
-                        />
-                    </>
-                ))}
-            </StyledBackground>
-            <StyledBackground background="#FAFAFA">
-                {lightThemes.map((theme, i) => (
-                    <>
-                        <Palette
-                            key={`item:${i}`}
-                            theme={theme as 'lightSber'}
-                            title={i === 0 ? '🌝 Light Theme Colors' : ''}
-                            heading={theme}
-                        />
-                    </>
-                ))}
-            </StyledBackground>
+            <ThemeColors style={{ backgroundColor: '#292929' }} colors={colors.dark} title="🌚 Dark Theme Colors" />
+            <ThemeColors style={{ backgroundColor: '#FAFAFA' }} colors={colors.light} title="🌝 Light Theme Colors" />
         </StyledContainer>
     );
 };
