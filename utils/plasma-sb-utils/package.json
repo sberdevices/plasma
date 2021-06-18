@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-sb-utils",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Code shared between ui libraries.",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
@@ -36,5 +36,7 @@
     "publishConfig": {
         "access": "restricted"
     },
-    "files": ["lib"]
+    "files": [
+        "lib"
+    ]
 }

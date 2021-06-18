@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-tokens-web",
-    "version": "1.5.1",
+    "version": "1.6.0",
     "description": "",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
@@ -42,6 +42,10 @@
         "index.js",
         "theme.json"
     ],
-    "contributors": ["Vasiliy Loginevskiy", "Anton Vinogradov", "Fanil Zubairov"],
+    "contributors": [
+        "Vasiliy Loginevskiy",
+        "Anton Vinogradov",
+        "Fanil Zubairov"
+    ],
     "sideEffects": false
 }
