@@ -5,7 +5,7 @@ import { sasUiKitTokens } from './designs/SasUiKit.figma';
 
 /* eslint-disable @typescript-eslint/camelcase */
 const colors = {
-    white_primary: plasmaStylesTokens.colors.textIconsGblWhitePrimary,
+    white_primary: plasmaStylesTokens.colors.textIconsGlblWhitePrimary,
     white_secondary: plasmaStylesTokens.colors.textIconsGlblWhiteSecondary,
     white_tertiary: plasmaStylesTokens.colors.textIconsGlblWhiteTetriary,
 

@@ -10,8 +10,6 @@ const comments = {
     accentAthena: 'Акцентный цвет Афины',
     accentJoy: 'Акцентный цвет Джой',
 
-    gradient: 'Акцентный градиент бренда',
-
     voicePhraseGradient: 'Градиент подсказок о голосовых запросах',
     voicePhraseGradientSber: 'Голосовые фразы Сбера',
     voicePhraseGradientAthena: 'Голосовые фразы Афины',
@@ -21,6 +19,9 @@ const comments = {
     primary: 'Основной текст в интерфейсе',
     secondary: 'Второстепенный текст',
     tertiary: 'Третичный цвет текста',
+
+    paragraph: 'Сплошной наборный текст',
+    inverse: 'Белый в светлой теме / Чёрный в тёмной теме',
 
     white: 'Основной белый, не зависит от темы',
     whitePrimary: 'Основной белый, не зависит от темы',
@@ -35,11 +36,16 @@ const comments = {
     background: 'Основной бэкграунд всех приложений и смартапов',
     backgroundPrimary: 'Первичный цвет фона',
     backgroundSecondary: 'Вторичный цвет фона',
-    backgroundTertiary: 'Третичный цвет текста',
+    backgroundTertiary: 'Третичный цвет фона',
 
+    gradient: 'Акцентный градиент бренда',
     gradientSber: 'Бэкграунд ассистента для Сбера',
     gradientAthena: 'Бэкграунд ассистента для Афины',
     gradientJoy: 'Бэкграунд ассистента для Джой',
+
+    gradientDeviceSber: 'Бэкграунд ассистента для Сбера на девайсах',
+    gradientDeviceAthena: 'Бэкграунд ассистента для Афины на девайсах',
+    gradientDeviceJoy: 'Бэкграунд ассистента для Джой на девайсах',
 
     success: 'Обозначение успешного сценария',
     warning: 'Цвет предупреждения',
@@ -59,13 +65,22 @@ const comments = {
     buttonAccentSber: 'Основная кнопка для Сбера',
     buttonAccentAthena: 'Основная кнопка для Афины',
     buttonAccentJoy: 'Основная кнопка для Джой',
+
     buttonSecondary: 'Вторичный цвет контролов',
+    buttonClear: 'Второстепенная прозрачная',
 
     buttonSuccess: 'Кнопка для успешного сценария',
     buttonWarning: 'Цвет предупреждения у контролов',
     buttonCritical: 'Цвет ошибки у контролов',
     buttonChecked: 'Цвет зажатого контрола',
     buttonFocused: 'Цвет рамки фокуса у контрола',
+
+    buttonBlack: 'Дефолтная чёрная, не зависит от темы',
+    buttonBlackSecondary: 'Второстепенная чёрная, не зависит от темы',
+    buttonBlackTransparent: 'Чёрная для использования поверх картинок',
+
+    buttonWhite: 'Дефолтная белая, не зависит от темы',
+    buttonWhiteSecondary: 'Второстепенная белая, не зависит от темы',
 
     speechBubbleSent: 'Цвет фона баблов отправленный сообщений',
     speechBubbleReceived: 'Цвет фона баблов получнных сообщений',
@@ -92,6 +107,8 @@ const sections: Section[] = [
                 { name: 'primary', title: 'Primary' },
                 { name: 'secondary', title: 'Secondary' },
                 { name: 'tertiary', title: 'Tertiary' },
+                { name: 'paragraph', title: 'Paragraph' },
+                { name: 'inverse', title: 'Inverse' },
             ],
             [
                 { name: 'whitePrimary', title: 'Glbl White / Primary' },
@@ -133,12 +150,24 @@ const sections: Section[] = [
                 { name: 'buttonAccentAthena', title: 'Primary / Athena' },
                 { name: 'buttonAccentJoy', title: 'Primary / Joy' },
             ],
-            [{ name: 'buttonSecondary', title: 'Secondary / Default' }],
+            [
+                { name: 'buttonSecondary', title: 'Secondary / Default' },
+                { name: 'buttonClear', title: 'Secondary / Clear' },
+            ],
             [
                 { name: 'buttonSuccess', title: 'Status / Success' },
                 { name: 'buttonWarning', title: 'Status / Warning' },
                 { name: 'buttonCritical', title: 'Status / Critical' },
                 { name: 'buttonChecked', title: 'Status / Checked' },
+            ],
+            [
+                { name: 'buttonBlack', title: 'Glbl Black / Default' },
+                { name: 'buttonBlackSecondary', title: 'Glbl Black / Secondary' },
+                { name: 'buttonBlackTransparent', title: 'Glbl Black / Transparent' },
+            ],
+            [
+                { name: 'buttonWhite', title: 'Glbl White / Default' },
+                { name: 'buttonWhiteSecondary', title: 'Glbl White / Secondary' },
             ],
         ],
     },
@@ -161,6 +190,9 @@ const sections: Section[] = [
                 { name: 'gradientSber', title: 'Gradient / Sber' },
                 { name: 'gradientAthena', title: 'Gradient / Athena' },
                 { name: 'gradientJoy', title: 'Gradient / Joy' },
+                { name: 'gradientDeviceSber', title: 'Device / Sber' },
+                { name: 'gradientDeviceAthena', title: 'Device / Athena' },
+                { name: 'gradientDeviceJoy', title: 'Device / Joy' },
             ],
         ],
     },
@@ -173,6 +205,9 @@ const sections: Section[] = [
                 { name: 'surfaceLiquid01', title: 'Transparent / 01' },
                 { name: 'surfaceLiquid02', title: 'Transparent / 02' },
                 { name: 'surfaceLiquid03', title: 'Transparent / 03' },
+                { name: 'surfaceSolid01', title: 'Solid / 01' },
+                { name: 'surfaceSolid02', title: 'Solid / 02' },
+                { name: 'surfaceSolid03', title: 'Solid / 03' },
                 { name: 'surfaceCard', title: 'Card', style: styles.cardShadow },
             ],
         ],

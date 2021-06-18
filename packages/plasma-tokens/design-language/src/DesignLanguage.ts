@@ -19,18 +19,27 @@ import { colorToCss, linearGradientToCss } from '@diez/web-sdk-common';
 // import { toRgba, toLGRgba, toPrecision } from './utils';
 
 const colors = {
-    white_primary: plasmaStylesTokens.colors.textIconsGblWhitePrimary,
-    white_secondary: plasmaStylesTokens.colors.textIconsGblWhiteSecondary,
-    white_tertiary: plasmaStylesTokens.colors.textIconsGblWhiteTetriary,
+    white_primary: plasmaStylesTokens.colors.textIconsGlblWhitePrimary,
+    white_secondary: plasmaStylesTokens.colors.textIconsGlblWhiteSecondary,
+    white_tertiary: plasmaStylesTokens.colors.textIconsGlblWhiteTetriary,
 
-    black_primary: plasmaStylesTokens.colors.textIconsGblBlackPrimary,
+    black_primary: plasmaStylesTokens.colors.textIconsGlblBlackPrimary,
     black_secondary: plasmaStylesTokens.colors.textIconsGblBlackSecondary,
-    black_tertiary: plasmaStylesTokens.colors.textIconsGblBlackTetriary,
+    black_tertiary: plasmaStylesTokens.colors.textIconsGlblBlackTetriary,
 
     white: plasmaStylesTokens.colors.textIconsGblWhitePrimary,
     black: plasmaStylesTokens.colors.textIconsGblBlackPrimary,
 
     transparent: Color.rgba(0, 0, 0, 0),
+
+    button_clear: Color.rgba(0, 0, 0, 0),
+
+    button_black: plasmaStylesTokens.colors.buttonGlblBlackDefault,
+    button_black_secondary: plasmaStylesTokens.colors.buttonGlblBlackSecondary,
+    button_black_transparent: plasmaStylesTokens.colors.buttonGlblBlackTransparent,
+
+    button_white: plasmaStylesTokens.colors.buttonGblWhiteDefault,
+    button_white_secondary: plasmaStylesTokens.colors.buttonGblWhiteSecondary,
 };
 
 // const palette = {
@@ -38,107 +47,146 @@ const theme = {
     // dark
     dark_primary: plasmaStylesTokens.colors.textIconsPrimary1,
     dark_secondary: plasmaStylesTokens.colors.textIconsSecondary1,
-    dark_tertiary: plasmaStylesTokens.colors.textIconsTertiary1,
+    dark_tertiary: plasmaStylesTokens.colors.textIconsTertiary,
 
-    dark_warning: plasmaStylesTokens.colors.textIconsWarning1,
-    dark_critical: plasmaStylesTokens.colors.textIconsCritical1,
+    dark_paragraph: plasmaStylesTokens.colors.textIconsParagraph1,
+    dark_inverse: plasmaStylesTokens.colors.textIconsInverse1,
 
-    dark_sber: plasmaStylesTokens.colors.textIconsAccentSber,
-    dark_eva: plasmaStylesTokens.colors.textIconsAccentEva,
-    dark_joy: plasmaStylesTokens.colors.textIconsAccentJoy,
+    dark_success: plasmaStylesTokens.colors.textIconsStatusSuccess1,
+    dark_warning: plasmaStylesTokens.colors.textIconsStatusWarning1,
+    dark_critical: plasmaStylesTokens.colors.textIconsStatusCritical1,
 
-    dark_bg: plasmaStylesTokens.colors.backgroundDefault1,
+    dark_sber: plasmaStylesTokens.colors.textIconsAccentSber1,
+    dark_eva: plasmaStylesTokens.colors.textIconsAccentAthena1,
+    dark_joy: plasmaStylesTokens.colors.textIconsAccentJoy1,
 
-    dark_bg_primary: plasmaStylesTokens.colors.background011,
-    dark_bg_secondary: plasmaStylesTokens.colors.background021,
-    dark_bg_tertiary: plasmaStylesTokens.colors.background031,
+    dark_bg: plasmaStylesTokens.colors.backgroundDefault,
+    dark_overlay: Color.rgba(0, 0, 0, 0.8),
 
-    dark_overlay: plasmaStylesTokens.colors.backgroundOverlay1,
+    dark_bg_primary: Color.rgba(23, 23, 23, 1),
+    dark_bg_secondary: Color.rgba(35, 35, 35, 1),
+    dark_bg_tertiary: Color.rgba(54, 54, 54, 1),
 
-    dark_surface_Liquid01: plasmaStylesTokens.colors.surfaceLiquid011,
-    dark_surface_Liquid02: plasmaStylesTokens.colors.surfaceLiquid021,
-    dark_surface_Liquid03: plasmaStylesTokens.colors.surfaceLiquid031,
-    dark_surface_card: plasmaStylesTokens.colors.surfaceCard1,
+    dark_surface_Liquid01: Color.rgba(255, 255, 255, 0.06), // FixMe: v2.0 переименовать в transparent01
+    dark_surface_Liquid02: Color.rgba(255, 255, 255, 0.12), // FixMe: v2.0 переименовать в transparent02
+    dark_surface_Liquid03: Color.rgba(255, 255, 255, 0.2), // FixMe: v2.0 переименовать в transparent03
+
+    dark_surface_solid01: Color.rgba(23, 23, 23, 1),
+    dark_surface_solid02: Color.rgba(35, 35, 35, 1),
+    dark_surface_solid03: Color.rgba(54, 54, 54, 1),
+
+    dark_surface_card: Color.rgba(255, 255, 255, 0.12),
 
     dark_button_sber: plasmaStylesTokens.colors.buttonPrimarySber1,
-    dark_button_eva: plasmaStylesTokens.colors.buttonPrimaryEva1,
+    dark_button_eva: plasmaStylesTokens.colors.buttonPrimaryAthena1,
     dark_button_joy: plasmaStylesTokens.colors.buttonPrimaryJoy1,
 
     dark_button_primary: plasmaStylesTokens.colors.buttonPrimaryDefault1,
     dark_button_secondary: plasmaStylesTokens.colors.buttonSecondaryDefault1,
 
-    dark_button_warning: plasmaStylesTokens.colors.buttonSpecialWarning1,
-    dark_button_critical: plasmaStylesTokens.colors.buttonSpecialCritical1,
-    dark_button_checked: plasmaStylesTokens.colors.buttonSpecialChecked1,
+    dark_button_success: plasmaStylesTokens.colors.buttonStatusSuccess1,
+    dark_button_warning: plasmaStylesTokens.colors.buttonStatusWarning,
+    dark_button_critical: plasmaStylesTokens.colors.buttonStatusCritical1,
+    dark_button_checked: plasmaStylesTokens.colors.buttonStatusChecked1,
 
-    dark_focus_sber: plasmaStylesTokens.colors.textIconsAccentSber,
-    dark_focus_eva: plasmaStylesTokens.colors.textIconsAccentEva,
-    dark_focus_joy: plasmaStylesTokens.colors.textIconsAccentJoy,
+    dark_focus_sber: plasmaStylesTokens.colors.buttonPrimarySber1,
+    dark_focus_eva: plasmaStylesTokens.colors.buttonPrimaryAthena1,
+    dark_focus_joy: plasmaStylesTokens.colors.buttonPrimaryJoy1,
 
-    dark_speech_bubble_sent: plasmaStylesTokens.colors.speechBubbleSent1,
-    dark_speech_bubble_received: plasmaStylesTokens.colors.speechBubbleReceived1,
+    dark_speech_bubble_sent: Color.rgba(0, 0, 0, 0.28),
+    dark_speech_bubble_received: Color.rgba(255, 255, 255, 0.12),
 
     // light
-    light_primary: plasmaStylesTokens.colors.textIconsPrimary,
-    light_secondary: plasmaStylesTokens.colors.textIconsSecondary,
-    light_tertiary: plasmaStylesTokens.colors.textIconsTertiary,
+    light_primary: plasmaStylesTokens.colors.textIconsPrimary6,
+    light_secondary: plasmaStylesTokens.colors.textIconsSecondary5,
+    light_tertiary: plasmaStylesTokens.colors.textIconsTertiary1,
 
-    light_warning: plasmaStylesTokens.colors.textIconsWarning,
-    light_critical: plasmaStylesTokens.colors.textIconsCritical,
+    light_paragraph: plasmaStylesTokens.colors.textIconsParagraph,
+    light_inverse: plasmaStylesTokens.colors.textIconsInverse,
 
-    light_sber: plasmaStylesTokens.colors.textIconsBrandSber,
-    light_eva: plasmaStylesTokens.colors.textIconsBrandEva,
-    light_joy: plasmaStylesTokens.colors.textIconsBrandJoy,
+    light_success: plasmaStylesTokens.colors.textIconsStatusSuccess,
+    light_warning: plasmaStylesTokens.colors.textIconsStatusWarning,
+    light_critical: plasmaStylesTokens.colors.textIconsStatusCritical,
 
-    light_bg: plasmaStylesTokens.colors.backgroundDefault,
+    light_sber: plasmaStylesTokens.colors.textIconsAccentSber,
+    light_eva: plasmaStylesTokens.colors.textIconsAccentAthena,
+    light_joy: plasmaStylesTokens.colors.textIconsAccentJoy,
 
-    light_bg_primary: plasmaStylesTokens.colors.background01,
-    light_bg_secondary: plasmaStylesTokens.colors.background02,
-    light_bg_tertiary: plasmaStylesTokens.colors.background03,
+    light_bg: Color.rgba(255, 255, 255, 1),
+    light_overlay: Color.rgba(0, 0, 0, 0.8),
 
-    light_overlay: plasmaStylesTokens.colors.backgroundOverlay,
+    light_bg_primary: Color.rgba(255, 255, 255, 1),
+    light_bg_secondary: Color.rgba(255, 255, 255, 1),
+    light_bg_tertiary: Color.rgba(255, 255, 255, 1),
 
-    light_surface_Liquid01: plasmaStylesTokens.colors.surfaceLiquid01,
-    light_surface_Liquid02: plasmaStylesTokens.colors.surfaceLiquid02,
-    light_surface_Liquid03: plasmaStylesTokens.colors.surfaceLiquid03,
-    light_surface_card: plasmaStylesTokens.colors.surfaceCard,
+    light_surface_Liquid01: Color.rgba(8, 8, 8, 0.02), // FixMe: v2.0 переименовать в transparent01
+    light_surface_Liquid02: Color.rgba(8, 8, 8, 0.06), // FixMe: v2.0 переименовать в transparent02
+    light_surface_Liquid03: Color.rgba(8, 8, 8, 0.12), // FixMe: v2.0 переименовать в transparent03
+
+    light_surface_solid01: Color.rgba(250, 250, 250, 1),
+    light_surface_solid02: Color.rgba(240, 240, 240, 1),
+    light_surface_solid03: Color.rgba(225, 225, 225, 1),
+
+    light_surface_card: Color.rgba(255, 255, 255, 1),
 
     light_button_sber: plasmaStylesTokens.colors.buttonPrimarySber,
-    light_button_eva: plasmaStylesTokens.colors.buttonPrimaryEva,
+    light_button_eva: plasmaStylesTokens.colors.buttonPrimaryAthena,
     light_button_joy: plasmaStylesTokens.colors.buttonPrimaryJoy,
 
     light_button_primary: plasmaStylesTokens.colors.buttonPrimaryDefault,
     light_button_secondary: plasmaStylesTokens.colors.buttonSecondaryDefault,
 
-    light_button_warning: plasmaStylesTokens.colors.buttonSpecialWarning,
-    light_button_critical: plasmaStylesTokens.colors.buttonSpecialCritical,
-    light_button_checked: plasmaStylesTokens.colors.buttonSpecialChecked,
+    light_button_success: plasmaStylesTokens.colors.buttonStatusSuccess,
+    light_button_warning: plasmaStylesTokens.colors.buttonStatusWarning,
+    light_button_critical: plasmaStylesTokens.colors.buttonStatusCritical,
+    light_button_checked: plasmaStylesTokens.colors.buttonStatusChecked,
 
-    // light_focus_sber: plasmaStylesTokens.colors.textIconsBrandSber,
-    // TODO: diez doesn't work with border-colors =/
-    light_focus_sber: plasmaStylesTokens.colors.textIconsBrandSber,
-    light_focus_eva: plasmaStylesTokens.colors.textIconsBrandEva,
-    light_focus_joy: plasmaStylesTokens.colors.textIconsBrandJoy,
+    light_focus_sber: plasmaStylesTokens.colors.buttonPrimarySber,
+    light_focus_eva: plasmaStylesTokens.colors.buttonPrimaryAthena,
+    light_focus_joy: plasmaStylesTokens.colors.buttonPrimaryJoy,
 
-    light_speech_bubble_sent: plasmaStylesTokens.colors.speechBubbleSent,
-    light_speech_bubble_received: plasmaStylesTokens.colors.speechBubbleReceived,
+    light_speech_bubble_sent: Color.rgba(8, 8, 8, 0.4),
+    light_speech_bubble_received: Color.rgba(0, 0, 0, 0.02),
 };
 
 const gradients = {
     // dark
-    dark_bg_sber: plasmaStylesTokens.gradients.backgroundAssistantMobileSber1,
-    dark_bg_eva: plasmaStylesTokens.gradients.backgroundAssistantMobileAthena1,
-    dark_bg_joy: plasmaStylesTokens.gradients.backgroundAssistantMobileJoy1,
+    dark_bg_sber:
+        'linear-gradient(336.84deg, rgba(20, 116, 70, 0.6) 0%, rgba(8, 8, 8, 0) 64.88%), radial-gradient(100% 100% at 75.89% 100%, rgba(0, 133, 255, 0.24) 0%, rgba(0, 71, 255, 0.03) 100%), linear-gradient(180deg, rgba(8, 8, 8, 0) 50%, rgba(7, 71, 33, 0.3) 100%), linear-gradient(270deg, #061621 0%, rgba(8, 8, 8, 0) 100%)',
+    dark_bg_eva:
+        'linear-gradient(336.9deg, #143787 0%, rgba(8, 8, 8, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(110, 5, 193, 0.44) 0%, rgba(53, 19, 149, 0.1) 99.69%), linear-gradient(180.03deg, rgba(8, 8, 8, 0) 50%, rgba(25, 63, 152, 0.41) 99.97%), linear-gradient(270deg, rgba(39, 15, 107, 0.3) 0%, rgba(8, 8, 8, 0) 100%)',
+    dark_bg_joy:
+        'linear-gradient(336.9deg, rgba(255, 156, 101, 0.24) 0%, rgba(8, 8, 8, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(61, 19, 149, 0.34) 0%, rgba(19, 24, 149, 0.1) 99.69%), linear-gradient(180.03deg, rgba(8, 8, 8, 0) 50%, rgba(255, 215, 179, 0.15) 99.97%), linear-gradient(270deg, rgba(107, 15, 87, 0.2) 0%, rgba(8, 8, 8, 0) 100%)',
+
+    dark_device_sber:
+        'linear-gradient(26.05deg, rgba(15, 153, 24, 0.28) 0%, rgba(8, 8, 8, 0) 72.24%), radial-gradient(100% 100% at 0% 100%, rgba(0, 170, 255, 0.24) 0%, rgba(8, 8, 8, 0) 99.69%), radial-gradient(74.68% 149.35% at 50% 149.35%, rgba(0, 102, 255, 0.6) 0%, rgba(8, 8, 8, 0) 99.69%)',
+    dark_device_eva:
+        'linear-gradient(26.05deg, rgba(26, 140, 255, 0.16) 0%, rgba(8, 8, 8, 0) 72.24%), radial-gradient(100% 100% at 0% 100%, rgba(0, 85, 255, 0.28) 0%, rgba(8, 8, 8, 0) 99.69%), radial-gradient(74.68% 149.35% at 50% 149.35%, rgba(128, 0, 255, 0.48) 0%, rgba(8, 8, 8, 0) 99.69%)',
+    dark_device_joy:
+        'linear-gradient(26.05deg, rgba(255, 148, 77, 0.24) 0%, rgba(8, 8, 8, 0) 72.24%), radial-gradient(100% 100% at 0% 100%, rgba(138, 60, 215, 0.24) 0%, rgba(8, 8, 8, 0) 99.69%), radial-gradient(74.68% 149.35% at 50% 149.35%, rgba(89, 22, 215, 0.48) 0%, rgba(8, 8, 8, 0) 99.69%)',
+
+    dark_voice_phrase_sber: plasmaStylesTokens.gradients.textIconsGradientSber1,
+    dark_voice_phrase_eva: plasmaStylesTokens.gradients.textIconsGradientAthena1,
+    dark_voice_phrase_joy: plasmaStylesTokens.gradients.textIconsGradientJoy1,
 
     // light
-    light_bg_sber: plasmaStylesTokens.gradients.backgroundAssistantMobileSber,
-    light_bg_eva: plasmaStylesTokens.gradients.backgroundAssistantMobileAthena,
-    light_bg_joy: plasmaStylesTokens.gradients.backgroundAssistantMobileJoy,
+    light_bg_sber:
+        'linear-gradient(336.9deg, rgba(4, 255, 44, 0.02) 0%, rgba(255, 255, 255, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(0, 179, 255, 0.06) 0%, rgba(0, 209, 255, 0.01) 99.69%), linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, rgba(0, 251, 59, 0.05) 100%), linear-gradient(270deg, rgba(6, 195, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%)',
+    light_bg_eva:
+        'linear-gradient(336.9deg, rgba(0, 224, 255, 0.06) 0%, rgba(255, 255, 255, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(0, 87, 255, 0.04) 0%, rgba(87, 8, 255, 0.01) 99.69%), linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, rgba(0, 224, 255, 0.06) 100%), linear-gradient(270deg, rgba(0, 71, 253, 0.02) 0%, rgba(255, 255, 255, 0) 100%)',
+    light_bg_joy:
+        'linear-gradient(336.9deg, rgba(255, 200, 3, 0.05) 0%, rgba(255, 255, 255, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(148, 0, 238, 0.02) 0%, rgba(160, 4, 255, 0.01) 99.69%), linear-gradient(180.03deg, rgba(255, 255, 255, 0) 50%, rgba(255, 184, 0, 0.04) 99.97%), linear-gradient(270deg, rgba(240, 0, 187, 0.03) 0%, rgba(255, 255, 255, 0) 100%)',
 
-    // voice phrase
-    voice_phrase_sber: plasmaStylesTokens.gradients.textIconsVoicePhraseSber,
-    voice_phrase_eva: plasmaStylesTokens.gradients.textIconsVoicePhraseAthena,
-    voice_phrase_joy: plasmaStylesTokens.gradients.textIconsVoicePhraseJoy,
+    light_device_sber:
+        'linear-gradient(26.05deg, rgba(24, 242, 61, 0.06) 0%, rgba(255, 255, 255, 0) 72.24%), radial-gradient(100% 100% at 0% 100%, rgba(0, 170, 255, 0.04) 0%, rgba(255, 255, 255, 0) 99.69%), radial-gradient(74.68% 149.35% at 50% 149.35%, rgba(0, 170, 255, 0.12) 0%, rgba(255, 255, 255, 0) 99.69%)',
+    light_device_eva:
+        'linear-gradient(26.05deg, rgba(26, 178, 255, 0.08) 0%, rgba(255, 255, 255, 0) 72.24%), radial-gradient(100% 100% at 0% 100%, rgba(0, 170, 255, 0.04) 0%, rgba(255, 255, 255, 0) 99.69%), radial-gradient(74.68% 149.35% at 50% 149.35%, rgba(128, 0, 255, 0.08) 0%, rgba(255, 255, 255, 0) 99.69%)',
+    light_device_joy:
+        'linear-gradient(26.05deg, rgba(255, 219, 77, 0.1) 0%, rgba(255, 255, 255, 0) 72.24%), radial-gradient(100% 100% at 0% 100%, rgba(163, 71, 255, 0.04) 0%, rgba(255, 255, 255, 0) 99.69%), radial-gradient(74.68% 149.35% at 50% 149.35%, rgba(140, 26, 255, 0.1) 0%, rgba(255, 255, 255, 0) 99.69%)',
+
+    light_voice_phrase_sber: plasmaStylesTokens.gradients.textIconsGradientSber,
+    light_voice_phrase_eva: plasmaStylesTokens.gradients.textIconsGradientAthena,
+    light_voice_phrase_joy: plasmaStylesTokens.gradients.textIconsGradientJoy,
 };
 //
 // /**
