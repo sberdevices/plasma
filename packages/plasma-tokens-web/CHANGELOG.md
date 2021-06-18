@@ -1,3 +1,15 @@
+# v1.6.0 (Fri Jun 18 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-web): Added Link component [#441](https://github.com/sberdevices/plasma/pull/441) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.5.1 (Thu Jun 17 2021)
 
 #### 🐛 Bug Fix

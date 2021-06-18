@@ -1,3 +1,23 @@
+# v1.18.0 (Fri Jun 18 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-web): Added Link component [#441](https://github.com/sberdevices/plasma/pull/441) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web): Components dark theme fixes [#441](https://github.com/sberdevices/plasma/pull/441) ([@fanisco](https://github.com/fanisco))
+- docs: plasma-sb-utils package with a lots useful sb code [#441](https://github.com/sberdevices/plasma/pull/441) ([@fanisco](https://github.com/fanisco))
+- docs: Added switcher for plasma-web's dark theme [#441](https://github.com/sberdevices/plasma/pull/441) ([@fanisco](https://github.com/fanisco))
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.17.1 (Thu Jun 17 2021)
 
 #### 🐛 Bug Fix
