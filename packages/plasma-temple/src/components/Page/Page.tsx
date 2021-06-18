@@ -20,6 +20,7 @@ export interface PageProps<Name extends string> {
     component: PageComp<AnyObject, Name>;
     fallbackComponent?: React.ReactNode;
     header?: HeaderProps;
+    ignoreInsets?: boolean;
 }
 
 const StyledSpinner = styled(Spinner)`
@@ -61,6 +62,7 @@ export const Page: PageFunctionComponent = ({
     component: Component,
     fallbackComponent = <StyledSpinner />,
     header,
+    ignoreInsets,
 }) => {
     const { assistant, setAssistantState } = useAssistant();
 
@@ -99,7 +101,7 @@ export const Page: PageFunctionComponent = ({
 
     return (
         <React.Suspense fallback={fallbackComponent}>
-            <Layout>
+            <Layout ignoreInsets={ignoreInsets}>
                 <AppStateContext.Consumer>
                     {({ pushHistory, pushScreen, header: appHeader, popScreen, state, dispatch }) => (
                         <Component
