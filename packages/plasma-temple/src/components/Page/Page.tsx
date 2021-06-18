@@ -133,11 +133,11 @@ Page.lazy = (factory) => {
             useMount(() => {
                 const promiseGetter = Component.getInitialProps ?? getInitialProps;
 
-                const promise = promiseGetter?.({ params });
-
-                if (!promise || state) {
+                if (!promiseGetter || state) {
                     return;
                 }
+
+                const promise = promiseGetter({ params });
 
                 if (typeof promise.then === 'function') {
                     promise.then(changeState);
