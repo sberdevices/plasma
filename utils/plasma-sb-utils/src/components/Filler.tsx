@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { surfaceLiquid01 } from '@sberdevices/plasma-tokens';
+import { surfaceLiquid01 } from '@sberdevices/plasma-core';
 
 export const Filler = styled.div`
     display: flex;

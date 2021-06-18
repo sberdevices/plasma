@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { Filler } from '../../helpers/Filler';
+import { Filler } from '@sberdevices/plasma-sb-utils';
 
 import { Container, Row, Col } from '.';
 

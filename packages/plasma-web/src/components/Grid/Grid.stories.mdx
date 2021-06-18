@@ -9,18 +9,13 @@ import { Container, Row, Col } from '.';
 # Grid
 Набор компонентов для создания сетки.
 
+<Canvas>
+    <Story name="Default" story={stories.Default} />
+</Canvas>
+
 ## Брейкпоинты
 Каждый брейкпоинт разрешения содержит собственное максимальное количество колонок:
 
-### ``deviceScale = 2``
-| Поверхность        | Обозначение | Ширина от, пикс | Ширина до, пикс | Кол-во колонок |
-| ------------------ |-------------| --------------- | --------------- | -------------- |
-| SberBox Full HD    | XL          | 1920            | -               | 12             |
-| SberBox HD         | L           | 1538            | 1918            | 8              |
-| SberPortal         | M           | 1120            | 1536            | 6              |
-| Other              | S           | 0               | 1118            | 4              |
-
-### ``deviceScale = 1``
 | Поверхность        | Обозначение | Ширина от, пикс | Ширина до, пикс | Кол-во колонок |
 | ------------------ |-------------| --------------- | --------------- | -------------- |
 | Desktop            | XL          | 960             | -               | 12             |
@@ -44,7 +39,7 @@ import { Container, Row, Col } from '.';
 
 ```tsx
 // App.tsx
-import { Container, Row, Col }  from '@sberdevices/plasma-ui';
+import { Container, Row, Col }  from '@sberdevices/plasma-web';
 
 export const App = () => (
     <Container>
@@ -54,20 +49,3 @@ export const App = () => (
     </Container>
 );
 ```
-
-## Примеры
-
-### Базовое применение
-<Canvas>
-    <Story name="Default" story={stories.Default} />
-</Canvas>
-
-### Адаптивные размеры и отступы колонок
-<Canvas>
-    <Story name="Adaptive" story={stories.Adaptive} />
-</Canvas>
-
-### Вычисляемая ширина колонок
-<Canvas>
-    <Story name="Default" story={stories.Calculatable} />
-</Canvas>
