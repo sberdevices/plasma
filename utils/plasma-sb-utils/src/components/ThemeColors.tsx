@@ -72,7 +72,7 @@ const comments = {
     [NONE]: '', // Для пропусков
 };
 
-type Name = keyof typeof comments;
+export type Name = keyof typeof comments;
 type Color = { name: Name; title: string; style?: object };
 type Group = Array<Color>;
 type SectionType = 'swatch' | 'card';
