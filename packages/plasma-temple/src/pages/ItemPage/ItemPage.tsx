@@ -13,6 +13,7 @@ interface ItemPageProps {
     state: ItemPageState;
     header?: HeaderProps;
     onItemShow: (id: string) => void;
+    onItemFocus?: (id: string) => void;
 }
 
 const getImageSrc = (src: string | string[]) => {
@@ -31,7 +32,7 @@ const scrollToWithOffset = (offset: number) => {
     });
 };
 
-export const ItemPage: React.FC<ItemPageProps> = ({ state, header, onItemShow }) => {
+export const ItemPage: React.FC<ItemPageProps> = ({ state, header, onItemShow, onItemFocus }) => {
     const { entities, entitiesTitle, background, title, subtitle, description, actionButtonText } = state;
     const { ItemMainSection, ItemEntities } = useRegistry();
 
@@ -39,6 +40,7 @@ export const ItemPage: React.FC<ItemPageProps> = ({ state, header, onItemShow })
         () =>
             entities.map((child, index) => ({
                 onClick: () => onItemShow(child.id),
+                onFocus: () => onItemFocus && onItemFocus(child.id),
                 onKeyDown: ({ key }: React.KeyboardEvent) => key === 'Enter' && onItemShow(child.id),
                 url: getImageSrc(child.image.src),
                 title: child.label,
