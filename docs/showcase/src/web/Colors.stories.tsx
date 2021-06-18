@@ -19,8 +19,8 @@ const colors = extractWebThemeColors(light, dark);
 export const Colors = () => {
     return (
         <StyledContainer>
-            <ThemeColors style={{ backgroundColor: '#FAFAFA' }} colors={colors.light} title="🌝 Light Theme Colors" />
-            <ThemeColors style={{ backgroundColor: '#292929' }} colors={colors.dark} title="🌚 Dark Theme Colors" />
+            <ThemeColors style={{ backgroundColor: '#F7F7F7' }} colors={colors.light} title="🌝 Light Theme Colors" />
+            <ThemeColors style={{ backgroundColor: '#080808' }} colors={colors.dark} title="🌚 Dark Theme Colors" />
         </StyledContainer>
     );
 };

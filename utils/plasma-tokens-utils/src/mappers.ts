@@ -41,6 +41,33 @@ export const mapDesignToBaseColors = (ds: DesignLanguage): BaseColors => ({
         value: humanizeColor(ds.colors.transparent.color),
         comment: 'Прозрачный цвет',
     },
+
+    buttonClear: {
+        value: humanizeColor(ds.colors.button_black.color),
+        comment: 'Второстепенная прозрачная',
+    },
+
+    buttonBlack: {
+        value: humanizeColor(ds.colors.button_black.color),
+        comment: 'Дефолтная чёрная, не зависит от темы',
+    },
+    buttonBlackSecondary: {
+        value: humanizeColor(ds.colors.button_black_secondary.color),
+        comment: 'Второстепенная чёрная, не зависит от темы',
+    },
+    buttonBlackTransparent: {
+        value: humanizeColor(ds.colors.button_black_transparent.color),
+        comment: 'Чёрная для использования поверх картинок',
+    },
+
+    buttonWhite: {
+        value: humanizeColor(ds.colors.button_white.color),
+        comment: 'Дефолтная белая, не зависит от темы',
+    },
+    buttonWhiteSecondary: {
+        value: humanizeColor(ds.colors.button_white_secondary.color),
+        comment: 'Второстепенная белая, не зависит от темы',
+    },
 });
 
 export const mapDesignToTypography = <TK extends string, TV extends Record<string, any>>(
