@@ -1,7 +1,6 @@
 export { actionWithPersistedEvent } from './actionWithPersistedEvent';
 export { capitalize } from './capitalize';
 
-export { Filler } from './Filler';
 export { IconPlaceholder } from './IconPlaceholder';
 
 export * from './StoryDecorators';

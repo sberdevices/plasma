@@ -1,7 +1,5 @@
 export { actionWithPersistedEvent } from './actionWithPersistedEvent';
 
-export { Filler } from './Filler';
-
 export { GridLines } from './GridLines';
 export type { GridLinesProps } from './GridLines';
 

@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Container, Row, Col } from '@sberdevices/plasma-ui/components/Grid';
 import { Headline4 } from '@sberdevices/plasma-ui/components/Typography';
+import { Filler } from '@sberdevices/plasma-sb-utils';
 
-import { Filler, UIStoryDecorator } from '../helpers';
+import { UIStoryDecorator } from '../helpers';
 
 export default {
     title: 'UI/Layout/Grid',
