@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { CarouselGridWrapper, Carousel, CarouselItem } from '@sberdevices/plasma-ui';
-import { isSberPortal } from '@sberdevices/plasma-ui/utils';
+import { isSberBox, isSberPortal } from '@sberdevices/plasma-ui/utils';
 
 import { AnyObject } from '../../types';
 import { GalleryCard as DefaultGalleryCard, GalleryCardProps } from '../GalleryCard/GalleryCard';
@@ -20,7 +20,7 @@ const StyledCarousel = styled(Carousel)<{ initialized: boolean }>`
     padding-bottom: 8px;
     outline: none;
     scroll-snap-type: none;
-    scroll-behavior: ${({ initialized }) => (initialized ? 'smooth' : 'unset')};
+    scroll-behavior: ${({ initialized }) => (initialized && isSberBox() ? 'smooth' : 'unset')};
 `;
 
 const StyledCarouselItem = styled(CarouselItem)`
