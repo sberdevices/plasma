@@ -8,6 +8,7 @@ export interface ItemEntityProps {
     title: string;
     order: number;
     onClick: () => void;
+    onFocus?: () => void;
     onKeyDown: React.KeyboardEventHandler;
 }
 
@@ -27,13 +28,14 @@ const StyledCol = styled(Col)`
 
 export const ItemEntity = React.forwardRef<HTMLDivElement, ItemEntityProps>(
     // eslint-disable-next-line prefer-arrow-callback
-    function ItemEntity({ url, title, onClick, onKeyDown, order }, ref) {
+    function ItemEntity({ url, title, onClick, onFocus, onKeyDown, order }, ref) {
         return (
             <StyledCol sizeXL={3} sizeM={2}>
                 <Card
                     outlined={isSberBox()}
                     tabIndex={0}
                     onClick={onClick}
+                    onFocus={onFocus}
                     onKeyDown={onKeyDown}
                     ref={ref}
                     data-cy="item-entity-card"
