@@ -30,6 +30,7 @@ const StyledCarouselGridWrapper = styled(CarouselGridWrapper)`
 
 const StyledSectionWrapper = styled(CarouselItem)`
     scroll-snap-align: start;
+    scroll-snap-stop: always;
 `;
 
 const StyledFixedHeader = styled(Container)`
