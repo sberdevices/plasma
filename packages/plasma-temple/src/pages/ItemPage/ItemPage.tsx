@@ -47,7 +47,7 @@ export const ItemPage: React.FC<ItemPageProps> = ({ state, header, onItemShow, o
                 order: index + 1,
                 uuid: child.id,
             })),
-        [entities, onItemShow],
+        [entities, onItemShow, onItemFocus],
     );
 
     useVoiceNavigationWithSpatNav({ axis: 'y', main: true });
