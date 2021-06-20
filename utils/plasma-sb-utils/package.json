@@ -11,6 +11,9 @@
         "url": "ssh://git@github.com:sberdevices/plasma.git",
         "directory": "utils/plasma-sb-utils"
     },
+    "dependencies": {
+        "param-case": "^3.0.4"
+    },
     "peerDependencies": {
         "@sberdevices/plasma-core": "^1.12.1",
         "react": "^16.13.1",
@@ -36,7 +39,5 @@
     "publishConfig": {
         "access": "restricted"
     },
-    "files": [
-        "lib"
-    ]
+    "files": ["lib"]
 }
