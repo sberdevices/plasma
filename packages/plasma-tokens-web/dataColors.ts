@@ -9,7 +9,7 @@ export const dataColors = {
 
         linkVisited: general.electricBlue['700'],
         linkVisitedHover: lightenColor(general.electricBlue['700'], 7),
-        linkVisitedActive: lightenColor(general.electricBlue['700'], -7),
+        linkVisitedActive: lightenColor(general.electricBlue['700'], -8),
     },
     dark: {
         link: general.electricBlue['500'],
@@ -18,6 +18,6 @@ export const dataColors = {
 
         linkVisited: general.electricBlue['400'],
         linkVisitedHover: lightenColor(general.electricBlue['400'], 7),
-        linkVisitedActive: lightenColor(general.electricBlue['400'], -7),
+        linkVisitedActive: lightenColor(general.electricBlue['400'], -8),
     },
 };
