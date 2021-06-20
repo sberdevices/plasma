@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Headline3, Footnote1, Caption, applyEllipsis } from '@sberdevices/plasma-core';
+import { Headline1, Headline3, Footnote1, Caption, applyEllipsis } from '@sberdevices/plasma-core';
+import { paramCase } from 'param-case';
 
 const NONE = 'NONE';
 const comments = {
@@ -178,19 +179,26 @@ const sections: Section[] = [
     },
 ];
 
-const StyledThemeBG = styled.div`
-    width: 100%;
-    max-width: 1280px;
-    padding: 1rem;
-`;
-const StyledSection = styled.section<{
+const StyledThemeBG = styled.div<{
     $primary: string;
     $secondary: string;
+    $tertiary: string;
 }>`
-    ${({ $primary, $secondary }) => css`
+    box-sizing: border-box;
+    width: 50%;
+    max-width: 1280px;
+    padding: 1rem;
+
+    ${({ $primary, $secondary, $tertiary }) => css`
         --plasma-tc-primary: ${$primary};
         --plasma-tc-secondary: ${$secondary};
+        --plasma-tc-tertiary: ${$tertiary};
     `}
+`;
+const StyledSection = styled.section``;
+const StyledHeadline1 = styled(Headline1)`
+    margin: 0 0 1rem;
+    color: var(--plasma-tc-primary);
 `;
 const StyledHeadline3 = styled(Headline3)`
     margin: 0;
@@ -215,73 +223,163 @@ const StyledGroup = styled.div`
     align-items: start;
     grid-template-rows: repeat(auto-fill, 2.25rem);
 `;
-const StyledSwatch = styled.div`
+const StyledSwatch = styled.div<{ $isActive?: boolean }>`
+    position: relative;
     display: grid;
     grid-template:
         'color name' 1fr
         'color descr' max-content / 3rem 1fr;
 
-    &:last-child {
-        margin-bottom: 0;
+    padding-right: 0.25rem;
+    border-radius: 2.25rem;
+    cursor: pointer;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -0.25rem;
+        left: -0.25rem;
+        right: -0.25rem;
+        bottom: -0.25rem;
+        z-index: 0;
+
+        background: var(--plasma-tc-tertiary);
+        border-radius: inherit;
+        opacity: 0;
+        transition: opacity 0.15s ease-in-out;
+    }
+
+    &:hover::before {
+        opacity: 0.5;
     }
 `;
 const StyledCard = styled.div`
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
     height: 5.75rem;
     padding: 0.5rem 0.75rem;
     border-radius: 0.75rem;
+    cursor: pointer;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -0.25rem;
+        left: -0.25rem;
+        right: -0.25rem;
+        bottom: -0.25rem;
+        z-index: 0;
+
+        box-shadow: inset 0 0 0 0.25rem var(--plasma-tc-tertiary);
+        border-radius: 1rem;
+        opacity: 0;
+        transition: opacity 0.15s ease-in-out;
+    }
+
+    &:hover::before {
+        opacity: 0.5;
+    }
 `;
 const StyledColor = styled.div`
+    position: relative;
+
     grid-area: color;
     width: 2.25rem;
     height: 2.25rem;
-    border-radius: 50%;
+    border-radius: inherit;
     box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.11), 1px 1px rgba(0, 0, 0, 0.11);
 `;
 const StyledTitle = styled(Footnote1)`
+    position: relative;
     grid-area: name;
     color: var(--plasma-tc-primary);
 
+    /* stylelint-disable-next-line selector-max-universal, selector-nested-pattern */
+    *:hover > & {
+        display: none;
+    }
+
     ${applyEllipsis};
+`;
+const StyledName = styled(StyledTitle)`
+    display: none;
+
+    /* stylelint-disable-next-line selector-max-universal, selector-nested-pattern */
+    *:hover > & {
+        display: block;
+    }
 `;
 const StyledDescr = styled(Caption)`
-    grid-area: descr;
+    position: relative;
     color: var(--plasma-tc-secondary);
+
+    /* stylelint-disable-next-line selector-max-universal, selector-nested-pattern */
+    *:hover > & {
+        display: none;
+    }
 
     ${applyEllipsis};
 `;
+const StyledVar = styled(StyledDescr)`
+    display: none;
 
-const SwatchGroup: React.FC<{ group: Group; colors: Record<string, string> }> = ({ group, colors }) => {
+    /* stylelint-disable-next-line selector-max-universal, selector-nested-pattern */
+    *:hover > & {
+        display: block;
+    }
+`;
+
+interface GroupProps {
+    group: Group;
+    colors: Record<string, string>;
+}
+
+const SwatchGroup: React.FC<GroupProps> = ({ group, colors }) => {
     return (
         <StyledGroup>
             {group.map((color) => {
                 if (!colors[color.name] && color.name !== NONE) {
                     return null;
                 }
+                if (color.name === NONE) {
+                    return <div />;
+                }
+                const cleanName = color.name.replace(/(Sber|Athena|Joy)$/, '');
+                const paramName = paramCase(cleanName);
                 return (
                     <StyledSwatch key={color.name}>
                         <StyledColor style={{ background: colors[color.name] }} />
+                        <StyledName>{cleanName}</StyledName>
                         <StyledTitle>{color.title}</StyledTitle>
                         <StyledDescr>{comments[color.name]}</StyledDescr>
+                        <StyledVar>var(--plasma-colors-{paramName})</StyledVar>
                     </StyledSwatch>
                 );
             })}
         </StyledGroup>
     );
 };
-const CardGroup: React.FC<{ group: Group; colors: Record<string, string> }> = ({ group, colors }) => {
+const CardGroup: React.FC<GroupProps> = ({ group, colors }) => {
     return (
         <>
             {group.map((color) => {
                 if (!colors[color.name] && color.name !== NONE) {
                     return null;
                 }
+                if (color.name === NONE) {
+                    return <div />;
+                }
+                const cleanName = color.name.replace(/(Sber|Athena|Joy)$/, '');
+                const paramName = paramCase(cleanName);
                 return (
                     <StyledCard key={color.name} style={{ ...color.style, background: colors[color.name] }}>
+                        <StyledName>{cleanName}</StyledName>
                         <StyledTitle>{color.title}</StyledTitle>
                         <StyledDescr>{comments[color.name]}</StyledDescr>
+                        <StyledVar>var(--plasma-colors-{paramName})</StyledVar>
                     </StyledCard>
                 );
             })}
@@ -291,12 +389,14 @@ const CardGroup: React.FC<{ group: Group; colors: Record<string, string> }> = ({
 
 export const ThemeColors: React.FC<{ colors: Record<Name, string> } & React.HTMLAttributes<HTMLDivElement>> = ({
     colors,
+    title,
     ...rest
 }) => {
     return (
-        <StyledThemeBG {...rest}>
+        <StyledThemeBG {...rest} $primary={colors.primary} $secondary={colors.secondary} $tertiary={colors.tertiary}>
+            <StyledHeadline1>{title}</StyledHeadline1>
             {sections.map((section, i) => (
-                <StyledSection key={`section:${i}`} $primary={colors.primary} $secondary={colors.secondary}>
+                <StyledSection key={`section:${i}`}>
                     <StyledHeadline3 as="h3">{section.title}</StyledHeadline3>
                     <StyledFootnote1 as="h6">{section.subtitle}</StyledFootnote1>
                     <StyledGrid>
