@@ -1,3 +1,17 @@
+# v0.31.0 (Mon Jun 21 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Refactor ItemPage [#78](https://github.com/sberdevices/pashka/pull/78) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- feat(plasma-temple): Fix useMemo in ItemPage [#78](https://github.com/sberdevices/pashka/pull/78) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- feat(plasma-temple): Add onItemFoucs callback for items on ItemPage [#78](https://github.com/sberdevices/pashka/pull/78) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v0.30.0 (Fri Jun 18 2021)
 
 #### 🚀 Enhancement
