@@ -1,5 +1,18 @@
 # (Mon Jun 21 2021)
 
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@0.31.1`
+  - fix(plasma-temple): dont call `getInitialProps` if `state` is defined [#79](https://github.com/sberdevices/pashka/pull/79) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
+# (Mon Jun 21 2021)
+
 #### 🚀 Enhancement
 
 - `@sberdevices/plasma-temple@0.31.0`
