@@ -1,3 +1,19 @@
+# v0.32.0 (Mon Jun 21 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Refactor ItemDescription type [#80](https://github.com/sberdevices/pashka/pull/80) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- feat(plasma-temple): Refactor ItemCellProps [#80](https://github.com/sberdevices/pashka/pull/80) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- feat(plasma-temple): Fix ItemMainSection linter error [#80](https://github.com/sberdevices/pashka/pull/80) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- feat(plasma-temple): Separate interface for description on ItemPages [#80](https://github.com/sberdevices/pashka/pull/80) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- feat(plasma-temple): ReactElement in ItemPage description [#80](https://github.com/sberdevices/pashka/pull/80) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v0.31.1 (Mon Jun 21 2021)
 
 #### 🐛 Bug Fix
