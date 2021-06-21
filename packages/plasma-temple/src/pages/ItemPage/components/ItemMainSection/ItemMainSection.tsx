@@ -74,7 +74,9 @@ export const ItemMainSection: React.FC<
                 <StyledRow>
                     {description.map(
                         ({ title: descTitle, content }, index) =>
-                            content && <ItemCell key={`ItemPageDescription${index}`} title={descTitle} content={content} />,
+                            content && (
+                                <ItemCell key={`ItemPageDescription${index}`} title={descTitle} content={content} />
+                            ),
                     )}
                 </StyledRow>
             )}
