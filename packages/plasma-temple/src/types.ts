@@ -1,3 +1,4 @@
+import React from 'react';
 import { AssistantNavigationCommand, AssistantSmartAppData, createAssistant } from '@sberdevices/assistant-client';
 import { PriceProps, Ratio } from '@sberdevices/plasma-ui';
 import { detectDevice } from '@sberdevices/plasma-ui/utils';
@@ -33,8 +34,8 @@ export interface MetaPayload {
 }
 
 export interface Description {
-    title: string;
-    content: string;
+    title: string | React.ReactElement;
+    content: string | React.ReactElement;
 }
 
 export interface MediaObject {
