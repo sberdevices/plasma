@@ -5,6 +5,10 @@ import { CarouselItem } from '@sberdevices/plasma-ui';
 import { AnyObject } from '../../../../types';
 import { GalleryCardProps } from '../../../../components/GalleryCard';
 
+interface ShopLandingCardProps<T> extends Omit<GalleryCardProps<T>, 'onClick'> {
+    onClick: (card: T, index: number) => void;
+}
+
 const StyledCarouselItem = styled(CarouselItem)`
     margin-right: 1rem;
 `;
@@ -15,8 +19,8 @@ export function ShopLandingCard<T extends AnyObject = AnyObject>({
     focused,
     component: Component,
     onClick,
-}: GalleryCardProps<T> & { component: React.ComponentType<GalleryCardProps<T>> }): React.ReactElement {
-    const handleClick = React.useCallback((item: T) => onClick(item), [onClick]);
+}: ShopLandingCardProps<T> & { component: React.ComponentType<GalleryCardProps<T>> }): React.ReactElement {
+    const handleClick = React.useCallback((item: T) => onClick(item, index), [index, onClick]);
 
     return (
         <StyledCarouselItem key={card.id} scrollSnapAlign="start">
