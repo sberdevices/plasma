@@ -9,8 +9,8 @@ import { useFocusOnMount } from '../../../../hooks/useFocusOnMount';
 import { UnifiedComponentProps } from '../../../../registry/types';
 
 interface ItemCellProps {
-    title: string;
-    content: string;
+    title: string | React.ReactElement;
+    content: string | React.ReactElement;
 }
 export interface ItemMainSectionProps {
     title: string;
@@ -73,8 +73,8 @@ export const ItemMainSection: React.FC<
             {description && (
                 <StyledRow>
                     {description.map(
-                        ({ title: descTitle, content }) =>
-                            content && <ItemCell key={descTitle} title={descTitle} content={content} />,
+                        ({ title: descTitle, content }, index) =>
+                            content && <ItemCell key={`ItemPageDescription${index}`} title={descTitle} content={content} />,
                     )}
                 </StyledRow>
             )}
