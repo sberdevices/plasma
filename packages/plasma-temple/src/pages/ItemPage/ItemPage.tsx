@@ -40,7 +40,7 @@ export const ItemPage: React.FC<ItemPageProps> = ({ state, header, onItemShow, o
         () =>
             entities.map((child, index) => ({
                 onClick: () => onItemShow(child.id),
-                onFocus: () => onItemFocus && onItemFocus(child.id),
+                onFocus: () => onItemFocus?.(child.id),
                 onKeyDown: ({ key }: React.KeyboardEvent) => key === 'Enter' && onItemShow(child.id),
                 url: getImageSrc(child.image.src),
                 title: child.label,
