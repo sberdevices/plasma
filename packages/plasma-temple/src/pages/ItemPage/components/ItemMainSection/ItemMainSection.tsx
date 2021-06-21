@@ -9,8 +9,8 @@ import { useFocusOnMount } from '../../../../hooks/useFocusOnMount';
 import { UnifiedComponentProps } from '../../../../registry/types';
 
 interface ItemCellProps {
-    title: string | React.ReactElement;
-    content: string | React.ReactElement;
+    title: string | React.ReactNode;
+    content: string | React.ReactNode;
 }
 export interface ItemMainSectionProps {
     title: string;
