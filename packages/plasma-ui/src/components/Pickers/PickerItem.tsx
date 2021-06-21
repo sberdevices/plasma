@@ -28,14 +28,14 @@ const slotSizes = {
         // Коэффициент смещения по oY
         offsetFactor: 0.5,
         // Высота элемента
-        height: 120,
+        height: 72,
     },
     s: {
         x0Scale: 1,
         x1Scale: 0.75,
         x2Scale: 0.5,
         offsetFactor: 0.5,
-        height: 72,
+        height: 36,
     },
 };
 
@@ -55,37 +55,64 @@ export interface SizeProps {
 
 const fullOpacity = 1;
 const noneOpacity = 0;
+function getOpacity(slot: number) {
+    const absoluteSlot = Math.abs(slot);
+    const ceilSlot = Math.ceil(absoluteSlot) || 1; // Ячейка, в которую перемещается элемент
+
+    // Сколько осталось от размера ячкейки, чтобы элемент занял ее полностью (от 1 до 0)
+    const progSlot = ceilSlot - absoluteSlot;
+
+    if (absoluteSlot <= 1) {
+        const opacityRangeSize = fullOpacity - noneOpacity;
+        const opacity = noneOpacity + progSlot * opacityRangeSize;
+        return round(opacity);
+    }
+    return noneOpacity;
+}
+
+function getOffset(slot: number, size: Size) {
+    const absoluteSlot = Math.abs(slot);
+    const ceilSlot = Math.ceil(absoluteSlot) || 1; // Ячейка, в которую перемещается элемент
+
+    // Сколько осталось от размера ячкейки, чтобы элемент занял ее полностью (от 1 до 0)
+    const progSlot = ceilSlot - absoluteSlot;
+
+    const shift = (slotSizes[size].offsetFactor * slotSizes[size].height) / 2;
+
+    if (absoluteSlot <= 1) {
+        return round(slot * shift);
+    }
+    if (absoluteSlot <= 2) {
+        return round(progSlot * shift * Math.sign(slot));
+    }
+
+    return round(((absoluteSlot - 2) / (ceilSlot - 2)) * Math.sign(slot) * -1 * slotSizes[size].height);
+}
+
+function getScale(slot: number, size: Size) {
+    const absoluteSlot = Math.abs(slot);
+    const ceilSlot = Math.ceil(absoluteSlot) || 1; // Ячейка, в которую перемещается элемент
+
+    // Сколько осталось от размера ячкейки, чтобы элемент занял ее полностью (от 1 до 0)
+    const progSlot = ceilSlot - absoluteSlot;
+
+    if (absoluteSlot <= 1) {
+        return round(progSlot * (slotSizes[size].x0Scale - slotSizes[size].x1Scale) + slotSizes[size].x1Scale);
+    }
+    if (absoluteSlot <= 2) {
+        return round(progSlot * (slotSizes[size].x1Scale - slotSizes[size].x2Scale) + slotSizes[size].x2Scale);
+    }
+    return round(progSlot * slotSizes[size].x2Scale);
+}
 
 /**
  * Абстрактный просчет стилей в зависимости от слота,
  * не основываясь на реальном элементе списка.
  */
 const getStyles = (slot: number, size: Size) => {
-    const absSlot = Math.abs(slot);
-    const ceilSlot = Math.ceil(absSlot) || 1;
-    const normSlot = Math.min(absSlot, ceilSlot); // Нормализованное значение
-    const progSlot = ceilSlot - normSlot; // Прогресс (от X до 0)
-    const shift = (slotSizes[size].offsetFactor * slotSizes[size].height) / 2;
-    let opacity;
-    let offset;
-    let scale;
-
-    switch (true) {
-        case absSlot <= 1:
-            scale = round(progSlot * (slotSizes[size].x0Scale - slotSizes[size].x1Scale) + slotSizes[size].x1Scale);
-            offset = round(slot * shift);
-            opacity = round(progSlot * (fullOpacity - noneOpacity) + noneOpacity);
-            break;
-        case absSlot <= 2:
-            scale = round(progSlot * (slotSizes[size].x1Scale - slotSizes[size].x2Scale) + slotSizes[size].x2Scale);
-            offset = round(progSlot * shift * Math.sign(slot));
-            opacity = noneOpacity;
-            break;
-        default:
-            scale = round(progSlot * slotSizes[size].x2Scale);
-            offset = round(((normSlot - 2) / (ceilSlot - 2)) * Math.sign(slot) * -1 * slotSizes[size].height);
-            opacity = noneOpacity;
-    }
+    const opacity = getOpacity(slot);
+    const offset = getOffset(slot, size);
+    const scale = getScale(slot, size);
 
     return {
         wrapper: {
