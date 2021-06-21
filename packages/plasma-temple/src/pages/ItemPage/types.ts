@@ -10,8 +10,8 @@ export interface ItemEntity extends MetaPayload {
 }
 
 export interface ItemDescription {
-    title: string | React.ReactElement;
-    content: string | React.ReactElement;
+    title: React.ReactNode;
+    content: React.ReactNode;
 }
 
 export interface ItemPageState extends MetaPayload {
