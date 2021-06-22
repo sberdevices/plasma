@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface UseSpatNavCallback<T> {
-    (container: T): void;
+    (target: T): void;
 }
 
 export const useSpatNav = <T extends HTMLElement>(callback: UseSpatNavCallback<T>): void => {
@@ -61,4 +61,52 @@ export const useActiveElementClick = (conditionCb: ConditionCallback = () => tru
             document.removeEventListener('keyup', keyUpHander);
         };
     }, [conditionCb]);
+};
+
+const dirByAxis = {
+    x: 'left,right',
+    y: 'up,down',
+};
+
+const isSpatNavEvent = (event: unknown): event is SpatialNavigationEvent => event instanceof Event && 'detail' in event;
+
+export const useSpatNavBetweenTargets = <T extends HTMLElement>(
+    axis: 'x' | 'y',
+    callback: UseSpatNavCallback<T>,
+): void => {
+    const prevTarget = React.useRef(document.documentElement);
+
+    React.useLayoutEffect(() => {
+        const spatNavCb = (event: Event) => {
+            if (!isSpatNavEvent(event)) {
+                return;
+            }
+
+            const { detail } = event;
+            const target = event.target as T;
+
+            if (!target) {
+                return;
+            }
+
+            if (dirByAxis[axis].includes(detail.dir)) {
+                if (
+                    (axis === 'x' && prevTarget.current.offsetLeft !== target.offsetLeft) ||
+                    (axis === 'y' && prevTarget.current.offsetTop !== target.offsetTop)
+                ) {
+                    callback(target);
+                }
+            }
+
+            prevTarget.current = target;
+
+            return false;
+        };
+
+        document.body.addEventListener('navbeforefocus', spatNavCb);
+
+        return () => {
+            document.body.removeEventListener('navbeforefocus', spatNavCb);
+        };
+    });
 };
