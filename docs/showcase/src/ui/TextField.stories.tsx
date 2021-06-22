@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, TextFieldProps } from '@sberdevices/plasma-ui/components/TextField';
+import { TextField } from '@sberdevices/plasma-ui';
 
 import { TextFieldShowcase, IconPlaceholder, UIStoryDecorator, InSpacingDecorator } from '../helpers';
 
@@ -9,20 +9,28 @@ export default {
     decorators: [UIStoryDecorator, InSpacingDecorator],
 };
 
-const props = { label: 'Label', helperText: 'Helper text' };
-const rows: Record<string, TextFieldProps> = {
-    Empty: {},
-    // Focus: { value: 'Title', focused: true } as any,
-    Filled: { value: 'Title' },
-    Success: { value: 'Title', status: 'success' },
-    Error: { value: 'Title', status: 'error' },
-    Disabled: { value: 'Title', disabled: true },
+const props = { value: '', label: 'Label' };
+const rows = {
+    Default: {},
+    Focus: { $isFocused: true },
+    Success: { status: 'success' },
+    Warning: { status: 'warning' },
+    Error: { status: 'error' },
+    Disabled: { disabled: true },
+    Readonly: { readOnly: true },
 };
 const cols = {
-    'Label Text': {},
-    'Label Text + Icon': { contentLeft: <IconPlaceholder /> },
-    'Label Text + Action': { contentRight: <IconPlaceholder /> },
-    'Label Text + Icon + Action': { contentLeft: <IconPlaceholder />, contentRight: <IconPlaceholder /> },
+    Empty: {},
+    Filled: { value: 'Title' },
+    Helper: { value: 'Title', helperText: 'Helper text' },
+    Icon: { value: 'Title', helperText: 'Helper text', contentLeft: <IconPlaceholder /> },
+    Action: { value: 'Title', helperText: 'Helper text', contentRight: <IconPlaceholder /> },
+    'Icon + Action': {
+        value: 'Title',
+        helperText: 'Helper text',
+        contentLeft: <IconPlaceholder />,
+        contentRight: <IconPlaceholder />,
+    },
 };
 
 export const Default = () => <TextFieldShowcase props={props} rows={rows} cols={cols} component={TextField} />;

@@ -7,7 +7,7 @@ import { ShowcaseHead } from './Showcase';
 const StyledGrid = styled.div<{ $cols: number }>`
     display: grid;
     grid-template-columns: max-content repeat(${({ $cols }) => $cols}, 20rem);
-    grid-gap: 2rem;
+    grid-gap: 1.25rem;
 `;
 const StyledRow = styled.div`
     display: contents;
@@ -18,17 +18,17 @@ const onFocus = actionWithPersistedEvent('onFocus');
 const onBlur = actionWithPersistedEvent('onBlur');
 const handlers = { onChange, onFocus, onBlur };
 
-interface ShowcaseProps<T> {
-    props: T;
-    rows: Record<string, T>;
-    cols: Record<string, T>;
-    component: React.ComponentType<T>;
+interface TextFieldShowcaseProps {
+    props: any;
+    rows: Record<string, any>;
+    cols: Record<string, any>;
+    component: React.ComponentType<any>;
 }
 
 /**
  * Шоукейсы - обертки для демонстрации / тестирования полной раскладки презентуемого компонента.
  */
-export function Showcase<T>({ props, rows, cols, component: Component }: ShowcaseProps<T>) {
+export const TextFieldShowcase = ({ props, rows, cols, component: Component }: TextFieldShowcaseProps) => {
     const colsList = Object.entries(cols);
 
     return (
@@ -40,7 +40,7 @@ export function Showcase<T>({ props, rows, cols, component: Component }: Showcas
                 ))}
             </StyledRow>
             {Object.entries(rows).map(([head, rowProps], i) => (
-                <StyledRow>
+                <StyledRow key={`row:${i}`}>
                     <ShowcaseHead key={`head:${i}`}>{head}</ShowcaseHead>
                     {colsList.map(([, colProps], j) => (
                         <Component key={`${i}${j}`} {...handlers} {...props} {...rowProps} {...colProps} />
@@ -49,4 +49,4 @@ export function Showcase<T>({ props, rows, cols, component: Component }: Showcas
             ))}
         </StyledGrid>
     );
-}
+};
