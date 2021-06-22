@@ -1,3 +1,16 @@
+# (Tue Jun 22 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@0.33.0`
+  - feat(plasma-temple): Posibility to skip assistant native panel insets [#77](https://github.com/sberdevices/pashka/pull/77) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # (Mon Jun 21 2021)
 
 #### 🚀 Enhancement
