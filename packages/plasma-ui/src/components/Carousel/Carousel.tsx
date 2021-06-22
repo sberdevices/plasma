@@ -16,7 +16,10 @@ export type CarouselProps = BaseProps & AsProps & React.HTMLAttributes<HTMLDivEl
 
 export const CarouselGridWrapper = styled(BaseWrapper)``;
 const StyledCarousel = styled(BaseCarousel)``;
-const StyledCarouselTrack = styled(BaseTrack)``;
+const StyledCarouselTrack = styled(BaseTrack)`
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+`;
 
 /**
  * Компонент для создания списков с прокруткой.

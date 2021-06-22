@@ -15,6 +15,9 @@ const StyledRoot = styled(Footnote1)`
 
     background: ${black};
     color: ${white};
+
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 `;
 
 /**
