@@ -11,14 +11,14 @@ import {
 import type { AsProps } from '@sberdevices/plasma-core';
 
 import { useForkRef } from '../../hooks';
+import { applyNoSelect } from '../../mixins';
 
 export type CarouselProps = BaseProps & AsProps & React.HTMLAttributes<HTMLDivElement> & {};
 
 export const CarouselGridWrapper = styled(BaseWrapper)``;
 const StyledCarousel = styled(BaseCarousel)``;
 const StyledCarouselTrack = styled(BaseTrack)`
-    user-select: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    ${applyNoSelect};
 `;
 
 /**

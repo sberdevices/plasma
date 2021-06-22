@@ -2,6 +2,8 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { body2, text, warning, scalingPixelBasis } from '@sberdevices/plasma-tokens';
 
+import { applyNoSelect } from '../../mixins';
+
 interface StyledValueProps {
     /**
      * Неактивное состояние: состояние, при котором компонент отображается, но недоступен для действий пользователя
@@ -26,8 +28,7 @@ const StyledValue = styled.span<StyledValueProps>`
 
     text-align: center;
 
-    user-select: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    ${applyNoSelect};
 
     ${({ showWarning }) =>
         showWarning &&
