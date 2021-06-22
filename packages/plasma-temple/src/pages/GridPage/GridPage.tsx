@@ -4,7 +4,7 @@ import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 import { Row } from '@sberdevices/plasma-ui';
 
 import { Header } from '../../components/Header/Header';
-import { useSpatNav } from '../../hooks/useSpatNav';
+import { useSpatNavBetweenTargets } from '../../hooks/useSpatNav';
 import { useVoiceNavigationWithSpatNav } from '../../hooks/useVoiceNavigation';
 import { scroll } from '../../utils/scroll';
 import { FullScreenBackground } from '../ItemPage/components/FullScreenBackground/FullScreenBackground';
@@ -20,7 +20,7 @@ interface GridPageProps {
 }
 
 const scrollToWithOffset = (offset: number) => {
-    const targetOffset = offset <= 0 ? offset : offset - 100;
+    const targetOffset = offset <= 250 ? 0 : offset - 250;
 
     scroll({
         element: window,
@@ -53,7 +53,7 @@ export const GridPage: React.FC<GridPageProps> = ({ state, header, onItemShow, c
     );
 
     useVoiceNavigationWithSpatNav({ axis: 'y', main: true });
-    useSpatNav<HTMLElement>(({ offsetTop }) => scrollToWithOffset(offsetTop));
+    useSpatNavBetweenTargets<HTMLElement>('y', ({ offsetTop }) => scrollToWithOffset(offsetTop));
 
     // Необходимо сбросить первоночально установленную точку, чтобы старт навигации был с сфокусированного элемента
     React.useEffect(() => {
