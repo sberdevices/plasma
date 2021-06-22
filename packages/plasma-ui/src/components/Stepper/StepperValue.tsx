@@ -26,6 +26,9 @@ const StyledValue = styled.span<StyledValueProps>`
 
     text-align: center;
 
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
     ${({ showWarning }) =>
         showWarning &&
         css`

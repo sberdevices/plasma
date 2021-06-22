@@ -13,7 +13,10 @@ export type ButtonProps = BaseProps &
  * Основной компонент для создания кнопок.
  */
 export const Button = styled(BaseButton)<ButtonProps>`
-    ${applyInteraction}
+    ${applyInteraction};
+
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 `;
 
 Button.defaultProps = {
