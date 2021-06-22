@@ -13,4 +13,4 @@ export { CheckboxShowcase } from './CheckboxShowcase';
 export { Showcase as CommonShowcase } from './CommonShowcase';
 export { RadioboxShowcase } from './RadioboxShowcase';
 export { Showcase as TabsShowcase } from './TabsShowcase';
-export { Showcase as TextFieldShowcase } from './TextFieldShowcase';
+export { TextFieldShowcase } from './TextFieldShowcase';

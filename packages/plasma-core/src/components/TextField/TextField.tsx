@@ -172,7 +172,7 @@ export const TextFieldContent = styled.div<{ pos: 'left' | 'right' }>`
 
     display: flex;
     align-items: center;
-    max-height: 3rem;
+    height: 3rem;
 `;
 
 /**
