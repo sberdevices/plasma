@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Button as BaseButton } from '@sberdevices/plasma-core';
 import type { ButtonProps as BaseProps, SizeProps, ViewProps, ButtonContentProps } from '@sberdevices/plasma-core';
 
-import { applyInteraction, InteractionProps } from '../../mixins';
+import { applyInteraction, applyNoSelect, InteractionProps } from '../../mixins';
 
 export type ButtonProps = BaseProps &
     Partial<SizeProps<'l' | 'm' | 's'> & ViewProps> &
@@ -14,9 +14,7 @@ export type ButtonProps = BaseProps &
  */
 export const Button = styled(BaseButton)<ButtonProps>`
     ${applyInteraction};
-
-    user-select: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    ${applyNoSelect};
 `;
 
 Button.defaultProps = {
