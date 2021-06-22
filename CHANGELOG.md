@@ -1,3 +1,24 @@
+# (Tue Jun 22 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-core@1.13.0`, `@sberdevices/plasma-web@1.19.0`
+  - feat(plasma-core): Spinner sizes [#438](https://github.com/sberdevices/plasma/pull/438) ([@fanisco](https://github.com/fanisco))
+  - feat(plasma-web): Button success [#438](https://github.com/sberdevices/plasma/pull/438) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/showcase@0.25.0`, `@sberdevices/plasma-core@1.13.0`
+  - docs: Stories for field [#438](https://github.com/sberdevices/plasma/pull/438) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/showcase@0.25.0`, `@sberdevices/plasma-core@1.13.0`, `@sberdevices/plasma-ui@1.21.0`, `@sberdevices/plasma-web@1.19.0`
+  - feat(plasma-core, plasma-ui, plasma-web): Reassembled Field [#438](https://github.com/sberdevices/plasma/pull/438) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Fri Jun 18 2021)
 
 #### 🚀 Enhancement

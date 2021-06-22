@@ -1,3 +1,15 @@
+# v1.21.0 (Tue Jun 22 2021)
+
+#### 🐛 Bug Fix
+
+- feat(plasma-core, plasma-ui, plasma-web): Reassembled Field [#438](https://github.com/sberdevices/plasma/pull/438) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.20.0 (Fri Jun 18 2021)
 
 #### 🐛 Bug Fix

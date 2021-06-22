@@ -1,3 +1,21 @@
+# v1.13.0 (Tue Jun 22 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-core): Spinner sizes [#438](https://github.com/sberdevices/plasma/pull/438) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-web): Button success [#438](https://github.com/sberdevices/plasma/pull/438) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- docs: Stories for field [#438](https://github.com/sberdevices/plasma/pull/438) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-core, plasma-ui, plasma-web): Reassembled Field [#438](https://github.com/sberdevices/plasma/pull/438) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.12.2 (Thu Jun 17 2021)
 
 #### 🐛 Bug Fix
