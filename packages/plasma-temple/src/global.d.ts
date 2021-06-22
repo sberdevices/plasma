@@ -32,11 +32,22 @@ export declare global {
         __spatialNavigation__?: SpatialNavigation;
     }
 
+    interface SpatialNavigationEventDetail {
+        dir: SpatialNavigationDirection;
+    }
+
+    type SpatialNavigationEvent = CustomEvent<SpatialNavigationEventDetail>;
+
     interface Element {
         getSpatialNavigationContainer<T extends Element>(): T;
         focusableAreas(opts: FocusableAreasOption): Element[];
         spatialNavigationSearch(dir: SpatialNavigationDirection, opts?: SpatialNavigationSearchOptions): Element;
         click(): void;
+    }
+
+    interface SpatialEventMap extends HTMLElementEventMap {
+        navbeforefocus: SpatialNavigationEvent;
+        navnofocus: SpatialNavigationEvent;
     }
 
     interface EventTarget {
