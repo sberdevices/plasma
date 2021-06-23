@@ -10,6 +10,7 @@ export interface ItemEntityProps {
     onClick: () => void;
     onFocus?: () => void;
     onKeyDown: React.KeyboardEventHandler;
+    [key: string]: any;
 }
 
 const StyledFootnote1 = styled(Footnote1)`
