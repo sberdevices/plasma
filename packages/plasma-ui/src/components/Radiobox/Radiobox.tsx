@@ -41,11 +41,11 @@ const StyledEllipse = styled.div`
  */
 // eslint-disable-next-line prefer-arrow-callback
 export const Radiobox = React.forwardRef<HTMLInputElement, RadioboxProps>(function Radiobox(
-    { id, label, description, scaleOnInteraction, focused, disabled, ...rest },
+    { id, label, description, scaleOnInteraction, focused, disabled, style, className, ...rest },
     ref,
 ) {
     return (
-        <Root disabled={disabled}>
+        <Root $disabled={disabled} $isDescription={!!description} style={style} className={className}>
             <Input id={id} ref={ref} type="radio" disabled={disabled} {...rest} />
             <StyledTrigger $type="checkbox" $focused={focused} $scaleOnInteraction={scaleOnInteraction}>
                 <StyledEllipse />

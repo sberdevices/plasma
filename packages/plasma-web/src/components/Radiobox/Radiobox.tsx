@@ -11,9 +11,6 @@ const StyledTrigger = styled(Trigger)`
     height: 1.25rem;
     border-radius: 1.125rem;
 `;
-const StyledLabel = styled(Label)`
-    margin-left: 0.75rem;
-`;
 const StyledEllipse = styled.div`
     position: absolute;
     top: 0;
@@ -45,12 +42,12 @@ export const Radiobox = React.forwardRef<HTMLInputElement, RadioboxProps>(functi
     ref,
 ) {
     return (
-        <Root $disabled={disabled} htmlFor={id} style={style} className={className}>
+        <Root $disabled={disabled} $isDescription={!!description} htmlFor={id} style={style} className={className}>
             <Input id={id} ref={ref} type="radio" disabled={disabled} {...rest} />
             <StyledTrigger>
                 <StyledEllipse />
             </StyledTrigger>
-            {label && <StyledLabel>{label}</StyledLabel>}
+            {label && <Label>{label}</Label>}
             {description && <Description>{description}</Description>}
         </Root>
     );
