@@ -139,7 +139,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(functi
     }, [inputRef, indeterminate]);
 
     return (
-        <Root $disabled={disabled} {...rest}>
+        <Root $disabled={disabled} htmlFor={id} {...rest}>
             <Input
                 id={id}
                 ref={forkRef}
