@@ -29,7 +29,7 @@ interface ControlProps {
     /**
      * Надпись лейбла.
      */
-    label?: string; // ToDo: v2.0 переименовать в placeholder
+    label?: string | number; // ToDo: v2.0 переименовать в placeholder
     /**
      * Подсказка для поля ввода.
      */
@@ -45,11 +45,15 @@ export interface TextFieldProps
         StatusProps,
         StateProps,
         ControlProps,
-        InputHTMLAttributes<HTMLInputElement> {
+        Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
     /**
      * Слот для контента слева.
      */
     contentLeft?: React.ReactElement;
+    /**
+     * Видимая ширина поля в символах.
+     */
+    htmlSize?: InputHTMLAttributes<HTMLInputElement>['size'];
 }
 export interface TextAreaProps
     extends StatusProps,

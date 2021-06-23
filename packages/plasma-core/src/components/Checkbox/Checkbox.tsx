@@ -20,14 +20,7 @@ export type ControlProps = {
     description?: string | number | React.ReactNode;
 };
 
-export interface CheckboxProps
-    extends ControlProps,
-        FocusProps,
-        Omit<React.LabelHTMLAttributes<HTMLLabelElement>, 'htmlFor' | 'onChange' | 'onFocus' | 'onBlur'>,
-        Pick<
-            InputHTMLAttributes<HTMLInputElement>,
-            'name' | 'value' | 'checked' | 'disabled' | 'onChange' | 'onFocus' | 'onBlur'
-        > {}
+export interface CheckboxProps extends ControlProps, FocusProps, InputHTMLAttributes<HTMLInputElement> {}
 
 export const Root = styled.label`
     position: relative;

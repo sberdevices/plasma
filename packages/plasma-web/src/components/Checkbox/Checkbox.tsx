@@ -111,22 +111,7 @@ const StyledIndeterminate = styled(Indeterminate)`
  */
 // eslint-disable-next-line prefer-arrow-callback
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox(
-    {
-        id,
-        name,
-        value,
-        label,
-        description,
-        checked,
-        defaultChecked,
-        indeterminate,
-        disabled,
-        tabIndex,
-        onChange,
-        onFocus,
-        onBlur,
-        ...rest
-    },
+    { id, label, description, indeterminate, disabled, style, className, ...rest },
     ref,
 ) {
     const inputRef = React.useRef<HTMLInputElement | null>(null);
@@ -139,21 +124,8 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(functi
     }, [inputRef, indeterminate]);
 
     return (
-        <Root $disabled={disabled} htmlFor={id} {...rest}>
-            <Input
-                id={id}
-                ref={forkRef}
-                type="checkbox"
-                name={name}
-                value={value}
-                checked={checked}
-                defaultChecked={defaultChecked}
-                disabled={disabled}
-                tabIndex={tabIndex}
-                onChange={onChange}
-                onFocus={onFocus}
-                onBlur={onBlur}
-            />
+        <Root $disabled={disabled} htmlFor={id} style={style} className={className}>
+            <Input id={id} ref={forkRef} type="checkbox" disabled={disabled} {...rest} />
             <Trigger>{indeterminate ? <StyledIndeterminate /> : <StyledDone />}</Trigger>
             {label && <Label>{label}</Label>}
             {description && <Description>{description}</Description>}

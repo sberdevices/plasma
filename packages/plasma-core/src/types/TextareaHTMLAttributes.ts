@@ -2,7 +2,7 @@ import React from 'react';
 
 import { DisabledProps } from '../mixins';
 
-export interface TextareaHTMLAttributes<T> extends DisabledProps, React.HTMLAttributes<T> {
+export interface TextareaHTMLAttributes<T> extends DisabledProps, React.TextareaHTMLAttributes<T> {
     autoComplete?: string;
     autoFocus?: boolean;
     cols?: number;

@@ -122,41 +122,12 @@ const StyledMark = styled(IconDone)`
  */
 // eslint-disable-next-line prefer-arrow-callback
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox(
-    {
-        id,
-        name,
-        value,
-        label,
-        description,
-        checked,
-        defaultChecked,
-        scaleOnInteraction,
-        focused,
-        disabled,
-        tabIndex,
-        onChange,
-        onFocus,
-        onBlur,
-        ...rest
-    },
+    { id, label, description, scaleOnInteraction, focused, disabled, ...rest },
     ref,
 ) {
     return (
-        <Root disabled={disabled} {...rest}>
-            <Input
-                id={id}
-                ref={ref}
-                type="checkbox"
-                name={name}
-                value={value}
-                checked={checked}
-                defaultChecked={defaultChecked}
-                disabled={disabled}
-                tabIndex={tabIndex}
-                onChange={onChange}
-                onFocus={onFocus}
-                onBlur={onBlur}
-            />
+        <Root disabled={disabled}>
+            <Input id={id} ref={ref} type="checkbox" disabled={disabled} {...rest} />
             <Trigger $type="checkbox" $focused={focused} $scaleOnInteraction={scaleOnInteraction}>
                 <StyledMark color="inherit" size="xs" />
             </Trigger>
