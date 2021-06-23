@@ -16,11 +16,9 @@ import { SelectList, SelectListProps } from './SelectList';
 export interface SelectViewProps
     extends Pick<FocusProps, 'focused'>,
         Pick<SelectListProps, 'items' | 'onItemClick'>,
-        Pick<TextFieldProps, 'helperText' | 'status'>,
-        Omit<InputHTMLAttributes<HTMLDivElement>, 'value' | 'onChange'>,
-        Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
-    label?: string | number;
-}
+        Pick<TextFieldProps, 'label' | 'helperText' | 'status'>,
+        Omit<InputHTMLAttributes<HTMLDivElement>, 'value' | 'onChange' | 'size'>,
+        Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {}
 
 const StyledRoot = styled(TextFieldRoot)`
     position: relative;

@@ -32,6 +32,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             contentLeft,
             contentRight,
             status,
+            htmlSize,
             onChange,
             onFocus,
             onBlur,
@@ -66,6 +67,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
                     placeholder={size === 'm' && placeLabel}
                     disabled={disabled}
                     status={status}
+                    size={htmlSize}
                     onChange={onChange}
                     onFocus={onFocus}
                     onBlur={onBlur}
