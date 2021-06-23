@@ -9,17 +9,21 @@ export interface ItemEntitiesProps {
     list: Array<ItemEntityProps & Record<'uuid', string>>;
     index?: number;
     title: string;
+    Component?: React.ComponentType<ItemEntityProps>;
 }
 
 export const ItemEntities: React.FC<UnifiedComponentProps<ItemEntitiesProps, 'Title'>> = React.memo(
-    ({ list, platformComponents: { Title }, title }) => (
-        <Section>
-            <Title>{title}</Title>
-            <Row>
-                {list.map((item) => (
-                    <ItemEntity key={item.uuid} {...item} />
-                ))}
-            </Row>
-        </Section>
-    ),
+    ({ list, platformComponents: { Title }, title, Component }) => {
+        const EntityComponent = Component ?? ItemEntity;
+        return (
+            <Section>
+                <Title>{title}</Title>
+                <Row>
+                    {list.map((item) => (
+                        <EntityComponent key={item.uuid} {...item} />
+                    ))}
+                </Row>
+            </Section>
+        );
+    },
 );
