@@ -25,7 +25,7 @@ export interface CheckboxProps extends BaseProps {
 }
 
 export const Root = styled(BaseRoot)<{ $disabled?: boolean }>`
-    align-items: center;
+    column-gap: 0.875rem;
     /* stylelint-disable-next-line number-max-precision */
     margin-left: 0.1875rem;
 
@@ -72,16 +72,12 @@ export const Trigger = styled(BaseTrigger)`
     }
 `;
 export const Label = styled(BaseLabel)`
-    margin-left: 0.875rem;
-
     /* stylelint-disable-next-line */
     ${Input}:disabled ~ & {
         opacity: 0.4;
     }
 `;
 export const Description = styled(BaseDescription)`
-    margin-bottom: 1.125rem;
-
     /* stylelint-disable-next-line */
     ${Input}:disabled ~ & {
         opacity: 0.4;
@@ -124,7 +120,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(functi
     }, [inputRef, indeterminate]);
 
     return (
-        <Root $disabled={disabled} htmlFor={id} style={style} className={className}>
+        <Root $disabled={disabled} $isDescription={!!description} htmlFor={id} style={style} className={className}>
             <Input id={id} ref={forkRef} type="checkbox" disabled={disabled} {...rest} />
             <Trigger>{indeterminate ? <StyledIndeterminate /> : <StyledDone />}</Trigger>
             {label && <Label>{label}</Label>}
