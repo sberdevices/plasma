@@ -1,5 +1,18 @@
 # (Wed Jun 23 2021)
 
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@0.34.1`
+  - fix(plasma-temple): smooth scroll on GridPage [#82](https://github.com/sberdevices/pashka/pull/82) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
+# (Wed Jun 23 2021)
+
 #### 🚀 Enhancement
 
 - `@sberdevices/plasma-temple@0.34.0`
