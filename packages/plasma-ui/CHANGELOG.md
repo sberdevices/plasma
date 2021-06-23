@@ -1,3 +1,15 @@
+# v1.22.1 (Wed Jun 23 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): PickerItem sizes [#458](https://github.com/sberdevices/plasma/pull/458) ([@OgNellis](https://github.com/OgNellis))
+
+#### Authors: 1
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+
+---
+
 # v1.22.0 (Wed Jun 23 2021)
 
 #### 🚀 Enhancement
