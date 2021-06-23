@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-tokens-web",
-    "version": "1.6.0",
+    "version": "1.7.0",
     "description": "",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
@@ -8,7 +8,7 @@
     "types": "index.d.ts",
     "devDependencies": {
         "@sberdevices/plasma-colors": "0.1.0",
-        "@sberdevices/plasma-tokens-utils": "0.4.0",
+        "@sberdevices/plasma-tokens-utils": "0.5.0",
         "@types/color": "3.0.1",
         "@types/node": "^14.11.1",
         "color": "3.1.3",
