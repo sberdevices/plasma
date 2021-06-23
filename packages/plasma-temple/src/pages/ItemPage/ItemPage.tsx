@@ -7,6 +7,7 @@ import { useSpatNav } from '../../hooks/useSpatNav';
 import { useVoiceNavigationWithSpatNav } from '../../hooks/useVoiceNavigation';
 import { scroll } from '../../utils/scroll';
 
+import { ItemEntityProps } from './components/ItemEntity/ItemEntity';
 import { ItemPageState } from './types';
 
 interface ItemPageProps {
@@ -14,6 +15,7 @@ interface ItemPageProps {
     header?: HeaderProps;
     onItemShow: (id: string) => void;
     onItemFocus?: (id: string) => void;
+    entityComponent?: React.ComponentType<ItemEntityProps>;
 }
 
 const getImageSrc = (src: string | string[]) => {
@@ -32,21 +34,25 @@ const scrollToWithOffset = (offset: number) => {
     });
 };
 
-export const ItemPage: React.FC<ItemPageProps> = ({ state, header, onItemShow, onItemFocus }) => {
+export const ItemPage: React.FC<ItemPageProps> = ({ state, header, entityComponent, onItemShow, onItemFocus }) => {
     const { entities, entitiesTitle, background, title, subtitle, description, actionButtonText } = state;
     const { ItemMainSection, ItemEntities } = useRegistry();
 
     const list = React.useMemo(
         () =>
-            entities.map((child, index) => ({
-                onClick: () => onItemShow(child.id),
-                onFocus: () => onItemFocus?.(child.id),
-                onKeyDown: ({ key }: React.KeyboardEvent) => key === 'Enter' && onItemShow(child.id),
-                url: getImageSrc(child.image.src),
-                title: child.label,
-                order: index + 1,
-                uuid: child.id,
-            })),
+            entities.map((child, index) => {
+                const { id, image, label, ...childRest } = child;
+                return {
+                    onClick: () => onItemShow(id),
+                    onFocus: () => onItemFocus?.(id),
+                    onKeyDown: ({ key }: React.KeyboardEvent) => key === 'Enter' && onItemShow(id),
+                    url: getImageSrc(image.src),
+                    title: label,
+                    order: index + 1,
+                    uuid: id,
+                    ...childRest,
+                };
+            }),
         [entities, onItemShow, onItemFocus],
     );
 
@@ -70,7 +76,7 @@ export const ItemPage: React.FC<ItemPageProps> = ({ state, header, onItemShow, o
                 onItemShow={() => onItemShow(entities[0].id)}
                 itemShowButtonText={actionButtonText}
             />
-            <ItemEntities list={list} title={entitiesTitle ?? ''} />
+            <ItemEntities list={list} title={entitiesTitle ?? ''} Component={entityComponent} />
         </>
     );
 };
