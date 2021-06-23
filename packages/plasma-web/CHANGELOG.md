@@ -1,3 +1,22 @@
+# v1.20.0 (Wed Jun 23 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-tokens): Updated tokens from plasma-styles [#455](https://github.com/sberdevices/plasma/pull/455) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web): Components dark theme fixes [#455](https://github.com/sberdevices/plasma/pull/455) ([@fanisco](https://github.com/fanisco))
+- chore: Added favicon for storybooks [#455](https://github.com/sberdevices/plasma/pull/455) ([@fanisco](https://github.com/fanisco))
+- docs: ThemeColors in both libraries [#455](https://github.com/sberdevices/plasma/pull/455) ([@fanisco](https://github.com/fanisco))
+- docs(plasma-web): Added Grid docs [#455](https://github.com/sberdevices/plasma/pull/455) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.19.0 (Tue Jun 22 2021)
 
 #### 🚀 Enhancement

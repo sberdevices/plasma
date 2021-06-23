@@ -1,3 +1,15 @@
+# v1.14.0 (Wed Jun 23 2021)
+
+#### 🐛 Bug Fix
+
+- chore: Added favicon for storybooks [#455](https://github.com/sberdevices/plasma/pull/455) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.13.0 (Tue Jun 22 2021)
 
 #### 🚀 Enhancement
