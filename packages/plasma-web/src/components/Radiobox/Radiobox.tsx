@@ -59,7 +59,7 @@ export const Radiobox = React.forwardRef<HTMLInputElement, RadioboxProps>(functi
     ref,
 ) {
     return (
-        <Root $disabled={disabled} {...rest}>
+        <Root $disabled={disabled} htmlFor={id} {...rest}>
             <Input
                 id={id}
                 ref={ref}
