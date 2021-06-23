@@ -1,3 +1,15 @@
+# v0.34.0 (Wed Jun 23 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Store shop landing page active card index [#81](https://github.com/sberdevices/pashka/pull/81) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v0.33.0 (Tue Jun 22 2021)
 
 #### 🚀 Enhancement
