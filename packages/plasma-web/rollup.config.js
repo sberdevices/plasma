@@ -1,3 +1,3 @@
-import config from '../../rollup.config';
+import { getConfig } from '../../rollup.config';
 
-export default config;
+export default getConfig('plasma-web');

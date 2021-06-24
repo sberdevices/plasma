@@ -4,7 +4,7 @@ import { getBabelOutputPlugin } from '@rollup/plugin-babel';
 import path from 'path';
 
 const outDir = 'es';
-export default {
+const config = {
     input: 'src/index.ts',
     treeshake: {
         propertyReadSideEffects: false,
@@ -23,9 +23,13 @@ export default {
         }
         return !id.startsWith('.') && !path.isAbsolute(id);
     },
+    plugins: [nodeResolve(), typescript({ outDir, declaration: false, declarationMap: false, module: 'esnext' })],
+};
+
+export const getConfig = (namespace = 'plasma') => ({
+    ...config,
     plugins: [
-        nodeResolve(),
-        typescript({ outDir, declaration: false, declarationMap: false, module: 'esnext' }),
+        ...config.plugins,
         getBabelOutputPlugin({
             plugins: [
                 'babel-plugin-annotate-pure-calls',
@@ -33,10 +37,12 @@ export default {
                     'babel-plugin-styled-components',
                     {
                         displayName: false,
-                        namespace: 'plasma-ui',
+                        namespace,
                     },
                 ],
             ],
         }),
     ],
-};
+});
+
+export default config;
