@@ -50,6 +50,12 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Git Info
+        run: |
+          git status
+          git branch -v -v
+          git rev-parse --abbrev-ref HEAD
+
       - name: Release Info
         run: npm whoami && npx auto info || echo 'auto info returned 1'
 
