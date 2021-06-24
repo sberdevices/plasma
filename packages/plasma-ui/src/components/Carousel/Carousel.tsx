@@ -7,9 +7,9 @@ import {
     Carousel as BaseCarousel,
     CarouselTrack as BaseTrack,
     CarouselProps as BaseProps,
+    applyNoSelect,
 } from '@sberdevices/plasma-core';
 import type { AsProps } from '@sberdevices/plasma-core';
-import { applyNoSelect } from '@sberdevices/plasma-core/mixins';
 
 import { useForkRef } from '../../hooks';
 
