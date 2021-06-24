@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { Button as BaseButton } from '@sberdevices/plasma-core';
+import { Button as BaseButton, applyNoSelect } from '@sberdevices/plasma-core';
 import type { ButtonProps as BaseProps, SizeProps, ViewProps, ButtonContentProps } from '@sberdevices/plasma-core';
-import { applyNoSelect } from '@sberdevices/plasma-core';
 
 import { applyInteraction, InteractionProps } from '../../mixins';
 
