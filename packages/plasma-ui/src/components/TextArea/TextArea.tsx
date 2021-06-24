@@ -39,9 +39,9 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             <TextFieldRoot
                 status={status}
                 $disabled={disabled}
-                $isContentRight={!!contentRight}
-                $isValue={!!value}
-                $isHelper={!!helperText}
+                $isContentRight={Boolean(contentRight)}
+                $isValue={Boolean(value)}
+                $isHelper={Boolean(helperText)}
                 className={className}
                 style={style}
             >

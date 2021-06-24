@@ -49,10 +49,10 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             <TextFieldRoot
                 $size={size}
                 $disabled={disabled}
-                $isContentLeft={!!contentLeft}
-                $isContentRight={!!contentRight}
-                $isValue={!!value}
-                $isHelper={!!helperText}
+                $isContentLeft={Boolean(contentLeft)}
+                $isContentRight={Boolean(contentRight)}
+                $isValue={Boolean(value)}
+                $isHelper={Boolean(helperText || helperBlock)}
                 status={status}
                 className={className}
                 style={style}
