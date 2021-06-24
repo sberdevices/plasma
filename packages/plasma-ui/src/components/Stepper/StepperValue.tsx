@@ -1,8 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { body2, text, warning, scalingPixelBasis } from '@sberdevices/plasma-tokens';
-
-import { applyNoSelect } from '../../mixins';
+import { applyNoSelect } from '@sberdevices/plasma-core/mixins';
 
 interface StyledValueProps {
     /**

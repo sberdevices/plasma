@@ -12,6 +12,8 @@ export { applyEllipsis } from './applyEllipsis';
 export { applyMaxLines } from './applyMaxLines';
 export type { MaxLinesProps } from './applyMaxLines';
 
+export { applyNoSelect } from './applyNoSelect';
+
 export { applyRoundness, radiuses } from './applyRoundness';
 export type { RoundnessProps, Roundness } from './applyRoundness';
 
