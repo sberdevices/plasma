@@ -9,9 +9,9 @@ import {
     CarouselProps as BaseProps,
 } from '@sberdevices/plasma-core';
 import type { AsProps } from '@sberdevices/plasma-core';
+import { applyNoSelect } from '@sberdevices/plasma-core/mixins';
 
 import { useForkRef } from '../../hooks';
-import { applyNoSelect } from '../../mixins';
 
 export type CarouselProps = BaseProps & AsProps & React.HTMLAttributes<HTMLDivElement> & {};
 
