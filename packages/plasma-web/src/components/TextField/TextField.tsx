@@ -1,13 +1,7 @@
 import React from 'react';
-import {
-    TextFieldRoot,
-    TextFieldInput,
-    TextFieldPlaceholder,
-    TextFieldHelper,
-    TextFieldProps as BaseProps,
-} from '@sberdevices/plasma-core';
+import { TextFieldRoot, TextFieldInput, TextFieldHelper, TextFieldProps as BaseProps } from '@sberdevices/plasma-core';
 
-import { FieldInput, FieldContent, FieldHelperBlock } from '../Field/Field';
+import { FieldInput, FieldPlaceholder, FieldContent, FieldHelperBlock } from '../Field/Field';
 
 export interface TextFieldProps extends BaseProps {
     /**
@@ -58,7 +52,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
                 style={style}
             >
                 {contentLeft && <FieldContent pos="left">{contentLeft}</FieldContent>}
-                {size === 'l' && placeLabel && <TextFieldPlaceholder htmlFor={id}>{placeLabel}</TextFieldPlaceholder>}
+                {size === 'l' && placeLabel && <FieldPlaceholder htmlFor={id}>{placeLabel}</FieldPlaceholder>}
                 <FieldInput
                     ref={ref}
                     id={id}
