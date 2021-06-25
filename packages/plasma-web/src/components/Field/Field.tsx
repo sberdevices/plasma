@@ -1,6 +1,7 @@
 import styled, { css, InterpolationFunction } from 'styled-components';
 import {
     TextFieldProps,
+    TextFieldPlaceholder,
     TextFieldContent,
     secondary,
     background,
@@ -8,6 +9,7 @@ import {
     success,
     warning,
     critical,
+    tertiary,
 } from '@sberdevices/plasma-core';
 
 import { inputBorder, inputBorderHover } from '../../tokens';
@@ -56,6 +58,10 @@ export const FieldInput = styled.input<Pick<TextFieldProps, 'status'> & { $isFoc
         border-color: ${inputBorder};
     }
 
+    &::placeholder {
+        color: ${tertiary};
+    }
+
     ${({ $isFocused }) =>
         $isFocused &&
         css`
@@ -63,6 +69,9 @@ export const FieldInput = styled.input<Pick<TextFieldProps, 'status'> & { $isFoc
         `}
 
     ${applyInputStatus}
+`;
+export const FieldPlaceholder = styled(TextFieldPlaceholder)`
+    color: ${tertiary};
 `;
 export const FieldContent = styled(TextFieldContent)`
     ${({ pos }) => (pos === 'left' ? 'left: 0.75rem' : 'right: 0.75rem')};
