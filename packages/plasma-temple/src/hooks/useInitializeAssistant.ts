@@ -26,8 +26,8 @@ export const initializeAssistant = <T extends AssistantSmartAppData>({
     nativePanel,
     token,
     url = 'wss://vpstest2.online.sberbank.ru:443/vpsdemo2/',
-    userChannel = 'FEBRUARY',
-    surface = 'DEMO_APP',
+    userChannel = 'B2C',
+    surface = 'SBERBOX',
 }: InitializeParams): AssistantInstance => {
     let assistant: AssistantInstance;
 
@@ -37,6 +37,9 @@ export const initializeAssistant = <T extends AssistantSmartAppData>({
                   userChannel: 'B2C',
                   surface: 'SBERBOX',
                   url: 'wss://nlp2vps.online.sberbank.ru/vps/',
+                  settings: {
+                      authConnector: 'developer_portal_jwt',
+                  },
               }
             : {
                   url,
@@ -54,9 +57,6 @@ export const initializeAssistant = <T extends AssistantSmartAppData>({
             initPhrase,
             nativePanel,
             token,
-            settings: {
-                authConnector: 'developer_portal_jwt',
-            },
             ...environmentProps,
         });
 
