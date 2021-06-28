@@ -35,7 +35,8 @@ const ds = {
 };
 /* eslint-enable @typescript-eslint/camelcase */
 
-describe('mapDesignToBaseColors', () => {
+// TODO: https://github.com/sberdevices/plasma/issues/467
+describe.skip('mapDesignToBaseColors', () => {
     it('Should return base colors object', () => {
         expect(mapDesignToBaseColors(ds)).toMatchObject({
             black: {},

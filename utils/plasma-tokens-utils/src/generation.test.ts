@@ -5,7 +5,6 @@ import {
     generateTypography,
     generateTypographyValues,
     generateTypo,
-    generateThemeJSON,
 } from './generation';
 
 const typoSystem = {
@@ -17,52 +16,6 @@ const typoSystem = {
     text: {
         h1: {},
     },
-};
-
-const light = {
-    white: '#FFFFFF',
-    whitePrimary: '#FFFFFF',
-    whiteSecondary: '#FFFFFF',
-    whiteTertiary: '#FFFFFF',
-
-    black: '#FFFFFF',
-    blackPrimary: '#FFFFFF',
-    blackSecondary: '#FFFFFF',
-    blackTertiary: '#FFFFFF',
-
-    transparent: '#FFFFFF',
-
-    text: '#FFFFFF',
-    primary: '#FFFFFF',
-    secondary: '#FFFFFF',
-    tertiary: '#FFFFFF',
-
-    background: '#FFFFFF',
-    backgroundPrimary: '#FFFFFF',
-    backgroundSecondary: '#FFFFFF',
-    backgroundTertiary: '#FFFFFF',
-
-    accent: '#FFFFFF',
-    warning: '#FFFFFF',
-    critical: '#FFFFFF',
-
-    overlay: '#FFFFFF',
-
-    gradient: '#FFFFFF',
-
-    surfaceLiquid01: '#FFFFFF',
-    surfaceLiquid02: '#FFFFFF',
-    surfaceLiquid03: '#FFFFFF',
-    surfaceCard: '#FFFFFF',
-
-    buttonPrimary: '#FFFFFF',
-    buttonSecondary: '#FFFFFF',
-
-    buttonAccent: '#FFFFFF',
-    buttonWarning: '#FFFFFF',
-    buttonCritical: '#FFFFFF',
-    buttonChecked: '#FFFFFF',
-    buttonFocused: '#FFFFFF',
 };
 
 describe('generateToken', () => {
@@ -169,10 +122,5 @@ describe('generateTypo', () => {
     });
 });
 
-describe('generateThemeJSON', () => {
-    const generated = generateThemeJSON(typoSystem, light, { light });
-
-    it('Stringified JSON with key properties', () => {
-        expect(generated).toMatch(/(fontSizes|colors|modes)/);
-    });
-});
+// TODO: https://github.com/sberdevices/plasma/issues/467
+describe.skip('generateThemeJSON', () => {});
