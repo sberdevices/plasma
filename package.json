@@ -11,7 +11,8 @@
     "cy:open": "cypress open",
     "build-storybook": "lerna run build-storybook",
     "build-docz": "lerna bootstrap --scope=@sberdevices/ui && lerna run docz:build",
-    "lint": "eslint --ext .js,.ts,.tsx ."
+    "lint": "eslint --ext .js,.ts,.tsx .",
+    "test": "lerna run test"
   },
   "devDependencies": {
     "@actions/core": "1.2.7",
