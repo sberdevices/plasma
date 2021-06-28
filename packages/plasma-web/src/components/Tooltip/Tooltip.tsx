@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { caption, buttonChecked, inverse } from '@sberdevices/plasma-tokens-web';
+import { caption, buttonChecked, inverse } from '@sberdevices/plasma-core';
 import { shadows } from '@sberdevices/plasma-core/mixins';
 import { usePopper } from 'react-popper';
 

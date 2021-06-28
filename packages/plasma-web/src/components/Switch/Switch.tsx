@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Switch as BaseSwitch } from '@sberdevices/plasma-core/components/Switch';
-import { accent, tertiary, white } from '@sberdevices/plasma-tokens-web';
+import { accent, tertiary, white } from '@sberdevices/plasma-core';
 
 export type { SwitchProps } from '@sberdevices/plasma-core/components/Switch';
 

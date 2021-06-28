@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { secondary, scalingPixelBasis } from '@sberdevices/plasma-tokens-web';
+import { secondary } from '@sberdevices/plasma-core';
 
 import {
     Headline1,

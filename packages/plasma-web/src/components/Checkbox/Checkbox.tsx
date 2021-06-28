@@ -7,8 +7,12 @@ import {
     CheckboxTrigger as BaseTrigger,
     CheckboxLabel as BaseLabel,
     CheckboxDescription as BaseDescription,
+    accent,
+    buttonSecondary,
+    tertiary,
+    white,
+    transparent,
 } from '@sberdevices/plasma-core';
-import { accent, buttonSecondary, tertiary, white, transparent } from '@sberdevices/plasma-tokens-web';
 import { useForkRef } from '@sberdevices/plasma-core/hooks';
 
 import { Done, Indeterminate } from './Icons';
