@@ -1,3 +1,15 @@
+# v0.34.2 (Mon Jun 28 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): fix init parameters for assistant [#84](https://github.com/sberdevices/pashka/pull/84) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v0.34.1 (Wed Jun 23 2021)
 
 #### 🐛 Bug Fix
