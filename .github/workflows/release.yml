@@ -50,6 +50,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Test plasma-ui
+        run: npm run test-plasma-ui
+
       - name: Release Info
         run: npm whoami && npx auto info || echo 'auto info returned 1'
 
