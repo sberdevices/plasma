@@ -50,6 +50,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Unit tests
+        run: npm run test
+
       - name: Release Info
         run: npm whoami && npx auto info || echo 'auto info returned 1'
 
