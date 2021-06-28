@@ -1,12 +1,6 @@
 import styled, { css } from 'styled-components';
-import {
-    link,
-    linkHover,
-    linkActive,
-    linkVisited,
-    linkVisitedHover,
-    linkVisitedActive,
-} from '@sberdevices/plasma-tokens-web';
+
+import { link, linkHover, linkActive, linkVisited, linkVisitedHover, linkVisitedActive } from '../../tokens';
 
 const views = {
     primary: {

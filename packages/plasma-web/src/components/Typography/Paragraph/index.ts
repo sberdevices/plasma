@@ -1,1 +1,1 @@
-export { ParagraphText1, P1, P } from '@sberdevices/plasma-core/components/Typography/Paragraph';
+export * from '@sberdevices/plasma-core/components/Typography/Paragraph';

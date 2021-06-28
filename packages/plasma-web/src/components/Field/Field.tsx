@@ -1,15 +1,16 @@
 import styled, { css, InterpolationFunction } from 'styled-components';
-import { TextFieldProps, TextFieldContent } from '@sberdevices/plasma-core';
 import {
+    TextFieldProps,
+    TextFieldContent,
     secondary,
     background,
     accent,
     success,
     warning,
     critical,
-    inputBorder,
-    inputBorderHover,
-} from '@sberdevices/plasma-tokens-web';
+} from '@sberdevices/plasma-core';
+
+import { inputBorder, inputBorderHover } from '../../tokens';
 
 const statuses = {
     success,

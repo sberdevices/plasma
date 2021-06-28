@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Badge as BaseBadge, BadgeProps as BaseProps } from '@sberdevices/plasma-core/components/Badge';
-import { surfaceLiquid02, text } from '@sberdevices/plasma-tokens-web';
+import { surfaceLiquid02, text } from '@sberdevices/plasma-core';
 
 export const badgeViews = {
     primary: css`

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { headline5 } from '@sberdevices/plasma-tokens-web';
+
+import { headline5 } from '../../../tokens';
 
 export * from '@sberdevices/plasma-core/components/Typography/Headline';
 

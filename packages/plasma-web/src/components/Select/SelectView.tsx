@@ -5,16 +5,10 @@ import { syntheticFocus, applyDisabled } from '@sberdevices/plasma-core/mixins';
 import type { FocusProps } from '@sberdevices/plasma-core/mixins';
 import type { InputHTMLAttributes } from '@sberdevices/plasma-core/types';
 import type { TextFieldProps } from '@sberdevices/plasma-core/components/TextField';
-import {
-    accent,
-    secondary,
-    background,
-    text,
-    critical,
-    inputBorder,
-    inputBorderHover,
-} from '@sberdevices/plasma-tokens-web';
+import { accent, secondary, background, text, critical } from '@sberdevices/plasma-core';
 import { IconChevronDown } from '@sberdevices/plasma-icons';
+
+import { inputBorder, inputBorderHover } from '../../tokens';
 
 import { SelectDropdown } from './SelectDropdown';
 import { SelectList, SelectListProps } from './SelectList';
