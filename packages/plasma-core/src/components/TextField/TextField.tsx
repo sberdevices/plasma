@@ -160,7 +160,8 @@ export const TextFieldPlaceholder = styled.label`
     color: ${tertiary};
     pointer-events: none;
 
-    transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in;
+    transform-origin: top left;
 
     ${applyEllipsis}
 `;
@@ -199,11 +200,10 @@ interface StyledRootProps extends TextFieldProps {
     $disabled?: boolean;
     $isContentLeft?: boolean;
     $isContentRight?: boolean;
-    $isValue?: boolean;
     $isHelper?: boolean;
 }
 
-const applySizes: InterpolationFunction<StyledRootProps> = ({ $size, $isValue }) => {
+const applySizes: InterpolationFunction<StyledRootProps> = ({ $size }) => {
     switch ($size) {
         case 'm':
             return css`
@@ -223,33 +223,34 @@ const applySizes: InterpolationFunction<StyledRootProps> = ({ $size, $isValue })
                 /* stylelint-disable-next-line selector-nested-pattern */
                 ${TextFieldInput} {
                     height: 3.5rem;
-                    padding: 1rem;
+                    padding: 0.9375rem;
+
+                    /* stylelint-disable-next-line selector-nested-pattern */
+                    &:not(:placeholder-shown) {
+                        padding-top: 1.5rem;
+                        padding-bottom: 0.375rem;
+                    }
+
+                    &::placeholder {
+                        color: transparent;
+                    }
                 }
                 /* stylelint-disable-next-line selector-nested-pattern */
                 ${TextFieldPlaceholder} {
                     /* stylelint-disable-next-line number-max-precision */
-                    padding: 1.125rem 0.9375rem;
+                    top: 1.125rem;
+                    left: 0.9375rem;
+                    right: 0.9375rem;
+                }
+                /* stylelint-disable-next-line selector-nested-pattern */
+                ${TextFieldInput}:not(:placeholder-shown) ~ ${TextFieldPlaceholder} {
+                    transform: scale(0.75);
+                    top: 0.375rem;
                 }
                 /* stylelint-disable-next-line selector-nested-pattern */
                 ${TextFieldContent} {
                     height: 3.5rem;
                 }
-
-                ${$isValue &&
-                css`
-                    /* stylelint-disable-next-line selector-nested-pattern */
-                    ${TextFieldPlaceholder} ~ ${TextFieldInput} {
-                        padding-top: 1.5rem;
-                        padding-bottom: 0.375rem;
-                    }
-                    /* stylelint-disable-next-line selector-nested-pattern */
-                    ${TextFieldPlaceholder} {
-                        ${caption}
-
-                        padding-top: 0;
-                        top: 0.375rem;
-                    }
-                `}
             `;
         default:
             return null;
@@ -274,9 +275,14 @@ export const TextFieldRoot = styled.div<StyledRootProps>`
     ${applyDisabled};
 
     ${({ $isContentLeft, $isContentRight }) => css`
-        ${TextFieldInput}, ${TextFieldTextarea}, ${TextFieldPlaceholder} {
+        ${TextFieldInput}, ${TextFieldTextarea} {
             ${$isContentLeft && 'padding-left: 3.125rem;'} // 50px
             ${$isContentRight && 'padding-right: 3.125rem;'}
+        }
+
+        ${TextFieldPlaceholder} {
+            ${$isContentLeft && 'left: 3.125rem;'} // 50px
+            ${$isContentRight && 'right: 3.125rem;'}
         }
     `}
 

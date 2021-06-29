@@ -18,6 +18,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
         {
             size = 'm',
             value,
+            defaultValue,
             placeholder,
             label,
             helperText,
@@ -45,20 +46,19 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
                 $disabled={disabled}
                 $isContentLeft={Boolean(contentLeft)}
                 $isContentRight={Boolean(contentRight)}
-                $isValue={Boolean(value)}
                 $isHelper={Boolean(helperText || helperBlock)}
                 status={status}
                 className={className}
                 style={style}
             >
                 {contentLeft && <FieldContent pos="left">{contentLeft}</FieldContent>}
-                {size === 'l' && placeLabel && <FieldPlaceholder htmlFor={id}>{placeLabel}</FieldPlaceholder>}
                 <FieldInput
                     ref={ref}
                     id={id}
                     as={TextFieldInput}
                     value={value}
-                    placeholder={size === 'm' && placeLabel}
+                    defaultValue={defaultValue}
+                    placeholder={placeLabel}
                     disabled={disabled}
                     status={status}
                     size={htmlSize}
@@ -67,6 +67,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
                     onBlur={onBlur}
                     {...rest}
                 />
+                {size === 'l' && placeLabel && <FieldPlaceholder htmlFor={id}>{placeLabel}</FieldPlaceholder>}
                 {contentRight && <FieldContent pos="right">{contentRight}</FieldContent>}
                 {helperText && <TextFieldHelper status={status}>{helperText}</TextFieldHelper>}
                 {helperBlock && <FieldHelperBlock>{helperBlock}</FieldHelperBlock>}
