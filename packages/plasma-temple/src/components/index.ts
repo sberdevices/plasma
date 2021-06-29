@@ -8,3 +8,4 @@ export * from './GalleryCard';
 export * from './Gallery';
 export * from './HeroSlider';
 export * from './StateLayout';
+export * from './FullScreenBackgroundWrapper/FullScreenBackgroundWrapper';
