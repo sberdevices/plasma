@@ -9,6 +9,7 @@ import { TextField } from '.';
 const onChange = action('onChange');
 const onFocus = action('onFocus');
 const onBlur = action('onBlur');
+const onInput = action('onInput');
 
 export default {
     title: 'Controls/TextField',
@@ -38,4 +39,8 @@ export const Default = () => {
             onBlur={onBlur}
         />
     );
+};
+
+export const DefaultValue = () => {
+    return <TextField size="l" placeholder="Type here" defaultValue="" onInput={onInput} />;
 };
