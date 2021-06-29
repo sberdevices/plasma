@@ -1,3 +1,16 @@
+# (Tue Jun 29 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@0.35.0`
+  - feat(plasma-temple): Custom entity component in ItemPage [#83](https://github.com/sberdevices/pashka/pull/83) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # (Mon Jun 28 2021)
 
 #### 🐛 Bug Fix
