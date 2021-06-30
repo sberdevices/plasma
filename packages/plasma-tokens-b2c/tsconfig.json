@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "incremental": true,
+        "typeRoots": ["./types", "./node_modules/@types"],
+        "target": "ESNext",
+        "module": "commonjs",
+        "strict": true,
+        "resolveJsonModule": true,
+        "declaration": true,
+        "removeComments": false,
+        "outDir": "./",
+        "rootDir": "./src"
+    },
+    "include": ["./src"],
+    "exclude": ["./data.ts", "./generate.ts"]
+}
