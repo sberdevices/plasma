@@ -15,6 +15,7 @@ import {
     mobile,
 } from '@sberdevices/plasma-tokens';
 import { light, dark } from '@sberdevices/plasma-tokens-web/themes';
+import { light as b2cLight, dark as b2cDark } from '@sberdevices/plasma-tokens-b2c/themes';
 import { web } from '@sberdevices/plasma-tokens-web/typo';
 import { DeviceThemeProvider } from '@sberdevices/plasma-ui/components/Device';
 import { Container } from '@sberdevices/plasma-ui/components/Grid';
@@ -29,6 +30,8 @@ const themes = {
     lightJoy: createGlobalStyle(lightJoy),
     light: createGlobalStyle(light),
     dark: createGlobalStyle(dark),
+    'b2c:light': createGlobalStyle(b2cLight),
+    'b2c:dark': createGlobalStyle(b2cDark),
 };
 const typos = {
     sberPortal: createGlobalStyle(sberPortal),
@@ -81,10 +84,10 @@ export const UIStoryDecorator: StoryDecorator = (Story, context) => {
     if (typo === 'web') {
         typo = 'mobile';
     }
-    if (theme === 'light') {
-        theme = 'darkSber';
+    if (theme === 'light' || theme === 'b2c:light') {
+        theme = 'lightSber';
     }
-    if (theme === 'dark') {
+    if (theme === 'dark' || theme === 'b2c:dark') {
         theme = 'darkSber';
     }
 
@@ -103,10 +106,10 @@ export const UIStoryDecorator: StoryDecorator = (Story, context) => {
 export const UIMobileDecorator: StoryDecorator = (Story, context) => {
     let { theme } = context.globals;
 
-    if (theme === 'light') {
+    if (theme === 'light' || theme === 'b2c:light') {
         theme = 'lightSber';
     }
-    if (theme === 'dark') {
+    if (theme === 'dark' || theme === 'b2c:dark') {
         theme = 'darkSber';
     }
 

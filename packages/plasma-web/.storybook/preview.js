@@ -4,6 +4,7 @@ import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { Title, Subtitle, Description, Primary, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
 import { light, dark } from '@sberdevices/plasma-tokens-web/themes';
+import { light as b2cLight, dark as b2cDark } from '@sberdevices/plasma-tokens-b2c/themes';
 import { web } from '@sberdevices/plasma-tokens-web/typo';
 
 import storybookTheme from './theme';
@@ -21,11 +22,13 @@ const TypoStyle = createGlobalStyle(web);
 const themes = {
     light: createGlobalStyle(light),
     dark: createGlobalStyle(dark),
+    'b2c:light': createGlobalStyle(b2cLight),
+    'b2c:dark': createGlobalStyle(b2cDark),
 };
 
 const withTheme = (Story, context) => {
     const Theme = themes[context.globals.theme];
-
+    console.log(context.globals.theme, Theme);
     return (
         <>
             <TypoStyle />
@@ -80,7 +83,7 @@ export const globalTypes = {
         description: 'Global theme for components',
         defaultValue: 'light',
         toolbar: {
-            items: ['light', 'dark'],
+            items: ['light', 'dark', 'b2c:light', 'b2c:dark'],
         },
     },
 };
