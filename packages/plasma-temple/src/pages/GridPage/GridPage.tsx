@@ -9,13 +9,13 @@ import { useVoiceNavigationWithSpatNav } from '../../hooks/useVoiceNavigation';
 import { scroll } from '../../utils/scroll';
 import { FullScreenBackground } from '../ItemPage/components/FullScreenBackground/FullScreenBackground';
 
-import { GridPageState } from './types';
+import { GridEntity, GridPageState } from './types';
 import { GridCard, GridCardProps } from './components/GridCard';
 
 interface GridPageProps {
     state: GridPageState;
     header?: HeaderProps;
-    onItemShow: (id: string) => void;
+    onItemShow?: (val: GridEntity) => void;
     children?(props: GridCardProps & { key: string }): JSX.Element;
 }
 
@@ -31,7 +31,6 @@ const scrollToWithOffset = (offset: number) => {
     });
 };
 
-// TODO: do we actually need  `--spatial-navigation-contain: contain;` ??
 const ContentSection = styled.section`
     margin-top: 1.5rem;
 `;
@@ -43,8 +42,8 @@ export const GridPage: React.FC<GridPageProps> = ({ state, header, onItemShow, c
         () =>
             items.map((child, index) => ({
                 ...child,
-                onClick: () => onItemShow(child.id),
-                onKeyDown: ({ key }: React.KeyboardEvent) => key === 'Enter' && onItemShow(child.id),
+                onClick: () => onItemShow?.(child),
+                onKeyDown: ({ key }: React.KeyboardEvent) => key === 'Enter' && onItemShow?.(child),
                 url: child.image.src,
                 order: index + 1,
                 uuid: child.id,
