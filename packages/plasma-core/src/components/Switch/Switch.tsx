@@ -32,6 +32,10 @@ const StyledRoot = styled.label<DisabledProps>`
 
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
+    &:focus {
+        outline: 0 none;
+    }
+
     ${applyDisabled}
 `;
 const StyledInput = styled.input`
@@ -45,7 +49,8 @@ const StyledInput = styled.input`
 
 const synthesizeFocus = (ruleset: FlattenSimpleInterpolation, focused?: boolean) => css`
     /* stylelint-disable-next-line selector-nested-pattern, selector-type-no-unknown */
-    ${StyledInput}:focus ~ & {
+    .focus-visible:focus > &,
+    ${StyledInput}.focus-visible:focus ~ & {
         ${ruleset};
     }
 
