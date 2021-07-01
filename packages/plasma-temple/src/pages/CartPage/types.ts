@@ -18,8 +18,10 @@ export interface Order<ID = string | number> {
 }
 
 export interface Cart<ID = string | number> extends Order<ID> {
+    quantityLimit?: number;
     addItem: (item: CartItem) => void;
     removeItem: (id: ID) => void;
     changeItemQuantity: ChangeItemQuantityFn<ID>;
     clearCart: () => void;
+    isOverQuantityLimit: (plusQuantity: number) => boolean;
 }
