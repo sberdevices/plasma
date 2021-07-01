@@ -117,6 +117,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
     controls,
     autofocus,
     onChange,
+    ...rest
 }) => {
     const [[hours, minutes, seconds], setState] = React.useState(getValues(value));
 
@@ -202,7 +203,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
     }
 
     return (
-        <StyledWrapper>
+        <StyledWrapper {...rest}>
             {options.hours && (
                 <SimpleTimePicker
                     autofocus={autofocus}
