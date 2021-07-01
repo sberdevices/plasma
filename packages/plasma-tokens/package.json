@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-tokens",
-    "version": "1.7.0",
+    "version": "1.8.0",
     "description": "",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
@@ -40,7 +40,7 @@
         "@rollup/plugin-node-resolve": "11.2.0",
         "@rollup/plugin-typescript": "8.2.0",
         "@sberdevices/plasma-colors": "0.1.0",
-        "@sberdevices/plasma-tokens-utils": "0.5.0",
+        "@sberdevices/plasma-tokens-utils": "0.6.0",
         "@theme-ui/css": "0.3.1",
         "@types/color": "3.0.1",
         "@types/node": "^14.11.1",
