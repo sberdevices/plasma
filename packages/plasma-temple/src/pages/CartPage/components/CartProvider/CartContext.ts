@@ -14,4 +14,5 @@ export const CartContext = React.createContext<Cart>({
     removeItem: throwFn,
     changeItemQuantity: throwFn,
     clearCart: throwFn,
+    isOverQuantityLimit: throwFn,
 });
