@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import { applyEllipsis } from '../../mixins';
 import type { FocusProps } from '../../mixins';
 import type { InputHTMLAttributes } from '../../types';
-import { body1, footnote1, blackSecondary } from '../../tokens';
+import { body1, footnote1, secondary } from '../../tokens';
 
 export type ControlProps = {
     /**
@@ -79,5 +79,5 @@ export const Description = styled.div`
     ${footnote1};
 
     grid-area: descr;
-    color: ${blackSecondary};
+    color: ${secondary};
 `;
