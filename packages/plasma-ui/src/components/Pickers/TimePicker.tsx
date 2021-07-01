@@ -71,7 +71,7 @@ const defaultOptions = {
     seconds: true,
 };
 
-export interface TimePickerProps extends Omit<SimpleTimePickerProps, 'range' | 'onChange'> {
+export interface TimePickerProps extends Omit<SimpleTimePickerProps, 'type' | 'range' | 'onChange'> {
     /**
      * Обработчик изменения
      */
@@ -107,6 +107,7 @@ export interface TimePickerProps extends Omit<SimpleTimePickerProps, 'range' | '
  * Компонент для выбора времени.
  */
 export const TimePicker: React.FC<TimePickerProps> = ({
+    id,
     options = defaultOptions,
     step,
     size,
@@ -203,9 +204,11 @@ export const TimePicker: React.FC<TimePickerProps> = ({
     }
 
     return (
-        <StyledWrapper {...rest}>
+        <StyledWrapper id={id} {...rest}>
             {options.hours && (
                 <SimpleTimePicker
+                    id={id}
+                    type="hours"
                     autofocus={autofocus}
                     disabled={disabled}
                     controls={controls}
@@ -218,6 +221,8 @@ export const TimePicker: React.FC<TimePickerProps> = ({
             {options.hours && options.minutes && <StyledDividers />}
             {options.minutes && (
                 <SimpleTimePicker
+                    id={id}
+                    type="minutes"
                     autofocus={autofocus && !options.hours}
                     disabled={disabled}
                     controls={controls}
@@ -230,6 +235,8 @@ export const TimePicker: React.FC<TimePickerProps> = ({
             {options.minutes && options.seconds && <StyledDividers />}
             {options.seconds && (
                 <SimpleTimePicker
+                    id={id}
+                    type="seconds"
                     autofocus={autofocus && !options.hours && !options.minutes}
                     disabled={disabled}
                     controls={controls}

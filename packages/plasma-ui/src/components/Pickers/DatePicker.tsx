@@ -44,6 +44,7 @@ export interface DatePickerProps extends Omit<SimpleDatePickerProps, 'type' | 'f
  * Компонент для выбора даты.
  */
 export const DatePicker: React.FC<DatePickerProps> = ({
+    id,
     options = defaultOptions,
     size,
     value,
@@ -168,10 +169,12 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     const yearsOption = getOption('years');
     const shortMonthNameOption = getOption('shortMonthName');
     const monthNameFormat = shortMonthNameOption ? 'short' : 'long';
+
     return (
-        <StyledWrapper {...rest}>
+        <StyledWrapper id={id} {...rest}>
             {daysOption && (
                 <SimpleDatePicker
+                    id={id}
                     autofocus={autofocus}
                     size={size}
                     type="day"
@@ -186,6 +189,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             )}
             {monthsOption && (
                 <SimpleDatePicker
+                    id={id}
                     autofocus={autofocus && !options.days}
                     size={size}
                     type="month"
@@ -201,6 +205,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             )}
             {yearsOption && (
                 <SimpleDatePicker
+                    id={id}
                     autofocus={autofocus && !options.days && !options.months}
                     size={size}
                     type="year"
