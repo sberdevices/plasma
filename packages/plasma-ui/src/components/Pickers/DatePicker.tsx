@@ -54,6 +54,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     autofocus,
     visibleItems,
     onChange,
+    ...rest
 }) => {
     const [[year, month, day], setState] = React.useState(getValues(value));
     const yearsInterval = React.useMemo(() => [min.getFullYear(), max.getFullYear()], [min, max]);
@@ -168,7 +169,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     const shortMonthNameOption = getOption('shortMonthName');
     const monthNameFormat = shortMonthNameOption ? 'short' : 'long';
     return (
-        <StyledWrapper>
+        <StyledWrapper {...rest}>
             {daysOption && (
                 <SimpleDatePicker
                     autofocus={autofocus}
