@@ -1,5 +1,18 @@
 # (Thu Jul 01 2021)
 
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@0.36.1`
+  - fix(plasma-temple): fix playback on key hold [#87](https://github.com/sberdevices/pashka/pull/87) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
+# (Thu Jul 01 2021)
+
 #### 🚀 Enhancement
 
 - `@sberdevices/plasma-temple@0.36.0`
