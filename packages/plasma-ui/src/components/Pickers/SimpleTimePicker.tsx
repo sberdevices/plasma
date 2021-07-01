@@ -4,10 +4,11 @@ import { padZeroNumber as formatter } from '@sberdevices/plasma-core';
 import { Picker, PickerProps } from './Picker';
 
 export interface SimpleTimePickerProps extends Omit<PickerProps, 'items'> {
+    type: 'hours' | 'minutes' | 'seconds';
     range: number[];
 }
 
-export const SimpleTimePicker: React.FC<SimpleTimePickerProps> = ({ range, ...rest }) => {
+export const SimpleTimePicker: React.FC<SimpleTimePickerProps> = ({ id, type, range, ...rest }) => {
     const items = React.useMemo(
         () =>
             range.map((value) => ({
@@ -17,5 +18,5 @@ export const SimpleTimePicker: React.FC<SimpleTimePickerProps> = ({ range, ...re
         [range],
     );
 
-    return <Picker items={items} {...rest} />;
+    return <Picker id={id ? `${id}-${type}` : undefined} items={items} {...rest} />;
 };

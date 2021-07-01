@@ -144,6 +144,7 @@ export interface PickerProps extends SizeProps, DisabledProps, Omit<React.HTMLAt
 }
 
 export const Picker: React.FC<PickerProps> = ({
+    id,
     size = 's',
     value,
     items,
@@ -208,7 +209,7 @@ export const Picker: React.FC<PickerProps> = ({
     }, []);
 
     return (
-        <StyledWrapper ref={wrapperRef} disabled={disabled} tabIndex={tabIndex} {...rest}>
+        <StyledWrapper id={id} ref={wrapperRef} disabled={disabled} tabIndex={tabIndex} {...rest}>
             {controls && (
                 <Button
                     forwardedAs={StyledDivButton}
