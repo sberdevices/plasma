@@ -1,3 +1,17 @@
+# v1.8.0 (Thu Jul 01 2021)
+
+#### 🐛 Bug Fix
+
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- docs(plasma-tokens): links and anchors fixed [#448](https://github.com/sberdevices/plasma/pull/448) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 2
+
+- [@kayman233](https://github.com/kayman233)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
 # v1.7.0 (Wed Jun 23 2021)
 
 #### 🚀 Enhancement

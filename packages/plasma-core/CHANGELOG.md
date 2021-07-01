@@ -1,3 +1,15 @@
+# v1.15.0 (Thu Jul 01 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web): Removed tokens dependency [#468](https://github.com/sberdevices/plasma/pull/468) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.14.0 (Wed Jun 23 2021)
 
 #### 🐛 Bug Fix

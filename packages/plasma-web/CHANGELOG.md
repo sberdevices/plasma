@@ -1,3 +1,23 @@
+# v1.21.0 (Thu Jul 01 2021)
+
+#### 🚀 Enhancement
+
+- feat: Added plasma-tokens-b2c package [#468](https://github.com/sberdevices/plasma/pull/468) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web): Removed tokens dependency [#468](https://github.com/sberdevices/plasma/pull/468) ([@fanisco](https://github.com/fanisco))
+- docs(plasma-web): about page with link added [#447](https://github.com/sberdevices/plasma/pull/447) ([@kayman233](https://github.com/kayman233))
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 3
+
+- [@kayman233](https://github.com/kayman233)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.20.0 (Wed Jun 23 2021)
 
 #### 🚀 Enhancement

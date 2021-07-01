@@ -1,3 +1,36 @@
+# (Thu Jul 01 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/showcase@0.27.0`, `@sberdevices/plasma-tokens-b2c@0.2.0`, `@sberdevices/plasma-web@1.21.0`
+  - feat: Added plasma-tokens-b2c package [#468](https://github.com/sberdevices/plasma/pull/468) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-core@1.15.0`, `@sberdevices/plasma-web@1.21.0`
+  - fix(plasma-web): Removed tokens dependency [#468](https://github.com/sberdevices/plasma/pull/468) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-web@1.21.0`
+  - docs(plasma-web): about page with link added [#447](https://github.com/sberdevices/plasma/pull/447) ([@kayman233](https://github.com/kayman233))
+- `@sberdevices/plasma-ui@1.23.0`
+  - docs(plasma-ui): repository link added [#447](https://github.com/sberdevices/plasma/pull/447) ([@kayman233](https://github.com/kayman233))
+  - ci: setup jest [#466](https://github.com/sberdevices/plasma/pull/466) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/showcase@0.27.0`
+  - build(showcase): fix .npmrc [#466](https://github.com/sberdevices/plasma/pull/466) ([@Yeti-or](https://github.com/Yeti-or))
+- `demo-tokens@0.6.0`
+  - chore(demo-tokens): disable tests [#466](https://github.com/sberdevices/plasma/pull/466) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-tokens-utils@0.6.0`
+  - test(plasma-tokens-utils): skip broken tests [#466](https://github.com/sberdevices/plasma/pull/466) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-tokens@1.8.0`
+  - docs(plasma-tokens): links and anchors fixed [#448](https://github.com/sberdevices/plasma/pull/448) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 3
+
+- [@kayman233](https://github.com/kayman233)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # (Wed Jun 23 2021)
 
 #### 🐛 Bug Fix

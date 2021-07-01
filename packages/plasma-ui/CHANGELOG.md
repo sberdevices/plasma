@@ -1,3 +1,19 @@
+# v1.23.0 (Thu Jul 01 2021)
+
+#### 🐛 Bug Fix
+
+- docs(plasma-ui): repository link added [#447](https://github.com/sberdevices/plasma/pull/447) ([@kayman233](https://github.com/kayman233))
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- ci: setup jest [#466](https://github.com/sberdevices/plasma/pull/466) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 3
+
+- [@kayman233](https://github.com/kayman233)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.22.1 (Wed Jun 23 2021)
 
 #### 🐛 Bug Fix

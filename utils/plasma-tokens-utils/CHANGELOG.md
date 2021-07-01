@@ -1,3 +1,15 @@
+# v0.6.0 (Thu Jul 01 2021)
+
+#### 🐛 Bug Fix
+
+- test(plasma-tokens-utils): skip broken tests [#466](https://github.com/sberdevices/plasma/pull/466) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v0.5.0 (Wed Jun 23 2021)
 
 #### 🚀 Enhancement
