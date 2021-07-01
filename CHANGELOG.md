@@ -1,3 +1,16 @@
+# (Thu Jul 01 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@0.36.0`
+  - feat(plasma-temple): Component for custom full screen background [#85](https://github.com/sberdevices/pashka/pull/85) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # (Tue Jun 29 2021)
 
 #### 🚀 Enhancement
