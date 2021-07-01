@@ -9,13 +9,13 @@ on:
 
 jobs:
   clean:
-    name: Clean
+    name: Clean up
     runs-on: ubuntu-latest
     env:
       NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
       PR_NAME: pr-${{ github.event.number }}
     steps:
-      - name: Clean old documentation / sb
+      - name: Clean artifacts made for closed pr
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.DOCS_HOST }}
@@ -28,3 +28,4 @@ jobs:
             rm -rf ui-storybook-$PR_NAME/
             rm -rf web-$PR_NAME/
             rm -rf web-storybook-$PR_NAME/
+            rm -rf demo-canvas-app-$PR_NAME/
