@@ -1,5 +1,22 @@
 # (Thu Jul 01 2021)
 
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-ui@1.23.1`
+  - fix(plasma-ui): no-select mixin lint error fix [#462](https://github.com/sberdevices/plasma/pull/462) ([@kayman233](https://github.com/kayman233))
+  - fix(plasma-ui): no-select mixin added [#462](https://github.com/sberdevices/plasma/pull/462) ([@kayman233](https://github.com/kayman233))
+  - fix(plasma-ui): text selection fixed [#462](https://github.com/sberdevices/plasma/pull/462) ([@kayman233](https://github.com/kayman233))
+- `@sberdevices/plasma-core@1.15.1`, `@sberdevices/plasma-ui@1.23.1`
+  - fix(plasma-ui): no-select mixin in plasma-core [#462](https://github.com/sberdevices/plasma/pull/462) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 1
+
+- [@kayman233](https://github.com/kayman233)
+
+---
+
+# (Thu Jul 01 2021)
+
 #### 🚀 Enhancement
 
 - `@sberdevices/showcase@0.27.0`, `@sberdevices/plasma-tokens-b2c@0.2.0`, `@sberdevices/plasma-web@1.21.0`

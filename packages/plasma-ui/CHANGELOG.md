@@ -1,3 +1,20 @@
+# v1.23.1 (Thu Jul 01 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): no-select mixin lint error fix [#462](https://github.com/sberdevices/plasma/pull/462) ([@kayman233](https://github.com/kayman233))
+- fix(plasma-ui): no-select mixin in plasma-core [#462](https://github.com/sberdevices/plasma/pull/462) ([@kayman233](https://github.com/kayman233))
+- fix(plasma-ui): no-select mixin added [#462](https://github.com/sberdevices/plasma/pull/462) ([@kayman233](https://github.com/kayman233))
+- fix(plasma-ui): text selection fixed [#462](https://github.com/sberdevices/plasma/pull/462) ([@kayman233](https://github.com/kayman233))
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@kayman233](https://github.com/kayman233)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
 # v1.23.0 (Thu Jul 01 2021)
 
 #### 🐛 Bug Fix

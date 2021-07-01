@@ -1,3 +1,15 @@
+# v1.15.1 (Thu Jul 01 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): no-select mixin in plasma-core [#462](https://github.com/sberdevices/plasma/pull/462) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 1
+
+- [@kayman233](https://github.com/kayman233)
+
+---
+
 # v1.15.0 (Thu Jul 01 2021)
 
 #### 🐛 Bug Fix
