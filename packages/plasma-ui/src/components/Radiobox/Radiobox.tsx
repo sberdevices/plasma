@@ -47,7 +47,7 @@ export const Radiobox = React.forwardRef<HTMLInputElement, RadioboxProps>(functi
     return (
         <Root $disabled={disabled} $isDescription={!!description} style={style} className={className}>
             <Input id={id} ref={ref} type="radio" disabled={disabled} {...rest} />
-            <StyledTrigger $type="checkbox" $focused={focused} $scaleOnInteraction={scaleOnInteraction}>
+            <StyledTrigger $type="radio" $focused={focused} $scaleOnInteraction={scaleOnInteraction}>
                 <StyledEllipse />
             </StyledTrigger>
             {label && <Label>{label}</Label>}
