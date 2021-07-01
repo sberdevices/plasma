@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useLayoutEffect } from 'react';
 
+import { useThrottledCallback } from '../../../hooks';
 import { MediaPlayerActions, MediaPlayerState, PlayerType, PlayerTypeMap } from '../types';
 
 const updateStateDuration = (state: MediaPlayerState, newDuration: number, startTime: number, endTime: number) => {
@@ -101,24 +102,30 @@ export const useMediaPlayer: UseMediaPlayer = (ref, params) => {
         };
     }, [autoPlay, handlers, ref]);
 
+    const playbackAction = useThrottledCallback(
+        () => {
+            if (!ref.current) {
+                return;
+            }
+
+            const { currentTime, paused, duration } = ref.current;
+
+            if (paused) {
+                if (currentTime >= Math.min(end ?? duration, duration)) {
+                    ref.current.currentTime = start;
+                }
+                ref.current.play();
+            } else {
+                ref.current.pause();
+            }
+        },
+        [ref],
+        300,
+    );
+
     const actions = useMemo(
         () => ({
-            playback: () => {
-                if (!ref.current) {
-                    return;
-                }
-
-                const { currentTime, paused, duration } = ref.current;
-
-                if (paused) {
-                    if (currentTime >= Math.min(end ?? duration, duration)) {
-                        ref.current.currentTime = start;
-                    }
-                    ref.current.play();
-                } else {
-                    ref.current.pause();
-                }
-            },
+            playback: playbackAction,
             seekTo: (time: number) => {
                 if (ref.current) {
                     const { duration } = ref.current;
@@ -135,7 +142,7 @@ export const useMediaPlayer: UseMediaPlayer = (ref, params) => {
                 }
             },
         }),
-        [end, ref, start],
+        [end, ref, start, playbackAction],
     );
 
     return {
