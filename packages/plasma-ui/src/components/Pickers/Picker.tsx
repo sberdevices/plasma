@@ -69,6 +69,18 @@ const StyledCarousel = styled(Carousel)`
     &[data-no-scroll-behavior='true'] {
         scroll-behavior: unset;
     }
+
+    &:focus {
+        outline: 0 none;
+
+        & ${StyledWhiteText} {
+            color: ${primary};
+        }
+
+        & ~ ${StyledDivButton} {
+            opacity: 0.32;
+        }
+    }
 `;
 interface StyledWrapperProps {
     $visibleItems: 3 | 5;
@@ -83,18 +95,6 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
 
     & + & {
         margin-left: 1rem;
-    }
-
-    &:focus {
-        outline: 0 none;
-
-        & ${StyledWhiteText} {
-            color: ${primary};
-        }
-
-        & ${StyledDivButton} {
-            opacity: 0.32;
-        }
     }
 
     ${({ $size, $visibleItems }) => css`
@@ -194,7 +194,7 @@ export const Picker: React.FC<PickerProps> = ({
     // Навигация с помощью пульта/клавиатуры
     // Не перелистывает, если компонент неактивен
     useRemoteListener((key, event) => {
-        if (wrapperRef.current !== document.activeElement) {
+        if (carouselRef.current !== document.activeElement) {
             return;
         }
         if (key !== 'UP' && key !== 'DOWN') {
@@ -214,8 +214,8 @@ export const Picker: React.FC<PickerProps> = ({
     });
 
     React.useEffect(() => {
-        if (autofocus && wrapperRef.current) {
-            wrapperRef.current.focus();
+        if (autofocus && carouselRef.current) {
+            carouselRef.current.focus();
         }
         /**
          * Удаляем аттрибут отключения анимации без перерендера компонента.
@@ -230,7 +230,6 @@ export const Picker: React.FC<PickerProps> = ({
         <StyledWrapper
             id={id}
             ref={wrapperRef}
-            tabIndex={tabIndex}
             $size={size}
             $disabled={disabled}
             $visibleItems={visibleItems}
@@ -239,6 +238,7 @@ export const Picker: React.FC<PickerProps> = ({
         >
             <StyledCarousel
                 ref={carouselRef}
+                tabIndex={tabIndex}
                 axis="y"
                 index={index}
                 scaleCallback={size === 's' ? scaleCallbackS : scaleCallbackL}
@@ -261,6 +261,7 @@ export const Picker: React.FC<PickerProps> = ({
                         item={item}
                         index={i}
                         activeIndex={index}
+                        tabIndex={-1}
                         size={size}
                         onClick={() => onChange?.(item)}
                     />
@@ -271,6 +272,7 @@ export const Picker: React.FC<PickerProps> = ({
                     <Button
                         data-placement="top"
                         forwardedAs={StyledDivButton}
+                        tabIndex={-1}
                         view="clear"
                         disabled={disabled}
                         outlined={false}
@@ -280,6 +282,7 @@ export const Picker: React.FC<PickerProps> = ({
                     <Button
                         data-placement="bottom"
                         forwardedAs={StyledDivButton}
+                        tabIndex={-1}
                         view="clear"
                         disabled={disabled}
                         outlined={false}
