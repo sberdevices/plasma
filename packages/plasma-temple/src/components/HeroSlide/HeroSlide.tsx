@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Col, Row } from '@sberdevices/plasma-ui';
 import { isSberBox } from '@sberdevices/plasma-ui/utils';
 
-import { FullScreenBackground } from '../../components/FullScreenBackground/FullScreenBackground';
+import { FullScreenBackground } from '../FullScreenBackground/FullScreenBackground';
 import { useFocusOnMount } from '../../hooks/useFocusOnMount';
 import { UnifiedComponentProps } from '../../registry/types';
 

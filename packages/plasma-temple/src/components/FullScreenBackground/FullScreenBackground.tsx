@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { FullScreenBackgroundWrapper } from '..';
+import { FullScreenBackgroundWrapper } from '../FullScreenBackgroundWrapper/FullScreenBackgroundWrapper';
 
 const StyledBackgroundImage = styled.img`
     width: 100%;
