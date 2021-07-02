@@ -1,3 +1,22 @@
+# v1.24.0 (Fri Jul 02 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): Radio type in trigger [#463](https://github.com/sberdevices/plasma/pull/463) ([@fanisco](https://github.com/fanisco))
+- fix: TextField placeholder placement [#463](https://github.com/sberdevices/plasma/pull/463) ([@fanisco](https://github.com/fanisco))
+- fix: Build components with own namespace es/cjs [#463](https://github.com/sberdevices/plasma/pull/463) ([@fanisco](https://github.com/fanisco))
+- fix: TextField helperText to boolean [#463](https://github.com/sberdevices/plasma/pull/463) ([@fanisco](https://github.com/fanisco))
+- fix: Checkbox layout with various content [#463](https://github.com/sberdevices/plasma/pull/463) ([@fanisco](https://github.com/fanisco))
+- fix: Input interface and props [#463](https://github.com/sberdevices/plasma/pull/463) ([@fanisco](https://github.com/fanisco))
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.23.1 (Thu Jul 01 2021)
 
 #### 🐛 Bug Fix

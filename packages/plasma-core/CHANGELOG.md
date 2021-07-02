@@ -1,3 +1,22 @@
+# v1.16.0 (Fri Jul 02 2021)
+
+#### 🚀 Enhancement
+
+- feat: Checkbox description color [#463](https://github.com/sberdevices/plasma/pull/463) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- fix: TextField placeholder placement [#463](https://github.com/sberdevices/plasma/pull/463) ([@fanisco](https://github.com/fanisco))
+- fix: Build components with own namespace es/cjs [#463](https://github.com/sberdevices/plasma/pull/463) ([@fanisco](https://github.com/fanisco))
+- fix: Checkbox layout with various content [#463](https://github.com/sberdevices/plasma/pull/463) ([@fanisco](https://github.com/fanisco))
+- fix: Input interface and props [#463](https://github.com/sberdevices/plasma/pull/463) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.15.1 (Thu Jul 01 2021)
 
 #### 🐛 Bug Fix

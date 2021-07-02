@@ -1,3 +1,31 @@
+# (Fri Jul 02 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-core@1.16.0`
+  - feat: Checkbox description color [#463](https://github.com/sberdevices/plasma/pull/463) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-ui@1.24.0`
+  - fix(plasma-ui): Radio type in trigger [#463](https://github.com/sberdevices/plasma/pull/463) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-core@1.16.0`, `@sberdevices/plasma-ui@1.24.0`, `@sberdevices/plasma-web@1.22.0`
+  - fix: TextField placeholder placement [#463](https://github.com/sberdevices/plasma/pull/463) ([@fanisco](https://github.com/fanisco))
+  - fix: Build components with own namespace es/cjs [#463](https://github.com/sberdevices/plasma/pull/463) ([@fanisco](https://github.com/fanisco))
+  - fix: Checkbox layout with various content [#463](https://github.com/sberdevices/plasma/pull/463) ([@fanisco](https://github.com/fanisco))
+  - fix: Input interface and props [#463](https://github.com/sberdevices/plasma/pull/463) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-web@1.22.0`
+  - fix(plasma-web): TextField placeholder color [#463](https://github.com/sberdevices/plasma/pull/463) ([@fanisco](https://github.com/fanisco))
+  - fix(plasma-web): Checkbox & Radio label for attribute [#463](https://github.com/sberdevices/plasma/pull/463) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-ui@1.24.0`, `@sberdevices/plasma-web@1.22.0`
+  - fix: TextField helperText to boolean [#463](https://github.com/sberdevices/plasma/pull/463) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Thu Jul 01 2021)
 
 #### 🐛 Bug Fix
