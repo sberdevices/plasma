@@ -19,46 +19,6 @@ import {
     StyledWhiteText,
 } from './PickerItem';
 
-const StyledDivButton = styled.div`
-    && {
-        height: auto;
-        padding: 0;
-        opacity: 0;
-        color: ${primary};
-    }
-`;
-
-const StyledWrapper = styled.div<DisabledProps>`
-    width: max-content;
-    text-align: center;
-
-    & + & {
-        margin-left: 1rem;
-    }
-
-    &:focus {
-        outline: 0 none;
-
-        & ${StyledWhiteText} {
-            color: ${primary};
-        }
-
-        & ${StyledDivButton} {
-            opacity: 0.32;
-        }
-    }
-
-    ${applyDisabled}
-
-    ${({ disabled }) =>
-        disabled &&
-        css`
-            ${StyledPickerItem} {
-                cursor: not-allowed;
-            }
-        `}
-`;
-
 const sizes = {
     l: {
         3: {
@@ -82,27 +42,85 @@ const sizes = {
     },
 };
 
-interface StyledCarouselProps extends DisabledProps {
-    visibleItems: 3 | 5;
-    $size: 'l' | 's';
-}
+const StyledDivButton = styled.div`
+    position: absolute;
+    left: 0;
+    right: 0;
 
-const StyledCarousel = styled(Carousel)<StyledCarouselProps>`
-    ${({ $size, visibleItems }) => css`
-        height: ${sizes[$size][visibleItems].height};
-    `};
+    margin: 0 auto;
+    padding: 0;
+    width: 1.25rem;
+    height: 1.25rem;
 
-    ${({ disabled }) =>
-        disabled &&
-        css`
-            overflow: hidden;
-        `}
+    opacity: 0;
+    color: ${primary};
 
-    -webkit-mask-image: linear-gradient(rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 10%, rgb(0, 0, 0) 90%, rgba(0, 0, 0, 0) 100%);
+    &[data-placement='top'] {
+        top: 0;
+    }
+
+    &[data-placement='bottom'] {
+        bottom: 0;
+    }
+`;
+const StyledCarousel = styled(Carousel)`
+    mask-image: linear-gradient(rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 10%, rgb(0, 0, 0) 90%, rgba(0, 0, 0, 0) 100%);
 
     &[data-no-scroll-behavior='true'] {
         scroll-behavior: unset;
     }
+`;
+interface StyledWrapperProps {
+    $visibleItems: 3 | 5;
+    $size: 'l' | 's';
+    $disabled?: boolean;
+    $controls?: boolean;
+}
+const StyledWrapper = styled.div<StyledWrapperProps>`
+    position: relative;
+    width: max-content;
+    text-align: center;
+
+    & + & {
+        margin-left: 1rem;
+    }
+
+    &:focus {
+        outline: 0 none;
+
+        & ${StyledWhiteText} {
+            color: ${primary};
+        }
+
+        & ${StyledDivButton} {
+            opacity: 0.32;
+        }
+    }
+
+    ${({ $size, $visibleItems }) => css`
+        height: ${sizes[$size][$visibleItems].height};
+    `};
+
+    ${applyDisabled}
+
+    ${({ $disabled }) =>
+        $disabled &&
+        css`
+            ${StyledCarousel} {
+                overflow: hidden;
+            }
+
+            ${StyledPickerItem} {
+                cursor: not-allowed;
+            }
+        `}
+
+    ${({ $controls }) =>
+        $controls &&
+        css`
+            padding-top: 1.25rem;
+            padding-bottom: 1.25rem;
+        `}
 `;
 
 const getIndex = (index: number, cmd: '+' | '-', min: number, max: number) => {
@@ -209,22 +227,18 @@ export const Picker: React.FC<PickerProps> = ({
     }, []);
 
     return (
-        <StyledWrapper id={id} ref={wrapperRef} disabled={disabled} tabIndex={tabIndex} {...rest}>
-            {controls && (
-                <Button
-                    forwardedAs={StyledDivButton}
-                    view="clear"
-                    disabled={disabled}
-                    outlined={false}
-                    contentLeft={<IconChevronUp size="s" />}
-                    onClick={toPrev}
-                />
-            )}
+        <StyledWrapper
+            id={id}
+            ref={wrapperRef}
+            tabIndex={tabIndex}
+            $size={size}
+            $disabled={disabled}
+            $visibleItems={visibleItems}
+            $controls={controls}
+            {...rest}
+        >
             <StyledCarousel
                 ref={carouselRef}
-                $size={size}
-                visibleItems={visibleItems}
-                disabled={disabled}
                 axis="y"
                 index={index}
                 scaleCallback={size === 's' ? scaleCallbackS : scaleCallbackL}
@@ -232,13 +246,13 @@ export const Picker: React.FC<PickerProps> = ({
                 scrollSnapType="mandatory"
                 detectActive
                 detectThreshold={0.5}
+                paddingStart={sizes[size][visibleItems].padding}
+                paddingEnd={sizes[size][visibleItems].padding}
                 onIndexChange={(i) => {
                     if (items[i] && items[i].value !== value) {
                         onChange?.(items[i]);
                     }
                 }}
-                paddingStart={sizes[size][visibleItems].padding}
-                paddingEnd={sizes[size][visibleItems].padding}
                 {...(noScrollBehavior.current ? { 'data-no-scroll-behavior': true } : {})}
             >
                 {items.map((item, i) => (
@@ -253,14 +267,26 @@ export const Picker: React.FC<PickerProps> = ({
                 ))}
             </StyledCarousel>
             {controls && (
-                <Button
-                    forwardedAs={StyledDivButton}
-                    view="clear"
-                    disabled={disabled}
-                    outlined={false}
-                    contentLeft={<IconChevronDown size="s" />}
-                    onClick={toNext}
-                />
+                <>
+                    <Button
+                        data-placement="top"
+                        forwardedAs={StyledDivButton}
+                        view="clear"
+                        disabled={disabled}
+                        outlined={false}
+                        contentLeft={<IconChevronUp size="s" />}
+                        onClick={toPrev}
+                    />
+                    <Button
+                        data-placement="bottom"
+                        forwardedAs={StyledDivButton}
+                        view="clear"
+                        disabled={disabled}
+                        outlined={false}
+                        contentLeft={<IconChevronDown size="s" />}
+                        onClick={toNext}
+                    />
+                </>
             )}
         </StyledWrapper>
     );
