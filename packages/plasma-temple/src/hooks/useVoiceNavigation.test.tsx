@@ -74,7 +74,7 @@ describe('useVoiceNavigationHook', () => {
             assistantHostMock.onReady(async () => {
                 await assistantHostMock.receiveCommand({
                     type: 'smart_app_data',
-                    action: { type: 'NAVIGATE', direction: 'DOWN' },
+                    smart_app_data: { type: 'NAVIGATE', direction: 'DOWN' },
                 });
 
                 expect(setIndex).toBeCalledTimes(0);
@@ -442,7 +442,7 @@ describe('useVoiceNavigationWithSpatNav', () => {
             assistantHostMock.onReady(async () => {
                 await assistantHostMock.receiveCommand({
                     type: 'smart_app_data',
-                    action: { type: 'NAVIGATE', direction: 'DOWN' },
+                    smart_app_data: { type: 'NAVIGATE', direction: 'DOWN' },
                 });
 
                 expect(navigateMock).toBeCalledTimes(0);
