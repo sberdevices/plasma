@@ -1,3 +1,15 @@
+# v0.37.0 (Fri Jul 02 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Add cart quantity limit [#88](https://github.com/sberdevices/pashka/pull/88) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v0.36.3 (Fri Jul 02 2021)
 
 #### 🐛 Bug Fix
