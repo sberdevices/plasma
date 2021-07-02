@@ -1,3 +1,15 @@
+# v0.36.3 (Fri Jul 02 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): media player components fixes [#89](https://github.com/sberdevices/pashka/pull/89) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v0.36.2 (Fri Jul 02 2021)
 
 #### 🐛 Bug Fix
