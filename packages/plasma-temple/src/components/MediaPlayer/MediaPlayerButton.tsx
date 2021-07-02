@@ -13,18 +13,18 @@ const StyledActionButton = styled(ActionButton)`
     margin: 0 8px;
 `;
 
-export const MediaPlayerButton = ({
+export const MediaPlayerButton: React.FC<MediaPlayerButtonProps> = ({
     disabled,
     visible = true,
     children,
     onClick,
-}: React.PropsWithChildren<MediaPlayerButtonProps>) => {
+}) => {
     if (!visible) {
         return null;
     }
 
     return (
-        <StyledActionButton size="l" view="secondary" pin="circle-circle" disabled={disabled} onClick={onClick}>
+        <StyledActionButton size="l" view="overlay" pin="circle-circle" disabled={disabled} onClick={onClick}>
             {children}
         </StyledActionButton>
     );

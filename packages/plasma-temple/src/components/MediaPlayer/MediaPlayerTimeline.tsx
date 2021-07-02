@@ -120,6 +120,15 @@ export const MediaPlayerTimeline = <T extends PlayerType>({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [playerRef.current, updateTime, currentTime, duration]);
 
+    React.useEffect(() => {
+        if (duration !== mediaData.duration) {
+            setMediaData({
+                ...mediaData,
+                duration,
+            });
+        }
+    }, [duration, mediaData]);
+
     return (
         <StyledWrapper className={className}>
             <StyledTime>{formatTime(mediaData.currentTime)}</StyledTime>
