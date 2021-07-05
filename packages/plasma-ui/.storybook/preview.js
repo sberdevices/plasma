@@ -40,15 +40,23 @@ const themes = {
 
 const withTheme = (Story, context) => {
     const Theme = themes[context.globals.theme];
+    const deviceKind = new URL(document.location).searchParams.get('deviceKind');
+    let typoSize = context.globals.typoSize;
+
+    if (isDocs()) {
+        typoSize = 'mobile';
+    }
+
+    if (deviceKind) {
+        typoSize = deviceKind;
+    }
 
     return (
-        <>
-            <DeviceThemeProvider detectDeviceCallback={() => (isDocs() ? 'mobile' : context.globals.typoSize)}>
-                <Theme />
-                <DocumentStyle />
-                <Story {...context} />
-            </DeviceThemeProvider>
-        </>
+        <DeviceThemeProvider detectDeviceCallback={() => typoSize}>
+            <Theme />
+            <DocumentStyle />
+            <Story {...context} />
+        </DeviceThemeProvider>
     );
 };
 
