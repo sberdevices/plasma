@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useIsomorphicLayoutEffect } from '@sberdevices/plasma-core';
 import { accent } from '@sberdevices/plasma-tokens';
 
 import { SimpleTimePicker, SimpleTimePickerProps } from './SimpleTimePicker';
@@ -175,7 +176,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
 
     // При очередном прогоне, если значения hours, minutes, seconds изменились,
     // необходимо вызвать событие изменения, создав новый экземпляр Date
-    React.useLayoutEffect(() => {
+    useIsomorphicLayoutEffect(() => {
         const [oldHours, oldMinutes, oldSeconds] = getValues(value);
 
         if (oldHours !== hours || oldMinutes !== minutes || oldSeconds !== seconds) {
