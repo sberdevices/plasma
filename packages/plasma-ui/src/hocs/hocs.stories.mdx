@@ -10,10 +10,14 @@ import { Meta } from '@storybook/addon-docs/blocks';
 ### Использование
 ```tsx
 import React from 'react';
+import { Button, ButtonProps } from '@sberdevices/plasma-core';
 import { withAutoFocus } from '@sberdevices/plasma-core/hocs';
 
-const Button: React.FC = (props) => <Button {...props} />
-const AutoFocusButton = withAutoFocus(Button);
+const AutoFocusButton = withAutoFocus<ButtonProps>(Button);
+
+export const Default = () => {
+    return <AutoFocusButton autoFocus preventScroll={false} />
+}
 ```
 
 ## withSkeleton
@@ -23,12 +27,12 @@ const AutoFocusButton = withAutoFocus(Button);
 ### Использование
 ```tsx
 import React from 'react';
-import { Button, ButtonProps } from '@sberdevices/plasma-core/components/Button';
+import { Button, ButtonProps } from '@sberdevices/plasma-core';
 import { withSkeleton, WithSkeletonProps } from '@sberdevices/plasma-core/hocs';
 
 const ButtonSkeleton = withSkeleton<ButtonProps & WithSkeletonProps>(Button);
 
-return default () => (
+return const Default = () => (
     <>
         <ButtonSkeleton skeleton /> // Скелетон
         <ButtonSkeleton /> // Кнопка
