@@ -7,6 +7,8 @@ import {
     gridColumns,
     gridMargins,
     gridGutters,
+    canUseDOM,
+    useIsomorphicLayoutEffect,
 } from '@sberdevices/plasma-core';
 
 interface StyledContainerProps {
@@ -42,7 +44,7 @@ export const Container: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ chil
     const ref = React.useRef<HTMLDivElement | null>(null);
     const [width, setWidth] = React.useState(0);
 
-    React.useLayoutEffect(() => {
+    useIsomorphicLayoutEffect(() => {
         const resizeHandler = () => {
             if (ref.current) {
                 setWidth(ref.current?.offsetWidth);
@@ -51,8 +53,14 @@ export const Container: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ chil
         if (ref.current) {
             setWidth(ref.current?.offsetWidth);
         }
-        window.addEventListener('resize', resizeHandler);
-        return () => window.removeEventListener('resize', resizeHandler);
+        if (canUseDOM) {
+            window.addEventListener('resize', resizeHandler);
+        }
+        return () => {
+            if (canUseDOM) {
+                window.removeEventListener('resize', resizeHandler);
+            }
+        };
     }, []);
 
     return (

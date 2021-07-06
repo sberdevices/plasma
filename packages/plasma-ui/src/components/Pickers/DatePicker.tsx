@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useIsomorphicLayoutEffect } from '@sberdevices/plasma-core';
 
 import { SimpleDatePicker, SimpleDatePickerProps } from './SimpleDatePicker';
 
@@ -151,7 +152,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
      * При очередном прогоне, если значения year, month, day изменились,
      * необходимо вызвать событие изменения, создав новый экземпляр Date
      */
-    React.useLayoutEffect(() => {
+    useIsomorphicLayoutEffect(() => {
         const [oldYear, oldMonth, oldDay] = getValues(value);
         const isChanged = oldYear !== year || oldMonth !== month || oldDay !== day;
         if (onChange && isChanged) {
