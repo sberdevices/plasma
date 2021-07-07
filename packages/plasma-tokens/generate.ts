@@ -12,11 +12,13 @@ import {
     generateThemeJSON,
     createTypoStyles,
     flattenTokenData,
+    FullColorsList,
 } from '@sberdevices/plasma-tokens-utils';
 import type { TypoSystem } from '@sberdevices/plasma-tokens-utils';
 
 import { baseColors, themes, typoSystem, deviceScales } from './data';
 import type { ThemeTokens, TypographyTypes } from './data';
+import * as tokenGroups from './tokenGroups';
 
 const OUT_DIR = 'src';
 const COLORS_DIR = path.join(OUT_DIR, 'colors');
@@ -134,20 +136,39 @@ fs.writeFileSync(
         2,
     ),
 );
+const convertGroupTokens = (tokenNames: Array<keyof typeof FullColorsList>, theme: ThemeTokens) => {
+    const tokens = Object.entries(theme).reduce((acc, [key, token]) => {
+        if (tokenNames.some((name) => name === key)) {
+            acc[key as keyof typeof FullColorsList] = token;
+        }
+        return acc;
+    }, {} as ThemeTokens);
+    return tokens;
+};
 
-const removeGradients = () => {
-    const fixThemes = {} as Record<string, ThemeTokens>;
+interface ThemeTokensGroup {
+    textAndIcons: ThemeTokens;
+    buttons: ThemeTokens;
+    backgrounds: ThemeTokens;
+    surfaces: ThemeTokens;
+    speech: ThemeTokens;
+}
+
+const convertGroupedTokenData = (theme: ThemeTokens): ThemeTokensGroup => {
+    return {
+        textAndIcons: convertGroupTokens(tokenGroups.textAndIcons, theme),
+        buttons: convertGroupTokens(tokenGroups.buttons, theme),
+        backgrounds: convertGroupTokens(tokenGroups.backgrounds, theme),
+        surfaces: convertGroupTokens(tokenGroups.surfaces, theme),
+        speech: convertGroupTokens(tokenGroups.speech, theme),
+    };
+};
+
+const generateColors = () => {
+    const fixThemes = {} as { [key: string]: ThemeTokensGroup };
 
     for (const [themeName, theme] of Object.entries(themes)) {
-        const fixTheme = {} as ThemeTokens;
-
-        for (const [k, v] of Object.entries(theme)) {
-            if (k !== 'gradient' && k !== 'voicePhraseGradient') {
-                fixTheme[k as keyof ThemeTokens] = v;
-            }
-        }
-
-        fixThemes[themeName] = fixTheme;
+        fixThemes[themeName] = convertGroupedTokenData(theme);
     }
 
     return fixThemes;
@@ -158,7 +179,7 @@ fs.writeFileSync(
     path.join(amznDictPropsColorsDir, 'theme.json'),
     JSON.stringify(
         {
-            color: removeGradients(),
+            color: generateColors(),
         },
         null,
         2,
