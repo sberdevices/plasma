@@ -1,3 +1,24 @@
+# (Wed Jul 07 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-ui@1.24.1`, `@sberdevices/plasma-web@1.22.1`
+  - fix(plasma-ui): commas change [#479](https://github.com/sberdevices/plasma/pull/479) ([@kayman233](https://github.com/kayman233))
+  - fix(plasma-ui): favicon to png fix [#479](https://github.com/sberdevices/plasma/pull/479) ([@kayman233](https://github.com/kayman233))
+  - fix(plasma-ui): safari bug fix [#479](https://github.com/sberdevices/plasma/pull/479) ([@kayman233](https://github.com/kayman233))
+- `@sberdevices/plasma-web@1.22.1`
+  - fix(plasma-web): favicon added [#479](https://github.com/sberdevices/plasma/pull/479) ([@kayman233](https://github.com/kayman233))
+- `@sberdevices/plasma-ui@1.24.1`
+  - fix(plasma-ui): fix missed bracket [#479](https://github.com/sberdevices/plasma/pull/479) ([@kayman233](https://github.com/kayman233))
+  - fix(plasma-ui): favicon bug fix [#479](https://github.com/sberdevices/plasma/pull/479) ([@kayman233](https://github.com/kayman233))
+  - fix(plasma-ui): favicon added [#479](https://github.com/sberdevices/plasma/pull/479) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 1
+
+- [@kayman233](https://github.com/kayman233)
+
+---
+
 # (Fri Jul 02 2021)
 
 #### 🚀 Enhancement
