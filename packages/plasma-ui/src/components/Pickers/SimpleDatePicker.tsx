@@ -29,14 +29,16 @@ export interface SimpleDatePickerProps extends Omit<PickerProps, 'items'> {
     monthNameFormat?: MonthNameFormat;
 }
 
-export const SimpleDatePicker: React.FC<SimpleDatePickerProps> = ({ id, type, from, to, monthNameFormat, ...rest }) => {
-    const formatterKey = getFormatterKey(type, monthNameFormat);
-    const formatter = labelFormatter[formatterKey];
+export const SimpleDatePicker = React.memo<SimpleDatePickerProps>(
+    ({ id, type, from, to, monthNameFormat, ...rest }) => {
+        const formatterKey = getFormatterKey(type, monthNameFormat);
+        const formatter = labelFormatter[formatterKey];
 
-    const items = Array.from({ length: to - from + 1 }, (_, i) => ({
-        label: formatter(from + i),
-        value: from + i,
-    }));
+        const items = Array.from({ length: to - from + 1 }, (_, i) => ({
+            label: formatter(from + i),
+            value: from + i,
+        }));
 
-    return <Picker id={id ? `${id}-${type}` : undefined} items={items} {...rest} />;
-};
+        return <Picker id={id ? `${id}-${type}` : undefined} items={items} {...rest} />;
+    },
+);

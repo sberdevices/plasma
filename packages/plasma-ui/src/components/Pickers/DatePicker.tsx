@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { SimpleDatePicker, SimpleDatePickerProps } from './SimpleDatePicker';
 
-const maxDayInMonth = (month: number, year: number): number => new Date(year, month + 1, 0).getDate();
+const getMaxDayInMonth = (month: number, year: number): number => new Date(year, month + 1, 0).getDate();
 const getValues = (date: Date) => [date.getFullYear(), date.getMonth(), date.getDate()];
 const defaultOptions = {
     years: true,
@@ -54,67 +54,66 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     controls,
     autofocus,
     visibleItems,
+    scrollSnapType,
     onChange,
     ...rest
 }) => {
     const [[year, month, day], setState] = React.useState(getValues(value));
-    const yearsInterval = React.useMemo(() => [min.getFullYear(), max.getFullYear()], [min, max]);
+    const [minYear, minMonth, minDay] = getValues(min);
+    const [maxYear, maxMonth, maxDay] = getValues(max);
 
     const monthsInterval = React.useMemo(() => {
-        if (yearsInterval[0] >= value.getFullYear()) {
-            return [min.getMonth(), 11];
+        if (minYear >= year) {
+            return [minMonth, 11];
         }
 
-        if (yearsInterval[1] <= value.getFullYear()) {
-            return [0, max.getMonth()];
+        if (maxYear <= year) {
+            return [0, maxMonth];
         }
 
         return [0, 11];
-    }, [max, min, value, yearsInterval]);
+    }, [minMonth, maxMonth, year, minYear, maxYear]);
 
     const daysInterval = React.useMemo(() => {
-        const valueYear = value.getFullYear();
-        const valueMonth = value.getMonth();
-
-        if (valueYear >= yearsInterval[1] && max.getMonth() === valueMonth) {
-            return [1, max.getDate()];
+        if (year >= maxYear && maxMonth === month) {
+            return [1, maxDay];
         }
 
-        const maxDay = maxDayInMonth(valueMonth, valueYear);
+        const maxDayInMonth = getMaxDayInMonth(month, year);
 
-        if (valueYear <= yearsInterval[0] && min.getMonth() === valueMonth) {
-            return [min.getDate(), maxDay];
+        if (year <= minYear && minMonth === month) {
+            return [minDay, maxDayInMonth];
         }
 
-        return [1, maxDay];
-    }, [min, yearsInterval, value, max]);
+        return [1, maxDayInMonth];
+    }, [minMonth, maxMonth, minDay, maxDay, year, month, minYear, maxYear]);
 
     const getNextMonth = React.useCallback(
         (nextMonth: number, nextYear: number): number => {
-            if (nextYear >= yearsInterval[1] && nextMonth >= max.getMonth()) {
-                return max.getMonth();
+            if (nextYear >= maxYear && nextMonth >= maxMonth) {
+                return maxMonth;
             }
 
-            if (nextYear <= yearsInterval[0] && nextMonth <= max.getMonth()) {
-                return min.getMonth();
+            if (nextYear <= minYear && nextMonth <= maxMonth) {
+                return minMonth;
             }
 
             return nextMonth;
         },
-        [max, min, yearsInterval],
+        [minMonth, maxMonth, minYear, maxYear],
     );
 
     const getNextDay = React.useCallback(
         (nextDay: number, nextMonth: number, nextYear: number): number => {
-            if (nextYear >= yearsInterval[1] && nextMonth >= max.getMonth() && nextDay >= max.getDate()) {
-                return max.getDate();
+            if (nextYear >= maxYear && nextMonth >= maxMonth && nextDay >= maxDay) {
+                return maxDay;
             }
 
-            if (nextYear <= yearsInterval[0] && nextMonth <= max.getMonth() && nextDay <= min.getDate()) {
-                return min.getDate();
+            if (nextYear <= minYear && nextMonth <= maxMonth && nextDay <= minDay) {
+                return minDay;
             }
 
-            const possibleMaxDayInMonth = maxDayInMonth(nextMonth, nextYear);
+            const possibleMaxDayInMonth = getMaxDayInMonth(nextMonth, nextYear);
 
             if (possibleMaxDayInMonth < nextDay) {
                 return possibleMaxDayInMonth;
@@ -122,13 +121,12 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
             return nextDay;
         },
-        [yearsInterval, max, min],
+        [minDay, maxDay, maxMonth, minYear, maxYear],
     );
 
-    /* eslint-disable @typescript-eslint/no-unused-vars */
     const onYearChange = React.useCallback(
         ({ value: y }) => {
-            setState(([_, m, d]) => {
+            setState(([, m, d]) => {
                 const nextMonth = getNextMonth(m, y);
                 const nextDay = getNextDay(d, nextMonth, y);
 
@@ -139,7 +137,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     );
     const onMonthChange = React.useCallback(
         ({ value: m }) => {
-            setState(([y, _, d]) => {
+            setState(([y, , d]) => {
                 const nextDay = getNextDay(d, m, y);
 
                 return [y, m, nextDay];
@@ -148,7 +146,6 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         [getNextDay],
     );
     const onDayChange = React.useCallback(({ value: d }) => setState(([y, m]) => [y, m, d]), []);
-    /* eslint-enable @typescript-eslint/no-unused-vars */
 
     /**
      * При очередном прогоне, если значения year, month, day изменились,
@@ -184,6 +181,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                     disabled={disabled}
                     controls={controls}
                     visibleItems={visibleItems}
+                    scrollSnapType={scrollSnapType}
                     onChange={onDayChange}
                 />
             )}
@@ -200,6 +198,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                     disabled={disabled}
                     controls={controls}
                     visibleItems={visibleItems}
+                    scrollSnapType={scrollSnapType}
                     onChange={onMonthChange}
                 />
             )}
@@ -210,11 +209,12 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                     size={size}
                     type="year"
                     value={year}
-                    from={yearsInterval[0]}
-                    to={yearsInterval[1]}
+                    from={minYear}
+                    to={maxYear}
                     disabled={disabled}
                     controls={controls}
                     visibleItems={visibleItems}
+                    scrollSnapType={scrollSnapType}
                     onChange={onYearChange}
                 />
             )}

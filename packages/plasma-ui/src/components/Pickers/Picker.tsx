@@ -6,7 +6,7 @@ import { applyDisabled, DisabledProps } from '@sberdevices/plasma-core';
 
 import { useRemoteListener } from '../../hooks';
 import { Button } from '../Button';
-import { Carousel } from '../Carousel';
+import { Carousel, CarouselProps } from '../Carousel';
 
 import {
     PickerItem,
@@ -130,7 +130,11 @@ const getIndex = (index: number, cmd: '+' | '-', min: number, max: number) => {
     return index !== min ? index - 1 : max;
 };
 
-export interface PickerProps extends SizeProps, DisabledProps, Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
+export interface PickerProps
+    extends SizeProps,
+        DisabledProps,
+        Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>,
+        Pick<CarouselProps, 'scrollSnapType'> {
     /**
      * Список опций
      */
@@ -171,25 +175,18 @@ export const Picker: React.FC<PickerProps> = ({
     disabled,
     visibleItems = 5,
     tabIndex = 0,
+    scrollSnapType,
     onChange,
     ...rest
 }) => {
     const min = 0;
     const max = items.length - 1;
-    const index = items.findIndex((item) => item.value === value);
+    const [index, setIndex] = React.useState(items.findIndex((item) => item.value === value));
     const noScrollBehavior = React.useRef(true);
     const wrapperRef = React.useRef<HTMLDivElement | null>(null);
     const carouselRef = React.useRef<HTMLDivElement | null>(null);
-    const toPrev = React.useCallback(() => !disabled && onChange?.(items[getIndex(index, '-', min, max)]), [
-        index,
-        min,
-        max,
-    ]);
-    const toNext = React.useCallback(() => !disabled && onChange?.(items[getIndex(index, '+', min, max)]), [
-        index,
-        min,
-        max,
-    ]);
+    const toPrev = React.useCallback(() => !disabled && setIndex(getIndex(index, '-', min, max)), [index, min, max]);
+    const toNext = React.useCallback(() => !disabled && setIndex(getIndex(index, '+', min, max)), [index, min, max]);
 
     // Навигация с помощью пульта/клавиатуры
     // Не перелистывает, если компонент неактивен
@@ -243,7 +240,7 @@ export const Picker: React.FC<PickerProps> = ({
                 index={index}
                 scaleCallback={size === 's' ? scaleCallbackS : scaleCallbackL}
                 scaleResetCallback={scaleResetCallback}
-                scrollSnapType="mandatory"
+                scrollSnapType={scrollSnapType}
                 detectActive
                 detectThreshold={0.5}
                 paddingStart={sizes[size][visibleItems].padding}
