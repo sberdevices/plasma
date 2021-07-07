@@ -12,7 +12,7 @@ const StyledHeaderBackButton = styled(Button)`
         position: absolute;
         /* От паддинга отнимаем сдвиг на разницу между button="s" (40) и высотой шапки (от 28 до 36) */
         top: calc(var(--plasma-header-pt) - (2.5rem - var(--plasma-header-height)) / 2);
-        left: calc(var(--plasma-grid-margin) * -1 + ${16 / scalingPixelBasis}rem);
+        left: calc(var(--plasma-grid-margin) * -1 + ${12 / scalingPixelBasis}rem);
         padding: 0;
 
         ${({ theme }) =>
