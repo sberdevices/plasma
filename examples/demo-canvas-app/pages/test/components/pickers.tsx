@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { DatePicker, TimePicker, Footnote2 } from '@sberdevices/plasma-ui';
+import { isSberBox } from '@sberdevices/plasma-ui/utils';
 
 const StyledWrapper = styled.div`
     display: flex;
@@ -24,11 +25,14 @@ const StyledTimePicker = styled(TimePicker)`
     margin-left: 2rem;
 `;
 
+const isSberbox = isSberBox();
+
 export default function PickersPage() {
     const [date, setDate] = useState(new Date());
     const [time, setTime] = useState(new Date());
     const min = new Date(2000, 0, 1, 0, 0, 0);
     const max = new Date(2030, 11, 31, 23, 59, 59);
+    const scrollSnapType = isSberbox ? 'none' : 'mandatory';
 
     return (
         <StyledWrapper>
@@ -40,6 +44,7 @@ export default function PickersPage() {
                     max={max}
                     controls={true}
                     autofocus={true}
+                    scrollSnapType={scrollSnapType}
                     onChange={(d) => setDate(d)}
                 />
                 <StyledTimePicker
@@ -49,6 +54,7 @@ export default function PickersPage() {
                     max={max}
                     controls={true}
                     autofocus={false}
+                    scrollSnapType={scrollSnapType}
                     onChange={(t) => setTime(t)}
                 />
             </StyledPickers>

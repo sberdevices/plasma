@@ -8,15 +8,11 @@ export interface SimpleTimePickerProps extends Omit<PickerProps, 'items'> {
     range: number[];
 }
 
-export const SimpleTimePicker: React.FC<SimpleTimePickerProps> = ({ id, type, range, ...rest }) => {
-    const items = React.useMemo(
-        () =>
-            range.map((value) => ({
-                label: formatter(value),
-                value,
-            })),
-        [range],
-    );
+export const SimpleTimePicker = React.memo<SimpleTimePickerProps>(({ id, type, range, ...rest }) => {
+    const items = range.map((value) => ({
+        label: formatter(value),
+        value,
+    }));
 
     return <Picker id={id ? `${id}-${type}` : undefined} items={items} {...rest} />;
-};
+});

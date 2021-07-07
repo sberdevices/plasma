@@ -1,89 +1,168 @@
 import React from 'react';
+import styled from 'styled-components';
 import { boolean, number, select, text } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import type { SnapType } from '@sberdevices/plasma-core';
 
 import { isSberBox } from '../../utils';
 
-import { DatePicker as DatePickerComponent, TimePicker as TimePickerComponent } from '.';
+import { DatePicker, TimePicker } from '.';
 
-const now = new Date();
-const dateFromHumanized = (date: string) => {
-    const parsed = date.split('.').map(Number);
-    return new Date(parsed[2], parsed[1] - 1, parsed[0]);
+const StyledWrapper = styled.div`
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(2, max-content);
+    align-items: center;
+`;
+
+const isSberbox = isSberBox();
+const snapTypes = ['mandatory', 'proximity'] as SnapType[];
+
+const parseDateTime = (dateTime: string) => {
+    const [date, time] = dateTime.split(' ');
+    const dated = date.split('.').map(Number);
+    const timed = time.split(':').map(Number);
+
+    return new Date(dated[2], dated[1] - 1, dated[0], timed[0], timed[1], timed[2]);
 };
 
-export const DatePicker = () => {
-    const [value, setValue] = React.useState(dateFromHumanized(text('value', '01.09.1980')));
-    const isSberbox = isSberBox();
+export const Default = () => {
+    const [value, setValue] = React.useState(parseDateTime(text('value', '01.09.1980 00:28:59')));
+    const onChange = React.useCallback((v) => setValue(v), []);
+    const min = parseDateTime(text('min', '01.01.1975 00:15:29'));
+    const max = parseDateTime(text('max', '31.12.1985 12:45:50'));
+    const years = boolean('options.years', true);
+    const months = boolean('options.months', true);
+    const days = boolean('options.days', true);
+    const shortMonthName = boolean('options.shortMonthName', false);
+    const hours = boolean('options.hours', true);
+    const minutes = boolean('options.minutes', true);
+    const seconds = boolean('options.seconds', true);
+    const dateOptions = React.useMemo(
+        () => ({
+            years,
+            months,
+            days,
+            shortMonthName,
+        }),
+        [years, months, days],
+    );
+    const timeOptions = React.useMemo(
+        () => ({
+            hours,
+            minutes,
+            seconds,
+        }),
+        [hours, minutes, seconds],
+    );
+    const disabled = boolean('disabled', false);
+    const controls = boolean('controls', isSberbox);
+    const autofocus = boolean('autofocus', true);
+    const scrollSnapType = select('scrollSnapType', snapTypes, isSberbox ? 'none' : 'mandatory');
 
     return (
-        <DatePickerComponent
+        <StyledWrapper>
+            <DatePicker
+                id="datepicker"
+                value={value}
+                min={min}
+                max={max}
+                size={select('DatePicker size', ['l', 's'], 's')}
+                visibleItems={select('DatePicker visibleItems', [3, 5], 3)}
+                scrollSnapType={scrollSnapType}
+                options={dateOptions}
+                disabled={disabled}
+                controls={controls}
+                autofocus={autofocus}
+                onChange={onChange}
+            />
+            <TimePicker
+                id="timepicker"
+                value={value}
+                min={min}
+                max={max}
+                step={number('TimePicker step', 1)}
+                size={select('TimePicker size', ['l', 's'], 's')}
+                visibleItems={select('TimePicker visibleItems', [3, 5], 5)}
+                scrollSnapType={scrollSnapType}
+                options={timeOptions}
+                disabled={disabled}
+                controls={controls}
+                onChange={onChange}
+            />
+        </StyledWrapper>
+    );
+};
+
+// eslint-disable-next-line @typescript-eslint/camelcase
+export const Date_Picker = () => {
+    const [value, setValue] = React.useState(parseDateTime(text('value', '01.09.1980 00:28:59')));
+    const onChange = React.useCallback((v) => setValue(v), []);
+    const min = parseDateTime(text('min', '01.01.1975 00:15:29'));
+    const max = parseDateTime(text('max', '31.12.1985 12:45:50'));
+    const years = boolean('options.years', true);
+    const months = boolean('options.months', true);
+    const days = boolean('options.days', true);
+    const shortMonthName = boolean('options.shortMonthName', false);
+    const options = React.useMemo(
+        () => ({
+            years,
+            months,
+            days,
+            shortMonthName,
+        }),
+        [years, months, days],
+    );
+
+    return (
+        <DatePicker
+            id="example"
             value={value}
-            min={dateFromHumanized(text('min', '01.01.1975'))}
-            max={dateFromHumanized(text('max', '31.12.1985'))}
+            min={min}
+            max={max}
             size={select('size', ['l', 's'], 's')}
             visibleItems={select('visibleItems', [3, 5], 5)}
-            options={{
-                years: boolean('options.years', true),
-                months: boolean('options.months', true),
-                days: boolean('options.days', true),
-                shortMonthName: boolean('options.shortMonthName', false),
-            }}
+            scrollSnapType={select('scrollSnapType', snapTypes, isSberbox ? 'none' : 'mandatory')}
+            options={options}
             disabled={boolean('disabled', false)}
             controls={boolean('controls', isSberbox)}
             autofocus={boolean('autofocus', true)}
-            onChange={(newValue) => {
-                setValue(newValue);
-            }}
+            onChange={onChange}
         />
     );
 };
 
-export const TimePicker = () => {
-    const [value, setValue] = React.useState(
-        new Date(
-            now.getFullYear(),
-            now.getMonth(),
-            now.getDate(),
-            ...text('value', '0:28:59', 'TimePicker').split(':').map(Number),
-        ),
+// eslint-disable-next-line @typescript-eslint/camelcase
+export const Time_Picker = () => {
+    const [value, setValue] = React.useState(parseDateTime(text('value', '01.09.1980 00:28:59')));
+    const onChange = React.useCallback((v) => setValue(v), []);
+    const min = parseDateTime(text('min', '01.01.1975 00:15:29'));
+    const max = parseDateTime(text('max', '31.12.1985 12:45:50'));
+    const hours = boolean('options.hours', true);
+    const minutes = boolean('options.minutes', true);
+    const seconds = boolean('options.seconds', true);
+    const options = React.useMemo(
+        () => ({
+            hours,
+            minutes,
+            seconds,
+        }),
+        [hours, minutes, seconds],
     );
-    const isSberbox = isSberBox();
 
     return (
-        <TimePickerComponent
+        <TimePicker
             value={value}
-            min={
-                new Date(
-                    now.getFullYear(),
-                    now.getMonth(),
-                    now.getDate(),
-                    ...text('min', '0:15:29', 'TimePicker').split(':').map(Number),
-                )
-            }
-            max={
-                new Date(
-                    now.getFullYear(),
-                    now.getMonth(),
-                    now.getDate(),
-                    ...text('max', '12:45:50', 'TimePicker').split(':').map(Number),
-                )
-            }
-            step={number('step', 1, undefined, 'TimePicker')}
-            size={select('size', ['l', 's'], 'l', 'TimePicker')}
-            visibleItems={select('visibleItems', [3, 5], 3, 'TimePicker')}
-            options={{
-                hours: boolean('options.hours', true, 'TimePicker'),
-                minutes: boolean('options.minutes', true, 'TimePicker'),
-                seconds: boolean('options.seconds', true, 'TimePicker'),
-            }}
-            disabled={boolean('disabled', false, 'TimePicker')}
-            controls={boolean('controls', isSberbox, 'TimePicker')}
-            autofocus={boolean('autofocus', false, 'TimePicker')}
-            onChange={(val) => {
-                setValue(val);
-                action('onChange')(val);
-            }}
+            min={min}
+            max={max}
+            step={number('step', 1)}
+            size={select('size', ['l', 's'], 'l')}
+            visibleItems={select('visibleItems', [3, 5], 3)}
+            scrollSnapType={select('scrollSnapType', snapTypes, isSberbox ? 'none' : 'mandatory')}
+            options={options}
+            disabled={boolean('disabled', false)}
+            controls={boolean('controls', isSberbox)}
+            autofocus={boolean('autofocus', true)}
+            onChange={onChange}
         />
     );
 };

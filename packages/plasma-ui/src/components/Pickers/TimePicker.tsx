@@ -117,36 +117,37 @@ export const TimePicker: React.FC<TimePickerProps> = ({
     disabled,
     controls,
     autofocus,
+    scrollSnapType,
     onChange,
     ...rest
 }) => {
     const [[hours, minutes, seconds], setState] = React.useState(getValues(value));
+    const [minHours, minMinutes, minSeconds] = getValues(min);
+    const [maxHours, maxMinutes, maxSeconds] = getValues(max);
 
     // Диапозоны для списков зависят от min и max,
     // при чем min и max принимаются как возможные предельные значения,
     // а не как контейнеры для компонент hours, minutes, seconds
     const [hoursRange, minsRange, secsRange] = React.useMemo(() => {
-        const minHours = min.getHours();
-        const maxHours = max.getHours();
         let minMins = 0;
         let maxMins = 59;
         let minSecs = 0;
         let maxSecs = 59;
 
         if (hours === minHours) {
-            minMins = min.getMinutes();
+            minMins = minMinutes;
         }
 
-        if (minutes === min.getMinutes()) {
-            minSecs = min.getSeconds();
+        if (minutes === minMinutes) {
+            minSecs = minSeconds;
         }
 
         if (hours === maxHours) {
-            maxMins = max.getMinutes();
+            maxMins = maxMinutes;
         }
 
-        if (minutes === max.getMinutes()) {
-            maxSecs = max.getSeconds();
+        if (minutes === maxMinutes) {
+            maxSecs = maxSeconds;
         }
 
         let hoursStep = 1;
@@ -166,7 +167,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
             getRange(minMins, maxMins, minsStep),
             getRange(minSecs, maxSecs, secsStep),
         ];
-    }, [min, max, hours, minutes, step]);
+    }, [minHours, maxHours, minMinutes, maxMinutes, minSeconds, maxSeconds, hours, minutes, step]);
 
     const onHoursChange = React.useCallback(({ value: h }) => setState(([, m, s]) => [h, m, s]), []);
     const onMinutesChange = React.useCallback(({ value: m }) => setState(([h, , s]) => [h, m, s]), []);
@@ -215,6 +216,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     size={size}
                     range={hoursRange}
                     value={hours}
+                    scrollSnapType={scrollSnapType}
                     onChange={onHoursChange}
                 />
             )}
@@ -229,6 +231,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     size={size}
                     range={minsRange}
                     value={minutes}
+                    scrollSnapType={scrollSnapType}
                     onChange={onMinutesChange}
                 />
             )}
@@ -243,6 +246,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     size={size}
                     range={secsRange}
                     value={seconds}
+                    scrollSnapType={scrollSnapType}
                     onChange={onSecondsChange}
                 />
             )}
