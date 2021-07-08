@@ -194,7 +194,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
 
         // eslint-disable-next-line no-restricted-globals
         if (isNaN(newHours) || isNaN(newMins) || isNaN(newSecs)) {
-            return null;
+            throw new Error(`Passed value ${value} is out of range`);
         }
         if (newHours !== hours || newMins !== minutes || newSecs !== seconds) {
             setState([newHours, newMins, newSecs]);
