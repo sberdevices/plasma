@@ -41,7 +41,12 @@ export const DatePicker = () => {
 
 export const TimePicker = () => {
     const [value, setValue] = React.useState(
-        new Date(now.getFullYear(), now.getMonth(), now.getDate(), ...text('value', '0:28:59').split(':').map(Number)),
+        new Date(
+            now.getFullYear(),
+            now.getMonth(),
+            now.getDate(),
+            ...text('value', '0:28:59', 'TimePicker').split(':').map(Number),
+        ),
     );
     const isSberbox = isSberBox();
 
@@ -53,7 +58,7 @@ export const TimePicker = () => {
                     now.getFullYear(),
                     now.getMonth(),
                     now.getDate(),
-                    ...text('min', '0:15:29').split(':').map(Number),
+                    ...text('min', '0:15:29', 'TimePicker').split(':').map(Number),
                 )
             }
             max={
@@ -61,20 +66,20 @@ export const TimePicker = () => {
                     now.getFullYear(),
                     now.getMonth(),
                     now.getDate(),
-                    ...text('max', '12:45:50').split(':').map(Number),
+                    ...text('max', '12:45:50', 'TimePicker').split(':').map(Number),
                 )
             }
-            step={number('step', 1)}
-            size={select('size', ['l', 's'], 'l')}
-            visibleItems={select('visibleItems', [3, 5], 3)}
+            step={number('step', 1, undefined, 'TimePicker')}
+            size={select('size', ['l', 's'], 'l', 'TimePicker')}
+            visibleItems={select('visibleItems', [3, 5], 3, 'TimePicker')}
             options={{
-                hours: boolean('options.hours', true),
-                minutes: boolean('options.minutes', true),
-                seconds: boolean('options.seconds', true),
+                hours: boolean('options.hours', true, 'TimePicker'),
+                minutes: boolean('options.minutes', true, 'TimePicker'),
+                seconds: boolean('options.seconds', true, 'TimePicker'),
             }}
-            disabled={boolean('disabled', false)}
-            controls={boolean('controls', isSberbox)}
-            autofocus={boolean('autofocus', true)}
+            disabled={boolean('disabled', false, 'TimePicker')}
+            controls={boolean('controls', isSberbox, 'TimePicker')}
+            autofocus={boolean('autofocus', true, 'TimePicker')}
             onChange={(val) => {
                 setValue(val);
                 action('onChange')(val);
