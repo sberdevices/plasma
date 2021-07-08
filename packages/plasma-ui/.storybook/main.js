@@ -6,9 +6,9 @@ module.exports = {
         : ['../src/**/*.stories.@(mdx|tsx)', '../README.stories.mdx', '../Tokens.stories.mdx'],
     addons: [
         '@storybook/preset-create-react-app',
-        '@storybook/addon-backgrounds/register',
-        '@storybook/addon-viewport/register',
-        '@storybook/addon-knobs/register',
+        '@storybook/addon-backgrounds',
+        '@storybook/addon-viewport',
+        '@storybook/addon-knobs',
         '@storybook/addon-actions',
         '@storybook/addon-docs',
         '@storybook/addon-toolbars',
