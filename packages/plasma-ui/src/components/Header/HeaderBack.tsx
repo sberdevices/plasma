@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { scalingPixelBasis } from '@sberdevices/plasma-tokens';
 import { IconChevronLeft, IconSize } from '@sberdevices/plasma-icons';
 import type { PickOptional } from '@sberdevices/plasma-core';
 import { mediaQuery } from '@sberdevices/plasma-core';
@@ -8,24 +7,22 @@ import { mediaQuery } from '@sberdevices/plasma-core';
 import { Button, ButtonProps } from '../Button';
 
 const StyledHeaderBackButton = styled(Button)`
-    && {
-        position: absolute;
-        /* От паддинга отнимаем сдвиг на разницу между button="s" (40) и высотой шапки (от 28 до 36) */
-        top: calc(var(--plasma-header-pt) - (2.5rem - var(--plasma-header-height)) / 2);
-        left: calc(var(--plasma-grid-margin) * -1 + ${16 / scalingPixelBasis}rem);
-        padding: 0;
+    position: absolute;
+    top: -0.125rem;
+    right: 100%;
+    margin-right: 0.5rem;
 
-        ${({ theme }) =>
-            mediaQuery(
-                'S',
-                theme.deviceScale,
-            )(css`
-                position: static;
-                margin-right: 1rem;
-                width: auto;
-                height: auto;
-            `)}
-    }
+    ${({ theme }) =>
+        mediaQuery(
+            'S',
+            theme.deviceScale,
+        )(css`
+            position: static;
+            width: auto;
+            height: auto;
+            padding: 0;
+            margin-right: 1rem;
+        `)}
 `;
 export interface HeaderBackProps
     extends PickOptional<ButtonProps, 'as' | 'size' | 'scaleOnInteraction' | 'disabled'>,
