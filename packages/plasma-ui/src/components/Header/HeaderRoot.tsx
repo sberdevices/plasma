@@ -25,12 +25,6 @@ interface StyledHeaderRootProps {
 }
 
 const StyledHeaderRoot = styled.header<StyledHeaderRootProps>`
-    position: relative;
-
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-
     box-sizing: content-box;
 
     width: 100%;
@@ -48,6 +42,16 @@ const StyledHeaderRoot = styled.header<StyledHeaderRootProps>`
         ${mediaQuery('XL', theme.deviceScale)(sizes.sberBox)}
     `}
 `;
+const StyledInner = styled.div`
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+    width: 100%;
+    height: 100%;
+`;
 
 interface HeaderRootProps extends React.HTMLAttributes<HTMLDivElement> {
     /**
@@ -63,7 +67,7 @@ interface HeaderRootProps extends React.HTMLAttributes<HTMLDivElement> {
 export const HeaderRoot: React.FC<HeaderRootProps> = ({ children, size, ...rest }) => {
     return (
         <StyledHeaderRoot {...rest} $size={size}>
-            {children}
+            <StyledInner>{children}</StyledInner>
         </StyledHeaderRoot>
     );
 };
