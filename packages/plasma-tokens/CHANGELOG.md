@@ -1,3 +1,15 @@
+# v1.9.0 (Thu Jul 08 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-tokens): grouping color tokens for mobile [#504](https://github.com/sberdevices/plasma/pull/504) ([@OgNellis](https://github.com/OgNellis))
+
+#### Authors: 1
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+
+---
+
 # v1.8.1 (Thu Jul 01 2021)
 
 #### 🐛 Bug Fix
