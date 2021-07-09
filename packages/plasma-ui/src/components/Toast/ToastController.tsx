@@ -112,7 +112,7 @@ export const ToastController: React.FC<ToastInfo> = ({ text, position, timeout, 
 
     return (
         <>
-            {fade && <StyledFade isVisible={isVisible} />}
+            {fade && <StyledFade isVisible={isVisible} placement={position} />}
             <StyledRoot key={toastKey} position={position} isVisible={isVisible} onAnimationEnd={animationEndHandler}>
                 <Toast text={text} />
             </StyledRoot>

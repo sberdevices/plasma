@@ -9,7 +9,7 @@ export const ToastComponent = () => {
     return <Toast text={text('text', 'Short Text Message Without Action')} />;
 };
 
-export const ToastContext = () => {
+export const LiveDemo = () => {
     const { showToast } = useToast();
 
     const toastText = text('text', 'Short Text Message Without Action');
@@ -38,7 +38,7 @@ export const ToastContext = () => {
     );
 };
 
-ToastContext.parameters = {
+LiveDemo.parameters = {
     chromatic: {
         disable: true,
     },
