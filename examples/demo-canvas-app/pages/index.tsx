@@ -6,6 +6,7 @@ const menu = [
     { href: '/test/components/pickers/', title: 'Pickers' },
     { href: '/test/components/switch/', title: 'Switch' },
     { href: '/test/components/text-field/', title: 'TextField' },
+    { href: '/test/components/toast/', title: 'Toast' },
 ];
 
 const StyledCard = styled.a`
