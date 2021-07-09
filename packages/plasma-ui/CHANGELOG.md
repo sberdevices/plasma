@@ -1,3 +1,37 @@
+# v1.26.0 (Fri Jul 09 2021)
+
+#### 🚀 Enhancement
+
+- feat: TimePicker throws exception for out of range value [#516](https://github.com/sberdevices/plasma/pull/516) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): Header back button position [#517](https://github.com/sberdevices/plasma/pull/517) ([@fanisco](https://github.com/fanisco))
+- docs: Documentation for hocs [#494](https://github.com/sberdevices/plasma/pull/494) ([@fanisco](https://github.com/fanisco))
+- fix(plasma-ui): Picker focus / control remote [#494](https://github.com/sberdevices/plasma/pull/494) ([@fanisco](https://github.com/fanisco))
+- refactor(plasma-ui): Picker component refactor [#494](https://github.com/sberdevices/plasma/pull/494) ([@fanisco](https://github.com/fanisco))
+- fix(plasma-web): Pass ids in Date&TimePicker [#494](https://github.com/sberdevices/plasma/pull/494) ([@fanisco](https://github.com/fanisco))
+- fix(plasma-ui): Date&TimePicker rest attributes on wrapper [#494](https://github.com/sberdevices/plasma/pull/494) ([@fanisco](https://github.com/fanisco))
+- docs: plasma-ui disable autofocus for time picker [#516](https://github.com/sberdevices/plasma/pull/516) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- docs: fix time picker docs [#516](https://github.com/sberdevices/plasma/pull/516) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- docs: add documentation for environment [#480](https://github.com/sberdevices/plasma/pull/480) ([@OgNellis](https://github.com/OgNellis))
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- chore: Alias react, react-dom and styled-components in Storybook webpack [#518](https://github.com/sberdevices/plasma/pull/518) ([@fanisco](https://github.com/fanisco))
+- chore: Bump Storybook version [#518](https://github.com/sberdevices/plasma/pull/518) ([@fanisco](https://github.com/fanisco))
+
+#### 📝 Documentation
+
+- chore(plasma-ui): Change deviceKind through get param in iframe [#500](https://github.com/sberdevices/plasma/pull/500) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 4
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.25.0 (Thu Jul 08 2021)
 
 #### 🐛 Bug Fix

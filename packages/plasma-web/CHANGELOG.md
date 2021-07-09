@@ -1,3 +1,18 @@
+# v1.24.0 (Fri Jul 09 2021)
+
+#### 🐛 Bug Fix
+
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- chore: Alias react, react-dom and styled-components in Storybook webpack [#518](https://github.com/sberdevices/plasma/pull/518) ([@fanisco](https://github.com/fanisco))
+- chore: Bump Storybook version [#518](https://github.com/sberdevices/plasma/pull/518) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.23.0 (Thu Jul 08 2021)
 
 #### 🐛 Bug Fix

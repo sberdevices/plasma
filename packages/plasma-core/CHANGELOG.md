@@ -1,3 +1,15 @@
+# v1.17.0 (Fri Jul 09 2021)
+
+#### 🐛 Bug Fix
+
+- fix: Switch's focus [#494](https://github.com/sberdevices/plasma/pull/494) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.16.0 (Fri Jul 02 2021)
 
 #### 🚀 Enhancement
