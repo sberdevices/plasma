@@ -79,7 +79,7 @@ export const TimePicker = () => {
             }}
             disabled={boolean('disabled', false, 'TimePicker')}
             controls={boolean('controls', isSberbox, 'TimePicker')}
-            autofocus={boolean('autofocus', true, 'TimePicker')}
+            autofocus={boolean('autofocus', false, 'TimePicker')}
             onChange={(val) => {
                 setValue(val);
                 action('onChange')(val);
