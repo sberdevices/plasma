@@ -1,6 +1,6 @@
 const path = require('path');
 const { PUBLIC_URL, PR_NAME } = process.env;
-const basePath = PUBLIC_URL ? PUBLIC_URL + (PR_NAME ? '-' : '') + PR_NAME : '';
+const basePath = PUBLIC_URL ? PUBLIC_URL + (PR_NAME ? '-' + PR_NAME : '') : '';
 
 module.exports = {
     basePath,
