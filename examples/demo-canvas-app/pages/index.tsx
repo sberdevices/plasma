@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import { Card, CardContent } from '@sberdevices/plasma-ui';
 
 const menu = [
-    { href: '/test/components/pickers/', title: 'Pickers' },
-    { href: '/test/components/switch/', title: 'Switch' },
-    { href: '/test/components/text-field/', title: 'TextField' },
+    { href: '/test/ui-components/pickers/', title: 'Pickers' },
+    { href: '/test/ui-components/switch/', title: 'Switch' },
+    { href: '/test/ui-components/text-field/', title: 'TextField' },
+    { href: '/test/ui-components/carousel/', title: 'Carousel' },
 ];
 
 const StyledCard = styled.a`
