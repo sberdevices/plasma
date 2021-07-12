@@ -1,0 +1,53 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - rc
+      - master
+  pull_request:
+    branches:
+      - rc
+      - master
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Prepare repository
+        run: git fetch --unshallow --tags
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: npm-deps-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            npm-deps-${{ hashFiles('package-lock.json') }}
+
+      - name: Setup packages
+        run: |
+          npm i
+          npm i react@17 react-dom@17 --prefix="./packages/plasma-ui"
+          npm i react@17 react-dom@17 --prefix="./packages/plasma-core"
+          npm i react@17 react-dom@17 --prefix="./packages/plasma-icons"
+          npm i react@17 react-dom@17 --prefix="./packages/plasma-web"
+          npx lerna bootstrap
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Unit tests
+        run: npm run test
