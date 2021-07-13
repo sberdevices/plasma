@@ -74,9 +74,7 @@ const StyledOverlay = styled.div<{ transparent?: boolean }>`
     cursor: pointer;
 `;
 const StyledModal = styled.div<HidingProps>`
-    && {
-        position: absolute;
-    }
+    position: absolute;
 
     ${({ isHiding }) => css`
         animation: 0.4s ${isHiding ? bodyHideAnimation : bodyShowAnimation} ease-out;

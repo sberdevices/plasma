@@ -100,11 +100,9 @@ export type ButtonProps = BaseProps & Partial<ViewProps<ButtonView> & SizeProps<
  * Поддерживает текстовое и контентное наполнение.
  */
 export const Button = styled(BaseButton)<ButtonProps>`
-    && {
-        ${({ view }) => buttonViews[view as ButtonView]}
-        ${({ size }) => buttonSizes[size as ButtonSize]}
-        transition: background-color 0.1s ease-in-out;
-    }
+    ${({ view }) => buttonViews[view as ButtonView]}
+    ${({ size }) => buttonSizes[size as ButtonSize]}
+    transition: background-color 0.1s ease-in-out;
 `;
 
 Button.defaultProps = {

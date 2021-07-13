@@ -8,10 +8,8 @@ const StyledHeaderButton = styled(Button)`
     /**
     * Сброс для совместимости с предыдущей версией компонента.
     */
-    && {
-        height: auto;
-        padding: 0;
-    }
+    height: auto;
+    padding: 0;
 `;
 
 export interface HeaderButtonProps
