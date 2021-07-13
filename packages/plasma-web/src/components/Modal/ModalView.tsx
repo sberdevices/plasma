@@ -33,11 +33,9 @@ const StyledButtonClose = styled(Button).attrs(() => ({ view: 'clear' }))`
 
     margin: 2rem;
 
-    && {
-        width: auto;
-        height: auto;
-        padding: 0;
-    }
+    width: auto;
+    height: auto;
+    padding: 0;
 `;
 
 /**

@@ -24,6 +24,10 @@ const StyledGrid = styled.div`
     display: grid;
     grid-template-columns: max-content repeat(14, 200px);
 `;
+
+const shadow =
+    'inset 0px 1px 1px rgba(255, 255, 255, 0.05), 0px 1px 1px rgba(0, 0, 0, 0.05), 0px 4px 14px rgba(0, 0, 0, 0.08)';
+
 const StyledTile = styled.div`
     position: relative;
 
@@ -34,8 +38,7 @@ const StyledTile = styled.div`
     &:hover {
         z-index: 1;
         transform: scale(1.1);
-        box-shadow: inset 0px 1px 1px rgba(255, 255, 255, 0.05), 0px 1px 1px rgba(0, 0, 0, 0.05),
-            0px 4px 14px rgba(0, 0, 0, 0.08);
+        box-shadow: ${shadow};
     }
 `;
 const StyledColorCard = styled.div`
@@ -67,11 +70,8 @@ const StyledHoverCard = styled(StyledColorCard)`
 `;
 const ShowcaseHead = styled(Caption)`
     padding: 12px;
-
-    && {
-        font-size: 0.625rem;
-        color: #7765f6;
-    }
+    font-size: 0.625rem;
+    color: #7765f6;
 `;
 
 export const PaletteGrid = ({ colors }: { colors: Array<{ name: string; row: string[] }> }) => (

@@ -18,16 +18,14 @@ const sidesCount = 2;
 export const Container = styled(BaseContainer)`
     max-width: 90rem;
 
-    && {
-        ${() =>
-            gridSizes.map((breakpoint) =>
-                mediaQuery(
-                    breakpoint,
-                    deviceScale,
-                )(css`
-                    --plasma-grid-margin: ${gridMargins[breakpoint]}rem;
-                    --plasma-grid-gutter: ${gridGutters[breakpoint] / sidesCount}rem;
-                `),
-            )}
-    }
+    ${() =>
+        gridSizes.map((breakpoint) =>
+            mediaQuery(
+                breakpoint,
+                deviceScale,
+            )(css`
+                --plasma-grid-margin: ${gridMargins[breakpoint]}rem;
+                --plasma-grid-gutter: ${gridGutters[breakpoint] / sidesCount}rem;
+            `),
+        )}
 `;

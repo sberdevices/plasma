@@ -46,10 +46,8 @@ export const ShowcaseHR = styled.div`
 `;
 
 export const ShowcaseHead = styled(Caption)`
-    && {
-        font-size: 0.625rem;
-        color: #7765f6;
-    }
+    font-size: 0.625rem;
+    color: #7765f6;
 `;
 
 export const ShowcasePanel = styled.section`

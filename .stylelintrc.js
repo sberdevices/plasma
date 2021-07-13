@@ -96,7 +96,6 @@ module.exports = {
         'selector-combinator-space-before': 'always',
         'selector-max-universal': 0,
         'selector-max-id': 0,
-        'selector-nested-pattern': '^&(?:(.+))$',
         'selector-pseudo-class-case': 'lower',
         'selector-pseudo-class-no-unknown': true,
         'selector-pseudo-class-parentheses-space-inside': 'never',
@@ -104,7 +103,6 @@ module.exports = {
         'selector-pseudo-element-colon-notation': 'double',
         'selector-pseudo-element-no-unknown': true,
         'selector-type-case': ['lower', { ignoreTypes: ['/^\\$\\w./'] }],
-        'selector-type-no-unknown': [true, { ignoreTypes: ['/^[$]/'] }],
         'selector-max-empty-lines': 0,
 
         'selector-list-comma-newline-after': null,

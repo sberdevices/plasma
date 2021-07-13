@@ -38,9 +38,7 @@ export interface BadgeProps extends BaseProps {
  * Компонент может отображаться в нескольких размерах и цветах, может содержать текст и/или иконку.
  */
 export const Badge = styled(BaseBadge)<BadgeProps>`
-    && {
-        border-radius: 0.25rem;
+    border-radius: 0.25rem;
 
-        ${({ view = 'primary' }) => badgeViews[view]}
-    }
+    ${({ view = 'primary' }) => badgeViews[view]}
 `;
