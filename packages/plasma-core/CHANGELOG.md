@@ -1,3 +1,15 @@
+# v1.18.1 (Tue Jul 13 2021)
+
+#### 🐛 Bug Fix
+
+- fix: Pickers performance, no unnecessary rerender [#527](https://github.com/sberdevices/plasma/pull/527) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.18.0 (Tue Jul 13 2021)
 
 #### 🚀 Enhancement

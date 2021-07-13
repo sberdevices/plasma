@@ -1,3 +1,17 @@
+# v1.27.1 (Tue Jul 13 2021)
+
+#### 🐛 Bug Fix
+
+- fix: Pickers performance, no unnecessary rerender [#527](https://github.com/sberdevices/plasma/pull/527) ([@fanisco](https://github.com/fanisco))
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.27.0 (Tue Jul 13 2021)
 
 #### 🚀 Enhancement
