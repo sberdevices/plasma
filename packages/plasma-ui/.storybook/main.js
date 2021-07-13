@@ -16,12 +16,8 @@ module.exports = {
           ],
     addons: [
         '@storybook/preset-create-react-app',
-        '@storybook/addon-backgrounds',
-        '@storybook/addon-viewport',
         '@storybook/addon-knobs',
-        '@storybook/addon-actions',
-        '@storybook/addon-docs',
-        '@storybook/addon-toolbars',
+        '@storybook/addon-essentials',
     ],
     webpackFinal: async (config) => {
         return {
