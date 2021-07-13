@@ -1,3 +1,15 @@
+# v1.25.2 (Tue Jul 13 2021)
+
+#### 🐛 Bug Fix
+
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 1
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
 # v1.25.1 (Tue Jul 13 2021)
 
 #### 🐛 Bug Fix
