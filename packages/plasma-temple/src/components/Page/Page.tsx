@@ -103,7 +103,7 @@ export const Page: PageFunctionComponent = ({
         <React.Suspense fallback={fallbackComponent}>
             <Layout ignoreInsets={ignoreInsets}>
                 <AppStateContext.Consumer>
-                    {({ pushHistory, pushScreen, header: appHeader, popScreen, state, dispatch }) => (
+                    {({ pushHistory, pushScreen, header: appHeader, popScreen, state, dispatch, goToScreen }) => (
                         <Component
                             name={name}
                             params={window.history.state}
@@ -114,6 +114,7 @@ export const Page: PageFunctionComponent = ({
                             pushHistory={pushHistory}
                             pushScreen={pushScreen}
                             popScreen={popScreen}
+                            goToScreen={goToScreen}
                             sendData={sendData}
                             fallbackComponent={fallbackComponent}
                             header={header ?? appHeader}
