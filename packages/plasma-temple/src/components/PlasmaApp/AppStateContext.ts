@@ -11,6 +11,7 @@ export interface AppStateContextValue {
     pushHistory: (name: string, data: unknown) => void;
     pushScreen: (name: string, params: unknown) => void;
     popScreen: () => void;
+    goToScreen: (name: string) => void;
 }
 
 const throwFn = () => {
@@ -23,4 +24,5 @@ export const AppStateContext = createContext<AppStateContextValue>({
     pushHistory: throwFn,
     pushScreen: throwFn,
     popScreen: throwFn,
+    goToScreen: throwFn,
 });
