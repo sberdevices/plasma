@@ -1,31 +1,32 @@
 import React from 'react';
 
-import { flattenItemsRecursive, setActiveRecursive } from './SelectList';
-import { SelectView, SelectViewProps } from './SelectView';
+import { flattenItemsRecursive, setActiveRecursive } from './Select.utils';
+import { SelectView, SelectViewProps, RefElement } from './SelectView';
 
-export interface MultiSelectProps extends Omit<SelectViewProps, 'label'> {
+export interface MultiSelectProps extends Omit<SelectViewProps, 'value'> {
     value: Array<string | number> | null;
     separator?: string;
-    onChange?: (items: Array<string | number>) => void;
+    onChange?: (value: Array<string | number>) => void;
 }
 
 /**
  * Выпадающий список с возможностью выбора нескольких значений.
  */
-export const MultiSelect = React.forwardRef<HTMLDivElement, MultiSelectProps>(
-    ({ value, items, separator = ', ', onChange, ...rest }, ref) => {
-        const viewLabel = React.useMemo(
+export const MultiSelect = React.forwardRef<RefElement, MultiSelectProps>(
+    ({ value, items = [], separator = ', ', onChange, ...rest }, ref) => {
+        const isActive = React.useCallback((item) => Boolean(value && value.includes(item.value)), [value]);
+
+        const viewValue = React.useMemo(
             () =>
                 flattenItemsRecursive(items)
-                    .filter((item) => value && value.includes(item.value))
+                    .filter(isActive)
                     .map((item) => item.label)
                     .join(separator),
-            [value, items],
+            [value, items, isActive],
         );
-        const viewItems = React.useMemo(
-            () => setActiveRecursive(items, (item) => ({ ...item, isActive: !!value && value.includes(item.value) })),
-            [value, items],
-        );
+
+        const viewItems = React.useMemo(() => setActiveRecursive(items, isActive), [value, items, isActive]);
+
         const onItemClick = React.useCallback(
             (item) => {
                 const set = new Set(value);
@@ -41,6 +42,6 @@ export const MultiSelect = React.forwardRef<HTMLDivElement, MultiSelectProps>(
             [onChange],
         );
 
-        return <SelectView ref={ref} label={viewLabel} items={viewItems} onItemClick={onItemClick} {...rest} />;
+        return <SelectView ref={ref} value={viewValue} items={viewItems} onItemClick={onItemClick} {...rest} />;
     },
 );

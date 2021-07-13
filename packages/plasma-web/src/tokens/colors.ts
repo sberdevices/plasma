@@ -9,4 +9,4 @@ export const linkVisitedHover = 'var(--plasma-colors-link-visited-hover)';
 export const linkVisitedActive = 'var(--plasma-colors-link-visited-active)';
 
 export const inputBorder = 'var(--plasma-colors-input-border)';
-export const inputBorderHover = 'var(--plasma-colors-button-input-border-hover)';
+export const inputBorderHover = 'var(--plasma-colors-input-border-hover)';
