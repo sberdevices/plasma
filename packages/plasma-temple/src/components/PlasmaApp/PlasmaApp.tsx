@@ -40,6 +40,9 @@ export function App<Name extends string>({
     onStart,
 }: React.PropsWithChildren<PlasmaAppProps<Name>>): React.ReactElement {
     const [state, dispatch] = useReducer(reducer, initialPlasmaAppState);
+    const popScreenDelta = React.useRef(1);
+
+    const { history } = state;
 
     const pushHistory = React.useCallback((name, data) => {
         window.history.pushState(null, name);
@@ -52,12 +55,34 @@ export function App<Name extends string>({
     }, []);
 
     const onPopScreen = React.useCallback(() => {
-        dispatch(Actions.popHistory());
+        dispatch(Actions.popHistory(popScreenDelta.current));
+        /* В случае, если popScreen был вызван в результате вызова goToScreen, то после прыжка в несколько экранов
+           необходимо вернуть стандартный переход в один экран
+        */
+        popScreenDelta.current = 1;
     }, []);
 
     const popScreen = React.useCallback(() => {
         window.history.back();
     }, []);
+
+    const goToScreen = React.useCallback(
+        (name: string) => {
+            const screenIndex = history.findIndex((screenState) => screenState.name === name);
+
+            if (screenIndex === -1) {
+                return;
+            }
+
+            const delta = history.length - screenIndex - 1;
+
+            if (delta && delta < history.length) {
+                popScreenDelta.current = delta;
+                window.history.go(-delta);
+            }
+        },
+        [history],
+    );
 
     const onData = (command: AssistantClientCustomizedCommand<PlasmaAction>) => {
         switch (command.type) {
@@ -100,9 +125,10 @@ export function App<Name extends string>({
             pushScreen,
             pushHistory,
             popScreen,
+            goToScreen,
             dispatch,
         }),
-        [state, header, pushScreen, popScreen, pushHistory],
+        [state, header, pushScreen, popScreen, pushHistory, goToScreen],
     );
 
     const activeScreen = last(state.history);

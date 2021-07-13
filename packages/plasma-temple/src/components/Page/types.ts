@@ -16,6 +16,7 @@ export interface PageMethods<
 > {
     pushHistory: <T extends PageType>(name: T, data: PageStateType[T]) => void;
     pushScreen: <T extends PageType>(...args: PushScreenParams<PageStateType, PageParamsType, T>) => void;
+    goToScreen: <T extends PageType>(name: T) => void;
     popScreen: () => void;
     changeState: (data: State) => void;
     sendData: AssistantInstance['sendData'];
