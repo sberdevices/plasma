@@ -21,7 +21,6 @@ export interface TextAreaProps extends BaseProps {
 export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     (
         {
-            value,
             placeholder,
             label,
             helperText,
@@ -53,7 +52,6 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     as={TextFieldTextarea}
                     ref={ref}
                     id={id}
-                    value={value}
                     placeholder={label || placeholder}
                     disabled={disabled}
                     status={status}

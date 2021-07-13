@@ -17,8 +17,6 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     (
         {
             size = 'm',
-            value,
-            defaultValue,
             placeholder,
             label,
             helperText,
@@ -56,8 +54,6 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
                     ref={ref}
                     id={id}
                     as={TextFieldInput}
-                    value={value}
-                    defaultValue={defaultValue}
                     placeholder={placeLabel}
                     disabled={disabled}
                     status={status}
