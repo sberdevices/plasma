@@ -1,3 +1,20 @@
+# v1.27.0 (Tue Jul 13 2021)
+
+#### 🚀 Enhancement
+
+- feat: react17 and test job added [#496](https://github.com/sberdevices/plasma/pull/496) ([@kayman233](https://github.com/kayman233))
+
+#### 🐛 Bug Fix
+
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@kayman233](https://github.com/kayman233)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
 # v1.26.0 (Fri Jul 09 2021)
 
 #### 🚀 Enhancement

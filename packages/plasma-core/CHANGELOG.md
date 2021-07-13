@@ -1,3 +1,15 @@
+# v1.18.0 (Tue Jul 13 2021)
+
+#### 🚀 Enhancement
+
+- feat: react17 and test job added [#496](https://github.com/sberdevices/plasma/pull/496) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 1
+
+- [@kayman233](https://github.com/kayman233)
+
+---
+
 # v1.17.0 (Fri Jul 09 2021)
 
 #### 🐛 Bug Fix
