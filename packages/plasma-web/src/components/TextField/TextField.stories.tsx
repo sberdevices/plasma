@@ -41,6 +41,20 @@ export const Default = () => {
     );
 };
 
-export const DefaultValue = () => {
-    return <TextField size="l" placeholder="Type here" defaultValue="" onInput={onInput} />;
+export const DeferredValue = () => {
+    const [asyncValue, setAsyncValue] = React.useState('');
+
+    React.useEffect(() => {
+        setTimeout(() => {
+            setAsyncValue("Sorry i'm late :)");
+        }, 3000);
+    }, []);
+
+    return (
+        <TextField
+            placeholder="Wait three seconds..."
+            defaultValue={asyncValue}
+            readOnly={boolean('readOnly', true, 'DeferredValue')}
+        />
+    );
 };
