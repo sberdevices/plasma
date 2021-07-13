@@ -49,11 +49,13 @@ export const reducer = (state: AppState, action: PlasmaActionData): AppState => 
             };
         }
 
-        case AppStateActionType.POP_HISTORY:
+        case AppStateActionType.POP_HISTORY: {
+            const { delta = 1 } = action.payload;
             return {
                 ...state,
-                history: state.history.slice(0, -1),
+                history: state.history.slice(0, -delta),
             };
+        }
 
         case AppStateActionType.CHANGE_ACTIVE_SCREEN_STATE: {
             const { data } = action.payload;
