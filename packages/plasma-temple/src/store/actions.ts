@@ -1,7 +1,7 @@
 import { AssistantCharacterType } from '@sberdevices/assistant-client';
 
 import { AnyObject } from '../types';
-import { createAction, createEmptyAction } from '../utils/createAction';
+import { createAction } from '../utils/createAction';
 
 import {
     AppStateActionType,
@@ -27,7 +27,7 @@ export const pushHistory = <
     data: T[N],
 ): PushHistoryAction => createAction(AppStateActionType.PUSH_HISTORY, { history: { name, data } });
 
-export const popHistory = (): PopHistoryAction => createEmptyAction(AppStateActionType.POP_HISTORY);
+export const popHistory = (delta?: number): PopHistoryAction => createAction(AppStateActionType.POP_HISTORY, { delta });
 
 export const changeActiveScreenState = (data: History['data']): ChangeStateAction =>
     createAction(AppStateActionType.CHANGE_ACTIVE_SCREEN_STATE, { data });
