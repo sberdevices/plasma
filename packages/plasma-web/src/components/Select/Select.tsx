@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SelectViewProps } from './SelectView';
+import type { SelectViewProps, RefElement } from './SelectView';
 import { SingleSelect, SingleSelectProps } from './SingleSelect';
 import { MultiSelect, MultiSelectProps } from './MultiSelect';
 
@@ -36,7 +36,7 @@ export type SelectProps = Omit<SelectViewProps, 'label'> &
  * Выпадающий список для использования в формах.
  * Поддерживает выбор одного или нескольких значений.
  */
-export const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
+export const Select = React.forwardRef<RefElement, SelectProps>((props, ref) => {
     if (props.multiselect) {
         return <MultiSelect ref={ref} {...props} />;
     }

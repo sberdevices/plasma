@@ -4,8 +4,6 @@ import { action } from '@storybook/addon-actions';
 
 import { InSpacingDecorator } from '../../helpers';
 
-import { Item } from './SelectView';
-
 import { Select } from '.';
 
 export default {
@@ -17,9 +15,9 @@ export default {
 const onChange = action('onChange');
 const onFocus = action('onFocus');
 const onBlur = action('onBlur');
-const items: Item[] = [
+const items = [
     { value: 'each', label: 'Каждый' },
-    { value: 'hunter', label: 'Охотник' },
+    { value: 'hunter', label: 'Охотник', isDisabled: true },
     { value: 'wants', label: 'Желает' },
     {
         value: 'toKnow',
@@ -38,20 +36,18 @@ const items: Item[] = [
 
 export const Default = () => {
     const [value, setValue] = React.useState<string | Array<string>>(null);
-    const status = select('status', ['error', ''], '');
 
     return (
         <div style={{ maxWidth: '20rem' }}>
             <div style={{ marginBottom: '1rem' }}>
                 <Select
-                    multiselect={boolean('multiselect', false) as true}
-                    value={value as Array<string>}
+                    multiselect={boolean('multiselect', false) as false}
+                    value={value as string}
                     items={items}
                     placeholder={text('placeholder', 'Выберите пример')}
                     helperText={text('helperText', 'Заполните пример')}
-                    status={status === 'error' ? status : undefined}
+                    status={select('status', ['', 'success', 'warning', 'error'], '') || undefined}
                     disabled={boolean('disabled', false) as true}
-                    tabIndex={-1}
                     onChange={(v) => {
                         setValue(v);
                         onChange(v);

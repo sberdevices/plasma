@@ -1,145 +1,161 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import styled, { css } from 'styled-components';
-import { TextFieldRoot, TextFieldHelper } from '@sberdevices/plasma-core/components/TextField';
-import { syntheticFocus, applyDisabled } from '@sberdevices/plasma-core/mixins';
-import type { FocusProps } from '@sberdevices/plasma-core/mixins';
-import type { InputHTMLAttributes } from '@sberdevices/plasma-core/types';
-import type { TextFieldProps } from '@sberdevices/plasma-core/components/TextField';
-import { accent, secondary, background, text, critical } from '@sberdevices/plasma-core';
+import {
+    TextFieldRoot,
+    TextFieldHelper,
+    TextFieldProps as BaseProps,
+    body1,
+    accent,
+    primary,
+    secondary,
+    tertiary,
+    success,
+    warning,
+    critical,
+    applyEllipsis,
+} from '@sberdevices/plasma-core';
 import { IconChevronDown } from '@sberdevices/plasma-icons';
 
 import { inputBorder, inputBorderHover } from '../../tokens';
+import { Dropdown, DropdownProps } from '../Dropdown';
 
-import { SelectDropdown } from './SelectDropdown';
-import { SelectList, SelectListProps } from './SelectList';
+export type RefElement = HTMLButtonElement;
 
 export interface SelectViewProps
-    extends Pick<FocusProps, 'focused'>,
-        Pick<SelectListProps, 'items' | 'onItemClick'>,
-        Pick<TextFieldProps, 'label' | 'helperText' | 'status'>,
-        Omit<InputHTMLAttributes<HTMLDivElement>, 'value' | 'onChange' | 'size'>,
-        Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {}
+    extends Pick<BaseProps, 'status' | 'placeholder' | 'helperText' | 'disabled'>,
+        Pick<DropdownProps, 'items' | 'onItemClick'>,
+        Omit<HTMLAttributes<RefElement>, 'onChange'> {
+    value?: string | number | null;
+}
 
-const StyledRoot = styled(TextFieldRoot)`
-    position: relative;
+const statuses = {
+    success,
+    warning,
+    error: critical,
+};
 
-    color: ${secondary};
-
-    user-select: none;
-
-    ${applyDisabled}
-`;
-const StyledLabel = styled.span`
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    color: ${text};
+const StyledDropdown = styled(Dropdown)`
+    --plasma-dropdown-padding: 0.25rem;
+    --plasma-dropdown-border-radius: 0.25rem;
+    display: flex;
+    width: 100%;
 `;
 const StyledArrow = styled(IconChevronDown)`
-    color: ${secondary};
+    margin-left: 0.75rem;
+    transition: color 0.3s ease-in-out;
+`;
+const StyledText = styled.span`
+    ${applyEllipsis}
+
+    color: ${primary};
+    transition: color 0.3s ease-in-out;
+    pointer-events: none;
+    user-select: none;
 `;
 const StyledPlaceholder = styled.span`
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    ${applyEllipsis}
+
+    color: ${tertiary};
+    pointer-events: none;
+    user-select: none;
 `;
-const StyledLabelWrapper = styled.div<Pick<SelectViewProps, 'disabled' | 'focused' | 'status'>>`
-    box-sizing: border-box;
+
+interface StyledButtonProps extends Pick<BaseProps, 'status'> {
+    focused?: boolean;
+}
+const StyledButton = styled.button<StyledButtonProps>`
+    ${body1};
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+    box-sizing: border-box;
 
-    padding: 0 0.5rem 0 1rem;
     width: 100%;
     height: 3rem;
 
     /* stylelint-disable-next-line number-max-precision */
-    border: 0.0625rem solid ${inputBorder};
-    border-radius: 0.25rem;
+    padding: 0.875rem 0.9375rem;
+    border: 1px solid ${inputBorder};
+    border-radius: var(--plasma-dropdown-border-radius);
 
-    background: ${background};
-
+    background-color: transparent;
+    color: ${secondary};
+    transition: border-color 0.3s ease-in-out;
     cursor: pointer;
 
-    transition: border-color 0.1s ease-in-out;
+    &:disabled {
+        cursor: inherit;
+    }
 
-    &:hover {
+    &:hover:not(:disabled) {
         border-color: ${inputBorderHover};
+        color: ${secondary};
+    }
+
+    &:focus:not(:disabled) {
+        outline: 0 none;
+        border-color: ${accent};
+        color: ${accent};
+
+        /* stylelint-disable-next-line selector-nested-pattern */
+        ${StyledText} {
+            color: ${accent};
+        }
     }
 
     ${({ focused }) =>
-        syntheticFocus(
-            css`
-                outline: 0 none;
-                border-color: ${accent};
-
-                /* stylelint-disable-next-line selector-nested-pattern */
-                ${StyledLabel} {
-                    color: ${accent};
-                }
-
-                /* stylelint-disable-next-line selector-nested-pattern */
-                ${StyledArrow} {
-                    color: ${accent};
-                }
-            `,
-            focused,
-        )}
-
-    ${({ status }) =>
-        status === 'error' &&
+        focused &&
         css`
-            border-color: ${critical};
+            border-color: ${accent};
+            color: ${accent};
+
+            ${StyledText} {
+                color: ${accent};
+            }
         `}
 
-    ${({ disabled }) =>
-        disabled &&
+    ${({ status }) =>
+        status &&
         css`
-            cursor: not-allowed;
+            border-color: ${statuses[status]};
+            color: ${statuses[status]};
+
+            /* stylelint-disable-next-line selector-nested-pattern */
+            &:hover,
+            &:focus,
+            &:disabled {
+                border-color: ${statuses[status]};
+            }
         `}
 `;
 
-export const SelectView = React.forwardRef<HTMLDivElement, SelectViewProps>(
-    ({ label, placeholder, items, tabIndex, helperText, disabled, focused, status, onItemClick, ...rest }, ref) => {
-        const rootRef = React.useRef<HTMLDivElement>(null);
-        const [isOpen, setIsOpen] = React.useState(false);
-        const handleDocumentClick = React.useCallback((event) => {
-            if (rootRef.current && (rootRef.current === event.target || rootRef.current.contains(event.target))) {
-                return;
-            }
-            setIsOpen(false);
-        }, []);
-
-        React.useEffect(() => {
-            document.addEventListener('click', handleDocumentClick);
-            return () => document.removeEventListener('click', handleDocumentClick);
-        }, []);
+/**
+ * Поле с выпадающим списком.
+ */
+export const SelectView = React.forwardRef<RefElement, SelectViewProps>(
+    ({ placeholder, value, helperText, disabled, status, className, style, items, onItemClick, ...rest }, ref) => {
+        const isIcon = Boolean(items && items.length);
 
         return (
-            <StyledRoot ref={rootRef} disabled={disabled} status={status} {...rest}>
-                <StyledLabelWrapper
-                    ref={ref}
-                    disabled={disabled}
-                    focused={focused}
-                    status={status}
-                    tabIndex={tabIndex}
-                    onClick={() => setIsOpen(!disabled ? !isOpen : false)}
-                >
-                    {label ? <StyledLabel>{label}</StyledLabel> : <StyledPlaceholder>{placeholder}</StyledPlaceholder>}
-                    <StyledArrow size="xs" color="unset" />
-                </StyledLabelWrapper>
-                <SelectDropdown open={isOpen}>
-                    <SelectList
-                        items={items}
-                        onItemClick={(item) => {
-                            setIsOpen(!isOpen);
-                            onItemClick?.(item);
-                        }}
-                    />
-                </SelectDropdown>
+            <TextFieldRoot
+                $size="m"
+                $disabled={disabled}
+                $isContentRight={isIcon}
+                $isHelper={Boolean(helperText)}
+                status={status}
+                className={className}
+                style={style}
+            >
+                <StyledDropdown offsetTop="0.25rem" items={items} onItemClick={onItemClick}>
+                    <StyledButton ref={ref} disabled={disabled} status={status} {...rest}>
+                        {value && <StyledText>{value}</StyledText>}
+                        {placeholder && !value && <StyledPlaceholder>{placeholder}</StyledPlaceholder>}
+                        {isIcon && <StyledArrow size="xs" color="inherit" />}
+                    </StyledButton>
+                </StyledDropdown>
                 {helperText && <TextFieldHelper status={status}>{helperText}</TextFieldHelper>}
-            </StyledRoot>
+            </TextFieldRoot>
         );
     },
 );
