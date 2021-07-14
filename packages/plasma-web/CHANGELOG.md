@@ -1,3 +1,17 @@
+# v1.25.3 (Wed Jul 14 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web): TextField can accept deferred defaultValue [#536](https://github.com/sberdevices/plasma/pull/536) ([@fanisco](https://github.com/fanisco))
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.25.2 (Tue Jul 13 2021)
 
 #### 🐛 Bug Fix

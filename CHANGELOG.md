@@ -1,3 +1,16 @@
+# (Wed Jul 14 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-web@1.25.3`
+  - fix(plasma-web): TextField can accept deferred defaultValue [#536](https://github.com/sberdevices/plasma/pull/536) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Tue Jul 13 2021)
 
 #### 🐛 Bug Fix
