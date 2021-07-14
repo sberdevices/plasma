@@ -60,7 +60,7 @@ export default function PickersPage() {
                 />
             </StyledPickers>
             <Footnote2>
-                Date/Time: {date.getFullYear()}-{date.getMonth() + 1}-{date.getDate() + 1} {time.getHours()}:
+                Date/Time: {date.getFullYear()}-{date.getMonth() + 1}-{date.getDate()} {time.getHours()}:
                 {time.getMinutes()}:{time.getSeconds()}
             </Footnote2>
         </StyledWrapper>
