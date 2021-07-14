@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { DatePicker, TimePicker, Footnote2 } from '@sberdevices/plasma-ui';
+import { DatePicker, TimePicker, Footnote2, Switch } from '@sberdevices/plasma-ui';
 import { isSberBox } from '@sberdevices/plasma-ui/utils';
 
 const StyledWrapper = styled.div`
@@ -13,16 +13,10 @@ const StyledWrapper = styled.div`
     height: 100%;
 `;
 const StyledPickers = styled.div`
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, max-content);
+    gap: 2rem;
     align-items: center;
-    margin-bottom: 2rem;
-`;
-const StyledDatePicker = styled(DatePicker)`
-    /* height: 100%; */
-`;
-const StyledTimePicker = styled(TimePicker)`
-    /* height: 100%; */
-    margin-left: 2rem;
 `;
 
 const isSberbox = isSberBox();
@@ -33,11 +27,12 @@ export default function PickersPage() {
     const min = new Date(2000, 0, 1, 0, 0, 0);
     const max = new Date(2030, 11, 31, 23, 59, 59);
     const scrollSnapType = isSberbox ? 'none' : 'mandatory';
+    const [isFullDay, setIsFullDay] = useState(false);
 
     return (
         <StyledWrapper>
             <StyledPickers>
-                <StyledDatePicker
+                <DatePicker
                     id="datepicker"
                     value={date}
                     min={min}
@@ -47,7 +42,7 @@ export default function PickersPage() {
                     scrollSnapType={scrollSnapType}
                     onChange={(d) => setDate(d)}
                 />
-                <StyledTimePicker
+                <TimePicker
                     id="timepicker"
                     value={time}
                     min={min}
@@ -55,7 +50,13 @@ export default function PickersPage() {
                     controls={true}
                     autofocus={false}
                     scrollSnapType={scrollSnapType}
+                    disabled={isFullDay}
                     onChange={(t) => setTime(t)}
+                />
+                <Switch
+                    label="Целый день"
+                    checked={isFullDay}
+                    onChange={(event) => setIsFullDay(event.target.checked)}
                 />
             </StyledPickers>
             <Footnote2>
