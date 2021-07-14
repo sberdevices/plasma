@@ -1,3 +1,15 @@
+# v1.19.0 (Wed Jul 14 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-core): delete storybook [#535](https://github.com/sberdevices/plasma/pull/535) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 1
+
+- [@kayman233](https://github.com/kayman233)
+
+---
+
 # v1.18.1 (Tue Jul 13 2021)
 
 #### 🐛 Bug Fix

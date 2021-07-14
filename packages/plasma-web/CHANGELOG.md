@@ -1,3 +1,15 @@
+# v1.26.0 (Wed Jul 14 2021)
+
+#### 🐛 Bug Fix
+
+- feat(plasma-ui, plasma-web, showcase): sb-essentials added [#535](https://github.com/sberdevices/plasma/pull/535) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 1
+
+- [@kayman233](https://github.com/kayman233)
+
+---
+
 # v1.25.3 (Wed Jul 14 2021)
 
 #### 🐛 Bug Fix

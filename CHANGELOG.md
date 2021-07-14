@@ -1,5 +1,23 @@
 # (Wed Jul 14 2021)
 
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-core@1.19.0`
+  - feat(plasma-core): delete storybook [#535](https://github.com/sberdevices/plasma/pull/535) ([@kayman233](https://github.com/kayman233))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/showcase@0.32.0`, `@sberdevices/plasma-ui@1.28.0`, `@sberdevices/plasma-web@1.26.0`
+  - feat(plasma-ui, plasma-web, showcase): sb-essentials added [#535](https://github.com/sberdevices/plasma/pull/535) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 1
+
+- [@kayman233](https://github.com/kayman233)
+
+---
+
+# (Wed Jul 14 2021)
+
 #### 🐛 Bug Fix
 
 - `@sberdevices/plasma-web@1.25.3`
