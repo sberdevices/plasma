@@ -1,3 +1,16 @@
+# (Wed Jul 14 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@0.37.1`
+  - fix(plasma-temple): circular deps in components [#90](https://github.com/sberdevices/pashka/pull/90) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Fri Jul 02 2021)
 
 #### 🚀 Enhancement
