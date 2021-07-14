@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/demo-canvas-app",
-    "version": "0.3.2",
+    "version": "0.3.3",
     "description": "Demo Canvas App",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
@@ -21,7 +21,7 @@
     "dependencies": {
         "@sberdevices/plasma-icons": "1.23.2",
         "@sberdevices/plasma-tokens": "^1.8.1",
-        "@sberdevices/plasma-ui": "1.27.2",
+        "@sberdevices/plasma-ui": "1.27.3",
         "next": "11.0.1",
         "react": "17.0.2",
         "react-dom": "17.0.2",
