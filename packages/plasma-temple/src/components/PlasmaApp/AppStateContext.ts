@@ -2,7 +2,7 @@ import { createContext } from 'react';
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 
 import { initialState } from '../../store/reducer';
-import { AppState, PlasmaActionData } from '../../store/types';
+import { AppState, PlasmaActionData, History } from '../../store/types';
 
 export interface AppStateContextValue {
     state: AppState;
@@ -12,6 +12,7 @@ export interface AppStateContextValue {
     pushScreen: (name: string, params: unknown) => void;
     popScreen: () => void;
     goToScreen: (name: string) => void;
+    changeActiveScreenState: (state: Partial<History>) => void;
 }
 
 const throwFn = () => {
@@ -25,4 +26,5 @@ export const AppStateContext = createContext<AppStateContextValue>({
     pushScreen: throwFn,
     popScreen: throwFn,
     goToScreen: throwFn,
+    changeActiveScreenState: throwFn,
 });

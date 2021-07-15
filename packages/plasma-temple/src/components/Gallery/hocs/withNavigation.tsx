@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { useVoiceNavigation, useRemoteHandlers } from '../../../hooks';
-import { GalleryProps, WithNavigationProps } from '../types';
+import { GalleryProps, GalleryWithNavigationProps, WithNavigationProps } from '../types';
 
 export const GalleryIndexContext = React.createContext(0);
 
@@ -12,7 +12,7 @@ const StyledFocusableContainer = styled.div`
 
 export const withNavigation = (
     Component: React.ComponentType<GalleryProps>,
-): React.ForwardRefExoticComponent<WithNavigationProps & GalleryProps & React.RefAttributes<HTMLDivElement>> =>
+): React.ForwardRefExoticComponent<GalleryWithNavigationProps> =>
     React.forwardRef<HTMLDivElement, WithNavigationProps & GalleryProps>(
         ({ axis = 'x', activeIndex = -1, ...props }, ref) => {
             const [galleryInFocus, setGalleryInFocus] = React.useState(false);
