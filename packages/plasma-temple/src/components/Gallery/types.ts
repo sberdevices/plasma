@@ -32,3 +32,7 @@ export interface GalleryPropsWithComponent<T extends AnyObject = AnyObject> {
 export type GalleryProps<T extends AnyObject = AnyObject> = GalleryClassNameProps<
     GalleryPropsWithChildren | GalleryPropsWithComponent<T>
 >;
+
+export type GalleryWithNavigationProps<T extends AnyObject = AnyObject> = WithNavigationProps &
+    GalleryProps<T> &
+    React.RefAttributes<HTMLDivElement>;

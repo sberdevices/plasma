@@ -8,7 +8,7 @@ import { GalleryCard as DefaultGalleryCard, GalleryCardProps } from '../GalleryC
 import { useDelayedActivation } from '../../hooks/useDelayedActivation';
 
 import { GalleryIndexContext, withNavigation } from './hocs/withNavigation';
-import { GalleryProps, GalleryPropsWithComponent } from './types';
+import { GalleryProps, GalleryPropsWithComponent, GalleryWithNavigationProps } from './types';
 
 const StyledCarouselWrapper = styled(CarouselGridWrapper)`
     margin-top: -8px;
@@ -93,4 +93,6 @@ export function Gallery<T extends AnyObject>({
     );
 }
 
-export const GalleryWithNavigation = React.memo(withNavigation(Gallery));
+export const GalleryWithNavigation = React.memo(withNavigation(Gallery)) as <T extends AnyObject = AnyObject>(
+    props: GalleryWithNavigationProps<T>,
+) => React.ReactElement;
