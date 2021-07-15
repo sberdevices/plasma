@@ -1,3 +1,16 @@
+# v0.38.0 (Thu Jul 15 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Improve gallery types, fix redundant rerender because of changeState [#91](https://github.com/sberdevices/pashka/pull/91) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-temple): Add go to screen page method [#91](https://github.com/sberdevices/pashka/pull/91) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v0.37.1 (Wed Jul 14 2021)
 
 #### 🐛 Bug Fix
