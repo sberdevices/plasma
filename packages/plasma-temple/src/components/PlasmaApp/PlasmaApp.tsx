@@ -13,7 +13,7 @@ import { last } from '../../utils/last';
 import { PushScreenParams } from '../Page/types';
 import { AnyObject } from '../../types';
 import { isPlasmaAppAction, isPopHistoryAction, isPushHistoryAction } from '../../store/guards';
-import { PlasmaAction } from '../../store/types';
+import { PlasmaAction, History } from '../../store/types';
 
 import { AssistantContext } from './AssistantContext';
 import { AppStateContext } from './AppStateContext';
@@ -84,6 +84,11 @@ export function App<Name extends string>({
         [history],
     );
 
+    const changeActiveScreenState = React.useCallback(
+        (data: Partial<History>) => dispatch(Actions.changeActiveScreenState(data)),
+        [dispatch],
+    );
+
     const onData = (command: AssistantClientCustomizedCommand<PlasmaAction>) => {
         switch (command.type) {
             case 'insets':
@@ -126,9 +131,10 @@ export function App<Name extends string>({
             pushHistory,
             popScreen,
             goToScreen,
+            changeActiveScreenState,
             dispatch,
         }),
-        [state, header, pushScreen, popScreen, pushHistory, goToScreen],
+        [state, header, pushScreen, popScreen, pushHistory, goToScreen, changeActiveScreenState],
     );
 
     const activeScreen = last(state.history);

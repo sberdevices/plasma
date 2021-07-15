@@ -4,8 +4,6 @@ import { Spinner } from '@sberdevices/plasma-ui';
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 
 import { AppStateContext } from '../PlasmaApp/AppStateContext';
-import { changeActiveScreenState } from '../../store/actions';
-import { History } from '../../store/types';
 import { AnyObject, AssistantInstance } from '../../types';
 import { useAssistant } from '../../hooks/useAssistant';
 import { last } from '../../utils/last';
@@ -103,14 +101,22 @@ export const Page: PageFunctionComponent = ({
         <React.Suspense fallback={fallbackComponent}>
             <Layout ignoreInsets={ignoreInsets}>
                 <AppStateContext.Consumer>
-                    {({ pushHistory, pushScreen, header: appHeader, popScreen, state, dispatch, goToScreen }) => (
+                    {({
+                        pushHistory,
+                        pushScreen,
+                        header: appHeader,
+                        popScreen,
+                        state,
+                        changeActiveScreenState,
+                        goToScreen,
+                    }) => (
                         <Component
                             name={name}
                             params={window.history.state}
                             state={last(state.history).data}
                             assistant={assistant}
                             setAssistantState={setAssistantState}
-                            changeState={(data: Partial<History>) => dispatch(changeActiveScreenState(data))}
+                            changeState={changeActiveScreenState}
                             pushHistory={pushHistory}
                             pushScreen={pushScreen}
                             popScreen={popScreen}
