@@ -35,6 +35,20 @@ export const isSberBox = (): boolean => {
 };
 
 /**
+ * Проверка в браузере на устройство "SberBoxTop".
+ * @return {boolean}
+ */
+export const isSberBoxTop = (): boolean => {
+    if (typeof navigator === 'undefined') {
+        return false;
+    }
+
+    const ua = navigator.userAgent.toLowerCase();
+
+    return ua.includes('satellite') || ua.includes('sberbox top');
+};
+
+/**
  * Проверка в браузере на устройство "SberBoxTV".
  * @return {boolean}
  */
@@ -60,6 +74,7 @@ export const detectDevice = (): DeviceKind => {
     switch (true) {
         case isSberPortal():
             return 'sberPortal';
+        case isSberBoxTop():
         case isSberBox():
         case isTV():
             return 'sberBox';
