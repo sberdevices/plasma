@@ -127,6 +127,7 @@ export const globalTypes = {
         defaultValue: 'darkSber',
         toolbar: {
             items: ['darkSber', 'darkJoy', 'darkEva', 'lightSber', 'lightJoy', 'lightEva'],
+            showName: true,
         },
     },
     typoSize: {
@@ -135,6 +136,7 @@ export const globalTypes = {
         defaultValue: 'sberBox',
         toolbar: {
             items: ['mobile', 'sberBox', 'sberPortal'],
+            showName: true,
         },
     },
 };

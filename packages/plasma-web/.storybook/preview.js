@@ -84,6 +84,7 @@ export const globalTypes = {
         defaultValue: 'light',
         toolbar: {
             items: ['light', 'dark', 'b2c:light', 'b2c:dark'],
+            showName: true,
         },
     },
 };
