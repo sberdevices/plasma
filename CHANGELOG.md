@@ -2,6 +2,19 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-ui@1.30.0`
+  - feat(plasma-ui): Detect SberBoxTop [#546](https://github.com/sberdevices/plasma/pull/546) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Thu Jul 15 2021)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/demo-canvas-app@0.5.0`
   - feat(demo-canvas-app): Added Switch to PickersPage [#542](https://github.com/sberdevices/plasma/pull/542) ([@fanisco](https://github.com/fanisco))
 

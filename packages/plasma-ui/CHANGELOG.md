@@ -1,3 +1,20 @@
+# v1.30.0 (Thu Jul 15 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): Detect SberBoxTop [#546](https://github.com/sberdevices/plasma/pull/546) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.29.0 (Thu Jul 15 2021)
 
 #### 🐛 Bug Fix
