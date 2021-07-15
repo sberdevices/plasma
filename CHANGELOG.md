@@ -1,3 +1,21 @@
+# (Thu Jul 15 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/demo-canvas-app@0.5.0`
+  - feat(demo-canvas-app): Added Switch to PickersPage [#542](https://github.com/sberdevices/plasma/pull/542) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/demo-canvas-app@0.5.0`
+  - fix(demo-canvas-app): Date revise in footnote - no +1 to day [#542](https://github.com/sberdevices/plasma/pull/542) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Wed Jul 14 2021)
 
 #### 🚀 Enhancement
