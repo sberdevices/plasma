@@ -5,6 +5,7 @@ import { Row, Col, Image } from '@sberdevices/plasma-ui';
 import { Header } from '../Header/Header';
 import { UnifiedComponentProps } from '../../registry/types';
 import { useInsets } from '../../hooks';
+import { FullScreenBackground } from '../FullScreenBackground/FullScreenBackground';
 
 import { StateLayoutCommonProps } from './types';
 
@@ -34,18 +35,26 @@ const StyledContainer = styled(Row)<{ offset?: number }>`
         }}
 `;
 
+const StyledWrapper = styled.div`
+    position: relative;
+    margin: 0 calc(var(--plasma-grid-margin) * -1);
+    padding: 0 var(--plasma-grid-margin);
+`;
+
 export const StateLayout: React.FC<StateLayoutProps> = ({
     title,
     text,
     button,
-    backgound,
+    image,
+    background,
     header,
     platformComponents: { Headline, ImageContainer, Text, TextWrapper },
 }) => {
     const insets = useInsets();
 
     return (
-        <>
+        <StyledWrapper>
+            {background && <FullScreenBackground src={background} />}
             {header && (
                 <StyledHeaderContainer>
                     <Header {...header} />
@@ -59,14 +68,14 @@ export const StateLayout: React.FC<StateLayoutProps> = ({
                     </TextWrapper>
                     {button}
                 </Col>
-                {backgound && (
+                {image && (
                     <Col sizeXL={6} sizeM={3}>
                         <ImageContainer>
-                            <Image base="div" src={backgound} ratio="1 / 1" />
+                            <Image base="div" src={image} ratio="1 / 1" />
                         </ImageContainer>
                     </Col>
                 )}
             </StyledContainer>
-        </>
+        </StyledWrapper>
     );
 };
