@@ -13,6 +13,7 @@ jobs:
     env:
       NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
       PR_NAME: pr-${{ github.event.number }}
+      ICONS_PUBLIC_URL: /icons
     steps:
       - uses: actions/checkout@v2
 
