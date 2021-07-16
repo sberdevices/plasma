@@ -14,9 +14,9 @@ const sizes = {
         --plasma-header-pb: 0.625rem; /* 10px */
     `,
     mobile: css`
-        --plasma-header-height: 1.75rem; /* 28px */
-        --plasma-header-pt: 0.625rem; /* 26px */
-        --plasma-header-pb: 0.625rem; /* 10px */
+        --plasma-header-height: 2.25rem; /* 36px */
+        --plasma-header-pt: 0.375rem; /* 6px */
+        --plasma-header-pb: 0.375rem; /* 6px */
     `,
 };
 

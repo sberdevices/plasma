@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { text, number, boolean, select } from '@storybook/addon-knobs';
+import { text, number, boolean, select, radios } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { IconMic, IconPlus, IconTrash } from '@sberdevices/plasma-icons';
 
@@ -108,10 +108,10 @@ export const Default = () => {
     return (
         <Header
             {...props}
-            logo={logo && './images/logo.png'}
+            logo={logo && './images/320_320_12.jpg'}
             logoAlt={logo && text('logoAlt', 'Logo')}
-            title={text('title', 'Header title text')}
-            subtitle={text('subtitle', 'Subtitle text')}
+            title={text('title', 'Header title text is very long to fit given width')}
+            subtitle={text('subtitle', 'Subtitle text is very long to fit given width even this has smaller font size')}
         >
             <Content />
         </Header>
@@ -119,6 +119,11 @@ export const Default = () => {
 };
 
 export const CustomAssembly = () => {
+    const variant = radios(
+        'Variant',
+        { 'Title+Subtitle': 'title+subtitle', 'Label+Title': 'label+title', Title: 'title' },
+        'title+subtitle',
+    );
     const [isBack, setIsBack] = useState(true);
 
     return (
@@ -138,10 +143,21 @@ export const CustomAssembly = () => {
                     }}
                 />
             )}
-            <HeaderLogo src="./images/logo.png" alt="Logo" />
+            <HeaderLogo src="./images/320_320_12.jpg" alt="Logo" />
             <HeaderTitleWrapper>
-                <HeaderTitle>{text('title', 'Header title text')}</HeaderTitle>
-                <HeaderSubtitle>{text('subtitle', 'Subtitle text')}</HeaderSubtitle>
+                {variant === 'title+subtitle' && (
+                    <>
+                        <HeaderTitle>{text('title', 'Header title text')}</HeaderTitle>
+                        <HeaderSubtitle>{text('subtitle', 'Subtitle text')}</HeaderSubtitle>
+                    </>
+                )}
+                {variant === 'label+title' && (
+                    <>
+                        <HeaderSubtitle>{text('label', 'Label text')}</HeaderSubtitle>
+                        <HeaderTitle>{text('title', 'Header title text')}</HeaderTitle>
+                    </>
+                )}
+                {variant === 'title' && <HeaderTitle>{text('title', 'Header title text')}</HeaderTitle>}
             </HeaderTitleWrapper>
             <HeaderContent>
                 <Content />
