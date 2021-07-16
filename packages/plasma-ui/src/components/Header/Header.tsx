@@ -80,7 +80,7 @@ export const Header: React.FC<HeaderProps> = ({ children, ...props }) => {
             {logo && <HeaderLogo src={logo} alt={logoAlt} />}
             {title && (
                 <HeaderTitleWrapper>
-                    {title && <HeaderTitle>{title}</HeaderTitle>}
+                    <HeaderTitle>{title}</HeaderTitle>
                     {subtitle && <HeaderSubtitle>{subtitle}</HeaderSubtitle>}
                 </HeaderTitleWrapper>
             )}
