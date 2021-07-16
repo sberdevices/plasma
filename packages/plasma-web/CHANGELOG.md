@@ -1,3 +1,15 @@
+# v1.28.1 (Fri Jul 16 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui, plasma-web): toolbar buttons return [#547](https://github.com/sberdevices/plasma/pull/547) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 1
+
+- [@kayman233](https://github.com/kayman233)
+
+---
+
 # v1.28.0 (Thu Jul 15 2021)
 
 #### 🐛 Bug Fix
