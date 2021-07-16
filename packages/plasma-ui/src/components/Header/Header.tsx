@@ -1,6 +1,9 @@
 import React from 'react';
 
+import { PickOptional } from '../../types';
+
 import { HeaderRoot } from './HeaderRoot';
+import { HeaderMinimize } from './HeaderMinimize';
 import { HeaderBack } from './HeaderBack';
 import { HeaderLogo } from './HeaderLogo';
 import { HeaderSubtitle } from './HeaderSubtitle';
@@ -8,19 +11,23 @@ import { HeaderTitle } from './HeaderTitle';
 import { HeaderTitleWrapper } from './HeaderTitleWrapper';
 import { HeaderContent } from './HeaderContent';
 
+interface MinimizeProps {
+    minimize?: true;
+    onMinimizeClick?: React.MouseEventHandler<HTMLButtonElement>;
+    back?: false;
+    onBackClick?: never;
+}
 interface BackProps {
     /**
      * Показывать кнопку "назад"
      */
-    back: true;
+    back?: true;
     /**
      * Обработчик клика по кнопке "назад"
      */
     onBackClick?: React.MouseEventHandler<HTMLButtonElement>;
-}
-interface NoBackProps {
-    back?: false;
-    onBackClick?: never;
+    minimize?: false;
+    onMinimizeClick?: false;
 }
 interface LogoProps {
     /**
@@ -50,9 +57,13 @@ interface NoTitleProps {
     title?: undefined;
     subtitle?: never;
 }
+type AllProps = PickOptional<MinimizeProps, 'minimize' | 'onMinimizeClick'> &
+    PickOptional<BackProps, 'back' | 'onBackClick'> &
+    LogoProps &
+    TitleProps;
 
 export type HeaderProps = React.HTMLAttributes<HTMLDivElement> &
-    (BackProps | NoBackProps) &
+    (MinimizeProps | BackProps) &
     (LogoProps | NoLogoProps) &
     (TitleProps | NoTitleProps);
 
@@ -60,10 +71,11 @@ export type HeaderProps = React.HTMLAttributes<HTMLDivElement> &
  * Шапка страницы.
  */
 export const Header: React.FC<HeaderProps> = ({ children, ...props }) => {
-    const { back, logo, logoAlt, title, subtitle, onBackClick, ...rest } = props as BackProps & LogoProps & TitleProps;
+    const { minimize, back, logo, logoAlt, title, subtitle, onMinimizeClick, onBackClick, ...rest } = props as AllProps;
 
     return (
         <HeaderRoot {...rest}>
+            {minimize && <HeaderMinimize onClick={onMinimizeClick} />}
             {back && <HeaderBack onClick={onBackClick} />}
             {logo && <HeaderLogo src={logo} alt={logoAlt} />}
             {title && (
