@@ -27,7 +27,7 @@ export const OrderSuccessPage: React.FC<OrderSuccessProps> = ({ header, imageSrc
         <StateLayout
             header={header}
             title="Заказ успешно оформлен! Статус заказа будет отправлен на E-mail"
-            backgound={imageSrc}
+            image={imageSrc}
             button={
                 <Button view="primary" onClick={onGoBack} ref={buttonRef}>
                     Вернуться в магазин
