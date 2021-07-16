@@ -13,6 +13,7 @@ jobs:
     env:
       NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
       PR_NAME: pr-${{ github.event.number }}
+      ICONS_PUBLIC_URL: /icons
     steps:
       - uses: actions/checkout@v2
 
@@ -43,15 +44,23 @@ jobs:
       - name: Prepare directory for documentation builds
         run: mkdir ../build
 
+        # Plasma UI
       - name: Build Plasma UI documentation
         run: |
           npm run storybook:build:docs --prefix="./packages/plasma-ui"
           cp -R ./packages/plasma-ui/build-sb-docs ../build/${PR_NAME}
 
+        # Plasma Web
       - name: Build Plasma Web documentation
         run: |
           npm run storybook:build:docs --prefix="./packages/plasma-web"
           cp -R ./packages/plasma-web/build-sb-docs ../build/web-${PR_NAME}
+
+        # Icons
+      - name: Build Plasma Icons Service
+        run: |
+          npm run build --prefix="./services/plasma-icons-service"
+          cp -R ./services/plasma-icons-service ../build/icons-${PR_NAME}
 
       - name: Clean old documentation
         uses: appleboy/ssh-action@master
@@ -64,6 +73,7 @@ jobs:
             cd ../../var/www/plasma
             rm -rf $PR_NAME/
             rm -rf web-$PR_NAME/
+            rm -rf icons-$PR_NAME/
 
       - name: Upload documentation build
         uses: garygrossgarten/github-action-scp@release
@@ -87,5 +97,6 @@ jobs:
               
               http://plasma.sberdevices.ru/pr-${context.issue.number}/
               http://plasma.sberdevices.ru/web-pr-${context.issue.number}/
+              http://plasma.sberdevices.ru/icons-${context.issue.number}/
               `
             })
