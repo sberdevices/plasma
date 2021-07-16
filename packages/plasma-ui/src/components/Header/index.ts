@@ -1,5 +1,7 @@
 export { Header } from './Header';
+export type { HeaderProps } from './Header';
 export { HeaderRoot } from './HeaderRoot';
+export { HeaderMinimize } from './HeaderMinimize';
 export { HeaderBack } from './HeaderBack';
 export { HeaderButton } from './HeaderButton';
 export { HeaderContent } from './HeaderContent';
