@@ -125,7 +125,7 @@ export const HeroSlider: React.FC<UnifiedComponentProps<HeroSliderProps, 'Wrappe
     React.useLayoutEffect(() => {
         timerRef.current = window.setTimeout(() => {
             let nextIndex = activeIndex + 1;
-            if (nextIndex >= childLen.current - 1) {
+            if (nextIndex > childLen.current - 1) {
                 nextIndex = 0;
             }
             setActiveIndex(nextIndex);
