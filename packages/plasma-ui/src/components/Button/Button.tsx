@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import { Button as BaseButton, applyNoSelect } from '@sberdevices/plasma-core';
+// import styled from 'styled-components';
+import { Button as BaseButton } from '@sberdevices/plasma-core';
 import type { ButtonProps as BaseProps, SizeProps, ViewProps, ButtonContentProps } from '@sberdevices/plasma-core';
 
-import { applyInteraction, InteractionProps } from '../../mixins';
+import { InteractionProps } from '../../mixins';
 
 export type ButtonProps = BaseProps &
     Partial<SizeProps<'l' | 'm' | 's'> & ViewProps> &
@@ -12,10 +12,12 @@ export type ButtonProps = BaseProps &
 /**
  * Основной компонент для создания кнопок.
  */
-export const Button = styled(BaseButton)<ButtonProps>`
-    ${applyInteraction};
-    ${applyNoSelect};
-`;
+// export const Button = styled(BaseButton)<ButtonProps>`
+//     ${applyInteraction};
+//     ${applyNoSelect};
+// `;
+
+export const Button = BaseButton as any;
 
 Button.defaultProps = {
     ...BaseButton.defaultProps,

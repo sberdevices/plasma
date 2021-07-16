@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import { Card, CardContent } from '@sberdevices/plasma-ui';
+// import { Card, CardContent } from '@sberdevices/plasma-ui';
+import { Button } from '@sberdevices/plasma-ui/components/Button/Button';
 
 const menu = [
     { href: '/test/components/pickers/', title: 'Pickers' },
@@ -19,14 +20,7 @@ const StyledCard = styled.a`
 export default function Home() {
     return (
         <>
-            {menu.map((item, i) => (
-                <Link key={`item:${i}`} href={item.href} passHref>
-                    {/* @ts-ignore */}
-                    <Card as={StyledCard} outlined tabIndex={0}>
-                        <CardContent>{item.title}</CardContent>
-                    </Card>
-                </Link>
-            ))}
+            <Button>Button</Button>
         </>
     );
 }
