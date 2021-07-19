@@ -1,6 +1,7 @@
 /components
 /tokens
 /node_modules
+/mixins
 /index.*
 /es
 build-sb
