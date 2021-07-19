@@ -1,3 +1,16 @@
+# (Mon Jul 19 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/showcase@0.34.2`, `@sberdevices/plasma-ui@1.30.2`, `@sberdevices/plasma-web@1.28.2`
+  - fix: remove double ampersands [#537](https://github.com/sberdevices/plasma/pull/537) ([@OgNellis](https://github.com/OgNellis))
+
+#### Authors: 1
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+
+---
+
 # (Fri Jul 16 2021)
 
 #### 🐛 Bug Fix

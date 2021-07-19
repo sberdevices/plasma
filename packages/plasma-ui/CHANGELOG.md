@@ -1,3 +1,15 @@
+# v1.30.2 (Mon Jul 19 2021)
+
+#### 🐛 Bug Fix
+
+- fix: remove double ampersands [#537](https://github.com/sberdevices/plasma/pull/537) ([@OgNellis](https://github.com/OgNellis))
+
+#### Authors: 1
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+
+---
+
 # v1.30.1 (Fri Jul 16 2021)
 
 #### 🐛 Bug Fix
