@@ -1,5 +1,18 @@
 # (Mon Jul 19 2021)
 
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@0.39.1`
+  - fix(plasma-temple): HeroSlider skip last slide [#93](https://github.com/sberdevices/pashka/pull/93) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
+# (Mon Jul 19 2021)
+
 #### 🚀 Enhancement
 
 - `@sberdevices/plasma-temple@0.39.0`
