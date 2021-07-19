@@ -1,8 +1,12 @@
 /components
-/tokens
-/node_modules
-/index.*
 /es
-/pre-esm
+/hocs
+/hooks
+/mixins
+/node_modules
+/tokens
+/types
+/utils
+/index.*
 build-sb
 build-sb-docs
