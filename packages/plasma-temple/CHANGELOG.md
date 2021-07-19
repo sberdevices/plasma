@@ -1,3 +1,15 @@
+# v0.39.0 (Mon Jul 19 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Posibility to have custom background on layout state page [#92](https://github.com/sberdevices/pashka/pull/92) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v0.38.0 (Thu Jul 15 2021)
 
 #### 🚀 Enhancement
