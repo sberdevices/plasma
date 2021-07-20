@@ -1,3 +1,16 @@
+# v1.29.0 (Tue Jul 20 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-web): Integrate Dropdown into Select [#545](https://github.com/sberdevices/plasma/pull/545) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-web): Added Dropdown component [#545](https://github.com/sberdevices/plasma/pull/545) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.28.2 (Mon Jul 19 2021)
 
 #### 🐛 Bug Fix
