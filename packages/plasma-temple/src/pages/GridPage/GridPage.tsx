@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import throttle from 'lodash.throttle';
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 import { Row } from '@sberdevices/plasma-ui';
 
@@ -16,6 +17,7 @@ interface GridPageProps {
     state: GridPageState;
     header?: HeaderProps;
     onItemShow?: (val: GridEntity) => void;
+    onScrolledBottom?: () => void;
     children?(props: GridCardProps & { key: string }): JSX.Element;
 }
 
@@ -35,7 +37,7 @@ const ContentSection = styled.section`
     margin-top: 1.5rem;
 `;
 
-export const GridPage: React.FC<GridPageProps> = ({ state, header, onItemShow, children }) => {
+export const GridPage: React.FC<GridPageProps> = ({ state, header, onItemShow, onScrolledBottom, children }) => {
     const { items, background } = state;
 
     const list = React.useMemo(
@@ -59,6 +61,20 @@ export const GridPage: React.FC<GridPageProps> = ({ state, header, onItemShow, c
         // eslint-disable-next-line no-underscore-dangle
         window.__spatialNavigation__?.setStartingPoint();
     }, []);
+
+    React.useEffect(() => {
+        if (!onScrolledBottom) {
+            return;
+        }
+        const onScroll = () => {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+                onScrolledBottom();
+            }
+        };
+        const throttledScroll = throttle(onScroll, 100);
+        window.addEventListener('scroll', throttledScroll, { capture: false, passive: true });
+        return () => window.removeEventListener('scroll', throttledScroll);
+    }, [onScrolledBottom]);
 
     return (
         <>
