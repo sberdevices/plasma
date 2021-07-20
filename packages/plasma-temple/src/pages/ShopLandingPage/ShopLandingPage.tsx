@@ -5,7 +5,7 @@ import { isSberBox } from '@sberdevices/plasma-ui/utils';
 
 import { AnyObject } from '../../types';
 import { GalleryCard as CardComponent } from '../../components/GalleryCard/GalleryCard';
-import type { GalleryCardProps } from '../../components/GalleryCard/GalleryCard';
+import { GalleryCardProps } from '../../components/GalleryCard/types';
 import { useRegistry } from '../../hooks/useRegistry';
 import { useRemoteHandlers, useRemoteListener } from '../../hooks';
 import { useFocusedState } from '../../hooks/useFocusedState';
