@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { CarouselGridWrapper, Carousel, CarouselItem } from '@sberdevices/plasma-ui';
 import { isSberBox, isSberPortal } from '@sberdevices/plasma-ui/utils';
 
+import { GalleryCardContainer } from '../GalleryCard/GalleryCardContainer';
 import { AnyObject } from '../../types';
-import { GalleryCard as DefaultGalleryCard } from '../GalleryCard/GalleryCard';
 import { useDelayedActivation } from '../../hooks/useDelayedActivation';
 
 import { GalleryIndexContext, withNavigation } from './hocs/withNavigation';
@@ -42,9 +42,7 @@ export function Gallery<T extends AnyObject>({
     const currentCardIndex = React.useContext(GalleryIndexContext);
     const initialized = useDelayedActivation();
 
-    const canBeFocused = isSberBox() && currentCardIndex > -1;
-
-    const GalleryCard = Component ?? DefaultGalleryCard;
+    const canBeFocused = currentCardIndex > -1;
 
     return (
         <StyledCarouselWrapper data-cy="gallery">
@@ -60,9 +58,10 @@ export function Gallery<T extends AnyObject>({
                 {children ??
                     items.map((card, index) => (
                         <StyledCarouselItem key={index} scrollSnapAlign={isSberPortal() ? 'start' : undefined}>
-                            <GalleryCard
+                            <GalleryCardContainer<T>
                                 card={card}
                                 index={index}
+                                component={Component}
                                 onClick={onItemClick}
                                 onFocus={onItemFocus}
                                 focused={canBeFocused && currentCardIndex === index}
