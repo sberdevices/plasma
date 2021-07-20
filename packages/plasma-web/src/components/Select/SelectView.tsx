@@ -148,7 +148,7 @@ export const SelectView = React.forwardRef<RefElement, SelectViewProps>(
                 style={style}
             >
                 <StyledDropdown offsetTop="0.25rem" items={items} onItemClick={onItemClick}>
-                    <StyledButton ref={ref} disabled={disabled} status={status} {...rest}>
+                    <StyledButton ref={ref} disabled={disabled} status={status} type="button" {...rest}>
                         {value && <StyledText>{value}</StyledText>}
                         {placeholder && !value && <StyledPlaceholder>{placeholder}</StyledPlaceholder>}
                         {isIcon && <StyledArrow size="xs" color="inherit" />}
