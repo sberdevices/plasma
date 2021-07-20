@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { useVoiceNavigation, useRemoteHandlers } from '../../../hooks';
+import { useFocusedState } from '../../../hooks/useFocusedState';
 import { GalleryProps, GalleryWithNavigationProps, WithNavigationProps } from '../types';
 
 export const GalleryIndexContext = React.createContext(0);
@@ -15,15 +16,11 @@ export const withNavigation = (
 ): React.ForwardRefExoticComponent<GalleryWithNavigationProps> =>
     React.forwardRef<HTMLDivElement, WithNavigationProps & GalleryProps>(
         ({ axis = 'x', activeIndex = -1, ...props }, ref) => {
-            const [galleryInFocus, setGalleryInFocus] = React.useState(false);
+            const containerRef = React.useRef<HTMLDivElement>(null);
 
-            const handleFocus = React.useCallback(() => {
-                setGalleryInFocus(true);
-            }, []);
+            React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement, []);
 
-            const handleMissFocus = React.useCallback(() => {
-                setGalleryInFocus(false);
-            }, []);
+            const galleryInFocus = useFocusedState(containerRef);
 
             const maxIndex = props.items ? props.items.length - 1 : 0;
 
@@ -68,7 +65,7 @@ export const withNavigation = (
             }, [handleEnter]);
 
             return (
-                <StyledFocusableContainer tabIndex={0} onFocus={handleFocus} onBlur={handleMissFocus} ref={ref}>
+                <StyledFocusableContainer tabIndex={0} ref={containerRef}>
                     <GalleryIndexContext.Provider value={galleryInFocus ? currentCardIndex : -1}>
                         <Component {...props} />
                     </GalleryIndexContext.Provider>
