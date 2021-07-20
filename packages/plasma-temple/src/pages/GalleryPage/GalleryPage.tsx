@@ -6,7 +6,7 @@ import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 import { useRemoteHandlers } from '../../hooks/useRemoteHandlers';
 import { useGetMutableValue } from '../../hooks/useGetMutableValue';
 import { Header } from '../../components/Header/Header';
-import { GalleryCardProps } from '../../components/GalleryCard/GalleryCard';
+import { GalleryCardProps } from '../../components/GalleryCard/types';
 import { AnyObject } from '../../types';
 import { GalleryWithNavigation } from '../../components/Gallery/Gallery';
 import { GalleryProps } from '../../components/Gallery/types';
