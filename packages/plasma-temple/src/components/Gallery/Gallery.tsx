@@ -4,11 +4,11 @@ import { CarouselGridWrapper, Carousel, CarouselItem } from '@sberdevices/plasma
 import { isSberBox, isSberPortal } from '@sberdevices/plasma-ui/utils';
 
 import { AnyObject } from '../../types';
-import { GalleryCard as DefaultGalleryCard, GalleryCardProps } from '../GalleryCard/GalleryCard';
+import { GalleryCard as DefaultGalleryCard } from '../GalleryCard/GalleryCard';
 import { useDelayedActivation } from '../../hooks/useDelayedActivation';
 
 import { GalleryIndexContext, withNavigation } from './hocs/withNavigation';
-import { GalleryProps, GalleryPropsWithComponent, GalleryWithNavigationProps } from './types';
+import { GalleryProps, GalleryWithNavigationProps } from './types';
 
 const StyledCarouselWrapper = styled(CarouselGridWrapper)`
     margin-top: -8px;
@@ -31,26 +31,6 @@ const StyledCarouselItem = styled(CarouselItem)`
     }
 `;
 
-/*  TODO: Нужен рефакторинг сейчас у нас слишком сложный интерфейс.
-    Компонент GalleryCard используется по сути как дефолтный компонент его логика не учитывается,
-    в итоге в кастомных компонентах вся логика повторяется. По хорошему кастомный компонент
-    должен переопределять только верстку
-*/
-const GalleryCard = <T extends AnyObject>({
-    card,
-    index,
-    focused,
-    onItemClick,
-    onFocus,
-    Component,
-}: Omit<GalleryCardProps<T>, 'onClick'> & Pick<GalleryPropsWithComponent<T>, 'Component' | 'onItemClick'>) => {
-    const GalleryCardComponent = Component ?? DefaultGalleryCard;
-
-    const handleClick = React.useCallback(() => onItemClick(card, index), [card, index, onItemClick]);
-
-    return <GalleryCardComponent card={card} index={index} onClick={handleClick} onFocus={onFocus} focused={focused} />;
-};
-
 export function Gallery<T extends AnyObject>({
     items = [],
     onItemClick = () => {},
@@ -62,7 +42,9 @@ export function Gallery<T extends AnyObject>({
     const currentCardIndex = React.useContext(GalleryIndexContext);
     const initialized = useDelayedActivation();
 
-    const canBeFocused = currentCardIndex > -1;
+    const canBeFocused = isSberBox() && currentCardIndex > -1;
+
+    const GalleryCard = Component ?? DefaultGalleryCard;
 
     return (
         <StyledCarouselWrapper data-cy="gallery">
@@ -78,12 +60,11 @@ export function Gallery<T extends AnyObject>({
                 {children ??
                     items.map((card, index) => (
                         <StyledCarouselItem key={index} scrollSnapAlign={isSberPortal() ? 'start' : undefined}>
-                            <GalleryCard<T>
-                                Component={Component}
-                                index={index}
-                                onItemClick={onItemClick}
-                                onFocus={onItemFocus}
+                            <GalleryCard
                                 card={card}
+                                index={index}
+                                onClick={onItemClick}
+                                onFocus={onItemFocus}
                                 focused={canBeFocused && currentCardIndex === index}
                             />
                         </StyledCarouselItem>

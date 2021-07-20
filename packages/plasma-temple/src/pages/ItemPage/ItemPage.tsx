@@ -6,6 +6,7 @@ import { useRegistry } from '../../hooks/useRegistry';
 import { useSpatNav } from '../../hooks/useSpatNav';
 import { useVoiceNavigationWithSpatNav } from '../../hooks/useVoiceNavigation';
 import { scroll } from '../../utils/scroll';
+import { getMediaObjectSrc } from '../../utils';
 
 import { ItemEntityProps } from './components/ItemEntity/ItemEntity';
 import { ItemPageState } from './types';
@@ -17,10 +18,6 @@ interface ItemPageProps {
     onItemFocus?: (id: string) => void;
     entityComponent?: React.ComponentType<ItemEntityProps>;
 }
-
-const getImageSrc = (src: string | string[]) => {
-    return Array.isArray(src) ? src[0] : src;
-};
 
 const scrollToWithOffset = (offset: number) => {
     const targetOffset = offset <= 0 ? offset : offset - 100;
@@ -46,7 +43,7 @@ export const ItemPage: React.FC<ItemPageProps> = ({ state, header, entityCompone
                     onClick: () => onItemShow(id),
                     onFocus: () => onItemFocus?.(id),
                     onKeyDown: ({ key }: React.KeyboardEvent) => key === 'Enter' && onItemShow(id),
-                    url: getImageSrc(image.src),
+                    url: getMediaObjectSrc(image),
                     title: label,
                     order: index + 1,
                     uuid: id,
@@ -69,7 +66,7 @@ export const ItemPage: React.FC<ItemPageProps> = ({ state, header, entityCompone
         <>
             {header && <Header {...header} />}
             <ItemMainSection
-                cover={background && getImageSrc(background.src)}
+                cover={background && getMediaObjectSrc(background)}
                 title={title}
                 subtitle={subtitle ?? ''}
                 description={description}

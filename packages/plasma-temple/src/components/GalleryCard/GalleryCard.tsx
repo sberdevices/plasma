@@ -3,15 +3,16 @@ import styled, { css } from 'styled-components';
 import { Card, CardBody, CardMedia, CardBody1, CardBadge, CardContent, Caption } from '@sberdevices/plasma-ui';
 import { IconClock } from '@sberdevices/plasma-icons';
 import { overlay, primary } from '@sberdevices/plasma-tokens';
-import { isSberBox, mediaQuery } from '@sberdevices/plasma-ui/utils';
+import { mediaQuery } from '@sberdevices/plasma-ui/utils';
 
 import { GalleryCardParams as GalleryCardType } from '../../pages/GalleryPage/types';
 import { AnyObject } from '../../types';
+import { getMediaObjectSrc } from '../../utils/getMediaObjectSrc';
 
 export interface GalleryCardProps<T extends AnyObject = AnyObject> {
     card: GalleryCardType<T>;
     index: number;
-    onClick: <T1 extends T>(cardProps: T1) => void;
+    onClick: <T1 extends T>(cardProps: T1, index: number) => void;
     onFocus?: () => void;
     focused?: boolean;
     tabIndex?: number;
@@ -91,29 +92,23 @@ const GalleryCardComponent = <T extends AnyObject = AnyObject>({
     onClick,
     onFocus,
 }: GalleryCardProps<T>): React.ReactElement => {
-    const cardRef = React.useRef<HTMLDivElement | null>(null);
-    const imageSrc = Array.isArray(card.image.src) ? card.image.src[0] : card.image.src;
-
-    React.useLayoutEffect(() => {
-        if (focused && isSberBox()) {
-            cardRef.current?.focus({ preventScroll: true });
-        }
-    }, [focused]);
-
-    const handleClick = React.useCallback(() => onClick(card), [card, onClick]);
-    const isFocused = isSberBox() && focused;
+    const handleClick = React.useCallback(() => onClick(card, index), [card, index, onClick]);
 
     return (
         <StyledCard
-            focused={isFocused}
+            focused={focused}
             tabIndex={tabIndex}
             onClick={handleClick}
             onFocus={onFocus}
             data-cy={`gallery-card-${index}`}
-            ref={cardRef}
         >
             <CardBody>
-                <CardMedia base="div" src={imageSrc} ratio={card.image.ratio ?? '1 / 1'} data-cy="gallery-card-media">
+                <CardMedia
+                    base="div"
+                    src={getMediaObjectSrc(card.image)}
+                    ratio={card.image.ratio ?? '1 / 1'}
+                    data-cy="gallery-card-media"
+                >
                     {card.position && (
                         <StyledCardIndex view="secondary" size="l" circled text={String(card.position)} />
                     )}
