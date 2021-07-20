@@ -5,18 +5,10 @@ import { IconClock } from '@sberdevices/plasma-icons';
 import { overlay, primary } from '@sberdevices/plasma-tokens';
 import { mediaQuery } from '@sberdevices/plasma-ui/utils';
 
-import { GalleryCardParams as GalleryCardType } from '../../pages/GalleryPage/types';
-import { AnyObject } from '../../types';
 import { getMediaObjectSrc } from '../../utils/getMediaObjectSrc';
+import { AnyObject } from '../../types';
 
-export interface GalleryCardProps<T extends AnyObject = AnyObject> {
-    card: GalleryCardType<T>;
-    index: number;
-    onClick: <T1 extends T>(cardProps: T1, index: number) => void;
-    onFocus?: () => void;
-    focused?: boolean;
-    tabIndex?: number;
-}
+import { GalleryCardProps } from './types';
 
 const StyledCardIndex = styled(CardBadge)`
     position: absolute;
@@ -92,13 +84,11 @@ const GalleryCardComponent = <T extends AnyObject = AnyObject>({
     onClick,
     onFocus,
 }: GalleryCardProps<T>): React.ReactElement => {
-    const handleClick = React.useCallback(() => onClick(card, index), [card, index, onClick]);
-
     return (
         <StyledCard
             focused={focused}
             tabIndex={tabIndex}
-            onClick={handleClick}
+            onClick={onClick}
             onFocus={onFocus}
             data-cy={`gallery-card-${index}`}
         >
@@ -123,4 +113,4 @@ const GalleryCardComponent = <T extends AnyObject = AnyObject>({
     );
 };
 
-export const GalleryCard = React.memo(GalleryCardComponent);
+export const GalleryCard = React.memo(GalleryCardComponent) as typeof GalleryCardComponent;

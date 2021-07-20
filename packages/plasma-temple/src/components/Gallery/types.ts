@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { GalleryCardParams } from '../../pages';
 import { AnyObject } from '../../types';
-import { GalleryCardProps } from '../GalleryCard/GalleryCard';
+import { GalleryCardParams, GalleryCardProps } from '../GalleryCard/types';
 
 export interface WithNavigationProps {
     axis?: 'x' | 'y';
