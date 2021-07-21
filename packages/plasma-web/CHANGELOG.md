@@ -1,3 +1,15 @@
+# v1.29.1 (Wed Jul 21 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web): form submit trigger inside select [#557](https://github.com/sberdevices/plasma/pull/557) ([@tsumo](https://github.com/tsumo))
+
+#### Authors: 1
+
+- [@tsumo](https://github.com/tsumo)
+
+---
+
 # v1.29.0 (Tue Jul 20 2021)
 
 #### 🚀 Enhancement
