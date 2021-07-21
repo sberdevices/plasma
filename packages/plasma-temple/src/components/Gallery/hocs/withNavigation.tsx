@@ -18,6 +18,7 @@ export const withNavigation = (
         ({ axis = 'x', activeIndex = -1, ...props }, ref) => {
             const containerRef = React.useRef<HTMLDivElement>(null);
 
+            // TODO: Перейти на использование useForkRef, после добавления в @sberdevices/plasma-ui/utils
             React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement, []);
 
             const galleryInFocus = useFocusedState(containerRef);
