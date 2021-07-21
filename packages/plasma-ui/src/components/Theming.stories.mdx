@@ -30,7 +30,7 @@ assistantClient.on('data', (command) => {
 ```tsx
 import React, { FC, useRef, useEffect, useState } from 'react';
 import { createGlobalStyle } from 'styled-components';
-import { createAssistant, AssistantAppState, AssistantCharacterType } from '@sberdevices/assistant-client';
+import { createAssistant, AssistantAppState, CharacterId } from '@sberdevices/assistant-client';
 import { darkJoy, darkEva, darkSber } from '@sberdevices/plasma-tokens/themes';
 import { text, background, gradient } from '@sberdevices/plasma-tokens';
 
@@ -52,7 +52,7 @@ const initializeAssistant = (getState: any) => {
 };
 
 export const App: FC = () => {
-    const [character, setCharacter] = useState('sber' as AssistantCharacterType);
+    const [character, setCharacter] = useState('sber' as CharacterId);
 
     const assistantStateRef = useRef<AssistantAppState>();
     const assistantRef = useRef<ReturnType<typeof createAssistant>>();
