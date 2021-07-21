@@ -80,18 +80,9 @@ const GalleryCardComponent = <T extends AnyObject = AnyObject>({
     card,
     focused,
     index,
-    tabIndex = -1,
-    onClick,
-    onFocus,
 }: GalleryCardProps<T>): React.ReactElement => {
     return (
-        <StyledCard
-            focused={focused}
-            tabIndex={tabIndex}
-            onClick={onClick}
-            onFocus={onFocus}
-            data-cy={`gallery-card-${index}`}
-        >
+        <StyledCard focused={focused} data-cy={`gallery-card-${index}`}>
             <CardBody>
                 <CardMedia
                     base="div"
