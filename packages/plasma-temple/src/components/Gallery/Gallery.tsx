@@ -34,7 +34,6 @@ const StyledCarouselItem = styled(CarouselItem)`
 export function Gallery<T extends AnyObject>({
     items = [],
     onItemClick = () => {},
-    onItemFocus = () => {},
     Component,
     children,
     className,
@@ -63,7 +62,6 @@ export function Gallery<T extends AnyObject>({
                                 index={index}
                                 component={Component}
                                 onClick={onItemClick}
-                                onFocus={onItemFocus}
                                 focused={canBeFocused && currentCardIndex === index}
                             />
                         </StyledCarouselItem>

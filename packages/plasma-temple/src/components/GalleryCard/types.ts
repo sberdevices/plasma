@@ -14,7 +14,4 @@ export interface GalleryCardProps<T extends AnyObject = AnyObject> {
     card: GalleryCardParams<T>;
     index: number;
     focused?: boolean;
-    tabIndex?: number;
-    onClick: () => void;
-    onFocus?: () => void;
 }
