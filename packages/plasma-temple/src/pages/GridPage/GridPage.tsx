@@ -17,7 +17,7 @@ interface GridPageProps {
     state: GridPageState;
     header?: HeaderProps;
     onItemShow?: (val: GridEntity) => void;
-    onScrolledBottom?: () => void;
+    onScrollBottom?: () => void;
     children?(props: GridCardProps & { key: string }): JSX.Element;
 }
 
@@ -37,7 +37,7 @@ const ContentSection = styled.section`
     margin-top: 1.5rem;
 `;
 
-export const GridPage: React.FC<GridPageProps> = ({ state, header, onItemShow, onScrolledBottom, children }) => {
+export const GridPage: React.FC<GridPageProps> = ({ state, header, onItemShow, onScrollBottom, children }) => {
     const { items, background } = state;
 
     const list = React.useMemo(
@@ -63,18 +63,18 @@ export const GridPage: React.FC<GridPageProps> = ({ state, header, onItemShow, o
     }, []);
 
     React.useEffect(() => {
-        if (!onScrolledBottom) {
+        if (!onScrollBottom) {
             return;
         }
         const onScroll = () => {
             if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-                onScrolledBottom();
+                onScrollBottom();
             }
         };
         const throttledScroll = throttle(onScroll, 100);
         window.addEventListener('scroll', throttledScroll, { capture: false, passive: true });
         return () => window.removeEventListener('scroll', throttledScroll);
-    }, [onScrolledBottom]);
+    }, [onScrollBottom]);
 
     return (
         <>
