@@ -9,6 +9,9 @@ module.exports = {
     assetPrefix: basePath,
     reactStrictMode: true,
     trailingSlash: true,
+    env: {
+        BASE_PATH: basePath,
+    },
     webpack: (config) => {
         return {
             ...config,
