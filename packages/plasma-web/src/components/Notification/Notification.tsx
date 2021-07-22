@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { surfaceCard, secondary, warning, critical, footnote1 } from '@sberdevices/plasma-core';
-import type { AsProps } from '@sberdevices/plasma-core/types';
+import type { AsProps } from '@sberdevices/plasma-core';
 
 import { Headline5 } from '../Typography';
 

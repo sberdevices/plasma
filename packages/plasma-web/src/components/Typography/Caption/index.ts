@@ -1,1 +1,1 @@
-export * from '@sberdevices/plasma-core/components/Typography/Caption';
+export { Caption } from '@sberdevices/plasma-core';

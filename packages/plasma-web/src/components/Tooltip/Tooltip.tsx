@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { caption, buttonChecked, inverse } from '@sberdevices/plasma-core';
-import { shadows } from '@sberdevices/plasma-core/mixins';
+import { caption, buttonChecked, inverse, shadows } from '@sberdevices/plasma-core';
 import { usePopper } from 'react-popper';
 
 /** Направление раскрытия тултипа */

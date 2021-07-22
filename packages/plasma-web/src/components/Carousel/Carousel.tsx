@@ -6,9 +6,8 @@ import {
     CarouselGridWrapper as BaseWrapper,
     Carousel as BaseCarousel,
     CarouselTrack as BaseTrack,
-    CarouselProps as BaseProps,
 } from '@sberdevices/plasma-core';
-import type { AsProps } from '@sberdevices/plasma-core/types';
+import type { CarouselProps as BaseProps, AsProps } from '@sberdevices/plasma-core';
 
 export type CarouselProps = Omit<BaseProps, 'axis' | 'animatedScrollByIndex' | 'throttleMs' | 'debounceMs'> &
     AsProps &

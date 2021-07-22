@@ -1,5 +1,6 @@
 import React from 'react';
-import { TextFieldRoot, TextFieldInput, TextFieldHelper, TextFieldProps as BaseProps } from '@sberdevices/plasma-core';
+import { TextFieldRoot, TextFieldInput, TextFieldHelper } from '@sberdevices/plasma-core';
+import type { TextFieldProps as BaseProps } from '@sberdevices/plasma-core';
 
 import { FieldInput, FieldPlaceholder, FieldContent, FieldHelperBlock } from '../Field/Field';
 

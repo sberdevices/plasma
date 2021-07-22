@@ -1,14 +1,18 @@
 import styled, { css } from 'styled-components';
-import { Button as BaseButton, buttonViews as baseViews } from '@sberdevices/plasma-core/components/Button';
+import {
+    Button as BaseButton,
+    buttonViews as baseViews,
+    black,
+    white,
+    convertRoundnessMatrix,
+} from '@sberdevices/plasma-core';
 import type {
     ButtonProps as BaseProps,
-    SizeProps,
-    ViewProps,
     ButtonContentProps,
-} from '@sberdevices/plasma-core/components/Button/Button';
-import type { DisabledProps } from '@sberdevices/plasma-core/mixins';
-import { convertRoundnessMatrix } from '@sberdevices/plasma-core/utils';
-import { black, white } from '@sberdevices/plasma-core';
+    SizeProps,
+    ButtonViewProps,
+    DisabledProps,
+} from '@sberdevices/plasma-core';
 
 import { buttonSecondaryHover, buttonSecondaryActive } from '../../tokens';
 
@@ -93,7 +97,7 @@ const buttonSizes = {
 
 type ButtonSize = keyof typeof buttonSizes;
 
-export type ButtonProps = BaseProps & Partial<ViewProps<ButtonView> & SizeProps<ButtonSize>> & ButtonContentProps;
+export type ButtonProps = BaseProps & Partial<ButtonViewProps<ButtonView> & SizeProps<ButtonSize>> & ButtonContentProps;
 
 /**
  * Кнопка.

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import {
-    CheckboxProps as BaseProps,
     CheckboxRoot as BaseRoot,
     CheckboxInput as Input,
     CheckboxTrigger as BaseTrigger,
@@ -12,8 +11,9 @@ import {
     tertiary,
     white,
     transparent,
+    useForkRef,
 } from '@sberdevices/plasma-core';
-import { useForkRef } from '@sberdevices/plasma-core/hooks';
+import type { CheckboxProps as BaseProps } from '@sberdevices/plasma-core';
 
 import { Done, Indeterminate } from './Icons';
 
