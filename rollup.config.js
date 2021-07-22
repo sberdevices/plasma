@@ -1,7 +1,7 @@
+import path from 'path';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
 import { getBabelOutputPlugin } from '@rollup/plugin-babel';
-import path from 'path';
 
 const outDir = 'es';
 const config = {
@@ -23,26 +23,13 @@ const config = {
         }
         return !id.startsWith('.') && !path.isAbsolute(id);
     },
-    plugins: [nodeResolve(), typescript({ outDir, declaration: false, declarationMap: false, module: 'esnext' })],
-};
-
-export const getConfig = (namespace = 'plasma') => ({
-    ...config,
     plugins: [
-        ...config.plugins,
+        nodeResolve(),
+        typescript({ outDir, declaration: false, declarationMap: false, module: 'esnext' }),
         getBabelOutputPlugin({
-            plugins: [
-                'babel-plugin-annotate-pure-calls',
-                [
-                    'babel-plugin-styled-components',
-                    {
-                        displayName: false,
-                        namespace,
-                    },
-                ],
-            ],
+            plugins: ['babel-plugin-annotate-pure-calls'],
         }),
     ],
-});
+};
 
 export default config;
