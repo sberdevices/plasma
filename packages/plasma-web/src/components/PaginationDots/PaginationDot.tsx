@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
-import { PaginationDot as DotBase, PaginationDotProps as BaseProps, accent } from '@sberdevices/plasma-core';
+import { PaginationDot as DotBase, accent } from '@sberdevices/plasma-core';
+import type { PaginationDotProps as BaseProps } from '@sberdevices/plasma-core';
 
 export interface PaginationDotProps extends BaseProps {}
 

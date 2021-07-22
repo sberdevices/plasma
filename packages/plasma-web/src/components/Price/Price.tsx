@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Price as BasePrice, PriceProps as BaseProps } from '@sberdevices/plasma-core';
+import { Price as BasePrice } from '@sberdevices/plasma-core';
+import type { PriceProps as BaseProps } from '@sberdevices/plasma-core';
 
 export interface PriceProps extends BaseProps {}
 

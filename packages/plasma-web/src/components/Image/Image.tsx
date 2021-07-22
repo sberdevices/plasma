@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Image as BaseImage, ImageProps as BaseProps } from '@sberdevices/plasma-core';
+import { Image as BaseImage } from '@sberdevices/plasma-core';
+import type { ImageProps as BaseProps } from '@sberdevices/plasma-core';
 
 export type ImageProps = BaseProps;
 

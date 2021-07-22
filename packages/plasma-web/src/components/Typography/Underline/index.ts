@@ -1,1 +1,1 @@
-export * from '@sberdevices/plasma-core/components/Typography/Underline';
+export { Underline } from '@sberdevices/plasma-core';

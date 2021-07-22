@@ -1,1 +1,1 @@
-export * from '@sberdevices/plasma-core/components/Typography/Footnote';
+export { Footnote1, Footnote2 } from '@sberdevices/plasma-core';
