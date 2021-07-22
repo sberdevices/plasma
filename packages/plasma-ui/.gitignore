@@ -10,6 +10,7 @@
 /dist
 /.docz
 /es
+/pre-esm
 build-sb
 build-sb-docs
 build-storybook.log

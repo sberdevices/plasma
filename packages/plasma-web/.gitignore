@@ -3,5 +3,6 @@
 /node_modules
 /index.*
 /es
+/pre-esm
 build-sb
 build-sb-docs
