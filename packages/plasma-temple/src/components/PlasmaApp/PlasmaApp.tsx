@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import { AssistantClientCustomizedCommand } from '@sberdevices/assistant-client';
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 
-import { InitializeParams, useInitializeAssistant } from '../../hooks/useInitializeAssistant';
+import { useInitializeAssistant } from '../../hooks/useInitializeAssistant';
 import { PageProps } from '../Page/Page';
 import { usePopHistoryListener } from '../../hooks/usePopHistoryListener';
 import { GlobalStyles } from '../GlobalStyles/GlobalStyles';
@@ -14,6 +14,7 @@ import { PushScreenParams } from '../Page/types';
 import { AnyObject } from '../../types';
 import { isPlasmaAppAction, isPopHistoryAction, isPushHistoryAction } from '../../store/guards';
 import { PlasmaAction, History } from '../../store/types';
+import { InitializeParams } from '../../assistant';
 
 import { AssistantContext } from './AssistantContext';
 import { AppStateContext } from './AppStateContext';
