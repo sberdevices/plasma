@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Card, CardContent } from '@sberdevices/plasma-ui';
 
 const menu = [
+    { href: '/test/components/carousel/', title: 'Carousel' },
     { href: '/test/components/pickers/', title: 'Pickers' },
     { href: '/test/components/switch/', title: 'Switch' },
     { href: '/test/components/text-field/', title: 'TextField' },
@@ -22,7 +23,7 @@ export default function Home() {
             {menu.map((item, i) => (
                 <Link key={`item:${i}`} href={item.href} passHref>
                     {/* @ts-ignore */}
-                    <Card as={StyledCard} outlined tabIndex={0}>
+                    <Card as={StyledCard} outlined scaleOnFocus tabIndex={0}>
                         <CardContent>{item.title}</CardContent>
                     </Card>
                 </Link>
