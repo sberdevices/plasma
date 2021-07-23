@@ -93,6 +93,7 @@ export const HeroSlider: React.FC<UnifiedComponentProps<HeroSliderProps, 'Wrappe
     withTimeline = true,
     items,
     onItemClick,
+    onActiveItemChange,
     buttonText,
     platformComponents: { Wrapper, Slide },
 }) => {
@@ -137,6 +138,10 @@ export const HeroSlider: React.FC<UnifiedComponentProps<HeroSliderProps, 'Wrappe
     }, [activeIndex, setActiveIndex, time]);
 
     const item = React.useMemo(() => items[activeIndex], [items, activeIndex]);
+
+    React.useEffect(() => {
+        onActiveItemChange?.(item);
+    }, [item, onActiveItemChange]);
 
     const handleClick = React.useCallback(() => {
         onItemClick?.(item);
