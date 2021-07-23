@@ -1,3 +1,16 @@
+# v0.40.0 (Fri Jul 23 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Rename onScrollBottom callback in GridPage [#94](https://github.com/sberdevices/pashka/pull/94) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- feat(plasma-temple): On scrolled to bottom callback for GridPage [#94](https://github.com/sberdevices/pashka/pull/94) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v0.39.1 (Mon Jul 19 2021)
 
 #### 🐛 Bug Fix
