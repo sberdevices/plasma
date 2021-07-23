@@ -1,14 +1,5 @@
-import { AnyObject, MediaObject } from '../../types';
-
-export type GalleryCardParams<T extends AnyObject = AnyObject> = T & {
-    id: string | number;
-    label: string;
-    position: number;
-    image: MediaObject;
-    description?: string;
-    tag?: string;
-    time?: string;
-};
+import { GalleryCardParams } from '../../components/GalleryCard/types';
+import { AnyObject } from '../../types';
 
 export interface GalleryData<T extends AnyObject = AnyObject> {
     id?: string;
