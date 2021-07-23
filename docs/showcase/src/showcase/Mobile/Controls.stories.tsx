@@ -8,6 +8,7 @@ import { Default as RadioboxStory } from '../../ui/Radiobox.stories';
 import { Default as SwitchStory } from '../../ui/Switch.stories';
 import { Default as PaginationDotsStory } from '../../ui/PaginationDots.stories';
 import { Default as StepperStory } from '../../ui/Stepper.stories';
+import { Default as SliderStory } from '../../ui/Slider.stories';
 import { ShowcasePanel, ShowcaseDashedBorder, ShowcaseSectionName } from '../../helpers';
 
 const StyledDescription = styled.div`
@@ -32,9 +33,18 @@ export default {
             page: null,
         },
     },
+    argTypes: {
+        onChangeSliderCommitted: { action: 'onChangeCommitted' },
+        onChangeSlider: { action: 'onChange' },
+    },
 };
 
-export const Controls = () => (
+interface ControlsProps {
+    onChangeSliderCommitted(value: number | number[]): void;
+    onChangeSlider(value: number | number[]): void;
+}
+
+export const Controls = ({ onChangeSlider, onChangeSliderCommitted }: ControlsProps) => (
     <>
         <ShowcaseSectionName title="Checkbox" subTitle="Чекбокс" />
         <ShowcasePanel style={{ maxWidth: '33.75rem', marginBottom: 0 }}>
@@ -79,6 +89,20 @@ export const Controls = () => (
         <ShowcasePanel style={{ maxWidth: '33.75rem', marginBottom: '3.75rem' }}>
             <ShowcaseDashedBorder>
                 <StepperStory />
+            </ShowcaseDashedBorder>
+        </ShowcasePanel>
+
+        <ShowcaseSectionName
+            title="Slider"
+            subTitle="Слайдер позволяет определить числовое значение в пределах указаного промежутка."
+        />
+        <ShowcasePanel style={{ maxWidth: '33.75rem', marginBottom: '3.75rem' }}>
+            <StyledDescription>
+                <StyledFootnote1 style={{ marginBottom: 30 }}>Default</StyledFootnote1>
+                <StyledFootnote1>Disabled</StyledFootnote1>
+            </StyledDescription>
+            <ShowcaseDashedBorder>
+                <SliderStory onChange={onChangeSlider} onChangeCommitted={onChangeSliderCommitted} />
             </ShowcaseDashedBorder>
         </ShowcasePanel>
     </>

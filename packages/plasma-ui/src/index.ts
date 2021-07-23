@@ -15,6 +15,7 @@ export * from './components/Pickers';
 export * from './components/Price';
 export * from './components/Radiobox';
 export * from './components/Skeleton';
+export * from './components/Slider';
 export * from './components/Spinner';
 export * from './components/Stepper';
 export * from './components/Switch';

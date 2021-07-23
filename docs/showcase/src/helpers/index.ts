@@ -13,3 +13,4 @@ export { Showcase as CommonShowcase } from './CommonShowcase';
 export { RadioboxShowcase } from './RadioboxShowcase';
 export { Showcase as TabsShowcase } from './TabsShowcase';
 export { TextFieldShowcase } from './TextFieldShowcase';
+export { SliderShowcase } from './SliderShowcase';
