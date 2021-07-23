@@ -9,5 +9,6 @@ export interface HeroSliderProps {
     withTimeline?: boolean;
     items: HeroItemSliderProps[];
     onItemClick?: (item: HeroItemSliderProps) => void;
+    onActiveItemChange?: (item: HeroItemSliderProps) => void;
     buttonText: string;
 }
