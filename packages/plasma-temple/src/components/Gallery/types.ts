@@ -23,7 +23,7 @@ export interface GalleryPropsWithChildren {
 export interface GalleryPropsWithComponent<T extends AnyObject = AnyObject> {
     items: GalleryCardParams<T>[];
     onItemFocus?: () => void;
-    onItemClick: (val: T, index: number) => void;
+    onItemClick: (val: GalleryCardParams<T>, index: number) => void;
     Component?: React.ComponentType<GalleryCardProps<T>>;
     children?: never;
 }

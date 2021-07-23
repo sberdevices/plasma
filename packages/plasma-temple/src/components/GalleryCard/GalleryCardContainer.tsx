@@ -23,7 +23,7 @@ export const GalleryCardContainer = <T extends AnyObject = AnyObject>({
     const handleClick = React.useCallback(() => onClick(card, index), [card, index, onClick]);
 
     return (
-        <div onClick={handleClick}>
+        <div onClick={handleClick} tabIndex={-1}>
             <GalleryCard card={card} focused={isSberBox() && focused} index={index} />
         </div>
     );
