@@ -23,7 +23,7 @@ export function ShopLandingCard<T extends AnyObject = AnyObject>({
     const handleClick = React.useCallback(() => onClick(card, index), [card, index, onClick]);
 
     return (
-        <StyledCarouselItem key={card.id} scrollSnapAlign="start" onClick={handleClick}>
+        <StyledCarouselItem key={card.id} scrollSnapAlign="start" onClick={handleClick} tabIndex={-1}>
             <Component card={card} focused={focused} index={index} />
         </StyledCarouselItem>
     );

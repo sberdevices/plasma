@@ -1,11 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
 import { CarouselProps } from '@sberdevices/plasma-ui';
 
 import { CommonCarousel } from './Carousel';
 
+const StyledCarousel = styled(CommonCarousel)`
+    scroll-behavior: auto;
+`;
+
 export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
     ({ axis, onIndexChange, index, children }, ref) => (
-        <CommonCarousel
+        <StyledCarousel
             axis={axis}
             index={index}
             detectActive
@@ -17,6 +22,6 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
             ref={ref}
         >
             {children}
-        </CommonCarousel>
+        </StyledCarousel>
     ),
 );
