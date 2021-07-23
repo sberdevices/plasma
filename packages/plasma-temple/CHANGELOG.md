@@ -1,3 +1,15 @@
+# v0.40.1 (Fri Jul 23 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): assistantClient can be get outside React [#97](https://github.com/sberdevices/pashka/pull/97) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v0.40.0 (Fri Jul 23 2021)
 
 #### 🚀 Enhancement
