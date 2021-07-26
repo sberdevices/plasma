@@ -1,0 +1,37 @@
+name: Cypress component testing
+
+on: push
+
+jobs:
+  cypress:
+    runs-on: ubuntu-latest
+    env:
+      NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
+    steps: 
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+
+    - name: Setup packages
+      run: |
+        npm i
+        npx lerna bootstrap
+
+    - name: Run Cypress CT for Plasma UI
+      run: |
+        npm run cy:ui:run-ct
+  
+    - name: Run Cypress CT for Plasma Web
+      if: ${{ always() }}
+      run: | 
+        npm run cy:web:run-ct
+    
+    - name: Save artifacts
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: Test Artifacts
+        path: /home/runner/work/plasma/plasma/cypress

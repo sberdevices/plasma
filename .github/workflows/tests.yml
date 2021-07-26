@@ -1,4 +1,4 @@
-name: Tests
+name: Tests for React 17 support
 
 on:
   push:

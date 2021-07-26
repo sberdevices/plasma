@@ -1,0 +1,11 @@
+{
+    "component": {
+        "componentFolder": "./packages/plasma-ui/src",
+        "testFiles": "**/*component.{js,jsx,ts,tsx}"
+    },
+    "env": {
+        "snapshotsDir": "cypress/snapshots/ui",
+        "packageDir": "../../packages/plasma-ui"
+    },
+    "video": false
+}
