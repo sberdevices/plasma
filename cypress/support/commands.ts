@@ -1,3 +1,5 @@
 import { addMatchImageSnapshotCommand } from 'cypress-image-snapshot/command';
 
-addMatchImageSnapshotCommand();
+addMatchImageSnapshotCommand({
+    customSnapshotsDir: Cypress.env('snapshotsDir'),
+});

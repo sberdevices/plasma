@@ -1,0 +1,11 @@
+{
+    "component": {
+        "componentFolder": "./packages/plasma-web/src",
+        "testFiles": "**/*component.{js,jsx,ts,tsx}"
+    },
+    "env": {
+        "snapshotsDir": "cypress/snapshots/web",
+        "packageDir": "../../packages/plasma-web"
+    },
+    "video": false
+}

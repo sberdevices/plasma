@@ -6,5 +6,5 @@
         "typeRoots": ["./@types"],
         "resolveJsonModule": true
     },
-    "include": ["**/*.ts"]
+    "include": ["**/*.ts", "plugins/index.ts", "plugins/index.ss"]
 }
