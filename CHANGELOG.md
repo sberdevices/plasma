@@ -1,3 +1,29 @@
+# (Tue Jul 27 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-ui@1.31.0`
+  - feat(plasma-ui): Header layout [#551](https://github.com/sberdevices/plasma/pull/551) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/showcase@0.36.0`, `@sberdevices/plasma-ui@1.31.0`
+  - feat(plasma-ui): Header minimize or back [#551](https://github.com/sberdevices/plasma/pull/551) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-ui@1.31.0`
+  - fix(plasma-ui): Pass rest props to TextBox if only children presented [#551](https://github.com/sberdevices/plasma/pull/551) ([@fanisco](https://github.com/fanisco))
+  - docs(plasma-ui): assistant usage fix [#562](https://github.com/sberdevices/plasma/pull/562) ([@kayman233](https://github.com/kayman233))
+- `@sberdevices/plasma-icons@1.26.0`
+  - fix(plasma-icons): chevron-icons updated [#551](https://github.com/sberdevices/plasma/pull/551) ([@kayman233](https://github.com/kayman233))
+- `@sberdevices/showcase@0.36.0`
+  - chore(showcase): Display theme/typo switchers [#551](https://github.com/sberdevices/plasma/pull/551) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- [@kayman233](https://github.com/kayman233)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Wed Jul 21 2021)
 
 #### 🐛 Bug Fix

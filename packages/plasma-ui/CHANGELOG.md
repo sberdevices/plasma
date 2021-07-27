@@ -1,3 +1,22 @@
+# v1.31.0 (Tue Jul 27 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): Header layout [#551](https://github.com/sberdevices/plasma/pull/551) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-ui): Header minimize or back [#551](https://github.com/sberdevices/plasma/pull/551) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): Pass rest props to TextBox if only children presented [#551](https://github.com/sberdevices/plasma/pull/551) ([@fanisco](https://github.com/fanisco))
+- docs(plasma-ui): assistant usage fix [#562](https://github.com/sberdevices/plasma/pull/562) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 2
+
+- [@kayman233](https://github.com/kayman233)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.30.2 (Mon Jul 19 2021)
 
 #### 🐛 Bug Fix

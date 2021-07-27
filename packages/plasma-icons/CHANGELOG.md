@@ -1,3 +1,15 @@
+# v1.26.0 (Tue Jul 27 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-icons): chevron-icons updated [#551](https://github.com/sberdevices/plasma/pull/551) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 1
+
+- [@kayman233](https://github.com/kayman233)
+
+---
+
 # v1.25.0 (Thu Jul 15 2021)
 
 #### 🐛 Bug Fix
