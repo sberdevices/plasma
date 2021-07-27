@@ -62,6 +62,7 @@ export const globalTypes = {
                 'b2c:light',
                 'b2c:dark',
             ],
+            showName: true,
         },
     },
     typo: {
@@ -70,6 +71,7 @@ export const globalTypes = {
         defaultValue: isWeb() ? 'web' : 'sberBox',
         toolbar: {
             items: ['sberPortal', 'sberBox', 'mobile', 'web'],
+            showName: true,
         },
     },
 };
