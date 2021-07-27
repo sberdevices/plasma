@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Headline2, Headline3, ParagraphText1 } from '@sberdevices/plasma-ui';
-import { DeviceFamily } from '@sberdevices/plasma-temple';
-import { detectDevice } from '@sberdevices/plasma-ui/utils';
+import { detectDevice, DeviceKind } from '@sberdevices/plasma-ui/utils';
 
-const mapDeviceToSectionTitle: Record<DeviceFamily, React.FC> = {
+const mapDeviceToSectionTitle: Record<DeviceKind, React.FC> = {
     sberBox: Headline2,
     sberPortal: Headline3,
     mobile: Headline3,
