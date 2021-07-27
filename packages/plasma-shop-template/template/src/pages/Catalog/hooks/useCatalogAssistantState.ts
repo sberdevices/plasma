@@ -3,7 +3,7 @@ import { AssistantAppStateItem } from '@sberdevices/plasma-temple';
 import { useAssistantState } from '../../../hooks/useAssistantState';
 import { ActionType, CatalogGalleryType, PageState } from '../../../types';
 
-export const useCatalogAssistantState = (screen: string, state: PageState['catalog']) => {
+export const useCatalogAssistantState = (screen: string, state: PageState['catalog']): void => {
     let items: AssistantAppStateItem[] = [];
 
     if (state && Array.isArray(state.gallery)) {

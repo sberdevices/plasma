@@ -1,0 +1,35 @@
+{
+    "package": {
+        "dependencies": {
+            "@sberdevices/assistant-client": "3.7.1",
+            "@sberdevices/plasma-icons": "1.25.0",
+            "@sberdevices/plasma-temple": "0.41.0",
+            "@sberdevices/plasma-tokens": "1.9.0",
+            "@sberdevices/plasma-ui": "1.30.2",
+            "@sberdevices/spatial-navigation": "1.0.3",
+            "react": "^17.0.2",
+            "react-dom": "^17.0.2",
+            "react-scripts": "4.0.3",
+            "styled-components": "5.3.0",
+            "uuid": "8.3.2",
+            "web-vitals": "^1.1.2"
+        },
+        "devDependencies": {
+            "@testing-library/jest-dom": "^5.14.1",
+            "@testing-library/react": "^11.2.7",
+            "@testing-library/user-event": "^12.8.3",
+            "@types/jest": "^26.0.24",
+            "@types/node": "^12.20.16",
+            "@types/react": "^17.0.14",
+            "@types/react-dom": "^17.0.9",
+            "@types/styled-components": "5.1.11",
+            "@types/uuid": "8.3.1",
+            "serve": "12.0.0",
+            "typescript": "^4.3.5"
+        }
+    },
+    "scripts": {
+        "serve": "serve -s build",
+        "build-and-serve": "npm run build && npm run serve"
+    }
+}

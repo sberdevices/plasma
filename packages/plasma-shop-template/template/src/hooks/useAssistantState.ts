@@ -8,7 +8,7 @@ export const useAssistantState = ({
     screen: string;
     items?: AssistantAppStateItem[];
     [key: string]: unknown;
-}) => {
+}): void => {
     useAssistantAppState({
         screen,
         item_selector: { items },

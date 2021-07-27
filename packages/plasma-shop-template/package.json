@@ -1,47 +1,22 @@
 {
-    "name": "plasma-shop-template",
-    "version": "0.1.0",
-    "private": true,
-    "dependencies": {
-        "@sberdevices/assistant-client": "3.7.1",
-        "@sberdevices/plasma-icons": "1.25.0",
-        "@sberdevices/plasma-temple": "0.41.0-canary.95.62427e8212d31db1efe6ea186c42815f15f522a3.0",
-        "@sberdevices/plasma-tokens": "1.9.0",
-        "@sberdevices/plasma-ui": "1.30.2",
-        "@sberdevices/spatial-navigation": "1.0.3",
-        "@testing-library/jest-dom": "^5.14.1",
-        "@testing-library/react": "^11.2.7",
-        "@testing-library/user-event": "^12.8.3",
-        "@types/jest": "^26.0.24",
-        "@types/node": "^12.20.16",
-        "@types/react": "^17.0.14",
-        "@types/react-dom": "^17.0.9",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2",
-        "react-scripts": "4.0.3",
-        "styled-components": "5.3.0",
-        "typescript": "^4.3.5",
-        "uuid": "8.3.2",
-        "web-vitals": "^1.1.2"
+    "name": "@sberdevices/cra-template-plasma-shop-template",
+    "version": "1.0.0",
+    "description": "",
+    "keywords": ["react", "create-react-app", "template", "typescript"],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sberdevices/pashka.git",
+        "directory": "packages/plasma-shop-template"
     },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "prebuild:serve": "[[ -d build ]] || npm run build",
-        "build:serve": "serve --no-clipboard --listen ${PORT:-3000} build"
+    "license": "Sber Public License at-nc-sa v.2",
+    "engines": {
+        "node": ">=12"
     },
-    "eslintConfig": {
-        "extends": ["react-app", "react-app/jest"]
+    "bugs": {
+        "url": "https://github.com/sberdevices/pashka/issues"
     },
-    "browserslist": {
-        "production": [">0.2%", "not dead", "not op_mini all"],
-        "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
-    },
-    "devDependencies": {
-        "@types/styled-components": "5.1.11",
-        "@types/uuid": "8.3.1",
-        "serve": "12.0.0"
+    "files": ["template", "template.json"],
+    "publishConfig": {
+        "access": "public"
     }
 }

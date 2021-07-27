@@ -1,3 +1,4 @@
+import React from 'react';
 import { AssistantSmartAppData } from '@sberdevices/assistant-client';
 import {
     AnyObject,
@@ -40,13 +41,11 @@ export interface Recipient {
     name: string;
     phone: string;
     email: string;
-    // TODO: перенести в RecipientInfo когда будет реализован гео канвас, в данном типе только поля нашей формы
     address: Address;
 }
 
 export interface RecipientInfo {
     recipient: Recipient;
-    address: {}; // TODO: будет использоваться когда будет реализован гео канвас
 }
 
 export interface Product extends Entity<string> {
@@ -118,6 +117,8 @@ export enum ServerActionType {
     ERROR = 'error',
 }
 
+type EmptyObject = Record<string, never>;
+
 export type AssistantAction =
     | { type: ActionType.OPEN_ITEM; payload: { id: string } & AnyObject }
     | { type: ActionType.ADD_TO_CART; payload: { quantity: number } }
@@ -138,10 +139,10 @@ export interface AssistantDataAction extends AssistantSmartAppData {
 
 export type ServerAction =
     | { type: ServerActionType.DONE_REMOVE_FROM_CART; payload: { quantity: number } }
-    | { type: ServerActionType.DONE_REMOVE_FROM_CART; payload: {} }
+    | { type: ServerActionType.DONE_REMOVE_FROM_CART; payload: EmptyObject }
     | { type: ServerActionType.CHECK_PAYMENT_STATUS; payload: { invoiceId: string } }
     | { type: ServerActionType.CART_QUANTITY_LIMIT; payload: { limit: number } }
     | { type: ServerActionType.PAY; payload: { orderNumber: string } }
     | { type: ServerActionType.CHECK_PAYMENT_STATUS; payload: { invoiceId: string } }
-    | { type: ServerActionType.GET_ACCESS_TOKEN; payload: {} }
+    | { type: ServerActionType.GET_ACCESS_TOKEN; payload: EmptyObject }
     | { type: ServerActionType.ERROR; payload: { error?: string } };

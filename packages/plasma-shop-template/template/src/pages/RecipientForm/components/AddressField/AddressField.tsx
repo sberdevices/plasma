@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button, Col, Row, TextField } from '@sberdevices/plasma-ui';
 import { isSberBox } from '@sberdevices/plasma-ui/utils';
+import { useForm } from '@sberdevices/plasma-temple';
 
 import { Address } from '../../../../types';
-import { useForm } from '../../../../hooks/useForm';
 
 interface AddressFieldProps {
     value: Address;

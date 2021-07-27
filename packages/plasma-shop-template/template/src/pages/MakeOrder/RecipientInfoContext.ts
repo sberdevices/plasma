@@ -18,7 +18,6 @@ export const recipientInfoInitialValue: RecipientInfo = {
             flat: '',
         },
     },
-    address: {},
 };
 
 export const RecipientInfoContext = React.createContext<RecipientInfoContextValue>({
