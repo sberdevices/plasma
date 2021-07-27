@@ -28,8 +28,6 @@ export const FormContent: React.FC<FormContentProps> = ({
 
     return (
         <>
-            {/* TODO пофиксить каст типа */}
-            {/* TODO: Поле Адрес временное решение до реализации гео канваса */}
             <FormField name="address" active={active as string}>
                 <AddressField value={address} onChange={onChange} onSubmit={onSubmit} />
             </FormField>

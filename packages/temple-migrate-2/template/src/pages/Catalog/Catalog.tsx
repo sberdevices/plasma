@@ -28,13 +28,11 @@ export const Catalog: React.FC<PageComponentProps<'catalog'>> = (props) => {
         (card: Partial<CatalogData>) => {
             if (isProductItem(card)) {
                 pushScreen('product', { id: card.id });
-            } else {
-                if (Array.isArray(gallery)) {
-                    const target = gallery.findIndex((item) => item.id === card.id);
+            } else if (Array.isArray(gallery)) {
+                const target = gallery.findIndex((item) => item.id === card.id);
 
-                    if (target > -1) {
-                        galleryControl.current?.changeActiveGallery(target);
-                    }
+                if (target > -1) {
+                    galleryControl.current?.changeActiveGallery(target);
                 }
             }
         },
