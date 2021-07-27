@@ -140,8 +140,8 @@ export const HeroSlider: React.FC<UnifiedComponentProps<HeroSliderProps, 'Wrappe
     const item = React.useMemo(() => items[activeIndex], [items, activeIndex]);
 
     React.useEffect(() => {
-        onActiveItemChange?.(item);
-    }, [item, onActiveItemChange]);
+        onActiveItemChange?.(item, activeIndex);
+    }, [item, activeIndex, onActiveItemChange]);
 
     const handleClick = React.useCallback(() => {
         onItemClick?.(item);
