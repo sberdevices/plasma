@@ -66,7 +66,7 @@ export const TextBox: React.FC<TextPttrnProps> = ({
     ...rest
 }) => {
     if (children) {
-        return <TextBoxRoot>{children}</TextBoxRoot>;
+        return <TextBoxRoot {...rest}>{children}</TextBoxRoot>;
     }
 
     const T = size === 'm' ? Title : BigTitle;
