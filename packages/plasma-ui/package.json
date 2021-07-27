@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-ui",
-    "version": "1.30.2",
+    "version": "1.31.0",
     "description": "SberDevices Design System",
     "main": "index.js",
     "module": "es/index.js",
@@ -36,7 +36,7 @@
         "@rollup/plugin-babel": "5.3.0",
         "@rollup/plugin-node-resolve": "11.2.0",
         "@rollup/plugin-typescript": "8.2.0",
-        "@sberdevices/plasma-icons": "1.25.0",
+        "@sberdevices/plasma-icons": "1.26.0",
         "@sberdevices/plasma-sb-utils": "0.10.0",
         "@sberdevices/plasma-tokens": "1.9.0",
         "@storybook/addon-essentials": "6.3.4",
