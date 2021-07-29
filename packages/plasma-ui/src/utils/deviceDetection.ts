@@ -59,7 +59,12 @@ export const isTV = (): boolean => {
 
     const ua = navigator.userAgent.toLowerCase();
 
-    return ua.includes('(tv; tv)') || ua.includes('(tv; huawei)') || ua.includes('(huawei-tv; huawei)');
+    return (
+        ua.includes('(tv; tv)') ||
+        ua.includes('(tv; huawei)') ||
+        ua.includes('(huawei-tv; huawei)') ||
+        ua.includes('(huawei-tv; huawei tv)')
+    );
 };
 
 /**
