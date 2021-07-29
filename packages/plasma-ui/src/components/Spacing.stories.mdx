@@ -1,0 +1,51 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs/blocks';
+
+import * as stories from './Spacing.stories';
+
+<Meta title="Spacing" />
+
+# Стандартные отступы. Margin & Padding
+
+Миксин `applySpacing` добавляет пропсы для указания `margin` и `padding`. Пропсы используют сокращенный синтаксис, схожий со [styled-system](https://styled-system.com/#margin--padding) и [Bootstrap](https://getbootstrap.com/docs/4.1/utilities/spacing/). Вся типографика Plasma поддерживает эти пропсы из коробки.
+
+## margin
+
++ `m` margin
++ `mt` margin-top
++ `mr` margin-right
++ `mb` margin-bottom
++ `ml` margin-left
++ `mx` margin-left и margin-right
++ `my` margin-top и margin-bottom
+
+## padding
++ `p` padding
++ `pt` padding-top
++ `pr` padding-right
++ `pb` padding-bottom
++ `pl` padding-left
++ `px` padding-left и padding-right
++ `py` padding-top и padding-bottom
+
+## Значения пропсов
++ `0 = '0x' = '0'`
++ `2 = '1x' = '0.125rem'`
++ `4 = '2x' = '0.25rem'`
++ `8 = '4x' = '0.5rem'`
++ `10 = '5x' = '0.625rem'`
++ `12 = '6x' = '0.75rem'`
++ `16 = '8x' = '1rem'`
++ `18 = '9x' = '1.125rem'`
++ `20 = '10x' = '1.25rem'`
++ `24 = '12x' = '1.5rem'`
++ `32 = '16x' = '2rem'`
+
+## Примеры использования
+<Canvas>
+    <Story name="Default" story={stories.Default} />
+</Canvas>
+
+## Использование в своем компоненте
+<Canvas>
+    <Story name="Custom" story={stories.Custom} />
+</Canvas>

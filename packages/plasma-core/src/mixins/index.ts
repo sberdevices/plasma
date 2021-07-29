@@ -9,6 +9,8 @@ export type { DisabledProps } from './applyDisabled';
 
 export { applyEllipsis } from './applyEllipsis';
 
+export { applyHyphens } from './applyHyphens';
+
 export { applyMaxLines } from './applyMaxLines';
 export type { MaxLinesProps } from './applyMaxLines';
 
@@ -24,4 +26,6 @@ export { applyScrollSnap } from './applyScrollSnap';
 export type { ScrollSnapProps } from './applyScrollSnap';
 
 export * from './shadows';
-export * from './spacing';
+
+export { applySpacing } from './applySpacing';
+export type { SpacingProps } from './applySpacing';

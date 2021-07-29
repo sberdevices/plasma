@@ -1,10 +1,29 @@
 import styled from 'styled-components';
 
 import { paragraph1, paragraph2 } from '../../../tokens';
+import { applyHyphens, applySpacing, SpacingProps } from '../../../mixins';
 
-export const ParagraphText1 = styled.div({ overflowWrap: 'break-word', hyphens: 'auto', ...paragraph1 });
-export const ParagraphText2 = styled.div({ overflowWrap: 'break-word', hyphens: 'auto', ...paragraph2 });
+export const ParagraphText1 = styled.div<SpacingProps>`
+    ${applyHyphens}
+    ${applySpacing}
+    ${paragraph1}
+`;
+export const ParagraphText2 = styled.div<SpacingProps>`
+    ${applyHyphens}
+    ${applySpacing}
+    ${paragraph2}
+`;
 
-export const P1 = styled.p({ margin: 0, ...paragraph1 });
+export const P1 = styled.p<SpacingProps>`
+    ${applyHyphens}
+    ${applySpacing}
+    ${paragraph1}
+    margin: 0;
+`;
 export const P = P1;
-export const P2 = styled.p({ margin: 0, ...paragraph2 });
+export const P2 = styled.p<SpacingProps>`
+    ${applyHyphens}
+    ${applySpacing}
+    ${paragraph2}
+    margin: 0;
+`;
