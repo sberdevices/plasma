@@ -1,9 +1,10 @@
 /colors
+/es
 /src
-/themes
-/themesValues
 /typo
 /typography
 /typographyValues
-/theme.json
+/themes
+/themesValues
 /index.*
+/theme.json

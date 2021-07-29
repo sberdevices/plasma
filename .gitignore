@@ -1,6 +1,7 @@
 node_modules/
 .idea/
 tsconfig.tsbuildinfo
+tsconfig.es.tsbuildinfo
 cypress/snapshots/**/__diff_output__
 cypress/screenshots
 cypress/videos

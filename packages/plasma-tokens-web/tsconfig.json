@@ -1,17 +1,19 @@
 {
     "compilerOptions": {
         "esModuleInterop": true,
-        "incremental": true,
         "typeRoots": ["./types", "./node_modules/@types"],
-        "target": "ESNext",
+        "target": "ES5",
         "module": "commonjs",
+        "moduleResolution": "node",
         "strict": true,
         "resolveJsonModule": true,
         "declaration": true,
+        "declarationMap": true,
+        "sourceMap": true,
         "removeComments": false,
-        "outDir": "./",
+        "outDir": ".",
         "rootDir": "./src"
     },
     "include": ["./src"],
-    "exclude": ["./data.ts", "./generate.ts"]
+    "exclude": ["./design-language", "./data.ts", "./dataColors", "./generate.ts"]
 }
