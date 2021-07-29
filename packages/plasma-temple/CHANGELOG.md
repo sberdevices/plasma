@@ -1,3 +1,20 @@
+# v0.41.0 (Thu Jul 29 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Add useForm hook [#95](https://github.com/sberdevices/pashka/pull/95) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-temple): Add generic to GalleryPage [#95](https://github.com/sberdevices/pashka/pull/95) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-temple): Add todo [#95](https://github.com/sberdevices/pashka/pull/95) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-temple): Handle gallery card click inside package [#95](https://github.com/sberdevices/pashka/pull/95) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-temple): Simplify custom gallery card interface [#95](https://github.com/sberdevices/pashka/pull/95) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-temple): Refactor gallery [#95](https://github.com/sberdevices/pashka/pull/95) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v0.40.1 (Fri Jul 23 2021)
 
 #### 🐛 Bug Fix
