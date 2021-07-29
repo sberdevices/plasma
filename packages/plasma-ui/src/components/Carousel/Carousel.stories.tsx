@@ -4,6 +4,7 @@ import type { SnapType, SnapAlign } from '@sberdevices/plasma-core';
 
 import { isSberBox } from '../../utils';
 import { ProductCard, MusicCard, GalleryCard } from '../Card/Card.examples';
+import { DeviceThemeProvider } from '../Device';
 import { Row } from '../Grid';
 
 import { CarouselSection, ScalingColCard, scaleCallback, scaleResetCallback } from './Carousel.examples';
@@ -47,31 +48,33 @@ export const Basic = () => {
     const detectThreshold = number('detectThreshold', 0.5);
 
     return (
-        <CarouselGridWrapper>
-            <Carousel
-                as={Row}
-                axis={axis}
-                index={index}
-                animatedScrollByIndex={animatedScrollByIndex}
-                scrollAlign={scrollAlign}
-                scrollSnapType={scrollSnapType}
-                detectActive={detectActive}
-                detectThreshold={detectThreshold}
-                onIndexChange={(i) => setIndex(i)}
-                style={{ paddingTop: '1.25rem', paddingBottom: '1.25rem' }}
-            >
-                {items.map(({ title, subtitle }, i) => (
-                    <CarouselCol key={`item:${i}`} size={3} sizeXL={4} scrollSnapAlign={scrollSnapAlign}>
-                        <ProductCard
-                            title={title}
-                            subtitle={subtitle}
-                            focused={i === index}
-                            imageSrc={`${process.env.PUBLIC_URL}/images/320_320_${i % 12}.jpg`}
-                        />
-                    </CarouselCol>
-                ))}
-            </Carousel>
-        </CarouselGridWrapper>
+        <DeviceThemeProvider>
+            <CarouselGridWrapper>
+                <Carousel
+                    as={Row}
+                    axis={axis}
+                    index={index}
+                    animatedScrollByIndex={animatedScrollByIndex}
+                    scrollAlign={scrollAlign}
+                    scrollSnapType={scrollSnapType}
+                    detectActive={detectActive}
+                    detectThreshold={detectThreshold}
+                    onIndexChange={(i) => setIndex(i)}
+                    style={{ paddingTop: '1.25rem', paddingBottom: '1.25rem' }}
+                >
+                    {items.map(({ title, subtitle }, i) => (
+                        <CarouselCol key={`item:${i}`} size={3} sizeXL={4} scrollSnapAlign={scrollSnapAlign}>
+                            <ProductCard
+                                title={title}
+                                subtitle={subtitle}
+                                focused={i === index}
+                                imageSrc={`${process.env.PUBLIC_URL}/images/320_320_${i % 12}.jpg`}
+                            />
+                        </CarouselCol>
+                    ))}
+                </Carousel>
+            </CarouselGridWrapper>
+        </DeviceThemeProvider>
     );
 };
 
@@ -94,40 +97,42 @@ export const Vertical = () => {
     const detectThreshold = number('detectThreshold', 0.5);
 
     return (
-        <Carousel
-            as={Row}
-            axis={axis}
-            index={index}
-            animatedScrollByIndex={animatedScrollByIndex}
-            scrollAlign={scrollAlign}
-            scrollSnapType={scrollSnapType}
-            detectActive={detectActive}
-            detectThreshold={detectThreshold}
-            onIndexChange={(i) => setIndex(i)}
-            paddingStart="50%"
-            paddingEnd="50%"
-            style={{
-                height: '100vh',
-                maxHeight: '40rem',
-                width: '100%',
-                maxWidth: '22.5rem',
-                margin: '0 auto',
-                padding: '0.75rem',
-            }}
-        >
-            {items.map(({ title, subtitle }, i) => (
-                <CarouselItem key={`item:${i}`} scrollSnapAlign={scrollSnapAlign} style={{ padding: '0.75rem 0' }}>
-                    <GalleryCard
-                        title={title}
-                        subtitle={subtitle}
-                        focused={i === index}
-                        imageSrc={`${process.env.PUBLIC_URL}/images/320_320_${i % 12}.jpg`}
-                        imageRatio="1 / 1"
-                        scaleOnFocus
-                    />
-                </CarouselItem>
-            ))}
-        </Carousel>
+        <DeviceThemeProvider>
+            <Carousel
+                as={Row}
+                axis={axis}
+                index={index}
+                animatedScrollByIndex={animatedScrollByIndex}
+                scrollAlign={scrollAlign}
+                scrollSnapType={scrollSnapType}
+                detectActive={detectActive}
+                detectThreshold={detectThreshold}
+                onIndexChange={(i) => setIndex(i)}
+                paddingStart="50%"
+                paddingEnd="50%"
+                style={{
+                    height: '100vh',
+                    maxHeight: '40rem',
+                    width: '100%',
+                    maxWidth: '22.5rem',
+                    margin: '0 auto',
+                    padding: '0.75rem',
+                }}
+            >
+                {items.map(({ title, subtitle }, i) => (
+                    <CarouselItem key={`item:${i}`} scrollSnapAlign={scrollSnapAlign} style={{ padding: '0.75rem 0' }}>
+                        <GalleryCard
+                            title={title}
+                            subtitle={subtitle}
+                            focused={i === index}
+                            imageSrc={`${process.env.PUBLIC_URL}/images/320_320_${i % 12}.jpg`}
+                            imageRatio="1 / 1"
+                            scaleOnFocus
+                        />
+                    </CarouselItem>
+                ))}
+            </Carousel>
+        </DeviceThemeProvider>
     );
 };
 
@@ -137,7 +142,7 @@ export const MusicPage: React.FC = () => {
     const scrollSnapAlign = !isSberbox ? select('scrollSnapAlign', snapAlign, 'start') : undefined;
 
     return (
-        <>
+        <DeviceThemeProvider>
             <CarouselSection heading="Новые альбомы" scrollSnapType={scrollSnapType}>
                 {items.map((item, i) => (
                     <CarouselCol key={`item:${i}`} size={2} sizeM={1.5} scrollSnapAlign={scrollSnapAlign}>
@@ -159,7 +164,7 @@ export const MusicPage: React.FC = () => {
                     </CarouselCol>
                 ))}
             </CarouselSection>
-        </>
+        </DeviceThemeProvider>
     );
 };
 
@@ -183,31 +188,33 @@ export const CenterItem: React.FC = () => {
     const detectThreshold = number('detectThreshold', 0.5);
 
     return (
-        <CarouselGridWrapper>
-            <Carousel
-                as={Row}
-                axis="x"
-                index={index}
-                animatedScrollByIndex={animatedScrollByIndex}
-                scrollSnapType={scrollSnapType}
-                detectActive={detectActive}
-                detectThreshold={detectThreshold}
-                scaleCallback={scaleCallback}
-                scaleResetCallback={scaleResetCallback}
-                onIndexChange={(i) => setIndex(i)}
-                paddingStart="50%"
-                paddingEnd="50%"
-                style={{ paddingTop: '5rem' }}
-            >
-                {items.map((item, i) => (
-                    <ScalingColCard
-                        key={`item:${i}`}
-                        scrollSnapAlign={scrollSnapAlign}
-                        isActive={i === index}
-                        item={item}
-                    />
-                ))}
-            </Carousel>
-        </CarouselGridWrapper>
+        <DeviceThemeProvider>
+            <CarouselGridWrapper>
+                <Carousel
+                    as={Row}
+                    axis="x"
+                    index={index}
+                    animatedScrollByIndex={animatedScrollByIndex}
+                    scrollSnapType={scrollSnapType}
+                    detectActive={detectActive}
+                    detectThreshold={detectThreshold}
+                    scaleCallback={scaleCallback}
+                    scaleResetCallback={scaleResetCallback}
+                    onIndexChange={(i) => setIndex(i)}
+                    paddingStart="50%"
+                    paddingEnd="50%"
+                    style={{ paddingTop: '5rem' }}
+                >
+                    {items.map((item, i) => (
+                        <ScalingColCard
+                            key={`item:${i}`}
+                            scrollSnapAlign={scrollSnapAlign}
+                            isActive={i === index}
+                            item={item}
+                        />
+                    ))}
+                </Carousel>
+            </CarouselGridWrapper>
+        </DeviceThemeProvider>
     );
 };
