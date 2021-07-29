@@ -24,14 +24,9 @@ const OUT_DIR = 'src';
 const COLORS_DIR = path.join(OUT_DIR, 'colors');
 const THEMES_DIR = path.join(OUT_DIR, 'themes');
 const THEMES_VALUES_DIR = path.join(OUT_DIR, 'themesValues');
-// TODO: REMOVE in major
-const THEMES_DIR_OLD = path.join('themes');
-const THEMES_VALUES_DIR_OLD = path.join('themesValues');
 const TYPOGRAPHY_DIR = path.join(OUT_DIR, 'typography');
 const TYPOGRAPHY_VALUES_DIR = path.join(OUT_DIR, 'typographyValues');
 const TYPO_DIR = path.join(OUT_DIR, 'typo');
-// TODO: REMOVE in major
-const TYPO_DIR_OLD = path.join('typo');
 const ROOT_INDEX_TS = path.join(OUT_DIR, 'index.ts');
 
 fs.existsSync(OUT_DIR) || fs.mkdirSync(OUT_DIR);
@@ -50,11 +45,9 @@ writeGeneratedToFS(COLORS_DIR, [
 
 // Генерация и запись файлов тем для создания глобальных стилей
 writeGeneratedToFS(THEMES_DIR, generateThemes(themes, 'cssobject', true));
-writeGeneratedToFS(THEMES_DIR_OLD, generateThemes(themes, 'cssobject', true));
 
 // Отдельные файлы для импорта в компонентах
 writeGeneratedToFS(THEMES_VALUES_DIR, generateThemes(themes, 'tokens', false));
-writeGeneratedToFS(THEMES_VALUES_DIR_OLD, generateThemes(themes, 'tokens', false));
 
 /** =================================================== **/
 /** ========= Генерация типографической сетки ========= **/
@@ -69,14 +62,6 @@ writeGeneratedToFS(TYPOGRAPHY_VALUES_DIR, generateTypographyValues(typoSystem));
 // Типографика по типам устройств для создания глобального стиля
 writeGeneratedToFS(
     TYPO_DIR,
-    generateTypo({
-        sberBox: createTypoStyles(typoSystem, deviceScales.sberBox),
-        sberPortal: createTypoStyles(typoSystem, deviceScales.sberPortal),
-        mobile: createTypoStyles(typoSystem, deviceScales.mobile),
-    }),
-);
-writeGeneratedToFS(
-    TYPO_DIR_OLD,
     generateTypo({
         sberBox: createTypoStyles(typoSystem, deviceScales.sberBox),
         sberPortal: createTypoStyles(typoSystem, deviceScales.sberPortal),
