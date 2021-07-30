@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 
 import { applyDisabled, applyEllipsis } from '../../mixins';
 import type { DisabledProps } from '../../mixins';
+import { AsProps } from '../../types';
 
 export interface TabsProps extends DisabledProps {
     /**
@@ -17,6 +18,7 @@ export interface TabsProps extends DisabledProps {
  * Контейнер вкладок.
  */
 export const Tabs = styled.ul<TabsProps>`
+    position: relative;
     display: flex;
     align-items: center;
     box-sizing: border-box;
@@ -63,11 +65,12 @@ interface StyledTabItemProps {
     isContentLeft?: boolean;
 }
 
-export interface TabItemProps extends React.LiHTMLAttributes<HTMLLIElement> {
+export interface TabItemProps extends AsProps, React.LiHTMLAttributes<HTMLLIElement> {
     /**
      * Активность элемента списка
      */
     isActive?: boolean;
+    hasAnimation?: boolean;
     /**
      * Слот для контента слева, например `Icon`
      */
@@ -141,9 +144,9 @@ const StyledTabItem = styled.li<StyledTabItemProps>`
 /**
  * Элемент списка, недопустимо импользовать вне компонента Tabs.
  */
-export const TabItem: React.FC<TabItemProps> = ({ children, contentLeft, ...rest }) => (
-    <StyledTabItem isChildren={!!children} isContentLeft={!!contentLeft} {...rest}>
+export const TabItem: React.FC<TabItemProps> = React.forwardRef(({ children, contentLeft, ...rest }, ref) => (
+    <StyledTabItem ref={ref} isChildren={!!children} isContentLeft={!!contentLeft} {...rest}>
         {contentLeft && <StyledTabItemContentLeft>{contentLeft}</StyledTabItemContentLeft>}
         {children && <StyledTabItemText>{children}</StyledTabItemText>}
     </StyledTabItem>
-);
+));
