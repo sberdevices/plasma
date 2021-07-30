@@ -1,3 +1,19 @@
+# v1.31.1 (Fri Jul 30 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): huawei detection fix [#583](https://github.com/sberdevices/plasma/pull/583) (nsvoevodin@sberbank.ru)
+- docs(plasma-ui): Show provider in stories [#575](https://github.com/sberdevices/plasma/pull/575) ([@fanisco](https://github.com/fanisco))
+- {chore: update package-locks \[skip ci\]} ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 3
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- nsvoevodin (nsvoevodin@sberbank.ru)
+
+---
+
 # v1.31.0 (Tue Jul 27 2021)
 
 #### 🚀 Enhancement

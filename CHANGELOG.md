@@ -1,3 +1,18 @@
+# (Fri Jul 30 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-ui@1.31.1`
+  - fix(plasma-ui): huawei detection fix [#583](https://github.com/sberdevices/plasma/pull/583) (nsvoevodin@sberbank.ru)
+  - docs(plasma-ui): Show provider in stories [#575](https://github.com/sberdevices/plasma/pull/575) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- nsvoevodin (nsvoevodin@sberbank.ru)
+
+---
+
 # (Tue Jul 27 2021)
 
 #### 🚀 Enhancement
