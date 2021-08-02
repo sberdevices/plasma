@@ -1,3 +1,20 @@
+# v1.32.0 (Mon Aug 02 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-web): Add `hocs`, `hooks`, `mixins`, `types` and `utils` from plasma-core [#592](https://github.com/sberdevices/plasma/pull/592) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.31.0 (Mon Aug 02 2021)
 
 #### 🚀 Enhancement

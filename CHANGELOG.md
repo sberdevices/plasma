@@ -2,6 +2,19 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-web@1.32.0`
+  - feat(plasma-web): Add `hocs`, `hooks`, `mixins`, `types` and `utils` from plasma-core [#592](https://github.com/sberdevices/plasma/pull/592) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Mon Aug 02 2021)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-ui@1.32.0`
   - feat(plasma-ui): Added index exports for hooks and etc [#563](https://github.com/sberdevices/plasma/pull/563) ([@fanisco](https://github.com/fanisco))
 - `@sberdevices/plasma-web@1.31.0`
