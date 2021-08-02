@@ -62,3 +62,12 @@ export default function CarouselPage() {
         </CarouselGridWrapper>
     );
 }
+
+export function getStaticProps() {
+    return {
+        props: {
+            title: 'Carousel',
+            back: true,
+        },
+    };
+}

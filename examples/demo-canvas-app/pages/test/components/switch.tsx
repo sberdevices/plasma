@@ -39,3 +39,12 @@ export default function PickersPage() {
         </StyledWrapper>
     );
 }
+
+export function getStaticProps() {
+    return {
+        props: {
+            title: 'Switch',
+            back: true,
+        },
+    };
+}

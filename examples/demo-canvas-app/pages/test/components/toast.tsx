@@ -34,3 +34,12 @@ export default function ToastPage() {
         </StyledWrapper>
     );
 }
+
+export function getStaticProps() {
+    return {
+        props: {
+            title: 'Toast',
+            back: true,
+        },
+    };
+}

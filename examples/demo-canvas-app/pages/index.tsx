@@ -31,3 +31,13 @@ export default function Home() {
         </>
     );
 }
+
+export function getStaticProps() {
+    return {
+        props: {
+            title: 'Demo Canvas App',
+            subtitle: 'Build on Next.js',
+            back: false,
+        },
+    };
+}

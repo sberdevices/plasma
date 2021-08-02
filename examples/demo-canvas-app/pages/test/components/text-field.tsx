@@ -42,3 +42,12 @@ export default function TextFieldPage() {
         </StyledWrapper>
     );
 }
+
+export function getStaticProps() {
+    return {
+        props: {
+            title: 'TextField',
+            back: true,
+        },
+    };
+}
