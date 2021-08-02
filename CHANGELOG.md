@@ -1,3 +1,25 @@
+# (Mon Aug 02 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-ui@1.32.0`
+  - feat(plasma-ui): Added index exports for hooks and etc [#563](https://github.com/sberdevices/plasma/pull/563) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-web@1.31.0`
+  - feat(plasma-web): Index imports for treeshaking [#563](https://github.com/sberdevices/plasma/pull/563) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/demo-canvas-app@0.9.0`
+  - feat(demo-canvas-app): Carousel page [#563](https://github.com/sberdevices/plasma/pull/563) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/demo-canvas-app@0.9.0`, `@sberdevices/plasma-core@1.20.0`, `@sberdevices/plasma-icons@1.27.0`, `@sberdevices/plasma-ui@1.32.0`, `@sberdevices/plasma-web@1.31.0`
+  - ci: Build plasma without rollup [#563](https://github.com/sberdevices/plasma/pull/563) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Fri Jul 30 2021)
 
 #### 🐛 Bug Fix

@@ -1,3 +1,15 @@
+# v1.27.0 (Mon Aug 02 2021)
+
+#### 🐛 Bug Fix
+
+- ci: Build plasma without rollup [#563](https://github.com/sberdevices/plasma/pull/563) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.26.0 (Tue Jul 27 2021)
 
 #### 🐛 Bug Fix
