@@ -33,13 +33,10 @@
         "@babel/preset-typescript": "7.13.0",
         "@mdx-js/mdx": "1.6.16",
         "@mdx-js/react": "1.6.22",
-        "@rollup/plugin-babel": "5.3.0",
-        "@rollup/plugin-node-resolve": "11.2.0",
-        "@rollup/plugin-typescript": "8.2.0",
         "@sberdevices/plasma-icons": "1.26.0",
         "@sberdevices/plasma-sb-utils": "0.10.0",
         "@sberdevices/plasma-tokens": "1.9.0",
-        "@storybook/addon-essentials": "6.3.4",
+        "@storybook/addon-essentials": "6.3.6",
         "@storybook/addon-knobs": "6.3.0",
         "@storybook/preset-create-react-app": "3.2.0",
         "@storybook/react": "6.3.4",
@@ -54,13 +51,11 @@
         "babel-plugin-annotate-pure-calls": "0.4.0",
         "babel-plugin-styled-components": "1.12.0",
         "babel-plugin-transform-class-properties": "6.24.1",
-        "chromatic": "5.2.0",
         "jest": "26.6.3",
         "jest-styled-components": "7.0.4",
         "react": "16.13.1",
         "react-dom": "16.13.1",
         "react-scripts": "3.4.1",
-        "rollup": "2.42.1",
         "sb": "6.3.3",
         "styled-components": "^5.1.1",
         "typescript": "3.9.5"
@@ -70,11 +65,11 @@
     },
     "scripts": {
         "prepare": "npm run build",
-        "clean": "rm -rf ./components ./helpers ./hocs ./hooks ./mixins ./types ./utils ./es index.d.ts index.d.ts.map index.js index.js.map",
-        "build:cjs": "tsc --emitDeclarationOnly && npm run babel",
-        "babel": "babel ./src --out-dir . --source-maps --extensions .ts,.tsx",
-        "build:es": "rollup -c",
-        "build": "npm run clean && npm run build:es && npm run build:cjs",
+        "prebuild": "rm -rf ./components ./es ./helpers ./hocs ./hooks ./mixins ./types ./utils index.d.ts index.d.ts.map index.js index.js.map",
+        "build": "npm run build:cjs && npm run build:esm",
+        "postbuild": "tsc --outDir . --emitDeclarationOnly",
+        "build:cjs": "BABEL_ENV=cjs SC_NAMESPACE=plasma-ui babel ./src --out-dir . --source-maps --extensions .ts,.tsx",
+        "build:esm": "BABEL_ENV=esm SC_NAMESPACE=plasma-ui babel ./src --out-dir ./es --source-maps --extensions .ts,.tsx",
         "build-storybook": "npm run storybook:build",
         "build:storybook": "npm run storybook:build && npm run storybook:extract",
         "prestorybook": "./sync-readme.sh",
@@ -84,8 +79,7 @@
         "prestorybook:build:docs": "./sync-readme.sh",
         "storybook:build:docs": "DOCS=true build-storybook --quiet -s .storybook/public -c .storybook -o build-sb-docs --docs",
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
-        "chromatic": "npx chromatic",
-        "test": "jest"
+        "test": "BABEL_ENV=cjs jest"
     },
     "storybook": {
         "title": "SberDevices Design System",
@@ -96,17 +90,7 @@
             "^styled-components": "<rootDir>/node_modules/styled-components"
         }
     },
-    "files": [
-        "components",
-        "hocs",
-        "hooks",
-        "mixins",
-        "types",
-        "utils",
-        "index.d.ts",
-        "index.js",
-        "es"
-    ],
+    "files": ["components", "hocs", "hooks", "mixins", "types", "utils", "index.d.ts", "index.js", "es"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Антонов Игорь Александрович",
