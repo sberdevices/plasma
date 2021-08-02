@@ -23,7 +23,7 @@
     "devDependencies": {
         "@rollup/plugin-babel": "5.3.0",
         "@rollup/plugin-node-resolve": "11.2.0",
-        "@rollup/plugin-typescript": "8.2.0",
+        "@rollup/plugin-typescript": "8.2.5",
         "@sberdevices/plasma-core": "1.19.0",
         "@types/node": "^12.12.30",
         "@types/react": "16.9.38",
