@@ -1,3 +1,16 @@
+# v0.42.0 (Mon Aug 02 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Add active index to item change callback in HeroSlider [#98](https://github.com/sberdevices/pashka/pull/98) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- feat(plasma-temple): Add on item cchange callback to HeroSlider [#98](https://github.com/sberdevices/pashka/pull/98) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v0.41.0 (Thu Jul 29 2021)
 
 #### 🚀 Enhancement
