@@ -159,6 +159,9 @@ export const CustomAssembly = () => {
                 )}
                 {variant === 'title' && <HeaderTitle>{text('title', 'Header title text')}</HeaderTitle>}
             </HeaderTitleWrapper>
+            <span style={{ marginLeft: '1rem' }}>
+                <IconMic color="inherit" size="s" />
+            </span>
             <HeaderContent>
                 <Content />
             </HeaderContent>
