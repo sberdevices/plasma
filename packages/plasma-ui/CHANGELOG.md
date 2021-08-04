@@ -1,3 +1,20 @@
+# v1.34.0 (Wed Aug 04 2021)
+
+#### 🚀 Enhancement
+
+- feat: Spacing mixin applySpacing [#585](https://github.com/sberdevices/plasma/pull/585) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.33.0 (Mon Aug 02 2021)
 
 #### 🐛 Bug Fix

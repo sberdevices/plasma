@@ -1,3 +1,15 @@
+# v1.21.0 (Wed Aug 04 2021)
+
+#### 🚀 Enhancement
+
+- feat: Spacing mixin applySpacing [#585](https://github.com/sberdevices/plasma/pull/585) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.20.0 (Mon Aug 02 2021)
 
 #### 🐛 Bug Fix
