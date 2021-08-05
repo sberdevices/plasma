@@ -1,3 +1,17 @@
+# (Thu Aug 05 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/cra-template-plasma-shop-template@1.1.0`
+  - feat(plasma-shop-template): Create CRA template [#99](https://github.com/sberdevices/pashka/pull/99) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-shop-template): Shop template [#99](https://github.com/sberdevices/pashka/pull/99) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # (Mon Aug 02 2021)
 
 #### 🚀 Enhancement
