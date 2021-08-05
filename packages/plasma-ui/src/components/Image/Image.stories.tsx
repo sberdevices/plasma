@@ -15,7 +15,7 @@ const bases = ['div', 'img'];
 
 export const Default = () => (
     <div style={{ maxWidth: '10rem' }}>
-        <Image src="./images/320_320_9.jpg" ratio="1 / 1" />
+        <Image src="./images/320_320_9.jpg" ratio="1 / 1" alt="картинка для примера" />
     </div>
 );
 
@@ -25,6 +25,7 @@ export const Basic = () => (
             src="./images/320_320_9.jpg"
             ratio="1 / 1"
             base={select('base', bases, 'div') as 'div'}
+            alt="картинка для примера фоном"
             style={{ position: 'relative' }}
         />
     </div>

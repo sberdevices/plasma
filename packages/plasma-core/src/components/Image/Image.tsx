@@ -98,6 +98,6 @@ export const Image: React.FC<ImageProps> = ({ src, base = 'img', alt, ...props }
         {...props}
     >
         {base === 'img' && <StyledImg src={src} alt={alt} />}
-        {base === 'div' && <StyledDivImg style={{ backgroundImage: `url(${src})` }} />}
+        {base === 'div' && <StyledDivImg style={{ backgroundImage: `url(${src})` }} role="img" aria-label={alt} />}
     </StyledRoot>
 );
