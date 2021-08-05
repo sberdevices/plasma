@@ -307,7 +307,7 @@ export const Gallery: PageComponent<PageStateType, 'gallery', PageParams> = (pro
         return null;
     }
 
-    // В качестве галереии используется компонент галереии из пакета @sberdevices/plasma-temple
+    // В качестве галереи используется соответствующий компонент из пакета @sberdevices/plasma-temple
     return <GalleryPage<Film> header={header} onCardClick={handleClick} state={state} changeState={changeState} />;
 };
 ```
