@@ -40,15 +40,21 @@ interface MarqueeProps {
  * Компонент для отображения бегущей строки
  */
 export const Marquee: FC<MarqueeProps> = ({ isPlaying = true, duration = 10, text, children }) => {
+    const marqueeText = (
+        <MarqueeText isPlaying={isPlaying} duration={duration}>
+            {text || children}
+        </MarqueeText>
+    );
+
     return (
         <Wrapper>
-            <MarqueeText isPlaying={isPlaying} duration={duration}>
-                {text || children}
-            </MarqueeText>
-            {isPlaying && (
-                <MarqueeText isPlaying={isPlaying} duration={duration}>
-                    {text || children}
-                </MarqueeText>
+            {isPlaying ? (
+                <>
+                    {marqueeText}
+                    {marqueeText}
+                </>
+            ) : (
+                <>{text || children}</>
             )}
         </Wrapper>
     );
