@@ -58,9 +58,30 @@ const toRem = (value: string | number, basis = 16): string => {
     return `${value / basis}rem`;
 };
 
+/**
+ * В строковых значениях токенов встречаются нежелательные символы,
+ * их нужно очищать перед размещением в CSS Var или JSON.
+ * @param {string|number} value
+ * @return {string|number}
+ */
+export const escapeValue = <T = string | number>(value: T) => {
+    if (typeof value === 'string') {
+        return value.replace(/\s+/g, ' ');
+    }
+    return value;
+};
 const toVarName = (key: string) => `--plasma-${key}`;
-export const toCSSVarTokenWithValue = (key: string, value: string | number) => `var(${toVarName(key)}, ${value})`;
 
+/**
+ * Преобразует название и значение токена в CSS Var.
+ * @param {string} name
+ * @param {string|number} value
+ * @return {string}
+ */
+export const toCSSVarTokenWithValue = (name: string, value: string | number) =>
+    value ? `var(${toVarName(name)}, ${escapeValue(value)})` : `var(${toVarName(name)})`;
+
+// ToDo: перенести в новый пакет, plasma-utils, где шарится код между всеми компонентами, токенами, утилитами
 export const capitalize = (str: string) => str[0].toUpperCase() + str.slice(1);
 
 /**
@@ -88,20 +109,28 @@ export const compose = (...fns: Array<(s: TypographStyle) => TypographStyle>) =>
     );
 
 const join = (...args: (string | undefined)[]) => args.filter(Boolean).join('-');
-const objectToVars = (parent: string, obj: Record<string, any>) => {
-    let vars: Record<string, object> = {};
+
+/**
+ * Преобразовать объект токенов в плоский объект,
+ * где ключом выступает название CSS переменной, значением - значение переменной.
+ * @param {string} namespace
+ * @param {object} obj
+ * @return {object}
+ */
+const objectToCSSVars = (namespace: string, obj: Record<string, any>) => {
+    let vars: Record<string, string | number> = {};
     for (const key in obj) {
         if (key !== 'modes' && key !== 'comment') {
-            const name = join(parent, key);
+            const name = join(namespace, key);
             const value = obj[key];
 
             if (value && typeof value === 'object') {
                 vars = {
                     ...vars,
-                    ...objectToVars(name, value),
+                    ...objectToCSSVars(name, value),
                 };
             } else {
-                vars[toVarName(name)] = value;
+                vars[toVarName(name)] = escapeValue(value);
             }
         }
     }
@@ -111,7 +140,7 @@ const objectToVars = (parent: string, obj: Record<string, any>) => {
 export const createThemeStyles = (theme: object) => {
     return css({
         ':root': {
-            ...objectToVars('colors', theme),
+            ...objectToCSSVars('colors', theme),
             color: 'text',
             bg: 'background',
         },
@@ -146,7 +175,7 @@ export const createTypoStyles = <TK extends string>(typoSystem: TypoSystem<TK>, 
     return css({
         ':root': {
             'font-size': `${HTML_FONT_SIZE * typoScale}px`,
-            ...objectToVars('typo', typoText),
+            ...objectToCSSVars('typo', typoText),
         },
     })();
 };
