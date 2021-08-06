@@ -1,3 +1,16 @@
+# (Fri Aug 06 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-tokens-b2c@0.3.0`, `@sberdevices/plasma-tokens-web@1.9.0`, `@sberdevices/plasma-tokens@1.10.0`
+  - feat: Build plasma tokens without rollup [#608](https://github.com/sberdevices/plasma/pull/608) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Wed Aug 04 2021)
 
 #### 🚀 Enhancement
