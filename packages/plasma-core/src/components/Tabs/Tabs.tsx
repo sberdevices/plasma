@@ -70,7 +70,6 @@ export interface TabItemProps extends AsProps, React.LiHTMLAttributes<HTMLLIElem
      * Активность элемента списка
      */
     isActive?: boolean;
-    hasAnimation?: boolean;
     /**
      * Слот для контента слева, например `Icon`
      */

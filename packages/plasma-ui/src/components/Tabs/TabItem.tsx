@@ -1,17 +1,18 @@
-import React, { useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import { TabItem as BaseTabItem, TabItemProps as BaseTabItemProps } from '@sberdevices/plasma-core';
 import { button2 } from '@sberdevices/plasma-tokens';
 import type { AsProps } from '@sberdevices/plasma-core';
 
-import { useTabsContext } from './TabsContext';
 import { StyledSlider, activeItemStyle } from './TabsSlider';
 
 export interface TabItemProps extends AsProps, BaseTabItemProps {
-    hasAnimation?: boolean;
+    animated?: boolean;
 }
 
-export const StyledTabItem = styled(BaseTabItem)`
+/**
+ * Элемент списка, недопустимо импользовать вне компонента Tabs.
+ */
+export const TabItem = styled(BaseTabItem)<TabItemProps>`
     ${button2};
 
     /**
@@ -36,29 +37,10 @@ export const StyledTabItem = styled(BaseTabItem)`
     /**
     * Если анимация отключена
     */
-    ${({ hasAnimation, isActive }) =>
-        !hasAnimation &&
+    ${({ animated, isActive }) =>
+        !animated &&
         isActive &&
         css`
             ${activeItemStyle}
         `}
 `;
-
-/**
- * Элемент списка, недопустимо импользовать вне компонента Tabs.
- */
-export const TabItem: React.FC<TabItemProps> = ({ children, ...rest }) => {
-    const itemRef = useRef<HTMLElement>(null);
-    const { refs, hasAnimation } = useTabsContext();
-
-    useEffect(() => {
-        refs?.register(itemRef);
-        return () => refs?.unregister(itemRef);
-    }, [refs]);
-
-    return (
-        <StyledTabItem ref={itemRef} hasAnimation={hasAnimation} {...rest}>
-            {children}
-        </StyledTabItem>
-    );
-};
