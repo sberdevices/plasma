@@ -1,5 +1,24 @@
 # (Fri Aug 06 2021)
 
+#### 🚀 Enhancement
+
+- `@sberdevices/demo-canvas-app@0.13.0`
+  - feat(demo-canvas-app): Added Grid page [#607](https://github.com/sberdevices/plasma/pull/607) ([@fanisco](https://github.com/fanisco))
+  - feat(demo-canvas-app): Header in layout [#607](https://github.com/sberdevices/plasma/pull/607) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-core@1.22.0`, `@sberdevices/plasma-ui@1.36.0`
+  - fix: Execution layout effect on server [#607](https://github.com/sberdevices/plasma/pull/607) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Fri Aug 06 2021)
+
 #### 🐛 Bug Fix
 
 - `@sberdevices/plasma-core@1.21.1`, `@sberdevices/plasma-ui@1.35.1`, `@sberdevices/plasma-web@1.34.1`

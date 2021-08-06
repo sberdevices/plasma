@@ -1,3 +1,17 @@
+# v1.36.0 (Fri Aug 06 2021)
+
+#### 🐛 Bug Fix
+
+- fix: Execution layout effect on server [#607](https://github.com/sberdevices/plasma/pull/607) ([@fanisco](https://github.com/fanisco))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.35.1 (Fri Aug 06 2021)
 
 #### 🐛 Bug Fix

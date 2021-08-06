@@ -1,3 +1,15 @@
+# v1.22.0 (Fri Aug 06 2021)
+
+#### 🐛 Bug Fix
+
+- fix: Execution layout effect on server [#607](https://github.com/sberdevices/plasma/pull/607) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.21.1 (Fri Aug 06 2021)
 
 #### 🐛 Bug Fix
