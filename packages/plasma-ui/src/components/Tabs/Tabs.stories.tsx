@@ -34,7 +34,8 @@ export const Default = () => {
             scaleOnPress={boolean('scaleOnInteraction', true)}
             outlined={!disabled && outlined}
             disabled={disabled}
-            activeIndex={index}
+            index={index}
+            animated={boolean('animated', true) as true}
         >
             {items.map((_, i) => (
                 <TabItem

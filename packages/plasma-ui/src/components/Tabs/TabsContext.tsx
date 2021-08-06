@@ -14,12 +14,12 @@ export class TabItemRefs {
 }
 
 interface TabsState {
-    hasAnimation: boolean;
     refs?: TabItemRefs;
+    animated: boolean;
 }
 
 const initialValue: TabsState = {
-    hasAnimation: false,
+    animated: false,
 };
 
 export const TabsContext = createContext<TabsState>(initialValue);
