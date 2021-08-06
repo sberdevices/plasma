@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-tokens",
-    "version": "1.9.0",
+    "version": "1.10.0",
     "description": "",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
@@ -55,6 +55,10 @@
         "ts-node": "^9.0.0",
         "typescript": "^4.0.2"
     },
-    "contributors": ["Виноградов Антон Александрович", "Зубаиров Фаниль Асхатович", "Vasiliy Loginevskiy"],
+    "contributors": [
+        "Виноградов Антон Александрович",
+        "Зубаиров Фаниль Асхатович",
+        "Vasiliy Loginevskiy"
+    ],
     "sideEffects": false
 }
