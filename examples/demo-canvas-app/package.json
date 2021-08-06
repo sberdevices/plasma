@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/demo-canvas-app",
-    "version": "0.12.1",
+    "version": "0.13.0",
     "description": "Demo Canvas App",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
@@ -19,9 +19,9 @@
         "lint": "next lint"
     },
     "dependencies": {
-        "@sberdevices/plasma-icons": "1.30.1",
+        "@sberdevices/plasma-icons": "1.31.0",
         "@sberdevices/plasma-tokens": "1.10.1",
-        "@sberdevices/plasma-ui": "1.35.1",
+        "@sberdevices/plasma-ui": "1.36.0",
         "next": "11.0.1",
         "react": "17.0.2",
         "react-dom": "17.0.2",
