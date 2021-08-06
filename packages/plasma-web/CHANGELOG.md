@@ -1,3 +1,17 @@
+# v1.34.1 (Fri Aug 06 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-core): Image: add role attr [#620](https://github.com/sberdevices/plasma/pull/620) ([@Yeti-or](https://github.com/Yeti-or))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.34.0 (Fri Aug 06 2021)
 
 #### 🐛 Bug Fix

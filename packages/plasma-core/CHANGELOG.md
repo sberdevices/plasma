@@ -1,3 +1,15 @@
+# v1.21.1 (Fri Aug 06 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-core): Image: add role attr [#620](https://github.com/sberdevices/plasma/pull/620) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.21.0 (Wed Aug 04 2021)
 
 #### 🚀 Enhancement
