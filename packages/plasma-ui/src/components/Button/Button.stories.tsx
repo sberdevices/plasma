@@ -1,10 +1,10 @@
 import React from 'react';
-import { text, boolean, select } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react';
 import { IconMic } from '@sberdevices/plasma-icons';
 
-import { actionWithPersistedEvent } from '../../helpers';
+import { actionWithPersistedEvent, disableProps } from '../../helpers';
 
-import { Button, ActionButton } from '.';
+import { Button, ButtonProps, ActionButtonProps, ActionButton } from '.';
 
 const sizes = ['l', 'm', 's'];
 const views = ['primary', 'secondary', 'warning', 'critical', 'checked', 'overlay', 'clear'];
@@ -22,38 +22,96 @@ const onClick = actionWithPersistedEvent('onClick');
 const onFocus = actionWithPersistedEvent('onFocus');
 const onBlur = actionWithPersistedEvent('onBlur');
 
-export const Default = () => (
-    <Button
-        text={text('text', 'Hello Plasma')}
-        size={select('size', sizes, 'm') as 'm'}
-        view={select('view', views, 'primary') as 'primary'}
-        pin={select('pin', pins, 'square-square') as 'square-square'}
-        contentLeft={boolean('contentLeft', true) && <IconMic size="s" color="inherit" />}
-        scaleOnInteraction={boolean('scaleOnInteraction', true)}
-        outlined={boolean('outlined', true)}
-        focused={boolean('focused', false)}
-        disabled={boolean('disabled', false)}
-        square={boolean('square', false)}
-        stretch={boolean('stretch', false)}
-        onClick={onClick}
-        onFocus={onFocus}
-        onBlur={onBlur}
-    />
+const propsToDisable = [
+    'theme',
+    'as',
+    'forwardedAs',
+    'scaleOnHover',
+    'scaleOnPress',
+    'contentLeft',
+    'contentRight',
+    'shiftLeft',
+    'shiftRight',
+    'onClick',
+    'onFocus',
+    'onBlur',
+    'blur',
+];
+
+export default {
+    title: 'Controls/Button',
+    argTypes: {
+        text: {
+            control: {
+                type: 'text',
+            },
+        },
+        size: {
+            control: {
+                type: 'inline-radio',
+                options: sizes,
+            },
+        },
+        view: {
+            control: {
+                type: 'select',
+                options: views,
+            },
+        },
+        pin: {
+            control: {
+                type: 'select',
+                options: pins,
+            },
+        },
+        ...disableProps(propsToDisable),
+    },
+} as Meta;
+
+export const Default: Story<ButtonProps & { enableIcon: boolean }> = ({ enableIcon, ...rest }) => (
+    <Button contentLeft={enableIcon && <IconMic size="s" color="inherit" />} {...rest} />
 );
 
+Default.args = {
+    text: 'Hello Plasma',
+    size: 'm',
+    view: 'primary',
+    pin: 'square-square',
+    enableIcon: true,
+    scaleOnInteraction: true,
+    outlined: true,
+    focused: false,
+    disabled: false,
+    square: false,
+    stretch: false,
+    onClick,
+    onFocus,
+    onBlur,
+};
+
 // eslint-disable-next-line @typescript-eslint/camelcase
-export const Action_Button = () => (
-    <ActionButton
-        size={select('size', sizes, 'm') as 'm'}
-        view={select('view', views, 'primary') as 'primary'}
-        pin={select('pin', [pins[0], pins[pins.length - 1]], 'square-square') as 'square-square'}
-        scaleOnInteraction={boolean('scaleOnInteraction', true)}
-        disabled={boolean('disabled', false)}
-        tabIndex={0}
-        onClick={onClick}
-        onFocus={onFocus}
-        onBlur={onBlur}
-    >
+export const Action_Button: Story<ActionButtonProps> = (args) => (
+    <ActionButton {...args}>
         <IconMic size="xs" color="inherit" />
     </ActionButton>
 );
+
+// eslint-disable-next-line @typescript-eslint/camelcase
+Action_Button.args = {
+    size: 'm',
+    view: 'primary',
+    pin: 'square-square',
+    scaleOnInteraction: true,
+    disabled: false,
+    tabIndex: 0,
+    onClick,
+    onFocus,
+    onBlur,
+};
+
+const ActionButtonPropsToDisable = ['text', 'tabIndex', 'square', 'focused', 'outlined', 'stretch'];
+
+// eslint-disable-next-line @typescript-eslint/camelcase
+Action_Button.argTypes = {
+    ...disableProps(ActionButtonPropsToDisable),
+};
