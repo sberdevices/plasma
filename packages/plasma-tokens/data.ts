@@ -18,6 +18,7 @@ import type {
     Typography as TypographySet,
     Typograph as TypographyData,
 } from './design-language/build/diez-plasma-tokens-web';
+import { dataColors } from './dataColors';
 
 const ds = new DesignLanguage();
 
@@ -161,6 +162,13 @@ const darkTheme: BaseTheme = {
         comment: FullColorsList.buttonChecked,
     },
 
+    skeletonGradient: {
+        value: dataColors.dark.skeletonGradient,
+    },
+    skeletonGradientLighter: {
+        value: dataColors.dark.skeletonGradientLighter,
+    },
+
     speechBubbleSent: {
         value: humanizeColor(ds.theme.dark_speech_bubble_sent.color),
         comment: FullColorsList.speechBubbleSent,
@@ -287,6 +295,13 @@ const lightTheme: BaseTheme = {
     buttonChecked: {
         value: humanizeColor(ds.theme.light_button_checked.color),
         comment: FullColorsList.buttonChecked,
+    },
+
+    skeletonGradient: {
+        value: dataColors.light.skeletonGradient,
+    },
+    skeletonGradientLighter: {
+        value: dataColors.light.skeletonGradientLighter,
     },
 
     speechBubbleSent: {

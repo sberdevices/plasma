@@ -12,6 +12,7 @@ export {
     applyView,
     views,
     applyScrollSnap,
+    applySkeletonGradient,
     applySpacing,
 } from '@sberdevices/plasma-core';
 export type {
@@ -22,11 +23,10 @@ export type {
     MaxLinesProps,
     RoundnessProps,
     Roundness,
+    SkeletonGradientProps,
     ViewProps,
     View,
 } from '@sberdevices/plasma-core';
 
 export { applyInteraction } from './applyInteraction';
 export type { InteractionProps } from './applyInteraction';
-
-export { applySkeletonGradient } from './applySkeletonGradient';

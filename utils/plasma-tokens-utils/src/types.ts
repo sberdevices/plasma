@@ -92,6 +92,9 @@ export enum ThemeColorsList {
     speechBubbleReceived = 'Цвет фона баблов получнных сообщений',
 
     voicePhraseGradient = 'Градиент подсказок о голосовых запросах',
+
+    skeletonGradient = 'Градиент скелетона',
+    skeletonGradientLighter = 'Градиент скелетона для ярких компонентов',
 }
 
 export const FullColorsList = { ...BaseColorsList, ...ThemeColorsList };

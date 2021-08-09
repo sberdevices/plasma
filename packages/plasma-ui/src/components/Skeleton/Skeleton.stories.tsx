@@ -1,17 +1,16 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import { typography } from '@sberdevices/plasma-tokens';
-import { radiuses, Roundness } from '@sberdevices/plasma-core';
+import { radiuses, Roundness, TypographyTypes } from '@sberdevices/plasma-core';
 
 import { withSkeleton, WithSkeletonProps } from '../../hocs';
 import { Button, ButtonProps } from '../Button';
 import { Card, CardBody, CardMedia, CardContent, CardHeadline1, CardHeadline3, CardFootnote1 } from '../Card';
 
-import { TextSize } from './Skeleton';
+import { LineSkeleton, TextSkeleton, RectSkeleton } from '.';
+import type { LineSkeletonProps, TextSkeletonProps, RectSkeletonProps } from '.';
 
-import { LineSkeleton, LineSkeletonProps, TextSkeleton, TextSkeletonProps, RectSkeleton, RectSkeletonProps } from '.';
-
-const textSizes = Object.keys(typography) as TextSize[];
+const textSizes = Object.keys(typography) as TypographyTypes[];
 const roundnessKeys = Object.keys(radiuses).map((r) => Number(r));
 
 const ButtonSkeleton = withSkeleton<ButtonProps & WithSkeletonProps>(Button);

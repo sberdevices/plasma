@@ -1,10 +1,9 @@
 import React from 'react';
 import { boolean, select, number } from '@storybook/addon-knobs';
 import { typography } from '@sberdevices/plasma-tokens';
-import { radiuses, Roundness } from '@sberdevices/plasma-core/mixins';
-import { withSkeleton, WithSkeletonProps } from '@sberdevices/plasma-ui/hocs';
-import { Button, ButtonProps } from '@sberdevices/plasma-ui/components/Button';
 import {
+    Button,
+    ButtonProps,
     Card,
     CardBody,
     CardMedia,
@@ -12,9 +11,15 @@ import {
     CardHeadline1,
     CardHeadline3,
     CardFootnote1,
-} from '@sberdevices/plasma-ui/components/Card';
-import { LineSkeleton, TextSkeleton, RectSkeleton } from '@sberdevices/plasma-ui/components/Skeleton';
-import type { TextSize } from '@sberdevices/plasma-ui/components/Skeleton/Skeleton';
+    LineSkeleton,
+    TextSkeleton,
+    RectSkeleton,
+    TypographyTypes,
+    radiuses,
+    Roundness,
+    withSkeleton,
+    WithSkeletonProps,
+} from '@sberdevices/plasma-ui';
 
 import { CardShowcase, UIStoryDecorator, InSpacingDecorator } from '../helpers';
 
@@ -23,7 +28,7 @@ export default {
     decorators: [UIStoryDecorator, InSpacingDecorator],
 };
 
-const textSizes = Object.keys(typography) as TextSize[];
+const TypographyTypess = Object.keys(typography) as TypographyTypes[];
 const roundnessKeys = Object.keys(radiuses).map((r) => String(r));
 const useRoundnessKnob = () => Number(select('roundness', roundnessKeys, '16')) as Roundness;
 
@@ -33,14 +38,14 @@ const h1Style = { marginTop: '0.75rem' };
 const f1Style = { marginTop: '0.375rem' };
 
 const Line = ({ ...rest }) => (
-    <LineSkeleton {...rest} size={select('size', textSizes, 'body1')} roundness={useRoundnessKnob()} />
+    <LineSkeleton {...rest} size={select('size', TypographyTypess, 'body1')} roundness={useRoundnessKnob()} />
 );
 
 const Text = ({ ...rest }) => (
     <TextSkeleton
         {...rest}
         lines={number('lines', 4)}
-        size={select('size', textSizes, 'body1')}
+        size={select('size', TypographyTypess, 'body1')}
         roundness={useRoundnessKnob()}
         width={!boolean('Variable width', false) ? 100 : ''}
     />

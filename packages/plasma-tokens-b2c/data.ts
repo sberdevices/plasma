@@ -225,6 +225,12 @@ const light: ThemeTokens & ExtendedTokens = {
     voicePhraseGradient: {
         value: '',
     },
+    skeletonGradient: {
+        value: dataColors.light.skeletonGradient,
+    },
+    skeletonGradientLighter: {
+        value: dataColors.light.skeletonGradientLighter,
+    },
 
     speechBubbleSent: {
         value: '',
@@ -404,6 +410,12 @@ const dark: ThemeTokens & ExtendedTokens = {
     },
     voicePhraseGradient: {
         value: '',
+    },
+    skeletonGradient: {
+        value: dataColors.dark.skeletonGradient,
+    },
+    skeletonGradientLighter: {
+        value: dataColors.dark.skeletonGradientLighter,
     },
 
     speechBubbleSent: {
