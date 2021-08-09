@@ -1,3 +1,19 @@
+export {
+    addFocus,
+    syntheticFocus,
+    applyBlur,
+    applyDisabled,
+    applyEllipsis,
+    applyHyphens,
+    applyMaxLines,
+    applyNoSelect,
+    applyRoundness,
+    radiuses,
+    applyView,
+    views,
+    applyScrollSnap,
+    applySpacing,
+} from '@sberdevices/plasma-core';
 export type {
     FocusProps,
     OutlinedProps,
