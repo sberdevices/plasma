@@ -1,13 +1,28 @@
 import React from 'react';
-import { text } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react';
 
-import { IconSet } from './IconSet';
+import { disableProps } from '../../helpers';
+
+import { IconSet, IconSetProps } from './IconSet';
+
+const propsToDisable = ['size', 'exclude', 'include'];
+
+export default {
+    title: 'Content/Icon',
+    component: IconSet,
+    argTypes: {
+        ...disableProps(propsToDisable),
+    },
+} as Meta;
 
 export const XsSize = () => <IconSet size="xs" include={['chevronUp', 'chevronDown', 'disclosureRight']} />;
 
 export const SmallSize = () => <IconSet size="s" exclude={['chevronUp', 'chevronDown']} />;
 
-export const CustomColor = () => {
-    const color = text('color', '#fc0');
-    return <IconSet color={color} exclude={['chevronUp', 'chevronDown']} />;
+export const CustomColor: Story<IconSetProps> = ({ color }) => (
+    <IconSet color={color} exclude={['chevronUp', 'chevronDown']} />
+);
+
+CustomColor.args = {
+    color: '#fc0',
 };

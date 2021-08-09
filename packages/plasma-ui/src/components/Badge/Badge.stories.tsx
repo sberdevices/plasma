@@ -1,26 +1,53 @@
 import React from 'react';
-import { text, boolean, select } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react';
 import { IconSettings } from '@sberdevices/plasma-icons';
 
-import { Badge, badgeSizes, badgeViews, BadgeSize, BadgeView } from '.';
+import { disableProps } from '../../helpers';
 
-const sizeKeys = Object.keys(badgeSizes) as BadgeSize[];
-const viewKeys = Object.keys(badgeViews) as BadgeView[];
+import { Badge, BadgeProps, badgeSizes, badgeViews } from '.';
 
-export const Default = () => (
-    <Badge
-        text={text('text', 'Badge')}
-        size={select('size', sizeKeys, 'l')}
-        view={select('view', viewKeys, 'primary')}
-        contentLeft={boolean('Enable icon', false) && <IconSettings color="inherit" size="xs" />}
-    />
+const propsToDisable = ['contentLeft', 'theme', 'as', 'forwardedAs'];
+
+export default {
+    title: 'Content/Badge',
+    component: Badge,
+    argTypes: {
+        size: {
+            control: {
+                type: 'inline-radio',
+                options: Object.keys(badgeSizes),
+            },
+        },
+        view: {
+            control: {
+                type: 'inline-radio',
+                options: Object.keys(badgeViews),
+            },
+        },
+        ...disableProps(propsToDisable),
+    },
+} as Meta;
+
+export const Default: Story<BadgeProps & { enableIcon: boolean }> = ({ enableIcon, ...rest }) => (
+    <Badge contentLeft={enableIcon && <IconSettings color="inherit" size="xs" />} {...rest} />
 );
 
-export const Quantity = () => (
-    <Badge
-        text={text('quantity', '11')}
-        size={select('size', sizeKeys, 's')}
-        view={select('view', viewKeys, 'secondary')}
-        circled={boolean('circled', true)}
-    />
-);
+Default.args = {
+    text: 'Badge',
+    size: 'l',
+    view: 'primary',
+    enableIcon: false,
+};
+
+Default.argTypes = {
+    circled: { table: { disable: true } },
+};
+
+export const Quantity: Story<BadgeProps> = (args) => <Badge {...args} />;
+
+Quantity.args = {
+    text: '11',
+    size: 's',
+    view: 'secondary',
+    circled: true,
+};

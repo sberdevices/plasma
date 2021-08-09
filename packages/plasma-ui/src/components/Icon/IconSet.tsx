@@ -20,7 +20,7 @@ const StyledHeading = styled(Headline3)`
     color: ${({ color }) => color};
 `;
 
-interface IconSetProps {
+export interface IconSetProps {
     size?: IconSize;
     color?: string;
     exclude?: Array<IName>;
