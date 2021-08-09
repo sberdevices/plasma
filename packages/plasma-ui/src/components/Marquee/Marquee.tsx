@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 
 const marquee = keyframes`
@@ -22,6 +22,7 @@ const Wrapper = styled.div`
 `;
 
 interface MarqueeProps {
+    children?: React.ReactNode;
     /**
      * Включить/выключить анимацию
      */
@@ -39,23 +40,25 @@ interface MarqueeProps {
 /**
  * Компонент для отображения бегущей строки
  */
-export const Marquee: FC<MarqueeProps> = ({ isPlaying = true, duration = 10, text, children }) => {
-    const marqueeText = (
-        <MarqueeText isPlaying={isPlaying} duration={duration}>
-            {text || children}
-        </MarqueeText>
-    );
+export const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
+    ({ isPlaying = true, duration = 10, text, children }, childRef) => {
+        const marqueeTextNode = <div ref={childRef}>{text || children}</div>;
 
-    return (
-        <Wrapper>
-            {isPlaying ? (
-                <>
-                    {marqueeText}
-                    {marqueeText}
-                </>
-            ) : (
-                <>{text || children}</>
-            )}
-        </Wrapper>
-    );
-};
+        return (
+            <Wrapper>
+                {isPlaying ? (
+                    <>
+                        <MarqueeText isPlaying={isPlaying} duration={duration}>
+                            {marqueeTextNode}
+                        </MarqueeText>
+                        <MarqueeText isPlaying={isPlaying} duration={duration}>
+                            {marqueeTextNode}
+                        </MarqueeText>
+                    </>
+                ) : (
+                    <>{marqueeTextNode}</>
+                )}
+            </Wrapper>
+        );
+    },
+);
