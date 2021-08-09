@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
-import { applyBlur, BlurProps } from '@sberdevices/plasma-core/mixins';
 
 import * as stories from './mixins.stories';
 
@@ -20,7 +19,7 @@ import * as stories from './mixins.stories';
 ### Пример
 ```tsx
 import styled from 'styled-components';
-import { FocusProps, OutlinedProps, addFocus } from '@sberdevices/plasma-core/mixins';
+import { FocusProps, OutlinedProps, addFocus } from '@sberdevices/plasma-ui';
 
 const Button = styled.button<FocusProps>`
     ${addFocus}
@@ -38,7 +37,7 @@ const Button = styled.button<FocusProps>`
 ### Пример
 ```tsx
 import styled from 'styled-components';
-import { BlurProps, applyBlur } from '@sberdevices/plasma-core/mixins';
+import { BlurProps, applyBlur } from '@sberdevices/plasma-ui';
 
 const Button = styled.button<BlurProps>`
     ${applyBlur}
@@ -56,7 +55,7 @@ const Button = styled.button<BlurProps>`
 ### Пример
 ```tsx
 import styled from 'styled-components';
-import { DisabledProps, applyDisabled } from '@sberdevices/plasma-core/mixins';
+import { DisabledProps, applyDisabled } from '@sberdevices/plasma-ui';
 
 const Button = styled.button<DisabledProps>`
     ${applyDisabled}
@@ -95,7 +94,7 @@ const Button = styled.button<InteractionProps>`
 ### Пример
 ```tsx
 import styled from 'styled-components';
-import { RoundnessProps, applyRoundness } from '@sberdevices/plasma-core/mixins';
+import { RoundnessProps, applyRoundness } from '@sberdevices/plasma-ui';
 
 const Button = styled.button<RoundnessProps>`
     ${applyRoundness}
@@ -113,7 +112,7 @@ const Button = styled.button<RoundnessProps>`
 ### Пример
 ```tsx
 import styled from 'styled-components';
-import { ViewProps, applyView } from '@sberdevices/plasma-core/mixins';
+import { ViewProps, applyView } from '@sberdevices/plasma-ui';
 
 const Button = styled.button<ViewProps>`
     ${applyView}
@@ -128,7 +127,7 @@ const Button = styled.button<ViewProps>`
 ### Пример
 ```tsx
 import styled from 'styled-components';
-import { applyEllipsis } from '@sberdevices/plasma-core/mixins';
+import { applyEllipsis } from '@sberdevices/plasma-ui';
 
 const ShortenedLine = styled.span`
     ${applyEllipsis}
