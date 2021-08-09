@@ -1,15 +1,13 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { applyRoundness, RoundnessProps } from '@sberdevices/plasma-core';
 
-import { applySkeletonGradient } from '../../mixins';
+import { applySkeletonGradient, SkeletonGradientProps, applyRoundness, RoundnessProps } from '../../mixins';
 
 import { DEFAULT_ROUNDNESS } from './Skeleton';
 
-interface StyledRectSizeProps extends RoundnessProps {
+interface StyledRectSizeProps extends SkeletonGradientProps, RoundnessProps {
     $width: string;
     $height: string;
-    $lighter?: boolean; // Для совместимости тайпингов InterpolationFunction props
 }
 
 const StyledRectSkeleton = styled.div<StyledRectSizeProps>`

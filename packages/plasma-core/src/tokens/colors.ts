@@ -51,3 +51,5 @@ export const buttonAccent = 'var(--plasma-colors-button-accent)';
 export const buttonFocused = 'var(--plasma-colors-button-focused)';
 export const gradient = 'var(--plasma-colors-gradient)';
 export const voicePhraseGradient = 'var(--plasma-colors-voice-phrase-gradient)';
+export const skeletonGradient = 'var(--plasma-colors-skeleton-gradient)';
+export const skeletonGradientLighter = 'var(--plasma-colors-skeleton-gradient-lighter)';

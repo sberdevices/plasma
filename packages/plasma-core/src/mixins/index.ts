@@ -19,6 +19,9 @@ export { applyNoSelect } from './applyNoSelect';
 export { applyRoundness, radiuses } from './applyRoundness';
 export type { RoundnessProps, Roundness } from './applyRoundness';
 
+export { applySkeletonGradient } from './applySkeletonGradient';
+export type { SkeletonGradientProps } from './applySkeletonGradient';
+
 export { applyView, views } from './applyView';
 export type { ViewProps, View } from './applyView';
 

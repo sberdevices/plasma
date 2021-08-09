@@ -1,5 +1,2 @@
-export { withAutoFocus } from '@sberdevices/plasma-core';
-export type { WithAutoFocusProps } from '@sberdevices/plasma-core';
-
-export { withSkeleton } from './withSkeleton';
-export type { WithSkeletonProps } from './withSkeleton';
+export { withAutoFocus, withSkeleton } from '@sberdevices/plasma-core';
+export type { WithAutoFocusProps, WithSkeletonProps } from '@sberdevices/plasma-core';
