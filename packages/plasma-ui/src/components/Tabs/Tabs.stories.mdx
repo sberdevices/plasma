@@ -25,3 +25,22 @@ import * as stories from './Tabs.stories.tsx';
 
 ### Props
 <Props of={TabItem} />
+
+## Accessability
+Набор компонентов Tabs отвечает требованиям доступности.
+При использовании, необходимо указать атрибут `id` на контейнере и `aria-controls` на айтеме:
+
+```tsx
+// App.tsx
+import { Tabs, TabItem } from '@sberdevices/plasma-ui';
+
+export default function App() {
+    return (
+        <Tabs id="my-tabs">
+            <TabItem isActive aria-controls="my-tabs">Item 1</TabItem>
+            <TabItem aria-controls="my-tabs">Item 2</TabItem>
+            <TabItem aria-controls="my-tabs">Item 3</TabItem>
+        </Tabs>
+    );
+}
+```

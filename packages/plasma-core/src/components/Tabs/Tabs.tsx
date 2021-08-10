@@ -1,11 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { applyDisabled, applyEllipsis } from '../../mixins';
+import { applyDisabled } from '../../mixins';
 import type { DisabledProps } from '../../mixins';
-import { AsProps } from '../../types';
 
-export interface TabsProps extends DisabledProps {
+export interface TabsProps extends DisabledProps, React.HTMLAttributes<HTMLDivElement> {
     /**
      * Кнопки табов примут фиксированную ширину,
      * максимально равную 25% контейнера Tabs,
@@ -14,10 +13,7 @@ export interface TabsProps extends DisabledProps {
     stretch?: boolean;
 }
 
-/**
- * Контейнер вкладок.
- */
-export const Tabs = styled.ul<TabsProps>`
+const StyledTabs = styled.div<TabsProps>`
     position: relative;
     display: flex;
     align-items: center;
@@ -59,93 +55,9 @@ export const Tabs = styled.ul<TabsProps>`
     }
 `;
 
-interface StyledTabItemProps {
-    isActive?: boolean;
-    isChildren?: boolean;
-    isContentLeft?: boolean;
-}
-
-export interface TabItemProps extends AsProps, React.LiHTMLAttributes<HTMLLIElement> {
-    /**
-     * Активность элемента списка
-     */
-    isActive?: boolean;
-    /**
-     * Слот для контента слева, например `Icon`
-     */
-    contentLeft?: React.ReactNode;
-    onFocus?: React.FocusEventHandler<HTMLLIElement>;
-    onBlur?: React.FocusEventHandler<HTMLLIElement>;
-    onClick?: React.MouseEventHandler<HTMLLIElement>;
-}
-
 /**
- * Без этого спана баг - контент (например, иконка)
- * сжимался в угоду текстового контента,
- * при чем ширина иконки игнорируется.
+ * Контейнер вкладок.
  */
-const StyledTabItemContentLeft = styled.span`
-    display: flex;
-`;
-
-/**
- * Этот спан нужен для сокращения
- * текстового контента и отступов.
- */
-const StyledTabItemText = styled.span`
-    display: inline;
-
-    ${applyEllipsis}
-
-    /* stylelint-disable-next-line */
-    ${StyledTabItemContentLeft} ~ & {
-        margin-left: 0.375rem;
-    }
-`;
-
-const StyledTabItem = styled.li<StyledTabItemProps>`
-    align-items: center;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-
-    letter-spacing: inherit;
-    text-align: center;
-
-    cursor: pointer;
-
-    &:focus {
-        outline: 0 none;
-    }
-
-    /**
-    * Не передали контент => квадратная кнопка.
-    */
-    ${({ isChildren }) =>
-        !isChildren &&
-        css`
-            width: var(--tab-item-height);
-            padding-left: 0;
-            padding-right: 0;
-        `}
-
-    /**
-    * Для центрирования иконки, нужно уменьшить вертикальные паддинги.
-    */
-    ${({ isContentLeft }) =>
-        isContentLeft &&
-        css`
-            padding-top: var(--tab-item-padding-y-reduced);
-            padding-bottom: var(--tab-item-padding-y-reduced);
-        `}
-`;
-
-/**
- * Элемент списка, недопустимо импользовать вне компонента Tabs.
- */
-export const TabItem: React.FC<TabItemProps> = React.forwardRef(({ children, contentLeft, ...rest }, ref) => (
-    <StyledTabItem ref={ref} isChildren={!!children} isContentLeft={!!contentLeft} {...rest}>
-        {contentLeft && <StyledTabItemContentLeft>{contentLeft}</StyledTabItemContentLeft>}
-        {children && <StyledTabItemText>{children}</StyledTabItemText>}
-    </StyledTabItem>
+export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(({ role = 'tabs', ...rest }, ref) => (
+    <StyledTabs ref={ref} role={role} {...rest} />
 ));
