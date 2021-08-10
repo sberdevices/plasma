@@ -23,7 +23,10 @@ export interface SwitchProps
             'name' | 'value' | 'checked' | 'disabled' | 'onChange' | 'onFocus' | 'onBlur'
         > {}
 
-const StyledRoot = styled.label<DisabledProps>`
+const triggerWidth = 'var(--plasma-switch-trigger-width, 2.75rem)';
+const triggerHeight = 'var(--plasma-switch-trigger-height, 1.75rem)';
+
+const StyledRoot = styled.label<{ $disabled?: boolean }>`
     position: relative;
     display: flex;
     align-items: center;
@@ -40,7 +43,12 @@ const StyledRoot = styled.label<DisabledProps>`
 `;
 const StyledInput = styled.input`
     position: absolute;
+    right: 0;
+    margin: 0;
     opacity: 0;
+
+    width: ${triggerWidth};
+    height: ${triggerHeight};
 
     &:focus {
         outline: 0 none;
@@ -57,12 +65,12 @@ const synthesizeFocus = (ruleset: FlattenSimpleInterpolation, focused?: boolean)
     ${focused && ruleset};
 `;
 
-const StyledTrigger = styled.div<DisabledProps & PressedProps & FocusProps & OutlinedProps>`
+const StyledTrigger = styled.div<{ $disabled?: boolean } & PressedProps & FocusProps & OutlinedProps>`
     position: relative;
     display: flex;
-    flex: 0 0 2.75rem;
-    width: 2.75rem;
-    height: 1.75rem;
+    flex: 0 0 ${triggerWidth};
+    width: ${triggerWidth};
+    height: ${triggerHeight};
     margin-left: auto;
     border-radius: 0.875rem;
     background-color: var(--plasma-switch-trigger-background);
@@ -84,8 +92,8 @@ const StyledTrigger = styled.div<DisabledProps & PressedProps & FocusProps & Out
         transition: width 0.15s ease-in-out, left 0.3s ease-in-out, right 0.3s ease-in-out;
     }
 
-    ${({ disabled, pressed }) =>
-        !disabled &&
+    ${({ $disabled, pressed }) =>
+        !$disabled &&
         css`
             /* stylelint-disable-next-line selector-nested-pattern, selector-type-no-unknown */
             ${StyledRoot}:active &::after {
@@ -132,7 +140,6 @@ const StyledLabel = styled.span`
 // eslint-disable-next-line prefer-arrow-callback
 export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(function Switch(
     {
-        id,
         name,
         value,
         label,
@@ -150,11 +157,14 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(function S
     },
     ref,
 ) {
+    const exactChecked = Boolean(checked !== undefined ? checked : defaultChecked);
+
     return (
-        <StyledRoot disabled={disabled} {...rest}>
+        <StyledRoot $disabled={disabled} {...rest}>
             <StyledInput
-                id={id}
                 ref={ref}
+                role="switch"
+                aria-checked={exactChecked}
                 type="checkbox"
                 name={name}
                 value={value}
@@ -166,8 +176,8 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(function S
                 onFocus={onFocus}
                 onBlur={onBlur}
             />
-            {label && <StyledLabel>{label}</StyledLabel>}
-            <StyledTrigger disabled={disabled} pressed={pressed} focused={focused} outlined={outlined} />
+            {label && <StyledLabel tabIndex={-1}>{label}</StyledLabel>}
+            <StyledTrigger aria-hidden $disabled={disabled} pressed={pressed} focused={focused} outlined={outlined} />
         </StyledRoot>
     );
 });

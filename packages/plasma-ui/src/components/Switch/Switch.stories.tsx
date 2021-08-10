@@ -54,6 +54,7 @@ export function Default() {
                     disabled={props.disabled}
                     pressed={props.pressed}
                     checked={values.indexOf(props.value) !== -1}
+                    tabIndex={!props.disabled ? 0 : -1}
                     onChange={(event) => {
                         setValues(
                             [...values, props.value].filter((val) => event.target.checked || val !== props.value),
