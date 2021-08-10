@@ -59,11 +59,13 @@ export const Default: Story<DefaultStoryProps & TabsProps> = ({
     outlined,
     animated,
 }) => {
+    const id = 'tabs-example';
     const items = Array(itemsNumber).fill(0);
     const [index, setIndex] = React.useState(0);
 
     return (
         <Tabs
+            id={id}
             size={size}
             view={view}
             stretch={stretch}
@@ -78,7 +80,8 @@ export const Default: Story<DefaultStoryProps & TabsProps> = ({
                 <TabItem
                     key={`item:${i}`}
                     isActive={i === index}
-                    tabIndex={!disabled ? i : -1}
+                    aria-controls={id}
+                    tabIndex={0}
                     contentLeft={enableContentLeft && <Icon icon={icons[i % icons.length] as 'clock'} size="s" />}
                     onClick={() => !disabled && setIndex(i)}
                     onFocus={action(`onFocus item #${i}`)}
