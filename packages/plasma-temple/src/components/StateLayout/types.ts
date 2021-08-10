@@ -7,5 +7,5 @@ export interface StateLayoutCommonProps extends ComponentPropsWithHeader {
     text?: string;
     button: React.ReactNode;
     background?: string;
-    image?: string;
+    image?: string | React.ReactNode;
 }
