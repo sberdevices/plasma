@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { ShopLandingPage } from '../src/pages/ShopLandingPage/ShopLandingPage';
 
 export default {
-    title: 'Shop Landing Page',
+    title: 'Pages/ShopLandingPage',
 };
 
 const items = Array.from({ length: 4 }, (_, i) => {
@@ -25,7 +25,9 @@ export const Default: React.FC = () => (
         onCatalogOpen={action('onCatalogOpen')}
         onStoreInfoClick={action('onStoreInfoClick')}
         onItemClick={action('onItemClick')}
+        changeState={action('changeState')}
         state={{
+            activeCardIndex: 0,
             catalogImage: './images/320_320_2.jpg',
             items,
         }}

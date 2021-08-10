@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CarouselProps } from '@sberdevices/plasma-ui';
 
 import { useDelayedActivation } from '../../../hooks/useDelayedActivation';
 
-import { CommonCarousel } from './Carousel';
+import { CommonCarousel, CarouselProps } from './Carousel';
 
 const StyledCarousel = styled(CommonCarousel)<{ initialized: boolean }>`
     scroll-behavior: ${({ initialized }) => (initialized ? 'smooth' : 'unset')};
