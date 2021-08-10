@@ -78,20 +78,20 @@ function handleEnterOrEscapeDown<P extends BaseComponentProps>(
     if (onKeyDown) {
         onKeyDown(event);
     }
-    if (event.nativeEvent.code === 'Enter') {
+    if (event.nativeEvent.key === 'Enter') {
         handleEnterPress?.(event.nativeEvent);
-    } else if (event.nativeEvent.code === 'Escape') {
+    } else if (event.nativeEvent.key === 'Escape') {
         handleEscapePress?.(event.nativeEvent);
-    } else if (event.nativeEvent.code === 'ArrowLeft') {
+    } else if (event.nativeEvent.key === 'ArrowLeft') {
         handleLeftPress?.(event.nativeEvent);
         event.preventDefault();
-    } else if (event.nativeEvent.code === 'ArrowRight') {
+    } else if (event.nativeEvent.key === 'ArrowRight') {
         handleRightPress?.(event.nativeEvent);
         event.preventDefault();
-    } else if (event.nativeEvent.code === 'ArrowUp') {
+    } else if (event.nativeEvent.key === 'ArrowUp') {
         handleUpPress?.(event.nativeEvent);
         event.preventDefault();
-    } else if (event.nativeEvent.code === 'ArrowDown') {
+    } else if (event.nativeEvent.key === 'ArrowDown') {
         handleDownPress?.(event.nativeEvent);
         event.preventDefault();
     }
