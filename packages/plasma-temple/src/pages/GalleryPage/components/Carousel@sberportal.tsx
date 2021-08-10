@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CarouselProps } from '@sberdevices/plasma-ui';
 
-import { CommonCarousel } from './Carousel';
+import { CommonCarousel, CarouselProps } from './Carousel';
 
 const StyledCarousel = styled(CommonCarousel)`
     scroll-behavior: auto;

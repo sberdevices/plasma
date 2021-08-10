@@ -48,9 +48,28 @@ export const StateLayout: React.FC<StateLayoutProps> = ({
     image,
     background,
     header,
+    children,
     platformComponents: { Headline, ImageContainer, Text, TextWrapper },
 }) => {
     const insets = useInsets();
+
+    const imageToRender = React.useMemo(() => {
+        if (children) {
+            return children;
+        }
+
+        if (image) {
+            if (typeof image === 'string') {
+                return <Image base="div" src={image} ratio="1 / 1" />;
+            }
+
+            if (React.isValidElement(image)) {
+                return image;
+            }
+        }
+
+        return null;
+    }, [children, image]);
 
     return (
         <StyledWrapper>
@@ -70,9 +89,7 @@ export const StateLayout: React.FC<StateLayoutProps> = ({
                 </Col>
                 {image && (
                     <Col sizeXL={6} sizeM={3}>
-                        <ImageContainer>
-                            <Image base="div" src={image} ratio="1 / 1" />
-                        </ImageContainer>
+                        <ImageContainer>{imageToRender}</ImageContainer>
                     </Col>
                 )}
             </StyledContainer>
