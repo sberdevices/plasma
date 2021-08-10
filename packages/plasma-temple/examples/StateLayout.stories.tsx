@@ -14,6 +14,7 @@ export const Default: React.FC = () => (
         title={text('title', 'Юный космовед')}
         text={text('text', 'Вы посмотрели все темы про космос')}
         button={<Button text="Button" />}
-        backgound=""
-    />
+    >
+        Children
+    </StateLayout>
 );
