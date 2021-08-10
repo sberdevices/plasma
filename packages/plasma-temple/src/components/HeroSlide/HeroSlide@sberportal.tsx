@@ -26,7 +26,7 @@ const StyledSlide = styled.div`
     padding-bottom: 1.75rem;
 `;
 
-const PortalButton: React.FC<ButtonProps> = (props) => <Button {...props} view="secondary" size="s" />;
+const PortalButton: React.FC<ButtonProps> = (props) => <Button {...props} view="primary" size="s" />;
 
 export const HeroSlide: React.FC<HeroSlideProps> = (props) => (
     <CommonSlide
