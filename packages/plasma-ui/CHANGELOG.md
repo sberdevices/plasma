@@ -1,3 +1,21 @@
+# v1.37.0 (Tue Aug 10 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): Add mixin reexports from core [#629](https://github.com/sberdevices/plasma/pull/629) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- docs(plasma-ui): Mixin import from plasma-ui [#629](https://github.com/sberdevices/plasma/pull/629) ([@fanisco](https://github.com/fanisco))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.36.0 (Fri Aug 06 2021)
 
 #### 🐛 Bug Fix
