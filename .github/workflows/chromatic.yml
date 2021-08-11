@@ -49,7 +49,7 @@ jobs:
 
       - name: Build Storybook
         if: ${{ !steps.getPR.outputs.pull_request || !fromJSON(steps.getPR.outputs.pull_request).draft }}
-        working-directory: ./docs/showcase
+        working-directory: ./utils/showcase
         run: npm run build-storybook
 
       - uses: chromaui/action@v1
@@ -58,4 +58,4 @@ jobs:
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GH_TOKEN }}
-          storybookBuildDir: ./docs/showcase/build-sb
+          storybookBuildDir: ./utils/showcase/build-sb
