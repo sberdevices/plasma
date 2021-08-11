@@ -1,5 +1,7 @@
 export { actionWithPersistedEvent } from './actionWithPersistedEvent';
 
+export { disableProps } from './disableProps';
+
 export { GridLines } from './GridLines';
 export type { GridLinesProps } from './GridLines';
 
