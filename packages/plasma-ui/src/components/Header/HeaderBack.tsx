@@ -8,7 +8,10 @@ import { Button, ButtonProps } from '../Button';
 
 export const StyledHeaderBackButton = styled(Button)`
     position: absolute;
-    top: -0.125rem;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
     right: 100%;
     margin-right: 0.5rem;
 
