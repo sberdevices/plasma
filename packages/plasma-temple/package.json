@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-temple",
-    "version": "0.43.0",
+    "version": "0.44.0",
     "description": "SberDevices CanvasApp Templates",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -86,7 +86,9 @@
         "test": "jest --coverage && npm run coverage",
         "coverage": "node ../../scripts/updateCoverage.js --url=https://api.keyvalue.xyz/9237dc02/coverage"
     },
-    "files": ["dist"],
+    "files": [
+        "dist"
+    ],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Виноградов Антон Александрович",
