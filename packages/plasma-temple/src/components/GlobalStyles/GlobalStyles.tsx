@@ -2,9 +2,7 @@ import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { fonts, gradient, text } from '@sberdevices/plasma-tokens';
 import { darkJoy, darkEva, darkSber } from '@sberdevices/plasma-tokens/themes';
-import { isSberPortal } from '@sberdevices/plasma-ui/utils';
 import { AssistantCharacterType } from '@sberdevices/assistant-client';
-import { sberBox, sberPortal } from '@sberdevices/plasma-tokens/typo';
 
 import { AppStateContext } from '../PlasmaApp/AppStateContext';
 
@@ -38,8 +36,6 @@ const DocumentStyles = createGlobalStyle`
     /* stylelint-enable selector-nested-pattern */
 `;
 
-const TypoStyles = createGlobalStyle(isSberPortal() ? sberPortal : sberBox);
-
 const charactersTheme: Record<AssistantCharacterType, React.ComponentType> = {
     eva: createGlobalStyle(darkEva),
     joy: createGlobalStyle(darkJoy),
@@ -52,7 +48,6 @@ export const GlobalStyles: React.FC = React.memo(() => {
 
     return (
         <>
-            <TypoStyles />
             <Theme />
             <DocumentStyles />
         </>
