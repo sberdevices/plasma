@@ -1,5 +1,18 @@
 # (Wed Aug 11 2021)
 
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@0.44.1`
+  - fix(plasma-temple): fix mobile font size [#107](https://github.com/sberdevices/pashka/pull/107) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
+# (Wed Aug 11 2021)
+
 #### 🚀 Enhancement
 
 - `@sberdevices/plasma-temple@0.44.0`
