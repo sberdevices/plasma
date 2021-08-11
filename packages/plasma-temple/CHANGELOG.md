@@ -1,3 +1,15 @@
+# v0.44.0 (Wed Aug 11 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Add header minimize behavior [#101](https://github.com/sberdevices/pashka/pull/101) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v0.43.0 (Wed Aug 11 2021)
 
 #### 🚀 Enhancement
