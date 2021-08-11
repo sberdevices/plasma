@@ -1,3 +1,21 @@
+# v0.42.1 (Wed Aug 11 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): Fix button view for portal in HeroSlide [#102](https://github.com/sberdevices/pashka/pull/102) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- docs(plasma-temple): Add Page.lazy description [#100](https://github.com/sberdevices/pashka/pull/100) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- Update packages/plasma-temple/docs/core.md [#100](https://github.com/sberdevices/pashka/pull/100) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- docs(plasma-temple): Docs core [#100](https://github.com/sberdevices/pashka/pull/100) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- docs(plasma-temple): add forms.md docs [#96](https://github.com/sberdevices/pashka/pull/96) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 3
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v0.42.0 (Mon Aug 02 2021)
 
 #### 🚀 Enhancement
