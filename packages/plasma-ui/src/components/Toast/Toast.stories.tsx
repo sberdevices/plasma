@@ -1,41 +1,59 @@
 import React from 'react';
-import { text, select, number, boolean } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react';
 
 import { Button } from '../Button';
 
-import { Toast, useToast } from '.';
+import { Position } from './types';
 
-export const ToastComponent = () => {
-    return <Toast text={text('text', 'Short Text Message Without Action')} />;
+import { Toast, useToast, ToastProps } from '.';
+
+export default {
+    title: 'Controls/Toast',
+} as Meta;
+
+export const ToastComponent: Story<ToastProps> = (args) => <Toast {...args} />;
+
+ToastComponent.args = {
+    text: 'Short Text Message Without Action',
 };
 
-export const LiveDemo = () => {
+interface LiveDemoProps {
+    toastText: string;
+    position: string;
+    timeout: number;
+    fade: boolean;
+}
+
+export const LiveDemo: Story<LiveDemoProps> = ({ toastText, position, timeout, fade }) => {
     const { showToast } = useToast();
-
-    const toastText = text('text', 'Short Text Message Without Action');
-    const position = select(
-        'position',
-        {
-            top: 'top',
-            bottom: 'bottom',
-        },
-        'bottom',
-    );
-
-    const timeout = number('timeout', 3000);
-    const fade = boolean('fade', true);
 
     return (
         <div>
             <Button
                 onClick={() => {
-                    showToast(toastText, position, timeout, fade);
+                    showToast(toastText, position as Position, timeout, fade);
                 }}
             >
                 Показать уведомление
             </Button>
         </div>
     );
+};
+
+LiveDemo.args = {
+    toastText: 'Short Text Message Without Action',
+    position: 'bottom',
+    timeout: 3000,
+    fade: true,
+};
+
+LiveDemo.argTypes = {
+    position: {
+        control: {
+            type: 'inline-radio',
+            options: ['top', 'bottom'],
+        },
+    },
 };
 
 LiveDemo.parameters = {

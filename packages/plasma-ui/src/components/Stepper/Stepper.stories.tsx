@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { number, boolean } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { IconMinus, IconPlus, IconClose } from '@sberdevices/plasma-icons';
 
@@ -22,6 +22,10 @@ const items = [
     { min: 0, max: 3, remover: true, pin: 'circle-circle' },
     { min: 0, max: 3, remover: true, pin: 'square-square' },
 ];
+
+export default {
+    title: 'Controls/Stepper',
+} as Meta;
 
 export const Default = () => {
     const [values, setValues] = useState<Record<number, number>>({
@@ -58,11 +62,16 @@ export const Default = () => {
     );
 };
 
-export const CustomAssembly = () => {
+interface CustomAssemblyProps {
+    step: number;
+    min: number;
+    max: number;
+    disabled: boolean;
+    showWarning: boolean;
+}
+
+export const CustomAssembly: Story<CustomAssemblyProps> = ({ step, min, max, disabled, showWarning }) => {
     const [value, setValue] = useState(5);
-    const step = number('step', 1);
-    const min = number('min', 1);
-    const max = number('max', 10);
     return (
         <StepperRoot>
             <StepperButton
@@ -70,11 +79,7 @@ export const CustomAssembly = () => {
                 icon={value > min ? <IconMinus color="inherit" size="xs" /> : <IconClose color="inherit" size="xs" />}
                 onClick={() => setValue(Math.max(value - step, min))}
             />
-            <StepperValue
-                value={value}
-                disabled={boolean('valueDisabled', false)}
-                showWarning={boolean('customWarning', false)}
-            />
+            <StepperValue value={value} disabled={disabled} showWarning={showWarning} />
             <StepperButton
                 view="secondary"
                 icon={<IconPlus color="inherit" size="xs" />}
@@ -83,6 +88,14 @@ export const CustomAssembly = () => {
             />
         </StepperRoot>
     );
+};
+
+CustomAssembly.args = {
+    step: 1,
+    min: 1,
+    max: 10,
+    disabled: false,
+    showWarning: false,
 };
 
 CustomAssembly.parameters = {

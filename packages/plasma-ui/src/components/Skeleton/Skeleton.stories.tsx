@@ -1,5 +1,5 @@
 import React from 'react';
-import { boolean, select, number } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react';
 import { typography } from '@sberdevices/plasma-tokens';
 import { radiuses, Roundness } from '@sberdevices/plasma-core';
 
@@ -9,39 +9,94 @@ import { Card, CardBody, CardMedia, CardContent, CardHeadline1, CardHeadline3, C
 
 import { TextSize } from './Skeleton';
 
-import { LineSkeleton, TextSkeleton, RectSkeleton } from '.';
+import { LineSkeleton, LineSkeletonProps, TextSkeleton, TextSkeletonProps, RectSkeleton, RectSkeletonProps } from '.';
 
 const textSizes = Object.keys(typography) as TextSize[];
-const roundnessKeys = Object.keys(radiuses).map((r) => String(r));
-const useRoundnessKnob = () => Number(select('roundness', roundnessKeys, '16')) as Roundness;
+const roundnessKeys = Object.keys(radiuses).map((r) => Number(r));
 
 const ButtonSkeleton = withSkeleton<ButtonProps & WithSkeletonProps>(Button);
 
 const h1Style = { marginTop: '0.75rem' };
 const f1Style = { marginTop: '0.375rem' };
 
-export const Line = () => <LineSkeleton size={select('size', textSizes, 'body1')} roundness={useRoundnessKnob()} />;
+export default {
+    title: 'Content/Skeleton',
+} as Meta;
 
-export const Text = () => (
-    <TextSkeleton
-        lines={number('lines', 4)}
-        size={select('size', textSizes, 'body1')}
-        roundness={useRoundnessKnob()}
-        width={!boolean('Variable width', false) && 100}
-    />
+export const Line: Story<LineSkeletonProps> = (args) => <LineSkeleton {...args} />;
+
+Line.args = {
+    size: 'body1',
+    roundness: 16 as Roundness,
+};
+
+Line.argTypes = {
+    size: {
+        control: {
+            type: 'select',
+            options: textSizes,
+        },
+    },
+    roundness: {
+        control: {
+            type: 'select',
+            options: roundnessKeys,
+        },
+    },
+};
+
+export const Text: Story<TextSkeletonProps & { variableWidth: boolean }> = ({ variableWidth, ...rest }) => (
+    <TextSkeleton width={!variableWidth && 100} {...rest} />
 );
 
-export const Rect = () => (
-    <RectSkeleton
-        width={`${number('width (rem)', 4)}rem`}
-        height={`${number('height (rem)', 4)}rem`}
-        roundness={useRoundnessKnob()}
-    />
+Text.args = {
+    lines: 4,
+    size: 'body1',
+    roundness: 16 as Roundness,
+    variableWidth: false,
+};
+
+Text.argTypes = {
+    ...Line.argTypes,
+};
+
+export const Rect: Story<RectSkeletonProps> = ({ width, height, ...rest }) => (
+    <RectSkeleton width={`${width}rem`} height={`${height}rem`} {...rest} />
 );
 
-export const InCard = () => {
-    const r = useRoundnessKnob();
-    const s = boolean('skeleton', true);
+Rect.args = {
+    width: 4,
+    height: 4,
+    roundness: 16 as Roundness,
+};
+
+Rect.argTypes = {
+    width: {
+        control: {
+            type: 'number',
+        },
+    },
+    height: {
+        control: {
+            type: 'number',
+        },
+    },
+    roundness: {
+        control: {
+            type: 'select',
+            options: roundnessKeys,
+        },
+    },
+};
+
+interface InCardProps {
+    roundness: Roundness;
+    skeleton: boolean;
+}
+
+export const InCard: Story<InCardProps> = ({ roundness, skeleton }) => {
+    const r = roundness;
+    const s = skeleton;
     return (
         <Card style={{ width: '20rem' }}>
             <CardBody>
@@ -81,6 +136,20 @@ export const InCard = () => {
             </CardBody>
         </Card>
     );
+};
+
+InCard.args = {
+    roundness: 16 as Roundness,
+    skeleton: true,
+};
+
+InCard.argTypes = {
+    roundness: {
+        control: {
+            type: 'select',
+            options: roundnessKeys,
+        },
+    },
 };
 
 InCard.parameters = {
