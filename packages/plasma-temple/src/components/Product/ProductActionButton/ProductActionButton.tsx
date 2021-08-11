@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { IconMinus, IconPlus } from '@sberdevices/plasma-icons';
-import { Col, ActionButton, Body2, Button, Row } from '@sberdevices/plasma-ui';
+import { Col, ActionButton, Body2, Button, Row, mediaQuery } from '@sberdevices/plasma-ui';
 
 import { useMount, useThrottledCallback } from '../../../hooks';
 import { useGetMutableValue } from '../../../hooks/useGetMutableValue';
@@ -36,6 +36,17 @@ const StyledRow = styled(Row)`
 const StyledContentRight = styled.span`
     opacity: 0.6;
     white-space: pre-wrap;
+`;
+
+const StyledActionButtonCol = styled(Col)`
+    ${mediaQuery(
+        'S',
+        1,
+    )(
+        css`
+            flex: 1;
+        `,
+    )}
 `;
 
 export const ProductActionButton: React.FC<ProductActionButtonProps> = React.memo(
@@ -92,18 +103,19 @@ export const ProductActionButton: React.FC<ProductActionButtonProps> = React.mem
                         </Col>
                     </>
                 )}
-                <Col>
+                <StyledActionButtonCol>
                     <Button
                         ref={buttonRef}
                         size="s"
                         view="primary"
                         disabled={withQuantity && !quantity}
                         onClick={handleClick}
+                        stretch
                     >
                         {actionButtonText}
                         {contentRight && <StyledContentRight>{` ${contentRight}`}</StyledContentRight>}
                     </Button>
-                </Col>
+                </StyledActionButtonCol>
             </StyledRow>
         );
     },
