@@ -2,6 +2,19 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-temple@0.44.0`
+  - feat(plasma-temple): Add header minimize behavior [#101](https://github.com/sberdevices/pashka/pull/101) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
+# (Wed Aug 11 2021)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-temple@0.43.0`
   - feat(plasma-temple): error page layout [#103](https://github.com/sberdevices/pashka/pull/103) ([@LamaEats](https://github.com/LamaEats))
 
