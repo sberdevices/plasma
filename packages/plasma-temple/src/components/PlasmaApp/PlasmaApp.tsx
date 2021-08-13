@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react';
 import { AssistantClientCustomizedCommand } from '@sberdevices/assistant-client';
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
+import { DeviceThemeProvider } from '@sberdevices/plasma-ui';
 
 import { useInitializeAssistant } from '../../hooks/useInitializeAssistant';
 import { PageProps } from '../Page/Page';
@@ -8,7 +9,6 @@ import { usePopHistoryListener } from '../../hooks/usePopHistoryListener';
 import { GlobalStyles } from '../GlobalStyles/GlobalStyles';
 import { initialState as initialPlasmaAppState, reducer } from '../../store/reducer';
 import * as Actions from '../../store/actions';
-import { PageLayout } from '../PageLayout/PageLayout';
 import { last } from '../../utils/last';
 import { PushScreenParams } from '../Page/types';
 import { AnyObject } from '../../types';
@@ -155,8 +155,10 @@ export function App<Name extends string>({
     return (
         <AssistantContext.Provider value={assistantContextValue}>
             <AppStateContext.Provider value={appStateContextValue}>
-                <GlobalStyles />
-                <PageLayout>{childToRender}</PageLayout>
+                <DeviceThemeProvider>
+                    <GlobalStyles />
+                    {childToRender}
+                </DeviceThemeProvider>
             </AppStateContext.Provider>
         </AssistantContext.Provider>
     );

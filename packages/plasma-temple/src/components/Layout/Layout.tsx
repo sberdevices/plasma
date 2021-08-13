@@ -1,3 +1,4 @@
+import { Container } from '@sberdevices/plasma-ui';
 import React from 'react';
 import styled, { CSSObject } from 'styled-components';
 
@@ -25,6 +26,16 @@ const insetsToCSSObject = ({ insets }: StyledLayoutProps): CSSObject =>
 
 export const StyledLayout = styled.div<StyledLayoutProps>`
     ${insetsToCSSObject}
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100vh;
+    outline: none;
+    box-sizing: border-box;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 `;
 
 const defaultInsets: Insets = {
@@ -37,5 +48,9 @@ const defaultInsets: Insets = {
 export const Layout: React.FC<LayoutProps> = ({ children, ignoreInsets }) => {
     const insets = useInsets();
 
-    return <StyledLayout insets={ignoreInsets ? defaultInsets : insets}>{children}</StyledLayout>;
+    return (
+        <StyledLayout insets={ignoreInsets ? defaultInsets : insets}>
+            <Container>{children}</Container>
+        </StyledLayout>
+    );
 };
