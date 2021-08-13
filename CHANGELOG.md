@@ -1,3 +1,16 @@
+# (Fri Aug 13 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@0.45.0`
+  - feat(plasma-temple): Adapt product components for mobile [#108](https://github.com/sberdevices/pashka/pull/108) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # (Wed Aug 11 2021)
 
 #### 🐛 Bug Fix
