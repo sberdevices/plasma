@@ -1,94 +1,65 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import { Carousel, CarouselCol, Col, Row } from '@sberdevices/plasma-ui';
+import { Col, Row } from '@sberdevices/plasma-ui';
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
-import { mediaQuery } from '@sberdevices/plasma-ui/utils';
 
 import { Header } from '../../components';
+import { AnyObject } from '../../types';
 
-import { CartItem } from './components/CartItem/CartItem';
 import { CartOrder } from './components/CartOrder/CartOrder';
 import { useCart } from './hooks/useCart';
-import { Order } from './types';
 import { useCartAssistantState } from './hooks/useCartAssistantState';
+import { CartItemList } from './components/CartItemList/CartItemList';
+import { CartItem, CartState } from './types';
 
-interface CartPageProps<ID = string | number> {
+interface CartPageProps<ID = string, T extends AnyObject = AnyObject> {
     header?: HeaderProps;
     name?: string;
     emptyCart?: React.ReactElement;
-    onMakeOrder: (order: Order<ID>) => void;
+    orderButtonText?: string;
+    onMakeOrder: (cartState: CartState<ID, T>) => void;
 }
 
-const StyledCarouselGridWrapper = styled.div`
-    height: calc(100vh - 5rem);
+export function CartPage<ID = string, T extends AnyObject = AnyObject>({
+    header,
+    name,
+    emptyCart,
+    orderButtonText = 'Оформить заказ',
+    onMakeOrder,
+    children,
+}: React.PropsWithChildren<CartPageProps<ID, T>>): React.ReactElement {
+    const { state } = useCart<ID, T>();
+    const { items, amount, currency, deliveryPrice, minDeliveryPrice = 0, discount } = state;
 
-    ${mediaQuery(
-        'M',
-        2,
-    )(
-        css`
-            height: calc(100vh - 4.5rem);
-        `,
-    )}
-`;
-
-const StyledRow = styled(Row)`
-    scroll-behavior: smooth;
-`;
-
-export const CartPage: React.FC<CartPageProps> = ({ header, name, emptyCart, onMakeOrder }) => {
-    const { items, quantity, price, currency, minDeliveryPrice = 0 } = useCart();
-    const [currentCartItem, setCurrentCartItem] = React.useState(0);
-
-    const handleMakeOrder = React.useCallback(
-        () => onMakeOrder({ items, quantity, price, currency, minDeliveryPrice }),
-        [onMakeOrder, items, quantity, price, currency, minDeliveryPrice],
-    );
+    const handleMakeOrder = React.useCallback(() => onMakeOrder(state), [onMakeOrder, state]);
 
     useCartAssistantState(items, name);
 
     return (
         <>
-            <Header title="Корзина" {...header} />
+            {header && <Header title="Корзина" {...header} />}
             {!items.length && emptyCart ? (
                 emptyCart
             ) : (
                 <Row>
-                    <Col sizeXL={6} sizeM={4}>
-                        <StyledCarouselGridWrapper>
-                            <Carousel
-                                axis="y"
-                                as={StyledRow}
-                                index={currentCartItem}
-                                scrollAlign="center"
-                                scrollSnapType="mandatory"
-                                paddingEnd="50%"
-                                tabIndex={-1}
-                            >
-                                {items.map((item, index) => (
-                                    <CarouselCol key={item.id} scrollSnapAlign="center">
-                                        <CartItem
-                                            index={index}
-                                            item={item}
-                                            currency={currency}
-                                            setActiveIndex={setCurrentCartItem}
-                                        />
-                                    </CarouselCol>
-                                ))}
-                            </Carousel>
-                        </StyledCarouselGridWrapper>
+                    <Col sizeXL={6} sizeM={4} sizeS={4}>
+                        <CartItemList items={(items as unknown) as CartItem[]} currency={currency} />
                     </Col>
-                    <Col sizeXL={3.5} offsetXL={2.5} sizeM={2}>
+                    <Col sizeXL={3.5} offsetXL={2.5} sizeM={2} sizeS={4}>
                         <CartOrder
-                            price={price}
+                            amount={amount}
+                            deliveryPrice={deliveryPrice}
                             minDeliveryPrice={minDeliveryPrice}
                             currency={currency}
+                            discount={discount}
                             disabled={!items.length}
+                            orderButtonText={orderButtonText}
                             onMakeOrder={handleMakeOrder}
-                        />
+                        >
+                            {children}
+                        </CartOrder>
                     </Col>
                 </Row>
             )}
         </>
     );
-};
+}

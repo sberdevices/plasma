@@ -1,82 +1,78 @@
 import React from 'react';
 
 import { useGetMutableValue } from '../../../../hooks/useGetMutableValue';
-import { Currency } from '../../../../types';
-import { CartItem, ChangeItemQuantityFn } from '../../types';
+import { AnyObject, Currency } from '../../../../types';
+import { CartItem, CartState, ChangeItemQuantityFn, ChangeStateFn } from '../../types';
 
-import { CartContext } from './CartContext';
+import { CartContext, CartContextValue, getInitialState } from './CartContext';
 
-interface CartProviderProps {
+interface CartProviderProps<ID = string, T extends AnyObject = AnyObject> {
     currency?: Currency;
-    defaultCartItems?: CartItem[];
+    initialState?: CartState<ID, T>;
     quantityLimit?: number;
+    onAddItem?: (args: { item: CartItem<ID, T>; state: CartState<ID, T>; changeState: ChangeStateFn<ID, T> }) => void;
+    onChangeQuantity?: (args: {
+        item: CartItem<ID, T>;
+        state: CartState<ID, T>;
+        changeState: ChangeStateFn<ID, T>;
+    }) => void;
+    onRemoveItem?: (args: {
+        item: CartItem<ID, T>;
+        state: CartState<ID, T>;
+        changeState: ChangeStateFn<ID, T>;
+    }) => void;
+    onClearCart?: () => void;
 }
 
-const updateCartItemByIndex = (items: CartItem[], cartItem: CartItem, index: number) =>
-    items.slice(0, index).concat(cartItem, items.slice(index + 1));
+function updateCartItemByIndex<ID = string, T extends AnyObject = AnyObject>(
+    items: CartItem<ID, T>[],
+    cartItem: CartItem<ID, T>,
+    index: number,
+) {
+    return items.slice(0, index).concat(cartItem, items.slice(index + 1));
+}
 
-export const CartProvider: React.FC<React.PropsWithChildren<CartProviderProps>> = ({
-    currency,
-    defaultCartItems = [],
-    quantityLimit,
-    children,
-}) => {
-    const [cartItems, setCartItems] = React.useState<CartItem[]>(defaultCartItems);
-
-    const { quantity: cartQuantity, price: cartAmount } = React.useMemo(
-        () =>
-            cartItems.reduce(
-                (acc, item) => ({
-                    quantity: acc.quantity + item.quantity,
-                    price: acc.price + item.price * item.quantity,
-                }),
-                { quantity: 0, price: 0 },
-            ),
-        [cartItems],
+function updateCartQuantityAndAmount<ID = string, T extends AnyObject = AnyObject>(
+    items: CartItem<ID, T>[],
+): { quantity: number; amount: number } {
+    const { quantity, amount } = items.reduce(
+        (acc, item) => ({
+            quantity: acc.quantity + item.quantity,
+            amount: acc.amount + (item.present ? 0 : item.price * item.quantity),
+        }),
+        { quantity: 0, amount: 0 },
     );
 
-    const getItems = useGetMutableValue(cartItems);
-    const getCartQuantity = useGetMutableValue(cartQuantity);
+    return {
+        quantity,
+        amount,
+    };
+}
+
+export function CartProvider<ID = string, T extends AnyObject = AnyObject>({
+    initialState = getInitialState<ID, T>(),
+    children,
+    onAddItem,
+    onChangeQuantity,
+    onRemoveItem,
+    onClearCart,
+}: React.PropsWithChildren<CartProviderProps<ID, T>>): React.ReactElement {
+    const [state, setState] = React.useState(initialState);
+
+    const getState = useGetMutableValue(state);
 
     const isOverQuantityLimit = React.useCallback(
         (plusQuantity: number) => {
-            const allQuantity = getCartQuantity();
-            return Boolean(quantityLimit && plusQuantity + allQuantity > quantityLimit);
+            const { quantity: cartQuantity, quantityLimit } = getState();
+            return Boolean(quantityLimit && plusQuantity + cartQuantity > quantityLimit);
         },
-        [getCartQuantity, quantityLimit],
+        [getState],
     );
 
-    const addItem = React.useCallback(
-        (newItem: CartItem) => {
-            const items = getItems();
-            const itemIndex = items.findIndex(({ id }) => newItem.id === id);
-
-            if (isOverQuantityLimit(newItem.quantity)) {
-                return;
-            }
-
-            const updatedItems =
-                itemIndex === -1
-                    ? items.concat(newItem)
-                    : updateCartItemByIndex(
-                          items,
-                          { ...newItem, quantity: Math.max(0, newItem.quantity + items[itemIndex].quantity) },
-                          itemIndex,
-                      );
-
-            setCartItems(updatedItems);
-        },
-        [getItems, isOverQuantityLimit],
-    );
-
-    const removeItem = React.useCallback(
-        (id: CartItem['id']) => setCartItems(getItems().filter((item) => item.id !== id)),
-        [getItems],
-    );
-
-    const changeItemQuantity = React.useCallback<ChangeItemQuantityFn>(
+    const changeItemQuantity = React.useCallback<ChangeItemQuantityFn<ID>>(
         (id, newQuantity) => {
-            const items = getItems();
+            const currentState = getState();
+            const { items } = currentState;
 
             const itemIndex = items.findIndex((cartItem) => cartItem.id === id);
 
@@ -88,41 +84,85 @@ export const CartProvider: React.FC<React.PropsWithChildren<CartProviderProps>> 
                 return;
             }
 
-            setCartItems(
-                updateCartItemByIndex(items, { ...items[itemIndex], quantity: Math.max(0, newQuantity) }, itemIndex),
-            );
+            const quantity = Math.min(Math.max(0, newQuantity), items[itemIndex].quantityLimit ?? Infinity);
+            const cartItem = { ...items[itemIndex], quantity };
+            const updatedItems = updateCartItemByIndex(items, cartItem, itemIndex);
+
+            const newState = {
+                ...currentState,
+                items: updatedItems,
+                ...updateCartQuantityAndAmount(updatedItems),
+            };
+
+            setState(newState);
+
+            onChangeQuantity?.({ item: cartItem, state: newState, changeState: setState });
         },
-        [getItems, isOverQuantityLimit],
+        [getState, isOverQuantityLimit, onChangeQuantity, setState],
     );
 
-    const clearCart = React.useCallback(() => setCartItems([]), []);
+    const addItem = React.useCallback(
+        (newItem: CartItem<ID, T>) => {
+            const currentState = getState();
+            const { items } = currentState;
+
+            const itemIndex = items.findIndex(({ id }) => newItem.id === id);
+
+            if (isOverQuantityLimit(newItem.quantity)) {
+                return;
+            }
+
+            if (itemIndex > -1) {
+                changeItemQuantity(newItem.id, newItem.quantity);
+                return;
+            }
+
+            const updatedItems = items.concat(newItem);
+            const newState = {
+                ...currentState,
+                items: updatedItems,
+                ...updateCartQuantityAndAmount(updatedItems),
+            };
+
+            setState(newState);
+            onAddItem?.({ item: newItem, state: newState, changeState: setState });
+        },
+        [changeItemQuantity, getState, isOverQuantityLimit, onAddItem, setState],
+    );
+
+    const removeItem = React.useCallback(
+        (id: ID) => {
+            const currentState = getState();
+            const cartItem = currentState.items.find((item) => item.id === id);
+            const updatedItems = currentState.items.filter((item) => item.id !== id);
+            const newState = { ...currentState, items: updatedItems };
+
+            setState(newState);
+
+            if (cartItem) {
+                onRemoveItem?.({ item: cartItem, state: newState, changeState: setState });
+            }
+        },
+        [getState, onRemoveItem, setState],
+    );
+
+    const clearCart = React.useCallback(() => {
+        setState({ ...getState(), items: [], amount: 0, quantity: 0 });
+        onClearCart?.();
+    }, [getState, onClearCart, setState]);
 
     const value = React.useMemo(
         () => ({
-            items: cartItems,
-            currency,
+            state,
+            changeState: setState,
             addItem,
             removeItem,
             changeItemQuantity,
             clearCart,
             isOverQuantityLimit,
-            quantity: cartQuantity,
-            price: cartAmount,
-            quantityLimit,
         }),
-        [
-            cartItems,
-            currency,
-            addItem,
-            removeItem,
-            changeItemQuantity,
-            clearCart,
-            isOverQuantityLimit,
-            cartQuantity,
-            cartAmount,
-            quantityLimit,
-        ],
+        [addItem, changeItemQuantity, clearCart, isOverQuantityLimit, removeItem, state],
     );
 
-    return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
-};
+    return <CartContext.Provider value={(value as unknown) as CartContextValue}>{children}</CartContext.Provider>;
+}
