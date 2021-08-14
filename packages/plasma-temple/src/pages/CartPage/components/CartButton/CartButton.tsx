@@ -9,6 +9,8 @@ import { useCart } from '../../hooks';
 interface CartButtonProps {
     screen: string;
     withPrice?: boolean;
+    label?: string;
+    hideEmpty?: boolean;
 }
 
 const StyledBadge = styled(Badge)`
@@ -21,11 +23,16 @@ const StyledIconCount = styled.div`
     position: relative;
 `;
 
-export const CartButton: React.FC<CartButtonProps> = ({ screen, withPrice }) => {
+export const CartButton: React.FC<CartButtonProps> = ({ screen, withPrice, label, hideEmpty }) => {
     const { pushScreen } = React.useContext(AppStateContext);
-    const { quantity, price, currency } = useCart();
+    const { state } = useCart();
+    const { quantity, amount, currency } = state;
 
     const onClick = React.useCallback(() => pushScreen(screen, null), [screen, pushScreen]);
+
+    if (hideEmpty && !state.items.length) {
+        return null;
+    }
 
     return (
         <Button
@@ -35,7 +42,7 @@ export const CartButton: React.FC<CartButtonProps> = ({ screen, withPrice }) => 
                     <IconCart />
                 </StyledIconCount>
             }
-            text={withPrice && price > 0 ? <Price currency={currency}>{price}</Price> : 'Корзина'}
+            text={withPrice && amount > 0 ? <Price currency={currency}>{amount}</Price> : label}
             view="clear"
             size="s"
             onClick={onClick}

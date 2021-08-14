@@ -1,17 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Price, Button, Footnote1, Headline1, Body1 } from '@sberdevices/plasma-ui';
+import { Price, Button, Footnote1, Headline1 } from '@sberdevices/plasma-ui';
 
 import { useFocusOnMount } from '../../../../hooks/useFocusOnMount';
 
-import {
-    Agreement,
-    deliveryDescriptionText,
-    deliveryDescriptionMixin,
-    DeliveryPrice,
-    CartOrderProps,
-    amountText,
-} from './CartOrder@common';
+import { DeliveryPrice, CartOrderProps, amountText, Discount } from './CartOrder@common';
 
 const StyledPriceContainer = styled(Headline1)`
     margin-top: 0.375rem;
@@ -19,21 +12,22 @@ const StyledPriceContainer = styled(Headline1)`
 
 const StyledDeliveryPrice = styled(DeliveryPrice)`
     margin-top: 1.25rem;
+    margin-bottom: 0.75rem;
+`;
+
+const StyledContainer = styled.div`
     margin-bottom: 1.875rem;
 `;
 
-const StyledDeliveryDescription = styled(Footnote1)`
-    ${deliveryDescriptionMixin}
-
-    margin-top: 1.25rem;
-    margin-bottom: 4.25rem;
-`;
-
 export const CartOrderSberBox: React.FC<CartOrderProps> = ({
-    price,
+    amount,
     currency,
     disabled,
-    minDeliveryPrice = 0,
+    deliveryPrice,
+    minDeliveryPrice,
+    discount,
+    orderButtonText,
+    children,
     onMakeOrder,
 }) => {
     const buttonRef = React.useRef(null);
@@ -43,16 +37,20 @@ export const CartOrderSberBox: React.FC<CartOrderProps> = ({
         <>
             <Footnote1>{amountText}</Footnote1>
             <StyledPriceContainer>
-                <Price>{price}</Price>
+                <Price>{amount}</Price>
             </StyledPriceContainer>
-            <Body1>
-                <StyledDeliveryPrice currency={currency} minDeliveryPrice={minDeliveryPrice} />
-            </Body1>
+            <StyledContainer>
+                <StyledDeliveryPrice
+                    currency={currency}
+                    deliveryPrice={deliveryPrice}
+                    minDeliveryPrice={minDeliveryPrice}
+                />
+                <Discount currency={currency} discount={discount} />
+            </StyledContainer>
             <Button view="primary" stretch onClick={onMakeOrder} size="m" disabled={disabled} ref={buttonRef}>
-                Оформить заказ
+                {orderButtonText}
             </Button>
-            <StyledDeliveryDescription>{deliveryDescriptionText}</StyledDeliveryDescription>
-            <Agreement />
+            {children}
         </>
     );
 };
