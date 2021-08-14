@@ -1,27 +1,25 @@
-import { Currency, Entity } from '../../types';
+import { AnyObject, Currency, Entity } from '../../types';
 
-export interface CartItem<ID = string | number> extends Entity<ID> {
+export type CartItem<ID = string, T extends AnyObject = AnyObject> = Entity<ID> &
+    T & {
+        quantity: number;
+        price: number;
+        nameDetails?: string;
+        imageSrc?: string;
+        present?: boolean;
+        quantityLimit?: number;
+    };
+
+export type ChangeItemQuantityFn<ID = string> = (id: ID, quantity: number) => void;
+export type ChangeStateFn<ID = string, T extends AnyObject = AnyObject> = (state: CartState<ID, T>) => void;
+
+export interface CartState<ID = string, T extends AnyObject = AnyObject> {
+    items: CartItem<ID, T>[];
+    currency: Currency;
     quantity: number;
-    price: number;
-    nameDetails?: string;
-    imageSrc?: string;
-}
-
-export type ChangeItemQuantityFn<ID = string | number> = (id: ID, quantity: number) => void;
-
-export interface Order<ID = string | number> {
-    items: CartItem<ID>[];
-    price: number;
-    quantity: number;
-    currency?: Currency;
-    minDeliveryPrice?: number;
-}
-
-export interface Cart<ID = string | number> extends Order<ID> {
+    amount: number;
     quantityLimit?: number;
-    addItem: (item: CartItem) => void;
-    removeItem: (id: ID) => void;
-    changeItemQuantity: ChangeItemQuantityFn<ID>;
-    clearCart: () => void;
-    isOverQuantityLimit: (plusQuantity: number) => boolean;
+    minDeliveryPrice?: number;
+    deliveryPrice?: number;
+    discount?: number;
 }

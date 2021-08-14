@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { CartContext } from '../components/CartProvider/CartContext';
-import { Cart } from '../types';
+import { AnyObject } from '../../../types';
+import { CartContext, CartContextValue } from '../components/CartProvider/CartContext';
 
-export const useCart = (): Cart => {
-    return React.useContext(CartContext);
+export const useCart = <ID = string, T extends AnyObject = AnyObject>(): CartContextValue<ID, T> => {
+    return (React.useContext(CartContext) as unknown) as CartContextValue<ID, T>;
 };

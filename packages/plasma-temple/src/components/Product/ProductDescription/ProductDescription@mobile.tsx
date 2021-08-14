@@ -22,6 +22,10 @@ const StyledTitle = styled(Footnote1)`
     ${applyEllipsis}
     color: ${secondary};
     max-width: 70%;
+
+    &::first-letter {
+        text-transform: uppercase;
+    }
 `;
 
 const StyledSpace = styled.div`
