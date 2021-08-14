@@ -4,7 +4,7 @@ import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { sberBox as sberBoxTypo } from '@sberdevices/plasma-tokens/typo';
 import { darkSber } from '@sberdevices/plasma-tokens/themes';
-import { Container } from '@sberdevices/plasma-ui';
+import { Container, DeviceThemeProvider } from '@sberdevices/plasma-ui';
 import { createAssistant } from '@sberdevices/assistant-client';
 
 import { AssistantContext } from '../src/components/PlasmaApp/AssistantContext';
@@ -13,15 +13,13 @@ const mock = createAssistant({
     getState: () => ({}),
 });
 
-const Typo = createGlobalStyle(sberBoxTypo);
 const Color = createGlobalStyle(darkSber);
 
 const withGlobalStyles = (storyFn) => (
-    <>
-        <Typo />
+    <DeviceThemeProvider>
         <Color />
         <Container>{storyFn ? storyFn() : null}</Container>
-    </>
+    </DeviceThemeProvider>
 );
 
 const withAssistant = (Story) => (
@@ -35,10 +33,9 @@ const withAssistant = (Story) => (
     </AssistantContext.Provider>
 );
 
-
 addDecorator(withGlobalStyles);
 addDecorator(withKnobs);
-addDecorator(withAssistant)
+addDecorator(withAssistant);
 
 addParameters({
     backgrounds: {
@@ -63,6 +60,13 @@ addParameters({
                 styles: {
                     width: '1920px',
                     height: '1080px',
+                },
+            },
+            Mobile: {
+                name: 'Mobile',
+                styles: {
+                    width: '375px',
+                    height: '667px',
                 },
             },
         },

@@ -5,15 +5,15 @@ import { Image, TextBox, Caption, Row, Col } from '@sberdevices/plasma-ui';
 import {
     CartItemProps,
     imageContainerMixin,
+    Present,
     priceMixin,
     QuantityButton,
     titleMixin,
-    Present,
     Price,
 } from './CartItem@common';
 
 const StyledRow = styled(Row)`
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.25rem;
 `;
 
 const StyledLeftCol = styled(Col)`
@@ -37,20 +37,16 @@ const StyledImageContainer = styled.div`
     margin-right: 0.75rem;
 `;
 
-const StyledQuantityCol = styled(Col)`
-    padding-right: 3.5rem;
-`;
-
 const StyledTextBox = styled(TextBox)`
     width: calc(100% - 3rem);
 `;
 
-export const CartItemSberPortal: React.FC<CartItemProps> = ({ item, currency, ...props }) => {
+export const CartItemMobile: React.FC<CartItemProps> = ({ item, currency, ...props }) => {
     const { id, name, price, quantity, imageSrc = '', present } = item;
 
     return (
         <StyledRow>
-            <StyledLeftCol sizeM={3}>
+            <StyledLeftCol sizeS={2}>
                 <StyledImageContainer>
                     <Image base="div" src={imageSrc} ratio="1 / 1" />
                 </StyledImageContainer>
@@ -61,9 +57,7 @@ export const CartItemSberPortal: React.FC<CartItemProps> = ({ item, currency, ..
                     </StyledPriceContainer>
                 </StyledTextBox>
             </StyledLeftCol>
-            <StyledQuantityCol sizeM={3}>
-                {present ? <Present /> : <QuantityButton id={id} quantity={quantity} {...props} />}
-            </StyledQuantityCol>
+            <Col sizeS={2}>{present ? <Present /> : <QuantityButton id={id} quantity={quantity} {...props} />}</Col>
         </StyledRow>
     );
 };

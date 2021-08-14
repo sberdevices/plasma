@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { IconMinus, IconPlus } from '@sberdevices/plasma-icons';
-import { Col, ActionButton, Body2, Button, Row, mediaQuery } from '@sberdevices/plasma-ui';
+import { Col, Body2, Button, Row, mediaQuery } from '@sberdevices/plasma-ui';
 
 import { useMount, useThrottledCallback } from '../../../hooks';
 import { useGetMutableValue } from '../../../hooks/useGetMutableValue';
@@ -89,17 +89,17 @@ export const ProductActionButton: React.FC<ProductActionButtonProps> = React.mem
                 {withQuantity && (
                     <>
                         <Col>
-                            <ActionButton size="l" onClick={onDecreaseQuantity}>
+                            <Button size="s" square onClick={onDecreaseQuantity}>
                                 <IconMinus size="xs" />
-                            </ActionButton>
+                            </Button>
                         </Col>
                         <Col>
                             <Body2>{quantity}</Body2>
                         </Col>
                         <Col>
-                            <ActionButton size="l" onClick={onIncreaseQuantity}>
+                            <Button size="s" square onClick={onIncreaseQuantity}>
                                 <IconPlus size="xs" />
-                            </ActionButton>
+                            </Button>
                         </Col>
                     </>
                 )}
