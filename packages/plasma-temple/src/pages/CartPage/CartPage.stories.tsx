@@ -1,12 +1,15 @@
 import React from 'react';
+import styled from 'styled-components';
 import { action } from '@storybook/addon-actions';
 import { createAssistant } from '@sberdevices/assistant-client';
+import { tertiary } from '@sberdevices/plasma-tokens';
+import { Underline } from '@sberdevices/plasma-ui';
 
 import { AssistantContext } from '../../components/PlasmaApp/AssistantContext';
 
 import { CartPage } from './CartPage';
 import { CartProvider } from './components/CartProvider/CartProvider';
-import { CartItem } from './types';
+import { CartItem, CartState } from './types';
 
 export default {
     title: 'Pages/Cart',
@@ -19,14 +22,15 @@ const items: CartItem[] = [
         nameDetails: '1л',
         price: 68,
         quantity: 99,
+        quantityLimit: 99,
+        imageSrc: '/images/placeholder.png',
     },
     {
         id: '2',
         name: 'CCC 3x3x3 Sail W',
         price: 68,
         quantity: 2,
-        imageSrc:
-            'https://s3-alpha-sig.figma.com/img/3c44/70e1/c35afe61e8fa34bc63b982b455c58c1e?Expires=1622419200&Signature=LBFscWR-5zOwbABoL8bhJOdapHhsB~Sti3~4YkBYWE~GEJ57OEzCd~W9ZC1VAHbqTEasSSx8QvEoqqpxdpTOG6dg7LU9VybjQbny9yfI6FTusoz9ZsPBAG9c4H6AWuCodIqcziZdNPpPf3PSt7X545YUEYUNXR~OCfWt3P5MzOYHq4Gm-RFiQ1gPmwLO4RArxdNnfZpQSMa5RV~ogjoLQwb7f8kFlEbfex6YqgqYWYrL2Nev4F~9ZJpLvSTn8fzihWpW2K3RLn8sQFe6iOcDzl5fSsGmk7-L2Q~1CNkMDWjWMf0vwUixg6hb8EZRUrKboN80lVaEfrk3cVC8IOaEdA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+        imageSrc: '/images/placeholder.png',
     },
     {
         id: '3',
@@ -40,8 +44,8 @@ const items: CartItem[] = [
         name: 'CCC 3x3x3 Sail W',
         price: 68,
         quantity: 2,
-        imageSrc:
-            'https://s3-alpha-sig.figma.com/img/3c44/70e1/c35afe61e8fa34bc63b982b455c58c1e?Expires=1622419200&Signature=LBFscWR-5zOwbABoL8bhJOdapHhsB~Sti3~4YkBYWE~GEJ57OEzCd~W9ZC1VAHbqTEasSSx8QvEoqqpxdpTOG6dg7LU9VybjQbny9yfI6FTusoz9ZsPBAG9c4H6AWuCodIqcziZdNPpPf3PSt7X545YUEYUNXR~OCfWt3P5MzOYHq4Gm-RFiQ1gPmwLO4RArxdNnfZpQSMa5RV~ogjoLQwb7f8kFlEbfex6YqgqYWYrL2Nev4F~9ZJpLvSTn8fzihWpW2K3RLn8sQFe6iOcDzl5fSsGmk7-L2Q~1CNkMDWjWMf0vwUixg6hb8EZRUrKboN80lVaEfrk3cVC8IOaEdA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+        imageSrc: '/images/placeholder.png',
+        present: true,
     },
     {
         id: '5',
@@ -49,27 +53,66 @@ const items: CartItem[] = [
         nameDetails: '1л',
         price: 68,
         quantity: 2,
+        imageSrc: '/images/placeholder.png',
     },
     {
         id: '6',
         name: 'CCC 3x3x3 Sail W',
         price: 68,
         quantity: 2,
-        imageSrc:
-            'https://s3-alpha-sig.figma.com/img/3c44/70e1/c35afe61e8fa34bc63b982b455c58c1e?Expires=1622419200&Signature=LBFscWR-5zOwbABoL8bhJOdapHhsB~Sti3~4YkBYWE~GEJ57OEzCd~W9ZC1VAHbqTEasSSx8QvEoqqpxdpTOG6dg7LU9VybjQbny9yfI6FTusoz9ZsPBAG9c4H6AWuCodIqcziZdNPpPf3PSt7X545YUEYUNXR~OCfWt3P5MzOYHq4Gm-RFiQ1gPmwLO4RArxdNnfZpQSMa5RV~ogjoLQwb7f8kFlEbfex6YqgqYWYrL2Nev4F~9ZJpLvSTn8fzihWpW2K3RLn8sQFe6iOcDzl5fSsGmk7-L2Q~1CNkMDWjWMf0vwUixg6hb8EZRUrKboN80lVaEfrk3cVC8IOaEdA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+        imageSrc: '/images/placeholder.png',
     },
 ];
+
+const initialState: CartState = {
+    items,
+    currency: 'rub',
+    quantity: 109,
+    amount: 7412,
+};
 
 const assistantContextValue = {
     getAssistant: () => createAssistant({ getState: () => ({}) }),
     setAssistantState: () => {},
 };
 
+const StyledUnderline = styled(Underline)`
+    margin-top: 1rem;
+    color: ${tertiary};
+    text-align: center;
+`;
+
 export const Default = (): React.ReactElement => {
     return (
         <AssistantContext.Provider value={assistantContextValue}>
-            <CartProvider defaultCartItems={items}>
-                <CartPage onMakeOrder={action('onMakeOrder')} />
+            <CartProvider
+                initialState={initialState}
+                onAddItem={action('onAddItem')}
+                onChangeQuantity={action('onChangeQuantity')}
+                onRemoveItem={action('onRemoveItem')}
+                onClearCart={action('onClearCart')}
+            >
+                <CartPage onMakeOrder={action('onMakeOrder')}>
+                    <StyledUnderline>
+                        Заполняя данную форму, я соглашаюсь с условиями продажи и политикой обработки персональных
+                        данных
+                    </StyledUnderline>
+                </CartPage>
+            </CartProvider>
+        </AssistantContext.Provider>
+    );
+};
+
+export const WithDiscount = (): React.ReactElement => {
+    return (
+        <AssistantContext.Provider value={assistantContextValue}>
+            <CartProvider initialState={{ ...initialState, discount: 107, deliveryPrice: 500 }}>
+                <CartPage onMakeOrder={action('onMakeOrder')}>
+                    <StyledUnderline>
+                        Заполняя данную форму, я соглашаюсь с условиями продажи и политикой обработки персональных
+                        данных
+                    </StyledUnderline>
+                </CartPage>
             </CartProvider>
         </AssistantContext.Provider>
     );
