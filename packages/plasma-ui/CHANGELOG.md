@@ -1,3 +1,21 @@
+# v1.38.0 (Mon Aug 16 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): tabs api changed [#593](https://github.com/sberdevices/plasma/pull/593) ([@kayman233](https://github.com/kayman233))
+- feat(plasma-ui): tabs animation added [#593](https://github.com/sberdevices/plasma/pull/593) ([@kayman233](https://github.com/kayman233))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@kayman233](https://github.com/kayman233)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
 # v1.37.0 (Tue Aug 10 2021)
 
 #### 🚀 Enhancement

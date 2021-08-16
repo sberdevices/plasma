@@ -1,3 +1,16 @@
+# v1.23.0 (Mon Aug 16 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): tabs api changed [#593](https://github.com/sberdevices/plasma/pull/593) ([@kayman233](https://github.com/kayman233))
+- feat(plasma-ui): tabs animation added [#593](https://github.com/sberdevices/plasma/pull/593) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 1
+
+- [@kayman233](https://github.com/kayman233)
+
+---
+
 # v1.22.0 (Fri Aug 06 2021)
 
 #### 🐛 Bug Fix
