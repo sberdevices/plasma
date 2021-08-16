@@ -1,40 +1,31 @@
 import React from 'react';
 
 import { useGetMutableValue } from '../../../../hooks/useGetMutableValue';
-import { AnyObject, Currency } from '../../../../types';
-import { CartItem, CartState, ChangeItemQuantityFn, ChangeStateFn } from '../../types';
+import {
+    CartItem,
+    CartState,
+    CartStateItem,
+    OnAddCartItemFn,
+    OnChangeCartItemQuantityFn,
+    OnRemoveCartItemFn,
+} from '../../types';
 
 import { CartContext, CartContextValue, getInitialState } from './CartContext';
 
-interface CartProviderProps<ID = string, T extends AnyObject = AnyObject> {
-    currency?: Currency;
-    initialState?: CartState<ID, T>;
-    quantityLimit?: number;
-    onAddItem?: (args: { item: CartItem<ID, T>; state: CartState<ID, T>; changeState: ChangeStateFn<ID, T> }) => void;
-    onChangeQuantity?: (args: {
-        item: CartItem<ID, T>;
-        state: CartState<ID, T>;
-        changeState: ChangeStateFn<ID, T>;
-    }) => void;
-    onRemoveItem?: (args: {
-        item: CartItem<ID, T>;
-        state: CartState<ID, T>;
-        changeState: ChangeStateFn<ID, T>;
-    }) => void;
+interface CartProviderProps<T extends CartState = CartState> {
+    initialState?: T;
+    dropItemIfQuantityZero?: boolean;
+    onAddItem?: OnAddCartItemFn<T>;
+    onChangeItemQuantity?: OnChangeCartItemQuantityFn<T>;
+    onRemoveItem?: OnRemoveCartItemFn<T>;
     onClearCart?: () => void;
 }
 
-function updateCartItemByIndex<ID = string, T extends AnyObject = AnyObject>(
-    items: CartItem<ID, T>[],
-    cartItem: CartItem<ID, T>,
-    index: number,
-) {
+function updateCartItemByIndex<T extends CartItem>(items: T[], cartItem: T, index: number) {
     return items.slice(0, index).concat(cartItem, items.slice(index + 1));
 }
 
-function updateCartQuantityAndAmount<ID = string, T extends AnyObject = AnyObject>(
-    items: CartItem<ID, T>[],
-): { quantity: number; amount: number } {
+function updateCartQuantityAndAmount<T extends CartItem>(items: T[]): { quantity: number; amount: number } {
     const { quantity, amount } = items.reduce(
         (acc, item) => ({
             quantity: acc.quantity + item.quantity,
@@ -49,14 +40,15 @@ function updateCartQuantityAndAmount<ID = string, T extends AnyObject = AnyObjec
     };
 }
 
-export function CartProvider<ID = string, T extends AnyObject = AnyObject>({
-    initialState = getInitialState<ID, T>(),
+export function CartProvider<T extends CartState = CartState>({
+    initialState = getInitialState<T>(),
     children,
+    dropItemIfQuantityZero,
     onAddItem,
-    onChangeQuantity,
+    onChangeItemQuantity,
     onRemoveItem,
     onClearCart,
-}: React.PropsWithChildren<CartProviderProps<ID, T>>): React.ReactElement {
+}: React.PropsWithChildren<CartProviderProps<T>>): React.ReactElement {
     const [state, setState] = React.useState(initialState);
 
     const getState = useGetMutableValue(state);
@@ -69,8 +61,24 @@ export function CartProvider<ID = string, T extends AnyObject = AnyObject>({
         [getState],
     );
 
-    const changeItemQuantity = React.useCallback<ChangeItemQuantityFn<ID>>(
-        (id, newQuantity) => {
+    const removeItem = React.useCallback(
+        (id: CartStateItem<T>['id']) => {
+            const currentState = getState();
+            const cartItem = currentState.items.find((item) => item.id === id);
+            const updatedItems = currentState.items.filter((item) => item.id !== id);
+            const newState = { ...currentState, items: updatedItems };
+
+            setState(newState);
+
+            if (cartItem) {
+                onRemoveItem?.({ item: cartItem, state: newState, changeState: setState });
+            }
+        },
+        [getState, onRemoveItem, setState],
+    );
+
+    const changeItemQuantity = React.useCallback(
+        (id: CartStateItem<T>['id'], newQuantity: number) => {
             const currentState = getState();
             const { items } = currentState;
 
@@ -85,6 +93,12 @@ export function CartProvider<ID = string, T extends AnyObject = AnyObject>({
             }
 
             const quantity = Math.min(Math.max(0, newQuantity), items[itemIndex].quantityLimit ?? Infinity);
+
+            if (dropItemIfQuantityZero && quantity < 1) {
+                removeItem(id);
+                return;
+            }
+
             const cartItem = { ...items[itemIndex], quantity };
             const updatedItems = updateCartItemByIndex(items, cartItem, itemIndex);
 
@@ -96,13 +110,13 @@ export function CartProvider<ID = string, T extends AnyObject = AnyObject>({
 
             setState(newState);
 
-            onChangeQuantity?.({ item: cartItem, state: newState, changeState: setState });
+            onChangeItemQuantity?.({ item: cartItem, state: newState, changeState: setState });
         },
-        [getState, isOverQuantityLimit, onChangeQuantity, setState],
+        [dropItemIfQuantityZero, getState, isOverQuantityLimit, onChangeItemQuantity, removeItem],
     );
 
     const addItem = React.useCallback(
-        (newItem: CartItem<ID, T>) => {
+        (newItem: CartStateItem<T>) => {
             const currentState = getState();
             const { items } = currentState;
 
@@ -128,22 +142,6 @@ export function CartProvider<ID = string, T extends AnyObject = AnyObject>({
             onAddItem?.({ item: newItem, state: newState, changeState: setState });
         },
         [changeItemQuantity, getState, isOverQuantityLimit, onAddItem, setState],
-    );
-
-    const removeItem = React.useCallback(
-        (id: ID) => {
-            const currentState = getState();
-            const cartItem = currentState.items.find((item) => item.id === id);
-            const updatedItems = currentState.items.filter((item) => item.id !== id);
-            const newState = { ...currentState, items: updatedItems };
-
-            setState(newState);
-
-            if (cartItem) {
-                onRemoveItem?.({ item: cartItem, state: newState, changeState: setState });
-            }
-        },
-        [getState, onRemoveItem, setState],
     );
 
     const clearCart = React.useCallback(() => {
