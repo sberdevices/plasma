@@ -1,3 +1,15 @@
+# v0.46.0 (Mon Aug 16 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Make page layout scrollable [#109](https://github.com/sberdevices/pashka/pull/109) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v0.45.0 (Fri Aug 13 2021)
 
 #### 🚀 Enhancement
