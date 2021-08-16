@@ -88,7 +88,7 @@ export const Default = (): React.ReactElement => {
             <CartProvider
                 initialState={initialState}
                 onAddItem={action('onAddItem')}
-                onChangeQuantity={action('onChangeQuantity')}
+                onChangeItemQuantity={action('onChangeQuantity')}
                 onRemoveItem={action('onRemoveItem')}
                 onClearCart={action('onClearCart')}
             >
