@@ -3,7 +3,6 @@ import { Col, Row } from '@sberdevices/plasma-ui';
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 
 import { Header } from '../../components';
-import { AnyObject } from '../../types';
 
 import { CartOrder } from './components/CartOrder/CartOrder';
 import { useCart } from './hooks/useCart';
@@ -11,23 +10,23 @@ import { useCartAssistantState } from './hooks/useCartAssistantState';
 import { CartItemList } from './components/CartItemList/CartItemList';
 import { CartItem, CartState } from './types';
 
-interface CartPageProps<ID = string, T extends AnyObject = AnyObject> {
+interface CartPageProps<T extends CartState> {
     header?: HeaderProps;
     name?: string;
     emptyCart?: React.ReactElement;
     orderButtonText?: string;
-    onMakeOrder: (cartState: CartState<ID, T>) => void;
+    onMakeOrder: (cartState: T) => void;
 }
 
-export function CartPage<ID = string, T extends AnyObject = AnyObject>({
+export function CartPage<T extends CartState = CartState>({
     header,
     name,
     emptyCart,
     orderButtonText = 'Оформить заказ',
     onMakeOrder,
     children,
-}: React.PropsWithChildren<CartPageProps<ID, T>>): React.ReactElement {
-    const { state } = useCart<ID, T>();
+}: React.PropsWithChildren<CartPageProps<T>>): React.ReactElement {
+    const { state } = useCart<T>();
     const { items, amount, currency, deliveryPrice, minDeliveryPrice = 0, discount } = state;
 
     const handleMakeOrder = React.useCallback(() => onMakeOrder(state), [onMakeOrder, state]);
