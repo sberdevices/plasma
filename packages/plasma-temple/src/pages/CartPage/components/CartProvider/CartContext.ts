@@ -1,24 +1,24 @@
 import React from 'react';
 
-import { AnyObject } from '../../../../types';
-import { CartItem, CartState, ChangeItemQuantityFn } from '../../types';
+import { CartState, CartStateItem } from '../../types';
 
-export interface CartContextValue<ID = string, T extends AnyObject = AnyObject> {
-    state: CartState<ID, T>;
-    changeState: (state: CartState<ID, T>) => void;
-    addItem: (item: CartItem<ID, T>) => void;
-    removeItem: (id: ID) => void;
-    changeItemQuantity: ChangeItemQuantityFn<ID>;
+export interface CartContextValue<T extends CartState = CartState> {
+    state: T;
+    changeState: (state: T) => void;
+    addItem: (item: CartStateItem<T>) => void;
+    removeItem: (id: CartStateItem<T>['id']) => void;
+    changeItemQuantity: (id: CartStateItem<T>['id'], quantity: number) => void;
     clearCart: () => void;
     isOverQuantityLimit: (plusQuantity: number) => boolean;
 }
 
-export const getInitialState = <ID = string, T extends AnyObject = AnyObject>(): CartState<ID, T> => ({
-    items: [],
-    currency: 'rub',
-    quantity: 0,
-    amount: 0,
-});
+export const getInitialState = <T extends CartState>(): T =>
+    (({
+        items: [],
+        currency: 'rub',
+        quantity: 0,
+        amount: 0,
+    } as unknown) as T);
 
 const throwFn = () => {
     throw new Error('Cart context value is missing');

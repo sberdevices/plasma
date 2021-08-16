@@ -26,6 +26,7 @@ type ProductActionButtonProps = {
     contentRight?: string;
     autoFocus?: boolean;
     className?: string;
+    disabled?: boolean;
     onClick: () => void;
 } & (QuantityProps | NoQuantityProps);
 
@@ -56,6 +57,7 @@ export const ProductActionButton: React.FC<ProductActionButtonProps> = React.mem
         contentRight,
         quantity = 0,
         withQuantity,
+        disabled,
         onChangeQuantity,
         onClick,
         className,
@@ -108,7 +110,7 @@ export const ProductActionButton: React.FC<ProductActionButtonProps> = React.mem
                         ref={buttonRef}
                         size="s"
                         view="primary"
-                        disabled={withQuantity && !quantity}
+                        disabled={disabled !== undefined ? disabled : withQuantity && !quantity}
                         onClick={handleClick}
                         stretch
                     >
