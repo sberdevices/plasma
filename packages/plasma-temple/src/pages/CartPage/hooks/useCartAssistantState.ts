@@ -1,13 +1,10 @@
 import React from 'react';
 
 import { useAssistantAppState } from '../../../hooks';
-import { AnyObject, AssistantAppState } from '../../../types';
+import { AssistantAppState } from '../../../types';
 import { CartItem } from '../types';
 
-export const useCartAssistantState = <ID = string, T extends AnyObject = AnyObject>(
-    items: CartItem<ID, T>[],
-    screen?: string,
-): void => {
+export const useCartAssistantState = (items: CartItem[], screen?: string): void => {
     const assistantState: AssistantAppState = React.useMemo(
         () => ({
             screen,
