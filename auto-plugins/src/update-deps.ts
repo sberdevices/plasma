@@ -6,6 +6,8 @@ type Response = {
     failedServices: Array<{ serviceName: string; message?: string }>;
     notNeededServices: Array<{ serviceName: string; message?: string }>;
 };
+
+const baseUrl = process.env.UPDATE_SERVICE_BASE_URL;
 export default class UpdateDepsPlugin implements IPlugin {
     name = 'update-deps';
 
@@ -33,7 +35,7 @@ export default class UpdateDepsPlugin implements IPlugin {
                     return undefined;
                 }
 
-                const url = 'http://37.18.9.207:3000/deps-keeper/api/update-services';
+                const url = `${baseUrl}/deps-keeper/api/update-services`;
 
                 const body = JSON.stringify({
                     updates,
