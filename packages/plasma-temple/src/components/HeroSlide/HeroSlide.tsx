@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Col, Row } from '@sberdevices/plasma-ui';
+import { ButtonProps, Col, Row } from '@sberdevices/plasma-ui';
 import { isSberBox } from '@sberdevices/plasma-ui/utils';
 
 import { FullScreenBackground } from '../FullScreenBackground/FullScreenBackground';
@@ -21,7 +21,14 @@ const StyledRow = styled(Row)`
     z-index: 1;
 `;
 
-export const HeroSlide: React.FC<UnifiedComponentProps<HeroSlideProps, 'Title' | 'Suggest' | 'Button' | 'Wrapper'>> = ({
+type PlatformComponents = {
+    Title: {};
+    Suggest: {};
+    Wrapper: {};
+    Button: ButtonProps & React.RefAttributes<HTMLButtonElement>;
+};
+
+export const HeroSlide: React.FC<UnifiedComponentProps<HeroSlideProps, PlatformComponents>> = ({
     title,
     buttonText,
     src,
