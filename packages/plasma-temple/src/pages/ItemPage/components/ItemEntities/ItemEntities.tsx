@@ -12,7 +12,7 @@ export interface ItemEntitiesProps {
     Component?: React.ComponentType<ItemEntityProps>;
 }
 
-export const ItemEntities: React.FC<UnifiedComponentProps<ItemEntitiesProps, 'Title'>> = React.memo(
+export const ItemEntities: React.FC<UnifiedComponentProps<ItemEntitiesProps, { Title: {} }>> = React.memo(
     ({ list, platformComponents: { Title }, title, Component }) => {
         const EntityComponent = Component ?? ItemEntity;
         return (

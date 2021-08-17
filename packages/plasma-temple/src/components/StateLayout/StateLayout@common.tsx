@@ -9,10 +9,14 @@ import { FullScreenBackground } from '../FullScreenBackground/FullScreenBackgrou
 
 import { StateLayoutCommonProps } from './types';
 
-type StateLayoutProps = UnifiedComponentProps<
-    StateLayoutCommonProps,
-    'Headline' | 'Text' | 'TextWrapper' | 'ImageContainer'
->;
+type PlatformComponents = {
+    Headline: {};
+    Text: {};
+    TextWrapper: {};
+    ImageContainer: {};
+};
+
+type StateLayoutProps = UnifiedComponentProps<StateLayoutCommonProps, PlatformComponents>;
 
 const StyledHeaderContainer = styled.div`
     position: fixed;
