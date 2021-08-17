@@ -27,6 +27,7 @@ packages/plasma-tokens-web/*
 packages/**/jest.config.*
 examples/**
 
+
 packages/plasma-ui/*
 !packages/plasma-ui/src
 
@@ -35,6 +36,10 @@ packages/plasma-web/*
 
 packages/plasma-icons/*
 !packages/plasma-icons/src
+
+utils/extract-sb-docgen-info/lib
+utils/extract-sb-docgen-info/node_modules
+utils/extract-sb-docgen-info/src/extract.ts
 
 utils/plasma-sb-utils/*
 !utils/plasma-sb-utils/src

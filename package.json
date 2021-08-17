@@ -11,6 +11,7 @@
     "cy:open": "cypress open",
     "build-storybook": "lerna run build-storybook",
     "build-docz": "lerna bootstrap --scope=@sberdevices/ui && lerna run docz:build",
+    "extract-docgen-info": "lerna run extract-docgen-info",
     "lint": "eslint --ext .js,.ts,.tsx .",
     "test": "lerna run test"
   },
