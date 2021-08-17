@@ -1,5 +1,4 @@
 import React from 'react';
-import { boolean } from '@storybook/addon-knobs';
 
 import { Container } from '../components/Grid';
 
@@ -11,9 +10,9 @@ export const InSpacing = (Story: React.FC) => (
     </div>
 );
 
-export const WithGridLines = (Story: React.FC) => (
+export const WithGridLines = (Story: React.FC, context) => (
     <>
-        {boolean('Display grid', true) && <GridLines />}
+        {context.args.displayGrid && <GridLines />}
         <Story />
     </>
 );
