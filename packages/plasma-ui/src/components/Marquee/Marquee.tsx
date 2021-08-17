@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, useLayoutEffect, useRef, useState } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 
 const marquee = keyframes`
@@ -13,52 +13,65 @@ const MarqueeText = styled.div<{ isPlaying: boolean; duration: number }>`
         css`
             ${marquee} linear infinite;
         `};
+    animation-delay: 500ms;
     animation-duration: ${({ duration }) => duration}s;
 `;
 
 const Wrapper = styled.div`
-    width: max-content;
     display: flex;
 `;
 
+const StyledText = styled.div`
+    white-space: nowrap;
+`;
+
 interface MarqueeProps {
-    children?: React.ReactNode;
-    /**
-     * Включить/выключить анимацию
-     */
-    isPlaying?: boolean;
     /**
      * Текст бегущей строки
      */
     text?: string;
-    /**
-     * Длительность анимации
-     */
-    duration?: number;
 }
 
 /**
  * Компонент для отображения бегущей строки
  */
-export const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
-    ({ isPlaying = true, duration = 10, text, children }, childRef) => {
-        const marqueeTextNode = <div ref={childRef}>{text || children}</div>;
+export const Marquee: FC<MarqueeProps> = ({ text, children }) => {
+    const animationSpeed = 70;
+    const textRef = useRef<HTMLDivElement>(null);
+    const wrapperRef = useRef<HTMLDivElement>(null);
 
-        return (
-            <Wrapper>
-                {isPlaying ? (
-                    <>
-                        <MarqueeText isPlaying={isPlaying} duration={duration}>
-                            {marqueeTextNode}
-                        </MarqueeText>
-                        <MarqueeText isPlaying={isPlaying} duration={duration}>
-                            {marqueeTextNode}
-                        </MarqueeText>
-                    </>
-                ) : (
-                    <>{marqueeTextNode}</>
-                )}
-            </Wrapper>
-        );
-    },
-);
+    const [state, setState] = useState({
+        isPlaying: false,
+        animationDuration: 0,
+    });
+
+    useLayoutEffect(() => {
+        const wrapperWidth = wrapperRef.current?.getBoundingClientRect().width || 0;
+        const textWidth = textRef.current?.getBoundingClientRect().width || 0;
+        setState({
+            isPlaying: wrapperWidth < textWidth,
+            animationDuration: textWidth / animationSpeed,
+        });
+    }, [text, children]);
+
+    const textDiv = <StyledText ref={textRef}>{text || children}</StyledText>;
+
+    const marqueeText = (
+        <MarqueeText isPlaying={state.isPlaying} duration={state.animationDuration}>
+            {textDiv}
+        </MarqueeText>
+    );
+
+    return (
+        <Wrapper ref={wrapperRef}>
+            {state.isPlaying ? (
+                <>
+                    {marqueeText}
+                    {marqueeText}
+                </>
+            ) : (
+                textDiv
+            )}
+        </Wrapper>
+    );
+};
