@@ -7,8 +7,8 @@ import type { CarouselProps } from '../pages/GalleryPage/components/Carousel';
 import type { HeroSliderProps } from '../components/HeroSlider';
 import type { StateLayoutProps } from '../components/StateLayout';
 
-export type UnifiedComponentProps<T, K extends string> = T & {
-    platformComponents: Record<K, React.ComponentType<any>>;
+export type UnifiedComponentProps<T, P extends Record<string, unknown>> = T & {
+    platformComponents: { [K in keyof P]: React.ComponentType<P[K]> };
 };
 
 export interface Registry {
