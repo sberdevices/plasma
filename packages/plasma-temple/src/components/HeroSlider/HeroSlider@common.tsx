@@ -5,6 +5,7 @@ import { primary, tertiary } from '@sberdevices/plasma-tokens';
 import { useRemoteHandlers } from '../../hooks';
 import { useTouchHandler } from '../../hooks/useTouchHander';
 import { UnifiedComponentProps } from '../../registry/types';
+import { HeroSlideProps } from '../HeroSlide/HeroSlide';
 
 import { HeroSliderProps } from './types';
 
@@ -88,7 +89,12 @@ const HeroDots: React.FC<HeroDotsProps> = ({ count, current, time }) => {
     );
 };
 
-export const HeroSlider: React.FC<UnifiedComponentProps<HeroSliderProps, 'Wrapper' | 'Slide'>> = ({
+type PlatformComponents = {
+    Wrapper: React.RefAttributes<HTMLDivElement>;
+    Slide: HeroSlideProps;
+};
+
+export const HeroSlider: React.FC<UnifiedComponentProps<HeroSliderProps, PlatformComponents>> = ({
     time = 10000,
     withTimeline = true,
     items,

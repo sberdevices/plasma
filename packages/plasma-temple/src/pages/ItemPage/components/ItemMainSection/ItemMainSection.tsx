@@ -7,6 +7,7 @@ import { isSberBox } from '@sberdevices/plasma-ui/utils';
 import { FullScreenBackground } from '../FullScreenBackground/FullScreenBackground';
 import { useFocusOnMount } from '../../../../hooks/useFocusOnMount';
 import { UnifiedComponentProps } from '../../../../registry/types';
+import { SectionProps } from '../Section/Section';
 
 interface ItemCellProps {
     title: React.ReactNode;
@@ -48,9 +49,13 @@ const ItemCell: React.FC<ItemCellProps> = ({ title, content }) => (
     />
 );
 
-export const ItemMainSection: React.FC<
-    UnifiedComponentProps<ItemMainSectionProps, 'Container' | 'Title' | 'Subtitle'>
-> = ({
+type PlatformComponents = {
+    Container: SectionProps;
+    Title: {};
+    Subtitle: {};
+};
+
+export const ItemMainSection: React.FC<UnifiedComponentProps<ItemMainSectionProps, PlatformComponents>> = ({
     title,
     subtitle,
     description,

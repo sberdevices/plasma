@@ -40,7 +40,12 @@ export interface NavColProps {
     catalogImage: string;
 }
 
-export const NavCol: React.FC<UnifiedComponentProps<NavColProps, 'CatalogCard' | 'StoreCard'>> = ({
+type PlatformComponents = {
+    CatalogCard: CatalogCellProps;
+    StoreCard: StoreCellProps;
+};
+
+export const NavCol: React.FC<UnifiedComponentProps<NavColProps, PlatformComponents>> = ({
     onCatalogOpen,
     onStoreInfoClick,
     catalogImage,
