@@ -80,8 +80,10 @@ function handleEnterOrEscapeDown<P extends BaseComponentProps>(
     }
     if (event.nativeEvent.key === 'Enter') {
         handleEnterPress?.(event.nativeEvent);
+        event.preventDefault();
     } else if (event.nativeEvent.key === 'Escape') {
         handleEscapePress?.(event.nativeEvent);
+        event.preventDefault();
     } else if (event.nativeEvent.key === 'ArrowLeft') {
         handleLeftPress?.(event.nativeEvent);
         event.preventDefault();
