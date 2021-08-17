@@ -37,7 +37,7 @@ export const Default = () => {
                 <Col size={4}>
                     <Example>
                         <Cell
-                            left={<CellIcon as="img" src="./images/avocado.png" alt="avocado" />}
+                            contentLeft={<CellIcon as="img" src="./images/avocado.png" alt="avocado" />}
                             content={<TextBox title={title} subTitle={subTitle} />}
                         />
                     </Example>
@@ -67,7 +67,7 @@ export const IconSize = () => {
                     <Example>
                         <Variation>{`CellIcon Size:${size}`}</Variation>
                         <Cell
-                            left={<CellIcon size={size} as="img" src="./images/avocado.png" alt="avocado" />}
+                            contentLeft={<CellIcon size={size} as="img" src="./images/avocado.png" alt="avocado" />}
                             content={
                                 <TextBox>
                                     <TextBoxTitle>{title}</TextBoxTitle>
@@ -95,14 +95,14 @@ export const Content = () => {
                     <Example>
                         <Variation>Content: Title + SubTitle</Variation>
                         <Cell
-                            left={left}
+                            contentLeft={left}
                             content={
                                 <TextBox>
                                     <TextBoxTitle>Hello World of Plasma</TextBoxTitle>
                                     <TextBoxSubTitle>+7 (495) 500-55-50</TextBoxSubTitle>
                                 </TextBox>
                             }
-                            right={right}
+                            contentRight={right}
                         />
                     </Example>
                 </Col>
@@ -112,13 +112,13 @@ export const Content = () => {
                     <Example>
                         <Variation>Content: Header</Variation>
                         <Cell
-                            left={left}
+                            contentLeft={left}
                             content={
                                 <TextBox>
                                     <Headline1>Very much</Headline1>
                                 </TextBox>
                             }
-                            right={right}
+                            contentRight={right}
                         />
                     </Example>
                 </Col>
@@ -146,7 +146,7 @@ export const Right = () => {
                 <Col size={6}>
                     <Example>
                         <Variation>Right: Title</Variation>
-                        <Cell left={left} content={content} right={<TextBox title={title} />} />
+                        <Cell contentLeft={left} content={content} contentRight={<TextBox title={title} />} />
                     </Example>
                 </Col>
             </Row>
@@ -154,7 +154,11 @@ export const Right = () => {
                 <Col size={6}>
                     <Example>
                         <Variation>Right: Title + SubTitle</Variation>
-                        <Cell left={left} content={content} right={<TextBox title={title} subTitle={subTitle} />} />
+                        <Cell
+                            contentLeft={left}
+                            content={content}
+                            contentRight={<TextBox title={title} subTitle={subTitle} />}
+                        />
                     </Example>
                 </Col>
             </Row>
@@ -163,9 +167,9 @@ export const Right = () => {
                     <Example>
                         <Variation>Right: Title + SubTitle + Icon</Variation>
                         <Cell
-                            left={left}
+                            contentLeft={left}
                             content={content}
-                            right={
+                            contentRight={
                                 <>
                                     <TextBox title={title} subTitle={subTitle} />
                                     <CellIcon size="s" as="img" src="./images/avocado.png" alt="avocado" />
@@ -179,7 +183,7 @@ export const Right = () => {
                 <Col size={6}>
                     <Example>
                         <Variation>Right: Stepper</Variation>
-                        <Cell left={left} content={content} right={<Stepper />} />
+                        <Cell contentLeft={left} content={content} contentRight={<Stepper />} />
                     </Example>
                 </Col>
             </Row>
@@ -213,9 +217,9 @@ export const Align = () => {
                         <Cell
                             alignLeft={alignLeft}
                             alignRight={alignRight}
-                            left={left}
+                            contentLeft={left}
                             content={content}
-                            right={<TextBox title={title} />}
+                            contentRight={<TextBox title={title} />}
                         />
                     </Example>
                 </Col>
@@ -227,9 +231,9 @@ export const Align = () => {
                         <Cell
                             alignLeft={alignLeft}
                             alignRight={alignRight}
-                            left={left}
+                            contentLeft={left}
                             content={content}
-                            right={<TextBox title={title} subTitle={subTitle} />}
+                            contentRight={<TextBox title={title} subTitle={subTitle} />}
                         />
                     </Example>
                 </Col>
@@ -241,9 +245,9 @@ export const Align = () => {
                         <Cell
                             alignLeft={alignLeft}
                             alignRight={alignRight}
-                            left={left}
+                            contentLeft={left}
                             content={content}
-                            right={
+                            contentRight={
                                 <TextBox>
                                     <CellIcon size="xs" as="img" src="./images/avocado.png" alt="avocado" />
                                     <TextBoxTitle>{title}</TextBoxTitle>
@@ -273,40 +277,40 @@ export const CellListItem = () => {
                             onClick={action('onClick')}
                             outlined={boolean('outlined', true)}
                             tabIndex={0}
-                            left={left}
+                            contentLeft={left}
                             content={
                                 <TextBox>
                                     <TextBoxTitle>Hello World of Plasma</TextBoxTitle>
                                     <TextBoxSubTitle>+7 (495) 500-55-50</TextBoxSubTitle>
                                 </TextBox>
                             }
-                            right={<Disclosure tabIndex={-1} />}
+                            contentRight={<Disclosure tabIndex={-1} />}
                         />
                         <ListItem
                             onClick={action('onClick')}
                             outlined={boolean('outlined', true)}
                             tabIndex={0}
-                            left={left}
+                            contentLeft={left}
                             content={
                                 <TextBox>
                                     <TextBoxTitle>Hello World of Plasma</TextBoxTitle>
                                     <TextBoxSubTitle>+7 (495) 500-55-50</TextBoxSubTitle>
                                 </TextBox>
                             }
-                            right={<Disclosure tabIndex={-1} />}
+                            contentRight={<Disclosure tabIndex={-1} />}
                         />
                         <ListItem
                             onClick={action('onClick')}
                             outlined={boolean('outlined', true)}
                             tabIndex={0}
-                            left={left}
+                            contentLeft={left}
                             content={
                                 <TextBox>
                                     <TextBoxTitle>Hello World of Plasma</TextBoxTitle>
                                     <TextBoxSubTitle>+7 (495) 500-55-50</TextBoxSubTitle>
                                 </TextBox>
                             }
-                            right={<Disclosure tabIndex={-1} />}
+                            contentRight={<Disclosure tabIndex={-1} />}
                         />
                     </Example>
                 </Col>
@@ -319,13 +323,13 @@ export const CellListItem = () => {
                             onClick={action('onClick')}
                             outlined={boolean('outlined', true)}
                             tabIndex={0}
-                            left={left}
+                            contentLeft={left}
                             content={
                                 <TextBox>
                                     <Headline1>Very much</Headline1>
                                 </TextBox>
                             }
-                            right={
+                            contentRight={
                                 <>
                                     <TextBox title="Details" />
                                     <Disclosure tabIndex={-1} />
