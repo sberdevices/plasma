@@ -17,8 +17,23 @@ const MarqueeText = styled.div<{ isPlaying: boolean; duration: number }>`
     animation-duration: ${({ duration }) => duration}s;
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ textAlign?: 'start' | 'center' | 'end' }>`
     display: flex;
+    justify-content: ${({ textAlign }) =>
+        textAlign === 'start' &&
+        css`
+            flex-start;
+        `};
+    justify-content: ${({ textAlign }) =>
+        textAlign === 'center' &&
+        css`
+            center;
+        `};
+    justify-content: ${({ textAlign }) =>
+        textAlign === 'end' &&
+        css`
+            flex-end;
+        `};
 `;
 
 const StyledText = styled.div`
@@ -26,16 +41,13 @@ const StyledText = styled.div`
 `;
 
 interface MarqueeProps {
-    /**
-     * Текст бегущей строки
-     */
-    text?: string;
+    textAlign?: 'start' | 'center' | 'end';
 }
 
 /**
  * Компонент для отображения бегущей строки
  */
-export const Marquee: FC<MarqueeProps> = ({ text, children }) => {
+export const Marquee: FC<MarqueeProps> = ({ textAlign, children }) => {
     const animationSpeed = 70;
     const textRef = useRef<HTMLDivElement>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
@@ -52,9 +64,9 @@ export const Marquee: FC<MarqueeProps> = ({ text, children }) => {
             isPlaying: wrapperWidth < textWidth,
             animationDuration: textWidth / animationSpeed,
         });
-    }, [text, children]);
+    }, [children]);
 
-    const textDiv = <StyledText ref={textRef}>{text || children}</StyledText>;
+    const textDiv = <StyledText ref={textRef}>{children}</StyledText>;
 
     const marqueeText = (
         <MarqueeText isPlaying={state.isPlaying} duration={state.animationDuration}>
@@ -63,7 +75,7 @@ export const Marquee: FC<MarqueeProps> = ({ text, children }) => {
     );
 
     return (
-        <Wrapper ref={wrapperRef}>
+        <Wrapper ref={wrapperRef} textAlign={!state.isPlaying ? textAlign : undefined}>
             {state.isPlaying ? (
                 <>
                     {marqueeText}
