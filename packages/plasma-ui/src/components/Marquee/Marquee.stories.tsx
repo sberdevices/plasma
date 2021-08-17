@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { InSpacing } from '../../helpers/StoryDecorators';
-import { Cell } from '../Cell';
 import { Footnote1 } from '../Typography';
 
 import { Marquee } from '.';
@@ -13,25 +12,27 @@ export default {
     decorators: [InSpacing],
 };
 
-const MarqueeWrapper = styled(Cell)`
+const MarqueeWrapper = styled.div`
     width: 18rem;
     overflow: hidden;
 `;
 
 export const Default = () => {
     return (
-        <MarqueeWrapper
-            content={
-                <Marquee>
-                    <Footnote1>Очень очень длинный текст</Footnote1>
-                </Marquee>
-            }
-        />
+        <MarqueeWrapper>
+            <Marquee>
+                <Footnote1>Очень очень длинный текст бегущей строки</Footnote1>
+            </Marquee>
+        </MarqueeWrapper>
     );
 };
 
 export const Basic = () => {
-    return <MarqueeWrapper content={<Marquee text="Очень очень длинный текст" />} />;
+    return (
+        <MarqueeWrapper>
+            <Marquee>Очень очень длинный текст бегущей строки</Marquee>
+        </MarqueeWrapper>
+    );
 };
 
 Basic.parameters = {
