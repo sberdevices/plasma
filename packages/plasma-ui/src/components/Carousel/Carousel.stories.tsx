@@ -1,5 +1,5 @@
 import React from 'react';
-import { boolean, number, select } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react';
 import type { SnapType, SnapAlign } from '@sberdevices/plasma-core';
 
 import { isSberBox } from '../../utils';
@@ -7,9 +7,23 @@ import { ProductCard, MusicCard, GalleryCard } from '../Card/Card.examples';
 import { DeviceThemeProvider } from '../Device';
 import { Row } from '../Grid';
 
-import { CarouselSection, ScalingColCard, scaleCallback, scaleResetCallback } from './Carousel.examples';
+import {
+    CarouselSection,
+    ScalingColCard,
+    scaleCallback,
+    scaleResetCallback,
+    ScalingColCardProps,
+} from './Carousel.examples';
 
-import { CarouselGridWrapper, Carousel, CarouselItem, CarouselCol, useRemoteHandlers } from '.';
+import {
+    CarouselGridWrapper,
+    Carousel,
+    CarouselItem,
+    CarouselCol,
+    useRemoteHandlers,
+    CarouselProps,
+    CarouselColProps,
+} from '.';
 
 const items = Array(100)
     .fill({
@@ -26,9 +40,21 @@ const items = Array(100)
 const snapTypes = ['mandatory', 'proximity'] as SnapType[];
 const snapAlign = ['start', 'center', 'end'] as SnapAlign[];
 
-export const Basic = () => {
+const isSberbox = isSberBox();
+
+export default {
+    title: 'Controls/Carousel',
+} as Meta;
+
+export const Basic: Story<CarouselProps & CarouselColProps & { displayGrid: boolean }> = ({
+    animatedScrollByIndex,
+    scrollAlign,
+    scrollSnapType,
+    scrollSnapAlign,
+    detectActive,
+    detectThreshold,
+}) => {
     const axis = 'x';
-    const isSberbox = isSberBox();
     const delay = isSberbox ? 300 : 30;
     const longDelay = isSberbox ? 1500 : 150;
     const [index, setIndex] = useRemoteHandlers({
@@ -40,13 +66,6 @@ export const Basic = () => {
         max: items.length - 1,
     });
 
-    const animatedScrollByIndex = boolean('animatedScrollByIndex', isSberbox);
-    const scrollAlign = select('scrollAlign', ['center', 'start', 'end', 'activeDirection'], 'start');
-    const scrollSnapType = !isSberbox ? select('scrollSnapType', snapTypes, 'mandatory') : undefined;
-    const scrollSnapAlign = !isSberbox ? select('scrollSnapAlign', snapAlign, 'start') : undefined;
-    const detectActive = boolean('detectActive', true) as true;
-    const detectThreshold = number('detectThreshold', 0.5);
-
     return (
         <DeviceThemeProvider>
             <CarouselGridWrapper>
@@ -57,7 +76,7 @@ export const Basic = () => {
                     animatedScrollByIndex={animatedScrollByIndex}
                     scrollAlign={scrollAlign}
                     scrollSnapType={scrollSnapType}
-                    detectActive={detectActive}
+                    detectActive={detectActive as true}
                     detectThreshold={detectThreshold}
                     onIndexChange={(i) => setIndex(i)}
                     style={{ paddingTop: '1.25rem', paddingBottom: '1.25rem' }}
@@ -78,7 +97,45 @@ export const Basic = () => {
     );
 };
 
-export const Vertical = () => {
+Basic.args = {
+    displayGrid: true,
+    animatedScrollByIndex: isSberbox,
+    scrollAlign: 'start',
+    scrollSnapType: !isSberbox ? 'mandatory' : undefined,
+    scrollSnapAlign: !isSberbox ? 'start' : undefined,
+    detectActive: true,
+    detectThreshold: 0.5,
+};
+
+Basic.argTypes = {
+    scrollAlign: {
+        control: {
+            type: 'select',
+            options: ['center', 'start', 'end', 'activeDirection'],
+        },
+    },
+    scrollSnapType: {
+        control: {
+            type: 'inline-radio',
+            options: snapTypes,
+        },
+    },
+    scrollSnapAlign: {
+        control: {
+            type: 'inline-radio',
+            options: snapAlign,
+        },
+    },
+};
+
+export const Vertical: Story<CarouselProps & CarouselColProps & { displayGrid: boolean }> = ({
+    animatedScrollByIndex,
+    scrollAlign,
+    scrollSnapType,
+    scrollSnapAlign,
+    detectActive,
+    detectThreshold,
+}) => {
     const axis = 'y';
     const [index, setIndex] = useRemoteHandlers({
         initialIndex: 0,
@@ -89,13 +146,6 @@ export const Vertical = () => {
         max: items.length - 1,
     });
 
-    const animatedScrollByIndex = boolean('animatedScrollByIndex', false);
-    const scrollAlign = select('scrollAlign', ['center', 'start', 'end', 'activeDirection'], 'center');
-    const scrollSnapType = select('scrollSnapType', snapTypes, 'mandatory');
-    const scrollSnapAlign = select('scrollSnapAlign', snapAlign, 'center');
-    const detectActive = boolean('detectActive', true) as true;
-    const detectThreshold = number('detectThreshold', 0.5);
-
     return (
         <DeviceThemeProvider>
             <Carousel
@@ -105,7 +155,7 @@ export const Vertical = () => {
                 animatedScrollByIndex={animatedScrollByIndex}
                 scrollAlign={scrollAlign}
                 scrollSnapType={scrollSnapType}
-                detectActive={detectActive}
+                detectActive={detectActive as true}
                 detectThreshold={detectThreshold}
                 onIndexChange={(i) => setIndex(i)}
                 paddingStart="50%"
@@ -136,11 +186,21 @@ export const Vertical = () => {
     );
 };
 
-export const MusicPage: React.FC = () => {
-    const isSberbox = isSberBox();
-    const scrollSnapType = !isSberbox ? select('scrollSnapType', snapTypes, 'mandatory') : undefined;
-    const scrollSnapAlign = !isSberbox ? select('scrollSnapAlign', snapAlign, 'start') : undefined;
+Vertical.args = {
+    ...Basic.args,
+};
 
+Vertical.argTypes = {
+    ...Basic.argTypes,
+};
+
+interface MusicPageProps {
+    displayGrid: boolean;
+    scrollSnapType: SnapType;
+    scrollSnapAlign: SnapAlign;
+}
+
+export const MusicPage: Story<MusicPageProps> = ({ scrollSnapType, scrollSnapAlign }) => {
     return (
         <DeviceThemeProvider>
             <CarouselSection heading="Новые альбомы" scrollSnapType={scrollSnapType}>
@@ -168,8 +228,23 @@ export const MusicPage: React.FC = () => {
     );
 };
 
-export const CenterItem: React.FC = () => {
-    const isSberbox = isSberBox();
+MusicPage.args = {
+    displayGrid: true,
+    scrollSnapType: 'mandatory',
+    scrollSnapAlign: 'start',
+};
+
+MusicPage.argTypes = {
+    ...Basic.argTypes,
+};
+
+export const CenterItem: Story<CarouselProps & ScalingColCardProps & { displayGrid: boolean }> = ({
+    animatedScrollByIndex,
+    scrollSnapType,
+    scrollSnapAlign,
+    detectActive,
+    detectThreshold,
+}) => {
     const delay = isSberbox ? 300 : 30;
     const longDelay = isSberbox ? 1500 : 150;
     const [index, setIndex] = useRemoteHandlers({
@@ -180,12 +255,6 @@ export const CenterItem: React.FC = () => {
         min: 0,
         max: items.length - 1,
     });
-
-    const animatedScrollByIndex = boolean('animatedScrollByIndex', isSberbox);
-    const scrollSnapType = !isSberbox ? select('scrollSnapType', snapTypes, 'mandatory') : undefined;
-    const scrollSnapAlign = !isSberbox ? select('scrollSnapAlign', snapAlign, 'center') : undefined;
-    const detectActive = boolean('detectActive', true) as true;
-    const detectThreshold = number('detectThreshold', 0.5);
 
     return (
         <DeviceThemeProvider>
@@ -217,4 +286,12 @@ export const CenterItem: React.FC = () => {
             </CarouselGridWrapper>
         </DeviceThemeProvider>
     );
+};
+
+CenterItem.args = {
+    ...Basic.args,
+};
+
+CenterItem.argTypes = {
+    ...Basic.argTypes,
 };

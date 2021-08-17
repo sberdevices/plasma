@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { boolean, number, select, text } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react';
 import type { SnapType } from '@sberdevices/plasma-core';
 
 import { isSberBox } from '../../utils';
+import { disableProps } from '../../helpers';
 
-import { DatePicker, TimePicker } from '.';
+import { DatePicker, TimePicker, DatePickerProps, TimePickerProps } from '.';
 
 const StyledWrapper = styled.div`
     display: grid;
@@ -25,18 +26,45 @@ const parseDateTime = (dateTime: string) => {
     return new Date(dated[2], dated[1] - 1, dated[0], timed[0], timed[1], timed[2]);
 };
 
-export const Default = () => {
-    const [value, setValue] = React.useState(parseDateTime(text('value', '01.09.1980 00:28:59')));
+const propsToDisable = ['initialValue', 'minDate', 'maxDate'];
+
+export default {
+    title: 'Controls/Pickers',
+    argTypes: {
+        ...disableProps(propsToDisable),
+    },
+} as Meta;
+
+interface DefaultStoryProps extends DatePickerProps {
+    initialValue: string;
+    minDate: string;
+    maxDate: string;
+    DatePickeSize: string;
+    TimePickeSize: string;
+    TimePickerStep: number;
+    DatePickerVisibleItems: number;
+    TimePickerVisibleItems: number;
+    optionsYears: boolean;
+    optionsMonths: boolean;
+    optionsDays: boolean;
+    optionsShortMonthName: boolean;
+    optionsHours: boolean;
+    optionsMinutes: boolean;
+    optionsSeconds: boolean;
+}
+
+export const Default: Story<DefaultStoryProps> = (args) => {
+    const [value, setValue] = React.useState(parseDateTime(args.initialValue));
+    const min = parseDateTime(args.minDate);
+    const max = parseDateTime(args.maxDate);
     const onChange = React.useCallback((v) => setValue(v), []);
-    const min = parseDateTime(text('min', '01.01.1975 00:15:29'));
-    const max = parseDateTime(text('max', '31.12.1985 12:45:50'));
-    const years = boolean('options.years', true);
-    const months = boolean('options.months', true);
-    const days = boolean('options.days', true);
-    const shortMonthName = boolean('options.shortMonthName', false);
-    const hours = boolean('options.hours', true);
-    const minutes = boolean('options.minutes', true);
-    const seconds = boolean('options.seconds', true);
+    const years = args.optionsYears;
+    const months = args.optionsMonths;
+    const days = args.optionsDays;
+    const shortMonthName = args.optionsShortMonthName;
+    const hours = args.optionsHours;
+    const minutes = args.optionsMinutes;
+    const seconds = args.optionsSeconds;
     const dateOptions = React.useMemo(
         () => ({
             years,
@@ -44,7 +72,7 @@ export const Default = () => {
             days,
             shortMonthName,
         }),
-        [years, months, days],
+        [years, months, days, shortMonthName],
     );
     const timeOptions = React.useMemo(
         () => ({
@@ -54,10 +82,6 @@ export const Default = () => {
         }),
         [hours, minutes, seconds],
     );
-    const disabled = boolean('disabled', false);
-    const controls = boolean('controls', isSberbox);
-    const autofocus = boolean('autofocus', true);
-    const scrollSnapType = select('scrollSnapType', snapTypes, isSberbox ? 'none' : 'mandatory');
 
     return (
         <StyledWrapper>
@@ -66,13 +90,13 @@ export const Default = () => {
                 value={value}
                 min={min}
                 max={max}
-                size={select('DatePicker size', ['l', 's'], 's')}
-                visibleItems={select('DatePicker visibleItems', [3, 5], 3)}
-                scrollSnapType={scrollSnapType}
+                size={args.DatePickeSize as 's'}
+                visibleItems={args.DatePickerVisibleItems as 3}
+                scrollSnapType={args.scrollSnapType}
                 options={dateOptions}
-                disabled={disabled}
-                controls={controls}
-                autofocus={autofocus}
+                disabled={args.disabled}
+                controls={args.controls}
+                autofocus={args.autofocus}
                 onChange={onChange}
             />
             <TimePicker
@@ -80,29 +104,104 @@ export const Default = () => {
                 value={value}
                 min={min}
                 max={max}
-                step={number('TimePicker step', 1)}
-                size={select('TimePicker size', ['l', 's'], 's')}
-                visibleItems={select('TimePicker visibleItems', [3, 5], 5)}
-                scrollSnapType={scrollSnapType}
+                step={args.TimePickerStep}
+                size={args.TimePickeSize as 's'}
+                visibleItems={args.TimePickerVisibleItems as 3}
+                scrollSnapType={args.scrollSnapType}
                 options={timeOptions}
-                disabled={disabled}
-                controls={controls}
+                disabled={args.disabled}
+                controls={args.controls}
                 onChange={onChange}
             />
         </StyledWrapper>
     );
 };
 
+Default.args = {
+    initialValue: '01.09.1980 00:28:59',
+    minDate: '01.01.1975 00:15:29',
+    maxDate: '31.12.1985 12:45:50',
+    optionsYears: true,
+    optionsMonths: true,
+    optionsDays: true,
+    optionsShortMonthName: false,
+    optionsHours: true,
+    optionsMinutes: true,
+    optionsSeconds: true,
+    disabled: false,
+    controls: isSberbox,
+    autofocus: true,
+    scrollSnapType: isSberbox ? 'none' : 'mandatory',
+    DatePickeSize: 's',
+    DatePickerVisibleItems: 3,
+    TimePickeSize: 's',
+    TimePickerStep: 1,
+    TimePickerVisibleItems: 5,
+};
+
+Default.argTypes = {
+    DatePickeSize: {
+        control: {
+            type: 'inline-radio',
+            options: ['l', 's'],
+        },
+    },
+    TimePickeSize: {
+        control: {
+            type: 'inline-radio',
+            options: ['l', 's'],
+        },
+    },
+    DatePickerVisibleItems: {
+        control: {
+            type: 'inline-radio',
+            options: [3, 5],
+        },
+    },
+    TimePickerVisibleItems: {
+        control: {
+            type: 'inline-radio',
+            options: [3, 5],
+        },
+    },
+    scrollSnapType: {
+        control: {
+            type: 'select',
+            options: snapTypes,
+        },
+    },
+};
+
+interface DatePickerStoryProps extends DatePickerProps {
+    initialValue: string;
+    minDate: string;
+    maxDate: string;
+    optionsYears: boolean;
+    optionsMonths: boolean;
+    optionsDays: boolean;
+    optionsShortMonthName: boolean;
+}
+
 // eslint-disable-next-line @typescript-eslint/camelcase
-export const Date_Picker = () => {
-    const [value, setValue] = React.useState(parseDateTime(text('value', '01.09.1980 00:28:59')));
+export const Date_Picker: Story<DatePickerStoryProps> = ({
+    initialValue,
+    minDate,
+    maxDate,
+    optionsYears,
+    optionsMonths,
+    optionsDays,
+    optionsShortMonthName,
+    ...rest
+}) => {
+    const [value, setValue] = React.useState(parseDateTime(initialValue));
+    const min = parseDateTime(minDate);
+    const max = parseDateTime(maxDate);
     const onChange = React.useCallback((v) => setValue(v), []);
-    const min = parseDateTime(text('min', '01.01.1975 00:15:29'));
-    const max = parseDateTime(text('max', '31.12.1985 12:45:50'));
-    const years = boolean('options.years', true);
-    const months = boolean('options.months', true);
-    const days = boolean('options.days', true);
-    const shortMonthName = boolean('options.shortMonthName', false);
+    const years = optionsYears;
+    const months = optionsMonths;
+    const days = optionsDays;
+    const shortMonthName = optionsShortMonthName;
+
     const options = React.useMemo(
         () => ({
             years,
@@ -110,36 +209,80 @@ export const Date_Picker = () => {
             days,
             shortMonthName,
         }),
-        [years, months, days],
+        [years, months, days, shortMonthName],
     );
 
     return (
-        <DatePicker
-            id="example"
-            value={value}
-            min={min}
-            max={max}
-            size={select('size', ['l', 's'], 's')}
-            visibleItems={select('visibleItems', [3, 5], 5)}
-            scrollSnapType={select('scrollSnapType', snapTypes, isSberbox ? 'none' : 'mandatory')}
-            options={options}
-            disabled={boolean('disabled', false)}
-            controls={boolean('controls', isSberbox)}
-            autofocus={boolean('autofocus', true)}
-            onChange={onChange}
-        />
+        <DatePicker id="example" value={value} min={min} max={max} options={options} onChange={onChange} {...rest} />
     );
 };
 
 // eslint-disable-next-line @typescript-eslint/camelcase
-export const Time_Picker = () => {
-    const [value, setValue] = React.useState(parseDateTime(text('value', '01.09.1980 00:28:59')));
+Date_Picker.args = {
+    initialValue: '01.09.1980 00:28:59',
+    minDate: '01.01.1975 00:15:29',
+    maxDate: '31.12.1985 12:45:50',
+    optionsYears: true,
+    optionsMonths: true,
+    optionsDays: true,
+    optionsShortMonthName: false,
+    disabled: false,
+    controls: isSberbox,
+    autofocus: true,
+    scrollSnapType: isSberbox ? 'none' : 'mandatory',
+    size: 's',
+    visibleItems: 3,
+};
+
+// eslint-disable-next-line @typescript-eslint/camelcase
+Date_Picker.argTypes = {
+    size: {
+        control: {
+            type: 'inline-radio',
+            options: ['l', 's'],
+        },
+    },
+    visibleItems: {
+        control: {
+            type: 'inline-radio',
+            options: [3, 5],
+        },
+    },
+    scrollSnapType: {
+        control: {
+            type: 'select',
+            options: snapTypes,
+        },
+    },
+};
+
+interface TimePickerStoryProps extends TimePickerProps {
+    initialValue: string;
+    minDate: string;
+    maxDate: string;
+    optionsHours: boolean;
+    optionsMinutes: boolean;
+    optionsSeconds: boolean;
+}
+
+// eslint-disable-next-line @typescript-eslint/camelcase
+export const Time_Picker: Story<TimePickerStoryProps> = ({
+    initialValue,
+    minDate,
+    maxDate,
+    optionsHours,
+    optionsMinutes,
+    optionsSeconds,
+    ...rest
+}) => {
+    const [value, setValue] = React.useState(parseDateTime(initialValue));
+    const min = parseDateTime(minDate);
+    const max = parseDateTime(maxDate);
     const onChange = React.useCallback((v) => setValue(v), []);
-    const min = parseDateTime(text('min', '01.01.1975 00:15:29'));
-    const max = parseDateTime(text('max', '31.12.1985 12:45:50'));
-    const hours = boolean('options.hours', true);
-    const minutes = boolean('options.minutes', true);
-    const seconds = boolean('options.seconds', true);
+    const hours = optionsHours;
+    const minutes = optionsMinutes;
+    const seconds = optionsSeconds;
+
     const options = React.useMemo(
         () => ({
             hours,
@@ -149,20 +292,28 @@ export const Time_Picker = () => {
         [hours, minutes, seconds],
     );
 
-    return (
-        <TimePicker
-            value={value}
-            min={min}
-            max={max}
-            step={number('step', 1)}
-            size={select('size', ['l', 's'], 'l')}
-            visibleItems={select('visibleItems', [3, 5], 3)}
-            scrollSnapType={select('scrollSnapType', snapTypes, isSberbox ? 'none' : 'mandatory')}
-            options={options}
-            disabled={boolean('disabled', false)}
-            controls={boolean('controls', isSberbox)}
-            autofocus={boolean('autofocus', true)}
-            onChange={onChange}
-        />
-    );
+    return <TimePicker value={value} min={min} max={max} options={options} onChange={onChange} {...rest} />;
+};
+
+// eslint-disable-next-line @typescript-eslint/camelcase
+Time_Picker.args = {
+    initialValue: '01.09.1980 00:28:59',
+    minDate: '01.01.1975 00:15:29',
+    maxDate: '31.12.1985 12:45:50',
+    optionsHours: true,
+    optionsMinutes: true,
+    optionsSeconds: true,
+    disabled: false,
+    controls: isSberbox,
+    autofocus: true,
+    scrollSnapType: isSberbox ? 'none' : 'mandatory',
+    size: 's',
+    visibleItems: 5,
+    step: 1,
+};
+
+// eslint-disable-next-line @typescript-eslint/camelcase
+Time_Picker.argTypes = {
+    // eslint-disable-next-line @typescript-eslint/camelcase
+    ...Date_Picker.argTypes,
 };

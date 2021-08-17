@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { text, number, boolean, select, radios } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { IconMic, IconPlus, IconTrash } from '@sberdevices/plasma-icons';
 
@@ -28,11 +28,16 @@ const StyledContentGrid = styled.div<{ $colCount: number }>`
     grid-column-gap: 0.75rem;
 `;
 
-const Content = () => {
+interface ContentComponentProps {
+    contentType: string;
+    contentItemsNumber: number;
+    enableIcons: boolean;
+}
+
+const Content: React.FC<ContentComponentProps> = ({ contentType, contentItemsNumber, enableIcons }) => {
     const [activeTab, setActiveTab] = React.useState(0);
-    const contentType = select('Content type', contentTypes, 'Buttons');
-    const contentItems = contentType !== 'None' && Array(number('Content items', 3)).fill(0);
-    const enableIcons = contentType !== 'None' && boolean('Enable icons', true);
+
+    const contentItems = Array(contentItemsNumber).fill(0);
 
     if (contentType === 'Buttons') {
         return (
@@ -68,7 +73,7 @@ const Content = () => {
         );
     }
 
-    if (contentType === 'Mobile') {
+    if (contentType === 'MobileButtons') {
         return (
             <StyledContentGrid $colCount={2}>
                 <Button view="clear" size="s" pin="circle-circle" contentLeft={<IconPlus color="inherit" size="s" />} />
@@ -86,9 +91,18 @@ const Content = () => {
     return null;
 };
 
-export const Default = () => {
+export default {
+    title: 'Layout/Header',
+} as Meta;
+
+export const Default: Story<HeaderProps & { enableLogo: boolean; displayGrid: boolean } & ContentComponentProps> = ({
+    enableLogo,
+    logoAlt,
+    title,
+    subtitle,
+    ...rest
+}) => {
     const [isBack, setIsBack] = useState(true);
-    const logo = boolean('logo', true);
     const props: HeaderProps = isBack
         ? {
               back: true,
@@ -108,22 +122,51 @@ export const Default = () => {
     return (
         <Header
             {...props}
-            logo={logo && './images/320_320_12.jpg'}
-            logoAlt={logo && text('logoAlt', 'Logo')}
-            title={text('title', 'Header title text is very long to fit given width')}
-            subtitle={text('subtitle', 'Subtitle text is very long to fit given width even this has smaller font size')}
+            logo={enableLogo && './images/320_320_12.jpg'}
+            logoAlt={enableLogo && logoAlt}
+            title={title}
+            subtitle={subtitle}
         >
-            <Content />
+            <Content {...rest} />
         </Header>
     );
 };
 
-export const CustomAssembly = () => {
-    const variant = radios(
-        'Variant',
-        { 'Title+Subtitle': 'title+subtitle', 'Label+Title': 'label+title', Title: 'title' },
-        'title+subtitle',
-    );
+Default.args = {
+    displayGrid: true,
+    enableLogo: true,
+    logoAlt: 'Logo',
+    title: 'Header title text is very long to fit given width',
+    subtitle: 'Subtitle text is very long to fit given width even this has smaller font size',
+    contentType: 'Buttons',
+    contentItemsNumber: 3,
+    enableIcons: true,
+};
+
+Default.argTypes = {
+    contentType: {
+        control: {
+            type: 'select',
+            options: contentTypes,
+        },
+    },
+};
+
+interface CustomAssemblyProps {
+    displayGrid: boolean;
+    variant: string;
+    title: string;
+    subtitle: string;
+    label: string;
+}
+
+export const CustomAssembly: Story<CustomAssemblyProps & ContentComponentProps> = ({
+    variant,
+    title,
+    subtitle,
+    label,
+    ...rest
+}) => {
     const [isBack, setIsBack] = useState(true);
 
     return (
@@ -147,23 +190,44 @@ export const CustomAssembly = () => {
             <HeaderTitleWrapper>
                 {variant === 'title+subtitle' && (
                     <>
-                        <HeaderTitle>{text('title', 'Header title text')}</HeaderTitle>
-                        <HeaderSubtitle>{text('subtitle', 'Subtitle text')}</HeaderSubtitle>
+                        <HeaderTitle>{title}</HeaderTitle>
+                        <HeaderSubtitle>{subtitle}</HeaderSubtitle>
                     </>
                 )}
                 {variant === 'label+title' && (
                     <>
-                        <HeaderSubtitle>{text('label', 'Label text')}</HeaderSubtitle>
-                        <HeaderTitle>{text('title', 'Header title text')}</HeaderTitle>
+                        <HeaderSubtitle>{label}</HeaderSubtitle>
+                        <HeaderTitle>{title}</HeaderTitle>
                     </>
                 )}
-                {variant === 'title' && <HeaderTitle>{text('title', 'Header title text')}</HeaderTitle>}
+                {variant === 'title' && <HeaderTitle>{title}</HeaderTitle>}
             </HeaderTitleWrapper>
             <HeaderContent>
-                <Content />
+                <Content {...rest} />
             </HeaderContent>
         </HeaderRoot>
     );
+};
+
+CustomAssembly.args = {
+    displayGrid: true,
+    variant: 'title+subtitle',
+    title: 'Header title text',
+    subtitle: 'Subtitle text',
+    label: 'Label text',
+    contentType: 'Buttons',
+    contentItemsNumber: 3,
+    enableIcons: true,
+};
+
+CustomAssembly.argTypes = {
+    ...Default.argTypes,
+    variant: {
+        control: {
+            type: 'inline-radio',
+            options: ['title+subtitle', 'label+title', 'title'],
+        },
+    },
 };
 
 CustomAssembly.parameters = {

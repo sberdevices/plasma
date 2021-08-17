@@ -1,22 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-import { text, select, boolean } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { accent, footnote1 } from '@sberdevices/plasma-tokens';
 
 import { Footnote1, Headline1 } from '../Typography';
 import { CustomAssembly as Stepper } from '../Stepper/Stepper.stories';
 import { Container, Row, Col } from '../Grid';
-import { TextBox, TextBoxTitle, TextBoxSubTitle, TextBoxLabel, TextBoxCaption } from '../TextBox';
+import { TextBox, TextBoxTitle, TextBoxSubTitle, TextBoxLabel, TextBoxCaption, TextPttrnProps } from '../TextBox';
 
-import { Cell, CellIcon, CellSize } from './Cell';
+import { Cell, CellIcon, CellSize, CellProps } from './Cell';
 import { Disclosure } from './CellDisclosure';
 import { CellListItem as ListItem } from './CellListItem';
 
 export default {
     title: 'Content/Cell',
-    component: Cell,
-};
+} as Meta;
 
 const Example = styled.div`
     position: relative;
@@ -27,10 +26,7 @@ const Example = styled.div`
     margin: 1.5em 0;
 `;
 
-export const Default = () => {
-    const title = text('title', 'Hello World of Plasma');
-    const subTitle = text('subTitle', 'Use with wisdom');
-
+export const Default: Story<TextPttrnProps> = ({ title, subTitle }) => {
     return (
         <Container>
             <Row>
@@ -47,6 +43,11 @@ export const Default = () => {
     );
 };
 
+Default.args = {
+    title: 'Hello World of Plasma',
+    subTitle: 'Use with wisdom',
+};
+
 const Variation = styled(Footnote1)`
     position: absolute;
     top: -1.5em;
@@ -55,11 +56,13 @@ const Variation = styled(Footnote1)`
     color: ${accent};
 `;
 
-export const IconSize = () => {
-    const size = select('size', ['xs', 's', 'm', 'l', 'xl', 'xxl'], 'm');
-    const title = text('title', 'Hello World of Plasma');
-    const subTitle = text('subTitle', 'Use with wisdom');
+interface IconSizeProps {
+    size: CellSize;
+    title: string;
+    subTitle: string;
+}
 
+export const IconSize: Story<IconSizeProps> = ({ size, title, subTitle }) => {
     return (
         <Container>
             <Row>
@@ -82,9 +85,21 @@ export const IconSize = () => {
     );
 };
 
-export const Content = () => {
-    const size = select('size', ['xs', 's', 'm', 'l', 'xl', 'xxl'] as Array<CellSize>, 'm');
+IconSize.args = {
+    ...Default.args,
+    size: 'm',
+};
 
+IconSize.argTypes = {
+    size: {
+        control: {
+            type: 'select',
+            options: ['xs', 's', 'm', 'l', 'xl', 'xxl'] as Array<CellSize>,
+        },
+    },
+};
+
+export const Content: Story<{ size: CellSize }> = ({ size }) => {
     const left = <CellIcon size={size} as="img" src="./images/avocado.png" alt="avocado" />;
     const right = <TextBox title="Details" />;
 
@@ -127,11 +142,15 @@ export const Content = () => {
     );
 };
 
-export const Right = () => {
-    const size = select('size', ['xs', 's', 'm', 'l', 'xl', 'xxl'] as Array<CellSize>, 'm');
-    const title = text('title', 'Details');
-    const subTitle = text('subTitle', 'info');
+Content.args = {
+    size: 'm',
+};
 
+Content.argTypes = {
+    ...IconSize.argTypes,
+};
+
+export const Right: Story<IconSizeProps> = ({ size, title, subTitle }) => {
     const left = <CellIcon size={size} as="img" src="./images/avocado.png" alt="avocado" />;
     const content = (
         <TextBox>
@@ -183,7 +202,11 @@ export const Right = () => {
                 <Col size={6}>
                     <Example>
                         <Variation>Right: Stepper</Variation>
-                        <Cell contentLeft={left} content={content} contentRight={<Stepper />} />
+                        <Cell
+                            contentLeft={left}
+                            content={content}
+                            contentRight={<Stepper step={1} min={1} max={10} disabled={false} showWarning={false} />}
+                        />
                     </Example>
                 </Col>
             </Row>
@@ -191,13 +214,17 @@ export const Right = () => {
     );
 };
 
-export const Align = () => {
-    const alignLeft = select('alignLeft', ['top', 'center', 'bottom'], 'center');
-    const alignRight = select('alignRight', ['top', 'center'], 'center');
-    const size = select('size', ['xs', 's', 'm', 'l', 'xl', 'xxl'] as Array<CellSize>, 'm');
-    const title = text('title', 'Details');
-    const subTitle = text('subTitle', 'info');
+Right.args = {
+    title: 'Details',
+    subTitle: 'info',
+    size: 'm',
+};
 
+Right.argTypes = {
+    ...IconSize.argTypes,
+};
+
+export const Align: Story<CellProps & IconSizeProps> = ({ alignLeft, alignRight, size, title, subTitle }) => {
     const left = <CellIcon size={size} as="img" src="./images/avocado.png" alt="avocado" />;
     const content = (
         <TextBox>
@@ -262,9 +289,29 @@ export const Align = () => {
     );
 };
 
-export const CellListItem = () => {
-    const size = select('size', ['xs', 's', 'm', 'l', 'xl', 'xxl'] as Array<CellSize>, 'm');
+Align.args = {
+    ...Right.args,
+    alignLeft: 'center',
+    alignRight: 'center',
+};
 
+Align.argTypes = {
+    ...IconSize.argTypes,
+    alignLeft: {
+        control: {
+            type: 'inline-radio',
+            options: ['top', 'center', 'bottom'],
+        },
+    },
+    alignRight: {
+        control: {
+            type: 'inline-radio',
+            options: ['top', 'center'],
+        },
+    },
+};
+
+export const CellListItem: Story<CellProps & IconSizeProps> = ({ size, outlined }) => {
     const left = <CellIcon size={size} as="img" src="./images/avocado.png" alt="avocado" />;
 
     return (
@@ -275,7 +322,7 @@ export const CellListItem = () => {
                         <Variation>With Disclosure</Variation>
                         <ListItem
                             onClick={action('onClick')}
-                            outlined={boolean('outlined', true)}
+                            outlined={outlined}
                             tabIndex={0}
                             contentLeft={left}
                             content={
@@ -288,7 +335,7 @@ export const CellListItem = () => {
                         />
                         <ListItem
                             onClick={action('onClick')}
-                            outlined={boolean('outlined', true)}
+                            outlined={outlined}
                             tabIndex={0}
                             contentLeft={left}
                             content={
@@ -301,7 +348,7 @@ export const CellListItem = () => {
                         />
                         <ListItem
                             onClick={action('onClick')}
-                            outlined={boolean('outlined', true)}
+                            outlined={outlined}
                             tabIndex={0}
                             contentLeft={left}
                             content={
@@ -321,7 +368,7 @@ export const CellListItem = () => {
                         <Variation>With Disclosure + Title</Variation>
                         <ListItem
                             onClick={action('onClick')}
-                            outlined={boolean('outlined', true)}
+                            outlined={outlined}
                             tabIndex={0}
                             contentLeft={left}
                             content={
@@ -341,4 +388,13 @@ export const CellListItem = () => {
             </Row>
         </Container>
     );
+};
+
+CellListItem.args = {
+    size: 'm',
+    outlined: true,
+};
+
+CellListItem.argTypes = {
+    ...IconSize.argTypes,
 };

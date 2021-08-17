@@ -1,12 +1,12 @@
 import React from 'react';
-import { text, number, boolean } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react';
 
 import { IconPlaceholder } from '../../helpers/IconPlaceholder';
 import { Button } from '../Button';
 import { Cell, CellIcon, CellListItem, CellDisclosure } from '../Cell';
 import { TextBox, TextBoxTitle, TextBoxSubTitle, TextBoxBiggerTitle, TextBoxBigTitle } from '../TextBox';
 
-import { Card } from './Card';
+import { Card, CardProps } from './Card';
 import { CardBody } from './CardBody';
 import { CardContent } from './CardContent';
 import { CardMedia } from './CardMedia';
@@ -16,16 +16,20 @@ const longText = `Канадский актёр, кинопродюсер, и м
 «Джон Уик», а также в фильмах «На гребне волны», «Мой личный штат Айдахо», «Дракула», «Скорость»,
 «Джонни-мнемоник», «Адвокат дьявола», «Константин: Повелитель тьмы» и «Короли улиц».`;
 
-export const BasicValue = () => {
-    const cover = boolean('cover', false);
+export default {
+    title: 'Content/Card',
+} as Meta;
 
+interface BasicValueProps extends CardProps {
+    cover: boolean;
+    subTitle: string;
+    title: string;
+    description: string;
+}
+
+export const BasicValue: Story<BasicValueProps> = ({ outlined, scaleOnFocus, cover, subTitle, title, description }) => {
     return (
-        <Card
-            style={{ width: '22.5rem' }}
-            tabIndex={-1}
-            outlined={boolean('outlined', true)}
-            scaleOnFocus={boolean('scaleOnFocus', true)}
-        >
+        <Card style={{ width: '22.5rem' }} tabIndex={0} outlined={outlined} scaleOnFocus={scaleOnFocus}>
             <CardBody>
                 <CardMedia
                     src="./images/320_320_0.jpg"
@@ -34,9 +38,9 @@ export const BasicValue = () => {
                 />
                 <CardContent cover={cover}>
                     <TextBox>
-                        <TextBoxBigTitle>{text('subTitle', 'Потребительский кредит')}</TextBoxBigTitle>
-                        <TextBoxBiggerTitle>{text('title', 'до 230 000 ₽')}</TextBoxBiggerTitle>
-                        <TextBoxSubTitle>{text('description', 'На 18 месяцев, ставка 13,9%')}</TextBoxSubTitle>
+                        <TextBoxBigTitle>{subTitle}</TextBoxBigTitle>
+                        <TextBoxBiggerTitle>{title}</TextBoxBiggerTitle>
+                        <TextBoxSubTitle>{description}</TextBoxSubTitle>
                     </TextBox>
                     <Button
                         text="Label"
@@ -54,9 +58,24 @@ export const BasicValue = () => {
     );
 };
 
-export const BasicDefault = () => {
-    const cover = boolean('cover', false);
+BasicValue.args = {
+    cover: false,
+    outlined: true,
+    scaleOnFocus: true,
+    subTitle: 'Потребительский кредит',
+    title: 'до 230 000 ₽',
+    description: 'На 18 месяцев, ставка 13,9%',
+};
 
+interface BasicDefaultProps {
+    cover: boolean;
+    title: string;
+    footer1: string;
+    footer2: string;
+    description: string;
+}
+
+export const BasicDefault: Story<BasicDefaultProps> = ({ cover, title, footer1, footer2, description }) => {
     return (
         <Card style={{ width: '20rem' }}>
             <CardBody>
@@ -67,12 +86,12 @@ export const BasicDefault = () => {
                 />
                 <CardContent cover={cover}>
                     <TextBox>
-                        <TextBoxBigTitle>{text('title', 'Киану Ривз')}</TextBoxBigTitle>
-                        <TextBoxSubTitle>{text('footer1', 'Актёр')}</TextBoxSubTitle>
+                        <TextBoxBigTitle>{title}</TextBoxBigTitle>
+                        <TextBoxSubTitle>{footer1}</TextBoxSubTitle>
                         <CardParagraph1 style={{ marginTop: '0.75rem' }} lines={4}>
-                            {longText}
+                            {description}
                         </CardParagraph1>
-                        <TextBoxSubTitle>{text('footer2', 'ru.wikipedia.org')}</TextBoxSubTitle>
+                        <TextBoxSubTitle>{footer2}</TextBoxSubTitle>
                     </TextBox>
                 </CardContent>
             </CardBody>
@@ -80,7 +99,20 @@ export const BasicDefault = () => {
     );
 };
 
-export const ListCard = () => (
+BasicDefault.args = {
+    cover: false,
+    title: 'Киану Ривз',
+    footer1: 'Актёр',
+    footer2: 'ru.wikipedia.org',
+    description: longText,
+};
+
+interface ListCardProps {
+    title: string;
+    subtitle: string;
+}
+
+export const ListCard: Story<ListCardProps> = ({ title, subtitle }) => (
     <Card style={{ width: '20rem' }}>
         <CardContent compact>
             <Cell
@@ -91,8 +123,8 @@ export const ListCard = () => (
                 }
                 content={
                     <TextBox>
-                        <TextBoxTitle>{text('title', 'Title')}</TextBoxTitle>
-                        <TextBoxSubTitle>{text('subtitle', 'Subtitle')}</TextBoxSubTitle>
+                        <TextBoxTitle>{title}</TextBoxTitle>
+                        <TextBoxSubTitle>{subtitle}</TextBoxSubTitle>
                     </TextBox>
                 }
                 contentRight={<CellDisclosure />}
@@ -101,14 +133,27 @@ export const ListCard = () => (
     </Card>
 );
 
-export const ListAndHeader = () => {
-    const items = Array(number('List items', 3)).fill(0);
+ListCard.args = {
+    title: 'Title',
+    subtitle: 'Subtitle',
+};
+
+interface ListAndHeaderProps {
+    listItems: number;
+    header: string;
+    details: string;
+    title: string;
+    subtitle: string;
+}
+
+export const ListAndHeader: Story<ListAndHeaderProps> = ({ listItems, header, details, title, subtitle }) => {
+    const items = Array(listItems).fill(0);
     return (
         <Card style={{ width: '20rem' }}>
             <CardContent compact>
                 <Cell
-                    content={<TextBoxBigTitle>{text('header', 'Название раздела')}</TextBoxBigTitle>}
-                    contentRight={<span style={{ marginTop: 5 }}>{text('details', 'Detail')}</span>}
+                    content={<TextBoxBigTitle>{header}</TextBoxBigTitle>}
+                    contentRight={<span style={{ marginTop: 5 }}>{details}</span>}
                 />
                 {items.map((_, i) => (
                     <CellListItem
@@ -120,8 +165,8 @@ export const ListAndHeader = () => {
                         }
                         content={
                             <TextBox>
-                                <TextBoxTitle>{text('title', 'Title')}</TextBoxTitle>
-                                <TextBoxSubTitle>{text('subtitle', 'Subtitle')}</TextBoxSubTitle>
+                                <TextBoxTitle>{title}</TextBoxTitle>
+                                <TextBoxSubTitle>{subtitle}</TextBoxSubTitle>
                             </TextBox>
                         }
                         contentRight={<CellDisclosure />}
@@ -132,12 +177,27 @@ export const ListAndHeader = () => {
     );
 };
 
-export const FastAnswer = () => (
+ListAndHeader.args = {
+    listItems: 3,
+    header: 'Название раздела',
+    details: 'Detail',
+    title: 'Title',
+    subtitle: 'Subtitle',
+};
+
+interface FastAnswerProps {
+    header: string;
+    details: string;
+    value: string;
+    description: string;
+}
+
+export const FastAnswer: Story<FastAnswerProps> = ({ header, details, value, description }) => (
     <Card style={{ width: '20rem' }}>
         <CardContent compact>
             <Cell
-                content={<TextBoxBigTitle>{text('header', 'Название раздела')}</TextBoxBigTitle>}
-                contentRight={<span style={{ marginTop: 5 }}>{text('details', 'Detail')}</span>}
+                content={<TextBoxBigTitle>{header}</TextBoxBigTitle>}
+                contentRight={<span style={{ marginTop: 5 }}>{details}</span>}
             />
             <Cell
                 contentLeft={
@@ -145,7 +205,7 @@ export const FastAnswer = () => (
                         <IconPlaceholder size={2.25} />
                     </CellIcon>
                 }
-                content={<TextBoxBiggerTitle>{text('value', 'Value')}</TextBoxBiggerTitle>}
+                content={<TextBoxBiggerTitle>{value}</TextBoxBiggerTitle>}
                 contentRight={
                     <CellIcon>
                         <IconPlaceholder style={{ marginTop: '0.375rem' }} size={1.5} />
@@ -153,7 +213,14 @@ export const FastAnswer = () => (
                 }
                 alignRight="center"
             />
-            <TextBoxSubTitle>{text('description', 'Description')}</TextBoxSubTitle>
+            <TextBoxSubTitle>{description}</TextBoxSubTitle>
         </CardContent>
     </Card>
 );
+
+FastAnswer.args = {
+    header: 'Название раздела',
+    details: 'Detail',
+    value: 'Value',
+    description: 'Description',
+};
