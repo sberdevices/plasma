@@ -1,20 +1,56 @@
 import React from 'react';
-import { boolean, text } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { InSpacingDecorator } from '../../helpers';
+import { InSpacingDecorator, disableProps } from '../../helpers';
 
-import { Checkbox } from '.';
+import { Checkbox, CheckboxProps } from '.';
+
+const propsToDisable = [
+    'name',
+    'indeterminate',
+    'id',
+    'focused',
+    'type',
+    'value',
+    'checked',
+    'readOnly',
+    'placeholder',
+    'required',
+    'minLength',
+    'maxLength',
+    'onChange',
+    'onFocus',
+    'onBlur',
+];
 
 export default {
     title: 'Controls/Checkbox',
     component: Checkbox,
     decorators: [InSpacingDecorator],
-};
+    argTypes: {
+        label: {
+            control: {
+                type: 'text',
+            },
+        },
+        description: {
+            control: {
+                type: 'text',
+            },
+        },
+    },
+} as Meta;
 
 const onChange = action('onChange');
 const onFocus = action('onFocus');
 const onBlur = action('onBlur');
+
+const englishDescription = (
+    <div>
+        The most spoken language in the <a href="/#">world</a>{' '}
+    </div>
+);
 
 const name = 'languages';
 const items = [
@@ -26,7 +62,14 @@ const items = [
         description: 'Languages that people speak. They were not designed by people and they evolved naturally.',
     },
     { name, value: 'russian', label: 'Russian', disabled: false, parent: 'natural' },
-    { name, value: 'english', label: 'English', disabled: false, parent: 'natural' },
+    {
+        name,
+        value: 'english',
+        label: 'English',
+        disabled: false,
+        parent: 'natural',
+        description: englishDescription,
+    },
     { name, value: 'french', label: 'French', disabled: false, parent: 'natural' },
     { name, value: 'klingon', label: 'Klingon', disabled: false, parent: 'natural' },
     { name, value: 'elvish', label: 'Elvish', disabled: true, parent: 'natural' },
@@ -54,7 +97,7 @@ const getState = (values: Record<string, boolean | null>, value: string) => {
     return { checked: true, indeterminate: false };
 };
 
-export const Default = () => {
+export const Live = () => {
     const [values, setValues] = React.useState({
         russian: true,
         english: true,
@@ -94,17 +137,13 @@ export const Default = () => {
     ));
 };
 
-export const TextDescription = () => {
+export const Default: Story<CheckboxProps> = (args) => {
     const value = 0;
     const [checked, setChecked] = React.useState(true);
 
     return (
         <Checkbox
-            name={text('name', 'checkbox')}
             value={value}
-            label={text('label', 'Label')}
-            description={text('description', 'Description')}
-            disabled={boolean('disabled', false)}
             checked={checked}
             onChange={(event) => {
                 setChecked(event.target.checked);
@@ -112,33 +151,18 @@ export const TextDescription = () => {
             }}
             onFocus={onFocus}
             onBlur={onBlur}
+            {...args}
         />
     );
 };
 
-export const NodeDescription = () => {
-    const value = 0;
-    const [checked, setChecked] = React.useState(true);
-    const description = (
-        <div>
-            Description with <a href="/#">link</a>{' '}
-        </div>
-    );
+Default.args = {
+    name: 'checkbox',
+    label: 'Label',
+    description: 'Description',
+    disabled: false,
+};
 
-    return (
-        <Checkbox
-            name={text('name', 'checkbox')}
-            value={value}
-            label={text('label', 'Label')}
-            description={description}
-            disabled={boolean('disabled', false)}
-            checked={checked}
-            onChange={(event) => {
-                setChecked(event.target.checked);
-                onChange(event);
-            }}
-            onFocus={onFocus}
-            onBlur={onBlur}
-        />
-    );
+Default.argTypes = {
+    ...disableProps(propsToDisable),
 };
