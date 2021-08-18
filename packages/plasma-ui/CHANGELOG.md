@@ -1,3 +1,20 @@
+# v1.38.1 (Wed Aug 18 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): add textAlign prop [#618](https://github.com/sberdevices/plasma/pull/618) ([@ayymkozb](https://github.com/ayymkozb))
+- fix(plasma-ui): calculate props in component [#618](https://github.com/sberdevices/plasma/pull/618) ([@ayymkozb](https://github.com/ayymkozb))
+- fix(plasma-ui): check ref commit [#618](https://github.com/sberdevices/plasma/pull/618) ([@ayymkozb](https://github.com/ayymkozb))
+- fix(plasma-ui): marquee fix [#618](https://github.com/sberdevices/plasma/pull/618) ([@ayymkozb](https://github.com/ayymkozb))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@ayymkozb](https://github.com/ayymkozb)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
 # v1.38.0 (Mon Aug 16 2021)
 
 #### 🚀 Enhancement
