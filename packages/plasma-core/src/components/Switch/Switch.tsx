@@ -20,7 +20,7 @@ export interface SwitchProps
         Omit<React.LabelHTMLAttributes<HTMLLabelElement>, 'onChange' | 'onFocus' | 'onBlur'>,
         Pick<
             InputHTMLAttributes<HTMLInputElement>,
-            'name' | 'value' | 'checked' | 'disabled' | 'onChange' | 'onFocus' | 'onBlur'
+            'name' | 'value' | 'checked' | 'disabled' | 'readOnly' | 'onChange' | 'onFocus' | 'onBlur'
         > {}
 
 const triggerWidth = 'var(--plasma-switch-trigger-width, 2.75rem)';
@@ -146,6 +146,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(function S
         checked,
         defaultChecked,
         disabled,
+        readOnly,
         pressed,
         focused,
         outlined,
@@ -170,6 +171,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(function S
                 value={value}
                 checked={checked}
                 defaultChecked={defaultChecked}
+                readOnly={readOnly}
                 disabled={disabled}
                 tabIndex={tabIndex}
                 onChange={onChange}
