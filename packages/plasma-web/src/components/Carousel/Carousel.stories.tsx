@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { boolean, number, select } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react';
 
-import { InSpacingDecorator } from '../../helpers';
+import { InSpacingDecorator, disableProps } from '../../helpers';
 import { Button } from '../Button';
 import { Image } from '../Image';
 import { SmartPaginationDots } from '../PaginationDots';
@@ -10,11 +10,37 @@ import { Headline4, Footnote1 } from '../Typography';
 
 import { Carousel, CarouselItem } from '.';
 
+const propsToDisable = [
+    'onScroll',
+    'index',
+    'scrollSnapType',
+    'scrollAlign',
+    'paddingStart',
+    'paddingEnd',
+    'detectActive',
+    'detectThreshold',
+    'onIndexChange',
+    'scaleCallback',
+    'scaleResetCallback',
+    'as',
+    'forwardedAs',
+];
+
 export default {
     title: 'Controls/Carousel',
     component: Carousel,
     decorators: [InSpacingDecorator],
-};
+    argTypes: {
+        align: {
+            control: {
+                type: 'inline-radio',
+                options: ['center', 'start', 'end'],
+            },
+        },
+    },
+} as Meta;
+
+type alignType = 'center' | 'start' | 'end';
 
 const items = Array(25)
     .fill({
@@ -54,9 +80,8 @@ const StyledCardContent = styled.div`
     color: #fff;
 `;
 
-export const Default = () => {
+export const Default: Story<{ align: string }> = ({ align }) => {
     const [index, setIndex] = React.useState(0);
-    const align = select('scrollAlign', ['center', 'start', 'end'], 'center');
 
     return (
         <StyledWrapper>
@@ -65,10 +90,14 @@ export const Default = () => {
                 index={index}
                 detectActive
                 onIndexChange={(i) => setIndex(i)}
-                scrollAlign={align}
+                scrollAlign={align as alignType}
             >
                 {items.map((item, i) => (
-                    <CarouselItem key={`item:${i}`} style={{ width: 550, padding: '0 0.5rem' }} scrollSnapAlign={align}>
+                    <CarouselItem
+                        key={`item:${i}`}
+                        style={{ width: 550, padding: '0 0.5rem' }}
+                        scrollSnapAlign={align as alignType}
+                    >
                         <StyledCard>
                             <Image src={item.imageSrc} ratio="16 / 9" base="div" />
                             <StyledCardContent>
@@ -87,4 +116,12 @@ export const Default = () => {
             </StyledButtonGroup>
         </StyledWrapper>
     );
+};
+
+Default.args = {
+    align: 'center',
+};
+
+Default.argTypes = {
+    ...disableProps(propsToDisable),
 };

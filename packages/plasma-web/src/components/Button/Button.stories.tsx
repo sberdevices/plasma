@@ -1,44 +1,99 @@
 import React from 'react';
-import { select, boolean, text } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { IconPlaceholder } from '../../helpers';
+import { IconPlaceholder, disableProps } from '../../helpers';
 
-import { Button } from '.';
+import { Button, ButtonProps } from '.';
+
+const views = ['primary', 'secondary', 'success', 'critical'];
+const sizes = ['l', 'm', 's'];
+const pins = [
+    'square-square',
+    'circle-circle',
+    'circle-clear',
+    'clear-circle',
+    'clear-clear',
+    'square-clear',
+    'clear-square',
+];
+
+const contentTypes = ['Text', 'Text+Left', 'Text+Right', 'Left'];
 
 const onClick = action('onClick');
 const onFocus = action('onFocus');
 const onBlur = action('onBlur');
 
-export const Default = () => {
-    const views = ['primary', 'secondary', 'success', 'critical'];
-    const sizes = ['l', 'm', 's'];
-    const pins = [
-        'square-square',
-        'square-circle',
-        'circle-square',
-        'circle-circle',
-        'circle-clear',
-        'clear-circle',
-        'clear-clear',
-    ];
-    const contentTypes = ['Text', 'Text+Left', 'Text+Right', 'Left'];
-    const contentType = select('Content type', contentTypes, 'Text');
+const propsToDisable = [
+    'theme',
+    'as',
+    'forwardedAs',
+    'contentLeft',
+    'contentRight',
+    'shiftLeft',
+    'shiftRight',
+    'blur',
+    'stretch',
+    'square',
+];
 
+export default {
+    title: 'Controls/Button',
+    argTypes: {
+        contentType: {
+            control: {
+                type: 'select',
+                options: contentTypes,
+            },
+        },
+        text: {
+            control: {
+                type: 'text',
+            },
+        },
+        size: {
+            control: {
+                type: 'inline-radio',
+                options: sizes,
+            },
+        },
+        view: {
+            control: {
+                type: 'select',
+                options: views,
+            },
+        },
+        pin: {
+            control: {
+                type: 'select',
+                options: pins,
+            },
+        },
+        ...disableProps(propsToDisable),
+    },
+} as Meta;
+
+export const Default: Story<ButtonProps & { contentType: string }> = ({ contentType, text, ...rest }) => {
     return (
         <Button
-            view={select('view', views, 'primary') as 'primary'}
-            size={select('size', sizes, 'l') as 'l'}
-            pin={select('pin', pins, 'square-square') as 'square-square'}
-            disabled={boolean('disabled', false)}
-            outlined={boolean('outlined', false)}
-            focused={boolean('focused', false)}
-            text={contentType !== 'Left' && text('text', 'Label')}
+            text={contentType !== 'Left' && text}
             contentLeft={(contentType === 'Left' || contentType === 'Text+Left') && <IconPlaceholder />}
             contentRight={contentType === 'Text+Right' && <IconPlaceholder />}
             onClick={onClick}
             onFocus={onFocus}
             onBlur={onBlur}
+            {...rest}
         />
     );
+};
+
+Default.args = {
+    view: 'primary',
+    size: 'l',
+    pin: 'square-square',
+    disabled: false,
+    outlined: false,
+    focused: false,
+    text: 'Label',
+    contentType: 'Text',
 };
