@@ -1,3 +1,17 @@
+# v1.38.2 (Wed Aug 18 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): fix vertical position of HeaderBack [#634](https://github.com/sberdevices/plasma/pull/634) ([@OgNellis](https://github.com/OgNellis))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+
+---
+
 # v1.38.1 (Wed Aug 18 2021)
 
 #### 🐛 Bug Fix
