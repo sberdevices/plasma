@@ -1,5 +1,18 @@
 # (Wed Aug 18 2021)
 
+#### 🚀 Enhancement
+
+- `@sberdevices/showcase@0.44.0`, `@sberdevices/plasma-ui@1.39.0`
+  - feat(plasma-ui): add Slider component [#584](https://github.com/sberdevices/plasma/pull/584) ([@OgNellis](https://github.com/OgNellis))
+
+#### Authors: 1
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+
+---
+
+# (Wed Aug 18 2021)
+
 #### 🐛 Bug Fix
 
 - `@sberdevices/plasma-ui@1.38.2`
