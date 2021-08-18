@@ -1,5 +1,5 @@
 import React from 'react';
-import { select, text, number } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react';
 
 import { Button } from '../Button';
 import { Modal, ModalsProvider } from '../Modal';
@@ -26,18 +26,40 @@ const getNotificationProps = (i: number) => ({
     children: texts[i % 3],
 });
 
-export const Default = () => {
-    const status = select('status', statuses, '');
+export default {
+    title: 'Controls/Notification',
+} as Meta;
 
+interface DefaultStoryProps {
+    status: string;
+    title: string;
+    children: string;
+}
+
+export const Default: Story<DefaultStoryProps> = ({ status, title, children }) => {
     return (
-        <Notification title={text('title', 'Title')} status={status !== '' ? (status as 'success') : undefined}>
-            {text('children', longText)}
+        <Notification title={title} status={status !== '' ? (status as 'success') : undefined}>
+            {children}
         </Notification>
     );
 };
 
-export const LiveDemo = () => {
-    const timeout = number('timeout', 3500);
+Default.args = {
+    status: '',
+    title: 'Title',
+    children: longText,
+};
+
+Default.argTypes = {
+    status: {
+        control: {
+            type: 'select',
+            options: statuses,
+        },
+    },
+};
+
+export const LiveDemo: Story<{ timeout: number }> = ({ timeout }) => {
     const count = React.useRef(0);
     const handleClick = React.useCallback(() => {
         addNotification(getNotificationProps(count.current), timeout);
@@ -51,8 +73,11 @@ export const LiveDemo = () => {
     );
 };
 
-export const WithModal = () => {
-    const timeout = number('timeout', 3500);
+LiveDemo.args = {
+    timeout: 3000,
+};
+
+export const WithModal: Story<{ timeout: number }> = ({ timeout }) => {
     const [isModalOpen, setIsModalOpen] = React.useState(false);
     const count = React.useRef(0);
     const handleClick = React.useCallback(() => {
@@ -71,4 +96,8 @@ export const WithModal = () => {
             </NotificationsProvider>
         </ModalsProvider>
     );
+};
+
+WithModal.args = {
+    timeout: 3500,
 };
