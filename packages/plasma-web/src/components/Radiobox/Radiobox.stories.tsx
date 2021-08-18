@@ -1,42 +1,48 @@
 import React from 'react';
-import { boolean, text } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { InSpacingDecorator } from '../../helpers';
 
-import { Radiobox } from '.';
+import { Radiobox, RadioboxProps } from '.';
 
 export default {
     title: 'Controls/Radiobox',
-    component: Radiobox,
     decorators: [InSpacingDecorator],
-};
+} as Meta;
 
 const onChange = action('onChange');
 const onFocus = action('onFocus');
 const onBlur = action('onBlur');
 
-const name = 'language';
+const cDescription = (
+    <div>
+        A general-purpose, procedural computer programming{' '}
+        <a href="https://en.wikipedia.org/wiki/C_(programming_language)">language</a>{' '}
+    </div>
+);
+
+const langName = 'language';
 const items = [
     {
-        name,
+        langName,
         value: 'c',
         label: 'C',
         disabled: false,
-        description: 'A general-purpose, procedural computer programming language.',
+        description: cDescription,
     },
-    { name, value: 'cpp', label: 'C++', disabled: false },
-    { name, value: 'assembly', label: 'Assembly', disabled: false },
-    { name, value: 'elixir', label: 'Elixir', disabled: true },
+    { langName, value: 'cpp', label: 'C++', disabled: false },
+    { langName, value: 'assembly', label: 'Assembly', disabled: false },
+    { langName, value: 'elixir', label: 'Elixir', disabled: true },
 ];
 
-export const Default = () => {
+export const Live = () => {
     const [value, setValue] = React.useState('c');
 
     return items.map((item) => (
         <Radiobox
             key={item.value}
-            name={item.name}
+            name={item.langName}
             value={item.value}
             label={item.label}
             disabled={item.disabled}
@@ -52,17 +58,17 @@ export const Default = () => {
     ));
 };
 
-export const TextDescription = () => {
+export const Default: Story<RadioboxProps> = ({ name, label, description, disabled }) => {
     const value = 0;
     const [checked, setChecked] = React.useState(true);
 
     return (
         <Radiobox
-            name={text('name', 'Radiobox')}
+            name={name}
             value={value}
-            label={text('label', 'Label')}
-            description={text('description', 'Description')}
-            disabled={boolean('disabled', false)}
+            label={label}
+            description={description}
+            disabled={disabled}
             checked={checked}
             onChange={(event) => {
                 setChecked(event.target.checked);
@@ -74,29 +80,9 @@ export const TextDescription = () => {
     );
 };
 
-export const NodeDescription = () => {
-    const value = 0;
-    const [checked, setChecked] = React.useState(true);
-    const description = (
-        <div>
-            Description with <a href="/#">link</a>{' '}
-        </div>
-    );
-
-    return (
-        <Radiobox
-            name={text('name', 'Radiobox')}
-            value={value}
-            label={text('label', 'Label')}
-            description={description}
-            disabled={boolean('disabled', false)}
-            checked={checked}
-            onChange={(event) => {
-                setChecked(event.target.checked);
-                onChange(event);
-            }}
-            onFocus={onFocus}
-            onBlur={onBlur}
-        />
-    );
+Default.args = {
+    name: 'Radiobox',
+    label: 'Label',
+    description: 'Description',
+    disabled: false,
 };

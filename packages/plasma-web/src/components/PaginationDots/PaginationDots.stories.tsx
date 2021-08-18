@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { number } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react';
 
 import { Button } from '../Button';
 import { Headline4 } from '../Typography';
 
-import { SmartPaginationDots, PaginationDots, PaginationDot } from '.';
+import { SmartPaginationDots, PaginationDots, PaginationDot, SmartPaginationDotsProps } from '.';
 
 const StyledWrapper = styled.div`
     display: flex;
@@ -20,8 +20,12 @@ const StyledButtonGroup = styled.div`
     margin-top: 2rem;
 `;
 
-export const Default = () => {
-    const items = Array(number('Items count', 10))
+export default {
+    title: 'Controls/PaginationDots',
+} as Meta;
+
+export const Default: Story<{ itemsCount: number }> = ({ itemsCount }) => {
+    const items = Array(itemsCount)
         .fill(0)
         .map((_, i) => ({ id: i }));
 
@@ -34,9 +38,18 @@ export const Default = () => {
     );
 };
 
-export const Limited = () => {
-    const [index, setIndex] = React.useState(number('index', 0));
-    const items = Array(number('Items count', 10))
+Default.args = {
+    itemsCount: 10,
+};
+
+interface LimitedStoryProps extends SmartPaginationDotsProps {
+    initialIndex: number;
+    itemsCount: number;
+}
+
+export const Limited: Story<LimitedStoryProps> = ({ initialIndex, itemsCount, visibleItems }) => {
+    const [index, setIndex] = React.useState(initialIndex);
+    const items = Array(itemsCount)
         .fill(0)
         .map((_, i) => ({ id: i }));
 
@@ -45,7 +58,7 @@ export const Limited = () => {
             <SmartPaginationDots
                 items={items}
                 index={index}
-                visibleItems={number('visibleItems', 7)}
+                visibleItems={visibleItems}
                 onIndexChange={(i) => setIndex(i)}
             />
             <StyledButtonGroup>
@@ -55,6 +68,12 @@ export const Limited = () => {
             </StyledButtonGroup>
         </StyledWrapper>
     );
+};
+
+Limited.args = {
+    initialIndex: 0,
+    itemsCount: 10,
+    visibleItems: 7,
 };
 
 Limited.parameters = {
