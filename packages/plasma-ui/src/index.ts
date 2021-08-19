@@ -14,6 +14,7 @@ export * from './components/PaginationDots';
 export * from './components/Pickers';
 export * from './components/Price';
 export * from './components/Radiobox';
+export * from './components/Sheet';
 export * from './components/Skeleton';
 export * from './components/Slider';
 export * from './components/Spinner';
