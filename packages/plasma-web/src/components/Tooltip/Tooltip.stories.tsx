@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { select, boolean, text } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react';
 import { IconDownload } from '@sberdevices/plasma-icons';
 
+import { disableProps } from '../../helpers';
 import { Button } from '../Button';
 
-import { Tooltip, Placement } from '.';
+import { Tooltip, TooltipProps, Placement } from '.';
 
 const placements: Array<Placement> = [
     'top',
@@ -27,7 +28,11 @@ const StyledGrid = styled.div`
     padding: 2.5rem;
 `;
 
-export const Default = () => {
+export default {
+    title: 'Controls/Tooltip',
+} as Meta;
+
+export const Live = () => {
     return (
         <StyledGrid>
             <Tooltip placement="top-start" isVisible arrow text="Top start" animated={false}>
@@ -56,18 +61,11 @@ export const Default = () => {
     );
 };
 
-export const LiveDemo = () => {
-    const placement = select('placement', placements, 'bottom');
+export const Default: Story<TooltipProps> = (args) => {
     const [isVisible, setVisible] = React.useState(false);
 
     return (
-        <Tooltip
-            isVisible={isVisible}
-            placement={placement}
-            animated={boolean('animated', true)}
-            arrow={boolean('arrow', true)}
-            text={text('text', 'Hello there.')}
-        >
+        <Tooltip isVisible={isVisible} {...args}>
             <Button
                 text="Toggle"
                 onClick={() => {
@@ -76,4 +74,21 @@ export const LiveDemo = () => {
             />
         </Tooltip>
     );
+};
+
+Default.args = {
+    placement: 'bottom',
+    animated: true,
+    arrow: true,
+    text: 'Hello there.',
+};
+
+Default.argTypes = {
+    placement: {
+        control: {
+            type: 'select',
+            options: placements,
+        },
+    },
+    ...disableProps(['isVisible']),
 };

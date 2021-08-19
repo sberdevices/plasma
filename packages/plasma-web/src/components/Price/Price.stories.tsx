@@ -1,22 +1,36 @@
 import React from 'react';
-import { boolean, number, select } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react';
 
+import { disableProps } from '../../helpers';
 import { InSpacing } from '../../helpers/StoryDecorators';
 
-import { Price } from '.';
+import { Price, PriceProps } from '.';
+
+const currencyOptions = ['rub', 'usd', 'eur'];
+const propsToDisable = ['children', 'theme', 'as', 'forwardedAs'];
 
 export default {
     title: 'Content/Price',
     component: Price,
     decorators: [InSpacing],
-};
+    argTypes: {
+        currency: {
+            control: {
+                type: 'inline-radio',
+                options: currencyOptions,
+            },
+        },
+        ...disableProps(propsToDisable),
+    },
+} as Meta;
 
-export const Default = () => (
-    <Price
-        currency={select('currency', ['rub', 'usd', 'eur'], 'rub')}
-        stroke={boolean('stroke', false)}
-        minimumFractionDigits={number('minimumFractionDigits', 0)}
-    >
-        {number('children', 12345.67)}
-    </Price>
+export const Default: Story<PriceProps & { priceLabel: number }> = ({ priceLabel, ...rest }) => (
+    <Price {...rest}>{priceLabel}</Price>
 );
+
+Default.args = {
+    currency: 'rub',
+    stroke: false,
+    minimumFractionDigits: 0,
+    priceLabel: 12345.67,
+};
