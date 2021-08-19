@@ -1,8 +1,10 @@
+import React, { useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import { TabItem as BaseTabItem, TabItemProps as BaseTabItemProps } from '@sberdevices/plasma-core';
 import { button2 } from '@sberdevices/plasma-tokens';
 import type { AsProps } from '@sberdevices/plasma-core';
 
+import { useTabsContext } from './TabsContext';
 import { StyledSlider, activeItemStyle } from './TabsSlider';
 
 export interface TabItemProps extends AsProps, BaseTabItemProps {
@@ -44,3 +46,19 @@ export const TabItem = styled(BaseTabItem)<TabItemProps>`
             ${activeItemStyle}
         `}
 `;
+
+export const TabItemAnimated: React.FC<TabItemProps> = ({ children, ...rest }) => {
+    const itemRef = useRef<HTMLElement>(null);
+    const { refs, animated } = useTabsContext();
+
+    useEffect(() => {
+        refs?.register(itemRef);
+        return () => refs?.unregister(itemRef);
+    }, [refs]);
+
+    return (
+        <TabItem ref={itemRef} animated={animated} {...rest}>
+            {children}
+        </TabItem>
+    );
+};

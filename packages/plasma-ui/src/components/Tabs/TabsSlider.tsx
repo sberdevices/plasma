@@ -6,6 +6,7 @@ import { useTabsContext } from './TabsContext';
 
 export const activeItemStyle = css`
     background-color: ${surfaceCard};
+    /* stylelint-disable-next-line number-max-precision */
     box-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.05);
 `;
 
@@ -24,13 +25,13 @@ export const StyledSlider = styled.div`
 `;
 
 export interface SliderProps extends React.HTMLAttributes<HTMLDivElement> {
-    activeIndex: number;
+    index: number;
 }
 
 /**
  * Слайдер переключения табов
  */
-export const TabsSlider: React.FC<SliderProps> = ({ className, activeIndex }) => {
+export const TabsSlider: React.FC<SliderProps> = ({ className, index }) => {
     const [{ left, width, height }, setDimensions] = useState({ left: 0, width: 0, height: 0 });
 
     /* используем рефы на табы, хранящиеся в контексте табов */
@@ -38,7 +39,7 @@ export const TabsSlider: React.FC<SliderProps> = ({ className, activeIndex }) =>
 
     useEffect(() => {
         if (refs) {
-            const activeTab = refs.items[activeIndex].current;
+            const activeTab = refs.items[index].current;
             if (activeTab) {
                 const style = getComputedStyle(activeTab);
                 setDimensions({
@@ -48,7 +49,7 @@ export const TabsSlider: React.FC<SliderProps> = ({ className, activeIndex }) =>
                 });
             }
         }
-    }, [activeIndex]);
+    }, [index]);
 
     return <StyledSlider className={className} style={{ left, width, height }} />;
 };
