@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { overlay, primary, surfaceCard } from '@sberdevices/plasma-tokens';
+import { overlay, primary, backgroundPrimary } from '@sberdevices/plasma-tokens';
 
 import { useSheetSwipe } from './useSheetSwipe';
 
@@ -24,6 +24,7 @@ const StyledWrapper = styled.div<{ isOpen: boolean }>`
     right: 0;
     opacity: 1;
     transition: all 0.5s 0.1s;
+    z-index: 1000;
 
     ${({ isOpen }) =>
         !isOpen &&
@@ -66,7 +67,7 @@ const StyledOverlay = styled.div`
 
 const StyledSheetContent = styled.div`
     border-radius: 1.5rem 1.5rem 0 0;
-    background-color: ${surfaceCard};
+    background-color: ${backgroundPrimary};
     padding: 1rem;
 
     max-height: 100%;
