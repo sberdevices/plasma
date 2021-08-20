@@ -1,16 +1,15 @@
 import React from 'react';
-import { detectDevice } from '@sberdevices/plasma-ui/utils';
-
-import { DeviceFamily } from '../../../types';
+import { detectDevice, DeviceKind } from '@sberdevices/plasma-ui/utils';
 
 import { ProductTitleSberBox } from './ProductTitle@sberbox';
 import { ProductTitleSberPortal } from './ProductTitle@sberportal';
+import { ProductTitleMobile } from './ProductTitle@mobile';
 import { ProductTitleProps } from './types';
 
-const mapDeviceToProductTitle: Record<DeviceFamily, React.FC<ProductTitleProps>> = {
+const mapDeviceToProductTitle: Record<DeviceKind, React.FC<ProductTitleProps>> = {
     sberBox: ProductTitleSberBox,
     sberPortal: ProductTitleSberPortal,
-    mobile: ProductTitleSberPortal,
+    mobile: ProductTitleMobile,
 };
 
 export const ProductTitle = mapDeviceToProductTitle[detectDevice()];
