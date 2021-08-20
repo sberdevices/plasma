@@ -1,3 +1,26 @@
+# (Fri Aug 20 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-core@1.24.0`, `@sberdevices/plasma-ui@1.40.0`
+  - feat: A11y Switch [#633](https://github.com/sberdevices/plasma/pull/633) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- chore(update-deps): move update-services ip to env [#646](https://github.com/sberdevices/plasma/pull/646) ([@OgNellis](https://github.com/OgNellis))
+- `@sberdevices/plasma-ui@1.40.0`
+  - chore(plasma-ui): Storybook controls for Skeleton, Stepper, Toast [#640](https://github.com/sberdevices/plasma/pull/640) ([@kayman233](https://github.com/kayman233))
+  - chore(plasma-ui): Storybook controls for Badge, Button, Icon, Image [#627](https://github.com/sberdevices/plasma/pull/627) ([@kayman233](https://github.com/kayman233))
+  - chore(plasma-ui): disableProps added [#627](https://github.com/sberdevices/plasma/pull/627) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 3
+
+- [@kayman233](https://github.com/kayman233)
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Wed Aug 18 2021)
 
 #### 🚀 Enhancement

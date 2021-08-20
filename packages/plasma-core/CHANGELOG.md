@@ -1,3 +1,15 @@
+# v1.24.0 (Fri Aug 20 2021)
+
+#### 🚀 Enhancement
+
+- feat: A11y Switch [#633](https://github.com/sberdevices/plasma/pull/633) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.23.0 (Mon Aug 16 2021)
 
 #### 🚀 Enhancement

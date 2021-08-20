@@ -1,3 +1,24 @@
+# v1.40.0 (Fri Aug 20 2021)
+
+#### 🚀 Enhancement
+
+- feat: A11y Switch [#633](https://github.com/sberdevices/plasma/pull/633) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- chore(plasma-ui): Storybook controls for Skeleton, Stepper, Toast [#640](https://github.com/sberdevices/plasma/pull/640) ([@kayman233](https://github.com/kayman233))
+- chore(plasma-ui): Storybook controls for Badge, Button, Icon, Image [#627](https://github.com/sberdevices/plasma/pull/627) ([@kayman233](https://github.com/kayman233))
+- chore(plasma-ui): disableProps added [#627](https://github.com/sberdevices/plasma/pull/627) ([@kayman233](https://github.com/kayman233))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 3
+
+- [@kayman233](https://github.com/kayman233)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.39.0 (Wed Aug 18 2021)
 
 #### 🚀 Enhancement
