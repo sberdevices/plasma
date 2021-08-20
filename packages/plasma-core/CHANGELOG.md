@@ -1,3 +1,15 @@
+# v1.25.0 (Fri Aug 20 2021)
+
+#### 🚀 Enhancement
+
+- feat: Skeleton in core/ui/web [#628](https://github.com/sberdevices/plasma/pull/628) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.24.0 (Fri Aug 20 2021)
 
 #### 🚀 Enhancement
