@@ -1,0 +1,59 @@
+{
+    "name": "@sberdevices/plasma-docs",
+    "version": "0.0.0",
+    "private": true,
+    "description": "Plasma Documentation.",
+    "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
+    "license": "Sber Public License at-nc-sa v.2",
+    "repository": {
+        "type": "git",
+        "url": "ssh://git@github.com:sberdevices/plasma.git",
+        "directory": "docs"
+    },
+    "publishConfig": {
+        "access": "restricted"
+    },
+    "scripts": {
+        "start": "docusaurus start",
+        "build": "docusaurus build",
+        "swizzle": "docusaurus swizzle",
+        "deploy": "docusaurus deploy",
+        "clear": "docusaurus clear",
+        "serve": "docusaurus serve",
+        "write-translations": "docusaurus write-translations",
+        "write-heading-ids": "docusaurus write-heading-ids"
+    },
+    "dependencies": {
+        "@docusaurus/core": "2.0.0-beta.4",
+        "@docusaurus/preset-classic": "2.0.0-beta.4",
+        "@docusaurus/theme-live-codeblock": "^2.0.0-beta.4",
+        "@mdx-js/react": "^1.6.21",
+        "@sberdevices/plasma-core": "^1.23.0",
+        "@sberdevices/plasma-icons": "^1.33.0",
+        "@sberdevices/plasma-tokens": "^1.10.1",
+        "@sberdevices/plasma-tokens-web": "^1.9.0",
+        "@sberdevices/plasma-ui": "^1.39.0",
+        "@sberdevices/plasma-web": "^1.37.0",
+        "@svgr/webpack": "^5.5.0",
+        "clsx": "^1.1.1",
+        "file-loader": "^6.2.0",
+        "prism-react-renderer": "^1.2.1",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
+        "styled-components": "^5.3.0",
+        "url-loader": "^4.1.1"
+    },
+    "browserslist": {
+        "production": [">0.5%", "not dead", "not op_mini all"],
+        "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+    },
+    "devDependencies": {
+        "@docusaurus/module-type-aliases": "^2.0.0-beta.4",
+        "@tsconfig/docusaurus": "^1.0.3",
+        "@types/react": "^17.0.17",
+        "@types/react-helmet": "^6.1.2",
+        "@types/react-router-dom": "^5.1.8",
+        "@types/styled-components": "^5.1.12",
+        "typescript": "^4.3.5"
+    }
+}
