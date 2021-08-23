@@ -1,3 +1,15 @@
+# v1.26.0 (Mon Aug 23 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): Switch add readOnly prop [#650](https://github.com/sberdevices/plasma/pull/650) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.25.0 (Fri Aug 20 2021)
 
 #### 🚀 Enhancement
