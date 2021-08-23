@@ -1,5 +1,5 @@
 import React from 'react';
-import { isSberBox } from '@sberdevices/plasma-ui/utils';
+import { isSberBox, isSberPortal } from '@sberdevices/plasma-ui/utils';
 
 import { GalleryCard as DefaultGalleryCard } from '../GalleryCard/GalleryCard';
 import { AnyObject } from '../../types';
@@ -10,6 +10,16 @@ export interface GalleryCardContainerProps<T extends AnyObject> extends Omit<Gal
     component?: React.ComponentType<GalleryCardProps<T>>;
     onClick: (cardProps: GalleryCardParams<T>, index: number) => void;
 }
+
+const Root: React.FC<{ onClick: () => void }> = ({ onClick, children }) => {
+    const tabIndex = isSberPortal() ? undefined : -1;
+
+    return (
+        <div onClick={onClick} tabIndex={tabIndex}>
+            {children}
+        </div>
+    );
+};
 
 export const GalleryCardContainer = <T extends AnyObject = AnyObject>({
     card,
@@ -23,8 +33,8 @@ export const GalleryCardContainer = <T extends AnyObject = AnyObject>({
     const handleClick = React.useCallback(() => onClick(card, index), [card, index, onClick]);
 
     return (
-        <div onClick={handleClick} tabIndex={-1}>
+        <Root onClick={handleClick}>
             <GalleryCard card={card} focused={isSberBox() && focused} index={index} />
-        </div>
+        </Root>
     );
 };
