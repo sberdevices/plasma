@@ -1,3 +1,17 @@
+# v0.47.0 (Mon Aug 23 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Empty cart mobile version [#110](https://github.com/sberdevices/pashka/pull/110) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-temple): simplify types [#110](https://github.com/sberdevices/pashka/pull/110) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-temple): Mobile cart and controlled cart [#110](https://github.com/sberdevices/pashka/pull/110) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v0.46.0 (Mon Aug 16 2021)
 
 #### 🚀 Enhancement
