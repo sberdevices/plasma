@@ -39,7 +39,7 @@
         "theme.json"
     ],
     "devDependencies": {
-        "@emotion/serialize": "0.11.16",
+        "@emotion/serialize": "1.0.2",
         "@sberdevices/plasma-colors": "0.1.0",
         "@sberdevices/plasma-tokens-utils": "0.7.0",
         "@theme-ui/css": "0.3.1",
