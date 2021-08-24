@@ -1,3 +1,16 @@
+# (Tue Aug 24 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@0.47.1`
+  - fix(plasma-temple): remove tabindex attr for portal ua [#115](https://github.com/sberdevices/pashka/pull/115) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Mon Aug 23 2021)
 
 #### 🚀 Enhancement
