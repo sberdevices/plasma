@@ -1,0 +1,61 @@
+---
+id: toast
+title: Toast
+---
+
+import { PropsTable } from '@site/src/components/PropsTable';
+import { Description } from '@site/src/components/Description';
+
+# Toast
+<Description name="Toast" />
+<PropsTable name="Toast" />
+
+## Использование
+`showToast` имеет необязательный аргумент `timeout`, отвечающий за время отображения подсказки.
+
+```tsx title="App.tsx"
+import React from 'react';
+import { Toast } from '@sberdevices/plasma-ui';
+
+export const App = () => (
+    <Toast text="Short Text Message Without Action" />
+);
+```
+
+## Система подсказок
+Существует готовая система текстовых подсказок,
+для использования которой необходимо обернуть приложение в `ToastProvider`:
+```jsx title="App.tsx"
+import React from 'react';
+import { ToastProvider } from '@sberdevices/plasma-ui';
+
+export const App = () => (
+    <ToastProvider>
+        <div className="App">Hello, world!</div>
+    </ToastProvider>
+);
+```
+
+После этого, с помощью хука `useToast` можно получить доступ к управлению подсказками.
+
+```jsx title="MyComponent.tsx"
+import React from 'react'
+import { useToast, Button } from '@sberdevices/plasma-ui'
+
+export const MyComponent = () => {
+    const { showToast, hideToast } = useToast()
+    
+    return (
+        <Button onClick={() => showToast('text message')} />
+    )
+}
+```
+
+`showToast` имеет необязательный аргумент `position`, отвечающий за позиционирование подсказки.
+```jsx
+type Position = 'top' | 'bottom';
+```
+
+`showToast` имеет необязательный аргумент timeout, отвечающий за время отображения подсказки.
+Если аргумент не передается, по умолчанию подсказка отображается в течение 3 секунд. 
+Скрыть текущую подсказку в любой момент можно с помощью функции `hideToast`.

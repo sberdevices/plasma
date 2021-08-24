@@ -1,0 +1,28 @@
+---
+id: markedlist
+title: MarkedList
+---
+
+import { PropsTable } from '@site/src/components/PropsTable';
+import { Description } from '@site/src/components/Description';
+
+# MarkedList
+<Description name="MarkedList" />
+<PropsTable name="MarkedList" />
+
+```tsx live
+<MarkedList>
+    <MarkedItem text="Музыка без ограничений" style={{ color: primary }}>
+        <IconDone size="xs" color={accent} />
+    </MarkedItem>
+    <MarkedItem text="Ежедневные рекомендации" style={{ color: primary }}>
+        <IconDone size="xs" color={accent} />
+    </MarkedItem>
+    <MarkedItem text="Коллекции и плейлисты" style={{ color: tertiary }}>
+        <IconLock size="xs" color={tertiary} />
+    </MarkedItem>
+    <MarkedItem text="Без рекламы" style={{ color: tertiary }}>
+        <IconLock size="xs" color={tertiary} />
+    </MarkedItem>
+</MarkedList>
+```

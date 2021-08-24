@@ -1,0 +1,46 @@
+---
+id: icon
+title: Icon
+---
+
+# Icon
+SVG-пиктограммы. Могут быть монохромными или цветными.
+
+## Использование
+Установите пакет `@sberdevices/plasma-icons`:
+
+```bash
+npm install @sberdevices/plasma-icons
+```
+Используйте именной импорт.
+Например, чтобы в проекте появилась иконка `download`, сделайте импорт `IconDownload`:
+
+```tsx title="App.tsx"
+import { IconDownload } from '@sberdevices/plasma-icons';
+
+export default function App() {
+    return (
+        <IconDownload />
+    );
+}
+```
+
+## Размеры
+Большинство иконок создавались с определенными размерами и используются только с ними.
+
+### [Список иконок](https://plasma.sberdevices.ru/ui-storybook/?path=/story/content-icon--xs-size) XS16
+
+```tsx live
+<IconPlus size="xs" />
+```
+
+### [Список иконок](https://plasma.sberdevices.ru/ui-storybook/?path=/story/content-icon--small-size) S24
+
+```tsx live
+<IconHeartStroke size="s" />
+```
+
+## Пользовательский цвет
+```tsx live
+<IconHeartStroke color={critical} />
+```

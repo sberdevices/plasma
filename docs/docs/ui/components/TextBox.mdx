@@ -1,0 +1,25 @@
+---
+id: textbox
+title: TextBox
+---
+
+import { PropsTable } from '@site/src/components/PropsTable';
+import { Description } from '@site/src/components/Description';
+
+# TextBox
+<Description name="TextBox" />
+<PropsTable name="TextBox" />
+
+## Примеры
+
+### Базовое использование
+```tsx live
+<TextBox title="Заголовок" subTitle="Подзаголовок" />
+```
+### Собственная сборка
+```tsx live
+<TextBox>
+    <TextBoxTitle>Заголовок</TextBoxTitle>
+    <TextBoxSubTitle>Подзаголовок</TextBoxSubTitle>
+</TextBox>
+```

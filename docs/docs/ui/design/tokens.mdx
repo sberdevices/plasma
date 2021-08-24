@@ -1,0 +1,50 @@
+---
+id: tokens
+title: Токены
+sidebar_position: 1
+---
+
+# Токены
+Пакет Plasma Tokens (`@berdevices/plasma-tokens`) предоставляет набор переменных (_токенов_), реализующих дизайн-систему **Plasma** для разных устройств.
+
+## Пример использования
+
+Примеры приведены с использованием [styled-components](https://styled-components.com/).
+Использовать токены можно и без этого инструмента.
+
+```jsx title="App.tsx"
+import React from 'react';
+import styled from 'styled-components';
+import { body1, text, background, gradient } from '@sberdevices/plasma-tokens';
+
+const AppStyled = styled.div`
+    ${body1}
+    color: ${text};
+    background-color: ${background};
+    background-image: ${gradient};
+`;
+
+export default function App() {
+    return (
+        <AppStyled>
+            <h2>Hello Plasma</h2>
+        </AppStyled>
+    );
+}
+```
+
+## Реализация
+
+Все CSS переменные обернуты в JavaScript переменные для упрощения доступа внутри кода компонентов.
+Переменные описаны в комментариях. Современные IDE выводят комментарии в виде подсказок.
+
+```js
+/** Цвет предупреждения */
+export const warning = 'var(--plasma-colors-warning)';
+```
+
+## Готовый пример
+
+Все описанные примеры доступны в [демо-приложении](https://github.com/sberdevices/plasma/blob/master/examples/demo-tokens).
+Приложение основано на [Create React App](https://create-react-app.dev) c использованием [Typescript](https://www.typescriptlang.org/) и [styled-components](https://styled-components.com/).
+Для запуска приложения ознакомьтесь с [README](https://github.com/sberdevices/plasma/blob/master/examples/demo-tokens/README.md).
