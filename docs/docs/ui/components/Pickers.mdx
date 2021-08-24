@@ -1,0 +1,26 @@
+---
+id: pickers
+title: Pickers
+---
+
+import { PropsTable } from '@site/src/components/PropsTable';
+import { Description } from '@site/src/components/Description';
+
+# Pickers
+Набор элементов управления для выбора даты и времени.
+
+## DatePicker
+<Description name="DatePicker" />
+<PropsTable name="DatePicker" />
+
+```tsx live
+<DatePicker min={new Date(1629964000000)} max={new Date(1630036000000)} value={new Date(1630000000000)} />
+```
+
+## TimePicker
+<Description name="TimePicker" />
+<PropsTable name="TimePicker" />
+
+```tsx live
+<TimePicker min={new Date(1629996400000)} max={new Date(1630003600000)} value={new Date(1630000000000)} />
+```

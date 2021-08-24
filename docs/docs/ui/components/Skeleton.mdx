@@ -1,0 +1,66 @@
+---
+id: skeleton
+title: Skeleton
+---
+
+import { PropsTable } from '@site/src/components/PropsTable';
+import { Description } from '@site/src/components/Description';
+
+# Skeleton
+Набор компонентов для создания скелетов загрузки (плейсхолдеров).
+
+## LineSkeleton
+<Description name="LineSkeleton" />
+<PropsTable name="LineSkeleton" />
+
+```tsx live
+<LineSkeleton size="headline3" />
+```
+
+## RectSkeleton
+<Description name="RectSkeleton" />
+<PropsTable name="RectSkeleton" />
+
+```tsx live
+<RectSkeleton width="12rem" height="8rem" />
+```
+
+## TextSkeleton
+<Description name="TextSkeleton" />
+<PropsTable name="TextSkeleton" />
+
+```tsx live
+<TextSkeleton size="paragraph1" lines={4} />
+```
+
+## На примере карточки
+
+```tsx live
+() => {
+    const ButtonSkeleton = withSkeleton(Button);
+
+    return (
+        <Card style={{ width: '20rem' }} tabIndex={0}>
+            <CardBody>
+                <RectSkeleton width="100%" height="12rem" roundness={0} />
+                <CardContent>
+                    <LineSkeleton size="headline3" roundness={0} />
+                    <LineSkeleton size="headline1" roundness={0} />
+                    <LineSkeleton size="footnote1" roundness={0} />
+                    <ButtonSkeleton
+                        fullWidth
+                        text="Загрузка..."
+                        view="primary"
+                        size="s"
+                        scaleOnInteraction={false}
+                        outlined={false}
+                        skeleton={true}
+                        style={{ marginTop: '1rem' }}
+                        tabIndex={-1}
+                    />
+                </CardContent>
+            </CardBody>
+        </Card>
+    );
+}
+```

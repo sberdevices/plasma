@@ -1,0 +1,54 @@
+---
+id: tabs
+title: Tabs
+---
+
+import { PropsTable } from '@site/src/components/PropsTable';
+import { Description } from '@site/src/components/Description';
+
+# Tabs
+Набор компонентов для создания вкладок.
+Структура для вкладок похожа на структуру маркированных списков.
+
+```tsx live
+() => {
+    const items = [{ label: 'Item 1' }, { label: 'Item 2' }, { label: 'Item 3' }, { label: 'Item 4' }];
+    const [index, setIndex] = useState(0);
+
+    return (
+        <Tabs
+            size="l"
+            view="secondary"
+            stretch={true}
+            pilled={false}
+            scaleOnPress={true}
+            outlined={true}
+            disabled={false}
+            index={index}
+            animated={true}
+        >
+            {items.map(({ label }, i) => (
+                <TabItem
+                    key={`item:${i}`}
+                    isActive={i === index}
+                    tabIndex={0}
+                    contentLeft={<IconDownload />}
+                    onClick={() => setIndex(i)}
+                >
+                    {label}
+                </TabItem>
+            ))}
+        </Tabs>
+    );
+}
+```
+
+## Tabs
+Основной компонент, контейнер вкладок.
+
+<PropsTable name="Tabs" />
+
+## TabItem
+Элемент списка. Нельзя использовать вне компонента `Tabs`.
+
+<PropsTable name="TabItem" />

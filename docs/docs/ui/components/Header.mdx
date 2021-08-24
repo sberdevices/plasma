@@ -1,0 +1,108 @@
+---
+id: header
+title: Header
+---
+
+import { PropsTable } from '@site/src/components/PropsTable';
+import { Description } from '@site/src/components/Description';
+
+# Header
+Набор компонентов для создания шапки.
+Шапку необходимо вкладывать в компонент [`Container`](./grid/#container).
+
+## Комплексный компонент – Header
+
+<Description name="Header" />
+<PropsTable name="Header" />
+
+### Пример
+
+```tsx live
+<Container>
+    <Header
+        back={true}
+        logo="/images/320_320_12.jpg"
+        logoAlt="Logo"
+        title="Header title text"
+        subtitle="Subtitle text"
+        onBackClick={() => console.log('Back click!')}
+    >
+        <Button>Header content</Button>
+    </Header>
+</Container>
+```
+### Комбинация свойств
+`Header` имеет свойства, которые нельзя использовать без соответствующих парных свойств:
+
+```tsx
+// Неправильно:
+const a = <Header subtitle="Subtitle" />;
+// Правильно:
+const b = <Header title="Title" />;
+const c = <Header title="Title" subtitle="Subtitle" />;
+
+// Неправильно:
+const d = <Header onBackClick={() => alert('Back click.')} />;
+// Правильно:
+const e = <Header back onBackClick={() => alert('Back click.')} />;
+
+// Неправильно:
+const d = <Header onMinimizeClick={() => alert('Minimize click.')} />;
+// Правильно:
+const e = <Header minimize onMinimizeClick={() => alert('Minimize click.')} />;
+
+// Неправильно:
+const f = <Header logoAlt="Fancy image." />;
+// Правильно:
+const g = <Header logo="/path/to/fancy-image.jpg" logoAlt="Fancy image." />;
+```
+
+## Компоненты для собственной сборки шапки
+Рекомендуется использовать компонент `Header`.
+Если вам нужно больше контроля за версткой шапки,
+используйте составные части, где корневым узлом будет `HeaderRoot`.
+
+### HeaderRoot
+<Description name="HeaderRoot" />
+
+### HeaderBack
+<Description name="HeaderBack" />
+<PropsTable name="HeaderBack" />
+
+### HeaderLogo
+<Description name="HeaderLogo" />
+<PropsTable name="HeaderLogo" />
+
+### HeaderTitleWrapper
+<Description name="HeaderTitleWrapper" />
+
+### HeaderSubtitle
+<Description name="HeaderSubtitle" />
+
+### HeaderTitleWrapper
+<Description name="HeaderTitle" />
+
+### HeaderContent
+<Description name="HeaderContent" />
+
+### Пример
+```tsx live
+<Container>
+    <HeaderRoot>
+        <HeaderBack onClick={() => console.log('Back click!')} />
+        <HeaderLogo src="/images/320_320_12.jpg" alt="Logo" />
+        <HeaderTitleWrapper>
+            <HeaderSubtitle>Label text</HeaderSubtitle>
+            <HeaderTitle>Header title text</HeaderTitle>
+        </HeaderTitleWrapper>
+        <HeaderContent>
+            <Button>Header content</Button>
+        </HeaderContent>
+    </HeaderRoot>
+</Container>
+```
+
+## Кнопки назад и свернуть
+В структуре шапки обязательно должен присутствовать один из компонентов-кнопок – `back` (назад) или `minimize` (свернуть).
+Данные кнопки являются взаимоисключающими, т.е. можно указать или `back` или `minimize`.
+На SberBox эти кнопки должны быть нефокусируемыми.

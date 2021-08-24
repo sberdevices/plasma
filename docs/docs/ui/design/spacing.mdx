@@ -1,0 +1,83 @@
+---
+id: spacing
+title: Стандартные отступы
+sidebar_position: 5
+---
+
+# Стандартные отступы
+
+Миксин `applySpacing` добавляет свойства для указания `margin` и `padding`.
+Свойства используют сокращенный синтаксис, схожий со [styled-system](https://styled-system.com/#margin--padding) и [Bootstrap](https://getbootstrap.com/docs/4.1/utilities/spacing/).
+Вся типографика Plasma поддерживает эти свойства по умолчанию.
+
+## margin
+
+-   `m` margin
+-   `mt` margin-top
+-   `mr` margin-right
+-   `mb` margin-bottom
+-   `ml` margin-left
+-   `mx` margin-left и margin-right
+-   `my` margin-top и margin-bottom
+
+## padding
+
+-   `p` padding
+-   `pt` padding-top
+-   `pr` padding-right
+-   `pb` padding-bottom
+-   `pl` padding-left
+-   `px` padding-left и padding-right
+-   `py` padding-top и padding-bottom
+
+## Значения пропсов
+
+-   `0 = '0x' = '0'`
+-   `2 = '1x' = '0.125rem'`
+-   `4 = '2x' = '0.25rem'`
+-   `8 = '4x' = '0.5rem'`
+-   `10 = '5x' = '0.625rem'`
+-   `12 = '6x' = '0.75rem'`
+-   `16 = '8x' = '1rem'`
+-   `18 = '9x' = '1.125rem'`
+-   `20 = '10x' = '1.25rem'`
+-   `24 = '12x' = '1.5rem'`
+-   `32 = '16x' = '2rem'`
+
+## Встроенные отступы в типографике
+
+```tsx title="Example1.tsx"
+export default function () => (
+    <>
+        <Headline3 my="16x">Heading</Headline3>
+        <Body1 px="10x">Some text</Body1>
+        <Body2 mx={4}>Some information</Body2>
+        <Footnote2 m="8x">Description</Footnote2>
+        <Caption m={10}>Hello</Caption>
+    </>
+);
+```
+
+## Использование в своем компоненте
+
+```tsx title="Example2.tsx"
+const Box1 = styled.div<SpacingProps>`
+    ${applySpacing}
+    width: 5rem;
+    height: 5rem;
+    background-color: rgba(255, 100, 100, 0.3);
+`;
+const Box2 = styled.div<SpacingProps>`
+    ${applySpacing}
+    width: 5rem;
+    height: 5rem;
+    background-color: rgba(100, 100, 255, 0.3);
+`;
+
+export default function () => (
+    <>
+        <Box1 my={10} />
+        <Box2 mx={8} />
+    </>
+);
+```

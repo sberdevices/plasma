@@ -1,0 +1,44 @@
+---
+id: device
+title: Определение устройства
+sidebar_position: 3
+---
+
+# Определение устройства
+
+Типичный смартапп может работать в двух режимах (размерах) типографики
+– [`deviceScale = 1`](./components/grid#devicescale--1) и [`deviceScale = 2`](./components/grid#devicescale--2).
+Для этого необходимо определение устройства, на котором будет работать приложение.
+Для решения этой задачи используется компонент [`DeviceThemeProvider`](./components/devicethemeprovider).
+
+Подключите компонент в [корне приложения](./intro#корень-приложения),
+чтобы дать всем компонентам Plasma далее по дереву DOM доступ к объекту [темы](https://styled-components.com/docs/advanced#theming),
+через который передается значение `deviceScale`.
+
+## Пример
+
+```tsx title="index.tsx"
+import ReactDOM from 'react-dom';
+// Стандартная функция определения поверхности на основе userAgent
+import { DeviceThemeProvider, detectDevice } from '@sberdevices/plasma-ui';
+
+import { App } from './App';
+
+// Если стилизованным компонентам необходимо передать свой объект темы
+const myFancyTheme = {
+    brandColor: '#BADA55',
+};
+
+// Получение типа устройства, например, через environment variable
+const deviceKind = process.env.DEVICE;
+
+// Если стандартная функция определения поверхности не подходит, можно передать свою
+const detectDeviceCallback = () => deviceKind;
+
+ReactDOM.render(
+    <DeviceThemeProvider theme={myFancyTheme} detectDeviceCallback={detectDeviceCallback}>
+        <App />
+    </DeviceThemeProvider>,
+    document.getElementById('root'),
+);
+```

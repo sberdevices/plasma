@@ -1,0 +1,82 @@
+---
+id: textfield
+title: TextField
+---
+
+import { PropsTable } from '@site/src/components/PropsTable';
+import { Description } from '@site/src/components/Description';
+
+# TextField
+<Description name="TextField" />
+<PropsTable name="TextField" exclude={['$isFocused']} />
+
+## Использование
+Компонент `TextField` может содержать иконку (или кнопку) слева и справа.
+Для этого используйте свойства `contentLeft` и `contentRight`:
+
+```tsx live
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, 12.5rem)', gap: '1rem' }}>
+    <TextField
+        placeholder="Положение иконки"
+        defaultValue="Слева"
+        contentLeft={<IconDownload />}
+    />
+    <TextField
+        placeholder="Положение иконки"
+        defaultValue="Справа"
+        contentRight={<IconDownload />}
+    />
+</div>
+```
+
+### Размер поля
+Размер поля задается с помощью свойства `size`. Возможные значения свойства: `"l"` и `"m"`:
+
+```tsx live
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, 12.5rem)', gap: '1rem' }}>
+    <TextField
+        placeholder="Размер"
+        size="l"
+        defaultValue="L56"
+    />
+    <TextField
+        placeholder="Размер"
+        size="m"
+        defaultValue="M48"
+    />
+</div>
+```
+
+### Статус поля
+Статус поля задается с помощью свойства `status`. Возможные значения свойства: `success`, `warning` и `error`:
+
+```tsx live
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, 12.5rem)', gap: '1rem' }}>
+    <TextField
+        placeholder="Статус"
+        status="success"
+        defaultValue="Успех"
+    />
+    <TextField
+        placeholder="Статус"
+        status="Предупреждение"
+        defaultValue="Успех"
+    />
+    <TextField
+        placeholder="Статус"
+        status="error"
+        defaultValue="Ошибка"
+    />
+</div>
+```
+
+### Подсказка
+Для вывода подсказки снизу от поля используйте свойство `helperText`:
+
+```tsx live
+<TextField
+    placeholder="Введите значение"
+    defaultValue="Значение"
+    helperText="Подсказка снизу"
+/>
+```
