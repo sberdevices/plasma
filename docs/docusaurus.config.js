@@ -5,12 +5,15 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+const { PR_NAME } = process.env;
+const baseUrl = PR_NAME ? `/${PR_NAME}/` : '/';
+
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
     title: 'Plasma',
     tagline: 'Дизайн-система для разработки смартаппов и современных приложений',
     url: 'https://plasma.sberdevices.ru/',
-    baseUrl: '/',
+    baseUrl,
     onBrokenLinks: 'warn',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'images/favicon.png',

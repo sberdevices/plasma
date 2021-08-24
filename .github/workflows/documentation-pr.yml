@@ -1,4 +1,4 @@
-name: PR documentation
+name: PR Documentation and Storybook
 
 on:
   pull_request:
@@ -40,20 +40,32 @@ jobs:
       - name: Lint
         run: npm run lint
       
-      - name: Prepare directory for documentation builds
-        run: mkdir ../build
-
-      - name: Build Plasma UI documentation
+      - name: Prepare directory
         run: |
-          npm run storybook:build:docs --prefix="./packages/plasma-ui"
-          cp -R ./packages/plasma-ui/build-sb-docs ../build/${PR_NAME}
+          mkdir ../build
 
-      - name: Build Plasma Web documentation
+      - name: Plasma UI Storybook
         run: |
-          npm run storybook:build:docs --prefix="./packages/plasma-web"
-          cp -R ./packages/plasma-web/build-sb-docs ../build/web-${PR_NAME}
+          npm run storybook:build --prefix="./packages/plasma-ui"
 
-      - name: Clean old documentation
+      - name: Plasma Web Storybook
+        run: |
+          npm run storybook:build --prefix="./packages/plasma-web"
+      
+      - name: Extract docgenInfo from Storybook
+        run: npm run extract-docgen-info
+
+      - name: Documentation App
+        run: |
+          npm run build --prefix="./docs"
+      
+      - name: Copy builds
+        run: |
+          cp -R ./docs/build ../build/${PR_NAME}
+          cp -R ./packages/plasma-ui/build-sb ../build/${PR_NAME}/ui-storybook
+          cp -R ./packages/plasma-web/build-sb ../build/${PR_NAME}/web-storybook
+
+      - name: Clean old builds
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.DOCS_HOST }}
@@ -63,9 +75,8 @@ jobs:
           script: |
             cd ../../var/www/plasma
             rm -rf $PR_NAME/
-            rm -rf web-$PR_NAME/
 
-      - name: Upload documentation build
+      - name: Upload builds
         uses: garygrossgarten/github-action-scp@release
         with:
           host: ${{ secrets.DOCS_HOST }}
@@ -85,7 +96,8 @@ jobs:
               repo: context.repo.repo,
               body: `Documentation preview deployed!
               
-              http://plasma.sberdevices.ru/pr-${context.issue.number}/
-              http://plasma.sberdevices.ru/web-pr-${context.issue.number}/
+              docs: http://plasma.sberdevices.ru/pr-${context.issue.number}/
+              ui storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/ui-storybook/
+              web storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/web-storybook/
               `
             })
