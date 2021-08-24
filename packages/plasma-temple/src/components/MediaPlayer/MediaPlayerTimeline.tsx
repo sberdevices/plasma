@@ -70,6 +70,7 @@ export const MediaPlayerTimeline = <T extends PlayerType>({
     onTimeUpdate,
     currentTime = 0,
     duration = 0,
+    showTick = true,
 }: MediaPlayerTimelineProps<T>): React.ReactElement => {
     const [mediaData, setMediaData] = React.useState({
         duration,
@@ -134,7 +135,7 @@ export const MediaPlayerTimeline = <T extends PlayerType>({
             <StyledTime>{formatTime(mediaData.currentTime)}</StyledTime>
             <StyledTimeLine>
                 <StyledProgress style={{ width: `${timelinePosition}%` }} />
-                <StyledTimelineTick style={{ left: `${timelinePosition}%` }} />
+                {showTick && <StyledTimelineTick style={{ left: `${timelinePosition}%` }} />}
             </StyledTimeLine>
             <StyledTime>{formatTime(mediaData.duration)}</StyledTime>
         </StyledWrapper>
