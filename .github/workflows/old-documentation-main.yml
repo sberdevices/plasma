@@ -1,4 +1,4 @@
-name: Main Storybook
+name: Main documentation
 
 on:
   push:
@@ -39,20 +39,20 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Prepare directory for sb builds
-        run: mkdir ../build
+      - name: Prepare directory for documentation builds
+        run: mkdir ../build ../build/old-next
 
-      - name: Build Plasma UI sb
+      - name: Build Plasma UI documentation
         run: |
-          npm run storybook:build --prefix="./packages/plasma-ui"
-          cp -R ./packages/plasma-ui/build-sb ../build/ui-storybook-next
+          npm run storybook:build:docs --prefix="./packages/plasma-ui"
+          cp -R ./packages/plasma-ui/build-sb-docs ../build/old-next/ui
 
-      - name: Build Plasma Web sb
+      - name: Build Plasma Web documentation
         run: |
-          npm run storybook:build --prefix="./packages/plasma-web"
-          cp -R ./packages/plasma-web/build-sb ../build/web-storybook-next
+          npm run storybook:build:docs --prefix="./packages/plasma-web"
+          cp -R ./packages/plasma-web/build-sb-docs ../build/old-next/web
 
-      - name: Upload sb build
+      - name: Upload documentation build
         uses: garygrossgarten/github-action-scp@release
         with:
           host: ${{ secrets.DOCS_HOST }}
@@ -61,7 +61,7 @@ jobs:
           local: "../build"
           remote: "/var/www/plasma"
 
-      - name: Update and clean sb
+      - name: Update and clean documentation
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.DOCS_HOST }}
@@ -69,8 +69,6 @@ jobs:
           key: ${{ secrets.DOCS_KEY }}
           script: |
             cd ../../var/www/plasma
-            rm -rf ui-storybook/
-            mv ui-storybook-next ui-storybook
-            rm -rf web-storybook/
-            mv web-storybook-next web-storybook
+            rm -rf old/
+            mv old-next old
 

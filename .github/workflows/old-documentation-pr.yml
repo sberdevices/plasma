@@ -1,4 +1,4 @@
-name: PR Storybook
+name: Old PR documentation
 
 on:
   pull_request:
@@ -40,20 +40,20 @@ jobs:
       - name: Lint
         run: npm run lint
       
-      - name: Prepare directory for sb builds
-        run: mkdir ../build
+      - name: Prepare directory for documentation builds
+        run: mkdir ../build ../build/old-${PR_NAME}
 
-      - name: Build Plasma UI sb
+      - name: Build Plasma UI documentation
         run: |
-          npm run storybook:build --prefix="./packages/plasma-ui"
-          cp -R ./packages/plasma-ui/build-sb ../build/ui-storybook-${PR_NAME}
+          npm run storybook:build:docs --prefix="./packages/plasma-ui"
+          cp -R ./packages/plasma-ui/build-sb-docs ../build/old-${PR_NAME}/ui
 
-      - name: Build Plasma Web sb
+      - name: Build Plasma Web documentation
         run: |
-          npm run storybook:build --prefix="./packages/plasma-web"
-          cp -R ./packages/plasma-web/build-sb ../build/web-storybook-${PR_NAME}
+          npm run storybook:build:docs --prefix="./packages/plasma-web"
+          cp -R ./packages/plasma-web/build-sb-docs ../build/old-${PR_NAME}/web
 
-      - name: Clean old sb
+      - name: Clean old documentation
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.DOCS_HOST }}
@@ -62,10 +62,9 @@ jobs:
           envs: PR_NAME
           script: |
             cd ../../var/www/plasma
-            rm -rf ui-storybook-$PR_NAME/
-            rm -rf web-storybook-$PR_NAME/
+            rm -rf old-$PR_NAME
 
-      - name: Upload sb build
+      - name: Upload documentation build
         uses: garygrossgarten/github-action-scp@release
         with:
           host: ${{ secrets.DOCS_HOST }}
@@ -73,19 +72,3 @@ jobs:
           privateKey: ${{ secrets.DOCS_KEY }}
           local: "../build"
           remote: "/var/www/plasma"
-
-      - name: Post success comment
-        uses: actions/github-script@v3
-        with:
-          github-token: ${{secrets.GH_TOKEN}}
-          script: |
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `Storybook preview deployed!
-              
-              http://plasma.sberdevices.ru/ui-storybook-pr-${context.issue.number}/
-              http://plasma.sberdevices.ru/web-storybook-pr-${context.issue.number}/
-              `
-            })

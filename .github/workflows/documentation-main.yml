@@ -1,4 +1,4 @@
-name: Main documentation
+name: Main Documentation and Storybook
 
 on:
   push:
@@ -39,18 +39,29 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Prepare directory for documentation builds
+      - name: Prepare directory
         run: mkdir ../build
 
-      - name: Build Plasma UI documentation
+      - name: Plasma UI Storybook
         run: |
-          npm run storybook:build:docs --prefix="./packages/plasma-ui"
-          cp -R ./packages/plasma-ui/build-sb-docs ../build/current-next
+          npm run storybook:build --prefix="./packages/plasma-ui"
 
-      - name: Build Plasma Web documentation
+      - name: Plasma Web Storybook
         run: |
-          npm run storybook:build:docs --prefix="./packages/plasma-web"
-          cp -R ./packages/plasma-web/build-sb-docs ../build/web-next
+          npm run storybook:build --prefix="./packages/plasma-web"
+      
+      - name: Extract docgenInfo from Storybook
+        run: npm run extract-docgen-info
+
+      - name: Documentation App
+        run: |
+          npm run build --prefix="./docs"
+      
+      - name: Copy builds
+        run: |
+          cp -R ./docs/build ../build/next
+          cp -R ./packages/plasma-ui/build-sb ../build/next/ui-storybook
+          cp -R ./packages/plasma-web/build-sb ../build/next/web-storybook
 
       - name: Upload documentation build
         uses: garygrossgarten/github-action-scp@release
@@ -70,7 +81,4 @@ jobs:
           script: |
             cd ../../var/www/plasma
             rm -rf current/
-            mv current-next current
-            rm -rf web/
-            mv web-next web
-
+            mv next current
