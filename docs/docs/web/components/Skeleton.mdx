@@ -1,0 +1,54 @@
+---
+id: skeleton
+title: Skeleton
+---
+
+import { PropsTable } from '@site/src/components/PropsTable';
+import { Description } from '@site/src/components/Description';
+
+# Skeleton
+Набор компонентов для создания скелетов загрузки (плейсхолдеров).
+
+## LineSkeleton
+<Description name="LineSkeleton" />
+<PropsTable name="LineSkeleton" />
+
+```tsx
+<LineSkeleton size="headline3" />
+```
+
+## RectSkeleton
+<Description name="RectSkeleton" />
+<PropsTable name="RectSkeleton" />
+
+```tsx
+<RectSkeleton width="12rem" height="8rem" />
+```
+
+## TextSkeleton
+<Description name="TextSkeleton" />
+<PropsTable name="TextSkeleton" />
+
+```tsx
+<TextSkeleton size="paragraph1" lines={4} />
+```
+## На примере карточки
+
+```tsx
+() => {
+    const ButtonSkeleton = withSkeleton(Button);
+
+    return (
+        <ButtonSkeleton
+            fullWidth
+            text="Загрузка..."
+            view="primary"
+            size="s"
+            scaleOnInteraction={false}
+            outlined={false}
+            skeleton={true}
+            tabIndex={-1}
+        />
+    );
+}
+```

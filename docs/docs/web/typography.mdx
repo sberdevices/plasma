@@ -1,0 +1,70 @@
+---
+id: typography
+title: Типографика
+sidebar_position: 3
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Типографическая система
+
+## Установка шрифта
+
+Типографическая система основана на фирменном шрифте **SB Sans Text**.
+Для подключения в веб-приложения, шрифт загружен в [CDN](https://ru.wikipedia.org/wiki/Content_Delivery_Network).
+
+Чтобы использовать типографическую систему, достаточно указать один CSS-файл внутри тега `<head>`.
+
++ Если вы используете [Create React App](https://create-react-app.dev), подключите шрифт в файле `public/index.html`.
++ Если вы используете [Next.js](https://nextjs.org/), создайте файл `pages/_document.tsx` и подключите шрифт в нем.
+
+<Tabs
+  defaultValue="cra"
+  values={[
+    { label: 'Create React App', value: 'cra', },
+    { label: 'Next.js', value: 'next', },
+  ]
+}>
+<TabItem value="cra">
+
+```html {3-6} title="public/index.html"
+<html>
+    <head>
+        <link
+            rel="stylesheet"
+            href="https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansText.0.1.0.css"
+        />
+    </head>
+    <body>
+        ...
+    </body>
+</html>
+```
+</TabItem>
+<TabItem value="next">
+
+```tsx {8-11} title="pages/_document.tsx"
+import BaseDocument, { Html, Head, Main, NextScript } from 'next/document';
+
+export default class Document extends BaseDocument {
+    render() {
+        return (
+            <Html>
+                <Head>
+                    <link
+                        rel="stylesheet"
+                        href="https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansText.0.1.0.css"
+                    />
+                </Head>
+                <body>
+                    <Main />
+                    <NextScript />
+                </body>
+            </Html>
+        );
+    }
+}
+```
+</TabItem>
+</Tabs>
