@@ -1,3 +1,15 @@
+# v0.47.2 (Tue Aug 24 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): can hide timeline tick [#116](https://github.com/sberdevices/pashka/pull/116) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v0.47.1 (Tue Aug 24 2021)
 
 #### 🐛 Bug Fix
