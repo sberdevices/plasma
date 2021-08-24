@@ -47,6 +47,7 @@ export interface MediaPlayerTimelineProps<T extends PlayerType> {
     onTimeUpdate?: (time: number) => void;
     currentTime?: number;
     duration?: number;
+    showTick?: boolean;
 }
 
 export interface MediaPlayerControlsProps {
