@@ -34,6 +34,11 @@ module.exports = {
                     label: 'Devices',
                 },
                 {
+                    href: '/docs/web/intro',
+                    position: 'left',
+                    label: 'Web',
+                },
+                {
                     href: 'https://github.com/sberdevices/plasma',
                     label: 'GitHub',
                     position: 'right',
