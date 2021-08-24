@@ -1,0 +1,102 @@
+---
+id: theming
+title: Тема асситента
+sidebar_position: 4
+---
+
+# Тема асситента
+
+Каждый персонаж в семействе ассистентов Салют имеет свой цвет.
+Вы можете захотеть, чтобы тема приложения соответствовала цвету персонажа, выбранного пользователем.
+При изменении персонажа учитывайте тон темы оформления: темный или светлый.
+
+На устройствах SberBox и SberPortal предполагается использование темных тем:
+
+```js
+import { darkJoy, darkEva, darkSber } from '@sberdevices/plasma-tokens/themes';
+```
+
+По умолчанию используется тема `darkSber`.
+
+> Подробнее про персонажей ассистента читайте в [документации](https://developer.sberdevices.ru/docs/ru/basics/about_assistant).
+
+Чтобы узнать какой персонаж выбран у пользователя, подпишитесь на событие `data` от `assistant-client`:
+
+```js
+assistantClient.on('data', (command) => {
+    if (command.type === 'character') {
+        // 'sber' | 'eva' | 'joy';
+        setCharacter(command.character.id);
+    }
+});
+```
+
+## Пример смены персонажа
+
+```tsx title="App.tsx"
+import React, { FC, useRef, useEffect, useState } from 'react';
+import { createGlobalStyle } from 'styled-components';
+import { createAssistant, AssistantAppState, CharacterId } from '@sberdevices/assistant-client';
+import { darkJoy, darkEva, darkSber } from '@sberdevices/plasma-tokens/themes';
+import { text, background, gradient } from '@sberdevices/plasma-tokens';
+
+const ThemeBackgroundEva = createGlobalStyle(darkEva);
+const ThemeBackgroundSber = createGlobalStyle(darkSber);
+const ThemeBackgroundJoy = createGlobalStyle(darkJoy);
+
+const DocStyles = createGlobalStyle`
+html {
+    color: ${text};
+    background-color: ${background};
+    background-image: ${gradient};
+    min-height: 100vh;
+}
+`;
+
+const initializeAssistant = (getState: any) => {
+    return createAssistant({ getState });
+};
+
+export default function App() {
+    const [character, setCharacter] = useState('sber' as CharacterId);
+
+    const assistantStateRef = useRef<AssistantAppState>();
+    const assistantRef = useRef<ReturnType<typeof createAssistant>>();
+
+    useEffect(() => {
+        assistantRef.current = initializeAssistant(() => assistantStateRef.current);
+        assistantRef.current.on('data', (command) => {
+            switch (command.type) {
+                case 'character':
+                    setCharacter(command.character.id);
+                    // 'sber' | 'eva' | 'joy';
+                    break;
+                case 'navigation':
+                    break;
+                case 'smart_app_data':
+                    break;
+                default:
+                    return;
+            }
+        });
+    }, []);
+
+    return (
+        <div>
+            <DocStyles />
+            {(() => {
+                switch (character) {
+                    case 'sber':
+                        return <ThemeBackgroundSber />;
+                    case 'eva':
+                        return <ThemeBackgroundEva />;
+                    case 'joy':
+                        return <ThemeBackgroundJoy />;
+                    default:
+                        return;
+                }
+            })()}
+        </div>
+    );
+}
+```

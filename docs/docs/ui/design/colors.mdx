@@ -1,0 +1,112 @@
+---
+id: colors
+title: Цветовая палитра
+sidebar_position: 3
+---
+
+# Цветовая палитра
+
+Цветовая палитра – одна из основных частей восприятия платформы SberDevices.
+
+## Цвета
+
+Цвета в Plasma Tokens представляют собой [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) c заданным цветом по умолчанию.
+Это позволяет переопределять цвета с помощью [Тем](#темы).
+
+Цвета можно получить из корня пакета:
+
+```js
+import { accent } from '@sberdevices/plasma-tokens';
+```
+
+Также доступны сами значения пременных:
+
+```js
+import { colorValues } from '@sberdevices/plasma-tokens';
+
+console.log(colorValues.black); // –> '#080808'
+```
+
+Пример использования цветов для создания основной подложки веб-приложения:
+
+```jsx title="App.tsx"
+import React from 'react';
+// createGlobalStyle нужен для создания глобальных стилей
+import { createGlobalStyle } from 'styled-components';
+// получаем цвета для нашего интерфейса
+import { text, background, gradient } from '@sberdevices/plasma-tokens';
+/**
+ * text - основной цвет текста
+ * background - основной цвет фона
+ * gradient - градиентная заливка фона
+ */
+
+const DocStyles = createGlobalStyle`
+  html {
+    color: ${text};
+    background-color: ${background};
+    background-image: ${gradient};
+
+    /** необходимо залить градиентом всю подложку */
+    min-height: 100vh;
+  }
+`;
+
+export default function App() {
+    return (
+        <div>
+            {/* Используем глобальные react-компоненты один раз */}
+            <DocStyles />
+        </div>
+    );
+}
+```
+
+## Темы
+
+Каждая тема соотносится с персонажем ассистента и меняет цветовую гамму веб-приложения.
+
+В пакете предоставлены 6 тем:
+
+-   `darkSber`
+-   `darkEva`
+-   `darkJoy`
+-   `lightSber`
+-   `lightEva`
+-   `lightJoy`
+
+Подключение:
+
+```jsx title="App.tsx"
+import React from 'react';
+// createGlobalStyle нужен для создания глобальных стилей
+import { createGlobalStyle } from 'styled-components';
+// получаем тему персонажа
+import { darkJoy } from '@sberdevices/plasma-tokens/themes';
+// получаем цвета для нашего интерфейса
+import { text, background, gradient } from '@sberdevices/plasma-tokens';
+
+const DocStyles = createGlobalStyle`
+    html {
+        color: ${text};
+        background-color: ${background};
+        background-image: ${gradient};
+
+        /** необходимо залить градиентом всю подложку */
+        min-height: 100vh;
+    }
+`;
+
+// создаем react-компонент для персонажа
+const Theme = createGlobalStyle(darkJoy);
+
+export default function App() {
+    return (
+        <>
+            {/* Используем глобальные react-компоненты один раз */}
+            <DocStyles />
+            <Theme />
+        </>
+    );
+}
+```

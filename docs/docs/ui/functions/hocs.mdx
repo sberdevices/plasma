@@ -1,0 +1,42 @@
+---
+id: hocs
+title: Хоки
+---
+
+# Хоки
+
+## `withAutoFocus`
+
+Добавляет фокус при инициализации компонента.
+
+```tsx
+import React from 'react';
+import { Button, ButtonProps } from '@sberdevices/plasma-core';
+import { withAutoFocus } from '@sberdevices/plasma-ui';
+
+const AutoFocusButton = withAutoFocus<ButtonProps>(Button);
+
+export const Default = () => {
+    return <AutoFocusButton autoFocus preventScroll={false} />;
+};
+```
+
+## `withSkeleton`
+
+Делает компонент скелетоном - у него заменяется фоновый цвет, добавляется градиент и текст становится на 100% прозрачным.
+Скелетон управляется параметром `skeleton`.
+
+```tsx
+import React from 'react';
+import { Button, ButtonProps } from '@sberdevices/plasma-core';
+import { withSkeleton, WithSkeletonProps } from '@sberdevices/plasma-ui';
+
+const ButtonSkeleton = withSkeleton<ButtonProps & WithSkeletonProps>(Button);
+
+return const Default = () => (
+    <>
+        <ButtonSkeleton skeleton /> // Скелетон
+        <ButtonSkeleton /> // Кнопка
+    </>
+);
+```

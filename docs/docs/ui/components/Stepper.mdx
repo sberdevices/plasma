@@ -1,0 +1,85 @@
+---
+id: stepper
+title: Stepper
+---
+
+import { PropsTable } from '@site/src/components/PropsTable';
+import { Description } from '@site/src/components/Description';
+
+# Stepper
+Набор компонентов для создания элементов управления количеством, суммой и другими численными показателями.
+
+## Комплексный компонент – Stepper
+<Description name="Stepper" />
+<PropsTable name="Stepper" />
+
+### Пример
+
+```tsx live
+() => {
+    const [value, setValue] = useState(3);
+
+    return (
+        <Stepper
+            step={1}
+            value={value}
+            min={0}
+            max={5}
+            showRemove={true}
+            pin="circle-circle"
+            onChange={(value) => setValue(value)}
+            onRemove={() => console.log('onRemove')}
+            onFocus={() => console.log('onFocus')}
+            onBlur={() => console.log('onBlur')}
+        />
+    );
+}
+```
+
+## Компоненты для кастомной сборки степпера
+Используйте скомпанованный компонент `Stepper`, либо составные части, где корневым будет `StepperRoot`.
+
+### Модификаторы
+При использовании модификатора `showRemove`, по достижению
+минимального количества кнопка **минус** заменяется на **удалить**.
+По нажатию на кнопку **удалить** вызывается обработчик **удаления**.
+
+## Компоненты для кастомной сборки степпера
+
+### StepperRoot
+<Description name="StepperRoot" />
+
+### StepperButton
+<Description name="StepperButton" />
+<PropsTable name="StepperButton" />
+
+### StepperValue
+<Description name="StepperValue" />
+<PropsTable name="StepperValue" />
+
+### Пример
+```tsx live
+() => {
+    const min = 0;
+    const max = 5;
+    const step = 1;
+    const [value, setValue] = useState(3);
+
+    return (
+        <StepperRoot>
+            <StepperButton
+                view={value > min ? 'secondary' : 'critical'}
+                icon={value > min ? <IconMinus color="inherit" size="xs" /> : <IconClose color="inherit" size="xs" />}
+                onClick={() => setValue(Math.max(value - step, min))}
+            />
+            <StepperValue value={value} disabled={false} showWarning={false} />
+            <StepperButton
+                view="secondary"
+                icon={<IconPlus color="inherit" size="xs" />}
+                disabled={value >= max}
+                onClick={() => setValue(Math.min(value + step, max))}
+            />
+        </StepperRoot>
+    );
+}
+```

@@ -1,0 +1,50 @@
+---
+id: paginationdots
+title: PaginationDots
+---
+
+import { PropsTable } from '@site/src/components/PropsTable';
+import { Description } from '@site/src/components/Description';
+
+# PaginationDots
+Набор компонентов для отображения точечных индикаторов постраничной навигации.
+
+## PaginationDots
+<Description name="PaginationDots" />
+
+## PaginationDot
+<Description name="PaginationDot" />
+
+## SmartPaginationDots
+<Description name="SmartPaginationDots" />
+<PropsTable name="SmartPaginationDots" />
+
+## Использование
+
+### Комплексный компонент – SmartPaginationDots
+```tsx live
+() => {
+    const index = 0;
+    const items = [0, 0, 0, 0, 0, 0, 0, 0];
+
+    return (
+        <SmartPaginationDots items={items} index={index} visibleItems={7} />
+    );
+}
+```
+
+### Пользовательская верстка
+```tsx live
+() => {
+    const index = 0;
+    const items = [0, 0, 0, 0, 0, 0, 0, 0];
+
+    return (
+        <PaginationDots>
+            {items.map((_, i) => (
+                <PaginationDot key={`item:${i}`} isActive={i === index} />
+            ))}
+        </PaginationDots>
+    );
+}
+```

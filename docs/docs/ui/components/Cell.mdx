@@ -1,0 +1,30 @@
+---
+id: cell
+title: Cell
+---
+
+import { PropsTable } from '@site/src/components/PropsTable';
+import { Description } from '@site/src/components/Description';
+
+# Cell
+<Description name="Cell" />
+<PropsTable name="Cell" />
+
+## Примеры
+
+### Базовое использование
+```tsx live
+<Cell content={<TextBox title="Заголовок" subTitle="Подзаголовок" />} />
+```
+
+### Кликабельная ячейка
+```tsx live
+<Cell
+    tabIndex={0}
+    onClick={() => alert('click!')}
+    outlined
+    contentLeft={<CellIcon as="img" src="/images/320_320_0.jpg" alt="avocado" />}
+    content={<TextBox title="Заголовок" subTitle="Подзаголовок" />}
+    contentRight={<CellDisclosure tabIndex={-1} />}
+/>
+```

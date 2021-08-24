@@ -1,0 +1,145 @@
+---
+id: intro
+title: Введение
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Введение в Plasma Devices
+Plasma Web (`@sberdevices/plasma-web`) – библиотека с открытым исходным кодом,
+в которую входят _компоненты_ дизайн-системы Plasma
+и вспомогательные _утилиты_ для создания [смартапов](https://developer.sberdevices.ru/docs/ru/basics/overview) на [React](https://reactjs.org/).
+
+Библиотека написана на [Typescript](https://www.typescriptlang.org/),
+а компоненты реализованы с применением [styled-components](https://styled-components.com/).
+
+## Установка
+Plasma Devices поддерживает версии **React 16.8+** и **styled-components 5.1+**.
+Ее можно использовать в существующем проекте.
+
+Установите **React**, **ReactDOM** и **styled-components**:
+
+```bash
+npm install react react-dom styled-components
+```
+
+> Использовать **styled-components** и **typescript** в проекте не обязательно.
+
+Установите библиотеку компонентов, библиотеку токенов и библиотеку иконок:
+
+```bash
+npm install @sberdevices/plasma-ui @sberdevices/plasma-tokens @sberdevices/plasma-icons
+```
+
+## Настройка
+
+Создайте компонент для подключения глобальных стилей и ротации [цветовых тем](./theming):
+
+```jsx title="GlobalStyle.tsx"
+import { createGlobalStyle } from 'styled-components';
+import { darkSber } from '@sberdevices/plasma-tokens/themes'; // Или один из списка: darkEva, darkJoy, lightEva, lightJoy, lightSber
+import {
+    text, // Цвет текста
+    background, // Цвет подложки
+    gradient, // Градиент
+} from '@sberdevices/plasma-tokens';
+
+const DocumentStyle = createGlobalStyle`
+    html {
+        color: ${text};
+        background-color: ${background};
+        background-image: ${gradient};
+    }
+`;
+const ThemeStyle = createGlobalStyle(darkSber);
+
+export const GlobalStyle = () => (
+    <>
+        <DocumentStyle />
+        <ThemeStyle />
+    </>
+);
+```
+
+### Корень приложения
+В корне приложения вызовите компонент глобальных стилей `GlobalStyle`,
+а также с помощью [`DeviceThemeProvider`](./components/devicethemeprovider) подключите типографическую ситему:
+
++ Если вы используете [Create React App](https://create-react-app.dev), делайте вызов внутри `src/index.tsx`.
++ Если вы используете [Next.js](https://nextjs.org/), создайте файл `pages/_app.tsx` и подключите стили в нем.
+
+<Tabs
+  defaultValue="cra"
+  values={[
+    { label: 'Create React App', value: 'cra', },
+    { label: 'Next.js', value: 'next', },
+  ]
+}>
+<TabItem value="cra">
+
+```jsx {2,3,7,9,10} title="index.tsx"
+import { DeviceThemeProvider } from '@sberdevices/plasma-ui';
+import { GlobalStyle } from './GlobalStyle';
+import { App } from './App';
+
+ReactDOM.render(
+    <DeviceThemeProvider>
+        <App />
+        <GlobalStyle />
+    </DeviceThemeProvider>,
+    document.getElementById('root'),
+);
+```
+</TabItem>
+<TabItem value="next">
+
+```tsx {2,3,7,9,10} title="pages/_app.tsx"
+import type { AppProps } from 'next/app';
+import { DeviceThemeProvider } from '@sberdevices/plasma-ui';
+import { GlobalStyle } from './GlobalStyle';
+
+function MyApp({ Component, pageProps }: AppProps) {
+    return (
+        <DeviceThemeProvider>
+            <Component {...pageProps} />
+            <GlobalStyle />
+        </DeviceThemeProvider>
+    );
+}
+
+export default MyApp;
+```
+</TabItem>
+</Tabs>
+
+> Подробнее о [стилях и типографике](./design/tokens).
+
+## Использование
+Не смотря на то, что все компоненты доступны из папки `components`,
+**рекомендуется** использовать их напрямую из пакета.
+Таким образом, обеспечивается работа [tree shaking](https://webpack.js.org/guides/tree-shaking/).
+
+```jsx {1,2} title="App.tsx"
+import { Container } from '@sberdevices/plasma-ui/components/Grid';
+import { Button } from '@sberdevices/plasma-ui';
+
+export default function App() {
+    return (
+        <Container>
+            <Button>Hello, Plasma!</Button>
+        </Container>
+    );
+}
+```
+
+Библиотека предоставляет вспомогательную функциональность (`utils`, `mixins`, `hocs`),
+доступную в соответствующих директориях.
+
+```jsx
+import { animatedScrollToX, addFocus, withAutoFocus } from '@sberdevices/plasma-ui';
+```
+
+Подробную информацию ищите в документации по
+[hocs](./functions/hocs), [mixins](./functions/mixins) и [utils](./functions/utils).
