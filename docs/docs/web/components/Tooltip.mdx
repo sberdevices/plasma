@@ -1,0 +1,23 @@
+---
+id: Tooltip
+title: Tooltip
+---
+
+import { PropsTable } from '@site/src/components/PropsTable';
+import { Description } from '@site/src/components/Description';
+
+# Tooltip
+<Description name="Tooltip" />
+<PropsTable name="Tooltip" />
+
+## Базовое применение
+
+`Tooltip` оборачивает собой любой компонент и открывается в заданную сторону.
+
+Предполагается оборачивать иконки из пакета `@sberdevices/plasma-icons`
+
+```tsx
+<Tooltip text="Высокое качество воспроизведения" visible>
+    <IconApps />
+</Tooltip>
+```

@@ -1,0 +1,93 @@
+---
+id: grid
+title: Grid
+---
+
+import { PropsTable } from '@site/src/components/PropsTable';
+import { Description } from '@site/src/components/Description';
+
+# Grid
+Набор компонентов для создания сетки.
+
+## Брейкпоинты
+Каждый брейкпоинт разрешения содержит собственное максимальное количество колонок:
+
+| Поверхность        | Обозначение | Ширина от, пикс | Ширина до, пикс | Кол-во колонок |
+| ------------------ |-------------| --------------- | --------------- | -------------- |
+| Desktop            | XL          | 960             | -               | 12             |
+| Tablet (landscape) | L           | 769             | 959             | 8              |
+| Tablet (portrait)  | M           | 560             | 768             | 6              |
+| Mobile             | S           | 0               | 559             | 4              |
+
+## Container
+<Description name="Container" />
+
+## Row
+Блок с отрицательными отступами для размещения колонок (`Col`) по горизонтали.
+Блок нельзя вкладывать сам в себя, но можно чередовать далее по дереву с использованием `Col`.
+Стилизованный компонент, обладающий всеми свойствами `div`.
+
+## Col
+<Description name="Col" />
+<PropsTable name="Col" />
+
+## Примеры
+
+### Базовое применение
+Размеры колонок указываются свойством `size`, отступ — свойством `offset`.
+
+```tsx
+<Container>
+    <Row>
+        <Col size={1}>
+            <Filler mb="8x">1</Filler>
+        </Col>
+        <Col size={2}>
+            <Filler mb="8x">2</Filler>
+        </Col>
+        <Col size={3}>
+            <Filler mb="8x">3</Filler>
+        </Col>
+        <Col size={4}>
+            <Filler mb="8x">4</Filler>
+        </Col>
+        <Col size={2}>
+            <Filler mb="8x">2</Filler>
+        </Col>
+    </Row>
+    <Row>
+        <Col size={3} offset={1}>
+            <Filler mb="8x">3 offset 1</Filler>
+        </Col>
+        <Col size={6} offset={2}>
+            <Filler mb="8x">6 offset 2</Filler>
+        </Col>
+    </Row>
+</Container>
+```
+
+### Адаптивные размеры и отступы колонок
+Свойства `size` и `offset` могут быть адаптивными.
+Для этого добавьте соответствующие свойства с нужными [брейкпоинтами](#брейкпоинты).
+При этом, `size` и `offset` могут выступать как fallback-значения для остальных разрешений.
+
+```tsx
+<Container>
+    <Row>
+        <Col sizeS={1} sizeM={2} sizeL={3} sizeXL={4}>
+            <Filler mb="8x">1</Filler>
+        </Col>
+        <Col size={2} sizeXL={4}>
+            <Filler mb="8x">2</Filler>
+        </Col>
+    </Row>
+    <Row>
+        <Col size={3} offsetS={1} offsetM={2} offsetL={3} offsetXL={4}>
+            <Filler mb="8x">3 offset 1</Filler>
+        </Col>
+        <Col size={6} offset={2} offsetXL={4}>
+            <Filler mb="8x">6 offset 2</Filler>
+        </Col>
+    </Row>
+</Container>
+```
