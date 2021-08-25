@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { ActionButton } from '@sberdevices/plasma-ui';
 
 export interface MediaPlayerButtonProps {
+    children?: React.ReactNode;
     disabled?: boolean;
     visible?: boolean;
     onClick?: () => void;
@@ -13,19 +14,23 @@ const StyledActionButton = styled(ActionButton)`
     margin: 0 8px;
 `;
 
-export const MediaPlayerButton: React.FC<MediaPlayerButtonProps> = ({
-    disabled,
-    visible = true,
-    children,
-    onClick,
-}) => {
-    if (!visible) {
-        return null;
-    }
+export const MediaPlayerButton = React.forwardRef<HTMLButtonElement, MediaPlayerButtonProps>(
+    ({ disabled, visible = true, children, onClick }, ref) => {
+        if (!visible) {
+            return null;
+        }
 
-    return (
-        <StyledActionButton size="l" view="overlay" pin="circle-circle" disabled={disabled} onClick={onClick}>
-            {children}
-        </StyledActionButton>
-    );
-};
+        return (
+            <StyledActionButton
+                ref={ref}
+                size="l"
+                view="overlay"
+                pin="circle-circle"
+                disabled={disabled}
+                onClick={onClick}
+            >
+                {children}
+            </StyledActionButton>
+        );
+    },
+);
