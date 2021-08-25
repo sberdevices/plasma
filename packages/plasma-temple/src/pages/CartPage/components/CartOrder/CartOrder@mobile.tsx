@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Price, Button } from '@sberdevices/plasma-ui';
+import { Button } from '@sberdevices/plasma-ui';
 
 import { useInsets } from '../../../../hooks';
 
-import { DeliveryPrice, CartOrderProps, Discount } from './CartOrder@common';
+import { DeliveryPrice, CartOrderProps, Discount, CartAmount } from './CartOrder@common';
 
 const StyledDeliveryPrice = styled(DeliveryPrice)`
     margin-top: 0.25rem;
@@ -50,7 +50,7 @@ export const CartOrderMobile: React.FC<CartOrderProps> = ({
             <StyledDiscount currency={currency} discount={discount} />
             <StyledButton view="primary" stretch onClick={onMakeOrder} disabled={disabled} size="m" bottom={bottom}>
                 {orderButtonText}
-                <Price>{amount}</Price>
+                <CartAmount amount={amount} discount={discount} />
             </StyledButton>
             {children}
         </StyledContainer>
