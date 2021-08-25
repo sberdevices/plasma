@@ -1,3 +1,21 @@
+# v0.48.0 (Wed Aug 25 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Insets with device pixel ratio [#114](https://github.com/sberdevices/pashka/pull/114) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): add focus for player button [#118](https://github.com/sberdevices/pashka/pull/118) ([@kayman233](https://github.com/kayman233))
+- fix(plasma-temple): callOnce for useFocusOnMount added [#118](https://github.com/sberdevices/pashka/pull/118) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 2
+
+- [@kayman233](https://github.com/kayman233)
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v0.47.2 (Tue Aug 24 2021)
 
 #### 🐛 Bug Fix
