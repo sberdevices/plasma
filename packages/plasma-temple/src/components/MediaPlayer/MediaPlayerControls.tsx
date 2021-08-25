@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { IconRoot, IconPause, IconPlay, IconPrevious, IconNext, IconRepeat } from '@sberdevices/plasma-icons';
 
+import { useFocusOnMount } from '../../hooks/useFocusOnMount';
+
 import { MediaPlayerButton, MediaPlayerButtonProps } from './MediaPlayerButton';
 import { ControlType, MediaPlayerControlsProps } from './types';
 import { ForwardIcon } from './assets/ForwardIcon';
@@ -53,6 +55,9 @@ export const MediaPlayerControls: React.FC<MediaPlayerControlsProps> = ({
 }) => {
     const IconPlayComponent = finished ? IconRepeat : IconPlay;
 
+    const mountRef = React.useRef<HTMLButtonElement>(null);
+    useFocusOnMount(mountRef, { delay: 150, prevent: !canPlay, callOnce: true });
+
     return (
         <StyledWrapper className={className}>
             <MediaPlayerButton
@@ -70,6 +75,7 @@ export const MediaPlayerControls: React.FC<MediaPlayerControlsProps> = ({
                 onClick={playback}
                 visible={isControlVisible(ControlType.PLAYBACK, visibleControlList)}
                 disabled={!canPlay}
+                ref={mountRef}
             >
                 {paused ? <IconPlayComponent size="xs" /> : <IconPause size="xs" />}
             </MediaPlayerButton>
