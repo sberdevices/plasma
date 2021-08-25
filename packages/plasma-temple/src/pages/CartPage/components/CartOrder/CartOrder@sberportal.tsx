@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Price, Button, Headline4, Caption } from '@sberdevices/plasma-ui';
+import { Button, Headline4, Caption } from '@sberdevices/plasma-ui';
 
-import { amountText, DeliveryPrice, CartOrderProps, Discount } from './CartOrder@common';
+import { amountText, DeliveryPrice, CartOrderProps, Discount, CartAmount } from './CartOrder@common';
 
 const StyledPriceContainer = styled(Headline4)`
     margin-top: 0.25rem;
@@ -32,7 +32,7 @@ export const CartOrderSberPortal: React.FC<CartOrderProps> = ({
         <>
             <Caption>{amountText}</Caption>
             <StyledPriceContainer>
-                <Price>{amount}</Price>
+                <CartAmount amount={amount} discount={discount} />
             </StyledPriceContainer>
             <StyledContainer>
                 <StyledDeliveryPrice

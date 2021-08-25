@@ -26,7 +26,7 @@ const StyledIconCount = styled.div`
 export const CartButton: React.FC<CartButtonProps> = ({ screen, withPrice, label, hideEmpty }) => {
     const { pushScreen } = React.useContext(AppStateContext);
     const { state } = useCart();
-    const { quantity, amount, currency } = state;
+    const { quantity, amount, currency, discount = 0 } = state;
 
     const onClick = React.useCallback(() => pushScreen(screen, null), [screen, pushScreen]);
 
@@ -42,7 +42,7 @@ export const CartButton: React.FC<CartButtonProps> = ({ screen, withPrice, label
                     <IconCart />
                 </StyledIconCount>
             }
-            text={withPrice && amount > 0 ? <Price currency={currency}>{amount}</Price> : label}
+            text={withPrice && amount > 0 ? <Price currency={currency}>{amount - discount}</Price> : label}
             view="clear"
             size="s"
             onClick={onClick}
