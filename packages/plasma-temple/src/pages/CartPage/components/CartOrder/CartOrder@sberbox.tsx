@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Price, Button, Footnote1, Headline1 } from '@sberdevices/plasma-ui';
+import { Button, Footnote1, Headline1 } from '@sberdevices/plasma-ui';
 
 import { useFocusOnMount } from '../../../../hooks/useFocusOnMount';
 
-import { DeliveryPrice, CartOrderProps, amountText, Discount } from './CartOrder@common';
+import { DeliveryPrice, CartOrderProps, amountText, Discount, CartAmount } from './CartOrder@common';
 
 const StyledPriceContainer = styled(Headline1)`
     margin-top: 0.375rem;
@@ -37,7 +37,7 @@ export const CartOrderSberBox: React.FC<CartOrderProps> = ({
         <>
             <Footnote1>{amountText}</Footnote1>
             <StyledPriceContainer>
-                <Price>{amount}</Price>
+                <CartAmount amount={amount} discount={discount} />
             </StyledPriceContainer>
             <StyledContainer>
                 <StyledDeliveryPrice

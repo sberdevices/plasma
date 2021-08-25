@@ -38,15 +38,21 @@ export const DeliveryPrice: React.FC<{
     minDeliveryPrice?: number;
     deliveryPrice?: number;
     className?: string;
-}> = ({ currency, minDeliveryPrice = 0, deliveryPrice, className }) => (
-    <StyledCell className={className}>
-        <Text>Доставка</Text>
-        <Text>
-            {deliveryPrice ? '' : 'от '}
-            <Price currency={currency}>{deliveryPrice ?? minDeliveryPrice}</Price>
-        </Text>
-    </StyledCell>
-);
+}> = ({ currency, minDeliveryPrice, deliveryPrice, className }) => {
+    if (!minDeliveryPrice && !deliveryPrice) {
+        return null;
+    }
+
+    return (
+        <StyledCell className={className}>
+            <Text>Доставка</Text>
+            <Text>
+                {deliveryPrice ? '' : 'от '}
+                <Price currency={currency}>{deliveryPrice ?? minDeliveryPrice ?? 0}</Price>
+            </Text>
+        </StyledCell>
+    );
+};
 
 export const Discount: React.FC<{
     discount?: number;
@@ -61,3 +67,7 @@ export const Discount: React.FC<{
             </Text>
         </StyledCell>
     ) : null;
+
+export const CartAmount: React.FC<{ amount: number; discount?: number }> = ({ amount, discount = 0 }) => (
+    <Price>{amount - discount}</Price>
+);
