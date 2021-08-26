@@ -1,3 +1,15 @@
+# v0.49.0 (Thu Aug 26 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Cart can be without delivery [#117](https://github.com/sberdevices/pashka/pull/117) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v0.48.0 (Wed Aug 25 2021)
 
 #### 🚀 Enhancement
