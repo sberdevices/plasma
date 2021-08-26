@@ -28,6 +28,11 @@ export default {
 const StyledWrapper = styled.div`
     width: 13.75rem;
 `;
+const StyledRadialWrapper = styled(StyledWrapper)`
+    --plasma-dropdown-padding: 0.25rem;
+    --plasma-dropdown-border-radius: 1rem;
+    --plasma-dropdown-item-border-radius: 0.75rem;
+`;
 const StyledHeaderRoot = styled.header`
     margin: -1rem -1rem 0;
     background: ${background};
@@ -77,6 +82,17 @@ export const Default = () => {
                 ))}
             </DropdownList>
         </StyledWrapper>
+    );
+};
+export const Radius = () => {
+    return (
+        <StyledRadialWrapper>
+            <DropdownList>
+                {items.map((item) => (
+                    <DropdownItem key={item.value} {...item} />
+                ))}
+            </DropdownList>
+        </StyledRadialWrapper>
     );
 };
 export const LiveDemo = () => {

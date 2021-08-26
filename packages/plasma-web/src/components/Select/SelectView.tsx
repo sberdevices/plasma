@@ -37,6 +37,7 @@ const statuses = {
 const StyledDropdown = styled(Dropdown)`
     --plasma-dropdown-padding: 0.25rem;
     --plasma-dropdown-border-radius: 0.25rem;
+    --plasma-dropdown-item-border-radius: 0.25rem;
     display: flex;
     width: 100%;
 `;
