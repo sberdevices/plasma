@@ -7,8 +7,10 @@ import type { CarouselProps } from '../pages/GalleryPage/components/Carousel';
 import type { HeroSliderProps } from '../components/HeroSlider';
 import type { StateLayoutProps } from '../components/StateLayout';
 
+type EmptyObject = Record<never, never>;
+
 export type UnifiedComponentProps<T, P extends Record<string, unknown>> = T & {
-    platformComponents: { [K in keyof P]: React.ComponentType<P[K]> };
+    platformComponents: { [K in keyof P]: React.ComponentType<P[K] extends void | never ? EmptyObject : P[K]> };
 };
 
 export interface Registry {

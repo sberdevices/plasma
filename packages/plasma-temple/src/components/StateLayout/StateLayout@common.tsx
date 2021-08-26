@@ -10,10 +10,10 @@ import { FullScreenBackground } from '../FullScreenBackground/FullScreenBackgrou
 import { StateLayoutCommonProps } from './types';
 
 type PlatformComponents = {
-    Headline: {};
-    Text: {};
-    TextWrapper: {};
-    ImageContainer: {};
+    Headline: void;
+    Text: void;
+    TextWrapper: void;
+    ImageContainer: void;
 };
 
 type StateLayoutProps = UnifiedComponentProps<StateLayoutCommonProps, PlatformComponents>;

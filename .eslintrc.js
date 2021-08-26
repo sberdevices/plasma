@@ -88,15 +88,6 @@ module.exports = {
         "padding-line-between-statements": "off",
         "no-unused-expressions": "off",
         "@typescript-eslint/no-empty-function": "off",
-        "@typescript-eslint/ban-types": [
-            "error",
-            {
-                extendDefaults: true,
-                types: {
-                    "{}": false, // Для использования {} в качестве типа пропсов для PlatformComponents
-                },
-            },
-        ],
     },
     overrides: [
         {
