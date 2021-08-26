@@ -1,6 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { background } from '@sberdevices/plasma-core';
+import { background, accent, success, warning, critical } from '@sberdevices/plasma-core';
+import {
+    IconEye,
+    IconMagicWand,
+    IconAccessibility,
+    IconHeart,
+    IconTrash,
+    IconLocation,
+} from '@sberdevices/plasma-icons';
 
 import { InSpacingDecorator } from '../../helpers';
 import { Button } from '../Button';
@@ -37,29 +45,34 @@ const StyledMenuButton = styled(Button)`
 
 const items = [
     { value: 'each', label: 'Каждый' },
-    { value: 'hunter', label: 'Охотник', isDisabled: true },
-    { value: 'wants', label: 'Желает' },
+    { value: 'hunter', label: 'Охотник' },
     {
-        value: 'toKnow',
-        label: 'Знать',
+        value: 'wants',
+        label: 'Желает',
+        contentLeft: <IconHeart color="inherit" />,
         items: [
             { value: '_fulllabel', label: 'Каждый охотник желает знать, где сидит фазан' },
             { value: '_thePheasant', label: 'Фазан' },
             { value: '_is', label: 'Сидит' },
         ],
     },
-    { value: 'where', label: 'Где' },
-    { value: 'is', label: 'Сидит' },
-    { value: 'thePheasant', label: 'Фазан' },
-    { value: 'fulllabel', label: 'Каждый охотник желает знать, где сидит фазан' },
+    { value: 'toKnow', label: 'Знать', isDisabled: true, contentLeft: <IconEye color="inherit" /> },
+    { value: 'where', label: 'Где', color: accent, contentLeft: <IconLocation color="inherit" /> },
+    { value: 'is', label: 'Сидит', color: success, contentLeft: <IconAccessibility color="inherit" /> },
+    { value: 'thePheasant', label: 'Фазан', color: warning, contentLeft: <IconMagicWand color="inherit" /> },
+    {
+        value: 'fulllabel',
+        label: 'Каждый охотник желает знать, где сидит фазан',
+        contentLeft: <IconTrash color="inherit" />,
+        color: critical,
+    },
 ];
-const flatList = items.map(({ value, label, isDisabled }) => ({ value, label, isDisabled }));
 
 export const Default = () => {
     return (
         <StyledWrapper>
             <DropdownList>
-                {flatList.map((item) => (
+                {items.map((item) => (
                     <DropdownItem key={item.value} {...item} />
                 ))}
             </DropdownList>
