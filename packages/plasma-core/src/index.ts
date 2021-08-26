@@ -9,6 +9,7 @@ export * from './components/Input';
 export * from './components/PaginationDots';
 export * from './components/Popup';
 export * from './components/Price';
+export * from './components/RadioGroup';
 export * from './components/Skeleton';
 export * from './components/Spinner';
 export * from './components/Switch';
