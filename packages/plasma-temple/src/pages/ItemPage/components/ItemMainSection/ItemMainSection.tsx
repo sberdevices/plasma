@@ -51,8 +51,8 @@ const ItemCell: React.FC<ItemCellProps> = ({ title, content }) => (
 
 type PlatformComponents = {
     Container: SectionProps;
-    Title: {};
-    Subtitle: {};
+    Title: void;
+    Subtitle: void;
 };
 
 export const ItemMainSection: React.FC<UnifiedComponentProps<ItemMainSectionProps, PlatformComponents>> = ({
