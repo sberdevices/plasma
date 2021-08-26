@@ -22,9 +22,9 @@ const StyledRow = styled(Row)`
 `;
 
 type PlatformComponents = {
-    Title: {};
-    Suggest: {};
-    Wrapper: {};
+    Title: void;
+    Suggest: void;
+    Wrapper: void;
     Button: ButtonProps & React.RefAttributes<HTMLButtonElement>;
 };
 
