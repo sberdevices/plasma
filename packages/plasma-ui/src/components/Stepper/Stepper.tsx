@@ -47,6 +47,10 @@ export type StepperProps = (RemoverProps | NoRemoverProps) &
          * Обработчик изменения значения счетчика
          */
         onChange: (value: number) => void;
+        /**
+         * Функция для форматирования отображаемого значения
+         */
+        formatter?: (value: number) => string;
     };
 
 /**
@@ -62,6 +66,7 @@ export const Stepper: React.FC<StepperProps> = ({
     onChange,
     onFocus,
     onBlur,
+    formatter,
     ...props
 }) => {
     const { showRemove: remover, onRemove, ...rest } = props as RemoverProps;
@@ -86,7 +91,7 @@ export const Stepper: React.FC<StepperProps> = ({
                 onFocus={onFocus}
                 onBlur={onBlur}
             />
-            <StepperValue value={value} disabled={disabled} showWarning={isMax} />
+            <StepperValue value={value} disabled={disabled} showWarning={isMax} formatter={formatter} />
             <StepperButton
                 disabled={disabled || moreDisabled}
                 icon={<IconPlus color="inherit" size="xs" />}
