@@ -1,4 +1,4 @@
-import React, { FC, useRef, useCallback, useMemo } from 'react';
+import React, { FC, ReactNode, useRef, useCallback, useMemo } from 'react';
 import styled, { css } from 'styled-components';
 import {
     body1,
@@ -15,10 +15,12 @@ import { DropdownItem as DropdownItemType, DropdownNode as DropdownNodeType } fr
 
 export interface DropdownItemProps extends DropdownNodeType {
     isActive?: boolean;
+    color?: string;
+    contentLeft?: ReactNode;
     onClick?: (item: DropdownItemType) => void;
 }
 
-const StyledDropdownItem = styled.a<{ $disabled?: boolean }>`
+const StyledDropdownItem = styled.a<{ $disabled?: boolean; $color?: string }>`
     ${body1};
 
     display: flex;
@@ -31,7 +33,7 @@ const StyledDropdownItem = styled.a<{ $disabled?: boolean }>`
     border-radius: var(--plasma-dropdown-border-radius, 0);
 
     background-color: transparent;
-    color: ${primary};
+    color: ${({ $color }) => $color || primary};
     transition: background-color 0.3s ease-in-out;
     cursor: pointer;
 
@@ -56,6 +58,10 @@ const StyledDropdownItem = styled.a<{ $disabled?: boolean }>`
             }
         `}
     ${applyDisabled}
+`;
+const StyledContent = styled.div`
+    display: inline-flex;
+    margin-right: 0.375rem;
 `;
 const StyledText = styled.span`
     ${applyEllipsis}
@@ -87,8 +93,10 @@ export const DropdownItem: FC<DropdownItemProps> = ({
     value,
     label,
     isActive,
-    items = [],
     isDisabled,
+    color,
+    contentLeft,
+    items = [],
     onClick: onClickExternal,
     ...rest
 }) => {
@@ -133,7 +141,8 @@ export const DropdownItem: FC<DropdownItemProps> = ({
     );
 
     return (
-        <StyledDropdownItem ref={itemRef} $disabled={isDisabled} onClick={onClick} {...rest}>
+        <StyledDropdownItem ref={itemRef} $disabled={isDisabled} $color={color} onClick={onClick} {...rest}>
+            {contentLeft && <StyledContent>{contentLeft}</StyledContent>}
             {label && <StyledText>{label}</StyledText>}
             {contentRight}
         </StyledDropdownItem>
