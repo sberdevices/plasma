@@ -30,7 +30,7 @@ const StyledDropdownItem = styled.a<{ $disabled?: boolean; $color?: string }>`
 
     height: 3rem;
     padding: 0.875rem 1rem;
-    border-radius: var(--plasma-dropdown-border-radius, 0);
+    border-radius: var(--plasma-dropdown-item-border-radius, 0);
 
     background-color: transparent;
     color: ${({ $color }) => $color || primary};
