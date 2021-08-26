@@ -6,6 +6,7 @@ const menu = [
     { href: '/test/components/carousel/', title: 'Carousel' },
     { href: '/test/components/grid/', title: 'Grid' },
     { href: '/test/components/pickers/', title: 'Pickers' },
+    { href: '/test/components/radiobox/', title: 'Radiobox' },
     { href: '/test/components/switch/', title: 'Switch' },
     { href: '/test/components/tabs/', title: 'Tabs' },
     { href: '/test/components/text-field/', title: 'TextField' },

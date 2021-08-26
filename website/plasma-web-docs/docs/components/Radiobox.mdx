@@ -22,3 +22,13 @@ export function App() {
     );
 }
 ```
+
+## Группа радиокнопок
+Компоненты `Radiobox` следует объединять в `RadioGroup`
+```tsx live
+<RadioGroup aria-labelledby="radiogroup-title-id">
+    <H3 id="radiogroup-title-id">Заголовок</H3>
+    <Radiobox name="radio-1" label="Радиокнопка 1" description="Описание 1" defaultChecked />
+    <Radiobox name="radio-1" label="Радиокнопка 2" description="Описание 2" />
+</RadioGroup>
+```
