@@ -10,5 +10,5 @@ export default {
 };
 
 export const Default = (props: { withLabels: boolean; withDescription: boolean }) => {
-    return <RadioboxShowcase {...props} component={Radiobox} />;
+    return <RadioboxShowcase {...props} component={Radiobox} radioboxStyles={{ width: '200px' }} />;
 };

@@ -1,8 +1,8 @@
 import React from 'react';
-import { RadioboxProps } from '@sberdevices/plasma-ui';
+import styled from 'styled-components';
+import { RadioboxProps, applySpacing, RadioGroup } from '@sberdevices/plasma-ui';
 
 import { actionWithPersistedEvent } from './actionWithPersistedEvent';
-import { ShowcaseComponentGrid } from './Showcase';
 import { Tony } from './Tony';
 
 const onChange = actionWithPersistedEvent('onChange');
@@ -58,40 +58,65 @@ const rows: Array<Array<Props>> = [
     ],
 ];
 
+const StyledRadioGroup = styled(RadioGroup)`
+    width: 100%;
+    display: flex;
+    ${applySpacing({ mb: 20 })};
+    justify-content: flex-start;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+`;
+
 export const RadioboxShowcase = ({
     component: Component,
     withLabels = true,
     withDescription = true,
+    radioboxStyles = {},
 }: {
     component: React.FC<any>;
     withLabels: boolean;
     withDescription: boolean;
+    radioboxStyles?: React.CSSProperties;
 }) => {
     const [value, setValue] = React.useState(2);
 
     return (
-        <ShowcaseComponentGrid>
-            {rows.map((items) =>
-                items
-                    .filter((item) => !(!withDescription && item.description))
-                    .map(({ tony, label, onChange, ...item }, j) => (
-                        <div style={{ display: 'flex' }}>
-                            <Component
-                                {...item}
-                                key={`item:${j}`}
-                                name="test-radio"
-                                style={{ margin: 0 }}
-                                label={withLabels ? label : ''}
-                                checked={item.checked || item.value === value}
-                                onChange={(event: any) => {
-                                    setValue(item.value);
-                                    onChange?.(event);
-                                }}
-                            />
-                            {tony && <Tony />}
-                        </div>
-                    )),
+        <div>
+            {rows.map(
+                (items, i) =>
+                    items.some((item) => !(!withDescription && item.description)) && (
+                        <StyledRadioGroup key={i}>
+                            {items
+                                .filter((item) => !(!withDescription && item.description))
+                                .map(({ tony, label, onChange, ...item }, j) => (
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            width: '200px',
+
+                                            ...(applySpacing({ mr: 20, mb: 0, mt: 0 }) as Record<string, string>),
+                                            ...radioboxStyles,
+                                        }}
+                                    >
+                                        <Component
+                                            {...item}
+                                            key={`item:${j}`}
+                                            name="test-radio"
+                                            label={withLabels ? label : ''}
+                                            checked={item.checked || item.value === value}
+                                            onChange={(event: any) => {
+                                                setValue(item.value);
+                                                onChange?.(event);
+                                            }}
+                                        />
+                                        {tony && <Tony />}
+                                    </div>
+                                ))}
+                        </StyledRadioGroup>
+                    ),
             )}
-        </ShowcaseComponentGrid>
+        </div>
     );
 };
