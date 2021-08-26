@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { IconClock } from '@sberdevices/plasma-icons';
 import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { disableProps } from '../../helpers';
+import { InSpacingDecorator, disableProps } from '../../helpers';
 
-import { Tabs, TabsProps, TabItem } from '.';
+import { Tabs, TabsProps, TabItem, TabsController } from '.';
 
 const propsToDisable = ['ref', 'theme', 'as', 'forwardedAs'];
 
@@ -14,16 +15,18 @@ export default {
     argTypes: {
         ...disableProps(propsToDisable),
     },
+    decorators: [InSpacingDecorator],
 } as Meta;
 
 interface DeafultStoryProps extends TabsProps {
     itemsNumber: number;
-    text: string;
+    label: string;
+    enableContentLeft: boolean;
 }
 
-export const Default: Story<DeafultStoryProps> = ({ itemsNumber, disabled, stretch, text }) => {
+export const Default: Story<DeafultStoryProps> = ({ itemsNumber, disabled, stretch, label, enableContentLeft }) => {
     const items = Array(itemsNumber).fill(0);
-    const [index, setIndex] = React.useState(0);
+    const [index, setIndex] = useState(0);
 
     return (
         <Tabs stretch={stretch} disabled={disabled}>
@@ -32,11 +35,12 @@ export const Default: Story<DeafultStoryProps> = ({ itemsNumber, disabled, stret
                     key={`item:${i}`}
                     isActive={i === index}
                     tabIndex={!disabled ? i : -1}
+                    contentLeft={enableContentLeft && <IconClock color="inherit" />}
                     onClick={() => !disabled && setIndex(i)}
                     onFocus={action(`onFocus item #${i}`)}
                     onBlur={action(`onBlur item #${i}`)}
                 >
-                    {text}
+                    {label}
                 </TabItem>
             ))}
         </Tabs>
@@ -47,5 +51,30 @@ Default.args = {
     itemsNumber: 4,
     disabled: false,
     stretch: true,
-    text: 'Label',
+    label: 'Label',
+};
+
+export const Arrows: Story<DeafultStoryProps> = ({ itemsNumber, disabled, stretch, label, enableContentLeft }) => {
+    const items = Array(itemsNumber).fill({
+        label,
+        contentLeft: enableContentLeft && <IconClock color="inherit" />,
+    });
+    const [index, setIndex] = useState(0);
+
+    return (
+        <TabsController
+            items={items}
+            index={index}
+            onIndexChange={(i) => setIndex(i)}
+            stretch={stretch}
+            disabled={disabled}
+        />
+    );
+};
+
+Arrows.args = {
+    itemsNumber: 4,
+    disabled: false,
+    stretch: true,
+    label: 'Label',
 };
