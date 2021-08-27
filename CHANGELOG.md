@@ -2,6 +2,28 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/demo-canvas-app@0.21.0`
+  - feat(demo-canvas-app): Tabs page [#659](https://github.com/sberdevices/plasma/pull/659) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-core@1.27.0`, `@sberdevices/plasma-ui@1.44.0`
+  - feat: A11y Tabs [#659](https://github.com/sberdevices/plasma/pull/659) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-ui@1.44.0`
+  - chore(plasma-ui): Refactor tabs [#659](https://github.com/sberdevices/plasma/pull/659) ([@fanisco](https://github.com/fanisco))
+  - chore(plasma-ui): Storybook controls for PaginationDots, Price, Spinner, TextArea, TextField [#639](https://github.com/sberdevices/plasma/pull/639) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 2
+
+- [@kayman233](https://github.com/kayman233)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Fri Aug 27 2021)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-ui@1.43.0`, `@sberdevices/showcase@0.48.0`
   - feat(plasma-ui): Add showcase [#660](https://github.com/sberdevices/plasma/pull/660) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
 - `@sberdevices/plasma-ui@1.43.0`

@@ -1,3 +1,23 @@
+# v1.44.0 (Fri Aug 27 2021)
+
+#### 🚀 Enhancement
+
+- feat: A11y Tabs [#659](https://github.com/sberdevices/plasma/pull/659) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- chore(plasma-ui): Refactor tabs [#659](https://github.com/sberdevices/plasma/pull/659) ([@fanisco](https://github.com/fanisco))
+- chore(plasma-ui): Storybook controls for PaginationDots, Price, Spinner, TextArea, TextField [#639](https://github.com/sberdevices/plasma/pull/639) ([@kayman233](https://github.com/kayman233))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 3
+
+- [@kayman233](https://github.com/kayman233)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.43.0 (Fri Aug 27 2021)
 
 #### 🚀 Enhancement
