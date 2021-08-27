@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { background, accent, success, warning, critical } from '@sberdevices/plasma-core';
+import { accent, success, warning, critical } from '@sberdevices/plasma-core';
 import {
     IconEye,
     IconMagicWand,
@@ -12,12 +12,8 @@ import {
 
 import { InSpacingDecorator } from '../../helpers';
 import { Button } from '../Button';
-import { Container } from '../Grid';
 
-import { DropdownList } from './DropdownList';
-import { DropdownItem } from './DropdownItem';
-
-import { Dropdown } from '.';
+import { Dropdown, DropdownList, DropdownItem } from '.';
 
 export default {
     title: 'Controls/Dropdown',
@@ -33,19 +29,19 @@ const StyledRadialWrapper = styled(StyledWrapper)`
     --plasma-dropdown-border-radius: 1rem;
     --plasma-dropdown-item-border-radius: 0.75rem;
 `;
-const StyledHeaderRoot = styled.header`
-    margin: -1rem -1rem 0;
-    background: ${background};
-    box-shadow: -1px 0 1px rgb(0 0 0 / 5%), -4px 0 14px rgb(0 0 0 / 8%);
-`;
-const StyledHeaderInner = styled.div`
+const Styled25Rem = styled.div`
     display: flex;
-    align-items: center;
-    height: 3.75rem;
+    flex-direction: column;
+    gap: 0.25rem;
+    width: 25rem;
 `;
-const StyledMenuButton = styled(Button)`
-    height: 3.75rem;
-    border-radius: 0;
+const StyledDashedBorder = styled.div`
+    padding: 0.25rem;
+    border: 1px dashed #00000030;
+    border-radius: 0.75rem;
+`;
+const StyledBlockDropdown = styled(Dropdown)`
+    display: block;
 `;
 
 const items = [
@@ -84,7 +80,8 @@ export const Default = () => {
         </StyledWrapper>
     );
 };
-export const Radius = () => {
+
+export const RadiusAndPadding = () => {
     return (
         <StyledRadialWrapper>
             <DropdownList>
@@ -95,18 +92,59 @@ export const Radius = () => {
         </StyledRadialWrapper>
     );
 };
-export const LiveDemo = () => {
+
+export const Placement = () => {
     return (
-        <StyledHeaderRoot>
-            <Container>
-                <StyledHeaderInner>
-                    <Dropdown items={items}>
-                        <StyledMenuButton text="Item 1" />
-                    </Dropdown>
-                    <StyledMenuButton text="Item 2" view="clear" />
-                    <StyledMenuButton text="Item 3" view="clear" />
-                </StyledHeaderInner>
-            </Container>
-        </StyledHeaderRoot>
+        <Styled25Rem style={{ flexDirection: 'row' }}>
+            <StyledDashedBorder>
+                <Dropdown items={items}>
+                    <Button text="Bottom" />
+                </Dropdown>
+            </StyledDashedBorder>
+            <StyledDashedBorder>
+                <Dropdown items={items} placement="right">
+                    <Button text="Right" />
+                </Dropdown>
+            </StyledDashedBorder>
+            <StyledDashedBorder>
+                <Dropdown items={items} placement="left">
+                    <Button text="Left" />
+                </Dropdown>
+            </StyledDashedBorder>
+        </Styled25Rem>
+    );
+};
+
+export const InlineOrBlockWrapper = () => {
+    return (
+        <Styled25Rem>
+            <StyledDashedBorder style={{ display: 'inline-flex' }}>
+                <Dropdown items={items}>
+                    <Button text="Inline" />
+                </Dropdown>
+            </StyledDashedBorder>
+            <StyledDashedBorder>
+                <StyledBlockDropdown items={items}>
+                    <Button text="Block" stretch />
+                </StyledBlockDropdown>
+            </StyledDashedBorder>
+        </Styled25Rem>
+    );
+};
+
+export const Trigger = () => {
+    return (
+        <Styled25Rem>
+            <StyledDashedBorder style={{ display: 'inline-flex' }}>
+                <Dropdown items={items} trigger="click">
+                    <Button text="Click me" />
+                </Dropdown>
+            </StyledDashedBorder>
+            <StyledDashedBorder>
+                <Dropdown items={items} trigger="hover">
+                    <Button text="Hover me" />
+                </Dropdown>
+            </StyledDashedBorder>
+        </Styled25Rem>
     );
 };

@@ -1,18 +1,16 @@
-import React, { FC, HTMLAttributes, useRef, useCallback, useEffect, useState, useMemo } from 'react';
-import styled, { CSSObject } from 'styled-components';
-import { toCssSize } from '@sberdevices/plasma-core';
+import React, { FC, useRef, useState, useCallback, useEffect } from 'react';
+import styled, { css } from 'styled-components';
+
+import { PickOptional as Optional } from '../../types';
+import { Popup, PopupProps } from '../Popup';
 
 import { DropdownList } from './DropdownList';
 import { DropdownItem } from './DropdownItem';
-import { DropdownSub } from './DropdownSub';
 import { DropdownNode as DropdownNodeType, DropdownItem as DropdownItemType } from './Dropdown.types';
 
-const StyledRoot = styled.div`
-    position: relative;
-    display: inline-flex;
-`;
-
-export interface DropdownProps extends HTMLAttributes<HTMLDivElement> {
+export interface DropdownProps
+    extends Omit<PopupProps, 'isOpen' | 'offset' | 'placement' | 'trigger' | 'children'>,
+        Optional<PopupProps, 'placement' | 'trigger'> {
     /**
      * Отступ сверху.
      */
@@ -25,8 +23,19 @@ export interface DropdownProps extends HTMLAttributes<HTMLDivElement> {
      * Обработчик клика по айтему.
      */
     onItemClick?: (item: DropdownItemType) => void;
-    onToggle?: (isOpen: boolean) => void;
 }
+
+const StyledPopup = styled(Popup)<Pick<DropdownProps, 'offsetTop'>>`
+    ${({ placement, offsetTop }) =>
+        placement === 'bottom'
+            ? css`
+                  --plasma-popup-padding: ${offsetTop} 0 0;
+              `
+            : css`
+                  --plasma-popup-padding: 0;
+                  width: 100%;
+              `}
+`;
 
 /**
  * Выпадающий список.
@@ -34,79 +43,68 @@ export interface DropdownProps extends HTMLAttributes<HTMLDivElement> {
 export const Dropdown: FC<DropdownProps> = ({
     children,
     offsetTop,
+    placement = 'bottom',
+    trigger = 'click',
     items,
     onItemClick: onItemClickExternal,
-    onToggle,
+    onToggle: onToggleExternal,
     ...rest
 }) => {
     const hasItems = Array.isArray(items) && items.length > 0;
     const oldIsOpen = useRef<boolean | null>(null);
-    const rootRef = useRef<HTMLDivElement>(null);
-    const listRef = useRef<HTMLDivElement>(null);
     const [isOpen, setIsOpen] = useState(false);
-    const style = useMemo<CSSObject>(
-        () => ({
-            position: 'absolute',
-            top: '100%',
-            left: 0,
-            zIndex: 1,
-            marginTop: (offsetTop && toCssSize(offsetTop)) || 'var(--plasma-dropdown-padding)',
-            opacity: Number(isOpen),
-            display: isOpen ? 'block' : 'none',
-        }),
-        [isOpen],
-    );
-
-    const onDocumentClick = useCallback((event) => {
-        const targetIsRoot = event.target === rootRef.current;
-        const targetInRoot = rootRef.current?.contains(event.target);
-        if (!targetIsRoot && !targetInRoot) {
-            setIsOpen(false);
-        }
-    }, []);
-
-    const onRootClick = useCallback((event) => {
-        const targetIsList = event.target === listRef.current;
-        const targetInList = listRef.current?.contains(event.target);
-        if (!targetIsList && !targetInList && hasItems) {
-            setIsOpen((oldIsVisible) => !oldIsVisible);
-        }
-    }, []);
 
     const onItemClick = useCallback(
         (item) => {
             setIsOpen(false);
             onItemClickExternal?.(item);
         },
-        [setIsOpen, onItemClickExternal],
+        [onItemClickExternal],
+    );
+
+    const onToggle = useCallback(
+        (newIsOpen) => {
+            if (hasItems) {
+                setIsOpen(newIsOpen);
+            }
+        },
+        [hasItems],
     );
 
     useEffect(() => {
         if (oldIsOpen.current !== null && oldIsOpen.current !== isOpen) {
-            onToggle?.(isOpen);
+            onToggleExternal?.(isOpen);
         }
         oldIsOpen.current = isOpen;
-    }, [isOpen]);
-
-    useEffect(() => {
-        document.addEventListener('click', onDocumentClick);
-        return () => document.removeEventListener('click', onDocumentClick);
-    }, []);
+    }, [isOpen, onToggleExternal]);
 
     return (
-        <StyledRoot ref={rootRef} onClick={onRootClick} {...rest}>
-            {children}
-            <DropdownList ref={listRef} style={style}>
+        <StyledPopup
+            isOpen={isOpen}
+            trigger={trigger}
+            placement={placement}
+            disclosure={children}
+            offsetTop={offsetTop}
+            onToggle={onToggle}
+            {...rest}
+        >
+            <DropdownList>
                 {items.map((item) =>
                     item.items && item.items.length ? (
-                        <DropdownSub key={item.value} items={item.items} onItemClick={onItemClick}>
+                        <Dropdown
+                            key={item.value}
+                            trigger="hover"
+                            placement="right"
+                            items={item.items}
+                            onItemClick={onItemClick}
+                        >
                             <DropdownItem onClick={onItemClick} {...item} />
-                        </DropdownSub>
+                        </Dropdown>
                     ) : (
                         <DropdownItem key={item.value} onClick={onItemClick} {...item} />
                     ),
                 )}
             </DropdownList>
-        </StyledRoot>
+        </StyledPopup>
     );
 };

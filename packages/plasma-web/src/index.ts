@@ -9,6 +9,7 @@ export * from './components/Link';
 export * from './components/Modal';
 export * from './components/Notification';
 export * from './components/PaginationDots';
+export * from './components/Popup';
 export * from './components/Price';
 export * from './components/Progress';
 export * from './components/Radiobox';

@@ -23,3 +23,16 @@ import { PropsTable, Description } from '@site/src/components';
     <Button text="Раскрыть список" />
 </Dropdown>
 ```
+
+## Пользовательская сборка
+Выпадающие списки допустимо собирать вручную с помощью составных компонентов (используя компонент [Popup](./popup)):
+```tsx live
+<Popup trigger="click" placement="bottom" disclosure={<Button text="Раскрыть список" />}>
+    <DropdownList>
+        <DropdownItem value="1" label="Элемент" />
+        <DropdownItem value="2" label="Выпадающего" color={accent} />
+        <DropdownItem value="3" label="Списка" color={success} contentLeft={<IconHeart color="inherit" />} />
+        <DropdownItem value="4" label="Недоступно" isDisabled />
+    </DropdownList>
+</Popup>
+```
