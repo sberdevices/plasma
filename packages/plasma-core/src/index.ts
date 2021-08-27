@@ -5,6 +5,7 @@ export * from './components/Fade';
 export * from './components/Grid';
 export * from './components/Image';
 export * from './components/PaginationDots';
+export * from './components/Popup';
 export * from './components/Price';
 export * from './components/Skeleton';
 export * from './components/Spinner';

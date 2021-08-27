@@ -22,6 +22,7 @@ export interface DropdownItemProps extends DropdownNodeType {
 
 const StyledDropdownItem = styled.a<{ $disabled?: boolean; $color?: string }>`
     display: flex;
+    flex: 1;
     align-items: center;
     justify-content: flex-start;
     box-sizing: border-box;
