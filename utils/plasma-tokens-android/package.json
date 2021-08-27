@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-tokens-android",
-    "version": "2.18.0",
+    "version": "2.19.0",
     "description": "Plasma tokens for android",
     "files": [
         "tokens"
