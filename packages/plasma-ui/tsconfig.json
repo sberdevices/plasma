@@ -37,5 +37,5 @@
         "rootDir": "./src"
     },
     "include": ["./src"],
-    "exclude": ["./src/helpers", "./src/showcase", "./src/**/*.stories.tsx"]
+    "exclude": ["./src/helpers", "./src/showcase", "./src/**/*.stories.tsx", "**/*.test.tsx"]
 }

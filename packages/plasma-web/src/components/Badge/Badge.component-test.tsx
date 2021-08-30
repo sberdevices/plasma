@@ -4,22 +4,14 @@ import ReactDom from 'react-dom';
 import { mount } from '@cypress/react';
 import { Badge } from './Badge';
 
-import { createGlobalStyle } from 'styled-components';
-
-import { web } from '@sberdevices/plasma-tokens-web/typo';
-import { light } from '@sberdevices/plasma-tokens-web/themes';
-
-const TypoThemeStyle = createGlobalStyle(web);
-const ColorThemeStyle = createGlobalStyle(light);
+import { CypressTestDecorator } from '../../helpers/CypressHelpers';
 
 describe('Badge', () => {
     it('renders Badge', () => {
         mount(
-            <>
-                <TypoThemeStyle />
-                <ColorThemeStyle />
+            <CypressTestDecorator>
                 <Badge text={'Badge-web'} size={'l'} view={'primary'} />
-            </>,
+            </CypressTestDecorator>,
             { ReactDom },
         );
         cy.matchImageSnapshot();
