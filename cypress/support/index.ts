@@ -1,3 +1,1 @@
 import './commands';
-
-beforeEach(() => {});

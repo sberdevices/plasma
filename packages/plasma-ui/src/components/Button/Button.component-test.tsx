@@ -7,7 +7,7 @@ import { CypressTestDecorator } from '../../helpers/CypressHelpers';
 import { Button } from './Button';
 
 describe('Button', () => {
-    it('renders Badge', () => {
+    it('renders Button', () => {
         mount(
             <CypressTestDecorator>
                 <Button
