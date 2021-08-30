@@ -1,16 +1,32 @@
 import React from 'react';
-import { text, number, boolean } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { Tabs, TabItem } from '.';
+import { disableProps } from '../../helpers';
 
-export const Default = () => {
-    const items = Array(number('Items', 4)).fill(0);
-    const disabled = boolean('disabled', false);
+import { Tabs, TabsProps, TabItem } from '.';
+
+const propsToDisable = ['ref', 'theme', 'as', 'forwardedAs'];
+
+export default {
+    title: 'Controls/Tabs',
+    component: Tabs,
+    argTypes: {
+        ...disableProps(propsToDisable),
+    },
+} as Meta;
+
+interface DeafultStoryProps extends TabsProps {
+    itemsNumber: number;
+    text: string;
+}
+
+export const Default: Story<DeafultStoryProps> = ({ itemsNumber, disabled, stretch, text }) => {
+    const items = Array(itemsNumber).fill(0);
     const [index, setIndex] = React.useState(0);
 
     return (
-        <Tabs stretch={boolean('stretch', true)} disabled={disabled}>
+        <Tabs stretch={stretch} disabled={disabled}>
             {items.map((_, i) => (
                 <TabItem
                     key={`item:${i}`}
@@ -20,9 +36,16 @@ export const Default = () => {
                     onFocus={action(`onFocus item #${i}`)}
                     onBlur={action(`onBlur item #${i}`)}
                 >
-                    {text('Text', 'Label')}
+                    {text}
                 </TabItem>
             ))}
         </Tabs>
     );
+};
+
+Default.args = {
+    itemsNumber: 4,
+    disabled: false,
+    stretch: true,
+    text: 'Label',
 };
