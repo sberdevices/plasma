@@ -1,47 +1,95 @@
 import React from 'react';
-import { select, boolean, text } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { IconPlaceholder, InSpacingDecorator } from '../../helpers';
+import { IconPlaceholder, InSpacingDecorator, disableProps } from '../../helpers';
 
-import { TextField } from '.';
+import { TextField, TextFieldProps } from '.';
 
 const onChange = action('onChange');
 const onFocus = action('onFocus');
 const onBlur = action('onBlur');
-const onInput = action('onInput');
+
+const sizes = ['m', 'l'];
+const statuses = ['', 'success', 'error'];
+
+const propsToDisable = [
+    'helperBlock',
+    'contentLeft',
+    'htmlSize',
+    '$isFocused',
+    'label',
+    'contentRight',
+    'type',
+    'name',
+    'onFocus',
+    'onBlur',
+    'onChange',
+    'value',
+    'checked',
+    'maxLength',
+    'minLength',
+    'required',
+];
 
 export default {
     title: 'Controls/TextField',
     component: TextField,
     decorators: [InSpacingDecorator],
-};
+    argTypes: {
+        status: {
+            control: {
+                type: 'select',
+                options: statuses,
+            },
+        },
+        size: {
+            control: {
+                type: 'inline-radio',
+                options: sizes,
+            },
+        },
+        ...disableProps(propsToDisable),
+    },
+} as Meta;
 
-export const Default = () => {
+interface DefaultSortyProps extends TextFieldProps {
+    enableContentLeft: boolean;
+    enableContentRight: boolean;
+}
+
+export const Default: Story<DefaultSortyProps> = ({ enableContentLeft, enableContentRight, status, ...rest }) => {
     const [value, setValue] = React.useState('Title 🌝');
 
     return (
         <TextField
-            size={select('size', ['m', 'l'], 'm')}
             value={value}
-            placeholder={text('placeholder', 'Label')}
-            helperText={text('helperText', 'Helper text')}
-            contentLeft={boolean('contentLeft', true) && <IconPlaceholder />}
-            contentRight={boolean('contentRight', true) && <IconPlaceholder />}
-            status={select('status', ['', 'success', 'error'], '') || undefined}
-            disabled={boolean('disabled', false)}
-            readOnly={boolean('readOnly', false)}
+            contentLeft={enableContentLeft && <IconPlaceholder />}
+            contentRight={enableContentRight && <IconPlaceholder />}
+            status={status || undefined}
             onChange={(e) => {
                 setValue(e.target.value);
                 onChange(e);
             }}
             onFocus={onFocus}
             onBlur={onBlur}
+            {...rest}
         />
     );
 };
 
-export const DeferredValue = () => {
+Default.args = {
+    size: 'm',
+    placeholder: 'Label',
+    helperText: 'Helper text',
+    enableContentLeft: true,
+    enableContentRight: true,
+    status: '' as 'success',
+    disabled: false,
+    readOnly: false,
+};
+
+export const DeferredValue: Story<{ readOnly: boolean }> = ({ readOnly }) => {
     const [asyncValue, setAsyncValue] = React.useState('');
 
     React.useEffect(() => {
@@ -50,11 +98,15 @@ export const DeferredValue = () => {
         }, 3000);
     }, []);
 
-    return (
-        <TextField
-            placeholder="Wait three seconds..."
-            defaultValue={asyncValue}
-            readOnly={boolean('readOnly', true, 'DeferredValue')}
-        />
-    );
+    return <TextField placeholder="Wait three seconds..." defaultValue={asyncValue} readOnly={readOnly} />;
+};
+
+DeferredValue.args = {
+    readOnly: true,
+};
+
+const defValuePropsToDisable = [...propsToDisable, 'status', 'size', 'helperText', 'placeholder', 'disabled'];
+
+DeferredValue.argTypes = {
+    ...disableProps(defValuePropsToDisable),
 };
