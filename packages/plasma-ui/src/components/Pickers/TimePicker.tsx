@@ -119,6 +119,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
     controls,
     autofocus,
     scrollSnapType,
+    visibleItems,
     onChange,
     ...rest
 }) => {
@@ -214,6 +215,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     autofocus={autofocus}
                     disabled={disabled}
                     controls={controls}
+                    visibleItems={visibleItems}
                     size={size}
                     range={hoursRange}
                     value={hours}
@@ -229,6 +231,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     autofocus={autofocus && !options.hours}
                     disabled={disabled}
                     controls={controls}
+                    visibleItems={visibleItems}
                     size={size}
                     range={minsRange}
                     value={minutes}
@@ -244,6 +247,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     autofocus={autofocus && !options.hours && !options.minutes}
                     disabled={disabled}
                     controls={controls}
+                    visibleItems={visibleItems}
                     size={size}
                     range={secsRange}
                     value={seconds}
