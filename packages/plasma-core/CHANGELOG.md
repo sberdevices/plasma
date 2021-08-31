@@ -1,3 +1,15 @@
+# v1.27.1 (Tue Aug 31 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-core): fix monthName formatter [#693](https://github.com/sberdevices/plasma/pull/693) ([@OgNellis](https://github.com/OgNellis))
+
+#### Authors: 1
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+
+---
+
 # v1.27.0 (Fri Aug 27 2021)
 
 #### 🚀 Enhancement

@@ -1,3 +1,18 @@
+# v1.42.1 (Tue Aug 31 2021)
+
+#### 🐛 Bug Fix
+
+- docs(plasma-web): Storybook controls for Tabs, TextArea [#661](https://github.com/sberdevices/plasma/pull/661) ([@kayman233](https://github.com/kayman233))
+- chore(plasma-web): disableProps added [#661](https://github.com/sberdevices/plasma/pull/661) ([@kayman233](https://github.com/kayman233))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@kayman233](https://github.com/kayman233)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
 # v1.42.0 (Fri Aug 27 2021)
 
 #### 🐛 Bug Fix

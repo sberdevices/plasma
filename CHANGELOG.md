@@ -1,3 +1,23 @@
+# (Tue Aug 31 2021)
+
+#### 🐛 Bug Fix
+
+- chore: Add `LamaEats` to `CODEOWNERS` [#692](https://github.com/sberdevices/plasma/pull/692) ([@fanisco](https://github.com/fanisco))
+- chore: CODEOWNERS [#674](https://github.com/sberdevices/plasma/pull/674) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-core@1.27.1`
+  - fix(plasma-core): fix monthName formatter [#693](https://github.com/sberdevices/plasma/pull/693) ([@OgNellis](https://github.com/OgNellis))
+- `@sberdevices/plasma-web@1.42.1`
+  - docs(plasma-web): Storybook controls for Tabs, TextArea [#661](https://github.com/sberdevices/plasma/pull/661) ([@kayman233](https://github.com/kayman233))
+  - chore(plasma-web): disableProps added [#661](https://github.com/sberdevices/plasma/pull/661) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 3
+
+- [@kayman233](https://github.com/kayman233)
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Fri Aug 27 2021)
 
 #### 🚀 Enhancement
