@@ -290,6 +290,10 @@ const StyledButton = styled.button<StyledButtonProps>`
 
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
+    a& {
+        text-decoration: none;
+    }
+
     &:focus {
         outline: none;
     }

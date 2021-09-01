@@ -1,4 +1,4 @@
-import { css, InterpolationFunction } from 'styled-components';
+import { InterpolationFunction } from 'styled-components';
 
 import {
     accent,
@@ -19,45 +19,45 @@ import {
  * Общие цветовые стили оформления кнопок, баджей и т.п.
  */
 export const views = {
-    accent: css`
-        background-color: ${accent};
-        color: ${white};
-    `,
-    primary: css`
-        background-color: ${buttonAccent};
-        color: ${white};
-    `,
-    secondary: css`
-        background-color: ${buttonSecondary};
-        color: ${text};
-    `,
-    success: css`
-        background-color: ${buttonSuccess};
-        color: ${white};
-    `,
-    warning: css`
-        background-color: ${buttonWarning};
-        color: ${white};
-    `,
-    critical: css`
-        background-color: ${buttonCritical};
-        color: ${white};
-    `,
-    checked: css`
-        background-color: ${buttonChecked};
+    accent: {
+        backgroundColor: accent,
+        color: white,
+    },
+    primary: {
+        backgroundColor: buttonAccent,
+        color: white,
+    },
+    secondary: {
+        backgroundColor: buttonSecondary,
+        color: text,
+    },
+    success: {
+        backgroundColor: buttonSuccess,
+        color: white,
+    },
+    warning: {
+        backgroundColor: buttonWarning,
+        color: white,
+    },
+    critical: {
+        backgroundColor: buttonCritical,
+        color: white,
+    },
+    checked: {
+        backgroundColor: buttonChecked,
         /**
          * FixMe: Заменить на соответствующий цвет при исправлении токенов дизайнерами
          */
-        color: ${background};
-    `,
-    clear: css`
-        background-color: ${transparent};
-        color: ${text};
-    `,
-    overlay: css`
-        background-color: ${blackSecondary};
-        color: ${white};
-    `,
+        color: background,
+    },
+    clear: {
+        backgroundColor: transparent,
+        color: text,
+    },
+    overlay: {
+        backgroundColor: blackSecondary,
+        color: white,
+    },
 };
 
 export type View = keyof typeof views;
