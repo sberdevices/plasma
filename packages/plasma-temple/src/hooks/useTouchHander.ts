@@ -1,5 +1,6 @@
-import { isSberBox } from '@sberdevices/plasma-ui/utils';
 import React, { Touch, useLayoutEffect } from 'react';
+
+import { isSberBoxLike } from '..';
 
 export interface UseTouchHandlerParams {
     /**
@@ -37,7 +38,7 @@ export const useTouchHandler: UseTouchHandler = (ref, callback, params) => {
     const { axis = 'x', callDistance = 25 } = params || {};
 
     useLayoutEffect(() => {
-        if (!ref.current || isSberBox()) {
+        if (!ref.current || isSberBoxLike()) {
             return;
         }
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Header, CarouselGridWrapper } from '@sberdevices/plasma-ui';
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
-import { isSberBox } from '@sberdevices/plasma-ui/utils';
 
 import { AnyObject } from '../../types';
 import { GalleryCard as CardComponent } from '../../components/GalleryCard/GalleryCard';
@@ -11,6 +10,7 @@ import { useRemoteHandlers, useRemoteListener } from '../../hooks';
 import { useFocusedState } from '../../hooks/useFocusedState';
 import { useFocusOnMount } from '../../hooks/useFocusOnMount';
 import { useGetMutableValue } from '../../hooks/useGetMutableValue';
+import { isSberBoxLike } from '../..';
 
 import { ShopLandingPageState } from './types';
 import { ShopLandingCard } from './components/ShopLandingCard/ShopLandingCard';
@@ -49,7 +49,7 @@ export const ShopLandingPage = <T extends AnyObject = AnyObject>({
         repeat: false,
     });
 
-    useFocusOnMount(focusedContainerRef, { prevent: !isSberBox() });
+    useFocusOnMount(focusedContainerRef, { prevent: !isSberBoxLike() });
 
     const Component = galleryCard ?? CardComponent;
 
@@ -72,7 +72,7 @@ export const ShopLandingPage = <T extends AnyObject = AnyObject>({
     }, [activeIndex, changeState, getState]);
 
     const handleItemClick = React.useCallback(
-        (card: T, index: number) => {
+        (card, index: number) => {
             setActiveIndex(index);
             onItemClick(card);
         },
