@@ -27,7 +27,7 @@ const services = [
         title: 'Иконки',
         // eslint-disable-next-line global-require
         Svg: require('../../../static/img/undraw_docusaurus_react.svg').default,
-        links: [{ to: 'https://plasma-icons-service.dev.app.sberdevices.ru/', text: 'Devices', external: true }],
+        links: [{ to: 'https://plasma.sberdevices.ru/icons', text: 'Devices', external: true }],
     },
 ];
 
