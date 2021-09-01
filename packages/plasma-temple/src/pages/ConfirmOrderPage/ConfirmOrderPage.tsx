@@ -3,12 +3,13 @@ import styled, { css } from 'styled-components';
 import { Body1, Body2, Button, Col, Footnote1, Headline3, Price, Row } from '@sberdevices/plasma-ui';
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 import { secondary } from '@sberdevices/plasma-tokens';
-import { detectDevice, isSberBox, mediaQuery } from '@sberdevices/plasma-ui/utils';
+import { detectDevice, mediaQuery } from '@sberdevices/plasma-ui/utils';
 
 import { Header } from '../../components/Header/Header';
 import { DeviceFamily } from '../../types';
 import { useFocusOnMount } from '../../hooks/useFocusOnMount';
 import { THROTTLE_WAIT, useThrottledCallback } from '../../hooks/useThrottledCallback';
+import { isSberBoxLike } from '../..';
 
 import { ConfirmOrderCard } from './components/ConfirmOrderCard/ConfirmOrderCard';
 import { LocationIcon } from './ConfirmOrderPage.assets/LocationIcon';
@@ -120,7 +121,7 @@ export const ConfirmOrderPage: React.FC<ConfirmOrderProps> = ({
 
     useFocusOnMount<HTMLButtonElement>(buttonRef, {
         delay: THROTTLE_WAIT,
-        prevent: !isSberBox(),
+        prevent: !isSberBoxLike(),
     });
 
     const handlePay = useThrottledCallback(() => onPay(), [onPay]);

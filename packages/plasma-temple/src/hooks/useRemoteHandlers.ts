@@ -1,7 +1,7 @@
 import React from 'react';
-import { isSberBox } from '@sberdevices/plasma-ui/utils';
 
 import { Axis } from '../types';
+import { isSberBoxLike } from '../utils/deviceFamily';
 
 import { useThrottledCallback } from './useThrottledCallback';
 
@@ -79,9 +79,7 @@ const throttlingParamsDefault = {
     trailing: false,
 };
 
-const isSberbox = isSberBox();
-const defaultDelay = isSberbox ? 300 : 30;
-const defaultLongDelay = isSberbox ? 1500 : 150;
+const [defaultDelay, defaultLongDelay] = isSberBoxLike() ? [300, 1500] : [30, 150];
 
 interface UseRemoteHandlersProps {
     initialIndex: number;

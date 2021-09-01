@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Cell, TextBox, TextBoxLabel, TextBoxTitle, Button } from '@sberdevices/plasma-ui';
 import { IconPlay } from '@sberdevices/plasma-icons/Icons/IconPlay';
-import { isSberBox } from '@sberdevices/plasma-ui/utils';
 
+import { isSberBoxLike } from '../../../../utils';
 import { FullScreenBackground } from '../FullScreenBackground/FullScreenBackground';
 import { useFocusOnMount } from '../../../../hooks/useFocusOnMount';
 import { UnifiedComponentProps } from '../../../../registry/types';
@@ -90,7 +90,7 @@ export const ItemMainSection: React.FC<UnifiedComponentProps<ItemMainSectionProp
                 onClick={onItemShow}
                 ref={buttonRef}
                 contentLeft={<IconPlay size="s" />}
-                outlined={isSberBox()}
+                outlined={isSberBoxLike()}
                 text={itemShowButtonText}
             />
         </Container>

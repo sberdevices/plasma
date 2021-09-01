@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { isSberBox, mediaQuery } from '@sberdevices/plasma-ui/utils';
+import { mediaQuery } from '@sberdevices/plasma-ui/utils';
 
 import { useFocusOnMount } from '../../hooks/useFocusOnMount';
 import { THROTTLE_WAIT } from '../../hooks/useThrottledCallback';
 import { StateLayout } from '../../components/StateLayout/StateLayout';
 import { ComponentPropsWithHeader } from '../../components/Header/types';
+import { isSberBoxLike } from '../..';
 
 import iconWarn from './ErrorPage.assets/warning-circle.svg';
 
@@ -36,7 +37,7 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({ header, error, buttons }) 
 
     useFocusOnMount<HTMLButtonElement>(buttonRef, {
         delay: THROTTLE_WAIT,
-        prevent: !isSberBox(),
+        prevent: !isSberBoxLike(),
     });
 
     const buttonsToRender: React.ReactNode = React.useMemo(() => {

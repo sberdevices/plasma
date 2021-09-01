@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Card, CardBadge, CardBody, CardMedia, Col, Footnote1 } from '@sberdevices/plasma-ui';
-import { isSberBox } from '@sberdevices/plasma-ui/utils';
+
+import { isSberBoxLike } from '../../../..';
 
 export interface ItemEntityProps {
     url: string;
@@ -33,7 +34,7 @@ export const ItemEntity = React.forwardRef<HTMLDivElement, ItemEntityProps>(
         return (
             <StyledCol sizeXL={3} sizeM={2}>
                 <Card
-                    outlined={isSberBox()}
+                    outlined={isSberBoxLike()}
                     tabIndex={0}
                     onClick={onClick}
                     onFocus={onFocus}
