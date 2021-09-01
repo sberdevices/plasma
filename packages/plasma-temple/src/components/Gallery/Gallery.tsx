@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { CarouselGridWrapper, Carousel, CarouselItem } from '@sberdevices/plasma-ui';
-import { isSberBox, isSberPortal } from '@sberdevices/plasma-ui/utils';
+import { isSberPortal } from '@sberdevices/plasma-ui/utils';
 
 import { GalleryCardContainer } from '../GalleryCard/GalleryCardContainer';
 import { AnyObject } from '../../types';
 import { useDelayedActivation } from '../../hooks/useDelayedActivation';
+import { isSberBoxLike } from '../..';
 
 import { GalleryIndexContext, withNavigation } from './hocs/withNavigation';
 import { GalleryProps, GalleryWithNavigationProps } from './types';
@@ -20,7 +21,7 @@ const StyledCarousel = styled(Carousel)<{ initialized: boolean }>`
     padding-bottom: 8px;
     outline: none;
     scroll-snap-type: none;
-    scroll-behavior: ${({ initialized }) => (initialized && isSberBox() ? 'smooth' : 'unset')};
+    scroll-behavior: ${({ initialized }) => (initialized && isSberBoxLike() ? 'smooth' : 'unset')};
 `;
 
 const StyledCarouselItem = styled(CarouselItem)`

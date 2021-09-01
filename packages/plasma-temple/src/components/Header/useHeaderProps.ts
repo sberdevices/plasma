@@ -1,7 +1,7 @@
 import React from 'react';
-import { isSberBox } from '@sberdevices/plasma-ui';
 
 import { AppStateContext } from '../PlasmaApp/AppStateContext';
+import { isSberBoxLike } from '../..';
 
 import { HeaderProps } from './types';
 
@@ -13,7 +13,7 @@ export const useHeaderProps = (props: HeaderProps): HeaderProps => {
         popScreen,
     } = React.useContext(AppStateContext);
 
-    if (isSberBox() || back !== undefined || minimize !== undefined) {
+    if (isSberBoxLike() || back !== undefined || minimize !== undefined) {
         return props;
     }
 
