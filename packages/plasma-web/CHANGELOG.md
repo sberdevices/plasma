@@ -1,3 +1,22 @@
+# v1.43.0 (Wed Sep 01 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-web): Pass color and contentLeft to DropdownItem [#683](https://github.com/sberdevices/plasma/pull/683) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web): Dropdown shadow black [#683](https://github.com/sberdevices/plasma/pull/683) ([@fanisco](https://github.com/fanisco))
+- fix(plasma-web): Pass DropdownItem border radius as separate CSS Var [#683](https://github.com/sberdevices/plasma/pull/683) ([@fanisco](https://github.com/fanisco))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.42.1 (Tue Aug 31 2021)
 
 #### 🐛 Bug Fix
