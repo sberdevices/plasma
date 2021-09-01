@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { Title, Subtitle, Description, Primary, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
+import { link, linkHover, linkActive } from '@sberdevices/plasma-tokens-web';
 import { light, dark } from '@sberdevices/plasma-tokens-web/themes';
 import { light as b2cLight, dark as b2cDark } from '@sberdevices/plasma-tokens-b2c/themes';
 import { web } from '@sberdevices/plasma-tokens-web/typo';
@@ -13,6 +14,17 @@ import storybookTheme from './theme';
 const DocumentStyle = createGlobalStyle`
     html:root {
         min-height: 100vh;
+    }
+    a {
+        color: ${link};
+        text-decoration: underline;
+
+        &:hover {
+            color: ${linkHover};
+        }
+        &:active {
+            color: ${linkActive};
+        }
     }
 `;
 /* stylelint-enable */

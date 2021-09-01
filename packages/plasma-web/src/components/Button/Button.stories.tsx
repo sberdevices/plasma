@@ -73,21 +73,9 @@ export default {
     },
 } as Meta;
 
-export const Default: Story<ButtonProps & { contentType: string }> = ({ contentType, text, ...rest }) => {
-    return (
-        <Button
-            text={contentType !== 'Left' && text}
-            contentLeft={(contentType === 'Left' || contentType === 'Text+Left') && <IconPlaceholder />}
-            contentRight={contentType === 'Text+Right' && <IconPlaceholder />}
-            onClick={onClick}
-            onFocus={onFocus}
-            onBlur={onBlur}
-            {...rest}
-        />
-    );
-};
+type ButtonStoryProps = ButtonProps & { contentType: string };
 
-Default.args = {
+const args: ButtonStoryProps = {
     view: 'primary',
     size: 'l',
     pin: 'square-square',
@@ -96,4 +84,32 @@ Default.args = {
     focused: false,
     text: 'Label',
     contentType: 'Text',
+    onClick,
+    onFocus,
+    onBlur,
 };
+
+export const Default: Story<ButtonStoryProps> = ({ contentType, text, ...rest }) => {
+    return (
+        <Button
+            text={contentType !== 'Left' && text}
+            contentLeft={(contentType === 'Left' || contentType === 'Text+Left') && <IconPlaceholder />}
+            contentRight={contentType === 'Text+Right' && <IconPlaceholder />}
+            {...rest}
+        />
+    );
+};
+
+Default.args = args;
+
+export const Anchor: Story<ButtonStoryProps> = ({ contentType, text, ...rest }) => (
+    <Button
+        forwardedAs="a"
+        text={contentType !== 'Left' && text}
+        contentLeft={(contentType === 'Left' || contentType === 'Text+Left') && <IconPlaceholder />}
+        contentRight={contentType === 'Text+Right' && <IconPlaceholder />}
+        {...rest}
+    />
+);
+
+Anchor.args = args;

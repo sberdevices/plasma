@@ -46,20 +46,33 @@ const buttonViews = {
     primary: css`
         ${baseViews.primary}
         ${viewInteractive}
+
+        &:hover {
+            color: ${baseViews.primary.color};
+        }
     `,
     success: css`
         ${baseViews.success}
         ${viewInteractive}
+
+        &:hover {
+            color: ${baseViews.success.color};
+        }
     `,
     critical: css`
         ${baseViews.critical}
         ${viewInteractive}
+
+        &:hover {
+            color: ${baseViews.critical.color};
+        }
     `,
     secondary: css`
         ${baseViews.secondary}
 
         &:hover {
             background-color: ${buttonSecondaryHover};
+            color: ${baseViews.secondary.color};
         }
 
         &:active {
