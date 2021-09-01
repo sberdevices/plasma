@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Card, CardBody, CardContent, CardMedia, Col } from '@sberdevices/plasma-ui';
-import { isSberBox } from '@sberdevices/plasma-ui/utils';
+
+import { isSberBoxLike } from '../../..';
 
 export interface GridCardProps {
     url: string;
@@ -21,7 +22,7 @@ export const GridCard = React.forwardRef<HTMLDivElement, GridCardProps>(
         return (
             <StyledCol sizeXL={4} sizeM={2}>
                 <Card
-                    outlined={isSberBox()}
+                    outlined={isSberBoxLike()}
                     tabIndex={0}
                     onClick={onClick}
                     onKeyDown={onKeyDown}

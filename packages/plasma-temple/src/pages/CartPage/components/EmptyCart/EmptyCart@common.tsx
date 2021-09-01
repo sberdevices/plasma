@@ -1,12 +1,13 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Button, Col, Headline1, Headline2, Row, Image, ButtonProps } from '@sberdevices/plasma-ui';
-import { isSberBox, mediaQuery } from '@sberdevices/plasma-ui/utils';
+import { mediaQuery } from '@sberdevices/plasma-ui/utils';
 
 import { deviceFamily } from '../../../../utils/deviceFamily';
 import { DeviceFamily } from '../../../../types';
 import { withProps } from '../../../../components/hocs/withProps';
 import { useFocusOnMount } from '../../../../hooks/useFocusOnMount';
+import { isSberBoxLike } from '../../../..';
 
 export interface EmptyCartProps {
     imageSrc?: string;
@@ -79,7 +80,7 @@ export const EmptyCartCommon: React.FC<EmptyCartProps> = ({
     onGoToCatalog,
 }) => {
     const buttonRef = React.useRef<HTMLButtonElement>(null);
-    useFocusOnMount<HTMLButtonElement>(buttonRef, { prevent: !isSberBox() });
+    useFocusOnMount<HTMLButtonElement>(buttonRef, { prevent: !isSberBoxLike() });
 
     return (
         <Row className={className}>

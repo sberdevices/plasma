@@ -1,12 +1,12 @@
 import React from 'react';
 import { Button } from '@sberdevices/plasma-ui';
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
-import { isSberBox } from '@sberdevices/plasma-ui/utils';
 
 import { useFocusOnMount } from '../../hooks/useFocusOnMount';
 import { THROTTLE_WAIT } from '../../hooks/useThrottledCallback';
 import { useRegistry } from '../../hooks/useRegistry';
 import { ComponentPropsWithHeader } from '../../components/Header/types';
+import { isSberBoxLike } from '../..';
 
 interface OrderSuccessProps extends ComponentPropsWithHeader {
     header?: HeaderProps;
@@ -20,7 +20,7 @@ export const OrderSuccessPage: React.FC<OrderSuccessProps> = ({ header, imageSrc
 
     useFocusOnMount<HTMLButtonElement>(buttonRef, {
         delay: THROTTLE_WAIT,
-        prevent: !isSberBox(),
+        prevent: !isSberBoxLike(),
     });
 
     return (

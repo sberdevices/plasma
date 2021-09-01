@@ -1,8 +1,9 @@
 import React from 'react';
-import { isSberBox, isSberPortal } from '@sberdevices/plasma-ui/utils';
+import { isSberPortal } from '@sberdevices/plasma-ui/utils';
 
 import { GalleryCard as DefaultGalleryCard } from '../GalleryCard/GalleryCard';
 import { AnyObject } from '../../types';
+import { isSberBoxLike } from '../..';
 
 import { GalleryCardParams, GalleryCardProps } from './types';
 
@@ -34,7 +35,7 @@ export const GalleryCardContainer = <T extends AnyObject = AnyObject>({
 
     return (
         <Root onClick={handleClick}>
-            <GalleryCard card={card} focused={isSberBox() && focused} index={index} />
+            <GalleryCard card={card} focused={isSberBoxLike() && focused} index={index} />
         </Root>
     );
 };
