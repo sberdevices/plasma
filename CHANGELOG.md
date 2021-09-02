@@ -1,3 +1,16 @@
+# (Thu Sep 02 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@0.50.0`
+  - feat(plasma-temple): Typed props for platform components [#111](https://github.com/sberdevices/pashka/pull/111) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # (Thu Aug 26 2021)
 
 #### 🚀 Enhancement
