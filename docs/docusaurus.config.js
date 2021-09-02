@@ -96,7 +96,7 @@ module.exports = {
             {
                 docs: {
                     sidebarPath: require.resolve('./sidebars.js'),
-                    editUrl: 'https://github.com/sberdevices/plasma/',
+                    editUrl: 'https://github.com/sberdevices/plasma/blob/master/docs/',
                 },
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
