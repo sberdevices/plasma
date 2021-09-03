@@ -20,6 +20,7 @@ enum Keys {
 
 /**
  * Контроллер вкладок.
+ * Позволяет использовать клавиши ArrowLeft, ArrowRight, Home, End для навигации по вкладкам.
  */
 export const TabsController: React.FC<TabsControllerProps> = ({ stretch, disabled, items, index, onIndexChange }) => {
     const listRef = useRef<HTMLDivElement>(null);
