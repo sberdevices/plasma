@@ -5,6 +5,6 @@ import type { TabsProps as BaseTabsProps } from '@sberdevices/plasma-core';
 export interface TabsProps extends BaseTabsProps {}
 
 /**
- * Контейнер вкладок.
+ * Контейнер вкладок, основной компонент для пользовательской сборки вкладок.
  */
 export const Tabs = styled(BaseTabs)``;

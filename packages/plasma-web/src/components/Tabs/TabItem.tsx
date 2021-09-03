@@ -43,7 +43,7 @@ const StyledTabItem = styled(BaseTabItem)`
 `;
 
 /**
- * Элемент списка, недопустимо импользовать вне компонента Tabs.
+ * Элемент списка вкладок, недопустимо импользовать вне компонента Tabs.
  */
 export const TabItem: FC<TabItemProps> = (props) => {
     const ref = useRef<HTMLElement>(null);
