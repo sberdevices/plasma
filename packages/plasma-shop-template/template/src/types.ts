@@ -6,7 +6,6 @@ import {
     PageComponent,
     PlasmaApp,
     ShopLandingPageState,
-    Order,
 } from '@sberdevices/plasma-temple';
 
 export type PlasmaAppProps = React.ComponentPropsWithoutRef<typeof PlasmaApp>;
@@ -68,7 +67,7 @@ export interface PageState {
     product: Product | null;
     history: null;
     about: null;
-    makeOrder: Order;
+    makeOrder: null;
     recipient: null;
     orderSuccess: { orderNumber: string; amount: number };
     orderError: null;

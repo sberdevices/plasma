@@ -1,29 +1,17 @@
 import React from 'react';
-import { CartPage, EmptyCart, Order, useAssistantOnSmartAppData, useCart } from '@sberdevices/plasma-temple';
+import { CartPage, EmptyCart, useAssistantOnSmartAppData, useCart } from '@sberdevices/plasma-temple';
 
 import { ActionType, AssistantDataAction, PageComponentProps, ServerAction, ServerActionType } from '../../types';
 import { useAssistantState } from '../../hooks/useAssistantState';
 
 export const Cart: React.FC<PageComponentProps<'cart'>> = ({ assistant, name, header, pushScreen, pushHistory }) => {
-    const {
-        items,
-        price,
-        quantity,
-        currency,
-        minDeliveryPrice,
-        isOverQuantityLimit,
-        quantityLimit,
-        addItem,
-        removeItem,
-        clearCart,
-    } = useCart();
+    const { state: cartState, isOverQuantityLimit, addItem, removeItem, clearCart } = useCart();
 
-    const onMakeOrder = React.useCallback(
-        (order: Order) => {
-            pushHistory('makeOrder', order);
-        },
-        [pushHistory],
-    );
+    const { items, quantityLimit } = cartState;
+
+    const onMakeOrder = React.useCallback(() => {
+        pushScreen('makeOrder');
+    }, [pushScreen]);
 
     useAssistantState({
         screen: name,
@@ -82,7 +70,7 @@ export const Cart: React.FC<PageComponentProps<'cart'>> = ({ assistant, name, he
                 return;
             }
             case ActionType.MAKE_ORDER: {
-                onMakeOrder({ items, price, quantity, currency, minDeliveryPrice });
+                onMakeOrder();
                 break;
             }
             default:
