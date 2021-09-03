@@ -45,11 +45,11 @@ const StyledSpinner = styled(Spinner)`
 `;
 
 export const MakeOrder: React.FC<PageComponentProps<'makeOrder'>> = (props) => {
-    const { assistant, name, state, pushScreen, pushHistory } = props;
+    const { assistant, name, pushScreen, pushHistory } = props;
 
     const { recipient } = React.useContext(RecipientInfoContext);
 
-    const { clearCart, price } = useCart();
+    const { clearCart, state: cartState } = useCart();
 
     const {
         orderNumber,
@@ -73,7 +73,7 @@ export const MakeOrder: React.FC<PageComponentProps<'makeOrder'>> = (props) => {
 
     useAssistantState({
         screen: name,
-        order: state,
+        cart: cartState,
         recipientInfo: {
             recipient: {
                 ...recipient,
@@ -99,7 +99,7 @@ export const MakeOrder: React.FC<PageComponentProps<'makeOrder'>> = (props) => {
                 break;
             case ActionType.PAYMENT_CONFIRMED: {
                 await onPaymentConfirmed();
-                pushHistory('orderSuccess', { orderNumber, amount: price });
+                pushHistory('orderSuccess', { orderNumber, amount: cartState.amount });
                 clearCart();
                 break;
             }
@@ -123,7 +123,7 @@ export const MakeOrder: React.FC<PageComponentProps<'makeOrder'>> = (props) => {
                 delivery={delivery}
                 recipient={{ ...recipient, phone }}
                 address={formatAddress(recipient.address)}
-                amount={state.price}
+                amount={cartState.amount}
                 onPay={onPay}
                 onChangeRecipient={onChangeRecipient}
                 paymentDisabled={!paymentStopped}

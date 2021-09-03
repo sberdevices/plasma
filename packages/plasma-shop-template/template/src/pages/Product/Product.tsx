@@ -97,7 +97,11 @@ export const Product: React.FC<PageComponentProps<'product'>> = ({
         description,
         picture = '',
     } = state ?? {};
-    const { addItem, isOverQuantityLimit, quantityLimit } = useCart();
+    const {
+        addItem,
+        isOverQuantityLimit,
+        state: { quantityLimit },
+    } = useCart();
 
     const [quantity, setQuantity] = React.useState(1);
 

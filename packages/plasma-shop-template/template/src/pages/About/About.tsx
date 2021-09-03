@@ -41,11 +41,9 @@ const StyledButtonGroup = styled(Row)`
     margin-bottom: 1.5rem;
 `;
 
-const Button: React.FC<
-    React.PropsWithChildren<{
-        onClick: () => void;
-    }>
-> = ({ children, onClick }) => (
+const Button: React.FC<React.PropsWithChildren<{
+    onClick: () => void;
+}>> = ({ children, onClick }) => (
     <Col>
         <PlasmaButton size="s" onClick={onClick}>
             {children}
