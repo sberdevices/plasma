@@ -57,6 +57,11 @@ updates:
         versions: ["3.x"]
 
   - package-ecosystem: "npm"
+    directory: "packages/plasma-tokens-b2c"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "npm"
     directory: "packages/plasma-tokens-web"
     schedule:
       interval: "daily"
