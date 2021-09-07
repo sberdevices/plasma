@@ -79,7 +79,7 @@ const StyledRoot = styled.div<{ position: string; isVisible: boolean }>`
  * Создаёт <div />, который внутри себя содержит тост.
  * Цикл: show => timeout => hide.
  */
-export const ToastController: React.FC<ToastInfo> = ({ text, contentLeft, position, timeout, fade }) => {
+export const ToastController: React.FC<ToastInfo> = ({ role, text, contentLeft, position, timeout, fade }) => {
     const { hideToast } = useToast();
     const [isVisible, setIsVisible] = useState(true);
     const hideTimeout = useRef<number | null>(null);
@@ -114,7 +114,7 @@ export const ToastController: React.FC<ToastInfo> = ({ text, contentLeft, positi
         <>
             {fade && <StyledFade isVisible={isVisible} placement={position} />}
             <StyledRoot key={toastKey} position={position} isVisible={isVisible} onAnimationEnd={animationEndHandler}>
-                <Toast text={text} contentLeft={contentLeft} />
+                <Toast role={role} text={text} contentLeft={contentLeft} />
             </StyledRoot>
         </>
     );

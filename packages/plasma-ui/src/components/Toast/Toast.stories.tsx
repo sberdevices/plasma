@@ -1,5 +1,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
+import { IconClose } from '@sberdevices/plasma-icons';
+import { critical } from '@sberdevices/plasma-core';
 
 import { Button } from '../Button';
 
@@ -9,27 +11,27 @@ export default {
     title: 'Controls/Toast',
 } as Meta;
 
-export const ToastComponent: Story<ToastProps> = (args) => <Toast {...args} />;
+export const Default: Story<ToastProps> = (args) => <Toast {...args} />;
 
-ToastComponent.args = {
+Default.args = {
     text: 'Short Text Message Without Action',
 };
 
-interface LiveDemoProps {
-    toastText: string;
+interface LiveDemoProps extends ToastProps {
     position: ToastPosition;
     timeout: number;
     fade: boolean;
 }
 
-export const LiveDemo: Story<LiveDemoProps> = ({ toastText, position, timeout, fade }) => {
+export const LiveDemo: Story<LiveDemoProps> = ({ role, text, position, timeout, fade, enableContentLeft }) => {
     const { showToast } = useToast();
+    const contentLeft = enableContentLeft && <IconClose size="xs" color={critical} />;
 
     return (
         <div>
             <Button
                 onClick={() => {
-                    showToast(toastText, position, timeout, fade);
+                    showToast(text, position, timeout, fade, contentLeft, role);
                 }}
             >
                 Показать уведомление
@@ -39,13 +41,21 @@ export const LiveDemo: Story<LiveDemoProps> = ({ toastText, position, timeout, f
 };
 
 LiveDemo.args = {
-    toastText: 'Short Text Message Without Action',
+    role: 'alert',
+    text: 'Short Text Message Without Action',
+    enableContentLeft: true,
     position: 'bottom',
-    timeout: 3000,
+    timeout: 10000,
     fade: true,
 };
 
 LiveDemo.argTypes = {
+    role: {
+        control: {
+            type: 'inline-radio',
+            options: ['alert', 'log', 'status'],
+        },
+    },
     position: {
         control: {
             type: 'inline-radio',

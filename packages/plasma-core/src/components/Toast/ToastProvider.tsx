@@ -1,6 +1,6 @@
 import React, { ReactNode, useState, useCallback } from 'react';
 
-import { ToastInfo, ToastPosition } from './Toast.types';
+import { ToastInfo, ToastPosition, ToastRole } from './Toast.types';
 import { ToastController } from './ToastController';
 import { ToastContext } from './ToastContext';
 
@@ -12,8 +12,16 @@ export const ToastProvider: React.FC = ({ children }) => {
     const [value, setValue] = useState<ToastInfo>({ text: null, position: null, timeout: null });
 
     const showToast = useCallback(
-        (text: string, position?: ToastPosition, timeout?: number, fade?: boolean, contentLeft?: ReactNode) => {
+        (
+            text: string,
+            position?: ToastPosition,
+            timeout?: number,
+            fade?: boolean,
+            contentLeft?: ReactNode,
+            role?: ToastRole,
+        ) => {
             setValue({
+                role,
                 text,
                 contentLeft,
                 position: position || DEFAULT_POSITION,
