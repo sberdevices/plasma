@@ -33,8 +33,8 @@ const theme = {
     light_secondary: playgroundWebB2CTokens.colors.textIconsSecondary3,
     light_tertiary: playgroundWebB2CTokens.colors.textIconsTertiary3,
 
-    light_paragraph: playgroundWebB2CTokens.colors.textIconsParagraph,
-    light_inverse: playgroundWebB2CTokens.colors.textIconsInverse,
+    light_paragraph: playgroundWebB2CTokens.colors.textIconsParagraph1,
+    light_inverse: playgroundWebB2CTokens.colors.textIconsInverse1,
 
     light_accent: playgroundWebB2CTokens.colors.textIconsAccentBrand,
     light_success: playgroundWebB2CTokens.colors.textIconsStatusSuccess,
@@ -79,8 +79,8 @@ const theme = {
     dark_secondary: playgroundWebB2CTokens.colors.textIconsSecondary1,
     dark_tertiary: playgroundWebB2CTokens.colors.textIconsTertiary,
 
-    dark_paragraph: playgroundWebB2CTokens.colors.textIconsParagraph1,
-    dark_inverse: playgroundWebB2CTokens.colors.textIconsInverse1,
+    dark_paragraph: playgroundWebB2CTokens.colors.textIconsParagraph,
+    dark_inverse: playgroundWebB2CTokens.colors.textIconsInverse,
 
     dark_accent: playgroundWebB2CTokens.colors.textIconsAccentBrand1,
     dark_success: playgroundWebB2CTokens.colors.textIconsStatusSuccess1,
