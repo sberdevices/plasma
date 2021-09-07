@@ -81,7 +81,8 @@
         "prestorybook:build:docs": "./sync-readme.sh",
         "storybook:build:docs": "DOCS=true build-storybook --quiet -s .storybook/public -c .storybook -o build-sb-docs --docs",
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
-        "test": "BABEL_ENV=cjs jest"
+        "test": "BABEL_ENV=cjs jest",
+        "test:watch": "BABEL_ENV=cjs jest --watch"
     },
     "storybook": {
         "title": "SberDevices Design System",
