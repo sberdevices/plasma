@@ -111,3 +111,5 @@ updates:
         # TODO: https://github.com/sberdevices/plasma/issues/726
       - dependency-name: "react-scripts"
         versions: ["^4"]
+        # TODO: https://github.com/sberdevices/plasma/issues/729
+      - dependency-name: "@types/styled-components"
