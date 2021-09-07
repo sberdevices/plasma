@@ -24,13 +24,18 @@ interface GalleryPageProps<T extends AnyObject = AnyObject> {
     galleryCard?: React.ComponentType<GalleryCardProps<T>>;
 }
 
+interface StyledSectionWrapperProps {
+    withSpacing: boolean;
+}
+
 const StyledCarouselGridWrapper = styled(CarouselGridWrapper)`
     height: 100vh;
 `;
 
-const StyledSectionWrapper = styled(CarouselItem)`
+const StyledSectionWrapper = styled(CarouselItem)<StyledSectionWrapperProps>`
     scroll-snap-align: start;
     scroll-snap-stop: always;
+    ${({ withSpacing }) => withSpacing && { paddingTop: '0.25rem' }}
 `;
 
 const StyledFixedHeader = styled(Container)`
@@ -49,7 +54,7 @@ const StyledSectionTitle = styled(Headline3)<{ active: boolean }>`
 
 interface FocusableGalleryProps {
     index: number;
-    title: string;
+    title?: string;
     activeCardIndex?: number;
     isMultiple?: boolean;
 }
@@ -86,7 +91,7 @@ const FocusableGallery: React.FC<FocusableGalleryProps & GalleryProps> = ({
     }, [isActive, isMultiple, title]);
 
     return (
-        <StyledSectionWrapper data-cy={`gallery-${index}`} scrollSnapAlign="start">
+        <StyledSectionWrapper data-cy={`gallery-${index}`} scrollSnapAlign="start" withSpacing={titleToRender === null}>
             {titleToRender}
             <GalleryWithNavigation {...props} activeIndex={activeCardIndex} ref={ref} />
         </StyledSectionWrapper>
