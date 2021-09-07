@@ -13,20 +13,9 @@
         "prepare": "npm run build",
         "build": "tsc"
     },
-    "files": [
-        "additional.d.ts",
-        "additional.js",
-        "general.d.ts",
-        "general.js",
-        "index.d.ts",
-        "index.js"
-    ],
-    "contributors": [
-        "Vasiliy Loginevskiy",
-        "Anton Vinogradov",
-        "Fanil Zubairov"
-    ],
+    "files": ["additional.d.ts", "additional.js", "general.d.ts", "general.js", "index.d.ts", "index.js"],
+    "contributors": ["Vasiliy Loginevskiy", "Anton Vinogradov", "Fanil Zubairov"],
     "devDependencies": {
-        "typescript": "^4.2.4"
+        "typescript": "^4.4.2"
     }
 }

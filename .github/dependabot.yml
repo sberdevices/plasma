@@ -6,6 +6,11 @@ updates:
       interval: "daily"
 
   - package-ecosystem: "npm"
+    directory: "packages/plasma-colors"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "npm"
     directory: "packages/plasma-core"
     schedule:
       interval: "daily"
