@@ -231,7 +231,7 @@ Date_Picker.args = {
     autofocus: true,
     scrollSnapType: isSberbox ? 'none' : 'mandatory',
     size: 's',
-    visibleItems: 3,
+    visibleItems: 5,
 };
 
 // eslint-disable-next-line @typescript-eslint/camelcase
@@ -307,8 +307,8 @@ Time_Picker.args = {
     controls: true,
     autofocus: true,
     scrollSnapType: isSberbox ? 'none' : 'mandatory',
-    size: 's',
-    visibleItems: 5,
+    size: 'l',
+    visibleItems: 3,
     step: 1,
 };
 

@@ -8,35 +8,28 @@ import { useRemoteListener } from '../../hooks';
 import { Button } from '../Button';
 import { Carousel, CarouselProps } from '../Carousel';
 
-import {
-    PickerItem,
-    Item,
-    SizeProps,
-    scaleCallbackS,
-    scaleCallbackL,
-    scaleResetCallback,
-    StyledPickerItem,
-    StyledWhiteText,
-} from './PickerItem';
+import { PickerItem, StyledPickerItem, StyledWhiteText } from './PickerItem';
+import type { Item, SizeProps } from './types';
+import { scaleCallbackS, scaleCallbackL, scaleResetCallback } from './utils';
 
 const sizes = {
     l: {
         3: {
-            height: '12.5rem',
+            height: '14rem',
             padding: '6.25rem',
         },
         5: {
-            height: '12.5rem',
+            height: '14rem',
             padding: '6.25rem',
         },
     },
     s: {
         3: {
-            height: '7rem',
+            height: '8.5rem',
             padding: '3.5rem',
         },
         5: {
-            height: '10.5rem',
+            height: '12rem',
             padding: '5.25rem',
         },
     },
