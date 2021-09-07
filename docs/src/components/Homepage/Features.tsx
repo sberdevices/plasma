@@ -6,7 +6,7 @@ import { HomepageFeature } from './Feature';
 
 const services = [
     {
-        title: 'Plasma Devices',
+        title: 'Plasma UI',
         // eslint-disable-next-line global-require
         Svg: require('../../../static/img/undraw_docusaurus_mountain.svg').default,
         links: [

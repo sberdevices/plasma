@@ -31,7 +31,7 @@ module.exports = {
                 {
                     href: '/docs/ui/intro',
                     position: 'left',
-                    label: 'Devices',
+                    label: 'UI',
                 },
                 {
                     href: '/docs/web/intro',
@@ -52,7 +52,7 @@ module.exports = {
                     title: 'Документация',
                     items: [
                         {
-                            label: 'Plasma Devices',
+                            label: 'Plasma UI',
                             to: '/docs/ui/intro',
                         },
                         {
