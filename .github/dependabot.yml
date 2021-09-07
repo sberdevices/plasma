@@ -19,6 +19,10 @@ updates:
     directory: "packages/plasma-tokens"
     schedule:
       interval: "daily"
+    ignore:
+        # TODO: https://github.com/sberdevices/plasma/issues/712
+      - dependency-name: "style-dictionary"
+        versions: ["3.x"]
 
   - package-ecosystem: "npm"
     directory: "packages/plasma-tokens-web"
