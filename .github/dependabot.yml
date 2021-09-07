@@ -87,6 +87,9 @@ updates:
         # TODO: https://github.com/sberdevices/plasma/issues/725
       - dependency-name: "@types/jest"
         versions: ["^27"]
+        # TODO: https://github.com/sberdevices/plasma/issues/726
+      - dependency-name: "react-scripts"
+        versions: ["^4"]
 
   - package-ecosystem: "npm"
     directory: "packages/plasma-web"
