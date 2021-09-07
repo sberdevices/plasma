@@ -11,7 +11,7 @@
         "@sberdevices/plasma-colors": "0.1.0",
         "@sberdevices/plasma-tokens-utils": "0.7.0",
         "@types/color": "3.0.1",
-        "@types/node": "^14.11.1",
+        "@types/node": "^16.7.13",
         "color": "3.1.3",
         "jsdom": "16.4.0",
         "jsdom-global": "3.0.2",
