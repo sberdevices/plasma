@@ -3,8 +3,9 @@ import styled, { css } from 'styled-components';
 
 import { applyDisabled } from '../../mixins';
 import type { DisabledProps } from '../../mixins';
+import type { AsProps } from '../../types';
 
-export interface TabsProps extends DisabledProps, React.HTMLAttributes<HTMLDivElement> {
+export interface TabsProps extends AsProps, DisabledProps, React.HTMLAttributes<HTMLDivElement> {
     /**
      * Кнопки табов примут фиксированную ширину,
      * максимально равную 25% контейнера Tabs,

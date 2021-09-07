@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import type { TabsProps as BaseProps } from '@sberdevices/plasma-core';
 
 import { TabsContainer, TabsContainerProps } from './TabsContainer';
 import { TabItemAnimated } from './TabItem';
@@ -15,7 +16,7 @@ interface UnAnimatedProps {
     index?: never;
 }
 
-export type TabsProps = (AnimatedProps | UnAnimatedProps) & TabsContainerProps;
+export type TabsProps = (AnimatedProps | UnAnimatedProps) & BaseProps & TabsContainerProps;
 
 const isAnimatedProps = (props: TabsProps): props is AnimatedProps & TabsContainerProps => {
     return props.animated === true;

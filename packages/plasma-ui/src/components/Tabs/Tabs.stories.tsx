@@ -75,10 +75,12 @@ export const Default: Story<DefaultStoryProps & TabsProps> = ({
             disabled={disabled}
             index={index}
             animated={animated}
+            forwardedAs="ul"
         >
             {items.map((_, i) => (
                 <TabItem
                     key={`item:${i}`}
+                    forwardedAs="li"
                     isActive={i === index}
                     aria-controls={id}
                     tabIndex={0}
