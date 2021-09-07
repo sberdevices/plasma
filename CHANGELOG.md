@@ -1,3 +1,16 @@
+# (Tue Sep 07 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/cra-template-plasma-shop-template@1.2.0`
+  - feat(plasma-shop-template): Update version of plasma-ui and plasma-temple [#120](https://github.com/sberdevices/pashka/pull/120) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # (Thu Sep 02 2021)
 
 #### 🚀 Enhancement
