@@ -81,6 +81,12 @@ updates:
         versions: ["^17"]
       - dependency-name: "typescript"
         versions: ["^4"]
+        # TODO: https://github.com/sberdevices/plasma/issues/725
+      - dependency-name: "jest"
+        versions: ["^27"]
+        # TODO: https://github.com/sberdevices/plasma/issues/725
+      - dependency-name: "@types/jest"
+        versions: ["^27"]
 
   - package-ecosystem: "npm"
     directory: "packages/plasma-web"
