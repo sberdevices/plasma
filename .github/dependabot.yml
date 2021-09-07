@@ -70,6 +70,17 @@ updates:
     directory: "packages/plasma-ui"
     schedule:
       interval: "daily"
+    ignore:
+      - dependency-name: "react"
+        versions: ["^17"]
+      - dependency-name: "react-dom"
+        versions: ["^17"]
+      - dependency-name: "@types/react"
+        versions: ["^17"]
+      - dependency-name: "@types/react-dom"
+        versions: ["^17"]
+      - dependency-name: "typescript"
+        versions: ["^4"]
 
   - package-ecosystem: "npm"
     directory: "packages/plasma-web"
