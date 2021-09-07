@@ -29,7 +29,8 @@ const StyledSpinner = styled(Spinner)`
 `;
 
 interface GetInitialProps<P, R> {
-    (context: P): Promise<R> | R;
+    (context: P): Promise<R>;
+    (context: P): R;
 }
 
 interface InitialPropsGetter<P, S> {
