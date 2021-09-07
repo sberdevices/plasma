@@ -108,3 +108,6 @@ updates:
         versions: ["^17"]
       - dependency-name: "typescript"
         versions: ["^4"]
+        # TODO: https://github.com/sberdevices/plasma/issues/726
+      - dependency-name: "react-scripts"
+        versions: ["^4"]
