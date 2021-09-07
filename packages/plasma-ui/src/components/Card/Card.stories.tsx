@@ -36,7 +36,7 @@ export const BasicValue: Story<BasicValueProps> = ({ outlined, scaleOnFocus, cov
                     placeholder="./images/320_320_1.jpg"
                     ratio={cover ? '1 / 1' : '16 / 9'}
                 />
-                <CardContent cover={cover}>
+                <CardContent cover={cover as true} coverGradient={cover && boolean('coverGradient', true)}>
                     <TextBox>
                         <TextBoxBigTitle>{subTitle}</TextBoxBigTitle>
                         <TextBoxBiggerTitle>{title}</TextBoxBiggerTitle>

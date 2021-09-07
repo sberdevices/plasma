@@ -1,10 +1,30 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { DisabledProps } from '@sberdevices/plasma-core';
 
-interface StyledRootProps {
-    cover?: boolean;
-    disabled?: boolean;
+interface CoverProps {
+    /**
+     * Контент перекрывает собой картинку.
+     */
+    cover?: true;
+    /**
+     * Градиент контента.
+     */
+    coverGradient?: boolean;
+}
+interface NoCoverProps {
+    cover?: false;
+    coverGradient?: never;
+}
+interface OtherProps extends DisabledProps {
     compact?: boolean;
+}
+
+export type CardContentProps = (CoverProps | NoCoverProps) & OtherProps & React.HTMLAttributes<HTMLDivElement>;
+
+interface StyledRootProps extends OtherProps {
+    cover?: boolean;
+    coverGradient?: boolean;
 }
 
 const StyledRoot = styled.div<StyledRootProps>`
@@ -24,7 +44,7 @@ const StyledRoot = styled.div<StyledRootProps>`
             opacity: 0.5;
         `}
 
-    ${({ cover }) =>
+    ${({ cover, coverGradient }) =>
         cover &&
         css`
             position: absolute;
@@ -35,18 +55,19 @@ const StyledRoot = styled.div<StyledRootProps>`
 
             justify-content: flex-end;
 
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.74) 100%);
+            ${coverGradient &&
+            css`
+                background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.74) 100%);
+            `};
         `}
 `;
-
-export interface CardContentProps extends StyledRootProps, React.HTMLAttributes<HTMLDivElement> {}
 
 /**
  * Компонент для отображения как текстового, так и любого другого контента.
  */
-export const CardContent: React.FC<CardContentProps> = ({ disabled, cover, compact, className, children, ...rest }) => {
+export const CardContent: React.FC<CardContentProps> = ({ cover, coverGradient = true, children, ...rest }) => {
     return (
-        <StyledRoot cover={cover} compact={compact} disabled={disabled} className={className} {...rest}>
+        <StyledRoot cover={cover} coverGradient={coverGradient} {...rest}>
             {children}
         </StyledRoot>
     );
