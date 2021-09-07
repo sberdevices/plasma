@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
 import { Image, ImageBaseProps } from '../Image';
@@ -10,7 +10,7 @@ export type CardMediaProps = ImageBaseProps & {
 
 const StyledImage = styled(Image)<{ $disabled?: boolean }>`
     background-size: cover;
-
+    transition: all 1s ease;
     ${({ $disabled }) =>
         $disabled &&
         css`
@@ -34,6 +34,10 @@ export const CardMedia: React.FC<CardMediaProps> = ({
     ...props
 }) => {
     const imgStyle: React.CSSProperties = { ...style };
+    const el = document.querySelector('.doc');
+    if (props.src) {
+        el?.setAttribute('style', 'opacity: 1');
+    }
 
     if (placeholder && !props.src) {
         imgStyle.backgroundImage = `url('${placeholder}')`;
@@ -41,7 +45,7 @@ export const CardMedia: React.FC<CardMediaProps> = ({
 
     return (
         <StyledRoot className={className}>
-            <StyledImage $disabled={disabled} style={imgStyle} {...props} />
+            <StyledImage $disabled={disabled} style={imgStyle} {...props} className="doc" />
             {children}
         </StyledRoot>
     );
