@@ -1,7 +1,6 @@
 {
     "name": "@sberdevices/extract-sb-docgen-info",
     "version": "0.0.0",
-    "private": true,
     "description": "A tool for extraction docgenInfo from Storybook builded stories.",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
@@ -12,9 +11,6 @@
         "type": "git",
         "url": "ssh://git@github.com:sberdevices/plasma.git",
         "directory": "utils/plasma-sb-extract-docgen-info"
-    },
-    "publishConfig": {
-        "access": "restricted"
     },
     "scripts": {
         "prepare": "npm run build",
@@ -37,6 +33,9 @@
         "@types/fs-extra": "^9.0.12",
         "@types/read-pkg-up": "^6.0.0",
         "typescript": "^4.3.5"
+    },
+    "publishConfig": {
+        "access": "restricted"
     },
     "files": ["bin", "lib"]
 }
