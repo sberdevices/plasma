@@ -32,7 +32,7 @@
     "@storybook/theming": "6.1.16",
     "@testing-library/cypress": "7.0.6",
     "@types/cypress-image-snapshot": "3.1.5",
-    "@typescript-eslint/eslint-plugin": "2.29.0",
+    "@typescript-eslint/eslint-plugin": "2.34.0",
     "@typescript-eslint/parser": "2.29.0",
     "auto": "9.60.1",
     "babel-eslint": "10.1.0",
