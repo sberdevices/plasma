@@ -5,7 +5,7 @@ import { body1 } from '../../tokens';
 import { applyDisabled, addFocus, shadows, applyEllipsis } from '../../mixins';
 import type { DisabledProps, FocusProps, OutlinedProps } from '../../mixins';
 import type { InputHTMLAttributes } from '../../types';
-import type { ControlProps } from '../Checkbox/Checkbox';
+import type { ControlProps } from '../Basebox/Basebox';
 
 interface PressedProps {
     pressed?: boolean;

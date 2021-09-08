@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { forwardRef, useRef } from 'react';
 import styled from 'styled-components';
 import {
-    CheckboxRoot as BaseRoot,
-    CheckboxInput as Input,
-    CheckboxTrigger as BaseTrigger,
-    CheckboxLabel as BaseLabel,
-    CheckboxDescription as BaseDescription,
+    BaseboxRoot,
+    BaseboxInput,
+    BaseboxTrigger,
+    BaseboxContent,
+    BaseboxLabel,
+    BaseboxDescription,
     accent,
     buttonSecondary,
     tertiary,
@@ -13,27 +14,28 @@ import {
     transparent,
     useForkRef,
 } from '@sberdevices/plasma-core';
-import type { CheckboxProps as BaseProps } from '@sberdevices/plasma-core';
+import type { BaseboxProps } from '@sberdevices/plasma-core';
 
 import { Done, Indeterminate } from './Icons';
 
-export interface CheckboxProps extends BaseProps {
+export interface CheckboxProps extends BaseboxProps {
     /**
      * Неопределенное состояние компонента - когда часть потомков не выбрана.
      */
     indeterminate?: boolean;
 }
 
-export const Root = styled(BaseRoot)<{ $disabled?: boolean }>`
-    column-gap: 0.875rem;
+export const StyledRoot = styled(BaseboxRoot)<{ $disabled?: boolean }>`
     /* stylelint-disable-next-line number-max-precision */
-    margin-left: 0.1875rem;
+    margin-left: 0.1875rem; /* FixMe: Выпилить, v2.0 Привести к единому стилю с UI */
+    /* stylelint-disable-next-line number-max-precision */
+    margin-bottom: 0.1875rem; /* FixMe: Выпилить, v2.0 Привести к единому стилю с UI */
 
-    ${({ $disabled }) => $disabled && 'cursor: not-allowed'}
+    ${({ $disabled }) => $disabled && 'cursor: not-allowed;'}
 `;
-export const Trigger = styled(BaseTrigger)`
+export const StyledTrigger = styled(BaseboxTrigger)`
     /* stylelint-disable-next-line number-max-precision */
-    margin: 0.1875rem 0;
+    margin: 0.1875rem 0; /* FixMe: Выпилить, v2.0 Привести к единому стилю с UI */
     width: 1.125rem;
     height: 1.125rem;
 
@@ -43,14 +45,14 @@ export const Trigger = styled(BaseTrigger)`
     color: ${tertiary};
 
     /* stylelint-disable-next-line */
-    ${Input}[type="checkbox"]:indeterminate ~ & {
+    input[type='checkbox']:indeterminate ~ & {
         background: ${transparent};
         border-color: ${accent};
         color: ${accent};
     }
 
     /* stylelint-disable-next-line */
-    ${Input}:disabled ~ & {
+    input:disabled ~ & {
         background: ${buttonSecondary};
         border-color: ${transparent};
         color: ${transparent};
@@ -58,28 +60,33 @@ export const Trigger = styled(BaseTrigger)`
     }
 
     /* stylelint-disable-next-line */
-    ${Input}:checked ~ & {
+    input:checked ~ & {
         background: ${accent};
         border-color: ${accent};
         color: ${white};
     }
 
     /* stylelint-disable-next-line */
-    ${Input}:checked:disabled ~ & {
+    input:checked:disabled ~ & {
         background: ${buttonSecondary};
         border-color: ${transparent};
         color: ${tertiary};
     }
 `;
-export const Label = styled(BaseLabel)`
+export const StyledContent = styled(BaseboxContent)`
+    margin-left: 0.875rem;
+`;
+export const StyledLabel = styled(BaseboxLabel)`
+    line-height: 1.5rem;
+
     /* stylelint-disable-next-line */
-    ${Input}:disabled ~ & {
+    input:disabled ~ ${StyledContent} & {
         opacity: 0.4;
     }
 `;
-export const Description = styled(BaseDescription)`
+export const StyledDescription = styled(BaseboxDescription)`
     /* stylelint-disable-next-line */
-    ${Input}:disabled ~ & {
+    input:disabled ~ & {
         opacity: 0.4;
     }
 `;
@@ -92,7 +99,7 @@ const StyledDone = styled(Done)`
     transition: transform 0.15s ease-in-out;
 
     /* stylelint-disable-next-line */
-    ${Input}:checked ~ ${BaseTrigger} & {
+    input:checked ~ ${BaseboxTrigger} & {
         transform: scale(1);
     }
 `;
@@ -106,11 +113,11 @@ const StyledIndeterminate = styled(Indeterminate)`
  * Флажок или *чекбокс*. Позволяет пользователю управлять параметром с двумя состояниями — ☑ включено и ☐ отключено.
  */
 // eslint-disable-next-line prefer-arrow-callback
-export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox(
+export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox(
     { id, label, description, indeterminate, disabled, style, className, ...rest },
     ref,
 ) {
-    const inputRef = React.useRef<HTMLInputElement | null>(null);
+    const inputRef = useRef<HTMLInputElement | null>(null);
     const forkRef = useForkRef(inputRef, ref);
 
     React.useEffect(() => {
@@ -120,11 +127,15 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(functi
     }, [inputRef, indeterminate]);
 
     return (
-        <Root $disabled={disabled} $isDescription={!!description} htmlFor={id} style={style} className={className}>
-            <Input id={id} ref={forkRef} type="checkbox" disabled={disabled} {...rest} />
-            <Trigger>{indeterminate ? <StyledIndeterminate /> : <StyledDone />}</Trigger>
-            {label && <Label>{label}</Label>}
-            {description && <Description>{description}</Description>}
-        </Root>
+        <StyledRoot $disabled={disabled} style={style} className={className} htmlFor={id}>
+            <BaseboxInput id={id} ref={forkRef} type="checkbox" {...rest} />
+            <StyledTrigger>{indeterminate ? <StyledIndeterminate /> : <StyledDone />}</StyledTrigger>
+            {label && (
+                <StyledContent>
+                    {label && <StyledLabel as="span">{label}</StyledLabel>}
+                    {description && <BaseboxDescription mt={4}>{description}</BaseboxDescription>}
+                </StyledContent>
+            )}
+        </StyledRoot>
     );
 });
