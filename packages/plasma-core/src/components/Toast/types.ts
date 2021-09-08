@@ -1,7 +1,9 @@
+import { ReactNode } from 'react';
+
 export type Position = 'top' | 'bottom';
 
 export type ToastInfo = {
-    text: string | null;
+    content: ReactNode | null;
     position: Position | null;
     timeout: number | null;
     fade?: boolean;

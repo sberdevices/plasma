@@ -9,11 +9,11 @@ const DEFAULT_TIMEOUT = 3000;
 const DEFAULT_FADE = true;
 
 export const ToastProvider: React.FC = ({ children }) => {
-    const [value, setValue] = useState<ToastInfo>({ text: null, position: null, timeout: null });
+    const [value, setValue] = useState<ToastInfo>({ content: null, position: null, timeout: null });
 
-    const showToast = useCallback((text: string, position?: Position, timeout?: number, fade?: boolean) => {
+    const showToast = useCallback((content: React.ReactNode, position?: Position, timeout?: number, fade?: boolean) => {
         setValue({
-            text,
+            content,
             position: position || DEFAULT_POSITION,
             timeout: timeout !== undefined ? timeout : DEFAULT_TIMEOUT,
             fade: fade !== undefined ? fade : DEFAULT_FADE,
@@ -21,7 +21,7 @@ export const ToastProvider: React.FC = ({ children }) => {
     }, []);
 
     const hideToast = useCallback(() => {
-        setValue({ text: null, position: null, timeout: null });
+        setValue({ content: null, position: null, timeout: null });
     }, []);
 
     return (

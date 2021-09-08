@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { black, white } from '@sberdevices/plasma-tokens';
+import { white, black } from '@sberdevices/plasma-tokens';
 import { applyNoSelect } from '@sberdevices/plasma-core';
 
 import { Footnote1 } from '../Typography';
 
 export type ToastProps = {
-    text: string;
+    content: React.ReactNode;
 };
 
 const StyledRoot = styled(Footnote1)`
@@ -24,4 +24,4 @@ const StyledRoot = styled(Footnote1)`
  * Короткие текстовые подсказки.
  * Вызываются только в текущем запущенном приложении как реакция на выполнение действия пользователем.
  */
-export const Toast: React.FC<ToastProps> = ({ text }) => <StyledRoot>{text}</StyledRoot>;
+export const Toast: React.FC<ToastProps> = ({ content }) => <StyledRoot>{content}</StyledRoot>;
