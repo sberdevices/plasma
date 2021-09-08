@@ -14,3 +14,5 @@ export { RadioboxShowcase } from './RadioboxShowcase';
 export { Showcase as TabsShowcase } from './TabsShowcase';
 export { TextFieldShowcase } from './TextFieldShowcase';
 export { SliderShowcase } from './SliderShowcase';
+
+export { Tony } from './Tony';
