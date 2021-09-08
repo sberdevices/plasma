@@ -48,7 +48,7 @@
         "@types/param-case": "1.1.2",
         "color": "^3.1.2",
         "csstype": "3.0.3",
-        "jsdom": "16.4.0",
+        "jsdom": "17.0.0",
         "jsdom-global": "3.0.2",
         "param-case": "3.0.3",
         "style-dictionary": "2.10.2",
