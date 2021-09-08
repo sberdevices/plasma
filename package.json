@@ -29,7 +29,7 @@
     "@storybook/addon-toolbars": "6.0.22",
     "@storybook/addon-viewport": "6.0.0-rc.13",
     "@storybook/react": "6.0.0-rc.13",
-    "@storybook/theming": "6.1.16",
+    "@storybook/theming": "6.3.8",
     "@testing-library/cypress": "7.0.6",
     "@types/cypress-image-snapshot": "3.1.5",
     "@typescript-eslint/eslint-plugin": "2.29.0",
