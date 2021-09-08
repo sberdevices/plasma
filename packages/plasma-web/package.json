@@ -70,7 +70,7 @@
         "babel-plugin-styled-components": "1.13.2",
         "babel-plugin-transform-class-properties": "6.24.1",
         "react": "16.13.1",
-        "react-dom": "16.13.1",
+        "react-dom": "16.14.0",
         "react-scripts": "3.4.4",
         "styled-components": "5.3.1",
         "typescript": "3.9.10"
