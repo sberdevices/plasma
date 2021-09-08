@@ -1,3 +1,15 @@
+# v1.39.1 (Wed Sep 08 2021)
+
+#### 🐛 Bug Fix
+
+- chore(plasma-icons): update deps [#728](https://github.com/sberdevices/plasma/pull/728) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.39.0 (Wed Sep 01 2021)
 
 #### 🐛 Bug Fix

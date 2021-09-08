@@ -1,3 +1,19 @@
+# v1.27.2 (Wed Sep 08 2021)
+
+#### 🐛 Bug Fix
+
+- fix: Refactor `Checkbox` & `Radiobox` in order of better understanding [#698](https://github.com/sberdevices/plasma/pull/698) ([@fanisco](https://github.com/fanisco))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- chore(plasma-core): update deps [#728](https://github.com/sberdevices/plasma/pull/728) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 3
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.27.1 (Tue Aug 31 2021)
 
 #### 🐛 Bug Fix
