@@ -8,7 +8,6 @@ import { Description } from '@site/src/components/Description';
 
 # Tabs
 Набор компонентов для создания вкладок.
-Структура для вкладок похожа на структуру маркированных списков.
 
 ```tsx live
 () => {
@@ -52,3 +51,20 @@ import { Description } from '@site/src/components/Description';
 Элемент списка. Нельзя использовать вне компонента `Tabs`.
 
 <PropsTable name="TabItem" />
+
+## Смена тега
+По умолчанию компоненты вкладок используют теги `<div>` и `<button>` для `Tabs` и `TabItem` соответственно.
+Иногда может понадобиться сменить эти теги на теги маркированных списков `<ul>` и `<li>`.
+Чтобы сделать это, используйте свойство `forwardedAs`:
+
+```tsx live
+<Tabs forwardedAs="ul">
+    <TabItem isActive forwardedAs="li">Каждый</TabItem>
+    <TabItem forwardedAs="li">Охотник</TabItem>
+    <TabItem forwardedAs="li">Желает</TabItem>
+    <TabItem forwardedAs="li">Знать</TabItem>
+    <TabItem forwardedAs="li">Где</TabItem>
+    <TabItem forwardedAs="li">Сидит</TabItem>
+    <TabItem forwardedAs="li">Фазан</TabItem>
+</Tabs>
+```
