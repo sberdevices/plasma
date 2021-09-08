@@ -10,6 +10,7 @@ export * from './components/Spinner';
 export * from './components/Switch';
 export * from './components/Tabs';
 export * from './components/TextField';
+export * from './components/Toast';
 export * from './components/Badge';
 export * from './components/Price';
 export * from './components/Image';
