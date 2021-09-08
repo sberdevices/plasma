@@ -55,7 +55,7 @@ interface StyledBadgeProps {
 const StyledBadge = styled.div<StyledBadgeProps>`
     ${caption};
 
-    display: flex;
+    display: inline-flex;
     align-items: center;
     box-sizing: border-box;
     justify-content: center;
