@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import clsx from 'clsx';
 import Translate from '@docusaurus/Translate';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import useIsBrowser from '@docusaurus/useIsBrowser';
 import usePrismTheme from '@theme/hooks/usePrismTheme';
 import { gradient } from '@sberdevices/plasma-tokens';
 import { darkSber } from '@sberdevices/plasma-tokens/themes';
@@ -17,6 +18,10 @@ const StyledPreview = styled.div`
 
     padding: 1rem;
     background-image: ${gradient};
+`;
+const StyledLivePreviewWrapper = styled.div`
+    display: flex;
+    gap: 1rem;
 `;
 
 const Header: FC = ({ children }) => {
@@ -32,7 +37,7 @@ const ResultWithHeader: FC = () => {
                 </Translate>
             </Header>
             <StyledPreview>
-                <LivePreview />
+                <LivePreview Component={StyledLivePreviewWrapper} />
                 <LiveError />
             </StyledPreview>
         </>
@@ -58,8 +63,8 @@ interface PlaygroundProps {
 }
 
 const Playground: FC<PlaygroundProps> = ({ children, transformCode, ...props }) => {
+    const isBrowser = useIsBrowser();
     const {
-        isClient,
         siteConfig: {
             themeConfig: {
                 liveCodeBlock: { playgroundPosition },
@@ -71,8 +76,8 @@ const Playground: FC<PlaygroundProps> = ({ children, transformCode, ...props }) 
     return (
         <div className={styles.playgroundContainer}>
             <LiveProvider
-                key={isClient}
-                code={isClient ? children.replace(/\n$/, '') : ''}
+                key={isBrowser}
+                code={isBrowser ? children.replace(/\n$/, '') : ''}
                 transformCode={transformCode || ((code) => `${code};`)}
                 theme={prismTheme}
                 {...props}
