@@ -1,3 +1,16 @@
+# (Wed Sep 08 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@0.50.1`
+  - fix(plasma-temple): tv detection [#119](https://github.com/sberdevices/pashka/pull/119) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # (Tue Sep 07 2021)
 
 #### 🚀 Enhancement
