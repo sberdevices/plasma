@@ -1,7 +1,7 @@
 {
     "name": "@sberdevices/showcase",
     "private": true,
-    "version": "0.51.0",
+    "version": "0.51.1",
     "description": "SberDevices Design System Showcase",
     "files": [],
     "repository": {
@@ -15,14 +15,14 @@
         "access": "restricted"
     },
     "devDependencies": {
-        "@sberdevices/plasma-core": "1.27.1",
-        "@sberdevices/plasma-icons": "1.39.0",
-        "@sberdevices/plasma-sb-utils": "0.24.0",
-        "@sberdevices/plasma-tokens": "1.12.0",
-        "@sberdevices/plasma-tokens-b2c": "0.5.0",
-        "@sberdevices/plasma-tokens-web": "1.11.0",
-        "@sberdevices/plasma-ui": "1.46.0",
-        "@sberdevices/plasma-web": "1.44.0",
+        "@sberdevices/plasma-core": "1.27.2",
+        "@sberdevices/plasma-icons": "1.39.1",
+        "@sberdevices/plasma-sb-utils": "0.24.1",
+        "@sberdevices/plasma-tokens": "1.12.1",
+        "@sberdevices/plasma-tokens-b2c": "0.5.1",
+        "@sberdevices/plasma-tokens-web": "1.11.1",
+        "@sberdevices/plasma-ui": "1.46.1",
+        "@sberdevices/plasma-web": "1.44.1",
         "@storybook/addon-essentials": "6.3.4",
         "@storybook/addon-knobs": "6.3.0",
         "@storybook/preset-create-react-app": "^3.2.0",
