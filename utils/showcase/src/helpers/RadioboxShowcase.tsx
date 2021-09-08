@@ -1,7 +1,9 @@
 import React from 'react';
+import { RadioboxProps } from '@sberdevices/plasma-ui';
 
 import { actionWithPersistedEvent } from './actionWithPersistedEvent';
 import { ShowcaseComponentGrid } from './Showcase';
+import { Tony } from './Tony';
 
 const onChange = actionWithPersistedEvent('onChange');
 const onFocus = actionWithPersistedEvent('onFocus');
@@ -17,19 +19,24 @@ const elementDescription = (
         Description with <a href="/#">link</a>
     </div>
 );
-const rows = [
+
+interface Props extends RadioboxProps {
+    value: number;
+    tony?: boolean;
+}
+
+const rows: Array<Array<Props>> = [
     [
-        { ...props, name: 'radio-1', value: 1, label: 'Radiobox 1', disabled: false, checked: false, description: '' },
-        { ...props, name: 'radio-1', value: 2, label: 'Radiobox 2', disabled: false, checked: false, description: '' },
+        { ...props, value: 1, label: 'Radiobox 1', disabled: false, checked: false, description: '' },
+        { ...props, value: 2, label: 'Radiobox 2', disabled: false, checked: false, description: '' },
     ],
     [
-        { ...props, name: 'radio-2', value: 3, label: 'Radiobox 3', disabled: true, checked: false, description: '' },
-        { ...props, name: 'radio-2', value: 4, label: 'Radiobox 4', disabled: true, checked: true, description: '' },
+        { ...props, value: 3, label: 'Radiobox 3', disabled: true, checked: false, description: '' },
+        { ...props, value: 4, label: 'Radiobox 4', disabled: true, checked: true, description: '' },
     ],
     [
         {
             ...props,
-            name: 'radio-1',
             value: 5,
             label: 'Radiobox 5',
             disabled: false,
@@ -38,13 +45,16 @@ const rows = [
         },
         {
             ...props,
-            name: 'radio-1',
             value: 6,
             label: 'Radiobox 6',
             disabled: false,
             checked: false,
             description: elementDescription,
         },
+    ],
+    [
+        { ...props, value: 3, disabled: false, checked: false, tony: true },
+        { ...props, value: 4, disabled: false, checked: true, tony: true },
     ],
 ];
 
@@ -64,18 +74,22 @@ export const RadioboxShowcase = ({
             {rows.map((items) =>
                 items
                     .filter((item) => !(!withDescription && item.description))
-                    .map((item, j) => (
-                        <Component
-                            {...item}
-                            key={`item:${j}`}
-                            style={{ margin: 0 }}
-                            label={withLabels ? item.label : ''}
-                            checked={item.checked || item.value === value}
-                            onChange={(event: any) => {
-                                setValue(item.value);
-                                onChange(event);
-                            }}
-                        />
+                    .map(({ tony, label, onChange, ...item }, j) => (
+                        <div style={{ display: 'flex' }}>
+                            <Component
+                                {...item}
+                                key={`item:${j}`}
+                                name="test-radio"
+                                style={{ margin: 0 }}
+                                label={withLabels ? label : ''}
+                                checked={item.checked || item.value === value}
+                                onChange={(event: any) => {
+                                    setValue(item.value);
+                                    onChange?.(event);
+                                }}
+                            />
+                            {tony && <Tony />}
+                        </div>
                     )),
             )}
         </ShowcaseComponentGrid>
