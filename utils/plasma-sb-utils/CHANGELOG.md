@@ -1,3 +1,15 @@
+# v0.24.0 (Wed Sep 08 2021)
+
+#### 🐛 Bug Fix
+
+- chore: Add `.npmrc` in utils [#702](https://github.com/sberdevices/plasma/pull/702) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v0.23.0 (Wed Sep 01 2021)
 
 #### 🐛 Bug Fix

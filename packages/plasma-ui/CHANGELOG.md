@@ -1,3 +1,23 @@
+# v1.46.0 (Wed Sep 08 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): value format for Stepper added [#675](https://github.com/sberdevices/plasma/pull/675) ([@kayman233](https://github.com/kayman233))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- docs: Writing new docs for Plasma Devices [#648](https://github.com/sberdevices/plasma/pull/648) ([@fanisco](https://github.com/fanisco))
+- chore: Storybook docgenInfo extraction tool [#648](https://github.com/sberdevices/plasma/pull/648) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 3
+
+- [@kayman233](https://github.com/kayman233)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.45.0 (Wed Sep 01 2021)
 
 #### 🐛 Bug Fix
