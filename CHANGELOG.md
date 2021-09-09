@@ -2,6 +2,21 @@
 
 #### 🐛 Bug Fix
 
+- `@sberdevices/plasma-ui@1.46.3`
+  - fix(plasma-ui): Disabled state for `Checkbox` and `Radiobox` [#791](https://github.com/sberdevices/plasma/pull/791) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-web@1.44.3`
+  - fix(plasma-web): Disabled state for `Checkbox` [#791](https://github.com/sberdevices/plasma/pull/791) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Thu Sep 09 2021)
+
+#### 🐛 Bug Fix
+
 - `@sberdevices/plasma-core@1.27.3`
   - fix: Display `inline-flex` for `Badge` [#784](https://github.com/sberdevices/plasma/pull/784) ([@fanisco](https://github.com/fanisco))
 - `@sberdevices/plasma-web@1.44.2`
