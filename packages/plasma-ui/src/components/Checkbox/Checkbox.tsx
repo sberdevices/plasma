@@ -127,7 +127,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
 ) {
     return (
         <StyledRoot $disabled={disabled} style={style} className={className} htmlFor={id}>
-            <BaseboxInput id={id} ref={ref} type="checkbox" {...rest} />
+            <BaseboxInput id={id} ref={ref} type="checkbox" disabled={disabled} {...rest} />
             <StyledTrigger $focused={focused} $scaleOnInteraction={scaleOnInteraction}>
                 <StyledMark color="inherit" size="xs" />
             </StyledTrigger>
