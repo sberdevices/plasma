@@ -10,7 +10,7 @@
     "devDependencies": {
         "@sberdevices/plasma-colors": "0.1.1",
         "@sberdevices/plasma-tokens-utils": "0.7.0",
-        "@types/node": "16.7.13",
+        "@types/node": "16.9.0",
         "jsdom": "17.0.0",
         "jsdom-global": "3.0.2",
         "ts-node": "10.2.1",
