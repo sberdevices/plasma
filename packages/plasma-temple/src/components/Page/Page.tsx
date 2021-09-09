@@ -1,7 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Spinner } from '@sberdevices/plasma-ui';
-import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
+import { HeaderProps } from '@sberdevices/plasma-ui';
 
 import { AppStateContext } from '../PlasmaApp/AppStateContext';
 import { AnyObject, AssistantInstance } from '../../types';
@@ -9,6 +7,7 @@ import { useAssistant } from '../../hooks/useAssistant';
 import { last } from '../../utils/last';
 import { INNER_ASSISTANT_ACTION } from '../../constants';
 import { Layout } from '../../components/Layout/Layout';
+import { PageSpinner } from '../PageSpinner/PageSpinner';
 import { useMount } from '../../hooks';
 
 import { PageComponent as PageComp } from './types';
@@ -20,13 +19,6 @@ export interface PageProps<Name extends string> {
     header?: HeaderProps;
     ignoreInsets?: boolean;
 }
-
-const StyledSpinner = styled(Spinner)`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-`;
 
 interface GetInitialProps<P, R> {
     (context: P): Promise<R>;
@@ -59,7 +51,7 @@ interface PageFunctionComponent extends PageLazy {
 export const Page: PageFunctionComponent = ({
     name,
     component: Component,
-    fallbackComponent = <StyledSpinner />,
+    fallbackComponent = <PageSpinner />,
     header,
     ignoreInsets,
 }) => {
