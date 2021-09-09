@@ -75,14 +75,14 @@ export const StyledTrigger = styled(BaseboxTrigger)`
 `;
 export const StyledContent = styled(BaseboxContent)`
     margin-left: 0.875rem;
+
+    /* stylelint-disable-next-line */
+    input:disabled ~ & {
+        opacity: 0.4;
+    }
 `;
 export const StyledLabel = styled(BaseboxLabel)`
     line-height: 1.5rem;
-
-    /* stylelint-disable-next-line */
-    input:disabled ~ ${StyledContent} & {
-        opacity: 0.4;
-    }
 `;
 export const StyledDescription = styled(BaseboxDescription)`
     /* stylelint-disable-next-line */
@@ -128,7 +128,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
 
     return (
         <StyledRoot $disabled={disabled} style={style} className={className} htmlFor={id}>
-            <BaseboxInput id={id} ref={forkRef} type="checkbox" {...rest} />
+            <BaseboxInput id={id} ref={forkRef} type="checkbox" disabled={disabled} {...rest} />
             <StyledTrigger>{indeterminate ? <StyledIndeterminate /> : <StyledDone />}</StyledTrigger>
             {label && (
                 <StyledContent>
