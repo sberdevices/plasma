@@ -1,27 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
-import { white, black } from '@sberdevices/plasma-tokens';
+import { white, backgroundPrimary } from '@sberdevices/plasma-tokens';
 import { applyNoSelect } from '@sberdevices/plasma-core';
 
 import { Footnote1 } from '../Typography';
 
 export type ToastProps = {
-    content: React.ReactNode;
+    text: React.ReactNode;
 };
 
 const StyledRoot = styled(Footnote1)`
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     padding: 0.75rem 1.25rem;
     border-radius: 1.25rem;
 
-    background: ${black};
+    background: ${backgroundPrimary};
     color: ${white};
-
     ${applyNoSelect};
 `;
 
-/**
- * Короткие текстовые подсказки.
- * Вызываются только в текущем запущенном приложении как реакция на выполнение действия пользователем.
- */
-export const Toast: React.FC<ToastProps> = ({ content }) => <StyledRoot>{content}</StyledRoot>;
+export const Toast: React.FC<ToastProps> = ({ text }) => <StyledRoot>{text}</StyledRoot>;

@@ -1,9 +1,9 @@
-import { createContext, ReactNode } from 'react';
+import { createContext } from 'react';
 
-import { ToastInfo, Position } from './types';
+import { ToastInfo, ShowToast } from './types';
 
 type ContextType = ToastInfo & {
-    showToast: (content: ReactNode, position?: Position, timeout?: number, fade?: boolean) => void;
+    showToast: ShowToast;
     hideToast: () => void;
 };
 
@@ -11,6 +11,12 @@ export const ToastContext = createContext<ContextType>({
     content: null,
     position: null,
     timeout: null,
-    showToast: () => undefined,
+    showToast: (() => {
+        const show = () => undefined;
+        show.success = () => undefined;
+        show.error = () => undefined;
+        show.pending = () => undefined;
+        return show;
+    })(),
     hideToast: () => undefined,
 });

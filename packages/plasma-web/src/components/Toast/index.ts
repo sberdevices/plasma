@@ -1,2 +1,2 @@
-export { Toast, ToastProvider, useToast } from '@sberdevices/plasma-core';
-export type { ToastProps } from '@sberdevices/plasma-core';
+export { Toast, ToastProvider, useToast, ToastBody } from '@sberdevices/plasma-core';
+export type { ToastProps, ToastBodyProps } from '@sberdevices/plasma-core';

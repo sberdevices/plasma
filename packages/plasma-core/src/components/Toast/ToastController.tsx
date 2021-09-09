@@ -1,6 +1,8 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 
+import { Fade } from '../Fade';
+
 import { ToastInfo } from './types';
 import { Toast } from './Toast';
 import { useToast } from './useToast';
@@ -113,7 +115,7 @@ export const ToastController: React.FC<ToastInfo> = ({ content, position, timeou
         <>
             {fade && <StyledFade isVisible={isVisible} placement={position} />}
             <StyledRoot key={toastKey} position={position} isVisible={isVisible} onAnimationEnd={animationEndHandler}>
-                <Toast content={content} />
+                <Toast text={content} />
             </StyledRoot>
         </>
     );
