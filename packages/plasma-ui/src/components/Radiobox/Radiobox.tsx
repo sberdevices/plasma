@@ -46,7 +46,7 @@ export const Radiobox = forwardRef<HTMLInputElement, RadioboxProps>(function Rad
 ) {
     return (
         <CheckboxRoot $disabled={disabled} style={style} className={className} htmlFor={id}>
-            <BaseboxInput id={id} ref={ref} type="radio" {...rest} />
+            <BaseboxInput id={id} ref={ref} type="radio" disabled={disabled} {...rest} />
             <StyledTrigger $focused={focused} $scaleOnInteraction={scaleOnInteraction}>
                 <StyledEllipse />
             </StyledTrigger>
