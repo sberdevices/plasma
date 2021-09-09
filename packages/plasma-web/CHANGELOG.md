@@ -1,3 +1,19 @@
+# v1.44.2 (Thu Sep 09 2021)
+
+#### 🐛 Bug Fix
+
+- chore(plasma-web): Storybook controls for Button, Carousel, Checkbox, Modal [#651](https://github.com/sberdevices/plasma/pull/651) ([@kayman233](https://github.com/kayman233))
+- chore(plasma-web): Storybook controls for Notification, PaginationDots, Progress, Radiobox [#652](https://github.com/sberdevices/plasma/pull/652) ([@kayman233](https://github.com/kayman233))
+- chore(plasma-web): Storybook controls for Tooltip, Badge, Image, Price, Spinner [#662](https://github.com/sberdevices/plasma/pull/662) ([@kayman233](https://github.com/kayman233))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@kayman233](https://github.com/kayman233)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
 # v1.44.1 (Wed Sep 08 2021)
 
 #### 🐛 Bug Fix

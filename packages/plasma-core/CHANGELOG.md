@@ -1,3 +1,16 @@
+# v1.27.3 (Thu Sep 09 2021)
+
+#### 🐛 Bug Fix
+
+- fix: Display `inline-flex` for `Badge` [#784](https://github.com/sberdevices/plasma/pull/784) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-ui, plasma-core): Added `forwardedAs` and `as` props to `Tabs` [#724](https://github.com/sberdevices/plasma/pull/724) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.27.2 (Wed Sep 08 2021)
 
 #### 🐛 Bug Fix

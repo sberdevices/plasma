@@ -1,3 +1,21 @@
+# v1.46.2 (Thu Sep 09 2021)
+
+#### 🐛 Bug Fix
+
+- feat(plasma-ui, plasma-core): Added `forwardedAs` and `as` props to `Tabs` [#724](https://github.com/sberdevices/plasma/pull/724) ([@fanisco](https://github.com/fanisco))
+- chore(plasma-ui): Storybook controls for Card, Carousel, Cell, Header, Pickers [#647](https://github.com/sberdevices/plasma/pull/647) ([@kayman233](https://github.com/kayman233))
+- fix(plasma-ui): visibleItems for TimePicker fix [#647](https://github.com/sberdevices/plasma/pull/647) ([@kayman233](https://github.com/kayman233))
+- chore(plasma-ui): fix cell icons [#647](https://github.com/sberdevices/plasma/pull/647) ([@kayman233](https://github.com/kayman233))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 3
+
+- [@kayman233](https://github.com/kayman233)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.46.1 (Wed Sep 08 2021)
 
 #### 🐛 Bug Fix
