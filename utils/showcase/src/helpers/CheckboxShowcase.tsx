@@ -1,7 +1,9 @@
 import React from 'react';
+import { CheckboxProps } from '@sberdevices/plasma-ui';
 
 import { actionWithPersistedEvent } from './actionWithPersistedEvent';
 import { ShowcaseComponentGrid } from './Showcase';
+import { Tony } from './Tony';
 
 const onChange = actionWithPersistedEvent('onChange');
 const onFocus = actionWithPersistedEvent('onFocus');
@@ -17,18 +19,28 @@ const elementDescription = (
         Description with <a href="/#">link</a>
     </div>
 );
-const rows = [
+
+interface Props extends CheckboxProps {
+    value: number;
+    tony?: boolean;
+}
+
+const rows: Array<Array<Props>> = [
     [
-        { ...props, name: 'check', value: 1, label: 'Checkbox 1', disabled: false, description: '' },
-        { ...props, name: 'check', value: 2, label: 'Checkbox 2', disabled: false, description: '' },
+        { ...props, value: 1, label: 'Checkbox 1', disabled: false, description: '' },
+        { ...props, value: 2, label: 'Checkbox 2', disabled: false, description: '' },
     ],
     [
-        { ...props, name: 'check', value: 3, label: 'Checkbox 3', disabled: true, description: '' },
-        { ...props, name: 'check', value: 4, label: 'Checkbox 4', disabled: true, description: '' },
+        { ...props, value: 3, label: 'Checkbox 3', disabled: true, description: '' },
+        { ...props, value: 4, label: 'Checkbox 4', disabled: true, description: '' },
     ],
     [
-        { ...props, name: 'check', value: 5, label: 'Checkbox 5', disabled: false, description: 'text description' },
-        { ...props, name: 'check', value: 6, label: 'Checkbox 6', disabled: false, description: elementDescription },
+        { ...props, value: 5, label: 'Checkbox 5', disabled: false, description: 'text description' },
+        { ...props, value: 6, label: 'Checkbox 6', disabled: false, description: elementDescription },
+    ],
+    [
+        { ...props, value: 5, disabled: false, checked: false, tony: true },
+        { ...props, value: 6, disabled: false, checked: true, tony: true },
     ],
 ];
 
@@ -48,20 +60,26 @@ export const CheckboxShowcase = ({
             {rows.map((items) =>
                 items
                     .filter((item) => !(!withDescription && item.description))
-                    .map((item, j) => (
-                        <Component
-                            {...item}
-                            key={`item:${j}`}
-                            style={{ margin: 0 }}
-                            label={withLabels ? item.label : ''}
-                            checked={values.indexOf(item.value) !== -1}
-                            onChange={(event: any) => {
-                                setValues(
-                                    [...values, item.value].filter((val) => event.target.checked || val !== item.value),
-                                );
-                                onChange(event);
-                            }}
-                        />
+                    .map(({ tony, label, onChange, ...item }, j) => (
+                        <div style={{ display: 'flex' }}>
+                            <Component
+                                {...item}
+                                key={`item:${j}`}
+                                name="test-checkbox"
+                                style={{ margin: 0 }}
+                                label={withLabels ? label : ''}
+                                checked={values.indexOf(item.value) !== -1}
+                                onChange={(event: any) => {
+                                    setValues(
+                                        [...values, item.value].filter(
+                                            (val) => event.target.checked || val !== item.value,
+                                        ),
+                                    );
+                                    onChange?.(event);
+                                }}
+                            />
+                            {tony && <Tony />}
+                        </div>
                     )),
             )}
         </ShowcaseComponentGrid>

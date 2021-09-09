@@ -1,20 +1,17 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
-import {
-    CheckboxProps as BaseProps,
-    CheckboxInput as Input,
-    CheckboxLabel as Label,
-    CheckboxDescription as Description,
-} from '@sberdevices/plasma-core';
+import { BaseboxInput, BaseboxContent, BaseboxLabel, BaseboxDescription } from '@sberdevices/plasma-core';
+import type { BaseboxProps, FocusProps, OutlinedProps } from '@sberdevices/plasma-core';
 import { white } from '@sberdevices/plasma-tokens';
 
 import { InteractionProps } from '../../mixins';
-import { Root, Trigger } from '../Checkbox/Checkbox';
+import { StyledRoot as CheckboxRoot, StyledTrigger as CheckboxTrigger } from '../Checkbox/Checkbox';
 
-export interface RadioboxProps extends BaseProps, InteractionProps {}
+export interface RadioboxProps extends BaseboxProps, FocusProps, OutlinedProps, InteractionProps {}
 
-const StyledTrigger = styled(Trigger)`
-    border-radius: 1.125rem;
+const StyledTrigger = styled(CheckboxTrigger)`
+    --plasma-trigger-border-radius: 1.25rem;
+    --plasma-trigger-outline-radius: 1.375rem;
 `;
 const StyledEllipse = styled.div`
     position: absolute;
@@ -22,16 +19,19 @@ const StyledEllipse = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
+
     margin: auto;
     width: 0.625rem;
     height: 0.625rem;
+
     border-radius: 0.625rem;
-    transition: transform 0.1s ease-in-out;
-    transform: scale(0);
     background-color: ${white};
 
+    transition: transform 0.3s ease-in-out;
+    transform: scale(0);
+
     /* stylelint-disable-next-line selector-nested-pattern, selector-type-no-unknown */
-    ${Input}:checked ~ ${Trigger} & {
+    input:checked ~ ${StyledTrigger} & {
         transform: scale(1);
     }
 `;
@@ -40,18 +40,22 @@ const StyledEllipse = styled.div`
  * Переключатель, или *радиокнопка*.
  */
 // eslint-disable-next-line prefer-arrow-callback
-export const Radiobox = React.forwardRef<HTMLInputElement, RadioboxProps>(function Radiobox(
-    { id, label, description, scaleOnInteraction, focused, disabled, style, className, ...rest },
+export const Radiobox = forwardRef<HTMLInputElement, RadioboxProps>(function Radiobox(
+    { id, label, description, disabled, focused, scaleOnInteraction, style, className, ...rest },
     ref,
 ) {
     return (
-        <Root $disabled={disabled} $isDescription={!!description} style={style} className={className}>
-            <Input id={id} ref={ref} type="radio" disabled={disabled} {...rest} />
-            <StyledTrigger $type="radio" $focused={focused} $scaleOnInteraction={scaleOnInteraction}>
+        <CheckboxRoot $disabled={disabled} style={style} className={className} htmlFor={id}>
+            <BaseboxInput id={id} ref={ref} type="radio" {...rest} />
+            <StyledTrigger $focused={focused} $scaleOnInteraction={scaleOnInteraction}>
                 <StyledEllipse />
             </StyledTrigger>
-            {label && <Label>{label}</Label>}
-            {description && <Description>{description}</Description>}
-        </Root>
+            {label && (
+                <BaseboxContent>
+                    {label && <BaseboxLabel as="span">{label}</BaseboxLabel>}
+                    {description && <BaseboxDescription mt={4}>{description}</BaseboxDescription>}
+                </BaseboxContent>
+            )}
+        </CheckboxRoot>
     );
 });

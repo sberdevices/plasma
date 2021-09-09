@@ -1,6 +1,6 @@
+export * from './components/Basebox';
 export * from './components/Button';
 export * from './components/Carousel';
-export * from './components/Checkbox';
 export * from './components/Grid';
 export * from './components/Image';
 export * from './components/PaginationDots';

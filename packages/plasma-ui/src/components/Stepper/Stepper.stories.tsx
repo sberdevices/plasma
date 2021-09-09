@@ -68,10 +68,12 @@ interface CustomAssemblyProps {
     max: number;
     disabled: boolean;
     showWarning: boolean;
+    showFormat: boolean;
 }
 
-export const CustomAssembly: Story<CustomAssemblyProps> = ({ step, min, max, disabled, showWarning }) => {
+export const CustomAssembly: Story<CustomAssemblyProps> = ({ step, min, max, disabled, showWarning, showFormat }) => {
     const [value, setValue] = useState(5);
+    const formatter = (val: number) => `${val}$`;
     return (
         <StepperRoot>
             <StepperButton
@@ -79,7 +81,12 @@ export const CustomAssembly: Story<CustomAssemblyProps> = ({ step, min, max, dis
                 icon={value > min ? <IconMinus color="inherit" size="xs" /> : <IconClose color="inherit" size="xs" />}
                 onClick={() => setValue(Math.max(value - step, min))}
             />
-            <StepperValue value={value} disabled={disabled} showWarning={showWarning} />
+            <StepperValue
+                value={value}
+                disabled={disabled}
+                showWarning={showWarning}
+                formatter={showFormat && formatter}
+            />
             <StepperButton
                 view="secondary"
                 icon={<IconPlus color="inherit" size="xs" />}
@@ -96,6 +103,7 @@ CustomAssembly.args = {
     max: 10,
     disabled: false,
     showWarning: false,
+    showFormat: false,
 };
 
 CustomAssembly.parameters = {

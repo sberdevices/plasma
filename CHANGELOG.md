@@ -1,3 +1,79 @@
+# (Wed Sep 08 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-tokens-b2c@0.5.1`
+  - fix(plasma-tokens-b2c): Confusing `paragraph` and `inverse` colors in themes [#709](https://github.com/sberdevices/plasma/pull/709) ([@fanisco](https://github.com/fanisco))
+  - chore(plasma-tokens-b2c): update deps [#728](https://github.com/sberdevices/plasma/pull/728) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/showcase@0.51.1`
+  - chore(showcase): Test `label` for `Checkbox` and `Radiobox` [#698](https://github.com/sberdevices/plasma/pull/698) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-core@1.27.2`, `@sberdevices/plasma-ui@1.46.1`, `@sberdevices/plasma-web@1.44.1`
+  - fix: Refactor `Checkbox` & `Radiobox` in order of better understanding [#698](https://github.com/sberdevices/plasma/pull/698) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-web@1.44.1`
+  - chore(plasma-ui): update ts/styled-comps deps [#728](https://github.com/sberdevices/plasma/pull/728) ([@Yeti-or](https://github.com/Yeti-or))
+  - chore(plasma-web): update storybook deps [#728](https://github.com/sberdevices/plasma/pull/728) ([@Yeti-or](https://github.com/Yeti-or))
+  - chore(plasma-web): update build deps [#728](https://github.com/sberdevices/plasma/pull/728) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-ui@1.46.1`
+  - chore(plasma-ui): update ts/styled-comps deps [#728](https://github.com/sberdevices/plasma/pull/728) ([@Yeti-or](https://github.com/Yeti-or))
+  - chore(plasma-ui): update storybook deps [#728](https://github.com/sberdevices/plasma/pull/728) ([@Yeti-or](https://github.com/Yeti-or))
+  - chore(plasma-ui): update test deps [#728](https://github.com/sberdevices/plasma/pull/728) ([@Yeti-or](https://github.com/Yeti-or))
+  - chore(plasma-ui): update build deps [#728](https://github.com/sberdevices/plasma/pull/728) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-tokens-web@1.11.1`
+  - chore(plasma-tokens-web): update deps [#728](https://github.com/sberdevices/plasma/pull/728) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-icons@1.39.1`
+  - chore(plasma-icons): update deps [#728](https://github.com/sberdevices/plasma/pull/728) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-core@1.27.2`
+  - chore(plasma-core): update deps [#728](https://github.com/sberdevices/plasma/pull/728) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-colors@0.1.1`
+  - chore(plasma-colors): update deps [#728](https://github.com/sberdevices/plasma/pull/728) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-tokens@1.12.1`
+  - chore(plasma-tokens): update deps [#728](https://github.com/sberdevices/plasma/pull/728) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# (Wed Sep 08 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-ui@1.46.0`
+  - feat(plasma-ui): value format for Stepper added [#675](https://github.com/sberdevices/plasma/pull/675) ([@kayman233](https://github.com/kayman233))
+- `@sberdevices/plasma-web@1.44.0`
+  - feat(plasma-web): Added `TabsController` in order to use keyboard arrows [#687](https://github.com/sberdevices/plasma/pull/687) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/extract-sb-docgen-info@0.1.0`
+  - chore: Publish extract-docgen-info [#715](https://github.com/sberdevices/plasma/pull/715) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-web@1.44.0`
+  - docs(plasma-web): Storybook controls for Select, Switch, TextField [#688](https://github.com/sberdevices/plasma/pull/688) ([@kayman233](https://github.com/kayman233))
+- `@sberdevices/extract-sb-docgen-info@0.1.0`, `@sberdevices/plasma-sb-utils@0.24.0`
+  - chore: Add `.npmrc` in utils [#702](https://github.com/sberdevices/plasma/pull/702) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-docs@0.1.0`, `@sberdevices/plasma-web@1.44.0`
+  - docs(plasma-web): Describe `TabsController` [#687](https://github.com/sberdevices/plasma/pull/687) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-docs@0.1.0`
+  - chore(plasma-docs): Edit url [#700](https://github.com/sberdevices/plasma/pull/700) ([@fanisco](https://github.com/fanisco))
+  - chore(plasma-docs): Fix homepage's main button [#700](https://github.com/sberdevices/plasma/pull/700) ([@fanisco](https://github.com/fanisco))
+  - chore(plasma-docs): Replace sacred link to Icons service [#700](https://github.com/sberdevices/plasma/pull/700) ([@fanisco](https://github.com/fanisco))
+  - docs: Writing new docs for Plasma Web [#648](https://github.com/sberdevices/plasma/pull/648) ([@fanisco](https://github.com/fanisco))
+  - ci: Deploy documentation [#648](https://github.com/sberdevices/plasma/pull/648) ([@fanisco](https://github.com/fanisco))
+  - chore: Docs on Docusaurus engine [#648](https://github.com/sberdevices/plasma/pull/648) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-docs@0.1.0`, `@sberdevices/plasma-ui@1.46.0`
+  - docs: Writing new docs for Plasma Devices [#648](https://github.com/sberdevices/plasma/pull/648) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-ui@1.46.0`, `@sberdevices/plasma-web@1.44.0`, `@sberdevices/extract-sb-docgen-info@0.1.0`
+  - chore: Storybook docgenInfo extraction tool [#648](https://github.com/sberdevices/plasma/pull/648) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- [@kayman233](https://github.com/kayman233)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Wed Sep 01 2021)
 
 #### 🚀 Enhancement

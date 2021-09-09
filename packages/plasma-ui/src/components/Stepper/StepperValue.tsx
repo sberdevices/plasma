@@ -47,13 +47,17 @@ export interface StepperValueProps extends React.HTMLAttributes<HTMLDivElement>,
      * Выводимое значение
      */
     value: number;
+    /**
+     * Функция для форматирования отображаемого значения
+     */
+    formatter?: (value: number) => string;
 }
 
 /**
  * Компонент для отображения значения степпера.
  */
-export const StepperValue: React.FC<StepperValueProps> = ({ value, disabled, showWarning, ...rest }) => (
+export const StepperValue: React.FC<StepperValueProps> = ({ value, disabled, showWarning, formatter, ...rest }) => (
     <StyledValue disabled={disabled} showWarning={showWarning} {...rest}>
-        {value}
+        {typeof formatter === 'function' ? formatter(value) : value}
     </StyledValue>
 );

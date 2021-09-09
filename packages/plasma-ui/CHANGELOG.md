@@ -1,3 +1,42 @@
+# v1.46.1 (Wed Sep 08 2021)
+
+#### 🐛 Bug Fix
+
+- fix: Refactor `Checkbox` & `Radiobox` in order of better understanding [#698](https://github.com/sberdevices/plasma/pull/698) ([@fanisco](https://github.com/fanisco))
+- chore(plasma-ui): update ts/styled-comps deps [#728](https://github.com/sberdevices/plasma/pull/728) ([@Yeti-or](https://github.com/Yeti-or))
+- chore(plasma-ui): update storybook deps [#728](https://github.com/sberdevices/plasma/pull/728) ([@Yeti-or](https://github.com/Yeti-or))
+- chore(plasma-ui): update test deps [#728](https://github.com/sberdevices/plasma/pull/728) ([@Yeti-or](https://github.com/Yeti-or))
+- chore(plasma-ui): update build deps [#728](https://github.com/sberdevices/plasma/pull/728) ([@Yeti-or](https://github.com/Yeti-or))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 3
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# v1.46.0 (Wed Sep 08 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): value format for Stepper added [#675](https://github.com/sberdevices/plasma/pull/675) ([@kayman233](https://github.com/kayman233))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- docs: Writing new docs for Plasma Devices [#648](https://github.com/sberdevices/plasma/pull/648) ([@fanisco](https://github.com/fanisco))
+- chore: Storybook docgenInfo extraction tool [#648](https://github.com/sberdevices/plasma/pull/648) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 3
+
+- [@kayman233](https://github.com/kayman233)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.45.0 (Wed Sep 01 2021)
 
 #### 🐛 Bug Fix
