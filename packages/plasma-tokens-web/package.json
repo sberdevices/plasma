@@ -14,7 +14,7 @@
         "jsdom": "17.0.0",
         "jsdom-global": "3.0.2",
         "ts-node": "10.2.1",
-        "typescript": "4.4.2"
+        "typescript": "3.9.10"
     },
     "scripts": {
         "prepare": "npm run build",
@@ -45,10 +45,6 @@
         "index.js.map",
         "theme.json"
     ],
-    "contributors": [
-        "Vasiliy Loginevskiy",
-        "Anton Vinogradov",
-        "Fanil Zubairov"
-    ],
+    "contributors": ["Vasiliy Loginevskiy", "Anton Vinogradov", "Fanil Zubairov"],
     "sideEffects": false
 }

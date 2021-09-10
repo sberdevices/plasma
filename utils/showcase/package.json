@@ -38,7 +38,7 @@
         "react-scripts": "3.4.1",
         "sb": "6.3.3",
         "styled-components": "^5.2.3",
-        "typescript": "3.9.5"
+        "typescript": "3.9.10"
     },
     "scripts": {
         "build-storybook": "npm run storybook:build",
@@ -48,9 +48,5 @@
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
         "chromatic": "npx chromatic"
     },
-    "contributors": [
-        "Vasiliy Loginevskiy",
-        "Anton Vinogradov",
-        "Fanil Zubairov"
-    ]
+    "contributors": ["Vasiliy Loginevskiy", "Anton Vinogradov", "Fanil Zubairov"]
 }
