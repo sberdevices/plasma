@@ -1,192 +1,84 @@
-# Взимодействе со сценарием
+# Взаимодействие со сценарием
 
-В пакете реализовано базовое взаимодействие со сценарием приложения
+Реакции на команды от ассистента, сценарные, навигационные реализуются с помощью хуков или прямой подпиской в экземляре ассистента.
 
-Первоначально необходимо сконфигурировать вызов навыка для локальной отладки
+## Хуки
+
+Хуки можно использовать в любом месте приложения, будь то сам экран приложения, или какой-либо компонент, используемый внутри одного или нескольких экранов.
+
+### `useAssistantOnSmartAppData`
+
+Хук подписывается на событие `data` и проверяет тип входящей команды. Если входящая команда имеет тип [`smart_app_data`](https://github.com/sberdevices/assistant-client/blob/main/src/typings.ts#L151), то непосредственно значение ключа `smart_app_data` будет передано в качестве аргумента в функцию, которую принмает хук `useAssistantOnSmartAppData`.
 
 ```ts
-// App.tsx
-const App = createApp({
+const ScreenComponent = ({ pushScreen }) => {
     ...
-    assistant: {
-        initPrhase: 'запусти каталог',
-        nativePanel: {
-            defaultText: 'Открой игрульки'
+    useAssistantOnSmartAppData((action /* a-ka `smart_app_data` */) => {
+        if (action.type = 'goto') {
+            pushScreen(action.payload.screen, action.payload.params);
         }
-    }
-})
-```
-В конфигурации Ассистента можно подписаться на следующие события:
-
-* `onStart` - функция, в аррументе которой будут доступны методы работы с состоянием приложения.
-* `onData` - функция для обработки сценарных комманд, так же может быть синхронной или асинхронной. Аргументами будут комманда и методы для работы с состоянием
-
-Функции может быть как синхронной, так и асинхронной
-```ts
-// App.tsx
-export const App = createApp({
-    ...
-    assistant: {
-        ...
-        onStart: (methods) => {
-            // do something
-
-            // функция установки нового состояния приложения
-            methods.pushState({
-                // new state
-            });
-        },
-        onData: async (command, methods) => {
-            // do something asynchonous
-
-            // функция изменения текущего состояния приложения
-            methods.setState({
-                // changed state
-            });
-        },
-    },
-});
-```
-
-Можно обработать сценарную комманду внутри конктретного маршрута в конфигуации
-
-```ts
-// App.tsx
-export const App = createApp({
-    routes: [
-        ...
-        type: Screen.detail,
-        onData: async (command, methods) => {
-            // do something asynchonous
-
-            // функция возврата к на шаг назад
-            methods.popState()
-        },
-    ],
-});
-```
-
-или внутри компонента интерфейса
-```ts
-// pages/MyTemplate.tsx
-import { useOnDataHandler } from '@sberdevices/plasma-temple'
-
-const MyTemplate: React.FC<PageProps<DetailPayload>> = () => {
-    // some template logic
-
-    useOnDataHandler((command, methods) => {
-        // do something
-
-        methods.setState({
-            // changed state
-        });
     })
-
-    return (
-        <some>
-            <jsx>
-                <markup />
-            </jsx>
-        </some>
-    )
-}
-
-export default MyTemplate;
-
-// App.tsx
-import MyTemplate from './pages/MyTemplate.tsx'
-
-export const App = createApp({
-    routes: [
-        ...
-        type: Screen.detail,
-        component: MyTemplate // кастомный шаблон интерфейса приложения
-    ],
-});
-```
-
-## Контракт взаимодействия со сценарием
-### Экраны приложения
-* Screen.gallery - главный экран приложения с галереей / несколькими галереями
-* Screen.entity - экран развернутой информацией об элементе галерии
-* Screen.detail - экран детализации об элементе галерееи
-
-### Контракты данных
-Для каждого из экранов имеется обязательный контракт данных
-
-Общие данные для всех экранов
-
-```ts
-type AspectRatio = '1:1' | '4:3' | '16:9';
-
-// любые данные не попадающие в описанный формат
-interface MetaPayload {
-    meta?: Record<string, any>;
-}
-
-// пропсы медиа объекта, в данном случае только для изображения
-interface MediaObject {
-    src: string[] | string;
-    ratio?: AspectRatio;
-}
-
-// пропсы хедера
-interface HeaderPropsPayload {
-    title: string;
-    subtitle?: string;
-    logo?: string;
 }
 ```
 
+### `useAssistantOnNavigation`
+
+Хук подписывается на событие `data` и проверяет тип входящей команды. Если входящая команда имеет тип [`navigation`](https://github.com/sberdevices/assistant-client/blob/main/src/typings.ts#L137), то команда будет передана в качесвет аргурмента в функцию, которую принимает хук `useAssistantOnNavigation`.
+
 ```ts
-// Screen.gallery
+const ScreenComponent = () => {
+    ...
+    useAssistantOnNavigation((command) => {
+        if (command.navigation.command === 'DOWN') {
+            window.scrollTo({
+                top: window.scrollY + 600,
+            })
+        }
 
-// данные для элемента галерии
-interface GalleryItemViewPayload extends MetaPayload {
-    id: string;
-    label: string;
-    position: number;
-    image: MediaObject;
-    description?: string;
-    tag?: string;
-    time?: string;
-}
-
-interface GalleryViewPayload extends MetaPayload, HeaderPropsPayload {
-    items: Array<GalleryItemViewPayload> | Array<Array<GalleryItemViewPayload>>;
-    title: string;
+        if (command.navigation.command === 'UP') {
+            window.scrollTo({
+                top: window.scrollY - 600,
+            })
+        }
+    })
 }
 ```
 
+### `useAssistantOnData`
+
+Хук подписывается на событие `data` от ассистента и передает указанную функцию, как коллбек на событие.
+
 ```ts
-// Screen.entity
-
-interface ItemViewEntity extends MetaPayload {
-    label: string;
-    image: MediaObject;
-    position: number;
-}
-
-interface EntityPayload extends MetaPayload, HeaderPropsPayload {
-    background: MediaObject;
-    entities: Array<ItemViewEntity>;
-    id: string | number;
-    description: { title: string; content: string }[];
-    itemShowButtonText: string;
-    entitiesTitle: string;
+const ScreenComponent = () => {
+    ...
+    useAssistantOnData((anyCommand) => {
+        if (command.type === 'smart_app_error') {
+            // do whatever with error
+        }
+    })
 }
 ```
 
-```ts
-// Screen.detail
+### `useAssistantAppState`
 
-interface DetailPayload extends MetaPayload, HeaderPropsPayload {
-    order?: string[];
+Подписками на команды взаимодействие с ассистентом не ограничивается. Сценарию для принятия решений необходимо текущее состояние интерфейса. Например понять, что скрывается под номером 4 в запросе "Открой номер 4". Для формирования состояния используется хук `useAssistantAppState`, который в качестве аргумента принимает объект типа [`AssistantAppState`](https://github.com/sberdevices/assistant-client/blob/main/src/typings.ts#L68)
+
+```ts
+const ScreenComponent = ({ name, state }) => {
+    ...
+    useAssistantAppState({
+        name,
+        item_selector: {
+            items: state.gallery,
+        }
+    })
 }
 ```
 
 ---
-|Другие разделы ||||||
-|---|---|---|---|---|---|
+
+| Другие разделы             |                          |                           |                    |                             |                     |
+| -------------------------- | ------------------------ | ------------------------- | ------------------ | --------------------------- | ------------------- |
 | [Кофигурация](./config.md) | [Действия](./actions.md) | [Шаблоны](./templates.md) | [Хуки](./hooks.md) | Взаимодействие со сценарием | [Формы](./forms.md) |
+
 ---
