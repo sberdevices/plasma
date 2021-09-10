@@ -1,3 +1,19 @@
+# v0.51.0 (Fri Sep 10 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): error page layout [#121](https://github.com/sberdevices/pashka/pull/121) ([@LamaEats](https://github.com/LamaEats))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): title for Gallery component can be optional [#121](https://github.com/sberdevices/pashka/pull/121) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v0.50.1 (Wed Sep 08 2021)
 
 #### 🐛 Bug Fix
