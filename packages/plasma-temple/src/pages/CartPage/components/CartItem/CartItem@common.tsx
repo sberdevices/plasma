@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { IconClose, IconMinus, IconPlus, IconProps } from '@sberdevices/plasma-icons';
 import { secondary, success, white } from '@sberdevices/plasma-tokens';
@@ -6,7 +6,7 @@ import { StepperButton, StepperRoot, StepperValue, Price as PlasmaPrice } from '
 
 import { Currency } from '../../../../types';
 import { useCart } from '../../hooks';
-import { useThrottledCallback } from '../../../../hooks';
+import { useRemoteListener, useThrottledCallback } from '../../../../hooks';
 import { CartItem } from '../../types';
 import { useGetMutableValue } from '../../../../hooks/useGetMutableValue';
 
@@ -15,6 +15,9 @@ export interface CartItemProps {
     index: number;
     setActiveIndex?: (index: number) => void;
     currency?: Currency;
+    focused?: boolean;
+    activeButton?: 'left' | 'right';
+    setActiveButton?: (button: 'left' | 'right') => void;
 }
 
 export const titleMixin = css`
@@ -70,13 +73,62 @@ const StyledStepperRoot = styled(StepperRoot)`
     margin-left: auto;
 `;
 
+interface UseCartNavigationProps {
+    focused?: boolean;
+    activeButton?: 'left' | 'right';
+    setActiveButton?: (button: 'left' | 'right') => void;
+}
+
+function useCartNavigation({
+    focused,
+    activeButton,
+    setActiveButton,
+}: UseCartNavigationProps): [React.RefObject<HTMLButtonElement>, React.RefObject<HTMLButtonElement>] {
+    const leftButtonRef = React.useRef<HTMLButtonElement>(null);
+    const rightButtonRef = React.useRef<HTMLButtonElement>(null);
+
+    useEffect(() => {
+        if (!focused) {
+            return;
+        }
+
+        if (activeButton === 'right' && rightButtonRef.current !== null) {
+            rightButtonRef.current.focus();
+        }
+        if (activeButton === 'left' && leftButtonRef.current !== null) {
+            leftButtonRef.current.focus();
+        }
+    }, [focused, activeButton]);
+
+    useRemoteListener(
+        (key) => {
+            if (!focused || setActiveButton === undefined) {
+                return;
+            }
+
+            if (key === 'LEFT' && leftButtonRef.current !== null && document.activeElement === rightButtonRef.current) {
+                setActiveButton('left');
+            }
+            if (key === 'RIGHT' && rightButtonRef.current !== null) {
+                setActiveButton('right');
+            }
+        },
+        { disable: !focused },
+    );
+
+    return [leftButtonRef, rightButtonRef];
+}
+
 export const QuantityButton: React.FC<{
     id: CartItem['id'];
     quantity: number;
     index: number;
     setActiveIndex?: (index: number) => void;
     className?: string;
-}> = React.memo(({ id, quantity, index, setActiveIndex, className }) => {
+    focused?: boolean;
+    activeButton?: 'left' | 'right';
+    setActiveButton?: (button: 'left' | 'right') => void;
+}> = React.memo(({ id, quantity, index, setActiveIndex, className, focused, activeButton, setActiveButton }) => {
     const { removeItem, changeItemQuantity } = useCart();
     const getQuantity = useGetMutableValue(quantity);
 
@@ -99,6 +151,8 @@ export const QuantityButton: React.FC<{
 
     const handlerFocus = React.useCallback(() => setActiveIndex?.(index), [index, setActiveIndex]);
 
+    const [leftButtonRef, rightButtonRef] = useCartNavigation({ focused, activeButton, setActiveButton });
+
     return (
         <StyledStepperRoot className={className}>
             <StepperButton
@@ -106,9 +160,15 @@ export const QuantityButton: React.FC<{
                 view={isMin ? 'critical' : 'secondary'}
                 onClick={onMinus}
                 onFocus={handlerFocus}
+                ref={leftButtonRef}
             />
             <StepperValue value={quantity} />
-            <StepperButton icon={<IconPlus color="inherit" size="xs" />} onClick={onPlus} onFocus={handlerFocus} />
+            <StepperButton
+                icon={<IconPlus color="inherit" size="xs" />}
+                onClick={onPlus}
+                onFocus={handlerFocus}
+                ref={rightButtonRef}
+            />
         </StyledStepperRoot>
     );
 });
