@@ -42,6 +42,8 @@ packages/plasma-icons/*
 utils/extract-sb-docgen-info/lib
 utils/extract-sb-docgen-info/node_modules
 utils/extract-sb-docgen-info/src/extract.ts
+utils/plasma-docs-ui/*
+!utils/plasma-docs-ui/src
 
 utils/plasma-sb-utils/*
 !utils/plasma-sb-utils/src
