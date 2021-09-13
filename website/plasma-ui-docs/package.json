@@ -63,6 +63,8 @@
         "@types/react-helmet": "^6.1.2",
         "@types/react-router-dom": "^5.1.8",
         "@types/styled-components": "^5.1.12",
+        "globby": "^11.0.0",
+        "react-docgen-typescript": "^2.1.0",
         "typescript": "^3.9.10"
     }
 }

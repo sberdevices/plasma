@@ -4,6 +4,10 @@ const path = require('path');
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const globby = require('globby');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const docgen = require('react-docgen-typescript');
 
 const { PR_NAME } = process.env;
 const prefix = PR_NAME ? `/${PR_NAME}` : '';
@@ -108,6 +112,59 @@ module.exports = {
         ],
     ],
     plugins: [
+        function docgenPlugin() {
+            return {
+                name: 'docusaurus-plugin-react-docgen-typescript',
+                async loadContent() {
+                    return docgen
+                        .withCustomConfig('./tsconfig.json', {
+                            shouldExtractLiteralValuesFromEnum: true,
+                            shouldRemoveUndefinedFromOptional: true,
+                            propFilter: (prop) => {
+                                if (prop.parent) {
+                                    return !prop.parent.fileName.includes('@types/react');
+                                }
+                                return true;
+                            },
+                        })
+                        .parse(
+                            await globby([
+                                '../../packages/plasma-ui/src/**/*.{ts,tsx}',
+                                '!../../packages/plasma-ui/src/**/*.test.*',
+                            ]),
+                        );
+                },
+                configureWebpack(config) {
+                    return {
+                        resolve: {
+                            alias: {
+                                '@docgen': path.join(
+                                    config.resolve.alias['@generated'],
+                                    'docusaurus-plugin-react-docgen-typescript',
+                                    'default',
+                                ),
+                            },
+                        },
+                    };
+                },
+                async contentLoaded({ content, actions }) {
+                    content
+                        .filter((module) => {
+                            return (
+                                /^[A-Z]/.test(module.displayName) &&
+                                (module.props || module.description) &&
+                                module.displayName !== 'Default'
+                            );
+                        })
+                        .map((component) =>
+                            actions.createData(
+                                `${component.displayName}.json`,
+                                JSON.stringify({ props: component.props, description: component.description }),
+                            ),
+                        );
+                },
+            };
+        },
         function aliasPlugin() {
             return {
                 name: 'docusaurus-plugin-aliases',

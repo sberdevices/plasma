@@ -1,17 +1,14 @@
-import React, { FC, HTMLAttributes } from 'react';
+import React, { FC } from 'react';
+import { Description as DescriptionView } from '@sberdevices/plasma-docs-ui';
 
-import { useDocgenInfo } from '../hooks/useDocgenInfo';
+import { useDynamicImport } from '../hooks/useDynamicImport';
 
-interface DescriptionProps extends HTMLAttributes<HTMLParagraphElement> {
-    name: string;
-}
-
-export const Description: FC<DescriptionProps> = ({ name }) => {
-    const { description } = useDocgenInfo(name);
+export const Description: FC<{ name: string }> = ({ name }) => {
+    const { description } = useDynamicImport(name);
 
     if (!description) {
         return null;
     }
 
-    return <p>{description}</p>;
+    return <DescriptionView description={description} />;
 };

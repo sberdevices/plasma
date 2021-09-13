@@ -1,60 +1,14 @@
-import React, { FC, HTMLAttributes, useMemo } from 'react';
+import React, { FC } from 'react';
+import { PropsTable as PropsTableView } from '@sberdevices/plasma-docs-ui';
 
-import { useDocgenInfo } from '../hooks/useDocgenInfo';
+import { useDynamicImport } from '../hooks/useDynamicImport';
 
-interface PropsTableProps extends HTMLAttributes<HTMLTableElement> {
-    name: string;
-    exclude?: string[];
-}
+export const PropsTable: FC<{ name: string; exclude?: string[] }> = ({ name, exclude }) => {
+    const { props } = useDynamicImport(name);
 
-const defaultExclude = ['forwardedAs', 'as', 'theme', 'ref'];
-
-/**
- * Компонент для вывода таблицы пропсов.
- */
-export const PropsTable: FC<PropsTableProps> = ({ name, exclude: propsExclude = [] }) => {
-    const { props } = useDocgenInfo(name);
-    const filteredPropsList = useMemo(() => {
-        if (!props) {
-            return null;
-        }
-        const exclude = propsExclude.concat(defaultExclude);
-        return Object.entries(props).filter((entry) => !exclude.includes(entry[0]));
-    }, [props, propsExclude]);
-
-    if (!filteredPropsList?.length) {
+    if (!props) {
         return null;
     }
 
-    return (
-        <table>
-            <thead>
-                <tr>
-                    <th>Property</th>
-                    <th>Type</th>
-                    <th>Default</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                {filteredPropsList.map(([key, prop]) => {
-                    return (
-                        <tr key={key}>
-                            <td>
-                                <code>
-                                    {key}
-                                    {prop.required && '*'}
-                                </code>
-                            </td>
-                            <td>
-                                <code>{prop.type?.name}</code>
-                            </td>
-                            <td>{prop.defaultValue && <code>{prop.defaultValue.value}</code>}</td>
-                            <td>{prop.description}</td>
-                        </tr>
-                    );
-                })}
-            </tbody>
-        </table>
-    );
+    return <PropsTableView props={props} exclude={exclude} />;
 };
