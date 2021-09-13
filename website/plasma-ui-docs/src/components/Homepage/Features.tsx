@@ -10,7 +10,7 @@ const services = [
         // eslint-disable-next-line global-require
         Svg: require('../../../static/img/undraw_docusaurus_mountain.svg').default,
         links: [
-            { to: '/docs/ui/intro', text: 'Документация' },
+            { to: '/docs/', text: 'Документация' },
             { to: '/ui-storybook/', text: 'Storybook', external: true },
         ],
     },
@@ -19,7 +19,7 @@ const services = [
         // eslint-disable-next-line global-require
         Svg: require('../../../static/img/undraw_docusaurus_tree.svg').default,
         links: [
-            { to: '/docs/web/intro', text: 'Документация' },
+            { to: '/web/', text: 'Документация', external: true },
             { to: '/web-storybook/', text: 'Storybook', external: true },
         ],
     },

@@ -21,7 +21,7 @@ const StyledButton = styled(Button)`
 `;
 
 export const HomepageHeader: FC = () => {
-    const mainLink = useBaseUrl('/docs/ui/intro');
+    const mainLink = useBaseUrl('/docs/');
     const { siteConfig } = useDocusaurusContext();
 
     return (
