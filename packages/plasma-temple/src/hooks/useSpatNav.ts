@@ -110,3 +110,22 @@ export const useSpatNavBetweenTargets = <T extends HTMLElement>(
         };
     });
 };
+
+export const useSpatNavStop = (axis: 'x' | 'y'): void => {
+    React.useLayoutEffect(() => {
+        const callback = (event: Event) => {
+            if (!isSpatNavEvent(event)) {
+                return;
+            }
+            const { detail } = event;
+            if (dirByAxis[axis].includes(detail.dir)) {
+                event.preventDefault();
+            }
+        };
+        document.body.addEventListener('navbeforefocus', callback);
+
+        return () => {
+            document.body.removeEventListener('navbeforefocus', callback);
+        };
+    });
+};

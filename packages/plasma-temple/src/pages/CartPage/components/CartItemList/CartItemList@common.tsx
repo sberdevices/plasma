@@ -4,7 +4,9 @@ import { Carousel, CarouselCol, mediaQuery, Row } from '@sberdevices/plasma-ui';
 
 import { CartItem } from '../CartItem/CartItem';
 import { CartItem as CartItemType } from '../../types';
+import { useRemoteHandlers } from '../../../../hooks/useRemoteHandlers';
 import { Currency } from '../../../../types';
+import { useSpatNavStop } from '../../../../hooks/useSpatNav';
 
 export interface CartItemListProps {
     items: CartItemType[];
@@ -30,14 +32,25 @@ const StyledRow = styled(Row)`
 `;
 
 export const CartItemListCommon: React.FC<CartItemListProps> = ({ items, currency, onItemClick }) => {
-    const [currentCartItem, setCurrentCartItem] = React.useState(0);
+    const [activeButton, setActiveButton] = React.useState<'left' | 'right'>('right');
+
+    useSpatNavStop('y');
+
+    const [cartIndex, setCartIndex] = useRemoteHandlers({
+        initialIndex: 0,
+        axis: 'y',
+        min: 0,
+        max: items.length - 1,
+        repeat: false,
+        delay: 150,
+    });
 
     return (
         <StyledCarouselGridWrapper>
             <Carousel
                 axis="y"
                 as={StyledRow}
-                index={currentCartItem}
+                index={cartIndex}
                 scrollAlign="center"
                 scrollSnapType="mandatory"
                 paddingEnd="50%"
@@ -49,8 +62,11 @@ export const CartItemListCommon: React.FC<CartItemListProps> = ({ items, currenc
                             index={index}
                             item={item}
                             currency={currency}
-                            setActiveIndex={setCurrentCartItem}
                             onItemClick={onItemClick}
+                            setActiveIndex={setCartIndex}
+                            focused={index === cartIndex}
+                            activeButton={activeButton}
+                            setActiveButton={setActiveButton}
                         />
                     </CarouselCol>
                 ))}
