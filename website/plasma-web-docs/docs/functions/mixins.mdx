@@ -1,0 +1,122 @@
+---
+id: mixins
+title: Миксины
+---
+
+# Миксины (примеси)
+
+Раздел содержит функции-примеси для компонентов, которые стилизуются с помощью `styled-components`.
+
+Для удобства типизации, каждый модуль, в котором лежит миксин, дополнительно экспортирует соответствующий интерфейс `props`.
+
+## `addFocus`
+
+Добавляет фокусную рамку компонентам, для которых возможно фокусирование или если передан флаг `focused`.
+
+```tsx
+import styled from 'styled-components';
+import { FocusProps, OutlinedProps, addFocus } from '@sberdevices/plasma-web';
+
+const Button = styled.button<FocusProps>`
+    ${addFocus}
+`;
+
+<Button outlined={true}>Hello!</Button>;
+```
+
+## `applyBlur`
+
+Позволяет применять фильтр размытия к фону компонента.
+
+```tsx
+import styled from 'styled-components';
+import { BlurProps, applyBlur } from '@sberdevices/plasma-web';
+
+const Button = styled.button<BlurProps>`
+    ${applyBlur}
+`;
+
+<Button blur="small">Blur on the background</Button>;
+```
+
+## `applyDisabled`
+
+Делает компонент недоступным для взаимодействия, если компонент может быть деактивирован или если передан флаг `disabled`.
+
+```tsx
+import styled from 'styled-components';
+import { DisabledProps, applyDisabled } from '@sberdevices/plasma-web';
+
+const Button = styled.button<DisabledProps>`
+    ${applyDisabled}
+`;
+
+<Button disabled>I'm disabled</Button>;
+```
+
+## `applyInteraction`
+
+Увеличивает/уменьшает компонент при таких видах взаимодействия, как наведение (:hover) и нажатие (:active).
+
+```tsx
+import styled from 'styled-components';
+import { InteractionProps, applyInteraction } from '@sberdevices/plasma-web/mixins';
+
+const Button = styled.button<InteractionProps>`
+    ${applyInteraction}
+`;
+
+<Button scaleOnInteraction>Button!</Button>;
+```
+
+## `applyRoundness`
+
+Применяет к компоненту скругление из списка `radiuses`.
+
+Скругление указывается в пикселях.
+Пример, `roundness={16}` = `1rem` = `16px` (при `deviceScale = 1`) = **32px** (при `deviceScale = 2`).
+
+```tsx
+import styled from 'styled-components';
+import { RoundnessProps, applyRoundness } from '@sberdevices/plasma-web';
+
+const Button = styled.button<RoundnessProps>`
+    ${applyRoundness}
+`;
+
+<Button roundness={16}>Button!</Button>;
+```
+
+## `applySpacing`
+
+См. [Стандартные отступы](../design/spacing).
+
+## `applyView`
+
+Применяет цвет фона и текста при передаче соответствующего значения в свойство `view`.
+
+```tsx
+import styled from 'styled-components';
+import { ViewProps, applyView } from '@sberdevices/plasma-web';
+
+const Button = styled.button<ViewProps>`
+    ${applyView}
+`;
+
+<Button view="primary">Primary button</Button>;
+```
+
+## `applyEllipsis`
+
+Сокращает текст элемента с помощью многоточия, когда текст не помещается в одной строке.
+
+```tsx
+import styled from 'styled-components';
+import { applyEllipsis } from '@sberdevices/plasma-web';
+
+const ShortenedLine = styled.span`
+    ${applyEllipsis}
+`;
+
+<ShortenedLine>Текст сократится, если не поместится в строке</ShortenedLine>;
+```

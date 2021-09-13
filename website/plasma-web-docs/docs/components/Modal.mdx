@@ -1,0 +1,53 @@
+---
+id: modal
+title: Modal
+---
+
+import { PropsTable } from '@sberdevices/plasma-docs-ui';
+import { Description } from '@sberdevices/plasma-docs-ui';
+
+# Modal
+<Description name="Modal" />
+<PropsTable name="Modal" />
+
+## Использование
+
+### Провайдер контекста
+Поместите `ModalsProvider` в [корень приложения](../#корень-приложения) или там, где будете применять модальные окна:
+
+```tsx title="index.ts"
+import ReactDOM from 'react-dom';
+import { ModalsProvider } from '@sberdevices/plasma-web';
+
+import { App } from './App';
+
+ReactDOM.render(
+    <ModalsProvider>
+        <App />
+    </ModalsProvider>,
+    document.getElementById('root')
+);
+```
+
+### Вызов модального окна
+После подключения `ModalsProvider` поместите компонент `Modal` туда, где необходимо применить модальное окно:
+
+```tsx title="Example.tsx"
+import React from 'react';
+import { Modal, Headline3, P1 } from '@sberdevices/plasma-web';
+
+export default function() {
+    const [isOpen, setIsOpen] = React.useState(false);
+
+    return (
+        <>
+            <Button text="Открыть модальное окно" onClick={() => setIsOpen(true)} />
+            <Modal isOpen={isOpen}>
+                <Headline3>Модальное окно</Headline3>
+                <P1>Содержимое модального окна.</P1>
+                <Button text="Закрыть" onClick={() => setIsOpen(true)} />
+            </Modal>
+        </>
+    );
+}
+```
