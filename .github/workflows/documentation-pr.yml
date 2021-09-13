@@ -44,30 +44,29 @@ jobs:
         run: |
           mkdir ../build
 
+      - name: Plasma UI Docs
+        run: |
+          npm run build --prefix="./website/plasma-ui-docs"
+          cp -R ./website/plasma-ui-docs/build ../build/${PR_NAME}
+
+      - name: Plasma Web Docs
+        run: |
+          npm run build --prefix="./website/plasma-web-docs"
+          cp -R ./website/plasma-web-docs/build ../build/${PR_NAME}/web
+
       - name: Plasma UI Storybook
         run: |
           npm run storybook:build --prefix="./packages/plasma-ui"
+          cp -R ./packages/plasma-ui/build-sb ../build/${PR_NAME}/ui-storybook
 
       - name: Plasma Web Storybook
         run: |
           npm run storybook:build --prefix="./packages/plasma-web"
+          cp -R ./packages/plasma-web/build-sb ../build/${PR_NAME}/web-storybook
 
       - name: Plasma B2C Storybook
         run: |
           npm run storybook:build --prefix="./packages/plasma-b2c"
-      
-      - name: Extract docgenInfo from Storybook
-        run: npm run extract-docgen-info
-
-      - name: Documentation App
-        run: |
-          npm run build --prefix="./docs"
-      
-      - name: Copy builds
-        run: |
-          cp -R ./docs/build ../build/${PR_NAME}
-          cp -R ./packages/plasma-ui/build-sb ../build/${PR_NAME}/ui-storybook
-          cp -R ./packages/plasma-web/build-sb ../build/${PR_NAME}/web-storybook
           cp -R ./packages/plasma-b2c/build-sb ../build/${PR_NAME}/b2c-storybook
 
       - name: Clean old builds
