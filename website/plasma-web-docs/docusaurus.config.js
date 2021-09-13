@@ -6,12 +6,14 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 const { PR_NAME } = process.env;
-const baseUrl = PR_NAME ? `/${PR_NAME}/` : '/';
+const prefix = PR_NAME ? `/${PR_NAME}` : '';
+const suffix = 'web/';
+const baseUrl = `${prefix}/${suffix}`;
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-    title: 'Plasma UI',
-    tagline: 'Дизайн-система для разработки смартаппов и современных приложений',
+    title: 'Plasma Web',
+    tagline: 'Дизайн-система для разработки современных приложений.',
     url: 'https://plasma.sberdevices.ru/',
     baseUrl,
     onBrokenLinks: 'warn',
@@ -29,14 +31,14 @@ module.exports = {
             },
             items: [
                 {
-                    type: 'doc',
+                    href: `https://plasma.sberdevices.ru${prefix}/docs/`,
                     position: 'left',
-                    docId: 'intro',
                     label: 'UI',
                 },
                 {
-                    href: 'https://plasma.sberdevices.ru/docs/web/intro',
+                    type: 'doc',
                     position: 'left',
+                    docId: 'intro',
                     label: 'Web',
                 },
                 {
@@ -54,11 +56,11 @@ module.exports = {
                     items: [
                         {
                             label: 'Plasma UI',
-                            to: '/docs/ui/intro',
+                            to: `https://plasma.sberdevices.ru${prefix}/docs/`,
                         },
                         {
                             label: 'Plasma Web',
-                            to: '/docs/web/intro',
+                            to: '/',
                         },
                     ],
                 },
@@ -96,8 +98,9 @@ module.exports = {
             '@docusaurus/preset-classic',
             {
                 docs: {
+                    routeBasePath: '/',
                     sidebarPath: require.resolve('./sidebars.js'),
-                    editUrl: 'https://github.com/sberdevices/plasma/blob/master/docs/',
+                    editUrl: 'https://github.com/sberdevices/plasma/blob/master/website/plasma-web-docs/',
                 },
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
@@ -108,6 +111,7 @@ module.exports = {
     plugins: [
         function aliasPlugin() {
             return {
+                name: 'docusaurus-plugin-aliases',
                 configureWebpack() {
                     return {
                         resolve: {

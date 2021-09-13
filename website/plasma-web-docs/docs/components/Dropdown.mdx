@@ -1,0 +1,26 @@
+---
+id: dropdown
+title: Dropdown
+---
+
+import { PropsTable } from '@sberdevices/plasma-docs-ui';
+import { Description } from '@sberdevices/plasma-docs-ui';
+
+# Dropdown
+<Description name="Dropdown" />
+<PropsTable name="Dropdown" />
+
+## Использование
+Каждый элемент в списке компонента `Dropdown` может иметь лейбл, иконку и цвет.
+```tsx live
+<Dropdown
+    items={[
+        { value: 'test-0', label: 'Элемент' },
+        { value: 'test-1', label: 'Выпадающего', color: accent },
+        { value: 'test-2', label: 'Списка', color: success, contentLeft: <IconHeart color="inherit" /> },
+        { value: 'test-3', label: 'Недоступно', isDisabled: true },
+    ]}
+>
+    <Button text="Раскрыть список" />
+</Dropdown>
+```

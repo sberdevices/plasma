@@ -1,0 +1,54 @@
+---
+id: skeleton
+title: Skeleton
+---
+
+import { PropsTable } from '@sberdevices/plasma-docs-ui';
+import { Description } from '@sberdevices/plasma-docs-ui';
+
+# Skeleton
+Набор компонентов для создания скелетов загрузки (плейсхолдеров).
+
+## LineSkeleton
+<Description name="LineSkeleton" />
+<PropsTable name="LineSkeleton" />
+
+```tsx live
+<LineSkeleton size="headline3" />
+```
+
+## RectSkeleton
+<Description name="RectSkeleton" />
+<PropsTable name="RectSkeleton" />
+
+```tsx live
+<RectSkeleton width="12rem" height="8rem" />
+```
+
+## TextSkeleton
+<Description name="TextSkeleton" />
+<PropsTable name="TextSkeleton" />
+
+```tsx live
+<TextSkeleton size="paragraph1" lines={4} />
+```
+## На примере карточки
+
+```tsx live
+() => {
+    const ButtonSkeleton = withSkeleton(Button);
+
+    return (
+        <ButtonSkeleton
+            fullWidth
+            text="Загрузка..."
+            view="primary"
+            size="s"
+            scaleOnInteraction={false}
+            outlined={false}
+            skeleton={true}
+            tabIndex={-1}
+        />
+    );
+}
+```

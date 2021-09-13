@@ -1,0 +1,156 @@
+---
+id: carousel
+title: Carousel
+---
+
+import { PropsTable } from '@sberdevices/plasma-docs-ui';
+import { Description } from '@sberdevices/plasma-docs-ui';
+
+# Carousel
+Набор компонентов для создания списков с прокруткой (галерей).
+
+## Carousel
+<Description name="Carousel" />
+<PropsTable name="Carousel" />
+
+## CarouselGridWrapper
+<Description name="CarouselGridWrapper" />
+
+## CarouselItem
+<Description name="CarouselItem" />
+<PropsTable name="CarouselItem" />
+
+## CarouselCol
+<Description name="CarouselCol" />
+<PropsTable name="CarouselCol" />
+
+## Использование
+
+### CSS Scroll Snap
+
+1. В компоненте `Carousel` укажите свойство `scrollSnapType`:
+
+```tsx title="MyGallery.tsx"
+import React from 'react';
+import { Carousel } from '@sberdevices/plasma-web';
+
+export const MyGallery = () = (
+    <Carousel scrollSnapType="mandatory">
+        // Элементы карусели помещаются здесь
+    </Carousel>
+);
+```
+
+2. Также укажите свойство `scrollSnapAlign` для элемента карусели:
+
+```tsx title="MyGallery.tsx"
+import React from 'react';
+import { CarouselItem } from '@sberdevices/plasma-web';
+
+export const MyGalleryItem = ({ children }) => (
+    <CarouselItem scrollSnapAlign="center">{children}</CarouselItem>
+);
+```
+
+### Определение центрального элемента
+Карусель может определять активный элемент при прокрутке.
+Для этого укажите свойства `detectActive`, `detectThreshold` и обработчик `onIndexChange`:
+
+```tsx title="MyGallery.tsx"
+import React from 'react';
+import { Carousel } from '@sberdevices/plasma-web';
+
+export const MyGallery = () = (
+    <Carousel detectActive detectThreshold={0.5} onIndexChange={(index) => console.log(index)}>
+        // Элементы карусели помещаются здесь
+    </Carousel>
+);
+```
+
+### Стилизация центрального элемента
+Элементы видимой части (`viewport`) можно стилизовать, например, **увеличивать** или менять **прозрачность*.
+
+В момент прокрутки карусели (с помощью колесика мыши, стрелок пульта или касанием)
+с определенной периодичностью вызывается обработчик скролла,
+который на основании положения элемента относительно `viewport` 
+(внутренние границы карусели) вызывает тот или иной коллбек:
+
+| Название               | Описание | Аргументы | Возвращаемое значение |
+| ---------------------- | -------- | --------- | --------------------- |
+| `stylingCallback`      | Обработчик для элементов внутри `viewport`. Коллбек вызывается для видимого элемента, к нему применяется необходимая стилизация. | `itemEl: HTMLElement`, `slot: number` | `void` |
+| `stylingResetCallback` | Обработчик для элементов вне `viewport`. Элемент невидим, стилизация сбрасывается. | `itemEl: HTMLElement` | `void` |
+
+Для обозначения позиции элемента внутри `viewport`, карусель использует значение `slot`:
+* `0` равен центральному элементу;
+* `-1` и `1` первый слева и справа от центрального;
+* `-2` и `2` и т.д., соответственно, для второго и далее.
+
+```tsx title="MyGallery.tsx"
+import React from 'react';
+import { Carousel } from '@sberdevices/plasma-web';
+
+/**
+ * Функция увеличения центрального элемента.
+ * Предположим, что у нас 5 элементов во `viewport`.
+ * Тогда ряд slots будет таким: -2 -1 0 1 2.
+ * Центральный элемент примет opacity = 1, боковые - opacity = 0.5, а крайние слева и справа - opacity = 0
+ */
+const stylingCallback = (itemEl: HTMLDivElement, slot: number) => {
+    itemEl.style.opacity = `${1 - Math.abs(slot) / 2}`;
+};
+
+/**
+ * Функция сброса стилей элементов вне `viewport`.
+ */
+const stylingResetCallback = (itemEl: HTMLDivElement) => {
+    itemEl.style.opacity = '';
+};
+
+export const MyGallery = () = (
+    <Carousel stylingCallback={stylingCallback} stylingResetCallback={stylingResetCallback}>
+        // Элементы карусели помещаются здесь
+    </Carousel>
+);
+```
+
+* В данном примере используются `Grid` и `CSS Scroll Snap`.
+* В качестве основного блока разметки контейнер ([Container](./grid/#container)),
+а колонки ([Col](./grid/#col)) помещаются в строки ([Row](./grid/#row)).
+* Карусель поддерживает определение (`detectActive`) активного элемента.
+* Каждый элемент списка должен использовать `CarouselContext` для регистрации `ref`
+— это необходимо для расчета динамической ширины и положения элементов на экране (см. [CarouselItem](#carouselitem)).
+
+```tsx title="App.tsx"
+import React from 'react';
+import { CarouselGridWrapper, Carousel, CarouselCol } from '@sberdevices/plasma-web';
+
+const items = [{ title: 'Item 1' }, { title: 'Item 2' }, { title: 'Item 3' }, { title: 'Item 4' }];
+
+export const App = () =>  {
+    const [index, setIndex] = React.useState(index);
+
+    return (
+        <Container>
+            <CarouselGridWrapper>
+                <Carousel
+                    as={Row}
+                    axis="x"
+                    index={index}
+                    scrollSnapType="mandatory"
+                    detectActive
+                    detectThreshold={0.5}
+                    stylingCallback={stylingCallback}
+                    stylingResetCallback={stylingResetCallback}
+                    onIndexChange={(i) => setIndex(i)}
+                    paddingStart="50%"
+                    paddingEnd="50%"
+                >
+                    {items.map(({ title }, i) => (
+                        <CarouselCol key={`item:${i}`}>{title}</CarouselCol>
+                    ))}
+                </Carousel>
+            </CarouselGridWrapper>
+        </Container>
+    );
+};
+```

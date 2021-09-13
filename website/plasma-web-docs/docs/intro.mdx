@@ -1,0 +1,141 @@
+---
+id: intro
+title: Введение
+sidebar_position: 1
+slug: /
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Введение
+Plasma Web – библиотека с открытым исходным кодом,
+в которую входят _компоненты_ дизайн-системы Plasma
+и вспомогательные _утилиты_ для создания веб-приложений на [React](https://reactjs.org/).
+
+Библиотека написана на [Typescript](https://www.typescriptlang.org/),
+а компоненты реализованы с применением [styled-components](https://styled-components.com/).
+
+## Установка
+Plasma Web поддерживает версии **React 16.8+** и **styled-components 5.1+**.
+Ее можно использовать в существующем проекте.
+
+Установите **React**, **ReactDOM** и **styled-components**:
+
+```bash
+npm install react react-dom styled-components
+```
+
+> Использовать **styled-components** и **typescript** в проекте не обязательно.
+
+Установите библиотеку компонентов, библиотеку токенов и библиотеку иконок:
+
+```bash
+npm install @sberdevices/plasma-web @sberdevices/plasma-tokens-web @sberdevices/plasma-icons
+```
+
+## Настройка
+Создайте компонент для подключения глобальных стилей:
+
+```jsx title="GlobalStyle.tsx"
+import { createGlobalStyle } from 'styled-components';
+import { web } from '@sberdevices/plasma-tokens-web/typo';
+import { light } from '@sberdevices/plasma-tokens-web/themes';
+import {
+    text, // Цвет текста
+    background, // Цвет подложки
+    gradient, // Градиент
+} from '@sberdevices/plasma-tokens-web';
+
+const DocumentStyle = createGlobalStyle`
+    html {
+        color: ${text};
+        background-color: ${background};
+        background-image: ${gradient};
+    }
+`;
+const ThemeStyle = createGlobalStyle(light);
+const TypoStyle = createGlobalStyle(web);
+
+export const GlobalStyle = () => (
+    <>
+        <DocumentStyle />
+        <ThemeStyle />
+        <TypoStyle />
+    </>
+);
+```
+
+### Корень приложения
+В корне приложения вызовите компонент глобальных стилей `GlobalStyle`:
+
++ Если вы используете [Create React App](https://create-react-app.dev), делайте вызов внутри `src/index.tsx`.
++ Если вы используете [Next.js](https://nextjs.org/), создайте файл `pages/_app.tsx` и подключите стили в нем.
+
+<Tabs
+defaultValue="cra"
+values={[
+{ label: 'Create React App', value: 'cra', },
+{ label: 'Next.js', value: 'next', },
+]
+}>
+<TabItem value="cra">
+
+```jsx {2,3,7,9,10} title="index.tsx"
+import { GlobalStyle } from './GlobalStyle';
+import { App } from './App';
+
+ReactDOM.render(
+    <>
+        <App />
+        <GlobalStyle />
+    </>,
+    document.getElementById('root'),
+);
+```
+
+</TabItem>
+<TabItem value="next">
+
+```tsx {2,3,7,9,10} title="pages/_app.tsx"
+import type { AppProps } from 'next/app';
+import { GlobalStyle } from './GlobalStyle';
+
+function MyApp({ Component, pageProps }: AppProps) {
+    return (
+        <>
+            <Component {...pageProps} />
+            <GlobalStyle />
+        </>
+    );
+}
+
+export default MyApp;
+```
+
+</TabItem>
+</Tabs>
+
+## Использование
+Не смотря на то, что все компоненты доступны из папки `components`,
+**рекомендуется** использовать их напрямую из пакета.
+Таким образом, обеспечивается работа [tree shaking](https://webpack.js.org/guides/tree-shaking/).
+
+```jsx {2-3} title="App.tsx"
+import { Container } from '@sberdevices/plasma-web/components/Grid';
+import { Button } from '@sberdevices/plasma-web';
+
+export default function App() {
+    return (
+        <Container>
+            <Button>Hello, Plasma!</Button>
+        </Container>
+    );
+}
+```
+
+Библиотека предоставляет вспомогательную функциональность (`utils`, `mixins`, `hocs`),
+доступную в соответствующих директориях.
+
+Подробную информацию ищите в документации по 
+[hocs](./functions/hocs), [mixins](./functions/mixins) и [utils](./functions/utils).
