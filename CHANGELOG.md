@@ -1,3 +1,16 @@
+# (Mon Sep 13 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@0.52.0`
+  - feat(plasma-temple): Add page spinner [#122](https://github.com/sberdevices/pashka/pull/122) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # (Fri Sep 10 2021)
 
 #### 🚀 Enhancement
