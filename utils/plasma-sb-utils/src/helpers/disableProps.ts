@@ -3,7 +3,7 @@
  * аддоном Controls
  */
 export const disableProps = (props: string[]) => {
-    const disabled = {};
+    const disabled: Record<string, { table: { disable: true } }> = {};
     props.forEach((prop) => {
         disabled[prop] = { table: { disable: true } };
     });

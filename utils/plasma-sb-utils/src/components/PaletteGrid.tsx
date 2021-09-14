@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Body1, Caption, white, whiteSecondary, black } from '@sberdevices/plasma-core';
 
+import type { ColorsGrid } from '../helpers/flattenPalette';
+
 const textColors = {
     1000: [white, whiteSecondary],
     950: [white, whiteSecondary],
@@ -73,7 +75,7 @@ const ShowcaseHead = styled(Caption)`
     color: #7765f6;
 `;
 
-export const PaletteGrid = ({ colors }: { colors: Array<{ name: string; row: string[] }> }) => (
+export const PaletteGrid = ({ colors }: { colors: ColorsGrid }) => (
     <StyledGrid>
         {colors.map(({ name, row }, i) => (
             <React.Fragment key={`item:${i}`}>
@@ -95,15 +97,3 @@ export const PaletteGrid = ({ colors }: { colors: Array<{ name: string; row: str
         ))}
     </StyledGrid>
 );
-
-export const flattenPalette = (colors: Record<string, object>) =>
-    Object.entries(colors).reduce((rowAcc, [name, row]) => {
-        return rowAcc.concat({
-            name: name[0].toUpperCase() + name.slice(1),
-            row: Object.entries(row)
-                .reduce((colAcc, [sat, hex]) => {
-                    return colAcc.concat([[sat, hex]]);
-                }, [])
-                .sort((a, b) => b[0] - a[0]),
-        });
-    }, []);

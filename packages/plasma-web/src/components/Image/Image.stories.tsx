@@ -1,8 +1,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 
-import { disableProps } from '../../helpers';
-import { InSpacing } from '../../helpers/StoryDecorators';
+import { InSpacingDecorator, disableProps } from '../../helpers';
 
 import { Image, ImageProps, Ratio } from '.';
 
@@ -14,7 +13,7 @@ const propsToDisable = ['height', 'customRatio'];
 export default {
     title: 'Content/Image',
     component: Image,
-    decorators: [InSpacing],
+    decorators: [InSpacingDecorator],
     argTypes: {
         base: {
             control: {

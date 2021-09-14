@@ -1,8 +1,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 
-import { disableProps } from '../../helpers';
-import { InSpacing } from '../../helpers/StoryDecorators';
+import { InSpacingDecorator, disableProps } from '../../helpers';
 
 import { Price, PriceProps } from '.';
 

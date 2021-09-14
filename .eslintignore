@@ -43,6 +43,7 @@ utils/extract-sb-docgen-info/src/extract.ts
 
 utils/plasma-sb-utils/*
 !utils/plasma-sb-utils/src
+utils/plasma-sb-utils/src/helpers/flattenPalette.ts
 
 utils/plasma-tokens-utils/*
 !utils/plasma-tokens-utils/src
