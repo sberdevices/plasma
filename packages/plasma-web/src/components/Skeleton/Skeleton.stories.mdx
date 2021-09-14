@@ -1,12 +1,12 @@
 import { Meta, Props, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
 
-import { InSpacing } from '../../helpers/StoryDecorators';
+import { InSpacingDecorator } from '../../helpers';
 
 import * as stories from './Skeleton.stories';
 
 import { LineSkeleton, RectSkeleton, TextSkeleton } from '.';
 
-<Meta title="Content/Skeleton" decorators={[InSpacing]} />
+<Meta title="Content/Skeleton" decorators={[InSpacingDecorator]} />
 
 # Skeleton
 Набор компонентов для создания скелетов загрузки (плейсхолдеров).
