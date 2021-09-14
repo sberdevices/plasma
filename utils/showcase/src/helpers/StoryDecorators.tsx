@@ -78,6 +78,9 @@ const WebStyle = createGlobalStyle`
     }
 `;
 
+const lightThemes = ['lightSber', 'lightEva', 'lightJoy', 'light', 'b2c:light'];
+const darkThemes = ['darkSber', 'darkEva', 'darkJoy', 'dark', 'b2c:dark'];
+
 export const UIStoryDecorator: StoryDecorator = (Story, context) => {
     let { theme, typo } = context.globals;
 
@@ -125,15 +128,34 @@ export const UIMobileDecorator: StoryDecorator = (Story, context) => {
         </>
     );
 };
-
 export const WebStoryDecorator: StoryDecorator = (Story, context) => {
     let { theme } = context.globals;
 
-    if (isChromatic() || theme === 'lightSber' || theme === 'lightEva' || theme === 'lightJoy') {
+    if (isChromatic() || lightThemes.includes(theme)) {
         theme = 'light';
-    }
-    if (theme === 'darkSber' || theme === 'darkEva' || theme === 'darkJoy') {
+    } else if (darkThemes.includes(theme)) {
         theme = 'dark';
+    }
+
+    const Theme = themes[theme];
+    const Typo = typos.web;
+
+    return (
+        <>
+            <Theme />
+            <Typo />
+            <WebStyle />
+            <Story {...context} />
+        </>
+    );
+};
+export const B2CStoryDecorator: StoryDecorator = (Story, context) => {
+    let { theme } = context.globals;
+
+    if (isChromatic() || lightThemes.includes(theme)) {
+        theme = 'b2c:light';
+    } else if (darkThemes.includes(theme)) {
+        theme = 'b2c:dark';
     }
 
     const Theme = themes[theme];

@@ -27,6 +27,8 @@ packages/plasma-tokens-web/*
 packages/**/jest.config.*
 examples/**
 
+packages/plasma-b2c/*
+!packages/plasma-b2c/src
 
 packages/plasma-ui/*
 !packages/plasma-ui/src
