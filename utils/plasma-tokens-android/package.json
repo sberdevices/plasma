@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-tokens-android",
-    "version": "2.19.2",
+    "version": "2.19.3",
     "description": "Plasma tokens for android",
     "files": [
         "tokens"
@@ -18,7 +18,7 @@
         "prepare": "mkdir -p tokens && cp -R node_modules/@sberdevices/plasma-tokens/build/android/* tokens"
     },
     "devDependencies": {
-        "@sberdevices/plasma-tokens": "1.12.1"
+        "@sberdevices/plasma-tokens": "1.12.2"
     },
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",

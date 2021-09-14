@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/extract-sb-docgen-info",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "A tool for extraction docgenInfo from Storybook builded stories.",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
