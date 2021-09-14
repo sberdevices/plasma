@@ -15,6 +15,7 @@
         "access": "restricted"
     },
     "devDependencies": {
+        "@sberdevices/plasma-b2c": "1.0.0",
         "@sberdevices/plasma-core": "1.27.4",
         "@sberdevices/plasma-icons": "1.40.0",
         "@sberdevices/plasma-sb-utils": "0.25.1",
@@ -48,9 +49,5 @@
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
         "chromatic": "npx chromatic"
     },
-    "contributors": [
-        "Vasiliy Loginevskiy",
-        "Anton Vinogradov",
-        "Fanil Zubairov"
-    ]
+    "contributors": ["Vasiliy Loginevskiy", "Anton Vinogradov", "Fanil Zubairov"]
 }
