@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "CommonJS",
     "lib": ["dom", "dom.iterable", "esnext"],
     "jsx": "react",
     "declaration": true,
@@ -36,6 +35,5 @@
     "outDir": "./dist",
     "rootDir": "./src"
   },
-  "include": ["./src"],
-  "exclude": ["./src/helpers", "./src/**/*.stories.tsx"]
+  "include": ["./src"]
 }
