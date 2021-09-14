@@ -1,3 +1,21 @@
+# v1.45.0 (Tue Sep 14 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-web): Added `Carousel`, `PaginationDots` and `Select` to `index.ts` [#803](https://github.com/sberdevices/plasma/pull/803) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-sb-utils): `PaletteGrid`, `disableProps`, `IconsPlaceholder`, `InSpacingDecorator` [#803](https://github.com/sberdevices/plasma/pull/803) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.44.4 (Tue Sep 14 2021)
 
 #### 🐛 Bug Fix

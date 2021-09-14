@@ -1,3 +1,20 @@
+# v0.25.0 (Tue Sep 14 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-sb-utils): `PaletteGrid`, `disableProps`, `IconsPlaceholder`, `InSpacingDecorator` [#803](https://github.com/sberdevices/plasma/pull/803) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v0.24.4 (Tue Sep 14 2021)
 
 #### 🐛 Bug Fix

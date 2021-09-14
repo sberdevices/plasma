@@ -1,5 +1,22 @@
 # (Tue Sep 14 2021)
 
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-web@1.45.0`
+  - feat(plasma-web): Added `Carousel`, `PaginationDots` and `Select` to `index.ts` [#803](https://github.com/sberdevices/plasma/pull/803) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-web@1.45.0`, `@sberdevices/plasma-sb-utils@0.25.0`
+  - feat(plasma-sb-utils): `PaletteGrid`, `disableProps`, `IconsPlaceholder`, `InSpacingDecorator` [#803](https://github.com/sberdevices/plasma/pull/803) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-colors@0.2.0`
+  - feat(plasma-colors): Plasma colors types [#803](https://github.com/sberdevices/plasma/pull/803) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Tue Sep 14 2021)
+
 #### 🐛 Bug Fix
 
 - ci: remove dependabot [#799](https://github.com/sberdevices/plasma/pull/799) ([@Yeti-or](https://github.com/Yeti-or))

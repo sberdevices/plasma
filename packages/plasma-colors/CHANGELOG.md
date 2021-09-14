@@ -1,3 +1,15 @@
+# v0.2.0 (Tue Sep 14 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-colors): Plasma colors types [#803](https://github.com/sberdevices/plasma/pull/803) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v0.1.2 (Tue Sep 14 2021)
 
 #### 🐛 Bug Fix
