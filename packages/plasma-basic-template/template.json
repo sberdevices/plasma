@@ -2,12 +2,11 @@
   "package": {
     "dependencies": {
       "@sberdevices/assistant-client": "^2.9.2",
-      "@sberdevices/plasma-icons": "^0.3.0-rc.7",
-      "@sberdevices/plasma-temple": "^0.2.2",
-      "@sberdevices/plasma-tokens": "^1.0.0-rc.2",
+      "@sberdevices/plasma-icons": "^1.39.3",
+      "@sberdevices/plasma-temple": "^0.52.0",
+      "@sberdevices/plasma-tokens": "^1.12.1",
       "@sberdevices/spatial-navigation": "^1.0.1",
-      "@sberdevices/plasma-core": "^1.0.0-rc.1",
-      "@sberdevices/ui": "^1.0.0-rc.52",
+      "@sberdevices/plasma-ui": "^1.46.3",
       "lodash.throttle": "4.1.1",
       "react": "16.13.1",
       "react-dom": "16.13.1",
@@ -28,6 +27,10 @@
       "react-app-rewired": "2.1.5",
       "serve": "11.3.2",
       "typescript": "3.9.3"
+    },
+    "scripts": {
+      "serve": "serve -s build",
+      "build-and-serve": "npm run build && npm run serve"
     }
   }
 }
