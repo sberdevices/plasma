@@ -1,3 +1,17 @@
+# v0.7.1 (Tue Sep 14 2021)
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- build: freeze typescript [#799](https://github.com/sberdevices/plasma/pull/799) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v0.7.0 (Fri Aug 20 2021)
 
 #### 🚀 Enhancement

@@ -1,3 +1,20 @@
+# (Tue Sep 14 2021)
+
+#### 🐛 Bug Fix
+
+- ci: remove dependabot [#799](https://github.com/sberdevices/plasma/pull/799) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-core@1.27.4`, `@sberdevices/plasma-web@1.44.4`
+  - fix(plasma-web): Collision of `Button` and global custom css [#703](https://github.com/sberdevices/plasma/pull/703) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-docs@0.1.4`, `@sberdevices/demo-canvas-app@0.23.4`, `demo-tokens@0.6.1`, `@sberdevices/plasma-colors@0.1.2`, `@sberdevices/plasma-tokens-b2c@0.5.3`, `@sberdevices/plasma-tokens-web@1.11.3`, `@sberdevices/plasma-tokens@1.12.2`, `@sberdevices/extract-sb-docgen-info@0.1.1`, `@sberdevices/plasma-sb-utils@0.24.4`, `@sberdevices/plasma-tokens-utils@0.7.1`, `@sberdevices/showcase@0.51.4`
+  - build: freeze typescript [#799](https://github.com/sberdevices/plasma/pull/799) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # (Thu Sep 09 2021)
 
 #### 🐛 Bug Fix

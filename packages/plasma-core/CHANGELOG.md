@@ -1,3 +1,15 @@
+# v1.27.4 (Tue Sep 14 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web): Collision of `Button` and global custom css [#703](https://github.com/sberdevices/plasma/pull/703) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.27.3 (Thu Sep 09 2021)
 
 #### 🐛 Bug Fix
