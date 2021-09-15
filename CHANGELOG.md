@@ -1,3 +1,20 @@
+# (Wed Sep 15 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-ui@1.47.1`
+  - fix(plasma-ui): Added `coverGradient` prop to `CardContent` [#716](https://github.com/sberdevices/plasma/pull/716) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-docs@0.2.1`
+  - chore(plasma-docs): Update `docusaurus` to `2.0.0-beta.6` [#800](https://github.com/sberdevices/plasma/pull/800) ([@fanisco](https://github.com/fanisco))
+  - fix(plasma-docs): Custom live preview wrapper [#800](https://github.com/sberdevices/plasma/pull/800) ([@fanisco](https://github.com/fanisco))
+  - docs: Docs fixes in intros [#800](https://github.com/sberdevices/plasma/pull/800) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Tue Sep 14 2021)
 
 #### 🚀 Enhancement

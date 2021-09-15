@@ -1,3 +1,17 @@
+# v1.47.1 (Wed Sep 15 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): Added `coverGradient` prop to `CardContent` [#716](https://github.com/sberdevices/plasma/pull/716) ([@fanisco](https://github.com/fanisco))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.47.0 (Tue Sep 14 2021)
 
 #### 🐛 Bug Fix
