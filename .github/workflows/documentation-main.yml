@@ -49,6 +49,10 @@ jobs:
       - name: Plasma Web Storybook
         run: |
           npm run storybook:build --prefix="./packages/plasma-web"
+
+      - name: Plasma B2C Storybook
+        run: |
+          npm run storybook:build --prefix="./packages/plasma-b2c"
       
       - name: Extract docgenInfo from Storybook
         run: npm run extract-docgen-info
@@ -62,6 +66,7 @@ jobs:
           cp -R ./docs/build ../build/next
           cp -R ./packages/plasma-ui/build-sb ../build/next/ui-storybook
           cp -R ./packages/plasma-web/build-sb ../build/next/web-storybook
+          cp -R ./packages/plasma-b2c/build-sb ../build/next/b2c-storybook
 
       - name: Upload documentation build
         uses: garygrossgarten/github-action-scp@release
