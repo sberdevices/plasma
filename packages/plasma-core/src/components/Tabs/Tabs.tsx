@@ -5,6 +5,8 @@ import { applyDisabled } from '../../mixins';
 import type { DisabledProps } from '../../mixins';
 import type { AsProps } from '../../types';
 
+import { StyledTabItem } from './TabItem';
+
 export interface TabsProps extends AsProps, DisabledProps, React.HTMLAttributes<HTMLDivElement> {
     /**
      * Кнопки табов примут фиксированную ширину,
@@ -15,6 +17,8 @@ export interface TabsProps extends AsProps, DisabledProps, React.HTMLAttributes<
 }
 
 const StyledTabs = styled.div<TabsProps>`
+    ${applyDisabled}
+
     position: relative;
     display: flex;
     align-items: center;
@@ -50,9 +54,12 @@ const StyledTabs = styled.div<TabsProps>`
             }
         `}
 
-    /* stylelint-disable-next-line selector-max-universal */
-    & > * {
-        ${applyDisabled}
+    & > ${StyledTabItem} {
+        ${({ disabled }) =>
+            disabled &&
+            css`
+                cursor: not-allowed;
+            `}
     }
 `;
 

@@ -45,7 +45,7 @@ const StyledTabItemText = styled.span`
     }
 `;
 
-const StyledTabItem = styled.button<StyledTabItemProps>`
+export const StyledTabItem = styled.button<StyledTabItemProps>`
     align-items: center;
     box-sizing: border-box;
     display: flex;
