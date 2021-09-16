@@ -34,6 +34,16 @@ const sizes = {
         },
     },
 };
+const masks = {
+    l: {
+        3: 'linear-gradient(rgba(0, 0, 0, 0) 0, rgb(0, 0, 0) 4.5rem, rgb(0, 0, 0) 9.5rem, rgba(0, 0, 0, 0) 14rem)',
+        5: 'linear-gradient(rgba(0, 0, 0, 0) 0, rgb(0, 0, 0) 4.5rem, rgb(0, 0, 0) 9.5rem, rgba(0, 0, 0, 0) 14rem)',
+    },
+    s: {
+        3: 'linear-gradient(rgba(0, 0, 0, 0) 0.875rem, rgb(0, 0, 0) 3.125rem, rgb(0, 0, 0) 5.375rem, rgba(0, 0, 0, 0) 7.625rem)',
+        5: 'linear-gradient(rgba(0, 0, 0, 0) 0.75rem, rgb(0, 0, 0) 2.625rem, rgb(0, 0, 0) 9.375rem, rgba(0, 0, 0, 0) 11.25rem)',
+    },
+};
 
 const StyledDivButton = styled.div`
     position: absolute;
@@ -57,8 +67,6 @@ const StyledDivButton = styled.div`
     }
 `;
 const StyledCarousel = styled(Carousel)`
-    mask-image: linear-gradient(rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 10%, rgb(0, 0, 0) 90%, rgba(0, 0, 0, 0) 100%);
-
     &[data-no-scroll-behavior='true'] {
         scroll-behavior: unset;
     }
@@ -92,6 +100,10 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
 
     ${({ $size, $visibleItems }) => css`
         height: ${sizes[$size][$visibleItems].height};
+
+        ${StyledCarousel} {
+            mask-image: ${masks[$size][$visibleItems]};
+        }
     `};
 
     ${applyDisabled}
