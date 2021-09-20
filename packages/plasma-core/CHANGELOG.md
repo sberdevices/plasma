@@ -1,3 +1,15 @@
+# v1.28.0 (Mon Sep 20 2021)
+
+#### 🐛 Bug Fix
+
+- fix: `Tabs` disabled state [#804](https://github.com/sberdevices/plasma/pull/804) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.27.4 (Tue Sep 14 2021)
 
 #### 🐛 Bug Fix

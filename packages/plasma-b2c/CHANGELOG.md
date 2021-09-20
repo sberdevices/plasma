@@ -1,3 +1,19 @@
+# v1.1.0 (Mon Sep 20 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-b2c): Added `Tabs` and `TabItem` component [#804](https://github.com/sberdevices/plasma/pull/804) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- chore: Initiated `plasma-b2c` package [#804](https://github.com/sberdevices/plasma/pull/804) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.44.3 (Thu Sep 09 2021)
 
 #### 🐛 Bug Fix
