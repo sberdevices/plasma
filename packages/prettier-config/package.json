@@ -1,0 +1,17 @@
+{
+  "name": "@sberdevices/prettier-config",
+  "version": "0.1.0",
+  "description": "SberDevices prettier config",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sberdevices/pashka.git"
+  },
+  "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
+  "license": "UNLICENSED",
+  "homepage": "https://github.com/sberdevices/pashka/tree/master/packages/prettier-config",
+  "peerDependencies": {
+    "prettier": ">= 2.0.5",
+    "typescript": ">= 3.8.0"
+  }
+}
