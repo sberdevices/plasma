@@ -9,6 +9,7 @@ import { Currency } from '../../../../types';
 export interface CartItemListProps {
     items: CartItemType[];
     currency: Currency;
+    onItemClick?: (item: CartItemType) => void;
 }
 
 const StyledCarouselGridWrapper = styled.div`
@@ -28,7 +29,7 @@ const StyledRow = styled(Row)`
     scroll-behavior: smooth;
 `;
 
-export const CartItemListCommon: React.FC<CartItemListProps> = ({ items, currency }) => {
+export const CartItemListCommon: React.FC<CartItemListProps> = ({ items, currency, onItemClick }) => {
     const [currentCartItem, setCurrentCartItem] = React.useState(0);
 
     return (
@@ -44,7 +45,13 @@ export const CartItemListCommon: React.FC<CartItemListProps> = ({ items, currenc
             >
                 {items.map((item, index) => (
                     <CarouselCol key={`${item.id}-${index}`} scrollSnapAlign="center">
-                        <CartItem index={index} item={item} currency={currency} setActiveIndex={setCurrentCartItem} />
+                        <CartItem
+                            index={index}
+                            item={item}
+                            currency={currency}
+                            setActiveIndex={setCurrentCartItem}
+                            onItemClick={onItemClick}
+                        />
                     </CarouselCol>
                 ))}
             </Carousel>
