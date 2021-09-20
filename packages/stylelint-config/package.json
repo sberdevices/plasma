@@ -1,0 +1,21 @@
+{
+  "name": "@sberdevices/stylelint-config",
+  "version": "0.1.0",
+  "description": "SberDevices stylelint config",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sberdevices/pashka.git"
+  },
+  "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
+  "license": "UNLICENSED",
+  "homepage": "https://github.com/sberdevices/pashka/tree/master/packages/stylelint-config",
+  "peerDependencies": {
+    "stylelint": ">= 13.13.0",
+    "stylelint-config-recommended": ">= 3.0.0",
+    "stylelint-config-styled-components": ">= 0.1.1",
+    "stylelint-order": ">= 4.0.0",
+    "stylelint-processor-styled-components": ">= 1.10.0",
+    "stylelint-scss": ">= 3.17.1"
+  }
+}
