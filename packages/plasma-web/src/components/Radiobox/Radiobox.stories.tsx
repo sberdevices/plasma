@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 import { InSpacingDecorator } from '../../helpers';
 
-import { Radiobox, RadioboxProps } from '.';
+import { Radiobox, RadioboxProps, RadioGroup } from '.';
 
 export default {
     title: 'Controls/Radiobox',
@@ -39,23 +39,27 @@ const items = [
 export const Live = () => {
     const [value, setValue] = React.useState('c');
 
-    return items.map((item) => (
-        <Radiobox
-            key={item.value}
-            name={item.langName}
-            value={item.value}
-            label={item.label}
-            disabled={item.disabled}
-            checked={value[item.value]}
-            description={item.description}
-            onChange={(event) => {
-                setValue(item.value);
-                onChange(event);
-            }}
-            onFocus={onFocus}
-            onBlur={onBlur}
-        />
-    ));
+    return (
+        <RadioGroup>
+            {items.map((item) => (
+                <Radiobox
+                    key={item.value}
+                    name={item.langName}
+                    value={item.value}
+                    label={item.label}
+                    disabled={item.disabled}
+                    checked={value[item.value]}
+                    description={item.description}
+                    onChange={(event) => {
+                        setValue(item.value);
+                        onChange(event);
+                    }}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                />
+            ))}
+        </RadioGroup>
+    );
 };
 
 export const Default: Story<RadioboxProps> = ({ name, label, description, disabled }) => {
