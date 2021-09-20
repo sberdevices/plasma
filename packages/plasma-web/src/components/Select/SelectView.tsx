@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import {
     TextFieldRoot,
@@ -17,16 +17,9 @@ import type { TextFieldProps as BaseProps } from '@sberdevices/plasma-core';
 import { IconChevronDown } from '@sberdevices/plasma-icons';
 
 import { inputBorder, inputBorderHover } from '../../tokens';
-import { Dropdown, DropdownProps } from '../Dropdown';
+import { Dropdown } from '../Dropdown';
 
-export type RefElement = HTMLButtonElement;
-
-export interface SelectViewProps
-    extends Pick<BaseProps, 'status' | 'placeholder' | 'helperText' | 'disabled'>,
-        Pick<DropdownProps, 'items' | 'onItemClick'>,
-        Omit<HTMLAttributes<RefElement>, 'onChange'> {
-    value?: string | number | null;
-}
+import type { SelectRefElement, SelectViewProps } from './Select.types';
 
 const statuses = {
     success,
@@ -134,7 +127,7 @@ const StyledButton = styled.button<StyledButtonProps>`
 /**
  * Поле с выпадающим списком.
  */
-export const SelectView = React.forwardRef<RefElement, SelectViewProps>(
+export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
     ({ placeholder, value, helperText, disabled, status, className, style, items, onItemClick, ...rest }, ref) => {
         const isIcon = Boolean(items && items.length);
 
