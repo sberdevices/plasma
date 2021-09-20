@@ -50,11 +50,13 @@ const StyledNameDetails = styled.span`
     color: ${secondary};
 `;
 
-export const CartItemSberBox: React.FC<CartItemProps> = ({ item, currency, ...props }) => {
+export const CartItemSberBox: React.FC<CartItemProps> = ({ item, currency, onItemClick, ...props }) => {
     const { id, name, price, nameDetails, quantity, imageSrc = '', present } = item;
 
+    const clickHandler = React.useCallback(() => onItemClick?.(item), [onItemClick, item]);
+
     return (
-        <StyledRow>
+        <StyledRow onClick={clickHandler}>
             <StyledLeftCol sizeXL={8}>
                 <StyledImageContainer>
                     <Image base="div" src={imageSrc} ratio="1 / 1" />

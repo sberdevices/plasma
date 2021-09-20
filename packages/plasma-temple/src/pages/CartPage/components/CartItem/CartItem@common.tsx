@@ -14,6 +14,7 @@ export interface CartItemProps {
     item: CartItem;
     index: number;
     setActiveIndex?: (index: number) => void;
+    onItemClick?: (item: CartItem) => void;
     currency?: Currency;
 }
 
@@ -80,22 +81,28 @@ export const QuantityButton: React.FC<{
     const { removeItem, changeItemQuantity } = useCart();
     const getQuantity = useGetMutableValue(quantity);
 
-    const onPlus = useThrottledCallback(() => changeItemQuantity(id, getQuantity() + 1), [
-        id,
-        changeItemQuantity,
-        getQuantity,
-    ]);
+    const onPlus = useThrottledCallback(
+        (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+            event.stopPropagation();
+            changeItemQuantity(id, getQuantity() + 1);
+        },
+        [id, changeItemQuantity, getQuantity],
+    );
 
     const isMin = quantity <= 0;
 
-    const onMinus = useThrottledCallback(() => {
-        const qty = getQuantity();
-        if (qty <= 0) {
-            removeItem(id);
-        } else {
-            changeItemQuantity(id, qty - 1);
-        }
-    }, [id, removeItem, changeItemQuantity, getQuantity]);
+    const onMinus = useThrottledCallback(
+        (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+            event.stopPropagation();
+            const qty = getQuantity();
+            if (qty <= 0) {
+                removeItem(id);
+            } else {
+                changeItemQuantity(id, qty - 1);
+            }
+        },
+        [id, removeItem, changeItemQuantity, getQuantity],
+    );
 
     const handlerFocus = React.useCallback(() => setActiveIndex?.(index), [index, setActiveIndex]);
 
