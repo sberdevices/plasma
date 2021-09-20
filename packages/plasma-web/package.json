@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-web",
-    "version": "1.45.1",
+    "version": "1.46.0",
     "description": "SberDevices Design System / React UI kit for web applications",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
@@ -32,7 +32,7 @@
     },
     "dependencies": {
         "@popperjs/core": "2.9.2",
-        "@sberdevices/plasma-core": "1.27.4",
+        "@sberdevices/plasma-core": "1.28.0",
         "react-popper": "2.2.5",
         "storeon": "3.1.4"
     },
@@ -50,8 +50,8 @@
         "@babel/preset-typescript": "7.15.0",
         "@sberdevices/extract-sb-docgen-info": "0.1.1",
         "@sberdevices/plasma-colors": "0.2.0",
-        "@sberdevices/plasma-icons": "1.40.0",
-        "@sberdevices/plasma-sb-utils": "0.25.1",
+        "@sberdevices/plasma-icons": "1.41.0",
+        "@sberdevices/plasma-sb-utils": "0.26.0",
         "@sberdevices/plasma-tokens-b2c": "0.6.1",
         "@sberdevices/plasma-tokens-web": "1.12.1",
         "@storybook/addon-docs": "6.3.8",
