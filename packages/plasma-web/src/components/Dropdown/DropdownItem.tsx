@@ -21,16 +21,19 @@ export interface DropdownItemProps extends DropdownNodeType {
 }
 
 const StyledDropdownItem = styled.a<{ $disabled?: boolean; $color?: string }>`
-    ${body1};
-
     display: flex;
     align-items: center;
     justify-content: flex-start;
     box-sizing: border-box;
 
-    height: 3rem;
-    padding: 0.875rem 1rem;
+    height: var(--plasma-dropdown-item-height, 3rem);
+    padding: var(--plasma-dropdown-item-padding, 1rem);
     border-radius: var(--plasma-dropdown-item-border-radius, 0);
+
+    font-size: var(--plasma-dropdown-item-font-size, ${body1.fontSize});
+    font-weight: var(--plasma-dropdown-item-font-weight, ${body1.fontWeight});
+    line-height: var(--plasma-dropdown-item-line-height, ${body1.lineHeight});
+    letter-spacing: var(--plasma-dropdown-item-letter-spacing, ${body1.letterSpacing});
 
     background-color: transparent;
     color: ${({ $color }) => $color || primary};
