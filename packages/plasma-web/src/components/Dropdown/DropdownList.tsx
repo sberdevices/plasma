@@ -7,7 +7,6 @@ import { backgroundPrimary } from '@sberdevices/plasma-core';
 export const DropdownList = styled.div`
     box-sizing: border-box;
     width: 100%;
-    min-width: 13.75rem;
     margin: 0;
     padding: var(--plasma-dropdown-padding, 0);
 
