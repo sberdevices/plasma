@@ -6,3 +6,4 @@ export * from './OrderSuccessPage';
 export * from './ConfirmOrderPage';
 export * from './ShopLandingPage';
 export * from './CartPage';
+export * from './ErrorPage';
