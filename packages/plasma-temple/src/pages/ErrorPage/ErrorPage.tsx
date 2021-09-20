@@ -10,7 +10,7 @@ import { isSberBoxLike } from '../..';
 
 import iconWarn from './ErrorPage.assets/warning-circle.svg';
 
-interface ErrorPageProps extends ComponentPropsWithHeader {
+export interface ErrorPageProps extends ComponentPropsWithHeader {
     error: {
         status: string;
         message?: string;
