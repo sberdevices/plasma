@@ -41,11 +41,13 @@ const StyledTextBox = styled(TextBox)`
     width: calc(100% - 3rem);
 `;
 
-export const CartItemMobile: React.FC<CartItemProps> = ({ item, currency, ...props }) => {
+export const CartItemMobile: React.FC<CartItemProps> = ({ item, currency, onItemClick, ...props }) => {
     const { id, name, price, quantity, imageSrc = '', present } = item;
 
+    const clickHandler = React.useCallback(() => onItemClick?.(item), [onItemClick, item]);
+
     return (
-        <StyledRow>
+        <StyledRow onClick={clickHandler}>
             <StyledLeftCol sizeS={2}>
                 <StyledImageContainer>
                     <Image base="div" src={imageSrc} ratio="1 / 1" />
