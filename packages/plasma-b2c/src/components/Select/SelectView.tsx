@@ -19,6 +19,8 @@ import type { SelectViewProps, SelectRefElement } from '@sberdevices/plasma-web'
 
 import { Dropdown } from '../Dropdown';
 
+import { SelectGroup } from './SelectGroup';
+
 const statuses = {
     success,
     warning,
@@ -103,6 +105,24 @@ const StyledButton = styled.button<StyledButtonProps>`
             color: ${statuses[status]};
         `}
 `;
+const StyledRoot = styled(TextFieldRoot)`
+    /* stylelint-disable-next-line declaration-block-semicolon-newline-after, rule-empty-line-before */
+    ${SelectGroup} &:not(:last-child) {
+        margin-right: 0.125rem;
+    }
+
+    /* stylelint-disable-next-line declaration-block-semicolon-newline-after, rule-empty-line-before */
+    ${SelectGroup} &:not(:first-child) ${StyledButton} {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    /* stylelint-disable-next-line declaration-block-semicolon-newline-after, rule-empty-line-before */
+    ${SelectGroup} &:not(:last-child) ${StyledButton} {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+`;
 
 /**
  * Поле с выпадающим списком.
@@ -112,7 +132,7 @@ export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
         const isIcon = Boolean(items && items.length);
 
         return (
-            <TextFieldRoot
+            <StyledRoot
                 $size="m"
                 $disabled={disabled}
                 $isContentRight={isIcon}
@@ -129,7 +149,7 @@ export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
                     </StyledButton>
                 </StyledDropdown>
                 {helperText && <TextFieldHelper status={status}>{helperText}</TextFieldHelper>}
-            </TextFieldRoot>
+            </StyledRoot>
         );
     },
 );
