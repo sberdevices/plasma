@@ -1,3 +1,15 @@
+# v1.28.1 (Tue Sep 21 2021)
+
+#### 🐛 Bug Fix
+
+- chore: Delete extract-sb-docgen-info [#801](https://github.com/sberdevices/plasma/pull/801) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.28.0 (Mon Sep 20 2021)
 
 #### 🐛 Bug Fix

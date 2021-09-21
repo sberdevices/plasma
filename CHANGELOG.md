@@ -1,3 +1,31 @@
+# (Tue Sep 21 2021)
+
+#### 🐛 Bug Fix
+
+- chore(plasma-ui): Update `Button` snapshot [#806](https://github.com/sberdevices/plasma/pull/806) ([@fanisco](https://github.com/fanisco))
+- ci: Deploy documentation with subfolder for web [#801](https://github.com/sberdevices/plasma/pull/801) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-ui@1.48.1`
+  - fix(plasma-ui): Separate gradient masks for `Picker` [#708](https://github.com/sberdevices/plasma/pull/708) ([@fanisco](https://github.com/fanisco))
+  - test(plasma-ui): `PickerItem`'s styling utils [#708](https://github.com/sberdevices/plasma/pull/708) ([@fanisco](https://github.com/fanisco))
+  - fix(plasma-ui): `PickerItem` `size="s"` text cut at the bottom [#708](https://github.com/sberdevices/plasma/pull/708) ([@fanisco](https://github.com/fanisco))
+  - chore(plasma-ui): E2E test for `DatePicker` and `TimePicker` [#806](https://github.com/sberdevices/plasma/pull/806) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-core@1.28.1`, `@sberdevices/plasma-ui@1.48.1`, `@sberdevices/plasma-web@1.46.1`
+  - chore: Delete extract-sb-docgen-info [#801](https://github.com/sberdevices/plasma/pull/801) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-ui-docs@0.3.1`, `@sberdevices/plasma-web-docs@0.0.1`
+  - chore: Displaying `PropsTable` & `Description` with `react-docgen-typescript` [#801](https://github.com/sberdevices/plasma/pull/801) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-docs-ui@0.0.1`, `@sberdevices/plasma-ui-docs@0.3.1`, `@sberdevices/plasma-web-docs@0.0.1`
+  - chore: Separate UI library for documentation [#801](https://github.com/sberdevices/plasma/pull/801) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-ui-docs@0.3.1`
+  - chore: Plasma UI documentation website [#801](https://github.com/sberdevices/plasma/pull/801) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-web-docs@0.0.1`
+  - chore: Plasma Web documentation website [#801](https://github.com/sberdevices/plasma/pull/801) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Mon Sep 20 2021)
 
 #### 🚀 Enhancement
