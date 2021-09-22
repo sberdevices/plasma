@@ -2,6 +2,23 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/stylelint-config@0.2.0`
+  - feat(stylelint-config): add pkg [#134](https://github.com/sberdevices/pashka/pull/134) (ovozeritskiy@sberbank.ru)
+- `@sberdevices/prettier-config@0.2.0`
+  - feat(prettier-config): add pkg [#134](https://github.com/sberdevices/pashka/pull/134) (ovozeritskiy@sberbank.ru)
+- `@sberdevices/eslint-config@0.2.0`
+  - feat(eslint-config): add pkg [#134](https://github.com/sberdevices/pashka/pull/134) (ovozeritskiy@sberbank.ru)
+
+#### Authors: 1
+
+- Oleg Ozeritskiy (ovozeritskiy@sberbank.ru)
+
+---
+
+# (Wed Sep 22 2021)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/cra-template-plasma-basic-template@1.2.0`
   - feat(plasma-basic-template): edit template [#123](https://github.com/sberdevices/pashka/pull/123) ([@andart71](https://github.com/andart71))
 
