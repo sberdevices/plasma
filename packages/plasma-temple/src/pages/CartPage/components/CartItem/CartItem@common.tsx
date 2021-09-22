@@ -42,7 +42,7 @@ const StyledPresentContainer = styled.div`
     border-radius: 50%;
     width: 2rem;
     height: 2rem;
-    padding: 0.4375rem;
+    padding: 0.438rem;
     background: var(--plasma-colors-button-secondary);
 `;
 

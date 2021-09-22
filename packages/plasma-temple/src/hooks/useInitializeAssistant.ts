@@ -18,6 +18,7 @@ export const useInitializeAssistant = <T extends AssistantSmartAppData>({
     getAssistant: () => AssistantInstance;
     setAssistantState: (newState: unknown) => void;
 } => {
+    // eslint-disable-next-line @typescript-eslint/camelcase
     const assistantStateRef = useRef({ item_selector: { items: [] } });
     const getAssistantState = useCallback(() => assistantStateRef.current, []);
     const setAssistantState = useCallback((newState) => {

@@ -20,10 +20,7 @@ const StyledSlide = styled.div`
 
     box-sizing: border-box;
 
-    padding-top: 200px;
-    padding-left: var(--plasma-grid-margin);
-    padding-right: var(--plasma-grid-margin);
-    padding-bottom: 1.75rem;
+    padding-top: 200px var(--plasma-grid-margin) 1.75rem;
 `;
 
 const PortalButton: React.FC<ButtonProps> = (props) => <Button {...props} view="primary" size="s" />;

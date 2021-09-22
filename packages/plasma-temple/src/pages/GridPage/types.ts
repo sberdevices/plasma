@@ -9,7 +9,7 @@ export interface GridEntity extends MetaPayload {
     text: string;
     image: EasyMediaObject;
     position: number;
-    [key: string]: any;
+    [key: string]: unknown;
 }
 
 export interface GridPageState extends MetaPayload {

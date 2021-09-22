@@ -32,7 +32,7 @@ const StyledSpace = styled.div`
     flex: 1;
     border: 0.5px dashed rgba(255, 255, 255, 0.56);
     height: 0;
-    margin: 0 4px 4px 4px;
+    margin: 0 4px 4px;
     min-width: 1rem;
 `;
 
