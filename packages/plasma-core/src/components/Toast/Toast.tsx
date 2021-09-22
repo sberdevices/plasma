@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { black, white } from '@sberdevices/plasma-tokens';
-import { applyNoSelect } from '@sberdevices/plasma-core';
 
+import { applyNoSelect } from '../../mixins';
+import { dark02, white } from '../../tokens';
 import { Footnote1 } from '../Typography';
 
 export type ToastProps = {
@@ -14,7 +14,7 @@ const StyledRoot = styled(Footnote1)`
     padding: 0.75rem 1.25rem;
     border-radius: 1.25rem;
 
-    background: ${black};
+    background: ${dark02};
     color: ${white};
 
     ${applyNoSelect};

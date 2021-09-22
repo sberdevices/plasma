@@ -21,6 +21,7 @@ export * from './components/Tabs';
 export * from './components/TextArea';
 export * from './components/TextField';
 export * from './components/Tooltip';
+export * from './components/Toast';
 export * from './components/Typography';
 export * from './hocs';
 export * from './hooks';
