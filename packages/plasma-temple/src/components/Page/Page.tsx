@@ -39,7 +39,7 @@ interface PageLazyParams<
 }
 
 interface PageLazy {
-    lazy<T extends PageLazyParams<PageComp<AnyObject, any>>>(
+    lazy<T extends PageLazyParams<PageComp<AnyObject, string>>>(
         factory: () => Promise<T>,
     ): React.LazyExoticComponent<React.MemoExoticComponent<T['default']>>;
 }
@@ -76,9 +76,10 @@ export const Page: PageFunctionComponent = ({
 
                     window.AssistantClient.onData({
                         type: 'smart_app_data',
+                        // eslint-disable-next-line @typescript-eslint/camelcase
                         smart_app_data: smartAppData,
                         // Для обратной совместимости
-                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
                         // @ts-ignore
                         action: smartAppData,
                     });

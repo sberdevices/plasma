@@ -3,6 +3,7 @@ import React from 'react';
 import { MediaObject, MetaPayload } from '../../types';
 
 export interface ItemEntity extends MetaPayload {
+    id: string | number;
     label: string;
     image: MediaObject;
     position: number;

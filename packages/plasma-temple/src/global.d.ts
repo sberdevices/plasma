@@ -17,7 +17,7 @@ export declare global {
     }
 
     interface AssistantHost extends DefaultAssistantHost {
-        sendData: (command: string, message?: any) => void;
+        sendData: (command: string, message?: string) => void;
     }
 
     interface SpatialNavigation {
@@ -28,7 +28,7 @@ export declare global {
         navigate(dir: SpatialNavigationDirection): void;
         AssistantHost: AssistantHost;
         AssistantClient: AssistantClient;
-        Cypress?: Record<string, any>;
+        Cypress?: Record<string, unknown>;
         __spatialNavigation__?: SpatialNavigation;
     }
 
