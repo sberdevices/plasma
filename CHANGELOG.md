@@ -1,3 +1,30 @@
+# (Wed Sep 22 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-shop-template): Create CRA template [#807](https://github.com/sberdevices/plasma/pull/807) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-shop-template): Shop template [#807](https://github.com/sberdevices/plasma/pull/807) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- `@sberdevices/cra-template-plasma-basic-template@1.3.0`
+  - feat(plasma-basic-template): edit template [#808](https://github.com/sberdevices/plasma/pull/808) ([@andart71](https://github.com/andart71))
+  - feat(plasma-basic-template): CRA template for Salute [#808](https://github.com/sberdevices/plasma/pull/808) ([@LamaEats](https://github.com/LamaEats))
+- `@sberdevices/cra-template-plasma-shop-template@1.3.0`
+  - feat(plasma-shop-template): Update version of plasma-ui and plasma-temple [#807](https://github.com/sberdevices/plasma/pull/807) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/cra-template-plasma-basic-template@1.3.0`
+  - fix(plasma-basic-template): code styles [#810](https://github.com/sberdevices/plasma/pull/810) ([@LamaEats](https://github.com/LamaEats))
+- `@sberdevices/cra-template-plasma-shop-template@1.3.0`
+  - chore(plasma-shop-template): check run ci [#807](https://github.com/sberdevices/plasma/pull/807) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 3
+
+- [@andart71](https://github.com/andart71)
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Tue Sep 21 2021)
 
 #### 🐛 Bug Fix

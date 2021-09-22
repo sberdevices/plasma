@@ -1,3 +1,24 @@
+# v1.3.0 (Wed Sep 22 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-basic-template): edit template [#808](https://github.com/sberdevices/plasma/pull/808) ([@andart71](https://github.com/andart71))
+- feat(plasma-basic-template): CRA template for Salute [#808](https://github.com/sberdevices/plasma/pull/808) ([@LamaEats](https://github.com/LamaEats))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-basic-template): code styles [#810](https://github.com/sberdevices/plasma/pull/810) ([@LamaEats](https://github.com/LamaEats))
+- Update CHANGELOG.md \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- Bump independent versions \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 3
+
+- [@andart71](https://github.com/andart71)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v1.2.0 (Wed Sep 22 2021)
 
 #### 🚀 Enhancement
