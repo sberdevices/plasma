@@ -1,3 +1,15 @@
+# v1.2.0 (Wed Sep 22 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-basic-template): edit template [#123](https://github.com/sberdevices/pashka/pull/123) ([@andart71](https://github.com/andart71))
+
+#### Authors: 1
+
+- [@andart71](https://github.com/andart71)
+
+---
+
 # v1.1.0 (Mon Mar 01 2021)
 
 #### 🚀 Enhancement
