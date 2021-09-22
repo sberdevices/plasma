@@ -1,5 +1,18 @@
 # (Wed Sep 22 2021)
 
+#### 🚀 Enhancement
+
+- `@sberdevices/cra-template-plasma-basic-template@1.2.0`
+  - feat(plasma-basic-template): edit template [#123](https://github.com/sberdevices/pashka/pull/123) ([@andart71](https://github.com/andart71))
+
+#### Authors: 1
+
+- [@andart71](https://github.com/andart71)
+
+---
+
+# (Wed Sep 22 2021)
+
 #### 🐛 Bug Fix
 
 - `@sberdevices/plasma-temple@0.52.2`
