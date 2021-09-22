@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { black, white } from '@sberdevices/plasma-tokens';
-import { applyNoSelect } from '@sberdevices/plasma-core';
 
+import { applyNoSelect } from '../../mixins';
+import { black, white } from '../../tokens';
 import { Footnote1 } from '../Typography';
 
 export type ToastProps = {
