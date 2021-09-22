@@ -9,6 +9,7 @@ import { useSpatNavBetweenTargets } from '../../hooks/useSpatNav';
 import { useVoiceNavigationWithSpatNav } from '../../hooks/useVoiceNavigation';
 import { scroll } from '../../utils/scroll';
 import { FullScreenBackground } from '../ItemPage/components/FullScreenBackground/FullScreenBackground';
+import { LayoutElementContext } from '../../components/Layout/LayoutElementContext';
 
 import { GridEntity, GridPageState } from './types';
 import { GridCard, GridCardProps } from './components/GridCard';
@@ -21,13 +22,16 @@ interface GridPageProps {
     children?(props: GridCardProps & { key: string }): JSX.Element;
 }
 
-const scrollToWithOffset = (offset: number) => {
+const scrollToWithOffset = (offset: number, element: HTMLDivElement | null) => {
     const targetOffset = offset <= 250 ? 0 : offset - 250;
+    if (!element) {
+        return;
+    }
 
     scroll({
-        element: window,
-        startPosition: window.scrollY,
-        offset: targetOffset - window.scrollY,
+        element,
+        startPosition: element.scrollTop,
+        offset: targetOffset - element.scrollTop,
         duration: 300,
         axis: 'y',
     });
@@ -39,6 +43,7 @@ const ContentSection = styled.section`
 
 export const GridPage: React.FC<GridPageProps> = ({ state, header, onItemShow, onScrollBottom, children }) => {
     const { items, background } = state;
+    const layoutElementContext = React.useContext(LayoutElementContext);
 
     const list = React.useMemo(
         () =>
@@ -54,7 +59,7 @@ export const GridPage: React.FC<GridPageProps> = ({ state, header, onItemShow, o
     );
 
     useVoiceNavigationWithSpatNav({ axis: 'y', main: true });
-    useSpatNavBetweenTargets<HTMLElement>('y', ({ offsetTop }) => scrollToWithOffset(offsetTop));
+    useSpatNavBetweenTargets<HTMLElement>('y', ({ offsetTop }) => scrollToWithOffset(offsetTop, layoutElementContext));
 
     // Необходимо сбросить первоночально установленную точку, чтобы старт навигации был с сфокусированного элемента
     React.useEffect(() => {
