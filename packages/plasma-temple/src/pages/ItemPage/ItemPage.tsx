@@ -7,6 +7,7 @@ import { useSpatNav } from '../../hooks/useSpatNav';
 import { useVoiceNavigationWithSpatNav } from '../../hooks/useVoiceNavigation';
 import { scroll } from '../../utils/scroll';
 import { getMediaObjectSrc } from '../../utils';
+import { LayoutElementContext } from '../../components/Layout/LayoutElementContext';
 
 import { ItemEntityProps } from './components/ItemEntity/ItemEntity';
 import { ItemPageState } from './types';
@@ -19,13 +20,16 @@ interface ItemPageProps {
     entityComponent?: React.ComponentType<ItemEntityProps>;
 }
 
-const scrollToWithOffset = (offset: number) => {
+const scrollToWithOffset = (offset: number, element: HTMLDivElement | null) => {
     const targetOffset = offset <= 0 ? offset : offset - 100;
+    if (!element) {
+        return;
+    }
 
     scroll({
-        element: window,
-        startPosition: window.scrollY,
-        offset: targetOffset - window.scrollY,
+        element,
+        startPosition: element.scrollTop,
+        offset: targetOffset - element.scrollTop,
         duration: 300,
         axis: 'y',
     });
@@ -34,6 +38,7 @@ const scrollToWithOffset = (offset: number) => {
 export const ItemPage: React.FC<ItemPageProps> = ({ state, header, entityComponent, onItemShow, onItemFocus }) => {
     const { entities, entitiesTitle, background, title, subtitle, description, actionButtonText } = state;
     const { ItemMainSection, ItemEntities } = useRegistry();
+    const layoutElementContext = React.useContext(LayoutElementContext);
 
     const list = React.useMemo(
         () =>
@@ -54,7 +59,7 @@ export const ItemPage: React.FC<ItemPageProps> = ({ state, header, entityCompone
     );
 
     useVoiceNavigationWithSpatNav({ axis: 'y', main: true });
-    useSpatNav<HTMLElement>(({ offsetTop }) => scrollToWithOffset(offsetTop));
+    useSpatNav<HTMLElement>(({ offsetTop }) => scrollToWithOffset(offsetTop, layoutElementContext));
 
     // Необходимо сбросить первоночально установленную точку, чтобы старт навигации был с сфокусированного элемента
     React.useEffect(() => {

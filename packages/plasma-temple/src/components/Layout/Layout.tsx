@@ -5,6 +5,8 @@ import styled, { CSSObject } from 'styled-components';
 import { Insets, useInsets } from '../../hooks';
 import { AssistantInsets } from '../../store';
 
+import { LayoutElementContext } from './LayoutElementContext';
+
 interface LayoutProps {
     ignoreInsets?: boolean;
 }
@@ -47,10 +49,13 @@ const defaultInsets: Insets = {
 
 export const Layout: React.FC<LayoutProps> = ({ children, ignoreInsets }) => {
     const insets = useInsets();
+    const scrollableElementRef = React.useRef<HTMLDivElement>(null);
 
     return (
-        <StyledLayout insets={ignoreInsets ? defaultInsets : insets}>
-            <Container>{children}</Container>
-        </StyledLayout>
+        <LayoutElementContext.Provider value={scrollableElementRef.current}>
+            <StyledLayout insets={ignoreInsets ? defaultInsets : insets} ref={scrollableElementRef}>
+                <Container>{children}</Container>
+            </StyledLayout>
+        </LayoutElementContext.Provider>
     );
 };
