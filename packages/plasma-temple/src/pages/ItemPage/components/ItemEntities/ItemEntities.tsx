@@ -6,7 +6,7 @@ import { Section } from '../Section/Section';
 import { UnifiedComponentProps } from '../../../../registry/types';
 
 export interface ItemEntitiesProps {
-    list: Array<ItemEntityProps & Record<'uuid', string>>;
+    list: Array<ItemEntityProps & Record<'uuid', string | number>>;
     index?: number;
     title: string;
     Component?: React.ComponentType<ItemEntityProps>;

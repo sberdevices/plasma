@@ -27,7 +27,7 @@ export enum AppStateActionType {
     CHANGE_ACTIVE_SCREEN_STATE = 'changeActiveScreenState',
 }
 
-export interface Action<A extends Record<any, any>> extends AssistantSmartAppData {
+export interface Action<A extends Record<string, unknown>> extends AssistantSmartAppData {
     // eslint-disable-next-line camelcase
     smart_app_data: A;
 }

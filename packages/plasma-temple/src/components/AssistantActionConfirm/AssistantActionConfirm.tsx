@@ -14,6 +14,7 @@ const StyledList = styled(Carousel)`
     width: 916px;
     max-height: 602px;
     padding: 0 1rem 60px;
+    /* stylelint-disable */
     mask-image: linear-gradient(
         180deg,
         rgba(196, 196, 196, 0.25) 0%,
@@ -21,6 +22,7 @@ const StyledList = styled(Carousel)`
         #c4c4c4 62.85%,
         rgba(196, 196, 196, 0.15) 107.29%
     );
+    /* stylelint-enable */
 
     user-select: none;
     outline: none;

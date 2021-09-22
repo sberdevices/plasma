@@ -74,6 +74,7 @@ describe('useVoiceNavigationHook', () => {
             assistantHostMock.onReady(async () => {
                 await assistantHostMock.receiveCommand({
                     type: 'smart_app_data',
+                    // eslint-disable-next-line @typescript-eslint/camelcase
                     smart_app_data: { type: 'NAVIGATE', direction: 'DOWN' },
                 });
 
@@ -442,6 +443,7 @@ describe('useVoiceNavigationWithSpatNav', () => {
             assistantHostMock.onReady(async () => {
                 await assistantHostMock.receiveCommand({
                     type: 'smart_app_data',
+                    // eslint-disable-next-line @typescript-eslint/camelcase
                     smart_app_data: { type: 'NAVIGATE', direction: 'DOWN' },
                 });
 
