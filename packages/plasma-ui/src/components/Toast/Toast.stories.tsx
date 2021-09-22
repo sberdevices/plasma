@@ -11,27 +11,26 @@ export default {
     title: 'Controls/Toast',
 } as Meta;
 
-export const ToastComponent: Story<ToastProps> = (args) => <Toast {...args} />;
+export const Default: Story<ToastProps> = (args) => <Toast {...args} />;
 
-ToastComponent.args = {
+Default.args = {
     text: 'Short Text Message Without Action',
 };
 
-interface LiveDemoProps {
-    toastText: string;
-    position: string;
+interface LiveDemoProps extends ToastProps {
+    position: Position;
     timeout: number;
     fade: boolean;
 }
 
-export const LiveDemo: Story<LiveDemoProps> = ({ toastText, position, timeout, fade }) => {
+export const LiveDemo: Story<LiveDemoProps> = ({ role, text, position, timeout, fade }) => {
     const { showToast } = useToast();
 
     return (
         <div>
             <Button
                 onClick={() => {
-                    showToast(toastText, position as Position, timeout, fade);
+                    showToast(text, position, timeout, fade, role);
                 }}
             >
                 Показать уведомление
@@ -41,13 +40,20 @@ export const LiveDemo: Story<LiveDemoProps> = ({ toastText, position, timeout, f
 };
 
 LiveDemo.args = {
-    toastText: 'Short Text Message Without Action',
+    role: 'status',
+    text: 'Short Text Message Without Action',
     position: 'bottom',
-    timeout: 3000,
+    timeout: 10000,
     fade: true,
 };
 
 LiveDemo.argTypes = {
+    role: {
+        control: {
+            type: 'inline-radio',
+            options: ['alert', 'log', 'status'],
+        },
+    },
     position: {
         control: {
             type: 'inline-radio',
