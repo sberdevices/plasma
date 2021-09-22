@@ -26,7 +26,7 @@ export interface PageMethods<
 export type PageComponent<
     PageStateType extends AnyObject,
     Name extends keyof PageStateType,
-    PageParamsType extends Partial<Record<keyof PageStateType, unknown>> = Partial<Record<keyof PageStateType, any>>
+    PageParamsType extends Partial<Record<keyof PageStateType, unknown>> = Partial<Record<keyof PageStateType, unknown>>
 > = React.ComponentType<
     PageMethods<PageStateType[Name], PageStateType, PageParamsType> & {
         name: Name;

@@ -14,8 +14,8 @@ import { ItemPageState } from './types';
 interface ItemPageProps {
     state: ItemPageState;
     header?: HeaderProps;
-    onItemShow: (id: string) => void;
-    onItemFocus?: (id: string) => void;
+    onItemShow: <T>(id: T) => void;
+    onItemFocus?: <T>(id: T) => void;
     entityComponent?: React.ComponentType<ItemEntityProps>;
 }
 
