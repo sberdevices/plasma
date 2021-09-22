@@ -17,7 +17,7 @@ const baseUrl = `${prefix}/${suffix}`;
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
     title: 'Plasma UI',
-    tagline: 'Дизайн-система для разработки смартаппов.',
+    tagline: 'Дизайн-система для разработки смартапов.',
     url: 'https://plasma.sberdevices.ru/',
     baseUrl,
     onBrokenLinks: 'warn',
