@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 
-import { ToastInfo, Position } from './types';
+import { ToastInfo, ToastPosition } from './Toast.types';
 import { ToastController } from './ToastController';
 import { ToastContext } from './ToastContext';
 
@@ -11,7 +11,7 @@ const DEFAULT_FADE = true;
 export const ToastProvider: React.FC = ({ children }) => {
     const [value, setValue] = useState<ToastInfo>({ text: null, position: null, timeout: null });
 
-    const showToast = useCallback((text: string, position?: Position, timeout?: number, fade?: boolean) => {
+    const showToast = useCallback((text: string, position?: ToastPosition, timeout?: number, fade?: boolean) => {
         setValue({
             text,
             position: position || DEFAULT_POSITION,

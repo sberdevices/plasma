@@ -5,6 +5,8 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { light, dark } from '@sberdevices/plasma-tokens-b2c/themes';
 import { b2c } from '@sberdevices/plasma-tokens-b2c/typo';
 
+import { ToastProvider } from '../src/components/Toast';
+
 /* stylelint-disable */
 const DocumentStyle = createGlobalStyle`
     html:root {
@@ -33,8 +35,15 @@ const withTheme = (Story, context) => {
     );
 };
 
+const withToast = (Story) => (
+    <ToastProvider>
+        <Story />
+    </ToastProvider>
+);
+
 addDecorator(withKnobs);
 addDecorator(withTheme);
+addDecorator(withToast);
 
 addParameters({
     viewport: {

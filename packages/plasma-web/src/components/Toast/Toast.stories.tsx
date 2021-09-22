@@ -42,7 +42,7 @@ LiveDemo.args = {
     toastText: 'Short Text Message Without Action',
     position: 'bottom',
     timeout: 3000,
-    fade: true,
+    fade: false,
 };
 
 LiveDemo.argTypes = {

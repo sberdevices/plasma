@@ -3,7 +3,7 @@ import styled, { css, keyframes } from 'styled-components';
 
 import { Fade } from '../Fade';
 
-import { ToastInfo } from './types';
+import { ToastInfo } from './Toast.types';
 import { Toast } from './Toast';
 import { useToast } from './useToast';
 
