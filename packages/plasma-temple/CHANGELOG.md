@@ -1,3 +1,18 @@
+# v0.52.2 (Wed Sep 22 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): export ErrorPage from index [#133](https://github.com/sberdevices/pashka/pull/133) ([@LamaEats](https://github.com/LamaEats))
+- docs(plasma-temple): app hooks & scenario hooks [#124](https://github.com/sberdevices/pashka/pull/124) ([@LamaEats](https://github.com/LamaEats))
+- Bump independent versions \[skip ci\] ([@LamaEats](https://github.com/LamaEats))
+- chore(plasma-temple): export GetInitialProps typing [#128](https://github.com/sberdevices/pashka/pull/128) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v0.52.0 (Mon Sep 13 2021)
 
 #### 🚀 Enhancement
