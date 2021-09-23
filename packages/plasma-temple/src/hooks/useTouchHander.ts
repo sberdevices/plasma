@@ -1,6 +1,6 @@
 import React, { Touch, useLayoutEffect } from 'react';
 
-import { isSberBoxLike } from '..';
+import { isSberBoxLike } from '../utils/deviceFamily';
 
 export interface UseTouchHandlerParams {
     /**

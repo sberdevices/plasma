@@ -6,7 +6,7 @@ import { useFocusOnMount } from '../../hooks/useFocusOnMount';
 import { THROTTLE_WAIT } from '../../hooks/useThrottledCallback';
 import { StateLayout } from '../../components/StateLayout/StateLayout';
 import { ComponentPropsWithHeader } from '../../components/Header/types';
-import { isSberBoxLike } from '../..';
+import { isSberBoxLike } from '../../utils/deviceFamily';
 
 import iconWarn from './ErrorPage.assets/warning-circle.svg';
 

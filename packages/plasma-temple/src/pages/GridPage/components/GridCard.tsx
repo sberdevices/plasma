@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Card, CardBody, CardContent, CardMedia, Col } from '@sberdevices/plasma-ui';
 
-import { isSberBoxLike } from '../../..';
+import { isSberBoxLike } from '../../../utils/deviceFamily';
 
 export interface GridCardProps {
     url: string;

@@ -3,7 +3,7 @@ import { isSberPortal } from '@sberdevices/plasma-ui/utils';
 
 import { GalleryCard as DefaultGalleryCard } from '../GalleryCard/GalleryCard';
 import { AnyObject } from '../../types';
-import { isSberBoxLike } from '../..';
+import { isSberBoxLike } from '../../utils/deviceFamily';
 
 import { GalleryCardParams, GalleryCardProps } from './types';
 
