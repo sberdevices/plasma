@@ -6,8 +6,8 @@
   "scripts": {
     "release": "tsc -p auto-plugins/tsconfig.json && git diff && auto shipit",
     "chromatic": "lerna run chromatic",
-    "cy:accept-diffs": "docker run -it --rm -v $PWD:/e2e -w /e2e -e CYPRESS_updateSnapshots=true -e CYPRESS_BASE_URL=${PUBLIC_URL:-'http://host.docker.internal:6006'} cypress/included:7.1.0 run --browser chrome",
-    "cy:run": "docker run -it --rm -v $PWD:/e2e -w /e2e -e CYPRESS_BASE_URL=${PUBLIC_URL:-'http://host.docker.internal:6006'} cypress/included:7.1.0 run --browser chrome",
+    "cy:accept-diffs": "docker run -it --rm -v $PWD:/e2e -w /e2e -e CYPRESS_updateSnapshots=true -e CYPRESS_BASE_URL=${PUBLIC_URL:-'http://host.docker.internal:6006'} cypress/included:8.0.0 run --browser chrome",
+    "cy:run": "docker run -it --rm -v $PWD:/e2e -w /e2e -e CYPRESS_BASE_URL=${PUBLIC_URL:-'http://host.docker.internal:6006'} cypress/included:8.0.0 run --browser chrome",
     "cy:open": "cypress open",
     "cy:run-ct": "docker run --rm -v $PWD:/e2e -w /e2e --entrypoint=cypress -e PACKEGE_DIR=../../packages/$PACKAGE_NAME -e CYPRESS_updateSnapshots=$CYPRESS_updateSnapshots cypress/included:8.0.0 run-ct --browser chrome --config-file cypress/config/$CYPRESS_CONFIG_FILE",
     "cy:ui:run-ct": "PACKAGE_NAME=plasma-ui CYPRESS_CONFIG_FILE=ui-config.json npm run cy:run-ct",
