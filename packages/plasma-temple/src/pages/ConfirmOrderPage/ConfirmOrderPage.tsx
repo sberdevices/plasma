@@ -9,7 +9,7 @@ import { Header } from '../../components/Header/Header';
 import { DeviceFamily } from '../../types';
 import { useFocusOnMount } from '../../hooks/useFocusOnMount';
 import { THROTTLE_WAIT, useThrottledCallback } from '../../hooks/useThrottledCallback';
-import { isSberBoxLike } from '../..';
+import { isSberBoxLike } from '../../utils/deviceFamily';
 
 import { ConfirmOrderCard } from './components/ConfirmOrderCard/ConfirmOrderCard';
 import { LocationIcon } from './ConfirmOrderPage.assets/LocationIcon';
