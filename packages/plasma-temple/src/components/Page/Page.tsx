@@ -9,6 +9,7 @@ import { INNER_ASSISTANT_ACTION } from '../../constants';
 import { Layout } from '../../components/Layout/Layout';
 import { PageSpinner } from '../PageSpinner/PageSpinner';
 import { useMount } from '../../hooks';
+import { History } from '../../store/types';
 
 import { PageComponent as PageComp } from './types';
 
@@ -39,7 +40,7 @@ interface PageLazyParams<
 }
 
 interface PageLazy {
-    lazy<T extends PageLazyParams<PageComp<AnyObject, string>>>(
+    lazy<T extends PageLazyParams<PageComp<AnyObject, any>>>(
         factory: () => Promise<T>,
     ): React.LazyExoticComponent<React.MemoExoticComponent<T['default']>>;
 }
@@ -56,6 +57,16 @@ export const Page: PageFunctionComponent = ({
     ignoreInsets,
 }) => {
     const { assistant, setAssistantState } = useAssistant();
+
+    const {
+        changeActiveScreenState,
+        state,
+        popScreen,
+        pushHistory,
+        pushScreen,
+        goToScreen,
+        header: appHeader,
+    } = React.useContext(AppStateContext);
 
     const sendData = React.useCallback<AssistantInstance['sendData']>(
         (params) => {
@@ -91,36 +102,34 @@ export const Page: PageFunctionComponent = ({
         [assistant],
     );
 
+    const changeState = React.useCallback(
+        (data: Partial<History>) => {
+            changeActiveScreenState({
+                name,
+                data,
+            });
+        },
+        [name, changeActiveScreenState],
+    );
+
     return (
         <React.Suspense fallback={fallbackComponent}>
             <Layout ignoreInsets={ignoreInsets}>
-                <AppStateContext.Consumer>
-                    {({
-                        pushHistory,
-                        pushScreen,
-                        header: appHeader,
-                        popScreen,
-                        state,
-                        changeActiveScreenState,
-                        goToScreen,
-                    }) => (
-                        <Component
-                            name={name}
-                            params={window.history.state}
-                            state={last(state.history).data}
-                            assistant={assistant}
-                            setAssistantState={setAssistantState}
-                            changeState={changeActiveScreenState}
-                            pushHistory={pushHistory}
-                            pushScreen={pushScreen}
-                            popScreen={popScreen}
-                            goToScreen={goToScreen}
-                            sendData={sendData}
-                            fallbackComponent={fallbackComponent}
-                            header={header ?? appHeader}
-                        />
-                    )}
-                </AppStateContext.Consumer>
+                <Component
+                    name={name}
+                    params={window.history.state}
+                    state={last(state.history).data}
+                    assistant={assistant}
+                    setAssistantState={setAssistantState}
+                    changeState={changeState}
+                    pushHistory={pushHistory}
+                    pushScreen={pushScreen}
+                    popScreen={popScreen}
+                    goToScreen={goToScreen}
+                    sendData={sendData}
+                    fallbackComponent={fallbackComponent}
+                    header={header ?? appHeader}
+                />
             </Layout>
         </React.Suspense>
     );

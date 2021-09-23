@@ -36,6 +36,6 @@ export type CharacterAction = StateAction<AppStateActionType.CHARACTER, { charac
 export type InsetsAction = StateAction<AppStateActionType.INSETS, { insets: AssistantInsets }>;
 export type PushHistoryAction = StateAction<AppStateActionType.PUSH_HISTORY, { history: History }>;
 export type PopHistoryAction = StateAction<AppStateActionType.POP_HISTORY, { delta?: number }>;
-export type ChangeStateAction = StateAction<AppStateActionType.CHANGE_ACTIVE_SCREEN_STATE, { data: History['data'] }>;
+export type ChangeStateAction = StateAction<AppStateActionType.CHANGE_ACTIVE_SCREEN_STATE, History>;
 export type PlasmaAction = Action<PushHistoryAction> | Action<ChangeStateAction> | Action<PopHistoryAction>;
 export type PlasmaActionData = CharacterAction | InsetsAction | PlasmaAction['smart_app_data'];
