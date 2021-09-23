@@ -10,7 +10,7 @@ import { useRemoteHandlers, useRemoteListener } from '../../hooks';
 import { useFocusedState } from '../../hooks/useFocusedState';
 import { useFocusOnMount } from '../../hooks/useFocusOnMount';
 import { useGetMutableValue } from '../../hooks/useGetMutableValue';
-import { isSberBoxLike } from '../..';
+import { isSberBoxLike } from '../../utils/deviceFamily';
 
 import { ShopLandingPageState } from './types';
 import { ShopLandingCard } from './components/ShopLandingCard/ShopLandingCard';

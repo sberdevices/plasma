@@ -7,6 +7,7 @@ export interface ItemEntity extends MetaPayload {
     label: string;
     image: MediaObject;
     position: number;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { AppStateContext } from '../PlasmaApp/AppStateContext';
-import { isSberBoxLike } from '../..';
+import { isSberBoxLike } from '../../utils/deviceFamily';
 
 import { HeaderProps } from './types';
 

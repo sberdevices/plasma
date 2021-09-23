@@ -5,7 +5,7 @@ import { ButtonProps, Col, Row } from '@sberdevices/plasma-ui';
 import { FullScreenBackground } from '../FullScreenBackground/FullScreenBackground';
 import { useFocusOnMount } from '../../hooks/useFocusOnMount';
 import { UnifiedComponentProps } from '../../registry/types';
-import { isSberBoxLike } from '../..';
+import { isSberBoxLike } from '../../utils/deviceFamily';
 
 export interface HeroSlideProps {
     src: string;

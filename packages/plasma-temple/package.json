@@ -83,12 +83,9 @@
         "storybook": "start-storybook -s .storybook/public -p ${PORT:-6006} -c .storybook",
         "storybook:build": "build-storybook --quiet -s .storybook/public -c .storybook -o build-sb",
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
-        "test": "jest --coverage && npm run coverage",
-        "coverage": "node ../../scripts/updateCoverage.js --url=https://api.keyvalue.xyz/9237dc02/coverage"
+        "test": "jest"
     },
-    "files": [
-        "dist"
-    ],
+    "files": ["dist"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Виноградов Антон Александрович",

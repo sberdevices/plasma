@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Card, CardBadge, CardBody, CardMedia, Col, Footnote1 } from '@sberdevices/plasma-ui';
 
-import { isSberBoxLike } from '../../../..';
+import { isSberBoxLike } from '../../../../utils/deviceFamily';
 
 export interface ItemEntityProps {
     url: string;

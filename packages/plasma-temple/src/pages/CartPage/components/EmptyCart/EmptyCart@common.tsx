@@ -3,11 +3,10 @@ import styled, { css } from 'styled-components';
 import { Button, Col, Headline1, Headline2, Row, Image, ButtonProps } from '@sberdevices/plasma-ui';
 import { mediaQuery } from '@sberdevices/plasma-ui/utils';
 
-import { deviceFamily } from '../../../../utils/deviceFamily';
+import { deviceFamily, isSberBoxLike } from '../../../../utils/deviceFamily';
 import { DeviceFamily } from '../../../../types';
 import { withProps } from '../../../../components/hocs/withProps';
 import { useFocusOnMount } from '../../../../hooks/useFocusOnMount';
-import { isSberBoxLike } from '../../../..';
 
 export interface EmptyCartProps {
     imageSrc?: string;

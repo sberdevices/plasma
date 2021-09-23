@@ -6,7 +6,7 @@ import { isSberPortal } from '@sberdevices/plasma-ui/utils';
 import { GalleryCardContainer } from '../GalleryCard/GalleryCardContainer';
 import { AnyObject } from '../../types';
 import { useDelayedActivation } from '../../hooks/useDelayedActivation';
-import { isSberBoxLike } from '../..';
+import { isSberBoxLike } from '../../utils/deviceFamily';
 
 import { GalleryIndexContext, withNavigation } from './hocs/withNavigation';
 import { GalleryProps, GalleryWithNavigationProps } from './types';
