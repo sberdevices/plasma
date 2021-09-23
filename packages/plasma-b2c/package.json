@@ -30,6 +30,7 @@
         "@sberdevices/plasma-core": "1.33.2",
         "@sberdevices/plasma-typo": "0.2.0",
         "@sberdevices/plasma-web": "1.53.5",
+        "react-file-drop": "3.1.2",
         "react-popper": "2.2.5",
         "storeon": "3.1.4"
     },
@@ -47,7 +48,7 @@
         "@babel/preset-typescript": "7.15.0",
         "@sberdevices/plasma-colors": "0.1.1",
         "@sberdevices/plasma-cy-utils": "0.3.1",
-        "@sberdevices/plasma-icons": "1.39.3",
+        "@sberdevices/plasma-icons": "1.44.0",
         "@sberdevices/plasma-sb-utils": "0.25.0",
         "@sberdevices/plasma-tokens-b2c": "0.7.1",
         "@storybook/addon-docs": "6.3.8",
