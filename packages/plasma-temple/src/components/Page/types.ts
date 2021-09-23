@@ -4,14 +4,16 @@ import { AnyObject, AssistantAppState, AssistantInstance } from '../../types';
 
 export type PushScreenParams<
     PageStateType extends AnyObject,
-    Params extends Record<keyof PageStateType, unknown>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    Params extends Record<keyof PageStateType, any>,
     Name extends keyof Params
 > = Name extends keyof Params ? [Name, Params[Name]] : [Name];
 
 export interface PageMethods<
     State,
     PageStateType extends AnyObject,
-    PageParamsType extends Partial<Record<keyof PageStateType, unknown>>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    PageParamsType extends Partial<Record<keyof PageStateType, any>>,
     PageType extends keyof PageStateType = keyof PageStateType
 > {
     pushHistory: <T extends PageType>(name: T, data: PageStateType[T]) => void;
