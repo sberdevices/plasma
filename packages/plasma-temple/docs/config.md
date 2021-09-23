@@ -1,25 +1,23 @@
 # Конфигурация
 
-Пакет предоставляет фукнцию `createApp`, которая принимает в качестве агрумента конфиг приложения и возвращает корневой компонент всего приложения
+Пакет содержит компоненты `<PlasmaApp />` и `<Page />` для конфигурации приложения
 
 ```ts
-import { createApp } from '@sberdevices/plasma-temple';
+import { PlasmaApp, Page } from '@sberdevices/plasma-temple';
 
-const App = createApp();
-
-ReactDOM.render(<App />, document.getElementById('#root'));
+export const App = () => (
+    <PlasmaApp>
+        <Page name="home" component={() => 'Hello world'} />
+    </PlasmaApp>
+);
 ```
 
-```ts
-interface CanvasAppConfig {
-    routes: Route[];
-    header: HeaderPropsPayload;
-    assistant: AssistantConfig;
-}
-```
+Подробее о компонентах в разделе [Базовая функциональность](./core.md)
 
 ---
-|Другие разделы ||||||
-|---|---|---|---|---|---|
-| Кофигурация | [Действия](./actions.md) | [Шаблоны](./templates.md) | [Хуки](./hooks.md) | [Взаимодействие со сценарием](./scenario.md) | [Формы](./forms.md) |
+
+| Другие разделы |                          |                           |                    |                                              |                     |
+| -------------- | ------------------------ | ------------------------- | ------------------ | -------------------------------------------- | ------------------- |
+| Конфигурация   | [Действия](./actions.md) | [Шаблоны](./templates.md) | [Хуки](./hooks.md) | [Взаимодействие со сценарием](./scenario.md) | [Формы](./forms.md) |
+
 ---

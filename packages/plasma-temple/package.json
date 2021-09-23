@@ -6,7 +6,7 @@
     "types": "dist/index.d.ts",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/sberdevices/pashka.git"
+        "url": "git+https://github.com/sberdevices/plasma.git"
     },
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
@@ -70,9 +70,8 @@
         "access": "public"
     },
     "bugs": {
-        "url": "https://github.com/sberdevices/pashka/issues"
+        "url": "https://github.com/sberdevices/plasma/issues"
     },
-    "homepage": "https://github.com/sberdevices/pashka#readme",
     "scripts": {
         "prepare": "npm run build",
         "clean": "rm -rf dist",
