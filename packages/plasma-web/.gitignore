@@ -8,5 +8,6 @@
 /types
 /utils
 /index.*
+/helpers
 build-sb
 build-sb-docs
