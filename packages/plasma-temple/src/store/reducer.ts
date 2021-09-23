@@ -58,10 +58,10 @@ export const reducer = (state: AppState, action: PlasmaActionData): AppState => 
         }
 
         case AppStateActionType.CHANGE_ACTIVE_SCREEN_STATE: {
-            const { data } = action.payload;
+            const { data, name } = action.payload;
             const screen = last(state.history);
 
-            if (!screen) {
+            if (!screen || screen.name !== name) {
                 return state;
             }
 

@@ -62,7 +62,10 @@ describe('Testing reducer', () => {
         const newDataState = 'newDataState';
         const history = { name: 'name', data: 'data' };
         const state = { ...initialState, history: [history] };
-        const action = changeActiveScreenState(newDataState);
+        const action = changeActiveScreenState({
+            data: newDataState,
+            name: 'name',
+        });
         const newState = reducer(state, action);
 
         expect(newState).toEqual({

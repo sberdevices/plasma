@@ -29,8 +29,8 @@ export const pushHistory = <
 
 export const popHistory = (delta?: number): PopHistoryAction => createAction(AppStateActionType.POP_HISTORY, { delta });
 
-export const changeActiveScreenState = (data: History['data']): ChangeStateAction =>
-    createAction(AppStateActionType.CHANGE_ACTIVE_SCREEN_STATE, { data });
+export const changeActiveScreenState = (data: History): ChangeStateAction =>
+    createAction(AppStateActionType.CHANGE_ACTIVE_SCREEN_STATE, data);
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getActionCreators = <
