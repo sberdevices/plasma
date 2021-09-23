@@ -26,8 +26,16 @@ jobs:
         npm run storybook:build
         cd ../..
         npx http-server ./packages/plasma-ui/build-sb -p 6006 &
+
     - name: Cypress run
       uses: cypress-io/github-action@v2
       with:
         browser: chrome
         config-file: cypress.json
+
+    - name: Save artifacts
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: Test Artifacts
+        path: /home/runner/work/plasma/plasma/cypress
