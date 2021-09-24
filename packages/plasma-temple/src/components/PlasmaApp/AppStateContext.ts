@@ -12,7 +12,7 @@ export interface AppStateContextValue {
     pushScreen: (name: string, params: unknown) => void;
     popScreen: () => void;
     goToScreen: (name: string) => void;
-    changeActiveScreenState: (state: Partial<History>) => void;
+    changeActiveScreenState: (state: History) => void;
 }
 
 const throwFn = () => {

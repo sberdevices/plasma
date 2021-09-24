@@ -86,7 +86,7 @@ export function App<Name extends string>({
     );
 
     const changeActiveScreenState = React.useCallback(
-        (data: Partial<History>) => dispatch(Actions.changeActiveScreenState(data)),
+        (data: History) => dispatch(Actions.changeActiveScreenState(data)),
         [dispatch],
     );
 
@@ -124,6 +124,8 @@ export function App<Name extends string>({
 
     usePopHistoryListener(state.history.length, onPopScreen);
 
+    const activeScreen = last(state.history);
+
     const appStateContextValue = React.useMemo(
         () => ({
             state,
@@ -137,8 +139,6 @@ export function App<Name extends string>({
         }),
         [state, header, pushScreen, popScreen, pushHistory, goToScreen, changeActiveScreenState],
     );
-
-    const activeScreen = last(state.history);
 
     const childToRender = React.useMemo(() => {
         const childArray = React.Children.toArray(children) as React.ReactElement<PageProps<Name>>[];
