@@ -1,8 +1,13 @@
 {
     "name": "@sberdevices/cra-template-plasma-basic-template",
-    "version": "1.3.0",
+    "version": "2.0.0",
     "description": "",
-    "keywords": ["react", "create-react-app", "template", "typescript"],
+    "keywords": [
+        "react",
+        "create-react-app",
+        "template",
+        "typescript"
+    ],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/sberdevices/plasma.git",
@@ -15,7 +20,10 @@
     "bugs": {
         "url": "https://github.com/sberdevices/plasma/issues"
     },
-    "files": ["template", "template.json"],
+    "files": [
+        "template",
+        "template.json"
+    ],
     "publishConfig": {
         "access": "public"
     }
