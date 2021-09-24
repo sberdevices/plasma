@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import {
     TextFieldRoot,
@@ -40,14 +40,20 @@ const StyledDropdown = styled(Dropdown)`
     display: flex;
     width: 100%;
 `;
-const StyledArrow = styled(IconChevronDown)`
+const StyledArrow = styled(IconChevronDown)<{ isOpen?: boolean }>`
     margin-left: 0.75rem;
     color: ${primary};
-    transition: color 0.3s ease-in-out;
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
 
     &:hover {
         color: ${accent};
     }
+
+    ${({ isOpen }) =>
+        isOpen &&
+        css`
+            transform: rotate(-180deg);
+        `}
 `;
 const StyledText = styled.span`
     ${applyEllipsis}
@@ -130,6 +136,8 @@ const StyledRoot = styled(TextFieldRoot)`
 export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
     ({ placeholder, value, helperText, disabled, status, className, style, items, onItemClick, ...rest }, ref) => {
         const isIcon = Boolean(items && items.length);
+        const [isOpen, setIsOpen] = useState(false);
+        const onToggle = useCallback((is) => setIsOpen(is), []);
 
         return (
             <StyledRoot
@@ -141,11 +149,11 @@ export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
                 className={className}
                 style={style}
             >
-                <StyledDropdown offsetTop="0.125rem" items={items} onItemClick={onItemClick}>
+                <StyledDropdown offsetTop="0.125rem" items={items} onItemClick={onItemClick} onToggle={onToggle}>
                     <StyledButton ref={ref} disabled={disabled} status={status} type="button" {...rest}>
                         {value && <StyledText>{value}</StyledText>}
                         {placeholder && !value && <StyledPlaceholder>{placeholder}</StyledPlaceholder>}
-                        {isIcon && <StyledArrow size="xs" color="inherit" />}
+                        {isIcon && <StyledArrow size="xs" color="inherit" isOpen={isOpen} />}
                     </StyledButton>
                 </StyledDropdown>
                 {helperText && <TextFieldHelper status={status}>{helperText}</TextFieldHelper>}
