@@ -1,3 +1,20 @@
+# v1.2.0 (Fri Sep 24 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-b2c): Added group `Select` functionality [#805](https://github.com/sberdevices/plasma/pull/805) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-b2c): Added `Select` component [#805](https://github.com/sberdevices/plasma/pull/805) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-b2c): Flip `Select` arrow [#805](https://github.com/sberdevices/plasma/pull/805) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.1.1 (Tue Sep 21 2021)
 
 #### 🐛 Bug Fix

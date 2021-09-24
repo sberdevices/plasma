@@ -1,3 +1,17 @@
+# v1.49.0 (Fri Sep 24 2021)
+
+#### 🐛 Bug Fix
+
+- chore: resolve cypress and jest conflicts [#573](https://github.com/sberdevices/plasma/pull/573) ([@OgNellis](https://github.com/OgNellis))
+- chore: cypress component testing [#573](https://github.com/sberdevices/plasma/pull/573) (dkakhetov@sberbank.ru)
+
+#### Authors: 2
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+- Daniil Akhetov (dkakhetov@sberbank.ru)
+
+---
+
 # v1.48.1 (Tue Sep 21 2021)
 
 #### 🐛 Bug Fix

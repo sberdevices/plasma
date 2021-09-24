@@ -1,3 +1,27 @@
+# v1.47.0 (Fri Sep 24 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-web): `Dropdown` `onToggle` notification [#805](https://github.com/sberdevices/plasma/pull/805) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-web): Moved `SingleSelect` and `MultiSelect` functionality to hocs [#805](https://github.com/sberdevices/plasma/pull/805) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-web): Customize `Dropdown` with CSS Vars [#805](https://github.com/sberdevices/plasma/pull/805) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web): Removed `DropdownList` min-width [#805](https://github.com/sberdevices/plasma/pull/805) ([@fanisco](https://github.com/fanisco))
+- chore: make cypress work again [#573](https://github.com/sberdevices/plasma/pull/573) ([@Yeti-or](https://github.com/Yeti-or))
+- chore: resolve cypress and jest conflicts [#573](https://github.com/sberdevices/plasma/pull/573) ([@OgNellis](https://github.com/OgNellis))
+- chore: cypress component testing [#573](https://github.com/sberdevices/plasma/pull/573) (dkakhetov@sberbank.ru)
+
+#### Authors: 4
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+- Daniil Akhetov (dkakhetov@sberbank.ru)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.46.1 (Tue Sep 21 2021)
 
 #### 🐛 Bug Fix
