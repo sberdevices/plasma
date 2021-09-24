@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-ui",
-    "version": "1.48.1",
+    "version": "1.49.0",
     "description": "SberDevices Design System",
     "main": "index.js",
     "module": "es/index.js",
@@ -12,7 +12,7 @@
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
     "dependencies": {
-        "@sberdevices/plasma-core": "1.28.1",
+        "@sberdevices/plasma-core": "1.29.0",
         "lodash.throttle": "4.1.1",
         "react-draggable": "4.4.3"
     },
@@ -32,8 +32,8 @@
         "@babel/preset-env": "7.15.4",
         "@babel/preset-react": "7.14.5",
         "@babel/preset-typescript": "7.15.0",
-        "@sberdevices/plasma-icons": "1.41.1",
-        "@sberdevices/plasma-sb-utils": "0.26.1",
+        "@sberdevices/plasma-icons": "1.42.0",
+        "@sberdevices/plasma-sb-utils": "0.27.0",
         "@sberdevices/plasma-tokens": "1.13.0",
         "@storybook/addon-docs": "6.3.8",
         "@storybook/addon-essentials": "6.3.8",
@@ -60,8 +60,8 @@
         "react-scripts": "3.4.4",
         "sb": "6.3.8",
         "styled-components": "5.3.1",
-        "typescript": "3.9.10",
-        "ts-jest": "27.0.5"
+        "ts-jest": "27.0.5",
+        "typescript": "3.9.10"
     },
     "publishConfig": {
         "access": "public"
