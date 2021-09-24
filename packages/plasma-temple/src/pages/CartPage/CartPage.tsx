@@ -8,7 +8,7 @@ import { CartOrder } from './components/CartOrder/CartOrder';
 import { useCart } from './hooks/useCart';
 import { useCartAssistantState } from './hooks/useCartAssistantState';
 import { CartItemList } from './components/CartItemList/CartItemList';
-import { CartItem, CartState } from './types';
+import { CartState } from './types';
 
 interface CartPageProps<T extends CartState> {
     header?: HeaderProps;
@@ -16,6 +16,7 @@ interface CartPageProps<T extends CartState> {
     emptyCart?: React.ReactElement;
     orderButtonText?: string;
     onMakeOrder: (cartState: T) => void;
+    onItemClick?: (item: T['items'][number]) => void;
 }
 
 export function CartPage<T extends CartState = CartState>({
@@ -24,6 +25,7 @@ export function CartPage<T extends CartState = CartState>({
     emptyCart,
     orderButtonText = 'Оформить заказ',
     onMakeOrder,
+    onItemClick,
     children,
 }: React.PropsWithChildren<CartPageProps<T>>): React.ReactElement {
     const { state } = useCart<T>();
@@ -41,7 +43,7 @@ export function CartPage<T extends CartState = CartState>({
             ) : (
                 <Row>
                     <Col sizeXL={6} sizeM={4} sizeS={4}>
-                        <CartItemList items={(items as unknown) as CartItem[]} currency={currency} />
+                        <CartItemList items={items} currency={currency} onItemClick={onItemClick} />
                     </Col>
                     <Col sizeXL={3.5} offsetXL={2.5} sizeM={2} sizeS={4}>
                         <CartOrder
