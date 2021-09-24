@@ -25,6 +25,7 @@ export interface DropdownProps extends HTMLAttributes<HTMLDivElement> {
      * Обработчик клика по айтему.
      */
     onItemClick?: (item: DropdownItemType) => void;
+    onToggle?: (isOpen: boolean) => void;
 }
 
 /**
@@ -35,8 +36,10 @@ export const Dropdown: FC<DropdownProps> = ({
     offsetTop,
     items,
     onItemClick: onItemClickExternal,
+    onToggle,
     ...rest
 }) => {
+    const oldIsOpen = useRef<boolean | null>(null);
     const rootRef = useRef<HTMLDivElement>(null);
     const listRef = useRef<HTMLDivElement>(null);
     const [isOpen, setIsOpen] = useState(false);
@@ -76,6 +79,13 @@ export const Dropdown: FC<DropdownProps> = ({
         },
         [setIsOpen, onItemClickExternal],
     );
+
+    useEffect(() => {
+        if (oldIsOpen.current !== null && oldIsOpen.current !== isOpen) {
+            onToggle?.(isOpen);
+        }
+        oldIsOpen.current = isOpen;
+    }, [isOpen]);
 
     useEffect(() => {
         document.addEventListener('click', onDocumentClick);
