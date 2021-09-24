@@ -8,6 +8,8 @@ import { light, dark } from '@sberdevices/plasma-tokens-web/themes';
 import { light as b2cLight, dark as b2cDark } from '@sberdevices/plasma-tokens-b2c/themes';
 import { web } from '@sberdevices/plasma-tokens-web/typo';
 
+import { ToastProvider } from '../src/components/Toast';
+
 import storybookTheme from './theme';
 
 /* stylelint-disable */
@@ -51,8 +53,15 @@ const withTheme = (Story, context) => {
     );
 };
 
+const withToast = (Story) => (
+    <ToastProvider>
+        <Story />
+    </ToastProvider>
+);
+
 addDecorator(withKnobs);
 addDecorator(withTheme);
+addDecorator(withToast);
 
 addParameters({
     viewport: {

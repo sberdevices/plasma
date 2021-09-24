@@ -3,7 +3,7 @@ import styled, { css, keyframes } from 'styled-components';
 
 import { Fade } from '../Fade';
 
-import { ToastInfo } from './types';
+import { ToastInfo } from './Toast.types';
 import { Toast } from './Toast';
 import { useToast } from './useToast';
 
@@ -79,7 +79,7 @@ const StyledRoot = styled.div<{ position: string; isVisible: boolean }>`
  * Создаёт <div />, который внутри себя содержит тост.
  * Цикл: show => timeout => hide.
  */
-export const ToastController: React.FC<ToastInfo> = ({ text, position, timeout, fade }) => {
+export const ToastController: React.FC<ToastInfo> = ({ text, contentLeft, position, timeout, fade }) => {
     const { hideToast } = useToast();
     const [isVisible, setIsVisible] = useState(true);
     const hideTimeout = useRef<number | null>(null);
@@ -114,7 +114,7 @@ export const ToastController: React.FC<ToastInfo> = ({ text, position, timeout, 
         <>
             {fade && <StyledFade isVisible={isVisible} placement={position} />}
             <StyledRoot key={toastKey} position={position} isVisible={isVisible} onAnimationEnd={animationEndHandler}>
-                <Toast text={text} />
+                <Toast text={text} contentLeft={contentLeft} />
             </StyledRoot>
         </>
     );
