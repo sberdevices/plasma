@@ -39,7 +39,8 @@ interface PageLazyParams<
 }
 
 interface PageLazy {
-    lazy<T extends PageLazyParams<PageComp<AnyObject, string>>>(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    lazy<T extends PageLazyParams<PageComp<AnyObject, any>>>(
         factory: () => Promise<T>,
     ): React.LazyExoticComponent<React.MemoExoticComponent<T['default']>>;
 }
