@@ -1,3 +1,22 @@
+# (Tue Sep 28 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@1.1.0`
+  - feat(plasma-temple): opening item from cart [#814](https://github.com/sberdevices/plasma/pull/814) ([@kayman233](https://github.com/kayman233))
+
+#### 🐛 Bug Fix
+
+- ci: disable pck-lock update in docs [#817](https://github.com/sberdevices/plasma/pull/817) ([@Yeti-or](https://github.com/Yeti-or))
+- ci: fix failing of pkg-locks [#817](https://github.com/sberdevices/plasma/pull/817) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- [@kayman233](https://github.com/kayman233)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # (Fri Sep 24 2021)
 
 #### 💥 Breaking Change

@@ -1,3 +1,15 @@
+# v1.1.0 (Tue Sep 28 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): opening item from cart [#814](https://github.com/sberdevices/plasma/pull/814) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 1
+
+- [@kayman233](https://github.com/kayman233)
+
+---
+
 # v1.0.0 (Fri Sep 24 2021)
 
 #### 💥 Breaking Change
