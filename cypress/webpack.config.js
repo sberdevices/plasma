@@ -14,6 +14,7 @@ module.exports = function getWebpackConfig() {
             extensions: ['.wasm', '.ts', '.tsx', '.mjs', '.cjs', '.js', '.jsx', '.json', '.map'],
             modules: ['node_modules'],
             alias: {
+                'styled-components': path.resolve(process.env.PACKEGE_DIR, 'node_modules', 'styled-components'),
                 react: path.resolve(process.env.PACKEGE_DIR, 'node_modules', 'react'),
                 'react-dom': path.resolve(process.env.PACKEGE_DIR, 'node_modules', 'react-dom'),
             },
