@@ -28,6 +28,11 @@ jobs:
       if: ${{ always() }}
       run: | 
         npm run cy:web:run-ct
+
+    - name: Run Cypress CT for Plasma Web
+      if: ${{ always() }}
+      run: | 
+        npm run cy:b2c:run-ct
     
     - name: Save artifacts
       if: ${{ always() }}

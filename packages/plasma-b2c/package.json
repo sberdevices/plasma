@@ -45,6 +45,7 @@
         "@babel/preset-react": "7.14.5",
         "@babel/preset-typescript": "7.15.0",
         "@sberdevices/plasma-colors": "0.1.1",
+        "@sberdevices/plasma-cy-utils": "0.0.0",
         "@sberdevices/plasma-icons": "1.39.3",
         "@sberdevices/plasma-sb-utils": "0.25.0",
         "@sberdevices/plasma-tokens-b2c": "0.5.2",
@@ -69,23 +70,7 @@
         "styled-components": "5.3.1",
         "typescript": "3.9.10"
     },
-    "keywords": [
-        "design-system",
-        "react-components",
-        "ui-kit",
-        "react"
-    ],
-    "files": [
-        "components",
-        "es",
-        "hocs",
-        "hooks",
-        "mixins",
-        "tokens",
-        "types",
-        "utils",
-        "index.d.ts",
-        "index.js"
-    ],
+    "keywords": ["design-system", "react-components", "ui-kit", "react"],
+    "files": ["components", "es", "hocs", "hooks", "mixins", "tokens", "types", "utils", "index.d.ts", "index.js"],
     "sideEffects": false
 }
