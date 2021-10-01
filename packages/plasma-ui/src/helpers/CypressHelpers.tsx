@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { darkSber } from '@sberdevices/plasma-tokens/themes';
 
 import { DeviceThemeProvider } from '../components/Device';
@@ -12,3 +12,11 @@ export const CypressTestDecorator: FC = ({ children }) => (
         <ThemeStyle />
     </DeviceThemeProvider>
 );
+
+export const Padme = styled.div`
+    padding: 5px;
+`;
+
+export const SpaceMe = styled.span`
+    padding: 5px;
+`;

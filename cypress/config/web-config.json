@@ -5,7 +5,8 @@
     },
     "env": {
         "snapshotsDir": "cypress/snapshots/web",
-        "packageDir": "../../packages/plasma-web"
+        "packageDir": "../../packages/plasma-web",
+        "package": "plasma-web"
     },
     "video": false
 }
