@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 import { mount } from '@cypress/react';
 import { IconEye } from '@sberdevices/plasma-icons';
 
-import { CypressTestDecorator, Padme, SpaceMe } from '../../helpers/CypressHelpers';
+import { CypressTestDecorator, Padme, SpaceMe } from '../../helpers';
 
 import { Badge } from '.';
 

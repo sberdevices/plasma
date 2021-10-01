@@ -1,0 +1,44 @@
+{
+    "name": "@sberdevices/plasma-cy-utils",
+    "version": "0.0.0",
+    "description": "Test helpers shared between ui libraries.",
+    "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
+    "license": "Sber Public License at-nc-sa v.2",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "ssh://git@github.com:sberdevices/plasma.git",
+        "directory": "utils/plasma-cy-utils"
+    },
+    "peerDependencies": {
+        "@sberdevices/plasma-tokens": "^1.13.0",
+        "@sberdevices/plasma-tokens-b2c": "^0.6.1",
+        "@sberdevices/plasma-tokens-web": "^1.12.1",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "styled-components": "^5.1.1"
+    },
+    "devDependencies": {
+        "@sberdevices/plasma-tokens": "1.13.0",
+        "@sberdevices/plasma-tokens-b2c": "0.6.1",
+        "@sberdevices/plasma-tokens-web": "1.12.1",
+        "@types/react": "16.9.38",
+        "@types/react-dom": "16.9.8",
+        "@types/styled-components": "^5.1.0",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "styled-components": "^5.1.1",
+        "typescript": "3.9.10"
+    },
+    "scripts": {
+        "prepare": "npm run build",
+        "prebuild": "npm run clean",
+        "build": "tsc",
+        "clean": "rm -rf lib"
+    },
+    "publishConfig": {
+        "access": "restricted"
+    },
+    "files": ["lib"]
+}

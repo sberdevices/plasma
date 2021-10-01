@@ -4,12 +4,13 @@ import ReactDom from 'react-dom';
 import { mount } from '@cypress/react';
 import { IconEye } from '@sberdevices/plasma-icons';
 
-import { Badge } from '.';
-import { CypressTestDecorator, Padme, SpaceMe } from '../../helpers/CypressHelpers';
+import { CypressTestDecorator, getComponent, Padme, SpaceMe } from '../../helpers';
 
 const Icon = () => <IconEye color="inherit" size="xs" />;
 
 describe('plasma-web: Badge', () => {
+    const Badge = getComponent('Badge');
+
     it('_view', () => {
         mount(
             <CypressTestDecorator>

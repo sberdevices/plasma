@@ -1,21 +1,27 @@
 import React, { FC } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+// plasma-web
 import { web } from '@sberdevices/plasma-tokens-web/typo';
 import { light } from '@sberdevices/plasma-tokens-web/themes';
+// plasma-ui
 import { darkSber } from '@sberdevices/plasma-tokens/themes';
 
+// TODO: better naming
 const TypoThemeStyle = createGlobalStyle(web);
 const ColorThemeStyle = createGlobalStyle(light);
+
 const ThemeStyle = createGlobalStyle(darkSber);
 
 export const getComponent = (componentName: string) => {
+    // eslint-disable-next-line
+    // @ts-ignore
     const pkgName = Cypress.env('package');
 
     if (!pkgName) {
         throw new Error('Add package env to your Cypress config');
     }
 
-    const check = (component) => {
+    const check = (component: {}) => {
         if (!component) {
             throw new Error(`Library ${pkgName} has no ${componentName}`);
         }
@@ -23,7 +29,7 @@ export const getComponent = (componentName: string) => {
 
     if (pkgName === 'plasma-ui') {
         // eslint-disable-next-line
-        const pkg = require('../../../plasma-ui');
+        const pkg = require('../../../packages/plasma-ui');
         const component = pkg[componentName];
 
         check(component);
@@ -33,7 +39,7 @@ export const getComponent = (componentName: string) => {
 
     if (pkgName === 'plasma-web') {
         // eslint-disable-next-line
-        const pkg = require('../../../plasma-web');
+        const pkg = require('../../../packages/plasma-web');
         const component = pkg[componentName];
 
         check(component);
@@ -45,6 +51,8 @@ export const getComponent = (componentName: string) => {
 };
 
 export const CypressTestDecorator: FC = ({ children }) => {
+    // eslint-disable-next-line
+    // @ts-ignore
     const pkgName = Cypress.env('package');
 
     if (pkgName === 'plasma-ui') {
