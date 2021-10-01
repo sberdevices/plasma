@@ -48,6 +48,9 @@ packages/plasma-basic-template/*
 packages/plasma-shop-template/*
 !packages/plasma-shop-template/template
 
+utils/plasma-cy-utils/*
+!utils/plasma-cy-utils/src
+
 utils/plasma-docs-ui/*
 !utils/plasma-docs-ui/src
 
