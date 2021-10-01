@@ -4,7 +4,7 @@ import ReactDom from 'react-dom';
 import { mount } from '@cypress/react';
 import { IconEye } from '@sberdevices/plasma-icons';
 
-import { CypressTestDecorator, getComponent, Padme, SpaceMe } from '../../__helpers';
+import { CypressTestDecorator, getComponent, PadMe, SpaceMe } from '../../__helpers';
 
 const Icon = () => <IconEye color="inherit" size="xs" />;
 
@@ -25,7 +25,7 @@ describe('plasma-core: Badge', () => {
         mount(
             <CypressTestDecorator>
                 <Badge text="Badge" contentLeft={<Icon />} />
-                <Padme />
+                <PadMe />
                 <Badge contentLeft={<Icon />} />
             </CypressTestDecorator>,
             { ReactDom },
@@ -37,9 +37,9 @@ describe('plasma-core: Badge', () => {
         mount(
             <CypressTestDecorator>
                 <Badge text="Badge_size_l" size="l" contentLeft={<Icon />} />
-                <Padme />
+                <PadMe />
                 <Badge text="Badge_size_s" size="s" contentLeft={<Icon />} />
-                <Padme />
+                <PadMe />
             </CypressTestDecorator>,
             { ReactDom },
         );
@@ -54,13 +54,13 @@ describe('plasma-core: Badge', () => {
                 <Badge circled size="l" text="18" />
                 <SpaceMe />
                 <Badge circled size="s" text="18" />
-                <Padme />
+                <PadMe />
                 simple :
                 <SpaceMe />
                 <Badge size="l" text="18" />
                 <SpaceMe />
                 <Badge size="s" text="18" />
-                <Padme />
+                <PadMe />
             </CypressTestDecorator>,
             { ReactDom },
         );

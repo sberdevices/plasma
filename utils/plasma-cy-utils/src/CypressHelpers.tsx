@@ -105,7 +105,7 @@ export const CypressTestDecorator: FC = ({ children }) => {
     return <>{children}</>;
 };
 
-export const Padme = styled.div`
+export const PadMe = styled.div`
     padding: 5px;
 `;
 
