@@ -1,3 +1,5 @@
+export * from '@sberdevices/plasma-cy-utils';
+
 export { actionWithPersistedEvent } from './actionWithPersistedEvent';
 
 export { disableProps } from './disableProps';
