@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 import { mount } from '@cypress/react';
 import { IconEye } from '@sberdevices/plasma-icons';
 
-import { CypressTestDecorator, Padme, SpaceMe } from '../../helpers';
+import { CypressTestDecorator, PadMe, SpaceMe } from '../../helpers';
 
 import { Badge } from '.';
 
@@ -16,7 +16,7 @@ describe('Badge', () => {
                 <Badge view="primary" text="Badge_view_primary" contentLeft={<Icon />} />
                 <SpaceMe />
                 <Badge view="primary" contentLeft={<Icon />} />
-                <Padme />
+                <PadMe />
                 <div style={{ background: 'white' }}>
                     <Badge view="secondary" text="Badge_view_secondary" contentLeft={<Icon />} />
                     <SpaceMe />
