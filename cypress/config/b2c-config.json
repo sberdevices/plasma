@@ -1,0 +1,12 @@
+{
+    "component": {
+        "componentFolder": "./packages/plasma-b2c/src",
+        "testFiles": "**/*component-test.{ts,tsx}"
+    },
+    "env": {
+        "snapshotsDir": "cypress/snapshots/b2c",
+        "packageDir": "../../packages/plasma-b2c",
+        "package": "plasma-b2c"
+    },
+    "video": false
+}
