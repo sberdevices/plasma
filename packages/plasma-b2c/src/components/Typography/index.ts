@@ -12,6 +12,7 @@ export {
     Headline2,
     Headline3,
     Headline4,
+    Headline5,
     P1,
     P2,
     ParagraphText1,

@@ -1,0 +1,1 @@
+../../../../plasma-web/src/components/Typography/Typography.component-test.tsx
