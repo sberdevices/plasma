@@ -1,0 +1,1 @@
+../../../../plasma-core/src/components/Switch/Switch.component-test.tsx
