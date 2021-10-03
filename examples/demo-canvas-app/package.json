@@ -6,7 +6,8 @@
     "license": "Sber Public License at-nc-sa v.2",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/sberdevices/pashka.git"
+        "url": "git+https://github.com/sberdevices/pashka.git",
+        "directory": "examples/demo-canvas-app"
     },
     "private": true,
     "publishConfig": {
