@@ -3,5 +3,6 @@ node_modules/
 tsconfig.tsbuildinfo
 tsconfig.es.tsbuildinfo
 cypress/snapshots/**/__diff_output__
+cypress/snapshots/**/All\ Specs
 cypress/screenshots
 cypress/videos
