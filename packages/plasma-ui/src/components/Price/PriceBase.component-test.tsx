@@ -1,0 +1,1 @@
+../../../../plasma-core/src/components/Price/Price.component-test.tsx
