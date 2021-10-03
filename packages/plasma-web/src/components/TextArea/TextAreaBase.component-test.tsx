@@ -1,0 +1,1 @@
+../../../../plasma-core/src/components/TextArea/TextArea.component-test.tsx
