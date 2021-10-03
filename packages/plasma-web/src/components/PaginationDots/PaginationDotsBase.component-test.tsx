@@ -1,0 +1,1 @@
+../../../../plasma-core/src/components/PaginationDots/PaginationDots.component-test.tsx
