@@ -1,5 +1,22 @@
 # (Sun Oct 03 2021)
 
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-core@1.30.0`, `@sberdevices/plasma-ui@1.51.0`, `@sberdevices/plasma-web@1.49.0`, `@sberdevices/plasma-cy-utils@0.1.0`
+  - feat(plasma-cy-utils): padMe [#824](https://github.com/sberdevices/plasma/pull/824) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### 🐛 Bug Fix
+
+- ci: improve lergna ignore [#824](https://github.com/sberdevices/plasma/pull/824) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# (Sun Oct 03 2021)
+
 #### 🐛 Bug Fix
 
 - chore: .eslintignore [#823](https://github.com/sberdevices/plasma/pull/823) ([@Yeti-or](https://github.com/Yeti-or))

@@ -1,3 +1,20 @@
+# v1.51.0 (Sun Oct 03 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-cy-utils): padMe [#824](https://github.com/sberdevices/plasma/pull/824) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.50.2 (Sun Oct 03 2021)
 
 #### 🐛 Bug Fix
