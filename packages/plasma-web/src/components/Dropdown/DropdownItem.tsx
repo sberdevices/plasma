@@ -30,6 +30,7 @@ const StyledDropdownItem = styled.a<{ $disabled?: boolean; $color?: string }>`
     padding: var(--plasma-dropdown-item-padding, 1rem);
     border-radius: var(--plasma-dropdown-item-border-radius, 0);
 
+    font-family: var(--plasma-dropdown-item-font-family, ${body1.fontFamily});
     font-size: var(--plasma-dropdown-item-font-size, ${body1.fontSize});
     font-weight: var(--plasma-dropdown-item-font-weight, ${body1.fontWeight});
     line-height: var(--plasma-dropdown-item-line-height, ${body1.lineHeight});
