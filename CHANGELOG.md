@@ -1,5 +1,18 @@
 # (Mon Oct 04 2021)
 
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-b2c@1.5.0`
+  - feat(plasma-b2c): Editable component added [#821](https://github.com/sberdevices/plasma/pull/821) ([@aabulakhsberbank](https://github.com/aabulakhsberbank))
+
+#### Authors: 1
+
+- [@aabulakhsberbank](https://github.com/aabulakhsberbank)
+
+---
+
+# (Mon Oct 04 2021)
+
 #### 🐛 Bug Fix
 
 - `@sberdevices/cra-template-plasma-shop-template@2.1.1`, `@sberdevices/plasma-temple@1.1.3`

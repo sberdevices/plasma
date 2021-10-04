@@ -1,3 +1,15 @@
+# v1.5.0 (Mon Oct 04 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-b2c): Editable component added [#821](https://github.com/sberdevices/plasma/pull/821) ([@aabulakhsberbank](https://github.com/aabulakhsberbank))
+
+#### Authors: 1
+
+- [@aabulakhsberbank](https://github.com/aabulakhsberbank)
+
+---
+
 # v1.4.1 (Mon Oct 04 2021)
 
 #### 🐛 Bug Fix
