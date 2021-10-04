@@ -1,3 +1,16 @@
+# v2.1.1 (Mon Oct 04 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): fix cart scroll [#813](https://github.com/sberdevices/plasma/pull/813) ([@kayman233](https://github.com/kayman233))
+- chore(plasma-shop-template, plasma-temple): update versions [#813](https://github.com/sberdevices/plasma/pull/813) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 1
+
+- [@kayman233](https://github.com/kayman233)
+
+---
+
 # v2.1.0 (Tue Sep 28 2021)
 
 #### 🐛 Bug Fix

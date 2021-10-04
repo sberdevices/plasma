@@ -2,6 +2,21 @@
 
 #### 🐛 Bug Fix
 
+- `@sberdevices/cra-template-plasma-shop-template@2.1.1`, `@sberdevices/plasma-temple@1.1.3`
+  - fix(plasma-temple): fix cart scroll [#813](https://github.com/sberdevices/plasma/pull/813) ([@kayman233](https://github.com/kayman233))
+- `@sberdevices/cra-template-plasma-shop-template@2.1.1`
+  - chore(plasma-shop-template, plasma-temple): update versions [#813](https://github.com/sberdevices/plasma/pull/813) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 1
+
+- [@kayman233](https://github.com/kayman233)
+
+---
+
+# (Mon Oct 04 2021)
+
+#### 🐛 Bug Fix
+
 - test(plasma-ui/web/b2c): fix cy component tests [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
 - `@sberdevices/plasma-temple@1.1.2`
   - fix(plasma-temple): Fix Layout scroll [#815](https://github.com/sberdevices/plasma/pull/815) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))

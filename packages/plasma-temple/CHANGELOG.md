@@ -1,3 +1,15 @@
+# v1.1.3 (Mon Oct 04 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): fix cart scroll [#813](https://github.com/sberdevices/plasma/pull/813) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 1
+
+- [@kayman233](https://github.com/kayman233)
+
+---
+
 # v1.1.2 (Mon Oct 04 2021)
 
 #### 🐛 Bug Fix
