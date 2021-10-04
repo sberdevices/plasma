@@ -1,3 +1,15 @@
+# v1.1.2 (Mon Oct 04 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): Fix Layout scroll [#815](https://github.com/sberdevices/plasma/pull/815) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.1.1 (Tue Sep 28 2021)
 
 #### 🐛 Bug Fix

@@ -1,3 +1,37 @@
+# (Mon Oct 04 2021)
+
+#### 🐛 Bug Fix
+
+- test(plasma-ui/web/b2c): fix cy component tests [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-temple@1.1.2`
+  - fix(plasma-temple): Fix Layout scroll [#815](https://github.com/sberdevices/plasma/pull/815) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- `@sberdevices/plasma-b2c@1.4.1`, `@sberdevices/plasma-core@1.30.1`, `@sberdevices/plasma-ui@1.51.1`, `@sberdevices/plasma-web@1.49.1`
+  - test(plasma-ui/web/b2c): Typography: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui/web/b2c): TextField: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui/web/b2c): TextArea: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui/web/b2c): Tabs: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui/web/b2c): Switch: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui/web/b2c): Radiobox: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui/web/b2c): Price: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui/web/b2c): PaginationDots: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui/web/b2c): Checkbox: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui/web/b2c): Button: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-b2c@1.4.1`, `@sberdevices/plasma-web@1.49.1`
+  - test(plasma-web/b2c): Tooltip: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-web/b2c): Select: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-web/b2c): Progress: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-web/b2c): Notification: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-web/b2c): Modal: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-web/b2c): Link: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui/web/b2c): Dropdown: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # (Sun Oct 03 2021)
 
 #### 🚀 Enhancement
