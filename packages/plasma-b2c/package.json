@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-b2c",
-    "version": "1.4.0",
+    "version": "1.4.1",
     "description": "SberDevices Design System / React UI kit for business-related web applications",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
@@ -28,7 +28,7 @@
     "dependencies": {
         "@popperjs/core": "2.9.2",
         "@sberdevices/plasma-core": "1.30.0",
-        "@sberdevices/plasma-web": "1.49.0",
+        "@sberdevices/plasma-web": "1.49.1",
         "react-popper": "2.2.5",
         "storeon": "3.1.4"
     },
