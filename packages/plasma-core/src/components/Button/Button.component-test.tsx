@@ -1,8 +1,6 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import { mount } from '@cypress/react';
 import { IconDownload } from '@sberdevices/plasma-icons';
-import { CypressTestDecorator, getComponent, PadMe, SpaceMe } from '@sberdevices/plasma-cy-utils';
+import { mount, CypressTestDecorator, getComponent, PadMe, SpaceMe } from '@sberdevices/plasma-cy-utils';
 
 const Icon = () => <IconDownload />;
 
@@ -14,7 +12,6 @@ describe('plasma-core: Button', () => {
             <CypressTestDecorator>
                 <Button>Hello Plasma</Button>
             </CypressTestDecorator>,
-            { ReactDom },
         );
         cy.matchImageSnapshot();
     });
@@ -44,7 +41,6 @@ describe('plasma-core: Button', () => {
                 <SpaceMe />
                 <Button contentRight={<Icon />} />
             </CypressTestDecorator>,
-            { ReactDom },
         );
         cy.matchImageSnapshot();
     });

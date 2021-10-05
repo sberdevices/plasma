@@ -1,10 +1,8 @@
 /* eslint-disable */
 import React from 'react';
-import ReactDom from 'react-dom';
-import { mount } from '@cypress/react';
 import { IconEye } from '@sberdevices/plasma-icons';
 
-import { CypressTestDecorator, getComponent, PadMe, SpaceMe } from '@sberdevices/plasma-cy-utils';
+import { mount, CypressTestDecorator, getComponent, PadMe, SpaceMe } from '@sberdevices/plasma-cy-utils';
 
 const Icon = () => <IconEye color="inherit" size="xs" />;
 
@@ -16,8 +14,8 @@ describe('plasma-core: Badge', () => {
             <CypressTestDecorator>
                 <Badge text="Badge" />
             </CypressTestDecorator>,
-            { ReactDom },
         );
+
         cy.matchImageSnapshot();
     });
 
@@ -28,8 +26,8 @@ describe('plasma-core: Badge', () => {
                 <PadMe />
                 <Badge contentLeft={<Icon />} />
             </CypressTestDecorator>,
-            { ReactDom },
         );
+
         cy.matchImageSnapshot();
     });
 
@@ -41,8 +39,8 @@ describe('plasma-core: Badge', () => {
                 <Badge text="Badge_size_s" size="s" contentLeft={<Icon />} />
                 <PadMe />
             </CypressTestDecorator>,
-            { ReactDom },
         );
+
         cy.matchImageSnapshot();
     });
 
@@ -62,8 +60,8 @@ describe('plasma-core: Badge', () => {
                 <Badge size="s" text="18" />
                 <PadMe />
             </CypressTestDecorator>,
-            { ReactDom },
         );
+
         cy.matchImageSnapshot();
     });
 });

@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import { mount } from '@cypress/react';
-import { CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
+import { mount, CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
 
 describe('plasma-core: Typography', () => {
     const Body1 = getComponent('Body1');
@@ -42,7 +40,6 @@ describe('plasma-core: Typography', () => {
                 <ParagraphText2>Hello ParagraphText 2</ParagraphText2>
                 <Underline>Hello Underline</Underline>
             </CypressTestDecorator>,
-            { ReactDom },
         );
 
         cy.matchImageSnapshot();

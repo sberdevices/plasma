@@ -1,9 +1,7 @@
 /* eslint-disable */
 import React from 'react';
-import ReactDom from 'react-dom';
-import { mount } from '@cypress/react';
 
-import { CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
+import { mount, CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
 
 describe('plasma-web: Dropdown', () => {
     const Dropdown = getComponent('Dropdown');
@@ -22,7 +20,6 @@ describe('plasma-web: Dropdown', () => {
                     <Button text="open" />
                 </Dropdown>
             </CypressTestDecorator>,
-            { ReactDom },
         );
 
         cy.get('button').click();

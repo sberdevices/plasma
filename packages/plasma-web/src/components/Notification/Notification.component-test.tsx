@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import { mount } from '@cypress/react';
-import { CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
+import { mount, CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
 
 describe('plasma-web: Notification', () => {
     const NotificationsProvider = getComponent('NotificationsProvider');
@@ -27,7 +25,6 @@ describe('plasma-web: Notification', () => {
                     />
                 </NotificationsProvider>
             </CypressTestDecorator>,
-            { ReactDom },
         );
 
         cy.get('button').click().click();

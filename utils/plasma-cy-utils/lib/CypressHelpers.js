@@ -26,9 +26,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SpaceMe = exports.PadMe = exports.CypressTestDecorator = exports.getComponent = void 0;
+exports.mount = exports.SpaceMe = exports.PadMe = exports.CypressTestDecorator = exports.getComponent = void 0;
 var react_1 = __importDefault(require("react"));
 var styled_components_1 = __importStar(require("styled-components"));
+var react_2 = require("@cypress/react");
 // plasma-web
 var typo_1 = require("@sberdevices/plasma-tokens-web/typo");
 var themes_1 = require("@sberdevices/plasma-tokens-web/themes");
@@ -105,5 +106,21 @@ exports.CypressTestDecorator = function (_a) {
 };
 exports.PadMe = styled_components_1.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    padding: 5px;\n"], ["\n    padding: 5px;\n"])));
 exports.SpaceMe = styled_components_1.default.span(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n    padding: 5px;\n"], ["\n    padding: 5px;\n"])));
+exports.mount = function () {
+    var args = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
+    }
+    var jsx = args[0], _a = args[1], opts = _a === void 0 ? {} : _a;
+    opts.stylesheets = ((opts === null || opts === void 0 ? void 0 : opts.stylesheets) || []).concat('https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansText.0.1.0.css', 'https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansDisplay.0.1.0.css');
+    var cm = react_2.mount(jsx, opts);
+    // eslint-disable-next-line
+    // @ts-ignore
+    cy.waitForResources('https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansText.0.1.0.css');
+    // eslint-disable-next-line
+    // @ts-ignore
+    cy.waitForResources('https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansDisplay.0.1.0.css');
+    return cm;
+};
 var templateObject_1, templateObject_2;
 //# sourceMappingURL=CypressHelpers.js.map

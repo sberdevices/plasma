@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import { mount } from '@cypress/react';
-import { CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
+import { mount, CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
 
 describe('plasma-web: Tooltip', () => {
     const Tooltip = getComponent('Tooltip');
@@ -14,7 +12,6 @@ describe('plasma-web: Tooltip', () => {
                     <Button text="hello" />
                 </Tooltip>
             </CypressTestDecorator>,
-            { ReactDom },
         );
 
         cy.matchImageSnapshot();

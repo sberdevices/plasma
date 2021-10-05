@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import { mount as cyMount } from '@cypress/react';
 // plasma-web
 import { web } from '@sberdevices/plasma-tokens-web/typo';
 import { light } from '@sberdevices/plasma-tokens-web/themes';
@@ -112,3 +113,23 @@ export const PadMe = styled.div`
 export const SpaceMe = styled.span`
     padding: 5px;
 `;
+
+export const mount: typeof cyMount = (...args) => {
+    const [jsx, opts = {}] = args;
+
+    opts.stylesheets = (opts?.stylesheets || ([] as string[])).concat(
+        'https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansText.0.1.0.css',
+        'https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansDisplay.0.1.0.css',
+    );
+
+    const cm = cyMount(jsx, opts);
+
+    // eslint-disable-next-line
+    // @ts-ignore
+    cy.waitForResources('https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansText.0.1.0.css');
+    // eslint-disable-next-line
+    // @ts-ignore
+    cy.waitForResources('https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansDisplay.0.1.0.css');
+
+    return cm;
+};

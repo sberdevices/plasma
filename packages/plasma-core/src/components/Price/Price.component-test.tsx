@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import { mount } from '@cypress/react';
-import { CypressTestDecorator, getComponent, PadMe } from '@sberdevices/plasma-cy-utils';
+import { mount, CypressTestDecorator, getComponent, PadMe } from '@sberdevices/plasma-cy-utils';
 
 describe('plasma-core: Price', () => {
     const Price = getComponent('Price');
@@ -18,7 +16,6 @@ describe('plasma-core: Price', () => {
                 `}</style>
                 <Price>12345.67</Price>
             </CypressTestDecorator>,
-            { ReactDom },
         );
 
         cy.matchImageSnapshot();
@@ -38,7 +35,6 @@ describe('plasma-core: Price', () => {
                 <PadMe />
                 <Price currency="eur">12345.67</Price>
             </CypressTestDecorator>,
-            { ReactDom },
         );
 
         cy.matchImageSnapshot();
@@ -54,7 +50,6 @@ describe('plasma-core: Price', () => {
                 `}</style>
                 <Price stroke>12345.67</Price>
             </CypressTestDecorator>,
-            { ReactDom },
         );
 
         cy.matchImageSnapshot();
@@ -70,7 +65,6 @@ describe('plasma-core: Price', () => {
                 `}</style>
                 <Price minimumFractionDigits={4}>12345.6789</Price>
             </CypressTestDecorator>,
-            { ReactDom },
         );
 
         cy.matchImageSnapshot();
