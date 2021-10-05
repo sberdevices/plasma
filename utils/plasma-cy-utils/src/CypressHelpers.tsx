@@ -8,7 +8,7 @@ import { light } from '@sberdevices/plasma-tokens-web/themes';
 import { darkSber } from '@sberdevices/plasma-tokens/themes';
 // plasma-b2c
 import { dark } from '@sberdevices/plasma-tokens-b2c/themes';
-import { b2c } from '@sberdevices/plasma-tokens-b2c/typo';
+import { standard as standardTypo, compatible as compatibleTypo } from '@sberdevices/plasma-typo';
 
 // TODO: better naming
 const TypoThemeStyle = createGlobalStyle(web);
@@ -16,7 +16,8 @@ const ColorThemeStyle = createGlobalStyle(light);
 
 const ThemeStyle = createGlobalStyle(darkSber);
 
-const TypoB2CStyle = createGlobalStyle(b2c);
+const StandardTypoStyle = createGlobalStyle(standardTypo);
+const CompatibleTypoStyle = createGlobalStyle(compatibleTypo);
 const ColorB2CStyle = createGlobalStyle(dark);
 
 export const getComponent = (componentName: string) => {
@@ -96,7 +97,8 @@ export const CypressTestDecorator: FC = ({ children }) => {
     if (pkgName === 'plasma-b2c') {
         return (
             <>
-                <TypoB2CStyle />
+                <StandardTypoStyle />
+                <CompatibleTypoStyle />
                 <ColorB2CStyle />
                 {children}
             </>

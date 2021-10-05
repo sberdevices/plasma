@@ -37,12 +37,13 @@ var themes_1 = require("@sberdevices/plasma-tokens-web/themes");
 var themes_2 = require("@sberdevices/plasma-tokens/themes");
 // plasma-b2c
 var themes_3 = require("@sberdevices/plasma-tokens-b2c/themes");
-var typo_2 = require("@sberdevices/plasma-tokens-b2c/typo");
+var plasma_typo_1 = require("@sberdevices/plasma-typo");
 // TODO: better naming
 var TypoThemeStyle = styled_components_1.createGlobalStyle(typo_1.web);
 var ColorThemeStyle = styled_components_1.createGlobalStyle(themes_1.light);
 var ThemeStyle = styled_components_1.createGlobalStyle(themes_2.darkSber);
-var TypoB2CStyle = styled_components_1.createGlobalStyle(typo_2.b2c);
+var StandardTypoStyle = styled_components_1.createGlobalStyle(plasma_typo_1.standard);
+var CompatibleTypoStyle = styled_components_1.createGlobalStyle(plasma_typo_1.compatible);
 var ColorB2CStyle = styled_components_1.createGlobalStyle(themes_3.dark);
 exports.getComponent = function (componentName) {
     // eslint-disable-next-line
@@ -98,7 +99,8 @@ exports.CypressTestDecorator = function (_a) {
     }
     if (pkgName === 'plasma-b2c') {
         return (react_1.default.createElement(react_1.default.Fragment, null,
-            react_1.default.createElement(TypoB2CStyle, null),
+            react_1.default.createElement(StandardTypoStyle, null),
+            react_1.default.createElement(CompatibleTypoStyle, null),
             react_1.default.createElement(ColorB2CStyle, null),
             children));
     }
