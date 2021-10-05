@@ -12,17 +12,11 @@
         "directory": "utils/plasma-cy-utils"
     },
     "peerDependencies": {
-        "@sberdevices/plasma-tokens": "^1.13.0",
-        "@sberdevices/plasma-tokens-b2c": "^0.6.1",
-        "@sberdevices/plasma-tokens-web": "^1.12.1",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "styled-components": "^5.1.1"
     },
     "devDependencies": {
-        "@sberdevices/plasma-tokens": "1.13.0",
-        "@sberdevices/plasma-tokens-b2c": "0.6.1",
-        "@sberdevices/plasma-tokens-web": "1.12.1",
         "@types/react": "16.9.38",
         "@types/react-dom": "16.9.8",
         "@types/styled-components": "^5.1.0",
@@ -40,7 +34,10 @@
     "publishConfig": {
         "access": "restricted"
     },
-    "files": [
-        "lib"
-    ]
+    "files": ["lib"],
+    "dependencies": {
+        "@sberdevices/plasma-tokens": "1.13.0",
+        "@sberdevices/plasma-tokens-b2c": "0.6.1",
+        "@sberdevices/plasma-tokens-web": "1.12.1"
+    }
 }
