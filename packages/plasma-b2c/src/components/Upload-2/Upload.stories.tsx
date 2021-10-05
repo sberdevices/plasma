@@ -2,8 +2,6 @@ import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { Story, Meta } from '@storybook/react';
 import { InSpacingDecorator } from '@sberdevices/plasma-sb-utils';
-import { IconMusic } from '@sberdevices/plasma-icons';
-import { secondary } from '@sberdevices/plasma-core';
 
 import { ValidationResult } from './types';
 
@@ -11,7 +9,7 @@ import { Upload } from '.';
 import type { UploadProps } from '.';
 
 export default {
-    title: 'Controls/Upload-2',
+    title: 'Controls/Upload-3',
     component: Upload,
     argTypes: {},
     decorators: [InSpacingDecorator],
@@ -21,52 +19,40 @@ const StyledWrapper = styled.div`
     width: 23.75rem;
 `;
 
-const StyledText = styled.span`
-    position: relative;
-    z-index: 1;
-    display: inline-flex;
-`;
-const StyledContent = styled.span`
-    position: relative;
-    z-index: 1;
-    display: inline-flex;
-
-    &:first-child {
-        margin-right: 0.75rem;
-    }
-
-    &:last-child {
-        margin-left: auto;
-        padding-left: 0.75rem;
-        color: ${secondary};
-    }
-`;
-
-interface StoryProps extends UploadProps {
-    demonstrateProgress?: boolean;
-}
+interface StoryProps extends UploadProps {}
 
 export const Base: Story<StoryProps> = ({ ...rest }) => {
-    const [progress, setProgress] = useState(undefined);
+    const [state, setState] = useState({
+        status: undefined,
+        progress: undefined,
+    });
 
     const onChange = useCallback(
         (file: File) => {
             console.log('file', file);
             const interval = setInterval(
                 () =>
-                    setProgress((prevValue?: number) => {
-                        const value = prevValue === undefined ? 0 : prevValue;
+                    setState(({ progress }: { status?: string; progress?: number }) => {
+                        const value = progress === undefined ? 0 : progress;
 
-                        if (value + 5 > 100) {
+                        if (value + 25 > 100) {
                             clearInterval(interval);
-                            return undefined;
+
+                            return {
+                                status: 'success',
+                                progress: undefined,
+                            };
                         }
-                        return value + 5;
+
+                        return {
+                            status: undefined,
+                            progress: value + 25,
+                        };
                     }),
                 1000,
             );
         },
-        [setProgress],
+        [setState],
     );
 
     const customValidate = useCallback((files: FileList | null, accept?: string): ValidationResult => {
@@ -103,14 +89,9 @@ export const Base: Story<StoryProps> = ({ ...rest }) => {
     return (
         <StyledWrapper>
             <Upload
-                progress={progress}
-                content={
-                    <div style={{ background: 'red' }}>
-                        <IconMusic size="s" color="inherit" />
-                        Загрузите файл формата .pdf
-                    </div>
-                }
-                loader={<div style={{ color: 'green' }}>Кастомная загрузка {progress}%</div>}
+                status={state.status}
+                progress={state.progress}
+                loader={<div style={{ color: 'green' }}>Кастомная загрузка {state.progress}%</div>}
                 onChange={onChange}
                 validate={customValidate}
                 {...rest}
@@ -122,54 +103,6 @@ export const Base: Story<StoryProps> = ({ ...rest }) => {
 Base.args = {
     disabled: false,
     accept: '.pdf',
-    message: 'Штош',
-    status: 'error',
+    content: 'Загрузите файл формата .pdf',
+    message: 'Подсказывающее сообщение',
 };
-
-// export const Audio: Story<StoryProps> = ({ ...rest }) => {
-//     return (
-//         <StyledWrapper>
-//             <Upload contentLeft={<IconPlay size="s" color="inherit" />} contentRight="3:24" {...rest}>
-
-//             </Upload>
-//         </StyledWrapper>
-//     );
-// };
-
-// Audio.args = {
-//     text: 'I’m Not Okey',
-//     type: 'audio',
-//     disabled: false,
-// };
-
-// export const Progress: Story<StoryProps> = ({ text: formatText, ...rest }) => {
-//     const [progress, setProgress] = useState(0);
-//     const text = formatText.replace('%n', progress.toString());
-
-//     useEffect(() => {
-//         const refresh = setInterval(
-//             () =>
-//                 setProgress((p) => {
-//                     if (p + 5 > 100) {
-//                         return 0;
-//                     }
-//                     return p + 5;
-//                 }),
-//             1000,
-//         );
-
-//         () => clearInterval(refresh);
-//     }, []);
-
-//     return (
-//         <StyledWrapper>
-//             <Upload text={text} progress={progress} {...rest} />
-//         </StyledWrapper>
-//     );
-// };
-
-// Progress.args = {
-//     text: 'Загружено %n%',
-//     type: 'image',
-//     disabled: false,
-// };

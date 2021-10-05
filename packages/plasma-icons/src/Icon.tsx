@@ -85,6 +85,7 @@ import { VolumeOff } from './Icon.assets/VolumeOff';
 import { VolumeUp } from './Icon.assets/VolumeUp';
 import { VideoClip } from './Icon.assets/VideoClip';
 import { MusicAlbum } from './Icon.assets/MusicAlbum';
+import { Music } from './Icon.assets/Music';
 // Connection
 import { Bluetooth } from './Icon.assets/Bluetooth';
 import { BluetoothDisabled } from './Icon.assets/BluetoothDisabled';
@@ -241,6 +242,7 @@ export const iconSectionsSet = {
         volumeUp: VolumeUp,
         videoClip: VideoClip,
         musicAlbum: MusicAlbum,
+        music: Music,
     },
     connection: {
         bluetooth: Bluetooth,
