@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import { mount } from '@cypress/react';
-import { CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
+import { mount, CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
 
 const text = `Если после применения правила Лопиталя неопределённость типа 0 / 0 осталась, мнимая единица традиционно
 развивает Наибольший Общий Делитель (НОД).`;
@@ -36,7 +34,6 @@ describe('plasma-web: Modal', () => {
                     <Demo />
                 </ModalsProvider>
             </CypressTestDecorator>,
-            { ReactDom },
         );
 
         cy.get('button').click();

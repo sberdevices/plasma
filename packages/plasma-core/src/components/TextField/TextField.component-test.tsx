@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import { mount } from '@cypress/react';
-import { CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
+import { mount, CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
 
 describe('plasma-core: TextField', () => {
     const TextField = getComponent('TextField');
@@ -11,7 +9,6 @@ describe('plasma-core: TextField', () => {
             <CypressTestDecorator>
                 <TextField value="Welcome" />
             </CypressTestDecorator>,
-            { ReactDom },
         );
 
         cy.matchImageSnapshot();

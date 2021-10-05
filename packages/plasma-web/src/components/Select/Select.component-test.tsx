@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import { mount } from '@cypress/react';
-import { CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
+import { mount, CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
 
 describe('plasma-web: Select', () => {
     const Select = getComponent('Select');
@@ -30,7 +28,6 @@ describe('plasma-web: Select', () => {
             <CypressTestDecorator>
                 <Select items={items} placeholder="Попробуй радугу" helperText="Skittles" />
             </CypressTestDecorator>,
-            { ReactDom },
         );
 
         cy.get('button').click();
