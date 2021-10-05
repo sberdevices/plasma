@@ -41,6 +41,7 @@
     "dependencies": {
         "@sberdevices/plasma-tokens": "1.13.0",
         "@sberdevices/plasma-tokens-b2c": "0.6.1",
-        "@sberdevices/plasma-tokens-web": "1.12.1"
+        "@sberdevices/plasma-tokens-web": "1.12.1",
+        "@sberdevices/plasma-typo": "0.0.0"
     }
 }
