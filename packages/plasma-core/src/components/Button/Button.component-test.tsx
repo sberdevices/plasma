@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import { mount } from '@cypress/react';
 import { IconDownload } from '@sberdevices/plasma-icons';
-
-import { CypressTestDecorator, getComponent, PadMe, SpaceMe } from '../../__helpers';
+import { CypressTestDecorator, getComponent, PadMe, SpaceMe } from '@sberdevices/plasma-cy-utils';
 
 const Icon = () => <IconDownload />;
 

@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import { mount } from '@cypress/react';
-
-import { CypressTestDecorator, getComponent } from '../../__helpers';
+import { CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
 
 describe('plasma-core: Checkbox', () => {
     const Checkbox = getComponent('Checkbox');
