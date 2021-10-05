@@ -126,7 +126,7 @@ export interface UploadButtonProps {
     /**
      * Компонент загрузки
      */
-    loader: JSX.Element;
+    loader?: JSX.Element;
     /**
      * Кастомный метод валидации.
      */

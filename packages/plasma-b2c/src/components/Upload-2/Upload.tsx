@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import type { FC } from 'react';
 
 import { UploadRoot } from './UploadRoot';
@@ -38,6 +38,14 @@ export const Upload: FC<UploadProps> = ({
         status: defaultStatus,
         message: defaultMessage,
     });
+
+    useEffect(() => {
+        setState((prevState) => ({
+            ...prevState,
+            message: defaultMessage,
+            status: defaultStatus,
+        }));
+    }, [defaultStatus, defaultMessage]);
 
     const onValidation = useCallback(
         (result: ValidationResult) => {

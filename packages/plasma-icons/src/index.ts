@@ -82,6 +82,7 @@ export { IconVolumeOff } from './Icons/IconVolumeOff';
 export { IconVolumeUp } from './Icons/IconVolumeUp';
 export { IconVideoClip } from './Icons/IconVideoClip';
 export { IconMusicAlbum } from './Icons/IconMusicAlbum';
+export { IconMusic } from './Icons/IconMusic';
 // Connection
 export { IconBluetooth } from './Icons/IconBluetooth';
 export { IconBluetoothDisabled } from './Icons/IconBluetoothDisabled';
