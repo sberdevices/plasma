@@ -1,3 +1,15 @@
+# v1.5.1 (Wed Oct 06 2021)
+
+#### 🐛 Bug Fix
+
+- test: add SBSans to cypress [#832](https://github.com/sberdevices/plasma/pull/832) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.5.0 (Mon Oct 04 2021)
 
 #### 🚀 Enhancement
