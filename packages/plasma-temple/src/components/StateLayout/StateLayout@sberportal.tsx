@@ -7,7 +7,7 @@ import { StateLayout as CommonStateLayout } from './StateLayout@common';
 import { StateLayoutCommonProps } from './types';
 
 const StyledTextWrapper = styled.div`
-    margin-bottom: 0.75rem;
+    margin-bottom: 2rem;
 `;
 
 const StyledText = styled(Body1)`
