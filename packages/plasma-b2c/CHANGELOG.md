@@ -1,3 +1,20 @@
+# v1.6.0 (Wed Oct 06 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-b2b): Sanitize paste event on Editable [#833](https://github.com/sberdevices/plasma/pull/833) ([@aabulakhsberbank](https://github.com/aabulakhsberbank))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@aabulakhsberbank](https://github.com/aabulakhsberbank)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
 # v1.5.1 (Wed Oct 06 2021)
 
 #### 🐛 Bug Fix
