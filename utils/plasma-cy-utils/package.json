@@ -35,7 +35,9 @@
     "publishConfig": {
         "access": "restricted"
     },
-    "files": ["lib"],
+    "files": [
+        "lib"
+    ],
     "dependencies": {
         "@sberdevices/plasma-tokens": "1.13.0",
         "@sberdevices/plasma-tokens-b2c": "0.6.1",
