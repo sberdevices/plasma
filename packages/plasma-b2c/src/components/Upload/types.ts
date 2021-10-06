@@ -1,4 +1,4 @@
-export type Status = 'error' | 'success' | undefined;
+export type Status = 'error' | 'success';
 
 export interface ValidationResult {
     message?: string;
