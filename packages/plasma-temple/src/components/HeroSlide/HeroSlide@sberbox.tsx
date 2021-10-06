@@ -24,7 +24,7 @@ const StyledSlide = styled.div`
 
     box-sizing: border-box;
 
-    padding: 248px var(--plasma-grid-margin) 4 rem;
+    padding: 248px var(--plasma-grid-margin) 4rem;
 `;
 
 const BoxButton = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => (

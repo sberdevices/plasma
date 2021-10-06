@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import { mount } from '@cypress/react';
-import { CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
+import { mount, CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
 
 describe('plasma-core: Checkbox', () => {
     const Checkbox = getComponent('Checkbox');
@@ -11,7 +9,6 @@ describe('plasma-core: Checkbox', () => {
             <CypressTestDecorator>
                 <Checkbox />
             </CypressTestDecorator>,
-            { ReactDom },
         );
         cy.matchImageSnapshot();
     });
@@ -28,7 +25,6 @@ describe('plasma-core: Checkbox', () => {
                     }
                 />
             </CypressTestDecorator>,
-            { ReactDom },
         );
         cy.matchImageSnapshot();
     });
@@ -46,7 +42,6 @@ describe('plasma-core: Checkbox', () => {
                     }
                 />
             </CypressTestDecorator>,
-            { ReactDom },
         );
         cy.matchImageSnapshot();
     });
@@ -57,7 +52,6 @@ describe('plasma-core: Checkbox', () => {
                 <Checkbox checked label="checkbox checked" description="О чём мечтают роботы?" />
                 <Checkbox label="checkbox" description="О чём мечтают роботы?" />
             </CypressTestDecorator>,
-            { ReactDom },
         );
         cy.matchImageSnapshot();
     });
@@ -67,7 +61,6 @@ describe('plasma-core: Checkbox', () => {
             <CypressTestDecorator>
                 <Checkbox indeterminate label="indeterminate checkbox" description="О чём мечтают роботы?" />
             </CypressTestDecorator>,
-            { ReactDom },
         );
         cy.matchImageSnapshot();
     });
@@ -79,7 +72,6 @@ describe('plasma-core: Checkbox', () => {
                 <Checkbox disabled label="checkbox" description="О чём мечтают роботы?" />
                 <Checkbox indeterminate disabled label="indeterminate checkbox" description="О чём мечтают роботы?" />
             </CypressTestDecorator>,
-            { ReactDom },
         );
         cy.matchImageSnapshot();
     });

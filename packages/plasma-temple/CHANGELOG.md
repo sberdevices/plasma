@@ -1,3 +1,15 @@
+# v1.1.4 (Wed Oct 06 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): Fix HeroSlide styles [#834](https://github.com/sberdevices/plasma/pull/834) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.1.3 (Mon Oct 04 2021)
 
 #### 🐛 Bug Fix

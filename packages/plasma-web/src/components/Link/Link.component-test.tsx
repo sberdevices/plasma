@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import { mount } from '@cypress/react';
-import { CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
+import { mount, CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
 
 describe('plasma-web: Link', () => {
     const Link = getComponent('Link');
@@ -18,7 +16,6 @@ describe('plasma-web: Link', () => {
                 `}</style>
                 <Link href="https://plasma.sberdevices.ru">Hello Plasma</Link>
             </CypressTestDecorator>,
-            { ReactDom },
         );
 
         cy.matchImageSnapshot();

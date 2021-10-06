@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import { mount } from '@cypress/react';
-import { CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
+import { mount, CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
 
 describe('plasma-core: Radiobox', () => {
     const Radiobox = getComponent('Radiobox');
@@ -11,7 +9,6 @@ describe('plasma-core: Radiobox', () => {
             <CypressTestDecorator>
                 <Radiobox />
             </CypressTestDecorator>,
-            { ReactDom },
         );
 
         cy.matchImageSnapshot();
@@ -30,7 +27,6 @@ describe('plasma-core: Radiobox', () => {
                     }
                 />
             </CypressTestDecorator>,
-            { ReactDom },
         );
         cy.matchImageSnapshot();
     });
@@ -49,7 +45,6 @@ describe('plasma-core: Radiobox', () => {
                     }
                 />
             </CypressTestDecorator>,
-            { ReactDom },
         );
         cy.matchImageSnapshot();
     });
@@ -60,7 +55,6 @@ describe('plasma-core: Radiobox', () => {
                 <Radiobox name="robots" checked label="radiobox checked" description="О чём мечтают роботы?" />
                 <Radiobox name="robots" label="radiobox" description="О чём мечтают роботы?" />
             </CypressTestDecorator>,
-            { ReactDom },
         );
         cy.matchImageSnapshot();
     });
@@ -71,7 +65,6 @@ describe('plasma-core: Radiobox', () => {
                 <Radiobox checked disabled label="radiobox checked" description="О чём мечтают роботы?" />
                 <Radiobox disabled label="radiobox" description="О чём мечтают роботы?" />
             </CypressTestDecorator>,
-            { ReactDom },
         );
         cy.matchImageSnapshot();
     });

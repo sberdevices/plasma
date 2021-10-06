@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import { mount } from '@cypress/react';
-import { CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
+import { mount, CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
 
 describe('plasma-core: Switch', () => {
     const Switch = getComponent('Switch');
@@ -11,7 +9,6 @@ describe('plasma-core: Switch', () => {
             <CypressTestDecorator>
                 <Switch label="Переключатель" />
             </CypressTestDecorator>,
-            { ReactDom },
         );
 
         cy.matchImageSnapshot();
