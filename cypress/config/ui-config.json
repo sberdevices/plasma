@@ -8,5 +8,6 @@
         "packageDir": "../../packages/plasma-ui",
         "package": "plasma-ui"
     },
-    "video": false
+    "video": false,
+    "retries": 3
 }
