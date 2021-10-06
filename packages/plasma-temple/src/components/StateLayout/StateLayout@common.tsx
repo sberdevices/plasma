@@ -51,6 +51,8 @@ export const StateLayout: React.FC<StateLayoutProps> = ({
     button,
     image,
     background,
+    backgroundWidth,
+    backgroundFit,
     header,
     children,
     platformComponents: { Headline, ImageContainer, Text, TextWrapper },
@@ -77,7 +79,9 @@ export const StateLayout: React.FC<StateLayoutProps> = ({
 
     return (
         <StyledWrapper>
-            {background && <FullScreenBackground src={background} />}
+            {background && (
+                <FullScreenBackground src={background} imageWidth={backgroundWidth} imageFit={backgroundFit} />
+            )}
             {header && (
                 <StyledHeaderContainer>
                     <Header {...header} />

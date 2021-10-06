@@ -8,6 +8,8 @@ export type AnyObject = Record<string, any>;
 export type PickOptional<S, K extends keyof S> = Partial<Pick<S, K>>;
 export type AspectRatio = Ratio;
 
+export type ObjectFit = 'fill' | 'contain' | 'cover' | 'none' | 'scale-down';
+
 export type Axis = 'x' | 'y';
 
 export type Direction = AssistantNavigationCommand['navigation']['command'];
