@@ -1,20 +1,22 @@
-import React from 'react';
-import type { FC, ReactNode, HTMLAttributes } from 'react';
+import React, { ChangeEventHandler, useCallback, useState } from 'react';
+import type { FC } from 'react';
 import styled, { css } from 'styled-components';
 import {
     surfaceLiquid01,
     surfaceLiquid02,
     surfaceLiquid03,
-    primary,
+    buttonAccent,
     secondary,
     tertiary,
     transparent,
     success,
     critical,
-    footnote2,
+    footnote1,
 } from '@sberdevices/plasma-core';
+import { FileDrop } from 'react-file-drop';
 
-import { Spinner } from '../Spinner';
+import { Status, ValidationResult } from './types';
+import { defaultValidate } from './utils';
 
 const statuses = {
     error: {
@@ -24,39 +26,6 @@ const statuses = {
         borderColor: success,
     },
 };
-
-type Status = keyof typeof statuses;
-
-export interface UploadButtonProps {
-    /**
-     * Текст кнопки.
-     */
-    text: string;
-    /**
-     * Контент слева (напр., иконка).
-     */
-    contentLeft?: ReactNode;
-    /**
-     * Контент справа (напр., иконка или индикатор времени).
-     */
-    contentRight?: ReactNode;
-    /**
-     * Тип загружаемого контента.
-     */
-    type: 'audio' | 'image';
-    /**
-     * Статус компонента.
-     */
-    status?: Status;
-    /**
-     * Компонент неактивен.
-     */
-    disabled?: boolean;
-    /**
-     * Заполненность прогрессбара в процентах.
-     */
-    progress?: number;
-}
 
 const paints = {
     default: {
@@ -69,17 +38,19 @@ const paints = {
         borderColor: transparent,
         color: secondary,
     },
-    audio: {
-        backgroundColor: transparent,
-        borderColor: transparent,
-        color: primary,
-    },
 };
 
 type Paint = keyof typeof paints;
 
-export const StyledButton = styled.button<{ paint: Paint; status?: Status; disabled?: boolean }>`
-    ${footnote2}
+export interface StyledButtonProps {
+    paint: Paint;
+    status?: Status;
+    disabled?: boolean;
+    grabbing: boolean;
+}
+
+export const StyledButton = styled.button<StyledButtonProps>`
+    ${footnote1}
 
     position: relative;
 
@@ -104,6 +75,15 @@ export const StyledButton = styled.button<{ paint: Paint; status?: Status; disab
         transform: scale(1.04);
     }
 
+    ${({ grabbing }) =>
+        grabbing &&
+        css`
+             {
+                border-color: ${buttonAccent};
+                background-color: ${surfaceLiquid02};
+                transform: scale(1.04);
+            }
+        `}
     ${({ paint }) => paints[paint]}
     ${({ status }) => status && statuses[status]}
     ${({ disabled }) =>
@@ -113,81 +93,123 @@ export const StyledButton = styled.button<{ paint: Paint; status?: Status; disab
             cursor: not-allowed;
         `}
 `;
-const StyledText = styled.span`
-    position: relative;
-    z-index: 1;
-    display: inline-flex;
-`;
-const StyledContent = styled.span`
-    position: relative;
-    z-index: 1;
-    display: inline-flex;
 
-    &:first-child {
-        margin-right: 0.75rem;
-    }
-
-    &:last-child {
-        margin-left: auto;
-        padding-left: 0.75rem;
-        color: ${secondary};
-    }
-`;
-const StyledProgress = styled.div`
+const StyledInputLabel = styled.label<{ disabled?: boolean }>`
     position: absolute;
+    width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 0;
+    cursor: pointer;
 
-    border-radius: 0.75rem;
-    overflow: hidden;
-`;
-const StyledProgressbar = styled.div`
-    height: 100%;
-    background: linear-gradient(270deg, rgba(8, 8, 8, 0.14) 0%, rgba(8, 8, 8, 0) 100%);
-    transition: width 0.3s ease-in-out;
-`;
-const StyledSpinner = styled(Spinner)`
-    position: relative;
-    z-index: 1;
-    margin-left: 0.875rem;
+    ${({ disabled }) =>
+        disabled &&
+        css`
+            cursor: not-allowed;
+        `}
 `;
 
-export const UploadButton: FC<UploadButtonProps & HTMLAttributes<HTMLButtonElement>> = ({
-    text,
-    contentLeft,
-    contentRight,
-    type = 'default',
+export interface UploadButtonProps {
+    /**
+     * Статус компонента.
+     */
+    status?: Status;
+    /**
+     * Компонент неактивен.
+     */
+    disabled?: boolean;
+    /**
+     * Идёт ли процесс загрузки.
+     */
+    isProgress?: boolean;
+    /**
+     * Принимаемые форматы.
+     */
+    accept?: string;
+    /**
+     * Контент для компонента
+     */
+    content?: JSX.Element | string;
+    /**
+     * Компонент загрузки
+     */
+    loader?: JSX.Element;
+    /**
+     * Кастомный метод валидации.
+     */
+    validate?: (files: FileList | null, accept?: string) => ValidationResult;
+    /**
+     * Колбэк результата валидации.
+     */
+    onValidation?: (result: ValidationResult) => void;
+    /**
+     * Колбэк на выбор файла.
+     */
+    onChange?: (file: File) => void;
+}
+
+export const UploadButton: FC<UploadButtonProps> = ({
     status,
     disabled,
-    progress: rawProgress,
+    isProgress,
+    accept,
+    content,
+    loader,
+    onChange = () => {},
+    onValidation = () => {},
+    validate,
     ...rest
 }) => {
-    const isProgress = rawProgress !== undefined;
-    const progress = Math.min(Math.max(rawProgress || 0, 0), 100);
-    let paint: Paint;
+    const [grabbing, setGrabbing] = useState<boolean>(false);
+    const paint = isProgress ? 'progress' : 'default';
 
-    if (isProgress) {
-        paint = 'progress';
-    } else if (type === 'audio') {
-        paint = 'audio';
-    } else {
-        paint = 'default';
-    }
+    const onUpload = useCallback(
+        (files: FileList | null) => {
+            const result = (validate || defaultValidate)(files, accept);
+
+            onValidation(result);
+
+            if (result.data) {
+                onChange(result.data);
+            }
+        },
+        [accept, onChange, onValidation, validate],
+    );
+
+    const dragStart = useCallback(() => !disabled && !isProgress && setGrabbing(true), [disabled, isProgress]);
+    const dragEnd = useCallback(() => setGrabbing(false), []);
+
+    const drop = useCallback(
+        (files: FileList | null, event) => {
+            if (disabled || isProgress) {
+                return;
+            }
+
+            event.preventDefault();
+
+            onUpload(files);
+            setGrabbing(false);
+        },
+        [onUpload, disabled, isProgress],
+    );
+
+    const inputChangeHandler: ChangeEventHandler<HTMLInputElement> = useCallback(
+        ({ target }) => {
+            const { files } = target;
+
+            onUpload(files);
+        },
+        [onUpload],
+    );
 
     return (
-        <StyledButton type="button" paint={paint} status={status} disabled={disabled} {...rest}>
-            {isProgress && (
-                <StyledProgress>
-                    <StyledProgressbar style={{ width: `${progress}%` }} />
-                </StyledProgress>
-            )}
-            {contentLeft && <StyledContent>{contentLeft}</StyledContent>}
-            {text && <StyledText>{text}</StyledText>}
-            {contentRight && <StyledContent>{contentRight}</StyledContent>}
-            {isProgress && <StyledSpinner size="1.25rem" />}
-        </StyledButton>
+        <FileDrop onDrop={drop} onDragOver={dragStart} onDragLeave={dragEnd}>
+            <StyledButton grabbing={grabbing} paint={paint} status={status} disabled={disabled} {...rest}>
+                <StyledInputLabel disabled={disabled}>
+                    <input disabled={disabled} type="file" onChange={inputChangeHandler} accept={accept} hidden />
+                </StyledInputLabel>
+                {isProgress ? loader : content}
+            </StyledButton>
+        </FileDrop>
     );
 };

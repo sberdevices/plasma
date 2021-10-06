@@ -1,44 +1,53 @@
 import React from 'react';
-import type { FC, HTMLAttributes } from 'react';
+import type { FC } from 'react';
 
 import { UploadRoot } from './UploadRoot';
 import { UploadButton, UploadButtonProps } from './UploadButton';
-import { UploadGallery, UploadGalleryProps } from './UploadGallery';
-import { UploadHelperText } from './UploadHelperText';
+import { UploadMessage } from './UploadMessage';
+import { UploadProgress } from './UploadProgress';
 
-export interface UploadProps extends UploadButtonProps, UploadGalleryProps {
+export interface UploadProps extends UploadButtonProps {
     /**
-     * Текст-подсказка.
+     * Контент для компонента.
      */
-    helperText?: string;
+    content?: JSX.Element | string;
+    /**
+     * Заполненность прогрессбара в процентах.
+     */
+    progress?: number;
+    /**
+     * Вспомогательное сообщение.
+     */
+    message?: string;
 }
 
-export const Upload: FC<UploadProps & HTMLAttributes<HTMLDivElement>> = ({
-    text,
-    contentLeft,
-    contentRight,
-    type = 'image',
+export const Upload: FC<UploadProps> = ({
+    content,
     status,
+    message,
     disabled,
     progress,
-    helperText,
-    items,
-    onItemRemove,
+    accept,
+    loader,
+    validate,
+    onChange,
+    onValidation,
     ...rest
 }) => {
     return (
         <UploadRoot {...rest}>
             <UploadButton
-                text={text}
-                contentLeft={contentLeft}
-                contentRight={contentRight}
-                type={type}
                 status={status}
                 disabled={disabled}
-                progress={progress}
+                accept={accept}
+                content={content}
+                isProgress={Boolean(progress !== undefined)}
+                loader={loader || <UploadProgress progress={progress} />}
+                validate={validate}
+                onValidation={onValidation}
+                onChange={onChange}
             />
-            {helperText && <UploadHelperText status={status}>{helperText}</UploadHelperText>}
-            {type === 'image' && <UploadGallery items={items} onItemRemove={onItemRemove} />}
+            {message && <UploadMessage status={status}>{message}</UploadMessage>}
         </UploadRoot>
     );
 };

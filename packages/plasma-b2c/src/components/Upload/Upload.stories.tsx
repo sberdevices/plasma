@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { Story, Meta } from '@storybook/react';
 import { InSpacingDecorator } from '@sberdevices/plasma-sb-utils';
-import { IconPlay } from '@sberdevices/plasma-icons';
+
+import { ValidationResult } from './types';
 
 import { Upload } from '.';
 import type { UploadProps } from '.';
@@ -18,88 +19,108 @@ const StyledWrapper = styled.div`
     width: 23.75rem;
 `;
 
-interface StoryProps extends UploadProps {
-    demonstrateProgress?: boolean;
-}
+interface StoryProps extends UploadProps {}
 
-export const Audio: Story<StoryProps> = ({ ...rest }) => {
-    return (
-        <StyledWrapper>
-            <Upload contentLeft={<IconPlay size="s" color="inherit" />} contentRight="3:24" {...rest} />
-        </StyledWrapper>
+export const Base: Story<StoryProps> = ({ ...rest }) => {
+    const [state, setState] = useState({
+        status: undefined,
+        progress: undefined,
+        message: 'Подсказывающее сообщение',
+    });
+
+    const onChange = useCallback(
+        (file: File) => {
+            console.log('file', file);
+
+            const interval = setInterval(
+                () =>
+                    setState(({ progress }: { status?: string; progress?: number; message?: string }) => {
+                        const value = progress === undefined ? 0 : progress;
+
+                        if (value + 25 > 100) {
+                            clearInterval(interval);
+
+                            return {
+                                status: 'error',
+                                progress: undefined,
+                                message: 'Файл не загрузился',
+                            };
+                        }
+
+                        return {
+                            status: undefined,
+                            progress: value + 25,
+                            message: undefined,
+                        };
+                    }),
+                1000,
+            );
+        },
+        [setState],
     );
-};
 
-Audio.args = {
-    text: 'I’m Not Okey',
-    type: 'audio',
-    disabled: false,
-};
+    const customValidate = useCallback((files: FileList | null, accept?: string): ValidationResult => {
+        if (!files?.length) {
+            return {
+                message: 'Загрузите файл',
+                status: 'error',
+            };
+        }
 
-const images = [
-    { id: 1, image: './images/320_320_0.jpg', caption: '3:24' },
-    { id: 2, image: './images/320_320_1.jpg' },
-    { id: 3, image: './images/320_320_2.jpg' },
-    { id: 4, image: './images/320_320_3.jpg' },
-    { id: 5, image: './images/320_320_4.jpg' },
-    { id: 6, image: './images/320_320_5.jpg' },
-];
+        const file = files[0];
 
-export const Image: Story<StoryProps> = ({ ...rest }) => {
-    const [items, setItems] = useState(images);
+        if (!accept) {
+            return {
+                data: file,
+            };
+        }
 
-    const deleteItem = useCallback(
-        (id) =>
-            setItems((oldItems) => {
-                const newItems = [...oldItems];
-                const idIndex = newItems.findIndex((item) => item.id === id);
-                newItems.splice(idIndex, 1);
-                return newItems;
-            }),
-        [],
-    );
+        const allowedFormats = accept.replace(/\s/g, '').replace('.', '\\.').split(',');
+        const fileTypeRegexp = new RegExp(`${allowedFormats.join('|')}$`, 'i');
 
-    return (
-        <StyledWrapper>
-            <Upload items={items} onItemRemove={deleteItem} {...rest} />
-        </StyledWrapper>
-    );
-};
+        if (file && !fileTypeRegexp.test(file.name)) {
+            return {
+                message: 'Неверный формат. Требуется файл с расширением .pdf',
+                status: 'error',
+            };
+        }
 
-Image.args = {
-    text: 'Загрузите фото или видео',
-    type: 'image',
-    disabled: false,
-};
-
-export const Progress: Story<StoryProps> = ({ text: formatText, ...rest }) => {
-    const [progress, setProgress] = useState(0);
-    const text = formatText.replace('%n', progress.toString());
-
-    useEffect(() => {
-        const refresh = setInterval(
-            () =>
-                setProgress((p) => {
-                    if (p + 5 > 100) {
-                        return 0;
-                    }
-                    return p + 5;
-                }),
-            1000,
-        );
-
-        () => clearInterval(refresh);
+        return {
+            data: file,
+        };
     }, []);
 
+    const onValidation = useCallback(
+        (result: ValidationResult) => {
+            const { message, status: rStatus } = result;
+
+            setState((prevState) => ({
+                ...prevState,
+                message,
+                status: rStatus,
+            }));
+        },
+        [setState],
+    );
+
     return (
         <StyledWrapper>
-            <Upload text={text} progress={progress} {...rest} />
+            <Upload
+                status={state.status}
+                progress={state.progress}
+                message={state.message}
+                loader={<div style={{ color: 'green' }}>Кастомная загрузка {state.progress}%</div>}
+                onChange={onChange}
+                onValidation={onValidation}
+                validate={customValidate}
+                {...rest}
+            />
         </StyledWrapper>
     );
 };
 
-Progress.args = {
-    text: 'Загружено %n%',
-    type: 'image',
+Base.args = {
     disabled: false,
+    accept: '.pdf',
+    content: 'Загрузите файл формата .pdf',
 };
