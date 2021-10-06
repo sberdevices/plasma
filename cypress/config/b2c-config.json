@@ -8,5 +8,6 @@
         "packageDir": "../../packages/plasma-b2c",
         "package": "plasma-b2c"
     },
-    "video": false
+    "video": false,
+    "retries": 3
 }
