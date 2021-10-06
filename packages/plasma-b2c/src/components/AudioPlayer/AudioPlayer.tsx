@@ -1,11 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useRef } from 'react';
 import type { FC } from 'react';
 import styled, { css } from 'styled-components';
 import { primary, footnote1, surfaceLiquid03, surfaceLiquid02 } from '@sberdevices/plasma-core';
-import ReactPlayer from 'react-player';
 import { IconPlay, IconPause, IconTrashFilled } from '@sberdevices/plasma-icons';
 
-import { formatSecondsToMintues } from './utils';
+import { useAudioPlayer, formatSecondsToMintues } from './utils';
 
 const StyledDelete = styled.button`
     position: absolute;
@@ -27,7 +26,11 @@ const StyledDelete = styled.button`
     }
 `;
 
-const StyledContainer = styled.div<{ isSelected: boolean }>`
+export const StyledControl = styled.div`
+    display: flex;
+`;
+
+const StyledContainer = styled.div<{ isSelected: boolean; isDisabled: boolean }>`
     position: relative;
 
     display: flex;
@@ -48,6 +51,15 @@ const StyledContainer = styled.div<{ isSelected: boolean }>`
         css`
             background-color: ${surfaceLiquid03};
         `}
+
+    ${StyledControl} {
+        ${({ isDisabled }) =>
+            isDisabled &&
+            css`
+                opacity: 0.24;
+                pointer-events: none;
+            `}
+    }
 `;
 
 const StyledDuration = styled.div`
@@ -84,14 +96,6 @@ const StyledRoot = styled.div`
 const StyledTitle = styled.div`
     margin-left: 1rem;
     color: ${primary};
-`;
-
-const StyledReactPlayer = styled(ReactPlayer)`
-    display: none;
-`;
-
-export const StyledControl = styled.div`
-    display: flex;
 `;
 
 export interface AudioPlayerProps {
@@ -145,9 +149,13 @@ export const AudioPlayer: FC<AudioPlayerProps> = ({
     onPlay,
     ...props
 }) => {
+    const ref = useRef<HTMLAudioElement>();
+
+    const [canPlaying] = useAudioPlayer(url, isPlaying, ref);
+
     return (
         <StyledRoot {...props}>
-            <StyledContainer isSelected={isSelected} onClick={onClick}>
+            <StyledContainer isSelected={isSelected} isDisabled={!canPlaying} onClick={onClick}>
                 <StyledControl onClick={onPlay}>{isPlaying ? <IconPause /> : <IconPlay />}</StyledControl>
                 <StyledTitle>{title}</StyledTitle>
                 {duration && <StyledDuration>{formatSecondsToMintues(duration)}</StyledDuration>}
@@ -158,8 +166,6 @@ export const AudioPlayer: FC<AudioPlayerProps> = ({
                     <IconTrashFilled />
                 </StyledDelete>
             )}
-
-            <StyledReactPlayer url={url} controls={false} playing={isPlaying} />
         </StyledRoot>
     );
 };

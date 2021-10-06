@@ -23,6 +23,12 @@ export const StyledText = styled.span`
     margin-left: 0.5rem;
 `;
 
+export const StyledIconMusic = styled(IconMusic)`
+    svg {
+        opacity: 0.28;
+    }
+`;
+
 export const UploadAudio: FC<UploadAudioProps> = ({ ...rest }) => {
     const [state, setState] = useState<ValidationState>({
         status: undefined,
@@ -50,7 +56,7 @@ export const UploadAudio: FC<UploadAudioProps> = ({ ...rest }) => {
             accept={acceptExtensions}
             content={
                 <StyledContent>
-                    <IconMusic size="s" color="inherit" />
+                    <StyledIconMusic size="s" color="inherit" />
                     <StyledText>{text}</StyledText>
                 </StyledContent>
             }
