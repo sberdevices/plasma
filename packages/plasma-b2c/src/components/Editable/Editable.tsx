@@ -44,7 +44,9 @@ type RefElement = HTMLDivElement | HTMLSpanElement;
 export interface EditableProps {
     value?: string;
     onChange?: React.ChangeEventHandler<RefElement>;
-    onBlur?(): void;
+    onBlur?: React.FocusEventHandler<HTMLDivElement>;
+    onPaste?: React.ClipboardEventHandler<HTMLDivElement>;
+    spellCheck: 'true' | 'false';
     /**
      * Максимальная длина текста в символах
      */
@@ -67,8 +69,10 @@ export const Editable: React.FC<EditableProps> = ({
     value,
     icon,
     maxLength,
+    spellCheck = 'false',
     onChange,
     onBlur,
+    onPaste,
     ...props
 }) => {
     const Component = textComponent;
@@ -78,13 +82,40 @@ export const Editable: React.FC<EditableProps> = ({
     const inputRef = useRef<HTMLDivElement>(null);
     const prevValueRef = useRef(value || '');
 
-    const handleBlur = useCallback(() => {
-        setIsEditing(false);
-        clearSelection();
-        if (onBlur) {
-            onBlur();
-        }
-    }, [onBlur]);
+    const handlePaste = useCallback<React.ClipboardEventHandler<HTMLDivElement>>(
+        (e) => {
+            if (!inputRef.current) return;
+            e.preventDefault();
+
+            const text = e.clipboardData.getData('text/plain').replace(/[\n\r]/gi, '');
+
+            if (document.queryCommandSupported('insertText')) {
+                document.execCommand('insertText', false, text);
+            } else {
+                try {
+                    navigator.clipboard.writeText(text);
+                } catch {
+                    inputRef.current.textContent = text;
+                }
+            }
+
+            if (onPaste) {
+                onPaste(e);
+            }
+        },
+        [onPaste],
+    );
+
+    const handleBlur = useCallback<React.FocusEventHandler<HTMLDivElement>>(
+        (e) => {
+            setIsEditing(false);
+            clearSelection();
+            if (onBlur) {
+                onBlur(e);
+            }
+        },
+        [onBlur],
+    );
 
     const handleFocus = useCallback<React.FocusEventHandler<RefElement>>(() => {
         setIsEditing(true);
@@ -133,7 +164,9 @@ export const Editable: React.FC<EditableProps> = ({
                 ref={inputRef}
                 style={extraComponentStyles}
                 role="textbox"
+                spellCheck={spellCheck}
                 contentEditable
+                onPaste={handlePaste}
                 onInput={handleChange}
                 onBlur={handleBlur}
                 onFocus={handleFocus}
