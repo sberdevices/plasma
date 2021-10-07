@@ -37,6 +37,19 @@ export const mapDesignToBaseColors = (ds: DesignLanguage): BaseColors => ({
         comment: 'Третичный черный цвет',
     },
 
+    dark01: {
+        value: humanizeColor(ds.colors.dark01.color),
+        comment: 'Чёрный непрозрачный, не зависит от темы',
+    },
+    dark02: {
+        value: humanizeColor(ds.colors.dark02.color),
+        comment: 'Чёрный непрозрачный, не зависит от темы',
+    },
+    dark03: {
+        value: humanizeColor(ds.colors.dark03.color),
+        comment: 'Чёрный непрозрачный, не зависит от темы',
+    },
+
     transparent: {
         value: humanizeColor(ds.colors.transparent.color),
         comment: 'Прозрачный цвет',

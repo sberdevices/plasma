@@ -15,6 +15,10 @@ const colors = {
     white: playgroundWebB2CTokens.colors.textIconsGblWhitePrimary,
     black: playgroundWebB2CTokens.colors.textIconsGlblBlackPrimary,
 
+    dark01: Color.rgba(23, 23, 23, 1),
+    dark02: Color.rgba(35, 35, 35, 1),
+    dark03: Color.rgba(54, 54, 54, 1),
+
     transparent: Color.rgba(0, 0, 0, 0),
 
     button_clear: Color.rgba(0, 0, 0, 0),
