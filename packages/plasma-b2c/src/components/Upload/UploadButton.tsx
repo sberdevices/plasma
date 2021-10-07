@@ -15,7 +15,7 @@ import {
 } from '@sberdevices/plasma-core';
 import { FileDrop } from 'react-file-drop';
 
-import { Status, ValidationResult } from './types';
+import { StatusType, ValidationResult } from './types';
 import { defaultValidate } from './utils';
 
 const statuses = {
@@ -44,9 +44,9 @@ type Paint = keyof typeof paints;
 
 export interface StyledButtonProps {
     paint: Paint;
-    status?: Status;
+    status?: StatusType;
     disabled?: boolean;
-    grabbing: boolean;
+    isGrabbing: boolean;
 }
 
 export const StyledButton = styled.button<StyledButtonProps>`
@@ -75,8 +75,8 @@ export const StyledButton = styled.button<StyledButtonProps>`
         transform: scale(1.04);
     }
 
-    ${({ grabbing }) =>
-        grabbing &&
+    ${({ isGrabbing }) =>
+        isGrabbing &&
         css`
              {
                 border-color: ${buttonAccent};
@@ -113,7 +113,7 @@ export interface UploadButtonProps {
     /**
      * Статус компонента.
      */
-    status?: Status;
+    status?: StatusType;
     /**
      * Компонент неактивен.
      */
@@ -135,7 +135,7 @@ export interface UploadButtonProps {
      */
     loader?: JSX.Element;
     /**
-     * Кастомный метод валидации.
+     * Кастомный метод валидации. Должен вернуть data: File, для начала обработки метода загрузки
      */
     validate?: (files: FileList | null, accept?: string) => ValidationResult;
     /**
@@ -148,6 +148,9 @@ export interface UploadButtonProps {
     onChange?: (file: File) => void;
 }
 
+/**
+ * Базовый компонент для загрузки файлов.
+ */
 export const UploadButton: FC<UploadButtonProps> = ({
     status,
     disabled,
@@ -160,7 +163,7 @@ export const UploadButton: FC<UploadButtonProps> = ({
     validate,
     ...rest
 }) => {
-    const [grabbing, setGrabbing] = useState<boolean>(false);
+    const [isGrabbing, setGrabbing] = useState<boolean>(false);
     const paint = isProgress ? 'progress' : 'default';
 
     const onUpload = useCallback(
@@ -180,7 +183,7 @@ export const UploadButton: FC<UploadButtonProps> = ({
     const dragEnd = useCallback(() => setGrabbing(false), []);
 
     const drop = useCallback(
-        (files: FileList | null, event) => {
+        (files: FileList | null, event: React.DragEvent<HTMLDivElement>) => {
             if (disabled || isProgress) {
                 return;
             }
@@ -204,7 +207,7 @@ export const UploadButton: FC<UploadButtonProps> = ({
 
     return (
         <FileDrop onDrop={drop} onDragOver={dragStart} onDragLeave={dragEnd}>
-            <StyledButton grabbing={grabbing} paint={paint} status={status} disabled={disabled} {...rest}>
+            <StyledButton isGrabbing={isGrabbing} paint={paint} status={status} disabled={disabled} {...rest}>
                 <StyledInputLabel disabled={disabled}>
                     <input disabled={disabled} type="file" onChange={inputChangeHandler} accept={accept} hidden />
                 </StyledInputLabel>

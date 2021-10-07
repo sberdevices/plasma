@@ -21,6 +21,9 @@ export interface UploadProps extends UploadButtonProps {
     message?: string;
 }
 
+/**
+ * Компонент для загрузки файлов.
+ */
 export const Upload: FC<UploadProps> = ({
     content,
     status,

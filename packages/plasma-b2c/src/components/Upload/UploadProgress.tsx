@@ -3,6 +3,12 @@ import styled from 'styled-components';
 
 import { Spinner } from '../Spinner';
 
+const StyledRoot = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
 const StyledProgress = styled.div`
     position: absolute;
     top: 0;
@@ -37,12 +43,12 @@ export const UploadProgress: FC<UploadProgressProps> = ({ progress: rawProgress 
     const progress = Math.min(Math.max(rawProgress || 0, 0), 100);
 
     return (
-        <>
+        <StyledRoot>
             <StyledProgress>
                 <StyledProgressbar style={{ width: `${progress}%` }} />
             </StyledProgress>
             <StyledSpan>Загружено {progress}%</StyledSpan>
             <StyledSpinner size="1.25rem" />
-        </>
+        </StyledRoot>
     );
 };

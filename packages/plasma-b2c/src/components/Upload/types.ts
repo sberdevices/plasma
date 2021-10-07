@@ -1,7 +1,7 @@
-export type Status = 'error' | 'success';
+export type StatusType = 'error' | 'success';
 
 export interface ValidationResult {
     message?: string;
-    status?: Status;
-    data?: File;
+    status?: StatusType;
+    data: File | null;
 }

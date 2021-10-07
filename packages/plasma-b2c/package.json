@@ -49,7 +49,7 @@
         "@babel/preset-typescript": "7.15.0",
         "@sberdevices/plasma-colors": "0.1.1",
         "@sberdevices/plasma-cy-utils": "0.3.1",
-        "@sberdevices/plasma-icons": "1.44.0",
+        "@sberdevices/plasma-icons": "1.44.1",
         "@sberdevices/plasma-sb-utils": "0.25.0",
         "@sberdevices/plasma-tokens-b2c": "0.7.1",
         "@storybook/addon-docs": "6.3.8",
