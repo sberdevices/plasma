@@ -45,6 +45,7 @@ import { Trash } from './Icon.assets/Trash';
 import { TrashFilled } from './Icon.assets/TrashFilled';
 import { Cart } from './Icon.assets/Cart';
 import { CartAlt } from './Icon.assets/CartAlt';
+import { Drag } from './Icon.assets/Drag';
 // Action
 import { Alarm } from './Icon.assets/Alarm';
 import { BankCard } from './Icon.assets/BankCard';
@@ -199,6 +200,7 @@ export const iconSectionsSet = {
         trashFilled: TrashFilled,
         cart: Cart,
         cartAlt: CartAlt,
+        drag: Drag,
     },
     action: {
         alarm: Alarm,
