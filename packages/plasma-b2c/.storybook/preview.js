@@ -2,6 +2,7 @@ import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
+import { b2c } from '@sberdevices/plasma-tokens-b2c/typo';
 import { light, dark } from '@sberdevices/plasma-tokens-b2c/themes';
 import { standard as standardTypo, compatible as compatibleTypo } from '@sberdevices/plasma-typo';
 
@@ -15,6 +16,7 @@ const DocumentStyle = createGlobalStyle`
 `;
 /* stylelint-enable */
 
+const OldTypo = createGlobalStyle(b2c);
 const TypoStyle = createGlobalStyle(standardTypo);
 const CompatibleTypoStyle = createGlobalStyle(compatibleTypo);
 
@@ -28,8 +30,14 @@ const withTheme = (Story, context) => {
 
     return (
         <>
-            <TypoStyle />
-            <CompatibleTypoStyle />
+            {context.globals.typoVersion === 'standard' ? (
+                <>
+                    <TypoStyle />
+                    <CompatibleTypoStyle />
+                </>
+            ) : (
+                <OldTypo />
+            )}
             <Theme />
             <DocumentStyle />
             <Story {...context} />
@@ -89,6 +97,15 @@ export const globalTypes = {
         defaultValue: 'dark',
         toolbar: {
             items: ['light', 'dark'],
+            showName: true,
+        },
+    },
+    typoVersion: {
+        name: 'Typography version',
+        description: 'Global typography version for components',
+        defaultValue: 'standard',
+        toolbar: {
+            items: ['standard', 'old'],
             showName: true,
         },
     },
