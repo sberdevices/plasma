@@ -48,7 +48,7 @@
         "@sberdevices/plasma-cy-utils": "0.1.1",
         "@sberdevices/plasma-icons": "1.39.3",
         "@sberdevices/plasma-sb-utils": "0.25.0",
-        "@sberdevices/plasma-tokens-b2c": "0.5.2",
+        "@sberdevices/plasma-tokens-b2c": "0.6.1",
         "@storybook/addon-docs": "6.3.8",
         "@storybook/addon-essentials": "6.3.8",
         "@storybook/addon-knobs": "6.3.1",
@@ -70,23 +70,7 @@
         "styled-components": "5.3.1",
         "typescript": "3.9.10"
     },
-    "keywords": [
-        "design-system",
-        "react-components",
-        "ui-kit",
-        "react"
-    ],
-    "files": [
-        "components",
-        "es",
-        "hocs",
-        "hooks",
-        "mixins",
-        "tokens",
-        "types",
-        "utils",
-        "index.d.ts",
-        "index.js"
-    ],
+    "keywords": ["design-system", "react-components", "ui-kit", "react"],
+    "files": ["components", "es", "hocs", "hooks", "mixins", "tokens", "types", "utils", "index.d.ts", "index.js"],
     "sideEffects": false
 }
