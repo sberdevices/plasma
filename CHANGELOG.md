@@ -1,3 +1,16 @@
+# (Thu Oct 07 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@1.1.5`
+  - fix(plasma-temple): changeState action [#816](https://github.com/sberdevices/plasma/pull/816) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Wed Oct 06 2021)
 
 #### 🚀 Enhancement
