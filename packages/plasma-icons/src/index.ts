@@ -139,6 +139,7 @@ export { IconShuffle } from './Icons/IconShuffle';
 // Other
 export { IconAccessibility } from './Icons/IconAccessibility';
 export { IconPicture } from './Icons/IconPicture';
+export { IconPictureFilled } from './Icons/IconPictureFilled';
 export { IconSleep } from './Icons/IconSleep';
 export { IconMagicWand } from './Icons/IconMagicWand';
 export { IconPip1 } from './Icons/IconPip1';

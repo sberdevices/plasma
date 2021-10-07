@@ -142,6 +142,7 @@ import { Shuffle } from './Icon.assets/Shuffle';
 // Other
 import { Accessibility } from './Icon.assets/Accessibility';
 import { Picture } from './Icon.assets/Picture';
+import { PictureFilled } from './Icon.assets/PictureFilled';
 import { Sleep } from './Icon.assets/Sleep';
 import { MagicWand } from './Icon.assets/MagicWand';
 import { Pip1 } from './Icon.assets/Pip1';
@@ -307,6 +308,7 @@ export const iconSectionsSet = {
     other: {
         accessibility: Accessibility,
         picture: Picture,
+        pictureFilled: PictureFilled,
         sleep: Sleep,
         magicWand: MagicWand,
         pip1: Pip1,
