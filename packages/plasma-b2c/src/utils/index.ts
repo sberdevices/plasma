@@ -1,1 +1,1 @@
-export * from '@sberdevices/plasma-core/utils';
+export * from '@sberdevices/plasma-web/utils';

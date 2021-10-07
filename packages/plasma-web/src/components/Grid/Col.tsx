@@ -1,8 +1,43 @@
 import styled, { css } from 'styled-components';
-import { Col as BaseCol, mediaQuery, sizes, offsets, gridSizes, gridColumns } from '@sberdevices/plasma-core';
-import type { ColProps as BaseProps } from '@sberdevices/plasma-core';
+import { Col as BaseCol, sizes as baseSizes, offsets as baseOffsets } from '@sberdevices/plasma-core';
+import type {
+    ColProps as BaseProps,
+    ColSizeProps as BaseSizeProps,
+    ColOffsetProps as BaseOffsetProps,
+    ColCount as BaseColCount,
+} from '@sberdevices/plasma-core';
 
-export interface ColProps extends BaseProps {}
+import { gridColumns, gridSizes, mediaQuery, Breakpoint } from '../../utils';
+
+type ColCountExtInt = 13 | 14 | 15 | 16;
+type ColCountExtFlt = 12.5 | 13.5 | 14.5 | 15.5;
+export type ColCount = BaseColCount | ColCountExtInt | ColCountExtFlt;
+
+export interface ColSizeProps extends BaseSizeProps {
+    /**
+     * Размер ячейки при разрешении XXL
+     */
+    sizeXXL?: ColCount;
+}
+
+export interface ColOffsetProps extends BaseOffsetProps {
+    /**
+     * Отступ ячейки при разрешении XXL
+     */
+    offsetXXL?: ColCount;
+}
+
+export const sizes: Record<Breakpoint, keyof ColSizeProps> = {
+    XXL: 'sizeXXL',
+    ...baseSizes,
+};
+
+export const offsets: Record<Breakpoint, keyof ColOffsetProps> = {
+    XXL: 'offsetXXL',
+    ...baseOffsets,
+};
+
+export interface ColProps extends ColSizeProps, ColOffsetProps, BaseProps {}
 
 const deviceScale = 1;
 

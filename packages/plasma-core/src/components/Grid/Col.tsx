@@ -5,9 +5,9 @@ import type { Breakpoint } from '../../utils';
 
 type IntCount = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 type FltCount = 1.5 | 2.5 | 3.5 | 4.5 | 5.5 | 6.5 | 7.5 | 8.5 | 9.5 | 10.5 | 11.5;
-type ColCount = IntCount | FltCount;
+export type ColCount = IntCount | FltCount;
 
-interface MediaProps {
+export interface ColSizeProps {
     /**
      * Размер ячейки при разрешении S
      */
@@ -26,7 +26,7 @@ interface MediaProps {
     sizeXL?: ColCount;
 }
 
-interface OffsetProps {
+export interface ColOffsetProps {
     /**
      * Отступ ячейки при разрешении S
      */
@@ -45,21 +45,21 @@ interface OffsetProps {
     offsetXL?: ColCount;
 }
 
-export const sizes: Record<Breakpoint, keyof MediaProps> = {
+export const sizes: Record<Breakpoint, keyof ColSizeProps> = {
     S: 'sizeS',
     M: 'sizeM',
     L: 'sizeL',
     XL: 'sizeXL',
 };
 
-export const offsets: Record<Breakpoint, keyof OffsetProps> = {
+export const offsets: Record<Breakpoint, keyof ColOffsetProps> = {
     S: 'offsetS',
     M: 'offsetM',
     L: 'offsetL',
     XL: 'offsetXL',
 };
 
-export interface ColProps extends MediaProps, OffsetProps, React.HTMLAttributes<HTMLDivElement> {
+export interface ColProps extends ColSizeProps, ColOffsetProps, React.HTMLAttributes<HTMLDivElement> {
     /**
      * Размер ячейки, зависящий от максимального количества столбцов
      */
