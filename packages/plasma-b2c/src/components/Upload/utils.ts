@@ -12,6 +12,7 @@ export const defaultValidate = (files: FileList | null, accept?: string): Valida
         return {
             message: 'Загрузите файл',
             status: 'error',
+            data: null,
         };
     }
 
@@ -26,10 +27,11 @@ export const defaultValidate = (files: FileList | null, accept?: string): Valida
     const allowedFormats = accept.replace(/\s/g, '').replaceAll('.', '\\.').split(',');
     const fileTypeRegexp = new RegExp(`${allowedFormats.join('|')}$`, 'i');
 
-    if (file && !fileTypeRegexp.test(file.name)) {
+    if (!fileTypeRegexp.test(file.name)) {
         return {
             message: `Неверный формат файла. Используйте ${accept.replaceAll('.', '')}-формат`,
             status: 'error',
+            data: null,
         };
     }
 

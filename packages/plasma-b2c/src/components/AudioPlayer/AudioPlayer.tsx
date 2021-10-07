@@ -26,7 +26,11 @@ const StyledDelete = styled.button`
     }
 `;
 
-export const StyledControl = styled.div`
+export const StyledControl = styled.button`
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+
     display: flex;
 `;
 
@@ -137,6 +141,9 @@ export interface AudioPlayerProps {
     onPlay: (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
 }
 
+/**
+ * Компоннет для воспроизведения аудио.
+ */
 export const AudioPlayer: FC<AudioPlayerProps> = ({
     title,
     duration,

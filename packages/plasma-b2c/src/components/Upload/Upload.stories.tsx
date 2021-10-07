@@ -21,87 +21,56 @@ const StyledWrapper = styled.div`
 
 interface StoryProps extends UploadProps {}
 
-export const Base: Story<StoryProps> = ({ ...rest }) => {
+export const Default: Story<StoryProps> = ({ ...rest }) => {
     const [state, setState] = useState({
         status: undefined,
         progress: undefined,
         message: 'Подсказывающее сообщение',
     });
 
-    const onChange = useCallback(
-        (file: File) => {
-            console.log('file', file);
+    const onChange = useCallback(() => {
+        const interval = setInterval(
+            () =>
+                setState(({ progress }: { status?: string; progress?: number; message?: string }) => {
+                    const value = progress === undefined ? 0 : progress;
 
-            const interval = setInterval(
-                () =>
-                    setState(({ progress }: { status?: string; progress?: number; message?: string }) => {
-                        const value = progress === undefined ? 0 : progress;
-
-                        if (value + 25 > 100) {
-                            clearInterval(interval);
-
-                            return {
-                                status: 'error',
-                                progress: undefined,
-                                message: 'Файл не загрузился',
-                            };
-                        }
+                    if (value + 25 > 100) {
+                        clearInterval(interval);
 
                         return {
-                            status: undefined,
-                            progress: value + 25,
-                            message: undefined,
+                            status: 'error',
+                            progress: undefined,
+                            message: 'Файл не загрузился',
                         };
-                    }),
-                1000,
-            );
-        },
-        [setState],
-    );
+                    }
 
-    const customValidate = useCallback((files: FileList | null, accept?: string): ValidationResult => {
-        if (!files?.length) {
-            return {
-                message: 'Загрузите файл',
-                status: 'error',
-            };
-        }
+                    return {
+                        status: undefined,
+                        progress: value + 25,
+                        message: undefined,
+                    };
+                }),
+            1000,
+        );
+    }, []);
 
-        const file = files[0];
-
-        if (!accept) {
-            return {
-                data: file,
-            };
-        }
-
-        const allowedFormats = accept.replace(/\s/g, '').replace('.', '\\.').split(',');
-        const fileTypeRegexp = new RegExp(`${allowedFormats.join('|')}$`, 'i');
-
-        if (file && !fileTypeRegexp.test(file.name)) {
-            return {
-                message: 'Неверный формат. Требуется файл с расширением .pdf',
-                status: 'error',
-            };
-        }
-
+    const customValidate = useCallback((files: FileList | null): ValidationResult => {
         return {
-            data: file,
+            message: `Добавлен файл формата ${files[0].type}`,
+            status: 'success',
+            data: files[0],
         };
     }, []);
 
-    const onValidation = useCallback(
-        (result: ValidationResult) => {
-            const { message, status: rStatus } = result;
+    const onValidation = useCallback((result: ValidationResult) => {
+        const { message, status: rStatus } = result;
 
-            setState((prevState) => ({
-                ...prevState,
-                message,
-                status: rStatus,
-            }));
-        },
-        [setState],
-    );
+        setState((prevState) => ({
+            ...prevState,
+            message,
+            status: rStatus,
+        }));
+    }, []);
 
     return (
         <StyledWrapper>
@@ -119,8 +88,7 @@ export const Base: Story<StoryProps> = ({ ...rest }) => {
     );
 };
 
-Base.args = {
+Default.args = {
     disabled: false,
-    accept: '.pdf',
-    content: 'Загрузите файл формата .pdf',
+    content: 'Загрузите файл формата любого',
 };

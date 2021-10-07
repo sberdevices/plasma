@@ -20,7 +20,7 @@ const StyledWrapper = styled.div`
 interface StoryProps extends AudioPlayerProps {}
 
 const song = {
-    name: 'I’m Not Okey',
+    name: 'I’m Not Okay',
     duration: 128,
     id: 123,
     file:
@@ -39,14 +39,14 @@ export const Base: Story<StoryProps> = ({ ...rest }) => {
             ...prevState,
             isSelected: !prevState.isSelected,
         }));
-    }, [setState]);
+    }, []);
 
     const onPlay = useCallback(() => {
         setState((prevState) => ({
             ...prevState,
             isPlaying: !prevState.isPlaying,
         }));
-    }, [setState]);
+    }, []);
 
     const onDelete = useCallback((id: number) => {
         alert(`Трек id:${id} будет удалён`);
@@ -61,7 +61,7 @@ export const Base: Story<StoryProps> = ({ ...rest }) => {
                 isPlaying={state.isPlaying}
                 isSelected={state.isSelected}
                 canDelete={song.canDelete}
-                onClick={() => onSelect()}
+                onClick={onSelect}
                 onDelete={() => onDelete(song.id)}
                 onPlay={(event) => {
                     event.stopPropagation();

@@ -1,17 +1,11 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import type { FC } from 'react';
 import styled from 'styled-components';
 import { IconMusic } from '@sberdevices/plasma-icons';
 
-import { Upload, UploadProps, ValidationResult } from '../Upload';
-import { Status } from '../Upload/types';
+import { Upload, UploadProps } from '../Upload';
 
 export interface UploadAudioProps extends UploadProps {}
-
-export interface ValidationState {
-    status?: Status;
-    message?: string;
-}
 
 export const StyledContent = styled.div`
     display: flex;
@@ -29,27 +23,12 @@ export const StyledIconMusic = styled(IconMusic)`
     }
 `;
 
+/**
+ * Компонент для загрузки аудио файлов.
+ */
 export const UploadAudio: FC<UploadAudioProps> = ({ ...rest }) => {
-    const [state, setState] = useState<ValidationState>({
-        status: undefined,
-        message: undefined,
-    });
-
     const acceptExtensions = '.mp3,.wav';
     const text = 'Перетащите трек в формате mp3';
-
-    const onValidation = useCallback(
-        (result: ValidationResult) => {
-            const { message, status: rStatus } = result;
-
-            setState((prevState) => ({
-                ...prevState,
-                message,
-                status: rStatus,
-            }));
-        },
-        [setState],
-    );
 
     return (
         <Upload
@@ -60,9 +39,6 @@ export const UploadAudio: FC<UploadAudioProps> = ({ ...rest }) => {
                     <StyledText>{text}</StyledText>
                 </StyledContent>
             }
-            message={state.message}
-            status={state.status}
-            onValidation={onValidation}
             {...rest}
         />
     );

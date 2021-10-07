@@ -3,7 +3,7 @@ import { success, critical } from '@sberdevices/plasma-core';
 
 import { Caption } from '../Typography';
 
-import { Status } from './types';
+import { StatusType } from './types';
 
 const statuses = {
     error: {
@@ -14,7 +14,7 @@ const statuses = {
     },
 };
 
-export const UploadMessage = styled(Caption)<{ status?: Status }>`
+export const UploadMessage = styled(Caption)<{ status?: StatusType }>`
     margin-top: 0.25rem;
     text-align: center;
 
