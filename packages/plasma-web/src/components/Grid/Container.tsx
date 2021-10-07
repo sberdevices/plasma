@@ -1,17 +1,7 @@
 import styled, { css } from 'styled-components';
-import {
-    Container as BaseContainer,
-    mediaQuery,
-    gridSizes,
-    gridMargins as baseMargins,
-    gridGutters,
-} from '@sberdevices/plasma-core';
+import { Container as BaseContainer } from '@sberdevices/plasma-core';
 
-const gridMargins = {
-    ...baseMargins,
-    S: 2,
-    XL: 6.25,
-};
+import { gridGutters, gridMargins, gridSizes, mediaQuery } from '../../utils';
 
 const deviceScale = 1;
 const sidesCount = 2;
