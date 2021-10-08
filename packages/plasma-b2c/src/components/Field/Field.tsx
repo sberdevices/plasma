@@ -12,9 +12,9 @@ import {
     buttonWarning,
     buttonCritical,
     applyEllipsis,
-    headline2,
-    caption,
 } from '@sberdevices/plasma-core';
+
+import { textL, textXS } from '../../tokens';
 
 const statuses = {
     success,
@@ -29,7 +29,7 @@ const backgroundStatuses = {
 };
 
 export const FieldInput = styled.input`
-    ${headline2}
+    ${textL}
 
     background-color: transparent;
     border: 0 none;
@@ -39,10 +39,6 @@ export const FieldInput = styled.input`
     padding-bottom: 3.5rem;
 
     color: ${secondary};
-
-    letter-spacing: -0.019em;
-    font-weight: normal;
-    line-height: 2rem;
 
     &:disabled {
         cursor: inherit;
@@ -136,7 +132,7 @@ export const FieldHelpers = styled.div`
  * Вспомогательный текст снизу для поля ввода
  */
 export const FieldHelper = styled.span`
-    ${caption}
+    ${textXS}
     margin: 0;
     padding: 0;
 
