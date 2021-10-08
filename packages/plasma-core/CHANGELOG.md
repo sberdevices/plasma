@@ -1,3 +1,26 @@
+# v1.31.0 (Fri Oct 08 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-core): Added global `dark0N` colors [#812](https://github.com/sberdevices/plasma/pull/812) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-b2c): `Toast` icon [#812](https://github.com/sberdevices/plasma/pull/812) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-core): Shared `Toast` between libraries [#812](https://github.com/sberdevices/plasma/pull/812) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- test: Component test for B2C `Toast` [#812](https://github.com/sberdevices/plasma/pull/812) ([@fanisco](https://github.com/fanisco))
+
+#### ⚠️ Pushed to `master`
+
+- build(plasma-core/ui/b2c/web): fix storybook build ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.30.1 (Wed Oct 06 2021)
 
 #### 🐛 Bug Fix

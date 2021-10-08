@@ -1,3 +1,18 @@
+# v0.2.0 (Fri Oct 08 2021)
+
+#### 🐛 Bug Fix
+
+- build(plasma-cy-utils): fix pck-locks [#829](https://github.com/sberdevices/plasma/pull/829) ([@Yeti-or](https://github.com/Yeti-or))
+- chore(plasma-cy-utils): Update styled-components version [#829](https://github.com/sberdevices/plasma/pull/829) ([@fanisco](https://github.com/fanisco))
+- test(plasma-b2c): Added B2C typos for cy component test [#829](https://github.com/sberdevices/plasma/pull/829) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v0.1.1 (Wed Oct 06 2021)
 
 #### 🐛 Bug Fix

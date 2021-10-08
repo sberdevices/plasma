@@ -1,3 +1,15 @@
+# v1.13.0 (Fri Oct 08 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-core): Added global `dark0N` colors [#812](https://github.com/sberdevices/plasma/pull/812) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.12.1 (Wed Sep 15 2021)
 
 #### 🐛 Bug Fix

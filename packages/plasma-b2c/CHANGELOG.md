@@ -1,3 +1,33 @@
+# v1.7.0 (Fri Oct 08 2021)
+
+#### 🚀 Enhancement
+
+- feat(b2c): add Slider [#842](https://github.com/sberdevices/plasma/pull/842) ([@Yeti-or](https://github.com/Yeti-or))
+- feat: Standard typography system [#829](https://github.com/sberdevices/plasma/pull/829) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-b2c): `Toast` icon [#812](https://github.com/sberdevices/plasma/pull/812) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-core): Shared `Toast` between libraries [#812](https://github.com/sberdevices/plasma/pull/812) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- docs(plasma-b2c): fix packageName [#841](https://github.com/sberdevices/plasma/pull/841) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-b2c): add storybook stories [#841](https://github.com/sberdevices/plasma/pull/841) ([@Yeti-or](https://github.com/Yeti-or))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- chore(plasma-b2c): Support compatible typography in storybook [#829](https://github.com/sberdevices/plasma/pull/829) ([@Yeti-or](https://github.com/Yeti-or))
+- test: Component test for B2C `Toast` [#812](https://github.com/sberdevices/plasma/pull/812) ([@fanisco](https://github.com/fanisco))
+
+#### ⚠️ Pushed to `master`
+
+- build(plasma-core/ui/b2c/web): fix storybook build ([@Yeti-or](https://github.com/Yeti-or))
+- chore(plasma-b2c): Bump `plasma-tokens-b2c` version ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 3
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.6.0 (Wed Oct 06 2021)
 
 #### 🚀 Enhancement
