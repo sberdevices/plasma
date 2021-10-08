@@ -81,6 +81,11 @@ export const bodyL = ({
     lineHeight: 'var(--plasma-typo-body-l-line-height)',
 } as unknown) as CSSObject;
 
+export const bodyLBold = ({
+    ...bodyL,
+    fontWeight: 'var(--plasma-typo-body-l-bold-font-weight)',
+} as unknown) as CSSObject;
+
 export const bodyM = ({
     fontFamily: 'var(--plasma-typo-body-m-font-family)',
     fontSize: 'var(--plasma-typo-body-m-font-size)',
@@ -88,6 +93,11 @@ export const bodyM = ({
     fontWeight: 'var(--plasma-typo-body-m-font-weight)',
     letterSpacing: 'var(--plasma-typo-body-m-letter-spacing)',
     lineHeight: 'var(--plasma-typo-body-m-line-height)',
+} as unknown) as CSSObject;
+
+export const bodyMBold = ({
+    ...bodyM,
+    fontWeight: 'var(--plasma-typo-body-m-bold-font-weight)',
 } as unknown) as CSSObject;
 
 export const bodyS = ({
@@ -99,6 +109,11 @@ export const bodyS = ({
     lineHeight: 'var(--plasma-typo-body-s-line-height)',
 } as unknown) as CSSObject;
 
+export const bodySBold = ({
+    ...bodyS,
+    fontWeight: 'var(--plasma-typo-body-s-bold-font-weight)',
+} as unknown) as CSSObject;
+
 export const bodyXS = ({
     fontFamily: 'var(--plasma-typo-body-xs-font-family)',
     fontSize: 'var(--plasma-typo-body-xs-font-size)',
@@ -106,6 +121,11 @@ export const bodyXS = ({
     fontWeight: 'var(--plasma-typo-body-xs-font-weight)',
     letterSpacing: 'var(--plasma-typo-body-xs-letter-spacing)',
     lineHeight: 'var(--plasma-typo-body-xs-line-height)',
+} as unknown) as CSSObject;
+
+export const bodyXSBold = ({
+    ...bodyXS,
+    fontWeight: 'var(--plasma-typo-body-xs-bold-font-weight)',
 } as unknown) as CSSObject;
 
 export const bodyXXS = ({
@@ -117,6 +137,11 @@ export const bodyXXS = ({
     lineHeight: 'var(--plasma-typo-body-xxs-line-height)',
 } as unknown) as CSSObject;
 
+export const bodyXXSBold = ({
+    ...bodyXXS,
+    fontWeight: 'var(--plasma-typo-body-xxs-bold-font-weight)',
+} as unknown) as CSSObject;
+
 export const textL = ({
     fontFamily: 'var(--plasma-typo-text-l-font-family)',
     fontSize: 'var(--plasma-typo-text-l-font-size)',
@@ -124,6 +149,11 @@ export const textL = ({
     fontWeight: 'var(--plasma-typo-text-l-font-weight)',
     letterSpacing: 'var(--plasma-typo-text-l-letter-spacing)',
     lineHeight: 'var(--plasma-typo-text-l-line-height)',
+} as unknown) as CSSObject;
+
+export const textLBold = ({
+    ...textL,
+    fontWeight: 'var(--plasma-typo-text-l-bold-font-weight)',
 } as unknown) as CSSObject;
 
 export const textM = ({
@@ -135,6 +165,11 @@ export const textM = ({
     lineHeight: 'var(--plasma-typo-text-m-line-height)',
 } as unknown) as CSSObject;
 
+export const textMBold = ({
+    ...textM,
+    fontWeight: 'var(--plasma-typo-text-m-bold-font-weight)',
+} as unknown) as CSSObject;
+
 export const textS = ({
     fontFamily: 'var(--plasma-typo-text-s-font-family)',
     fontSize: 'var(--plasma-typo-text-s-font-size)',
@@ -144,6 +179,11 @@ export const textS = ({
     lineHeight: 'var(--plasma-typo-text-s-line-height)',
 } as unknown) as CSSObject;
 
+export const textSBold = ({
+    ...textS,
+    fontWeight: 'var(--plasma-typo-text-s-bold-font-weight)',
+} as unknown) as CSSObject;
+
 export const textXS = ({
     fontFamily: 'var(--plasma-typo-text-xs-font-family)',
     fontSize: 'var(--plasma-typo-text-xs-font-size)',
@@ -151,4 +191,9 @@ export const textXS = ({
     fontWeight: 'var(--plasma-typo-text-xs-font-weight)',
     letterSpacing: 'var(--plasma-typo-text-xs-letter-spacing)',
     lineHeight: 'var(--plasma-typo-text-xs-line-height)',
+} as unknown) as CSSObject;
+
+export const textXSBold = ({
+    ...textXS,
+    fontWeight: 'var(--plasma-typo-text-xs-bold-font-weight)',
 } as unknown) as CSSObject;

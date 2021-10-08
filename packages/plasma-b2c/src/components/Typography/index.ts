@@ -24,4 +24,4 @@ export {
 export * from './Body';
 export * from './Dspl';
 export * from './H';
-export * from './Txt';
+export * from './Text';

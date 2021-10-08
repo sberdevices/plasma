@@ -1,30 +1,43 @@
 import styled from 'styled-components';
 
-import { bodyL, bodyM, bodyS, bodyXS, bodyXXS } from '../../tokens';
+import {
+    bodyL,
+    bodyLBold,
+    bodyM,
+    bodyMBold,
+    bodyS,
+    bodySBold,
+    bodyXS,
+    bodyXSBold,
+    bodyXXS,
+    bodyXXSBold,
+} from '../../tokens';
 import { applyHyphens, applySpacing, SpacingProps } from '../../mixins';
 
-export const BodyL = styled.div<SpacingProps>`
+import type { BoldProps } from './Typography.types';
+
+export const BodyL = styled.div<SpacingProps & BoldProps>`
     ${applyHyphens}
     ${applySpacing}
-    ${bodyL}
+    ${({ bold }) => (bold ? bodyLBold : bodyL)}
 `;
-export const BodyM = styled.div<SpacingProps>`
+export const BodyM = styled.div<SpacingProps & BoldProps>`
     ${applyHyphens}
     ${applySpacing}
-    ${bodyM}
+    ${({ bold }) => (bold ? bodyMBold : bodyM)}
 `;
-export const BodyS = styled.div<SpacingProps>`
+export const BodyS = styled.div<SpacingProps & BoldProps>`
     ${applyHyphens}
     ${applySpacing}
-    ${bodyS}
+    ${({ bold }) => (bold ? bodySBold : bodyS)}
 `;
-export const BodyXS = styled.div<SpacingProps>`
+export const BodyXS = styled.div<SpacingProps & BoldProps>`
     ${applyHyphens}
     ${applySpacing}
-    ${bodyXS}
+    ${({ bold }) => (bold ? bodyXSBold : bodyXS)}
 `;
-export const BodyXXS = styled.div<SpacingProps>`
+export const BodyXXS = styled.div<SpacingProps & BoldProps>`
     ${applyHyphens}
     ${applySpacing}
-    ${bodyXXS}
+    ${({ bold }) => (bold ? bodyXXSBold : bodyXXS)}
 `;

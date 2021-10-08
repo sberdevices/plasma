@@ -46,25 +46,50 @@ const typoS = {
     },
     'body-l': {
         'font-size': '1.125rem',
+        'font-weight': '400',
+        'line-height': '1.375rem',
+    },
+    'body-l-bold': {
+        'font-size': '1.125rem',
         'font-weight': '600',
         'line-height': '1.375rem',
     },
     'body-m': {
+        'font-size': '1rem',
+        'font-weight': '400',
+        'line-height': '1.25rem',
+    },
+    'body-m-bold': {
         'font-size': '1rem',
         'font-weight': '600',
         'line-height': '1.25rem',
     },
     'body-s': {
         'font-size': '0.875rem',
+        'font-weight': '400',
+        'line-height': '1.125rem',
+    },
+    'body-s-bold': {
+        'font-size': '0.875rem',
         'font-weight': '600',
         'line-height': '1.125rem',
     },
     'body-xs': {
         'font-size': '0.75rem',
+        'font-weight': '400',
+        'line-height': '0.875rem',
+    },
+    'body-xs-bold': {
+        'font-size': '0.75rem',
         'font-weight': '600',
         'line-height': '0.875rem',
     },
     'body-xxs': {
+        'font-size': '0.625rem',
+        'font-weight': '400',
+        'line-height': '0.75rem',
+    },
+    'body-xxs-bold': {
         'font-size': '0.625rem',
         'font-weight': '600',
         'line-height': '0.75rem',
@@ -74,9 +99,19 @@ const typoS = {
         'font-weight': '400',
         'line-height': '1.625rem',
     },
+    'text-l-bold': {
+        'font-size': '1.125rem',
+        'font-weight': '600',
+        'line-height': '1.625rem',
+    },
     'text-m': {
         'font-size': '1rem',
         'font-weight': '400',
+        'line-height': '1.5rem',
+    },
+    'text-m-bold': {
+        'font-size': '1rem',
+        'font-weight': '600',
         'line-height': '1.5rem',
     },
     'text-s': {
@@ -84,9 +119,19 @@ const typoS = {
         'font-weight': '400',
         'line-height': '1.25rem',
     },
+    'text-s-bold': {
+        'font-size': '0.875rem',
+        'font-weight': '600',
+        'line-height': '1.25rem',
+    },
     'text-xs': {
         'font-size': '0.75rem',
         'font-weight': '400',
+        'line-height': '1rem',
+    },
+    'text-xs-bold': {
+        'font-size': '0.75rem',
+        'font-weight': '600',
         'line-height': '1rem',
     },
 };
@@ -133,25 +178,50 @@ const typoM = {
     },
     'body-l': {
         'font-size': '1.125rem',
+        'font-weight': '400',
+        'line-height': '1.375rem',
+    },
+    'body-l-bold': {
+        'font-size': '1.125rem',
         'font-weight': '600',
         'line-height': '1.375rem',
     },
     'body-m': {
+        'font-size': '1rem',
+        'font-weight': '400',
+        'line-height': '1.25rem',
+    },
+    'body-m-bold': {
         'font-size': '1rem',
         'font-weight': '600',
         'line-height': '1.25rem',
     },
     'body-s': {
         'font-size': '0.875rem',
+        'font-weight': '400',
+        'line-height': '1.125rem',
+    },
+    'body-s-bold': {
+        'font-size': '0.875rem',
         'font-weight': '600',
         'line-height': '1.125rem',
     },
     'body-xs': {
         'font-size': '0.75rem',
+        'font-weight': '400',
+        'line-height': '0.875rem',
+    },
+    'body-xs-bold': {
+        'font-size': '0.75rem',
         'font-weight': '600',
         'line-height': '0.875rem',
     },
     'body-xxs': {
+        'font-size': '0.625rem',
+        'font-weight': '400',
+        'line-height': '0.75rem',
+    },
+    'body-xxs-bold': {
         'font-size': '0.625rem',
         'font-weight': '600',
         'line-height': '0.75rem',
@@ -161,9 +231,19 @@ const typoM = {
         'font-weight': '400',
         'line-height': '1.75rem',
     },
+    'text-l-bold': {
+        'font-size': '1.25rem',
+        'font-weight': '600',
+        'line-height': '1.75rem',
+    },
     'text-m': {
         'font-size': '1rem',
         'font-weight': '400',
+        'line-height': '1.5rem',
+    },
+    'text-m-bold': {
+        'font-size': '1rem',
+        'font-weight': '600',
         'line-height': '1.5rem',
     },
     'text-s': {
@@ -171,9 +251,19 @@ const typoM = {
         'font-weight': '400',
         'line-height': '1.25rem',
     },
+    'text-s-bold': {
+        'font-size': '0.875rem',
+        'font-weight': '600',
+        'line-height': '1.25rem',
+    },
     'text-xs': {
         'font-size': '0.75rem',
         'font-weight': '400',
+        'line-height': '1rem',
+    },
+    'text-xs-bold': {
+        'font-size': '0.75rem',
+        'font-weight': '600',
         'line-height': '1rem',
     },
 };
@@ -220,25 +310,50 @@ const typoL = {
     },
     'body-l': {
         'font-size': '1.125rem',
+        'font-weight': '400',
+        'line-height': '1.375rem',
+    },
+    'body-l-bold': {
+        'font-size': '1.125rem',
         'font-weight': '600',
         'line-height': '1.375rem',
     },
     'body-m': {
+        'font-size': '1rem',
+        'font-weight': '400',
+        'line-height': '1.25rem',
+    },
+    'body-m-bold': {
         'font-size': '1rem',
         'font-weight': '600',
         'line-height': '1.25rem',
     },
     'body-s': {
         'font-size': '0.875rem',
+        'font-weight': '400',
+        'line-height': '1.125rem',
+    },
+    'body-s-bold': {
+        'font-size': '0.875rem',
         'font-weight': '600',
         'line-height': '1.125rem',
     },
     'body-xs': {
         'font-size': '0.75rem',
+        'font-weight': '400',
+        'line-height': '0.875rem',
+    },
+    'body-xs-bold': {
+        'font-size': '0.75rem',
         'font-weight': '600',
         'line-height': '0.875rem',
     },
     'body-xxs': {
+        'font-size': '0.625rem',
+        'font-weight': '400',
+        'line-height': '0.75rem',
+    },
+    'body-xxs-bold': {
         'font-size': '0.625rem',
         'font-weight': '600',
         'line-height': '0.75rem',
@@ -248,9 +363,19 @@ const typoL = {
         'font-weight': '400',
         'line-height': '2rem',
     },
+    'text-l-bold': {
+        'font-size': '1.5rem',
+        'font-weight': '600',
+        'line-height': '2rem',
+    },
     'text-m': {
         'font-size': '1.125rem',
         'font-weight': '400',
+        'line-height': '1.625rem',
+    },
+    'text-m-bold': {
+        'font-size': '1.125rem',
+        'font-weight': '600',
         'line-height': '1.625rem',
     },
     'text-s': {
@@ -258,9 +383,19 @@ const typoL = {
         'font-weight': '400',
         'line-height': '1.25rem',
     },
+    'text-s-bold': {
+        'font-size': '0.875rem',
+        'font-weight': '600',
+        'line-height': '1.25rem',
+    },
     'text-xs': {
         'font-size': '0.75rem',
         'font-weight': '400',
+        'line-height': '1rem',
+    },
+    'text-xs-bold': {
+        'font-size': '0.75rem',
+        'font-weight': '600',
         'line-height': '1rem',
     },
 };
