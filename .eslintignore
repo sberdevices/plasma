@@ -24,6 +24,9 @@ packages/plasma-tokens-web/*
 !packages/plasma-tokens-web/data.ts
 !packages/plasma-tokens-web/generate.ts
 
+packages/plasma-typo/*
+!packages/plasma-typo/src
+
 packages/**/jest.config.*
 examples/**
 

@@ -1,0 +1,38 @@
+{
+    "name": "@sberdevices/plasma-typo",
+    "version": "0.0.0",
+    "description": "Plasma Typography System's tokens",
+    "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
+    "license": "Sber Public License at-nc-sa v.2",
+    "module": "lib/esm/index.js",
+    "main": "lib/cjs/index.js",
+    "types": "lib/cjs/index.d.ts",
+    "scripts": {
+        "prepare": "npm run build",
+        "prebuild": "rm -rf ./lib",
+        "build": "npm run build:cjs && npm run build:esm",
+        "build:cjs": "tsc",
+        "build:esm": "tsc -p ./tsconfig.es.json"
+    },
+    "peerDependencies": {
+        "react": "^16.13.1 || ^17.0.0",
+        "react-dom": "^16.13.1 || ^17.0.0",
+        "styled-components": "^5.1.1"
+    },
+    "devDependencies": {
+        "@types/node": "16.7.13",
+        "@types/react": "16.9.38",
+        "@types/react-dom": "16.9.8",
+        "@types/styled-components": "5.1.0",
+        "react": "16.13.1",
+        "react-dom": "16.13.1",
+        "react-scripts": "3.4.4",
+        "styled-components": "5.3.1",
+        "typescript": "3.9.10"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": ["lib"],
+    "sideEffects": false
+}
