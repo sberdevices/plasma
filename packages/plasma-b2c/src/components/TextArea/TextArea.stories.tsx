@@ -56,7 +56,7 @@ export default {
 } as Meta;
 
 export const Default: Story<TextAreaProps & { enableContentRight: boolean }> = ({ status, ...rest }) => {
-    const [value, setValue] = React.useState('Введите');
+    const [value, setValue] = React.useState('');
 
     return (
         <TextArea
@@ -74,10 +74,38 @@ export const Default: Story<TextAreaProps & { enableContentRight: boolean }> = (
 };
 
 Default.args = {
-    placeholder: 'Label',
+    placeholder: 'Placeholder text',
     leftHelper: 'Helper text',
     rightHelper: '125 слов',
     status: '' as 'success',
+    resize: 'vertical',
+    disabled: false,
+};
+
+export const Live: Story<TextAreaProps & { enableContentRight: boolean }> = ({ status, ...rest }) => {
+    const [value, setValue] = React.useState('');
+    const l = value.length;
+    const max = 140;
+
+    return (
+        <TextArea
+            value={value}
+            status={max <= l ? 'error' : ('' as 'success')}
+            onChange={(e) => {
+                setValue(e.target.value);
+                onChange(e);
+            }}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            rightHelper={`${max - l} символов`}
+            {...rest}
+        />
+    );
+};
+
+Live.args = {
+    placeholder: 'Placeholder text',
+    leftHelper: 'Helper text',
     resize: 'vertical',
     disabled: false,
 };
