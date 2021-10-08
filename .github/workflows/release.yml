@@ -65,6 +65,8 @@ jobs:
           npm i --package-lock-only
           lerna clean -y
           lerna exec --ignore @sberdevices/plasma-ui-docs --ignore @sberdevices/plasma-web-docs -- npm i --package-lock-only
+          # root deps don't update correctly on first regeneration O_o
+          npm i --package-lock-only
 
       - name: Extract branch name
         if: github.event_name != 'pull_request'
