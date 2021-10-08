@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { SSRProvider } from '../SSRProvider';
 import { applySpacing } from '../../mixins';
 import { actionWithPersistedEvent, InSpacingDecorator } from '../../helpers';
 
@@ -35,11 +36,13 @@ const StyledRadioGroup = styled(RadioGroup)`
 
 const Showcase = ({ render, withLabels = true }) => (
     <div>
-        {rows.map((items, i) => (
-            <StyledRadioGroup key={i}>
-                {items.map((item, j) => render({ ...item, label: withLabels ? item.label : '' }, `item:${j}`))}
-            </StyledRadioGroup>
-        ))}
+        <SSRProvider>
+            {rows.map((items, i) => (
+                <StyledRadioGroup key={i}>
+                    {items.map((item, j) => render({ ...item, label: withLabels ? item.label : '' }, `item:${j}`))}
+                </StyledRadioGroup>
+            ))}
+        </SSRProvider>
     </div>
 );
 

@@ -25,26 +25,26 @@ export const Headline4 = styled.div<SpacingProps>`
 `;
 
 export const H1 = styled.h1<SpacingProps>`
+    margin: 0;
     ${applyHyphens}
     ${applySpacing}
     ${headline1}
-    margin: 0;
 `;
 export const H2 = styled.h2<SpacingProps>`
+    margin: 0;
     ${applyHyphens}
     ${applySpacing}
     ${headline2}
-    margin: 0;
 `;
 export const H3 = styled.h3<SpacingProps>`
+    margin: 0;
     ${applyHyphens}
     ${applySpacing}
     ${headline3}
-    margin: 0;
 `;
 export const H4 = styled.h4<SpacingProps>`
+    margin: 0;
     ${applyHyphens}
     ${applySpacing}
     ${headline4}
-    margin: 0;
 `;

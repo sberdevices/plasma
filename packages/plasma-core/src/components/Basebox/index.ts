@@ -5,5 +5,6 @@ export {
     StyledContent as BaseboxContent,
     StyledLabel as BaseboxLabel,
     StyledDescription as BaseboxDescription,
+    StyledContentWrapper as BaseboxContentWrapper,
 } from './Basebox';
 export type { BaseboxProps } from './Basebox';

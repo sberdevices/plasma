@@ -2,6 +2,7 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
+import { SSRProvider } from '../SSRProvider';
 import { InSpacingDecorator, disableProps } from '../../helpers';
 
 import { Checkbox, CheckboxProps } from '.';
@@ -107,34 +108,41 @@ export const Live = () => {
         dothraki: false,
     });
 
-    return items.map((item) => (
-        <Checkbox
-            {...getState(values, item.value)}
-            style={{ marginLeft: item.parent ? 36 : null }}
-            key={item.value}
-            name={item.name}
-            value={item.value}
-            label={item.label}
-            disabled={item.disabled}
-            description={item.description}
-            onChange={(event) => {
-                const { checked } = event.target;
+    return (
+        <SSRProvider>
+            {items.map((item) => (
+                <Checkbox
+                    {...getState(values, item.value)}
+                    style={{ marginLeft: item.parent ? 36 : null }}
+                    key={item.value}
+                    name={item.name}
+                    value={item.value}
+                    label={item.label}
+                    disabled={item.disabled}
+                    description={item.description}
+                    onChange={(event) => {
+                        const { checked } = event.target;
 
-                if (item.parent) {
-                    setValues({ ...values, [item.value]: checked });
-                } else {
-                    setValues({
-                        ...values,
-                        ...getChildren(item.value).reduce((acc, child) => ({ ...acc, [child.value]: checked }), {}),
-                    });
-                }
+                        if (item.parent) {
+                            setValues({ ...values, [item.value]: checked });
+                        } else {
+                            setValues({
+                                ...values,
+                                ...getChildren(item.value).reduce(
+                                    (acc, child) => ({ ...acc, [child.value]: checked }),
+                                    {},
+                                ),
+                            });
+                        }
 
-                onChange(event);
-            }}
-            onFocus={onFocus}
-            onBlur={onBlur}
-        />
-    ));
+                        onChange(event);
+                    }}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                />
+            ))}
+        </SSRProvider>
+    );
 };
 
 export const Default: Story<CheckboxProps> = (args) => {
@@ -142,17 +150,19 @@ export const Default: Story<CheckboxProps> = (args) => {
     const [checked, setChecked] = React.useState(true);
 
     return (
-        <Checkbox
-            value={value}
-            checked={checked}
-            onChange={(event) => {
-                setChecked(event.target.checked);
-                onChange(event);
-            }}
-            onFocus={onFocus}
-            onBlur={onBlur}
-            {...args}
-        />
+        <SSRProvider>
+            <Checkbox
+                value={value}
+                checked={checked}
+                onChange={(event) => {
+                    setChecked(event.target.checked);
+                    onChange(event);
+                }}
+                onFocus={onFocus}
+                onBlur={onBlur}
+                {...args}
+            />
+        </SSRProvider>
     );
 };
 

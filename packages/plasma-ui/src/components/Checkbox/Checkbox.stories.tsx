@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { SSRProvider } from '../SSRProvider';
 import { actionWithPersistedEvent, ShowcaseComponentGrid, InSpacingDecorator } from '../../helpers';
 
 import { Checkbox } from '.';
@@ -27,9 +28,11 @@ const rows = [
 
 const Showcase = ({ render, withLabels = true }) => (
     <ShowcaseComponentGrid>
-        {rows.map((items) =>
-            items.map((item, j) => render({ ...item, label: withLabels ? item.label : '' }, `item:${j}`)),
-        )}
+        <SSRProvider>
+            {rows.map((items) =>
+                items.map((item, j) => render({ ...item, label: withLabels ? item.label : '' }, `item:${j}`)),
+            )}
+        </SSRProvider>
     </ShowcaseComponentGrid>
 );
 

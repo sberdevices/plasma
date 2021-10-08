@@ -8,6 +8,8 @@ import {
     BaseboxLabel,
     BaseboxDescription,
     applyDisabled,
+    useUniqId,
+    BaseboxContentWrapper,
 } from '@sberdevices/plasma-core';
 import type { BaseboxProps, FocusProps, OutlinedProps } from '@sberdevices/plasma-core';
 import { accent, white, secondary, transparent } from '@sberdevices/plasma-tokens';
@@ -40,7 +42,7 @@ export const StyledTrigger = styled(BaseboxTrigger)<{
     color: ${white};
 
     /* stylelint-disable-next-line selector-nested-pattern, selector-type-no-unknown */
-    input:checked ~ & {
+    input:checked + label & {
         background: ${accent};
         box-shadow: inset 0 0 0 0.125rem ${accent};
     }
@@ -60,7 +62,7 @@ export const StyledTrigger = styled(BaseboxTrigger)<{
     ${({ $focused }) => css`
         border-radius: var(--plasma-trigger-border-radius);
 
-        input:focus ~ & {
+        input:focus + label & {
             box-shadow: none;
 
             &::before {
@@ -112,7 +114,7 @@ const StyledMark = styled(IconDone)`
     transform: scale(0);
 
     /* stylelint-disable-next-line selector-nested-pattern, selector-type-no-unknown */
-    input:checked ~ ${StyledTrigger} & {
+    input:checked + label ${StyledTrigger} & {
         transform: scale(1);
     }
 `;
@@ -125,17 +127,41 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
     { id, label, description, disabled, focused, scaleOnInteraction, style, className, ...rest },
     ref,
 ) {
+    const uniqId = useUniqId();
+    const uniqLabelId = useUniqId();
+    const uniqDescriptionId = useUniqId();
+    const checkboxId = id || uniqId;
     return (
-        <StyledRoot $disabled={disabled} style={style} className={className} htmlFor={id}>
-            <BaseboxInput id={id} ref={ref} type="checkbox" disabled={disabled} {...rest} />
-            <StyledTrigger $focused={focused} $scaleOnInteraction={scaleOnInteraction}>
-                <StyledMark color="inherit" size="xs" />
-            </StyledTrigger>
+        <StyledRoot $disabled={disabled} style={style} className={className}>
+            <BaseboxInput
+                aria-labelledby={uniqLabelId}
+                aria-describedby={uniqDescriptionId}
+                id={checkboxId}
+                ref={ref}
+                type="checkbox"
+                disabled={disabled}
+                {...rest}
+            />
+            <BaseboxContentWrapper htmlFor={checkboxId}>
+                <StyledTrigger $focused={focused} $scaleOnInteraction={scaleOnInteraction}>
+                    <StyledMark color="inherit" size="xs" />
+                </StyledTrigger>
+                {label && (
+                    <BaseboxContent>
+                        {label && <BaseboxLabel as="span">{label}</BaseboxLabel>}
+                        {description && <BaseboxDescription mt={4}>{description}</BaseboxDescription>}
+                    </BaseboxContent>
+                )}
+            </BaseboxContentWrapper>
             {label && (
-                <BaseboxContent>
-                    {label && <BaseboxLabel as="span">{label}</BaseboxLabel>}
-                    {description && <BaseboxDescription mt={4}>{description}</BaseboxDescription>}
-                </BaseboxContent>
+                <span style={{ visibility: 'hidden', width: 0, height: 0 }} id={uniqLabelId}>
+                    {label}
+                </span>
+            )}
+            {description && (
+                <span style={{ visibility: 'hidden', width: 0, height: 0 }} id={uniqDescriptionId}>
+                    {description}
+                </span>
             )}
         </StyledRoot>
     );

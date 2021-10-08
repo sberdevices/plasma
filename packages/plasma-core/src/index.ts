@@ -12,6 +12,7 @@ export * from './components/Price';
 export * from './components/RadioGroup';
 export * from './components/Skeleton';
 export * from './components/Spinner';
+export * from './components/SSRProvider';
 export * from './components/Switch';
 export * from './components/Tabs';
 export * from './components/TextArea';
