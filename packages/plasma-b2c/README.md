@@ -19,18 +19,50 @@
 ```bash
 $ npm install --save react react-dom
 $ npm install --save styled-components
-$ npm install --save @sberdevices/plasma-b2c @sberdevices/plasma-icons
+$ npm install --save @sberdevices/plasma-b2c @sberdevices/plasma-icons @sberdevices/plasma-tokens-b2c @sberdevices/plasma-typo
+```
+
+### Тема и типографика
+
+Для корректной работы необходимо создать глобальные стили:
+
+```jsx
+// Main.tsx
+import React from 'react';
+import { createGlobalStyle } from 'styled-components';
+
+import { dark } from '@sberdevices/plasma-tokens-b2c/themes';
+import { standard as standardTypo, compatible as compatibleTypo } from '@sberdevices/plasma-typo';
+
+import { App } from './App.tsx';
+
+const TypoStyle = createGlobalStyle(standardTypo);
+const CompatibleTypoStyle = createGlobalStyle(compatibleTypo);
+
+const Theme = createGlobalStyle(dark);
+
+export const Main = () => {
+    const Theme = themes[context.globals.theme];
+
+    return (
+        <>
+            <TypoStyle />
+            <CompatibleTypoStyle />
+            <Theme />
+
+            <App />
+        </>
+    );
+};
 ```
 
 ### Использование компонентов
-
-Все компоненты доступны из папки `components` или напрямую из пакета:
 
 ```jsx
 // App.tsx
 import { Button } from '@sberdevices/plasma-b2c';
 
 export const App = () => {
-    return <Button>Hello, Plasma!</Button>;
+    return <Button text="Hello, Plasma!" />;
 };
 ```
