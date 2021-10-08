@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { light, dark } from '@sberdevices/plasma-tokens-b2c/themes';
-import { b2c } from '@sberdevices/plasma-tokens-b2c/typo';
+import { standard as standardTypo, compatible as compatibleTypo } from '@sberdevices/plasma-typo';
 
 import { ToastProvider } from '../src/components/Toast';
 
@@ -15,7 +15,8 @@ const DocumentStyle = createGlobalStyle`
 `;
 /* stylelint-enable */
 
-const TypoStyle = createGlobalStyle(b2c);
+const TypoStyle = createGlobalStyle(standardTypo);
+const CompatibleTypoStyle = createGlobalStyle(compatibleTypo);
 
 const themes = {
     light: createGlobalStyle(light),
@@ -28,6 +29,7 @@ const withTheme = (Story, context) => {
     return (
         <>
             <TypoStyle />
+            <CompatibleTypoStyle />
             <Theme />
             <DocumentStyle />
             <Story {...context} />
