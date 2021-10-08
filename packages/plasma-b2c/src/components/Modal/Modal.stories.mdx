@@ -1,0 +1,71 @@
+import { Meta, ArgsTable, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+
+import { InSpacingDecorator } from '@sberdevices/plasma-sb-utils';
+
+import * as stories from './Modal.stories';
+
+import { Modal } from '.';
+
+<Meta
+    title="Controls/Modal"
+    component={Modal}
+    decorators={[InSpacingDecorator]}
+/>
+
+# Modal
+<Description of={Modal} />
+
+<Canvas>
+    <Story name="LiveDemo" story={stories.LiveDemo} />
+</Canvas>
+
+<ArgsTable of={Modal} exclude={["isHiding", "onClose"]} />
+
+## Использование
+
+### Провайдер контекста
+Поместите `ModalsProvider` в корень приложения или там, где будете применять модальные окна:
+
+```tsx
+// index.ts
+import ReactDOM from 'react-dom';
+import { ModalsProvider } from '@sberdevices/plasma-web';
+
+import { App } from './App';
+
+ReactDOM.render(
+    <ModalsProvider>
+        <App />
+    </ModalsProvider>,
+    document.getElementById('root')
+);
+```
+
+### Вызов модального окна
+После подключения `ModalsProvider` поместите компонент `Modal` туда, где необходимо применить модальное окно:
+
+```tsx
+import React from 'react';
+import { Modal, Headline3, P1 } from '@sberdevices/plasma-web';
+
+export default function() {
+    const [isOpen, setIsOpen] = React.useState(false);
+
+    return (
+        <>
+            <Button text="Открыть модальное окно" onClick={() => setIsOpen(true)} />
+            <Modal isOpen={isOpen}>
+                <Headline3>Модальное окно</Headline3>
+                <P1>Содержимое модального окна.</P1>
+                <Button text="Закрыть" onClick={() => setIsOpen(true)} />
+            </Modal>
+        </>
+    );
+}
+```
+
+## Live demo
+
+<Canvas>
+    <Story name="LiveDemo" story={stories.LiveDemo} />
+</Canvas>

@@ -1,0 +1,17 @@
+import { Meta, ArgsTable, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+import { InSpacingDecorator } from '@sberdevices/plasma-sb-utils';
+
+import * as stories from './Badge.stories';
+
+import { Badge } from '.';
+
+<Meta title="Content/Badge" decorators={[InSpacingDecorator]} />
+
+# Badge
+<Description of={Badge} />
+<ArgsTable of={Badge} />
+
+## Пример
+<Canvas>
+    <Story name="Default" story={stories.Default} />
+</Canvas>
