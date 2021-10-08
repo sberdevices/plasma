@@ -70,19 +70,46 @@ export const H: Story<SpacingProps> = (props) => (
 export const Body: Story<SpacingProps> = (props) => (
     <>
         <BodyL {...props}>BodyL</BodyL>
+        <BodyL bold {...props}>
+            BodyL Bold
+        </BodyL>
         <BodyM {...props}>BodyM</BodyM>
+        <BodyM bold {...props}>
+            BodyM Bold
+        </BodyM>
         <BodyS {...props}>BodyS</BodyS>
+        <BodyS bold {...props}>
+            BodyS Bold
+        </BodyS>
         <BodyXS {...props}>BodyXS</BodyXS>
+        <BodyXS bold {...props}>
+            BodyXS Bold
+        </BodyXS>
         <BodyXXS {...props}>BodyXXS</BodyXXS>
+        <BodyXXS bold {...props}>
+            BodyXXS Bold
+        </BodyXXS>
     </>
 );
 
 export const Text: Story<SpacingProps> = (props) => (
     <>
         <TextL {...props}>TextL</TextL>
+        <TextL bold {...props}>
+            TextL Bold
+        </TextL>
         <TextM {...props}>TextM</TextM>
+        <TextM bold {...props}>
+            TextM Bold
+        </TextM>
         <TextS {...props}>TextS</TextS>
+        <TextS bold {...props}>
+            TextS Bold
+        </TextS>
         <TextXS {...props}>TextXS</TextXS>
+        <TextXS bold {...props}>
+            TextXS Bold
+        </TextXS>
     </>
 );
 

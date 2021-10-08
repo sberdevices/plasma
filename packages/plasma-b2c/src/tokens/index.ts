@@ -11,4 +11,4 @@ export {
     inputBorderHover,
 } from '@sberdevices/plasma-web/tokens';
 
-export * from './typography';
+export * from '@sberdevices/plasma-typo';
