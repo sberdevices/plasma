@@ -6,7 +6,7 @@ describe('plasma-web: Notification', () => {
     const addNotification = getComponent('addNotification');
     const Button = getComponent('Button');
 
-    it('simple', () => {
+    it.skip('simple', () => {
         mount(
             <CypressTestDecorator>
                 <NotificationsProvider>
@@ -19,7 +19,7 @@ describe('plasma-web: Notification', () => {
                                     title: 'Входящий вызов',
                                     children: 'Magic starts here!',
                                 },
-                                8000,
+                                80000,
                             )
                         }
                     />
