@@ -19,7 +19,7 @@
 ```bash
 $ npm install --save react react-dom
 $ npm install --save styled-components
-$ npm install --save @sberdevices/plasma-b2c @sberdevices/plasma-core @sberdevices/plasma-icons
+$ npm install --save @sberdevices/plasma-b2c @sberdevices/plasma-icons
 ```
 
 ### Использование компонентов

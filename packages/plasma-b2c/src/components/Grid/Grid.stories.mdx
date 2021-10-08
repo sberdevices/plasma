@@ -1,0 +1,51 @@
+import { Meta, Props, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+
+import * as stories from './Grid.stories';
+
+import { Container, Row, Col } from '.';
+
+<Meta title="Layout/Grid" />
+
+# Grid
+Набор компонентов для создания сетки.
+
+<Canvas>
+    <Story name="Default" story={stories.Default} />
+</Canvas>
+
+## Брейкпоинты
+Каждый брейкпоинт разрешения содержит собственное максимальное количество колонок:
+
+| Поверхность        | Обозначение | Ширина от, пикс | Ширина до, пикс | Кол-во колонок |
+| ------------------ |-------------| --------------- | --------------- | -------------- |
+| Desktop            | XL          | 960             | -               | 12             |
+| Tablet (landscape) | L           | 769             | 959             | 8              |
+| Tablet (portrait)  | M           | 560             | 768             | 6              |
+| Mobile             | S           | 0               | 559             | 4              |
+
+## Container
+<Description of={Container} />
+
+## Row
+Блок с отрицательными отступами для размещения колонок (``<Col />``) по горизонтали.
+Блок нельзя вкладывать сам в себя, но можно чередовать далее по дереву с использованием ``Col``.
+Стилизованный компонент, обладающий всеми свойствами ``div``.
+
+## Col
+<Description of={Col} />
+<Props of={Col} />
+
+## Использование
+
+```tsx
+// App.tsx
+import { Container, Row, Col }  from '@sberdevices/plasma-web';
+
+export const App = () => (
+    <Container>
+        <Row>
+            <Col size={4}>Hello, world!</Col>
+        </Row>
+    </Container>
+);
+```

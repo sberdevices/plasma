@@ -1,0 +1,56 @@
+import { Meta, Props, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+
+import { InSpacingDecorator } from '@sberdevices/plasma-sb-utils';
+
+import * as stories from './Skeleton.stories';
+
+import { LineSkeleton, RectSkeleton, TextSkeleton } from '.';
+
+<Meta title="Content/Skeleton" decorators={[InSpacingDecorator]} />
+
+# Skeleton
+Набор компонентов для создания скелетов загрузки (плейсхолдеров).
+
+## LineSkeleton
+<Description of={LineSkeleton} />
+<Props of={LineSkeleton} />
+
+## RectSkeleton
+<Description of={RectSkeleton} />
+<Props of={RectSkeleton} />
+
+## TextSkeleton
+<Description of={TextSkeleton} />
+<Props of={TextSkeleton} />
+
+## Использование
+```tsx
+// App.tsx
+import { LineSkeleton }  from '@sberdevices/plasma-ui';
+
+export const App = () => (
+    <LineSkeleton size="body1" />
+);
+```
+
+## Примеры
+
+### Строка
+<Canvas>
+    <Story name="Line" story={stories.Line} />
+</Canvas>
+
+### Прямоугольник
+<Canvas>
+    <Story name="Rect" story={stories.Rect} />
+</Canvas>
+
+### Текст
+<Canvas>
+    <Story name="Text" story={stories.Text} />
+</Canvas>
+
+### Компонент
+<Canvas>
+    <Story name="Button" story={stories.Button} />
+</Canvas>
