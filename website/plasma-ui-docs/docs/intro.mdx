@@ -71,6 +71,8 @@ export const GlobalStyle = () => (
 + Если вы используете [Create React App](https://create-react-app.dev), делайте вызов внутри `src/index.tsx`.
 + Если вы используете [Next.js](https://nextjs.org/), создайте файл `pages/_app.tsx` и подключите стили в нем.
 
+Для корректной работы server side rendering приложение нужно оберуть `SSRProvider`;
+
 <Tabs
   defaultValue="cra"
   values={[
@@ -81,14 +83,16 @@ export const GlobalStyle = () => (
 <TabItem value="cra">
 
 ```jsx {2,3,7,9,10} title="index.tsx"
-import { DeviceThemeProvider } from '@sberdevices/plasma-ui';
+import { DeviceThemeProvider, SSRProvider } from '@sberdevices/plasma-ui';
 import { GlobalStyle } from './GlobalStyle';
 import { App } from './App';
 
 ReactDOM.render(
     <DeviceThemeProvider>
-        <App />
-        <GlobalStyle />
+        <SSRProvider>
+            <App />
+            <GlobalStyle />
+        </SSRProvider>
     </DeviceThemeProvider>,
     document.getElementById('root'),
 );
@@ -98,14 +102,16 @@ ReactDOM.render(
 
 ```tsx {2,3,7,9,10} title="pages/_app.tsx"
 import type { AppProps } from 'next/app';
-import { DeviceThemeProvider } from '@sberdevices/plasma-ui';
+import { DeviceThemeProvider, SSRProvider } from '@sberdevices/plasma-ui';
 import { GlobalStyle } from './GlobalStyle';
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
         <DeviceThemeProvider>
-            <Component {...pageProps} />
-            <GlobalStyle />
+            <SSRProvider>
+                <Component {...pageProps} />
+                <GlobalStyle />
+            </SSRProvider>
         </DeviceThemeProvider>
     );
 }

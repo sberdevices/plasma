@@ -61,7 +61,7 @@ const rows: Array<Array<Props>> = [
 const StyledRadioGroup = styled(RadioGroup)`
     width: 100%;
     display: flex;
-    ${applySpacing({ mb: 20 })};
+    ${applySpacing({ mb: 24 })};
     justify-content: flex-start;
 
     &:last-child {
@@ -83,7 +83,7 @@ export const RadioboxShowcase = ({
     const [value, setValue] = React.useState(2);
 
     return (
-        <div>
+        <div style={{ display: 'inline-block' }}>
             {rows.map(
                 (items, i) =>
                     items.some((item) => !(!withDescription && item.description)) && (
@@ -94,7 +94,8 @@ export const RadioboxShowcase = ({
                                     <div
                                         style={{
                                             display: 'flex',
-                                            width: '200px',
+                                            flexGrow: 1,
+                                            flexShrink: 0,
 
                                             ...(applySpacing({ mr: 20, mb: 0, mt: 0 }) as Record<string, string>),
                                             ...radioboxStyles,

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled, { css, keyframes } from 'styled-components';
-import { overlay } from '@sberdevices/plasma-core';
+import { overlay, useUniqId } from '@sberdevices/plasma-core';
 
 import { ModalsContext } from './ModalsContext';
 import { ModalView, ModalViewProps } from './ModalView';
@@ -81,14 +81,13 @@ const StyledModal = styled.div<HidingProps>`
     `}
 `;
 
-const generateId = () => `${Date.now()}-${Math.round(Math.random() * 1000000)}`;
-
 /**
  * Модальное окно.
  * Управляет показом/скрытием, подложкой и анимацией визуальной части модального окна.
  */
 export const Modal: React.FC<ModalProps> = ({ id, isOpen, onClose, ...rest }) => {
-    const innerId = React.useMemo(() => id || generateId(), [id]);
+    const uniqId = useUniqId();
+    const innerId = id || uniqId;
     const portalRef = React.useRef<HTMLElement | null>(null);
     const modals = React.useContext(ModalsContext);
 

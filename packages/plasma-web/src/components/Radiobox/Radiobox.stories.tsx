@@ -2,6 +2,7 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
+import { SSRProvider } from '../SSRProvider';
 import { InSpacingDecorator } from '../../helpers';
 
 import { Radiobox, RadioboxProps, RadioGroup } from '.';
@@ -40,25 +41,27 @@ export const Live = () => {
     const [value, setValue] = React.useState('c');
 
     return (
-        <RadioGroup>
-            {items.map((item) => (
-                <Radiobox
-                    key={item.value}
-                    name={item.langName}
-                    value={item.value}
-                    label={item.label}
-                    disabled={item.disabled}
-                    checked={value[item.value]}
-                    description={item.description}
-                    onChange={(event) => {
-                        setValue(item.value);
-                        onChange(event);
-                    }}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
-                />
-            ))}
-        </RadioGroup>
+        <SSRProvider>
+            <RadioGroup>
+                {items.map((item) => (
+                    <Radiobox
+                        key={item.value}
+                        name={item.langName}
+                        value={item.value}
+                        label={item.label}
+                        disabled={item.disabled}
+                        checked={value[item.value]}
+                        description={item.description}
+                        onChange={(event) => {
+                            setValue(item.value);
+                            onChange(event);
+                        }}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                    />
+                ))}
+            </RadioGroup>
+        </SSRProvider>
     );
 };
 
@@ -67,20 +70,22 @@ export const Default: Story<RadioboxProps> = ({ name, label, description, disabl
     const [checked, setChecked] = React.useState(true);
 
     return (
-        <Radiobox
-            name={name}
-            value={value}
-            label={label}
-            description={description}
-            disabled={disabled}
-            checked={checked}
-            onChange={(event) => {
-                setChecked(event.target.checked);
-                onChange(event);
-            }}
-            onFocus={onFocus}
-            onBlur={onBlur}
-        />
+        <SSRProvider>
+            <Radiobox
+                name={name}
+                value={value}
+                label={label}
+                description={description}
+                disabled={disabled}
+                checked={checked}
+                onChange={(event) => {
+                    setChecked(event.target.checked);
+                    onChange(event);
+                }}
+                onFocus={onFocus}
+                onBlur={onBlur}
+            />
+        </SSRProvider>
     );
 };
 

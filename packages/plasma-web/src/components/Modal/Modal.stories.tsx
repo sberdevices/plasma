@@ -1,6 +1,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 
+import { SSRProvider } from '../SSRProvider';
 import { disableProps } from '../../helpers';
 import { Button } from '../Button';
 import { P1, Headline1, Headline3 } from '../Typography';
@@ -49,25 +50,27 @@ export const LiveDemo = () => {
     const onCloseC = React.useCallback(() => setIsOpenC(false), []);
 
     return (
-        <ModalsProvider>
-            <Button text="Open modal" onClick={() => setIsOpenA(true)} />
+        <SSRProvider>
+            <ModalsProvider>
+                <Button text="Open modal" onClick={() => setIsOpenA(true)} />
 
-            <Modal id="modalA" isOpen={isOpenA} onClose={onCloseA}>
-                <Headline3>Modal A</Headline3>
-                <Button view="primary" text="Open modal B" onClick={() => setIsOpenB(true)} />
-                <Button text="Close" onClick={onCloseA} />
-            </Modal>
-
-            <Modal id="modalB" isOpen={isOpenB} onClose={onCloseB}>
-                <Headline3>Modal B</Headline3>
-                <Button view="primary" text="Open modal C" onClick={() => setIsOpenC(true)} />
-                <Button text="Close" onClick={onCloseB} />
-
-                <Modal id="modalC" isOpen={isOpenC} onClose={onCloseC}>
-                    <Headline3>Modal C</Headline3>
-                    <Button text="Close" onClick={onCloseC} />
+                <Modal isOpen={isOpenA} onClose={onCloseA}>
+                    <Headline3>Modal A</Headline3>
+                    <Button view="primary" text="Open modal B" onClick={() => setIsOpenB(true)} />
+                    <Button text="Close" onClick={onCloseA} />
                 </Modal>
-            </Modal>
-        </ModalsProvider>
+
+                <Modal id="modalB" isOpen={isOpenB} onClose={onCloseB}>
+                    <Headline3>Modal B</Headline3>
+                    <Button view="primary" text="Open modal C" onClick={() => setIsOpenC(true)} />
+                    <Button text="Close" onClick={onCloseB} />
+
+                    <Modal id="modalC" isOpen={isOpenC} onClose={onCloseC}>
+                        <Headline3>Modal C</Headline3>
+                        <Button text="Close" onClick={onCloseC} />
+                    </Modal>
+                </Modal>
+            </ModalsProvider>
+        </SSRProvider>
     );
 };

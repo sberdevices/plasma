@@ -1,6 +1,13 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
-import { BaseboxInput, BaseboxContent, BaseboxLabel, BaseboxDescription } from '@sberdevices/plasma-core';
+import {
+    BaseboxInput,
+    BaseboxContent,
+    BaseboxLabel,
+    BaseboxDescription,
+    BaseboxContentWrapper,
+    useUniqId,
+} from '@sberdevices/plasma-core';
 import type { BaseboxProps, FocusProps, OutlinedProps } from '@sberdevices/plasma-core';
 import { white } from '@sberdevices/plasma-tokens';
 
@@ -31,7 +38,7 @@ const StyledEllipse = styled.div`
     transform: scale(0);
 
     /* stylelint-disable-next-line selector-nested-pattern, selector-type-no-unknown */
-    input:checked ~ ${StyledTrigger} & {
+    input:checked + label ${StyledTrigger} & {
         transform: scale(1);
     }
 `;
@@ -44,17 +51,41 @@ export const Radiobox = forwardRef<HTMLInputElement, RadioboxProps>(function Rad
     { id, label, description, disabled, focused, scaleOnInteraction, style, className, ...rest },
     ref,
 ) {
+    const uniqId = useUniqId();
+    const uniqLabelId = useUniqId();
+    const uniqDescriptionId = useUniqId();
+    const radioboxId = id || uniqId;
     return (
-        <CheckboxRoot $disabled={disabled} style={style} className={className} htmlFor={id}>
-            <BaseboxInput id={id} ref={ref} type="radio" disabled={disabled} {...rest} />
-            <StyledTrigger $focused={focused} $scaleOnInteraction={scaleOnInteraction}>
-                <StyledEllipse />
-            </StyledTrigger>
+        <CheckboxRoot $disabled={disabled} style={style} className={className}>
+            <BaseboxInput
+                aria-labelledby={uniqLabelId}
+                aria-describedby={uniqDescriptionId}
+                id={radioboxId}
+                ref={ref}
+                type="radio"
+                disabled={disabled}
+                {...rest}
+            />
+            <BaseboxContentWrapper htmlFor={radioboxId}>
+                <StyledTrigger $focused={focused} $scaleOnInteraction={scaleOnInteraction}>
+                    <StyledEllipse />
+                </StyledTrigger>
+                {label && (
+                    <BaseboxContent>
+                        {label && <BaseboxLabel as="span">{label}</BaseboxLabel>}
+                        {description && <BaseboxDescription mt={4}>{description}</BaseboxDescription>}
+                    </BaseboxContent>
+                )}
+            </BaseboxContentWrapper>
             {label && (
-                <BaseboxContent>
-                    {label && <BaseboxLabel as="span">{label}</BaseboxLabel>}
-                    {description && <BaseboxDescription mt={4}>{description}</BaseboxDescription>}
-                </BaseboxContent>
+                <span style={{ visibility: 'hidden', width: 0, height: 0 }} id={uniqLabelId}>
+                    {label}
+                </span>
+            )}
+            {description && (
+                <span style={{ visibility: 'hidden', width: 0, height: 0 }} id={uniqDescriptionId}>
+                    {description}
+                </span>
             )}
         </CheckboxRoot>
     );

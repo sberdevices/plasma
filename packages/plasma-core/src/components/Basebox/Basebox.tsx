@@ -14,7 +14,7 @@ export type ControlProps = {
     /**
      * Метка-подпись к элементу
      */
-    label?: string | number;
+    label?: string | number | React.ReactNode;
     /**
      * Описание элемента
      */
@@ -24,7 +24,7 @@ export interface BaseboxProps extends ControlProps, InputHTMLAttributes<HTMLInpu
     children?: never;
 }
 
-export const StyledRoot = styled.label`
+export const StyledRoot = styled.div`
     ${applyNoSelect}
 
     position: relative;
@@ -32,6 +32,13 @@ export const StyledRoot = styled.label`
     display: flex;
     cursor: pointer;
 `;
+
+export const StyledContentWrapper = styled.label`
+    position: relative;
+    align-items: flex-start;
+    display: flex;
+`;
+
 export const StyledInput = styled.input`
     position: absolute;
     top: 0;

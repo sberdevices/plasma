@@ -5,6 +5,7 @@ import {
     BaseboxInput,
     BaseboxTrigger,
     BaseboxContent,
+    BaseboxContentWrapper,
     BaseboxLabel,
     BaseboxDescription,
     accent,
@@ -13,6 +14,7 @@ import {
     white,
     transparent,
     useForkRef,
+    useUniqId,
 } from '@sberdevices/plasma-core';
 import type { BaseboxProps } from '@sberdevices/plasma-core';
 
@@ -43,16 +45,18 @@ export const StyledTrigger = styled(BaseboxTrigger)`
     border: 0.125rem solid ${tertiary};
     border-radius: 0.25rem;
     color: ${tertiary};
+    flex-shrink: 0;
+    flex-grow: 0;
 
     /* stylelint-disable-next-line */
-    input[type='checkbox']:indeterminate ~ & {
+    input[type='checkbox']:indeterminate + label & {
         background: ${transparent};
         border-color: ${accent};
         color: ${accent};
     }
 
     /* stylelint-disable-next-line */
-    input:disabled ~ & {
+    input:disabled + label & {
         background: ${buttonSecondary};
         border-color: ${transparent};
         color: ${transparent};
@@ -60,14 +64,14 @@ export const StyledTrigger = styled(BaseboxTrigger)`
     }
 
     /* stylelint-disable-next-line */
-    input:checked ~ & {
+    input:checked + label & {
         background: ${accent};
         border-color: ${accent};
         color: ${white};
     }
 
     /* stylelint-disable-next-line */
-    input:checked:disabled ~ & {
+    input:checked:disabled + label & {
         background: ${buttonSecondary};
         border-color: ${transparent};
         color: ${tertiary};
@@ -77,7 +81,7 @@ export const StyledContent = styled(BaseboxContent)`
     margin-left: 0.875rem;
 
     /* stylelint-disable-next-line */
-    input:disabled ~ & {
+    input:disabled + label & {
         opacity: 0.4;
     }
 `;
@@ -86,7 +90,7 @@ export const StyledLabel = styled(BaseboxLabel)`
 `;
 export const StyledDescription = styled(BaseboxDescription)`
     /* stylelint-disable-next-line */
-    input:disabled ~ & {
+    input:disabled + label & {
         opacity: 0.4;
     }
 `;
@@ -99,7 +103,7 @@ const StyledDone = styled(Done)`
     transition: transform 0.15s ease-in-out;
 
     /* stylelint-disable-next-line */
-    input:checked ~ ${BaseboxTrigger} & {
+    input:checked + label ${BaseboxTrigger} & {
         transform: scale(1);
     }
 `;
@@ -126,15 +130,39 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
         }
     }, [inputRef, indeterminate]);
 
+    const uniqId = useUniqId();
+    const uniqLabelId = useUniqId();
+    const uniqDescriptionId = useUniqId();
+    const checkboxId = id || uniqId;
     return (
-        <StyledRoot $disabled={disabled} style={style} className={className} htmlFor={id}>
-            <BaseboxInput id={id} ref={forkRef} type="checkbox" disabled={disabled} {...rest} />
-            <StyledTrigger>{indeterminate ? <StyledIndeterminate /> : <StyledDone />}</StyledTrigger>
+        <StyledRoot $disabled={disabled} style={style} className={className}>
+            <BaseboxInput
+                aria-labelledby={uniqLabelId}
+                aria-describedby={uniqDescriptionId}
+                id={checkboxId}
+                ref={forkRef}
+                type="checkbox"
+                disabled={disabled}
+                {...rest}
+            />
+            <BaseboxContentWrapper htmlFor={checkboxId}>
+                <StyledTrigger>{indeterminate ? <StyledIndeterminate /> : <StyledDone />}</StyledTrigger>
+                {label && (
+                    <StyledContent>
+                        {label && <StyledLabel as="span">{label}</StyledLabel>}
+                        {description && <BaseboxDescription mt={4}>{description}</BaseboxDescription>}
+                    </StyledContent>
+                )}
+            </BaseboxContentWrapper>
             {label && (
-                <StyledContent>
-                    {label && <StyledLabel as="span">{label}</StyledLabel>}
-                    {description && <BaseboxDescription mt={4}>{description}</BaseboxDescription>}
-                </StyledContent>
+                <span style={{ visibility: 'hidden', width: 0, height: 0 }} id={uniqLabelId}>
+                    {label}
+                </span>
+            )}
+            {description && (
+                <span style={{ visibility: 'hidden', width: 0, height: 0 }} id={uniqDescriptionId}>
+                    {description}
+                </span>
             )}
         </StyledRoot>
     );
