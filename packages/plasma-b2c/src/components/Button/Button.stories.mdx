@@ -35,18 +35,20 @@ import { Button } from '.';
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 
-import { web } from '@sberdevices/plasma-tokens-web/typo';
-import { light } from '@sberdevices/plasma-tokens-web/themes';
+import { standard as standardTypo, compatible as compatibleTypo } from '@sberdevices/plasma-typo';
+import { dark } from '@sberdevices/plasma-tokens-b2c/themes';
 
 import { IconDownload } from '@sberdevices/plasma-icons';
-import { Button } from '@sberdevices/plasma-web';
+import { Button } from '@sberdevices/plasma-b2c';
 
-const TypoScale = createGlobalStyle(web);
+const TypoStyle = createGlobalStyle(standardTypo);
+const CompatibleTypoStyle = createGlobalStyle(compatibleTypo);
 const Theme = createGlobalStyle(light);
 
 export const App = () => (
     <>
-        <TypoScale /> // Типографические константы
+        <TypoStyle /> // Типографические константы
+        <CompatibleTypoStyle /> // Совместимость для старой типографической системы
         <Theme /> // Цветовая тема
 
         <Button text="Текст" /> // Только текст
@@ -77,7 +79,7 @@ export const App = () => (
 // App.tsx
 import React from 'react';
 import { IconDownload } from '@sberdevices/plasma-icons';
-import { Button } from '@sberdevices/plasma-web';
+import { Button } from '@sberdevices/plasma-b2c';
 
 export const App = () => (
     <>
@@ -93,7 +95,7 @@ export const App = () => (
 ```tsx
 // App.tsx
 import React from 'react';
-import { Button } from '@sberdevices/plasma-web';
+import { Button } from '@sberdevices/plasma-b2c';
 
 export const App = () => (
     <>
@@ -113,7 +115,7 @@ export const App = () => (
 ```tsx
 // App.tsx
 import React from 'react';
-import { Button } from '@sberdevices/plasma-web';
+import { Button } from '@sberdevices/plasma-b2c';
 
 export const App = () => (
     <>
@@ -132,7 +134,7 @@ export const App = () => (
 ```tsx
 // App.tsx
 import React from 'react';
-import { Button } from '@sberdevices/plasma-web';
+import { Button } from '@sberdevices/plasma-b2c';
 
 export const App = () => (
     <>
