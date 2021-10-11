@@ -45,10 +45,15 @@ jobs:
         run: |
           mkdir ../build
 
+      - name: Plasma Website
+        run: |
+          npm run build --prefix="./website/plasma-website"
+          cp -R ./website/plasma-website/build ../build/${PR_NAME}
+
       - name: Plasma UI Docs
         run: |
           npm run build --prefix="./website/plasma-ui-docs"
-          cp -R ./website/plasma-ui-docs/build ../build/${PR_NAME}
+          cp -R ./website/plasma-ui-docs/build ../build/${PR_NAME}/ui
 
       - name: Plasma Web Docs
         run: |
@@ -101,7 +106,7 @@ jobs:
               repo: context.repo.repo,
               body: `Documentation preview deployed!
               
-              docs: http://plasma.sberdevices.ru/pr-${context.issue.number}/
+              website: http://plasma.sberdevices.ru/pr-${context.issue.number}/
               ui storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/ui-storybook/
               web storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/web-storybook/
               b2c storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/b2c-storybook/
