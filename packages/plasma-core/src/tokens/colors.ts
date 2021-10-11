@@ -8,6 +8,10 @@ export const blackPrimary = 'var(--plasma-colors-black-primary)';
 export const blackSecondary = 'var(--plasma-colors-black-secondary)';
 export const blackTertiary = 'var(--plasma-colors-black-tertiary)';
 
+export const dark01 = 'var(--plasma-colors-dark01)';
+export const dark02 = 'var(--plasma-colors-dark02)';
+export const dark03 = 'var(--plasma-colors-dark03)';
+
 export const transparent = 'var(--plasma-colors-transparent)';
 export const text = 'var(--plasma-colors-text)';
 

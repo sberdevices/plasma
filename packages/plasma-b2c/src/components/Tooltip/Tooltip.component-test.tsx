@@ -1,0 +1,1 @@
+../../../../plasma-web/src/components/Tooltip/Tooltip.component-test.tsx

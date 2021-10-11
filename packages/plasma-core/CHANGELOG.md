@@ -1,3 +1,84 @@
+# v1.31.0 (Fri Oct 08 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-core): Added global `dark0N` colors [#812](https://github.com/sberdevices/plasma/pull/812) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-b2c): `Toast` icon [#812](https://github.com/sberdevices/plasma/pull/812) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-core): Shared `Toast` between libraries [#812](https://github.com/sberdevices/plasma/pull/812) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- test: Component test for B2C `Toast` [#812](https://github.com/sberdevices/plasma/pull/812) ([@fanisco](https://github.com/fanisco))
+
+#### ⚠️ Pushed to `master`
+
+- build(plasma-core/ui/b2c/web): fix storybook build ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# v1.30.1 (Wed Oct 06 2021)
+
+#### 🐛 Bug Fix
+
+- test: add SBSans to cypress [#832](https://github.com/sberdevices/plasma/pull/832) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-core/ui/web): fix tests [#830](https://github.com/sberdevices/plasma/pull/830) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# v1.30.0 (Sun Oct 03 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-cy-utils): padMe [#824](https://github.com/sberdevices/plasma/pull/824) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# v1.29.1 (Sun Oct 03 2021)
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- chore: move cypress helpers to utils [#823](https://github.com/sberdevices/plasma/pull/823) ([@Yeti-or](https://github.com/Yeti-or))
+- test(Badge): update screens [#823](https://github.com/sberdevices/plasma/pull/823) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-web/plasma-ui): move cy tests to plasma-core [#823](https://github.com/sberdevices/plasma/pull/823) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# v1.29.0 (Fri Sep 24 2021)
+
+#### 🐛 Bug Fix
+
+- chore: resolve cypress and jest conflicts [#573](https://github.com/sberdevices/plasma/pull/573) ([@OgNellis](https://github.com/OgNellis))
+
+#### Authors: 1
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+
+---
+
 # v1.28.1 (Tue Sep 21 2021)
 
 #### 🐛 Bug Fix

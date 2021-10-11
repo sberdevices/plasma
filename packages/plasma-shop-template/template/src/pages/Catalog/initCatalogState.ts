@@ -1,4 +1,4 @@
-import { GalleryCardParams, GalleryData } from '@sberdevices/plasma-temple';
+import { GalleryCardParams, MultipleGallery } from '@sberdevices/plasma-temple';
 
 import { getCategories, getPopularProducts, getProducts } from '../../api/products';
 import { CatalogData, CatalogGalleryType, Category, Product } from '../../types';
@@ -9,7 +9,7 @@ const createGalleryData = <T extends CatalogData>(
     title: string,
     id: string,
     mapper: (item: T, i: number) => GalleryCardParams<T>,
-): Required<GalleryData<T>> => {
+): Required<MultipleGallery<T>> => {
     return {
         activeCardIndex: 0,
         id,
@@ -20,7 +20,7 @@ const createGalleryData = <T extends CatalogData>(
 
 export const initCatalogState = async (): Promise<{
     activeGalleryIndex: number;
-    gallery: Required<GalleryData<Category>>[];
+    gallery: Required<MultipleGallery<Category>>[];
 }> => {
     const categories = await getCategories();
     const popularProducts = await getPopularProducts();

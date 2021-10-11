@@ -1,0 +1,1 @@
+export { ConfirmOrderPage } from './ConfirmOrderPage';

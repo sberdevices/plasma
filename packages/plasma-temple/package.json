@@ -1,0 +1,99 @@
+{
+    "name": "@sberdevices/plasma-temple",
+    "version": "1.2.0",
+    "description": "SberDevices CanvasApp Templates.",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sberdevices/plasma.git"
+    },
+    "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
+    "license": "Sber Public License at-nc-sa v.2",
+    "peerDependencies": {
+        "@sberdevices/assistant-client": "^2.11.6",
+        "@sberdevices/plasma-icons": "^1.8.0",
+        "@sberdevices/plasma-tokens": "^1.3.0",
+        "@sberdevices/plasma-ui": "^1.11.0",
+        "@types/node": "^12.12.30",
+        "@types/react": "^16.9.38",
+        "@types/react-dom": "^16.9.8",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "styled-components": "^5.1.1"
+    },
+    "devDependencies": {
+        "@babel/preset-env": "7.13.10",
+        "@babel/preset-react": "7.12.13",
+        "@babel/preset-typescript": "7.13.0",
+        "@mdx-js/mdx": "^1.6.16",
+        "@rollup/plugin-commonjs": "19.0.0",
+        "@rollup/plugin-image": "2.0.6",
+        "@rollup/plugin-node-resolve": "13.0.0",
+        "@rollup/plugin-typescript": "8.2.1",
+        "@sberdevices/assistant-client": "2.16.1",
+        "@sberdevices/plasma-icons": "1.29.0",
+        "@sberdevices/plasma-tokens": "1.9.0",
+        "@sberdevices/plasma-ui": "1.34.0",
+        "@storybook/addon-actions": "6.1.21",
+        "@storybook/addon-backgrounds": "6.1.21",
+        "@storybook/addon-docs": "6.2.9",
+        "@storybook/addon-knobs": "6.1.21",
+        "@storybook/addon-toolbars": "6.1.21",
+        "@storybook/addon-viewport": "6.1.21",
+        "@storybook/preset-create-react-app": "3.1.4",
+        "@storybook/react": "6.2.9",
+        "@testing-library/react-hooks": "5.1.0",
+        "@types/jest": "26.0.20",
+        "@types/lodash": "4.14.160",
+        "@types/lodash.throttle": "4.1.6",
+        "@types/node": "12.12.30",
+        "@types/react": "16.9.38",
+        "@types/react-dom": "16.9.8",
+        "@types/styled-components": "5.1.0",
+        "babel-loader": "8.1.0",
+        "jest": "26.6.3",
+        "jest-config": "26.6.3",
+        "react": "16.13.1",
+        "react-dom": "16.13.1",
+        "react-scripts": "^4.0.2",
+        "react-test-renderer": "17.0.1",
+        "rollup": "2.47.0",
+        "rollup-plugin-peer-deps-external": "2.2.4",
+        "rollup-plugin-typescript2": "0.30.0",
+        "sb": "6.0.0-rc.13",
+        "styled-components": "5.1.1",
+        "tslib": "2.2.0",
+        "typescript": "3.9.5"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "bugs": {
+        "url": "https://github.com/sberdevices/plasma/issues"
+    },
+    "scripts": {
+        "prepare": "npm run build",
+        "clean": "rm -rf dist",
+        "build": "npm run clean && rollup -c",
+        "build:watch": "rollup -c -w",
+        "build-storybook": "npm run storybook:build",
+        "build:storybook": "npm run storybook:build && npm run storybook:extract",
+        "storybook": "start-storybook -s .storybook/public -p ${PORT:-6006} -c .storybook",
+        "storybook:build": "build-storybook --quiet -s .storybook/public -c .storybook -o build-sb",
+        "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
+        "test": "jest"
+    },
+    "files": [
+        "dist"
+    ],
+    "contributors": [
+        "Vasiliy Loginevskiy",
+        "Виноградов Антон Александрович",
+        "Зубаиров Фаниль Асхатович",
+        "Sviridov Maksim"
+    ],
+    "dependencies": {
+        "lodash.throttle": "4.1.1"
+    }
+}

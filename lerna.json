@@ -1,7 +1,7 @@
 {
     "packages": ["packages/*", "examples/*", "utils/*", "website/*"],
     "version": "independent",
-    "ignoreChanges": ["*.md"],
+    "ignoreChanges": ["*.md", "*.component-test.tsx", "package-lock.json"],
     "loglevel": "verbose",
     "exact": true,
     "ci": true,

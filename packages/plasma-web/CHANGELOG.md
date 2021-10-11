@@ -1,3 +1,149 @@
+# v1.50.0 (Fri Oct 08 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-core): Shared `Toast` between libraries [#812](https://github.com/sberdevices/plasma/pull/812) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- chore: Skip Notification component test [#829](https://github.com/sberdevices/plasma/pull/829) ([@fanisco](https://github.com/fanisco))
+- test: Component test for B2C `Toast` [#812](https://github.com/sberdevices/plasma/pull/812) ([@fanisco](https://github.com/fanisco))
+
+#### ⚠️ Pushed to `master`
+
+- build(plasma-core/ui/b2c/web): fix storybook build ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# v1.49.2 (Wed Oct 06 2021)
+
+#### 🐛 Bug Fix
+
+- test: add SBSans to cypress [#832](https://github.com/sberdevices/plasma/pull/832) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-core/ui/web): fix tests [#830](https://github.com/sberdevices/plasma/pull/830) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# v1.49.1 (Mon Oct 04 2021)
+
+#### 🐛 Bug Fix
+
+- test(plasma-ui/web/b2c): Typography: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-web/b2c): Tooltip: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui/web/b2c): TextField: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui/web/b2c): TextArea: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui/web/b2c): Tabs: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui/web/b2c): Switch: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-web/b2c): Select: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui/web/b2c): Radiobox: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-web/b2c): Progress: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui/web/b2c): Price: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui/web/b2c): PaginationDots: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-web/b2c): Notification: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-web/b2c): Modal: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-web/b2c): Link: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui/web/b2c): Dropdown: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui/web/b2c): Checkbox: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui/web/b2c): Button: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# v1.49.0 (Sun Oct 03 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-cy-utils): padMe [#824](https://github.com/sberdevices/plasma/pull/824) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# v1.48.2 (Sun Oct 03 2021)
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- chore: move cypress helpers to utils [#823](https://github.com/sberdevices/plasma/pull/823) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-web/plasma-ui): move cy tests to plasma-core [#823](https://github.com/sberdevices/plasma/pull/823) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-web): fix cypress comp-tests [#823](https://github.com/sberdevices/plasma/pull/823) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# v1.48.1 (Tue Sep 28 2021)
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 1
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
+# v1.48.0 (Tue Sep 28 2021)
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 1
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
+# v1.47.0 (Fri Sep 24 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-web): `Dropdown` `onToggle` notification [#805](https://github.com/sberdevices/plasma/pull/805) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-web): Moved `SingleSelect` and `MultiSelect` functionality to hocs [#805](https://github.com/sberdevices/plasma/pull/805) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-web): Customize `Dropdown` with CSS Vars [#805](https://github.com/sberdevices/plasma/pull/805) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web): Removed `DropdownList` min-width [#805](https://github.com/sberdevices/plasma/pull/805) ([@fanisco](https://github.com/fanisco))
+- chore: make cypress work again [#573](https://github.com/sberdevices/plasma/pull/573) ([@Yeti-or](https://github.com/Yeti-or))
+- chore: resolve cypress and jest conflicts [#573](https://github.com/sberdevices/plasma/pull/573) ([@OgNellis](https://github.com/OgNellis))
+- chore: cypress component testing [#573](https://github.com/sberdevices/plasma/pull/573) (dkakhetov@sberbank.ru)
+
+#### Authors: 4
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+- Daniil Akhetov (dkakhetov@sberbank.ru)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.46.1 (Tue Sep 21 2021)
 
 #### 🐛 Bug Fix

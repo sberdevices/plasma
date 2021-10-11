@@ -17,6 +17,7 @@ import {
 import { light, dark } from '@sberdevices/plasma-tokens-web/themes';
 import { light as b2cLight, dark as b2cDark } from '@sberdevices/plasma-tokens-b2c/themes';
 import { web } from '@sberdevices/plasma-tokens-web/typo';
+import { standard as standardTypo, compatible as compatibleTypo } from '@sberdevices/plasma-typo';
 import { DeviceThemeProvider } from '@sberdevices/plasma-ui/components/Device';
 import { Container } from '@sberdevices/plasma-ui/components/Grid';
 import isChromatic from 'chromatic/isChromatic';
@@ -38,6 +39,8 @@ const typos = {
     sberBox: createGlobalStyle(sberBox),
     mobile: createGlobalStyle(mobile),
     web: createGlobalStyle(web),
+    b2c: createGlobalStyle(standardTypo),
+    oldb2c: createGlobalStyle(compatibleTypo),
 };
 
 type StoryContext = {
@@ -159,12 +162,14 @@ export const B2CStoryDecorator: StoryDecorator = (Story, context) => {
     }
 
     const Theme = themes[theme];
-    const Typo = typos.web;
+    const Typo = typos.b2c;
+    const OldTypo = typos.oldb2c;
 
     return (
         <>
             <Theme />
             <Typo />
+            <OldTypo />
             <WebStyle />
             <Story {...context} />
         </>

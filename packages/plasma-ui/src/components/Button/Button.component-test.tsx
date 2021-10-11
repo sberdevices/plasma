@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import { mount } from '@cypress/react';
-
-import { CypressTestDecorator } from '../../helpers/CypressHelpers';
+import { mount, CypressTestDecorator } from '@sberdevices/plasma-cy-utils';
 
 import { Button } from './Button';
 
@@ -23,7 +21,6 @@ describe('Button', () => {
                     stretch={false}
                 />
             </CypressTestDecorator>,
-            { ReactDom },
         );
         cy.matchImageSnapshot();
     });

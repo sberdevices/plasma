@@ -1,0 +1,150 @@
+import { Meta, ArgsTable, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+
+import { InSpacingDecorator } from '@sberdevices/plasma-sb-utils';
+
+import * as stories from './Button.stories';
+
+import { Button } from '.';
+
+<Meta
+    title="Controls/Button"
+    component={Button}
+    decorators={[InSpacingDecorator]}
+/>
+
+# Button
+<Description of={Button} />
+
+<Canvas>
+    <Story name="Default" story={stories.Default} />
+</Canvas>
+
+<!-- TODO: Убрать `blur` или сделать публичным -->
+<ArgsTable of={Button} exclude={["blur", "theme", "forwardedAs", "focused"]} />
+
+## Использование
+Компонент ``<Button>`` может содержать текст, который указывается в
+свойстве ``text``, или любой контент напрямую через ``children``.
+
+Свойство ``text`` может быть использовано совместно
+со свойствами ``contentLeft`` и ``contentRight``.
+Таким образом, можно помещать **иконку** слева или справа от текста.
+
+```tsx
+// App.tsx
+import React from 'react';
+import { createGlobalStyle } from 'styled-components';
+
+import { standard as standardTypo, compatible as compatibleTypo } from '@sberdevices/plasma-typo';
+import { dark } from '@sberdevices/plasma-tokens-b2c/themes';
+
+import { IconDownload } from '@sberdevices/plasma-icons';
+import { Button } from '@sberdevices/plasma-b2c';
+
+const TypoStyle = createGlobalStyle(standardTypo);
+const CompatibleTypoStyle = createGlobalStyle(compatibleTypo);
+const Theme = createGlobalStyle(light);
+
+export const App = () => (
+    <>
+        <TypoStyle /> // Типографические константы
+        <CompatibleTypoStyle /> // Совместимость для старой типографической системы
+        <Theme /> // Цветовая тема
+
+        <Button text="Текст" /> // Только текст
+
+        <Button text="Текст" contentLeft={<IconDownload />} /> // Текст + иконка слева
+
+        <Button text="Текст" contentRight={<IconDownload />} /> // Текст + иконка справа
+
+        <Button contentLeft={<IconDownload />} /> // Только иконка
+
+        <Button> // Стандартный способ передачи контента
+            <IconDownload />
+            <span>Текст</span>
+        </Button>
+    </>
+);
+```
+
+### Квадратные и круглые кнопки
+Для отображения иконок и/или текста в квадратных или круглых кнопках с **равными сторонами**,
+используйте компонент ``<Button>`` и свойство ``contentLeft``, передавая в него нужное содержимое.
+
+**Круглыми** границы кнопки можно сделать, указав ``pin="circle-circle"``.
+**Квадратными** (со скругленными углами) границы кнопки являются по умолчанию — ``pin="square-square"``
+(cм. раздел [Границы кнопки](#границы-кнопки)).
+
+```tsx
+// App.tsx
+import React from 'react';
+import { IconDownload } from '@sberdevices/plasma-icons';
+import { Button } from '@sberdevices/plasma-b2c';
+
+export const App = () => (
+    <>
+        <Button contentLeft={<IconDownload />} /> // Квадратная кнопка
+
+        <Button contentLeft={<IconDownload />} pin="circle-circle" /> // Круглая кнопка
+    </>
+);
+```
+
+### Размер кнопки
+Размер кнопки задаётся с помощью свойства ``size``. Свойство принимает значения ``"l"``, ``"m"`` или ``"s"``.
+```tsx
+// App.tsx
+import React from 'react';
+import { Button } from '@sberdevices/plasma-b2c';
+
+export const App = () => (
+    <>
+        <Button text="Button" size="l" />
+        <Button text="Button" size="m" />
+        <Button text="Button" size="s" />
+    </>
+);
+```
+
+### Вид кнопки
+Вид кнопки изменяется с помощью свойства ``view``. Возможные значения свойства ``view``:
+* ``"primary"``
+* ``"secondary"``
+* ``"critical"``
+* ``"clear"``
+```tsx
+// App.tsx
+import React from 'react';
+import { Button } from '@sberdevices/plasma-b2c';
+
+export const App = () => (
+    <>
+        <Button text="Button" view="primary" />
+        <Button text="Button" view="secondary" />
+        <Button text="Button" view="warning" />
+        <Button text="Button" view="critical" />
+        <Button text="Button" view="checked" />
+        <Button text="Button" view="clear" />
+    </>
+);
+```
+
+### Границы кнопки
+Чтобы изменить границы кнопки, установите свойство ``pin`` в одно из допустимых значений.
+```tsx
+// App.tsx
+import React from 'react';
+import { Button } from '@sberdevices/plasma-b2c';
+
+export const App = () => (
+    <>
+        <Button pin="square-square">Button</Button>
+        <Button pin="square-clear">Button</Button>
+        <Button pin="clear-square">Button</Button>
+        <Button pin="clear-clear">Button</Button>
+        <Button pin="clear-circle">Button</Button>
+        <Button pin="circle-clear">Button</Button>
+        <Button pin="circle-circle">Button</Button>
+    </>
+);
+```

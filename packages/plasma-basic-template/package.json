@@ -1,27 +1,30 @@
 {
-  "name": "@sberdevices/cra-template-plasma-basic-template",
-  "version": "1.3.0",
-  "description": "",
-  "keywords": [
-    "react",
-    "create-react-app",
-    "template",
-    "typescript"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sberdevices/pashka.git",
-    "directory": "packages/plasma-basic-template"
-  },
-  "license": "Sber Public License at-nc-sa v.2",
-  "engines": {
-    "node": ">=12"
-  },
-  "bugs": {
-    "url": "https://github.com/sberdevices/pashka/issues"
-  },
-  "files": [
-    "template",
-    "template.json"
-  ]
+    "name": "@sberdevices/cra-template-plasma-basic-template",
+    "version": "2.1.0",
+    "description": "",
+    "keywords": [
+        "react",
+        "create-react-app",
+        "template",
+        "typescript"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sberdevices/plasma.git",
+        "directory": "packages/plasma-basic-template"
+    },
+    "license": "Sber Public License at-nc-sa v.2",
+    "engines": {
+        "node": ">=12"
+    },
+    "bugs": {
+        "url": "https://github.com/sberdevices/plasma/issues"
+    },
+    "files": [
+        "template",
+        "template.json"
+    ],
+    "publishConfig": {
+        "access": "public"
+    }
 }

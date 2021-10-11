@@ -66,11 +66,11 @@ export const globalTypes = {
         },
     },
     typo: {
-        name: 'Device kind',
+        name: 'Typo',
         description: 'Global typography size for components',
         defaultValue: isWeb() ? 'web' : 'sberBox',
         toolbar: {
-            items: ['sberPortal', 'sberBox', 'mobile', 'web'],
+            items: ['sberPortal', 'sberBox', 'mobile', 'web', 'b2c'],
             showName: true,
         },
     },

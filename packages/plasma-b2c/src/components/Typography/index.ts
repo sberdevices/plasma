@@ -12,6 +12,7 @@ export {
     Headline2,
     Headline3,
     Headline4,
+    Headline5,
     P1,
     P2,
     ParagraphText1,
@@ -19,3 +20,8 @@ export {
     Subtitle,
     Underline,
 } from '@sberdevices/plasma-web';
+
+export * from './Body';
+export * from './Dspl';
+export * from './H';
+export * from './Txt';

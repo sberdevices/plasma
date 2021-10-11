@@ -1,0 +1,1 @@
+../../../../plasma-web/src/components/Modal/Modal.component-test.tsx

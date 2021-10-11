@@ -1,0 +1,1 @@
+../../../../plasma-core/src/components/Checkbox/Checkbox.component-test.tsx

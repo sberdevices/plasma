@@ -3,7 +3,7 @@
         "dependencies": {
             "@sberdevices/assistant-client": "3.7.1",
             "@sberdevices/plasma-icons": "1.39.0",
-            "@sberdevices/plasma-temple": "0.50.0",
+            "@sberdevices/plasma-temple": "1.1.2",
             "@sberdevices/plasma-tokens": "1.12.0",
             "@sberdevices/plasma-ui": "1.45.0",
             "@sberdevices/spatial-navigation": "1.0.3",

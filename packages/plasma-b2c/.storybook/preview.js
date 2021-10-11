@@ -2,8 +2,11 @@ import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import { light, dark } from '@sberdevices/plasma-tokens-b2c/themes';
 import { b2c } from '@sberdevices/plasma-tokens-b2c/typo';
+import { light, dark } from '@sberdevices/plasma-tokens-b2c/themes';
+import { standard as standardTypo, compatible as compatibleTypo } from '@sberdevices/plasma-typo';
+
+import { ToastProvider } from '../src/components/Toast';
 
 /* stylelint-disable */
 const DocumentStyle = createGlobalStyle`
@@ -13,7 +16,9 @@ const DocumentStyle = createGlobalStyle`
 `;
 /* stylelint-enable */
 
-const TypoStyle = createGlobalStyle(b2c);
+const OldTypo = createGlobalStyle(b2c);
+const TypoStyle = createGlobalStyle(standardTypo);
+const CompatibleTypoStyle = createGlobalStyle(compatibleTypo);
 
 const themes = {
     light: createGlobalStyle(light),
@@ -25,7 +30,14 @@ const withTheme = (Story, context) => {
 
     return (
         <>
-            <TypoStyle />
+            {context.globals.typoVersion === 'standard' ? (
+                <>
+                    <TypoStyle />
+                    <CompatibleTypoStyle />
+                </>
+            ) : (
+                <OldTypo />
+            )}
             <Theme />
             <DocumentStyle />
             <Story {...context} />
@@ -33,8 +45,15 @@ const withTheme = (Story, context) => {
     );
 };
 
+const withToast = (Story) => (
+    <ToastProvider>
+        <Story />
+    </ToastProvider>
+);
+
 addDecorator(withKnobs);
 addDecorator(withTheme);
+addDecorator(withToast);
 
 addParameters({
     viewport: {
@@ -78,6 +97,15 @@ export const globalTypes = {
         defaultValue: 'dark',
         toolbar: {
             items: ['light', 'dark'],
+            showName: true,
+        },
+    },
+    typoVersion: {
+        name: 'Typography version',
+        description: 'Global typography version for components',
+        defaultValue: 'standard',
+        toolbar: {
+            items: ['standard', 'old'],
             showName: true,
         },
     },

@@ -1,3 +1,40 @@
+# v2.1.1 (Mon Oct 04 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): fix cart scroll [#813](https://github.com/sberdevices/plasma/pull/813) ([@kayman233](https://github.com/kayman233))
+- chore(plasma-shop-template, plasma-temple): update versions [#813](https://github.com/sberdevices/plasma/pull/813) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 1
+
+- [@kayman233](https://github.com/kayman233)
+
+---
+
+# v2.1.0 (Tue Sep 28 2021)
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 1
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
+# v2.0.0 (Fri Sep 24 2021)
+
+#### 🐛 Bug Fix
+
+- docs(plasma-templte): fix docs [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v1.3.0 (Wed Sep 22 2021)
 
 #### 🚀 Enhancement

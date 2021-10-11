@@ -1,0 +1,77 @@
+import { Meta, ArgsTable, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+
+import { InSpacingDecorator } from '@sberdevices/plasma-sb-utils';
+
+import * as stories from './Notification.stories';
+
+import { Notification } from '.';
+
+<Meta
+    title="Controls/Notification"
+    component={Notification}
+    decorators={[InSpacingDecorator]}
+/>
+
+# Notification
+<Description of={Notification} />
+
+<Canvas>
+    <Story name="Default" story={stories.Default} />
+</Canvas>
+
+<ArgsTable of={Notification} exclude={["isHiding", "onClose"]} />
+
+## Использование
+Компонент Notification может использоваться для создания собственных систем оповещения.  
+Вид компонента контролируется через **props**.
+Текстовая часть оповещения состоит из `title` и `children`.
+
+### Провайдер контекста
+Поместите `NotificationsProvider` в корень приложения или там, где будете применять модальные окна:
+
+```tsx
+// index.ts
+import ReactDOM from 'react-dom';
+import { ModalsProvider } from '@sberdevices/plasma-b2c';
+
+import { App } from './App';
+
+ReactDOM.render(
+    <NotificationsProvider>
+        <App />
+    </NotificationsProvider>,
+    document.getElementById('root')
+);
+```
+
+### Вызов уведомления
+После подключения `NotificationsProvider` станет возможен вызов функции `addNotification`,
+который приведет к отображению оповещения.
+Функция принимает значения пропсов компонента `Notification`:
+
+```tsx
+export default function () {
+    return (
+        <Button
+            text="Показать оповещение"
+            onClick={() => addNotification({
+                status: 'warning',
+                title: 'Входящий вызов',
+                children: '',
+            }, 8000)}
+        />
+    );
+}
+```
+
+## Live demo
+
+<Canvas>
+    <Story name="LiveDemo" story={stories.LiveDemo} />
+</Canvas>
+
+## With modal
+
+<Canvas>
+    <Story name="WithModal" story={stories.WithModal} />
+</Canvas>

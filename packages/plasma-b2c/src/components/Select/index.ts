@@ -1,2 +1,4 @@
-export { Select } from '@sberdevices/plasma-web';
-export type { SelectProps } from '@sberdevices/plasma-web';
+export { Select } from './Select';
+export type { SelectProps } from './Select';
+
+export { SelectGroup } from './SelectGroup';

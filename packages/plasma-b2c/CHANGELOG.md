@@ -1,3 +1,191 @@
+# v1.8.0 (Mon Oct 11 2021)
+
+#### 🚀 Enhancement
+
+- feat(b2c): TextArea: new typo [#843](https://github.com/sberdevices/plasma/pull/843) ([@Yeti-or](https://github.com/Yeti-or))
+- feat(plasma-b2c): TextArea for b2c added [#843](https://github.com/sberdevices/plasma/pull/843) ([@kayman233](https://github.com/kayman233))
+
+#### 🐛 Bug Fix
+
+- chore(b2c): rmv TextArea story [#843](https://github.com/sberdevices/plasma/pull/843) ([@Yeti-or](https://github.com/Yeti-or))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 3
+
+- [@kayman233](https://github.com/kayman233)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# v1.7.0 (Fri Oct 08 2021)
+
+#### 🚀 Enhancement
+
+- feat(b2c): add Slider [#842](https://github.com/sberdevices/plasma/pull/842) ([@Yeti-or](https://github.com/Yeti-or))
+- feat: Standard typography system [#829](https://github.com/sberdevices/plasma/pull/829) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-b2c): `Toast` icon [#812](https://github.com/sberdevices/plasma/pull/812) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-core): Shared `Toast` between libraries [#812](https://github.com/sberdevices/plasma/pull/812) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- docs(plasma-b2c): fix packageName [#841](https://github.com/sberdevices/plasma/pull/841) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-b2c): add storybook stories [#841](https://github.com/sberdevices/plasma/pull/841) ([@Yeti-or](https://github.com/Yeti-or))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- chore(plasma-b2c): Support compatible typography in storybook [#829](https://github.com/sberdevices/plasma/pull/829) ([@Yeti-or](https://github.com/Yeti-or))
+- test: Component test for B2C `Toast` [#812](https://github.com/sberdevices/plasma/pull/812) ([@fanisco](https://github.com/fanisco))
+
+#### ⚠️ Pushed to `master`
+
+- build(plasma-core/ui/b2c/web): fix storybook build ([@Yeti-or](https://github.com/Yeti-or))
+- chore(plasma-b2c): Bump `plasma-tokens-b2c` version ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 3
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# v1.6.0 (Wed Oct 06 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-b2b): Sanitize paste event on Editable [#833](https://github.com/sberdevices/plasma/pull/833) ([@aabulakhsberbank](https://github.com/aabulakhsberbank))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@aabulakhsberbank](https://github.com/aabulakhsberbank)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
+# v1.5.1 (Wed Oct 06 2021)
+
+#### 🐛 Bug Fix
+
+- test: add SBSans to cypress [#832](https://github.com/sberdevices/plasma/pull/832) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# v1.5.0 (Mon Oct 04 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-b2c): Editable component added [#821](https://github.com/sberdevices/plasma/pull/821) ([@aabulakhsberbank](https://github.com/aabulakhsberbank))
+
+#### Authors: 1
+
+- [@aabulakhsberbank](https://github.com/aabulakhsberbank)
+
+---
+
+# v1.4.1 (Mon Oct 04 2021)
+
+#### 🐛 Bug Fix
+
+- test(plasma-ui/web/b2c): Typography: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-web/b2c): Tooltip: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui/web/b2c): TextField: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui/web/b2c): TextArea: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui/web/b2c): Tabs: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui/web/b2c): Switch: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-web/b2c): Select: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui/web/b2c): Radiobox: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-web/b2c): Progress: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui/web/b2c): Price: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui/web/b2c): PaginationDots: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-web/b2c): Notification: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-web/b2c): Modal: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-web/b2c): Link: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui/web/b2c): Dropdown: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui/web/b2c): Checkbox: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui/web/b2c): Button: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# v1.4.0 (Sun Oct 03 2021)
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 1
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
+# v1.3.2 (Sun Oct 03 2021)
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- test(plasma-b2c): enable cypress comp tests [#823](https://github.com/sberdevices/plasma/pull/823) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# v1.3.1 (Tue Sep 28 2021)
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 1
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
+# v1.3.0 (Tue Sep 28 2021)
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 1
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
+# v1.2.0 (Fri Sep 24 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-b2c): Added group `Select` functionality [#805](https://github.com/sberdevices/plasma/pull/805) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-b2c): Added `Select` component [#805](https://github.com/sberdevices/plasma/pull/805) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-b2c): Flip `Select` arrow [#805](https://github.com/sberdevices/plasma/pull/805) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.1.1 (Tue Sep 21 2021)
 
 #### 🐛 Bug Fix

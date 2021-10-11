@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/cra-template-plasma-shop-template",
-    "version": "1.3.0",
+    "version": "2.1.1",
     "description": "",
     "keywords": [
         "react",
@@ -10,7 +10,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/sberdevices/pashka.git",
+        "url": "git+https://github.com/sberdevices/plasma.git",
         "directory": "packages/plasma-shop-template"
     },
     "license": "Sber Public License at-nc-sa v.2",
@@ -18,7 +18,7 @@
         "node": ">=12"
     },
     "bugs": {
-        "url": "https://github.com/sberdevices/pashka/issues"
+        "url": "https://github.com/sberdevices/plasma/issues"
     },
     "files": [
         "template",

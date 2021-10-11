@@ -1,3 +1,461 @@
+# (Mon Oct 11 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@1.2.0`
+  - feat(plasma-temple): Configurable StateLayout background image [#836](https://github.com/sberdevices/plasma/pull/836) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- `@sberdevices/plasma-b2c@1.8.0`
+  - feat(b2c): TextArea: new typo [#843](https://github.com/sberdevices/plasma/pull/843) ([@Yeti-or](https://github.com/Yeti-or))
+  - feat(plasma-b2c): TextArea for b2c added [#843](https://github.com/sberdevices/plasma/pull/843) ([@kayman233](https://github.com/kayman233))
+
+#### 🐛 Bug Fix
+
+- ci: fix pkg-locks regeneration [#849](https://github.com/sberdevices/plasma/pull/849) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-ui@1.53.0`
+  - chore: Remove Chromatic check [#850](https://github.com/sberdevices/plasma/pull/850) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.8.0`
+  - chore(b2c): rmv TextArea story [#843](https://github.com/sberdevices/plasma/pull/843) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 4
+
+- [@kayman233](https://github.com/kayman233)
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# (Fri Oct 08 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-b2c@1.7.0`
+  - feat(b2c): add Slider [#842](https://github.com/sberdevices/plasma/pull/842) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-b2c@1.7.0`, `@sberdevices/plasma-typo@0.1.0`
+  - feat: Standard typography system [#829](https://github.com/sberdevices/plasma/pull/829) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-core@1.31.0`, `@sberdevices/plasma-tokens-b2c@0.7.0`, `@sberdevices/plasma-tokens-web@1.13.0`, `@sberdevices/plasma-tokens@1.14.0`, `@sberdevices/plasma-tokens-utils@0.8.0`
+  - feat(plasma-core): Added global `dark0N` colors [#812](https://github.com/sberdevices/plasma/pull/812) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.7.0`, `@sberdevices/plasma-core@1.31.0`
+  - feat(plasma-b2c): `Toast` icon [#812](https://github.com/sberdevices/plasma/pull/812) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.7.0`, `@sberdevices/plasma-core@1.31.0`, `@sberdevices/plasma-ui@1.52.0`, `@sberdevices/plasma-web@1.50.0`
+  - feat(plasma-core): Shared `Toast` between libraries [#812](https://github.com/sberdevices/plasma/pull/812) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- test(plasma-b2c): Update snapshots after applying Standard Typography [#829](https://github.com/sberdevices/plasma/pull/829) ([@fanisco](https://github.com/fanisco))
+- test(b2c): Editable snapshot [#837](https://github.com/sberdevices/plasma/pull/837) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-b2c@1.7.0`
+  - docs(plasma-b2c): fix packageName [#841](https://github.com/sberdevices/plasma/pull/841) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-b2c): add storybook stories [#841](https://github.com/sberdevices/plasma/pull/841) ([@Yeti-or](https://github.com/Yeti-or))
+  - chore(plasma-b2c): Support compatible typography in storybook [#829](https://github.com/sberdevices/plasma/pull/829) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-cy-utils@0.2.0`
+  - build(plasma-cy-utils): fix pck-locks [#829](https://github.com/sberdevices/plasma/pull/829) ([@Yeti-or](https://github.com/Yeti-or))
+  - chore(plasma-cy-utils): Update styled-components version [#829](https://github.com/sberdevices/plasma/pull/829) ([@fanisco](https://github.com/fanisco))
+  - test(plasma-b2c): Added B2C typos for cy component test [#829](https://github.com/sberdevices/plasma/pull/829) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-web@1.50.0`
+  - chore: Skip Notification component test [#829](https://github.com/sberdevices/plasma/pull/829) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/showcase@0.59.0`
+  - chore(showcase): Add Standard typography for B2C in showcase [#829](https://github.com/sberdevices/plasma/pull/829) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.7.0`, `@sberdevices/plasma-core@1.31.0`, `@sberdevices/plasma-ui@1.52.0`, `@sberdevices/plasma-web@1.50.0`, `@sberdevices/showcase@0.59.0`
+  - test: Component test for B2C `Toast` [#812](https://github.com/sberdevices/plasma/pull/812) ([@fanisco](https://github.com/fanisco))
+
+#### ⚠️ Pushed to `master`
+
+- `@sberdevices/plasma-b2c@1.7.0`, `@sberdevices/plasma-core@1.31.0`, `@sberdevices/plasma-ui@1.52.0`, `@sberdevices/plasma-web@1.50.0`
+  - build(plasma-core/ui/b2c/web): fix storybook build ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-b2c@1.7.0`
+  - chore(plasma-b2c): Bump `plasma-tokens-b2c` version ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# (Thu Oct 07 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@1.1.5`
+  - fix(plasma-temple): changeState action [#816](https://github.com/sberdevices/plasma/pull/816) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
+# (Wed Oct 06 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-b2c@1.6.0`
+  - feat(plasma-b2b): Sanitize paste event on Editable [#833](https://github.com/sberdevices/plasma/pull/833) ([@aabulakhsberbank](https://github.com/aabulakhsberbank))
+
+#### Authors: 1
+
+- [@aabulakhsberbank](https://github.com/aabulakhsberbank)
+
+---
+
+# (Wed Oct 06 2021)
+
+#### 🐛 Bug Fix
+
+- test(ui): update snapshots [#832](https://github.com/sberdevices/plasma/pull/832) ([@Yeti-or](https://github.com/Yeti-or))
+- test: increase retries up to 3 [#832](https://github.com/sberdevices/plasma/pull/832) ([@Yeti-or](https://github.com/Yeti-or))
+- test(b2c): update snapshots [#832](https://github.com/sberdevices/plasma/pull/832) ([@Yeti-or](https://github.com/Yeti-or))
+- test(web): update snapshots [#832](https://github.com/sberdevices/plasma/pull/832) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-temple@1.1.4`
+  - fix(plasma-temple): Fix HeroSlide styles [#834](https://github.com/sberdevices/plasma/pull/834) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- `@sberdevices/plasma-cy-utils@0.1.1`
+  - test: update snapshots [#832](https://github.com/sberdevices/plasma/pull/832) ([@Yeti-or](https://github.com/Yeti-or))
+  - ci: fix cy-tests build [#830](https://github.com/sberdevices/plasma/pull/830) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-b2c@1.5.1`, `@sberdevices/plasma-core@1.30.1`, `@sberdevices/plasma-ui@1.51.1`, `@sberdevices/plasma-web@1.49.2`, `@sberdevices/plasma-cy-utils@0.1.1`
+  - test: add SBSans to cypress [#832](https://github.com/sberdevices/plasma/pull/832) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-core@1.30.1`, `@sberdevices/plasma-ui@1.51.1`, `@sberdevices/plasma-web@1.49.2`
+  - test(plasma-core/ui/web): fix tests [#830](https://github.com/sberdevices/plasma/pull/830) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# (Mon Oct 04 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-b2c@1.5.0`
+  - feat(plasma-b2c): Editable component added [#821](https://github.com/sberdevices/plasma/pull/821) ([@aabulakhsberbank](https://github.com/aabulakhsberbank))
+
+#### Authors: 1
+
+- [@aabulakhsberbank](https://github.com/aabulakhsberbank)
+
+---
+
+# (Mon Oct 04 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/cra-template-plasma-shop-template@2.1.1`, `@sberdevices/plasma-temple@1.1.3`
+  - fix(plasma-temple): fix cart scroll [#813](https://github.com/sberdevices/plasma/pull/813) ([@kayman233](https://github.com/kayman233))
+- `@sberdevices/cra-template-plasma-shop-template@2.1.1`
+  - chore(plasma-shop-template, plasma-temple): update versions [#813](https://github.com/sberdevices/plasma/pull/813) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 1
+
+- [@kayman233](https://github.com/kayman233)
+
+---
+
+# (Mon Oct 04 2021)
+
+#### 🐛 Bug Fix
+
+- test(plasma-ui/web/b2c): fix cy component tests [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-temple@1.1.2`
+  - fix(plasma-temple): Fix Layout scroll [#815](https://github.com/sberdevices/plasma/pull/815) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- `@sberdevices/plasma-b2c@1.4.1`, `@sberdevices/plasma-core@1.30.1`, `@sberdevices/plasma-ui@1.51.1`, `@sberdevices/plasma-web@1.49.1`
+  - test(plasma-ui/web/b2c): Typography: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui/web/b2c): TextField: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui/web/b2c): TextArea: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui/web/b2c): Tabs: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui/web/b2c): Switch: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui/web/b2c): Radiobox: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui/web/b2c): Price: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui/web/b2c): PaginationDots: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui/web/b2c): Checkbox: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui/web/b2c): Button: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-b2c@1.4.1`, `@sberdevices/plasma-web@1.49.1`
+  - test(plasma-web/b2c): Tooltip: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-web/b2c): Select: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-web/b2c): Progress: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-web/b2c): Notification: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-web/b2c): Modal: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-web/b2c): Link: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui/web/b2c): Dropdown: cy component test [#827](https://github.com/sberdevices/plasma/pull/827) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# (Sun Oct 03 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-core@1.30.0`, `@sberdevices/plasma-ui@1.51.0`, `@sberdevices/plasma-web@1.49.0`, `@sberdevices/plasma-cy-utils@0.1.0`
+  - feat(plasma-cy-utils): padMe [#824](https://github.com/sberdevices/plasma/pull/824) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### 🐛 Bug Fix
+
+- ci: improve lergna ignore [#824](https://github.com/sberdevices/plasma/pull/824) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# (Sun Oct 03 2021)
+
+#### 🐛 Bug Fix
+
+- chore: .eslintignore [#823](https://github.com/sberdevices/plasma/pull/823) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/demo-canvas-app@0.27.2`
+  - fix: dummy-release [#826](https://github.com/sberdevices/plasma/pull/826) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-b2c@1.3.2`, `@sberdevices/plasma-cy-utils@0.0.1`
+  - test(plasma-b2c): enable cypress comp tests [#823](https://github.com/sberdevices/plasma/pull/823) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-core@1.29.1`, `@sberdevices/plasma-ui@1.50.2`, `@sberdevices/plasma-web@1.48.2`, `@sberdevices/plasma-cy-utils@0.0.1`
+  - chore: move cypress helpers to utils [#823](https://github.com/sberdevices/plasma/pull/823) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-core@1.29.1`
+  - test(Badge): update screens [#823](https://github.com/sberdevices/plasma/pull/823) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-core@1.29.1`, `@sberdevices/plasma-ui@1.50.2`, `@sberdevices/plasma-web@1.48.2`
+  - test(plasma-web/plasma-ui): move cy tests to plasma-core [#823](https://github.com/sberdevices/plasma/pull/823) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-web@1.48.2`
+  - test(plasma-web): fix cypress comp-tests [#823](https://github.com/sberdevices/plasma/pull/823) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# (Tue Sep 28 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@1.1.1`
+  - fix(plasma-temple): fix page types [#820](https://github.com/sberdevices/plasma/pull/820) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 1
+
+- [@kayman233](https://github.com/kayman233)
+
+---
+
+# (Tue Sep 28 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@1.1.0`
+  - feat(plasma-temple): opening item from cart [#814](https://github.com/sberdevices/plasma/pull/814) ([@kayman233](https://github.com/kayman233))
+
+#### 🐛 Bug Fix
+
+- ci: disable pck-lock update in docs [#817](https://github.com/sberdevices/plasma/pull/817) ([@Yeti-or](https://github.com/Yeti-or))
+- ci: fix failing of pkg-locks [#817](https://github.com/sberdevices/plasma/pull/817) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- [@kayman233](https://github.com/kayman233)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# (Fri Sep 24 2021)
+
+#### 💥 Breaking Change
+
+- `@sberdevices/plasma-temple@1.0.0`
+  - feat(plasma-temple)!: major release [#818](https://github.com/sberdevices/plasma/pull/818) ([@LamaEats](https://github.com/LamaEats))
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@1.0.0`
+  - feat(plasma-temple): Add page spinner [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): error page layout [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - feat(plasma-temple): Typed props for platform components [#811](https://github.com/sberdevices/plasma/pull/811) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - feat(plasma-temple): Cart can be without delivery [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Insets with device pixel ratio [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Empty cart mobile version [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): simplify types [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Mobile cart and controlled cart [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Make page layout scrollable [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Adapt product components for mobile [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Add header minimize behavior [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Add active index to item change callback in HeroSlider [#811](https://github.com/sberdevices/plasma/pull/811) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - feat(plasma-temple): Add on item cchange callback to HeroSlider [#811](https://github.com/sberdevices/plasma/pull/811) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - feat(plasma-temple): Add useForm hook [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Add generic to GalleryPage [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Add todo [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Handle gallery card click inside package [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Simplify custom gallery card interface [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Refactor gallery [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Rename onScrollBottom callback in GridPage [#811](https://github.com/sberdevices/plasma/pull/811) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - feat(plasma-temple): On scrolled to bottom callback for GridPage [#811](https://github.com/sberdevices/plasma/pull/811) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - feat(plasma-temple): Posibility to have custom background on layout state page [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Improve gallery types, fix redundant rerender because of changeState [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Add go to screen page method [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Add cart quantity limit [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Component for custom full screen background [#811](https://github.com/sberdevices/plasma/pull/811) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - feat(plasma-temple): Custom entity component in ItemPage [#811](https://github.com/sberdevices/plasma/pull/811) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - feat(plasma-temple): Store shop landing page active card index [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Posibility to skip assistant native panel insets [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Refactor ItemDescription type [#811](https://github.com/sberdevices/plasma/pull/811) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - feat(plasma-temple): Refactor ItemCellProps [#811](https://github.com/sberdevices/plasma/pull/811) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - feat(plasma-temple): Fix ItemMainSection linter error [#811](https://github.com/sberdevices/plasma/pull/811) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - feat(plasma-temple): Separate interface for description on ItemPages [#811](https://github.com/sberdevices/plasma/pull/811) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - feat(plasma-temple): ReactElement in ItemPage description [#811](https://github.com/sberdevices/plasma/pull/811) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - feat(plasma-temple): Refactor ItemPage [#811](https://github.com/sberdevices/plasma/pull/811) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - feat(plasma-temple): Fix useMemo in ItemPage [#811](https://github.com/sberdevices/plasma/pull/811) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - feat(plasma-temple): Add onItemFoucs callback for items on ItemPage [#811](https://github.com/sberdevices/plasma/pull/811) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - feat(plasma-temple): remove gallery animation for portal [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): temp [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Get rid of first gallery scroll [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): StateLayout component [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - feat(plasma-temple): implements Page lazy api [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - feat(plasma-temple): Add posibility to set tab index for carousel card [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Ability to disable payment [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): add grid page [#811](https://github.com/sberdevices/plasma/pull/811) ([@Yeti-or](https://github.com/Yeti-or))
+  - feat(plasma-temple): Add posibility to change recipient data add form validation for voice field [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): HeroSlider touch events [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - feat(plasma-temple): HeroSlider components [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - feat(plasma-temple): Cart bubble [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Improve GalleryPage components [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - feat(plasma-temple): Cart page [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): ShopLandingPage components [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - feat(plasma-temple): Confirm Order page [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Order Success page [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): description conent can be node. Add export product components [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Support dispatching standart app actions via assistant [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Add reusable components for product pages [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Enhance state of Video and Gallery pages, refactor useInitializeAssistant hook [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Form components [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - feat(plasma-temple): move AnyObject to common types [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): fix eslint rules [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): refactor types [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-template): Refactor API [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-template): Improve video player customization. Fix small bugs [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-templlate): Video page [#811](https://github.com/sberdevices/plasma/pull/811) (kvpolyanskiy@sberbank.ru)
+  - feat(plasma-template): Video player [#811](https://github.com/sberdevices/plasma/pull/811) (kvpolyanskiy@sberbank.ru)
+  - feat(plasma-template): entity background is optional [#811](https://github.com/sberdevices/plasma/pull/811) (kvpolyanskiy@sberbank.ru)
+  - feat(plasma-template): render custom gallery card [#811](https://github.com/sberdevices/plasma/pull/811) (kvpolyanskiy@sberbank.ru)
+  - feat(plasma-temple): add unit tests [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - feat(plasma-template): Invoke onHistoryPopState callback when on popstate history event [#811](https://github.com/sberdevices/plasma/pull/811) (kvpolyanskiy@sberbank.ru)
+  - feat(plasma-template): make id required only for multi gallery [#811](https://github.com/sberdevices/plasma/pull/811) (kvpolyanskiy@sberbank.ru)
+  - feat(plasma-template): set header title for an active gallery [#811](https://github.com/sberdevices/plasma/pull/811) (kvpolyanskiy@sberbank.ru)
+  - feat(plasma-template): support multi gallery [#811](https://github.com/sberdevices/plasma/pull/811) (kvpolyanskiy@sberbank.ru)
+  - feat(plasma-template): add e2e attributes for gallery [#811](https://github.com/sberdevices/plasma/pull/811) (kvpolyanskiy@sberbank.ru)
+  - feat(plasma-template): add e2e test attributes [#811](https://github.com/sberdevices/plasma/pull/811) (kvpolyanskiy@sberbank.ru)
+  - feat(plasma-temple): add new package [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/cra-template-plasma-basic-template@2.0.0`, `@sberdevices/cra-template-plasma-shop-template@2.0.0`, `@sberdevices/plasma-temple@1.0.0`
+  - docs(plasma-templte): fix docs [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+- `@sberdevices/plasma-temple@1.0.0`
+  - fix(plasma-temple): circular deps [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): resolve lint errors [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): export ErrorPage from index [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - docs(plasma-temple): app hooks & scenario hooks [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - chore(plasma-temple): export GetInitialProps typing [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): title for Gallery component can be optional [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): tv detection [#811](https://github.com/sberdevices/plasma/pull/811) ([@Yeti-or](https://github.com/Yeti-or))
+  - fix(plasma-temple): add focus for player button [#811](https://github.com/sberdevices/plasma/pull/811) ([@kayman233](https://github.com/kayman233))
+  - fix(plasma-temple): callOnce for useFocusOnMount added [#811](https://github.com/sberdevices/plasma/pull/811) ([@kayman233](https://github.com/kayman233))
+  - fix(plasma-temple): can hide timeline tick [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): remove tabindex attr for portal ua [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): fix mobile font size [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - fix(plasma-temple): Fix button view for portal in HeroSlide [#811](https://github.com/sberdevices/plasma/pull/811) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - Update packages/plasma-temple/docs/core.md [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - docs(plasma-temple): Add Page.lazy description [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - docs(plasma-temple): Docs core [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - docs(plasma-temple): add forms.md docs [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): assistantClient can be get outside React [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): HeroSlider skip last slide [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): circular deps in components [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): media player components fixes [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): fix GridPage api [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): fix playback on key hold [#811](https://github.com/sberdevices/plasma/pull/811) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - fix(plasma-temple): fix init parameters for assistant [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): smooth scroll on GridPage [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): dont call `getInitialProps` if `state` is defined [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): fix effects MediaTimeLine component [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): return component from `lazy fn` if `getInitialProps` is not defined [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - chore(plasma-temple): lil fixes + story for new component [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - chore(plasma-temple): apply new component for existing page layout [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - chore(plasma-temple): utility type for Header component props [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): add margin for GridPage Content [#811](https://github.com/sberdevices/plasma/pull/811) ([@Yeti-or](https://github.com/Yeti-or))
+  - fix(plasma-temple): Fix cart page behavior [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - fix(plasma-temple): Fix focus and scroll gallery and landing page behaviour [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - refactor(plasma-temple): Media/Video players improve [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): adopt HeroSlider for portal [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): useRemoteHandlers conditions [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): Remove redundant padding [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - fix(plasma-temple): Fix gallery focus [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - refactor(plasma-temple): Rename ConfirmOrder and OrderSuccess [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - fix(plasma-temple): Fix twice button click and input form submit [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - chore(plasma-temple): assistant-client up version [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): Fix action button clicks with spatial navigation [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - build(plasma-temple): Build via rollup [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - chore(plasma-temple): improve gallery page api [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): Fix changeState [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - chore(plasma-temple): apply code style rules [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - chore: update deps [#811](https://github.com/sberdevices/plasma/pull/811) ([@OgNellis](https://github.com/OgNellis))
+  - fix(plasma-temple): мелкие исправления и доработки апи [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-template): Get rid of header animation if logo is absent. Add header back button [#811](https://github.com/sberdevices/plasma/pull/811) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - docs(plasma-temple): add storybook configs [#811](https://github.com/sberdevices/plasma/pull/811) ([@Yeti-or](https://github.com/Yeti-or))
+  - Apply the voice navigation [#811](https://github.com/sberdevices/plasma/pull/811) (kvpolyanskiy@sberbank.ru)
+  - fix(plasma-temple): CardMedia children [#811](https://github.com/sberdevices/plasma/pull/811) ([@Yeti-or](https://github.com/Yeti-or))
+  - fix(plasma-template): set default focus on gallery card [#811](https://github.com/sberdevices/plasma/pull/811) (kvpolyanskiy@sberbank.ru)
+  - fix(plasma-template): use all header props [#811](https://github.com/sberdevices/plasma/pull/811) (kvpolyanskiy@sberbank.ru)
+  - fix(plasma-temple): add package docs [#811](https://github.com/sberdevices/plasma/pull/811) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 7
+
+- [@kayman233](https://github.com/kayman233)
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+- Konstantin Polyanskiy (kvpolyanskiy@sberbank.ru)
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# (Fri Sep 24 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-web@1.47.0`
+  - feat(plasma-web): `Dropdown` `onToggle` notification [#805](https://github.com/sberdevices/plasma/pull/805) ([@fanisco](https://github.com/fanisco))
+  - feat(plasma-web): Moved `SingleSelect` and `MultiSelect` functionality to hocs [#805](https://github.com/sberdevices/plasma/pull/805) ([@fanisco](https://github.com/fanisco))
+  - feat(plasma-web): Customize `Dropdown` with CSS Vars [#805](https://github.com/sberdevices/plasma/pull/805) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.2.0`
+  - feat(plasma-b2c): Added group `Select` functionality [#805](https://github.com/sberdevices/plasma/pull/805) ([@fanisco](https://github.com/fanisco))
+  - feat(plasma-b2c): Added `Select` component [#805](https://github.com/sberdevices/plasma/pull/805) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- ci: update cypress container [#573](https://github.com/sberdevices/plasma/pull/573) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-b2c@1.2.0`
+  - fix(plasma-b2c): Flip `Select` arrow [#805](https://github.com/sberdevices/plasma/pull/805) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-web@1.47.0`
+  - fix(plasma-web): Removed `DropdownList` min-width [#805](https://github.com/sberdevices/plasma/pull/805) ([@fanisco](https://github.com/fanisco))
+  - chore: make cypress work again [#573](https://github.com/sberdevices/plasma/pull/573) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-core@1.29.0`, `@sberdevices/plasma-ui@1.49.0`, `@sberdevices/plasma-web@1.47.0`
+  - chore: resolve cypress and jest conflicts [#573](https://github.com/sberdevices/plasma/pull/573) ([@OgNellis](https://github.com/OgNellis))
+- `@sberdevices/plasma-ui@1.49.0`, `@sberdevices/plasma-web@1.47.0`
+  - chore: cypress component testing [#573](https://github.com/sberdevices/plasma/pull/573) (dkakhetov@sberbank.ru)
+- `@sberdevices/plasma-ui-docs@0.4.0`
+  - docs(plasma-ui-docs): misspel [#809](https://github.com/sberdevices/plasma/pull/809) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 4
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+- Daniil Akhetov (dkakhetov@sberbank.ru)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # (Wed Sep 22 2021)
 
 #### 🚀 Enhancement

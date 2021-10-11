@@ -5,17 +5,19 @@
   "license": "Sber Public License at-nc-sa v.2",
   "scripts": {
     "release": "tsc -p auto-plugins/tsconfig.json && git diff && auto shipit",
-    "chromatic": "lerna run chromatic",
     "cy:accept-diffs": "docker run -it --rm -v $PWD:/e2e -w /e2e -e CYPRESS_updateSnapshots=true -e CYPRESS_BASE_URL=${PUBLIC_URL:-'http://host.docker.internal:6006'} cypress/included:8.0.0 run --browser chrome",
     "cy:run": "docker run -it --rm -v $PWD:/e2e -w /e2e -e CYPRESS_BASE_URL=${PUBLIC_URL:-'http://host.docker.internal:6006'} cypress/included:8.0.0 run --browser chrome",
     "cy:open": "cypress open",
     "cy:run-ct": "docker run --rm -v $PWD:/e2e -w /e2e --entrypoint=cypress -e PACKEGE_DIR=../../packages/$PACKAGE_NAME -e CYPRESS_updateSnapshots=$CYPRESS_updateSnapshots cypress/included:8.0.0 run-ct --browser chrome --config-file cypress/config/$CYPRESS_CONFIG_FILE",
     "cy:ui:run-ct": "PACKAGE_NAME=plasma-ui CYPRESS_CONFIG_FILE=ui-config.json npm run cy:run-ct",
     "cy:web:run-ct": "PACKAGE_NAME=plasma-web CYPRESS_CONFIG_FILE=web-config.json npm run cy:run-ct",
+    "cy:b2c:run-ct": "PACKAGE_NAME=plasma-b2c CYPRESS_CONFIG_FILE=b2c-config.json npm run cy:run-ct",
     "cy:ui:run-ct-update-diffs": "PACKAGE_NAME=plasma-ui CYPRESS_updateSnapshots=true CYPRESS_CONFIG_FILE=ui-config.json npm run cy:run-ct",
     "cy:web:run-ct-update-diffs": "PACKAGE_NAME=plasma-web CYPRESS_updateSnapshots=true CYPRESS_CONFIG_FILE=web-config.json npm run cy:run-ct",
-    "cy:ui:open-ct": "PACKEGE_DIR=../../packages/plasma-ui cypress open-ct --config-file cypress/config/ui-config.json --env failOnSnapshotDiff=false",
-    "cy:web:open-ct": "PACKEGE_DIR=../../packages/plasma-web cypress open-ct --config-file cypress/config/web-config.json --env failOnSnapshotDiff=false",
+    "cy:b2c:run-ct-update-diffs": "PACKAGE_NAME=plasma-b2c CYPRESS_updateSnapshots=true CYPRESS_CONFIG_FILE=b2c-config.json npm run cy:run-ct",
+    "cy:ui:open-ct": "PACKEGE_DIR=packages/plasma-ui cypress open-ct --config-file cypress/config/ui-config.json --env failOnSnapshotDiff=false",
+    "cy:web:open-ct": "PACKEGE_DIR=packages/plasma-web cypress open-ct --config-file cypress/config/web-config.json --env failOnSnapshotDiff=false",
+    "cy:b2c:open-ct": "PACKEGE_DIR=packages/plasma-b2c cypress open-ct --config-file cypress/config/b2c-config.json --env failOnSnapshotDiff=false",
     "build-storybook": "lerna run build-storybook",
     "build-docz": "lerna bootstrap --scope=@sberdevices/ui && lerna run docz:build",
     "extract-docgen-info": "lerna run extract-docgen-info",
@@ -33,6 +35,7 @@
     "@cypress/react": "5.9.2",
     "@cypress/webpack-dev-server": "1.4.0",
     "@cypress/webpack-preprocessor": "5.9.1",
+    "@sberdevices/plasma-cy-utils": "file:./utils/plasma-cy-utils",
     "@storybook/addon-actions": "6.0.0-rc.13",
     "@storybook/addon-backgrounds": "6.0.0-rc.13",
     "@storybook/addon-knobs": "6.0.0-rc.13",
@@ -62,6 +65,7 @@
     "eslint-plugin-prettier": "3.1.3",
     "eslint-plugin-react": "7.19.0",
     "eslint-plugin-react-hooks": "3.0.0",
+    "fs-extra": "10.0.0",
     "html-webpack-plugin": "5.3.2",
     "http-server": "0.12.3",
     "husky": "4.3.0",
@@ -97,6 +101,10 @@
     ]
   },
   "dependencies": {
-    "babel-plugin-annotate-pure-calls": "0.4.0"
+    "babel-plugin-annotate-pure-calls": "0.4.0",
+    "@sberdevices/plasma-tokens": "*",
+    "@sberdevices/plasma-tokens-b2c": "*",
+    "@sberdevices/plasma-tokens-web": "*",
+    "@sberdevices/plasma-typo": "*"
   }
 }

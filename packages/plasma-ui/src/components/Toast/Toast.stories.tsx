@@ -3,9 +3,7 @@ import { Story, Meta } from '@storybook/react';
 
 import { Button } from '../Button';
 
-import { Position } from './types';
-
-import { Toast, useToast, ToastProps } from '.';
+import { Toast, useToast, ToastProps, ToastPosition } from '.';
 
 export default {
     title: 'Controls/Toast',
@@ -19,7 +17,7 @@ ToastComponent.args = {
 
 interface LiveDemoProps {
     toastText: string;
-    position: string;
+    position: ToastPosition;
     timeout: number;
     fade: boolean;
 }
@@ -31,7 +29,7 @@ export const LiveDemo: Story<LiveDemoProps> = ({ toastText, position, timeout, f
         <div>
             <Button
                 onClick={() => {
-                    showToast(toastText, position as Position, timeout, fade);
+                    showToast(toastText, position, timeout, fade);
                 }}
             >
                 Показать уведомление

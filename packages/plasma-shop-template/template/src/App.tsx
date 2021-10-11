@@ -33,7 +33,7 @@ const onStart: OnStartFn<PageState, PageParams> = async ({ pushScreen }) => {
 const initialCartState: CartState = {
     items: [],
     quantity: 0,
-    quantityLimit: 10,
+    quantityLimit: 30,
     currency: 'rub',
     amount: 0,
 };

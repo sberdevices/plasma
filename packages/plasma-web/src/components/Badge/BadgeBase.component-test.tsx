@@ -1,0 +1,1 @@
+../../../../plasma-core/src/components/Badge/Badge.component-test.tsx
