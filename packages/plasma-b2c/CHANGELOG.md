@@ -1,3 +1,15 @@
+# v1.10.0 (Mon Oct 11 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-typo): Typography separation: bold & regular [#845](https://github.com/sberdevices/plasma/pull/845) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.9.0 (Mon Oct 11 2021)
 
 #### 🚀 Enhancement
