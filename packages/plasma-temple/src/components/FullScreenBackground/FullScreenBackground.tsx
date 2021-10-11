@@ -20,8 +20,8 @@ interface FullScreenBackgroundProps {
 }
 
 export const FullScreenBackground: React.FC<FullScreenBackgroundProps> = ({ src, imageWidth, imageFit }) => {
-    const imageWidthValue = React.useMemo(() => imageWidth || '100%', [imageWidth]);
-    const imageFitValue = React.useMemo(() => imageFit || 'cover', [imageFit]);
+    const imageWidthValue = imageWidth || '100%';
+    const imageFitValue = imageFit || 'cover';
     return (
         <FullScreenBackgroundWrapper>
             <StyledBackgroundImage
