@@ -35,7 +35,7 @@ module.exports = {
             },
             items: [
                 {
-                    href: `https://plasma.sberdevices.ru${prefix}/docs/`,
+                    href: `https://plasma.sberdevices.ru${prefix}/ui/`,
                     position: 'left',
                     label: 'UI',
                 },
@@ -60,7 +60,7 @@ module.exports = {
                     items: [
                         {
                             label: 'Plasma UI',
-                            to: `https://plasma.sberdevices.ru${prefix}/docs/`,
+                            to: `https://plasma.sberdevices.ru${prefix}/ui/`,
                         },
                         {
                             label: 'Plasma Web',

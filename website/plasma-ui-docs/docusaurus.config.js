@@ -11,7 +11,7 @@ const docgen = require('react-docgen-typescript');
 
 const { PR_NAME } = process.env;
 const prefix = PR_NAME ? `/${PR_NAME}` : '';
-const suffix = '';
+const suffix = 'ui/';
 const baseUrl = `${prefix}/${suffix}`;
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
@@ -60,7 +60,7 @@ module.exports = {
                     items: [
                         {
                             label: 'Plasma UI',
-                            to: '/docs/',
+                            to: '/',
                         },
                         {
                             label: 'Plasma Web',
@@ -102,6 +102,7 @@ module.exports = {
             '@docusaurus/preset-classic',
             {
                 docs: {
+                    routeBasePath: '/',
                     sidebarPath: require.resolve('./sidebars.js'),
                     editUrl: 'https://github.com/sberdevices/plasma/blob/master/website/plasma-ui-docs/',
                 },
