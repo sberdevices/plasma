@@ -86,26 +86,12 @@
         "test": "BABEL_ENV=cjs jest",
         "test:watch": "BABEL_ENV=cjs jest --watch"
     },
-    "storybook": {
-        "title": "SberDevices Design System",
-        "url": "https://5f96ec813d800900227e3b93-eobodfvrnh.chromatic.com/"
-    },
     "jest": {
         "moduleNameMapper": {
             "^styled-components": "<rootDir>/node_modules/styled-components"
         }
     },
-    "files": [
-        "components",
-        "hocs",
-        "hooks",
-        "mixins",
-        "types",
-        "utils",
-        "index.d.ts",
-        "index.js",
-        "es"
-    ],
+    "files": ["components", "hocs", "hooks", "mixins", "types", "utils", "index.d.ts", "index.js", "es"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Антонов Игорь Александрович",
