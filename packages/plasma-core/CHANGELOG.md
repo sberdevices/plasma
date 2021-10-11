@@ -1,3 +1,15 @@
+# v1.32.0 (Mon Oct 11 2021)
+
+#### 🚀 Enhancement
+
+- feat: new grid breakpoint for 16 cols [#825](https://github.com/sberdevices/plasma/pull/825) ([@takovoy](https://github.com/takovoy))
+
+#### Authors: 1
+
+- Aleksandr Sustavov ([@takovoy](https://github.com/takovoy))
+
+---
+
 # v1.31.0 (Fri Oct 08 2021)
 
 #### 🚀 Enhancement

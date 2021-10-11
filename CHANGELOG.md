@@ -2,6 +2,19 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-b2c@1.9.0`, `@sberdevices/plasma-core@1.32.0`, `@sberdevices/plasma-web@1.51.0`
+  - feat: new grid breakpoint for 16 cols [#825](https://github.com/sberdevices/plasma/pull/825) ([@takovoy](https://github.com/takovoy))
+
+#### Authors: 1
+
+- Aleksandr Sustavov ([@takovoy](https://github.com/takovoy))
+
+---
+
+# (Mon Oct 11 2021)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-temple@1.2.0`
   - feat(plasma-temple): Configurable StateLayout background image [#836](https://github.com/sberdevices/plasma/pull/836) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
 - `@sberdevices/plasma-b2c@1.8.0`
