@@ -1,3 +1,30 @@
+# (Mon Oct 11 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@1.2.0`
+  - feat(plasma-temple): Configurable StateLayout background image [#836](https://github.com/sberdevices/plasma/pull/836) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- `@sberdevices/plasma-b2c@1.8.0`
+  - feat(b2c): TextArea: new typo [#843](https://github.com/sberdevices/plasma/pull/843) ([@Yeti-or](https://github.com/Yeti-or))
+  - feat(plasma-b2c): TextArea for b2c added [#843](https://github.com/sberdevices/plasma/pull/843) ([@kayman233](https://github.com/kayman233))
+
+#### 🐛 Bug Fix
+
+- ci: fix pkg-locks regeneration [#849](https://github.com/sberdevices/plasma/pull/849) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-ui@1.53.0`
+  - chore: Remove Chromatic check [#850](https://github.com/sberdevices/plasma/pull/850) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.8.0`
+  - chore(b2c): rmv TextArea story [#843](https://github.com/sberdevices/plasma/pull/843) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 4
+
+- [@kayman233](https://github.com/kayman233)
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # (Fri Oct 08 2021)
 
 #### 🚀 Enhancement

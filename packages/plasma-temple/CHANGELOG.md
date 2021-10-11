@@ -1,3 +1,15 @@
+# v1.2.0 (Mon Oct 11 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Configurable StateLayout background image [#836](https://github.com/sberdevices/plasma/pull/836) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.1.5 (Thu Oct 07 2021)
 
 #### 🐛 Bug Fix

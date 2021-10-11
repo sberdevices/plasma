@@ -1,3 +1,17 @@
+# v1.53.0 (Mon Oct 11 2021)
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- chore: Remove Chromatic check [#850](https://github.com/sberdevices/plasma/pull/850) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.52.0 (Fri Oct 08 2021)
 
 #### 🚀 Enhancement
