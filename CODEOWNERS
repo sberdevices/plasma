@@ -2,7 +2,21 @@
 # the repo. Unless a later match takes precedence,
 # @global-owner1 and @global-owner2 will be requested for
 # review when someone opens a pull request.
-* @Yeti-or @fanisco @OgNellis @VladislavPetyukevich @LamaEats
+* @Yeti-or @fanisco
+
+/packages/plasma-b2c @OgNellis @neretin-trike
+/packages/plasma-colors @OgNellis @neretin-trike
+/packages/plasma-core @OgNellis @neretin-trike
+/packages/plasma-icons @OgNellis @neretin-trike
+/packages/plasma-tokens-web @OgNellis @neretin-trike
+/packages/plasma-tokens @OgNellis @neretin-trike
+/packages/plasma-typo @OgNellis @neretin-trike
+/packages/plasma-ui @OgNellis @neretin-trike
+/packages/plasma-web @OgNellis @neretin-trike
+
+/packages/plasma-basic-template @LamaEats @kvpolyanskiy @VladislavPetyukevich
+/packages/plasma-temple @LamaEats @kvpolyanskiy @VladislavPetyukevich
+/packages/plasma-shop-template @LamaEats @kvpolyanskiy @VladislavPetyukevich
 
 # Tests
 /cypress @dakhetov
