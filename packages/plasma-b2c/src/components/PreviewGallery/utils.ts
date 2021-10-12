@@ -13,6 +13,10 @@ export const noop = () => {};
  * @returns {Array<PreviewGalleryItemProps>} новый массив с новым порядком элементов
  */
 export const arrayItemSwapping = (oldItems: Array<PreviewGalleryItemProps>, oldIndex: number, newIndex: number) => {
+    if (!oldItems?.length) {
+        return [];
+    }
+
     const newItems = [...oldItems];
     newItems.splice(newIndex < 0 ? newItems.length + newIndex : newIndex, 0, newItems.splice(oldIndex, 1)[0]);
 
@@ -32,11 +36,12 @@ export const arrayItemRemoving = (oldItems: Array<PreviewGalleryItemProps>, id: 
 
     const newItems = [...oldItems];
     const idIndex = newItems.findIndex((item) => item.id === id);
-    newItems.splice(idIndex, 1);
 
-    if (newItems.length === 1) {
-        newItems[0].isSelected = true;
+    if (idIndex === -1) {
+        return newItems;
     }
+
+    newItems.splice(idIndex, 1);
 
     return newItems;
 };
@@ -53,6 +58,10 @@ export const arrayItemSelecting = (
     id: number | string,
     multipleSelect = false,
 ) => {
+    if (!oldItems?.length) {
+        return [];
+    }
+
     // Метод для предовтращения лишних ререндеров
     const getRemovedSelectionItems = (items: Array<PreviewGalleryItemProps>) =>
         items.map((item) => ({

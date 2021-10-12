@@ -123,19 +123,24 @@ export interface UploadButtonProps {
      */
     isProgress?: boolean;
     /**
-     * Принимаемые форматы.
+     * Принимаемые расширения в формате ".*".
+     *
+     * @example
+     * ".mp3"
+     * @example
+     * ".wav,.mkv"
      */
     accept?: string;
     /**
-     * Контент для компонента
+     * Контент для компонента в виде компонента или строки.
      */
     content?: JSX.Element | string;
     /**
-     * Компонент загрузки
+     * Компонент загрузки.
      */
     loader?: JSX.Element;
     /**
-     * Кастомный метод валидации. Должен вернуть data: File, для начала обработки метода загрузки
+     * Кастомный метод валидации. Должен вернуть data: File, для начала обработки метода загрузки.
      */
     validate?: (files: FileList | null, accept?: string) => ValidationResult;
     /**

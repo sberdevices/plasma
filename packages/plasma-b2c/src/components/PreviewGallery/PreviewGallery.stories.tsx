@@ -5,14 +5,26 @@ import { InSpacingDecorator } from '@sberdevices/plasma-sb-utils';
 import { IconTrashFilled, IconTrash } from '@sberdevices/plasma-icons';
 
 import { arrayItemRemoving, arrayItemSelecting, arrayItemSwapping } from './utils';
+import type { PreviewGalleryProps } from './PreviewGallery';
+import type { PreviewGalleryItemProps } from './PreviewGalleryItemBase';
 
 import { PreviewGallery } from '.';
-import type { PreviewGalleryProps, PreviewGalleryItemProps } from '.';
 
 export default {
     title: 'Controls/PreviewGallery',
     component: PreviewGallery,
-    argTypes: {},
+    argTypes: {
+        items: {
+            table: {
+                disable: true,
+            },
+        },
+        deleteIcon: {
+            table: {
+                disable: true,
+            },
+        },
+    },
     decorators: [InSpacingDecorator],
 } as Meta;
 
@@ -37,6 +49,11 @@ export const Selectable: Story<StoryProps> = ({ ...rest }) => {
     const onItemRemove = useCallback((id) => {
         setItems((oldItems) => {
             const newItems = arrayItemRemoving(oldItems, id);
+
+            if (newItems.length === 1) {
+                newItems[0].isSelected = true;
+            }
+
             return newItems;
         });
     }, []);
@@ -67,6 +84,11 @@ export const Draggable: Story<StoryProps> = ({ ...rest }) => {
     const onItemRemove = useCallback((id) => {
         setItems((oldItems) => {
             const newItems = arrayItemRemoving(oldItems, id);
+
+            if (newItems.length === 1) {
+                newItems[0].isSelected = true;
+            }
+
             return newItems;
         });
     }, []);

@@ -17,7 +17,7 @@ export interface PreviewGalleryProps {
      */
     items?: Array<PreviewGalleryItemProps>;
     /**
-     * Тип взаимодействия с галереей.
+     * Тип взаимодействия с галереей - выбор или перетаскивание элементов.
      */
     interactionType?: InteractionType;
     /**
@@ -25,7 +25,7 @@ export interface PreviewGalleryProps {
      */
     deleteIcon: JSX.Element;
     /**
-     * Размер превью элемента.
+     * CSS размер превью элемента.
      */
     itemSize?: string;
     /**

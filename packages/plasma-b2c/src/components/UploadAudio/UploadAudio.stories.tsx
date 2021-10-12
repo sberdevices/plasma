@@ -12,7 +12,18 @@ import type { UploadAudioProps } from '.';
 export default {
     title: 'Controls/UploadAudio',
     component: UploadAudio,
-    argTypes: {},
+    argTypes: {
+        content: {
+            table: {
+                disable: true,
+            },
+        },
+        loader: {
+            table: {
+                disable: true,
+            },
+        },
+    },
     decorators: [InSpacingDecorator],
 } as Meta;
 
