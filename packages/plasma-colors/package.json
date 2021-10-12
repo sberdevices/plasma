@@ -19,13 +19,11 @@
         "general.d.ts",
         "general.js",
         "index.d.ts",
-        "index.js"
+        "index.js",
+        "types.d.ts",
+        "types.js"
     ],
-    "contributors": [
-        "Vasiliy Loginevskiy",
-        "Anton Vinogradov",
-        "Fanil Zubairov"
-    ],
+    "contributors": ["Vasiliy Loginevskiy", "Anton Vinogradov", "Fanil Zubairov"],
     "devDependencies": {
         "typescript": "^3.9.10"
     }
