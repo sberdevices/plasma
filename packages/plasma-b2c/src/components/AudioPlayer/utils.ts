@@ -3,7 +3,7 @@ import { useEffect, useState, useCallback } from 'react';
 /**
  * Метод для форматирования секунд в минуты в формате `SS:SS`
  * @param {number} seconds время в секундах
- * @returns {number} время в минутах
+ * @returns {string} строка времени в минутах
  */
 export const formatSecondsToMintues = (seconds: number) =>
     new Date(Math.round(seconds) * 1000).toISOString().substr(11, 8).replace(/^00:/, '');

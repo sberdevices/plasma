@@ -24,12 +24,13 @@ export const defaultValidate = (files: FileList | null, accept?: string): Valida
         };
     }
 
-    const allowedFormats = accept.replace(/\s/g, '').replaceAll('.', '\\.').split(',');
+    const dotRegexp = /\./g;
+    const allowedFormats = accept.replace(/\s/g, '').replace(dotRegexp, '\\.').split(',');
     const fileTypeRegexp = new RegExp(`${allowedFormats.join('|')}$`, 'i');
 
     if (!fileTypeRegexp.test(file.name)) {
         return {
-            message: `Неверный формат файла. Используйте ${accept.replaceAll('.', '')}-формат`,
+            message: `Неверный формат файла. Используйте ${accept.replace(dotRegexp, '')}-формат`,
             status: 'error',
             data: null,
         };

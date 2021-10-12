@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import type { FC } from 'react';
 import styled from 'styled-components';
 import { IconTrashFilled } from '@sberdevices/plasma-icons';
 
 import { Upload, UploadProps } from '../Upload';
-import { PreviewGallery, PreviewGalleryProps } from '../PreviewGallery';
+import { PreviewGallery } from '../PreviewGallery';
 import { StyledRoot as StyledPreviewGallery } from '../PreviewGallery/PreviewGalleryItems';
+import type { PreviewGalleryProps } from '../PreviewGallery/PreviewGallery';
 
-export interface UploadVisualProps extends UploadProps, PreviewGalleryProps {}
+export interface UploadVisualProps extends UploadProps, PreviewGalleryProps {
+    /**
+     * Максимальное количество превью в галерее.
+     */
+    maxCount?: number;
+}
 
 export const StyledRoot = styled.div`
     ${StyledPreviewGallery} {
@@ -25,6 +31,8 @@ export const UploadVisual: FC<UploadVisualProps> = ({
     interactionType,
     deleteIcon,
     itemSize,
+    maxCount,
+    disabled,
     onItemsSortEnd,
     onItemRemove,
     onItemSelect,
@@ -33,10 +41,15 @@ export const UploadVisual: FC<UploadVisualProps> = ({
 }) => {
     const acceptExtensions = '.avi,.mp4,.bmg,.png,.jpg,.jpeg';
     const content = 'Загрузите фото или видео';
+    const isDisabled = useMemo(
+        () => (disabled !== undefined ? disabled : Boolean(maxCount !== undefined && maxCount <= items.length)),
+        [disabled, maxCount, items],
+    );
 
     return (
         <StyledRoot>
             <Upload
+                disabled={isDisabled}
                 accept={acceptExtensions}
                 content={content}
                 message={message}

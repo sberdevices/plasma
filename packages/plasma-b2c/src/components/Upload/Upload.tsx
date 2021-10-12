@@ -6,9 +6,9 @@ import { UploadButton, UploadButtonProps } from './UploadButton';
 import { UploadMessage } from './UploadMessage';
 import { UploadProgress } from './UploadProgress';
 
-export interface UploadProps extends UploadButtonProps {
+export interface UploadProps extends Omit<UploadButtonProps, 'isProgress'> {
     /**
-     * Контент для компонента.
+     * Контент для компонента в виде компонента или строки.
      */
     content?: JSX.Element | string;
     /**

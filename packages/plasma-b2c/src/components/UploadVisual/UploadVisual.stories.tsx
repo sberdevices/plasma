@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { Story, Meta } from '@storybook/react';
 import { InSpacingDecorator } from '@sberdevices/plasma-sb-utils';
 
-import { PreviewGalleryItemProps, arrayItemRemoving, arrayItemSelecting, arrayItemSwapping } from '../PreviewGallery';
+import { arrayItemRemoving, arrayItemSelecting, arrayItemSwapping } from '../PreviewGallery';
+import type { PreviewGalleryItemProps } from '../PreviewGallery/PreviewGalleryItemBase';
 import { StatusType } from '../Upload/types';
 import { ValidationResult } from '../Upload';
 
@@ -13,7 +14,28 @@ import type { UploadVisualProps } from '.';
 export default {
     title: 'Controls/UploadVisual',
     component: UploadVisual,
-    argTypes: {},
+    argTypes: {
+        content: {
+            table: {
+                disable: true,
+            },
+        },
+        loader: {
+            table: {
+                disable: true,
+            },
+        },
+        items: {
+            table: {
+                disable: true,
+            },
+        },
+        deleteIcon: {
+            table: {
+                disable: true,
+            },
+        },
+    },
     decorators: [InSpacingDecorator],
 } as Meta;
 
@@ -56,6 +78,11 @@ export const Selectabe: Story<StoryProps> = ({ ...rest }) => {
     const onItemRemove = useCallback((id) => {
         setItems((oldItems) => {
             const newItems = arrayItemRemoving(oldItems, id);
+
+            if (newItems.length === 1) {
+                newItems[0].isSelected = true;
+            }
+
             return newItems;
         });
     }, []);
@@ -111,6 +138,7 @@ export const Selectabe: Story<StoryProps> = ({ ...rest }) => {
     return (
         <StyledWrapper>
             <UploadVisual
+                maxCount={6}
                 items={items}
                 status={state.status}
                 progress={state.progress}
@@ -137,6 +165,11 @@ export const Draggable: Story<StoryProps> = ({ ...rest }) => {
     const onItemRemove = useCallback((id) => {
         setItems((oldItems) => {
             const newItems = arrayItemRemoving(oldItems, id);
+
+            if (newItems.length === 1) {
+                newItems[0].isSelected = true;
+            }
+
             return newItems;
         });
     }, []);

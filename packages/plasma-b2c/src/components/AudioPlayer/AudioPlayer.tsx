@@ -112,7 +112,7 @@ export interface AudioPlayerProps {
      */
     url: string;
     /**
-     * Длительность трека.
+     * Длительность трека в секундах.
      */
     duration?: number;
     /**

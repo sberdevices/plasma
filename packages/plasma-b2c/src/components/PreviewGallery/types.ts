@@ -1,4 +1,4 @@
-import { PreviewGalleryProps } from '.';
+import { PreviewGalleryProps } from './PreviewGallery';
 
 export type StatusType = 'success' | 'error';
 

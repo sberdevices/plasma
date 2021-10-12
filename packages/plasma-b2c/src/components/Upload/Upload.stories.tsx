@@ -11,7 +11,18 @@ import type { UploadProps } from '.';
 export default {
     title: 'Controls/Upload',
     component: Upload,
-    argTypes: {},
+    argTypes: {
+        content: {
+            table: {
+                disable: true,
+            },
+        },
+        loader: {
+            table: {
+                disable: true,
+            },
+        },
+    },
     decorators: [InSpacingDecorator],
 } as Meta;
 
