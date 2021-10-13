@@ -1,7 +1,6 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { addDecorator, addParameters } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 import { Title, Subtitle, Description, Primary, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
 import { link, linkHover, linkActive } from '@sberdevices/plasma-tokens-web';
 import { light, dark } from '@sberdevices/plasma-tokens-web/themes';
@@ -59,7 +58,6 @@ const withToast = (Story) => (
     </ToastProvider>
 );
 
-addDecorator(withKnobs);
 addDecorator(withTheme);
 addDecorator(withToast);
 
