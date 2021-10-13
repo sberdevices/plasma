@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-colors",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "All color palettes for Sber Ecosystem",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
@@ -23,7 +23,11 @@
         "types.d.ts",
         "types.js"
     ],
-    "contributors": ["Vasiliy Loginevskiy", "Anton Vinogradov", "Fanil Zubairov"],
+    "contributors": [
+        "Vasiliy Loginevskiy",
+        "Anton Vinogradov",
+        "Fanil Zubairov"
+    ],
     "devDependencies": {
         "typescript": "^3.9.10"
     }
