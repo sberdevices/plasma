@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button, Headline2, Image } from '@sberdevices/plasma-ui';
 
-import { defaultButtonText, EmptyCartProps } from './EmptyCart@common';
+import { defaultButtonText, defaultTitleText, EmptyCartProps } from './EmptyCart@common';
 
 const StyledWrapper = styled.div`
     display: flex;
@@ -17,15 +17,19 @@ const StyledText = styled(Headline2)`
 `;
 
 export const EmptyCartMobile: React.FC<EmptyCartProps> = ({
+    hasImage = true,
     imageSrc = '',
+    imageHasRatio = true,
+    imageRatio = '1 / 1',
     buttonText = defaultButtonText,
+    titleText = defaultTitleText,
     className,
     onGoToCatalog,
 }) => {
     return (
         <StyledWrapper className={className}>
-            <Image base="div" src={imageSrc} ratio="1 / 1" />
-            <StyledText>В корзине пусто</StyledText>
+            {hasImage && <Image base="div" src={imageSrc} ratio={imageHasRatio ? imageRatio : undefined} />}
+            <StyledText>{titleText}</StyledText>
             {onGoToCatalog && (
                 <Button view="primary" onClick={onGoToCatalog} stretch>
                     {buttonText}

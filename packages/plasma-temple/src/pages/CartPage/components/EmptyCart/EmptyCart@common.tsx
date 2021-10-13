@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Button, Col, Headline1, Headline2, Row, Image, ButtonProps } from '@sberdevices/plasma-ui';
+import { Button, Col, Headline1, Headline2, Row, Image, ButtonProps, Ratio } from '@sberdevices/plasma-ui';
 import { mediaQuery } from '@sberdevices/plasma-ui/utils';
 
 import { deviceFamily, isSberBoxLike } from '../../../../utils/deviceFamily';
@@ -9,13 +9,18 @@ import { withProps } from '../../../../components/hocs/withProps';
 import { useFocusOnMount } from '../../../../hooks/useFocusOnMount';
 
 export interface EmptyCartProps {
+    hasImage?: boolean;
     imageSrc?: string;
+    imageHasRatio?: boolean;
+    imageRatio?: Ratio;
     onGoToCatalog?: () => void;
     buttonText?: string;
+    titleText?: string;
     className?: string;
 }
 
 export const defaultButtonText = 'Вернуться в каталог';
+export const defaultTitleText = 'В корзине пусто';
 
 const mapDeviceToTitle: Record<DeviceFamily, React.FC> = {
     sberBox: Headline1,
@@ -73,8 +78,12 @@ const StyledCol = styled(Col)`
 `;
 
 export const EmptyCartCommon: React.FC<EmptyCartProps> = ({
+    hasImage = true,
     imageSrc = '',
+    imageHasRatio = true,
+    imageRatio = '1 / 1',
     buttonText = defaultButtonText,
+    titleText = defaultTitleText,
     className,
     onGoToCatalog,
 }) => {
@@ -84,7 +93,7 @@ export const EmptyCartCommon: React.FC<EmptyCartProps> = ({
     return (
         <Row className={className}>
             <StyledCol sizeXL={5} sizeM={3}>
-                <StyledTitle>В корзине пусто</StyledTitle>
+                <StyledTitle>{titleText}</StyledTitle>
                 {onGoToCatalog && (
                     <StyledButton ref={buttonRef} view="primary" onClick={onGoToCatalog}>
                         {buttonText}
@@ -92,9 +101,11 @@ export const EmptyCartCommon: React.FC<EmptyCartProps> = ({
                 )}
             </StyledCol>
             <StyledCol sizeXL={6} offsetXL={1} sizeM={3}>
-                <StyledImageContainer>
-                    <Image base="div" src={imageSrc} ratio="1 / 1" />
-                </StyledImageContainer>
+                {hasImage && (
+                    <StyledImageContainer>
+                        <Image base="div" src={imageSrc} ratio={imageHasRatio ? imageRatio : undefined} />
+                    </StyledImageContainer>
+                )}
             </StyledCol>
         </Row>
     );
