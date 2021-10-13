@@ -1,3 +1,15 @@
+# v0.2.1 (Wed Oct 13 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-colors): Add types to files field [#855](https://github.com/sberdevices/plasma/pull/855) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v0.2.0 (Tue Sep 14 2021)
 
 #### 🚀 Enhancement

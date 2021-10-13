@@ -1,3 +1,18 @@
+# v1.53.1 (Wed Oct 13 2021)
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- chore: Manual publish for web & b2c [#854](https://github.com/sberdevices/plasma/pull/854) ([@fanisco](https://github.com/fanisco))
+- fix: Update package-locks [#853](https://github.com/sberdevices/plasma/pull/853) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.51.0 (Mon Oct 11 2021)
 
 #### 🚀 Enhancement

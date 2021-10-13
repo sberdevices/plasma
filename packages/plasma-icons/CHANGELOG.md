@@ -1,3 +1,15 @@
+# v1.47.1 (Wed Oct 13 2021)
+
+#### 🐛 Bug Fix
+
+- fix: Update package-locks [#853](https://github.com/sberdevices/plasma/pull/853) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.44.0 (Sun Oct 03 2021)
 
 #### 🐛 Bug Fix
