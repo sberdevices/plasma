@@ -135,25 +135,32 @@ const StyledRoot = styled(TextFieldRoot)`
  */
 export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
     ({ placeholder, value, helperText, disabled, status, className, style, items, onItemClick, ...rest }, ref) => {
-        const isIcon = Boolean(items && items.length);
+        const IsNotEmpty = Boolean(items && items.length);
         const [isOpen, setIsOpen] = useState(false);
         const onToggle = useCallback((is) => setIsOpen(is), []);
+        const overrideOnClickHandle = IsNotEmpty ? {} : { onClick: undefined };
 
         return (
             <StyledRoot
                 $size="m"
                 $disabled={disabled}
-                $isContentRight={isIcon}
+                $isContentRight={IsNotEmpty}
                 $isHelper={Boolean(helperText)}
                 status={status}
                 className={className}
                 style={style}
             >
-                <StyledDropdown offsetTop="0.125rem" items={items} onItemClick={onItemClick} onToggle={onToggle}>
+                <StyledDropdown
+                    offsetTop="0.125rem"
+                    items={items}
+                    onItemClick={onItemClick}
+                    onToggle={onToggle}
+                    {...overrideOnClickHandle}
+                >
                     <StyledButton ref={ref} disabled={disabled} status={status} type="button" {...rest}>
                         {value && <StyledText>{value}</StyledText>}
                         {placeholder && !value && <StyledPlaceholder>{placeholder}</StyledPlaceholder>}
-                        {isIcon && <StyledArrow size="xs" color="inherit" isOpen={isOpen} />}
+                        {IsNotEmpty && <StyledArrow size="xs" color="inherit" isOpen={isOpen} />}
                     </StyledButton>
                 </StyledDropdown>
                 {helperText && <TextFieldHelper status={status}>{helperText}</TextFieldHelper>}
