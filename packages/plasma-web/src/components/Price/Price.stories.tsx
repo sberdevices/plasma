@@ -11,7 +11,7 @@ const propsToDisable = ['children', 'theme', 'as', 'forwardedAs'];
 export default {
     title: 'Content/Price',
     component: Price,
-    decorators: [InSpacing],
+    decorators: [InSpacingDecorator],
     argTypes: {
         currency: {
             control: {

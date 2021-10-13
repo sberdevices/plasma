@@ -38,7 +38,6 @@
         "@sberdevices/plasma-tokens": "1.14.0",
         "@storybook/addon-docs": "6.3.8",
         "@storybook/addon-essentials": "6.3.8",
-        "@storybook/addon-knobs": "6.3.1",
         "@storybook/addons": "6.3.8",
         "@storybook/preset-create-react-app": "3.2.0",
         "@storybook/react": "6.3.8",
@@ -91,17 +90,7 @@
             "^styled-components": "<rootDir>/node_modules/styled-components"
         }
     },
-    "files": [
-        "components",
-        "hocs",
-        "hooks",
-        "mixins",
-        "types",
-        "utils",
-        "index.d.ts",
-        "index.js",
-        "es"
-    ],
+    "files": ["components", "hocs", "hooks", "mixins", "types", "utils", "index.d.ts", "index.js", "es"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Антонов Игорь Александрович",

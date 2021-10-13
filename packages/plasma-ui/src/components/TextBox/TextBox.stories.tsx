@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { accent, footnote1 } from '@sberdevices/plasma-tokens';
-import { text } from '@storybook/addon-knobs';
 
 import { Footnote1 } from '../Typography';
 import { Container, Row, Col } from '../Grid';
@@ -42,11 +41,11 @@ const Example = styled.div`
 `;
 
 export const Variations = () => {
-    const titleText = text('Title', 'Title');
-    const subTitleText = text('SubTitle', 'SubTitle');
-    const labelText = text('Label', 'Label');
-    const captionText = text('Caption', 'Caption');
-    const bigTitleText = text('BigTitle', 'BigTitle');
+    const titleText = 'Title';
+    const subTitleText = 'SubTitle';
+    const labelText = 'Label';
+    const captionText = 'Caption';
+    const bigTitleText = 'BigTitle';
 
     return (
         <Container>
