@@ -13,6 +13,11 @@ import { DeviceThemeProvider } from '../src/components/Device';
 
 import { ToastProvider } from '../src/components/Toast';
 
+// Workaround: to make VoiceOver read russian text properly
+if (typeof document !== 'undefined') {
+    document.documentElement.setAttribute('lang', 'ru');
+}
+
 const isDocs = () => {
     const params = new URL(document.location).searchParams;
     return params.get('viewMode') === 'docs';
