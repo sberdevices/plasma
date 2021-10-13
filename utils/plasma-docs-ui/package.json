@@ -28,10 +28,10 @@
     "publishConfig": {
         "access": "restricted"
     },
-    "files": [
-        "lib"
-    ],
+    "files": ["lib"],
     "dependencies": {
-        "@sberdevices/plasma-core": "1.27.3"
+        "@sberdevices/plasma-core": "1.27.3",
+        "@types/marked": "3.0.1",
+        "marked": "3.0.7"
     }
 }
