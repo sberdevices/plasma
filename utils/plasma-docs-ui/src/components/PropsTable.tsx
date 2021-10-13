@@ -1,4 +1,5 @@
 import React, { FC, HTMLAttributes, useMemo } from 'react';
+import marked from 'marked';
 
 import type { ComponentProps } from '../types';
 
@@ -49,7 +50,7 @@ export const PropsTable: FC<PropsTableProps> = ({ props, exclude: propsExclude =
                                 <code>{prop.type?.name}</code>
                             </td>
                             <td>{prop.defaultValue && <code>{prop.defaultValue.value}</code>}</td>
-                            <td>{prop.description}</td>
+                            <td dangerouslySetInnerHTML={{ __html: marked(prop.description || '') }} />
                         </tr>
                     );
                 })}
