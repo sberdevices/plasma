@@ -129,24 +129,23 @@ const StyledButton = styled.button<StyledButtonProps>`
  */
 export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
     ({ placeholder, value, helperText, disabled, status, className, style, items, onItemClick, ...rest }, ref) => {
-        const IsNotEmpty = Boolean(items && items.length);
-        const overrideOnClickHandle = IsNotEmpty ? {} : { onClick: undefined };
+        const hasItems = Array.isArray(items) && items.length > 0;
 
         return (
             <TextFieldRoot
                 $size="m"
                 $disabled={disabled}
-                $isContentRight={IsNotEmpty}
+                $isContentRight={hasItems}
                 $isHelper={Boolean(helperText)}
                 status={status}
                 className={className}
                 style={style}
             >
-                <StyledDropdown offsetTop="0.25rem" items={items} onItemClick={onItemClick} {...overrideOnClickHandle}>
+                <StyledDropdown items={items} onItemClick={onItemClick}>
                     <StyledButton ref={ref} disabled={disabled} status={status} type="button" {...rest}>
                         {value && <StyledText>{value}</StyledText>}
                         {placeholder && !value && <StyledPlaceholder>{placeholder}</StyledPlaceholder>}
-                        {IsNotEmpty && <StyledArrow size="xs" color="inherit" />}
+                        {hasItems && <StyledArrow size="xs" color="inherit" />}
                     </StyledButton>
                 </StyledDropdown>
                 {helperText && <TextFieldHelper status={status}>{helperText}</TextFieldHelper>}
