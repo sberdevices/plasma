@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -18,6 +18,8 @@ import {
     HeaderSubtitle,
     HeaderTitle,
     HeaderContent,
+    NeuHeader,
+    NeuHeaderProps,
 } from '.';
 
 const contentTypes = ['Buttons', 'Tabs', 'MobileButtons', ''];
@@ -233,5 +235,56 @@ CustomAssembly.argTypes = {
 CustomAssembly.parameters = {
     chromatic: {
         disable: true,
+    },
+};
+
+export const Neu: Story<NeuHeaderProps & { enableLogo: boolean; displayGrid: boolean } & ContentComponentProps> = ({
+    enableLogo,
+    logoAlt,
+    title,
+    subTitle,
+    ...rest
+}) => {
+    const [arrow, setArrow] = useState<'back' | 'minimize'>('back');
+
+    const onArrowClick = useCallback(
+        (event) => {
+            action(`onArrowClick: ${arrow}`)(event);
+            setArrow(arrow === 'back' ? 'minimize' : 'back');
+        },
+        [arrow],
+    );
+
+    return (
+        <NeuHeader
+            arrow={arrow}
+            onArrowClick={onArrowClick}
+            logo={enableLogo && './images/320_320_12.jpg'}
+            logoAlt={enableLogo && logoAlt}
+            title={title}
+            subTitle={subTitle}
+        >
+            <Content {...rest} />
+        </NeuHeader>
+    );
+};
+
+Neu.args = {
+    displayGrid: true,
+    enableLogo: true,
+    logoAlt: 'Logo',
+    title: 'Header title text is very long to fit given width',
+    subTitle: 'Subtitle text is very long to fit given width even this has smaller font size',
+    contentType: 'Buttons',
+    contentItemsNumber: 3,
+    enableIcons: true,
+};
+
+Neu.argTypes = {
+    contentType: {
+        control: {
+            type: 'select',
+            options: contentTypes,
+        },
     },
 };

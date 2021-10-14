@@ -1,15 +1,10 @@
 import React from 'react';
-import { IconChevronDown } from '@sberdevices/plasma-icons';
 
-import { HeaderBackProps, StyledHeaderBackButton } from './HeaderBack';
+import { HeaderArrow, HeaderArrowProps } from './HeaderArrow';
 
-export interface HeaderMinimizeProps extends HeaderBackProps {}
+export interface HeaderBackProps extends Omit<HeaderArrowProps, 'arrow'> {}
 
 /**
  * Кнопка свернуть.
  */
-export const HeaderMinimize: React.FC<HeaderMinimizeProps> = ({ iconSize = 's', ...rest }) => (
-    <StyledHeaderBackButton size="s" square view="clear" {...rest}>
-        <IconChevronDown size={iconSize} />
-    </StyledHeaderBackButton>
-);
+export const HeaderMinimize: React.FC<HeaderBackProps> = (props) => <HeaderArrow arrow="minimize" {...props} />;

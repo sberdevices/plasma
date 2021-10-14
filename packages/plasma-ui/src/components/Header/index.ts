@@ -9,3 +9,5 @@ export { HeaderLogo } from './HeaderLogo';
 export { HeaderTitleWrapper } from './HeaderTitleWrapper';
 export { HeaderTitle } from './HeaderTitle';
 export { HeaderSubtitle } from './HeaderSubtitle';
+export { NeuHeader } from './NeuHeader';
+export type { NeuHeaderProps } from './NeuHeader';
