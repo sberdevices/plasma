@@ -72,6 +72,7 @@ const StyledPlaceholder = styled.span`
 
 interface StyledButtonProps extends Pick<SelectViewProps, 'status'> {
     focused?: boolean;
+    hasItems?: boolean;
 }
 const StyledButton = styled.button<StyledButtonProps>`
     ${button2}
@@ -89,7 +90,6 @@ const StyledButton = styled.button<StyledButtonProps>`
     border: 0 none;
     border-radius: 0.75rem;
     color: ${primary};
-    cursor: pointer;
     transition: background-color 0.3s ease-in-out;
 
     &:focus {
@@ -100,7 +100,16 @@ const StyledButton = styled.button<StyledButtonProps>`
         cursor: inherit;
     }
 
-    &:hover:not(:disabled),
+    ${({ hasItems }) =>
+        hasItems &&
+        css`
+            &:hover:not(:disabled),
+            &:focus:not(:disabled) {
+                background-color: ${surfaceLiquid02};
+                cursor: pointer;
+            }
+        `}
+
     &:focus:not(:disabled) {
         background-color: ${surfaceLiquid02};
     }
@@ -150,7 +159,14 @@ export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
                 style={style}
             >
                 <StyledDropdown items={items} onItemClick={onItemClick} onToggle={onToggle}>
-                    <StyledButton ref={ref} disabled={disabled} status={status} type="button" {...rest}>
+                    <StyledButton
+                        hasItems={hasItems}
+                        ref={ref}
+                        disabled={disabled}
+                        status={status}
+                        type="button"
+                        {...rest}
+                    >
                         {value && <StyledText>{value}</StyledText>}
                         {placeholder && !value && <StyledPlaceholder>{placeholder}</StyledPlaceholder>}
                         {hasItems && <StyledArrow size="xs" color="inherit" isOpen={isOpen} />}
