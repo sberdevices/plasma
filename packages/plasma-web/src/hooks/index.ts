@@ -1,1 +1,1 @@
-export * from '@sberdevices/plasma-core/hooks';
+export { useForkRef, useIsomorphicLayoutEffect, useDebouncedFunction } from '@sberdevices/plasma-core';
