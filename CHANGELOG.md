@@ -1,3 +1,23 @@
+# (Thu Oct 14 2021)
+
+#### 🐛 Bug Fix
+
+- chore: Delegate CODEOWNERS by folders [#852](https://github.com/sberdevices/plasma/pull/852) ([@fanisco](https://github.com/fanisco))
+- ci: fix pkg-locks regeneration [#861](https://github.com/sberdevices/plasma/pull/861) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-b2c@1.11.2`
+  - fix(plasma-b2c): Fix re-export from plasma-web for utils [#864](https://github.com/sberdevices/plasma/pull/864) ([@neretin-trike](https://github.com/neretin-trike))
+  - docs(b2c): improve ReadMe [#844](https://github.com/sberdevices/plasma/pull/844) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-b2c@1.11.2`, `@sberdevices/plasma-core@1.33.2`, `@sberdevices/plasma-web@1.53.2`
+  - fix(plasma-web, plasma-b2c): Fix re-exporting [#864](https://github.com/sberdevices/plasma/pull/864) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 3
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # (Wed Oct 13 2021)
 
 #### 🐛 Bug Fix

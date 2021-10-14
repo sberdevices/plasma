@@ -1,3 +1,17 @@
+# v1.53.2 (Thu Oct 14 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web, plasma-b2c): Fix re-exporting [#864](https://github.com/sberdevices/plasma/pull/864) ([@neretin-trike](https://github.com/neretin-trike))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.53.1 (Wed Oct 13 2021)
 
 #### 🐛 Bug Fix

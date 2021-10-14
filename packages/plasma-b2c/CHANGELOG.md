@@ -1,3 +1,20 @@
+# v1.11.2 (Thu Oct 14 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-b2c): Fix re-export from plasma-web for utils [#864](https://github.com/sberdevices/plasma/pull/864) ([@neretin-trike](https://github.com/neretin-trike))
+- fix(plasma-web, plasma-b2c): Fix re-exporting [#864](https://github.com/sberdevices/plasma/pull/864) ([@neretin-trike](https://github.com/neretin-trike))
+- docs(b2c): improve ReadMe [#844](https://github.com/sberdevices/plasma/pull/844) ([@Yeti-or](https://github.com/Yeti-or))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 3
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.11.1 (Wed Oct 13 2021)
 
 #### 🐛 Bug Fix
