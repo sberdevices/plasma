@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { IconChevronLeft, IconChevronDown, IconSize } from '@sberdevices/plasma-icons';
+import { IconChevronLeft, IconSize } from '@sberdevices/plasma-icons';
 import type { PickOptional } from '@sberdevices/plasma-core';
 import { mediaQuery } from '@sberdevices/plasma-core';
 
@@ -37,12 +37,21 @@ const StyledButton = styled(Button)`
             margin-right: 1rem;
         `)}
 `;
+const StyledIcon = styled(IconChevronLeft)<Pick<HeaderArrowProps, 'arrow'>>`
+    transition: transform 0.15s ease-in-out;
+
+    ${({ arrow }) =>
+        arrow === 'minimize' &&
+        css`
+            transform: rotate(-90deg);
+        `}
+`;
 
 /**
  * Кнопка-стрелка с возможностью отображения в двух типах - "назад" или "свернуть".
  */
 export const HeaderArrow: React.FC<HeaderArrowProps> = ({ arrow, iconSize = 's', ...rest }) => (
     <StyledButton size="s" square view="clear" {...rest}>
-        {arrow === 'minimize' ? <IconChevronDown size={iconSize} /> : <IconChevronLeft size={iconSize} />}
+        <StyledIcon size={iconSize} arrow={arrow} />
     </StyledButton>
 );
