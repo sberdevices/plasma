@@ -1,6 +1,5 @@
 import { css } from 'styled-components';
-import { gridBreakpoints, gridColumns, gridGutters, gridMargins } from '@sberdevices/plasma-core';
-import { MediaQueryFunction } from '@sberdevices/plasma-core/utils/mediaQuery';
+import { gridBreakpoints, gridColumns, gridGutters, gridMargins, MediaQueryFunction } from '@sberdevices/plasma-core';
 
 export const breakpoints = {
     XXL: 1200, // Desktop large

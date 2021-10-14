@@ -2,8 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { tertiary, white } from '@sberdevices/plasma-tokens-b2c';
 
-import { selectText } from '../../utils/selectText';
-import { clearSelection } from '../../utils/clearSelection';
+import { selectText, clearSelection } from '../../utils';
 import * as typography from '../Typography';
 
 enum KeyCodes {

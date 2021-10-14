@@ -17,7 +17,7 @@ export {
     gutters as gridGutters,
     sizes as gridSizes,
 } from './mediaQuery';
-export type { Breakpoint } from './mediaQuery';
+export type { Breakpoint, MediaQueryFunction } from './mediaQuery';
 
 export { setRef } from './setRef';
 

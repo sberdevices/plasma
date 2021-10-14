@@ -1,1 +1,10 @@
-export * from '@sberdevices/plasma-core/types';
+export type {
+    AsProps,
+    InputHTMLAttributes,
+    TextareaHTMLAttributes,
+    PickOptional,
+    ShiftProps,
+    SnapType,
+    SnapAlign,
+    TextareaResize,
+} from '@sberdevices/plasma-core';
