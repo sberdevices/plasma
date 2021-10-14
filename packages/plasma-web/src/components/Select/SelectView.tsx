@@ -128,7 +128,22 @@ const StyledButton = styled.button<StyledButtonProps>`
  * Поле с выпадающим списком.
  */
 export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
-    ({ placeholder, value, helperText, disabled, status, className, style, items, onItemClick, ...rest }, ref) => {
+    (
+        {
+            placeholder,
+            value,
+            helperText,
+            disabled,
+            status,
+            className,
+            style,
+            items,
+            onItemClick,
+            multiselect,
+            ...rest
+        },
+        ref,
+    ) => {
         const isIcon = Boolean(items && items.length);
 
         return (
@@ -141,7 +156,7 @@ export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
                 className={className}
                 style={style}
             >
-                <StyledDropdown offsetTop="0.25rem" items={items} onItemClick={onItemClick}>
+                <StyledDropdown multiselect={multiselect} offsetTop="0.25rem" items={items} onItemClick={onItemClick}>
                     <StyledButton ref={ref} disabled={disabled} status={status} type="button" {...rest}>
                         {value && <StyledText>{value}</StyledText>}
                         {placeholder && !value && <StyledPlaceholder>{placeholder}</StyledPlaceholder>}

@@ -7,6 +7,7 @@ import type { SelectRefElement, SelectViewProps } from './Select.types';
 export interface MultiSelectProps extends Omit<SelectViewProps, 'onItemClick' | 'value' | 'label'> {
     value: Array<string | number> | null;
     separator?: string;
+    multiselect?: boolean;
     onChange?: (value: Array<string | number>) => void;
 }
 
@@ -44,6 +45,8 @@ export const withMultiSelect = (View: ComponentType<SelectViewProps & RefAttribu
                 [onChange],
             );
 
-            return <View ref={ref} value={viewValue} items={viewItems} onItemClick={onItemClick} {...rest} />;
+            return (
+                <View ref={ref} value={viewValue} items={viewItems} onItemClick={onItemClick} multiselect {...rest} />
+            );
         },
     );

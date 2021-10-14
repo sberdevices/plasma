@@ -22,9 +22,16 @@ export interface DropdownProps extends HTMLAttributes<HTMLDivElement> {
      */
     items: Array<DropdownNodeType>;
     /**
+     * Выбор нескольких значений.
+     */
+    multiselect?: boolean;
+    /**
      * Обработчик клика по айтему.
      */
     onItemClick?: (item: DropdownItemType) => void;
+    /**
+     * Колбэк на изменение состояния отображения компонента
+     */
     onToggle?: (isOpen: boolean) => void;
 }
 
@@ -35,6 +42,7 @@ export const Dropdown: FC<DropdownProps> = ({
     children,
     offsetTop,
     items,
+    multiselect = false,
     onItemClick: onItemClickExternal,
     onToggle,
     ...rest
@@ -74,7 +82,9 @@ export const Dropdown: FC<DropdownProps> = ({
 
     const onItemClick = useCallback(
         (item) => {
-            setIsOpen(false);
+            if (!multiselect) {
+                setIsOpen(false);
+            }
             onItemClickExternal?.(item);
         },
         [setIsOpen, onItemClickExternal],

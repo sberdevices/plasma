@@ -10,4 +10,5 @@ export interface SelectViewProps
         Pick<DropdownProps, 'items' | 'onItemClick'>,
         Omit<HTMLAttributes<HTMLButtonElement>, 'onChange'> {
     value?: string | number | null;
+    multiselect?: boolean;
 }

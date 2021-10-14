@@ -75,6 +75,8 @@ const StyledText = styled.span`
     user-select: none;
 `;
 const StyledIconSlot = styled.div`
+    pointer-events: none;
+
     display: flex;
     justify-content: center;
 
