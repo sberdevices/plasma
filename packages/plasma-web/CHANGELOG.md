@@ -1,3 +1,17 @@
+# v1.53.3 (Fri Oct 15 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web): Remove underline from Dropdown item [#865](https://github.com/sberdevices/plasma/pull/865) ([@neretin-trike](https://github.com/neretin-trike))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.53.2 (Thu Oct 14 2021)
 
 #### 🐛 Bug Fix
