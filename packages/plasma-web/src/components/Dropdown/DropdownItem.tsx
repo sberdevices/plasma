@@ -26,6 +26,8 @@ const StyledDropdownItem = styled.a<{ $disabled?: boolean; $color?: string }>`
     justify-content: flex-start;
     box-sizing: border-box;
 
+    text-decoration: none;
+
     height: var(--plasma-dropdown-item-height, 3rem);
     padding: var(--plasma-dropdown-item-padding, 1rem);
     border-radius: var(--plasma-dropdown-item-border-radius, 0);
