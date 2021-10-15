@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-ui",
-    "version": "1.55.2",
+    "version": "1.55.3",
     "description": "SberDevices Design System",
     "main": "index.js",
     "module": "es/index.js",
@@ -90,7 +90,17 @@
             "^styled-components": "<rootDir>/node_modules/styled-components"
         }
     },
-    "files": ["components", "hocs", "hooks", "mixins", "types", "utils", "index.d.ts", "index.js", "es"],
+    "files": [
+        "components",
+        "hocs",
+        "hooks",
+        "mixins",
+        "types",
+        "utils",
+        "index.d.ts",
+        "index.js",
+        "es"
+    ],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Антонов Игорь Александрович",
