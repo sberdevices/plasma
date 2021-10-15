@@ -1,3 +1,15 @@
+# v1.55.3 (Fri Oct 15 2021)
+
+#### 🐛 Bug Fix
+
+- chore(plasma-ui, plasma-web): addon knobs removed [#857](https://github.com/sberdevices/plasma/pull/857) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 1
+
+- [@kayman233](https://github.com/kayman233)
+
+---
+
 # v1.55.2 (Thu Oct 14 2021)
 
 #### 🐛 Bug Fix

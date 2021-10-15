@@ -2,6 +2,19 @@
 
 #### 🐛 Bug Fix
 
+- `@sberdevices/plasma-ui@1.55.3`, `@sberdevices/plasma-web@1.53.4`
+  - chore(plasma-ui, plasma-web): addon knobs removed [#857](https://github.com/sberdevices/plasma/pull/857) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 1
+
+- [@kayman233](https://github.com/kayman233)
+
+---
+
+# (Fri Oct 15 2021)
+
+#### 🐛 Bug Fix
+
 - `@sberdevices/plasma-web@1.53.3`
   - fix(plasma-web): Remove underline from Dropdown item [#865](https://github.com/sberdevices/plasma/pull/865) ([@neretin-trike](https://github.com/neretin-trike))
 
