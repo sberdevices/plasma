@@ -9,6 +9,8 @@ import { useCart } from '../../hooks';
 import { useRemoteListener, useThrottledCallback } from '../../../../hooks';
 import { CartItem } from '../../types';
 import { useGetMutableValue } from '../../../../hooks/useGetMutableValue';
+import { THROTTLE_WAIT } from '../../../../hooks/useThrottledCallback';
+import { isSberBoxLike } from '../../../../utils';
 
 export interface CartItemProps {
     item: CartItem;
@@ -57,9 +59,7 @@ const StyledPresentContainer = styled.div`
 export const StyledImage = styled.div<{ imageSrc: string }>`
     width: 100%;
     height: 100%;
-    background-position: center;
-    background-image: url(${({ imageSrc }) => imageSrc});
-    background-repeat: no-repeat;
+    background: center no-repeat url(${({ imageSrc }) => imageSrc});
     background-size: contain;
 `;
 
@@ -133,6 +133,8 @@ function useCartNavigation({
     return [leftButtonRef, rightButtonRef];
 }
 
+const throttleWait = isSberBoxLike() ? THROTTLE_WAIT : 0;
+
 export const QuantityButton: React.FC<{
     id: CartItem['id'];
     quantity: number;
@@ -152,6 +154,7 @@ export const QuantityButton: React.FC<{
             changeItemQuantity(id, getQuantity() + 1);
         },
         [id, changeItemQuantity, getQuantity],
+        throttleWait,
     );
 
     const isMin = quantity <= 0;
@@ -167,6 +170,7 @@ export const QuantityButton: React.FC<{
             }
         },
         [id, removeItem, changeItemQuantity, getQuantity],
+        throttleWait,
     );
 
     const handlerFocus = React.useCallback(() => setActiveIndex?.(index), [index, setActiveIndex]);
