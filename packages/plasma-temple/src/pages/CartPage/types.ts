@@ -33,7 +33,7 @@ export type ChangeStateFn<T extends CartState> = (state: T) => void;
 
 export type OnChangeCartFn<T extends CartState> = (args: {
     state: T;
-    changeState: ChangeStateFn<T>;
+    changeState: (state: T) => void;
     event: OnAddCartItemEvent<T> | OnChangeCartItemQuantityEvent<T> | OnRemoveCartItemEvent<T> | ClearCartEvent;
 }) => void;
 

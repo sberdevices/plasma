@@ -85,13 +85,7 @@ const StyledUnderline = styled(Underline)`
 export const Default = (): React.ReactElement => {
     return (
         <AssistantContext.Provider value={assistantContextValue}>
-            <CartProvider
-                initialState={initialState}
-                onAddItem={action('onAddItem')}
-                onChangeItemQuantity={action('onChangeQuantity')}
-                onRemoveItem={action('onRemoveItem')}
-                onClearCart={action('onClearCart')}
-            >
+            <CartProvider initialState={initialState} onChangeCart={action('onChangeCart')}>
                 <CartPage onMakeOrder={action('onMakeOrder')}>
                     <StyledUnderline>
                         Заполняя данную форму, я соглашаюсь с условиями продажи и политикой обработки персональных
