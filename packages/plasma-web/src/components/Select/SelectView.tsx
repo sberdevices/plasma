@@ -14,11 +14,11 @@ import {
     applyEllipsis,
 } from '@sberdevices/plasma-core';
 import type { TextFieldProps as BaseProps } from '@sberdevices/plasma-core';
-import { IconChevronDown } from '@sberdevices/plasma-icons';
 
 import { inputBorder, inputBorderHover } from '../../tokens';
-import { Dropdown } from '../Dropdown';
 
+import { SelectDropdown } from './SelectDropdown';
+import { SelectArrow } from './SelectArrow';
 import type { SelectRefElement, SelectViewProps } from './Select.types';
 
 const statuses = {
@@ -27,16 +27,10 @@ const statuses = {
     error: critical,
 };
 
-const StyledDropdown = styled(Dropdown)`
+const StyledRoot = styled(TextFieldRoot)`
     --plasma-dropdown-padding: 0.25rem;
     --plasma-dropdown-border-radius: 0.25rem;
     --plasma-dropdown-item-border-radius: 0.25rem;
-    display: flex;
-    width: 100%;
-`;
-const StyledArrow = styled(IconChevronDown)`
-    margin-left: 0.75rem;
-    transition: color 0.3s ease-in-out;
 `;
 const StyledText = styled.span`
     ${applyEllipsis}
@@ -72,7 +66,7 @@ const StyledButton = styled.button<StyledButtonProps>`
     /* stylelint-disable-next-line number-max-precision */
     padding: 0.875rem 0.9375rem;
     border: 1px solid ${inputBorder};
-    border-radius: var(--plasma-dropdown-border-radius);
+    border-radius: 0.25rem;
 
     background-color: transparent;
     color: ${secondary};
@@ -137,7 +131,7 @@ export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
         const hasItems = Array.isArray(items) && items.length > 0;
 
         return (
-            <TextFieldRoot
+            <StyledRoot
                 $size="m"
                 $disabled={disabled}
                 $isContentRight={hasItems}
@@ -146,22 +140,28 @@ export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
                 className={className}
                 style={style}
             >
-                <StyledDropdown items={items} onItemClick={onItemClick}>
-                    <StyledButton
-                        hasItems={hasItems}
-                        ref={ref}
-                        disabled={disabled}
-                        status={status}
-                        type="button"
-                        {...rest}
-                    >
-                        {value && <StyledText>{value}</StyledText>}
-                        {placeholder && !value && <StyledPlaceholder>{placeholder}</StyledPlaceholder>}
-                        {hasItems && <StyledArrow size="xs" color="inherit" />}
-                    </StyledButton>
-                </StyledDropdown>
+                <SelectDropdown
+                    items={items}
+                    trigger="click"
+                    placement="bottom"
+                    onItemClick={onItemClick}
+                    disclosure={
+                        <StyledButton
+                            ref={ref}
+                            disabled={disabled}
+                            status={status}
+                            type="button"
+                            hasItems={hasItems}
+                            {...rest}
+                        >
+                            {value && <StyledText>{value}</StyledText>}
+                            {placeholder && !value && <StyledPlaceholder>{placeholder}</StyledPlaceholder>}
+                            {hasItems && <SelectArrow size="xs" color="inherit" />}
+                        </StyledButton>
+                    }
+                />
                 {helperText && <TextFieldHelper status={status}>{helperText}</TextFieldHelper>}
-            </TextFieldRoot>
+            </StyledRoot>
         );
     },
 );
