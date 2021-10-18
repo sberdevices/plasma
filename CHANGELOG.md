@@ -1,3 +1,16 @@
+# (Mon Oct 18 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-b2c@1.12.0`
+  - feat(plasma-b2c): add ElasticGrid component [#847](https://github.com/sberdevices/plasma/pull/847) ([@aabulakhsberbank](https://github.com/aabulakhsberbank))
+
+#### Authors: 1
+
+- [@aabulakhsberbank](https://github.com/aabulakhsberbank)
+
+---
+
 # (Fri Oct 15 2021)
 
 #### 🐛 Bug Fix

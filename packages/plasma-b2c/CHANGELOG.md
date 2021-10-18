@@ -1,3 +1,20 @@
+# v1.12.0 (Mon Oct 18 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-b2c): add ElasticGrid component [#847](https://github.com/sberdevices/plasma/pull/847) ([@aabulakhsberbank](https://github.com/aabulakhsberbank))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@aabulakhsberbank](https://github.com/aabulakhsberbank)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
 # v1.11.4 (Fri Oct 15 2021)
 
 #### 🐛 Bug Fix
