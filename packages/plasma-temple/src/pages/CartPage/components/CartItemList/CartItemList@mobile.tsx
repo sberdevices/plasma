@@ -4,7 +4,12 @@ import { CartItem } from '../CartItem/CartItem';
 
 import { CartItemListProps } from './CartItemList@common';
 
-export const CartItemListMobile: React.FC<CartItemListProps> = ({ items, currency, onItemClick }) => {
+export const CartItemListMobile: React.FC<CartItemListProps> = ({
+    items,
+    currency,
+    itemImageBackgroundColor,
+    onItemClick,
+}) => {
     return (
         <>
             {items.map((item, index) => (
@@ -14,6 +19,7 @@ export const CartItemListMobile: React.FC<CartItemListProps> = ({ items, currenc
                     item={item}
                     currency={currency}
                     onItemClick={onItemClick}
+                    imageBackgroundColor={itemImageBackgroundColor}
                 />
             ))}
         </>

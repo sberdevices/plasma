@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Image, TextBox, Caption, Row, Col } from '@sberdevices/plasma-ui';
+import { TextBox, Caption, Row, Col } from '@sberdevices/plasma-ui';
 
 import {
     CartItemProps,
@@ -10,6 +10,7 @@ import {
     titleMixin,
     Present,
     Price,
+    StyledImage,
 } from './CartItem@common';
 
 const StyledRow = styled(Row)`
@@ -29,11 +30,11 @@ const StyledPriceContainer = styled(Caption)`
     ${priceMixin};
 `;
 
-const StyledImageContainer = styled.div`
-    ${imageContainerMixin}
+const StyledImageContainer = styled.div<{ backgroundColor?: string }>`
+    ${imageContainerMixin({ padding: 0.3 })}
 
-    padding: 0.3rem;
     min-width: 3rem;
+    height: 3rem;
     margin-right: 0.75rem;
 `;
 
@@ -45,16 +46,22 @@ const StyledTextBox = styled(TextBox)`
     width: calc(100% - 3rem);
 `;
 
-export const CartItemSberPortal: React.FC<CartItemProps> = ({ item, currency, onItemClick, ...props }) => {
+export const CartItemSberPortal: React.FC<CartItemProps> = ({
+    item,
+    currency,
+    imageBackgroundColor,
+    onItemClick,
+    ...props
+}) => {
     const { id, name, price, quantity, imageSrc = '', present } = item;
 
     const clickHandler = React.useCallback(() => onItemClick?.(item), [onItemClick, item]);
 
     return (
-        <StyledRow onClick={clickHandler}>
+        <StyledRow>
             <StyledLeftCol sizeM={3}>
-                <StyledImageContainer>
-                    <Image base="div" src={imageSrc} ratio="1 / 1" />
+                <StyledImageContainer backgroundColor={imageBackgroundColor} onClick={clickHandler}>
+                    <StyledImage imageSrc={imageSrc} />
                 </StyledImageContainer>
                 <StyledTextBox>
                     <StyledTitle>{name}</StyledTitle>

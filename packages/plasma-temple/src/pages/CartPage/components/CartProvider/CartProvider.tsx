@@ -1,24 +1,14 @@
 import React from 'react';
 
 import { useGetMutableValue } from '../../../../hooks/useGetMutableValue';
-import {
-    CartItem,
-    CartState,
-    CartStateItem,
-    OnAddCartItemFn,
-    OnChangeCartItemQuantityFn,
-    OnRemoveCartItemFn,
-} from '../../types';
+import { CartItem, CartState, CartStateItem, OnChangeCartFn } from '../../types';
 
 import { CartContext, CartContextValue, getInitialState } from './CartContext';
 
 interface CartProviderProps<T extends CartState = CartState> {
     initialState?: T;
     dropItemIfQuantityZero?: boolean;
-    onAddItem?: OnAddCartItemFn<T>;
-    onChangeItemQuantity?: OnChangeCartItemQuantityFn<T>;
-    onRemoveItem?: OnRemoveCartItemFn<T>;
-    onClearCart?: () => void;
+    onChangeCart?: OnChangeCartFn<T>;
 }
 
 function updateCartItemByIndex<T extends CartItem>(items: T[], cartItem: T, index: number) {
@@ -44,10 +34,7 @@ export function CartProvider<T extends CartState = CartState>({
     initialState = getInitialState<T>(),
     children,
     dropItemIfQuantityZero,
-    onAddItem,
-    onChangeItemQuantity,
-    onRemoveItem,
-    onClearCart,
+    onChangeCart,
 }: React.PropsWithChildren<CartProviderProps<T>>): React.ReactElement {
     const [state, setState] = React.useState(initialState);
 
@@ -71,10 +58,14 @@ export function CartProvider<T extends CartState = CartState>({
             setState(newState);
 
             if (cartItem) {
-                onRemoveItem?.({ item: cartItem, state: newState, changeState: setState });
+                onChangeCart?.({
+                    state: newState,
+                    changeState: setState,
+                    event: { type: 'removeItem', item: cartItem },
+                });
             }
         },
-        [getState, onRemoveItem, setState],
+        [getState, onChangeCart, setState],
     );
 
     const changeItemQuantity = React.useCallback(
@@ -110,9 +101,13 @@ export function CartProvider<T extends CartState = CartState>({
 
             setState(newState);
 
-            onChangeItemQuantity?.({ item: cartItem, state: newState, changeState: setState });
+            onChangeCart?.({
+                state: newState,
+                changeState: setState,
+                event: { type: 'changeItemQuantity', item: cartItem },
+            });
         },
-        [dropItemIfQuantityZero, getState, isOverQuantityLimit, onChangeItemQuantity, removeItem],
+        [dropItemIfQuantityZero, getState, isOverQuantityLimit, onChangeCart, removeItem],
     );
 
     const addItem = React.useCallback(
@@ -139,15 +134,26 @@ export function CartProvider<T extends CartState = CartState>({
             };
 
             setState(newState);
-            onAddItem?.({ item: newItem, state: newState, changeState: setState });
+
+            onChangeCart?.({
+                state: newState,
+                changeState: setState,
+                event: { type: 'addItem', item: newItem },
+            });
         },
-        [changeItemQuantity, getState, isOverQuantityLimit, onAddItem, setState],
+        [changeItemQuantity, getState, isOverQuantityLimit, onChangeCart, setState],
     );
 
     const clearCart = React.useCallback(() => {
-        setState({ ...getState(), items: [], amount: 0, quantity: 0 });
-        onClearCart?.();
-    }, [getState, onClearCart, setState]);
+        const newState = { ...getState(), items: [], amount: 0, quantity: 0 };
+        setState(newState);
+
+        onChangeCart?.({
+            state: newState,
+            changeState: setState,
+            event: { type: 'clearCart' },
+        });
+    }, [getState, onChangeCart, setState]);
 
     const value = React.useMemo(
         () => ({
