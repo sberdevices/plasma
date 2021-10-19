@@ -12,9 +12,10 @@ enum KeyCodes {
 
 const EditButton = styled.span<{ $isHidden: boolean }>`
     position: relative;
-    background: linear-gradient(270deg, #000 70%, rgba(0, 0, 0, 0) 120%);
+    background: var(--plasma-editable-icon-background, linear-gradient(270deg, #000 70%, rgba(0, 0, 0, 0) 120%));
     padding-left: 1rem;
     color: ${tertiary};
+    align-self: stretch;
 
     ${({ $isHidden }) => ($isHidden ? 'display: none;' : '')}
 `;
@@ -45,7 +46,7 @@ export interface EditableProps {
     onChange?: React.ChangeEventHandler<RefElement>;
     onBlur?: React.FocusEventHandler<HTMLDivElement>;
     onPaste?: React.ClipboardEventHandler<HTMLDivElement>;
-    spellCheck: 'true' | 'false';
+    spellCheck?: 'true' | 'false';
     /**
      * Максимальная длина текста в символах
      */
@@ -62,6 +63,10 @@ export interface EditableProps {
 
 /**
  * Компонент, добавляющий возможность редактирования к текстовому компоненту
+ *
+ * Для указания альтернативного фона у иконки справа от текста
+ * можно указать css переменную --plasma-editable-icon-background в контейнере элемента
+ *
  */
 export const Editable: React.FC<EditableProps> = ({
     textComponent,
