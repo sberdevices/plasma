@@ -1,3 +1,21 @@
+# v1.12.1 (Tue Oct 19 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web): Remove hover from select with empty list [#858](https://github.com/sberdevices/plasma/pull/858) ([@neretin-trike](https://github.com/neretin-trike))
+- fix(plasma-b2c): Remove props offsetTop from `Select` component [#858](https://github.com/sberdevices/plasma/pull/858) ([@neretin-trike](https://github.com/neretin-trike))
+- fix(plasma-b2c): Fix click to empty select [#858](https://github.com/sberdevices/plasma/pull/858) ([@neretin-trike](https://github.com/neretin-trike))
+- chore(plasma-b2c): Add stories for `Dropdown` component [#869](https://github.com/sberdevices/plasma/pull/869) ([@neretin-trike](https://github.com/neretin-trike))
+- chore(plasma-b2c): Add global style for `a` tag in storybook [#869](https://github.com/sberdevices/plasma/pull/869) ([@neretin-trike](https://github.com/neretin-trike))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.12.0 (Mon Oct 18 2021)
 
 #### 🚀 Enhancement

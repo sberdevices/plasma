@@ -1,3 +1,20 @@
+# v1.53.5 (Tue Oct 19 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web): Remove hover from select with empty list [#858](https://github.com/sberdevices/plasma/pull/858) ([@neretin-trike](https://github.com/neretin-trike))
+- chore(plasma-web): Bump plasma-colors version [#858](https://github.com/sberdevices/plasma/pull/858) ([@neretin-trike](https://github.com/neretin-trike))
+- fix(plasma-web): Fix open `Dropwdown` component if has not item [#858](https://github.com/sberdevices/plasma/pull/858) ([@neretin-trike](https://github.com/neretin-trike))
+- fix(plasma-b2c): Fix click to empty select [#858](https://github.com/sberdevices/plasma/pull/858) ([@neretin-trike](https://github.com/neretin-trike))
+- fix(plasma-web): Fix color for hover item in `Dropdown` component [#869](https://github.com/sberdevices/plasma/pull/869) ([@neretin-trike](https://github.com/neretin-trike))
+- chore(plasma-web): Add re-export for `Dropdown` component [#869](https://github.com/sberdevices/plasma/pull/869) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.53.4 (Fri Oct 15 2021)
 
 #### 🐛 Bug Fix
