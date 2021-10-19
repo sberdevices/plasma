@@ -2,7 +2,7 @@ import React from 'react';
 
 import { PickOptional } from '../../types';
 
-import { HeaderRoot } from './HeaderRoot';
+import { HeaderRoot, HeaderRootProps } from './HeaderRoot';
 import { HeaderMinimize } from './HeaderMinimize';
 import { HeaderBack } from './HeaderBack';
 import { HeaderLogo } from './HeaderLogo';
@@ -60,7 +60,8 @@ interface NoTitleProps {
 type AllProps = PickOptional<MinimizeProps, 'minimize' | 'onMinimizeClick'> &
     PickOptional<BackProps, 'back' | 'onBackClick'> &
     LogoProps &
-    TitleProps;
+    TitleProps &
+    Pick<HeaderRootProps, 'gradientColor'>;
 
 export type HeaderProps = React.HTMLAttributes<HTMLDivElement> &
     (MinimizeProps | BackProps) &

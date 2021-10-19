@@ -102,6 +102,7 @@ export const Default: Story<HeaderProps & { enableLogo: boolean; displayGrid: bo
     logoAlt,
     title,
     subtitle,
+    gradientColor,
     ...rest
 }) => {
     const [isBack, setIsBack] = useState(true);
@@ -128,6 +129,7 @@ export const Default: Story<HeaderProps & { enableLogo: boolean; displayGrid: bo
             logoAlt={enableLogo && logoAlt}
             title={title}
             subtitle={subtitle}
+            gradientColor={gradientColor}
         >
             <Content {...rest} />
         </Header>
@@ -140,6 +142,7 @@ Default.args = {
     logoAlt: 'Logo',
     title: 'Header title text is very long to fit given width',
     subtitle: 'Subtitle text is very long to fit given width even this has smaller font size',
+    gradientColor: '',
     contentType: 'Buttons',
     contentItemsNumber: 3,
     enableIcons: true,
@@ -160,6 +163,7 @@ interface CustomAssemblyProps {
     title: string;
     subtitle: string;
     label: string;
+    gradientColor: string;
 }
 
 export const CustomAssembly: Story<CustomAssemblyProps & ContentComponentProps> = ({
@@ -167,12 +171,13 @@ export const CustomAssembly: Story<CustomAssemblyProps & ContentComponentProps> 
     title,
     subtitle,
     label,
+    gradientColor,
     ...rest
 }) => {
     const [isBack, setIsBack] = useState(true);
 
     return (
-        <HeaderRoot>
+        <HeaderRoot gradientColor={gradientColor}>
             {isBack ? (
                 <HeaderBack
                     onClick={() => {
@@ -217,6 +222,7 @@ CustomAssembly.args = {
     title: 'Header title text',
     subtitle: 'Subtitle text',
     label: 'Label text',
+    gradientColor: '',
     contentType: 'Buttons',
     contentItemsNumber: 3,
     enableIcons: true,
@@ -243,6 +249,7 @@ export const Neu: Story<NeuHeaderProps & { enableLogo: boolean; displayGrid: boo
     logoAlt,
     title,
     subTitle,
+    gradientColor,
     ...rest
 }) => {
     const [arrow, setArrow] = useState<'back' | 'minimize'>('back');
@@ -263,6 +270,7 @@ export const Neu: Story<NeuHeaderProps & { enableLogo: boolean; displayGrid: boo
             logoAlt={enableLogo && logoAlt}
             title={title}
             subTitle={subTitle}
+            gradientColor={gradientColor}
         >
             <Content {...rest} />
         </NeuHeader>
@@ -275,12 +283,64 @@ Neu.args = {
     logoAlt: 'Logo',
     title: 'Header title text is very long to fit given width',
     subTitle: 'Subtitle text is very long to fit given width even this has smaller font size',
+    gradientColor: '',
     contentType: 'Buttons',
     contentItemsNumber: 3,
     enableIcons: true,
 };
 
 Neu.argTypes = {
+    contentType: {
+        control: {
+            type: 'select',
+            options: contentTypes,
+        },
+    },
+};
+
+export const Gradient: Story<
+    NeuHeaderProps & { enableLogo: boolean; displayGrid: boolean } & ContentComponentProps
+> = ({ enableLogo, logoAlt, title, subTitle, gradientColor, ...rest }) => {
+    const [arrow, setArrow] = useState<'back' | 'minimize'>('back');
+
+    const onArrowClick = useCallback(
+        (event) => {
+            action(`onArrowClick: ${arrow}`)(event);
+            setArrow(arrow === 'back' ? 'minimize' : 'back');
+        },
+        [arrow],
+    );
+
+    return (
+        <>
+            <NeuHeader
+                arrow={arrow}
+                onArrowClick={onArrowClick}
+                logo={enableLogo && './images/320_320_12.jpg'}
+                logoAlt={enableLogo && logoAlt}
+                title={title}
+                subTitle={subTitle}
+                gradientColor={gradientColor}
+            >
+                <Content {...rest} />
+            </NeuHeader>
+        </>
+    );
+};
+
+Gradient.args = {
+    displayGrid: false,
+    enableLogo: true,
+    logoAlt: 'Logo',
+    title: 'Header title text is very long to fit given width',
+    subTitle: 'Subtitle text is very long to fit given width even this has smaller font size',
+    gradientColor: '#FF9600',
+    contentType: 'Buttons',
+    contentItemsNumber: 3,
+    enableIcons: true,
+};
+
+Gradient.argTypes = {
     contentType: {
         control: {
             type: 'select',
