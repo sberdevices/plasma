@@ -80,7 +80,23 @@
         "ts-node": "10.3.0",
         "typescript": "3.9.10"
     },
-    "keywords": ["design-system", "react-components", "ui-kit", "react"],
-    "files": ["components", "es", "hocs", "hooks", "mixins", "tokens", "types", "utils", "index.d.ts", "index.js"],
+    "keywords": [
+        "design-system",
+        "react-components",
+        "ui-kit",
+        "react"
+    ],
+    "files": [
+        "components",
+        "es",
+        "hocs",
+        "hooks",
+        "mixins",
+        "tokens",
+        "types",
+        "utils",
+        "index.d.ts",
+        "index.js"
+    ],
     "sideEffects": false
 }
