@@ -42,6 +42,7 @@ export { IconTrashFilled } from './Icons/IconTrashFilled';
 export { IconCart } from './Icons/IconCart';
 export { IconCartAlt } from './Icons/IconCartAlt';
 export { IconPercentStroke } from './Icons/IconPercentStroke';
+export { IconDrag } from './Icons/IconDrag';
 // Action
 export { IconAlarm } from './Icons/IconAlarm';
 export { IconBankCard } from './Icons/IconBankCard';
@@ -82,6 +83,7 @@ export { IconVolumeOff } from './Icons/IconVolumeOff';
 export { IconVolumeUp } from './Icons/IconVolumeUp';
 export { IconVideoClip } from './Icons/IconVideoClip';
 export { IconMusicAlbum } from './Icons/IconMusicAlbum';
+export { IconMusic } from './Icons/IconMusic';
 // Connection
 export { IconBluetooth } from './Icons/IconBluetooth';
 export { IconBluetoothDisabled } from './Icons/IconBluetoothDisabled';
@@ -137,6 +139,7 @@ export { IconShuffle } from './Icons/IconShuffle';
 // Other
 export { IconAccessibility } from './Icons/IconAccessibility';
 export { IconPicture } from './Icons/IconPicture';
+export { IconPictureFilled } from './Icons/IconPictureFilled';
 export { IconSleep } from './Icons/IconSleep';
 export { IconMagicWand } from './Icons/IconMagicWand';
 export { IconPip1 } from './Icons/IconPip1';

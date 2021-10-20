@@ -1,3 +1,26 @@
+# (Tue Oct 19 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-b2c@1.12.1`, `@sberdevices/plasma-web@1.53.5`
+  - fix(plasma-web): Remove hover from select with empty list [#858](https://github.com/sberdevices/plasma/pull/858) ([@neretin-trike](https://github.com/neretin-trike))
+  - fix(plasma-b2c): Fix click to empty select [#858](https://github.com/sberdevices/plasma/pull/858) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-web@1.53.5`
+  - chore(plasma-web): Bump plasma-colors version [#858](https://github.com/sberdevices/plasma/pull/858) ([@neretin-trike](https://github.com/neretin-trike))
+  - fix(plasma-web): Fix open `Dropwdown` component if has not item [#858](https://github.com/sberdevices/plasma/pull/858) ([@neretin-trike](https://github.com/neretin-trike))
+  - fix(plasma-web): Fix color for hover item in `Dropdown` component [#869](https://github.com/sberdevices/plasma/pull/869) ([@neretin-trike](https://github.com/neretin-trike))
+  - chore(plasma-web): Add re-export for `Dropdown` component [#869](https://github.com/sberdevices/plasma/pull/869) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-b2c@1.12.1`
+  - fix(plasma-b2c): Remove props offsetTop from `Select` component [#858](https://github.com/sberdevices/plasma/pull/858) ([@neretin-trike](https://github.com/neretin-trike))
+  - chore(plasma-b2c): Add stories for `Dropdown` component [#869](https://github.com/sberdevices/plasma/pull/869) ([@neretin-trike](https://github.com/neretin-trike))
+  - chore(plasma-b2c): Add global style for `a` tag in storybook [#869](https://github.com/sberdevices/plasma/pull/869) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # (Mon Oct 18 2021)
 
 #### 🚀 Enhancement

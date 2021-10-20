@@ -56,6 +56,7 @@ const StyledPlaceholder = styled.span`
 
 interface StyledButtonProps extends Pick<BaseProps, 'status'> {
     focused?: boolean;
+    hasItems?: boolean;
 }
 const StyledButton = styled.button<StyledButtonProps>`
     ${body1};
@@ -76,16 +77,20 @@ const StyledButton = styled.button<StyledButtonProps>`
     background-color: transparent;
     color: ${secondary};
     transition: border-color 0.3s ease-in-out;
-    cursor: pointer;
 
     &:disabled {
         cursor: inherit;
     }
 
-    &:hover:not(:disabled) {
-        border-color: ${inputBorderHover};
-        color: ${secondary};
-    }
+    ${({ hasItems }) =>
+        hasItems &&
+        css`
+            &:hover:not(:disabled) {
+                cursor: pointer;
+                border-color: ${inputBorderHover};
+                color: ${secondary};
+            }
+        `}
 
     &:focus:not(:disabled) {
         outline: 0 none;
@@ -129,23 +134,30 @@ const StyledButton = styled.button<StyledButtonProps>`
  */
 export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
     ({ placeholder, value, helperText, disabled, status, className, style, items, onItemClick, ...rest }, ref) => {
-        const isIcon = Boolean(items && items.length);
+        const hasItems = Array.isArray(items) && items.length > 0;
 
         return (
             <TextFieldRoot
                 $size="m"
                 $disabled={disabled}
-                $isContentRight={isIcon}
+                $isContentRight={hasItems}
                 $isHelper={Boolean(helperText)}
                 status={status}
                 className={className}
                 style={style}
             >
-                <StyledDropdown offsetTop="0.25rem" items={items} onItemClick={onItemClick}>
-                    <StyledButton ref={ref} disabled={disabled} status={status} type="button" {...rest}>
+                <StyledDropdown items={items} onItemClick={onItemClick}>
+                    <StyledButton
+                        hasItems={hasItems}
+                        ref={ref}
+                        disabled={disabled}
+                        status={status}
+                        type="button"
+                        {...rest}
+                    >
                         {value && <StyledText>{value}</StyledText>}
                         {placeholder && !value && <StyledPlaceholder>{placeholder}</StyledPlaceholder>}
-                        {isIcon && <StyledArrow size="xs" color="inherit" />}
+                        {hasItems && <StyledArrow size="xs" color="inherit" />}
                     </StyledButton>
                 </StyledDropdown>
                 {helperText && <TextFieldHelper status={status}>{helperText}</TextFieldHelper>}

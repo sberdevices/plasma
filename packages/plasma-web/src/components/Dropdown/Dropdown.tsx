@@ -39,6 +39,7 @@ export const Dropdown: FC<DropdownProps> = ({
     onToggle,
     ...rest
 }) => {
+    const hasItems = Array.isArray(items) && items.length > 0;
     const oldIsOpen = useRef<boolean | null>(null);
     const rootRef = useRef<HTMLDivElement>(null);
     const listRef = useRef<HTMLDivElement>(null);
@@ -49,7 +50,7 @@ export const Dropdown: FC<DropdownProps> = ({
             top: '100%',
             left: 0,
             zIndex: 1,
-            marginTop: offsetTop && toCssSize(offsetTop),
+            marginTop: (offsetTop && toCssSize(offsetTop)) || 'var(--plasma-dropdown-padding)',
             opacity: Number(isOpen),
             display: isOpen ? 'block' : 'none',
         }),
@@ -67,7 +68,7 @@ export const Dropdown: FC<DropdownProps> = ({
     const onRootClick = useCallback((event) => {
         const targetIsList = event.target === listRef.current;
         const targetInList = listRef.current?.contains(event.target);
-        if (!targetIsList && !targetInList) {
+        if (!targetIsList && !targetInList && hasItems) {
             setIsOpen((oldIsVisible) => !oldIsVisible);
         }
     }, []);

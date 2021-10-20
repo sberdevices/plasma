@@ -46,6 +46,7 @@ const StyledDropdownItem = styled.a<{ $disabled?: boolean; $color?: string }>`
     /* stylelint-disable-next-line selector-nested-pattern */
     &:hover,
     &:focus {
+        color: ${({ $color }) => $color || primary};
         background-color: ${surfaceLiquid02};
     }
 
