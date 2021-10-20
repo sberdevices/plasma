@@ -33,16 +33,23 @@ const StyledPopup = styled(Popup)<Pick<SelectDopdownProps, 'isOpen'>>`
 /**
  * Рендер для вложенного списка селекта.
  */
-export const SelectDropdown: FC<SelectDopdownProps> = ({ items, onItemClick: onItemClickExternal, ...rest }) => {
+export const SelectDropdown: FC<SelectDopdownProps> = ({
+    items,
+    multiselect,
+    onItemClick: onItemClickExternal,
+    ...rest
+}) => {
     const [isOpen, setIsOpen] = useState(Boolean(false));
     const hasItems = Array.isArray(items) && items.length > 0;
 
     const onItemClick = useCallback(
         (item) => {
+            if (!multiselect) {
+                setIsOpen(false);
+            }
             onItemClickExternal?.(item);
-            setIsOpen(false);
         },
-        [onItemClickExternal],
+        [multiselect, onItemClickExternal],
     );
     const onToggle = useCallback(
         (newIsOpen) => {
@@ -64,6 +71,7 @@ export const SelectDropdown: FC<SelectDopdownProps> = ({ items, onItemClick: onI
                             items={item.items}
                             trigger="hover"
                             placement="right"
+                            multiselect={multiselect}
                             onItemClick={onItemClick}
                             disclosure={<DropdownItem onClick={onItemClick} {...item} />}
                         />
