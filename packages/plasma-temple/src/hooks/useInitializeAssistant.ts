@@ -12,7 +12,7 @@ export const useInitializeAssistant = <T extends AssistantSmartAppData>({
     onData,
 }: {
     assistantParams: Omit<InitializeParams, 'getState'>;
-    onStart?: () => void;
+    onStart?: (assistant: AssistantInstance) => void;
     onData?: (command: AssistantClientCustomizedCommand<AssistantSmartAppData>) => void;
 }): {
     getAssistant: () => AssistantInstance;
@@ -38,7 +38,7 @@ export const useInitializeAssistant = <T extends AssistantSmartAppData>({
         const assistant = getAssistant();
         const offStartListener = assistant.on('start', () => {
             if (onStart) {
-                onStart();
+                onStart(assistant);
             }
             offStartListener();
         });
