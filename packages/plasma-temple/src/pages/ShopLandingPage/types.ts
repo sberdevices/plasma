@@ -1,4 +1,4 @@
-import { GalleryCardParams } from '../GalleryPage';
+import { GalleryCardParams } from '../../components/GalleryCard/types';
 import { AnyObject } from '../../types';
 
 export interface ShopLandingPageState<T extends AnyObject = AnyObject> {
