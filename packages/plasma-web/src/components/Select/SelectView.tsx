@@ -127,7 +127,22 @@ const StyledButton = styled.button<StyledButtonProps>`
  * Поле с выпадающим списком.
  */
 export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
-    ({ placeholder, value, helperText, disabled, status, className, style, items, onItemClick, ...rest }, ref) => {
+    (
+        {
+            placeholder,
+            value,
+            helperText,
+            disabled,
+            status,
+            className,
+            style,
+            items,
+            multiselect,
+            onItemClick,
+            ...rest
+        },
+        ref,
+    ) => {
         const hasItems = Array.isArray(items) && items.length > 0;
 
         return (
@@ -144,6 +159,7 @@ export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
                     items={items}
                     trigger="click"
                     placement="bottom"
+                    multiselect={multiselect}
                     onItemClick={onItemClick}
                     disclosure={
                         <StyledButton

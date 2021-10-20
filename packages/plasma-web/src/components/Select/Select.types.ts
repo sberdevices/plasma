@@ -7,12 +7,16 @@ import type { PopupProps } from '../Popup';
 export type SelectRefElement = HTMLButtonElement;
 
 export interface SelectDopdownProps extends PopupProps, Pick<DropdownProps, 'items' | 'onItemClick'> {
+    /**
+     * Выбор нескольких значений.
+     */
+    multiselect?: boolean;
     children?: never;
 }
 
 export interface SelectViewProps
     extends Pick<TextFieldProps, 'status' | 'placeholder' | 'helperText' | 'disabled'>,
-        Pick<SelectDopdownProps, 'items' | 'onItemClick'>,
+        Pick<SelectDopdownProps, 'items' | 'multiselect' | 'onItemClick'>,
         Omit<HTMLAttributes<HTMLButtonElement>, 'onChange'> {
     value?: string | number | null;
 }
