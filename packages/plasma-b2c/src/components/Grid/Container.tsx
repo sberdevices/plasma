@@ -6,5 +6,5 @@ import { Container as BaseContainer } from '@sberdevices/plasma-web';
  * Блок нельзя вкладывать сам в себя или дальше по дереву.
  */
 export const Container = styled(BaseContainer)`
-    max-width: 75rem;
+    max-width: 125rem;
 `;

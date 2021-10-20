@@ -13,7 +13,7 @@ export const margins = {
     XXL: 4,
     ...gridMargins,
     S: 2,
-    XL: 6.25,
+    XL: 4,
 };
 export const gutters = {
     XXL: 1,
