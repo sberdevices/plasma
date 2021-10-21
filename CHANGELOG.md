@@ -1,3 +1,62 @@
+# (Thu Oct 21 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-ui@1.57.0`
+  - feat(plasma-ui): `Header`'s back-minimize animation" [#863](https://github.com/sberdevices/plasma/pull/863) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/demo-canvas-app@0.34.0`, `@sberdevices/plasma-ui@1.57.0`, `@sberdevices/plasma-ui-docs@0.12.0`
+  - feat(plasma-ui): Added `NueHeader` to replace `Header` in major version [#863](https://github.com/sberdevices/plasma/pull/863) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Thu Oct 21 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-ui@1.56.1`
+  - fix(plasma-ui): `HeaderContent` flex in Chrome 94 [#875](https://github.com/sberdevices/plasma/pull/875) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Thu Oct 21 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-b2c@1.13.0`
+  - feat(plasma-b2c): add custom background for editable component [#877](https://github.com/sberdevices/plasma/pull/877) ([@aabulakhsberbank](https://github.com/aabulakhsberbank))
+  - feat(plasma-b2c): Added `PreviewGallery` component [#819](https://github.com/sberdevices/plasma/pull/819) ([@neretin-trike](https://github.com/neretin-trike))
+  - feat(plasma-b2c): Added `UploadViusal` component [#819](https://github.com/sberdevices/plasma/pull/819) ([@neretin-trike](https://github.com/neretin-trike))
+  - feat(plasma-b2c): Update `Upload` component; Added `UploadAudio` component [#819](https://github.com/sberdevices/plasma/pull/819) ([@neretin-trike](https://github.com/neretin-trike))
+  - feat(plasma-b2c): Add `AudioPlayer` component [#819](https://github.com/sberdevices/plasma/pull/819) ([@neretin-trike](https://github.com/neretin-trike))
+  - feat(plasma-b2c): Added `UploadAudio` component [#819](https://github.com/sberdevices/plasma/pull/819) ([@neretin-trike](https://github.com/neretin-trike))
+  - feat(plasma-b2c): Added `Upload` component [#819](https://github.com/sberdevices/plasma/pull/819) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-icons@1.48.0`
+  - feat(plasma-icons): Added `PictureFilled` icon [#819](https://github.com/sberdevices/plasma/pull/819) ([@neretin-trike](https://github.com/neretin-trike))
+  - feat(plasma-icons): Added `Drag` icon [#819](https://github.com/sberdevices/plasma/pull/819) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-b2c@1.13.0`, `@sberdevices/plasma-icons@1.48.0`
+  - feat(plasma-icons): Added `Music` icon [#819](https://github.com/sberdevices/plasma/pull/819) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-b2c@1.13.0`
+  - test(plasma-b2c): Added tests for `Uploads`,`AudioPlayer`,`PreviewGallery` components [#819](https://github.com/sberdevices/plasma/pull/819) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 3
+
+- [@aabulakhsberbank](https://github.com/aabulakhsberbank)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # (Tue Oct 19 2021)
 
 #### 🐛 Bug Fix

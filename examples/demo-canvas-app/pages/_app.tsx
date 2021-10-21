@@ -1,15 +1,19 @@
-import { useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { DeviceThemeProvider, ToastProvider, Container, Header, HeaderProps } from '@sberdevices/plasma-ui';
+import { DeviceThemeProvider, ToastProvider, Container, NeuHeader } from '@sberdevices/plasma-ui';
 
 import { GlobalStyle } from '../components';
 
 function MyApp({ Component, pageProps }: AppProps) {
     const router = useRouter();
-    const onBackClick = useCallback(() => router.back(), []);
-    const headerProps = pageProps.back ? { back: true, onBackClick } : { minimize: true, onMinimizeClick: () => {} };
+
+    const onArrowClick = useCallback(() => {
+        if (pageProps.back) {
+            router.back();
+        }
+    }, [router, pageProps]);
 
     return (
         <>
@@ -19,10 +23,11 @@ function MyApp({ Component, pageProps }: AppProps) {
             <DeviceThemeProvider>
                 <ToastProvider>
                     <Container>
-                        <Header
+                        <NeuHeader
+                            arrow={pageProps.back ? 'back' : 'minimize'}
+                            onArrowClick={onArrowClick}
                             title={pageProps.title}
-                            subtitle={pageProps.subtitle}
-                            {...(headerProps as HeaderProps)}
+                            subTitle={pageProps.subtitle}
                         />
                         <Component {...pageProps} />
                         <GlobalStyle />

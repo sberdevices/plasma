@@ -45,6 +45,7 @@ import { Trash } from './Icon.assets/Trash';
 import { TrashFilled } from './Icon.assets/TrashFilled';
 import { Cart } from './Icon.assets/Cart';
 import { CartAlt } from './Icon.assets/CartAlt';
+import { Drag } from './Icon.assets/Drag';
 // Action
 import { Alarm } from './Icon.assets/Alarm';
 import { BankCard } from './Icon.assets/BankCard';
@@ -85,6 +86,7 @@ import { VolumeOff } from './Icon.assets/VolumeOff';
 import { VolumeUp } from './Icon.assets/VolumeUp';
 import { VideoClip } from './Icon.assets/VideoClip';
 import { MusicAlbum } from './Icon.assets/MusicAlbum';
+import { Music } from './Icon.assets/Music';
 // Connection
 import { Bluetooth } from './Icon.assets/Bluetooth';
 import { BluetoothDisabled } from './Icon.assets/BluetoothDisabled';
@@ -140,6 +142,7 @@ import { Shuffle } from './Icon.assets/Shuffle';
 // Other
 import { Accessibility } from './Icon.assets/Accessibility';
 import { Picture } from './Icon.assets/Picture';
+import { PictureFilled } from './Icon.assets/PictureFilled';
 import { Sleep } from './Icon.assets/Sleep';
 import { MagicWand } from './Icon.assets/MagicWand';
 import { Pip1 } from './Icon.assets/Pip1';
@@ -198,6 +201,7 @@ export const iconSectionsSet = {
         trashFilled: TrashFilled,
         cart: Cart,
         cartAlt: CartAlt,
+        drag: Drag,
     },
     action: {
         alarm: Alarm,
@@ -241,6 +245,7 @@ export const iconSectionsSet = {
         volumeUp: VolumeUp,
         videoClip: VideoClip,
         musicAlbum: MusicAlbum,
+        music: Music,
     },
     connection: {
         bluetooth: Bluetooth,
@@ -303,6 +308,7 @@ export const iconSectionsSet = {
     other: {
         accessibility: Accessibility,
         picture: Picture,
+        pictureFilled: PictureFilled,
         sleep: Sleep,
         magicWand: MagicWand,
         pip1: Pip1,
