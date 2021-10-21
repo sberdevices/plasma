@@ -1,3 +1,17 @@
+# v1.48.0 (Thu Oct 21 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-icons): Added `PictureFilled` icon [#819](https://github.com/sberdevices/plasma/pull/819) ([@neretin-trike](https://github.com/neretin-trike))
+- feat(plasma-icons): Added `Drag` icon [#819](https://github.com/sberdevices/plasma/pull/819) ([@neretin-trike](https://github.com/neretin-trike))
+- feat(plasma-icons): Added `Music` icon [#819](https://github.com/sberdevices/plasma/pull/819) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.47.2 (Thu Oct 14 2021)
 
 #### 🐛 Bug Fix
