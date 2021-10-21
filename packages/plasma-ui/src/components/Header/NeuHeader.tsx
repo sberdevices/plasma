@@ -1,6 +1,6 @@
 import React, { HTMLAttributes, MouseEventHandler } from 'react';
 
-import { HeaderRoot } from './HeaderRoot';
+import { HeaderRoot, HeaderRootProps } from './HeaderRoot';
 import { HeaderArrow } from './HeaderArrow';
 import { HeaderLogo } from './HeaderLogo';
 import { HeaderSubtitle } from './HeaderSubtitle';
@@ -50,7 +50,8 @@ interface NoTitleProps {
 export type NeuHeaderProps = HTMLAttributes<HTMLDivElement> &
     ArrowProps &
     (LogoProps | NoLogoProps) &
-    (TitleProps | NoTitleProps);
+    (TitleProps | NoTitleProps) &
+    Pick<HeaderRootProps, 'gradientColor'>;
 
 /**
  * Сборный компонент для отрисовки шапки страницы.

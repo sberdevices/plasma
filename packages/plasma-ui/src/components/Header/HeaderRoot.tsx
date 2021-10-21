@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { mediaQuery } from '@sberdevices/plasma-core';
+import Color from 'color';
 
 const sizes = {
     sberBox: css`
@@ -22,6 +23,7 @@ const sizes = {
 
 interface StyledHeaderRootProps {
     $size?: keyof typeof sizes;
+    $gradientColor?: string;
 }
 
 const StyledHeaderRoot = styled.header<StyledHeaderRootProps>`
@@ -41,6 +43,24 @@ const StyledHeaderRoot = styled.header<StyledHeaderRootProps>`
         ${mediaQuery('L', theme.deviceScale)(sizes.sberBox)}
         ${mediaQuery('XL', theme.deviceScale)(sizes.sberBox)}
     `}
+
+    ${({ $gradientColor }) =>
+        $gradientColor &&
+        css`
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: calc(var(--plasma-header-height) + var(--plasma-header-pt) + var(--plasma-header-pb));
+                background-image: linear-gradient(
+                    180deg,
+                    ${$gradientColor},
+                    ${Color($gradientColor).alpha(0).string()}
+                );
+            }
+        `}
 `;
 const StyledInner = styled.div`
     position: relative;
@@ -53,20 +73,27 @@ const StyledInner = styled.div`
     height: 100%;
 `;
 
-interface HeaderRootProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface HeaderRootProps extends React.HTMLAttributes<HTMLDivElement> {
     /**
      * Задать размер, зависимый от устройства.
      * Если не задан, на каждом брейкпоинте будет свой размер.
      */
     size?: keyof typeof sizes;
+    /**
+     * Цвет для создания градиента сверху вниз.
+     * Указаный цвет займет верхнюю точку градента,
+     * а его, рассчитываемая программно, прозрачная версия - нижнюю.
+     * Можно использовать hex, rgb и rgba значения цвета.
+     */
+    gradientColor?: string;
 }
 
 /**
  * Корневой узел для шапки.
  */
-export const HeaderRoot: React.FC<HeaderRootProps> = ({ children, size, ...rest }) => {
+export const HeaderRoot: React.FC<HeaderRootProps> = ({ children, size, gradientColor, ...rest }) => {
     return (
-        <StyledHeaderRoot {...rest} $size={size}>
+        <StyledHeaderRoot {...rest} $size={size} $gradientColor={gradientColor}>
             <StyledInner>{children}</StyledInner>
         </StyledHeaderRoot>
     );

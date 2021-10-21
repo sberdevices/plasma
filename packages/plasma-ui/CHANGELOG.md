@@ -1,3 +1,15 @@
+# v1.58.0 (Thu Oct 21 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): Added `gradientColor` prop to `Header` [#874](https://github.com/sberdevices/plasma/pull/874) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.57.0 (Thu Oct 21 2021)
 
 #### 🚀 Enhancement
