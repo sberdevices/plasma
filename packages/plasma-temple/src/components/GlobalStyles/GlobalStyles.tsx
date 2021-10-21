@@ -23,6 +23,7 @@ const DocumentStyles = createGlobalStyle`
 
     html {
         height: 100vh;
+        height: -webkit-fill-available;
 
         font-family: ${fonts.Medium};
     }
@@ -32,6 +33,7 @@ const DocumentStyles = createGlobalStyle`
 
         color: ${text};
         min-height: 100vh;
+        min-height: -webkit-fill-available;
     }
     /* stylelint-enable selector-nested-pattern */
 `;
