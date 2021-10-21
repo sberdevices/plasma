@@ -1,5 +1,18 @@
 # (Thu Oct 21 2021)
 
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-b2c@1.13.1`, `@sberdevices/plasma-web@1.54.1`
+  - fix: grid container max size [#880](https://github.com/sberdevices/plasma/pull/880) ([@takovoy](https://github.com/takovoy))
+
+#### Authors: 1
+
+- Aleksandr Sustavov ([@takovoy](https://github.com/takovoy))
+
+---
+
+# (Thu Oct 21 2021)
+
 #### 🚀 Enhancement
 
 - `@sberdevices/plasma-ui@1.58.0`, `@sberdevices/plasma-ui-docs@0.13.0`

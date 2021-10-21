@@ -1,3 +1,15 @@
+# v1.13.1 (Thu Oct 21 2021)
+
+#### 🐛 Bug Fix
+
+- fix: grid container max size [#880](https://github.com/sberdevices/plasma/pull/880) ([@takovoy](https://github.com/takovoy))
+
+#### Authors: 1
+
+- Aleksandr Sustavov ([@takovoy](https://github.com/takovoy))
+
+---
+
 # v1.13.0 (Thu Oct 21 2021)
 
 #### 🚀 Enhancement
