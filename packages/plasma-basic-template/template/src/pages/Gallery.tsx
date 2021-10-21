@@ -8,7 +8,9 @@ import {
     PageComponent,
     GalleryPageState,
     useAssistantAppState,
+    GalleryCardProps,
 } from '@sberdevices/plasma-temple';
+import { Card, CardBody, CardMedia, CardContent, CardHeadline1, CardFootnote1 } from '@sberdevices/plasma-ui';
 
 import { ActionType, AssistantDataAction, Film, PageParamsType, PageStateType } from '../types';
 
@@ -18,7 +20,6 @@ const getGallery = (): Promise<GalleryPageState<Film>> => {
         activeGalleryIndex: 0,
         gallery: {
             activeCardIndex: 0,
-            title: ' ',
             items: [
                 {
                     id: '1',
@@ -26,10 +27,11 @@ const getGallery = (): Promise<GalleryPageState<Film>> => {
                     name: 'Первый фильм',
                     position: 1,
                     image: {
-                        src: 'https://via.placeholder.com/400',
+                        src: 'https://via.placeholder.com/450x800',
                     },
                     rating: 4.5,
                     genre: 'comedy',
+                    poster: 'https://via.placeholder.com/450x800',
                 },
                 {
                     id: '2',
@@ -37,10 +39,11 @@ const getGallery = (): Promise<GalleryPageState<Film>> => {
                     name: 'Второй фильм',
                     position: 2,
                     image: {
-                        src: 'https://via.placeholder.com/400',
+                        src: 'https://via.placeholder.com/450x800',
                     },
                     rating: 5,
                     genre: 'fantasy',
+                    poster: 'https://via.placeholder.com/450x800',
                 },
             ],
         },
@@ -49,6 +52,27 @@ const getGallery = (): Promise<GalleryPageState<Film>> => {
 
 const getItemSelectorItems = (gallery: GalleryPageState['gallery']) => {
     return Array.isArray(gallery) ? gallery : [gallery];
+};
+
+const CustomCard: React.FC<GalleryCardProps<Film>> = ({ card, focused }) => {
+    const src = Array.isArray(card.image.src) ? card.image.src[0] : card.image.src;
+
+    return (
+        <Card focused={focused}>
+            <CardBody>
+                <CardMedia src={src} ratio="3 / 4" />
+                <CardContent cover>
+                    <CardHeadline1>{card.label}</CardHeadline1>
+                    <CardFootnote1>
+                        Рейтинг: <strong>{card.rating}</strong>
+                    </CardFootnote1>
+                    <CardFootnote1>
+                        Жанр: <strong>{card.genre}</strong>
+                    </CardFootnote1>
+                </CardContent>
+            </CardBody>
+        </Card>
+    );
 };
 
 /*
@@ -103,5 +127,13 @@ export const Gallery: PageComponent<PageStateType, 'gallery', PageParamsType> = 
     }
 
     // В качестве галереи используется соответствующий компонент из пакета @sberdevices/plasma-temple
-    return <GalleryPage<Film> header={header} onCardClick={handleClick} state={state} changeState={changeState} />;
+    return (
+        <GalleryPage
+            header={header}
+            onCardClick={handleClick}
+            state={state}
+            changeState={changeState}
+            galleryCard={CustomCard}
+        />
+    );
 };
