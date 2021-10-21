@@ -1,5 +1,18 @@
 # (Thu Oct 21 2021)
 
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-ui@1.56.1`
+  - fix(plasma-ui): `HeaderContent` flex in Chrome 94 [#875](https://github.com/sberdevices/plasma/pull/875) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Thu Oct 21 2021)
+
 #### 🚀 Enhancement
 
 - `@sberdevices/plasma-b2c@1.13.0`
