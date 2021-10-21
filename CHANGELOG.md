@@ -1,5 +1,20 @@
 # (Thu Oct 21 2021)
 
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-ui@1.57.0`
+  - feat(plasma-ui): `Header`'s back-minimize animation" [#863](https://github.com/sberdevices/plasma/pull/863) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/demo-canvas-app@0.34.0`, `@sberdevices/plasma-ui@1.57.0`, `@sberdevices/plasma-ui-docs@0.12.0`
+  - feat(plasma-ui): Added `NueHeader` to replace `Header` in major version [#863](https://github.com/sberdevices/plasma/pull/863) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Thu Oct 21 2021)
+
 #### 🐛 Bug Fix
 
 - `@sberdevices/plasma-ui@1.56.1`
