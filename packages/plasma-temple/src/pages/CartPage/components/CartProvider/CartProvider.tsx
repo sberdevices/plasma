@@ -1,13 +1,37 @@
 import React from 'react';
 
 import { useGetMutableValue } from '../../../../hooks/useGetMutableValue';
-import { CartItem, CartState, CartStateItem, OnChangeCartFn } from '../../types';
+import {
+    CartItem,
+    CartState,
+    CartStateItem,
+    OnAddCartItemFn,
+    OnChangeCartItemQuantityFn,
+    OnRemoveCartItemFn,
+    OnChangeCartFn,
+} from '../../types';
 
 import { CartContext, CartContextValue, getInitialState } from './CartContext';
 
 interface CartProviderProps<T extends CartState = CartState> {
     initialState?: T;
     dropItemIfQuantityZero?: boolean;
+    /**
+     * @deprecated instead use onChangeCart
+     */
+    onAddItem?: OnAddCartItemFn<T>;
+    /**
+     * @deprecated instead use onChangeCart
+     */
+    onChangeItemQuantity?: OnChangeCartItemQuantityFn<T>;
+    /**
+     * @deprecated instead use onChangeCart
+     */
+    onRemoveItem?: OnRemoveCartItemFn<T>;
+    /**
+     * @deprecated instead use onChangeCart
+     */
+    onClearCart?: () => void;
     onChangeCart?: OnChangeCartFn<T>;
 }
 
@@ -34,6 +58,10 @@ export function CartProvider<T extends CartState = CartState>({
     initialState = getInitialState<T>(),
     children,
     dropItemIfQuantityZero,
+    onAddItem,
+    onChangeItemQuantity,
+    onRemoveItem,
+    onClearCart,
     onChangeCart,
 }: React.PropsWithChildren<CartProviderProps<T>>): React.ReactElement {
     const [state, setState] = React.useState(initialState);
@@ -50,8 +78,26 @@ export function CartProvider<T extends CartState = CartState>({
 
     const handleChangeCart = React.useCallback(
         async (params: Omit<Parameters<OnChangeCartFn<T>>[0], 'changeState'>) => {
-            setState(params.state);
+            const { state: newState, event } = params;
+
+            setState(newState);
             onChangeCart?.({ ...params, changeState: setState });
+
+            switch (event.type) {
+                case 'addItem':
+                    onAddItem?.({ state: newState, item: event.item, changeState: setState });
+                    break;
+                case 'changeItemQuantity':
+                    onChangeItemQuantity?.({ state: newState, item: event.item, changeState: setState });
+                    break;
+                case 'removeItem':
+                    onRemoveItem?.({ state: newState, item: event.item, changeState: setState });
+                    break;
+                case 'clearCart':
+                    onClearCart?.();
+                    break;
+                default:
+            }
         },
         [],
     );
