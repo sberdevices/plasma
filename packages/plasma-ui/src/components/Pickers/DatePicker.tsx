@@ -3,14 +3,42 @@ import styled from 'styled-components';
 import { useIsomorphicLayoutEffect } from '@sberdevices/plasma-core';
 
 import { SimpleDatePicker, SimpleDatePickerProps } from './SimpleDatePicker';
+import { getDateValues, getTimeValues } from './utils';
+
+type Datetype = readonly [number, number, number];
+
+const isChanged = ([oldYear, oldMonth, oldDay]: Datetype, [newYear, newMonth, newDay]: Datetype) =>
+    oldYear !== newYear || oldMonth !== newMonth || oldDay !== newDay;
 
 const getMaxDayInMonth = (month: number, year: number): number => new Date(year, month + 1, 0).getDate();
-const getValues = (date: Date) => [date.getFullYear(), date.getMonth(), date.getDate()];
+
 const defaultOptions = {
     years: true,
     months: true,
     days: true,
     shortMonthName: false,
+};
+
+const getSeconds = (date: Datetype) => new Date(...date, 0, 0, 0).getTime();
+
+const getNormalizeValues = (current: Date, min: Date, max: Date) => {
+    const curValues = getDateValues(current);
+    const minValues = getDateValues(min);
+    const maxValues = getDateValues(max);
+
+    const curSeconds = getSeconds(curValues);
+    const minSeconds = getSeconds(minValues);
+    const maxSeconds = getSeconds(maxValues);
+
+    if (curSeconds < minSeconds) {
+        return minValues;
+    }
+
+    if (curSeconds > maxSeconds) {
+        return maxValues;
+    }
+
+    return curValues;
 };
 
 const StyledWrapper = styled.div`
@@ -59,9 +87,11 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     onChange,
     ...rest
 }) => {
-    const [[year, month, day], setState] = React.useState(getValues(value));
-    const [minYear, minMonth, minDay] = getValues(min);
-    const [maxYear, maxMonth, maxDay] = getValues(max);
+    const normalizeValues = React.useMemo(() => getNormalizeValues(value, min, max), [value, min, max]);
+
+    const [[year, month, day], setState] = React.useState(normalizeValues);
+    const [minYear, minMonth, minDay] = getDateValues(min);
+    const [maxYear, maxMonth, maxDay] = getDateValues(max);
 
     const monthsInterval = React.useMemo(() => {
         if (minYear >= year) {
@@ -90,16 +120,16 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     }, [minMonth, maxMonth, minDay, maxDay, year, month, minYear, maxYear]);
 
     const getNextMonth = React.useCallback(
-        (nextMonth: number, nextYear: number): number => {
-            if (nextYear >= maxYear && nextMonth >= maxMonth) {
+        (currentMonth: number, currentYear: number): number => {
+            if (currentYear >= maxYear && currentMonth >= maxMonth) {
                 return maxMonth;
             }
 
-            if (nextYear <= minYear && nextMonth <= maxMonth) {
+            if (currentYear <= minYear && currentMonth <= minMonth) {
                 return minMonth;
             }
 
-            return nextMonth;
+            return currentMonth;
         },
         [minMonth, maxMonth, minYear, maxYear],
     );
@@ -131,6 +161,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                 const nextMonth = getNextMonth(m, y);
                 const nextDay = getNextDay(d, nextMonth, y);
 
+                console.log('YEAR CHANGE', y, nextMonth, nextDay);
+
                 return [y, nextMonth, nextDay];
             });
         },
@@ -140,6 +172,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         ({ value: m }) => {
             setState(([y, , d]) => {
                 const nextDay = getNextDay(d, m, y);
+
+                console.log('MONTH CHANGE', y, m, nextDay);
 
                 return [y, m, nextDay];
             });
@@ -153,12 +187,34 @@ export const DatePicker: React.FC<DatePickerProps> = ({
      * необходимо вызвать событие изменения, создав новый экземпляр Date
      */
     useIsomorphicLayoutEffect(() => {
-        const [oldYear, oldMonth, oldDay] = getValues(value);
-        const isChanged = oldYear !== year || oldMonth !== month || oldDay !== day;
-        if (onChange && isChanged) {
-            onChange(new Date(year, month, day));
+        const oldDate = normalizeValues;
+
+        if (onChange && isChanged(oldDate, [year, month, day])) {
+            const a = getTimeValues(value);
+
+            onChange(new Date(year, month, day, ...a));
         }
     }, [year, month, day]);
+
+    /**
+     * Если значение value обновилось извне, необходимо изменить стейт
+     * и вызвать событие изменения, создав новый экземпляр Date
+     */
+    useIsomorphicLayoutEffect(() => {
+        setState((prevDate) => {
+            const newDate = normalizeValues;
+
+            if (!isChanged(prevDate, newDate)) {
+                return prevDate;
+            }
+
+            if (onChange) {
+                onChange(new Date(...normalizeValues));
+            }
+
+            return newDate;
+        });
+    }, [value, normalizeValues]);
 
     const getOption = (key: keyof typeof defaultOptions) => (key in options ? options[key] : defaultOptions[key]);
 

@@ -163,3 +163,13 @@ export const scaleResetCallback = (itemEl: HTMLElement) => {
         }
     }
 };
+
+/**
+ * Вернет массив с временными компонентами переданной даты.
+ */
+export const getTimeValues = (date: Date) => [date.getHours(), date.getMinutes(), date.getSeconds()] as const;
+
+/**
+ * Вернет массив компонентами даты.
+ */
+export const getDateValues = (date: Date) => [date.getFullYear(), date.getMonth(), date.getDate()] as const;
