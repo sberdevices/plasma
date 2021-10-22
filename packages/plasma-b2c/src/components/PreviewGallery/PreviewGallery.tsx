@@ -21,9 +21,9 @@ export interface PreviewGalleryProps {
      */
     interactionType?: InteractionType;
     /**
-     * Компонент иконки удаления элемента.
+     * Компонент иконки в правом верхнем углу.
      */
-    deleteIcon: JSX.Element;
+    actionIcon: JSX.Element;
     /**
      * CSS размер превью элемента.
      */
@@ -33,9 +33,9 @@ export interface PreviewGalleryProps {
      */
     onItemsSortEnd?: ({ oldIndex, newIndex }: SortableIndexProps) => void;
     /**
-     * Колбэк на удаление элемента.
+     * Колбэк на клик элемента в правом верхнем углу.
      */
-    onItemRemove?: (id: string | number) => void;
+    onItemAction?: (id: string | number) => void;
     /**
      * Колбэк на выделение элемента.
      */
@@ -49,7 +49,7 @@ export const PreviewGallery: FC<PreviewGalleryProps & HTMLAttributes<HTMLDivElem
     interactionType = 'selectable',
     items = [],
     onItemSelect = noop,
-    onItemRemove = noop,
+    onItemAction = noop,
     onItemsSortEnd = noop,
     ...rest
 }) => {
@@ -67,7 +67,7 @@ export const PreviewGallery: FC<PreviewGalleryProps & HTMLAttributes<HTMLDivElem
     return (
         <PreviewGalleryListItems
             items={items}
-            onItemRemove={onItemRemove}
+            onItemAction={onItemAction}
             onItemSelect={onItemSelect}
             onSortStart={onSortStart}
             onSortEnd={onSortEnd}

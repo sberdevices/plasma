@@ -35,17 +35,17 @@ export const PreviewGalleryListItems = SortableContainer(
     ({
         items = [],
         interactionType,
-        deleteIcon,
+        actionIcon,
         itemSize,
         isGrabbing,
-        onItemRemove,
+        onItemAction,
         onItemSelect,
     }: PreviewGalleryListItemsProps & AddionalItemProps) => {
         const isDragDisabled = interactionType === 'selectable';
 
         // deleteIcon не указан в зависимости, т.к. предполагается,
         // что данный пропс не будет меняться динамически
-        const iconMemo = useMemo(() => deleteIcon, []);
+        const iconMemo = useMemo(() => actionIcon, []);
 
         const PreviewGalleryItem = memo(
             SortableElement(({ status, ...rest }: PreviewGalleryItemProps & AddionalItemProps) => {
@@ -64,11 +64,11 @@ export const PreviewGalleryListItems = SortableContainer(
                         disabled={isDragDisabled}
                         key={item.id}
                         index={index}
-                        deleteIcon={iconMemo}
+                        actionIcon={iconMemo}
                         {...item}
                         interactionType={interactionType}
                         itemSize={itemSize}
-                        onItemRemove={onItemRemove}
+                        onItemAction={onItemAction}
                         onItemSelect={onItemSelect}
                     />
                 ))}

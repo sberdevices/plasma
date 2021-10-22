@@ -27,10 +27,10 @@ const StyledIconPictureFilled = styled(IconPictureFilled)`
  * Базовый компонент с ошибкой.
  */
 export const PreviewGalleryItemError = memo(
-    ({ id, itemSize, interactionType, deleteIcon, onItemRemove }: PreviewGalleryItemProps & AddionalItemProps) => {
+    ({ id, itemSize, interactionType, actionIcon, onItemAction }: PreviewGalleryItemProps & AddionalItemProps) => {
         const itemRemoveHandle = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
             event.stopPropagation();
-            onItemRemove?.(id);
+            onItemAction?.(id);
         };
 
         return (
@@ -39,7 +39,7 @@ export const PreviewGalleryItemError = memo(
                     <StyledIconPictureFilled size="s" color="inherit" />
                 </StyledErrorImage>
 
-                <StyledTrashButton onClick={itemRemoveHandle}>{deleteIcon}</StyledTrashButton>
+                <StyledTrashButton onClick={itemRemoveHandle}>{actionIcon}</StyledTrashButton>
 
                 {interactionType !== 'selectable' && <StyledIconDrag size="xs" color="inherit" />}
             </StyledItem>
