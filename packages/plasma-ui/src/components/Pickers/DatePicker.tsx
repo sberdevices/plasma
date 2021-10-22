@@ -3,14 +3,8 @@ import styled from 'styled-components';
 import { useIsomorphicLayoutEffect } from '@sberdevices/plasma-core';
 
 import { SimpleDatePicker, SimpleDatePickerProps } from './SimpleDatePicker';
-import { getDateValues, getTimeValues } from './utils';
-
-type Datetype = readonly [number, number, number];
-
-const isChanged = ([oldYear, oldMonth, oldDay]: Datetype, [newYear, newMonth, newDay]: Datetype) =>
-    oldYear !== newYear || oldMonth !== newMonth || oldDay !== newDay;
-
-const getMaxDayInMonth = (month: number, year: number): number => new Date(year, month + 1, 0).getDate();
+import { getDateValues, getNormalizeValues, getTimeValues, isChanged } from './utils';
+import { DateType } from './types';
 
 const defaultOptions = {
     years: true,
@@ -19,27 +13,15 @@ const defaultOptions = {
     shortMonthName: false,
 };
 
-const getSeconds = (date: Datetype) => new Date(...date, 0, 0, 0).getTime();
+/**
+ * Вернёт максимальное количество дней в месяце
+ */
+const getMaxDayInMonth = (month: number, year: number): number => new Date(year, month + 1, 0).getDate();
 
-const getNormalizeValues = (current: Date, min: Date, max: Date) => {
-    const curValues = getDateValues(current);
-    const minValues = getDateValues(min);
-    const maxValues = getDateValues(max);
-
-    const curSeconds = getSeconds(curValues);
-    const minSeconds = getSeconds(minValues);
-    const maxSeconds = getSeconds(maxValues);
-
-    if (curSeconds < minSeconds) {
-        return minValues;
-    }
-
-    if (curSeconds > maxSeconds) {
-        return maxValues;
-    }
-
-    return curValues;
-};
+/**
+ * Вернёт секунды
+ */
+const getSeconds = ([year, month, day]: DateType) => new Date(year, month, day, 0, 0, 0).getTime();
 
 const StyledWrapper = styled.div`
     display: flex;
@@ -87,7 +69,11 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     onChange,
     ...rest
 }) => {
-    const normalizeValues = React.useMemo(() => getNormalizeValues(value, min, max), [value, min, max]);
+    const normalizeValues = React.useMemo(() => getNormalizeValues(getDateValues, getSeconds)(value, min, max), [
+        value,
+        min,
+        max,
+    ]);
 
     const [[year, month, day], setState] = React.useState(normalizeValues);
     const [minYear, minMonth, minDay] = getDateValues(min);
@@ -161,8 +147,6 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                 const nextMonth = getNextMonth(m, y);
                 const nextDay = getNextDay(d, nextMonth, y);
 
-                console.log('YEAR CHANGE', y, nextMonth, nextDay);
-
                 return [y, nextMonth, nextDay];
             });
         },
@@ -172,8 +156,6 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         ({ value: m }) => {
             setState(([y, , d]) => {
                 const nextDay = getNextDay(d, m, y);
-
-                console.log('MONTH CHANGE', y, m, nextDay);
 
                 return [y, m, nextDay];
             });
@@ -190,9 +172,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         const oldDate = normalizeValues;
 
         if (onChange && isChanged(oldDate, [year, month, day])) {
-            const a = getTimeValues(value);
-
-            onChange(new Date(year, month, day, ...a));
+            onChange(new Date(year, month, day, ...getTimeValues(value)));
         }
     }, [year, month, day]);
 
@@ -209,7 +189,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             }
 
             if (onChange) {
-                onChange(new Date(...normalizeValues));
+                const [newYear, newMonth, newDay] = newDate;
+                onChange(new Date(newYear, newMonth, newDay, ...getTimeValues(value)));
             }
 
             return newDate;
