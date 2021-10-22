@@ -2,6 +2,19 @@
 
 #### 🐛 Bug Fix
 
+- `@sberdevices/plasma-typo@0.2.1`
+  - fix: headers font weight fix [#889](https://github.com/sberdevices/plasma/pull/889) ([@takovoy](https://github.com/takovoy))
+
+#### Authors: 1
+
+- Aleksandr Sustavov ([@takovoy](https://github.com/takovoy))
+
+---
+
+# (Fri Oct 22 2021)
+
+#### 🐛 Bug Fix
+
 - `@sberdevices/plasma-ui@1.58.1`
   - fix(plasma-ui): Fix showing values for `TimePicker` component [#887](https://github.com/sberdevices/plasma/pull/887) ([@neretin-trike](https://github.com/neretin-trike))
   - fix(plasma-ui): Fix showing values for `DataPicker` component [#887](https://github.com/sberdevices/plasma/pull/887) ([@neretin-trike](https://github.com/neretin-trike))
