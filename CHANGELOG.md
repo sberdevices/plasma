@@ -1,3 +1,26 @@
+# (Fri Oct 22 2021)
+
+#### 🐛 Bug Fix
+
+- ci: Deploy Plasma Website [#851](https://github.com/sberdevices/plasma/pull/851) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-temple@1.2.1`
+  - fix(plasma-temple): make props deprecated [#867](https://github.com/sberdevices/plasma/pull/867) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - fix(plasma-temple): Stop updating cart while external update is not finished [#867](https://github.com/sberdevices/plasma/pull/867) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - fix(plasma-temple): fix cart item click, add cart item custom background color [#867](https://github.com/sberdevices/plasma/pull/867) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- `@sberdevices/plasma-ui-docs@0.13.2`
+  - chore(plasma-ui-docs): Deleted index page [#851](https://github.com/sberdevices/plasma/pull/851) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-ui-docs@0.13.2`, `@sberdevices/plasma-web-docs@0.7.2`
+  - chore: Docs ui/web configuration [#851](https://github.com/sberdevices/plasma/pull/851) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-website@0.0.1`
+  - chore: Plasma Main App [#851](https://github.com/sberdevices/plasma/pull/851) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Thu Oct 21 2021)
 
 #### 🐛 Bug Fix
