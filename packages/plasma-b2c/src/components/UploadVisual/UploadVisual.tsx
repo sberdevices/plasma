@@ -29,12 +29,12 @@ export const UploadVisual: FC<UploadVisualProps> = ({
     status,
     message,
     interactionType,
-    deleteIcon,
+    actionIcon,
     itemSize,
     maxCount,
     disabled,
     onItemsSortEnd,
-    onItemRemove,
+    onItemAction,
     onItemSelect,
     onValidation,
     ...rest
@@ -60,9 +60,9 @@ export const UploadVisual: FC<UploadVisualProps> = ({
             <PreviewGallery
                 items={items}
                 itemSize={itemSize}
-                deleteIcon={deleteIcon || <IconTrashFilled size="xs" color="inherit" />}
+                actionIcon={actionIcon || <IconTrashFilled size="xs" color="inherit" />}
                 interactionType={interactionType}
-                onItemRemove={onItemRemove}
+                onItemAction={onItemAction}
                 onItemSelect={onItemSelect}
                 onItemsSortEnd={onItemsSortEnd}
             />
