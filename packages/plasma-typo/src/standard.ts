@@ -285,27 +285,27 @@ const typoL = {
     },
     h1: {
         'font-size': '3rem',
-        'font-weight': '400',
+        'font-weight': '600',
         'line-height': '3.375rem',
     },
     h2: {
         'font-size': '2rem',
-        'font-weight': '400',
+        'font-weight': '600',
         'line-height': '2.375rem',
     },
     h3: {
         'font-size': '1.5rem',
-        'font-weight': '400',
+        'font-weight': '600',
         'line-height': '1.875rem',
     },
     h4: {
         'font-size': '1.25rem',
-        'font-weight': '400',
+        'font-weight': '600',
         'line-height': '1.625rem',
     },
     h5: {
         'font-size': '1.125rem',
-        'font-weight': '400',
+        'font-weight': '600',
         'line-height': '1.5rem',
     },
     'body-l': {
