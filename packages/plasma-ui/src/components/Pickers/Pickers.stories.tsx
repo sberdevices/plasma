@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Story, Meta } from '@storybook/react';
 import type { SnapType } from '@sberdevices/plasma-core';
@@ -57,7 +57,10 @@ export const Default: Story<DefaultStoryProps> = (args) => {
     const [value, setValue] = React.useState(parseDateTime(args.initialValue));
     const min = parseDateTime(args.minDate);
     const max = parseDateTime(args.maxDate);
-    const onChange = React.useCallback((v) => setValue(v), []);
+    const onChange = React.useCallback((v) => {
+        setValue(v);
+        console.log('v', v);
+    }, []);
     const years = args.optionsYears;
     const months = args.optionsMonths;
     const days = args.optionsDays;
@@ -113,13 +116,16 @@ export const Default: Story<DefaultStoryProps> = (args) => {
                 controls={args.controls}
                 onChange={onChange}
             />
+            <button type="button" onClick={() => setValue(new Date('06.06.2085 16:33:50'))}>
+                Сбросить
+            </button>
         </StyledWrapper>
     );
 };
 
 Default.args = {
     initialValue: '01.09.1980 00:28:59',
-    minDate: '01.01.1975 00:15:29',
+    minDate: '01.01.1975 01:15:29',
     maxDate: '31.12.1985 12:45:50',
     optionsYears: true,
     optionsMonths: true,
@@ -196,11 +202,18 @@ export const Date_Picker: Story<DatePickerStoryProps> = ({
     const [value, setValue] = React.useState(parseDateTime(initialValue));
     const min = parseDateTime(minDate);
     const max = parseDateTime(maxDate);
-    const onChange = React.useCallback((v) => setValue(v), []);
+    const onChange = React.useCallback((v) => {
+        console.log('v from callback', v);
+        setValue(v);
+    }, []);
     const years = optionsYears;
     const months = optionsMonths;
     const days = optionsDays;
     const shortMonthName = optionsShortMonthName;
+
+    useEffect(() => {
+        console.log('value', value);
+    }, [value]);
 
     const options = React.useMemo(
         () => ({
@@ -213,15 +226,31 @@ export const Date_Picker: Story<DatePickerStoryProps> = ({
     );
 
     return (
-        <DatePicker id="example" value={value} min={min} max={max} options={options} onChange={onChange} {...rest} />
+        <>
+            <DatePicker
+                id="example"
+                value={value}
+                min={min}
+                max={max}
+                options={options}
+                onChange={onChange}
+                {...rest}
+            />
+            <button type="button" onClick={() => setValue(new Date())}>
+                Сбросить
+            </button>
+        </>
     );
 };
 
 // eslint-disable-next-line @typescript-eslint/camelcase
 Date_Picker.args = {
+    // initialValue: '22.11.2022 00:00:00',
+    // minDate: '01.01.1975 00:00:00',
+    // maxDate: '15.07.2023 00:00:00',
     initialValue: '01.09.1980 00:28:59',
-    minDate: '01.01.1975 00:15:29',
-    maxDate: '31.12.1985 12:45:50',
+    minDate: '01.02.1975 01:15:29',
+    maxDate: '30.11.1985 12:45:50',
     optionsYears: true,
     optionsMonths: true,
     optionsDays: true,
@@ -278,7 +307,10 @@ export const Time_Picker: Story<TimePickerStoryProps> = ({
     const [value, setValue] = React.useState(parseDateTime(initialValue));
     const min = parseDateTime(minDate);
     const max = parseDateTime(maxDate);
-    const onChange = React.useCallback((v) => setValue(v), []);
+    const onChange = React.useCallback((v) => {
+        console.log('v from callback', v);
+        setValue(v);
+    }, []);
     const hours = optionsHours;
     const minutes = optionsMinutes;
     const seconds = optionsSeconds;
@@ -292,14 +324,25 @@ export const Time_Picker: Story<TimePickerStoryProps> = ({
         [hours, minutes, seconds],
     );
 
-    return <TimePicker value={value} min={min} max={max} options={options} onChange={onChange} {...rest} />;
+    useEffect(() => {
+        console.log('value', value);
+    }, [value]);
+
+    return (
+        <>
+            <TimePicker value={value} min={min} max={max} options={options} onChange={onChange} {...rest} />
+            <button type="button" onClick={() => setValue(new Date('06.06.2085 16:33:50'))}>
+                Сбросить
+            </button>
+        </>
+    );
 };
 
 // eslint-disable-next-line @typescript-eslint/camelcase
 Time_Picker.args = {
-    initialValue: '01.09.1980 00:28:59',
-    minDate: '01.01.1975 00:15:29',
-    maxDate: '31.12.1985 12:45:50',
+    initialValue: '01.09.1980 20:28:59',
+    minDate: '01.01.1975 01:15:29',
+    maxDate: '01.09.1980 12:30:30',
     optionsHours: true,
     optionsMinutes: true,
     optionsSeconds: true,
