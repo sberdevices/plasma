@@ -4,6 +4,8 @@ import { useIsomorphicLayoutEffect } from '@sberdevices/plasma-core';
 import { accent } from '@sberdevices/plasma-tokens';
 
 import { SimpleTimePicker, SimpleTimePickerProps } from './SimpleTimePicker';
+import { getNormalizeValues, getTimeValues, isChanged } from './utils';
+import { TimeType } from './types';
 
 const StyledWrapper = styled.div`
     display: flex;
@@ -39,6 +41,12 @@ const StyledDividers = styled.div`
     }
 `;
 
+const defaultOptions = {
+    hours: true,
+    minutes: true,
+    seconds: true,
+};
+
 /**
  * Вернет массив чисел от `from` до `to` с интервалом `step`.
  */
@@ -63,13 +71,33 @@ const getClosestValue = (range: number[], value: number) => {
 };
 
 /**
- * Вернет массив с временными компонентами переданной даты.
+ * Вернёт секунды
  */
-const getValues = (date: Date) => [date.getHours(), date.getMinutes(), date.getSeconds()];
-const defaultOptions = {
-    hours: true,
-    minutes: true,
-    seconds: true,
+const getSeconds = ([hours, minutes, seconds]: TimeType) => hours * 60 * 60 + minutes * 60 + seconds;
+
+/**
+ * Для того, чтобы значение не выпадало из диапозона,
+ * надо выставить в соответствии с последним
+ */
+const getValuesInRange = (
+    [hoursRange, minsRange, secsRange]: number[][],
+    [hours, minutes, seconds]: number[],
+    value: Date,
+) => {
+    if (hoursRange.indexOf(hours) === -1 || minsRange.indexOf(minutes) === -1 || secsRange.indexOf(seconds) === -1) {
+        const newHours = hoursRange.indexOf(hours) === -1 ? getClosestValue(hoursRange, hours) : hours;
+        const newMins = minsRange.indexOf(minutes) === -1 ? getClosestValue(minsRange, minutes) : minutes;
+        const newSecs = secsRange.indexOf(seconds) === -1 ? getClosestValue(secsRange, seconds) : seconds;
+
+        // eslint-disable-next-line no-restricted-globals
+        if (isNaN(newHours) || isNaN(newMins) || isNaN(newSecs)) {
+            throw new Error(`Passed value ${value} is out of range`);
+        }
+
+        return [newHours, newMins, newSecs] as const;
+    }
+
+    return [hours, minutes, seconds] as const;
 };
 
 export interface TimePickerProps extends Omit<SimpleTimePickerProps, 'type' | 'range' | 'onChange'> {
@@ -123,11 +151,17 @@ export const TimePicker: React.FC<TimePickerProps> = ({
     onChange,
     ...rest
 }) => {
-    const [[hours, minutes, seconds], setState] = React.useState(getValues(value));
-    const [minHours, minMinutes, minSeconds] = getValues(min);
-    const [maxHours, maxMinutes, maxSeconds] = getValues(max);
+    const normalizeValues = React.useMemo(() => getNormalizeValues(getTimeValues, getSeconds)(value, min, max), [
+        value,
+        min,
+        max,
+    ]);
 
-    // Диапозоны для списков зависят от min и max,
+    const [[hours, minutes, seconds], setState] = React.useState(normalizeValues);
+    const [minHours, minMinutes, minSeconds] = getTimeValues(min);
+    const [maxHours, maxMinutes, maxSeconds] = getTimeValues(max);
+
+    // Диапазоны для списков зависят от min и max,
     // при чем min и max принимаются как возможные предельные значения,
     // а не как контейнеры для компонент hours, minutes, seconds
     const [hoursRange, minsRange, secsRange] = React.useMemo(() => {
@@ -178,32 +212,46 @@ export const TimePicker: React.FC<TimePickerProps> = ({
     // При очередном прогоне, если значения hours, minutes, seconds изменились,
     // необходимо вызвать событие изменения, создав новый экземпляр Date
     useIsomorphicLayoutEffect(() => {
-        const [oldHours, oldMinutes, oldSeconds] = getValues(value);
+        const oldTime = normalizeValues;
 
-        if (oldHours !== hours || oldMinutes !== minutes || oldSeconds !== seconds) {
+        if (onChange && isChanged(oldTime, [hours, minutes, seconds])) {
             const newValue = new Date(value);
             newValue.setHours(hours);
             newValue.setMinutes(minutes);
             newValue.setSeconds(seconds);
 
-            onChange?.(newValue);
+            onChange(newValue);
         }
     }, [hours, minutes, seconds]);
 
-    // Для того, чтобы значение не выпадало из диапозона,
-    // надо выставить в соответствии с последним
-    if (hoursRange.indexOf(hours) === -1 || minsRange.indexOf(minutes) === -1 || secsRange.indexOf(seconds) === -1) {
-        const newHours = hoursRange.indexOf(hours) === -1 ? getClosestValue(hoursRange, hours) : hours;
-        const newMins = minsRange.indexOf(minutes) === -1 ? getClosestValue(minsRange, minutes) : minutes;
-        const newSecs = secsRange.indexOf(seconds) === -1 ? getClosestValue(secsRange, seconds) : seconds;
+    /**
+     * Если значение value обновилось извне, необходимо изменить стейт
+     * и вызвать событие изменения, создав новый экземпляр Date
+     */
+    useIsomorphicLayoutEffect(() => {
+        setState((prevTime) => {
+            const [newHours, newMins, newSecs] = normalizeValues;
 
-        // eslint-disable-next-line no-restricted-globals
-        if (isNaN(newHours) || isNaN(newMins) || isNaN(newSecs)) {
-            throw new Error(`Passed value ${value} is out of range`);
-        }
-        if (newHours !== hours || newMins !== minutes || newSecs !== seconds) {
-            setState([newHours, newMins, newSecs]);
-        }
+            if (!isChanged(prevTime, [newHours, newMins, newSecs])) {
+                return prevTime;
+            }
+
+            if (onChange) {
+                const newValue = new Date(value);
+                newValue.setHours(newHours);
+                newValue.setMinutes(newMins);
+                newValue.setSeconds(newSecs);
+
+                onChange(newValue);
+            }
+
+            return [newHours, newMins, newSecs];
+        });
+    }, [value, normalizeValues, min, max]);
+
+    const newTime = getValuesInRange([hoursRange, minsRange, secsRange], [hours, minutes, seconds], value);
+    if (isChanged([hours, minutes, seconds], newTime)) {
+        setState(newTime);
     }
 
     return (
