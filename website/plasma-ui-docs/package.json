@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-ui-docs",
-    "version": "0.13.2",
+    "version": "0.13.3",
     "private": true,
     "description": "Plasma Documentation.",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
@@ -33,7 +33,7 @@
         "@sberdevices/plasma-icons": "1.48.0",
         "@sberdevices/plasma-tokens": "1.14.0",
         "@sberdevices/plasma-tokens-web": "1.13.1",
-        "@sberdevices/plasma-ui": "1.58.0",
+        "@sberdevices/plasma-ui": "1.58.1",
         "@sberdevices/plasma-web": "1.54.1",
         "@svgr/webpack": "^5.5.0",
         "clsx": "^1.1.1",
