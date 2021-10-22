@@ -37,6 +37,33 @@ export type OnChangeCartFn<T extends CartState> = (args: {
     event: OnAddCartItemEvent<T> | OnChangeCartItemQuantityEvent<T> | OnRemoveCartItemEvent<T> | ClearCartEvent;
 }) => void;
 
+/**
+ * @deprecated
+ */
+export type OnAddCartItemFn<T extends CartState> = (args: {
+    item: CartStateItem<T>;
+    state: T;
+    changeState: ChangeStateFn<T>;
+}) => void;
+
+/**
+ * @deprecated
+ */
+export type OnChangeCartItemQuantityFn<T extends CartState> = (args: {
+    item: CartStateItem<T>;
+    state: T;
+    changeState: ChangeStateFn<T>;
+}) => void;
+
+/**
+ * @deprecated
+ */
+export type OnRemoveCartItemFn<T extends CartState> = (args: {
+    item: CartStateItem<T>;
+    state: T;
+    changeState: ChangeStateFn<T>;
+}) => void;
+
 export interface CartState<ID = string, T extends AnyObject = AnyObject> {
     items: CartItem<ID, T>[];
     currency: Currency;
