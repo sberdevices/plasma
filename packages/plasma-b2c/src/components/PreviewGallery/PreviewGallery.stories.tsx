@@ -58,7 +58,7 @@ export const Selectable: Story<StoryProps> = ({ ...rest }) => {
         });
     }, []);
 
-    const onItemSelect = useCallback((id) => {
+    const onItemClick = useCallback((id) => {
         setItems((oldItems) => {
             const newItems = arrayItemSelecting(oldItems, id);
             return newItems;
@@ -69,9 +69,9 @@ export const Selectable: Story<StoryProps> = ({ ...rest }) => {
         <StyledWrapper>
             <PreviewGallery
                 items={items}
-                onItemRemove={onItemRemove}
-                deleteIcon={<IconTrashFilled size="xs" color="inherit" />}
-                onItemSelect={onItemSelect}
+                onItemAction={onItemRemove}
+                actionIcon={<IconTrashFilled size="xs" color="inherit" />}
+                onItemClick={onItemClick}
                 {...rest}
             />
         </StyledWrapper>
@@ -105,8 +105,8 @@ export const Draggable: Story<StoryProps> = ({ ...rest }) => {
             <PreviewGallery
                 interactionType="draggable"
                 items={items}
-                deleteIcon={<IconTrash size="xs" color="inherit" />}
-                onItemRemove={onItemRemove}
+                actionIcon={<IconTrash size="xs" color="inherit" />}
+                onItemAction={onItemRemove}
                 onItemsSortEnd={onItemsSortEnd}
                 {...rest}
             />

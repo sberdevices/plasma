@@ -118,7 +118,7 @@ export const PreviewGalleryItemBase = memo(
         actionIcon,
         status,
         onItemAction,
-        onItemSelect,
+        onItemClick,
     }: PreviewGalleryItemProps & AddionalItemProps) => {
         const itemActionHandle = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
             event.stopPropagation();
@@ -126,8 +126,8 @@ export const PreviewGalleryItemBase = memo(
         };
 
         return (
-            <StyledItem width={itemSize} key={id} onClick={() => onItemSelect?.(id)}>
-                <Image src={image} customRatio="66.6667" />
+            <StyledItem width={itemSize} key={id} onClick={() => onItemClick?.(id)}>
+                <Image src={image} ratio="16 / 9" />
 
                 <StyledTrashButton onClick={itemActionHandle}>{actionIcon}</StyledTrashButton>
 
