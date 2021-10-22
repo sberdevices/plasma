@@ -9,7 +9,7 @@ import { StyledIconDrag, StyledItem, StyledTrashButton, PreviewGalleryItemProps 
 const StyledErrorImage = styled.div`
     position: relative;
     border-radius: 0.75rem;
-    padding-bottom: 66.67%;
+    padding-bottom: 56.25%;
 
     background-color: ${surfaceSolid02};
     color: ${backgroundPrimary};

@@ -39,7 +39,7 @@ export interface PreviewGalleryProps {
     /**
      * Колбэк на выделение элемента.
      */
-    onItemSelect?: (id: string | number) => void;
+    onItemClick?: (id: string | number) => void;
 }
 
 /**
@@ -48,7 +48,7 @@ export interface PreviewGalleryProps {
 export const PreviewGallery: FC<PreviewGalleryProps & HTMLAttributes<HTMLDivElement>> = ({
     interactionType = 'selectable',
     items = [],
-    onItemSelect = noop,
+    onItemClick = noop,
     onItemAction = noop,
     onItemsSortEnd = noop,
     ...rest
@@ -68,7 +68,7 @@ export const PreviewGallery: FC<PreviewGalleryProps & HTMLAttributes<HTMLDivElem
         <PreviewGalleryListItems
             items={items}
             onItemAction={onItemAction}
-            onItemSelect={onItemSelect}
+            onItemClick={onItemClick}
             onSortStart={onSortStart}
             onSortEnd={onSortEnd}
             axis={axis}

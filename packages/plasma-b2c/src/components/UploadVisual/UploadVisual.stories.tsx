@@ -144,8 +144,8 @@ export const Selectabe: Story<StoryProps> = ({ ...rest }) => {
                 progress={state.progress}
                 message={state.message}
                 onChange={onChange}
-                onItemRemove={onItemRemove}
-                onItemSelect={onItemSelect}
+                onItemAction={onItemRemove}
+                onItemClick={onItemSelect}
                 onValidation={onValidation}
                 {...rest}
             />
@@ -230,7 +230,7 @@ export const Draggable: Story<StoryProps> = ({ ...rest }) => {
                 progress={state.progress}
                 message={state.message}
                 onChange={onChange}
-                onItemRemove={onItemRemove}
+                onItemAction={onItemRemove}
                 onItemsSortEnd={onItemsSortEnd}
                 onValidation={onValidation}
                 interactionType="draggable"

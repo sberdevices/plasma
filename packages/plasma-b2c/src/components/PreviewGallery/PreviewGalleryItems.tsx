@@ -39,7 +39,7 @@ export const PreviewGalleryListItems = SortableContainer(
         itemSize,
         isGrabbing,
         onItemAction,
-        onItemSelect,
+        onItemClick,
     }: PreviewGalleryListItemsProps & AddionalItemProps) => {
         const isDragDisabled = interactionType === 'selectable';
 
@@ -69,7 +69,7 @@ export const PreviewGalleryListItems = SortableContainer(
                         interactionType={interactionType}
                         itemSize={itemSize}
                         onItemAction={onItemAction}
-                        onItemSelect={onItemSelect}
+                        onItemClick={onItemClick}
                     />
                 ))}
             </StyledRoot>

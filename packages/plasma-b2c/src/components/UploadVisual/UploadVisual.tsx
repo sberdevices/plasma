@@ -35,7 +35,7 @@ export const UploadVisual: FC<UploadVisualProps> = ({
     disabled,
     onItemsSortEnd,
     onItemAction,
-    onItemSelect,
+    onItemClick,
     onValidation,
     ...rest
 }) => {
@@ -63,7 +63,7 @@ export const UploadVisual: FC<UploadVisualProps> = ({
                 actionIcon={actionIcon || <IconTrashFilled size="xs" color="inherit" />}
                 interactionType={interactionType}
                 onItemAction={onItemAction}
-                onItemSelect={onItemSelect}
+                onItemClick={onItemClick}
                 onItemsSortEnd={onItemsSortEnd}
             />
         </StyledRoot>

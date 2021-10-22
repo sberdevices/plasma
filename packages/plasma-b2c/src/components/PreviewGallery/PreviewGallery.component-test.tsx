@@ -44,7 +44,7 @@ describe('plasma-b2c: PreviewGallery', () => {
             <CypressTestDecorator>
                 <PreviewGallery
                     items={items}
-                    deleteIcon={<IconTrashFilled size="xs" color="inherit" />}
+                    actionIcon={<IconTrashFilled size="xs" color="inherit" />}
                     interactionType="selectable"
                 />
             </CypressTestDecorator>,
@@ -58,7 +58,7 @@ describe('plasma-b2c: PreviewGallery', () => {
             <CypressTestDecorator>
                 <PreviewGallery
                     items={items}
-                    deleteIcon={<IconTrashFilled size="xs" color="inherit" />}
+                    actionIcon={<IconTrashFilled size="xs" color="inherit" />}
                     interactionType="draggable"
                 />
             </CypressTestDecorator>,
@@ -76,9 +76,9 @@ describe('plasma-b2c: PreviewGallery', () => {
 
         mount(
             <CypressTestDecorator>
-                <PreviewGallery items={[itemSelected]} deleteIcon={<IconTrashFilled size="xs" color="inherit" />} />
+                <PreviewGallery items={[itemSelected]} actionIcon={<IconTrashFilled size="xs" color="inherit" />} />
                 <PadMe />
-                <PreviewGallery items={[itemBase]} deleteIcon={<IconTrashFilled size="xs" color="inherit" />} />
+                <PreviewGallery items={[itemBase]} actionIcon={<IconTrashFilled size="xs" color="inherit" />} />
             </CypressTestDecorator>,
         );
 
@@ -94,9 +94,9 @@ describe('plasma-b2c: PreviewGallery', () => {
 
         mount(
             <CypressTestDecorator>
-                <PreviewGallery items={[itemCaption]} deleteIcon={<IconTrashFilled size="xs" color="inherit" />} />
+                <PreviewGallery items={[itemCaption]} actionIcon={<IconTrashFilled size="xs" color="inherit" />} />
                 <PadMe />
-                <PreviewGallery items={[itemBase]} deleteIcon={<IconTrashFilled size="xs" color="inherit" />} />
+                <PreviewGallery items={[itemBase]} actionIcon={<IconTrashFilled size="xs" color="inherit" />} />
             </CypressTestDecorator>,
         );
 
@@ -112,9 +112,9 @@ describe('plasma-b2c: PreviewGallery', () => {
 
         mount(
             <CypressTestDecorator>
-                <PreviewGallery items={[itemError]} deleteIcon={<IconTrashFilled size="xs" color="inherit" />} />
+                <PreviewGallery items={[itemError]} actionIcon={<IconTrashFilled size="xs" color="inherit" />} />
                 <PadMe />
-                <PreviewGallery items={[itemBase]} deleteIcon={<IconTrashFilled size="xs" color="inherit" />} />
+                <PreviewGallery items={[itemBase]} actionIcon={<IconTrashFilled size="xs" color="inherit" />} />
             </CypressTestDecorator>,
         );
 
