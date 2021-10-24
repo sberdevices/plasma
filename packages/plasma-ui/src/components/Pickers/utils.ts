@@ -163,3 +163,60 @@ export const scaleResetCallback = (itemEl: HTMLElement) => {
         }
     }
 };
+
+/**
+ * Вернет массив с временными компонентами переданной даты.
+ */
+export const getTimeValues = (date: Date) => [date.getHours(), date.getMinutes(), date.getSeconds()] as const;
+
+/**
+ * Вернет массив компонентами даты.
+ */
+export const getDateValues = (date: Date) => [date.getFullYear(), date.getMonth(), date.getDate()] as const;
+
+/**
+ * Проверит, изменился ли массив
+ */
+export const isChanged = (oldValues: readonly number[], newValues: readonly number[]) => {
+    if (oldValues === newValues) {
+        return false;
+    }
+
+    if (oldValues.length !== newValues.length) {
+        return true;
+    }
+
+    for (let i = 0; i < oldValues.length; i++) {
+        if (oldValues[i] !== newValues[i]) {
+            return true;
+        }
+    }
+
+    return false;
+};
+
+/**
+ * Вернёт нормализованные значения в заданных пределах
+ */
+export const getNormalizeValues = (
+    getValues: (date: Date) => readonly [number, number, number],
+    getSeconds: (values: readonly [number, number, number]) => number,
+) => (current: Date, min: Date, max: Date) => {
+    const curValues = getValues(current);
+    const minValues = getValues(min);
+    const maxValues = getValues(max);
+
+    const curSeconds = getSeconds(curValues);
+    const minSeconds = getSeconds(minValues);
+    const maxSeconds = getSeconds(maxValues);
+
+    if (curSeconds < minSeconds) {
+        return minValues;
+    }
+
+    if (curSeconds > maxSeconds) {
+        return maxValues;
+    }
+
+    return curValues;
+};

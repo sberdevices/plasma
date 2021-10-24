@@ -11,6 +11,7 @@ import { useSpatNavStop } from '../../../../hooks/useSpatNav';
 export interface CartItemListProps {
     items: CartItemType[];
     currency: Currency;
+    itemImageBackgroundColor?: string;
     onItemClick?: (item: CartItemType) => void;
 }
 
@@ -31,7 +32,12 @@ const StyledRow = styled(Row)`
     scroll-behavior: smooth;
 `;
 
-export const CartItemListCommon: React.FC<CartItemListProps> = ({ items, currency, onItemClick }) => {
+export const CartItemListCommon: React.FC<CartItemListProps> = ({
+    items,
+    currency,
+    itemImageBackgroundColor,
+    onItemClick,
+}) => {
     const [activeButton, setActiveButton] = React.useState<'left' | 'right'>('right');
 
     useSpatNavStop('y');
@@ -67,6 +73,7 @@ export const CartItemListCommon: React.FC<CartItemListProps> = ({ items, currenc
                             focused={index === cartIndex}
                             activeButton={activeButton}
                             setActiveButton={setActiveButton}
+                            imageBackgroundColor={itemImageBackgroundColor}
                         />
                     </CarouselCol>
                 ))}

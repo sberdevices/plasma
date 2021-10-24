@@ -8,6 +8,7 @@ import {
     OnAddCartItemFn,
     OnChangeCartItemQuantityFn,
     OnRemoveCartItemFn,
+    OnChangeCartFn,
 } from '../../types';
 
 import { CartContext, CartContextValue, getInitialState } from './CartContext';
@@ -15,10 +16,23 @@ import { CartContext, CartContextValue, getInitialState } from './CartContext';
 interface CartProviderProps<T extends CartState = CartState> {
     initialState?: T;
     dropItemIfQuantityZero?: boolean;
+    /**
+     * @deprecated instead use onChangeCart
+     */
     onAddItem?: OnAddCartItemFn<T>;
+    /**
+     * @deprecated instead use onChangeCart
+     */
     onChangeItemQuantity?: OnChangeCartItemQuantityFn<T>;
+    /**
+     * @deprecated instead use onChangeCart
+     */
     onRemoveItem?: OnRemoveCartItemFn<T>;
+    /**
+     * @deprecated instead use onChangeCart
+     */
     onClearCart?: () => void;
+    onChangeCart?: OnChangeCartFn<T>;
 }
 
 function updateCartItemByIndex<T extends CartItem>(items: T[], cartItem: T, index: number) {
@@ -48,6 +62,7 @@ export function CartProvider<T extends CartState = CartState>({
     onChangeItemQuantity,
     onRemoveItem,
     onClearCart,
+    onChangeCart,
 }: React.PropsWithChildren<CartProviderProps<T>>): React.ReactElement {
     const [state, setState] = React.useState(initialState);
 
@@ -61,6 +76,32 @@ export function CartProvider<T extends CartState = CartState>({
         [getState],
     );
 
+    const handleChangeCart = React.useCallback(
+        async (params: Omit<Parameters<OnChangeCartFn<T>>[0], 'changeState'>) => {
+            const { state: newState, event } = params;
+
+            setState(newState);
+            onChangeCart?.({ ...params, changeState: setState });
+
+            switch (event.type) {
+                case 'addItem':
+                    onAddItem?.({ state: newState, item: event.item, changeState: setState });
+                    break;
+                case 'changeItemQuantity':
+                    onChangeItemQuantity?.({ state: newState, item: event.item, changeState: setState });
+                    break;
+                case 'removeItem':
+                    onRemoveItem?.({ state: newState, item: event.item, changeState: setState });
+                    break;
+                case 'clearCart':
+                    onClearCart?.();
+                    break;
+                default:
+            }
+        },
+        [],
+    );
+
     const removeItem = React.useCallback(
         (id: CartStateItem<T>['id']) => {
             const currentState = getState();
@@ -68,13 +109,14 @@ export function CartProvider<T extends CartState = CartState>({
             const updatedItems = currentState.items.filter((item) => item.id !== id);
             const newState = { ...currentState, items: updatedItems };
 
-            setState(newState);
-
             if (cartItem) {
-                onRemoveItem?.({ item: cartItem, state: newState, changeState: setState });
+                handleChangeCart({
+                    state: newState,
+                    event: { type: 'removeItem', item: cartItem },
+                });
             }
         },
-        [getState, onRemoveItem, setState],
+        [getState, handleChangeCart],
     );
 
     const changeItemQuantity = React.useCallback(
@@ -108,11 +150,12 @@ export function CartProvider<T extends CartState = CartState>({
                 ...updateCartQuantityAndAmount(updatedItems),
             };
 
-            setState(newState);
-
-            onChangeItemQuantity?.({ item: cartItem, state: newState, changeState: setState });
+            handleChangeCart({
+                state: newState,
+                event: { type: 'changeItemQuantity', item: cartItem },
+            });
         },
-        [dropItemIfQuantityZero, getState, isOverQuantityLimit, onChangeItemQuantity, removeItem],
+        [dropItemIfQuantityZero, getState, isOverQuantityLimit, handleChangeCart, removeItem],
     );
 
     const addItem = React.useCallback(
@@ -122,12 +165,12 @@ export function CartProvider<T extends CartState = CartState>({
 
             const itemIndex = items.findIndex(({ id }) => newItem.id === id);
 
-            if (isOverQuantityLimit(newItem.quantity)) {
+            if (itemIndex > -1) {
+                changeItemQuantity(newItem.id, newItem.quantity);
                 return;
             }
 
-            if (itemIndex > -1) {
-                changeItemQuantity(newItem.id, newItem.quantity);
+            if (isOverQuantityLimit(newItem.quantity)) {
                 return;
             }
 
@@ -138,16 +181,22 @@ export function CartProvider<T extends CartState = CartState>({
                 ...updateCartQuantityAndAmount(updatedItems),
             };
 
-            setState(newState);
-            onAddItem?.({ item: newItem, state: newState, changeState: setState });
+            handleChangeCart({
+                state: newState,
+                event: { type: 'addItem', item: newItem },
+            });
         },
-        [changeItemQuantity, getState, isOverQuantityLimit, onAddItem, setState],
+        [changeItemQuantity, getState, isOverQuantityLimit, handleChangeCart],
     );
 
     const clearCart = React.useCallback(() => {
-        setState({ ...getState(), items: [], amount: 0, quantity: 0 });
-        onClearCart?.();
-    }, [getState, onClearCart, setState]);
+        const newState = { ...getState(), items: [], amount: 0, quantity: 0 };
+
+        handleChangeCart({
+            state: newState,
+            event: { type: 'clearCart' },
+        });
+    }, [getState, handleChangeCart]);
 
     const value = React.useMemo(
         () => ({

@@ -10,20 +10,54 @@ export type CartItem<ID = string, T extends AnyObject = AnyObject> = Entity<ID> 
         quantityLimit?: number;
     };
 
+export interface OnAddCartItemEvent<T extends CartState> {
+    type: 'addItem';
+    item: CartStateItem<T>;
+}
+
+export interface OnChangeCartItemQuantityEvent<T extends CartState> {
+    type: 'changeItemQuantity';
+    item: CartStateItem<T>;
+}
+
+export interface OnRemoveCartItemEvent<T extends CartState> {
+    type: 'removeItem';
+    item: CartStateItem<T>;
+}
+
+export interface ClearCartEvent {
+    type: 'clearCart';
+}
+
 export type ChangeStateFn<T extends CartState> = (state: T) => void;
 
+export type OnChangeCartFn<T extends CartState> = (args: {
+    state: T;
+    changeState: (state: T) => void;
+    event: OnAddCartItemEvent<T> | OnChangeCartItemQuantityEvent<T> | OnRemoveCartItemEvent<T> | ClearCartEvent;
+}) => void;
+
+/**
+ * @deprecated
+ */
 export type OnAddCartItemFn<T extends CartState> = (args: {
     item: CartStateItem<T>;
     state: T;
     changeState: ChangeStateFn<T>;
 }) => void;
 
+/**
+ * @deprecated
+ */
 export type OnChangeCartItemQuantityFn<T extends CartState> = (args: {
     item: CartStateItem<T>;
     state: T;
     changeState: ChangeStateFn<T>;
 }) => void;
 
+/**
+ * @deprecated
+ */
 export type OnRemoveCartItemFn<T extends CartState> = (args: {
     item: CartStateItem<T>;
     state: T;

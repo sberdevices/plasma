@@ -9,6 +9,8 @@ import { useCart } from '../../hooks';
 import { useRemoteListener, useThrottledCallback } from '../../../../hooks';
 import { CartItem } from '../../types';
 import { useGetMutableValue } from '../../../../hooks/useGetMutableValue';
+import { THROTTLE_WAIT } from '../../../../hooks/useThrottledCallback';
+import { isSberBoxLike } from '../../../../utils';
 
 export interface CartItemProps {
     item: CartItem;
@@ -18,6 +20,7 @@ export interface CartItemProps {
     currency?: Currency;
     focused?: boolean;
     activeButton?: 'left' | 'right';
+    imageBackgroundColor?: string;
     setActiveButton?: (button: 'left' | 'right') => void;
 }
 
@@ -29,9 +32,12 @@ export const titleMixin = css`
     -webkit-box-orient: vertical;
 `;
 
-export const imageContainerMixin = css`
-    border-radius: 0.75rem;
-    background-color: ${white};
+const withBackground = (backgroundColor?: string) => backgroundColor !== 'unset' && backgroundColor !== 'transparent';
+
+export const imageContainerMixin = ({ padding }: { padding: number }) => css<{ backgroundColor?: string }>`
+    border-radius: ${({ backgroundColor }) => (withBackground(backgroundColor) ? 0.75 : 0)}rem;
+    background-color: ${({ backgroundColor }) => backgroundColor ?? white};
+    padding: ${({ backgroundColor }) => (withBackground(backgroundColor) ? padding : 0)}rem;
 `;
 
 export const priceMixin = css`
@@ -48,6 +54,13 @@ const StyledPresentContainer = styled.div`
     height: 2rem;
     padding: 0.438rem;
     background: var(--plasma-colors-button-secondary);
+`;
+
+export const StyledImage = styled.div<{ imageSrc: string }>`
+    width: 100%;
+    height: 100%;
+    background: center no-repeat url(${({ imageSrc }) => imageSrc});
+    background-size: contain;
 `;
 
 export const PresentIcon: React.FC<IconProps> = (props) => (
@@ -120,6 +133,8 @@ function useCartNavigation({
     return [leftButtonRef, rightButtonRef];
 }
 
+const throttleWait = isSberBoxLike() ? THROTTLE_WAIT : 0;
+
 export const QuantityButton: React.FC<{
     id: CartItem['id'];
     quantity: number;
@@ -139,6 +154,7 @@ export const QuantityButton: React.FC<{
             changeItemQuantity(id, getQuantity() + 1);
         },
         [id, changeItemQuantity, getQuantity],
+        throttleWait,
     );
 
     const isMin = quantity <= 0;
@@ -154,6 +170,7 @@ export const QuantityButton: React.FC<{
             }
         },
         [id, removeItem, changeItemQuantity, getQuantity],
+        throttleWait,
     );
 
     const handlerFocus = React.useCallback(() => setActiveIndex?.(index), [index, setActiveIndex]);

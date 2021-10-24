@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { primary } from '@sberdevices/plasma-tokens';
 import { IconChevronUp, IconChevronDown } from '@sberdevices/plasma-icons';
-import { applyDisabled, DisabledProps } from '@sberdevices/plasma-core';
+import { applyDisabled, DisabledProps, useIsomorphicLayoutEffect } from '@sberdevices/plasma-core';
 
 import { useRemoteListener } from '../../hooks';
 import { Button } from '../Button';
@@ -135,6 +135,8 @@ const getIndex = (index: number, cmd: '+' | '-', min: number, max: number) => {
     return index !== min ? index - 1 : max;
 };
 
+const findItemIndex = (items: Item[], value: string | number | Date) => items.findIndex((item) => item.value === value);
+
 export interface PickerProps
     extends SizeProps,
         DisabledProps,
@@ -186,12 +188,18 @@ export const Picker: React.FC<PickerProps> = ({
 }) => {
     const min = 0;
     const max = items.length - 1;
-    const [index, setIndex] = React.useState(items.findIndex((item) => item.value === value));
+    const [index, setIndex] = React.useState(findItemIndex(items, value));
     const noScrollBehavior = React.useRef(true);
     const wrapperRef = React.useRef<HTMLDivElement | null>(null);
     const carouselRef = React.useRef<HTMLDivElement | null>(null);
     const toPrev = React.useCallback(() => !disabled && setIndex(getIndex(index, '-', min, max)), [index, min, max]);
     const toNext = React.useCallback(() => !disabled && setIndex(getIndex(index, '+', min, max)), [index, min, max]);
+
+    // Изменяет индекс выделенного элемента
+    // при обновлении значения value извне
+    useIsomorphicLayoutEffect(() => {
+        setIndex(findItemIndex(items, value));
+    }, [value, items]);
 
     // Навигация с помощью пульта/клавиатуры
     // Не перелистывает, если компонент неактивен

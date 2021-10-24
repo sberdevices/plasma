@@ -9,3 +9,7 @@ export type Item = {
     value: string | number | Date;
     label: string | number;
 };
+
+export type DateType = readonly [number, number, number];
+
+export type TimeType = readonly [number, number, number];

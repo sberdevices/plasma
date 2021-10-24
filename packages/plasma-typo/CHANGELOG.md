@@ -1,3 +1,15 @@
+# v0.2.1 (Fri Oct 22 2021)
+
+#### 🐛 Bug Fix
+
+- fix: headers font weight fix [#889](https://github.com/sberdevices/plasma/pull/889) ([@takovoy](https://github.com/takovoy))
+
+#### Authors: 1
+
+- Aleksandr Sustavov ([@takovoy](https://github.com/takovoy))
+
+---
+
 # v0.2.0 (Mon Oct 11 2021)
 
 #### 🚀 Enhancement

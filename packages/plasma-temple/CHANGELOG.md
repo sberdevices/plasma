@@ -1,3 +1,17 @@
+# v1.2.1 (Fri Oct 22 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): make props deprecated [#867](https://github.com/sberdevices/plasma/pull/867) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- fix(plasma-temple): Stop updating cart while external update is not finished [#867](https://github.com/sberdevices/plasma/pull/867) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- fix(plasma-temple): fix cart item click, add cart item custom background color [#867](https://github.com/sberdevices/plasma/pull/867) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v1.2.0 (Mon Oct 11 2021)
 
 #### 🚀 Enhancement

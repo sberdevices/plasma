@@ -1,3 +1,16 @@
+# v1.58.1 (Fri Oct 22 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): Fix showing values for `TimePicker` component [#887](https://github.com/sberdevices/plasma/pull/887) ([@neretin-trike](https://github.com/neretin-trike))
+- fix(plasma-ui): Fix showing values for `DataPicker` component [#887](https://github.com/sberdevices/plasma/pull/887) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.58.0 (Thu Oct 21 2021)
 
 #### 🚀 Enhancement

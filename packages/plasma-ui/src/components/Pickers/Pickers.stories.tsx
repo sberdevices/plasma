@@ -119,7 +119,7 @@ export const Default: Story<DefaultStoryProps> = (args) => {
 
 Default.args = {
     initialValue: '01.09.1980 00:28:59',
-    minDate: '01.01.1975 00:15:29',
+    minDate: '01.01.1975 01:15:29',
     maxDate: '31.12.1985 12:45:50',
     optionsYears: true,
     optionsMonths: true,
@@ -220,8 +220,8 @@ export const Date_Picker: Story<DatePickerStoryProps> = ({
 // eslint-disable-next-line @typescript-eslint/camelcase
 Date_Picker.args = {
     initialValue: '01.09.1980 00:28:59',
-    minDate: '01.01.1975 00:15:29',
-    maxDate: '31.12.1985 12:45:50',
+    minDate: '01.02.1975 01:15:29',
+    maxDate: '30.11.1985 12:45:50',
     optionsYears: true,
     optionsMonths: true,
     optionsDays: true,
@@ -299,7 +299,7 @@ export const Time_Picker: Story<TimePickerStoryProps> = ({
 Time_Picker.args = {
     initialValue: '01.09.1980 00:28:59',
     minDate: '01.01.1975 00:15:29',
-    maxDate: '31.12.1985 12:45:50',
+    maxDate: '01.09.1980 12:30:30',
     optionsHours: true,
     optionsMinutes: true,
     optionsSeconds: true,

@@ -15,6 +15,7 @@ interface CartPageProps<T extends CartState> {
     name?: string;
     emptyCart?: React.ReactElement;
     orderButtonText?: string;
+    itemImageBackgroundColor?: string;
     onMakeOrder: (cartState: T) => void;
     onItemClick?: (item: T['items'][number]) => void;
 }
@@ -24,6 +25,7 @@ export function CartPage<T extends CartState = CartState>({
     name,
     emptyCart,
     orderButtonText = 'Оформить заказ',
+    itemImageBackgroundColor,
     onMakeOrder,
     onItemClick,
     children,
@@ -43,7 +45,12 @@ export function CartPage<T extends CartState = CartState>({
             ) : (
                 <Row>
                     <Col sizeXL={6} sizeM={4} sizeS={4}>
-                        <CartItemList items={items} currency={currency} onItemClick={onItemClick} />
+                        <CartItemList
+                            items={items}
+                            currency={currency}
+                            onItemClick={onItemClick}
+                            itemImageBackgroundColor={itemImageBackgroundColor}
+                        />
                     </Col>
                     <Col sizeXL={3.5} offsetXL={2.5} sizeM={2} sizeS={4}>
                         <CartOrder
