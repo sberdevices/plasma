@@ -1,3 +1,17 @@
+# (Sun Oct 24 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-b2c@1.13.3`
+  - fix(plasma-b2c): make PreviewGallery item ratio 16 / 9 [#886](https://github.com/sberdevices/plasma/pull/886) ([@aabulakhsberbank](https://github.com/aabulakhsberbank))
+  - fix(plasma-b2c): rename PreviewGallery item button action [#886](https://github.com/sberdevices/plasma/pull/886) ([@aabulakhsberbank](https://github.com/aabulakhsberbank))
+
+#### Authors: 1
+
+- [@aabulakhsberbank](https://github.com/aabulakhsberbank)
+
+---
+
 # (Fri Oct 22 2021)
 
 #### 🐛 Bug Fix
