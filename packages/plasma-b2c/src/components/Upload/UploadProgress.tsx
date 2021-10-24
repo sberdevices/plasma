@@ -40,7 +40,7 @@ export interface UploadProgressProps {
 }
 
 export const UploadProgress: FC<UploadProgressProps> = ({ progress: rawProgress }) => {
-    const progress = Math.min(Math.max(rawProgress || 0, 0), 100);
+    const progress = Math.round(Math.min(Math.max(rawProgress || 0, 0), 100));
 
     return (
         <StyledRoot>
