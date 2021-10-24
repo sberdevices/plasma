@@ -1,3 +1,15 @@
+# v1.33.4 (Sun Oct 24 2021)
+
+#### 🐛 Bug Fix
+
+- fix: b2c preview gallery image size [#890](https://github.com/sberdevices/plasma/pull/890) ([@takovoy](https://github.com/takovoy))
+
+#### Authors: 1
+
+- Aleksandr Sustavov ([@takovoy](https://github.com/takovoy))
+
+---
+
 # v1.33.2 (Thu Oct 14 2021)
 
 #### 🐛 Bug Fix
