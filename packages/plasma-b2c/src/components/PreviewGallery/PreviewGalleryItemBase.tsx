@@ -115,21 +115,21 @@ export const PreviewGalleryItemBase = memo(
         isSelected,
         caption,
         interactionType,
-        deleteIcon,
+        actionIcon,
         status,
-        onItemRemove,
-        onItemSelect,
+        onItemAction,
+        onItemClick,
     }: PreviewGalleryItemProps & AddionalItemProps) => {
-        const itemRemoveHandle = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        const itemActionHandle = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
             event.stopPropagation();
-            onItemRemove?.(id);
+            onItemAction?.(id);
         };
 
         return (
-            <StyledItem width={itemSize} key={id} onClick={() => onItemSelect?.(id)}>
-                <Image src={image} customRatio="66.6667" />
+            <StyledItem width={itemSize} key={id} onClick={() => onItemClick?.(id)}>
+                <Image src={image} ratio="16 / 9" />
 
-                <StyledTrashButton onClick={itemRemoveHandle}>{deleteIcon}</StyledTrashButton>
+                <StyledTrashButton onClick={itemActionHandle}>{actionIcon}</StyledTrashButton>
 
                 {interactionType === 'selectable' && status !== 'error' ? (
                     isSelected && (

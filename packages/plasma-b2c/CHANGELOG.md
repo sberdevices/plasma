@@ -1,3 +1,18 @@
+# v1.13.3 (Sun Oct 24 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-b2c): make PreviewGallery item ratio 16 / 9 [#886](https://github.com/sberdevices/plasma/pull/886) ([@aabulakhsberbank](https://github.com/aabulakhsberbank))
+- fix(plasma-b2c): rename PreviewGallery item button action [#886](https://github.com/sberdevices/plasma/pull/886) ([@aabulakhsberbank](https://github.com/aabulakhsberbank))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@aabulakhsberbank](https://github.com/aabulakhsberbank)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
 # v1.13.1 (Thu Oct 21 2021)
 
 #### 🐛 Bug Fix
