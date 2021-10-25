@@ -34,4 +34,16 @@ describe('plasma-web: Select', () => {
 
         cy.matchImageSnapshot();
     });
+
+    it('empty', () => {
+        mount(
+            <CypressTestDecorator>
+                <Select items={[]} placeholder="Пустой список" helperText="Empty" />
+            </CypressTestDecorator>,
+        );
+
+        cy.get('button').click();
+
+        cy.matchImageSnapshot();
+    });
 });
