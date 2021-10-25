@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 const StyledContainer = styled.div`
@@ -10,6 +10,11 @@ const StyledContainer = styled.div`
 const StyledItem = styled.div<{ $gapY?: number }>`
     margin-bottom: ${({ $gapY }) => $gapY}px;
 `;
+
+interface ItemProps {
+    width: string;
+    cols: number;
+}
 
 export interface ElasticGridProps {
     /**
@@ -31,6 +36,15 @@ export interface ElasticGridProps {
  */
 export const ElasticGrid: React.FC<ElasticGridProps> = ({ children, minColWidth, gapX = 0, gapY = 0, ...props }) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
+    const [itemProps, setItemProps] = useState<ItemProps>({
+        width: `${minColWidth}px`,
+        cols: 1,
+    });
+
+    const getItemStyle = (column: number) => ({
+        width: itemProps.width,
+        marginRight: (column + 1) % itemProps.cols === 0 ? '0' : `${gapX}px`,
+    });
 
     useLayoutEffect(() => {
         const currentRef = containerRef.current;
@@ -44,13 +58,11 @@ export const ElasticGrid: React.FC<ElasticGridProps> = ({ children, minColWidth,
             const cols = Math.trunc(width / minColWidth);
             const scale = width / minColWidth / cols;
             const offsetSize = (gapX * (cols - 1)) / cols;
-            const nodes = currentRef.children;
 
-            for (let i = 0; i < nodes.length; i++) {
-                const el = nodes[i] as HTMLDivElement;
-                el.style.width = `${minColWidth * scale - offsetSize}px`;
-                el.style.marginRight = (i + 1) % cols === 0 ? '0' : `${gapX}px`;
-            }
+            setItemProps({
+                width: `${minColWidth * scale - offsetSize}px`,
+                cols,
+            });
         });
 
         resizeObserver.observe(currentRef);
@@ -62,8 +74,10 @@ export const ElasticGrid: React.FC<ElasticGridProps> = ({ children, minColWidth,
 
     return (
         <StyledContainer {...props} ref={containerRef}>
-            {React.Children.map(children, (child) => (
-                <StyledItem $gapY={gapY}>{child}</StyledItem>
+            {React.Children.map(children, (child, i) => (
+                <StyledItem $gapY={gapY} style={getItemStyle(i)}>
+                    {child}
+                </StyledItem>
             ))}
         </StyledContainer>
     );
