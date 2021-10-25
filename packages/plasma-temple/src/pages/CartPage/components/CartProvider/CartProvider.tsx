@@ -107,7 +107,7 @@ export function CartProvider<T extends CartState = CartState>({
             const currentState = getState();
             const cartItem = currentState.items.find((item) => item.id === id);
             const updatedItems = currentState.items.filter((item) => item.id !== id);
-            const newState = { ...currentState, items: updatedItems };
+            const newState = { ...currentState, items: updatedItems, ...updateCartQuantityAndAmount(updatedItems) };
 
             if (cartItem) {
                 handleChangeCart({
