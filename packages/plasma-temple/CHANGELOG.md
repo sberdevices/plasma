@@ -1,3 +1,16 @@
+# v1.2.3 (Tue Oct 26 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): fix cart quantity and amount after item was deleted [#894](https://github.com/sberdevices/plasma/pull/894) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- fix(plasma-temple): fix order button offset from bottom [#894](https://github.com/sberdevices/plasma/pull/894) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v1.2.2 (Tue Oct 26 2021)
 
 #### 🐛 Bug Fix
