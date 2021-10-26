@@ -1,3 +1,18 @@
+# (Tue Oct 26 2021)
+
+#### 🐛 Bug Fix
+
+- chore: Update README.md [#895](https://github.com/sberdevices/plasma/pull/895) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/cra-template-plasma-basic-template@2.1.1`
+  - fix(plasma-basic-template): typings [#885](https://github.com/sberdevices/plasma/pull/885) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Sun Oct 24 2021)
 
 #### 🐛 Bug Fix

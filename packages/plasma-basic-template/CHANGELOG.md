@@ -1,3 +1,15 @@
+# v2.1.1 (Tue Oct 26 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-basic-template): typings [#885](https://github.com/sberdevices/plasma/pull/885) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v2.1.0 (Tue Sep 28 2021)
 
 #### 🐛 Bug Fix
