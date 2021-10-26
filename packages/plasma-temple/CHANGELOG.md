@@ -1,3 +1,15 @@
+# v1.2.2 (Tue Oct 26 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): fix 100vh mobile [#884](https://github.com/sberdevices/plasma/pull/884) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v1.2.1 (Fri Oct 22 2021)
 
 #### 🐛 Bug Fix

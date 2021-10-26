@@ -2,6 +2,19 @@
 
 #### 🐛 Bug Fix
 
+- `@sberdevices/plasma-temple@1.2.2`
+  - fix(plasma-temple): fix 100vh mobile [#884](https://github.com/sberdevices/plasma/pull/884) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
+# (Tue Oct 26 2021)
+
+#### 🐛 Bug Fix
+
 - chore: Update README.md [#895](https://github.com/sberdevices/plasma/pull/895) ([@fanisco](https://github.com/fanisco))
 - `@sberdevices/cra-template-plasma-basic-template@2.1.1`
   - fix(plasma-basic-template): typings [#885](https://github.com/sberdevices/plasma/pull/885) ([@LamaEats](https://github.com/LamaEats))
