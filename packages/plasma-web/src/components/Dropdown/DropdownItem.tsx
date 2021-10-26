@@ -85,6 +85,8 @@ const StyledIconSlot = styled.div`
     width: 1.5rem;
     margin-left: auto;
     margin-right: -0.5rem;
+
+    pointer-events: none;
 `;
 const StyledDot = styled.div`
     width: 0.375rem;
