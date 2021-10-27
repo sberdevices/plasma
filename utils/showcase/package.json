@@ -1,7 +1,7 @@
 {
     "name": "@sberdevices/showcase",
     "private": true,
-    "version": "0.66.5",
+    "version": "0.66.6",
     "description": "SberDevices Design System Showcase",
     "files": [],
     "repository": {
@@ -15,7 +15,7 @@
         "access": "restricted"
     },
     "devDependencies": {
-        "@sberdevices/plasma-b2c": "1.13.4",
+        "@sberdevices/plasma-b2c": "1.13.5",
         "@sberdevices/plasma-core": "1.33.4",
         "@sberdevices/plasma-icons": "1.48.2",
         "@sberdevices/plasma-sb-utils": "0.32.4",
