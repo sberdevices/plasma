@@ -1,0 +1,15 @@
+name: Is docs version
+description: Determine whether docs of specified package has specified version.
+inputs:
+  package-name:
+    description: Docs package name
+    required: true
+  version:
+    descritpion: Version
+    required: true
+outputs:
+  docs_exists:
+    description: Has or not
+runs:
+  using: node12
+  main: 'main.js'

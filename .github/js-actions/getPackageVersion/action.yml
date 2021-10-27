@@ -1,0 +1,12 @@
+name: Get package version
+description: Parse package.json and return it's version.
+inputs:
+  package-name:
+    description: Package name
+    required: true
+outputs:
+  version:
+    description: Package version
+runs:
+  using: node12
+  main: 'main.js'
