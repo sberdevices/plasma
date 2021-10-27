@@ -23,6 +23,7 @@ const sizes = {
 
 interface StyledSizeProps {
     $size: keyof typeof sizes;
+    $noScrollBehavior: boolean;
 }
 
 export const StyledPickerItem = styled.div<StyledSizeProps>`
@@ -37,7 +38,12 @@ export const StyledPickerItem = styled.div<StyledSizeProps>`
 
     cursor: pointer;
     user-select: none;
-    scroll-snap-align: center;
+
+    ${({ $noScrollBehavior }) =>
+        !$noScrollBehavior &&
+        css`
+            scroll-snap-align: center;
+        `}
 
     &:focus {
         outline: 0 none;
@@ -52,8 +58,13 @@ const StyledTransformable = styled.div<StyledSizeProps>`
     height: 100%;
 
     flex-direction: column;
-    transition: transform 0.1s ease;
-    transform: translate3d(0, 0, 0);
+
+    ${({ $noScrollBehavior }) =>
+        !$noScrollBehavior &&
+        css`
+            transition: transform 0.1s ease;
+            transform: translate3d(0, 0, 0);
+        `}
 
     ${({ $size }) =>
         $size === 's'
@@ -82,9 +93,19 @@ export interface PickerItemProps extends React.HTMLAttributes<HTMLDivElement>, S
     item: Item;
     index: number;
     activeIndex: number;
+    noScrollBehavior: boolean;
+    onItemClick?: (item: Item) => void;
 }
 
-export const PickerItem: React.FC<PickerItemProps> = ({ size = 's', item, index, activeIndex, ...rest }) => {
+export const PickerItem: React.FC<PickerItemProps> = ({
+    size = 's',
+    item,
+    index,
+    activeIndex,
+    noScrollBehavior,
+    onItemClick,
+    ...rest
+}) => {
     const itemRef = useCarouselItem<HTMLDivElement>();
     /*
      * Выведем стили еще до того, как отработает коллбек стилей.
@@ -92,9 +113,13 @@ export const PickerItem: React.FC<PickerItemProps> = ({ size = 's', item, index,
      */
     const styles = React.useMemo(() => getStyles(index - activeIndex, size), [index, activeIndex, size]);
 
+    const onClick = React.useCallback(() => {
+        onItemClick?.(item);
+    }, [item]);
+
     return (
-        <StyledPickerItem ref={itemRef} $size={size} {...rest}>
-            <StyledTransformable $size={size} style={styles.wrapper}>
+        <StyledPickerItem $noScrollBehavior={noScrollBehavior} ref={itemRef} $size={size} onClick={onClick} {...rest}>
+            <StyledTransformable $noScrollBehavior={noScrollBehavior} $size={size} style={styles.wrapper}>
                 <StyledText style={styles.text}>{item.label}</StyledText>
                 <StyledWhiteText style={styles.whiteText}>{item.label}</StyledWhiteText>
             </StyledTransformable>
