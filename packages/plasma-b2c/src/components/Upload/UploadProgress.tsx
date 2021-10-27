@@ -36,18 +36,22 @@ const StyledSpinner = styled(Spinner)`
 const StyledSpan = styled.span``;
 
 export interface UploadProgressProps {
+    label?: string;
     progress?: number;
 }
 
-export const UploadProgress: FC<UploadProgressProps> = ({ progress: rawProgress }) => {
+export const UploadProgress: FC<UploadProgressProps> = ({ label: rawLabel, progress: rawProgress }) => {
     const progress = Math.min(Math.max(rawProgress || 0, 0), 100);
+    const label = rawLabel ?? 'Загружено';
 
     return (
         <StyledRoot>
             <StyledProgress>
                 <StyledProgressbar style={{ width: `${progress}%` }} />
             </StyledProgress>
-            <StyledSpan>Загружено {progress}%</StyledSpan>
+            <StyledSpan>
+                {label} {progress}%
+            </StyledSpan>
             <StyledSpinner size="1.25rem" />
         </StyledRoot>
     );
