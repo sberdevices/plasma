@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+
 import { Size } from './types';
 
 const sizes = {
@@ -219,4 +221,17 @@ export const getNormalizeValues = (
     }
 
     return curValues;
+};
+
+/**
+ * Хук для сохранения предыдущего значения
+ */
+export const usePreviousValue = (value: string | number | Date) => {
+    const ref = useRef<string | number | Date>();
+
+    useEffect(() => {
+        ref.current = value;
+    });
+
+    return ref.current;
 };

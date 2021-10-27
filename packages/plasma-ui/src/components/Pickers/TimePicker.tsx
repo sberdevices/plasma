@@ -174,15 +174,15 @@ export const TimePicker: React.FC<TimePickerProps> = ({
             minMins = minMinutes;
         }
 
-        if (minutes === minMinutes) {
-            minSecs = minSeconds;
-        }
-
         if (hours === maxHours) {
             maxMins = maxMinutes;
         }
 
-        if (minutes === maxMinutes) {
+        if (hours === minHours && minutes === minMinutes) {
+            minSecs = minSeconds;
+        }
+
+        if (hours === maxHours && minutes === maxMinutes) {
             maxSecs = maxSeconds;
         }
 

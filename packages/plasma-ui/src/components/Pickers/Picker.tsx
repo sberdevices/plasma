@@ -10,7 +10,7 @@ import { Carousel, CarouselProps } from '../Carousel';
 
 import { PickerItem, StyledPickerItem, StyledWhiteText } from './PickerItem';
 import type { Item, SizeProps } from './types';
-import { scaleCallbackS, scaleCallbackL, scaleResetCallback } from './utils';
+import { scaleCallbackS, scaleCallbackL, scaleResetCallback, usePreviousValue } from './utils';
 
 const sizes = {
     l: {
@@ -189,16 +189,27 @@ export const Picker: React.FC<PickerProps> = ({
     const min = 0;
     const max = items.length - 1;
     const [index, setIndex] = React.useState(findItemIndex(items, value));
-    const noScrollBehavior = React.useRef(true);
+    const [hasScrollAnim, setScrollAnim] = React.useState(true);
+
     const wrapperRef = React.useRef<HTMLDivElement | null>(null);
     const carouselRef = React.useRef<HTMLDivElement | null>(null);
     const toPrev = React.useCallback(() => !disabled && setIndex(getIndex(index, '-', min, max)), [index, min, max]);
     const toNext = React.useCallback(() => !disabled && setIndex(getIndex(index, '+', min, max)), [index, min, max]);
 
+    const prevValue = usePreviousValue(items[index]?.value);
+
     // Изменяет индекс выделенного элемента
     // при обновлении значения value извне
     useIsomorphicLayoutEffect(() => {
-        setIndex(findItemIndex(items, value));
+        const newIndex = findItemIndex(items, value);
+
+        // Отключаем анимацию скролла, если значение компонента осталось
+        // прежним, но индекс изменился
+        if (prevValue === items[newIndex]?.value && newIndex !== index) {
+            setScrollAnim(false);
+        }
+
+        setIndex(newIndex);
     }, [value, items]);
 
     // Навигация с помощью пульта/клавиатуры
@@ -227,14 +238,20 @@ export const Picker: React.FC<PickerProps> = ({
         if (autofocus && carouselRef.current) {
             carouselRef.current.focus();
         }
-        /**
-         * Удаляем аттрибут отключения анимации без перерендера компонента.
-         */
-        if (carouselRef.current) {
-            carouselRef.current.removeAttribute('data-no-scroll-behavior');
-        }
-        noScrollBehavior.current = false;
+        // Отключаем анимацию скролла при первом рендере
+        setScrollAnim(false);
     }, []);
+
+    const onIndexChange = React.useCallback(
+        (i: number) => {
+            if (items[i]?.value !== value) {
+                onChange?.(items[i]);
+            }
+            // Включаем анимацию скролла, после изменения индекса
+            setScrollAnim(true);
+        },
+        [items, value, onChange],
+    );
 
     return (
         <StyledWrapper
@@ -258,12 +275,8 @@ export const Picker: React.FC<PickerProps> = ({
                 detectThreshold={0.5}
                 paddingStart={sizes[size][visibleItems].padding}
                 paddingEnd={sizes[size][visibleItems].padding}
-                onIndexChange={(i) => {
-                    if (items[i] && items[i].value !== value) {
-                        onChange?.(items[i]);
-                    }
-                }}
-                {...(noScrollBehavior.current ? { 'data-no-scroll-behavior': true } : {})}
+                onIndexChange={onIndexChange}
+                {...(hasScrollAnim ? {} : { 'data-no-scroll-behavior': true })}
             >
                 {items.map((item, i) => (
                     <PickerItem
@@ -273,7 +286,8 @@ export const Picker: React.FC<PickerProps> = ({
                         activeIndex={index}
                         tabIndex={-1}
                         size={size}
-                        onClick={() => onChange?.(item)}
+                        onItemClick={onChange}
+                        noScrollBehavior={!hasScrollAnim}
                     />
                 ))}
             </StyledCarousel>
