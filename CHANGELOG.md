@@ -1,3 +1,16 @@
+# (Wed Oct 27 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-b2c@1.13.5`
+  - fix(plasma-b2c): handle children number change in ElasticGrid [#893](https://github.com/sberdevices/plasma/pull/893) ([@aabulakhsberbank](https://github.com/aabulakhsberbank))
+
+#### Authors: 1
+
+- [@aabulakhsberbank](https://github.com/aabulakhsberbank)
+
+---
+
 # (Tue Oct 26 2021)
 
 #### 🐛 Bug Fix
