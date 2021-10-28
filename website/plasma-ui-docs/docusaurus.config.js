@@ -46,6 +46,10 @@ module.exports = {
                     label: 'Web',
                 },
                 {
+                    type: 'docsVersionDropdown',
+                    position: 'right',
+                },
+                {
                     href: 'https://github.com/sberdevices/plasma',
                     label: 'GitHub',
                     position: 'right',
