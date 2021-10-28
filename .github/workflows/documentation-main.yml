@@ -39,19 +39,37 @@ jobs:
 
       - name: Get Plasma UI version
         id: get_ui_version
+        if: github.event_name != 'pull_request'
         uses: ./.github/js-actions/getPackageVersion
         with:
           package-name: plasma-ui
       
       - name: Check UI's docs version existance
         id: is_ui_docs_version
+        if: github.event_name != 'pull_request'
         uses: ./.github/js-actions/isDocsVersion
         with:
           package-name: plasma-ui-docs
           version: ${{ steps.get_ui_version.outputs.version }}
 
       - name: Create UI's docs version
-        if: steps.is_ui_docs_version.outputs.docs_exists == 'false'
+        if: github.event_name != 'pull_request' && steps.is_ui_docs_version.outputs.docs_exists == 'false'
         run: npm run docusaurus docs:version ${version} --prefix="./website/plasma-ui-docs"
         env:
           version: ${{ steps.get_ui_version.outputs.version }}
+
+      - name: Extract branch name
+        if: github.event_name != 'pull_request' && steps.is_ui_docs_version.outputs.docs_exists == 'false'
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - name: Commit & Push package-lock's
+        if: github.event_name != 'pull_request' && steps.is_ui_docs_version.outputs.docs_exists == 'false'
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          message: 'chore: Create documentation version [skip ci]'
+          branch: ${{ steps.extract_branch.outputs.branch }}
+          author_name: SberDevices Frontend Team
+          author_email: sberdevices.frontend@gmail.com
