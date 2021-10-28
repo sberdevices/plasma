@@ -1,3 +1,15 @@
+# v1.49.0 (Thu Oct 28 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-icons): Update design for `Hearts` icons [#896](https://github.com/sberdevices/plasma/pull/896) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.48.0 (Thu Oct 21 2021)
 
 #### 🚀 Enhancement
