@@ -1,7 +1,7 @@
-name: Developing docs version
+name: Main Documentation and Storybook
 
 on:
-  pull_request:
+  push:
     branches:
       - rc
       - master
@@ -12,8 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
-      PR_NAME: pr-${{ github.event.number }}
-      ICONS_PUBLIC_URL: /icons
     steps:
       - uses: actions/checkout@v2
 
@@ -36,6 +34,7 @@ jobs:
       - name: Setup packages
         run: |
           npm i
+          npx lerna bootstrap
 
       - name: Get Plasma UI version
         id: get_ui_version
@@ -73,3 +72,59 @@ jobs:
           branch: ${{ steps.extract_branch.outputs.branch }}
           author_name: SberDevices Frontend Team
           author_email: sberdevices.frontend@gmail.com
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Prepare directory
+        run: mkdir ../build
+
+      - name: Plasma Website
+        run: |
+          npm run build --prefix="./website/plasma-website"
+          cp -R ./website/plasma-website/build ../build/next
+
+      - name: Plasma UI Docs
+        run: |
+          npm run build --prefix="./website/plasma-ui-docs"
+          cp -R ./website/plasma-ui-docs/build ../build/next/ui
+
+      - name: Plasma Web Docs
+        run: |
+          npm run build --prefix="./website/plasma-web-docs"
+          cp -R ./website/plasma-web-docs/build ../build/next/web
+
+      - name: Plasma UI Storybook
+        run: |
+          npm run storybook:build --prefix="./packages/plasma-ui"
+          cp -R ./packages/plasma-ui/build-sb ../build/next/ui-storybook
+
+      - name: Plasma Web Storybook
+        run: |
+          npm run storybook:build --prefix="./packages/plasma-web"
+          cp -R ./packages/plasma-web/build-sb ../build/next/web-storybook
+
+      - name: Plasma B2C Storybook
+        run: |
+          npm run storybook:build --prefix="./packages/plasma-b2c"
+          cp -R ./packages/plasma-b2c/build-sb ../build/next/b2c-storybook
+
+      - name: Upload documentation build
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          host: ${{ secrets.DOCS_HOST }}
+          username: ${{ secrets.DOCS_LOGIN }}
+          privateKey: ${{ secrets.DOCS_KEY }}
+          local: "../build"
+          remote: "/var/www/plasma"
+
+      - name: Update and clean documentation
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DOCS_HOST }}
+          username: ${{ secrets.DOCS_LOGIN }}
+          key: ${{ secrets.DOCS_KEY }}
+          script: |
+            cd ../../var/www/plasma
+            rm -rf current/
+            mv next current
