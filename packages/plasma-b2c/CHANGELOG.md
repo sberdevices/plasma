@@ -1,3 +1,20 @@
+# v1.15.0 (Thu Oct 28 2021)
+
+#### 🚀 Enhancement
+
+- feat: upload progress label [#899](https://github.com/sberdevices/plasma/pull/899) ([@takovoy](https://github.com/takovoy))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Aleksandr Sustavov ([@takovoy](https://github.com/takovoy))
+
+---
+
 # v1.13.5 (Wed Oct 27 2021)
 
 #### 🐛 Bug Fix

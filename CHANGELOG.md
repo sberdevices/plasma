@@ -2,6 +2,25 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-b2c@1.15.0`
+  - feat: upload progress label [#899](https://github.com/sberdevices/plasma/pull/899) ([@takovoy](https://github.com/takovoy))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-docs-ui@0.1.0`
+  - chore: Convert markdown to HTML [#856](https://github.com/sberdevices/plasma/pull/856) ([@OgNellis](https://github.com/OgNellis))
+
+#### Authors: 2
+
+- Aleksandr Sustavov ([@takovoy](https://github.com/takovoy))
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+
+---
+
+# (Thu Oct 28 2021)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-icons@1.49.0`
   - feat(plasma-icons): Update design for `Hearts` icons [#896](https://github.com/sberdevices/plasma/pull/896) ([@neretin-trike](https://github.com/neretin-trike))
 
