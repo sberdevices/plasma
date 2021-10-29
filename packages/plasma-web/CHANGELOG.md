@@ -1,3 +1,15 @@
+# v1.56.0 (Fri Oct 29 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): `Dropdown` custom composition [#866](https://github.com/sberdevices/plasma/pull/866) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.54.1 (Thu Oct 21 2021)
 
 #### 🐛 Bug Fix
