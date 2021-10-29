@@ -11,7 +11,6 @@ export const useAssistantState = ({
 }): void => {
     useAssistantAppState({
         screen,
-        // eslint-disable-next-line @typescript-eslint/camelcase
         item_selector: { items },
         ...rest,
     });

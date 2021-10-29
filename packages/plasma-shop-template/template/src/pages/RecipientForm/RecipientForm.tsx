@@ -1,7 +1,6 @@
 import React from 'react';
-import { Form } from '@sberdevices/plasma-temple';
-import { Button, Header } from '@sberdevices/plasma-ui';
-import { isSberBox } from '@sberdevices/plasma-ui/utils';
+import { Form, isSberBoxLike, Header } from '@sberdevices/plasma-temple';
+import { Button } from '@sberdevices/plasma-ui';
 import { IconKeyboard } from '@sberdevices/plasma-icons';
 
 import { PageComponentProps, Recipient } from '../../types';
@@ -9,12 +8,20 @@ import { RecipientInfoContext } from '../MakeOrder/RecipientInfoContext';
 
 import { FormContent } from './components/FormContent/FormContent';
 
-const ManualModeButton: React.FC<{ onClick: () => void }> = ({ onClick }) =>
-    isSberBox() ? null : (
-        <Button contentLeft={<IconKeyboard />} text="Клавиатура" view="clear" size="s" onClick={onClick} />
-    );
+interface ManualModeButtonProps {
+    visible: boolean;
+    onClick: () => void;
+}
 
-export const RecipientForm: React.FC<PageComponentProps<'recipient'>> = ({ name: screen, popScreen, ...props }) => {
+const ManualModeButton: React.FC<ManualModeButtonProps> = ({ onClick, visible }) => {
+    if (!visible || isSberBoxLike()) {
+        return null;
+    }
+
+    return <Button contentLeft={<IconKeyboard />} text="Клавиатура" view="clear" size="s" onClick={onClick} />;
+};
+
+export const RecipientForm: React.FC<PageComponentProps<'recipient'>> = ({ name: screen, popScreen, header }) => {
     const [manualMode, setManualMode] = React.useState(true);
 
     const { recipient, changeRecipientInfo } = React.useContext(RecipientInfoContext);
@@ -27,15 +34,15 @@ export const RecipientForm: React.FC<PageComponentProps<'recipient'>> = ({ name:
         [popScreen, changeRecipientInfo],
     );
 
-    const header = {
-        ...props.header,
-        children: !manualMode && <ManualModeButton onClick={() => setManualMode(true)} />,
+    const headerProps = {
+        ...header,
+        children: <ManualModeButton visible={!manualMode} onClick={() => setManualMode(true)} />,
         title: 'Данные получателя',
     };
 
     return (
         <>
-            <Header {...header} />
+            <Header {...headerProps} />
             <Form initialData={recipient} onSubmit={onSubmitHandler} sequence={['address', 'name', 'phone', 'email']}>
                 {(formProps) => (
                     <FormContent screen={screen} manualMode={manualMode} setManualMode={setManualMode} {...formProps} />
