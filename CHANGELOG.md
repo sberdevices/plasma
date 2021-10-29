@@ -1,5 +1,20 @@
 # (Fri Oct 29 2021)
 
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-web@1.56.1`
+  - fix(plasma-web): Prevent click on icons of `DropdownItem` [#883](https://github.com/sberdevices/plasma/pull/883) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.16.1`, `@sberdevices/plasma-web@1.56.1`
+  - fix(plasma-web,plasma-b2c): `Select`'s when multiselect prevent autoclose [#883](https://github.com/sberdevices/plasma/pull/883) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Fri Oct 29 2021)
+
 #### 🚀 Enhancement
 
 - `@sberdevices/plasma-core@1.34.0`, `@sberdevices/plasma-web@1.56.0`, `@sberdevices/plasma-web-docs@0.10.0`
