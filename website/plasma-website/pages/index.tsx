@@ -42,7 +42,7 @@ const menu = [
     { title: 'Архетипы', href: '/archetypes', soon: true },
     { title: 'Палитра', href: '/palette', soon: true },
     { title: 'Типографика', href: '/typography', soon: true },
-    { title: 'Иконки', href: '/icons', external: true },
+    { title: 'Иконки', href: '/icons' },
     { title: 'Иллюстрации', href: '/illustrations', soon: true },
 ];
 const community = [
