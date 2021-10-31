@@ -1,4 +1,2 @@
-export type { ImageBaseProps, Ratio } from '@sberdevices/plasma-core';
-
-export { Image } from '@sberdevices/plasma-web';
-export type { ImageProps } from '@sberdevices/plasma-web';
+export { Image } from '@sberdevices/plasma-core';
+export type { ImageProps, ImageBaseProps, Ratio } from '@sberdevices/plasma-core';
