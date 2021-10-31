@@ -43,6 +43,8 @@ export const FieldInput = styled.input<Pick<TextFieldProps, 'status'> & { $isFoc
     border-color: ${inputBorder};
     border-radius: 0.25rem;
 
+    transition: border-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+
     &:hover {
         border-color: ${inputBorderHover};
     }
