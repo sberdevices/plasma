@@ -116,8 +116,8 @@ export const Popup = memo<PopupProps>(({ disclosure, children, isOpen, trigger, 
     return (
         <StyledRoot ref={rootRef} onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} {...rest}>
             {disclosure}
-            {children && isOpen && (
-                <StyledPopup ref={popupRef} placement={placement}>
+            {children && (
+                <StyledPopup ref={popupRef} placement={placement} style={{ display: isOpen ? 'block' : 'none' }}>
                     {children}
                 </StyledPopup>
             )}
