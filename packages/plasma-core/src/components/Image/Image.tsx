@@ -25,6 +25,7 @@ export type Ratio = keyof typeof ratios;
 interface StyledRootProps {
     $ratio?: Ratio;
     $customRatio?: string;
+    $width?: string | number;
     $height?: string | number;
 }
 
@@ -68,10 +69,10 @@ const StyledRoot = styled.div<StyledRootProps>`
             padding-bottom: ${$ratio ? ratios[$ratio] : $customRatio}%;
         `}
 
-    ${({ $height }) =>
-        $height &&
+    ${({ $width, $height }) =>
         css`
-            height: ${toCssSize($height)};
+            ${$width && `width: ${toCssSize($width)};`}
+            ${$height && `height: ${toCssSize($height)};`}
         `}
 `;
 
@@ -93,11 +94,12 @@ const StyledDivImg = styled.div`
 /**
  * Компонент для отображения картинок.
  */
-export const Image: React.FC<ImageProps> = ({ src, base = 'img', alt, ...props }) => (
+export const Image: React.FC<ImageProps> = ({ src, base = 'img', alt, width, height, ...props }) => (
     <StyledRoot
         $ratio={'ratio' in props ? props.ratio : undefined}
         $customRatio={'customRatio' in props ? props.customRatio : undefined}
-        $height={'height' in props ? props.height : undefined}
+        $width={width}
+        $height={height}
         {...props}
     >
         {base === 'img' && <StyledImg src={src} alt={alt} />}
