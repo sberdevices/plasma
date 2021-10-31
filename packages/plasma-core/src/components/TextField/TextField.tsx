@@ -87,8 +87,6 @@ const inputStyles = css`
     line-height: inherit;
     letter-spacing: inherit;
 
-    transition: background-color 0.1s ease-in-out, border-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
-
     &:focus {
         outline: none;
     }

@@ -7,6 +7,8 @@ export const FieldInput = styled.input<Pick<TextFieldProps, '$isFocused'>>`
     border-color: transparent;
     border-radius: 1rem;
 
+    transition: background-color 0.1s ease-in-out;
+
     &:focus:not(:read-only) {
         background-color: ${surfaceLiquid02};
     }
