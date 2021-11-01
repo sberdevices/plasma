@@ -75,6 +75,11 @@ jobs:
           npm run storybook:build --prefix="./packages/plasma-b2c"
           cp -R ./packages/plasma-b2c/build-sb ../build/${PR_NAME}/b2c-storybook
 
+      - name: Plasma Temple Storybook
+        run: |
+          npm run storybook:build --prefix="./packages/plasma-temple"
+          cp -R ./packages/plasma-temple/build-sb ../build/${PR_NAME}/temple-storybook
+
       - name: Clean old builds
         uses: appleboy/ssh-action@master
         with:
@@ -110,5 +115,6 @@ jobs:
               ui storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/ui-storybook/
               web storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/web-storybook/
               b2c storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/b2c-storybook/
+              temple storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/temple-storybook/
               `
             })
