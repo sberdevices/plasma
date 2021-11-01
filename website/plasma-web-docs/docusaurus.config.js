@@ -5,9 +5,9 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const globby = require('globby');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const docgen = require('react-docgen-typescript');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const fg = require('fast-glob');
 
 const { PR_NAME } = process.env;
 const prefix = PR_NAME ? `/${PR_NAME}` : '';
@@ -129,7 +129,7 @@ module.exports = {
                             },
                         })
                         .parse(
-                            await globby([
+                            await fg([
                                 '../../packages/plasma-web/src/**/*.{ts,tsx}',
                                 '!../../packages/plasma-web/src/**/*.test.*',
                             ]),
@@ -180,6 +180,42 @@ module.exports = {
                             },
                         },
                     };
+                },
+            };
+        },
+        function rawGenerateFilePlugin() {
+            return {
+                name: 'raw-generate-file-plugin',
+                async loadContent() {
+                    const paths = await globby(['./src/snippets/**/*.tsx']);
+
+                    // console.log('HA', fs.readFileSync(path[0]).toString());
+
+                    return [fs.readFileSync(paths[0]).toString()];
+                },
+                configureWebpack(config) {
+                    return {
+                        resolve: {
+                            alias: {
+                                '@rawgenerate': path.join(
+                                    config.resolve.alias['@generated'],
+                                    'raw-generate-file-plugin',
+                                    'default',
+                                ),
+                            },
+                        },
+                    };
+                },
+                async contentLoaded({ content, actions }) {
+                    content
+                        // .filter((module) => {
+                        //     return (
+                        //         /^[A-Z]/.test(module.displayName) &&
+                        //         (module.props || module.description) &&
+                        //         module.displayName !== 'Default'
+                        //     );
+                        // })
+                        .map((component) => actions.createData('proverOCHKA.json', JSON.stringify(component)));
                 },
             };
         },

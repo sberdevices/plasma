@@ -1,26 +1,39 @@
 import { useEffect, useState } from 'react';
 import type { Props } from 'react-docgen-typescript';
 
-type DocgenInfo = {
+type ComponentInfo = {
     props?: Props;
     description?: string;
+    source?: string;
 };
 
-export const useDynamicImport = (name: string): DocgenInfo => {
-    const [info, setInfo] = useState<DocgenInfo>({});
+const getImport = (alias: string, name: string) => {
+    if (alias.startsWith('@docgen')) {
+        return import(`@docgen/${name}.json`);
+    }
+
+    if (alias.startsWith('@filesource')) {
+        return import(`@filesource/${name}.json`);
+    }
+
+    return Promise.reject(new Error(`Alias ${alias} not found in list`));
+};
+
+export const useDynamicImport = (alias: string, name: string): ComponentInfo => {
+    const [info, setInfo] = useState<ComponentInfo>({});
 
     useEffect(() => {
         let resolved = false;
 
         try {
-            import(`@docgen/${name}.json`)
+            getImport(alias, name)
                 .then((importedInfo) => {
                     if (!resolved) {
                         resolved = true;
                         setInfo(importedInfo.default);
                     }
                 })
-                .catch(() => console.error(`Not found DocgenInfo for ${name}.`));
+                .catch((e) => console.error(`Not found module in ${alias}/${name}.`, e));
         } catch (e) {
             console.error(e);
         }
@@ -28,7 +41,7 @@ export const useDynamicImport = (name: string): DocgenInfo => {
         return () => {
             resolved = true;
         };
-    }, [name]);
+    }, [alias, name]);
 
     return info;
 };

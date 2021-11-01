@@ -5,9 +5,9 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const globby = require('globby');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const docgen = require('react-docgen-typescript');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const fg = require('fast-glob');
 
 const { PR_NAME } = process.env;
 const prefix = PR_NAME ? `/${PR_NAME}` : '';
@@ -129,7 +129,7 @@ module.exports = {
                             },
                         })
                         .parse(
-                            await globby([
+                            await fg([
                                 '../../packages/plasma-ui/src/**/*.{ts,tsx}',
                                 '!../../packages/plasma-ui/src/**/*.test.*',
                             ]),
