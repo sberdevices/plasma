@@ -26,6 +26,7 @@ const HandleStyled = styled.div`
 
 const HandleStyledInner = styled.div`
     border-radius: 50%;
+    box-sizing: content-box;
     background-color: ${white};
     width: ${handleDiameter}rem;
     height: ${handleDiameter}rem;

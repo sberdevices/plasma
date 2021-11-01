@@ -18,6 +18,7 @@ export * from './components/Progress';
 export * from './components/Radiobox';
 export * from './components/Select';
 export * from './components/Skeleton';
+export * from './components/Slider';
 export * from './components/Spinner';
 export * from './components/Switch';
 export * from './components/Tabs';
