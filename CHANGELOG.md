@@ -1,5 +1,18 @@
 # (Mon Nov 01 2021)
 
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-b2c@1.16.2`
+  - fix(plasma-b2c): set slider handle box-sizing [#904](https://github.com/sberdevices/plasma/pull/904) ([@aabulakhsberbank](https://github.com/aabulakhsberbank))
+
+#### Authors: 1
+
+- [@aabulakhsberbank](https://github.com/aabulakhsberbank)
+
+---
+
+# (Mon Nov 01 2021)
+
 #### 🚀 Enhancement
 
 - `@sberdevices/plasma-website@0.4.0`

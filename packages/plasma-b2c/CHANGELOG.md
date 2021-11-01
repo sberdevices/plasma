@@ -1,3 +1,15 @@
+# v1.16.2 (Mon Nov 01 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-b2c): set slider handle box-sizing [#904](https://github.com/sberdevices/plasma/pull/904) ([@aabulakhsberbank](https://github.com/aabulakhsberbank))
+
+#### Authors: 1
+
+- [@aabulakhsberbank](https://github.com/aabulakhsberbank)
+
+---
+
 # v1.16.1 (Fri Oct 29 2021)
 
 #### 🐛 Bug Fix
