@@ -1,3 +1,15 @@
+# v1.3.0 (Mon Nov 01 2021)
+
+#### 🐛 Bug Fix
+
+- ci(plasma-temple): Deploy Storybook [#881](https://github.com/sberdevices/plasma/pull/881) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v1.2.3 (Tue Oct 26 2021)
 
 #### 🐛 Bug Fix
