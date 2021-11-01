@@ -19,9 +19,16 @@ const StyledPreview = styled.div`
     padding: 1rem;
     background-image: ${gradient};
 `;
-const StyledLivePreviewWrapper = styled.div`
-    display: flex;
-    gap: 1rem;
+
+const StyledWrap = styled.div`
+    width: fit-content;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+`;
+
+const StyledPlayground = styled.div`
+    position: relative;
 `;
 
 const Header: FC = ({ children }) => {
@@ -36,10 +43,8 @@ const ResultWithHeader: FC = () => {
                     Result
                 </Translate>
             </Header>
-            <StyledPreview>
-                <LivePreview Component={StyledLivePreviewWrapper} />
-                <LiveError />
-            </StyledPreview>
+            <LivePreview Component={StyledPreview} />
+            <LiveError />
         </>
     );
 };

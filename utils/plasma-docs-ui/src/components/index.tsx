@@ -1,3 +1,5 @@
+export { CodeSandbox } from './CodeSandbox';
+export type { CodeSandboxProps } from './CodeSandbox';
 export { Description } from './Description';
 export type { DescriptionProps } from './Description';
 export { Filler } from './Filler';

@@ -6,27 +6,71 @@ import useIsBrowser from '@docusaurus/useIsBrowser';
 import usePrismTheme from '@theme/hooks/usePrismTheme';
 import { PlaygroundPreview } from '@sberdevices/plasma-docs-ui';
 import { light } from '@sberdevices/plasma-tokens-web/themes';
+import Translate from '@docusaurus/Translate';
+import clsx from 'clsx';
 
 import styles from './styles.module.css';
+import { CodeSandbox } from 'src/components';
 
 const lightTheme = light[':root'];
 const StyledPreview = styled(PlaygroundPreview)`
     ${lightTheme}
 `;
 
+const StyledWrap = styled.div`
+    width: fit-content;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+`;
+
+const StyledPlayground = styled.div`
+    position: relative;
+`;
+
+const getSourceWithoutImports = (source: string) => {
+    const regexp = /import\s+?(?:(?:(?:[\w*\s{},]*)\s+from\s+?)|)(?:(?:".*?")|(?:'.*?'))[\s]*?(?:;|$|)/g;
+    return source
+        .replace(regexp, '')
+        .replace(/export/g, '')
+        .trimStart();
+};
+
+const Header: FC = ({ children }) => {
+    return <div className={clsx(styles.playgroundHeader)}>{children}</div>;
+};
+
 const ResultWithHeader: FC = () => {
     return (
         <>
+            <Header>
+                <Translate id="theme.Playground.result" description="The result label of the live codeblocks">
+                    Result
+                </Translate>
+            </Header>
             <LivePreview Component={StyledPreview} />
             <LiveError />
         </>
     );
 };
 
-interface PlaygroundProps {
+const EditorWithHeader: FC = () => {
+    return (
+        <>
+            <Header>
+                <Translate id="theme.Playground.liveEditor" description="The live editor label of the live codeblocks">
+                    Live Editor
+                </Translate>
+            </Header>
+            <LiveEditor className={styles.playgroundEditor} />
+        </>
+    );
+};
+
+type PlaygroundProps = {
     transformCode: (code: string) => string;
     children: string;
-}
+};
 
 const Playground: FC<PlaygroundProps> = ({ children, transformCode, ...props }) => {
     const isBrowser = useIsBrowser();
@@ -48,17 +92,22 @@ const Playground: FC<PlaygroundProps> = ({ children, transformCode, ...props }) 
                 theme={prismTheme}
                 {...props}
             >
-                {playgroundPosition === 'top' ? (
-                    <>
-                        <ResultWithHeader />
-                        <LiveEditor className={styles.playgroundEditor} />
-                    </>
-                ) : (
-                    <>
-                        <LiveEditor className={styles.playgroundEditor} />
-                        <ResultWithHeader />
-                    </>
-                )}
+                <StyledPlayground>
+                    {playgroundPosition === 'top' ? (
+                        <>
+                            {!props['no-execute'] && <ResultWithHeader />}
+                            <EditorWithHeader />
+                        </>
+                    ) : (
+                        <>
+                            <EditorWithHeader />
+                            {!props['no-execute'] && <ResultWithHeader />}
+                        </>
+                    )}
+                    <StyledWrap>
+                        <CodeSandbox source={children} />
+                    </StyledWrap>
+                </StyledPlayground>
             </LiveProvider>
         </div>
     );
