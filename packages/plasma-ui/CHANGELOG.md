@@ -1,3 +1,15 @@
+# v1.60.1 (Mon Nov 01 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): Fix scroll behavior and range values for `Picker` component [#897](https://github.com/sberdevices/plasma/pull/897) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.58.1 (Fri Oct 22 2021)
 
 #### 🐛 Bug Fix

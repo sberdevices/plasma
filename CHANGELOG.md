@@ -1,3 +1,19 @@
+# (Mon Nov 01 2021)
+
+#### 🐛 Bug Fix
+
+- test(plasma-b2c): Add snapshots for `Uploads`, `AudioPlayer`, `PreviewGallery` components [#892](https://github.com/sberdevices/plasma/pull/892) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-ui@1.60.1`
+  - fix(plasma-ui): Fix scroll behavior and range values for `Picker` component [#897](https://github.com/sberdevices/plasma/pull/897) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-web@1.56.2`
+  - test(plasma-web,plasma-b2c): Add tests and snapshots for `Select` component [#892](https://github.com/sberdevices/plasma/pull/892) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # (Fri Oct 29 2021)
 
 #### 🐛 Bug Fix
