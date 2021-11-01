@@ -1,7 +1,7 @@
 {
     "name": "@sberdevices/showcase",
     "private": true,
-    "version": "0.69.1",
+    "version": "0.69.2",
     "description": "SberDevices Design System Showcase",
     "files": [],
     "repository": {
@@ -23,7 +23,7 @@
         "@sberdevices/plasma-tokens-b2c": "0.7.1",
         "@sberdevices/plasma-tokens-web": "1.13.1",
         "@sberdevices/plasma-typo": "0.2.1",
-        "@sberdevices/plasma-ui": "1.60.0",
+        "@sberdevices/plasma-ui": "1.60.1",
         "@sberdevices/plasma-web": "1.56.1",
         "@storybook/addon-essentials": "6.3.4",
         "@storybook/addon-knobs": "6.3.0",
