@@ -37,6 +37,8 @@ export type OnChangeCartFn<T extends CartState> = (args: {
     event: OnAddCartItemEvent<T> | OnChangeCartItemQuantityEvent<T> | OnRemoveCartItemEvent<T> | ClearCartEvent;
 }) => void;
 
+export type IsCartLimitFn<T extends CartState> = (state: T) => boolean;
+
 /**
  * @deprecated
  */

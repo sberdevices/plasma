@@ -9,6 +9,7 @@ import {
     OnChangeCartItemQuantityFn,
     OnRemoveCartItemFn,
     OnChangeCartFn,
+    IsCartLimitFn,
 } from '../../types';
 
 import { CartContext, CartContextValue, getInitialState } from './CartContext';
@@ -33,6 +34,7 @@ interface CartProviderProps<T extends CartState = CartState> {
      */
     onClearCart?: () => void;
     onChangeCart?: OnChangeCartFn<T>;
+    isCartLimit?: IsCartLimitFn<T>;
 }
 
 function updateCartItemByIndex<T extends CartItem>(items: T[], cartItem: T, index: number) {
@@ -63,6 +65,7 @@ export function CartProvider<T extends CartState = CartState>({
     onRemoveItem,
     onClearCart,
     onChangeCart,
+    isCartLimit,
 }: React.PropsWithChildren<CartProviderProps<T>>): React.ReactElement {
     const [state, setState] = React.useState(initialState);
 
@@ -79,6 +82,10 @@ export function CartProvider<T extends CartState = CartState>({
     const handleChangeCart = React.useCallback(
         async (params: Omit<Parameters<OnChangeCartFn<T>>[0], 'changeState'>) => {
             const { state: newState, event } = params;
+
+            if (isCartLimit?.(newState)) {
+                return;
+            }
 
             setState(newState);
             onChangeCart?.({ ...params, changeState: setState });
@@ -99,7 +106,7 @@ export function CartProvider<T extends CartState = CartState>({
                 default:
             }
         },
-        [],
+        [isCartLimit, onChangeCart, onAddItem, onChangeItemQuantity, onRemoveItem, onClearCart],
     );
 
     const removeItem = React.useCallback(
