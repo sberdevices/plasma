@@ -2,6 +2,7 @@ export * from './components/Basebox';
 export * from './components/Button';
 export * from './components/Carousel';
 export * from './components/Fade';
+export * from './components/Field';
 export * from './components/Grid';
 export * from './components/Image';
 export * from './components/PaginationDots';
