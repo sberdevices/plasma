@@ -13,6 +13,7 @@ import {
 export interface RadioboxProps extends BaseboxProps {}
 
 const StyledTrigger = styled(CheckboxTrigger)`
+    flex-shrink: 0;
     width: 1.25rem;
     height: 1.25rem;
     border-radius: 1.125rem;
