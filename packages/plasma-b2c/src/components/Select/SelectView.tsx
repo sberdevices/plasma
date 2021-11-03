@@ -181,7 +181,7 @@ export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
                         </StyledButton>
                     }
                 />
-                {helperText && <TextFieldHelper status={status}>{helperText}</TextFieldHelper>}
+                {helperText && <TextFieldHelper>{helperText}</TextFieldHelper>}
             </StyledRoot>
         );
     },

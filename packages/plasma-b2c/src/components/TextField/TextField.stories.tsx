@@ -58,7 +58,7 @@ interface DefaultSortyProps extends TextFieldProps {
 }
 
 export const Default: Story<DefaultSortyProps> = ({ enableContentLeft, enableContentRight, status, ...rest }) => {
-    const [value, setValue] = React.useState('Title 🌝');
+    const [value, setValue] = React.useState('Title');
 
     return (
         <TextField
@@ -78,8 +78,8 @@ export const Default: Story<DefaultSortyProps> = ({ enableContentLeft, enableCon
 };
 
 Default.args = {
-    size: 'm',
     placeholder: 'Label',
+    caption: 'Caption',
     helperText: 'Helper text',
     enableContentLeft: true,
     enableContentRight: true,
@@ -104,7 +104,7 @@ DeferredValue.args = {
     readOnly: true,
 };
 
-const defValuePropsToDisable = [...propsToDisable, 'status', 'size', 'helperText', 'placeholder', 'disabled'];
+const defValuePropsToDisable = [...propsToDisable, 'status', 'helperText', 'placeholder', 'disabled'];
 
 DeferredValue.argTypes = {
     ...disableProps(defValuePropsToDisable),
