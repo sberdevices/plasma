@@ -1,8 +1,9 @@
-import React from 'react';
-import { TextFieldRoot, TextFieldTextarea, TextFieldHelper } from '@sberdevices/plasma-core';
+import React, { forwardRef } from 'react';
+import styled from 'styled-components';
+import { FieldRoot, FieldContent, FieldHelper, TextArea as BaseArea } from '@sberdevices/plasma-core';
 import type { TextAreaProps as BaseProps } from '@sberdevices/plasma-core';
 
-import { FieldInput, FieldContent, FieldHelperBlock } from '../Field/Field';
+import { applyInputStyles } from '../Field';
 
 export interface TextAreaProps extends BaseProps {
     /**
@@ -11,56 +12,32 @@ export interface TextAreaProps extends BaseProps {
     helperBlock?: React.ReactElement;
 }
 
+const StyledTextArea = styled(BaseArea)`
+    ${applyInputStyles}
+`;
+
 /**
  * Поле ввода многострочного текста.
  */
-export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
-    (
-        {
-            placeholder,
-            label,
-            helperText,
-            helperBlock,
-            disabled,
-            contentRight,
-            status,
-            resize,
-            onChange,
-            onFocus,
-            onBlur,
-            style,
-            id,
-            className,
-            ...rest
-        },
-        ref,
-    ) => {
-        return (
-            <TextFieldRoot
-                status={status}
-                $disabled={disabled}
-                $isContentRight={Boolean(contentRight)}
-                $isHelper={Boolean(helperText || helperBlock)}
-                className={className}
-                style={style}
-            >
-                <FieldInput
-                    as={TextFieldTextarea}
-                    ref={ref}
-                    id={id}
-                    placeholder={label || placeholder}
-                    disabled={disabled}
-                    status={status}
-                    $resize={resize}
-                    onChange={onChange}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
-                    {...rest}
-                />
-                {contentRight && <FieldContent pos="right">{contentRight}</FieldContent>}
-                {helperText && <TextFieldHelper status={status}>{helperText}</TextFieldHelper>}
-                {helperBlock && <FieldHelperBlock>{helperBlock}</FieldHelperBlock>}
-            </TextFieldRoot>
-        );
-    },
-);
+// eslint-disable-next-line prefer-arrow-callback
+export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function TextArea(
+    { id, disabled, status, label, placeholder, contentRight, helperText, style, className, ...rest },
+    ref,
+) {
+    const placeLabel = (label || placeholder) as string | undefined;
+
+    return (
+        <FieldRoot
+            $disabled={disabled}
+            $isContentRight={Boolean(contentRight)}
+            $isHelper={Boolean(helperText)}
+            status={status}
+            style={style}
+            className={className}
+        >
+            <StyledTextArea ref={ref} id={id} placeholder={placeLabel} disabled={disabled} status={status} {...rest} />
+            {contentRight && <FieldContent pos="right">{contentRight}</FieldContent>}
+            {helperText && <FieldHelper>{helperText}</FieldHelper>}
+        </FieldRoot>
+    );
+});

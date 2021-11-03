@@ -12,7 +12,6 @@ import { TextField, TextFieldProps } from '.';
 const propsToDisable = [
     'contentLeft',
     'htmlSize',
-    'size',
     '$isFocused',
     'contentRight',
     'type',
@@ -84,6 +83,7 @@ Default.args = {
     helperText: 'Helper text',
     disabled: false,
     status: '' as 'success',
+    size: 'l',
     enableLeftIcon: true,
     enableRightIcon: true,
 };

@@ -1,75 +1,65 @@
-import React from 'react';
-import {
-    TextFieldRoot,
-    TextFieldInput,
-    TextFieldPlaceholder,
-    TextFieldContent,
-    TextFieldHelper,
-    TextFieldProps as BaseProps,
-} from '@sberdevices/plasma-core';
+import React, { forwardRef } from 'react';
+import styled from 'styled-components';
+import { FieldRoot, FieldPlaceholder, FieldContent, FieldHelper, Input } from '@sberdevices/plasma-core';
+import type { InputProps } from '@sberdevices/plasma-core';
 
-import { FieldInput } from '../Field/Field';
+import { applyInputStyles } from '../Field';
 
-export interface TextFieldProps extends BaseProps {}
+export interface TextFieldProps extends InputProps {}
+
+const StyledInput = styled(Input)`
+    ${applyInputStyles}
+
+    border-radius: 1rem;
+`;
 
 /**
  * Поле ввода текста.
  */
-export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
-    (
-        {
-            size = 'l',
-            value,
-            defaultValue,
-            placeholder,
-            label,
-            helperText,
-            disabled,
-            contentLeft,
-            contentRight,
-            status,
-            onChange,
-            onFocus,
-            onBlur,
-            style,
-            id,
-            className,
-            ...rest
-        },
-        ref,
-    ) => {
-        const placeLabel = label || placeholder;
-
-        return (
-            <TextFieldRoot
-                $size={size}
-                $disabled={disabled}
-                $isContentLeft={Boolean(contentLeft)}
-                $isContentRight={Boolean(contentRight)}
-                $isHelper={Boolean(helperText)}
-                status={status}
-                className={className}
-                style={style}
-            >
-                {contentLeft && <TextFieldContent pos="left">{contentLeft}</TextFieldContent>}
-                <FieldInput
-                    ref={ref}
-                    id={id}
-                    as={TextFieldInput}
-                    value={value}
-                    defaultValue={defaultValue}
-                    placeholder={placeLabel}
-                    disabled={disabled}
-                    status={status}
-                    onChange={onChange}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
-                    {...rest}
-                />
-                {placeLabel && <TextFieldPlaceholder htmlFor={id}>{label || placeholder}</TextFieldPlaceholder>}
-                {contentRight && <TextFieldContent pos="right">{contentRight}</TextFieldContent>}
-                {helperText && <TextFieldHelper status={status}>{helperText}</TextFieldHelper>}
-            </TextFieldRoot>
-        );
+// eslint-disable-next-line prefer-arrow-callback
+export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function TextField(
+    {
+        id,
+        size = 'l',
+        disabled,
+        status,
+        label,
+        placeholder,
+        contentLeft,
+        contentRight,
+        helperText,
+        style,
+        className,
+        ...rest
     },
-);
+    ref,
+) {
+    const placeLabel = (label || placeholder) as string | undefined;
+
+    return (
+        <FieldRoot
+            $size={size}
+            $disabled={disabled}
+            $isContentLeft={Boolean(contentLeft)}
+            $isContentRight={Boolean(contentRight)}
+            $isHelper={Boolean(helperText)}
+            status={status}
+            style={style}
+            className={className}
+        >
+            {contentLeft && <FieldContent pos="left">{contentLeft}</FieldContent>}
+            <StyledInput
+                $size={size}
+                ref={ref}
+                id={id}
+                placeholder={placeLabel}
+                disabled={disabled}
+                status={status}
+                {...rest}
+            />
+            {placeLabel && size === 'l' && <FieldPlaceholder htmlFor={id}>{placeLabel}</FieldPlaceholder>}
+            {contentRight && <FieldContent pos="right">{contentRight}</FieldContent>}
+            {helperText && <FieldHelper>{helperText}</FieldHelper>}
+        </FieldRoot>
+    );
+});
