@@ -77,6 +77,7 @@ export const Slider: React.FC<SliderProps> = ({ min, max, value, disabled, onCha
             setState((prevState) => ({
                 ...prevState,
                 xHandle: data.lastX,
+                railFillWidth: data.lastX,
             }));
         },
         [onChangeCommitted],
@@ -88,6 +89,7 @@ export const Slider: React.FC<SliderProps> = ({ min, max, value, disabled, onCha
             max={max}
             disabled={disabled}
             setStepSize={setStepSize}
+            onChange={onHandleChangeCommited}
             railFillWidth={state.railFillWidth}
         >
             <Handle
