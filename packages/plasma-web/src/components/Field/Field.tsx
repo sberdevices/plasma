@@ -1,83 +1,52 @@
-import styled, { css, InterpolationFunction } from 'styled-components';
-import {
-    TextFieldProps,
-    TextFieldPlaceholder,
-    TextFieldContent,
-    secondary,
-    background,
-    accent,
-    success,
-    warning,
-    critical,
-    tertiary,
-} from '@sberdevices/plasma-core';
+import { css, InterpolationFunction } from 'styled-components';
+import { background, accent, tertiary, fieldStatuses } from '@sberdevices/plasma-core';
+import type { FieldProps } from '@sberdevices/plasma-core';
 
 import { inputBorder, inputBorderHover } from '../../tokens';
 
-const statuses = {
-    success,
-    warning,
-    error: critical,
-};
-
-const applyInputStatus: InterpolationFunction<Pick<TextFieldProps, 'status'>> = ({ status }) =>
-    status &&
-    css`
-        caret-color: ${statuses[status]};
-        border-color: ${statuses[status]};
-        color: ${statuses[status]};
-
-        &:focus {
-            border-color: ${statuses[status]};
-        }
-
-        /* stylelint-disable-next-line selector-nested-pattern */
-        &:hover,
-        &:disabled {
-            border-color: ${statuses[status]};
-        }
-    `;
-
-export const FieldInput = styled.input<Pick<TextFieldProps, 'status'> & { $isFocused?: boolean }>`
-    background: ${background};
-    border-color: ${inputBorder};
+export const applyInputStyles: InterpolationFunction<Pick<FieldProps, 'status' | '$isFocused'>> = ({
+    status,
+    $isFocused,
+}) => css`
+    background-color: ${background};
+    box-shadow: inset 0 0 0 1px ${inputBorder};
     border-radius: 0.25rem;
 
-    transition: border-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+    transition: box-shadow 0.1s ease-in-out;
 
     &:hover {
-        border-color: ${inputBorderHover};
+        box-shadow: inset 0 0 0 1px ${inputBorderHover};
     }
 
     &:focus {
-        border-color: ${accent};
+        box-shadow: inset 0 0 0 1px ${accent};
     }
 
     /* stylelint-disable-next-line selector-nested-pattern */
     &:disabled,
     &:read-only,
     &:read-only:focus {
-        border-color: ${inputBorder};
+        box-shadow: inset 0 0 0 1px ${inputBorder};
     }
 
     &::placeholder {
         color: ${tertiary};
     }
 
-    ${({ $isFocused }) =>
-        $isFocused &&
-        css`
-            border-color: ${accent};
-        `}
+    ${status &&
+    css`
+        color: ${fieldStatuses[status]};
 
-    ${applyInputStatus}
-`;
-export const FieldPlaceholder = styled(TextFieldPlaceholder)`
-    color: ${tertiary};
-`;
-export const FieldContent = styled(TextFieldContent)`
-    ${({ pos }) => (pos === 'left' ? 'left: 0.75rem' : 'right: 0.75rem')};
-`;
-export const FieldHelperBlock = styled.div`
-    color: ${secondary};
+        &,
+        &:hover,
+        &:focus,
+        &:disabled {
+            box-shadow: inset 0 0 0 1px ${fieldStatuses[status]};
+        }
+    `}
+
+    ${$isFocused &&
+    css`
+        box-shadow: inset 0 0 0 1px ${accent};
+    `}
 `;
