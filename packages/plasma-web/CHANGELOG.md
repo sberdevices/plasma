@@ -1,3 +1,15 @@
+# v1.56.2 (Wed Nov 03 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web): prevent radiobox elipse shrinking [#912](https://github.com/sberdevices/plasma/pull/912) ([@aabulakhsberbank](https://github.com/aabulakhsberbank))
+
+#### Authors: 1
+
+- [@aabulakhsberbank](https://github.com/aabulakhsberbank)
+
+---
+
 # v1.56.1 (Fri Oct 29 2021)
 
 #### 🐛 Bug Fix
