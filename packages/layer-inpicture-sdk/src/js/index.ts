@@ -12,7 +12,7 @@ Swiper.use([Navigation]);
 const BASE_URL = 'https://test-mcrai.sberdevices.ru/v2/frame-mp';
 const PLASMA_FONTS_CDN = 'https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansText.0.1.0.css';
 
-let STATUS: 'OPEN' | 'CLOSE' = 'OPEN';
+let closeSlidersIds: number[] = [];
 
 const loadCss = (filename: string) => {
     const cssNode = document.createElement('link');
@@ -28,9 +28,15 @@ loadCss(PLASMA_FONTS_CDN);
 const onButtonClick = (img: HTMLImageElement, index: number) => {
     const swiperContainer = document.querySelector<HTMLElement>(`#swiper-container-${index}`);
 
-    swiperContainer.style.transform = `translateY(${STATUS === 'OPEN' ? 150 : 0}px)`;
+    const isClose = closeSlidersIds.includes(index);
 
-    STATUS = STATUS === 'OPEN' ? 'CLOSE' : 'OPEN';
+    if (isClose) {
+        closeSlidersIds = closeSlidersIds.filter((id) => id !== index);
+    } else {
+        closeSlidersIds.push(index);
+    }
+
+    swiperContainer.style.transform = `translateY(${isClose ? 0 : 150}px)`;
 };
 
 const createWrap = (index: number, img: HTMLImageElement) => {
