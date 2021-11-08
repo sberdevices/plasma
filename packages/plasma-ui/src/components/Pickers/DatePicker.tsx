@@ -67,6 +67,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     visibleItems,
     scrollSnapType,
     onChange,
+    name,
+    enableNativeControl,
     ...rest
 }) => {
     const normalizeValues = React.useMemo(() => getNormalizeValues(getDateValues, getSeconds)(value, min, max), [
@@ -256,6 +258,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                     onChange={onYearChange}
                 />
             )}
+            {enableNativeControl && <input type="hidden" value={value.toISOString()} name={name} />}
         </StyledWrapper>
     );
 };

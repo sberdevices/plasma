@@ -149,6 +149,8 @@ export const TimePicker: React.FC<TimePickerProps> = ({
     scrollSnapType,
     visibleItems,
     onChange,
+    name,
+    enableNativeControl,
     ...rest
 }) => {
     const normalizeValues = React.useMemo(() => getNormalizeValues(getTimeValues, getSeconds)(value, min, max), [
@@ -303,6 +305,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     onChange={onSecondsChange}
                 />
             )}
+            {enableNativeControl && <input type="hidden" value={value.toISOString()} name={name} />}
         </StyledWrapper>
     );
 };

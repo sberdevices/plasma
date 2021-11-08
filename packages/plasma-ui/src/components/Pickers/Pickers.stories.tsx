@@ -44,6 +44,8 @@ interface DefaultStoryProps extends DatePickerProps {
     TimePickerStep: number;
     DatePickerVisibleItems: number;
     TimePickerVisibleItems: number;
+    DatePickerNativeControl: boolean;
+    TimePickerNativeControl: boolean;
     optionsYears: boolean;
     optionsMonths: boolean;
     optionsDays: boolean;
@@ -98,6 +100,7 @@ export const Default: Story<DefaultStoryProps> = (args) => {
                 controls={args.controls}
                 autofocus={args.autofocus}
                 onChange={onChange}
+                enableNativeControl={args.DatePickerNativeControl}
             />
             <TimePicker
                 id="timepicker"
@@ -112,6 +115,7 @@ export const Default: Story<DefaultStoryProps> = (args) => {
                 disabled={args.disabled}
                 controls={args.controls}
                 onChange={onChange}
+                enableNativeControl={args.TimePickerNativeControl}
             />
         </StyledWrapper>
     );
@@ -137,6 +141,8 @@ Default.args = {
     TimePickeSize: 's',
     TimePickerStep: 1,
     TimePickerVisibleItems: 5,
+    DatePickerNativeControl: false,
+    TimePickerNativeControl: false,
 };
 
 Default.argTypes = {
