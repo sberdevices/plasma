@@ -1,9 +1,9 @@
 # Документация
 
-1. [Базовая функциональность](./core.md)
-1. [Конфигурация](./config.md)
-1. [Действия](./actions.md)
-1. [Шаблоны](./templates.md)
-1. [Хуки](./hooks.md)
-1. [Взаимодействие со сценарием](./scenario.md)
-1. [Формы](./forms.md)
+1. [Базовая функциональность](https://plasma.sberdevices.ru/temple/core)
+2. [Конфигурация](https://plasma.sberdevices.ru/temple/config)
+3. [Действия](https://plasma.sberdevices.ru/temple/actions)
+4. [Шаблоны](https://plasma.sberdevices.ru/temple/templates)
+5. [Хуки](https://plasma.sberdevices.ru/temple/hooks)
+6. [Взаимодействие со сценарием](https://plasma.sberdevices.ru/temple/scenario)
+7. [Формы](https://plasma.sberdevices.ru/temple/forms)
