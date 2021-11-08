@@ -170,6 +170,15 @@ export interface PickerProps
      * Автофокус на компоненте.
      */
     autofocus?: boolean;
+    /**
+     * Добавляет нативный инпут для отправки в формах. Используется `input[type=hidden]`
+     */
+    enableNativeControl?: boolean;
+    /**
+     * Имя нативного инпута. Полезно при отправке uncontrolled-форм.
+     * Используется вместе с пропом `enableNativeControl`.
+     */
+    name?: string;
 }
 
 export const Picker: React.FC<PickerProps> = ({
