@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es2015",
+    "allowJs": true,
+    "moduleResolution": "node",
+  },
+  "include": ["src/**/*.ts","custom.d.ts", "index.d.ts"],
+  "exclude": ["node_modules", "dist"]
+}

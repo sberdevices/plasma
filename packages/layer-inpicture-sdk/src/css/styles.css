@@ -1,0 +1,35 @@
+@import "slider.css";
+
+.unselectable {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently
+                                not supported by any browser */
+}
+
+.layer-logo {
+    font-weight: 700;
+}
+
+.layer-find-products-btn {
+    background: rgba(0, 0, 0, 0.32);
+    border-radius: 38px;
+    padding: 6px 16px;
+    display: flex; cursor: pointer;
+    outline: none;
+    border: 0;
+    font-family: SB Sans Text, sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.96);
+    z-index: 1;
+}
+
+.layer-logo-btn {
+    width: 13px;
+    margin-left: 8px;
+    margin-right: 4px;
+}
