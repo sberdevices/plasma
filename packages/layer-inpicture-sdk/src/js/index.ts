@@ -154,7 +154,7 @@ const renderImageWrap = async (img: HTMLImageElement, index: number) => {
     }
 };
 
-export default async (img: HTMLImageElement): Promise<void> => {
+export const initInPicture = async (img: HTMLImageElement): Promise<void> => {
     try {
         await renderImageWrap(img, id++);
         return Promise.resolve();
