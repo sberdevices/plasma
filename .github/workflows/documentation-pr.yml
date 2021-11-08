@@ -60,6 +60,11 @@ jobs:
           npm run build --prefix="./website/plasma-web-docs"
           cp -R ./website/plasma-web-docs/build ../build/${PR_NAME}/web
 
+      - name: Plasma Web Temple
+        run: |
+          npm run build --prefix="./website/plasma-temple-docs"
+          cp -R ./website/plasma-temple-docs/build ../build/${PR_NAME}/temple
+
       - name: Plasma UI Storybook
         run: |
           npm run storybook:build --prefix="./packages/plasma-ui"
