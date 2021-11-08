@@ -12,6 +12,8 @@ module.exports = {
 		filename: './[name].js',
 		path: path.resolve(__dirname, 'dist'),
 		clean: true,
+        library: 'initInPicture',
+        libraryTarget: 'umd',
 	},
 	devServer: {
 		historyApiFallback: true,

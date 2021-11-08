@@ -7,6 +7,8 @@ import arrow from '../assets/arrow.svg';
 import logo from '../assets/logo.svg';
 import { Product } from '../types';
 
+let id = 1;
+
 Swiper.use([Navigation]);
 
 const BASE_URL = 'https://test-mcrai.sberdevices.ru/v2/frame-mp';
@@ -53,7 +55,7 @@ const createWrap = (index: number, img: HTMLImageElement) => {
 };
 
 const createContent = (index: number) =>
-    `<div class="layer-swiper-container mySwiper" id="swiper-container-${index}">
+            `<div class="layer-swiper-container layer-swiper" id="swiper-container-${index}">
                 <div
                     class="slider-top-content"
                     id="slider-top-content-${index}"
@@ -85,6 +87,45 @@ const createSlide = (product: Product) =>
             </div>
         `;
 
+const createSlider = (products: Product[], img: HTMLImageElement, index: number) => {
+    const sliderWrap = document.querySelector(`#slider-wrap-${index}`);
+    sliderWrap.insertAdjacentHTML('afterbegin', createContent(index));
+
+    const hideShowButton: HTMLElement = document.querySelector(`#find-products-btn-${index}`);
+
+    hideShowButton.onclick = () => {
+        onButtonClick(img, index);
+    };
+
+    const swiperWrapper = document.querySelector<HTMLElement>(`#swiper-wrapper-${index}`);
+
+    products.forEach((product: Product) =>
+        swiperWrapper.insertAdjacentHTML('beforeend', createSlide(product)),
+    );
+
+    const sliderTopContent = document.querySelector<HTMLElement>(`#slider-top-content-${index}`);
+
+    swiperWrapper.addEventListener('mouseover', () => {
+        sliderTopContent.style.visibility = 'hidden';
+    });
+    swiperWrapper.addEventListener('mouseout', () => {
+        sliderTopContent.style.visibility = 'visible';
+    });
+
+    const swiperContainer = document.querySelector<HTMLElement>(`#swiper-container-${index}`);
+    swiperContainer.style.width = `${img.width}px`;
+
+    // eslint-disable-next-line no-new
+    new Swiper('.layer-swiper', {
+        slidesPerView: 'auto',
+        spaceBetween: 16,
+        navigation: {
+            nextEl: '.layer-swiper-button-next',
+            prevEl: '.layer-swiper-button-prev',
+        },
+    });
+};
+
 const loadProducts = async (img: HTMLImageElement, index: number) => {
     const formData = new FormData();
 
@@ -98,64 +139,26 @@ const loadProducts = async (img: HTMLImageElement, index: number) => {
         body: formData,
     };
 
-    try {
-        const response = await fetch(BASE_URL, requestOptions);
-        const result = await response.json();
+    const response = await fetch(BASE_URL, requestOptions);
+    // eslint-disable-next-line no-return-await
+    return await response.json();
+};
 
-        if (result.data.products.length !== 0) {
-            const sliderWrap = document.querySelector(`#slider-wrap-${index}`);
-            sliderWrap.insertAdjacentHTML('afterbegin', createContent(index));
+const renderImageWrap = async (img: HTMLImageElement, index: number) => {
+    document.body.insertAdjacentHTML('beforeend', createWrap(index, img));
 
-            const hideShowButton: HTMLElement = document.querySelector(`#find-products-btn-${index}`);
+    const result = await loadProducts(img, index);
 
-            hideShowButton.onclick = () => {
-                onButtonClick(img, index);
-            };
-
-            const swiperWrapper = document.querySelector<HTMLElement>(`#swiper-wrapper-${index}`);
-
-            result.data.products.forEach((product: Product) =>
-                swiperWrapper.insertAdjacentHTML('beforeend', createSlide(product)),
-            );
-
-            const sliderTopContent = document.querySelector<HTMLElement>(`#slider-top-content-${index}`);
-
-            swiperWrapper.addEventListener('mouseover', () => {
-                sliderTopContent.style.visibility = 'hidden';
-            });
-            swiperWrapper.addEventListener('mouseout', () => {
-                sliderTopContent.style.visibility = 'visible';
-            });
-
-            const swiperContainer = document.querySelector<HTMLElement>(`#swiper-container-${index}`);
-            swiperContainer.style.width = `${img.width}px`;
-
-            // eslint-disable-next-line no-new
-            new Swiper('.mySwiper', {
-                slidesPerView: 'auto',
-                spaceBetween: 16,
-                navigation: {
-                    nextEl: '.layer-swiper-button-next',
-                    prevEl: '.layer-swiper-button-prev',
-                },
-            });
-        }
-    } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error(error);
+    if (result.data.products.length !== 0) {
+        createSlider(result.data.products, img, index);
     }
 };
 
-const renderImageWrap = (img: HTMLImageElement, index: number) => {
-    document.body.insertAdjacentHTML('beforeend', createWrap(index, img));
-
-    loadProducts(img, index);
-};
-
-window.initInPicture = (config) => {
-    const { images = [] } = config;
-
-    for (const [i, img] of images.entries()) {
-        renderImageWrap(img, i);
+export default async (img: HTMLImageElement): Promise<void> => {
+    try {
+        await renderImageWrap(img, id++);
+        return Promise.resolve();
+    } catch (e) {
+        return Promise.reject(e);
     }
 };
