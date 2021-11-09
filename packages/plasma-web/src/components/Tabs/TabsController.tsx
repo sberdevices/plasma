@@ -82,7 +82,7 @@ export const TabsController: React.FC<TabsControllerProps> = ({ stretch, disable
                     <TabItem
                         key={i}
                         isActive={i === index}
-                        tabIndex={!disabled ? 0 : -1}
+                        tabIndex={!disabled && i === index ? 0 : -1}
                         contentLeft={contentLeft}
                         onClick={() => !disabled && onIndexChange?.(i)}
                         onFocus={onItemFocus}
