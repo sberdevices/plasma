@@ -23,6 +23,7 @@
         "@sberdevices/plasma-icons": "1.55.1",
         "@sberdevices/plasma-tokens": "1.14.0",
         "@sberdevices/plasma-ui": "1.67.1",
+        "@sberdevices/spatial-navigation": "1.0.3",
         "next": "11.0.1",
         "react": "17.0.2",
         "react-dom": "17.0.2",
