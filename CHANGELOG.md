@@ -1,3 +1,22 @@
+# (Tue Nov 09 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/layer-inpicture-sdk@0.1.0`
+  - feat(webpack.config): changed build folder, name [#139](https://github.com/sberdevices/pashka/pull/139) (KVIlikov@sberbank.ru)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/layer-inpicture-sdk@0.1.0`
+  - fix(package.json): browser path [#139](https://github.com/sberdevices/pashka/pull/139) (KVIlikov@sberbank.ru)
+  - fix(package.json, webpack.config): changed logic [#139](https://github.com/sberdevices/pashka/pull/139) (KVIlikov@sberbank.ru)
+
+#### Authors: 1
+
+- Kirill Ilikov (KVIlikov@sberbank.ru)
+
+---
+
 # (Mon Nov 08 2021)
 
 #### 🚀 Enhancement
