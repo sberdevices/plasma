@@ -1,3 +1,19 @@
+# v1.35.0 (Tue Nov 09 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): A11y for `Toast` [#710](https://github.com/sberdevices/plasma/pull/710) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- test: Improve tests for `TextField` and `TextArea` [#914](https://github.com/sberdevices/plasma/pull/914) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.34.0 (Fri Oct 29 2021)
 
 #### 🚀 Enhancement

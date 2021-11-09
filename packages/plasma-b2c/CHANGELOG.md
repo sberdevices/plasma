@@ -1,3 +1,20 @@
+# v1.17.0 (Tue Nov 09 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-b2c): make single slider rail clickable [#913](https://github.com/sberdevices/plasma/pull/913) ([@aabulakhsberbank](https://github.com/aabulakhsberbank))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@aabulakhsberbank](https://github.com/aabulakhsberbank)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
 # v1.16.2 (Mon Nov 01 2021)
 
 #### 🐛 Bug Fix

@@ -1,3 +1,20 @@
+# v1.61.0 (Tue Nov 09 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): A11y for `Toast` [#710](https://github.com/sberdevices/plasma/pull/710) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- test(plasma-ui): `DatePicker` and `TimePicker` ct [#915](https://github.com/sberdevices/plasma/pull/915) ([@fanisco](https://github.com/fanisco))
+- chore(plasma-ui): Change Storybook's iframe lang [#710](https://github.com/sberdevices/plasma/pull/710) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.60.1 (Mon Nov 01 2021)
 
 #### 🐛 Bug Fix
