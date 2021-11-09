@@ -8,15 +8,15 @@ module.exports = {
 	mode: 'development',
 	entry: './js/index.ts',
 	output: {
-		filename: './[name].js',
-		path: path.resolve(__dirname, 'dist'),
+		filename: './layer-inpicture-sdk.production.min.js',
+		path: path.resolve(__dirname, 'umd'),
 		clean: true,
         library: 'layer',
         libraryTarget: 'umd',
 	},
 	devServer: {
 		historyApiFallback: true,
-		static: path.resolve(__dirname, 'dist'),
+		static: path.resolve(__dirname, 'umd'),
 		open: true,
 		compress: true,
 		hot: true,
