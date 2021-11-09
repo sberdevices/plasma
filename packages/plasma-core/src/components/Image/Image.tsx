@@ -78,9 +78,6 @@ const StyledRoot = styled.div<StyledRootProps>`
 
 const StyledImg = styled.img`
     width: 100%;
-    height: 100%;
-    position: absolute;
-    object-fit: cover;
 `;
 
 const StyledDivImg = styled.div`
