@@ -146,7 +146,7 @@ export const PreviewGalleryItemBase = memo(
                 key={id}
                 onClick={customClickHandle ? () => customClickHandle(id) : () => onItemClick?.(id)}
             >
-                <Image src={image} ratio="16 / 9" />
+                <Image base="div" src={image} ratio="16 / 9" />
 
                 {!actionDisabled && <StyledTrashButton onClick={itemActionHandle}>{actionIcon}</StyledTrashButton>}
 
