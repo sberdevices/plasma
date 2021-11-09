@@ -1,26 +1,27 @@
 {
-  "name": "init-in-picture",
-  "version": "0.1.0",
+  "name": "@sberdevices/layer-inpicture-sdk",
+  "version": "0.0.1",
   "description": "",
-  "main": "src/js/index.js",
+  "browser": "dist/main.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --mode production",
     "dev": "cross-env NODE_ENV=development webpack --mode development",
     "start": "cross-env NODE_ENV=development webpack serve --mode development"
   },
   "keywords": [],
-  "author": "test",
-  "license": "ISC",
+  "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
+  "license": "Sber Public License at-nc-sa v.2",
   "devDependencies": {
     "@babel/core": "^7.15.8",
     "@babel/plugin-transform-runtime": "^7.16.0",
     "@babel/preset-env": "^7.15.8",
+    "@babel/runtime": "^7.16.0",
     "babel-loader": "^8.2.3",
-    "copy-webpack-plugin": "^9.0.1",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.5.0",
-    "file-loader": "^6.2.0",
     "mini-css-extract-plugin": "^2.4.3",
     "style-loader": "^3.3.1",
+    "svg-inline-loader": "^0.8.2",
     "ts-loader": "^9.2.6",
     "typescript": "^4.4.4",
     "webpack": "^5.60.0",
@@ -28,8 +29,6 @@
     "webpack-dev-server": "^4.4.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.16.0",
-    "cross-env": "^7.0.3",
     "swiper": "^7.2.0"
   }
 }
