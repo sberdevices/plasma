@@ -40,7 +40,6 @@ import { Plus } from './Icon.assets/Plus';
 import { PlusCircle } from './Icon.assets/PlusCircle';
 import { Search } from './Icon.assets/Search';
 import { Settings } from './Icon.assets/Settings';
-import { Spinner } from './Icon.assets/Spinner';
 import { Trash } from './Icon.assets/Trash';
 import { TrashFilled } from './Icon.assets/TrashFilled';
 import { Cart } from './Icon.assets/Cart';
@@ -196,7 +195,6 @@ export const iconSectionsSet = {
         plusCircle: PlusCircle,
         search: Search,
         settings: Settings,
-        spinner: Spinner,
         trash: Trash,
         trashFilled: TrashFilled,
         cart: Cart,
