@@ -1,3 +1,15 @@
+# v0.1.1 (Tue Nov 09 2021)
+
+#### 🐛 Bug Fix
+
+- fix(layer-inpicture-sdk): forgotten prepare script [#140](https://github.com/sberdevices/pashka/pull/140) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v0.1.0 (Tue Nov 09 2021)
 
 #### 🚀 Enhancement
