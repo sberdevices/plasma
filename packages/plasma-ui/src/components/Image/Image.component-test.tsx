@@ -1,0 +1,1 @@
+../../../../plasma-core/src/components/Image/Image.component-test.tsx
