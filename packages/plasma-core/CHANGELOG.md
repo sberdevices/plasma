@@ -1,3 +1,16 @@
+# v1.35.1 (Tue Nov 09 2021)
+
+#### 🐛 Bug Fix
+
+- test(plasma-ui): Added for `Image` component [#909](https://github.com/sberdevices/plasma/pull/909) ([@fanisco](https://github.com/fanisco))
+- fix: Pass `Image`'s width and height through args [#909](https://github.com/sberdevices/plasma/pull/909) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.35.0 (Tue Nov 09 2021)
 
 #### 🚀 Enhancement

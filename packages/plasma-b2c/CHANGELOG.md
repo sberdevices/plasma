@@ -1,3 +1,17 @@
+# v1.17.1 (Tue Nov 09 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-b2c): Import `Image` directly from core [#909](https://github.com/sberdevices/plasma/pull/909) ([@fanisco](https://github.com/fanisco))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.17.0 (Tue Nov 09 2021)
 
 #### 🚀 Enhancement
