@@ -1,10 +1,15 @@
-import { useState, useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { DeviceThemeProvider, ToastProvider, Container, NeuHeader } from '@sberdevices/plasma-ui';
 
 import { GlobalStyle } from '../components';
+
+if (typeof window !== 'undefined') {
+    // @ts-ignore
+    import('@sberdevices/spatial-navigation');
+}
 
 function MyApp({ Component, pageProps }: AppProps) {
     const router = useRouter();
