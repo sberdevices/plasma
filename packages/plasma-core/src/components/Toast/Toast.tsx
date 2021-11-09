@@ -5,7 +5,10 @@ import { applyNoSelect } from '../../mixins';
 import { dark02, white } from '../../tokens';
 import { Footnote1 } from '../Typography';
 
+import type { ToastRole } from './Toast.types';
+
 export type ToastProps = {
+    role?: ToastRole;
     text: string;
     contentLeft?: ReactNode;
 };
@@ -28,9 +31,20 @@ const StyledContent = styled.div`
  * Короткие текстовые подсказки.
  * Вызываются только в текущем запущенном приложении как реакция на выполнение действия пользователем.
  */
-export const Toast: React.FC<ToastProps> = ({ text, contentLeft }) => (
-    <StyledRoot>
-        {contentLeft && <StyledContent>{contentLeft}</StyledContent>}
-        {text}
-    </StyledRoot>
-);
+export const Toast: React.FC<ToastProps> = ({ role = 'status', text, contentLeft }) => {
+    let ariaLive: 'assertive' | 'polite' = 'polite';
+    let ariaAtomic = false;
+
+    if (role === 'alert') {
+        ariaLive = 'assertive';
+    } else if (role === 'status') {
+        ariaAtomic = true;
+    }
+    console.log(contentLeft, text);
+    return (
+        <StyledRoot role={role} aria-live={ariaLive} aria-atomic={ariaAtomic}>
+            {contentLeft && <StyledContent>{contentLeft}</StyledContent>}
+            {text}
+        </StyledRoot>
+    );
+};
