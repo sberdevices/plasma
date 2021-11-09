@@ -2,7 +2,7 @@
   "name": "@sberdevices/layer-inpicture-sdk",
   "version": "0.0.1",
   "description": "",
-  "browser": "dist/main.js",
+  "browser": "umd/layer-inpicture-sdk.production.min.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --mode production",
     "dev": "cross-env NODE_ENV=development webpack --mode development",
