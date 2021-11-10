@@ -1,0 +1,31 @@
+---
+id: hooks
+title: Хуки
+---
+
+# Хуки
+
+## useForkRef
+Позволяет переиспользовать объект `ref` внутри `forwardRef`.
+
+``` tsx
+import { forwardRef, useRef, useEffect } from 'react';
+import { useForkRef } from '@sberdevices/plasma-ui';
+
+export const MyForwardingRefComponent = forwardRef((props, outerRef) => {
+    const innerRef = useRef();
+    const forkRef = useForkRef(outerRef, innerRef);
+
+    useEffect(() => {
+        if (innerRef.current) {
+            innerRef.current.style.background = 'bada55';
+        }
+    }, []);
+
+    return (
+        <div ref={forkRef}>
+            My Forwarding Ref Component
+        </div>
+    );
+});
+```
