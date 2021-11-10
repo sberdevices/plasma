@@ -48,12 +48,12 @@
     font-size: 18px;
     background: #fff;
     overflow: hidden;
-    transition: all 1s !important;
+    transition: all 0.5s !important;
 }
 
 .layer-swiper-slide:hover {
-    width: 176px !important;
-    height: 260px !important;
+    width: 150px !important;
+    height: 210px !important;
 }
 
 .layer-swiper-slide .layer-swiper-slide-bottom {
@@ -61,7 +61,7 @@
     position: absolute;
     width: 100%;
     bottom: 0;
-    background: white;
+    background-color: #eeeeeecf;
 }
 
 .layer-swiper-slide:hover .layer-swiper-slide-bottom {

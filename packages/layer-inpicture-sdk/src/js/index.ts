@@ -60,7 +60,7 @@ const createContent = (index: number) =>
                     class="slider-top-content"
                     id="slider-top-content-${index}"
                 >
-                    <button class="layer-find-products-btn unselectable" id="find-products-btn-${index}">Найдено через
+                    <button class="layer-find-products-btn unselectable" id="find-products-btn-${index}">Похожие товары
                         <img class="layer-logo-btn" src="${logo}" alt="logo"/>
                         <span class="layer-logo">Layer</span>
                     </button>
@@ -75,9 +75,9 @@ const createContent = (index: number) =>
             </div>
         `;
 
-const createSlide = (product: Product) =>
+const createSlide = (product: Product, index: number) =>
     `
-            <div class="swiper-slide layer-swiper-slide unselectable">
+            <div class="swiper-slide swiper-slide-${index} layer-swiper-slide unselectable ">
                 <img src="${product.pic}"/>
                 <div class="layer-swiper-slide-bottom">
                     <div class="layer-swiper-slide-bottom__price">${product.price} ₽</div>
@@ -93,15 +93,15 @@ const createSlider = (products: Product[], img: HTMLImageElement, index: number)
 
     const hideShowButton: HTMLElement = document.querySelector(`#find-products-btn-${index}`);
 
-    hideShowButton.onclick = () => {
-        onButtonClick(img, index);
-    };
+    hideShowButton.onclick = () => onButtonClick(img, index);
 
     const swiperWrapper = document.querySelector<HTMLElement>(`#swiper-wrapper-${index}`);
 
-    products.forEach((product: Product) =>
-        swiperWrapper.insertAdjacentHTML('beforeend', createSlide(product)),
-    );
+    products.forEach((product: Product, slideIndex) => {
+        swiperWrapper.insertAdjacentHTML('beforeend', createSlide(product, slideIndex));
+        const slide = document.querySelector<HTMLElement>(`.swiper-slide-${slideIndex}`);
+        slide.onclick = () => window.open(product.url, '_blank');
+    });
 
     const sliderTopContent = document.querySelector<HTMLElement>(`#slider-top-content-${index}`);
 
