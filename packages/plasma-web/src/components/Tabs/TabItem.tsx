@@ -1,15 +1,15 @@
-import React, { FC, useRef, useEffect, useContext } from 'react';
 import styled, { css } from 'styled-components';
 import { TabItem as BaseTabItem, secondary, footnote2 } from '@sberdevices/plasma-core';
 import type { TabItemProps as BaseTabItemProps } from '@sberdevices/plasma-core';
 
 import { link, linkHover, linkActive } from '../../tokens';
 
-import { TabsContext } from './TabsContext';
-
 export interface TabItemProps extends BaseTabItemProps {}
 
-const StyledTabItem = styled(BaseTabItem)`
+/**
+ * Элемент списка вкладок, недопустимо импользовать вне компонента Tabs.
+ */
+export const TabItem = styled(BaseTabItem)`
     ${footnote2};
 
     /* stylelint-disable-next-line number-max-precision */
@@ -41,18 +41,3 @@ const StyledTabItem = styled(BaseTabItem)`
         box-shadow: inset 0 -0.125rem 0 ${linkActive};
     }
 `;
-
-/**
- * Элемент списка вкладок, недопустимо импользовать вне компонента Tabs.
- */
-export const TabItem: FC<TabItemProps> = (props) => {
-    const ref = useRef<HTMLElement>(null);
-    const { refs } = useContext(TabsContext);
-
-    useEffect(() => {
-        refs?.register(ref);
-        return () => refs?.unregister(ref);
-    }, [refs]);
-
-    return <StyledTabItem ref={ref} {...props} />;
-};
