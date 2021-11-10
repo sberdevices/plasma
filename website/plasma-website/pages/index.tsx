@@ -103,7 +103,7 @@ const products = [
         title: 'Temple',
         description: 'Шаблоны для ускорения разработки канвасов',
         links: [
-            { text: 'Документация', href: `${basePath}/temple`, soon: true },
+            { text: 'Документация', href: `${basePath}/temple` },
             { text: 'Сторибук', href: `${basePath}/temple-storybook` },
             { text: 'Фигма', href: '', soon: true },
         ],
