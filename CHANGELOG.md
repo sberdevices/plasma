@@ -1,3 +1,16 @@
+# (Wed Nov 10 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-ui@1.62.0`
+  - feat(plasma-ui): Added option to enable native input for Pickers [#916](https://github.com/sberdevices/plasma/pull/916) ([@jabzzy](https://github.com/jabzzy))
+
+#### Authors: 1
+
+- Eugene Dashkevich ([@jabzzy](https://github.com/jabzzy))
+
+---
+
 # (Tue Nov 09 2021)
 
 #### 🐛 Bug Fix

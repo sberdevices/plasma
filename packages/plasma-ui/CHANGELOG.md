@@ -1,3 +1,20 @@
+# v1.62.0 (Wed Nov 10 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): Added option to enable native input for Pickers [#916](https://github.com/sberdevices/plasma/pull/916) ([@jabzzy](https://github.com/jabzzy))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Eugene Dashkevich ([@jabzzy](https://github.com/jabzzy))
+
+---
+
 # v1.61.1 (Tue Nov 09 2021)
 
 #### 🐛 Bug Fix
