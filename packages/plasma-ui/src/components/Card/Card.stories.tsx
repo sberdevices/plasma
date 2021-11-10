@@ -22,12 +22,21 @@ export default {
 
 interface BasicValueProps extends CardProps {
     cover: boolean;
+    coverGradient: boolean;
     subTitle: string;
     title: string;
     description: string;
 }
 
-export const BasicValue: Story<BasicValueProps> = ({ outlined, scaleOnFocus, cover, subTitle, title, description }) => {
+export const BasicValue: Story<BasicValueProps> = ({
+    outlined,
+    coverGradient,
+    scaleOnFocus,
+    cover,
+    subTitle,
+    title,
+    description,
+}) => {
     return (
         <Card style={{ width: '22.5rem' }} tabIndex={0} outlined={outlined} scaleOnFocus={scaleOnFocus}>
             <CardBody>
@@ -36,7 +45,7 @@ export const BasicValue: Story<BasicValueProps> = ({ outlined, scaleOnFocus, cov
                     placeholder="./images/320_320_1.jpg"
                     ratio={cover ? '1 / 1' : '16 / 9'}
                 />
-                <CardContent cover={cover as true} coverGradient={cover && boolean('coverGradient', true)}>
+                <CardContent cover={cover as true} coverGradient={cover && coverGradient}>
                     <TextBox>
                         <TextBoxBigTitle>{subTitle}</TextBoxBigTitle>
                         <TextBoxBiggerTitle>{title}</TextBoxBiggerTitle>
@@ -60,6 +69,7 @@ export const BasicValue: Story<BasicValueProps> = ({ outlined, scaleOnFocus, cov
 
 BasicValue.args = {
     cover: false,
+    coverGradient: true,
     outlined: true,
     scaleOnFocus: true,
     subTitle: 'Потребительский кредит',
