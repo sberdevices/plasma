@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { forwardRef, useRef, useContext, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
+import { useForkRef } from '../../hooks';
 import { applyEllipsis } from '../../mixins';
 import { AsProps } from '../../types';
+
+import { TabsContext } from './TabsContext';
 
 interface StyledTabItemProps {
     isActive?: boolean;
@@ -89,8 +92,21 @@ export const StyledTabItem = styled.button<StyledTabItemProps>`
 /**
  * Элемент списка, недопустимо использовать вне компонента Tabs.
  */
-export const TabItem: React.FC<TabItemProps> = React.forwardRef(
-    ({ children, contentLeft, isActive, role = 'tab', ...rest }, ref) => (
+// eslint-disable-next-line prefer-arrow-callback
+export const TabItem = forwardRef<HTMLButtonElement, TabItemProps>(function TabItem(
+    { children, contentLeft, isActive, role = 'tab', ...rest },
+    outerRef,
+) {
+    const innerRef = useRef<HTMLButtonElement>(null);
+    const ref = useForkRef(outerRef, innerRef);
+    const { refs } = useContext(TabsContext);
+
+    useEffect(() => {
+        refs?.register(innerRef);
+        return () => refs?.unregister(innerRef);
+    }, [refs]);
+
+    return (
         <StyledTabItem
             ref={ref}
             isChildren={!!children}
@@ -103,5 +119,5 @@ export const TabItem: React.FC<TabItemProps> = React.forwardRef(
             {contentLeft && <StyledTabItemContentLeft aria-hidden>{contentLeft}</StyledTabItemContentLeft>}
             {children && <StyledTabItemText tabIndex={-1}>{children}</StyledTabItemText>}
         </StyledTabItem>
-    ),
-);
+    );
+});
