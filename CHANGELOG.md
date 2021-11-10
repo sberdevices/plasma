@@ -1,3 +1,16 @@
+# (Wed Nov 10 2021)
+
+#### ⚠️ Pushed to `master`
+
+- `@sberdevices/layer-inpicture-sdk@0.1.2`
+  - fix(slider.css, index.ts): changed styles, added transition to the product page by slide clicking (KVIlikov@sberbank.ru)
+
+#### Authors: 1
+
+- Kirill Ilikov (KVIlikov@sberbank.ru)
+
+---
+
 # (Tue Nov 09 2021)
 
 #### 🐛 Bug Fix
