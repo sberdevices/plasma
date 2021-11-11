@@ -10,7 +10,10 @@ import { PropsTable, Description } from '@site/src/components';
 <PropsTable name="Select" />
 
 ```tsx live
-() => {
+import React from 'react';
+import { Select } from '@sberdevices/plasma-web';
+
+export function App() {
     const items = [
         { value: 'each', label: 'Каждый' },
         { value: 'hunter', label: 'Охотник', isDisabled: true },
@@ -29,18 +32,27 @@ import { PropsTable, Description } from '@site/src/components';
         { value: 'thePheasant', label: 'Фазан' },
         { value: 'fullText', label: 'Каждый охотник желает знать, где сидит фазан' },
     ];
+
     const [value, setValue] = React.useState(null);
 
     return (
-        <Select
-            multiselect={false}
-            value={value}
-            items={items}
-            placeholder="Выберите пример"
-            helperText="Заполните пример"
-            disabled={false}
-            onChange={(v) => setValue(v)}
-        />
+        <div style={{ maxWidth: '20rem' }}>
+            <div style={{ marginBottom: '1rem' }}>
+                <Select
+                    value={value}
+                    items={items}
+                    onChange={(v) => {
+                        setValue(v);
+                    }}
+                    placeholder="Выберите пример"
+                    helperText="Заполните пример"
+                    status="success"
+                />
+            </div>
+            <div>
+                <Select value={null} items={[]} placeholder="Another select" />
+            </div>
+        </div>
     );
 }
 ```

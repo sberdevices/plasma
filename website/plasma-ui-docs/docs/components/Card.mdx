@@ -38,53 +38,71 @@ import { PropsTable, Description } from '@site/src/components';
 Включает в себя класс карточек нескольких видов.
 
 ```tsx live
-<div style={{ display: 'flex' }}>
-    <Card style={{ width: '22.5rem' }} tabIndex={0} outlined scaleOnFocus>
-        <CardBody>
-            <CardMedia
-                src="/images/320_320_0.jpg"
-                placeholder="/images/320_320_1.jpg"
-                ratio="1 / 1"
-            />
-            <CardContent cover>
-                <TextBox>
-                    <TextBoxBigTitle>Заголовок</TextBoxBigTitle>
-                    <TextBoxBiggerTitle>Подзаголовок</TextBoxBiggerTitle>
-                    <TextBoxSubTitle>Подпись</TextBoxSubTitle>
-                </TextBox>
-                <Button
-                    text="Label"
-                    view="primary"
-                    size="s"
-                    scaleOnInteraction={false}
-                    outlined={false}
-                    stretch
-                    style={{ marginTop: '1em' }}
-                    tabIndex={-1}
-                />
-            </CardContent>
-        </CardBody>
-    </Card>
-    <Card style={{ width: '22.5rem', marginLeft: '0.75rem' }}>
-        <CardBody>
-            <CardMedia
-                src="/images/320_320_2.jpg"
-                placeholder="/images/320_320_3.jpg"
-                ratio="1 / 1"
-            />
-            <CardContent cover>
-                <TextBox>
-                    <TextBoxBigTitle>Киану Ривз</TextBoxBigTitle>
-                    <TextBoxSubTitle>Актёр</TextBoxSubTitle>
-                    <CardParagraph1 mt="6x" lines={4}>
-                        Канадский актёр, кинопродюсер, и музыкант.
-                    </CardParagraph1>
-                    <TextBoxSubTitle>ru.wikipedia.org</TextBoxSubTitle>
-                </TextBox>
-            </CardContent>
-        </CardBody>
-    </Card>
-</div>
+import React from 'react';
+import {
+    Card,
+    CardBody,
+    CardMedia,
+    CardContent,
+    CardParagraph1,
+    TextBox,
+    TextBoxBigTitle,
+    TextBoxBiggerTitle,
+    TextBoxSubTitle,
+    Button,
+} from '@sberdevices/plasma-ui';
+
+export function App() {
+    return (
+        <div>
+            <Card style={{ width: '22.5rem' }} tabIndex={0} outlined scaleOnFocus>
+                <CardBody>
+                    <CardMedia
+                        src="/images/320_320_0.jpg"
+                        placeholder="/images/320_320_1.jpg"
+                        ratio="1 / 1"
+                    />
+                    <CardContent cover>
+                        <TextBox>
+                            <TextBoxBigTitle>Заголовок</TextBoxBigTitle>
+                            <TextBoxBiggerTitle>Подзаголовок</TextBoxBiggerTitle>
+                            <TextBoxSubTitle>Подпись</TextBoxSubTitle>
+                        </TextBox>
+                        <Button
+                            text="Label"
+                            view="primary"
+                            size="s"
+                            scaleOnInteraction={false}
+                            outlined={false}
+                            stretch
+                            style={{ marginTop: '1em' }}
+                            tabIndex={-1}
+                        />
+                    </CardContent>
+                </CardBody>
+            </Card>
+            <Card style={{ width: '22.5rem', marginLeft: '0.75rem' }}>
+                <CardBody>
+                    <CardMedia
+                        src="/images/320_320_2.jpg"
+                        placeholder="/images/320_320_3.jpg"
+                        ratio="1 / 1"
+                    />
+                    <CardContent cover>
+                        <TextBox>
+                            <TextBoxBigTitle>Киану Ривз</TextBoxBigTitle>
+                            <TextBoxSubTitle>Актёр</TextBoxSubTitle>
+                            <CardParagraph1 mt="6x" lines={4}>
+                                Канадский актёр, кинопродюсер, и музыкант.
+                            </CardParagraph1>
+                            <TextBoxSubTitle>ru.wikipedia.org</TextBoxSubTitle>
+                        </TextBox>
+                    </CardContent>
+                </CardBody>
+            </Card>
+        </div>
+    );
+}
 ```
 
 ### Карточка-список
@@ -93,74 +111,109 @@ import { PropsTable, Description } from '@site/src/components';
 Карточка-список может быть представлена в нескольких вариантах.
 
 ```tsx live
-<div style={{ display: 'flex', alignItems: 'start' }}>
-    <Card style={{ width: '22.5rem' }}>
-        <CardContent compact>
-            <Cell
-                contentLeft={
-                    <CellIcon>
-                        <IconDownload />
-                    </CellIcon>
-                }
-                content={
-                    <TextBox>
-                        <TextBoxTitle>Title</TextBoxTitle>
-                        <TextBoxSubTitle>Subtitle</TextBoxSubTitle>
-                    </TextBox>
-                }
-                contentRight={<CellDisclosure />}
-            />
-        </CardContent>
-    </Card>
-    <Card style={{ width: '22.5rem', marginLeft: '0.75rem' }}>
-        <CardContent compact>
-            <Cell
-                content={<TextBoxBigTitle>Название раздела</TextBoxBigTitle>}
-                contentRight={<span style={{ marginTop: 5 }}>Detail</span>}
-            />
-            <CellListItem
-                contentLeft={
-                    <CellIcon>
-                        <IconDownload />
-                    </CellIcon>
-                }
-                content={
-                    <TextBox>
-                        <TextBoxTitle>Title</TextBoxTitle>
-                        <TextBoxSubTitle>Subtitle</TextBoxSubTitle>
-                    </TextBox>
-                }
-                contentRight={<CellDisclosure />}
-            />
-        </CardContent>
-    </Card>
-</div>
+import React from 'react';
+import {
+    Card,
+    CardContent,
+    Cell,
+    CellIcon,
+    TextBox,
+    TextBoxTitle,
+    TextBoxBigTitle,
+    TextBoxSubTitle,
+    CellDisclosure,
+    CellListItem,
+} from '@sberdevices/plasma-ui';
+import { IconDownload } from '@sberdevices/plasma-icons';
+
+export function App() {
+    return (
+        <div>
+            <Card style={{ width: '22.5rem' }}>
+                <CardContent compact>
+                    <Cell
+                        contentLeft={
+                            <CellIcon>
+                                <IconDownload />
+                            </CellIcon>
+                        }
+                        content={
+                            <TextBox>
+                                <TextBoxTitle>Title</TextBoxTitle>
+                                <TextBoxSubTitle>Subtitle</TextBoxSubTitle>
+                            </TextBox>
+                        }
+                        contentRight={<CellDisclosure />}
+                    />
+                </CardContent>
+            </Card>
+            <Card style={{ width: '22.5rem', marginLeft: '0.75rem' }}>
+                <CardContent compact>
+                    <Cell
+                        content={<TextBoxBigTitle>Название раздела</TextBoxBigTitle>}
+                        contentRight={<span style={{ marginTop: 5 }}>Detail</span>}
+                    />
+                    <CellListItem
+                        contentLeft={
+                            <CellIcon>
+                                <IconDownload />
+                            </CellIcon>
+                        }
+                        content={
+                            <TextBox>
+                                <TextBoxTitle>Title</TextBoxTitle>
+                                <TextBoxSubTitle>Subtitle</TextBoxSubTitle>
+                            </TextBox>
+                        }
+                        contentRight={<CellDisclosure />}
+                    />
+                </CardContent>
+            </Card>
+        </div>
+    );
+}
 ```
 
 ### Карточка с коротким ответом
 
 ```tsx live
-<Card style={{ width: '20rem' }}>
-    <CardContent compact>
-        <Cell
-            content={<TextBoxBigTitle>Название раздела</TextBoxBigTitle>}
-            contentRight={<span style={{ marginTop: 5 }}>Detail</span>}
-        />
-        <Cell
-            contentLeft={
-                <CellIcon>
-                    <IconDownload />
-                </CellIcon>
-            }
-            content={<TextBoxBiggerTitle>Value</TextBoxBiggerTitle>}
-            contentRight={
-                <CellIcon>
-                    <IconDownload />
-                </CellIcon>
-            }
-            alignRight="center"
-        />
-        <TextBoxSubTitle>Description</TextBoxSubTitle>
-    </CardContent>
-</Card>
+import React from 'react';
+import {
+    Card,
+    CardContent,
+    Cell,
+    TextBoxBigTitle,
+    CellIcon,
+    TextBoxBiggerTitle,
+    TextBoxSubTitle,
+} from '@sberdevices/plasma-ui';
+import { IconDownload } from '@sberdevices/plasma-icons';
+
+export function App() {
+    return (
+        <Card style={{ width: '20rem' }}>
+            <CardContent compact>
+                <Cell
+                    content={<TextBoxBigTitle>Название раздела</TextBoxBigTitle>}
+                    contentRight={<span style={{ marginTop: 5 }}>Detail</span>}
+                />
+                <Cell
+                    contentLeft={
+                        <CellIcon>
+                            <IconDownload />
+                        </CellIcon>
+                    }
+                    content={<TextBoxBiggerTitle>Value</TextBoxBiggerTitle>}
+                    contentRight={
+                        <CellIcon>
+                            <IconDownload />
+                        </CellIcon>
+                    }
+                    alignRight="center"
+                />
+                <TextBoxSubTitle>Description</TextBoxSubTitle>
+            </CardContent>
+        </Card>
+    );
+}
 ```

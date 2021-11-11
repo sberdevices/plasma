@@ -10,5 +10,12 @@ import { PropsTable, Description } from '@site/src/components';
 <PropsTable name="Price" />
 
 ```tsx live
-<Price currency="rub" stroke={false} minimumFractionDigits={2}>12345.67</Price>
+import React from 'react';
+import { Price } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <Price currency="rub" stroke={false} minimumFractionDigits={2}>12345.67</Price>
+    );
+}
 ```

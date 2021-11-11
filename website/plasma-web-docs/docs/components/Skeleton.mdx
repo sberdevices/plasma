@@ -13,7 +13,14 @@ import { PropsTable, Description } from '@site/src/components';
 <PropsTable name="LineSkeleton" />
 
 ```tsx live
-<LineSkeleton size="headline3" />
+import React from 'react';
+import { LineSkeleton } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <LineSkeleton size="headline3" />
+    );
+}
 ```
 
 ## RectSkeleton
@@ -21,7 +28,14 @@ import { PropsTable, Description } from '@site/src/components';
 <PropsTable name="RectSkeleton" />
 
 ```tsx live
-<RectSkeleton width="12rem" height="8rem" />
+import React from 'react';
+import { RectSkeleton } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <RectSkeleton width="12rem" height="8rem" />
+    );
+}
 ```
 
 ## TextSkeleton
@@ -29,12 +43,22 @@ import { PropsTable, Description } from '@site/src/components';
 <PropsTable name="TextSkeleton" />
 
 ```tsx live
-<TextSkeleton size="paragraph1" lines={4} />
+import React from 'react';
+import { TextSkeleton } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <TextSkeleton size="paragraph1" lines={4} />
+    );
+}
 ```
 ## На примере карточки
 
 ```tsx live
-() => {
+import React from 'react';
+import { Button, withSkeleton } from '@sberdevices/plasma-web';
+
+export function App() {
     const ButtonSkeleton = withSkeleton(Button);
 
     return (

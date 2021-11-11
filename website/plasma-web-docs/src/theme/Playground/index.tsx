@@ -9,8 +9,9 @@ import { light } from '@sberdevices/plasma-tokens-web/themes';
 import Translate from '@docusaurus/Translate';
 import clsx from 'clsx';
 
+import { CodeSandbox } from '../../components';
+
 import styles from './styles.module.css';
-import { CodeSandbox } from 'src/components';
 
 const lightTheme = light[':root'];
 const StyledPreview = styled(PlaygroundPreview)`
@@ -70,7 +71,7 @@ const EditorWithHeader: FC = () => {
 type PlaygroundProps = {
     transformCode: (code: string) => string;
     children: string;
-};
+} & { [key: string]: boolean | string | number };
 
 const Playground: FC<PlaygroundProps> = ({ children, transformCode, ...props }) => {
     const isBrowser = useIsBrowser();
@@ -87,7 +88,7 @@ const Playground: FC<PlaygroundProps> = ({ children, transformCode, ...props }) 
         <div className={styles.playgroundContainer}>
             <LiveProvider
                 key={isBrowser}
-                code={isBrowser ? children.replace(/\n$/, '') : ''}
+                code={isBrowser ? getSourceWithoutImports(children).replace(/\n$/, '') : ''}
                 transformCode={transformCode || ((code) => `${code};`)}
                 theme={prismTheme}
                 {...props}

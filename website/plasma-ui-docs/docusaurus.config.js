@@ -1,6 +1,4 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const path = require('path');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
@@ -8,6 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const docgen = require('react-docgen-typescript');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const fg = require('fast-glob');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require('path');
 
 const { PR_NAME } = process.env;
 const prefix = PR_NAME ? `/${PR_NAME}` : '';

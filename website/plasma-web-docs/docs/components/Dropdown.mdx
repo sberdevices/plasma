@@ -11,28 +11,68 @@ import { PropsTable, Description } from '@site/src/components';
 
 ## Использование
 Каждый элемент в списке компонента `Dropdown` может иметь лейбл, иконку и цвет.
+
 ```tsx live
-<Dropdown
-    items={[
-        { value: 'test-0', label: 'Элемент' },
-        { value: 'test-1', label: 'Выпадающего', color: accent },
-        { value: 'test-2', label: 'Списка', color: success, contentLeft: <IconHeart color="inherit" /> },
-        { value: 'test-3', label: 'Недоступно', isDisabled: true },
-    ]}
->
-    <Button text="Раскрыть список" />
-</Dropdown>
+import React from 'react';
+import { Dropdown, Button } from '@sberdevices/plasma-web';
+import { IconHeart } from '@sberdevices/plasma-icons';
+
+export function App() {
+    return (
+        <div style={{height:"350px", display: 'block'}}>
+            <Dropdown
+                items={[
+                    { value: 'test-0', label: 'Элемент' },
+                    { value: 'test-1', label: 'Выпадающего', color: 'var(--plasma-colors-accent)' },
+                    {
+                        value: 'test-2',
+                        label: 'Списка',
+                        color: 'var(--plasma-colors-success)',
+                        contentLeft: <IconHeart color="inherit" />,
+                    },
+                    { value: 'test-3', label: 'Недоступно', isDisabled: true },
+                ]}
+            >
+                <Button text="Раскрыть список" />
+            </Dropdown>
+        </div>
+    );
+}
 ```
 
 ## Пользовательская сборка
 Выпадающие списки допустимо собирать вручную с помощью составных компонентов (используя компонент [Popup](./popup)):
+
 ```tsx live
-<Popup trigger="click" placement="bottom" disclosure={<Button text="Раскрыть список" />}>
-    <DropdownList>
-        <DropdownItem value="1" label="Элемент" />
-        <DropdownItem value="2" label="Выпадающего" color={accent} />
-        <DropdownItem value="3" label="Списка" color={success} contentLeft={<IconHeart color="inherit" />} />
-        <DropdownItem value="4" label="Недоступно" isDisabled />
-    </DropdownList>
-</Popup>
+import React, { useState } from 'react';
+import { Popup, DropdownList, DropdownItem, Button } from '@sberdevices/plasma-web';
+import { IconHeart } from '@sberdevices/plasma-icons';
+
+export function App() {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+        <div style={{height:"350px", display: 'block'}}>
+            <Popup
+                trigger="click"
+                isOpen={isOpen}
+                placement="bottom"
+                onToggle={(is) => setIsOpen(is)}
+                disclosure={<Button text="Раскрыть список" />}
+            >
+                <DropdownList>
+                    <DropdownItem value="1" label="Элемент" />
+                    <DropdownItem value="2" label="Выпадающего" color="var(--plasma-colors-accent)" />
+                    <DropdownItem
+                        value="3"
+                        label="Списка"
+                        color="var(--plasma-colors-success)"
+                        contentLeft={<IconHeart color="inherit" />}
+                    />
+                    <DropdownItem value="4" label="Недоступно" isDisabled />
+                </DropdownList>
+            </Popup>
+        </div>
+    );
+}
 ```

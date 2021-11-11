@@ -11,6 +11,14 @@ import { PropsTable, Description } from '@site/src/components';
 
 ## Использование
 Компонент `Checkbox` может содержать лейбл и описание.
+
 ```tsx live
-<Checkbox label="Чекбокс" description="Описание" defaultChecked />
+import React from 'react';
+import { Checkbox } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <Checkbox label="Чекбокс" description="Описание" defaultChecked />
+    );
+}
 ```

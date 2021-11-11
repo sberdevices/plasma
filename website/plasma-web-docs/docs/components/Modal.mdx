@@ -31,22 +31,22 @@ ReactDOM.render(
 ### Вызов модального окна
 После подключения `ModalsProvider` поместите компонент `Modal` туда, где необходимо применить модальное окно:
 
-```tsx title="Example.tsx"
+```tsx live
 import React from 'react';
-import { Modal, Headline3, P1 } from '@sberdevices/plasma-web';
+import { Modal, Headline3, P1, Button } from '@sberdevices/plasma-web';
 
-export default function() {
+export function App() {
     const [isOpen, setIsOpen] = React.useState(false);
 
     return (
-        <>
+        <div>
             <Button text="Открыть модальное окно" onClick={() => setIsOpen(true)} />
             <Modal isOpen={isOpen}>
                 <Headline3>Модальное окно</Headline3>
                 <P1>Содержимое модального окна.</P1>
-                <Button text="Закрыть" onClick={() => setIsOpen(true)} />
+                <Button text="Закрыть" onClick={() => setIsOpen(!isOpen)} />
             </Modal>
-        </>
+        </div>
     );
 }
 ```

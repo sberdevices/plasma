@@ -9,34 +9,43 @@ import { PropsTable, Description } from '@site/src/components';
 Набор компонентов для создания вкладок.
 
 ```tsx live
-() => {
+import React, { useState } from 'react';
+import { Tabs, TabItem, DeviceThemeProvider, Container } from '@sberdevices/plasma-ui';
+import { IconDownload } from '@sberdevices/plasma-icons';
+
+export function App() {
     const items = [{ label: 'Item 1' }, { label: 'Item 2' }, { label: 'Item 3' }, { label: 'Item 4' }];
     const [index, setIndex] = useState(0);
 
     return (
-        <Tabs
-            size="l"
-            view="secondary"
-            stretch={true}
-            pilled={false}
-            scaleOnPress={true}
-            outlined={true}
-            disabled={false}
-            index={index}
-            animated={true}
-        >
-            {items.map(({ label }, i) => (
-                <TabItem
-                    key={`item:${i}`}
-                    isActive={i === index}
-                    tabIndex={0}
-                    contentLeft={<IconDownload />}
-                    onClick={() => setIndex(i)}
-                >
-                    {label}
-                </TabItem>
-            ))}
-        </Tabs>
+        <div style={{zIndex: '0', position: 'relative'}}>
+            <DeviceThemeProvider>
+                <Container>
+                    <Tabs
+                        size="l"
+                        view="secondary"
+                        stretch={true}
+                        pilled={false}
+                        scaleOnPress={true}
+                        outlined={false}
+                        index={index}
+                        animated={true}
+                    >
+                        {items.map((_, i) => (
+                            <TabItem
+                                key={`item:${i}`}
+                                isActive={i === index}
+                                tabIndex={0}
+                                contentLeft={<IconDownload size="s" />}
+                                onClick={() => setIndex(i)}
+                            >
+                                Label
+                            </TabItem>
+                        ))}
+                    </Tabs>
+                </Container>
+            </DeviceThemeProvider>
+        </div>
     );
 }
 ```
@@ -57,13 +66,22 @@ import { PropsTable, Description } from '@site/src/components';
 Чтобы сделать это, используйте свойство `forwardedAs`:
 
 ```tsx live
-<Tabs forwardedAs="ul">
-    <TabItem isActive forwardedAs="li">Каждый</TabItem>
-    <TabItem forwardedAs="li">Охотник</TabItem>
-    <TabItem forwardedAs="li">Желает</TabItem>
-    <TabItem forwardedAs="li">Знать</TabItem>
-    <TabItem forwardedAs="li">Где</TabItem>
-    <TabItem forwardedAs="li">Сидит</TabItem>
-    <TabItem forwardedAs="li">Фазан</TabItem>
-</Tabs>
+import React from 'react';
+import { Tabs, TabItem } from '@sberdevices/plasma-ui';
+
+export function App() {
+    return (
+        <div style={{zIndex: '0', position: 'relative'}}>
+            <Tabs forwardedAs="ul">
+                <TabItem isActive forwardedAs="li">Каждый</TabItem>
+                <TabItem forwardedAs="li">Охотник</TabItem>
+                <TabItem forwardedAs="li">Желает</TabItem>
+                <TabItem forwardedAs="li">Знать</TabItem>
+                <TabItem forwardedAs="li">Где</TabItem>
+                <TabItem forwardedAs="li">Сидит</TabItem>
+                <TabItem forwardedAs="li">Фазан</TabItem>
+            </Tabs>
+        </div>
+    );
+}
 ```

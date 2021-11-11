@@ -12,13 +12,30 @@ import { PropsTable, Description } from '@site/src/components';
 ## Примеры
 
 ### Базовое использование
+
 ```tsx live
-<TextBox title="Заголовок" subTitle="Подзаголовок" />
+import React from 'react';
+import { TextBox } from '@sberdevices/plasma-ui';
+
+export function App() {
+    return (
+        <TextBox title="Заголовок" subTitle="Подзаголовок" />
+    );
+}
 ```
+
 ### Собственная сборка
+
 ```tsx live
-<TextBox>
-    <TextBoxTitle>Заголовок</TextBoxTitle>
-    <TextBoxSubTitle>Подзаголовок</TextBoxSubTitle>
-</TextBox>
+import React from 'react';
+import { TextBox, TextBoxTitle, TextBoxSubTitle } from '@sberdevices/plasma-ui';
+
+export function App() {
+    return (
+        <TextBox>
+            <TextBoxTitle>Заголовок</TextBoxTitle>
+            <TextBoxSubTitle>Подзаголовок</TextBoxSubTitle>
+        </TextBox>
+    );
+}
 ```

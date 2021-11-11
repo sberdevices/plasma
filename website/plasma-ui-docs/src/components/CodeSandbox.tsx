@@ -19,9 +19,12 @@ const sberdevicesDependencies = Object.entries(packageJson.dependencies)
 const styledPreview = `
 import { gradient } from '@sberdevices/plasma-tokens';
 import { darkSber } from '@sberdevices/plasma-tokens/themes';
+import { sberBox } from '@sberdevices/plasma-tokens/typo';
 
 const StyledPreview = styled.div\`
     \${darkSber[":root"]};
+    \${sberBox[":root"]};
+
     height: 100%;
     background-image: \${gradient};
 

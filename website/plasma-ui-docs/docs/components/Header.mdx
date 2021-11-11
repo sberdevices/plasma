@@ -17,19 +17,29 @@ import { PropsTable, Description } from '@site/src/components';
 ### Пример
 
 ```tsx live
-<Container>
-    <Header
-        back={true}
-        logo="/images/320_320_12.jpg"
-        logoAlt="Logo"
-        title="Header title text"
-        subtitle="Subtitle text"
-        onBackClick={() => console.log('Back click!')}
-    >
-        <Button>Header content</Button>
-    </Header>
-</Container>
+import React from 'react';
+import { Container, Header, Button } from '@sberdevices/plasma-ui';
+
+export function App() {
+    return (
+        <div>
+            <Container>
+                <Header
+                    back={true}
+                    logo="/images/320_320_12.jpg"
+                    logoAlt="Logo"
+                    title="Header title text"
+                    subtitle="Subtitle text"
+                    onBackClick={() => console.log('Back click!')}
+                >
+                    <Button>Header content</Button>
+                </Header>
+            </Container>
+        </div>
+    );
+}
 ```
+
 ### Комбинация свойств
 `Header` имеет свойства, которые нельзя использовать без соответствующих парных свойств:
 
@@ -86,20 +96,39 @@ const g = <Header logo="/path/to/fancy-image.jpg" logoAlt="Fancy image." />;
 <Description name="HeaderContent" />
 
 ### Пример
+
 ```tsx live
-<Container>
-    <HeaderRoot>
-        <HeaderBack onClick={() => console.log('Back click!')} />
-        <HeaderLogo src="/images/320_320_12.jpg" alt="Logo" />
-        <HeaderTitleWrapper>
-            <HeaderSubtitle>Label text</HeaderSubtitle>
-            <HeaderTitle>Header title text</HeaderTitle>
-        </HeaderTitleWrapper>
-        <HeaderContent>
-            <Button>Header content</Button>
-        </HeaderContent>
-    </HeaderRoot>
-</Container>
+import React from 'react';
+import {
+    Container,
+    Header,
+    HeaderRoot,
+    HeaderBack,
+    HeaderLogo,
+    HeaderTitleWrapper,
+    HeaderSubtitle,
+    HeaderTitle,
+    HeaderContent,
+    Button,
+} from '@sberdevices/plasma-ui';
+
+export function App() {
+    return (
+        <Container>
+            <HeaderRoot>
+                <HeaderBack onClick={() => console.log('Back click!')} />
+                <HeaderLogo src="/images/320_320_12.jpg" alt="Logo" />
+                <HeaderTitleWrapper>
+                    <HeaderSubtitle>Label text</HeaderSubtitle>
+                    <HeaderTitle>Header title text</HeaderTitle>
+                </HeaderTitleWrapper>
+                <HeaderContent>
+                    <Button>Header content</Button>
+                </HeaderContent>
+            </HeaderRoot>
+        </Container>
+    );
+}
 ```
 
 ## Кнопки назад и свернуть

@@ -13,7 +13,17 @@ import { PropsTable, Description } from '@site/src/components';
 <PropsTable name="DatePicker" />
 
 ```tsx live
-<DatePicker min={new Date(1629964000000)} max={new Date(1630036000000)} value={new Date(1630000000000)} />
+import React from 'react';
+import { DatePicker } from '@sberdevices/plasma-ui';
+
+export function App() {
+    return (
+        <DatePicker 
+            min={new Date(1970, 0, 0, 0, 0, 0)}
+            max={new Date(2021, 10, 10, 0, 0, 0)} 
+            value={new Date(2007, 3, 5, 0, 0, 0)} />
+    );
+}
 ```
 
 ## TimePicker
@@ -21,5 +31,15 @@ import { PropsTable, Description } from '@site/src/components';
 <PropsTable name="TimePicker" />
 
 ```tsx live
-<TimePicker min={new Date(1629996400000)} max={new Date(1630003600000)} value={new Date(1630000000000)} />
+import React from 'react';
+import { TimePicker } from '@sberdevices/plasma-ui';
+
+export function App() {
+    return (
+        <TimePicker
+            min={new Date(2021, 0, 0, 0, 20, 15)}
+            max={new Date(2021, 0, 0, 23, 59, 59)}
+            value={new Date(2021, 0, 0, 12, 33, 33)} />
+    );
+}
 ```

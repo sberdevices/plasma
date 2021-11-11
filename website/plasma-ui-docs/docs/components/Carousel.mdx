@@ -3,7 +3,7 @@ id: carousel
 title: Carousel
 ---
 
-import { PropsTable, Description } from '@site/src/components';
+import { PropsTable, Description, CodeSandbox} from '@site/src/components';
 
 # Carousel
 Набор компонентов для создания списков с прокруткой (галерей).
@@ -120,39 +120,74 @@ export const MyGallery = () = (
 * Каждый элемент списка должен использовать `CarouselContext` для регистрации `ref`
 — это необходимо для расчета динамической ширины и положения элементов на экране (см. [CarouselItem](#carouselitem)).
 
-```tsx title="App.tsx"
+```tsx live
 import React from 'react';
-import { DeviceThemeProvider, CarouselGridWrapper, Carousel, CarouselCol } from '@sberdevices/plasma-ui';
+import {
+    DeviceThemeProvider,
+    CarouselGridWrapper,
+    Carousel,
+    CarouselCol,
+    Card,
+    CardBody,
+    CardContent,
+} from '@sberdevices/plasma-ui';
+import styled from 'styled-components';
 
-const items = [{ title: 'Item 1' }, { title: 'Item 2' }, { title: 'Item 3' }, { title: 'Item 4' }];
+export function App() {
+    const CardStyled = styled(Card)`
+        height: 150px;
+        width: 350px;
+        margin: 16px;
+    `;
 
-export const App = () =>  {
-    const [index, setIndex] = React.useState(index);
+    const Subtitle = styled.div`
+        font-size: 12px;
+        line-height: 20px;
+    `;
+
+    const Titile = styled.div`
+        font-size: 16px;
+    `;
+
+    const items = Array(25)
+        .fill({
+            title: 'Заголовок',
+            subtitle: 'Описание уравнение времени, сублимиpуя с повеpхности ядpа кометы, вращает реликтовый ледник',
+        })
+        .map(({ title, subtitle }, i) => ({
+            title: `${title} ${i}`,
+            subtitle: `${subtitle} ${i}`,
+        }));
+
+    const [index, setIndex] = React.useState(0);
 
     return (
-        <DeviceThemeProvider detectDeviceCallback={() => 'sberBox'}>
-            <Container>
-                <CarouselGridWrapper>
-                    <Carousel
-                        as={Row}
-                        axis="x"
-                        index={index}
-                        scrollSnapType="mandatory"
-                        detectActive
-                        detectThreshold={0.5}
-                        stylingCallback={stylingCallback}
-                        stylingResetCallback={stylingResetCallback}
-                        onIndexChange={(i) => setIndex(i)}
-                        paddingStart="50%"
-                        paddingEnd="50%"
-                    >
-                        {items.map(({ title }, i) => (
-                            <CarouselCol key={`item:${i}`}>{title}</CarouselCol>
-                        ))}
-                    </Carousel>
-                </CarouselGridWrapper>
-            </Container>
+        <DeviceThemeProvider>
+            <CarouselGridWrapper>
+                <Carousel
+                    axis="x"
+                    index={index}
+                    scrollSnapType="mandatory"
+                    detectActive
+                    detectThreshold={0.5}
+                    style={{ paddingTop: '1.25rem', paddingBottom: '1.25rem' }}
+                    onIndexChange={(i) => setIndex(i)}
+                >
+                    {items.map(({ title, subtitle }, i) => (
+                        <CarouselCol key={`item:${i}`} size={3} sizeXL={4} scrollSnapAlign="start">
+                            <CardStyled focused={i === index}>
+                                <CardBody>
+                                    <CardContent>
+                                        {subtitle && <Subtitle>{subtitle}</Subtitle>}
+                                        <Titile>{title}</Titile>
+                                    </CardContent>
+                                </CardBody>
+                            </CardStyled>
+                        </CarouselCol>
+                    ))}
+                </Carousel>
+            </CarouselGridWrapper>
         </DeviceThemeProvider>
     );
-};
+}
 ```

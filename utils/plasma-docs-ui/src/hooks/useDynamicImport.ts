@@ -7,18 +7,21 @@ type ComponentInfo = {
     source?: string;
 };
 
+/**
+ * Метод для полуечния динамического импорта
+ * по переданному элиасу
+ */
 const getImport = (alias: string, name: string) => {
     if (alias.startsWith('@docgen')) {
         return import(`@docgen/${name}.json`);
     }
 
-    if (alias.startsWith('@filesource')) {
-        return import(`@filesource/${name}.json`);
-    }
-
     return Promise.reject(new Error(`Alias ${alias} not found in list`));
 };
 
+/**
+ * Хук для динамического импорта модуля
+ */
 export const useDynamicImport = (alias: string, name: string): ComponentInfo => {
     const [info, setInfo] = useState<ComponentInfo>({});
 

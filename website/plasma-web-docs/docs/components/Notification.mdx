@@ -36,17 +36,23 @@ ReactDOM.render(
 который приведет к отображению оповещения.
 Функция принимает значения свойств компонента `Notification`:
 
-```tsx
-export default function () {
+```tsx live
+import React from 'react';
+import { Button, addNotification, NotificationsProvider } from '@sberdevices/plasma-web';
+
+export function App() {
+    const handleClick = React.useCallback(() => {
+        addNotification({
+            status: 'success',
+            title: 'Входящий вызов',
+            children: '',
+        }, 1000);
+    }, []);
+
     return (
-        <Button
-            text="Показать оповещение"
-            onClick={() => addNotification({
-                status: 'warning',
-                title: 'Входящий вызов',
-                children: '',
-            }, 8000)}
-        />
+        <NotificationsProvider>
+            <Button text="Показать оповещение" onClick={handleClick} />
+        </NotificationsProvider>
     );
 }
 ```

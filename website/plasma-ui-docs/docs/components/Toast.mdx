@@ -12,13 +12,15 @@ import { PropsTable, Description } from '@site/src/components';
 ## Использование
 `showToast` имеет необязательный аргумент `timeout`, отвечающий за время отображения подсказки.
 
-```tsx title="App.tsx"
+```tsx live
 import React from 'react';
 import { Toast } from '@sberdevices/plasma-ui';
 
-export const App = () => (
-    <Toast text="Short Text Message Without Action" />
-);
+export function App() {
+    return (
+        <Toast text="Short Text Message Without Action" />
+    );
+}
 ```
 
 ## Система подсказок

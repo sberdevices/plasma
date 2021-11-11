@@ -10,5 +10,12 @@ import { PropsTable, Description } from '@site/src/components';
 <PropsTable name="Progress" />
 
 ```tsx live
-<Progress value={25} status="success" displayValue />
+import React from 'react';
+import { Progress } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <Progress value={25} status="success" displayValue />
+    );
+}
 ```

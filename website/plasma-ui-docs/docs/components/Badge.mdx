@@ -15,22 +15,37 @@ import { PropsTable, Description } from '@site/src/components';
 Размер задается с помощью свойства `size`. Возможные значения свойтсва: `"l"` или `"s"`.
 
 ```tsx live
-<>
-    <Badge text="Бейдж" size="l" />
-    <Badge text="Бейдж" size="s" />
-</>
+import React from 'react';
+import { Badge } from '@sberdevices/plasma-ui';
 
+export function App() {
+    return (
+        <div>
+            <Badge text="Бейдж" size="l" />
+            <Badge text="Бейдж" size="s" />
+        </div>
+    );
+}
 ```
+
 ### Вид бейджа
 Вид бейджа задается с помощью свойства `view`. Возможные значения свойства `view`:
 
 + `"primary"` – основной бейдж;
 + `"secondary"` – вторичный бейдж.
+
 ```tsx live
-<>
-    <Badge text="Бейдж" size="l" view="primary" />
-    <Badge text="Бейдж" size="l" view="secondary" />
-</>
+import React from 'react';
+import { Badge } from '@sberdevices/plasma-ui';
+
+export function App() {
+    return (
+        <div>
+            <Badge text="Бейдж" size="l" view="primary" />
+            <Badge text="Бейдж" size="l" view="secondary" />
+        </div>
+    );
+}
 ```
 
 ### Иконка слева
@@ -38,8 +53,16 @@ import { PropsTable, Description } from '@site/src/components';
 Если не указывать текст, бейдж будет содержать только заданную иконку:
 
 ```tsx live
-<>
-    <Badge text="Бейдж" size="l" view="primary" contentLeft={<IconDownload color="inherit" size="xs" />} />
-    <Badge size="l" view="primary" contentLeft={<IconDownload color="inherit" size="xs" />} />
-</>
+import React from 'react';
+import { Badge } from '@sberdevices/plasma-ui';
+import { IconDownload } from '@sberdevices/plasma-icons';
+
+export function App() {
+    return (
+        <div>
+            <Badge text="Бейдж" size="l" view="primary" contentLeft={<IconDownload color="inherit" size="xs" />} />
+            <Badge size="l" view="primary" contentLeft={<IconDownload color="inherit" size="xs" />} />
+        </div>
+    );
+}
 ```

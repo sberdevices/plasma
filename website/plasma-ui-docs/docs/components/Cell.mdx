@@ -13,17 +13,32 @@ import { PropsTable, Description } from '@site/src/components';
 
 ### Базовое использование
 ```tsx live
-<Cell content={<TextBox title="Заголовок" subTitle="Подзаголовок" />} />
+import React from 'react';
+import { Cell, TextBox } from '@sberdevices/plasma-ui';
+
+export function App() {
+    return (
+        <Cell content={<TextBox title="Заголовок" subTitle="Подзаголовок" />} />
+    );
+}
 ```
 
 ### Кликабельная ячейка
+
 ```tsx live
-<Cell
-    tabIndex={0}
-    onClick={() => alert('click!')}
-    outlined
-    contentLeft={<CellIcon as="img" src="/images/320_320_0.jpg" alt="avocado" />}
-    content={<TextBox title="Заголовок" subTitle="Подзаголовок" />}
-    contentRight={<CellDisclosure tabIndex={-1} />}
-/>
+import React from 'react';
+import { Cell, CellIcon, TextBox, CellDisclosure } from '@sberdevices/plasma-ui';
+
+export function App() {
+    return (
+        <Cell
+            tabIndex={0}
+            onClick={() => alert('click!')}
+            outlined
+            contentLeft={<CellIcon as="img" src="/images/320_320_0.jpg" alt="avocado" />}
+            content={<TextBox title="Заголовок" subTitle="Подзаголовок" />}
+            contentRight={<CellDisclosure tabIndex={-1} />}
+        />
+    );
+}
 ```
