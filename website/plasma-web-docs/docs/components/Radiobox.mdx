@@ -11,6 +11,14 @@ import { PropsTable, Description } from '@site/src/components';
 
 ## Использование
 Компонент `Radiobox` может содержать лейбл и описание.
+
 ```tsx live
-<Radiobox label="Радиокнопка" description="Описание" defaultChecked />
+import React from 'react';
+import { Radiobox } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <Radiobox label="Радиокнопка" description="Описание" defaultChecked />
+    );
+}
 ```

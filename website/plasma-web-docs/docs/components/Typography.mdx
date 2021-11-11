@@ -17,56 +17,87 @@ title: Typography
 
 ## Состав
 
-### Hero unit
-```tsx live
-<>
-    <Display1>Display1</Display1>
-    <Display2>Display2</Display2>
-    <Display3>Display3</Display3>
-</>
-```
-
 ### Заголовки
+
 ```tsx live
-<>
-    <Headline1>Headline1</Headline1>
-    <Headline2>Headline2</Headline2>
-    <Headline3>Headline3</Headline3>
-    <Headline4>Headline4</Headline4>
-</>
+import React from 'react';
+import { Headline1, Headline2, Headline3, Headline4 } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <div>
+            <Headline1>Headline1</Headline1>
+            <Headline2>Headline2</Headline2>
+            <Headline3>Headline3</Headline3>
+            <Headline4>Headline4</Headline4>
+        </div>
+    );
+}
 ```
 
 ### Основной текст
+
 ```tsx live
-<>
-    <Body1>Body1</Body1>
-    <Body2>Body2</Body2>
-    <Body3>Body3</Body3>
-    <ParagraphText1>ParagraphText1</ParagraphText1>
-    <ParagraphText2>ParagraphText2</ParagraphText2>
-</>
+import React from 'react';
+import { Body1, Body2, ParagraphText1, ParagraphText2 } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <div>
+            <Body1>Body1</Body1>
+            <Body2>Body2</Body2>
+            <ParagraphText1>ParagraphText1</ParagraphText1>
+            <ParagraphText2>ParagraphText2</ParagraphText2>
+        </div>
+    );
+}
 ```
 
 ### Вспомогательный текст
+
 ```tsx live
-<>
-    <Footnote1>Footnote1</Footnote1>
-    <Footnote2>Footnote2</Footnote2>
-</>
+import React from 'react';
+import { Footnote1, Footnote2 } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <div>
+            <Footnote1>Footnote1</Footnote1>
+            <Footnote2>Footnote2</Footnote2>
+        </div>
+    );
+}
 ```
 
 ### Контролы
+
 ```tsx live
-<>
-    <Button1>Button1</Button1>
-    <Button2>Button2</Button2>
-</>
+import React from 'react';
+import { Button1, Button2 } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <div>
+            <Button1>Button1</Button1>
+            <Button2>Button2</Button2>
+        </div>
+    );
+}
 ```
 
 ### Дополнительные
+
 ```tsx live
-<>
-    <Caption>Caption</Caption>
-    <Underline>Underline</Underline>
-</>
+import React from 'react';
+import { Caption, Underline } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <div>
+            <Caption>Caption</Caption>
+            <Underline>Underline</Underline>
+        </div>
+    );
+}
 ```
+

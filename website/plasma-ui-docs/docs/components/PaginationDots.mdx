@@ -22,7 +22,11 @@ import { PropsTable, Description } from '@site/src/components';
 
 ### Комплексный компонент – SmartPaginationDots
 ```tsx live
-() => {
+import React from 'react';
+
+import { SmartPaginationDots } from '@sberdevices/plasma-ui';
+
+export function App() {
     const index = 0;
     const items = [0, 0, 0, 0, 0, 0, 0, 0];
 
@@ -34,7 +38,10 @@ import { PropsTable, Description } from '@site/src/components';
 
 ### Пользовательская верстка
 ```tsx live
-() => {
+import React from 'react';
+import { PaginationDots, PaginationDot } from '@sberdevices/plasma-ui';
+
+export function App() {
     const index = 0;
     const items = [0, 0, 0, 0, 0, 0, 0, 0];
 

@@ -11,6 +11,14 @@ import { PropsTable, Description } from '@site/src/components';
 
 ## Использование
 Компонент `Switch` может содержать лейбл.
+
 ```tsx live
-<Switch label="Переключатель" defaultChecked />
+import React from 'react';
+import { Switch } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <Switch label="Переключатель" defaultChecked />
+    );
+}
 ```

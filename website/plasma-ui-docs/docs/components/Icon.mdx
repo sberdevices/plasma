@@ -31,16 +31,39 @@ export default function App() {
 ### [Список иконок](https://plasma.sberdevices.ru/ui-storybook/?path=/story/content-icon--xs-size) XS16
 
 ```tsx live
-<IconPlus size="xs" />
+import React from 'react';
+import { IconPlus } from '@sberdevices/plasma-icons';
+
+export function App() {
+    return (
+        <IconPlus size="xs" />
+    );
+}
 ```
 
 ### [Список иконок](https://plasma.sberdevices.ru/ui-storybook/?path=/story/content-icon--small-size) S24
 
 ```tsx live
-<IconHeartStroke size="s" />
+import React from 'react';
+import { IconHeartStroke } from '@sberdevices/plasma-icons';
+
+export function App() {
+    return (
+        <IconHeartStroke size="s" />
+    );
+}
 ```
 
 ## Пользовательский цвет
+
 ```tsx live
-<IconHeartStroke color={critical} />
+import React from 'react';
+import { IconHeartStroke } from '@sberdevices/plasma-icons';
+import { critical } from '@sberdevices/plasma-tokens';
+
+export function App() {
+    return (
+        <IconHeartStroke color={critical} />
+    );
+}
 ```

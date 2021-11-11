@@ -8,15 +8,17 @@ import useIsBrowser from '@docusaurus/useIsBrowser';
 import usePrismTheme from '@theme/hooks/usePrismTheme';
 import { gradient } from '@sberdevices/plasma-tokens';
 import { darkSber } from '@sberdevices/plasma-tokens/themes';
+import { PlaygroundPreview } from '@sberdevices/plasma-docs-ui';
+
+import { CodeSandbox } from '../../components';
 
 import styles from './styles.module.css';
 
 const darkSberTheme = darkSber[':root'];
 
-const StyledPreview = styled.div`
+const StyledPreview = styled(PlaygroundPreview)`
     ${darkSberTheme}
 
-    padding: 1rem;
     background-image: ${gradient};
 `;
 
@@ -30,6 +32,14 @@ const StyledWrap = styled.div`
 const StyledPlayground = styled.div`
     position: relative;
 `;
+
+const getSourceWithoutImports = (source: string) => {
+    const regexp = /import\s+?(?:(?:(?:[\w*\s{},]*)\s+from\s+?)|)(?:(?:".*?")|(?:'.*?'))[\s]*?(?:;|$|)/g;
+    return source
+        .replace(regexp, '')
+        .replace(/export/g, '')
+        .trimStart();
+};
 
 const Header: FC = ({ children }) => {
     return <div className={clsx(styles.playgroundHeader)}>{children}</div>;
@@ -62,10 +72,10 @@ const EditorWithHeader: FC = () => {
     );
 };
 
-interface PlaygroundProps {
+type PlaygroundProps = {
     transformCode: (code: string) => string;
     children: string;
-}
+} & { [key: string]: boolean | string | number };
 
 const Playground: FC<PlaygroundProps> = ({ children, transformCode, ...props }) => {
     const isBrowser = useIsBrowser();
@@ -82,22 +92,27 @@ const Playground: FC<PlaygroundProps> = ({ children, transformCode, ...props }) 
         <div className={styles.playgroundContainer}>
             <LiveProvider
                 key={isBrowser}
-                code={isBrowser ? children.replace(/\n$/, '') : ''}
+                code={isBrowser ? getSourceWithoutImports(children).replace(/\n$/, '') : ''}
                 transformCode={transformCode || ((code) => `${code};`)}
                 theme={prismTheme}
                 {...props}
             >
-                {playgroundPosition === 'top' ? (
-                    <>
-                        <ResultWithHeader />
-                        <EditorWithHeader />
-                    </>
-                ) : (
-                    <>
-                        <EditorWithHeader />
-                        <ResultWithHeader />
-                    </>
-                )}
+                <StyledPlayground>
+                    {playgroundPosition === 'top' ? (
+                        <>
+                            {!props['no-execute'] && <ResultWithHeader />}
+                            <EditorWithHeader />
+                        </>
+                    ) : (
+                        <>
+                            <EditorWithHeader />
+                            {!props['no-execute'] && <ResultWithHeader />}
+                        </>
+                    )}
+                    <StyledWrap>
+                        <CodeSandbox source={children} />
+                    </StyledWrap>
+                </StyledPlayground>
             </LiveProvider>
         </div>
     );

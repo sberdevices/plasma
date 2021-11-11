@@ -10,5 +10,12 @@ import { PropsTable, Description } from '@site/src/components';
 <PropsTable name="Spinner" />
 
 ```tsx live
-<Spinner size={32} />
+import React from 'react';
+import { Spinner } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <Spinner size={32} />
+    );
+}
 ```

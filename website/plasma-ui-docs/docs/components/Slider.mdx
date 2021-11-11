@@ -9,6 +9,17 @@ import { PropsTable, Description } from '@site/src/components';
 <Description name="Slider" />
 <PropsTable name="Slider" />
 
-```tsx
-<Slider min={0} max={100} value={30} disabled={false} />
+```tsx live
+import React from 'react';
+import { Slider, DeviceThemeProvider, Container  } from '@sberdevices/plasma-ui';
+
+export function App() {
+    return (
+        <DeviceThemeProvider>
+            <Container>
+                <Slider onChangeCommitted={() => {}} min={0} max={100} value={30} disabled={false} />
+            </Container>
+        </DeviceThemeProvider>
+    );
+}
 ```

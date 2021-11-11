@@ -23,3 +23,30 @@ import { PropsTable, Description } from '@site/src/components';
 
 <Description name="TabItem" />
 <PropsTable name="TabItem" />
+
+```tsx live
+import React, { useState } from 'react';
+import { Tabs, TabItem } from '@sberdevices/plasma-web';
+import { IconClock } from '@sberdevices/plasma-icons';
+
+export function App() {
+    const items = Array(4).fill(0);
+    const [index, setIndex] = useState(0);
+
+    return (
+        <Tabs stretch={true} >
+            {items.map((_, i) => (
+                <TabItem
+                    key={`item:${i}`}
+                    isActive={i === index}
+                    tabIndex={i}
+                    contentLeft={<IconClock color="inherit" />}
+                    onClick={() => setIndex(i)}
+                >
+                    Label
+                </TabItem>
+            ))}
+        </Tabs>
+    );
+}
+```

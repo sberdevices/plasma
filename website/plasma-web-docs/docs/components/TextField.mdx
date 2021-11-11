@@ -14,68 +14,99 @@ import { PropsTable, Description } from '@site/src/components';
 Для этого используйте свойства `contentLeft` и `contentRight`:
 
 ```tsx live
-<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, 12.5rem)', gap: '1rem' }}>
-    <TextField
-        placeholder="Положение иконки"
-        defaultValue="Слева"
-        contentLeft={<IconDownload />}
-    />
-    <TextField
-        placeholder="Положение иконки"
-        defaultValue="Справа"
-        contentRight={<IconDownload />}
-    />
-</div>
+import React from 'react';
+import { TextField } from '@sberdevices/plasma-web';
+import { IconDownload } from '@sberdevices/plasma-icons';
+
+export function App() {
+    return (
+        <div>
+            <TextField
+                placeholder="Положение иконки"
+                defaultValue="Слева"
+                contentLeft={<IconDownload />}
+            />
+            <TextField
+                placeholder="Положение иконки"
+                defaultValue="Справа"
+                contentRight={<IconDownload />}
+            />
+        </div>
+    );
+}
 ```
 
 ### Размер поля
 Размер поля задаётся с помощью свойства `size`. Свойство принимает значения `"l"` и `"m"`:
 
 ```tsx live
-<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, 12.5rem)', gap: '1rem' }}>
-    <TextField
-        placeholder="Размер"
-        size="l"
-        defaultValue="L56"
-    />
-    <TextField
-        placeholder="Размер"
-        size="m"
-        defaultValue="M48"
-    />
-</div>
+import React from 'react';
+import { TextField } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <div>
+            <TextField
+                placeholder="Размер"
+                size="l"
+                defaultValue="L56"
+            />
+            <TextField
+                placeholder="Размер"
+                size="m"
+                defaultValue="M48"
+            />
+        </div>
+    );
+}
 ```
 
 ### Статус поля
 Статус поля задается с помощью свойства `status`. Возможные значения свойства: `success`, `warning` и `error`:
 
 ```tsx live
-<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, 12.5rem)', gap: '1rem' }}>
-    <TextField
-        placeholder="Статус"
-        status="success"
-        defaultValue="Успех"
-    />
-    <TextField
-        placeholder="Статус"
-        status="Предупреждение"
-        defaultValue="Успех"
-    />
-    <TextField
-        placeholder="Статус"
-        status="error"
-        defaultValue="Ошибка"
-    />
-</div>
+import React from 'react';
+import { TextField } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <div>
+            <TextField
+                placeholder="Статус"
+                status="success"
+                defaultValue="Успех"
+            />
+            <TextField
+                placeholder="Статус"
+                status="Предупреждение"
+                defaultValue="Успех"
+            />
+            <TextField
+                placeholder="Статус"
+                status="error"
+                defaultValue="Ошибка"
+            />
+        </div>
+    );
+}
 ```
 
 ### Подсказка
 Для вывода подсказки снизу от поля используйте свойство `helperText`:
 
 ```tsx live
-<TextField
-    placeholder="Введите значение"
-    defaultValue="Значение"
-    helperText="Подсказка снизу"
-/>
+import React from 'react';
+import { TextField } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <div>
+            <TextField
+                placeholder="Введите значение"
+                defaultValue="Значение"
+                helperText="Подсказка снизу"
+            />
+        </div>
+    );
+}
 ```

@@ -36,33 +36,50 @@ import { PropsTable, Description } from '@site/src/components';
 Размеры колонок указываются свойством `size`, отступ — свойством `offset`.
 
 ```tsx live
-<Container>
-    <Row>
-        <Col size={1}>
-            <Filler mb="8x">1</Filler>
-        </Col>
-        <Col size={2}>
-            <Filler mb="8x">2</Filler>
-        </Col>
-        <Col size={3}>
-            <Filler mb="8x">3</Filler>
-        </Col>
-        <Col size={4}>
-            <Filler mb="8x">4</Filler>
-        </Col>
-        <Col size={2}>
-            <Filler mb="8x">2</Filler>
-        </Col>
-    </Row>
-    <Row>
-        <Col size={3} offset={1}>
-            <Filler mb="8x">3 offset 1</Filler>
-        </Col>
-        <Col size={6} offset={2}>
-            <Filler mb="8x">6 offset 2</Filler>
-        </Col>
-    </Row>
-</Container>
+import React from 'react';
+import styled from 'styled-components';
+import { Container, Row, Col } from '@sberdevices/plasma-web';
+
+export function App() {
+    const Filler = styled.div`
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 0.5rem 1rem;
+        background-color: #f0f0f0;
+    `;
+
+    return (
+        <Container>
+            <Row>
+                <Col size={1}>
+                    <Filler>1</Filler>
+                </Col>
+                <Col size={2}>
+                    <Filler>2</Filler>
+                </Col>
+                <Col size={3}>
+                    <Filler>3</Filler>
+                </Col>
+                <Col size={4}>
+                    <Filler>4</Filler>
+                </Col>
+                <Col size={2}>
+                    <Filler>2</Filler>
+                </Col>
+            </Row>
+            <Row>
+                <Col size={3} offset={1}>
+                    <Filler>3 offset 1</Filler>
+                </Col>
+                <Col size={6} offset={2}>
+                    <Filler>6 offset 2</Filler>
+                </Col>
+            </Row>
+        </Container>
+    );
+}
 ```
 
 ### Адаптивные размеры и отступы колонок
@@ -71,22 +88,39 @@ import { PropsTable, Description } from '@site/src/components';
 При этом, `size` и `offset` могут выступать как fallback-значения для остальных разрешений.
 
 ```tsx live
-<Container>
-    <Row>
-        <Col sizeS={1} sizeM={2} sizeL={3} sizeXL={4}>
-            <Filler mb="8x">1</Filler>
-        </Col>
-        <Col size={2} sizeXL={4}>
-            <Filler mb="8x">2</Filler>
-        </Col>
-    </Row>
-    <Row>
-        <Col size={3} offsetS={1} offsetM={2} offsetL={3} offsetXL={4}>
-            <Filler mb="8x">3 offset 1</Filler>
-        </Col>
-        <Col size={6} offset={2} offsetXL={4}>
-            <Filler mb="8x">6 offset 2</Filler>
-        </Col>
-    </Row>
-</Container>
+import React from 'react';
+import styled from 'styled-components';
+import { Container, Row, Col } from '@sberdevices/plasma-web';
+
+export function App() {
+    const Filler = styled.div`
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 0.5rem 1rem;
+        background-color: #f0f0f0;
+    `;
+
+    return (
+        <Container>
+            <Row>
+                <Col sizeS={1} sizeM={2} sizeL={3} sizeXL={4}>
+                    <Filler>1</Filler>
+                </Col>
+                <Col size={2} sizeXL={4}>
+                    <Filler>2</Filler>
+                </Col>
+            </Row>
+            <Row>
+                <Col size={3} offsetS={1} offsetM={2} offsetL={3} offsetXL={4}>
+                    <Filler>3 offset 1</Filler>
+                </Col>
+                <Col size={6} offset={2} offsetXL={4}>
+                    <Filler>6 offset 2</Filler>
+                </Col>
+            </Row>
+        </Container>
+    );
+}
 ```

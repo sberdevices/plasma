@@ -12,20 +12,41 @@ import { PropsTable, Description } from '@site/src/components';
 ## Использование
 Компонент `TextArea` может содержать иконку (или кнопку) справа.
 Для этого используйте свойство и `contentRight`:
+
 ```tsx live
-<TextArea
-    placeholder="Положение иконки"
-    defaultValue="Справа"
-    contentRight={<IconDownload />}
-/>
+import React from 'react';
+import { TextArea } from '@sberdevices/plasma-web';
+import { IconDownload } from '@sberdevices/plasma-icons';
+
+export function App() {
+    return (
+        <div>
+            <TextArea
+                placeholder="Положение иконки"
+                defaultValue="Справа"
+                contentRight={<IconDownload />}
+            />
+        </div>
+    );
+}
 ```
 
 ### Подсказка
 Для вывода подсказки снизу от поля используйте свойство `helperText`.
+
 ```tsx live
-<TextArea
-    placeholder="Введите значение"
-    defaultValue="Значение"
-    helperText="Подсказка снизу"
-/>
+import React from 'react';
+import { TextArea } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <div>
+            <TextArea
+                placeholder="Введите значение"
+                defaultValue="Значение"
+                helperText="Подсказка снизу"
+            />
+        </div>
+    );
+}
 ```

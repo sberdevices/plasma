@@ -10,7 +10,14 @@ import { PropsTable, Description } from '@site/src/components';
 <PropsTable name="Link" exclude={['$isHover', '$isPressed', '$isVisited']} />
 
 ```tsx live
-<P1>
-    Скачайте <Link href="/" target="__blank">приложение</Link>.
-</P1>
+import React from 'react';
+import { P1, Link } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <P1>
+            Скачайте <Link href="/" target="__blank">приложение</Link>.
+        </P1>
+    );
+}
 ```

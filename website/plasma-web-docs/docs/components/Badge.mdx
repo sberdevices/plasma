@@ -3,35 +3,31 @@ id: badge
 title: Badge
 ---
 
-import { PropsTable, Description, CodeSandbox } from '@site/src/components';
+import { PropsTable, Description } from '@site/src/components';
 
 # Badge
 <Description name="Badge" />
 <PropsTable name="Badge" />
-
-<CodeSandbox  />
-
-<!-- 
-<iframe src="https://codesandbox.io/embed/plasma-switch-forked-snlhh?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="Plasma Switch (forked)"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-></iframe> -->
-
 
 ## Примеры
 
 ### Размер бейджа
 Размер задается с помощью свойства `size`. Возможные значения свойтсва: `"l"` или `"s"`.
 
-```tsx live
-<>
-    <Badge text="Бейдж" size="l" />
-    <Badge text="Бейдж" size="s" />
-</>
+```tsx live 
+import React from 'react';
+import { Badge } from '@sberdevices/plasma-web';
 
+export function App() {
+    return (
+        <div>
+            <Badge text="Бейдж" size="l" />
+            <Badge text="Бейдж" size="s" />
+        </div>
+    );
+}
 ```
+
 ### Вид бейджа
 Вид бейджа задается с помощью свойства `view`. Возможные значения свойства `view`:
 
@@ -41,14 +37,21 @@ import { PropsTable, Description, CodeSandbox } from '@site/src/components';
 + `"warning"` – предупреждение;
 + `"critical"` – ошибка.
 
-```tsx live
-<>
-    <Badge text="Бейдж" size="l" view="primary" />
-    <Badge text="Бейдж" size="l" view="secondary" />
-    <Badge text="Бейдж" size="l" view="success" />
-    <Badge text="Бейдж" size="l" view="warning" />
-    <Badge text="Бейдж" size="l" view="critical" />
-</>
+```tsx live 
+import React from 'react';
+import { Badge } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <div>
+            <Badge text="Бейдж" size="l" view="primary" />
+            <Badge text="Бейдж" size="l" view="secondary" />
+            <Badge text="Бейдж" size="l" view="success" />
+            <Badge text="Бейдж" size="l" view="warning" />
+            <Badge text="Бейдж" size="l" view="critical" />
+        </div>
+    );
+}
 ```
 
 ### Иконка слева
@@ -56,17 +59,27 @@ import { PropsTable, Description, CodeSandbox } from '@site/src/components';
 Если не указывать текст, бейдж будет содержать только заданную иконку:
 
 ```tsx live
-<>
-    <Badge
-        text="Бейдж"
-        size="l"
-        view="primary"
-        contentLeft={<IconEye color="inherit" size="xs" />}
-    />
-    <Badge
-        size="l"
-        view="primary"
-        contentLeft={<IconEye color="inherit" size="xs" />}
-    />
-</>
+import React from 'react';
+import { Badge } from '@sberdevices/plasma-web';
+import { IconEye } from '@sberdevices/plasma-icons';
+
+export function App() {
+    return (
+        <div>
+            <Badge 
+                text="Бейдж" 
+                size="l"   
+                view="primary" 
+                contentLeft={
+                    <IconEye color="inherit" size="xs" />
+                } />
+            <Badge 
+                size="l" 
+                view="primary" 
+                contentLeft={
+                    <IconEye color="inherit" size="xs" />
+                } />
+        </div>
+    );
+}
 ```

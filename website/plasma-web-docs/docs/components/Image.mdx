@@ -10,10 +10,17 @@ import { PropsTable, Description } from '@site/src/components';
 <PropsTable name="Image" />
 
 ```tsx live
-<Image
-    src="/images/320_320_9.jpg"
-    width="320"
-    height="320"
-    alt="Картинка для примера фоном"
-/>
+import React from 'react';
+import { Image } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <Image
+            src="/images/320_320_9.jpg"
+            width="320px"
+            height="320px"
+            alt="Картинка для примера фоном"
+        />
+    );
+}
 ```

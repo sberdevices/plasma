@@ -119,37 +119,42 @@ export const MyGallery = () = (
 * Каждый элемент списка должен использовать `CarouselContext` для регистрации `ref`
 — это необходимо для расчета динамической ширины и положения элементов на экране (см. [CarouselItem](#carouselitem)).
 
-```tsx title="App.tsx"
+```tsx live
 import React from 'react';
-import { CarouselGridWrapper, Carousel, CarouselCol } from '@sberdevices/plasma-web';
+import { Carousel, CarouselItem } from '@sberdevices/plasma-web';
+import styled from 'styled-components';
 
-const items = [{ title: 'Item 1' }, { title: 'Item 2' }, { title: 'Item 3' }, { title: 'Item 4' }];
+export function App() {
+    const items = [{ title: 'Item 1' }, { title: 'Item 2' }, { title: 'Item 3' }, { title: 'Item 4' }];
 
-export const App = () =>  {
-    const [index, setIndex] = React.useState(index);
+    const StyledCard = styled.div`
+        position: relative;
+        border-radius: 8px;
+        width: 350px;
+        height: 50px;
+        padding: 8px;
+        background-color: lightblue;
+    `;
+
+    const [index, setIndex] = React.useState(0);
+    const align = 'center';
 
     return (
-        <Container>
-            <CarouselGridWrapper>
-                <Carousel
-                    as={Row}
-                    axis="x"
-                    index={index}
-                    scrollSnapType="mandatory"
-                    detectActive
-                    detectThreshold={0.5}
-                    stylingCallback={stylingCallback}
-                    stylingResetCallback={stylingResetCallback}
-                    onIndexChange={(i) => setIndex(i)}
-                    paddingStart="50%"
-                    paddingEnd="50%"
-                >
-                    {items.map(({ title }, i) => (
-                        <CarouselCol key={`item:${i}`}>{title}</CarouselCol>
-                    ))}
-                </Carousel>
-            </CarouselGridWrapper>
-        </Container>
+        <Carousel
+            style={{ margin: '0 -0.5rem' }}
+            index={index}
+            detectActive
+            onIndexChange={(i) => setIndex(i)}
+            scrollAlign={align}
+        >
+            {items.map((item, i) => (
+                <CarouselItem key={`item:${i}`} style={{ display: 'flex', alignItems: 'center', padding: '0 0.5rem' }} scrollSnapAlign={align}>
+                    <StyledCard>
+                        {item.title}
+                    </StyledCard>
+                </CarouselItem>
+            ))}
+        </Carousel>
     );
-};
+}
 ```

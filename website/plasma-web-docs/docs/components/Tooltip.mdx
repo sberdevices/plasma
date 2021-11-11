@@ -16,7 +16,17 @@ import { PropsTable, Description } from '@site/src/components';
 Предполагается оборачивать иконки из пакета `@sberdevices/plasma-icons`
 
 ```tsx live
-<Tooltip text="Высокое качество воспроизведения" visible>
-    <IconApps />
-</Tooltip>
+import React from 'react';
+import { Tooltip } from '@sberdevices/plasma-web';
+import { IconApps } from '@sberdevices/plasma-icons';
+
+export function App() {
+    return (
+        <div style={{marginLeft: '100px',marginBottom: '35px'}}>
+            <Tooltip text="Высокое качество воспроизведения" visible>
+                <IconApps />
+            </Tooltip>
+        </div>
+    );
+}
 ```

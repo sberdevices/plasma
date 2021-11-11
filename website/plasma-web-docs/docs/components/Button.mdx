@@ -20,20 +20,28 @@ import { PropsTable, Description } from '@site/src/components';
 С их помощью можно размещать **иконку** слева или справа от текста.
 
 ```tsx live
-<>
-    <Button text="Текст" />
+import React from 'react';
+import { Button } from '@sberdevices/plasma-web';
+import { IconDownload } from '@sberdevices/plasma-icons';
 
-    <Button text="Текст" contentLeft={<IconDownload />} />
+export function App() {
+    return (
+        <div>
+            <Button text="Текст" />
 
-    <Button text="Текст" contentRight={<IconDownload />} />
+            <Button text="Текст" contentLeft={<IconDownload />} />
 
-    <Button contentLeft={<IconDownload />} />
+            <Button text="Текст" contentRight={<IconDownload />} />
 
-    <Button>
-        <IconDownload />
-        <span>Текст</span>
-    </Button>
-</>
+            <Button contentLeft={<IconDownload />} />
+
+            <Button>
+                <IconDownload />
+                <span>Текст</span>
+            </Button>
+        </div>
+    );
+}
 ```
 
 ## Примеры
@@ -42,11 +50,18 @@ import { PropsTable, Description } from '@site/src/components';
 Размер кнопки задается с помощью свойства `size`. Возможные значения свойства: `"l"`, `"m"` или `"s"`:
 
 ```tsx live
-<>
-    <Button text="Button" size="l" />
-    <Button text="Button" size="m" />
-    <Button text="Button" size="s" />
-</>
+import React from 'react';
+import { Button } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <div>
+            <Button text="Button" size="l" />
+            <Button text="Button" size="m" />
+            <Button text="Button" size="s" />
+        </div>
+    );
+}
 ```
 
 ### Вид кнопки
@@ -60,16 +75,23 @@ import { PropsTable, Description } from '@site/src/components';
 + `"clear"` – без цветового сопровождения.
 
 ```tsx live
-<>
-    <Button text="Кнопка" size="s" view="primary" />
-    <Button text="Кнопка" size="s" view="secondary" />
-    <Button text="Кнопка" size="s" view="success" />
-    <Button text="Кнопка" size="s" view="warning" />
-    <Button text="Кнопка" size="s" view="critical" />
-    <Button text="Кнопка" size="s" view="checked" />
-    <Button text="Кнопка" size="s" view="overlay" />
-    <Button text="Кнопка" size="s" view="clear" />
-</>
+import React from 'react';
+import { Button } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <div>
+            <Button text="Кнопка" size="s" view="primary" />
+            <Button text="Кнопка" size="s" view="secondary" />
+            <Button text="Кнопка" size="s" view="success" />
+            <Button text="Кнопка" size="s" view="warning" />
+            <Button text="Кнопка" size="s" view="critical" />
+            <Button text="Кнопка" size="s" view="checked" />
+            <Button text="Кнопка" size="s" view="overlay" />
+            <Button text="Кнопка" size="s" view="clear" />
+        </div>
+    );
+}
 ```
 
 ### Границы кнопки
@@ -79,15 +101,22 @@ import { PropsTable, Description } from '@site/src/components';
 + `clear` – нет скругления.
 
 ```tsx live
-<>
-    <Button pin="square-square">Button</Button>
-    <Button pin="square-clear">Button</Button>
-    <Button pin="clear-square">Button</Button>
-    <Button pin="clear-clear">Button</Button>
-    <Button pin="clear-circle">Button</Button>
-    <Button pin="circle-clear">Button</Button>
-    <Button pin="circle-circle">Button</Button>
-</>
+import React from 'react';
+import { Button } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <div>
+            <Button pin="square-square">Button</Button>
+            <Button pin="square-clear">Button</Button>
+            <Button pin="clear-square">Button</Button>
+            <Button pin="clear-clear">Button</Button>
+            <Button pin="clear-circle">Button</Button>
+            <Button pin="circle-clear">Button</Button>
+            <Button pin="circle-circle">Button</Button>
+        </div>
+    );
+}
 ```
 
 ### Квадратные и круглые кнопки
@@ -98,9 +127,17 @@ import { PropsTable, Description } from '@site/src/components';
 **Круглые** границы кнопки можно сделать с помощью свойства `pin` со значением `"circle-circle"`.
 
 ```tsx live
-<>
-    <Button contentLeft={<IconDownload />} />
+import React from 'react';
+import { Button } from '@sberdevices/plasma-web';
+import { IconDownload } from '@sberdevices/plasma-icons';
 
-    <Button contentLeft={<IconDownload />} pin="circle-circle" />
-</>
+export function App() {
+    return (
+        <div>
+            <Button contentLeft={<IconDownload />} />
+
+            <Button contentLeft={<IconDownload />} pin="circle-circle" />
+        </div>
+    );
+}
 ```
