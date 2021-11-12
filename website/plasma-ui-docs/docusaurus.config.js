@@ -9,6 +9,11 @@ const fg = require('fast-glob');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const pckgJson = require('./package.json');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const versionsArchived = require('./versionsArchived.json');
+
 const { PR_NAME } = process.env;
 const prefix = PR_NAME ? `/${PR_NAME}` : '';
 const suffix = 'ui/';
@@ -44,6 +49,17 @@ module.exports = {
                     href: `https://plasma.sberdevices.ru${prefix}/web/`,
                     position: 'left',
                     label: 'Web',
+                },
+                {
+                    type: 'docsVersionDropdown',
+                    position: 'right',
+                    dropdownActiveClassDisabled: false,
+                    dropdownItemsAfter: [
+                        ...Object.entries(versionsArchived).map(([versionName, versionUrl]) => ({
+                            label: versionName,
+                            href: versionUrl,
+                        })),
+                    ],
                 },
                 {
                     href: 'https://github.com/sberdevices/plasma',
@@ -105,6 +121,12 @@ module.exports = {
                     routeBasePath: '/',
                     sidebarPath: require.resolve('./sidebars.js'),
                     editUrl: 'https://github.com/sberdevices/plasma/blob/master/website/plasma-ui-docs/',
+                    versions: {
+                        current: {
+                            label: pckgJson.dependencies['@sberdevices/plasma-ui'],
+                            path: '',
+                        },
+                    },
                 },
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
