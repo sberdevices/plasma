@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SberDevices Video Ad Player</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    <link rel="stylesheet" crossOrigin="anonymous" href="https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansText.0.1.0.css">
+
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@sberdevices/assistant-client@4.5.0/umd/assistant.min.js"></script>
+
+    <script src="ad-sdk.js"></script>
+    <!-- <script src="https://cdn-app.sberdevices.ru/shared-static/0.0.0/js/@sberdevices/ad-sdk/ad-sdk.min.js"></script> -->
+    <script type="text/javascript" src="bundle.js"></script>
+</head>
+<body>
+    <style>
+        .header {
+            font-family: "SB Sans Text", sans-serif;
+            font-weight: 600;
+            font-style: normal;
+            font-size: 1.5rem;
+            letter-spacing: -0.022em;
+            line-height: 1.75rem;
+        }
+
+        .container {
+            padding: 20px;
+        }
+        .block {
+            margin: 20px 0;
+        }
+
+        .button {
+            font-family: "SB Sans Text", sans-serif;
+            font-size: 1.5rem;
+
+            border-radius: 5px;
+            padding: 8px 16px;
+            border: none;
+            box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+            background-color: #2a72f8;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .button[disabled] {
+            opacity: 0.6;
+        }
+
+    </style>
+
+    <div class="container">
+        <h2 class="header">SberDevices Video Ad Player</h2>
+        <div class="block">
+            <input type="checkbox" id="mute-video-ad"/>
+            <label for="mute-video-ad">Отключить звук</label>
+        </div>
+        <button class="button video-ad-btn">Run SmartMarket Ad</button>
+    </div>
+
+    <div class="container">
+        <h2 class="header">SberDevices Banner</h2>
+        <button class="button banner-ad-btn">Run SmartMarket Banner</button>
+    </div>
+</body>
+
+</html>
+

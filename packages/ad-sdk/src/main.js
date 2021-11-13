@@ -3,10 +3,10 @@ import { openBanner } from "./banner";
 
 const logger = {
     // TODO: clickhouse logger
-    log: () => {},
-    // log: console.log.bind(console),
-    error: () => {},
-    // error: (err) => console.error(err),
+    // log: () => {},
+    log: console.log.bind(console),
+    // error: () => {},
+    error: (err) => console.error(err),
 };
 
 let initParams = {};
@@ -259,6 +259,8 @@ export function runVideoAd(params = {}) {
         return;
     }
 
+    const muted = params.mute || false;
+
     const adContainer = document.createElement("div");
     let adUnit;
 
@@ -341,6 +343,7 @@ export function runVideoAd(params = {}) {
         onError,
         onRunFinish,
         timeout: 15000,
+        muted,
     });
 }
 

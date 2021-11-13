@@ -11,12 +11,12 @@ import VideoAdContainer from "./VideoAdContainer";
  *
  * @returns {VideoAdContainer} - Returns a `VideoAdContainer` instance.
  */
-const createVideoAdContainer = (placeholder, videoElement) => {
+const createVideoAdContainer = (placeholder, videoElement, params) => {
     if (!placeholder) {
         throw new TypeError("placeholder is required");
     }
 
-    return new VideoAdContainer(placeholder, videoElement);
+    return new VideoAdContainer(placeholder, videoElement, params);
 };
 
 export default createVideoAdContainer;

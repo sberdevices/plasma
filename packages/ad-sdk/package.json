@@ -8,7 +8,8 @@
   "scripts": {
     "build": "npx rollup -c rollup.config.js",
     "watch": "npx rollup -c rollup.config.js -w",
-    "start:demo:banner": "npx rollup -c rollup.config.js -w -o examples/banner/adSdk/ad-sdk.js",
+    "prepare-demo:watch": "npx rollup -c rollup.config.js -w -o examples/demo/public/ad-sdk.js",
+    "prepare-demo": "npx rollup -c rollup.config.js -o examples/demo/public/ad-sdk.js",
     "prepare": "npm run build",
     "test": "jest"
   },

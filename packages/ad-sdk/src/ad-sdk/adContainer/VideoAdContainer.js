@@ -21,7 +21,7 @@ class VideoAdContainer {
      * @param {HTMLDivElement} placeholder - DIV that will contain the ad.
      * @param {HTMLVideoElement} [videoElement] - optional videoElement that will be used to play the ad.
      */
-    constructor(placeholder, videoElement = null) {
+    constructor(placeholder, videoElement = null, params = {}) {
         if (!(placeholder instanceof Element)) {
             throw new TypeError("placeholder is not an Element");
         }
@@ -41,7 +41,8 @@ class VideoAdContainer {
         if (videoElement) {
             this.videoElement = videoElement;
         } else {
-            this.videoElement = createAdVideoElement();
+            const muted = params.muted || false;
+            this.videoElement = createAdVideoElement({ muted });
             this.element.appendChild(this.videoElement);
         }
 

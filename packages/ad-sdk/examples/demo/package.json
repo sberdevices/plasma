@@ -1,0 +1,26 @@
+{
+  "name": "demo-video-sdk",
+  "version": "1.0.0",
+  "description": "Demo of SberDevices Video Ad SDK",
+  "scripts": {
+    "build": "NODE_ENV='production' node -r dotenv/config $(which webpack)",
+    "build:dev": "NODE_ENV='development' node -r dotenv/config $(which webpack)",
+    "clean": "rm public/bundle.js",
+    "predev": "npm run clean && npm run build:dev",
+    "dev": "npx http-server",
+    "start": "npx vercel dev"
+  },
+  "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
+  "license": "Sber Public License at-nc-sa v.2",
+  "devDependencies": {
+    "http-server": "^13.0.2",
+    "webpack": "^5.54.0",
+    "webpack-cli": "^4.8.0"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "@salutejs/scenario": "^0.18.0",
+    "@sberdevices/assistant-client": "^4.5.0",
+    "@salutejs/storage-adapter-memory": "^0.18.0"
+  }
+}

@@ -32,7 +32,7 @@ const run = async (vastChain, placeholder, options) => {
     try {
         const { timeout } = options;
 
-        videoAdContainer = createVideoAdContainer(placeholder, options.videoElement);
+        videoAdContainer = createVideoAdContainer(placeholder, options.videoElement, { muted: options.muted });
         let adUnitPromise = startVideoAd(vastChain, videoAdContainer, options);
 
         if (typeof timeout === "number") {
