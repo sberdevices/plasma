@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`banner.js - Banner class Совпадает снапшот 1`] = `
+<body>
+  <div
+    id="root"
+  >
+    <div
+      style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; display: flex;"
+    >
+      <div
+        style="margin: auto; flex-shrink: 0; flex-grow: 0; max-width: 100vw; max-height: 100vh;"
+      >
+        <div
+          style="display: flex; align-items: center;"
+        >
+          <div
+            style="color: white; flex-grow: 1; flex-shrink: 1;"
+          >
+            Реклама закроется через 
+            <span
+              id="plasma-ad-time-to-close"
+            >
+              10
+            </span>
+            с
+          </div>
+          <button
+            style="background: none; padding: 0px; margin: 0px; position: relative; flex-grow: 0; flex-shrink: 0;"
+          >
+            <svg
+              color="inherit"
+              fill="none"
+              height="40px"
+              style="display: block;"
+              viewBox="0 0 24 24"
+              width="40px"
+            >
+              <path
+                d="M12 2c5.522 0 10 4.477 10 10s-4.478 10-10 10S2 17.523 2 12 6.478 2 12 2zM8.707 7.292a1 1 0 00-1.414 1.415L10.586 12l-3.293 3.293a.999.999 0 00-.083 1.32l.083.094a.997.997 0 001.414 0L12 13.414l3.293 3.293a.996.996 0 00.58.285L16 17a.999.999 0 00.707-1.707L13.414 12l3.293-3.293a1 1 0 00.083-1.32l-.083-.095a1 1 0 00-1.414 0L12 10.585 8.707 7.292z"
+                fill="white"
+              />
+            </svg>
+          </button>
+        </div>
+        <iframe
+          height="100px"
+          src="url"
+          width="150px"
+        />
+      </div>
+    </div>
+  </div>
+</body>
+`;

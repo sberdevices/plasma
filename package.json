@@ -5,7 +5,8 @@
     "description": "A lot of usefull code",
     "scripts": {
         "release": "auto shipit",
-        "lint": "eslint --ext .js,.ts,.tsx ."
+        "lint": "eslint --ext .js,.ts,.tsx .",
+        "test": "lerna run test"
     },
     "repository": {
         "type": "git",
