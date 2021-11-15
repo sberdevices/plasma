@@ -1,3 +1,15 @@
+# v1.63.1 (Mon Nov 15 2021)
+
+#### 🐛 Bug Fix
+
+- fix: Separate `Input`'s animation by b2b and b2c [#908](https://github.com/sberdevices/plasma/pull/908) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.63.0 (Mon Nov 15 2021)
 
 #### 🐛 Bug Fix

@@ -1,5 +1,18 @@
 # (Mon Nov 15 2021)
 
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-core@1.35.2`, `@sberdevices/plasma-ui@1.63.1`, `@sberdevices/plasma-web@1.57.2`
+  - fix: Separate `Input`'s animation by b2b and b2c [#908](https://github.com/sberdevices/plasma/pull/908) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Mon Nov 15 2021)
+
 #### 🚀 Enhancement
 
 - `@sberdevices/plasma-b2c@1.18.0`
