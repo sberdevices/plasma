@@ -36,6 +36,7 @@ const StyledPopup = styled(Popup)<Pick<SelectDopdownProps, 'isOpen'>>`
 export const SelectDropdown: FC<SelectDopdownProps> = ({
     items,
     multiselect,
+    disabled,
     onItemClick: onItemClickExternal,
     ...rest
 }) => {
@@ -53,12 +54,13 @@ export const SelectDropdown: FC<SelectDopdownProps> = ({
     );
     const onToggle = useCallback(
         (newIsOpen) => {
-            if (newIsOpen && !hasItems) {
+            if (newIsOpen && (!hasItems || disabled)) {
                 return;
             }
+
             setIsOpen(newIsOpen);
         },
-        [hasItems],
+        [hasItems, disabled],
     );
 
     return (
