@@ -15,13 +15,8 @@ export class TabItemRefs {
 
 interface TabsState {
     refs?: TabItemRefs;
-    animated: boolean;
 }
 
-const initialValue: TabsState = {
-    animated: false,
-};
+export const TabsAnimationContext = createContext<TabsState>({});
 
-export const TabsContext = createContext<TabsState>(initialValue);
-
-export const useTabsContext = () => useContext(TabsContext);
+export const useTabsAnimationContext = () => useContext(TabsAnimationContext);

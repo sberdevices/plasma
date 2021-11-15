@@ -1,52 +1,57 @@
-import React, { useMemo } from 'react';
+import React, { forwardRef, useMemo } from 'react';
 import type { TabsProps as BaseProps } from '@sberdevices/plasma-core';
 
-import { TabsContainer, TabsContainerProps } from './TabsContainer';
-import { TabItemAnimated } from './TabItem';
-import { TabItemRefs, TabsContext } from './TabsContext';
+import { TabsView, TabsViewProps } from './TabsView';
+import { TabItem } from './TabItem';
+import { TabItemRefs, TabsAnimationContext } from './TabsAnimationContext';
 import { TabsSlider } from './TabsSlider';
 
 interface AnimatedProps {
-    animated: true;
-    index: number;
+    animated?: true;
+    index?: number;
 }
 
 interface UnAnimatedProps {
-    animated?: never;
+    animated?: false;
     index?: never;
 }
 
-export type TabsProps = (AnimatedProps | UnAnimatedProps) & BaseProps & TabsContainerProps;
+export type TabsProps = (AnimatedProps | UnAnimatedProps) & BaseProps & TabsViewProps;
 
-const isAnimatedProps = (props: TabsProps): props is AnimatedProps & TabsContainerProps => {
+const isAnimatedProps = (props: TabsProps): props is AnimatedProps & TabsViewProps => {
     return props.animated === true;
 };
 
 /**
  * Контейнер вкладок со слайдером
  */
-export const Tabs: React.FC<TabsProps> = ({ children, ...props }) => {
+// eslint-disable-next-line prefer-arrow-callback
+export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs({ children, ...props }, ref) {
     const refs = useMemo(() => new TabItemRefs(), []);
 
     if (!isAnimatedProps(props)) {
-        return <TabsContainer {...props}>{children}</TabsContainer>;
+        return (
+            <TabsView ref={ref} {...props}>
+                {children}
+            </TabsView>
+        );
     }
 
-    const { index, animated, ...rest } = props;
+    const { index, ...rest } = props;
     const childrenArray = React.Children.toArray(children);
     const animatedChildren = childrenArray.map((child, i) => {
         if (React.isValidElement(child)) {
-            return <TabItemAnimated key={i} {...child.props} />;
+            return <TabItem animated key={i} {...child.props} />;
         }
         return child;
     });
 
     return (
-        <TabsContext.Provider value={{ refs, animated }}>
-            <TabsContainer {...rest}>
+        <TabsAnimationContext.Provider value={{ refs }}>
+            <TabsView ref={ref} {...rest}>
                 {animatedChildren}
                 <TabsSlider index={index} />
-            </TabsContainer>
-        </TabsContext.Provider>
+            </TabsView>
+        </TabsAnimationContext.Provider>
     );
-};
+});
