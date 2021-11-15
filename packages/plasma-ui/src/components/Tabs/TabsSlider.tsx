@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
-import { surfaceCard } from '@sberdevices/plasma-tokens';
+import { surfaceCard } from '@sberdevices/plasma-core';
 
-import { useTabsContext } from './TabsContext';
+import { useTabsAnimationContext } from './TabsAnimationContext';
 
 export const activeItemStyle = css`
     background-color: ${surfaceCard};
@@ -25,7 +25,7 @@ export const StyledSlider = styled.div`
 `;
 
 export interface SliderProps extends React.HTMLAttributes<HTMLDivElement> {
-    index: number;
+    index?: number;
 }
 
 /**
@@ -33,12 +33,14 @@ export interface SliderProps extends React.HTMLAttributes<HTMLDivElement> {
  */
 export const TabsSlider: React.FC<SliderProps> = ({ className, index }) => {
     const [{ left, width, height }, setDimensions] = useState({ left: 0, width: 0, height: 0 });
-
-    /* используем рефы на табы, хранящиеся в контексте табов */
-    const { refs } = useTabsContext();
+    const { refs } = useTabsAnimationContext();
 
     useEffect(() => {
         if (refs) {
+            if (index === undefined) {
+                return;
+            }
+
             const activeTab = refs.items[index].current;
             if (activeTab) {
                 const style = getComputedStyle(activeTab);

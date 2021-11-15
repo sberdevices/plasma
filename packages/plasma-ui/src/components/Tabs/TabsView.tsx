@@ -1,10 +1,12 @@
 import styled, { css } from 'styled-components';
-import { Tabs as BaseTabs, TabsProps as BaseTabsProps, addFocus } from '@sberdevices/plasma-core';
+import { Tabs as BaseTabs, TabsProps as BaseTabsProps } from '@sberdevices/plasma-core';
 import { surfaceLiquid01, blackSecondary, transparent } from '@sberdevices/plasma-tokens';
 import type { FocusProps, OutlinedProps, ShiftProps } from '@sberdevices/plasma-core';
 
 import { applyInteraction } from '../../mixins';
 import type { InteractionProps } from '../../mixins';
+
+import { StyledTabItem } from './TabItem';
 
 /**
  * Размеры для контейнера и айтемов (в css vars).
@@ -69,7 +71,7 @@ const views = {
 type TabsView = keyof typeof views;
 type TabsSize = keyof typeof sizes;
 
-export interface TabsContainerProps
+export interface TabsViewProps
     extends BaseTabsProps,
         FocusProps,
         OutlinedProps,
@@ -90,23 +92,16 @@ export interface TabsContainerProps
 }
 
 /**
- * Миксин для фокуса
+ * Визуальная составляющая контейнера (списка) вкладок.
  */
-const applyFocus = ({ size = 'l', pilled, focused, outlined }: TabsContainerProps) => css`
-    ${addFocus({
-        focused,
-        outlined,
-        outlineRadius: pilled ? '6.375rem' : outlineSizes[size].radius,
-    })}
-`;
-
-/**
- * Контейнер вкладок.
- */
-export const TabsContainer = styled(BaseTabs)<TabsContainerProps>`
+export const TabsView = styled(BaseTabs)<TabsViewProps>`
     padding: 0.125rem 0;
 
     background-color: ${({ view = 'secondary' }) => views[view]};
+
+    &:focus {
+        outline: 0 none;
+    }
 
     ${({ size = 'l', stretch = false, shiftLeft, shiftRight }) =>
         css`
@@ -144,9 +139,12 @@ export const TabsContainer = styled(BaseTabs)<TabsContainerProps>`
             border-radius: 6.25rem;
         `}
 
+    ${({ size = 'l' }) => css`
+        --tab-item-outline-radius: ${outlineSizes[size].radius};
+    `}
+
     /* stylelint-disable-next-line selector-max-universal */
-    & > * {
-        ${applyFocus};
+    & > ${StyledTabItem} {
         ${applyInteraction};
 
         margin-left: 0.125rem;

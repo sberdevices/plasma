@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { Icon } from '@sberdevices/plasma-icons';
+import { Icon, IconClock } from '@sberdevices/plasma-icons';
 
 import { InSpacingDecorator, disableProps } from '../../helpers';
 
-import { Tabs, TabItem, TabsProps } from '.';
+import { Tabs, TabItem, TabsProps, TabsController, TabsControllerProps } from '.';
 
 const sizeKeys = ['l', 'm', 's'];
 const viewKeys = ['secondary', 'black', 'clear'];
@@ -39,14 +39,14 @@ export default {
     },
 } as Meta;
 
-interface DefaultStoryProps {
+interface StoryProps {
     itemsNumber: number;
     scaleOnInteraction: boolean;
     enableContentLeft: boolean;
     text: string;
 }
 
-export const Default: Story<DefaultStoryProps & TabsProps> = ({
+export const Default: Story<StoryProps & TabsProps> = ({
     itemsNumber,
     size,
     view,
@@ -107,5 +107,36 @@ Default.args = {
     disabled: false,
     animated: true,
     enableContentLeft: true,
+    text: 'Label',
+};
+
+export const Arrows: Story<StoryProps & TabsControllerProps> = ({
+    itemsNumber,
+    disabled,
+    stretch,
+    text,
+    enableContentLeft,
+}) => {
+    const items = Array(itemsNumber).fill({
+        label: text,
+        contentLeft: enableContentLeft && <IconClock color="inherit" />,
+    });
+    const [index, setIndex] = useState(0);
+
+    return (
+        <TabsController
+            items={items}
+            index={index}
+            onIndexChange={(i) => setIndex(i)}
+            stretch={stretch}
+            disabled={disabled}
+        />
+    );
+};
+
+Arrows.args = {
+    itemsNumber: 4,
+    disabled: false,
+    stretch: true,
     text: 'Label',
 };

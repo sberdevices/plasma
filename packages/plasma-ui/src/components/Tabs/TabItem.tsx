@@ -1,10 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { FC, useRef, useEffect } from 'react';
 import styled, { css } from 'styled-components';
-import { TabItem as BaseTabItem, TabItemProps as BaseTabItemProps } from '@sberdevices/plasma-core';
-import { button2 } from '@sberdevices/plasma-tokens';
-import type { AsProps } from '@sberdevices/plasma-core';
+import { TabItem as BaseTabItem, button2, buttonFocused } from '@sberdevices/plasma-core';
+import type { TabItemProps as BaseTabItemProps, AsProps } from '@sberdevices/plasma-core';
 
-import { useTabsContext } from './TabsContext';
+import { useTabsAnimationContext } from './TabsAnimationContext';
 import { StyledSlider, activeItemStyle } from './TabsSlider';
 
 export interface TabItemProps extends AsProps, BaseTabItemProps {
@@ -14,8 +13,10 @@ export interface TabItemProps extends AsProps, BaseTabItemProps {
 /**
  * Элемент списка, недопустимо импользовать вне компонента Tabs.
  */
-export const TabItem = styled(BaseTabItem)<TabItemProps>`
+export const StyledTabItem = styled(BaseTabItem)<TabItemProps>`
     ${button2};
+
+    position: relative;
 
     /**
     * Определенные на компоненте Tabs css vars испольуем тут,
@@ -45,20 +46,46 @@ export const TabItem = styled(BaseTabItem)<TabItemProps>`
         css`
             ${activeItemStyle}
         `}
+
+    &::before {
+        content: '';
+
+        position: absolute;
+        top: -0.125rem;
+        left: -0.125rem;
+        right: -0.125rem;
+        bottom: -0.125rem;
+
+        display: block;
+        box-sizing: content-box;
+
+        border: 0.125rem solid transparent;
+        border-radius: var(--tab-item-outline-radius);
+
+        transition: box-shadow 0.2s ease-in-out;
+
+        pointer-events: none;
+    }
+
+    &.focus-visible,
+    &[data-focus-visible-added] {
+        &::before {
+            box-shadow: 0 0 0 0.125rem ${buttonFocused};
+        }
+    }
 `;
 
-export const TabItemAnimated: React.FC<TabItemProps> = ({ children, ...rest }) => {
-    const itemRef = useRef<HTMLElement>(null);
-    const { refs, animated } = useTabsContext();
+/**
+ * Элемент списка вкладок, недопустимо импользовать вне компонента Tabs.
+ */
+export const TabItem: FC<TabItemProps> = (props) => {
+    const ref = useRef<HTMLElement>(null);
+    const { refs } = useTabsAnimationContext();
 
     useEffect(() => {
-        refs?.register(itemRef);
-        return () => refs?.unregister(itemRef);
+        refs?.register(ref);
+        return () => refs?.unregister(ref);
     }, [refs]);
 
-    return (
-        <TabItem ref={itemRef} animated={animated} {...rest}>
-            {children}
-        </TabItem>
-    );
+    return <StyledTabItem ref={ref} {...props} />;
 };
