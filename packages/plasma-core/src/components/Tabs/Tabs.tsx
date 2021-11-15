@@ -66,6 +66,6 @@ const StyledTabs = styled.div<TabsProps>`
 /**
  * Контейнер вкладок.
  */
-export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(({ role = 'tabs', ...rest }, ref) => (
+export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(({ role = 'tablist', ...rest }, ref) => (
     <StyledTabs ref={ref} role={role} {...rest} />
 ));
