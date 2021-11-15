@@ -91,6 +91,14 @@ export interface PreviewGalleryItemProps {
      */
     image?: string;
     /**
+     * React компонент передаваемый вместо image.
+     */
+    component?: JSX.Element;
+    /**
+     * Обработчик клика на элемент.
+     */
+    customClickHandle?: (id: string | number) => void;
+    /**
      * Дополнительное описание элемента.
      */
     caption?: string;
@@ -102,6 +110,10 @@ export interface PreviewGalleryItemProps {
      * Выделен ли элемент.
      */
     isSelected?: boolean;
+    /**
+     * Отключает кнопку действия.
+     */
+    actionDisabled?: boolean;
 }
 
 /**
@@ -112,6 +124,8 @@ export const PreviewGalleryItemBase = memo(
         id,
         itemSize,
         image = '',
+        component,
+        customClickHandle,
         isSelected,
         caption,
         interactionType,
@@ -119,17 +133,22 @@ export const PreviewGalleryItemBase = memo(
         status,
         onItemAction,
         onItemClick,
+        actionDisabled,
     }: PreviewGalleryItemProps & AddionalItemProps) => {
         const itemActionHandle = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
             event.stopPropagation();
             onItemAction?.(id);
         };
 
-        return (
-            <StyledItem width={itemSize} key={id} onClick={() => onItemClick?.(id)}>
+        return !component ? (
+            <StyledItem
+                width={itemSize}
+                key={id}
+                onClick={customClickHandle ? () => customClickHandle(id) : () => onItemClick?.(id)}
+            >
                 <Image src={image} ratio="16 / 9" />
 
-                <StyledTrashButton onClick={itemActionHandle}>{actionIcon}</StyledTrashButton>
+                {!actionDisabled && <StyledTrashButton onClick={itemActionHandle}>{actionIcon}</StyledTrashButton>}
 
                 {interactionType === 'selectable' && status !== 'error' ? (
                     isSelected && (
@@ -142,6 +161,14 @@ export const PreviewGalleryItemBase = memo(
                 )}
 
                 {caption && <StyledCaption>{caption}</StyledCaption>}
+            </StyledItem>
+        ) : (
+            <StyledItem
+                width={itemSize}
+                key={id}
+                onClick={customClickHandle ? () => customClickHandle(id) : () => onItemClick?.(id)}
+            >
+                {component}
             </StyledItem>
         );
     },

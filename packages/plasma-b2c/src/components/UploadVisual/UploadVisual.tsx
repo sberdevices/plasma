@@ -26,6 +26,7 @@ export const StyledRoot = styled.div`
  */
 export const UploadVisual: FC<UploadVisualProps> = ({
     items = [],
+    maxHeight,
     status,
     message,
     interactionType,
@@ -65,6 +66,7 @@ export const UploadVisual: FC<UploadVisualProps> = ({
                 onItemAction={onItemAction}
                 onItemClick={onItemClick}
                 onItemsSortEnd={onItemsSortEnd}
+                maxHeight={maxHeight}
             />
         </StyledRoot>
     );
