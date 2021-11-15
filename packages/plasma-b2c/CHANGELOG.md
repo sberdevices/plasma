@@ -1,3 +1,15 @@
+# v1.18.0 (Mon Nov 15 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-b2c): PreviewGallery features [#924](https://github.com/sberdevices/plasma/pull/924) (ikmalashchenkov@sberbank.ru)
+
+#### Authors: 1
+
+- Ivan Malashchenkov (ikmalashchenkov@sberbank.ru)
+
+---
+
 # v1.17.1 (Tue Nov 09 2021)
 
 #### 🐛 Bug Fix

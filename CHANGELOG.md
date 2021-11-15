@@ -1,3 +1,22 @@
+# (Mon Nov 15 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-b2c@1.18.0`
+  - feat(plasma-b2c): PreviewGallery features [#924](https://github.com/sberdevices/plasma/pull/924) (ikmalashchenkov@sberbank.ru)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-ui@1.63.0`
+  - chore(plasma-ui): fix sb card cover control [#921](https://github.com/sberdevices/plasma/pull/921) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 2
+
+- [@kayman233](https://github.com/kayman233)
+- Ivan Malashchenkov (ikmalashchenkov@sberbank.ru)
+
+---
+
 # (Wed Nov 10 2021)
 
 #### 🚀 Enhancement

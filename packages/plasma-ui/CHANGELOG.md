@@ -1,3 +1,15 @@
+# v1.63.0 (Mon Nov 15 2021)
+
+#### 🐛 Bug Fix
+
+- chore(plasma-ui): fix sb card cover control [#921](https://github.com/sberdevices/plasma/pull/921) ([@kayman233](https://github.com/kayman233))
+
+#### Authors: 1
+
+- [@kayman233](https://github.com/kayman233)
+
+---
+
 # v1.62.0 (Wed Nov 10 2021)
 
 #### 🚀 Enhancement
