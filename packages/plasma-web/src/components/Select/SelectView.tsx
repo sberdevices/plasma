@@ -160,6 +160,7 @@ export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
                     trigger="click"
                     placement="bottom"
                     multiselect={multiselect}
+                    disabled={disabled}
                     onItemClick={onItemClick}
                     disclosure={
                         <StyledButton

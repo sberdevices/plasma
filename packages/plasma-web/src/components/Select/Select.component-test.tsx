@@ -35,6 +35,18 @@ describe('plasma-web: Select', () => {
         cy.matchImageSnapshot();
     });
 
+    it('disabled', () => {
+        mount(
+            <CypressTestDecorator>
+                <Select disabled items={items} placeholder="Попробуй радугу" helperText="Skittles" />
+            </CypressTestDecorator>,
+        );
+
+        cy.get('button').click({ force: true });
+
+        cy.matchImageSnapshot();
+    });
+
     it('empty', () => {
         mount(
             <CypressTestDecorator>

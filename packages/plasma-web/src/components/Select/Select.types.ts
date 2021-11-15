@@ -11,6 +11,7 @@ export interface SelectDopdownProps extends PopupProps, Pick<DropdownProps, 'ite
      * Выбор нескольких значений.
      */
     multiselect?: boolean;
+    disabled?: boolean;
     children?: never;
 }
 
