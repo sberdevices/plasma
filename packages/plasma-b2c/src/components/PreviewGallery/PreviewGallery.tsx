@@ -21,6 +21,10 @@ export interface PreviewGalleryProps {
      */
     interactionType?: InteractionType;
     /**
+     * Опциональная высота для внутреннего скролла.
+     */
+    maxHeight?: number;
+    /**
      * Компонент иконки в правом верхнем углу.
      */
     actionIcon: JSX.Element;
@@ -48,6 +52,7 @@ export interface PreviewGalleryProps {
 export const PreviewGallery: FC<PreviewGalleryProps & HTMLAttributes<HTMLDivElement>> = ({
     interactionType = 'selectable',
     items = [],
+    maxHeight = 0,
     onItemClick = noop,
     onItemAction = noop,
     onItemsSortEnd = noop,
@@ -75,6 +80,7 @@ export const PreviewGallery: FC<PreviewGalleryProps & HTMLAttributes<HTMLDivElem
             distance={distance}
             interactionType={interactionType}
             isGrabbing={isGrabbing}
+            maxHeight={maxHeight}
             {...rest}
         />
     );

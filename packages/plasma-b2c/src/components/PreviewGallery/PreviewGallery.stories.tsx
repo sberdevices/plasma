@@ -3,12 +3,39 @@ import styled from 'styled-components';
 import { Story, Meta } from '@storybook/react';
 import { InSpacingDecorator } from '@sberdevices/plasma-sb-utils';
 import { IconTrashFilled, IconTrash } from '@sberdevices/plasma-icons';
+import { Icon } from '@sberdevices/plasma-icons/Icon';
+import { surfaceSolid01 } from '@sberdevices/plasma-tokens-b2c';
 
 import { arrayItemRemoving, arrayItemSelecting, arrayItemSwapping } from './utils';
 import type { PreviewGalleryProps } from './PreviewGallery';
 import type { PreviewGalleryItemProps } from './PreviewGalleryItemBase';
 
 import { PreviewGallery } from '.';
+
+const StyledAddButton = styled.div`
+    width: 100%;
+    background: ${surfaceSolid01};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.75rem;
+    user-select: none;
+    padding-top: 56.25%;
+`;
+
+const StyledIcon = styled(Icon)`
+    position: absolute;
+    top: calc(50% - 12px);
+    left: calc(50% - 12px);
+`;
+
+export const AddButton = () => {
+    return (
+        <StyledAddButton>
+            <StyledIcon icon="plus" />
+        </StyledAddButton>
+    );
+};
 
 export default {
     title: 'Controls/PreviewGallery',
@@ -37,10 +64,11 @@ interface StoryProps extends PreviewGalleryProps {}
 const images: Array<PreviewGalleryItemProps> = [
     { id: 1 * Math.random(), image: './images/320_320_0.jpg', caption: '3:24' },
     { id: 2 * Math.random(), image: './images/320_320_1.jpg', isSelected: true },
-    { id: 3 * Math.random(), image: './images/320_320_2.jpg' },
+    { id: 3 * Math.random(), image: './images/320_320_2.jpg', actionDisabled: true },
     { id: 4 * Math.random(), image: './images/320_320_3.jpg' },
     { id: 5 * Math.random(), image: './images/320_320_4.jpg' },
     { id: 6 * Math.random(), image: './images/320_320_4.jpg', status: 'error' },
+    { id: 7 * Math.random(), component: <AddButton />, customClickHandle: () => {} },
 ];
 
 export const Selectable: Story<StoryProps> = ({ ...rest }) => {

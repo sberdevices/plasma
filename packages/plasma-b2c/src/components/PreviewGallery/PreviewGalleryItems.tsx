@@ -6,7 +6,7 @@ import { AddionalItemProps } from './types';
 import { PreviewGalleryItemError } from './PreviewGalleryItemError';
 import { PreviewGalleryItemBase, PreviewGalleryItemProps } from './PreviewGalleryItemBase';
 
-export const StyledRoot = styled.div<{ isGrabbing: boolean }>`
+export const StyledRoot = styled.div<{ isGrabbing: boolean; maxHeight?: number }>`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0.5rem;
@@ -18,6 +18,13 @@ export const StyledRoot = styled.div<{ isGrabbing: boolean }>`
         css`
             cursor: grabbing;
         `}
+
+    ${({ maxHeight }) =>
+        maxHeight &&
+        css`
+            max-height: ${maxHeight}px;
+            overflow: auto;
+        `}
 `;
 
 export interface PreviewGalleryListItemsProps {
@@ -26,6 +33,10 @@ export interface PreviewGalleryListItemsProps {
      * Перетаскивается ли элемент.
      */
     isGrabbing: boolean;
+    /**
+     * Опциональная высота для внутреннего скролла.
+     */
+    maxHeight?: number;
 }
 
 /**
@@ -38,6 +49,7 @@ export const PreviewGalleryListItems = SortableContainer(
         actionIcon,
         itemSize,
         isGrabbing,
+        maxHeight,
         onItemAction,
         onItemClick,
     }: PreviewGalleryListItemsProps & AddionalItemProps) => {
@@ -58,7 +70,7 @@ export const PreviewGalleryListItems = SortableContainer(
         );
 
         return (
-            <StyledRoot isGrabbing={isGrabbing}>
+            <StyledRoot isGrabbing={isGrabbing} maxHeight={maxHeight}>
                 {items.map((item, index) => (
                     <PreviewGalleryItem
                         disabled={isDragDisabled}
