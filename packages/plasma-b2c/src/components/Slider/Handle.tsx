@@ -19,7 +19,7 @@ interface HandleProps {
 
 const HandleStyled = styled.div`
     position: absolute;
-    z-index: 100;
+    z-index: 1;
     top: 0;
     left: 0;
 `;
