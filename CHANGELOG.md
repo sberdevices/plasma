@@ -1,3 +1,25 @@
+# (Tue Nov 16 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-website@0.7.0`
+  - feat(plasma-website): Plasma icons service [#903](https://github.com/sberdevices/plasma/pull/903) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-core@1.36.0`
+  - fix: Render popup `Popup` when it's hidden [#903](https://github.com/sberdevices/plasma/pull/903) ([@fanisco](https://github.com/fanisco))
+  - test(plasma-ui): Update test for `Image` [#920](https://github.com/sberdevices/plasma/pull/920) ([@fanisco](https://github.com/fanisco))
+  - Revert "fix: b2c preview gallery image size" [#920](https://github.com/sberdevices/plasma/pull/920) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.19.0`
+  - fix(plasma-b2c): Preview gallery image size [#920](https://github.com/sberdevices/plasma/pull/920) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Mon Nov 15 2021)
 
 #### 🐛 Bug Fix

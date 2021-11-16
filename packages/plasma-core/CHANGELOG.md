@@ -1,3 +1,17 @@
+# v1.36.0 (Tue Nov 16 2021)
+
+#### 🐛 Bug Fix
+
+- fix: Render popup `Popup` when it's hidden [#903](https://github.com/sberdevices/plasma/pull/903) ([@fanisco](https://github.com/fanisco))
+- test(plasma-ui): Update test for `Image` [#920](https://github.com/sberdevices/plasma/pull/920) ([@fanisco](https://github.com/fanisco))
+- Revert "fix: b2c preview gallery image size" [#920](https://github.com/sberdevices/plasma/pull/920) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.35.2 (Mon Nov 15 2021)
 
 #### 🐛 Bug Fix
