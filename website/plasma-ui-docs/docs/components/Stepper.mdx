@@ -12,6 +12,10 @@ import { PropsTable, Description } from '@site/src/components';
 <Description name="Stepper" />
 <PropsTable name="Stepper" />
 
+### Доступность
+
+Для добавления доступности по стандарту ARIA, необходимо указать значения пропсов `ariaLabelDecrement`, `ariaLabelRemove`, `ariaLabelIncrement`, которые попадут в соотвествующие **aria-label** атрибуты для кнопок уменьшения, удаления и добавления значения.
+
 ### Пример
 
 ```tsx live
@@ -33,6 +37,8 @@ export function App() {
             onRemove={() => console.log('onRemove')}
             onFocus={() => console.log('onFocus')}
             onBlur={() => console.log('onBlur')}
+            ariaLabelDecrement="Уменьшить значение"
+            ariaLabelIncrement="Увеличить значение"
         />
     );
 }
@@ -59,6 +65,10 @@ export function App() {
 <Description name="StepperValue" />
 <PropsTable name="StepperValue" />
 
+### Доступность
+
+Для добавления доступности по стандарту ARIA, необходимо указать атрибуты **aria-label** для кнопок уменьшения, удаления и добавления значения. 
+
 ### Пример
 ```tsx live
 import React, { useState } from 'react';
@@ -74,12 +84,14 @@ export function App() {
     return (
         <StepperRoot>
             <StepperButton
+                aria-label="Уменьшить значение"
                 view={value > min ? 'secondary' : 'critical'}
                 icon={value > min ? <IconMinus color="inherit" size="xs" /> : <IconClose color="inherit" size="xs" />}
                 onClick={() => setValue(Math.max(value - step, min))}
             />
             <StepperValue value={value} disabled={false} showWarning={false} />
             <StepperButton
+                aria-label="Увеличить значение"
                 view="secondary"
                 icon={<IconPlus color="inherit" size="xs" />}
                 disabled={value >= max}
