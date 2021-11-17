@@ -1,3 +1,29 @@
+# (Wed Nov 17 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@1.4.0`
+  - feat(plasma-temple): export useHeaderProps [#902](https://github.com/sberdevices/plasma/pull/902) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- `@sberdevices/plasma-website@0.9.0`
+  - feat(plasma-website): Added link to Plasma Temple documentation [#918](https://github.com/sberdevices/plasma/pull/918) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-temple@1.4.0`, `@sberdevices/plasma-temple-docs@0.2.0`
+  - feat: Added Plasma Temple documentation app [#918](https://github.com/sberdevices/plasma/pull/918) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-docs-ui@0.3.0`
+  - feat(plasma-docs-ui): Added GlobalStyle component [#918](https://github.com/sberdevices/plasma/pull/918) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- ci: Deploy Plasma Temple docs [#918](https://github.com/sberdevices/plasma/pull/918) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-ui-docs@0.22.0`, `@sberdevices/plasma-web-docs@0.14.0`
+  - chore: Add .npmrc to documentation apps [#918](https://github.com/sberdevices/plasma/pull/918) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Tue Nov 16 2021)
 
 #### 🚀 Enhancement
