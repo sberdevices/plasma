@@ -2,6 +2,19 @@
 
 #### 🐛 Bug Fix
 
+- `@sberdevices/plasma-b2c@1.19.2`
+  - fix(plasma-b2c): reduce slider handle z-index [#927](https://github.com/sberdevices/plasma/pull/927) (aabulakh1@sberbank.ru)
+
+#### Authors: 1
+
+- Булах Александр Алексеевич [B] (aabulakh1@sberbank.ru)
+
+---
+
+# (Wed Nov 17 2021)
+
+#### 🐛 Bug Fix
+
 - `@sberdevices/plasma-web@1.58.1`
   - fix: plasma-web grid mobile margins [#928](https://github.com/sberdevices/plasma/pull/928) ([@takovoy](https://github.com/takovoy))
 
