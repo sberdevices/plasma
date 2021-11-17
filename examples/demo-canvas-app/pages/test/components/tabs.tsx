@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TabsController } from '@sberdevices/plasma-ui';
+import { TabsController, Button } from '@sberdevices/plasma-ui';
 
 const id = 'tabs-example';
 const items = [
@@ -15,7 +15,12 @@ const items = [
 export default function TabsPage() {
     const [index, setIndex] = useState(0);
 
-    return <TabsController id={id} items={items} index={index} onIndexChange={(i) => setIndex(i)} />;
+    return (
+        <>
+            <TabsController id={id} items={items} index={index} onIndexChange={(i) => setIndex(i)} />
+            <Button text="Next focusable element" style={{ marginTop: 24 }} />
+        </>
+    );
 }
 
 export function getStaticProps() {
