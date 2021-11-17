@@ -4,10 +4,19 @@ import type { ComponentType, RefAttributes } from 'react';
 import { flattenItemsRecursive, setActiveRecursive } from './Select.utils';
 import type { SelectRefElement, SelectViewProps } from './Select.types';
 
-export interface MultiSelectProps extends Omit<SelectViewProps, 'onItemClick' | 'value' | 'label'> {
+export interface MultiSelectProps extends Omit<SelectViewProps, 'onItemClick' | 'value' | 'label' | 'multiselect'> {
+    /**
+     * Значение контрола.
+     */
     value: Array<string | number> | null;
+    /**
+     * Разделитель выбранных значений.
+     */
     separator?: string;
-    onChange?: (value: Array<string | number>) => void;
+    /**
+     * Обработчик изменения значения.
+     */
+    onChange?: (value: Array<string | number> | null) => void;
 }
 
 /**
