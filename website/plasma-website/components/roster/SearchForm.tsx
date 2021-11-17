@@ -22,7 +22,6 @@ export const SearchForm = memo<SearchFormProps>(({ onInput }) => {
             <TextField
                 ref={inputRef}
                 placeholder="Search"
-                size="m"
                 onInput={onInput}
                 contentLeft={
                     <StyledButton
