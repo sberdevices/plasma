@@ -14,5 +14,19 @@ module.exports = (on, config) => {
         });
     }
 
+    // это нужно для вывода отчета axe
+    on('task', {
+        log(message) {
+            console.log(message);
+
+            return null;
+        },
+        table(message) {
+            console.table(message);
+
+            return null;
+        },
+    });
+
     return config;
 };
