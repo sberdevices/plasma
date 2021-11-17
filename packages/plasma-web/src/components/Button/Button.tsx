@@ -59,6 +59,14 @@ const buttonViews = {
             color: ${baseViews.success.color};
         }
     `,
+    warning: css`
+        ${baseViews.warning}
+        ${viewInteractive}
+
+        &:hover {
+            color: ${baseViews.warning.color};
+        }
+    `,
     critical: css`
         ${baseViews.critical}
         ${viewInteractive}
