@@ -6,3 +6,4 @@ cypress/snapshots/**/__diff_output__
 cypress/snapshots/**/All\ Specs
 cypress/screenshots
 cypress/videos
+cypress/results

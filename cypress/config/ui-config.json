@@ -6,7 +6,8 @@
     "env": {
         "snapshotsDir": "cypress/snapshots/ui",
         "packageDir": "../../packages/plasma-ui",
-        "package": "plasma-ui"
+        "package": "plasma-ui",
+        "a11yCheck": true
     },
     "video": false,
     "retries": 3

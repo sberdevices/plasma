@@ -6,7 +6,8 @@
     "env": {
         "snapshotsDir": "cypress/snapshots/b2c",
         "packageDir": "../../packages/plasma-b2c",
-        "package": "plasma-b2c"
+        "package": "plasma-b2c",
+        "a11yCheck": true
     },
     "video": false,
     "retries": 3
