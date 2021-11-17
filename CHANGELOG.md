@@ -1,5 +1,18 @@
 # (Wed Nov 17 2021)
 
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-web@1.58.1`
+  - fix: plasma-web grid mobile margins [#928](https://github.com/sberdevices/plasma/pull/928) ([@takovoy](https://github.com/takovoy))
+
+#### Authors: 1
+
+- Aleksandr Sustavov ([@takovoy](https://github.com/takovoy))
+
+---
+
+# (Wed Nov 17 2021)
+
 #### 🚀 Enhancement
 
 - `@sberdevices/plasma-temple@1.4.0`

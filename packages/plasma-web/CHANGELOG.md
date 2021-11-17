@@ -1,3 +1,15 @@
+# v1.58.1 (Wed Nov 17 2021)
+
+#### 🐛 Bug Fix
+
+- fix: plasma-web grid mobile margins [#928](https://github.com/sberdevices/plasma/pull/928) ([@takovoy](https://github.com/takovoy))
+
+#### Authors: 1
+
+- Aleksandr Sustavov ([@takovoy](https://github.com/takovoy))
+
+---
+
 # v1.58.0 (Tue Nov 16 2021)
 
 #### 🐛 Bug Fix
