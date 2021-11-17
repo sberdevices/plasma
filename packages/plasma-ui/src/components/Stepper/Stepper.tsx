@@ -51,6 +51,18 @@ export type StepperProps = (RemoverProps | NoRemoverProps) &
          * Функция для форматирования отображаемого значения
          */
         formatter?: (value: number) => string;
+        /**
+         * ARIA атрибут для кнопки увеличения значения
+         */
+        ariaLabelIncrement?: string;
+        /**
+         * ARIA атрибут для кнопки удаления
+         */
+        ariaLabelRemove?: string;
+        /**
+         * ARIA атрибут для кнопки уменьшения значения
+         */
+        ariaLabelDecrement?: string;
     };
 
 /**
@@ -67,6 +79,9 @@ export const Stepper: React.FC<StepperProps> = ({
     onFocus,
     onBlur,
     formatter,
+    ariaLabelDecrement,
+    ariaLabelIncrement,
+    ariaLabelRemove,
     ...props
 }) => {
     const { showRemove: remover, onRemove, ...rest } = props as RemoverProps;
@@ -81,6 +96,7 @@ export const Stepper: React.FC<StepperProps> = ({
     return (
         <StepperRoot {...rest}>
             <StepperButton
+                aria-label={isMin && remover ? ariaLabelRemove : ariaLabelDecrement}
                 disabled={disabled || (!remover && lessDisabled)}
                 icon={
                     isMin && remover ? <IconClose color="inherit" size="xs" /> : <IconMinus color="inherit" size="xs" />
@@ -93,6 +109,7 @@ export const Stepper: React.FC<StepperProps> = ({
             />
             <StepperValue value={value} disabled={disabled} showWarning={isMax} formatter={formatter} />
             <StepperButton
+                aria-label={ariaLabelIncrement}
                 disabled={disabled || moreDisabled}
                 icon={<IconPlus color="inherit" size="xs" />}
                 pin={pin}

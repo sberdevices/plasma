@@ -15,9 +15,17 @@ export interface StepperButtonProps
  */
 export const StepperButton = React.forwardRef<HTMLButtonElement, StepperButtonProps>(
     // eslint-disable-next-line prefer-arrow-callback
-    function StepperButton({ pin = 'circle-circle', view = 'secondary', icon, ...rest }, ref) {
+    function StepperButton({ pin = 'circle-circle', view = 'secondary', icon, disabled, ...rest }, ref) {
         return (
-            <ActionButton size="m" ref={ref} pin={pin} view={view} {...rest}>
+            <ActionButton
+                aria-disabled={disabled}
+                disabled={disabled}
+                size="m"
+                ref={ref}
+                pin={pin}
+                view={view}
+                {...rest}
+            >
                 {icon}
             </ActionButton>
         );

@@ -42,6 +42,7 @@ export const Default = () => {
             {items.map((item, i) => (
                 <ShowcaseComponentRow key={`item:${i}`}>
                     <Stepper
+                        aria-label={`Счётчик ${i + 1}`}
                         step={1}
                         value={values[i]}
                         min={item.min}
@@ -55,6 +56,9 @@ export const Default = () => {
                         onRemove={onRemoveAction}
                         onFocus={onFocusAction}
                         onBlur={onBlurAction}
+                        ariaLabelRemove="Удалить"
+                        ariaLabelDecrement="Уменьшить значение"
+                        ariaLabelIncrement="Увеличить значение"
                     />
                 </ShowcaseComponentRow>
             ))}
@@ -75,8 +79,9 @@ export const CustomAssembly: Story<CustomAssemblyProps> = ({ step, min, max, dis
     const [value, setValue] = useState(5);
     const formatter = (val: number) => `${val}$`;
     return (
-        <StepperRoot>
+        <StepperRoot aria-label="Счётчик">
             <StepperButton
+                aria-label="Уменьшить значение"
                 view={value > min ? 'secondary' : 'critical'}
                 icon={value > min ? <IconMinus color="inherit" size="xs" /> : <IconClose color="inherit" size="xs" />}
                 onClick={() => setValue(Math.max(value - step, min))}
@@ -88,6 +93,7 @@ export const CustomAssembly: Story<CustomAssemblyProps> = ({ step, min, max, dis
                 formatter={showFormat && formatter}
             />
             <StepperButton
+                aria-label="Увеличить значение"
                 view="secondary"
                 icon={<IconPlus color="inherit" size="xs" />}
                 disabled={value >= max}
