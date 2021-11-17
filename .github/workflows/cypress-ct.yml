@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
+      COVERAGE: true
     steps: 
     - uses: actions/checkout@v2
 
@@ -21,6 +22,7 @@ jobs:
         npx lerna bootstrap
 
     - name: Run Cypress CT for Plasma UI
+      if: ${{ always() }}
       run: |
         npm run cy:ui:run-ct
   
@@ -32,7 +34,7 @@ jobs:
     - name: Run Cypress CT for Plasma Web B2C
       if: ${{ always() }}
       run: | 
-        npm run cy:b2c:run-ct
+        npm run cy:b2c:run-ct 
     
     - name: Save artifacts
       if: ${{ always() }}
