@@ -1,3 +1,17 @@
+# v1.19.2 (Wed Nov 17 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-b2c): reduce slider handle z-index [#927](https://github.com/sberdevices/plasma/pull/927) (aabulakh1@sberbank.ru)
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Булах Александр Алексеевич [B] (aabulakh1@sberbank.ru)
+
+---
+
 # v1.19.0 (Tue Nov 16 2021)
 
 #### 🐛 Bug Fix
