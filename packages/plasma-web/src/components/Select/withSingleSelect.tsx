@@ -4,8 +4,15 @@ import type { ComponentType, RefAttributes } from 'react';
 import { flattenItemsRecursive, setActiveRecursive } from './Select.utils';
 import type { SelectRefElement, SelectViewProps } from './Select.types';
 
-export interface SingleSelectProps extends Omit<SelectViewProps, 'onItemClick' | 'label'> {
-    onChange?: (value: string | number) => void;
+export interface SingleSelectProps extends Omit<SelectViewProps, 'onItemClick' | 'value' | 'label' | 'multiselect'> {
+    /**
+     * Значение контрола.
+     */
+    value: string | number | null;
+    /**
+     * Обработчик изменения значения.
+     */
+    onChange?: (value: string | number | null) => void;
 }
 
 /**
