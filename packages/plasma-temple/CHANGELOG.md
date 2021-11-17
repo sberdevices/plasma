@@ -1,3 +1,17 @@
+# v1.4.0 (Wed Nov 17 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): export useHeaderProps [#902](https://github.com/sberdevices/plasma/pull/902) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- feat: Added Plasma Temple documentation app [#918](https://github.com/sberdevices/plasma/pull/918) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.3.0 (Mon Nov 01 2021)
 
 #### 🐛 Bug Fix
