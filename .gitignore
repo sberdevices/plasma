@@ -7,3 +7,5 @@ cypress/snapshots/**/All\ Specs
 cypress/screenshots
 cypress/videos
 cypress/results
+.nyc_output
+coverage

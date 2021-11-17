@@ -13,6 +13,8 @@ const plugins = [
 ];
 const ignore = ['**/*.d.ts', '**/helpers', '**/__helpers', '**/*.stories.tsx'];
 
+process.env.COVERAGE && plugins.push(['babel-plugin-istanbul']);
+
 module.exports = {
     env: {
         cjs: {
