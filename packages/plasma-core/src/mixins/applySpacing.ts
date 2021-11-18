@@ -13,7 +13,8 @@ const baseSpacing = {
     24: '1.5rem',
     32: '2rem',
 };
-const spacing = {
+
+export const spacing = {
     ...baseSpacing,
     '0x': baseSpacing[0],
     '1x': baseSpacing[2],
