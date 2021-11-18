@@ -1,5 +1,18 @@
 # (Thu Nov 18 2021)
 
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-b2c@1.20.1`, `@sberdevices/plasma-web@1.59.1`
+  - fix(plasma-web): prevent disabled select from opening [#925](https://github.com/sberdevices/plasma/pull/925) (aabulakh1@sberbank.ru)
+
+#### Authors: 1
+
+- Булах Александр Алексеевич [B] (aabulakh1@sberbank.ru)
+
+---
+
+# (Thu Nov 18 2021)
+
 #### 🚀 Enhancement
 
 - `@sberdevices/plasma-b2c@1.20.0`, `@sberdevices/plasma-core@1.37.0`

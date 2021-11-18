@@ -1,3 +1,17 @@
+# v1.20.1 (Thu Nov 18 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web): prevent disabled select from opening [#925](https://github.com/sberdevices/plasma/pull/925) (aabulakh1@sberbank.ru)
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Булах Александр Алексеевич [B] (aabulakh1@sberbank.ru)
+
+---
+
 # v1.20.0 (Thu Nov 18 2021)
 
 #### 🚀 Enhancement
