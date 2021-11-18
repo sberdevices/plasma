@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Story } from '@storybook/react';
 
 import { InSpacingDecorator } from '../../helpers';
 
@@ -11,7 +12,6 @@ export default {
     component: Slider,
     decorators: [InSpacingDecorator],
     argTypes: {
-        onChangeCommitted: { action: 'onChangeCommitted' },
         onChange: { action: 'onChange' },
     },
 };
@@ -20,28 +20,42 @@ const SliderWrapper = styled.div`
     width: 25rem;
 `;
 
-const SliderDefault: React.FC<SliderProps> = (args) => {
+export const Default: Story<SliderProps> = (args) => {
+    const [value, setValue] = useState(30);
+
+    const onChangeCommittedHandle = (values) => {
+        setValue(values);
+    };
+
     return (
         <SliderWrapper>
-            <Slider {...args} />
+            <Slider value={value} onChangeCommitted={onChangeCommittedHandle} {...args} />
         </SliderWrapper>
     );
 };
 
-export const Default = SliderDefault.bind({});
-
 Default.args = {
     min: 0,
     max: 100,
-    value: 30,
     disabled: false,
 };
 
-export const MultipleValues = SliderDefault.bind({});
+export const MultipleValues: Story<SliderProps> = (args) => {
+    const [value, setValue] = useState([10, 80]);
+
+    const onChangeCommittedHandle = (values) => {
+        setValue(values);
+    };
+
+    return (
+        <SliderWrapper>
+            <Slider value={value} onChangeCommitted={onChangeCommittedHandle} {...args} />
+        </SliderWrapper>
+    );
+};
 
 MultipleValues.args = {
     min: 0,
     max: 100,
-    value: [10, 80],
     disabled: false,
 };
