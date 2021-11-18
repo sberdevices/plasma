@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Cell, TextBox, TextBoxLabel, TextBoxTitle, Button } from '@sberdevices/plasma-ui';
+import { Cell, TextBox, TextBoxLabel, TextBoxTitle, Button, ButtonProps } from '@sberdevices/plasma-ui';
 import { IconPlay } from '@sberdevices/plasma-icons/Icons/IconPlay';
 
 import { isSberBoxLike } from '../../../../utils/deviceFamily';
@@ -20,6 +20,7 @@ export interface ItemMainSectionProps {
     description?: ItemCellProps[];
     itemShowButtonText: string;
     onItemShow: () => void;
+    additionalButons?: ButtonProps[];
 }
 
 const StyledRow = styled.div`
@@ -63,12 +64,17 @@ export const ItemMainSection: React.FC<UnifiedComponentProps<ItemMainSectionProp
     onItemShow,
     cover,
     platformComponents: { Container, Title, Subtitle },
+    additionalButons = [],
 }) => {
     const buttonRef = React.useRef<HTMLButtonElement>(null);
 
     useFocusOnMount<HTMLButtonElement>(buttonRef, {
         delay: 250,
     });
+
+    const renderButton = (props: ButtonProps, index: number) => (
+        <Button key={`ItemMainSection-Button-${index}`} {...props} />
+    );
 
     return (
         <Container withSpatNav>
@@ -93,6 +99,7 @@ export const ItemMainSection: React.FC<UnifiedComponentProps<ItemMainSectionProp
                 outlined={isSberBoxLike()}
                 text={itemShowButtonText}
             />
+            {additionalButons.map(renderButton)}
         </Container>
     );
 };

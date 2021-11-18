@@ -1,5 +1,6 @@
 import React from 'react';
 import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
+import { ButtonProps } from '@sberdevices/plasma-ui';
 
 import { Header } from '../../components/Header/Header';
 import { useRegistry } from '../../hooks/useRegistry';
@@ -18,6 +19,7 @@ interface ItemPageProps {
     onItemShow: <T>(id: T) => void;
     onItemFocus?: <T>(id: T) => void;
     entityComponent?: React.ComponentType<ItemEntityProps>;
+    additionalButons?: ButtonProps[];
 }
 
 const scrollToWithOffset = (offset: number, element: HTMLDivElement | null) => {
@@ -35,7 +37,14 @@ const scrollToWithOffset = (offset: number, element: HTMLDivElement | null) => {
     });
 };
 
-export const ItemPage: React.FC<ItemPageProps> = ({ state, header, entityComponent, onItemShow, onItemFocus }) => {
+export const ItemPage: React.FC<ItemPageProps> = ({
+    state,
+    header,
+    entityComponent,
+    onItemShow,
+    onItemFocus,
+    additionalButons,
+}) => {
     const { entities, entitiesTitle, background, title, subtitle, description, actionButtonText } = state;
     const { ItemMainSection, ItemEntities } = useRegistry();
     const layoutElementContext = React.useContext(LayoutElementContext);
@@ -77,6 +86,7 @@ export const ItemPage: React.FC<ItemPageProps> = ({ state, header, entityCompone
                 description={description}
                 onItemShow={() => onItemShow(entities[0].id)}
                 itemShowButtonText={actionButtonText}
+                additionalButons={additionalButons}
             />
             <ItemEntities list={list} title={entitiesTitle ?? ''} Component={entityComponent} />
         </>
