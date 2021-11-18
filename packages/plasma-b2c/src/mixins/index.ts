@@ -16,6 +16,7 @@ export {
     applyScrollSnap,
     shadows,
     applySpacing,
+    spacing,
 } from '@sberdevices/plasma-core';
 
 export type {

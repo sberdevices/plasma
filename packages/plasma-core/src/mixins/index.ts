@@ -30,5 +30,5 @@ export type { ScrollSnapProps } from './applyScrollSnap';
 
 export * from './shadows';
 
-export { applySpacing } from './applySpacing';
+export { applySpacing, spacing } from './applySpacing';
 export type { SpacingProps } from './applySpacing';
