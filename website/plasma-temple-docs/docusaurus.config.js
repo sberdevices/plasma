@@ -2,6 +2,8 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require('path');
 
 const { PR_NAME } = process.env;
 const prefix = PR_NAME ? `/${PR_NAME}` : '';
@@ -114,5 +116,31 @@ module.exports = {
                 },
             },
         ],
+    ],
+    plugins: [
+        function docgenPlugin() {
+            return {
+                name: 'docusaurus-plugin-react-docgen-typescript',
+                async loadContent() {
+                    return 'noop';
+                },
+                configureWebpack(config) {
+                    return {
+                        resolve: {
+                            alias: {
+                                '@docgen': path.join(
+                                    config.resolve.alias['@generated'],
+                                    'docusaurus-plugin-react-docgen-typescript',
+                                    'default',
+                                ),
+                            },
+                        },
+                    };
+                },
+                async contentLoaded({ content, actions }) {
+                    actions.createData(`${content}.json`, JSON.stringify({}));
+                },
+            };
+        },
     ],
 };
