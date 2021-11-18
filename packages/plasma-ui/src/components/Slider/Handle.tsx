@@ -9,6 +9,7 @@ interface HandleProps {
     stepSize: number;
     min: number;
     max: number;
+    side?: 'left' | 'right';
     bounds?: number[];
     xPosition?: number;
     zIndex?: number;
@@ -18,6 +19,7 @@ interface HandleProps {
 }
 
 const HandleStyled = styled.div`
+    cursor: pointer;
     position: absolute;
     z-index: 100;
     top: 0;
@@ -36,8 +38,29 @@ function getValue(handleCenterXRelative: number, stepSize: number, min: number, 
     return Math.min(Math.max(newValue, min), max);
 }
 
+function getOffsets(
+    ref: ((instance: HTMLDivElement | null) => void) | React.MutableRefObject<HTMLDivElement | null> | null,
+    side?: 'left' | 'right',
+) {
+    if (!ref || !('current' in ref) || !ref.current || !side) {
+        return [0, 0];
+    }
+
+    const size = ref.current.clientWidth - ref.current.clientLeft;
+
+    if (side === 'left') {
+        return [0, size];
+    }
+
+    if (side === 'right') {
+        return [size, 0];
+    }
+
+    return [0, 0];
+}
+
 export const Handle = React.forwardRef<HTMLDivElement, HandleProps>(
-    ({ stepSize, onChangeCommitted, onChange, xPosition, min, max, bounds = [], zIndex, disabled }, ref) => {
+    ({ stepSize, onChangeCommitted, onChange, xPosition, min, max, bounds = [], zIndex, disabled, side }, ref) => {
         const lastOnChangeValue = React.useRef<number | null>(null);
 
         const onDrag = React.useCallback(
@@ -64,6 +87,8 @@ export const Handle = React.forwardRef<HTMLDivElement, HandleProps>(
             [onChangeCommitted, stepSize, min, max],
         );
 
+        const [offsetLeft, offsetRight] = getOffsets(ref, side);
+
         const [leftValueBound, rightValueBound] = bounds;
         const leftPositionBound = leftValueBound ? (leftValueBound - min) * stepSize : null;
         const rightPositionBound = rightValueBound ? (rightValueBound - min) * stepSize : null;
@@ -71,7 +96,10 @@ export const Handle = React.forwardRef<HTMLDivElement, HandleProps>(
         return (
             <Draggable
                 axis="x"
-                bounds={{ left: leftPositionBound ?? 0, right: rightPositionBound ?? stepSize * (max - min) }}
+                bounds={{
+                    left: (leftPositionBound ?? 0) + offsetLeft,
+                    right: (rightPositionBound ?? stepSize * (max - min)) - offsetRight,
+                }}
                 grid={[stepSize, 1]}
                 onStop={onStop}
                 onDrag={onDrag}

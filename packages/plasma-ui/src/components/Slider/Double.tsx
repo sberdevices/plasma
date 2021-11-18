@@ -21,11 +21,11 @@ export interface SliderProps {
      */
     disabled?: boolean;
     /**
-     * Вызывается при перемещении ползунка
+     * Вызывается при отпускании ползунка
      */
     onChangeCommitted(value: number[]): void;
     /**
-     * Вызывается при отпускании ползунка
+     * Вызывается при перемещении ползунка
      */
     onChange?(value: number[]): void;
 }
@@ -46,6 +46,8 @@ export const Slider: React.FC<SliderProps> = ({ min, max, value, disabled, onCha
         xSecondHandle: 0,
         firstHandleZIndex: 100,
         secondHandleZIndex: 101,
+        firstValue: value[0],
+        secondValue: value[1],
     });
 
     const firstHandleRef = React.useRef<HTMLDivElement | null>(null);
@@ -98,6 +100,7 @@ export const Slider: React.FC<SliderProps> = ({ min, max, value, disabled, onCha
 
             setState((prevState) => ({
                 ...prevState,
+                firstValue: handleValue,
                 xFirstHandle: data.lastX,
             }));
         },
@@ -132,6 +135,7 @@ export const Slider: React.FC<SliderProps> = ({ min, max, value, disabled, onCha
             onChangeCommitted([value[0], handleValue]);
             setState((prevState) => ({
                 ...prevState,
+                secondValue: handleValue,
                 xSecondHandle: data.lastX,
             }));
         },
@@ -155,7 +159,8 @@ export const Slider: React.FC<SliderProps> = ({ min, max, value, disabled, onCha
                 min={min}
                 max={max}
                 disabled={disabled}
-                bounds={[min, value[1]]}
+                bounds={[min, state.secondValue]}
+                side="left"
                 xPosition={state.xFirstHandle}
                 zIndex={state.firstHandleZIndex}
             />
@@ -167,7 +172,8 @@ export const Slider: React.FC<SliderProps> = ({ min, max, value, disabled, onCha
                 min={min}
                 max={max}
                 disabled={disabled}
-                bounds={[value[0], max]}
+                bounds={[state.firstValue, max]}
+                side="right"
                 xPosition={state.xSecondHandle}
                 zIndex={state.secondHandleZIndex}
             />
