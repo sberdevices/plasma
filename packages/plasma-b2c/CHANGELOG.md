@@ -1,3 +1,15 @@
+# v1.20.0 (Thu Nov 18 2021)
+
+#### 🚀 Enhancement
+
+- feat: export spacing [#936](https://github.com/sberdevices/plasma/pull/936) ([@takovoy](https://github.com/takovoy))
+
+#### Authors: 1
+
+- Aleksandr Sustavov ([@takovoy](https://github.com/takovoy))
+
+---
+
 # v1.19.2 (Wed Nov 17 2021)
 
 #### 🐛 Bug Fix

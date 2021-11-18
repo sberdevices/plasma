@@ -1,3 +1,15 @@
+# v1.65.0 (Thu Nov 18 2021)
+
+#### 🐛 Bug Fix
+
+- chore: b2c, ui, web code coverage [#917](https://github.com/sberdevices/plasma/pull/917) ([@dakhetov](https://github.com/dakhetov))
+
+#### Authors: 1
+
+- [@dakhetov](https://github.com/dakhetov)
+
+---
+
 # v1.64.0 (Tue Nov 16 2021)
 
 #### 🐛 Bug Fix
