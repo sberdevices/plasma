@@ -96,7 +96,7 @@ const products = [
         links: [
             { text: 'Документация', href: `${basePath}/ui` },
             { text: 'Сторибук', href: `${basePath}/ui-storybook` },
-            { text: 'Фигма', href: '' },
+            { text: 'Фигма', href: 'https://www.figma.com/community/file/964418717233814341' },
         ],
     },
     {
