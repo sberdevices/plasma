@@ -1,3 +1,19 @@
+# v0.3.0 (Thu Nov 18 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-docs-ui): Add `CodeSandbox` component [#911](https://github.com/sberdevices/plasma/pull/911) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### 🐛 Bug Fix
+
+- docs(plasma-ui-docs,plasma-web-docs): Update snippet examples for mdx files [#911](https://github.com/sberdevices/plasma/pull/911) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v0.2.0 (Tue Nov 16 2021)
 
 #### 🚀 Enhancement

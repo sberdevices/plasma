@@ -1,5 +1,25 @@
 # (Thu Nov 18 2021)
 
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple-docs@0.2.0`
+  - feat(plasma-temple-docs): Add noop docgenPlugin plugin for docusaurus config [#911](https://github.com/sberdevices/plasma/pull/911) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-docs-ui@0.3.0`, `@sberdevices/plasma-ui-docs@0.23.0`, `@sberdevices/plasma-web-docs@0.15.0`
+  - feat(plasma-docs-ui): Add `CodeSandbox` component [#911](https://github.com/sberdevices/plasma/pull/911) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-docs-ui@0.3.0`, `@sberdevices/plasma-ui-docs@0.23.0`, `@sberdevices/plasma-web-docs@0.15.0`
+  - docs(plasma-ui-docs,plasma-web-docs): Update snippet examples for mdx files [#911](https://github.com/sberdevices/plasma/pull/911) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
+# (Thu Nov 18 2021)
+
 #### 🐛 Bug Fix
 
 - `@sberdevices/plasma-b2c@1.20.1`, `@sberdevices/plasma-web@1.59.1`
