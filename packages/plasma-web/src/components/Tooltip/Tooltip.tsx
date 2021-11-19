@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { caption, buttonChecked, inverse, shadows } from '@sberdevices/plasma-core';
 import { usePopper } from 'react-popper';
@@ -32,119 +32,35 @@ export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const offset = [0, 6];
-const tooltipPlacements = {
-    top: css`
-        left: 50%;
-        bottom: 100%;
-        transform: translate(-50%, -0.375rem);
-    `,
-    'top-start': css`
-        left: 0;
-        bottom: 100%;
-        transform: translate(0, -0.375rem);
-    `,
-    'top-end': css`
-        right: 0;
-        bottom: 100%;
-        transform: translate(0, -0.375rem);
-    `,
-    bottom: css`
-        top: 100%;
-        left: 50%;
-        transform: translate(-50%, 0.375rem);
-    `,
-    'bottom-start': css`
-        top: 100%;
-        left: 0;
-        transform: translate(0, 0.375rem);
-    `,
-    'bottom-end': css`
-        top: 100%;
-        right: 0;
-        transform: translate(0, 0.375rem);
-    `,
-    left: css`
-        right: 100%;
-        bottom: 50%;
-        transform: translate(-0.375rem, 50%);
-    `,
-    right: css`
-        left: 100%;
-        bottom: 50%;
-        transform: translate(0.375rem, 50%);
-    `,
-};
-const arrowPlacements = {
-    top: css`
-        top: 100%;
-        left: 50%;
-        border-left-color: transparent;
-        border-right-color: transparent;
-        border-bottom-color: transparent;
-        transform: translate(-50%, 0);
-    `,
-    'top-start': css`
-        top: 100%;
-        left: 0.375rem;
-        border-left-color: transparent;
-        border-right-color: transparent;
-        border-bottom-color: transparent;
-    `,
-    'top-end': css`
-        top: 100%;
-        right: 0.375rem;
-        border-left-color: transparent;
-        border-right-color: transparent;
-        border-bottom-color: transparent;
-    `,
-    bottom: css`
-        left: 50%;
-        bottom: 100%;
-        border-top-color: transparent;
-        border-left-color: transparent;
-        border-right-color: transparent;
-        transform: translate(-50%, 0);
-    `,
-    'bottom-start': css`
-        left: 0.375rem;
-        bottom: 100%;
-        border-top-color: transparent;
-        border-left-color: transparent;
-        border-right-color: transparent;
-    `,
-    'bottom-end': css`
-        right: 0.375rem;
-        bottom: 100%;
-        border-top-color: transparent;
-        border-left-color: transparent;
-        border-right-color: transparent;
-    `,
-    left: css`
-        left: 100%;
-        bottom: 50%;
-        border-top-color: transparent;
-        border-right-color: transparent;
-        border-bottom-color: transparent;
-        transform: translate(0, 50%);
-    `,
-    right: css`
-        right: 100%;
-        bottom: 50%;
-        border-top-color: transparent;
-        border-left-color: transparent;
-        border-bottom-color: transparent;
-        transform: translate(0, 50%);
-    `,
-};
 
 const StyledRoot = styled.div`
     position: relative;
     display: inline-flex;
 `;
+
 const StyledWrapper = styled.div`
     display: inherit;
 `;
-const StyledTooltip = styled.span<Pick<TooltipProps, 'isVisible' | 'animated' | 'placement'>>`
+
+const StyledArrow = styled.div`
+    visibility: hidden;
+
+    &,
+    &::before {
+        position: absolute;
+        width: 0.5rem;
+        height: 0.5rem;
+        background: inherit;
+    }
+
+    &::before {
+        visibility: visible;
+        content: '';
+        transform: rotate(45deg);
+    }
+`;
+
+const StyledTooltip = styled.span<Pick<TooltipProps, 'isVisible' | 'animated'>>`
     ${caption}
 
     position: absolute;
@@ -164,51 +80,27 @@ const StyledTooltip = styled.span<Pick<TooltipProps, 'isVisible' | 'animated' | 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    ${({ placement }) => placement && tooltipPlacements[placement]}
+    &[data-popper-placement^='top'] > ${StyledArrow} {
+        bottom: -0.25rem;
+    }
+
+    &[data-popper-placement^='bottom'] > ${StyledArrow} {
+        top: -0.25rem;
+    }
+
+    &[data-popper-placement^='left'] > ${StyledArrow} {
+        right: -0.25rem;
+    }
+
+    &[data-popper-placement^='right'] > ${StyledArrow} {
+        left: -0.25rem;
+    }
 
     ${({ isVisible, animated }) =>
         animated &&
         css`
             opacity: ${Number(isVisible)};
         `}
-`;
-const StyledArrow = styled.span<Pick<TooltipProps, 'placement'>>`
-    position: absolute;
-
-    display: block;
-
-    width: 0;
-    height: 0;
-
-    border-style: solid;
-    border-width: 0.375rem;
-    border-color: ${buttonChecked};
-
-    ${({ placement }) => placement && arrowPlacements[placement]}
-
-    /* stylelint-disable no-descending-specificity, selector-nested-pattern,
-    declaration-block-semicolon-newline-after, rule-empty-line-before */
-    ${StyledTooltip}[data-popper-placement='top'] &,
-    ${StyledTooltip}[data-popper-placement='top-start'] &,
-    ${StyledTooltip}[data-popper-placement='top-end'] & {
-        ${arrowPlacements.top}
-    }
-
-    ${StyledTooltip}[data-popper-placement='bottom'] &,
-    ${StyledTooltip}[data-popper-placement='bottom-start'] &,
-    ${StyledTooltip}[data-popper-placement='bottom-end'] & {
-        ${arrowPlacements.bottom}
-    }
-
-    ${StyledTooltip}[data-popper-placement='left'] & {
-        ${arrowPlacements.left}
-    }
-
-    ${StyledTooltip}[data-popper-placement='right'] & {
-        ${arrowPlacements.right}
-    }
-    /* stylelint-enable no-descending-specificity, selector-nested-pattern,
-    declaration-block-semicolon-newline-after, rule-empty-line-before */
 `;
 
 /**
@@ -224,41 +116,33 @@ export const Tooltip: React.FC<TooltipProps> = ({
     children,
     ...rest
 }) => {
-    const tooltipRef = React.useRef<HTMLSpanElement | null>(null);
-    const arrowRef = React.useRef<HTMLSpanElement | null>(null);
-    const wrapperRef = React.useRef<HTMLDivElement | null>(null);
-    const { styles, attributes } = usePopper(wrapperRef.current, tooltipRef.current, {
+    const [wrapperElement, setWrapperElement] = useState<HTMLDivElement | null>(null);
+    const [tooltipElement, setTooltipElement] = useState<HTMLSpanElement | null>(null);
+    const [arrowElement, setArrowElement] = useState<HTMLSpanElement | null>(null);
+    const { styles, attributes } = usePopper(wrapperElement, tooltipElement, {
         placement,
         modifiers: [
             { name: 'offset', options: { offset: [offset[0], offset[1]] } },
-            { name: 'arrow', options: { element: arrowRef.current } },
+            { name: 'arrow', options: { element: arrowElement, padding: 10 } },
         ],
     });
 
     return (
         <StyledRoot aria-describedby={id} {...rest}>
             <StyledTooltip
-                ref={tooltipRef}
+                ref={setTooltipElement}
                 id={id}
                 isVisible={isVisible}
                 animated={animated}
-                placement={placement}
-                style={tooltipRef.current ? styles.popper : undefined}
+                style={styles.popper}
                 role="tooltip"
                 aria-hidden="true"
                 {...attributes.popper}
             >
-                {arrow && (
-                    <StyledArrow
-                        ref={arrowRef}
-                        placement={placement}
-                        style={arrowRef.current ? styles.arrow : undefined}
-                        {...attributes.arrow}
-                    />
-                )}
+                {arrow && <StyledArrow ref={setArrowElement} style={styles.arrow} {...attributes.arrow} />}
                 {text}
             </StyledTooltip>
-            {children && <StyledWrapper ref={wrapperRef}>{children}</StyledWrapper>}
+            {children && <StyledWrapper ref={setWrapperElement}>{children}</StyledWrapper>}
         </StyledRoot>
     );
 };
