@@ -14,7 +14,7 @@ export type ControlProps = {
     /**
      * Метка-подпись к элементу
      */
-    label?: string | number;
+    label?: React.ReactNode;
     /**
      * Описание элемента
      */
