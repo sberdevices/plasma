@@ -53,6 +53,7 @@
         background: #fff
         overflow: hidden
         transition: all 0.5s !important
+        border: 1px solid rgba(8, 8, 8, 0.12)
 
         &:last-of-type
             margin-right: 100px
@@ -66,13 +67,21 @@
         position: absolute
         width: 100%
         bottom: 0
-        background-color: #eeeeeecf
-        padding: 10px 14px
-        text-align: left
+
+        &__bg
+            background-color: #eeeeeecf
+            padding: 10px 14px
+            text-align: left
+
+        &_stub
+            position: initial
+            & .layer-swiper-slide-bottom__bg
+                background-color: #ffffff
 
         @media (max-width: 767.99px)
             display: block
             padding: 8px
+
 
     &-swiper-slide:hover &-swiper-slide-bottom
         @media (min-width: 768px)
@@ -92,17 +101,17 @@
             margin-bottom: 4px
             line-height: initial
 
-        &__category
+        &__name
             display: none
             @media (min-width: 768px)
                 display: block
                 font-weight: 500
-                font-size: 10px
-                line-height: 12px
+                font-size: 16px
+                line-height: 20px
                 letter-spacing: 0.0125em
                 color: #080808
                 margin-bottom: 12px
-                height: 24px
+                height: 38px
                 -webkit-line-clamp: 2
                 display: -webkit-box
                 -webkit-box-orient: vertical
@@ -112,11 +121,16 @@
             display: none
             @media (min-width: 768px)
                 display: block
+                width: fit-content
+                padding: 2px 6px
+                margin: 0 0 8px 8px
                 font-weight: 500
                 font-size: 10px
                 line-height: 12px
                 letter-spacing: 0.0125em
-                color: rgba(8, 8, 8, 0.56)
+                background: rgba(8, 8, 8, 0.56)
+                color: #FFFFFF
+                border-radius: 6px
 
     &-swiper-button-prev, &-swiper-button-next
         cursor: pointer

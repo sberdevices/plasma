@@ -1,5 +1,17 @@
 @import "slider"
 
+$i : 0
+@while $i <= 30
+    .mb-#{$i}
+        margin-bottom: #{$i}px
+    $i : $i + 2
+
+$i : 0
+@while $i <= 100
+    .w-#{$i}
+        width: #{$i}#{'%'}
+    $i : $i + 10
+
 .unselectable
     -webkit-touch-callout: none /* iOS Safari */
     -webkit-user-select: none   /* Chrome/Safari/Opera */
@@ -32,3 +44,8 @@
         width: 13px
         margin-left: 8px
         margin-right: 4px
+
+    &__sketelon
+        background: #E1E1E1
+        border-radius: 4px
+        height: 16px

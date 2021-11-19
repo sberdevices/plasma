@@ -5,6 +5,7 @@ import 'swiper/css/navigation';
 import '../css/styles.sass';
 import arrow from '../assets/arrow.svg';
 import logo from '../assets/logo.svg';
+import stub from '../assets/stub.svg';
 import logoBlack from '../assets/logo-black.svg';
 import { Config, Product } from '../types';
 
@@ -13,9 +14,23 @@ Swiper.use([Navigation]);
 const BASE_URL = 'https://mcrai.sberdevices.ru/v2/frame-mp';
 const PLASMA_FONTS_CDN = 'https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansText.0.1.0.css';
 
-let closeSlidersIds: number[] = [];
+const format = (num: number) => new Intl.NumberFormat('ru-RU').format(num);
+
+const getSliderInstance = () => {
+    // eslint-disable-next-line no-new
+    new Swiper('.layer-swiper', {
+        slidesPerView: 'auto',
+        spaceBetween: 16,
+        navigation: {
+            nextEl: '.layer-swiper-button-next',
+            prevEl: '.layer-swiper-button-prev',
+        },
+    });
+};
 
 const init = (config: Config, id: number) => {
+    let isSliderOpen = true;
+
     const adaptiveValue = (maxSize: number, minSize:number) => {
         const addSize = maxSize - minSize;
 
@@ -36,15 +51,8 @@ const init = (config: Config, id: number) => {
     const onButtonClick = () => {
         const swiperContainer = document.querySelector<HTMLElement>(`#swiper-container-${id}`);
 
-        const isClose = closeSlidersIds.includes(id);
-
-        if (isClose) {
-            closeSlidersIds = closeSlidersIds.filter((closeSliderIds) => closeSliderIds !== id);
-        } else {
-            closeSlidersIds.push(id);
-        }
-
-        swiperContainer.style.transform = `translateY(${isClose ? 0 : adaptiveValue(166, 137)})`;
+        swiperContainer.style.transform = `translateY(${isSliderOpen ? adaptiveValue(166, 137) : 0})`;
+        isSliderOpen = !isSliderOpen;
     };
 
     const createWrap = (img: HTMLImageElement) => {
@@ -58,6 +66,23 @@ const init = (config: Config, id: number) => {
     `.replace(/\s/g, '');
 
         return `<div id="slider-wrap-${id}" class="layer-slider-wrap" style="${styles}"></div>`;
+    };
+
+    const loadProducts = async (img: HTMLImageElement) => {
+        const formData = new FormData();
+
+        const responseImg = await fetch(img.src);
+        const blob = await responseImg.blob();
+
+        formData.append('frame', blob, 'foo.jpg');
+
+        const requestOptions = {
+            method: 'POST',
+            body: formData,
+        };
+
+        const response = await fetch(BASE_URL, requestOptions);
+        return response.json();
     };
 
     const createOnImageTopContent = () => `
@@ -107,22 +132,40 @@ const init = (config: Config, id: number) => {
         </div>
     `;
 
-    const createSlide = (product: Product, slideIndex: number) => `
+    const createSlide = (slideIndex: number, product?: Product) => `
         <div class="swiper-slide swiper-slide-${slideIndex} layer-swiper-slide unselectable" style="width: ${adaptiveValue(94, 74)}; height: ${adaptiveValue(138, 108)}">
-            <img src="${product.pic}" alt="product"/>
-            <div class="layer-swiper-slide-bottom">
-                <div class="layer-swiper-slide-bottom__price">${product.price} ₽</div>
-                <div class="layer-swiper-slide-bottom__category">${product.name}</div>
-                <div class="layer-swiper-slide-bottom__shop-name">${product.retailer.name}</div>
+            ${product ? `<img src="${product.pic}" alt="product"/>` : `<img src="${stub}" alt="stub"/>`}
+            <div class="layer-swiper-slide-bottom${product ? '' : ' layer-swiper-slide-bottom_stub'}">
+                ${product ? `<div class="layer-swiper-slide-bottom__shop-name">${product.retailer.name}</div>` : ''}
+                <div class="layer-swiper-slide-bottom__bg">
+                    ${product ? `<div class="layer-swiper-slide-bottom__name">${product.name}</div>` : '<div class="layer__sketelon mb-6"></div><div class="layer__sketelon mb-6"></div>'}
+                    ${product ? `<div class="layer-swiper-slide-bottom__price">${format(product?.price)} ₽</div>` : '<div class="layer__sketelon w-50"></div>'}
+                </div>
             </div>
         </div>
     `;
+
+    const createSkeleton = () => {
+        const { container } = config;
+
+        if (config.container) {
+            container.insertAdjacentHTML('afterbegin', createCustomContainer());
+
+            const swiperWrapper = document.querySelector<HTMLElement>(`#swiper-wrapper-${id}`);
+
+            Array.from({ length: 6 }).forEach((skeletonItem, index) => {
+                swiperWrapper.insertAdjacentHTML('beforeend', createSlide(index));
+            });
+
+            getSliderInstance();
+        }
+    };
 
     const createSlider = (products: Product[]) => {
         const { image, container } = config;
 
         if (container) {
-            container?.classList.add('layer-custom-wrap');
+            container.textContent = '';
             container.insertAdjacentHTML('afterbegin', createCustomContainer());
         } else {
             const sliderWrap = document.querySelector(`#slider-wrap-${id}`);
@@ -145,7 +188,7 @@ const init = (config: Config, id: number) => {
         const swiperWrapper = document.querySelector<HTMLElement>(`#swiper-wrapper-${id}`);
 
         products.forEach((product: Product, slideIndex) => {
-            swiperWrapper.insertAdjacentHTML('beforeend', createSlide(product, slideIndex));
+            swiperWrapper.insertAdjacentHTML('beforeend', createSlide(slideIndex, product));
             const slide = document.querySelector<HTMLElement>(`.swiper-slide-${slideIndex}`);
             slide.onclick = (e) => {
                 window.open(product.url, '_blank');
@@ -155,43 +198,23 @@ const init = (config: Config, id: number) => {
         const swiperContainer = document.querySelector<HTMLElement>(`#swiper-container-${id}`);
         swiperContainer.style.width = `${image.width}px`;
 
-        // eslint-disable-next-line no-new
-        new Swiper('.layer-swiper', {
-            slidesPerView: 'auto',
-            spaceBetween: 16,
-            navigation: {
-                nextEl: '.layer-swiper-button-next',
-                prevEl: '.layer-swiper-button-prev',
-            },
-        });
-    };
-
-    const loadProducts = async (img: HTMLImageElement) => {
-        const formData = new FormData();
-
-        const responseImg = await fetch(img.src);
-        const blob = await responseImg.blob();
-
-        formData.append('frame', blob, 'foo.jpg');
-
-        const requestOptions = {
-            method: 'POST',
-            body: formData,
-        };
-
-        const response = await fetch(BASE_URL, requestOptions);
-        return response.json();
+        getSliderInstance();
     };
 
     const renderImageWrap = async () => {
-        const { image } = config;
+        const { image, container } = config;
 
         document.body.insertAdjacentHTML('beforeend', createWrap(image));
+        container?.classList.add('layer-custom-wrap');
+
+        createSkeleton();
 
         const result = await loadProducts(image);
 
         if (result.data.products.length !== 0) {
             createSlider(result.data.products);
+        } else if (config.container) {
+            config.container.textContent = '';
         }
     };
 
