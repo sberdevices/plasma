@@ -1,0 +1,177 @@
+@mixin big-card
+    width: 166px !important
+    height: 252px !important
+
+@mixin adaptive-value($prop, $startSize, $minSize)
+    $addSize: $startSize - $minSize
+
+    #{$prop}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{1920 - 320}))
+
+
+.layer
+
+    &-swiper-wrapper
+        align-items: flex-end !important
+        @media (min-width: 768px)
+            &:hover
+                cursor: grab !important
+
+    &-slider-wrap
+        position: absolute
+        font-family: SB Sans Text, sans-serif
+        overflow: hidden
+        pointer-events: none
+        z-index: 2147483640
+
+    &-swiper-container
+        position: absolute
+        transition: all 0.5s !important
+        bottom: 16px
+        opacity: 1
+        z-index: 1
+        font-size: 14px
+        font-family: SB Sans Text, sans-serif
+        color: #000
+        pointer-events: initial
+
+
+    &-swiper-container *
+        box-sizing: border-box
+
+
+    &-slider-top-content
+        margin-bottom: 10px
+        margin-left: 21px
+
+    &-swiper-slide
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        background: rgba(255, 255, 255, 0.96) !important
+        border-radius: 8px
+        font-size: 18px
+        background: #fff
+        overflow: hidden
+        transition: all 0.5s !important
+
+        &:last-of-type
+            margin-right: 100px
+
+        @media (min-width: 768px)
+            &:hover
+                @include big-card
+
+    &-swiper-slide &-swiper-slide-bottom
+        display: none
+        position: absolute
+        width: 100%
+        bottom: 0
+        background-color: #eeeeeecf
+        padding: 10px 14px
+        text-align: left
+
+        @media (max-width: 767.99px)
+            display: block
+            padding: 8px
+
+    &-swiper-slide:hover &-swiper-slide-bottom
+        @media (min-width: 768px)
+            display: block
+
+    &-swiper-slide img
+        display: block
+        width: 100%
+        height: 100%
+        object-fit: cover
+
+    &-swiper-slide-bottom
+        &__price
+            font-weight: 600
+            font-size: 14px
+            color: #080808
+            margin-bottom: 4px
+            line-height: initial
+
+        &__category
+            display: none
+            @media (min-width: 768px)
+                display: block
+                font-weight: 500
+                font-size: 10px
+                line-height: 12px
+                letter-spacing: 0.0125em
+                color: #080808
+                margin-bottom: 12px
+                height: 24px
+                -webkit-line-clamp: 2
+                display: -webkit-box
+                -webkit-box-orient: vertical
+                overflow: hidden
+
+        &__shop-name
+            display: none
+            @media (min-width: 768px)
+                display: block
+                font-weight: 500
+                font-size: 10px
+                line-height: 12px
+                letter-spacing: 0.0125em
+                color: rgba(8, 8, 8, 0.56)
+
+    &-swiper-button-prev, &-swiper-button-next
+        cursor: pointer
+        top: auto !important
+        background-image: none
+        bottom: 43px
+
+
+    &-swiper-button-prev img, &-swiper-button-next img
+        max-width: initial
+        width: 48px
+
+
+    &-swiper-button-prev img
+        transform: rotate(180deg)
+
+
+    &-swiper-button-prev::after, &-swiper-button-next::after
+        content: '' !important
+
+
+    &-custom-wrap
+        overflow: hidden
+        margin-top: 28px
+
+        .layer-swiper-container
+            position: relative
+            bottom: 0
+
+        .layer-swiper-slide
+            @include big-card
+            .layer-swiper-slide-bottom
+                display: block
+
+        .layer-swiper-button
+            bottom: 102px
+
+        .custom-top-content
+            display: flex
+            align-items: center
+            margin-bottom: 28px
+            &__title
+                font-weight: 600
+                font-size: 24px
+                color: #080808
+                padding-right: 12px
+            &__devider
+                width: 1px
+                height: 18px
+                background-color: rgba(8, 8, 8, 0.28)
+            &-logo
+                display: flex
+                align-items: center
+                margin-left: 12px
+                &__img
+                    width: 16px
+                    height: 16px
+                    margin-right: 4px

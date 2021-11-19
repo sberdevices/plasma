@@ -7,10 +7,30 @@
     <title>Document</title>
 </head>
 <body>
-    <img src="img/dress.jpg" alt="gucci" style="width: 700px;">
+    <div style="width: 40%;">
+        <div>
+            <img src="img/dress.jpg" alt="gucci" style="width: 100%">
+        </div>
+        <div class="container"></div>
+    </div>
+    <div style="width: 40%;">
+        <div>
+            <img src="img/0357234520_1.jpeg" alt="gucci" style="width: 100%">
+        </div>
+        <div class="container"></div>
+    </div>
 </body>
 
+<script src="../umd/layer-inpicture-sdk.production.min.js"></script>
 <script>
-    window.initInPicture({ images: document.querySelectorAll('img') })
+    const imgs = document.querySelectorAll('img');
+    const containers = document.querySelectorAll('.container');
+
+    imgs.forEach((img, index) => {
+        layer.initInPicture({
+            image: img,
+            container: containers[index]
+        });
+    })
 </script>
 </html>

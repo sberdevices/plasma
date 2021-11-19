@@ -1,5 +1,6 @@
 export type Config = {
-    images: HTMLImageElement[]
+    image: HTMLImageElement,
+    container?: HTMLDivElement
 }
 
 export type Product = {
