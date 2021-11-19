@@ -68,8 +68,10 @@ export default {
     },
 } as Meta;
 
-export const Default: Story<ButtonProps & { enableIcon: boolean }> = ({ enableIcon, ...rest }) => (
-    <Button contentLeft={enableIcon && <IconMic size="s" color="inherit" />} {...rest} />
+type ButtonStoryProps = Omit<ButtonProps, 'children' | 'contentLeft' | 'contentRight'> & { enableIcon: boolean };
+
+export const Default: Story<ButtonStoryProps> = ({ enableIcon, text, ...rest }) => (
+    <Button text={text} contentLeft={enableIcon ? <IconMic size="s" color="inherit" /> : undefined} {...rest} />
 );
 
 Default.args = {

@@ -1,20 +1,26 @@
 import styled from 'styled-components';
-import { createButton, ButtonRoot } from '@sberdevices/plasma-core';
+import { createButton, ButtonRoot, getButtonSizesMixin, buttonSizes } from '@sberdevices/plasma-core';
 import type {
     ButtonProps as BaseProps,
     ButtonContentProps,
     ButtonSizeProps,
     ButtonViewProps,
 } from '@sberdevices/plasma-core';
-
-import { applySizes } from './Button.mixins';
-import { buttonViews } from './Button.props';
-import type { ButtonView } from './Button.props';
+import { buttonViews, ButtonView } from '@sberdevices/plasma-web';
+import { bodySBold } from '@sberdevices/plasma-typo';
 
 export type ButtonProps = BaseProps &
+    ButtonContentProps &
     Partial<ButtonSizeProps> &
-    Partial<ButtonViewProps<ButtonView>> &
-    ButtonContentProps;
+    Partial<ButtonViewProps<ButtonView>>;
+
+const buttonTypography = {
+    l: bodySBold,
+    m: bodySBold,
+    s: bodySBold,
+};
+
+const applySizes = getButtonSizesMixin(buttonSizes, buttonTypography);
 
 const StyledButtonRoot = styled(ButtonRoot)<Partial<ButtonSizeProps> & Partial<ButtonViewProps<ButtonView>>>`
     ${applySizes}
