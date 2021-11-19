@@ -1,26 +1,39 @@
 import styled from 'styled-components';
-import { Button as BaseButton, applyNoSelect } from '@sberdevices/plasma-core';
-import type { ButtonProps as BaseProps, SizeProps, ViewProps, ButtonContentProps } from '@sberdevices/plasma-core';
+import { createButton, ButtonRoot, applyNoSelect } from '@sberdevices/plasma-core';
+import type {
+    ButtonProps as BaseProps,
+    ButtonContentProps,
+    ButtonSizeProps,
+    ButtonViewProps,
+} from '@sberdevices/plasma-core';
 
 import { applyInteraction, InteractionProps } from '../../mixins';
 
-export type ButtonProps = BaseProps &
-    Partial<SizeProps<'l' | 'm' | 's'> & ViewProps> &
-    InteractionProps &
-    ButtonContentProps;
+import { applySizes, applyViews } from './Button.mixins';
 
-/**
- * Основной компонент для создания кнопок.
- */
-export const Button = styled(BaseButton)<ButtonProps>`
-    ${applyInteraction};
-    ${applyNoSelect};
+export type ButtonProps = BaseProps &
+    ButtonContentProps &
+    Partial<ButtonSizeProps> &
+    Partial<ButtonViewProps> &
+    InteractionProps;
+
+const StyledButtonRoot = styled(ButtonRoot)<InteractionProps>`
+    ${applySizes}
+    ${applyViews}
+    ${applyInteraction}
+    ${applyNoSelect}
 `;
 
+/**
+ * Основной компонент для отображения кнопок.
+ * Поддерживает несколько режимов отображения (`view`) и размеров (`size`).
+ */
+export const Button = createButton<HTMLButtonElement, ButtonProps>(StyledButtonRoot);
+
 Button.defaultProps = {
-    ...BaseButton.defaultProps,
-    view: 'secondary',
     size: 'l',
+    view: 'secondary',
+    pin: 'square-square',
     outlined: true,
     scaleOnInteraction: true,
 };
