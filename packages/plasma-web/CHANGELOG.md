@@ -1,3 +1,15 @@
+# v1.59.2 (Fri Nov 19 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web): Add `Button`'s `warning` view [#933](https://github.com/sberdevices/plasma/pull/933) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.59.1 (Thu Nov 18 2021)
 
 #### 🐛 Bug Fix
