@@ -1,3 +1,19 @@
+# v1.54.0 (Mon Nov 22 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-icons): Mark IconSpinner as deprecated [#919](https://github.com/sberdevices/plasma/pull/919) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-icons): Remove IconVolumeMute icon [#919](https://github.com/sberdevices/plasma/pull/919) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.52.0 (Tue Nov 16 2021)
 
 #### 🐛 Bug Fix
