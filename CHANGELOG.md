@@ -2,6 +2,20 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/ad-sdk@1.3.0`
+  - feat: publishing ad-sdk demo in pipeline [#142](https://github.com/sberdevices/pashka/pull/142) ([@OgNellis](https://github.com/OgNellis))
+  - feat: move ad-sdk to pashka [#142](https://github.com/sberdevices/pashka/pull/142) ([@OgNellis](https://github.com/OgNellis))
+
+#### Authors: 1
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+
+---
+
+# (Mon Nov 22 2021)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/layer-inpicture-sdk@0.2.0`
   - feat(index.ts): added skeleton [#143](https://github.com/sberdevices/pashka/pull/143) (KVIlikov@sberbank.ru)
   - feat(index.ts): added the ability to add a container [#143](https://github.com/sberdevices/pashka/pull/143) (KVIlikov@sberbank.ru)
