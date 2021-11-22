@@ -1,3 +1,17 @@
+# v1.38.0 (Mon Nov 22 2021)
+
+#### 🚀 Enhancement
+
+- feat: Replace `TextField` with `Field` [#910](https://github.com/sberdevices/plasma/pull/910) ([@fanisco](https://github.com/fanisco))
+- feat: Separated `Input` and `TextArea` [#910](https://github.com/sberdevices/plasma/pull/910) ([@fanisco](https://github.com/fanisco))
+- feat: Added `Field` component to replace `TextField`'s functionality [#910](https://github.com/sberdevices/plasma/pull/910) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.37.0 (Thu Nov 18 2021)
 
 #### 🚀 Enhancement

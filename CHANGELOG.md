@@ -2,6 +2,30 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-core@1.38.0`
+  - feat: Replace `TextField` with `Field` [#910](https://github.com/sberdevices/plasma/pull/910) ([@fanisco](https://github.com/fanisco))
+  - feat: Separated `Input` and `TextArea` [#910](https://github.com/sberdevices/plasma/pull/910) ([@fanisco](https://github.com/fanisco))
+  - feat: Added `Field` component to replace `TextField`'s functionality [#910](https://github.com/sberdevices/plasma/pull/910) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.22.0`
+  - feat(plasma-b2c): Added `TextField` component [#910](https://github.com/sberdevices/plasma/pull/910) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-website@0.11.0`
+  - fix(plasma-website): Remove unnecessary prop `size` from search input [#910](https://github.com/sberdevices/plasma/pull/910) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-ui@1.67.0`, `@sberdevices/plasma-web@1.61.0`
+  - feat(plasma-ui, plasma-web): B2C/B2B `Input` and `TextArea` on common platform [#910](https://github.com/sberdevices/plasma/pull/910) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Mon Nov 22 2021)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-icons@1.54.0`
   - feat(plasma-icons): Mark IconSpinner as deprecated [#919](https://github.com/sberdevices/plasma/pull/919) ([@neretin-trike](https://github.com/neretin-trike))
 

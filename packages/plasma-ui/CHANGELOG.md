@@ -1,3 +1,17 @@
+# v1.67.0 (Mon Nov 22 2021)
+
+#### 🐛 Bug Fix
+
+- feat(plasma-ui, plasma-web): B2C/B2B `Input` and `TextArea` on common platform [#910](https://github.com/sberdevices/plasma/pull/910) ([@fanisco](https://github.com/fanisco))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.65.0 (Thu Nov 18 2021)
 
 #### 🐛 Bug Fix

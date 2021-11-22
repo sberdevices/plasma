@@ -1,3 +1,20 @@
+# v1.22.0 (Mon Nov 22 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-b2c): Added `TextField` component [#910](https://github.com/sberdevices/plasma/pull/910) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.21.0 (Mon Nov 22 2021)
 
 #### 🐛 Bug Fix
