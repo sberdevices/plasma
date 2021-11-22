@@ -1,17 +1,22 @@
 import React, { FC } from 'react';
 import { createGlobalStyle } from 'styled-components';
+import { accent } from '@sberdevices/plasma-tokens-web';
 import { web } from '@sberdevices/plasma-tokens-web/typo';
-import { light } from '@sberdevices/plasma-tokens-web/themes';
+import { light, dark } from '@sberdevices/plasma-tokens-web/themes';
 
 interface GlobalStyleProps {
+    theme?: 'light' | 'dark';
     children?: never;
 }
 
-const ColorTheme = createGlobalStyle(light);
+const themes = {
+    light: createGlobalStyle(light),
+    dark: createGlobalStyle(dark),
+};
 const TypoTheme = createGlobalStyle(web);
 const DocStyle = createGlobalStyle`
     :root {
-        --ifm-color-primary: #2a72f8;
+        --ifm-color-primary: ${accent};
         --ifm-color-primary-dark: #2364de;
         --ifm-color-primary-darker: #1549ab;
         --ifm-color-primary-darkest: #0c327a;
@@ -34,7 +39,9 @@ const DocStyle = createGlobalStyle`
     }
 `;
 
-export const GlobalStyle: FC<GlobalStyleProps> = () => {
+export const GlobalStyle: FC<GlobalStyleProps> = ({ theme = 'light' }) => {
+    const ColorTheme = themes[theme];
+
     return (
         <>
             <DocStyle />
