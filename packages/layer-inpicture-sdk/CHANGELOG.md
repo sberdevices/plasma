@@ -1,3 +1,16 @@
+# v0.2.0 (Mon Nov 22 2021)
+
+#### 🚀 Enhancement
+
+- feat(index.ts): added skeleton [#143](https://github.com/sberdevices/pashka/pull/143) (KVIlikov@sberbank.ru)
+- feat(index.ts): added the ability to add a container [#143](https://github.com/sberdevices/pashka/pull/143) (KVIlikov@sberbank.ru)
+
+#### Authors: 1
+
+- Kirill Ilikov (KVIlikov@sberbank.ru)
+
+---
+
 # v0.1.2 (Wed Nov 10 2021)
 
 #### ⚠️ Pushed to `master`
