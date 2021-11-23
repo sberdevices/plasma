@@ -1,5 +1,18 @@
 # (Tue Nov 23 2021)
 
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@1.5.0`
+  - feat(plasma-temple): update assistant-client version [#949](https://github.com/sberdevices/plasma/pull/949) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
+# (Tue Nov 23 2021)
+
 #### 🐛 Bug Fix
 
 - `@sberdevices/plasma-b2c@1.22.1`, `@sberdevices/plasma-web-docs@0.18.1`
