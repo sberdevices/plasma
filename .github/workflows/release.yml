@@ -11,8 +11,8 @@ on:
       - master
 
 jobs:
-  publish:
-    name: Publish
+  release:
+    name: Release
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
     env:
@@ -33,14 +33,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-
-      - name: Cache node modules
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: npm-deps-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            npm-deps-${{ hashFiles('package-lock.json') }}
 
       - name: Setup packages
         run: |
@@ -83,3 +75,130 @@ jobs:
           branch: ${{ steps.extract_branch.outputs.branch }}
           author_name: SberDevices Frontend Team
           author_email: sberdevices.frontend@gmail.com
+      
+      - name: Cache build packages
+        uses: actions/cache@v2
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+
+  build-documentation:
+    needs: release
+    if: always()
+    name: Build Documentation
+    runs-on: ubuntu-latest
+    env:
+      NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
+      ARTIFACT_NAME: ${{ github.event_name != 'pull_request' && 'next' ||  format('pr-{0}', github.event.number) }}
+      ICONS_PUBLIC_URL: /icons
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Cache out build packages
+        uses: actions/cache@v2
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+
+      - name: Prepare directory
+        run: mkdir ../build
+
+      - name: Plasma Website
+        run: |
+          npm run build --prefix="./website/plasma-website"
+          cp -R ./website/plasma-website/build ../build/${ARTIFACT_NAME}
+
+      - name: Plasma UI Docs
+        run: |
+          npm run build --prefix="./website/plasma-ui-docs"
+          cp -R ./website/plasma-ui-docs/build ../build/${ARTIFACT_NAME}/ui
+
+      - name: Plasma Web Docs
+        run: |
+          npm run build --prefix="./website/plasma-web-docs"
+          cp -R ./website/plasma-web-docs/build ../build/${ARTIFACT_NAME}/web
+
+      - name: Plasma Temple Docs
+        run: |
+          npm run build --prefix="./website/plasma-temple-docs"
+          cp -R ./website/plasma-temple-docs/build ../build/${ARTIFACT_NAME}/temple
+
+      - name: Plasma UI Storybook
+        run: |
+          npm run storybook:build --prefix="./packages/plasma-ui"
+          cp -R ./packages/plasma-ui/build-sb ../build/${ARTIFACT_NAME}/ui-storybook
+
+      - name: Plasma Web Storybook
+        run: |
+          npm run storybook:build --prefix="./packages/plasma-web"
+          cp -R ./packages/plasma-web/build-sb ../build/${ARTIFACT_NAME}/web-storybook
+
+      - name: Plasma B2C Storybook
+        run: |
+          npm run storybook:build --prefix="./packages/plasma-b2c"
+          cp -R ./packages/plasma-b2c/build-sb ../build/${ARTIFACT_NAME}/b2c-storybook
+
+      - name: Plasma Temple Storybook
+        run: |
+          npm run storybook:build --prefix="./packages/plasma-temple"
+          cp -R ./packages/plasma-temple/build-sb ../build/${ARTIFACT_NAME}/temple-storybook
+
+      - name: Clean old builds
+        if: github.event_name == 'pull_request'
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DOCS_HOST }}
+          username: ${{ secrets.DOCS_LOGIN }}
+          key: ${{ secrets.DOCS_KEY }}
+          envs: ARTIFACT_NAME
+          script: |
+            cd ../../var/www/plasma
+            rm -rf $ARTIFACT_NAME/
+
+      - name: Upload builds
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          host: ${{ secrets.DOCS_HOST }}
+          username: ${{ secrets.DOCS_LOGIN }}
+          privateKey: ${{ secrets.DOCS_KEY }}
+          local: "../build"
+          remote: "/var/www/plasma"
+
+      - name: Update and clean documentation
+        if: github.event_name != 'pull_request'
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DOCS_HOST }}
+          username: ${{ secrets.DOCS_LOGIN }}
+          key: ${{ secrets.DOCS_KEY }}
+          script: |
+            cd ../../var/www/plasma
+            rm -rf current/
+            mv next current
+
+      - name: Post success comment
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{secrets.GH_TOKEN}}
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Documentation preview deployed!
+              
+              website: http://plasma.sberdevices.ru/pr-${context.issue.number}/
+              ui storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/ui-storybook/
+              web storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/web-storybook/
+              b2c storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/b2c-storybook/
+              temple storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/temple-storybook/
+              `
+            })
