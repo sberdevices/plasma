@@ -26,6 +26,7 @@ describe('useVoiceNavigationHook', () => {
     );
 
     beforeEach(() => {
+        window.appInitialData = [];
         assistantMock = createAssistant({ getState: () => ({}) });
         assistantHostMock = createAssistantHostMock({ context: window });
     });
