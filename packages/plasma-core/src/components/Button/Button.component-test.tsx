@@ -2,7 +2,7 @@ import React from 'react';
 import { IconDownload } from '@sberdevices/plasma-icons';
 import { mount, CypressTestDecorator, getComponent, PadMe, SpaceMe } from '@sberdevices/plasma-cy-utils';
 
-const Icon = () => <IconDownload />;
+const Icon = () => <IconDownload color="inherit" />;
 
 describe('plasma-core: Button', () => {
     const Button = getComponent('Button');
@@ -93,12 +93,6 @@ describe('plasma-core: Button', () => {
                 <Button text="Button_size_m" size="m" contentLeft={<Icon />} />
                 <PadMe />
                 <Button text="Button_size_s" size="s" contentLeft={<Icon />} />
-                <PadMe />
-                <Button text="Button_size_xs" size="xs" contentLeft={<Icon />} />
-                <PadMe />
-                <Button text="Button_size_xxs" size="xxs" contentLeft={<Icon />} />
-                <PadMe />
-                <Button text="Button_size_xxxs" size="xxxs" contentLeft={<Icon />} />
                 <PadMe />
             </CypressTestDecorator>,
         );
