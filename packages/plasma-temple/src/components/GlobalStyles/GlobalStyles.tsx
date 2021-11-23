@@ -2,7 +2,7 @@ import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { fonts, gradient, text } from '@sberdevices/plasma-tokens';
 import { darkJoy, darkEva, darkSber } from '@sberdevices/plasma-tokens/themes';
-import { AssistantCharacterType } from '@sberdevices/assistant-client';
+import { CharacterId } from '@sberdevices/assistant-client';
 
 import { AppStateContext } from '../PlasmaApp/AppStateContext';
 
@@ -38,7 +38,7 @@ const DocumentStyles = createGlobalStyle`
     /* stylelint-enable selector-nested-pattern */
 `;
 
-const charactersTheme: Record<AssistantCharacterType, React.ComponentType> = {
+const charactersTheme: Record<CharacterId, React.ComponentType> = {
     eva: createGlobalStyle(darkEva),
     joy: createGlobalStyle(darkJoy),
     sber: createGlobalStyle(darkSber),

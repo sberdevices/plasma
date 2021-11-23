@@ -1,4 +1,4 @@
-import { AssistantCharacterType } from '@sberdevices/assistant-client';
+import { CharacterId } from '@sberdevices/assistant-client';
 
 import { AnyObject } from '../types';
 import { createAction } from '../utils/createAction';
@@ -14,7 +14,7 @@ import {
     History,
 } from './types';
 
-export const setCharacter = (character: AssistantCharacterType): CharacterAction =>
+export const setCharacter = (character: CharacterId): CharacterAction =>
     createAction(AppStateActionType.CHARACTER, { character });
 
 export const setInsets = (insets: AssistantInsets): InsetsAction => createAction(AppStateActionType.INSETS, { insets });

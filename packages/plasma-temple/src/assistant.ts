@@ -25,7 +25,7 @@ export const initializeAssistant = <T extends AssistantSmartAppData>({
     userChannel = 'B2C',
     surface = 'SBERBOX',
 }: InitializeParams): AssistantInstance => {
-    if (process.env.NODE_ENV === 'development') {
+    if (process.env.NODE_ENV === 'development' && !window.Cypress) {
         const environmentProps = token
             ? {
                   userChannel: 'B2C',

@@ -1,11 +1,11 @@
-import { AssistantCharacterType, AssistantInsetsCommand, AssistantSmartAppData } from '@sberdevices/assistant-client';
+import { CharacterId, AssistantInsetsCommand, AssistantSmartAppData } from '@sberdevices/assistant-client';
 
 import { Action as StateAction } from '../utils/createAction';
 
 export type AssistantInsets = AssistantInsetsCommand['insets'];
 
 export interface UIState {
-    character: AssistantCharacterType;
+    character: CharacterId;
     insets: AssistantInsets;
 }
 
@@ -32,7 +32,7 @@ export interface Action<A extends Record<string, unknown>> extends AssistantSmar
     smart_app_data: A;
 }
 
-export type CharacterAction = StateAction<AppStateActionType.CHARACTER, { character: AssistantCharacterType }>;
+export type CharacterAction = StateAction<AppStateActionType.CHARACTER, { character: CharacterId }>;
 export type InsetsAction = StateAction<AppStateActionType.INSETS, { insets: AssistantInsets }>;
 export type PushHistoryAction = StateAction<AppStateActionType.PUSH_HISTORY, { history: History }>;
 export type PopHistoryAction = StateAction<AppStateActionType.POP_HISTORY, { delta?: number }>;
