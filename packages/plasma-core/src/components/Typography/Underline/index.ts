@@ -7,4 +7,6 @@ export const Underline = styled.div<SpacingProps & BreakWordProps>`
     ${applyHyphens}
     ${applySpacing}
     ${underline}
+
+    text-transform: uppercase;
 `;
