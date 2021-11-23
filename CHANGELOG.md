@@ -1,3 +1,16 @@
+# (Tue Nov 23 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-b2c@1.22.1`, `@sberdevices/plasma-web-docs@0.18.1`
+  - fix: b2c grid doc [#937](https://github.com/sberdevices/plasma/pull/937) ([@takovoy](https://github.com/takovoy))
+
+#### Authors: 1
+
+- Aleksandr Sustavov ([@takovoy](https://github.com/takovoy))
+
+---
+
 # (Mon Nov 22 2021)
 
 #### 🚀 Enhancement

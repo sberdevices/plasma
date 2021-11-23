@@ -1,3 +1,17 @@
+# v1.22.1 (Tue Nov 23 2021)
+
+#### 🐛 Bug Fix
+
+- fix: b2c grid doc [#937](https://github.com/sberdevices/plasma/pull/937) ([@takovoy](https://github.com/takovoy))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Aleksandr Sustavov ([@takovoy](https://github.com/takovoy))
+
+---
+
 # v1.22.0 (Mon Nov 22 2021)
 
 #### 🚀 Enhancement
