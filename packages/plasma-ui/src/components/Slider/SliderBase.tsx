@@ -1,12 +1,12 @@
 import React from 'react';
 import styled, { css, ThemeContext } from 'styled-components';
-import { surfaceLiquid03, buttonAccent, scalingPixelBasis } from '@sberdevices/plasma-tokens';
+import { surfaceLiquid03, buttonAccent, scalingPixelBasis, sberPortalScale } from '@sberdevices/plasma-tokens';
 
 export const handleDiameter = 1.5;
 export const handleBorderWidth = 0.0625;
 export const railHeight = 0.25;
 export const railBorderRadius = railHeight / 2;
-export const indentaion = handleDiameter / 2 + handleBorderWidth;
+export const indentation = handleDiameter / 2 + handleBorderWidth;
 
 interface SliderProps {
     min: number;
@@ -35,8 +35,8 @@ const Rail = styled.div`
     background-color: ${surfaceLiquid03};
     overflow: hidden;
     top: 50%;
-    margin-left: ${indentaion}rem;
-    margin-right: ${indentaion}rem;
+    margin-left: ${indentation}rem;
+    margin-right: ${indentation}rem;
     transform: translateY(-50%);
 `;
 
@@ -64,8 +64,8 @@ export const SliderBase: React.FC<SliderProps> = ({
     React.useLayoutEffect(() => {
         const resizeHandler = () => {
             if (ref.current) {
-                const rootElementFontSize = theme.deviceScale * scalingPixelBasis;
-                const railSize = ref.current.offsetWidth - indentaion * rootElementFontSize * 2;
+                const rootElementFontSize = (theme?.deviceScale ?? sberPortalScale) * scalingPixelBasis;
+                const railSize = ref.current.offsetWidth - indentation * rootElementFontSize * 2;
                 const totalSteps = max - min;
                 setStepSize(railSize / totalSteps);
             }
