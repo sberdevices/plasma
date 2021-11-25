@@ -52,7 +52,15 @@ export const CartOrderMobile: React.FC<CartOrderProps> = ({
                 bottom / 2 - хак деление полученного отступа на два, т.к. на текущий момент
                 получаем большой отступ, кнопка фиксируется слишком высоко над нативной панелью
             */}
-            <StyledButton view="primary" stretch onClick={onMakeOrder} disabled={disabled} size="m" bottom={bottom / 2}>
+            <StyledButton
+                view="primary"
+                stretch
+                onClick={onMakeOrder}
+                disabled={disabled}
+                size="m"
+                bottom={bottom / 2}
+                data-cy="CartOrder-button"
+            >
                 {orderButtonText}
                 <CartAmount amount={amount} discount={discount} />
             </StyledButton>

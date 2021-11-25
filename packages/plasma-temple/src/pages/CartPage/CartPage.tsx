@@ -44,7 +44,7 @@ export function CartPage<T extends CartState = CartState>({
                 emptyCart
             ) : (
                 <Row>
-                    <Col sizeXL={6} sizeM={4} sizeS={4}>
+                    <Col sizeXL={6} sizeM={4} sizeS={4} data-cy="CartPage-items">
                         <CartItemList
                             items={items}
                             currency={currency}
@@ -52,7 +52,7 @@ export function CartPage<T extends CartState = CartState>({
                             itemImageBackgroundColor={itemImageBackgroundColor}
                         />
                     </Col>
-                    <Col sizeXL={3.5} offsetXL={2.5} sizeM={2} sizeS={4}>
+                    <Col sizeXL={3.5} offsetXL={2.5} sizeM={2} sizeS={4} data-cy="CartPage-order">
                         <CartOrder
                             amount={amount}
                             deliveryPrice={deliveryPrice}

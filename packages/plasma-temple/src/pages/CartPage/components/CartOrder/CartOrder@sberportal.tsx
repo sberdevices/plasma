@@ -42,7 +42,14 @@ export const CartOrderSberPortal: React.FC<CartOrderProps> = ({
                 />
                 <Discount currency={currency} discount={discount} />
             </StyledContainer>
-            <Button view="primary" stretch onClick={onMakeOrder} size="s" disabled={disabled}>
+            <Button
+                view="primary"
+                stretch
+                onClick={onMakeOrder}
+                size="s"
+                disabled={disabled}
+                data-cy="CartOrder-button"
+            >
                 {orderButtonText}
             </Button>
             {children}

@@ -55,7 +55,7 @@ export const CartItemMobile: React.FC<CartItemProps> = ({
     const clickHandler = React.useCallback(() => onItemClick?.(item), [onItemClick, item]);
 
     return (
-        <StyledRow>
+        <StyledRow data-cy="CartItem">
             <StyledLeftCol sizeS={2}>
                 <StyledImageContainer backgroundColor={imageBackgroundColor} onClick={clickHandler}>
                     <StyledImage imageSrc={imageSrc} />

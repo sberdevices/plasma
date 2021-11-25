@@ -185,6 +185,7 @@ export const QuantityButton: React.FC<{
                 onClick={onMinus}
                 onFocus={handlerFocus}
                 ref={leftButtonRef}
+                data-cy="QuantityButton-minus"
             />
             <StepperValue value={quantity} />
             <StepperButton
@@ -192,6 +193,7 @@ export const QuantityButton: React.FC<{
                 onClick={onPlus}
                 onFocus={handlerFocus}
                 ref={rightButtonRef}
+                data-cy="QuantityButton-plus"
             />
         </StyledStepperRoot>
     );

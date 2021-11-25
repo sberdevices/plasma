@@ -58,7 +58,7 @@ export const CartItemSberPortal: React.FC<CartItemProps> = ({
     const clickHandler = React.useCallback(() => onItemClick?.(item), [onItemClick, item]);
 
     return (
-        <StyledRow>
+        <StyledRow data-cy="CartItem">
             <StyledLeftCol sizeM={3}>
                 <StyledImageContainer backgroundColor={imageBackgroundColor} onClick={clickHandler}>
                     <StyledImage imageSrc={imageSrc} />
