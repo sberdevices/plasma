@@ -86,7 +86,7 @@ export const EmptyCartCommon: React.FC<EmptyCartProps> = ({
             <StyledCol sizeXL={5} sizeM={3}>
                 <StyledTitle>В корзине пусто</StyledTitle>
                 {onGoToCatalog && (
-                    <StyledButton ref={buttonRef} view="primary" onClick={onGoToCatalog}>
+                    <StyledButton ref={buttonRef} view="primary" onClick={onGoToCatalog} data-cy="EmptyCart-button">
                         {buttonText}
                     </StyledButton>
                 )}

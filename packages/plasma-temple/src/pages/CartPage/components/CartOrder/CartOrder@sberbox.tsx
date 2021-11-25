@@ -47,7 +47,15 @@ export const CartOrderSberBox: React.FC<CartOrderProps> = ({
                 />
                 <Discount currency={currency} discount={discount} />
             </StyledContainer>
-            <Button view="primary" stretch onClick={onMakeOrder} size="m" disabled={disabled} ref={buttonRef}>
+            <Button
+                view="primary"
+                stretch
+                onClick={onMakeOrder}
+                size="m"
+                disabled={disabled}
+                ref={buttonRef}
+                data-cy="CartOrder-button"
+            >
                 {orderButtonText}
             </Button>
             {children}

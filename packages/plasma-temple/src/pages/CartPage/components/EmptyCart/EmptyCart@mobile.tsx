@@ -27,7 +27,7 @@ export const EmptyCartMobile: React.FC<EmptyCartProps> = ({
             <Image base="div" src={imageSrc} ratio="1 / 1" />
             <StyledText>В корзине пусто</StyledText>
             {onGoToCatalog && (
-                <Button view="primary" onClick={onGoToCatalog} stretch>
+                <Button view="primary" onClick={onGoToCatalog} stretch data-cy="EmptyCart-button">
                     {buttonText}
                 </Button>
             )}
