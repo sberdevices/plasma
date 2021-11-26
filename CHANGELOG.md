@@ -1,3 +1,20 @@
+# (Fri Nov 26 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@1.6.0`
+  - feat(plasma-temple): Add cart test attributes [#954](https://github.com/sberdevices/plasma/pull/954) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): update assistant-client version [#949](https://github.com/sberdevices/plasma/pull/949) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- `@sberdevices/plasma-temple-docs@0.3.0`
+  - feat(website): add description for templates docs [#931](https://github.com/sberdevices/plasma/pull/931) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Tue Nov 23 2021)
 
 #### 🚀 Enhancement

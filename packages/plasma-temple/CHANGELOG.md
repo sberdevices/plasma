@@ -1,3 +1,22 @@
+# v1.6.0 (Fri Nov 26 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Add cart test attributes [#954](https://github.com/sberdevices/plasma/pull/954) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-temple): update assistant-client version [#949](https://github.com/sberdevices/plasma/pull/949) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### 🐛 Bug Fix
+
+- Bump independent versions \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- Update CHANGELOG.md \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
 # v1.5.0 (Tue Nov 23 2021)
 
 #### 🚀 Enhancement
