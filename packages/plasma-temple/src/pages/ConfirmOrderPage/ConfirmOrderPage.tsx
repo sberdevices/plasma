@@ -1,11 +1,11 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Body1, Body2, Button, Col, Footnote1, Headline3, Price, Row } from '@sberdevices/plasma-ui';
-import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 import { secondary } from '@sberdevices/plasma-tokens';
 import { detectDevice, mediaQuery } from '@sberdevices/plasma-ui/utils';
 
 import { Header } from '../../components/Header/Header';
+import { ComponentPropsWithHeader } from '../../components/Header/types';
 import { DeviceFamily } from '../../types';
 import { useFocusOnMount } from '../../hooks/useFocusOnMount';
 import { THROTTLE_WAIT, useThrottledCallback } from '../../hooks/useThrottledCallback';
@@ -15,7 +15,7 @@ import { ConfirmOrderCard } from './components/ConfirmOrderCard/ConfirmOrderCard
 import { LocationIcon } from './ConfirmOrderPage.assets/LocationIcon';
 import defaultBackground from './ConfirmOrderPage.assets/map.png';
 
-interface ConfirmOrderProps {
+interface ConfirmOrderProps extends ComponentPropsWithHeader {
     delivery: {
         details: string;
         amount: number;
@@ -30,7 +30,6 @@ interface ConfirmOrderProps {
         content: string;
     };
     amount: number;
-    header?: HeaderProps;
     background?: string;
     paymentDisabled?: boolean;
     onPay: () => void;

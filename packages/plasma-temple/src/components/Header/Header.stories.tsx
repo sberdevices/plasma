@@ -10,13 +10,13 @@ export default {
 };
 
 export const Default = () => {
-    return <Header logo="./images/320_320_2.jpg" title="Hello" subtitle="plasma-temple" />;
+    return <Header logo="./images/320_320_2.jpg" title="Hello" subTitle="plasma-temple" />;
 };
 
 Default.decorators = [withAppState({ ...defaultValue, popScreen: action('popScreen click') })];
 
 export const WithOneScreenInHistory = () => {
-    return <Header logo="./images/320_320_2.jpg" title="Hello" subtitle="plasma-temple" />;
+    return <Header logo="./images/320_320_2.jpg" title="Hello" subTitle="plasma-temple" />;
 };
 
 WithOneScreenInHistory.decorators = [
@@ -26,3 +26,27 @@ WithOneScreenInHistory.decorators = [
         popScreen: action('popScreen click'),
     }),
 ];
+
+export const IfSetOldPropsWithBack = () => {
+    return (
+        <Header
+            logo="./images/320_320_2.jpg"
+            title="Hello"
+            subTitle="plasma-temple"
+            back
+            onBackClick={action('back click')}
+        />
+    );
+};
+
+export const IfSetOldPropsWithMinimizeAndLowerCaseSubTitle = () => {
+    return (
+        <Header
+            logo="./images/320_320_2.jpg"
+            title="Hello"
+            subtitle="plasma-temple"
+            minimize
+            onMinimizeClick={action('minimize click')}
+        />
+    );
+};

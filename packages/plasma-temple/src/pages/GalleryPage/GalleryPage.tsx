@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { CarouselGridWrapper, CarouselItem, Container, Headline3 } from '@sberdevices/plasma-ui';
-import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 
 import { useRemoteHandlers } from '../../hooks/useRemoteHandlers';
 import { useGetMutableValue } from '../../hooks/useGetMutableValue';
 import { Header } from '../../components/Header/Header';
+import { ComponentPropsWithHeader } from '../../components/Header/types';
 import { GalleryCardParams, GalleryCardProps } from '../../components/GalleryCard/types';
 import { AnyObject } from '../../types';
 import { GalleryWithNavigation } from '../../components/Gallery/Gallery';
@@ -16,11 +16,10 @@ import { GalleryPageState } from './types';
 
 const ActiveGalleryContext = React.createContext(0);
 
-interface GalleryPageProps<T extends AnyObject = AnyObject> {
+interface GalleryPageProps<T extends AnyObject = AnyObject> extends ComponentPropsWithHeader {
     state: GalleryPageState<T>;
     changeState: (state: GalleryPageState<T>) => void;
     onCardClick: (card: GalleryCardParams<T>) => void;
-    header?: HeaderProps;
     galleryCard?: React.ComponentType<GalleryCardProps<T>>;
 }
 

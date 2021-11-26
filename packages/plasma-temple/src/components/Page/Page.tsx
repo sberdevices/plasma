@@ -1,5 +1,4 @@
 import React from 'react';
-import { HeaderProps } from '@sberdevices/plasma-ui';
 
 import { AppStateContext } from '../PlasmaApp/AppStateContext';
 import { AnyObject, AssistantInstance } from '../../types';
@@ -10,6 +9,7 @@ import { Layout } from '../../components/Layout/Layout';
 import { PageSpinner } from '../PageSpinner/PageSpinner';
 import { useMount } from '../../hooks';
 import { History } from '../../store/types';
+import { HeaderProps } from '../Header/types';
 
 import { PageComponent as PageComp } from './types';
 
