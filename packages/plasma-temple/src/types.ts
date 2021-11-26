@@ -1,6 +1,10 @@
 import { AssistantNavigationCommand, AssistantSmartAppData, createAssistant } from '@sberdevices/assistant-client';
-import { PriceProps, Ratio } from '@sberdevices/plasma-ui';
-import { detectDevice } from '@sberdevices/plasma-ui/utils';
+import type { PriceProps, Ratio } from '@sberdevices/plasma-ui';
+import { DeviceKind } from '@sberdevices/plasma-ui/utils';
+import { StyledComponent } from 'styled-components';
+
+// infer component props from @sberdevices/plasma-core
+export type GetStyledComponentProps<T> = T extends StyledComponent<'div', any, infer T1, never> ? T1 : any;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AnyObject = Record<string, any>;
@@ -14,7 +18,7 @@ export type Axis = 'x' | 'y';
 
 export type Direction = AssistantNavigationCommand['navigation']['command'];
 
-export type DeviceFamily = ReturnType<typeof detectDevice>;
+export type DeviceFamily = DeviceKind;
 
 export type Currency = PriceProps['currency'];
 

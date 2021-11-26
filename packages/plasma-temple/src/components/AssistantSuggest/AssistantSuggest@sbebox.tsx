@@ -1,13 +1,17 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { StyledComponent } from 'styled-components';
 import { Body1, Headline1, Footnote1 } from '@sberdevices/plasma-ui';
 import { surfaceLiquid01, primary, secondary } from '@sberdevices/plasma-tokens';
 
 import { useFocusOnMount } from '../../hooks/useFocusOnMount';
+import { GetStyledComponentProps } from '../../types';
 
 import { AssistantSuggestIcon, AssistantSuggestWrapper } from './AssistantSuggest@common';
 
-const StyledOkButton = styled(Footnote1)`
+type StyledComponentProps = GetStyledComponentProps<typeof Body1 | typeof Footnote1 | typeof Headline1>;
+type StyledTextNode = StyledComponent<'div', any, StyledComponentProps, never>;
+
+const StyledOkButton: StyledTextNode = styled(Footnote1)`
     position: relative;
     display: inline-flex;
     height: 2.45rem;
@@ -36,12 +40,12 @@ const StyledOkButton = styled(Footnote1)`
     }
 `;
 
-export const AssistantSuggestActionText = styled(Body1)`
+export const AssistantSuggestActionText: StyledTextNode = styled(Body1)`
     z-index: 1;
     margin-top: 0.5rem;
 `;
 
-export const AssistantSuggestIntent = styled(Headline1)`
+export const AssistantSuggestIntent: StyledTextNode = styled(Headline1)`
     position: relative;
     margin-top: 0.375rem;
     background: linear-gradient(93.97deg, #2fd65c 6.49%, #20c1c7 93.51%);
@@ -50,14 +54,14 @@ export const AssistantSuggestIntent = styled(Headline1)`
     -webkit-background-clip: text;
 `;
 
-export const AssistantSuggestIntentHint = styled(Body1)`
+export const AssistantSuggestIntentHint: StyledTextNode = styled(Body1)`
     position: relative;
 
     margin-top: 0.5rem;
     color: ${secondary};
 `;
 
-export const AssistantSuggestHintText = styled(Body1)`
+export const AssistantSuggestHintText: StyledTextNode = styled(Body1)`
     position: relative;
 
     margin-top: 4rem;
