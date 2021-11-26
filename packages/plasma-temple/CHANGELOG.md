@@ -1,3 +1,15 @@
+# v1.7.0 (Fri Nov 26 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): support for window.appInitialData [#941](https://github.com/sberdevices/plasma/pull/941) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.6.0 (Fri Nov 26 2021)
 
 #### 🚀 Enhancement

@@ -2,6 +2,24 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-temple@1.7.0`
+  - feat(plasma-temple): support for window.appInitialData [#941](https://github.com/sberdevices/plasma/pull/941) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- ci: Removed Cypress E2E workflow [#956](https://github.com/sberdevices/plasma/pull/956) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Fri Nov 26 2021)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-temple@1.6.0`
   - feat(plasma-temple): Add cart test attributes [#954](https://github.com/sberdevices/plasma/pull/954) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
   - feat(plasma-temple): update assistant-client version [#949](https://github.com/sberdevices/plasma/pull/949) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
