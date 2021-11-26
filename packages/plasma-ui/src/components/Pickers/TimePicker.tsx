@@ -151,6 +151,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
     onChange,
     name,
     enableNativeControl,
+    infiniteScroll = true,
     ...rest
 }) => {
     const normalizeValues = React.useMemo(() => getNormalizeValues(getTimeValues, getSeconds)(value, min, max), [
@@ -270,6 +271,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     range={hoursRange}
                     value={hours}
                     scrollSnapType={scrollSnapType}
+                    infiniteScroll={infiniteScroll}
                     onChange={onHoursChange}
                 />
             )}
@@ -286,6 +288,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     range={minsRange}
                     value={minutes}
                     scrollSnapType={scrollSnapType}
+                    infiniteScroll={infiniteScroll}
                     onChange={onMinutesChange}
                 />
             )}
@@ -302,6 +305,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     range={secsRange}
                     value={seconds}
                     scrollSnapType={scrollSnapType}
+                    infiniteScroll={infiniteScroll}
                     onChange={onSecondsChange}
                 />
             )}
