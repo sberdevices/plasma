@@ -69,6 +69,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     onChange,
     name,
     enableNativeControl,
+    infiniteScroll = true,
     ...rest
 }) => {
     const normalizeValues = React.useMemo(() => getNormalizeValues(getDateValues, getSeconds)(value, min, max), [
@@ -222,6 +223,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                     controls={controls}
                     visibleItems={visibleItems}
                     scrollSnapType={scrollSnapType}
+                    infiniteScroll={infiniteScroll}
                     onChange={onDayChange}
                 />
             )}
@@ -239,6 +241,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                     controls={controls}
                     visibleItems={visibleItems}
                     scrollSnapType={scrollSnapType}
+                    infiniteScroll={infiniteScroll}
                     onChange={onMonthChange}
                 />
             )}
@@ -255,6 +258,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                     controls={controls}
                     visibleItems={visibleItems}
                     scrollSnapType={scrollSnapType}
+                    infiniteScroll={infiniteScroll}
                     onChange={onYearChange}
                 />
             )}

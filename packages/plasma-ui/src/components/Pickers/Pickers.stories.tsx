@@ -136,6 +136,7 @@ Default.args = {
     controls: isSberbox,
     autofocus: true,
     scrollSnapType: isSberbox ? 'none' : 'mandatory',
+    infiniteScroll: true,
     DatePickeSize: 's',
     DatePickerVisibleItems: 3,
     TimePickeSize: 's',
@@ -238,6 +239,7 @@ Date_Picker.args = {
     scrollSnapType: isSberbox ? 'none' : 'mandatory',
     size: 's',
     visibleItems: 5,
+    infiniteScroll: true,
 };
 
 // eslint-disable-next-line @typescript-eslint/camelcase
@@ -316,6 +318,7 @@ Time_Picker.args = {
     size: 'l',
     visibleItems: 3,
     step: 1,
+    infiniteScroll: true,
 };
 
 // eslint-disable-next-line @typescript-eslint/camelcase

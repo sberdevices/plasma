@@ -128,14 +128,42 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
         `}
 `;
 
+// Значение, отвечающее за количество чисел,
+// которое необходимо добавить перед и после основного списка
+const ADDITIONAL_OFFSET = 1;
+
+const findItemIndex = (
+    items: Item[],
+    value: string | number | Date,
+    infiniteScroll: boolean,
+    additionalOffset: number,
+) => {
+    const index = items.findIndex((item) => item.value === value);
+
+    if (infiniteScroll && index === 0) {
+        return items.length - additionalOffset * 2;
+    }
+
+    return index;
+};
+
+const getItems = (items: Item[], infiniteScroll: boolean, additionalOffset: number) => {
+    if (!infiniteScroll) {
+        return items;
+    }
+
+    const firstPart = items.slice(-additionalOffset);
+    const lastPart = items.slice(0, additionalOffset);
+
+    return [...firstPart, ...items, ...lastPart];
+};
+
 const getIndex = (index: number, cmd: '+' | '-', min: number, max: number) => {
     if (cmd === '+') {
         return index !== max ? index + 1 : min;
     }
     return index !== min ? index - 1 : max;
 };
-
-const findItemIndex = (items: Item[], value: string | number | Date) => items.findIndex((item) => item.value === value);
 
 export interface PickerProps
     extends SizeProps,
@@ -179,6 +207,10 @@ export interface PickerProps
      * Используется вместе с пропом `enableNativeControl`.
      */
     name?: string;
+    /**
+     * Бесконечная прокрутка
+     */
+    infiniteScroll?: boolean;
 }
 
 export const Picker: React.FC<PickerProps> = ({
@@ -193,11 +225,14 @@ export const Picker: React.FC<PickerProps> = ({
     tabIndex = 0,
     scrollSnapType,
     onChange,
+    infiniteScroll = true,
     ...rest
 }) => {
+    const newItems = React.useMemo(() => getItems(items, infiniteScroll, ADDITIONAL_OFFSET), [items, infiniteScroll]);
+
     const min = 0;
-    const max = items.length - 1;
-    const [index, setIndex] = React.useState(findItemIndex(items, value));
+    const max = newItems.length - 1;
+    const [index, setIndex] = React.useState(findItemIndex(newItems, value, infiniteScroll, ADDITIONAL_OFFSET));
     const [hasScrollAnim, setScrollAnim] = React.useState(true);
 
     const wrapperRef = React.useRef<HTMLDivElement | null>(null);
@@ -205,21 +240,27 @@ export const Picker: React.FC<PickerProps> = ({
     const toPrev = React.useCallback(() => !disabled && setIndex(getIndex(index, '-', min, max)), [index, min, max]);
     const toNext = React.useCallback(() => !disabled && setIndex(getIndex(index, '+', min, max)), [index, min, max]);
 
-    const prevValue = usePreviousValue(items[index]?.value);
+    const prevValue = usePreviousValue(newItems[index]?.value);
 
     // Изменяет индекс выделенного элемента
     // при обновлении значения value извне
     useIsomorphicLayoutEffect(() => {
-        const newIndex = findItemIndex(items, value);
+        const newIndex = findItemIndex(newItems, value, infiniteScroll, ADDITIONAL_OFFSET);
 
         // Отключаем анимацию скролла, если значение компонента осталось
         // прежним, но индекс изменился
-        if (prevValue === items[newIndex]?.value && newIndex !== index) {
+        if (prevValue === newItems[newIndex]?.value && newIndex !== index) {
+            setScrollAnim(false);
+        }
+
+        // Отключаем анимацию скролла, если выбраны крайние значения в списке
+        const offset = ADDITIONAL_OFFSET * 2;
+        if (newIndex === offset - 1 || newIndex === newItems.length - offset) {
             setScrollAnim(false);
         }
 
         setIndex(newIndex);
-    }, [value, items]);
+    }, [value, newItems]);
 
     // Навигация с помощью пульта/клавиатуры
     // Не перелистывает, если компонент неактивен
@@ -253,13 +294,13 @@ export const Picker: React.FC<PickerProps> = ({
 
     const onIndexChange = React.useCallback(
         (i: number) => {
-            if (items[i]?.value !== value) {
-                onChange?.(items[i]);
+            if (newItems[i]?.value !== value) {
+                onChange?.(newItems[i]);
             }
             // Включаем анимацию скролла, после изменения индекса
             setScrollAnim(true);
         },
-        [items, value, onChange],
+        [newItems, value, onChange],
     );
 
     return (
@@ -287,7 +328,7 @@ export const Picker: React.FC<PickerProps> = ({
                 onIndexChange={onIndexChange}
                 {...(hasScrollAnim ? {} : { 'data-no-scroll-behavior': true })}
             >
-                {items.map((item, i) => (
+                {newItems.map((item, i) => (
                     <PickerItem
                         key={`item:${i}`}
                         item={item}
