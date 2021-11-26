@@ -1,8 +1,8 @@
 import React from 'react';
-import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 import { ButtonProps } from '@sberdevices/plasma-ui';
 
 import { Header } from '../../components/Header/Header';
+import { ComponentPropsWithHeader } from '../../components/Header/types';
 import { useRegistry } from '../../hooks/useRegistry';
 import { useSpatNav } from '../../hooks/useSpatNav';
 import { useVoiceNavigationWithSpatNav } from '../../hooks/useVoiceNavigation';
@@ -13,9 +13,8 @@ import { LayoutElementContext } from '../../components/Layout/LayoutElementConte
 import { ItemEntityProps } from './components/ItemEntity/ItemEntity';
 import { ItemPageState } from './types';
 
-interface ItemPageProps {
+interface ItemPageProps extends ComponentPropsWithHeader {
     state: ItemPageState;
-    header?: HeaderProps;
     onItemShow: <T>(id: T) => void;
     onItemFocus?: <T>(id: T) => void;
     entityComponent?: React.ComponentType<ItemEntityProps>;

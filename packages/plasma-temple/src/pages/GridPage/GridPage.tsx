@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import throttle from 'lodash.throttle';
-import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 import { Row } from '@sberdevices/plasma-ui';
 
 import { Header } from '../../components/Header/Header';
+import { ComponentPropsWithHeader } from '../../components/Header/types';
 import { useSpatNavBetweenTargets } from '../../hooks/useSpatNav';
 import { useVoiceNavigationWithSpatNav } from '../../hooks/useVoiceNavigation';
 import { scroll } from '../../utils/scroll';
@@ -14,9 +14,8 @@ import { LayoutElementContext } from '../../components/Layout/LayoutElementConte
 import { GridEntity, GridPageState } from './types';
 import { GridCard, GridCardProps } from './components/GridCard';
 
-interface GridPageProps {
+interface GridPageProps extends ComponentPropsWithHeader {
     state: GridPageState;
-    header?: HeaderProps;
     onItemShow?: (val: GridEntity) => void;
     onScrollBottom?: () => void;
     children?(props: GridCardProps & { key: string }): JSX.Element;

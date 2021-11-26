@@ -1,8 +1,8 @@
 import React from 'react';
 import { Col, Row } from '@sberdevices/plasma-ui';
-import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
 
 import { Header } from '../../components';
+import { ComponentPropsWithHeader } from '../../components/Header/types';
 
 import { CartOrder } from './components/CartOrder/CartOrder';
 import { useCart } from './hooks/useCart';
@@ -10,8 +10,7 @@ import { useCartAssistantState } from './hooks/useCartAssistantState';
 import { CartItemList } from './components/CartItemList/CartItemList';
 import { CartState } from './types';
 
-interface CartPageProps<T extends CartState> {
-    header?: HeaderProps;
+interface CartPageProps<T extends CartState> extends ComponentPropsWithHeader {
     name?: string;
     emptyCart?: React.ReactElement;
     orderButtonText?: string;

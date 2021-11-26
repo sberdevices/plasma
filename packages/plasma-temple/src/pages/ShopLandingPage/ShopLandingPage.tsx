@@ -1,8 +1,9 @@
 import React from 'react';
-import { Header, CarouselGridWrapper } from '@sberdevices/plasma-ui';
-import { HeaderProps } from '@sberdevices/plasma-ui/components/Header/Header';
+import { CarouselGridWrapper } from '@sberdevices/plasma-ui';
 
 import { AnyObject } from '../../types';
+import { ComponentPropsWithHeader } from '../../components/Header/types';
+import { Header } from '../../components/Header/Header';
 import { GalleryCard as CardComponent } from '../../components/GalleryCard/GalleryCard';
 import { GalleryCardProps } from '../../components/GalleryCard/types';
 import { useRegistry } from '../../hooks/useRegistry';
@@ -16,9 +17,8 @@ import { ShopLandingPageState } from './types';
 import { ShopLandingCard } from './components/ShopLandingCard/ShopLandingCard';
 import { ShopLandingCarousel } from './components/Carousel/ShopLandingCarousel';
 
-export interface ShopLandingPageProps<T extends AnyObject = AnyObject> {
+export interface ShopLandingPageProps<T extends AnyObject = AnyObject> extends ComponentPropsWithHeader {
     state: ShopLandingPageState<T>;
-    header?: HeaderProps;
     galleryCard?: React.ComponentType<GalleryCardProps<T>>;
     onCatalogOpen: () => void;
     onStoreInfoClick: () => void;

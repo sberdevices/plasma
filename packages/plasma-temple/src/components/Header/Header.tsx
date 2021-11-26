@@ -1,13 +1,13 @@
 import React from 'react';
-import { Header as UIKitHeader } from '@sberdevices/plasma-ui';
+import { NeuHeader as UIKitHeader } from '@sberdevices/plasma-ui';
 
 import { HeaderProps } from './types';
-import { useHeaderProps } from './useHeaderProps';
+import { useNewHeaderProps, useHeaderProps } from './useHeaderProps';
 
 export { useHeaderProps };
 
 export const Header: React.FC<HeaderProps> = (props) => {
-    const headerProps = useHeaderProps(props);
+    const headerProps = useNewHeaderProps(props);
 
     return <UIKitHeader {...headerProps} />;
 };
