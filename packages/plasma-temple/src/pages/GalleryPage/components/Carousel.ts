@@ -1,8 +1,13 @@
-import styled from 'styled-components';
+import styled, { StyledComponent } from 'styled-components';
 import { Carousel, CarouselProps as BaseCarouselProps } from '@sberdevices/plasma-ui';
 
-export type CarouselProps = Omit<BaseCarouselProps, 'detectAvtive' | 'detectThreshold'>;
+import { GetStyledComponentProps } from '../../../types';
 
-export const CommonCarousel = styled(Carousel)`
+export type CarouselProps = Omit<BaseCarouselProps, 'detectActive' | 'detectThreshold'>;
+
+type StyledComponentProps = GetStyledComponentProps<typeof Carousel>;
+type StyledCarousel = StyledComponent<typeof Carousel, any, StyledComponentProps, never>;
+
+export const CommonCarousel: StyledCarousel = styled(Carousel)`
     padding-right: var(--plasma-grid-margin);
 `;

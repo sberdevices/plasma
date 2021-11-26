@@ -1,12 +1,16 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import type { StyledComponent } from 'styled-components';
 import { Body1, Footnote1, Headline1, Button, Carousel, CarouselItem, Headline2 } from '@sberdevices/plasma-ui';
 import { primary, secondary } from '@sberdevices/plasma-tokens';
 import { mediaQuery } from '@sberdevices/plasma-ui/utils';
 
 import { useFocusOnMount } from '../../hooks/useFocusOnMount';
-import { DeviceFamily } from '../../types';
+import { DeviceFamily, GetStyledComponentProps } from '../../types';
 import { deviceFamily } from '../../utils/deviceFamily';
+
+type StyledComponentProps = GetStyledComponentProps<typeof Body1 | typeof Footnote1 | typeof Headline1>;
+type StyledTextNode = StyledComponent<'div', any, StyledComponentProps, never>;
 
 const StyledList = styled(Carousel)`
     box-sizing: border-box;
@@ -46,17 +50,17 @@ export const AssistantActionConfirmWrapper = styled.div`
     )}
 `;
 
-export const AssistantActionConfirmLabel = styled(Body1)`
+export const AssistantActionConfirmLabel: StyledTextNode = styled(Body1)`
     color: ${primary};
     margin-bottom: 8px;
 `;
 
-export const AssistantActionConfirmTitle = styled(Headline1)`
+export const AssistantActionConfirmTitle: StyledTextNode = styled(Headline1)`
     color: ${primary};
     margin-bottom: 8px;
 `;
 
-export const AssistantActionConfirmDescription = styled(Footnote1)`
+export const AssistantActionConfirmDescription: StyledTextNode = styled(Footnote1)`
     margin-top: 2rem;
     color: ${secondary};
 `;

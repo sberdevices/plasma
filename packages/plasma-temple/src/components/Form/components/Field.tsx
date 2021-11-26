@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
-import styled from 'styled-components';
+import styled, { StyledComponent } from 'styled-components';
 import { Body1, Caption, Footnote1 } from '@sberdevices/plasma-ui';
 import { secondary, warning } from '@sberdevices/plasma-tokens';
+import { GetStyledComponentProps } from 'src';
 
 import { ValidationMessage, ValidityStateKeys } from '../types';
 
@@ -104,7 +105,10 @@ export const FieldErrorMessages: React.FC<FieldErrorMessagesProps> = ({ messages
     );
 };
 
-export const FieldAnnotation = styled(Footnote1)`
+type FootnoteProps = GetStyledComponentProps<typeof Footnote1>;
+type InferStyledComponent = StyledComponent<'div', any, FootnoteProps, never>;
+
+export const FieldAnnotation: InferStyledComponent = styled(Footnote1)`
     margin-top: 96px;
     color: ${secondary};
     padding: 0 270px;
