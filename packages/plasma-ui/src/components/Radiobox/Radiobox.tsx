@@ -2,7 +2,6 @@ import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import {
     BaseboxInput,
-    BaseboxContent,
     BaseboxLabel,
     BaseboxDescription,
     BaseboxContentWrapper,
@@ -12,7 +11,11 @@ import type { BaseboxProps, FocusProps, OutlinedProps } from '@sberdevices/plasm
 import { white } from '@sberdevices/plasma-tokens';
 
 import { InteractionProps } from '../../mixins';
-import { StyledRoot as CheckboxRoot, StyledTrigger as CheckboxTrigger } from '../Checkbox/Checkbox';
+import {
+    StyledRoot as CheckboxRoot,
+    StyledTrigger as CheckboxTrigger,
+    StyledContent as CheckboxContent,
+} from '../Checkbox/Checkbox';
 
 export interface RadioboxProps extends BaseboxProps, FocusProps, OutlinedProps, InteractionProps {}
 
@@ -71,10 +74,10 @@ export const Radiobox = forwardRef<HTMLInputElement, RadioboxProps>(function Rad
                     <StyledEllipse />
                 </StyledTrigger>
                 {label && (
-                    <BaseboxContent>
+                    <CheckboxContent>
                         {label && <BaseboxLabel as="span">{label}</BaseboxLabel>}
                         {description && <BaseboxDescription mt={4}>{description}</BaseboxDescription>}
-                    </BaseboxContent>
+                    </CheckboxContent>
                 )}
             </BaseboxContentWrapper>
             {label && (

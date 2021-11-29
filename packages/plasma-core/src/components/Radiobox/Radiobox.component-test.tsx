@@ -101,6 +101,23 @@ describe('plasma-core: Radiobox', () => {
 
         cy.get('[name="uniqId"]').should('have.attr', 'id');
     });
+
+    it('squeezes', () => {
+        mount(
+            <CypressTestDecorator>
+                <div style={{ overflow: 'hidden', width: 150 }}>
+                    <Radiobox
+                        checked
+                        disabled
+                        label="Radiobox with a very very very very very long label"
+                        description="Radiobox description with a very very very very very long text"
+                    />
+                    <Radiobox disabled label="Radiobox 2" description="Radiobox 2 description" />
+                </div>
+            </CypressTestDecorator>,
+        );
+        cy.matchImageSnapshot();
+    });
 });
 
 describe('plasma-core: RadioGroup', () => {

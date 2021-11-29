@@ -86,4 +86,21 @@ describe('plasma-core: Checkbox', () => {
         );
         cy.matchImageSnapshot();
     });
+
+    it('squeezes', () => {
+        mount(
+            <CypressTestDecorator>
+                <div style={{ overflow: 'hidden', width: 150 }}>
+                    <Checkbox
+                        checked
+                        disabled
+                        label="Checkbox with a very very very very very long label"
+                        description="Checkbox description with a very very very very very long text"
+                    />
+                    <Checkbox disabled label="Checkbox 2" description="Checkbox 2 description" />
+                </div>
+            </CypressTestDecorator>,
+        );
+        cy.matchImageSnapshot();
+    });
 });

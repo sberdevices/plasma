@@ -37,6 +37,7 @@ export const StyledContentWrapper = styled.label`
     position: relative;
     align-items: flex-start;
     display: flex;
+    width: 100%;
 `;
 
 export const StyledInput = styled.input`
