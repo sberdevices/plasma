@@ -6,14 +6,9 @@ import { isSberBox } from '../../utils';
 import { ProductCard, MusicCard, GalleryCard } from '../Card/Card.examples';
 import { DeviceThemeProvider } from '../Device';
 import { Row } from '../Grid';
+import { Body3 } from '../Typography/Body';
 
-import {
-    CarouselSection,
-    ScalingColCard,
-    scaleCallback,
-    scaleResetCallback,
-    ScalingColCardProps,
-} from './Carousel.examples';
+import { ScalingColCard, scaleCallback, scaleResetCallback, ScalingColCardProps } from './Carousel.examples';
 
 import {
     CarouselGridWrapper,
@@ -149,7 +144,6 @@ export const Vertical: Story<CarouselProps & CarouselColProps & { displayGrid: b
     return (
         <DeviceThemeProvider>
             <Carousel
-                as={Row}
                 axis={axis}
                 index={index}
                 animatedScrollByIndex={animatedScrollByIndex}
@@ -203,27 +197,42 @@ interface MusicPageProps {
 export const MusicPage: Story<MusicPageProps> = ({ scrollSnapType, scrollSnapAlign }) => {
     return (
         <DeviceThemeProvider>
-            <CarouselSection heading="Новые альбомы" scrollSnapType={scrollSnapType}>
-                {items.map((item, i) => (
-                    <CarouselCol key={`item:${i}`} size={2} sizeM={1.5} scrollSnapAlign={scrollSnapAlign}>
-                        <MusicCard {...item} imageRatio="1 / 1" />
-                    </CarouselCol>
-                ))}
-            </CarouselSection>
-            <CarouselSection heading="Хиты и чарты" scrollSnapType={scrollSnapType}>
-                {items.map((item, i) => (
-                    <CarouselCol key={`item:${i}`} size={4} sizeM={3} scrollSnapAlign={scrollSnapAlign}>
-                        <MusicCard {...item} imageRatio="16 / 9" />
-                    </CarouselCol>
-                ))}
-            </CarouselSection>
-            <CarouselSection heading="Жанры и настроения" scrollSnapType={scrollSnapType}>
-                {items.map((item, i) => (
-                    <CarouselCol key={`item:${i}`} size={3} sizeM={2} scrollSnapAlign={scrollSnapAlign}>
-                        <MusicCard {...item} imageRatio="16 / 9" />
-                    </CarouselCol>
-                ))}
-            </CarouselSection>
+            <section style={{ margin: '1.75rem 0' }}>
+                <Body3 style={{ marginBottom: '1rem' }}>Новые альбомы</Body3>
+                <CarouselGridWrapper>
+                    <Carousel as={Row} axis="x" index={0} scrollSnapType={scrollSnapType}>
+                        {items.map((item, i) => (
+                            <CarouselCol key={`item:${i}`} size={2} sizeM={1.5} scrollSnapAlign={scrollSnapAlign}>
+                                <MusicCard {...item} imageRatio="1 / 1" />
+                            </CarouselCol>
+                        ))}
+                    </Carousel>
+                </CarouselGridWrapper>
+            </section>
+            <section style={{ margin: '1.75rem 0' }}>
+                <Body3 style={{ marginBottom: '1rem' }}>Хиты и чарты</Body3>
+                <CarouselGridWrapper>
+                    <Carousel as={Row} axis="x" index={0} scrollSnapType={scrollSnapType}>
+                        {items.map((item, i) => (
+                            <CarouselCol key={`item:${i}`} size={4} sizeM={3} scrollSnapAlign={scrollSnapAlign}>
+                                <MusicCard {...item} imageRatio="16 / 9" />
+                            </CarouselCol>
+                        ))}
+                    </Carousel>
+                </CarouselGridWrapper>
+            </section>
+            <section style={{ margin: '1.75rem 0' }}>
+                <Body3 style={{ marginBottom: '1rem' }}>Жанры и настроения</Body3>
+                <CarouselGridWrapper>
+                    <Carousel as={Row} axis="x" index={0} scrollSnapType={scrollSnapType}>
+                        {items.map((item, i) => (
+                            <CarouselCol key={`item:${i}`} size={3} sizeM={2} scrollSnapAlign={scrollSnapAlign}>
+                                <MusicCard {...item} imageRatio="16 / 9" />
+                            </CarouselCol>
+                        ))}
+                    </Carousel>
+                </CarouselGridWrapper>
+            </section>
         </DeviceThemeProvider>
     );
 };

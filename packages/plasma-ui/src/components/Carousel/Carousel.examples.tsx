@@ -1,14 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import type { SnapType } from '@sberdevices/plasma-core';
 
 import { MusicCard } from '../Card/Card.examples';
-import { Row } from '../Grid';
-import { Body3 } from '../Typography/Body';
 
 import { CarouselItemProps } from './CarouselItem';
 
-import { CarouselGridWrapper, Carousel, CarouselCol } from '.';
+import { CarouselCol } from '.';
 
 const scaleDelta = 0.37;
 
@@ -77,21 +74,4 @@ export const ScalingColCard: React.FC<ScalingColCardProps> = ({ isActive, scroll
             />
         </StyledColInner>
     </CarouselCol>
-);
-
-/**
- * Пример карусели с вариативными колонками в сетке.
- */
-export const CarouselSection: React.FC<{
-    heading: string;
-    scrollSnapType: SnapType;
-}> = ({ heading, scrollSnapType, children }) => (
-    <section style={{ margin: '1.75rem 0' }}>
-        <Body3 style={{ marginBottom: '1rem' }}>{heading}</Body3>
-        <CarouselGridWrapper>
-            <Carousel as={Row} axis="x" index={0} scrollSnapType={scrollSnapType}>
-                {children}
-            </Carousel>
-        </CarouselGridWrapper>
-    </section>
 );
