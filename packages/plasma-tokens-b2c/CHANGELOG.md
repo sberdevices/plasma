@@ -1,3 +1,15 @@
+# v0.7.2 (Mon Nov 29 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-tokens-web): Fix `Tooltip` & `Button` confusing `checked` color token [#935](https://github.com/sberdevices/plasma/pull/935) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v0.7.0 (Fri Oct 08 2021)
 
 #### 🚀 Enhancement
