@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { SSRProvider } from '../SSRProvider';
@@ -73,3 +73,36 @@ export function Default() {
     );
 }
 /* eslint-enable prefer-rest-params */
+
+const items = [
+    { value: 1, label: 'Radiobox with a very very very very very long label' },
+    { value: 2, label: 'Radiobox 2' },
+    { value: 3, label: 'Radiobox 3', disabled: true },
+    { value: 4, label: 'Radiobox 4', disabled: true },
+];
+
+export const Squeeze = () => {
+    const [value, setValue] = useState(1);
+
+    return (
+        <div style={{ resize: 'horizontal', overflow: 'hidden', border: '3px solid', display: 'inline-block' }}>
+            {items.map((item) => (
+                <Radiobox
+                    key={item.value}
+                    name="radiobox"
+                    value={item.value}
+                    label={item.label}
+                    disabled={item.disabled}
+                    checked={item.value === value}
+                    description={`Description of ${item.label}`}
+                    onChange={(event) => {
+                        setValue(item.value);
+                        onChange(event);
+                    }}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                />
+            ))}
+        </div>
+    );
+};

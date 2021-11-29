@@ -5,11 +5,11 @@ import {
     BaseboxInput,
     BaseboxTrigger,
     BaseboxContent,
+    BaseboxContentWrapper,
     BaseboxLabel,
     BaseboxDescription,
     applyDisabled,
     useUniqId,
-    BaseboxContentWrapper,
 } from '@sberdevices/plasma-core';
 import type { BaseboxProps, FocusProps, OutlinedProps } from '@sberdevices/plasma-core';
 import { accent, white, secondary, transparent } from '@sberdevices/plasma-tokens';
@@ -36,6 +36,7 @@ export const StyledTrigger = styled(BaseboxTrigger)<{
 
     width: 1.25rem;
     height: 1.25rem;
+    flex: 0 0 1.25rem;
 
     background: ${transparent};
     box-shadow: inset 0 0 0 0.125rem ${secondary};
@@ -118,6 +119,9 @@ const StyledMark = styled(IconDone)`
         transform: scale(1);
     }
 `;
+export const StyledContent = styled(BaseboxContent)`
+    width: calc(100% - 2rem);
+`;
 
 /**
  * Флажок или *чекбокс*. Позволяет пользователю управлять параметром с двумя состояниями — ☑ включено и ☐ отключено.
@@ -147,10 +151,10 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
                     <StyledMark color="inherit" size="xs" />
                 </StyledTrigger>
                 {label && (
-                    <BaseboxContent>
+                    <StyledContent>
                         {label && <BaseboxLabel as="span">{label}</BaseboxLabel>}
                         {description && <BaseboxDescription mt={4}>{description}</BaseboxDescription>}
-                    </BaseboxContent>
+                    </StyledContent>
                 )}
             </BaseboxContentWrapper>
             {label && (
