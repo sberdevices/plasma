@@ -1,5 +1,18 @@
 # (Mon Nov 29 2021)
 
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@1.8.0`
+  - feat(plasma-temple): Additional buttons in ItemPage [#938](https://github.com/sberdevices/plasma/pull/938) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
+# (Mon Nov 29 2021)
+
 #### 🐛 Bug Fix
 
 - `@sberdevices/plasma-tokens-b2c@0.7.2`
