@@ -58,12 +58,16 @@ const init = (config: Config, id: number) => {
     const createWrap = (img: HTMLImageElement) => {
         const imgPos = img.getBoundingClientRect();
 
-        const styles = `
-        top:${imgPos.top + window.scrollY}px;
-        left:${imgPos.left + window.scrollX}px;
-        width: ${img.width}px;
-        height: ${img.height}px;
-    `.replace(/\s/g, '');
+        let styles = `
+            top:${imgPos.top + window.scrollY}px;
+            left:${imgPos.left + window.scrollX}px;
+            width: ${img.width}px;
+            height: ${img.height}px;
+        `.replace(/\s/g, '');
+
+        if (config.zIndex != null) {
+            styles += `z-index: ${config.zIndex}`;
+        }
 
         return `<div id="slider-wrap-${id}" class="layer-slider-wrap" style="${styles}"></div>`;
     };
