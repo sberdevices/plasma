@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function initBannerButton() {
     const testBtn = document.querySelector(".banner-ad-btn");
 
-    testBtn.addEventListener("click", () => {
+    testBtn.addEventListener("click", (event) => {
         runBanner({
             onSuccess: () => {
                 console.log("Success");

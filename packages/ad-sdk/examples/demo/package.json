@@ -8,8 +8,9 @@
     "build:dev": "NODE_ENV='development' node -r dotenv/config $(which webpack)",
     "clean": "rm public/bundle.js",
     "predev": "npm run clean && npm run build:dev",
-    "dev": "npx http-server",
+    "dev": "npm run build-sdk:watch | npx http-server",
     "prod": "npx http-server",
+    "build-sdk:watch": "npm run prepare-demo:watch --prefix='../../'",
     "start": "npx vercel dev"
   },
   "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",

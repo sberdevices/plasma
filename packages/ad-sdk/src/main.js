@@ -135,6 +135,10 @@ export function init(params = {}) {
         return;
     }
 
+    if (typeof params.cooldownTime === "number") {
+        cooldownTime = params.cooldownTime;
+    }
+
     try {
         const assistant = window.assistant.createAssistant({
             getState: () => _assistantState,
@@ -165,6 +169,10 @@ export function initDev(params = {}) {
     if (typeof window === "undefined" || typeof window.assistant === "undefined") {
         onError(Error("window.assistant is not defined"));
         return;
+    }
+
+    if (typeof params.cooldownTime === "number") {
+        cooldownTime = params.cooldownTime;
     }
 
     try {
@@ -356,10 +364,11 @@ export function runVideoAd(params = {}) {
 }
 
 export function runBanner(events = {}) {
+    events.onSuccess || (events.onSuccess = () => {});
+    events.onError || (events.onError = () => {});
+    events.onAdReady || (events.onAdReady = () => {});
     if (!_inited) {
-        if (events.onError) {
-            events.onError(Error("Module is not inited, try to run init() first"));
-        }
+        events.onError(Error("Module is not inited, try to run init() first"));
         return;
     }
     try {

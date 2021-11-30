@@ -21,7 +21,10 @@ function createCrossIcon({ onClickCloseButton }) {
     button.style.padding = "0";
     button.style.margin = "0";
     button.style.position = "relative";
-    button.addEventListener("click", onClickCloseButton);
+    button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        onClickCloseButton(event);
+    });
     return button;
 }
 

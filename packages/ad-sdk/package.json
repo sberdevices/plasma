@@ -4,9 +4,7 @@
   "description": "SberDevices Ad SDK",
   "main": "umd/ad-sdk.production.min.js",
   "browser": "umd/ad-sdk.production.min.js",
-  "files": [
-    "umd"
-  ],
+  "files": ["umd"],
   "scripts": {
     "build": "npx rollup -c rollup.config.js",
     "watch": "npx rollup -c rollup.config.js -w",
