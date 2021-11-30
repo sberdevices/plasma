@@ -1,3 +1,16 @@
+# (Tue Nov 30 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/layer-inpicture-sdk@0.2.1`
+  - fix(index.ts): added custom z-index value [#144](https://github.com/sberdevices/pashka/pull/144) (KVIlikov@sberbank.ru)
+
+#### Authors: 1
+
+- Kirill Ilikov (KVIlikov@sberbank.ru)
+
+---
+
 # (Mon Nov 22 2021)
 
 #### 🚀 Enhancement
