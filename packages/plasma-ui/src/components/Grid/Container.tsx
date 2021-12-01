@@ -44,21 +44,32 @@ export const Container: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ chil
     const ref = React.useRef<HTMLDivElement | null>(null);
     const [width, setWidth] = React.useState(0);
 
-    useIsomorphicLayoutEffect(() => {
-        const resizeHandler = () => {
-            if (ref.current) {
-                setWidth(ref.current?.offsetWidth);
-            }
-        };
+    const updateWidthFromRef = React.useCallback(() => {
         if (ref.current) {
             setWidth(ref.current?.offsetWidth);
         }
+    }, []);
+
+    useIsomorphicLayoutEffect(() => {
+        const resizeHandler = () => {
+            updateWidthFromRef();
+        };
+        updateWidthFromRef();
+        let mutationObserver: MutationObserver;
+
         if (canUseDOM) {
             window.addEventListener('resize', resizeHandler);
+
+            mutationObserver = new MutationObserver(updateWidthFromRef);
+            if (ref.current) {
+                mutationObserver.observe(ref.current, { childList: true });
+            }
         }
+
         return () => {
             if (canUseDOM) {
                 window.removeEventListener('resize', resizeHandler);
+                mutationObserver && mutationObserver.disconnect();
             }
         };
     }, []);
