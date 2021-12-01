@@ -1,3 +1,21 @@
+# v1.63.0 (Wed Dec 01 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-web): Update behavior for `Tooltip` component [#942](https://github.com/sberdevices/plasma/pull/942) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### 🐛 Bug Fix
+
+- test(plasma-web): Add tests for `Tooltip` component [#942](https://github.com/sberdevices/plasma/pull/942) ([@neretin-trike](https://github.com/neretin-trike))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.62.0 (Wed Dec 01 2021)
 
 #### 🚀 Enhancement
