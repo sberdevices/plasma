@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { mount, CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
 
 describe('plasma-core: Typography', () => {
@@ -39,6 +39,54 @@ describe('plasma-core: Typography', () => {
                 <ParagraphText1>Hello ParagraphText 1</ParagraphText1>
                 <ParagraphText2>Hello ParagraphText 2</ParagraphText2>
                 <Underline>Hello Underline</Underline>
+            </CypressTestDecorator>,
+        );
+
+        cy.matchImageSnapshot();
+    });
+
+    const Container: FC = ({ children }) => <div style={{ width: '50px' }}>{children}</div>;
+
+    it('Typography with breakWord', () => {
+        mount(
+            <CypressTestDecorator>
+                <style>{`
+                    body {
+                        font-family: "SB Sans Text", sans-serif;
+                    }
+                `}</style>
+                <Container>
+                    <Body1 breakWord>Hello Body 1</Body1>
+                    <Button1 breakWord>Hello Button 1</Button1>
+                    <Caption breakWord>Hello Caption</Caption>
+                    <Footnote1 breakWord>Hello Footnote 1</Footnote1>
+                    <Headline1 breakWord>Hello Headline 1</Headline1>
+                    <ParagraphText1 breakWord>Hello ParagraphText 1</ParagraphText1>
+                    <Underline breakWord>Hello Underline</Underline>
+                </Container>
+            </CypressTestDecorator>,
+        );
+
+        cy.matchImageSnapshot();
+    });
+
+    it('Typography without breakWord', () => {
+        mount(
+            <CypressTestDecorator>
+                <style>{`
+                    body {
+                        font-family: "SB Sans Text", sans-serif;
+                    }
+                `}</style>
+                <Container>
+                    <Body1 breakWord={false}>Hello Body 1</Body1>
+                    <Button1 breakWord={false}>Hello Button 1</Button1>
+                    <Caption breakWord={false}>Hello Caption</Caption>
+                    <Footnote1 breakWord={false}>Hello Footnote 1</Footnote1>
+                    <Headline1 breakWord={false}>Hello Headline 1</Headline1>
+                    <ParagraphText1 breakWord={false}>Hello ParagraphText 1</ParagraphText1>
+                    <Underline breakWord={false}>Hello Underline</Underline>
+                </Container>
             </CypressTestDecorator>,
         );
 
