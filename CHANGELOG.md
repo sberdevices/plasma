@@ -1,3 +1,41 @@
+# (Wed Dec 01 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/demo-canvas-app@0.45.0`
+  - feat(demo-canvas-app): Using `TabsController` [#923](https://github.com/sberdevices/plasma/pull/923) ([@fanisco](https://github.com/fanisco))
+  - feat(demo-canvas-app): Added spatial-navigation [#923](https://github.com/sberdevices/plasma/pull/923) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/demo-canvas-app@0.45.0`, `@sberdevices/plasma-ui@1.68.0`
+  - feat(plasma-ui): Added `TabsController` component [#923](https://github.com/sberdevices/plasma/pull/923) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-core@1.39.0`, `@sberdevices/plasma-web@1.62.0`
+  - feat: Moved `TabsController` as a creator function [#923](https://github.com/sberdevices/plasma/pull/923) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-ui@1.68.0`, `@sberdevices/plasma-ui-docs@0.27.0`
+  - feat(plasma-ui): Add a11y for `Stepper` component [#930](https://github.com/sberdevices/plasma/pull/930) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-temple@1.9.0`
+  - feat(plasma-temple): Additional buttons in ItemPage [#938](https://github.com/sberdevices/plasma/pull/938) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-core@1.39.0`
+  - fix: Correct role for `Tabs` - tablist [#923](https://github.com/sberdevices/plasma/pull/923) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-core@1.39.0`, `@sberdevices/plasma-ui-docs@0.27.0`
+  - docs(plasma-ui): Added documentation for `useForkRef` [#923](https://github.com/sberdevices/plasma/pull/923) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-web@1.62.0`
+  - fix(plasma-web): Fix TabsController's items tabbing [#923](https://github.com/sberdevices/plasma/pull/923) ([@fanisco](https://github.com/fanisco))
+  - chore(plasma-web): Delete old doc file [#923](https://github.com/sberdevices/plasma/pull/923) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/demo-canvas-app@0.45.0`
+  - fix(plasma-web): Fix vertical app scroll [#923](https://github.com/sberdevices/plasma/pull/923) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-ui-docs@0.27.0`
+  - docs(plasma-ui-docs): Add accessibility description for `Stepper` component [#930](https://github.com/sberdevices/plasma/pull/930) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 3
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # (Mon Nov 29 2021)
 
 #### 🚀 Enhancement

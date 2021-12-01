@@ -1,3 +1,22 @@
+# v1.68.0 (Wed Dec 01 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): Added `TabsController` component [#923](https://github.com/sberdevices/plasma/pull/923) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-ui): Add a11y for `Stepper` component [#930](https://github.com/sberdevices/plasma/pull/930) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 3
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.67.0 (Mon Nov 22 2021)
 
 #### 🐛 Bug Fix
