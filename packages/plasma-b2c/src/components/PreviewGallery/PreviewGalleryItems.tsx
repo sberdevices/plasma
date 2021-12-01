@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from 'react';
-import { SortableContainer, SortableElement } from 'react-sortable-hoc';
+import { SortableContainer, SortableElement, SortableElementProps } from 'react-sortable-hoc';
 import styled, { css } from 'styled-components';
 
 import { AddionalItemProps } from './types';
@@ -28,7 +28,7 @@ export const StyledRoot = styled.div<{ isGrabbing: boolean; maxHeight?: number }
 `;
 
 export interface PreviewGalleryListItemsProps {
-    items?: Array<PreviewGalleryItemProps>;
+    items?: Array<PreviewGalleryItemProps & SortableElementProps>;
     /**
      * Перетаскивается ли элемент.
      */
@@ -52,6 +52,7 @@ export const PreviewGalleryListItems = SortableContainer(
         maxHeight,
         onItemAction,
         onItemClick,
+        ...rest
     }: PreviewGalleryListItemsProps & AddionalItemProps) => {
         const isDragDisabled = interactionType === 'selectable';
 
@@ -60,24 +61,24 @@ export const PreviewGalleryListItems = SortableContainer(
         const iconMemo = useMemo(() => actionIcon, []);
 
         const PreviewGalleryItem = memo(
-            SortableElement(({ status, ...rest }: PreviewGalleryItemProps & AddionalItemProps) => {
+            SortableElement(({ status, ...itemRest }: PreviewGalleryItemProps & AddionalItemProps) => {
                 return status === 'error' ? (
-                    <PreviewGalleryItemError {...rest} />
+                    <PreviewGalleryItemError {...itemRest} />
                 ) : (
-                    <PreviewGalleryItemBase {...rest} />
+                    <PreviewGalleryItemBase {...itemRest} />
                 );
             }),
         );
 
         return (
-            <StyledRoot isGrabbing={isGrabbing} maxHeight={maxHeight}>
+            <StyledRoot isGrabbing={isGrabbing} maxHeight={maxHeight} {...rest}>
                 {items.map((item, index) => (
                     <PreviewGalleryItem
                         disabled={isDragDisabled}
                         key={item.id}
-                        index={index}
                         actionIcon={iconMemo}
                         {...item}
+                        index={index}
                         interactionType={interactionType}
                         itemSize={itemSize}
                         onItemAction={onItemAction}

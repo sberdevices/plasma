@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import type { FC, HTMLAttributes } from 'react';
+import { SortableContainerProps, SortableElementProps } from 'react-sortable-hoc';
 
 import { noop } from './utils';
 import { PreviewGalleryListItems } from './PreviewGalleryItems';
@@ -15,7 +16,7 @@ export interface PreviewGalleryProps {
     /**
      * Массив элементов.
      */
-    items?: Array<PreviewGalleryItemProps>;
+    items?: Array<PreviewGalleryItemProps & SortableElementProps>;
     /**
      * Тип взаимодействия с галереей - выбор или перетаскивание элементов.
      */
@@ -49,7 +50,7 @@ export interface PreviewGalleryProps {
 /**
  * Компонент для создания галлереи превью изображений.
  */
-export const PreviewGallery: FC<PreviewGalleryProps & HTMLAttributes<HTMLDivElement>> = ({
+export const PreviewGallery: FC<PreviewGalleryProps & HTMLAttributes<HTMLDivElement> & SortableContainerProps> = ({
     interactionType = 'selectable',
     items = [],
     maxHeight = 0,
