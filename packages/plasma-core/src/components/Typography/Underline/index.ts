@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 import { underline } from '../../../tokens';
-import { applyHyphens, applySpacing, SpacingProps } from '../../../mixins';
+import { applyHyphens, applySpacing, BreakWordProps, SpacingProps } from '../../../mixins';
 
-export const Underline = styled.div<SpacingProps>`
+export const Underline = styled.div<SpacingProps & BreakWordProps>`
     ${applyHyphens}
     ${applySpacing}
     ${underline}
