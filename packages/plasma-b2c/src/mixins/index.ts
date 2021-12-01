@@ -32,4 +32,5 @@ export type {
     View,
     ScrollSnapProps,
     SpacingProps,
+    BreakWordProps,
 } from '@sberdevices/plasma-core';

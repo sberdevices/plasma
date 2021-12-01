@@ -12,31 +12,31 @@ import {
     bodyXXS,
     bodyXXSBold,
 } from '../../tokens';
-import { applyHyphens, applySpacing, SpacingProps } from '../../mixins';
+import { applyHyphens, applySpacing, BreakWordProps, SpacingProps } from '../../mixins';
 
 import type { BoldProps } from './Typography.types';
 
-export const BodyL = styled.div<SpacingProps & BoldProps>`
+export const BodyL = styled.div<SpacingProps & BoldProps & BreakWordProps>`
     ${applyHyphens}
     ${applySpacing}
     ${({ bold }) => (bold ? bodyLBold : bodyL)}
 `;
-export const BodyM = styled.div<SpacingProps & BoldProps>`
+export const BodyM = styled.div<SpacingProps & BoldProps & BreakWordProps>`
     ${applyHyphens}
     ${applySpacing}
     ${({ bold }) => (bold ? bodyMBold : bodyM)}
 `;
-export const BodyS = styled.div<SpacingProps & BoldProps>`
+export const BodyS = styled.div<SpacingProps & BoldProps & BreakWordProps>`
     ${applyHyphens}
     ${applySpacing}
     ${({ bold }) => (bold ? bodySBold : bodyS)}
 `;
-export const BodyXS = styled.div<SpacingProps & BoldProps>`
+export const BodyXS = styled.div<SpacingProps & BoldProps & BreakWordProps>`
     ${applyHyphens}
     ${applySpacing}
     ${({ bold }) => (bold ? bodyXSBold : bodyXS)}
 `;
-export const BodyXXS = styled.div<SpacingProps & BoldProps>`
+export const BodyXXS = styled.div<SpacingProps & BoldProps & BreakWordProps>`
     ${applyHyphens}
     ${applySpacing}
     ${({ bold }) => (bold ? bodyXXSBold : bodyXXS)}

@@ -10,6 +10,7 @@ export type { DisabledProps } from './applyDisabled';
 export { applyEllipsis } from './applyEllipsis';
 
 export { applyHyphens } from './applyHyphens';
+export type { BreakWordProps } from './applyHyphens';
 
 export { applyMaxLines } from './applyMaxLines';
 export type { MaxLinesProps } from './applyMaxLines';
