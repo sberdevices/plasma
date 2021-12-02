@@ -28,7 +28,7 @@ export const StyledRoot = styled.div<{ isGrabbing: boolean; maxHeight?: number }
 `;
 
 export interface PreviewGalleryListItemsProps {
-    items?: Array<PreviewGalleryItemProps & SortableElementProps>;
+    items?: Array<PreviewGalleryItemProps & Omit<SortableElementProps, 'index'>>;
     /**
      * Перетаскивается ли элемент.
      */
