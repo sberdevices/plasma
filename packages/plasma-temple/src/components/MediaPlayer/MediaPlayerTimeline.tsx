@@ -68,14 +68,16 @@ export const MediaPlayerTimeline = <T extends PlayerType>({
     className,
     playerRef,
     onTimeUpdate,
-    currentTime = 0,
+    currentTime,
     duration = 0,
     showTick = true,
 }: MediaPlayerTimelineProps<T>): React.ReactElement => {
     const [mediaData, setMediaData] = React.useState({
         duration,
-        currentTime,
+        currentTime: 0,
     });
+    const currentTimeValue = currentTime ?? mediaData.currentTime;
+    const durationValue = duration || mediaData.duration;
 
     const updateTime = React.useCallback(() => {
         if (!playerRef.current) {
@@ -83,15 +85,16 @@ export const MediaPlayerTimeline = <T extends PlayerType>({
         }
 
         const node = playerRef.current;
+        const currentTimeSafe = currentTime ?? 0;
 
-        onTimeUpdate?.(node.currentTime + currentTime);
+        onTimeUpdate?.(node.currentTime + currentTimeSafe);
         setMediaData((prevData) => ({
             ...prevData,
-            currentTime: node.currentTime + currentTime,
+            currentTime: node.currentTime + currentTimeSafe,
         }));
     }, [onTimeUpdate, playerRef, currentTime]);
 
-    const timelinePosition = (mediaData.currentTime / mediaData.duration) * 100;
+    const timelinePosition = (currentTimeValue / durationValue) * 100;
 
     React.useLayoutEffect(() => {
         if (!playerRef.current) {
@@ -103,7 +106,7 @@ export const MediaPlayerTimeline = <T extends PlayerType>({
         node.addEventListener(
             'canplaythrough',
             () => {
-                if (duration === 0 && currentTime === 0) {
+                if (duration === 0 && !currentTime) {
                     setMediaData({
                         duration: node.duration,
                         currentTime: node.currentTime,
@@ -122,7 +125,7 @@ export const MediaPlayerTimeline = <T extends PlayerType>({
     }, [playerRef.current, updateTime, currentTime, duration]);
 
     React.useEffect(() => {
-        if (duration !== mediaData.duration) {
+        if (duration && duration !== mediaData.duration) {
             setMediaData({
                 ...mediaData,
                 duration,
@@ -132,12 +135,12 @@ export const MediaPlayerTimeline = <T extends PlayerType>({
 
     return (
         <StyledWrapper className={className}>
-            <StyledTime>{formatTime(mediaData.currentTime)}</StyledTime>
+            <StyledTime>{formatTime(currentTimeValue)}</StyledTime>
             <StyledTimeLine>
                 <StyledProgress style={{ width: `${timelinePosition}%` }} />
                 {showTick && <StyledTimelineTick style={{ left: `${timelinePosition}%` }} />}
             </StyledTimeLine>
-            <StyledTime>{formatTime(mediaData.duration)}</StyledTime>
+            <StyledTime>{formatTime(durationValue)}</StyledTime>
         </StyledWrapper>
     );
 };

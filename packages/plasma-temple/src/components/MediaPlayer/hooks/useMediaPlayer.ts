@@ -28,14 +28,19 @@ interface UseMediaPlayer {
 }
 
 export const useMediaPlayer: UseMediaPlayer = (ref, params) => {
-    const { start = 0, end = Number.MAX_SAFE_INTEGER, muted = false, autoPlay = true } = params || {};
+    const { start, end, muted = false, autoPlay = true } = params || {};
+    const durationRef = ref.current?.duration ?? 0;
+    const durationParams = (end ?? 0) + (start ?? 0);
+    const durationAbsolute = durationParams || durationRef;
+    const startTimeAbsolute = start ?? 0;
     const [state, setState] = useState<MediaPlayerState>(() => ({
-        currentTime: start,
-        duration: start + end,
+        currentTime: startTimeAbsolute,
+        duration: durationAbsolute,
         muted,
         loading: Boolean(autoPlay),
         paused: !autoPlay,
     }));
+    const endTimeAbsolute = end ?? state.duration;
 
     const handlers = React.useMemo(
         () => ({
@@ -47,9 +52,11 @@ export const useMediaPlayer: UseMediaPlayer = (ref, params) => {
                 }
             },
             durationChange: () => {
-                if (ref.current) {
+                if (ref.current && !durationParams) {
                     const { duration } = ref.current;
-                    setState((prevState) => updateStateDuration(prevState, duration, start, end ?? duration));
+                    setState((prevState) =>
+                        updateStateDuration(prevState, duration, startTimeAbsolute, endTimeAbsolute),
+                    );
                 }
             },
             waiting: () => {
@@ -71,6 +78,7 @@ export const useMediaPlayer: UseMediaPlayer = (ref, params) => {
         for (const [event, handler] of Object.entries(handlers)) {
             node.addEventListener(event.toLowerCase(), handler);
         }
+        node.currentTime = startTimeAbsolute;
 
         node.addEventListener(
             'canplaythrough',
@@ -100,7 +108,7 @@ export const useMediaPlayer: UseMediaPlayer = (ref, params) => {
                 node.removeEventListener(event.toLowerCase(), handler);
             }
         };
-    }, [autoPlay, handlers, ref]);
+    }, [autoPlay, handlers, ref, start]);
 
     const playbackAction = useThrottledCallback(
         () => {
@@ -108,18 +116,18 @@ export const useMediaPlayer: UseMediaPlayer = (ref, params) => {
                 return;
             }
 
-            const { currentTime, paused, duration } = ref.current;
+            const { currentTime, paused } = ref.current;
 
             if (paused) {
-                if (currentTime >= Math.min(end ?? duration, duration)) {
-                    ref.current.currentTime = start;
+                if (currentTime >= endTimeAbsolute) {
+                    ref.current.currentTime = startTimeAbsolute;
                 }
                 ref.current.play();
             } else {
                 ref.current.pause();
             }
         },
-        [ref],
+        [ref, startTimeAbsolute, endTimeAbsolute],
         300,
     );
 
@@ -128,17 +136,15 @@ export const useMediaPlayer: UseMediaPlayer = (ref, params) => {
             playback: playbackAction,
             seekTo: (time: number) => {
                 if (ref.current) {
-                    const { duration } = ref.current;
-                    ref.current.currentTime = Math.min(duration, Math.max(0, time));
+                    ref.current.currentTime = Math.min(endTimeAbsolute, Math.max(startTimeAbsolute, time));
                 }
             },
             jumpTo: (sign: 1 | -1) => {
                 if (ref.current) {
-                    const { duration } = ref.current;
                     const time = ref.current.currentTime + 10 * sign;
 
                     ref.current.currentTime =
-                        sign === 1 ? Math.min(time, duration, end ?? duration) : Math.max(start, time);
+                        sign === 1 ? Math.min(time, endTimeAbsolute) : Math.max(startTimeAbsolute, time);
                 }
             },
         }),
@@ -150,7 +156,7 @@ export const useMediaPlayer: UseMediaPlayer = (ref, params) => {
         state: {
             ...state,
             get currentTime() {
-                return ref.current?.currentTime ?? 0;
+                return (ref.current?.currentTime ?? 0) - startTimeAbsolute;
             },
         },
     };
