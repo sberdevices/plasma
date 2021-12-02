@@ -16,7 +16,7 @@ export interface PreviewGalleryProps {
     /**
      * Массив элементов.
      */
-    items?: Array<PreviewGalleryItemProps & SortableElementProps>;
+    items?: Array<PreviewGalleryItemProps & Omit<SortableElementProps, 'index'>>;
     /**
      * Тип взаимодействия с галереей - выбор или перетаскивание элементов.
      */
