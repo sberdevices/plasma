@@ -1,3 +1,15 @@
+# v1.25.0 (Thu Dec 02 2021)
+
+#### 🚀 Enhancement
+
+- feat(palsma-b2c): put preview gallery rest props [#965](https://github.com/sberdevices/plasma/pull/965) ([@takovoy](https://github.com/takovoy))
+
+#### Authors: 1
+
+- Aleksandr Sustavov ([@takovoy](https://github.com/takovoy))
+
+---
+
 # v1.24.0 (Wed Dec 01 2021)
 
 #### 🐛 Bug Fix

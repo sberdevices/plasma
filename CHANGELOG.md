@@ -2,6 +2,19 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-b2c@1.25.0`
+  - feat(palsma-b2c): put preview gallery rest props [#965](https://github.com/sberdevices/plasma/pull/965) ([@takovoy](https://github.com/takovoy))
+
+#### Authors: 1
+
+- Aleksandr Sustavov ([@takovoy](https://github.com/takovoy))
+
+---
+
+# (Thu Dec 02 2021)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-ui@1.69.0`
   - feat(plasma-ui): Add default value in `Slider` component if theme context is undefined [#955](https://github.com/sberdevices/plasma/pull/955) ([@neretin-trike](https://github.com/neretin-trike))
 
