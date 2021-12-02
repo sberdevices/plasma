@@ -104,7 +104,7 @@ export const VideoPlayer = React.memo(
         customControls: CustomControlsComponent,
         visibleControlList,
         children,
-        startTime,
+        startTime = 0,
         endTime,
         autoPlay,
         muted,
@@ -146,6 +146,8 @@ export const VideoPlayer = React.memo(
             }),
             [actions, goBack, goNext],
         );
+
+        const controlledTimeLineProps = startTime && endTime ? { currentTime, duration: endTime - startTime } : {};
 
         const finished = Boolean(duration) && currentTime >= duration;
         const playerState = { ...state, backDisabled, nextDisabled, finished };
@@ -189,7 +191,7 @@ export const VideoPlayer = React.memo(
                             canPlay={!loading}
                         />
                         {isControlVisible(ControlType.TIMELINE, visibleControlList) && (
-                            <MediaPlayerTimeline playerRef={playerRef} />
+                            <MediaPlayerTimeline playerRef={playerRef} {...controlledTimeLineProps} />
                         )}
                     </StyledControlsWrapper>
                 </StyledOverlay>
