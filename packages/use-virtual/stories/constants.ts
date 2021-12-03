@@ -1,0 +1,2 @@
+export const DEFAULT_VIRTUAL_ITEM_SIZE = 320;
+export const DEFAULT_VIRTUAL_ITEM_GAP = 20;
