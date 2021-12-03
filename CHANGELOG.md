@@ -1,5 +1,19 @@
 # (Fri Dec 03 2021)
 
+#### 🐛 Bug Fix
+
+- chore: Update `CODEOWNERS` [#961](https://github.com/sberdevices/plasma/pull/961) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-web@1.64.1`
+  - fix(plama-web): Added possibility to specify a value type in `Select` [#932](https://github.com/sberdevices/plasma/pull/932) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Fri Dec 03 2021)
+
 #### 🚀 Enhancement
 
 - `@sberdevices/plasma-docs-ui@0.4.0`, `@sberdevices/plasma-temple-docs@0.3.0`, `@sberdevices/plasma-ui-docs@0.30.0`, `@sberdevices/plasma-web-docs@0.21.0`
