@@ -1,3 +1,21 @@
+# v1.26.0 (Fri Dec 03 2021)
+
+#### 🚀 Enhancement
+
+- feat: Added `createButton` as a constructor function for `Button` [#946](https://github.com/sberdevices/plasma/pull/946) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- refactor(plasma-ui,plasma-b2c): Update stories for `Slider` component [#934](https://github.com/sberdevices/plasma/pull/934) ([@neretin-trike](https://github.com/neretin-trike))
+- fix(plasma-ui,plasma-b2c): Fix intersection for multiple `Slider` component [#934](https://github.com/sberdevices/plasma/pull/934) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.25.0 (Thu Dec 02 2021)
 
 #### 🚀 Enhancement

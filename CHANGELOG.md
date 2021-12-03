@@ -1,3 +1,27 @@
+# (Fri Dec 03 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-docs-ui@0.4.0`, `@sberdevices/plasma-temple-docs@0.3.0`, `@sberdevices/plasma-ui-docs@0.30.0`, `@sberdevices/plasma-web-docs@0.21.0`
+  - feat: Docs dark theme switcher [#947](https://github.com/sberdevices/plasma/pull/947) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.26.0`, `@sberdevices/plasma-core@1.40.0`, `@sberdevices/plasma-ui@1.70.0`, `@sberdevices/plasma-web@1.64.0`
+  - feat: Added `createButton` as a constructor function for `Button` [#946](https://github.com/sberdevices/plasma/pull/946) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-core@1.40.0`, `@sberdevices/plasma-ui@1.70.0`
+  - test(plasma-ui): Update tests for `Button` and add for `ActionButton` [#946](https://github.com/sberdevices/plasma/pull/946) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.26.0`, `@sberdevices/plasma-ui@1.70.0`
+  - refactor(plasma-ui,plasma-b2c): Update stories for `Slider` component [#934](https://github.com/sberdevices/plasma/pull/934) ([@neretin-trike](https://github.com/neretin-trike))
+  - fix(plasma-ui,plasma-b2c): Fix intersection for multiple `Slider` component [#934](https://github.com/sberdevices/plasma/pull/934) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # (Thu Dec 02 2021)
 
 #### 🚀 Enhancement

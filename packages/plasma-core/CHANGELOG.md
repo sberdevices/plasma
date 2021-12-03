@@ -1,3 +1,19 @@
+# v1.40.0 (Fri Dec 03 2021)
+
+#### 🚀 Enhancement
+
+- feat: Added `createButton` as a constructor function for `Button` [#946](https://github.com/sberdevices/plasma/pull/946) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- test(plasma-ui): Update tests for `Button` and add for `ActionButton` [#946](https://github.com/sberdevices/plasma/pull/946) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.39.0 (Wed Dec 01 2021)
 
 #### 🚀 Enhancement

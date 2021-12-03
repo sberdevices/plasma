@@ -1,3 +1,15 @@
+# v0.4.0 (Fri Dec 03 2021)
+
+#### 🚀 Enhancement
+
+- feat: Docs dark theme switcher [#947](https://github.com/sberdevices/plasma/pull/947) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v0.3.0 (Thu Nov 18 2021)
 
 #### 🚀 Enhancement

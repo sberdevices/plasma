@@ -1,3 +1,15 @@
+# v1.64.0 (Fri Dec 03 2021)
+
+#### 🚀 Enhancement
+
+- feat: Added `createButton` as a constructor function for `Button` [#946](https://github.com/sberdevices/plasma/pull/946) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.63.0 (Wed Dec 01 2021)
 
 #### 🚀 Enhancement
