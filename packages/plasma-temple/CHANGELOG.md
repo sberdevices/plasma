@@ -1,3 +1,19 @@
+# v1.9.0 (Mon Dec 06 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): add support NeuHeader Component [#943](https://github.com/sberdevices/plasma/pull/943) ([@LamaEats](https://github.com/LamaEats))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): manual infer styled-comp types [#943](https://github.com/sberdevices/plasma/pull/943) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v1.8.0 (Mon Nov 29 2021)
 
 #### 🚀 Enhancement
