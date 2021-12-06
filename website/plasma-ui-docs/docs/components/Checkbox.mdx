@@ -22,3 +22,19 @@ export function App() {
     );
 }
 ```
+
+Свойства `description` и `label` могут принимать JSX элементы.
+
+```tsx live
+import React from 'react';
+import { Checkbox } from '@sberdevices/plasma-ui';
+
+export function App() {
+    return (
+        <Checkbox 
+            label={<div>Чекбокс со <a href="/#">ссылкой</a></div>} 
+            description={<div>Описание чекбокса со <a href="/#">ссылкой</a></div>}  
+        />
+    );
+}
+```
