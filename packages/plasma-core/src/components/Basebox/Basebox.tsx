@@ -14,11 +14,11 @@ export type ControlProps = {
     /**
      * Метка-подпись к элементу
      */
-    label?: string | number | React.ReactNode;
+    label?: React.ReactNode;
     /**
      * Описание элемента
      */
-    description?: string | number | React.ReactNode;
+    description?: React.ReactNode;
 };
 export interface BaseboxProps extends ControlProps, InputHTMLAttributes<HTMLInputElement> {
     children?: never;
