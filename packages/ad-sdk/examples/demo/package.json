@@ -4,10 +4,12 @@
   "description": "Demo of SberDevices Video Ad SDK",
   "scripts": {
     "build": "NODE_ENV='production' node -r dotenv/config $(which webpack)",
+    "build:demo": "NODE_ENV='production' TEST_SURFACE=false node -r dotenv/config $(which webpack)",
     "build:dev": "NODE_ENV='development' node -r dotenv/config $(which webpack)",
     "clean": "rm public/bundle.js",
     "predev": "npm run clean && npm run build:dev",
     "dev": "npx http-server",
+    "prod": "npx http-server",
     "start": "npx vercel dev"
   },
   "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",

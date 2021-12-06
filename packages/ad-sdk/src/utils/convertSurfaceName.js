@@ -6,14 +6,14 @@ const surfaces = {
     TV_HUAWEI: "saluteTV",
     SAMSUNG_TV: "saluteTV",
     COMPANION: "saluteApp",
-    SBER_RU_WEB: "saluteApp", // saluteApp или web ?
+    SBER_RU_WEB: "web",
     SBOL: "sbol",
-    WEB: "web", // web или sbol ?
+    WEB: "sbol",
     TEST: "test",
 };
 
-const defaultSurfaceName = "web";
+const defaultSurfaceName = "sberBox";
 
 export function convertSurfaceName(surfaceName) {
-    return surfaces[surfaceName] && defaultSurfaceName;
+    return surfaces[surfaceName] || defaultSurfaceName;
 }

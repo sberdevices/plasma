@@ -1,5 +1,7 @@
 import { runWaterfall } from "./ad-sdk/index";
 import { openBanner } from "./banner";
+import { getBannerBlockId, getVideoBlockId } from "./utils/blockId";
+import { getBannerPadId, getVideoPadId } from "./utils/padId";
 
 const logger = {
     // TODO: clickhouse logger
@@ -30,7 +32,7 @@ function createContainer() {
     return adContainer;
 }
 
-function _initWithParams(params = {}) {
+function _initWithParams(params = {}, test) {
     const errParam = (param) => {
         throw new Error("init params: " + param + " is not defined");
     };
@@ -50,6 +52,10 @@ function _initWithParams(params = {}) {
 
     if (!params.device.surface) {
         errParam("device.surface");
+    }
+
+    if (test) {
+        params.device.surface = "TEST";
     }
 
     if (typeof params.device.deviceId !== "string") {
@@ -76,7 +82,7 @@ function _initWithParams(params = {}) {
     adTag = buildAdTag();
 }
 
-function _initWithAssistant(assistant, onSuccess, onError) {
+function _initWithAssistant(assistant, onSuccess, onError, test) {
     assistant.on("data", (command) => {
         if (_inited) {
             return;
@@ -84,7 +90,7 @@ function _initWithAssistant(assistant, onSuccess, onError) {
 
         if (command.type === "smart_app_data" && command.smart_app_data.type === "sub") {
             try {
-                _initWithParams(command.smart_app_data.payload);
+                _initWithParams(command.smart_app_data.payload, test);
                 onSuccess();
             } catch (error) {
                 logger.log(error);
@@ -120,6 +126,7 @@ export function isInited() {
 const _assistantState = {};
 
 export function init(params = {}) {
+    const test = !!params.test;
     const onSuccess = params.onSuccess || (params.onSuccess = () => {});
     const onError = params.onError || (params.onError = () => {});
 
@@ -132,13 +139,14 @@ export function init(params = {}) {
         const assistant = window.assistant.createAssistant({
             getState: () => _assistantState,
         });
-        initWithAssistant({ assistant, onSuccess, onError });
+        initWithAssistant({ assistant, onSuccess, onError, test }, test);
     } catch (err) {
         onError(Error("createAssistant failed"));
     }
 }
 
 export function initDev(params = {}) {
+    const test = !!params.test;
     const onSuccess = params.onSuccess || (params.onSuccess = () => {});
     const onError = params.onError || (params.onError = () => {});
 
@@ -165,13 +173,13 @@ export function initDev(params = {}) {
             initPhrase,
             getState: () => _assistantState,
         });
-        initWithAssistant({ assistant, onSuccess, onError });
+        initWithAssistant({ assistant, onSuccess, onError }, test);
     } catch (err) {
         onError(Error("createAssistant failed"));
     }
 }
 
-export function initWithParams(params = {}) {
+export function initWithParams(params = {}, test = false) {
     const onSuccess = params.onSuccess || (params.onSuccess = () => {});
     const onError = params.onError || (params.onError = () => {});
 
@@ -181,14 +189,14 @@ export function initWithParams(params = {}) {
     }
 
     try {
-        _initWithParams(params.params);
+        _initWithParams(params.params, test);
         onSuccess();
     } catch (err) {
         onError(err);
     }
 }
 
-export function initWithAssistant(params = {}) {
+export function initWithAssistant(params = {}, test = false) {
     const onSuccess = params.onSuccess || (params.onSuccess = () => {});
     const onError = params.onError || (params.onError = () => {});
 
@@ -208,19 +216,19 @@ export function initWithAssistant(params = {}) {
         return;
     }
 
-    _initWithAssistant(assistant, onSuccess, onError);
+    _initWithAssistant(assistant, onSuccess, onError, test);
 }
 
 const buildAdTag = () => {
-    let base = "https://ssp.rambler.ru/vapirs";
-
-    base += "?wl=rambler";
-    base += "&pad_id=579434839";
-    base += "&block_id=579434841";
-
     const surface = initParams.surface;
     const projectId = initParams.projectId;
     const appId = initParams.applicationId;
+
+    let base = "https://ssp.rambler.ru/vapirs";
+
+    base += "?wl=rambler";
+    base += `&pad_id=${getVideoPadId(surface)}`;
+    base += `&block_id=${getVideoBlockId(surface)}`;
 
     const jParams = {
         puid34: "",
@@ -384,6 +392,9 @@ function getBannerParams() {
     const viewPortWidth = window.innerWidth;
     const viewPortHeight = window.innerHeight;
 
+    const padId = getBannerPadId(surface);
+    const blockId = getBannerBlockId(surface);
+
     return {
         device_type: "2",
         secure: "1",
@@ -394,10 +405,36 @@ function getBannerParams() {
         winh: `${viewPortHeight}`,
         winw: `${viewPortWidth}`,
         url: document.location.href,
-        pad_id: "579436865",
-        block_id: "579436875",
+        pad_id: padId,
+        block_id: blockId,
         jparams: `{"eid1":"${eid1}","eid2":"${eid2}"}`,
         external_ids: `{"device_id": "${deviceId}","user_id":"${sub}"}`,
+    };
+}
+
+export function _getBannerIds() {
+    if (!_inited) {
+        params.onError(Error("Module is not inited, try to run init() first"));
+        return;
+    }
+    const surface = initParams.surface;
+    return {
+        surface: initParams.surface,
+        padId: getBannerPadId(surface),
+        blockId: getBannerBlockId(surface),
+    };
+}
+
+export function _getVideoIds() {
+    if (!_inited) {
+        params.onError(Error("Module is not inited, try to run init() first"));
+        return;
+    }
+    const surface = initParams.surface;
+    return {
+        surface: initParams.surface,
+        padId: getVideoPadId(surface),
+        blockId: getVideoBlockId(surface),
     };
 }
 

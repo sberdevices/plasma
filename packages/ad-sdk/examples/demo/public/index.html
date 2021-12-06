@@ -17,6 +17,9 @@
 </head>
 <body>
     <style>
+        body {
+            background: white;
+        }
         .header {
             font-family: "SB Sans Text", sans-serif;
             font-weight: 600;
@@ -50,10 +53,54 @@
             opacity: 0.6;
         }
 
+        .video-ids {
+            margin: 20px 0;
+        }
+
+        .banner-ids {
+            margin: 20px 0;
+        }
+
+        .loading {
+            font-size: 30px;
+            margin: auto;
+            flex-shrink: 0;
+            flex-grow: 0;
+            color: white;
+            background-color: black;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .loading-wrapper {
+            display: flex;
+            position: absolute;
+            top:0;
+            left:0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0, 0.5);
+            z-index: 500;
+        }
+
     </style>
+
+    <div class="loading-wrapper">
+        <div class="loading">Загрузка</div>
+    </div>
 
     <div class="container">
         <h2 class="header">SberDevices Video Ad Player</h2>
+        <div class="video-ids">
+            <div>
+                <span>pad_id: </span>
+                <span id="video-pad-id-value">---</span>
+            </div>
+            <div>
+                <span>block_id: </span>
+                <span id="video-block-id-value">---</span>
+            </div>
+        </div>
         <div class="block">
             <input type="checkbox" id="mute-video-ad"/>
             <label for="mute-video-ad">Отключить звук</label>
@@ -63,7 +110,23 @@
 
     <div class="container">
         <h2 class="header">SberDevices Banner</h2>
+        <div class="banner-ids">
+            <div>
+                <span>pad_id: </span>
+                <span id="banner-pad-id-value">---</span>
+            </div>
+            <div>
+                <span>block_id: </span>
+                <span id="banner-block-id-value">---</span>
+            </div>
+        </div>
         <button class="button banner-ad-btn">Run SmartMarket Banner</button>
+    </div>
+
+    <div>
+        <div>
+            <span>Surface: </span><span id="surface-id">---</span>
+        </div>
     </div>
 </body>
 

@@ -40,7 +40,7 @@ jobs:
       - name: Build ad-sdk
         run: |
           npm run prepare-demo --prefix="./packages/ad-sdk"
-          npm run build --prefix="./packages/ad-sdk/examples/demo"
+          npm run build:demo --prefix="./packages/ad-sdk/examples/demo"
           mkdir -p ../build/${PR_NAME}
           cp -R ./packages/ad-sdk/examples/demo/public ../build/${PR_NAME}/ad-sdk
 
@@ -75,7 +75,8 @@ jobs:
               repo: context.repo.repo,
               body: `Ad-sdk demo deployed!
 
-              https://plasma.sberdevices.ru/pr-${{ github.event.number }}/ad-sdk
+              Real surface https://plasma.sberdevices.ru/pr-${{ github.event.number }}/ad-sdk
+              Test surface https://plasma.sberdevices.ru/pr-${{ github.event.number }}/ad-sdk?test=true
               `
             })
 

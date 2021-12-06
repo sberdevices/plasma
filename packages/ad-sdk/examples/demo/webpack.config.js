@@ -20,6 +20,7 @@ module.exports = {
             "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
             "process.env.DEV_TOKEN": JSON.stringify(process.env.DEV_TOKEN),
             "process.env.DEV_PHRASE": JSON.stringify(process.env.DEV_PHRASE),
+            "process.env.TEST_SURFACE": process.env.TEST_SURFACE ? JSON.parse(process.env.TEST_SURFACE) : null,
         }),
     ],
 };

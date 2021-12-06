@@ -4,16 +4,15 @@
   "description": "SberDevices Ad SDK",
   "main": "umd/ad-sdk.production.min.js",
   "browser": "umd/ad-sdk.production.min.js",
-  "files": [
-    "umd"
-  ],
+  "files": ["umd"],
   "scripts": {
     "build": "npx rollup -c rollup.config.js",
     "watch": "npx rollup -c rollup.config.js -w",
     "prepare-demo:watch": "npx rollup -c rollup.config.js -w -o examples/demo/public/ad-sdk.js",
     "prepare-demo": "npx rollup -c rollup.config.js -o examples/demo/public/ad-sdk.js",
     "prepare": "npm run build",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
   "license": "Sber Public License at-nc-sa v.2",
