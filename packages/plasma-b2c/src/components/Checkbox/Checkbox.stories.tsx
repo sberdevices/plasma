@@ -3,6 +3,8 @@ import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { InSpacingDecorator, disableProps } from '@sberdevices/plasma-sb-utils';
 
+import { Link } from '../Link';
+
 import { Checkbox, CheckboxProps } from '.';
 
 const propsToDisable = [
@@ -47,7 +49,13 @@ const onBlur = action('onBlur');
 
 const englishDescription = (
     <div>
-        The most spoken language in the <a href="/#">world</a>{' '}
+        The most spoken language in the <Link href="/#">world</Link>
+    </div>
+);
+
+const chineseLabel = (
+    <div>
+        Chinese is the hardest <Link href="/#">language</Link>
     </div>
 );
 
@@ -73,6 +81,12 @@ const items = [
     { name, value: 'klingon', label: 'Klingon', disabled: false, parent: 'natural' },
     { name, value: 'elvish', label: 'Elvish', disabled: true, parent: 'natural' },
     { name, value: 'dothraki', label: 'Dothraki', disabled: true, parent: 'natural' },
+    {
+        name,
+        value: 'chinese',
+        label: chineseLabel,
+        parent: 'natural',
+    },
 ];
 
 const getChildren = (value: string) => items.filter((item) => item.parent === value);
@@ -104,6 +118,7 @@ export const Live = () => {
         klingon: false,
         elvish: true,
         dothraki: false,
+        chinese: true,
     });
 
     return items.map((item) => (

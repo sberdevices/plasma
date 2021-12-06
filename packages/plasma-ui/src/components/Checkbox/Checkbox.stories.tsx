@@ -15,6 +15,12 @@ const onChange = actionWithPersistedEvent('onChange');
 const onFocus = actionWithPersistedEvent('onFocus');
 const onBlur = actionWithPersistedEvent('onBlur');
 
+const labelWithLink = (
+    <div>
+        Label 5 with <a href="/#">link</a>
+    </div>
+);
+
 const rows = [
     [
         { name: 'check', value: 1, label: 'Checkbox 1', disabled: false },
@@ -23,6 +29,11 @@ const rows = [
     [
         { name: 'check', value: 3, label: 'Checkbox 3', disabled: true },
         { name: 'check', value: 4, label: 'Checkbox 4', disabled: true },
+        {
+            name: 'check',
+            value: 5,
+            label: labelWithLink,
+        },
     ],
 ];
 
