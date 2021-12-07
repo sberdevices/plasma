@@ -1,0 +1,1 @@
+../../../../plasma-web/src/components/Carousel/Carousel.component-test.tsx

@@ -119,39 +119,6 @@ describe('plasma-ui: Carousel', () => {
         );
     };
 
-    const CenteredItemCarousel: FC = () => {
-        const [index, setIndex] = useRemoteHandlers({
-            initialIndex: 0,
-            axis: 'x',
-            delay: 30,
-            longDelay: 150,
-            min: 0,
-            max: items.length - 1,
-        });
-
-        return (
-            <CarouselGridWrapper>
-                <Carousel
-                    as={Row}
-                    axis="x"
-                    index={index}
-                    detectActive
-                    detectThreshold={0.5}
-                    scaleCallback={scaleCallback}
-                    scaleResetCallback={scaleResetCallback}
-                    paddingStart="50%"
-                    paddingEnd="50%"
-                    scrollSnapType="none"
-                    style={{ paddingTop: '5rem' }}
-                >
-                    {items.map((item, i) => (
-                        <ScalingColCard key={`item:${i}`} isActive={i === index} item={item} />
-                    ))}
-                </Carousel>
-            </CarouselGridWrapper>
-        );
-    };
-
     it('basic', () => {
         const index = 0;
 
@@ -269,9 +236,29 @@ describe('plasma-ui: Carousel', () => {
     });
 
     it('center', () => {
+        const index = 0;
+
         mount(
             <CarouselDecorator>
-                <CenteredItemCarousel />
+                <CarouselGridWrapper>
+                    <Carousel
+                        as={Row}
+                        axis="x"
+                        index={index}
+                        detectActive
+                        detectThreshold={0.5}
+                        scaleCallback={scaleCallback}
+                        scaleResetCallback={scaleResetCallback}
+                        paddingStart="50%"
+                        paddingEnd="50%"
+                        scrollSnapType="none"
+                        style={{ paddingTop: '7.5rem' }}
+                    >
+                        {items.map((item, i) => (
+                            <ScalingColCard key={`item:${i}`} isActive={i === index} item={item} />
+                        ))}
+                    </Carousel>
+                </CarouselGridWrapper>
             </CarouselDecorator>,
         );
 
