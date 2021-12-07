@@ -4,9 +4,10 @@ import { Story, Meta } from '@storybook/react';
 
 import { InSpacingDecorator, disableProps } from '../../helpers';
 import { Button } from '../Button';
-import { Image } from '../Image';
 import { SmartPaginationDots } from '../PaginationDots';
-import { Headline4, Footnote1 } from '../Typography';
+import { Headline4 } from '../Typography';
+
+import { CarouselCard } from './Carousel.examples';
 
 import { Carousel, CarouselItem } from '.';
 
@@ -67,18 +68,6 @@ const StyledButtonGroup = styled.div`
     align-items: center;
     margin-top: 2rem;
 `;
-const StyledCard = styled.div`
-    position: relative;
-    border-radius: 1rem;
-`;
-const StyledCardContent = styled.div`
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 1.72rem;
-    color: #fff;
-`;
 
 export const Default: Story<{ align: string }> = ({ align }) => {
     const [index, setIndex] = React.useState(0);
@@ -86,11 +75,11 @@ export const Default: Story<{ align: string }> = ({ align }) => {
     return (
         <StyledWrapper>
             <Carousel
-                style={{ margin: '0 -0.5rem' }}
                 index={index}
                 detectActive
                 onIndexChange={(i) => setIndex(i)}
                 scrollAlign={align as alignType}
+                style={{ margin: '0 -0.5rem' }}
             >
                 {items.map((item, i) => (
                     <CarouselItem
@@ -98,13 +87,7 @@ export const Default: Story<{ align: string }> = ({ align }) => {
                         style={{ width: 550, padding: '0 0.5rem' }}
                         scrollSnapAlign={align as alignType}
                     >
-                        <StyledCard>
-                            <Image src={item.imageSrc} ratio="16 / 9" base="div" />
-                            <StyledCardContent>
-                                <Headline4>{item.title}</Headline4>
-                                <Footnote1>{item.subtitle}</Footnote1>
-                            </StyledCardContent>
-                        </StyledCard>
+                        <CarouselCard {...item} />
                     </CarouselItem>
                 ))}
             </Carousel>
