@@ -1,3 +1,21 @@
+# (Tue Dec 07 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/demo-canvas-app@0.48.0`, `@sberdevices/plasma-core@1.41.0`, `@sberdevices/plasma-ui@1.71.0`, `@sberdevices/plasma-web@1.65.0`, `@sberdevices/showcase@0.82.0`, `@sberdevices/plasma-ui-docs@0.31.0`, `@sberdevices/plasma-web-docs@0.22.0`
+  - feat: add RadioGroup components [#676](https://github.com/sberdevices/plasma/pull/676) ([@OgNellis](https://github.com/OgNellis))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/demo-canvas-app@0.48.0`, `@sberdevices/plasma-core@1.41.0`, `@sberdevices/plasma-ui@1.71.0`, `@sberdevices/plasma-web@1.65.0`, `@sberdevices/showcase@0.82.0`, `@sberdevices/plasma-ui-docs@0.31.0`, `@sberdevices/plasma-web-docs@0.22.0`
+  - fix: accessibility of checkbox and radiobox for nvda and jaws [#676](https://github.com/sberdevices/plasma/pull/676) ([@OgNellis](https://github.com/OgNellis))
+
+#### Authors: 1
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+
+---
+
 # (Mon Dec 06 2021)
 
 #### 🚀 Enhancement

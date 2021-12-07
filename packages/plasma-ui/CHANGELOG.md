@@ -1,3 +1,19 @@
+# v1.71.0 (Tue Dec 07 2021)
+
+#### 🚀 Enhancement
+
+- feat: add RadioGroup components [#676](https://github.com/sberdevices/plasma/pull/676) ([@OgNellis](https://github.com/OgNellis))
+
+#### 🐛 Bug Fix
+
+- fix: accessibility of checkbox and radiobox for nvda and jaws [#676](https://github.com/sberdevices/plasma/pull/676) ([@OgNellis](https://github.com/OgNellis))
+
+#### Authors: 1
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+
+---
+
 # v1.70.0 (Fri Dec 03 2021)
 
 #### 🚀 Enhancement
