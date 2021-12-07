@@ -52,9 +52,14 @@ const community = [
         href: 'https://github.com/sberdevices/plasma',
     },
     {
-        title: 'Telegram',
+        title: 'Telegram Support ( Web )',
         contentLeft: <IconTelegram color="inherit" />,
-        href: 'https://t.me/smartmarket_community',
+        href: 'https://t.me/+Qe1nZaHwHCw4YzUy',
+    },
+    {
+        title: 'Telegram Support ( Native )',
+        contentLeft: <IconTelegram color="inherit" />,
+        href: 'https://t.me/+mq4SPuHH02wzNDMy',
     },
 ];
 const products = [
