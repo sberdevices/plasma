@@ -73,6 +73,7 @@ export interface CartState<ID = string, T extends AnyObject = AnyObject> {
     minDeliveryPrice?: number;
     deliveryPrice?: number;
     discount?: number;
+    promoCode?: string;
 }
 
 export type CartStateItem<T extends CartState> = T['items'][0];
