@@ -19,7 +19,7 @@ const LIST_LENGTH = 200;
 
 const estimateSize = () => ELEMENT_SIZE;
 const Virtual = ({
-    size,
+    itemsLength,
     height,
     width,
     useVirtualMock = useVirtualScroll,
@@ -28,7 +28,7 @@ const Virtual = ({
     paddingEnd,
     limit,
 }: {
-    size: number;
+    itemsLength: number;
     height?: number;
     width?: number;
     useVirtualMock?: typeof useVirtualScroll | typeof useVirtualKeyboard;
@@ -49,7 +49,7 @@ const Virtual = ({
         }
     }, [width, height]);
     const { visibleItems, totalSize } = useVirtualMock({
-        size,
+        itemsLength,
         parentRef,
         estimateSize,
         horizontal,
@@ -113,7 +113,12 @@ describe.each([useVirtualKeyboard, useVirtualScroll, useVirtual, useVirtualSmoot
     beforeAll(() => {
         hookMock = jest.fn((props) => hook(props));
         render(
-            <Virtual size={LIST_LENGTH} width={ELEMENT_SIZE * VISIBLE_LIMIT} useVirtualMock={hookMock} limit={limit} />,
+            <Virtual
+                itemsLength={LIST_LENGTH}
+                width={ELEMENT_SIZE * VISIBLE_LIMIT}
+                useVirtualMock={hookMock}
+                limit={limit}
+            />,
         );
         virtualResult = hookMock.mock.results[0].value;
     });
@@ -143,7 +148,7 @@ describe.each([useVirtualKeyboard, useVirtualScroll, useVirtual, useVirtualSmoot
     test('Should support vertical view', () => {
         render(
             <Virtual
-                size={LIST_LENGTH}
+                itemsLength={LIST_LENGTH}
                 height={ELEMENT_SIZE * VISIBLE_LIMIT}
                 useVirtualMock={hookMock}
                 limit={limit}
@@ -159,7 +164,7 @@ describe.each([useVirtualKeyboard, useVirtualScroll, useVirtual, useVirtualSmoot
         hookMock = jest.fn((props) => hook(props));
         render(
             <Virtual
-                size={VISIBLE_LIMIT}
+                itemsLength={VISIBLE_LIMIT}
                 width={ELEMENT_SIZE * VISIBLE_LIMIT}
                 useVirtualMock={hookMock}
                 paddingStart={paddingStart}

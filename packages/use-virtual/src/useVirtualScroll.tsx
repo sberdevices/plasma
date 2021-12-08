@@ -8,7 +8,7 @@ import { useVirualInit } from './utils/use-virtual-init';
 export const useVirtualScroll = ({
     parentRef,
     horizontal = true,
-    size = 0,
+    itemsLength = 0,
     estimateSize,
     paddingStart = 0,
     paddingEnd = 0,
@@ -43,7 +43,7 @@ export const useVirtualScroll = ({
     });
     const measurements = useMeasurements({
         estimateSize,
-        itemsLength: size,
+        itemsLength,
         paddingStart,
         keyExtractor,
     });
@@ -62,7 +62,7 @@ export const useVirtualScroll = ({
         parentRef,
         scrollKey,
         latestRef,
-        size,
+        itemsLength,
         scrollToFn,
     });
 
@@ -77,7 +77,7 @@ export const useVirtualScroll = ({
 
     return {
         visibleItems,
-        totalSize: (measurements[size - 1]?.end || 0) + paddingEnd,
+        totalSize: (measurements[itemsLength - 1]?.end || 0) + paddingEnd,
         scrollToIndex,
         upIndex,
         downIndex,

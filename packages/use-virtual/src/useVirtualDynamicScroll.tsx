@@ -16,7 +16,7 @@ import { useVirualInit } from './utils/use-virtual-init';
 export const useVirtualDynamicScroll = ({
     parentRef,
     horizontal = false,
-    size = 0,
+    itemsLength = 0,
     estimateSize,
     paddingStart = 0,
     paddingEnd = 0,
@@ -38,7 +38,7 @@ export const useVirtualDynamicScroll = ({
     const [measuredCache, setMeasuredCache] = useState<Record<string, number>>({});
     const measurements = useMeasurements({
         estimateSize,
-        itemsLength: size,
+        itemsLength,
         paddingStart,
         measuredCache,
         keyExtractor,
@@ -48,7 +48,7 @@ export const useVirtualDynamicScroll = ({
         parentRef,
         scrollKey,
         latestRef,
-        size,
+        itemsLength,
         scrollToFn,
     });
 
@@ -72,7 +72,7 @@ export const useVirtualDynamicScroll = ({
     useEffect(() => {
         // Если количество элементов изменилось, то считаем, что могли добавиться элементы
         // сверху, поэтому нужно восстановить позицию скрола
-        if (latestRef.current.measurements && latestRef.current.measurements.length !== size) {
+        if (latestRef.current.measurements && latestRef.current.measurements.length !== itemsLength) {
             addItemsMode === 'prepend' && setNeedRestoreScrollWeakFlag(true);
         }
     });
@@ -128,7 +128,7 @@ export const useVirtualDynamicScroll = ({
     }, [keyExtractor, sizeKey, measuredCache, observeItem, setNeedRestoreScrollWeakFlag]);
 
     const prevTotalSizeRef = useRef<number>();
-    const totalSize = (measurements[size - 1]?.end || 0) + paddingEnd;
+    const totalSize = (measurements[itemsLength - 1]?.end || 0) + paddingEnd;
     // Срабатывает на изменение размера списка и скролящейся области, размер списка меняется,
     // если добавились новые элементы, или один из элементов виртуального списка поменял свои размеры
     // Нужен чтобы восстановить позицию скрола и пересчитать видимые элементы согласно новой позиции скрола

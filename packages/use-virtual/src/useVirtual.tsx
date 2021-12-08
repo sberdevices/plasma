@@ -6,12 +6,12 @@ import { useKeyboard } from './utils/use-keyboard';
 
 export const useVirtual = (props: VirtualProps) => {
     const virtual = useVirtualScroll(props);
-    const { horizontal = true, align, size } = props;
+    const { horizontal = true, align, itemsLength = 0 } = props;
     const { upIndex, downIndex, scrollToIndex, currentIndex } = virtual;
     const [prevCurrentIndex, setPrevCurrentIndex] = useState(currentIndex);
 
     const { up, down } = useMemo(() => {
-        const params = { align, size };
+        const params = { align, itemsLength };
 
         return {
             up: () => {
@@ -21,7 +21,7 @@ export const useVirtual = (props: VirtualProps) => {
                 downIndex(params);
             },
         };
-    }, [upIndex, downIndex, align, size]);
+    }, [upIndex, downIndex, align, itemsLength]);
     useKeyboard({
         up,
         down,

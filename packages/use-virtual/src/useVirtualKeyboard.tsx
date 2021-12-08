@@ -1,12 +1,12 @@
-import { useMemo, useRef } from 'react';
+import { useMemo } from 'react';
 
 import { VirtualPropsKeyboard } from './types';
-import { defaultKeyExtractor, useIsomorphicLayoutEffect, useMeasurements, useVisibleItems } from './utils';
+import { defaultKeyExtractor, useMeasurements, useVisibleItems } from './utils';
 import { useKeyboard } from './utils/use-keyboard';
 import { useVirualInit } from './utils/use-virtual-init';
 
 export const useVirtualKeyboard = ({
-    size = 0,
+    itemsLength = 0,
     limit,
     horizontal = true,
     align,
@@ -16,16 +16,14 @@ export const useVirtualKeyboard = ({
     keyExtractor = defaultKeyExtractor,
     ...props
 }: VirtualPropsKeyboard) => {
-    const latestRef = useRef({
-        limit,
-        size,
-        align,
-    });
-    useIsomorphicLayoutEffect(() => {
-        latestRef.current.limit = limit;
-        latestRef.current.size = size;
-        latestRef.current.align = align;
-    }, [limit, size, align]);
+    const params = useMemo(
+        () => ({
+            limit,
+            itemsLength,
+            align,
+        }),
+        [limit, itemsLength, align],
+    );
 
     const { upIndexAndRange, downIndexAndRange, range, currentIndex } = useVirualInit({
         horizontal,
@@ -33,7 +31,7 @@ export const useVirtualKeyboard = ({
     });
     const measurements = useMeasurements({
         estimateSize,
-        itemsLength: size,
+        itemsLength,
         paddingStart,
         keyExtractor,
     });
@@ -42,13 +40,13 @@ export const useVirtualKeyboard = ({
     const { up, down } = useMemo(
         () => ({
             up: () => {
-                upIndexAndRange(latestRef.current);
+                upIndexAndRange(params);
             },
             down: () => {
-                downIndexAndRange(latestRef.current);
+                downIndexAndRange(params);
             },
         }),
-        [upIndexAndRange, downIndexAndRange],
+        [upIndexAndRange, downIndexAndRange, params],
     );
 
     useKeyboard({
@@ -61,7 +59,7 @@ export const useVirtualKeyboard = ({
     return {
         visibleItems,
         currentIndex,
-        totalSize: (measurements[size - 1]?.end || 0) + paddingEnd,
+        totalSize: (measurements[itemsLength - 1]?.end || 0) + paddingEnd,
         upIndex: up,
         downIndex: down,
     };

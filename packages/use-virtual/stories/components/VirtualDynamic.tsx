@@ -12,7 +12,7 @@ export const VirtualDynamic = ({ axis = 'x' }: { axis?: 'x' | 'y' }) => {
     const parentRef = useRef<null | HTMLDivElement>(null);
 
     const { totalSize, visibleItems, currentIndex, observeItem, unobserveItem } = useVirtualDynamic({
-        size: fixturesVirtualizedItems.length,
+        itemsLength: fixturesVirtualizedItems.length,
         parentRef,
         horizontal: axis === 'x',
     });

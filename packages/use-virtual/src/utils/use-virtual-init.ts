@@ -9,7 +9,7 @@ type State = {
 };
 
 type SetIndexParams = {
-    size: number;
+    itemsLength: number;
 };
 
 type SetIndexRangeParams = SetIndexParams & {
@@ -96,10 +96,10 @@ const reducer = (state: State, action: Action) => {
         }
         case 'up index':
         case 'down index': {
-            const { size } = action.payload.params;
+            const { itemsLength } = action.payload.params;
             const currentIndex = getSafeCurrent(
                 action.type === 'up index' ? state.currentIndex + 1 : state.currentIndex - 1,
-                size,
+                itemsLength,
             );
 
             return {
@@ -109,21 +109,25 @@ const reducer = (state: State, action: Action) => {
         }
         case 'up index and range':
         case 'down index and range': {
-            const { limit = state.range.end - state.range.start, size, align = 'center' } = action.payload.params;
+            const {
+                limit = state.range.end - state.range.start,
+                itemsLength,
+                align = 'center',
+            } = action.payload.params;
             const offset = getOffset(limit, align);
             const currentIndex = getSafeCurrent(
                 action.type === 'up index and range' ? state.currentIndex + 1 : state.currentIndex - 1,
-                size,
+                itemsLength,
             );
 
             let { start } = state.range;
-            const isLatest = currentIndex >= size - 1 - offset;
+            const isLatest = currentIndex >= itemsLength - 1 - offset;
             const currentIsOkWithStart = currentIndex >= start;
             const endToGo = state.range.end - offset;
             const currentIsOkWithEnd = currentIndex <= endToGo;
 
             if (isLatest) {
-                start = size - limit;
+                start = itemsLength - limit;
             } else if (!currentIsOkWithStart) {
                 start = currentIndex;
             } else if (!currentIsOkWithEnd) {

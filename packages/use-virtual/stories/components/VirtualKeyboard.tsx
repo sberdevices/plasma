@@ -17,7 +17,7 @@ const StyledCarouselWrapperHorizontal = styled(CarouselWrapperHorizontal)`
 
 export const VirtualKeyboard = () => {
     const { visibleItems, currentIndex } = useVirtualKeyboard({
-        size: fixturesVirtualizedItems.length,
+        itemsLength: fixturesVirtualizedItems.length,
         limit: 5,
         estimateSize,
     });

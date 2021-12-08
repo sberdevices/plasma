@@ -82,12 +82,12 @@ export const useScrollToIndex = ({
     scrollKey,
     latestRef,
     scrollToFn,
-    size,
+    itemsLength,
 }: {
     parentRef: React.RefObject<HTMLDivElement>;
     scrollKey: 'scrollLeft' | 'scrollTop';
     latestRef: React.RefObject<LatestRefData>;
-    size: number;
+    itemsLength: number;
     scrollToFn?: (offset: number) => void;
 }) => {
     const defaultScrollToFn = useCallback(
@@ -141,7 +141,7 @@ export const useScrollToIndex = ({
             }
             const { measurements, scrollOffset, scrollableSize } = latestRef.current;
 
-            const measurement = measurements[Math.max(0, Math.min(index, size - 1))];
+            const measurement = measurements[Math.max(0, Math.min(index, itemsLength - 1))];
 
             if (!measurement) {
                 return;
@@ -167,7 +167,7 @@ export const useScrollToIndex = ({
 
             scrollToOffset(toOffset, { align });
         },
-        [scrollToOffset, size, latestRef],
+        [scrollToOffset, itemsLength, latestRef],
     );
 
     const scrollToIndex = useCallback(
