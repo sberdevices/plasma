@@ -160,7 +160,7 @@ Page.lazy = (factory) => {
             });
 
             if (getInitialProps && !state) {
-                return null;
+                return <PageSpinner />;
             }
 
             return <Component {...props} />;
