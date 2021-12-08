@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 
-const { PR_NAME } = process.env;
+const { ARTIFACT_NAME } = process.env;
 
-const basePath = PR_NAME ? `/${PR_NAME}` : '';
+const basePath = ARTIFACT_NAME === 'next' ? '' : `/${ARTIFACT_NAME}`;
 
 module.exports = {
     basePath,
