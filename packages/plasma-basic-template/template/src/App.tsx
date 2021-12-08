@@ -5,9 +5,13 @@ import { AppHeaderProps, AssistantProps, PageStateType } from './types';
 import { Gallery } from './pages/Gallery';
 import { Film } from './pages/Film';
 
+if (!process.env.REACT_APP_DEV_PHRASE || !process.env.REACT_APP_DEV_TOKEN) {
+    throw new Error('Скопируйте .env.sample в файл .env.development и подставьте корректные значения');
+}
+
 const assistantParams: AssistantProps = {
-    initPhrase: 'запусти проверочка',
-    token: process.env.REACT_APP_SMARTAPP_TOKEN,
+    initPhrase: process.env.REACT_APP_DEV_PHRASE,
+    token: process.env.REACT_APP_DEV_TOKEN,
 };
 
 const headerProps: AppHeaderProps = {

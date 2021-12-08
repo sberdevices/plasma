@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+
 import '@sberdevices/spatial-navigation';
 
 import { App } from './App';
