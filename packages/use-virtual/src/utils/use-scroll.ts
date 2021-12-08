@@ -47,7 +47,7 @@ export const useOnScroll = ({
             const scrollOffset = scrollableParent[scrollKey];
             latestData.scrollOffset = scrollOffset;
 
-            if (latestRef.current.useIsScrolling && isScrolling) {
+            if (latestRef.current?.useIsScrolling && isScrolling) {
                 setRangeAndIsScrollingTrue((prevRange: Range) => calculateRange(latestData, prevRange));
                 debouncedSetIsScrollingFalse();
             } else {
