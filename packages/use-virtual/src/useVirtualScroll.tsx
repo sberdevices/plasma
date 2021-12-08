@@ -7,7 +7,7 @@ import { useVirualInit } from './utils/use-virtual-init';
 
 export const useVirtualScroll = ({
     parentRef,
-    horizontal = true,
+    horizontal = false,
     itemsLength = 0,
     estimateSize,
     paddingStart = 0,

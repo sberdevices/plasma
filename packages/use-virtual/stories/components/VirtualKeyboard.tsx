@@ -20,6 +20,7 @@ export const VirtualKeyboard = () => {
         itemsLength: fixturesVirtualizedItems.length,
         limit: 5,
         estimateSize,
+        horizontal: true,
     });
 
     return (

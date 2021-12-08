@@ -35,6 +35,7 @@ export const VirtualHorizontalHeavy = () => {
     const parentRef = useRef<null | HTMLDivElement>(null);
 
     const { visibleItems, totalSize, currentIndex, isScrolling } = useVirtualSmoothScroll({
+        horizontal: true,
         itemsLength: fixturesVirtualizedItems.length,
         parentRef,
         estimateSize,

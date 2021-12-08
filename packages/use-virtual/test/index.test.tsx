@@ -118,6 +118,7 @@ describe.each([useVirtualKeyboard, useVirtualScroll, useVirtual, useVirtualSmoot
                 width={ELEMENT_SIZE * VISIBLE_LIMIT}
                 useVirtualMock={hookMock}
                 limit={limit}
+                horizontal
             />,
         );
         virtualResult = hookMock.mock.results[0].value;
@@ -152,7 +153,6 @@ describe.each([useVirtualKeyboard, useVirtualScroll, useVirtual, useVirtualSmoot
                 height={ELEMENT_SIZE * VISIBLE_LIMIT}
                 useVirtualMock={hookMock}
                 limit={limit}
-                horizontal={false}
             />,
         );
         expect(screen.getAllByText(/Row/).length).toEqual(VISIBLE_LIMIT);
@@ -170,6 +170,7 @@ describe.each([useVirtualKeyboard, useVirtualScroll, useVirtual, useVirtualSmoot
                 paddingStart={paddingStart}
                 paddingEnd={paddingEnd}
                 limit={limit}
+                horizontal
             />,
         );
         virtualResult = hookMock.mock.results[0].value;

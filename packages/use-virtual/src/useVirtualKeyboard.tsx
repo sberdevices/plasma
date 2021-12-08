@@ -8,7 +8,7 @@ import { useVirualInit } from './utils/use-virtual-init';
 export const useVirtualKeyboard = ({
     itemsLength = 0,
     limit,
-    horizontal = true,
+    horizontal = false,
     align,
     estimateSize,
     paddingStart = 0,

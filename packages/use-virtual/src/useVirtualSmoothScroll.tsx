@@ -6,7 +6,7 @@ import { useVirtual } from './useVirtual';
 
 export const useVirtualSmoothScroll = (props: Omit<VirtualProps, 'scrollToFn'>) => {
     const smoothScrollToFn = useVerySmoothScroll(props.parentRef);
-    const { horizontal = true } = props;
+    const { horizontal = false } = props;
 
     return useVirtual({
         ...props,
