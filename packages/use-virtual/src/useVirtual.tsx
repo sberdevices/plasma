@@ -22,7 +22,12 @@ export const useVirtual = (props: VirtualProps) => {
             },
         };
     }, [upIndex, downIndex, align, size]);
-    useKeyboard({ up, down, horizontal, framesToThrottle: props.framesToThrottle });
+    useKeyboard({
+        up,
+        down,
+        horizontal,
+        framesToThrottle: props.framesToThrottle,
+    });
 
     if (prevCurrentIndex !== currentIndex) {
         scrollToIndex(currentIndex);

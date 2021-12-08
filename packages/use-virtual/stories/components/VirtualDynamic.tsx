@@ -1,12 +1,12 @@
 import { CarouselGridWrapper } from '@sberdevices/plasma-ui';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 
-import { CarouselItemMemoTransform } from './CarouselItem';
 import { fixturesVirtualizedItems } from '../fixtures';
-import { ReactProfiler } from './ReactProfiler';
 import { DEFAULT_VIRTUAL_ITEM_GAP, DEFAULT_VIRTUAL_ITEM_SIZE } from '../constants';
-
 import { useVirtualDynamic } from '../../src';
+
+import { ReactProfiler } from './ReactProfiler';
+import { CarouselItemMemoTransform } from './CarouselItem';
 
 export const VirtualDynamic = ({ axis = 'x' }: { axis?: 'x' | 'y' }) => {
     const parentRef = useRef<null | HTMLDivElement>(null);
@@ -25,7 +25,9 @@ export const VirtualDynamic = ({ axis = 'x' }: { axis?: 'x' | 'y' }) => {
                     [axis === 'x' ? 'height' : 'width']: DEFAULT_VIRTUAL_ITEM_SIZE,
                     overflow: 'auto',
                     padding: '1.25rem',
-                    ...(axis === 'y' && { height: DEFAULT_VIRTUAL_ITEM_SIZE * 3 }),
+                    ...(axis === 'y' && {
+                        height: DEFAULT_VIRTUAL_ITEM_SIZE * 3,
+                    }),
                 }}
             >
                 <div

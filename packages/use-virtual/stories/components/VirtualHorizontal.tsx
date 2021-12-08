@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 
 import { VirtualSmoothScroll } from './VirtualSmoothScroll';
 
@@ -15,4 +15,4 @@ export const VirtualHorizontal = () => {
             )}
         />
     );
-}
+};

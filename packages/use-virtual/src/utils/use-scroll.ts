@@ -68,7 +68,10 @@ export const useOnScroll = ({
         };
 
         onScroll();
-        scrollableParent.addEventListener('scroll', onScroll, { capture: false, passive: true });
+        scrollableParent.addEventListener('scroll', onScroll, {
+            capture: false,
+            passive: true,
+        });
 
         return () => scrollableParent.removeEventListener('scroll', onScroll);
     }, [scrollKey, metricsMeasureScroll]);

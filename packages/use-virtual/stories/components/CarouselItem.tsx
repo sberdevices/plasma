@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { memo, useLayoutEffect, useMemo, useRef } from 'react';
 import { Card, CardBody, CardContent, Body1 } from '@sberdevices/plasma-ui';
-import { memo, useLayoutEffect, useMemo, useRef } from 'react';
 // import { ListChildComponentProps } from 'react-window';
 import styled, { css } from 'styled-components';
 
@@ -112,7 +111,10 @@ export const CarouselItem = ({
 
 export const CarouselItemMemo = memo(CarouselItem);
 
-export const CarouselItemMemoTransform = styled(CarouselItemMemo)<{ horizontal?: boolean; start: number }>`
+export const CarouselItemMemoTransform = styled(CarouselItemMemo)<{
+    horizontal?: boolean;
+    start: number;
+}>`
     position: absolute;
     top: 0;
     left: 0;

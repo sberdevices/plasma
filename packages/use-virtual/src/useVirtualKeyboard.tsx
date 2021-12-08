@@ -51,7 +51,12 @@ export const useVirtualKeyboard = ({
         [upIndexAndRange, downIndexAndRange],
     );
 
-    useKeyboard({ up, down, horizontal, framesToThrottle: props.framesToThrottle });
+    useKeyboard({
+        up,
+        down,
+        horizontal,
+        framesToThrottle: props.framesToThrottle,
+    });
 
     return {
         visibleItems,

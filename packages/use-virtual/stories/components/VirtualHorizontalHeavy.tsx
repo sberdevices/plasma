@@ -1,9 +1,10 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
-import { CarouselWrapperHorizontal } from './CarouselWrapper';
 import { useVirtualSmoothScroll } from '../../src';
 import { DEFAULT_VIRTUAL_ITEM_GAP, DEFAULT_VIRTUAL_ITEM_SIZE } from '../constants';
 import { fixturesVirtualizedItems } from '../fixtures';
+
+import { CarouselWrapperHorizontal } from './CarouselWrapper';
 import { CarouselItemMemoTransform } from './CarouselItem';
 
 const estimateSize = () => DEFAULT_VIRTUAL_ITEM_SIZE + DEFAULT_VIRTUAL_ITEM_GAP;
@@ -69,4 +70,4 @@ export const VirtualHorizontalHeavy = () => {
             </div>
         </CarouselWrapperHorizontal>
     );
-}
+};

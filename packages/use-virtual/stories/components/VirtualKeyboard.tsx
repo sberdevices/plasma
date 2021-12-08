@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CarouselItemMemo } from './CarouselItem';
-import { CarouselWrapperHorizontal } from './CarouselWrapper';
-import { ReactProfiler } from './ReactProfiler';
+
 import { useVirtualKeyboard } from '../../src';
 import { fixturesVirtualizedItems } from '../fixtures';
 import { DEFAULT_VIRTUAL_ITEM_SIZE, DEFAULT_VIRTUAL_ITEM_GAP } from '../constants';
 
+import { CarouselItemMemo } from './CarouselItem';
+import { CarouselWrapperHorizontal } from './CarouselWrapper';
+import { ReactProfiler } from './ReactProfiler';
 
 const estimateSize = () => DEFAULT_VIRTUAL_ITEM_SIZE + DEFAULT_VIRTUAL_ITEM_GAP;
 
@@ -45,4 +46,4 @@ export const VirtualKeyboard = () => {
             </StyledCarouselWrapperHorizontal>
         </ReactProfiler>
     );
-}
+};

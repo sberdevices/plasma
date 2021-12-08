@@ -1,12 +1,12 @@
 import { CarouselGridWrapper } from '@sberdevices/plasma-ui';
-import { useMemo, useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 
-import { CarouselItemMemoTransform } from './CarouselItem';
 import { fixturesVirtualizedItems } from '../fixtures';
-import { ReactProfiler } from './ReactProfiler';
 import { DEFAULT_VIRTUAL_ITEM_GAP, DEFAULT_VIRTUAL_ITEM_SIZE } from '../constants';
-
 import { useVirtualSmoothScroll } from '../../src';
+
+// import { ReactProfiler } from './ReactProfiler';
+import { CarouselItemMemoTransform } from './CarouselItem';
 
 export const VirtualSmoothScroll = ({
     horizontal,

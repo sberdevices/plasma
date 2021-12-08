@@ -29,7 +29,12 @@ export const useVirtualDynamic = (props: VirtualDynamicProps) => {
         };
     }, [upIndex, downIndex, align, size]);
 
-    useKeyboard({ up, down, horizontal, framesToThrottle: props.framesToThrottle });
+    useKeyboard({
+        up,
+        down,
+        horizontal,
+        framesToThrottle: props.framesToThrottle,
+    });
 
     if (prevCurrentIndex !== virtual.currentIndex) {
         scrollToIndex(virtual.currentIndex);

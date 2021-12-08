@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { MeasurementItem, VirtualDynamicProps } from './types';
@@ -25,7 +26,11 @@ export const useVirtualDynamicScroll = ({
 }: VirtualDynamicProps) => {
     const { sizeKey, scrollKey, range, setRange, upIndex, downIndex, currentIndex } = useVirualInit({ horizontal });
 
-    const latestRef = useRef<{ scrollOffset: number; measurements: MeasurementItem[]; scrollableSize: number }>({
+    const latestRef = useRef<{
+        scrollOffset: number;
+        measurements: MeasurementItem[];
+        scrollableSize: number;
+    }>({
         scrollOffset: 0,
         measurements: [],
         scrollableSize: 0,
@@ -83,7 +88,9 @@ export const useVirtualDynamicScroll = ({
                 const target = entry.target as HTMLElement;
                 const entrySize = target[sizeKey];
 
-                if (target === parentRef.current) return setScrollableSize(entrySize);
+                if (target === parentRef.current) {
+                    return setScrollableSize(entrySize);
+                }
 
                 // TODO: подумать как заменить data-virtual-index
                 const changedItemIndex = Number(target.dataset?.virtualIndex);
@@ -113,8 +120,10 @@ export const useVirtualDynamicScroll = ({
         setScrollableSize(parentRef.current[sizeKey]);
 
         return () => {
-            resizeObserverRef.current?.disconnect();
-            resizeObserverRef.current = undefined;
+            if (resizeObserverRef.current) {
+                resizeObserverRef.current.disconnect();
+                resizeObserverRef.current = undefined;
+            }
         };
     }, [keyExtractor, sizeKey, measuredCache, observeItem, setNeedRestoreScrollWeakFlag]);
 
@@ -141,6 +150,7 @@ export const useVirtualDynamicScroll = ({
         setRange((prev) => calculateRange(latestRef.current, prev));
     }, [needRestoreScrollWeakFlag, scrollKey, totalSize, scrollableSize]);
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     useOnScroll({
         parentRef,

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useRef, useLayoutEffect } from 'react';
 import { render, screen } from '@testing-library/react';
@@ -54,6 +55,7 @@ const Virtual = ({
         horizontal,
         paddingStart,
         paddingEnd,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         limit,
     });

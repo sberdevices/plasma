@@ -179,33 +179,33 @@ export function useVisibleItems<MI = MeasurementItem>(range: Range, measurements
 const NUMBER_OF_METRICS_TO_COLLECT = 4;
 // TODO: inject webTelemetryKV from component
 // const sendMetrics = async (
-    // payload: Array<{
-    //     frameDuration: number;
-    //     frameCounter: number;
-    // }>,
+// payload: Array<{
+//     frameDuration: number;
+//     frameCounter: number;
+// }>,
 // ) => {
-    // const meta = {
-    //     widget: 'useVirtual',
-    //     event: 'scroll',
-    // };
-    // for (const { frameDuration, frameCounter } of payload) {
+// const meta = {
+//     widget: 'useVirtual',
+//     event: 'scroll',
+// };
+// for (const { frameDuration, frameCounter } of payload) {
 
-        // TODO: pass webTelemetryKV instance
-        // webTelemetryKV.push(
-        //     {
-        //         key: 'frameDuration',
-        //         value: frameDuration,
-        //     },
-        //     meta,
-        // );
-        // webTelemetryKV.push(
-        //     {
-        //         key: 'frameCounter',
-        //         value: frameCounter,
-        //     },
-        //     meta,
-        // );
-    // }
+// TODO: pass webTelemetryKV instance
+// webTelemetryKV.push(
+//     {
+//         key: 'frameDuration',
+//         value: frameDuration,
+//     },
+//     meta,
+// );
+// webTelemetryKV.push(
+//     {
+//         key: 'frameCounter',
+//         value: frameCounter,
+//     },
+//     meta,
+// );
+// }
 // };
 
 export const useMetricsMeasureScroll = () => {

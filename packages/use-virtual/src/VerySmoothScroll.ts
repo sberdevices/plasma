@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+
 // import { getConfig } from 'api/AndroidAPI';
 
 import { useEffect, useMemo } from 'react';
@@ -229,6 +230,7 @@ export const useVerySmoothScroll = (ref?: React.MutableRefObject<HTMLDivElement 
         }
     });
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     return scroll;
 };
