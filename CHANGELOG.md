@@ -1,3 +1,16 @@
+# (Wed Dec 08 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-b2c@1.27.1`
+  - fix(palsma-b2c): preview gallery data contracts [#967](https://github.com/sberdevices/plasma/pull/967) ([@takovoy](https://github.com/takovoy))
+
+#### Authors: 1
+
+- Aleksandr Sustavov ([@takovoy](https://github.com/takovoy))
+
+---
+
 # (Tue Dec 07 2021)
 
 #### 🚀 Enhancement
