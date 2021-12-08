@@ -32,31 +32,41 @@ jobs:
             npm-deps-${{ hashFiles('package-lock.json') }}
 
       - name: Selective
+        id: selective
+        continue-on-error: true
         run: |
+          echo ::set-output name=cancel_build::false
           list=$(npx lerna changed -p)
           if [ $? -eq 1 ]; then
               echo "Publish storybook only for plasma-temple"
-              exit 0;
+              echo ::set-output name=cancel_build::true
+          else
+              echo $list
           fi
-          echo $list
+
           if [[ ! $list =~ "plasma-temple" ]]; then
               echo "Other packages changed; Publish storybook only for plasma-temple"
-              exit 0;
+              echo ::set-output name=cancel_build::true
+          else
+              echo "Building storybook for plasma-temple"
           fi
-          echo "Building storybook for plasma-temple"
+
 
       - name: Setup plasma-temlpe
+        if: steps.selective.outcome == 'success' && steps.selective.outputs.cancel_build == 'false'
         run: |
           npm i
           npx lerna bootstrap --scope="@sberdevices/plasma-temple"
 
       - name: Build storybook
+        if: steps.selective.outcome == 'success' && steps.selective.outputs.cancel_build == 'false'
         run: |
           npm run build-storybook --prefix="./packages/plasma-temple"
           mkdir ../build
           cp -R ./packages/plasma-temple/build-sb ../build/temple-${PR_NAME}
 
       - name: Clean old storybook build
+        if: steps.selective.outcome == 'success' && steps.selective.outputs.cancel_build == 'false'
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SB_HOST }}
@@ -68,6 +78,7 @@ jobs:
             rm -rf temple-$PR_NAME/
 
       - name: Upload storybook build
+        if: steps.selective.outcome == 'success' && steps.selective.outputs.cancel_build == 'false'
         uses: garygrossgarten/github-action-scp@release
         with:
           host: ${{ secrets.SB_HOST }}
@@ -77,6 +88,7 @@ jobs:
           remote: "/var/www/plasma"
 
       - name: Post success comment
+        if: steps.selective.outcome == 'success' && steps.selective.outputs.cancel_build == 'false'
         uses: actions/github-script@v3
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
