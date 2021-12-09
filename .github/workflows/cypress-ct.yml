@@ -36,6 +36,11 @@ jobs:
       run: | 
         npm run cy:b2c:run-ct 
     
+    - name: Run Cypress CT for Plasma temple
+      if: ${{ always() }}
+      run: | 
+        npm run cy:temple:run-ct 
+    
     - name: Save artifacts
       if: ${{ always() }}
       uses: actions/upload-artifact@v2

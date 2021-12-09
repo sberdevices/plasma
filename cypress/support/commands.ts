@@ -1,3 +1,4 @@
+import { dirxml, time } from 'console';
 import { addMatchImageSnapshotCommand } from 'cypress-image-snapshot/command';
 
 addMatchImageSnapshotCommand({
@@ -74,4 +75,31 @@ Cypress.Commands.add('waitForResources', (...args) => {
             });
         },
     );
+});
+
+export enum navigate {
+    LEFT = '{leftarrow}',
+    UP = '{uparrow}',
+    RIGHT = '{rightarrow}',
+    DOWN = '{downarrow}',
+    ENTER = '{enter}',
+}
+
+type SendNavigatioActionParams = Partial<Cypress.TypeOptions> & {
+    times?: number;
+};
+
+Cypress.Commands.add('sendNavigateAction', (dir: navigate, opts: SendNavigatioActionParams = {}) => {
+    const times = opts?.times ?? 1;
+    const sequence = Array.isArray(dir) ? dir : Array(times).fill(dir);
+
+    const options = {
+        delay: 350, // анимация перемещения фокуса
+        waitForAnimation: true,
+        ...opts,
+    };
+
+    return sequence.reduce<Cypress.Chainable>((acc, key) => {
+        return acc.type(key, options);
+    }, cy.get('body'));
 });
