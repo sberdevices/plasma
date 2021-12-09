@@ -7,13 +7,14 @@
     <title>Document</title>
 </head>
 <body>
-    <div style="width: 100%;">
+    <div class="ad" style="display: none; height: 200px; background: lightblue">Реклама</div>
+    <div style="width: 35%;">
         <div>
-            <img src="img/dress.jpg" alt="gucci" style="width: 100%">
+            <img src="img/dress.jpg" alt="gucci" style="width: 100%; margin-left: 100px;">
         </div>
         <div class="container"></div>
     </div>
-    <div style="width: 100%;">
+    <div style="width: 35%;">
         <div>
             <img src="img/0357234520_1.jpeg" alt="gucci" style="width: 100%">
         </div>
@@ -21,16 +22,24 @@
     </div>
 </body>
 
-<script src="../umd/layer-inpicture-sdk.production.min.js"></script>
 <script>
-    const imgs = document.querySelectorAll('img');
-    const containers = document.querySelectorAll('.container');
+    setTimeout(() => {
+        const imgs = document.querySelectorAll('img');
+        const containers = document.querySelectorAll('.container');
 
-    imgs.forEach((img, index) => {
-        layer.initInPicture({
-            image: img,
-            container: containers[index]
-        });
-    })
+        imgs.forEach((img, index) => {
+            layer.initInPicture({
+                image: img,
+                // container: containers[index],
+                zIndex: 10
+            });
+        })
+
+        // imitation advertising
+        setTimeout(() => {
+            document.querySelector('.ad').style.display = 'block';
+        }, 2000)
+
+    }, 500)
 </script>
 </html>

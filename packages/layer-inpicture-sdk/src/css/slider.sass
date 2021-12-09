@@ -12,9 +12,10 @@
 
     &-swiper-wrapper
         align-items: flex-end !important
+        padding-left: 16px
         @media (min-width: 768px)
             &:hover
-                cursor: grab !important
+                cursor: pointer !important
 
     &-slider-wrap
         position: absolute
@@ -24,6 +25,7 @@
 
     &-swiper-container
         position: absolute
+        width: 100%
         transition: all 0.5s !important
         bottom: 16px
         opacity: 1
@@ -33,10 +35,8 @@
         color: #000
         pointer-events: initial
 
-
     &-swiper-container *
         box-sizing: border-box
-
 
     &-slider-top-content
         margin-bottom: 10px
@@ -71,6 +71,8 @@
             background-color: #eeeeeecf
             padding: 10px 14px
             text-align: left
+            @media (max-width: 767.99px)
+                padding: 8px 0
 
         &_stub
             position: initial
@@ -79,7 +81,7 @@
 
         @media (max-width: 767.99px)
             display: block
-            padding: 8px
+            padding: 0
 
 
     &-swiper-slide:hover &-swiper-slide-bottom
@@ -130,6 +132,10 @@
                 background: rgba(8, 8, 8, 0.56)
                 color: #FFFFFF
                 border-radius: 6px
+
+    &-swiper-button
+        &.swiper-button-disabled
+            pointer-events: auto
 
     &-swiper-button-prev, &-swiper-button-next
         cursor: pointer

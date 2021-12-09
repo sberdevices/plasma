@@ -9,6 +9,8 @@ import stub from '../assets/stub.svg';
 import logoBlack from '../assets/logo-black.svg';
 import { Config, Product } from '../types';
 
+import { counter } from './counter';
+
 Swiper.use([Navigation]);
 
 const BASE_URL = 'https://mcrai.sberdevices.ru/v2/frame-mp';
@@ -27,6 +29,8 @@ const getSliderInstance = () => {
         },
     });
 };
+
+const images: { id: number, element: HTMLImageElement }[] = [];
 
 const init = (config: Config, id: number) => {
     let isSliderOpen = true;
@@ -55,22 +59,24 @@ const init = (config: Config, id: number) => {
         isSliderOpen = !isSliderOpen;
     };
 
-    const createWrap = (img: HTMLImageElement) => {
-        const imgPos = img.getBoundingClientRect();
+    const createWrapStyles = () => {
+        const { image, zIndex } = config;
 
         let styles = `
-            top:${imgPos.top + window.scrollY}px;
-            left:${imgPos.left + window.scrollX}px;
-            width: ${img.width}px;
-            height: ${img.height}px;
+            top:${image.y + window.scrollY}px;
+            left:${image.x + window.scrollX}px;
+            width: ${image.width}px;
+            height: ${image.height}px;
         `.replace(/\s/g, '');
 
-        if (config.zIndex != null) {
-            styles += `z-index: ${config.zIndex}`;
+        if (zIndex != null) {
+            styles += `z-index: ${zIndex}`;
         }
 
-        return `<div id="slider-wrap-${id}" class="layer-slider-wrap" style="${styles}"></div>`;
+        return styles;
     };
+
+    const createWrap = () => `<div id="slider-wrap-${id}" class="layer-slider-wrap" style="${createWrapStyles()}"></div>`;
 
     const loadProducts = async (img: HTMLImageElement) => {
         const formData = new FormData();
@@ -173,6 +179,7 @@ const init = (config: Config, id: number) => {
             container.insertAdjacentHTML('afterbegin', createCustomContainer());
         } else {
             const sliderWrap = document.querySelector(`#slider-wrap-${id}`);
+
             sliderWrap.insertAdjacentHTML('afterbegin', createOnImgContainer());
             const hideShowButton: HTMLElement = document.querySelector(`#find-products-btn-${id}`);
 
@@ -199,8 +206,7 @@ const init = (config: Config, id: number) => {
             };
         });
 
-        const swiperContainer = document.querySelector<HTMLElement>(`#swiper-container-${id}`);
-        swiperContainer.style.width = `${image.width}px`;
+        images.push({ id, element: image });
 
         getSliderInstance();
     };
@@ -208,7 +214,8 @@ const init = (config: Config, id: number) => {
     const renderImageWrap = async () => {
         const { image, container } = config;
 
-        document.body.insertAdjacentHTML('beforeend', createWrap(image));
+        document.body.insertAdjacentHTML('beforeend', createWrap());
+
         container?.classList.add('layer-custom-wrap');
 
         createSkeleton();
@@ -225,12 +232,46 @@ const init = (config: Config, id: number) => {
     return renderImageWrap();
 };
 
-let id = 0;
+const createBodyObserver = () => {
+    const observer = new ResizeObserver((entries) => {
+        const body = entries.at(0).target;
+
+        images.forEach((image) => {
+            const sliderWrap: HTMLDivElement = document.querySelector(`#slider-wrap-${image.id}`);
+
+            if (sliderWrap && body.contains(image.element)) {
+                sliderWrap.style.top = `${image.element.y + window.scrollY}px`;
+                sliderWrap.style.left = `${image.element.x + window.scrollX}px`;
+                sliderWrap.style.width = `${image.element.width}px`;
+                sliderWrap.style.height = `${image.element.height}px`;
+            }
+        });
+    });
+
+    observer.observe(document.body);
+};
+
+createBodyObserver();
+
 export const initInPicture = async (config: Config): Promise<void> => {
     try {
-        await init(config, id++);
-        return Promise.resolve();
-    } catch (e) {
-        return Promise.reject(e);
+        if (config.image) {
+            const counterInstance = counter();
+            const id = counterInstance.getCount();
+
+            await init(config, id);
+
+            return Promise.resolve();
+        }
+
+        throw new Error('Изображение не передано');
+    } catch (error) {
+        if (config.container) {
+            config.container.textContent = '';
+        }
+
+        console.error('layer-inpicture-sdk', error);
+
+        return Promise.reject(error);
     }
 };
