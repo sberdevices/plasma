@@ -1,3 +1,16 @@
+# v1.27.2 (Thu Dec 09 2021)
+
+#### 🐛 Bug Fix
+
+- test(plasma-web,plasma-ui): Add test and update snapshots for `Typography` components [#962](https://github.com/sberdevices/plasma/pull/962) ([@neretin-trike](https://github.com/neretin-trike))
+- feat(plasma-b2c,plasma-core): Add breakWord props for `Typography` components [#962](https://github.com/sberdevices/plasma/pull/962) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.27.1 (Wed Dec 08 2021)
 
 #### 🐛 Bug Fix

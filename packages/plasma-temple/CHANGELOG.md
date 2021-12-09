@@ -1,3 +1,15 @@
+# v1.10.1 (Thu Dec 09 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): Fix time chop in VideoPlayer [#966](https://github.com/sberdevices/plasma/pull/966) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.9.0 (Mon Dec 06 2021)
 
 #### 🚀 Enhancement
