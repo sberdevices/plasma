@@ -67,6 +67,23 @@ module.exports = function getWebpackConfig() {
                         },
                     },
                 },
+                // В @sberdevices/plasma-temple есть графические ассеты
+                // лоадеры для них
+                {
+                    test: /\.svg$/,
+                    use: 'file-loader',
+                },
+                {
+                    test: /\.png$/,
+                    use: [
+                        {
+                            loader: 'url-loader',
+                            options: {
+                                mimetype: 'image/png',
+                            },
+                        },
+                    ],
+                },
             ],
         },
     };

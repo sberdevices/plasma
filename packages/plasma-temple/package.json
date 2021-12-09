@@ -32,6 +32,7 @@
         "@sberdevices/plasma-icons": "1.63.0",
         "@sberdevices/plasma-tokens": "1.15.0",
         "@sberdevices/plasma-ui": "1.76.0",
+        "@sberdevices/plasma-cy-utils": "0.3.3",
         "@storybook/preset-create-react-app": "^3.2.0",
         "@storybook/react": "^6.3.8",
         "@testing-library/react-hooks": "5.1.0",
@@ -74,9 +75,7 @@
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
         "test": "jest"
     },
-    "files": [
-        "dist"
-    ],
+    "files": ["dist"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Виноградов Антон Александрович",

@@ -17,6 +17,17 @@ module.exports = (on, config) => {
         });
     }
 
+    if (config.env.package === 'plasma-temple') {
+        on('before:browser:launch', (browser: Cypress.Browser, launchOptions: Cypress.BrowserLaunchOptions) => {
+            if (browser.name === 'chrome' || browser.name === 'chromium') {
+                launchOptions.args.push('--window-size=2000,1080');
+                launchOptions.args.push('--disable-dev-shm-usage');
+            }
+
+            return launchOptions;
+        });
+    }
+
     // это нужно для вывода отчета axe
     on('task', {
         log(message) {

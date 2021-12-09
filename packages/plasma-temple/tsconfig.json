@@ -34,5 +34,5 @@
         "preserveSymlinks": true
     },
     "include": ["./src"],
-    "exclude": ["**/*.stories.tsx"]
+    "exclude": ["**/*.stories.tsx", "**/*.test.tsx", "./src/**/*.component-test.tsx"]
 }
