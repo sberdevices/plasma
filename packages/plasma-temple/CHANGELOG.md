@@ -1,3 +1,20 @@
+# v1.11.0 (Thu Dec 09 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): add multiline product description [#963](https://github.com/sberdevices/plasma/pull/963) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
 # v1.10.1 (Thu Dec 09 2021)
 
 #### 🐛 Bug Fix

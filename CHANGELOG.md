@@ -1,5 +1,18 @@
 # (Thu Dec 09 2021)
 
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@1.11.0`
+  - feat(plasma-temple): add multiline product description [#963](https://github.com/sberdevices/plasma/pull/963) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
+# (Thu Dec 09 2021)
+
 #### 🐛 Bug Fix
 
 - `@sberdevices/plasma-temple@1.10.1`
