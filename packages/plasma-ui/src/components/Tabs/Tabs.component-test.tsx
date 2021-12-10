@@ -69,16 +69,32 @@ describe('plasma-ui: Tabs', () => {
         cy.matchImageSnapshot();
     });
 
-    it('_stretch', () => {
+    it('_shifts', () => {
+        const Helper = () => <div style={{ width: '50px', height: '50px', background: 'red' }} />;
+
         mount(
             <CypressTestDecorator>
-                <Tabs stretch forwardedAs="ul">
-                    {items.map((item, i) => (
-                        <TabItem key={i} isActive={i === 1} forwardedAs="li">
-                            {item.label}
-                        </TabItem>
-                    ))}
-                </Tabs>
+                <div style={{ display: 'flex' }}>
+                    <Helper />
+                    <Tabs shiftLeft forwardedAs="ul">
+                        {items.map((item, i) => (
+                            <TabItem key={i} isActive={i === 1} forwardedAs="li">
+                                {item.label}
+                            </TabItem>
+                        ))}
+                    </Tabs>
+                </div>
+
+                <div style={{ display: 'flex' }}>
+                    <Tabs shiftRight forwardedAs="ul">
+                        {items.map((item, i) => (
+                            <TabItem key={i} isActive={i === 1} forwardedAs="li">
+                                {item.label}
+                            </TabItem>
+                        ))}
+                    </Tabs>
+                    <Helper />
+                </div>
             </CypressTestDecorator>,
         );
 

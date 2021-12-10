@@ -101,4 +101,40 @@ describe('plasma-core: Tabs', () => {
         cy.root().get('[role="tablist"]').trigger('keydown', { keyCode: 36 });
         cy.get('div > button:nth-child(1)').should('have.attr', 'tabindex', '0');
     });
+
+    it('scrollable', () => {
+        const Container = ({ children }) => {
+            return <div style={{ width: '75px' }}>{children}</div>;
+        };
+
+        mount(
+            <CypressTestDecorator>
+                <Container>
+                    <Tabs>
+                        <TabItem>Joy</TabItem>
+                        <TabItem isActive>Sber</TabItem>
+                        <TabItem>Eva</TabItem>
+                    </Tabs>
+                </Container>
+            </CypressTestDecorator>,
+        );
+
+        cy.get('[role="tablist"]').parent().scrollTo(500, 0);
+
+        cy.matchImageSnapshot();
+    });
+
+    it('_stretch', () => {
+        mount(
+            <CypressTestDecorator>
+                <Tabs stretch>
+                    <TabItem>Joy</TabItem>
+                    <TabItem isActive>Sber</TabItem>
+                    <TabItem>Eva</TabItem>
+                </Tabs>
+            </CypressTestDecorator>,
+        );
+
+        cy.matchImageSnapshot();
+    });
 });
