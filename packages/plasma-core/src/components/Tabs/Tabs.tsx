@@ -16,24 +16,45 @@ export interface TabsProps extends AsProps, DisabledProps, React.HTMLAttributes<
     stretch?: boolean;
 }
 
-const StyledTabs = styled.div<TabsProps>`
-    ${applyDisabled}
-
+export const StyledTabs = styled.div<TabsProps>`
     position: relative;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     box-sizing: border-box;
     flex-wrap: nowrap;
     justify-content: stretch;
 
-    margin: 0;
     padding: 0;
+    margin: 0;
     width: max-content;
 
     list-style-type: none;
     user-select: none;
 
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+    ${({ stretch = false }) =>
+        !stretch &&
+        css`
+            margin: 0 var(--tabs-margin);
+        `}
+`;
+
+export const StyledWrapper = styled.div<TabsProps>`
+    overflow-x: auto;
+
+    margin-left: calc(var(--tab-focus-border-size) * -1);
+    margin-top: calc(var(--tab-focus-border-size) * -2);
+    padding: var(--tab-focus-border-size);
+    transform: translateY(var(--tab-focus-border-size));
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    ${StyledTabs} {
+        ${applyDisabled}
+    }
 
     /**
      * Стили айтемов, зависимые от модификаторов контейнера, определяем тут.
@@ -43,18 +64,29 @@ const StyledTabs = styled.div<TabsProps>`
         css`
             width: 100%;
 
+            ${StyledTabs} {
+                width: 100%;
+            }
+
             /**
              * Айтемы помещаются максимум по 4 штуки в контейнер,
              * а при минимальном количестве занимают максимум половину ширины.
              */
-            & > * {
+            ${StyledTabItem} {
                 min-width: 25%;
                 max-width: 50%;
                 width: 100%;
             }
         `}
 
-    & > ${StyledTabItem} {
+    ${({ stretch = false }) =>
+        !stretch &&
+        css`
+            margin-left: calc(var(--tabs-margin) * -1 + var(--tab-focus-border-size) * -1);
+            margin-right: calc(var(--tabs-margin) * -1);
+        `}
+
+    ${StyledTabItem} {
         ${({ disabled }) =>
             disabled &&
             css`
@@ -66,6 +98,12 @@ const StyledTabs = styled.div<TabsProps>`
 /**
  * Контейнер вкладок.
  */
-export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(({ role = 'tablist', ...rest }, ref) => (
-    <StyledTabs ref={ref} role={role} {...rest} />
-));
+export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
+    ({ role = 'tablist', as, children, stretch, ...rest }, ref) => (
+        <StyledWrapper stretch={stretch} {...rest}>
+            <StyledTabs as={as} ref={ref} role={role} stretch={stretch}>
+                {children}
+            </StyledTabs>
+        </StyledWrapper>
+    ),
+);
