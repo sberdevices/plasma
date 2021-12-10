@@ -3,9 +3,9 @@ import throttle from 'lodash.throttle';
 
 import { useDebouncedFunction } from '../../hooks';
 
-import type { BaseProps, DetectionProps } from './Carousel';
 import { CarouselContext } from './CarouselContext';
 import { CarouselItemRefs } from './CarouselItemRefs';
+import type { BasicProps, DetectionProps } from './types';
 import { scrollToPos, getCalculatedPos, getCalculatedOffset, getItemSlot } from './utils';
 
 export const useCarouselContext = () => useContext(CarouselContext);
@@ -41,7 +41,7 @@ export const useCarousel = ({
     animatedScrollByIndex = false,
     throttleMs = THROTTLE_DEFAULT_MS,
     debounceMs = DEBOUNCE_DEFAULT_MS,
-}: BaseProps & Omit<Partial<DetectionProps>, 'detectActive'> & { detectActive?: boolean }) => {
+}: BasicProps & Omit<Partial<DetectionProps>, 'detectActive'> & { detectActive?: boolean }) => {
     const prevIndex = useRef<number | null>(null);
     const direction = useRef<boolean | null>(null);
     const offset = useRef(0);
