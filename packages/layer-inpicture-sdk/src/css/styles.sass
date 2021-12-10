@@ -2,26 +2,29 @@
 
 $i : 0
 @while $i <= 30
-    .mb-#{$i}
+    .layer-mb-#{$i}
         margin-bottom: #{$i}px
     $i : $i + 2
 
 $i : 0
 @while $i <= 100
-    .w-#{$i}
+    .layer-w-#{$i}
         width: #{$i}#{'%'}
     $i : $i + 10
 
-.unselectable
-    -webkit-touch-callout: none /* iOS Safari */
-    -webkit-user-select: none   /* Chrome/Safari/Opera */
-    -khtml-user-select: none    /* Konqueror */
-    -moz-user-select: none      /* Firefox */
-    -ms-user-select: none       /* Internet Explorer/Edge */
-    user-select: none           /* Non-prefixed version, currently */
-                                /* not supported by any browser */
-
 .layer
+    &-hidden
+        overflow: hidden
+
+    &-unselectable
+        -webkit-touch-callout: none /* iOS Safari */
+        -webkit-user-select: none   /* Chrome/Safari/Opera */
+        -khtml-user-select: none    /* Konqueror */
+        -moz-user-select: none      /* Firefox */
+        -ms-user-select: none       /* Internet Explorer/Edge */
+        user-select: none           /* Non-prefixed version, currently */
+        /* not supported by any browser */
+
     &-logo-text
         font-weight: 700
 

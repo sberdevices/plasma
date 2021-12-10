@@ -1,7 +1,11 @@
+export type Template = 'primary' | 'secondary';
+export type Image = HTMLImageElement;
+
 export type Config = {
-    image: HTMLImageElement,
-    container?: HTMLDivElement,
-    zIndex?: number
+    image: Image;
+    container: HTMLDivElement;
+    template?: Template;
+    withSkeleton?: boolean;
 }
 
 export type Product = {

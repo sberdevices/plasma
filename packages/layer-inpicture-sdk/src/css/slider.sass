@@ -9,7 +9,6 @@
 
 
 .layer
-
     &-swiper-wrapper
         align-items: flex-end !important
         padding-left: 16px
@@ -23,19 +22,22 @@
         overflow: hidden
         pointer-events: none
 
-    &-swiper-container
-        position: absolute
+    &-main-container
         width: 100%
         transition: all 0.5s !important
-        bottom: 16px
         opacity: 1
         z-index: 1
         font-size: 14px
         font-family: SB Sans Text, sans-serif
         color: #000
         pointer-events: initial
+        overflow: hidden
+        position: relative
+        bottom: 0
+        &_open
 
-    &-swiper-container *
+
+    &-main-container *
         box-sizing: border-box
 
     &-slider-top-content
@@ -157,11 +159,10 @@
         content: '' !important
 
 
-    &-custom-wrap
+    &-secondary-wrap
         overflow: hidden
-        margin-top: 28px
 
-        .layer-swiper-container
+        .layer-main-container
             position: relative
             bottom: 0
 
@@ -173,7 +174,7 @@
         .layer-swiper-button
             bottom: 102px
 
-        .custom-top-content
+        .layer-secondary-top-content
             display: flex
             align-items: center
             margin-bottom: 28px

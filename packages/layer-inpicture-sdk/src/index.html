@@ -30,15 +30,11 @@
         imgs.forEach((img, index) => {
             layer.initInPicture({
                 image: img,
-                // container: containers[index],
-                zIndex: 10
+                container: containers[index],
+                template: index === 0 ? 'primary' : 'secondary',
+                withSkeleton: true
             });
         })
-
-        // imitation advertising
-        setTimeout(() => {
-            document.querySelector('.ad').style.display = 'block';
-        }, 2000)
 
     }, 500)
 </script>

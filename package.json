@@ -64,6 +64,7 @@
     },
     "dependencies": {
         "node-fetch": "2.6.1",
+        "preact": "10.6.3",
         "xml2js": "0.4.23"
     }
 }
