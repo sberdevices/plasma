@@ -3,19 +3,14 @@ import styled from 'styled-components';
 import {
     useCarousel,
     CarouselContext,
-    CarouselGridWrapper as BaseWrapper,
     Carousel as BaseCarousel,
     CarouselTrack as BaseTrack,
-    CarouselProps as BaseProps,
+    CarouselProps,
     applyNoSelect,
 } from '@sberdevices/plasma-core';
-import type { AsProps } from '@sberdevices/plasma-core';
 
 import { useForkRef } from '../../hooks';
 
-export type CarouselProps = BaseProps & AsProps & React.HTMLAttributes<HTMLDivElement> & {};
-
-export const CarouselGridWrapper = styled(BaseWrapper)``;
 const StyledCarousel = styled(BaseCarousel)``;
 const StyledCarouselTrack = styled(BaseTrack)`
     ${applyNoSelect};

@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { applyScrollSnap, ScrollSnapProps } from '@sberdevices/plasma-core';
+import { applyScrollSnap, ScrollSnapProps, CarouselItemProps } from '@sberdevices/plasma-core';
 
 import { Col, ColProps } from '../Grid';
 
 import { useCarouselItem } from './Carousel.hooks';
-import { CarouselItemProps } from './CarouselItem';
 
 const StyledCol = styled(Col)<ScrollSnapProps>`
     ${applyScrollSnap};
@@ -21,7 +20,7 @@ export const CarouselCol: React.FC<CarouselColProps> = ({ children, ...rest }) =
     const itemRef = useCarouselItem<HTMLDivElement>();
 
     return (
-        <StyledCol ref={itemRef} type="calc" {...rest}>
+        <StyledCol ref={itemRef} type="calc" role="group" aria-roledescription="slide" {...rest}>
             {children}
         </StyledCol>
     );

@@ -1,84 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import type { SnapType } from '../../types';
-
-import type { ScrollAxis, ScrollAlign } from './types';
-
-export interface BaseProps {
-    /**
-     * Индекс текущего элемента
-     */
-    index: number;
-    /**
-     * Ось прокрутки
-     */
-    axis: ScrollAxis;
-    /**
-     * Тип CSS Scroll Snap
-     */
-    scrollSnapType?: SnapType;
-    /**
-     * Центрирование активного элемента при скролле
-     */
-    scrollAlign?: ScrollAlign;
-    /**
-     * Отступ в начале, используется при центрировании крайних элементов
-     */
-    paddingStart?: string;
-    /**
-     * Отступ в конце, используется при центрировании крайних элементов
-     */
-    paddingEnd?: string;
-    /**
-     * Анимированная прокрутка с помощью requestAnimationFrame
-     */
-    animatedScrollByIndex?: boolean;
-    /**
-     * Throttling внутренних обработчиков события onScroll
-     */
-    throttleMs?: number;
-    /**
-     * Debounce внутренних обработчиков события onScroll
-     */
-    debounceMs?: number;
-    /**
-     * Обработчик события скролла
-     */
-    onScroll?: Function;
-}
-export interface DetectionProps {
-    /**
-     * Вычислять активный элемент
-     */
-    detectActive: true;
-    /**
-     * Пороговое значение определения центрального элемента (0-1)
-     */
-    detectThreshold: number;
-    /**
-     * Коллбек изменения индекса
-     */
-    onIndexChange?: (index: number) => void;
-    /**
-     * Обработчик стилизации элемента во вьюпорте
-     */
-    scaleCallback?: (itemEl: HTMLElement, slot: number) => void;
-    /**
-     * Обработчик для сброса стилей элементов, находящихся вне вьюпорта
-     */
-    scaleResetCallback?: (itemEl: HTMLElement) => void;
-}
-export type CarouselProps = BaseProps &
-    (
-        | DetectionProps
-        | {
-              detectActive?: false;
-              detectThreshold?: never;
-              onIndexChange?: never;
-              scaleCallback?: never;
-              scaleResetCallback?: never;
-          }
-    );
+import type { CarouselProps } from './types';
 
 /**
  * Компонент применяется, если требуется компенсировать отступы контейнера в сетке.
@@ -91,6 +13,9 @@ export const CarouselGridWrapper = styled.div`
     margin-right: calc(var(--plasma-grid-margin) * -1);
 `;
 
+/**
+ * Корневой элемент - ограничивающая обертка карусели.
+ */
 export const Carousel = styled.div<Pick<CarouselProps, 'axis' | 'scrollSnapType'>>`
     position: relative;
 
@@ -126,6 +51,9 @@ export const Carousel = styled.div<Pick<CarouselProps, 'axis' | 'scrollSnapType'
     }
 `;
 
+/**
+ * Списковый (трековый) элемент карусели для непосредственного вложения айтемов в него.
+ */
 export const CarouselTrack = styled.div<Pick<CarouselProps, 'axis' | 'paddingStart' | 'paddingEnd'>>`
     ${({ axis, paddingStart, paddingEnd }) =>
         axis === 'x'

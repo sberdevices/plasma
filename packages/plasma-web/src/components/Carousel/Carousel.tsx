@@ -7,11 +7,9 @@ import {
     Carousel as BaseCarousel,
     CarouselTrack as BaseTrack,
 } from '@sberdevices/plasma-core';
-import type { CarouselProps as BaseProps, AsProps } from '@sberdevices/plasma-core';
+import type { CarouselProps as BaseProps } from '@sberdevices/plasma-core';
 
-export type CarouselProps = Omit<BaseProps, 'axis' | 'animatedScrollByIndex' | 'throttleMs' | 'debounceMs'> &
-    AsProps &
-    React.HTMLAttributes<HTMLDivElement> & {};
+export type CarouselProps = Omit<BaseProps, 'axis' | 'animatedScrollByIndex' | 'throttleMs' | 'debounceMs'>;
 
 export const CarouselGridWrapper = styled(BaseWrapper)``;
 const StyledCarousel = styled(BaseCarousel)``;
