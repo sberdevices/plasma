@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { mount as cyMount } from '@cypress/react';
 // plasma-web
@@ -68,7 +68,7 @@ export const getComponent = (componentName: string) => {
     throw new Error(`Library ${pkgName} is not required in plasma-core/CypressHelpers:getComponent`);
 };
 
-export const CypressTestDecorator: FC = ({ children }) => {
+export const CypressTestDecorator: React.FC = ({ children }) => {
     // eslint-disable-next-line
     // @ts-ignore
     const pkgName = Cypress.env('package');
@@ -115,6 +115,15 @@ export const PadMe = styled.div`
 export const SpaceMe = styled.span`
     padding: 5px;
 `;
+
+export const withNoAnimation = <P extends {}>(Comp: React.FC<P>) =>
+    styled(Comp)`
+        animation: none !important;
+        /* stylelint-disable-next-line selector-max-universal */
+        & * {
+            animation: none !important;
+        }
+    ` as React.FC<P>;
 
 export const mount: typeof cyMount = (...args) => {
     const [jsx, opts = {}] = args;
