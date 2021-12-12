@@ -47,7 +47,7 @@ interface MarqueeProps {
 /**
  * Компонент для отображения бегущей строки
  */
-export const Marquee: FC<MarqueeProps> = ({ textAlign, children }) => {
+export const Marquee: FC<MarqueeProps> = ({ textAlign, children, ...rest }) => {
     const animationSpeed = 70;
     const textRef = useRef<HTMLDivElement>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
@@ -75,7 +75,7 @@ export const Marquee: FC<MarqueeProps> = ({ textAlign, children }) => {
     );
 
     return (
-        <Wrapper ref={wrapperRef} textAlign={!state.isPlaying ? textAlign : undefined}>
+        <Wrapper ref={wrapperRef} textAlign={!state.isPlaying ? textAlign : undefined} {...rest}>
             {state.isPlaying ? (
                 <>
                     {marqueeText}
