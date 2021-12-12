@@ -98,4 +98,67 @@ describe('plasma-core: Button', () => {
         );
         cy.matchImageSnapshot();
     });
+
+    it('_shift', () => {
+        mount(
+            <CypressTestDecorator>
+                <SpaceMe />
+                <SpaceMe />
+                <SpaceMe />
+                <Button text="normal" contentLeft={<Icon />} />
+                <PadMe />
+                <SpaceMe />
+                <SpaceMe />
+                <SpaceMe />
+                <Button text="_shift_left" shiftLeft contentLeft={<Icon />} />
+                <PadMe />
+                <SpaceMe />
+                <SpaceMe />
+                <SpaceMe />
+                <Button text="_shift_right" shiftRight contentLeft={<Icon />} />
+                <PadMe />
+                <SpaceMe />
+                <SpaceMe />
+                <SpaceMe />
+                <Button text="_shift_right & _shift_left" shiftLeft shiftRight contentLeft={<Icon />} />
+            </CypressTestDecorator>,
+        );
+        cy.matchImageSnapshot();
+    });
+
+    it('_pin', () => {
+        mount(
+            <CypressTestDecorator>
+                <Button pin="square-square" text="pin me" contentLeft={<Icon />} />
+                <PadMe />
+                <Button pin="square-clear" text="pin me" contentLeft={<Icon />} />
+                <PadMe />
+                <Button pin="clear-square" text="pin me" contentLeft={<Icon />} />
+                <PadMe />
+                <Button pin="clear-clear" text="pin me" contentLeft={<Icon />} />
+                <PadMe />
+                <Button pin="clear-circle" text="pin me" contentLeft={<Icon />} />
+                <PadMe />
+                <Button pin="circle-clear" text="pin me" contentLeft={<Icon />} />
+                <PadMe />
+                <Button pin="circle-circle" text="pin me" contentLeft={<Icon />} />
+            </CypressTestDecorator>,
+        );
+
+        cy.matchImageSnapshot();
+    });
+
+    it('withAutoFocus', () => {
+        const withAutoFocus = getComponent('withAutoFocus');
+        const Focused = withAutoFocus(Button);
+
+        mount(
+            <CypressTestDecorator>
+                <PadMe />
+                <SpaceMe />
+                <Focused autoFocus text="Hello Plasma" />
+            </CypressTestDecorator>,
+        );
+        cy.matchImageSnapshot();
+    });
 });
