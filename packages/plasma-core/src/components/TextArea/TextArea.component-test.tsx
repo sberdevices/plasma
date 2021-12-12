@@ -60,6 +60,36 @@ describe('plasma-core: TextArea', () => {
         cy.matchImageSnapshot();
     });
 
+    it('resize', () => {
+        mount(
+            <CypressTestDecorator>
+                <TextArea
+                    resize="horizontal"
+                    value="horizontal"
+                    placeholder="Placeholder"
+                    helperText="Helper text"
+                    contentRight={<IconEye color="inherit" size="s" />}
+                />
+                <TextArea
+                    resize="vertical"
+                    value="vertical"
+                    placeholder="Placeholder"
+                    helperText="Helper text"
+                    contentRight={<IconEye color="inherit" size="s" />}
+                />
+                <TextArea
+                    resize="both"
+                    value="both"
+                    placeholder="Placeholder"
+                    helperText="Helper text"
+                    contentRight={<IconEye color="inherit" size="s" />}
+                />
+            </CypressTestDecorator>,
+        );
+
+        cy.matchImageSnapshot();
+    });
+
     it('contentRight', () => {
         mount(
             <CypressTestDecorator>
