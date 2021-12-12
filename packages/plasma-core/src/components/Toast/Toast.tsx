@@ -40,7 +40,7 @@ export const Toast: React.FC<ToastProps> = ({ role = 'status', text, contentLeft
     } else if (role === 'status') {
         ariaAtomic = true;
     }
-    console.log(contentLeft, text);
+
     return (
         <StyledRoot role={role} aria-live={ariaLive} aria-atomic={ariaAtomic}>
             {contentLeft && <StyledContent>{contentLeft}</StyledContent>}
