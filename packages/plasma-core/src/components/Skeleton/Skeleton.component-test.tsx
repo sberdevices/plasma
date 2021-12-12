@@ -70,7 +70,7 @@ describe('plasma-core: Skeleton', () => {
                 <CypressTestDecorator>
                     <Rect width="12rem" height="8rem" />
                     <SpaceMe />
-                    <Rect width="8rem" height="8rem" />
+                    <Rect width={128} height={128} />
                     <SpaceMe />
                     <Rect height="8rem" />
                 </CypressTestDecorator>,
