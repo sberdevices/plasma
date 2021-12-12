@@ -59,6 +59,16 @@ describe('plasma-core: Radiobox', () => {
         cy.matchImageSnapshot();
     });
 
+    it('_focused', () => {
+        mount(
+            <CypressTestDecorator>
+                <Radiobox name="robots" focused label="radiobox checked" description="О чём мечтают роботы?" />
+                <Radiobox name="robots" focused checked label="radiobox" description="О чём мечтают роботы?" />
+            </CypressTestDecorator>,
+        );
+        cy.matchImageSnapshot();
+    });
+
     it('_disabled', () => {
         mount(
             <CypressTestDecorator>
@@ -66,6 +76,26 @@ describe('plasma-core: Radiobox', () => {
                 <Radiobox disabled label="radiobox" description="О чём мечтают роботы?" />
             </CypressTestDecorator>,
         );
+        cy.matchImageSnapshot();
+    });
+});
+
+describe('plasma-core: RadioGroup', () => {
+    const Radiobox = getComponent('Radiobox');
+    const RadioGroup = getComponent('RadioGroup');
+    const H3 = getComponent('Headline3');
+
+    it('simple', () => {
+        mount(
+            <CypressTestDecorator>
+                <RadioGroup aria-labelledby="radiogroup-title-id">
+                    <H3 id="radiogroup-title-id">Заголовок</H3>
+                    <Radiobox name="radio-1" label="Радиокнопка 1" description="Описание 1" defaultChecked />
+                    <Radiobox name="radio-1" label="Радиокнопка 2" description="Описание 2" />
+                </RadioGroup>
+            </CypressTestDecorator>,
+        );
+
         cy.matchImageSnapshot();
     });
 });
