@@ -1,0 +1,1 @@
+../../../../plasma-core/src/components/Spinner/Spinner.component-test.tsx
