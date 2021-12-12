@@ -56,6 +56,17 @@ describe('plasma-core: Checkbox', () => {
         cy.matchImageSnapshot();
     });
 
+    it('_focused', () => {
+        mount(
+            <CypressTestDecorator>
+                <Checkbox focused checked label="checkbox checked" description="О чём мечтают роботы?" />
+                <Checkbox focused label="checkbox" description="О чём мечтают роботы?" />
+                <Checkbox focused indeterminate label="indeterminate checkbox" description="О чём мечтают роботы?" />
+            </CypressTestDecorator>,
+        );
+        cy.matchImageSnapshot();
+    });
+
     it('_indeterminate', () => {
         mount(
             <CypressTestDecorator>
