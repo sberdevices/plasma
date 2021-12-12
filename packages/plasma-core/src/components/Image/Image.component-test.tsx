@@ -1,11 +1,24 @@
-import React from 'react';
-import { mount, CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
+import React, { Fragment } from 'react';
+import styled from 'styled-components';
+import { mount, CypressTestDecorator, getComponent, PadMe } from '@sberdevices/plasma-cy-utils';
 
-const src =
-    'data:image/jpeg;base64,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';
+const src = 'https://plasma.sberdevices.ru/ui-storybook/images/320_320_0.jpg';
 
 describe('plasma-core: Image', () => {
     const Image = getComponent('Image');
+
+    const Why = styled.div`
+        width: 8rem;
+        display: inline-block;
+    `;
+
+    beforeEach(() => {
+        cy.intercept(src, (req) => {
+            req.reply({
+                fixture: 'images/320_320_0.jpg',
+            });
+        });
+    });
 
     it('default', () => {
         mount(
@@ -20,6 +33,57 @@ describe('plasma-core: Image', () => {
         mount(
             <CypressTestDecorator>
                 <Image base="div" src={src} width="320px" height="320px" />
+            </CypressTestDecorator>,
+        );
+        cy.matchImageSnapshot();
+    });
+
+    it('_ratio', () => {
+        const ratios = Object.keys({
+            '1 / 1': '100',
+            '1/1': '100',
+            '3 / 4': '133.3333',
+            '3/4': '133.3333',
+            '4 / 3': '75',
+            '4/3': '75',
+            '9 / 16': '177.7778',
+            '9/16': '177.7778',
+            '16 / 9': '56.25',
+            '16/9': '56.25',
+            '1 / 2': '200',
+            '1/2': '200',
+            '2 / 1': '50',
+            '2/1': '50',
+        });
+
+        mount(
+            <CypressTestDecorator>
+                {ratios.map((ratio) => (
+                    <Fragment key={ratio}>
+                        <Why key="_base_div">
+                            <Image base="div" ratio={ratio} src={src} />
+                        </Why>
+                        <Why key="_base_img">
+                            <Image ratio={ratio} src={src} />
+                        </Why>
+                        <PadMe />
+                    </Fragment>
+                ))}
+            </CypressTestDecorator>,
+        );
+        cy.matchImageSnapshot();
+    });
+
+    it('_customRatio', () => {
+        mount(
+            <CypressTestDecorator>
+                <Why key="_base_div">
+                    <Image base="div" customRatio={75} src={src} />
+                </Why>
+                <Why key="_base_img">
+                    <Image customRatio={75} src={src} />
+                </Why>
+                <PadMe />
             </CypressTestDecorator>,
         );
         cy.matchImageSnapshot();
