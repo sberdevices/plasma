@@ -31,5 +31,8 @@
     "eslint-plugin-vue": ">= 6.2.2",
     "prettier": ">= 2.0.5",
     "typescript": ">= 3.8.3"
+  },
+  "dependencies": {
+    "@sberdevices/eslint-config-base": "0.1.0"
   }
 }
