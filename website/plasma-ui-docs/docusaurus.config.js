@@ -14,8 +14,8 @@ const pckgJson = require('./package.json');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const versionsArchived = require('./versionsArchived.json');
 
-const { ARTIFACT_NAME } = process.env;
-const prefix = ARTIFACT_NAME === 'next' ? '' : `/${ARTIFACT_NAME}`;
+const { PR_NAME } = process.env;
+const prefix = PR_NAME ? `/${PR_NAME}` : '';
 const suffix = 'ui/';
 const baseUrl = `${prefix}/${suffix}`;
 
