@@ -4,8 +4,7 @@ import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { InSpacingDecorator, disableProps } from '@sberdevices/plasma-sb-utils';
 
-import { Tabs, TabItem } from '.';
-import type { TabsProps } from '.';
+import { Tabs, TabsProps, TabItem, TabsController } from '.';
 
 const propsToDisable = ['ref', 'theme', 'as', 'forwardedAs'];
 
@@ -55,4 +54,29 @@ Default.args = {
     view: 'secondary',
     label: 'Label',
     enableContentLeft: true,
+};
+
+export const Arrows: Story<DeafultStoryProps> = ({ itemsNumber, disabled, stretch, label, enableContentLeft }) => {
+    const items = Array(itemsNumber).fill({
+        label,
+        contentLeft: enableContentLeft && <IconClock color="inherit" />,
+    });
+    const [index, setIndex] = useState(0);
+
+    return (
+        <TabsController
+            items={items}
+            index={index}
+            onIndexChange={(i) => setIndex(i)}
+            stretch={stretch}
+            disabled={disabled}
+        />
+    );
+};
+
+Arrows.args = {
+    itemsNumber: 4,
+    disabled: false,
+    stretch: true,
+    label: 'Label',
 };
