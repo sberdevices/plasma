@@ -10,7 +10,7 @@ import { GlobalStyles } from '../GlobalStyles/GlobalStyles';
 import { initialState as initialPlasmaAppState, reducer } from '../../store/reducer';
 import * as Actions from '../../store/actions';
 import { last } from '../../utils/last';
-import { PushScreenParams } from '../Page/types';
+import { PushScreenFn } from '../Page/types';
 import { AnyObject } from '../../types';
 import { isPlasmaAppAction, isPopHistoryAction, isPushHistoryAction } from '../../store/guards';
 import { PlasmaAction, History } from '../../store/types';
@@ -24,7 +24,7 @@ export type OnStartFn<
     PageParamsType extends Partial<Record<keyof PageStateType, unknown>> = Partial<Record<keyof PageStateType, unknown>>
 > = (params: {
     pushHistory: <T extends keyof PageStateType>(name: T, data: PageStateType[T]) => void;
-    pushScreen: <T extends keyof PageStateType>(...args: PushScreenParams<PageStateType, PageParamsType, T>) => void;
+    pushScreen: PushScreenFn<PageStateType, PageParamsType>;
 }) => void;
 
 export interface PlasmaAppProps<Name extends string = string> {

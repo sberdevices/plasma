@@ -8,10 +8,13 @@ export interface AppStateContextValue {
     state: AppState;
     header?: HeaderProps;
     dispatch: React.Dispatch<PlasmaActionData>;
-    pushHistory: (name: string, data: unknown) => void;
-    pushScreen: (name: string, params: unknown) => void;
+    pushHistory: <N extends string, P>(name: N, data: P) => void;
+    pushScreen: {
+        <N extends string, P>(name: N, params: P): void;
+        <N extends string>(name: N, params?: never): void;
+    };
     popScreen: () => void;
-    goToScreen: (name: string) => void;
+    goToScreen: <N extends string>(name: N) => void;
     changeActiveScreenState: (state: History) => void;
 }
 
