@@ -1,0 +1,128 @@
+name: PR Documentation and Storybook
+
+on:
+  workflow_run:
+    workflows:
+      - Release
+    types:
+      - completed
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    env:
+      NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
+      PR_NAME: pr-${{ github.event.number }}
+      ICONS_PUBLIC_URL: /icons
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.workflow_run.head_branch }}
+
+      - name: Prepare repository
+        run: git fetch --unshallow --tags
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: npm-deps-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            npm-deps-${{ hashFiles('package-lock.json') }}
+
+      - name: Setup packages
+        run: |
+          npm i
+          npx lerna bootstrap
+
+      - name: Lint
+        run: npm run lint
+      
+      - name: Prepare directory
+        run: |
+          mkdir ../build
+
+      - name: Plasma Website
+        run: |
+          npm run build --prefix="./website/plasma-website"
+          cp -R ./website/plasma-website/build ../build/${PR_NAME}
+
+      - name: Plasma UI Docs
+        run: |
+          npm run build --prefix="./website/plasma-ui-docs"
+          cp -R ./website/plasma-ui-docs/build ../build/${PR_NAME}/ui
+
+      - name: Plasma Web Docs
+        run: |
+          npm run build --prefix="./website/plasma-web-docs"
+          cp -R ./website/plasma-web-docs/build ../build/${PR_NAME}/web
+
+      - name: Plasma Temple Docs
+        run: |
+          npm run build --prefix="./website/plasma-temple-docs"
+          cp -R ./website/plasma-temple-docs/build ../build/${PR_NAME}/temple
+
+      - name: Plasma UI Storybook
+        run: |
+          npm run storybook:build --prefix="./packages/plasma-ui"
+          cp -R ./packages/plasma-ui/build-sb ../build/${PR_NAME}/ui-storybook
+
+      - name: Plasma Web Storybook
+        run: |
+          npm run storybook:build --prefix="./packages/plasma-web"
+          cp -R ./packages/plasma-web/build-sb ../build/${PR_NAME}/web-storybook
+
+      - name: Plasma B2C Storybook
+        run: |
+          npm run storybook:build --prefix="./packages/plasma-b2c"
+          cp -R ./packages/plasma-b2c/build-sb ../build/${PR_NAME}/b2c-storybook
+
+      - name: Plasma Temple Storybook
+        run: |
+          npm run storybook:build --prefix="./packages/plasma-temple"
+          cp -R ./packages/plasma-temple/build-sb ../build/${PR_NAME}/temple-storybook
+
+      - name: Clean old builds
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DOCS_HOST }}
+          username: ${{ secrets.DOCS_LOGIN }}
+          key: ${{ secrets.DOCS_KEY }}
+          envs: PR_NAME
+          script: |
+            cd ../../var/www/plasma
+            rm -rf $PR_NAME/
+
+      - name: Upload builds
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          host: ${{ secrets.DOCS_HOST }}
+          username: ${{ secrets.DOCS_LOGIN }}
+          privateKey: ${{ secrets.DOCS_KEY }}
+          local: "../build"
+          remote: "/var/www/plasma"
+
+      - name: Post success comment
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{secrets.GH_TOKEN}}
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Documentation preview deployed!
+              
+              website: http://plasma.sberdevices.ru/pr-${context.issue.number}/
+              ui storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/ui-storybook/
+              web storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/web-storybook/
+              b2c storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/b2c-storybook/
+              temple storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/temple-storybook/
+              `
+            })
