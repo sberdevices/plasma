@@ -1,3 +1,28 @@
+# (Mon Dec 13 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/eslint-config-base@0.1.0`
+  - feat(eslint-config-base): add base config for eslint [#149](https://github.com/sberdevices/pashka/pull/149) (ovozeritskiy@sberbank.ru)
+- `@sberdevices/use-virtual@0.2.0`
+  - feat(use-virtual): horizontal default value=true => false [#145](https://github.com/sberdevices/pashka/pull/145) ([@KateKate](https://github.com/KateKate))
+  - feat(use-virtual): size => itemsLength [#145](https://github.com/sberdevices/pashka/pull/145) ([@KateKate](https://github.com/KateKate))
+  - feat(use-virtual): init [#145](https://github.com/sberdevices/pashka/pull/145) ([@KateKate](https://github.com/KateKate))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/use-virtual@0.2.0`
+  - docs(use-virtual): initial README [#145](https://github.com/sberdevices/pashka/pull/145) ([@KateKate](https://github.com/KateKate))
+  - fix(use-virtual): lint [#145](https://github.com/sberdevices/pashka/pull/145) ([@KateKate](https://github.com/KateKate))
+  - fix(use-virtual): build [#145](https://github.com/sberdevices/pashka/pull/145) ([@KateKate](https://github.com/KateKate))
+
+#### Authors: 2
+
+- Ekaterina Anishkina ([@KateKate](https://github.com/KateKate))
+- Oleg Ozeritskiy (ovozeritskiy@sberbank.ru)
+
+---
+
 # (Tue Nov 30 2021)
 
 #### 🐛 Bug Fix
