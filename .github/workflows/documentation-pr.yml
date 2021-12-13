@@ -1,11 +1,10 @@
 name: PR Documentation and Storybook
 
 on:
-  workflow_run:
-    workflows:
-      - Release
-    types:
-      - completed
+  pull_request:
+    branches:
+      - rc
+      - master
 
 jobs:
   build:
@@ -17,8 +16,6 @@ jobs:
       ICONS_PUBLIC_URL: /icons
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.workflow_run.head_branch }}
 
       - name: Prepare repository
         run: git fetch --unshallow --tags
@@ -63,7 +60,7 @@ jobs:
           npm run build --prefix="./website/plasma-web-docs"
           cp -R ./website/plasma-web-docs/build ../build/${PR_NAME}/web
 
-      - name: Plasma Temple Docs
+      - name: Plasma Web Temple
         run: |
           npm run build --prefix="./website/plasma-temple-docs"
           cp -R ./website/plasma-temple-docs/build ../build/${PR_NAME}/temple
