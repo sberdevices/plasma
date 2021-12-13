@@ -1,5 +1,17 @@
 # (Mon Dec 13 2021)
 
+#### 🐛 Bug Fix
+
+- fix: Add step for restore cache node_modules [#979](https://github.com/sberdevices/plasma/pull/979) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
+# (Mon Dec 13 2021)
+
 #### 🚀 Enhancement
 
 - feat: Add concurrently for documentation and storybook builds [#948](https://github.com/sberdevices/plasma/pull/948) ([@neretin-trike](https://github.com/neretin-trike))
