@@ -2,6 +2,19 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/eslint-config@0.3.0`
+  - feat(eslint-config): add eslint-config-base with TS/JS rules [#150](https://github.com/sberdevices/pashka/pull/150) (ovozeritskiy@sberbank.ru)
+
+#### Authors: 1
+
+- Oleg Ozeritskiy (ovozeritskiy@sberbank.ru)
+
+---
+
+# (Mon Dec 13 2021)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/eslint-config-base@0.1.0`
   - feat(eslint-config-base): add base config for eslint [#149](https://github.com/sberdevices/pashka/pull/149) (ovozeritskiy@sberbank.ru)
 - `@sberdevices/use-virtual@0.2.0`
