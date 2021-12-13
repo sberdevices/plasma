@@ -5,8 +5,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
 
-const { ARTIFACT_NAME } = process.env;
-const prefix = ARTIFACT_NAME === 'next' ? '' : `/${ARTIFACT_NAME}`;
+const { PR_NAME } = process.env;
+const prefix = PR_NAME ? `/${PR_NAME}` : '';
 const suffix = 'temple/';
 const baseUrl = `${prefix}/${suffix}`;
 
