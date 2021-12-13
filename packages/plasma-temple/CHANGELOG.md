@@ -1,3 +1,16 @@
+# v1.12.0 (Mon Dec 13 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Add spinner while state is not initialized [#971](https://github.com/sberdevices/plasma/pull/971) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-temple): add promocode to cart [#971](https://github.com/sberdevices/plasma/pull/971) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v1.11.0 (Thu Dec 09 2021)
 
 #### 🚀 Enhancement

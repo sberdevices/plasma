@@ -1,5 +1,31 @@
 # (Mon Dec 13 2021)
 
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@1.12.0`
+  - feat(plasma-temple): Add spinner while state is not initialized [#971](https://github.com/sberdevices/plasma/pull/971) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): add promocode to cart [#971](https://github.com/sberdevices/plasma/pull/971) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### 🐛 Bug Fix
+
+- Revert "feat: Create Main CI for sequenced execution release and documentation jobs" [#982](https://github.com/sberdevices/plasma/pull/982) ([@fanisco](https://github.com/fanisco))
+- Revert "chore: Remove documentation workflows" [#982](https://github.com/sberdevices/plasma/pull/982) ([@fanisco](https://github.com/fanisco))
+- Revert "feat: Add concurrently for documentation and storybook builds" [#982](https://github.com/sberdevices/plasma/pull/982) ([@fanisco](https://github.com/fanisco))
+- Revert "fix: Add step for restore cache node_modules" [#982](https://github.com/sberdevices/plasma/pull/982) ([@fanisco](https://github.com/fanisco))
+- fix: Add step for restore cache node_modules [#979](https://github.com/sberdevices/plasma/pull/979) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-temple-docs@0.4.0`, `@sberdevices/plasma-ui-docs@0.32.0`, `@sberdevices/plasma-web-docs@0.23.0`, `@sberdevices/plasma-website@0.17.0`
+  - Revert "feat(plasma-temple-docs/ui-docs/web-docs/website): Rename PR_NAME env to ARTIFACT_NAME" [#982](https://github.com/sberdevices/plasma/pull/982) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 3
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
+# (Mon Dec 13 2021)
+
 #### 🐛 Bug Fix
 
 - Revert "feat: Create Main CI for sequenced execution release and documentation jobs" [#982](https://github.com/sberdevices/plasma/pull/982) ([@fanisco](https://github.com/fanisco))
