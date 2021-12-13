@@ -27,6 +27,7 @@ const statuses = {
 
 const StyledArrow = styled(SelectArrow)`
     margin-left: 0.75rem;
+    margin-right: -0.25rem;
     color: ${primary};
 
     &:hover {
