@@ -78,15 +78,15 @@ const StyledText = styled.span`
     pointer-events: none;
     user-select: none;
 `;
-const StyledIconSlot = styled.div`
-    display: flex;
-    justify-content: center;
-
-    width: 1.5rem;
+const StyledChevron = styled(IconChevronRight)`
     margin-left: auto;
-    margin-right: -0.5rem;
-
     pointer-events: none;
+    margin-right: -0.25rem;
+`;
+const StyledCheck = styled(IconDone)`
+    margin-left: auto;
+    pointer-events: none;
+    margin-right: -0.5rem;
 `;
 const StyledDot = styled.div`
     width: 0.375rem;
@@ -118,19 +118,13 @@ export const DropdownItem: FC<DropdownItemProps> = ({
             return (
                 <>
                     {isActiveNode && <StyledDot />}
-                    <StyledIconSlot>
-                        <IconChevronRight size="xs" />
-                    </StyledIconSlot>
+                    <StyledChevron size="xs" />
                 </>
             );
         }
 
         if (isActive) {
-            return (
-                <StyledIconSlot>
-                    <IconDone size="s" color={accent} />
-                </StyledIconSlot>
-            );
+            return <StyledCheck size="s" color={accent} />;
         }
 
         return null;
