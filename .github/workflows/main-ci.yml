@@ -113,29 +113,45 @@ jobs:
       - name: Prepare directory
         run: mkdir ../build
 
-      - name: Plasma Documentation builds
+      - name: Plasma Website
         run: |
-          npx lerna run build --parallel \
-          --scope={@sberdevices/plasma-temple-docs,@sberdevices/plasma-ui-docs,@sberdevices/plasma-web-docs,@sberdevices/plasma-website} 
+          npm run build --prefix="./website/plasma-website"
+          cp -R ./website/plasma-website/build ../build/${ARTIFACT_NAME}
 
-      - name: Moved all Documentation builds
+      - name: Plasma UI Docs
         run: |
-          mv ./website/plasma-website/build ../build/${ARTIFACT_NAME}
-          mv ./website/plasma-ui-docs/build ../build/${ARTIFACT_NAME}/ui
-          mv ./website/plasma-web-docs/build ../build/${ARTIFACT_NAME}/web
-          mv ./website/plasma-temple-docs/build ../build/${ARTIFACT_NAME}/temple
+          npm run build --prefix="./website/plasma-ui-docs"
+          cp -R ./website/plasma-ui-docs/build ../build/${ARTIFACT_NAME}/ui
 
-      - name: Plasma Storybook builds
+      - name: Plasma Web Docs
         run: |
-          npx lerna run storybook:build --parallel \
-          --scope={@sberdevices/plasma-b2c,@sberdevices/plasma-ui,@sberdevices/plasma-web,@sberdevices/plasma-temple} 
+          npm run build --prefix="./website/plasma-web-docs"
+          cp -R ./website/plasma-web-docs/build ../build/${ARTIFACT_NAME}/web
 
-      - name: Moved all Storybook builds
+      - name: Plasma Temple Docs
         run: |
-          mv ./packages/plasma-b2c/build-sb ../build/${ARTIFACT_NAME}/b2c-storybook
-          mv ./packages/plasma-ui/build-sb ../build/${ARTIFACT_NAME}/ui-storybook
-          mv ./packages/plasma-web/build-sb ../build/${ARTIFACT_NAME}/web-storybook
-          mv ./packages/plasma-temple/build-sb ../build/${ARTIFACT_NAME}/temple-storybook
+          npm run build --prefix="./website/plasma-temple-docs"
+          cp -R ./website/plasma-temple-docs/build ../build/${ARTIFACT_NAME}/temple
+
+      - name: Plasma UI Storybook
+        run: |
+          npm run storybook:build --prefix="./packages/plasma-ui"
+          cp -R ./packages/plasma-ui/build-sb ../build/${ARTIFACT_NAME}/ui-storybook
+
+      - name: Plasma Web Storybook
+        run: |
+          npm run storybook:build --prefix="./packages/plasma-web"
+          cp -R ./packages/plasma-web/build-sb ../build/${ARTIFACT_NAME}/web-storybook
+
+      - name: Plasma B2C Storybook
+        run: |
+          npm run storybook:build --prefix="./packages/plasma-b2c"
+          cp -R ./packages/plasma-b2c/build-sb ../build/${ARTIFACT_NAME}/b2c-storybook
+
+      - name: Plasma Temple Storybook
+        run: |
+          npm run storybook:build --prefix="./packages/plasma-temple"
+          cp -R ./packages/plasma-temple/build-sb ../build/${ARTIFACT_NAME}/temple-storybook
 
       # Данный шаг идёт перед загрузкой текущей версии билдов,
       # поскольку нет необходимости ожидать публикацию документации
