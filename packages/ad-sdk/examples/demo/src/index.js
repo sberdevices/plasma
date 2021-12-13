@@ -1,3 +1,4 @@
+import "@sberdevices/spatial-navigation/polyfill/spatial-navigation-polyfill";
 const { init, initDev, runVideoAd, runBanner, _getVideoIds, _getBannerIds } = window.SberDevicesAdSDK;
 
 const IS_DEVELOPMENT = process.env.NODE_ENV === "development";

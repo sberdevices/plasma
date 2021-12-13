@@ -21,9 +21,10 @@
     "webpack-cli": "^4.8.0"
   },
   "dependencies": {
-    "dotenv": "^10.0.0",
     "@salutejs/scenario": "^0.18.0",
+    "@salutejs/storage-adapter-memory": "^0.18.0",
     "@sberdevices/assistant-client": "^4.5.0",
-    "@salutejs/storage-adapter-memory": "^0.18.0"
+    "@sberdevices/spatial-navigation": "^1.0.3",
+    "dotenv": "^10.0.0"
   }
 }

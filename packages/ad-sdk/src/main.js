@@ -3,6 +3,8 @@ import { openBanner } from "./banner";
 import { getBannerBlockId, getVideoBlockId } from "./utils/blockId";
 import { getBannerPadId, getVideoPadId } from "./utils/padId";
 
+const surfacesWithTVRemote = ["SBERBOX", "SATELLITE", "TV", "TV_HUAWEI", "SAMSUNG_TV"];
+
 const logger = {
     // TODO: clickhouse logger
     // log: () => {},
@@ -381,10 +383,16 @@ export function runBanner(events = {}) {
             params,
             cooldownTime,
             events,
+            isTvRemote: getIsTvRemote(),
         });
     } catch (err) {
         saveError(err);
     }
+}
+
+function getIsTvRemote() {
+    const surface = initParams.surface;
+    return surfacesWithTVRemote.some((surf) => surf === surface);
 }
 
 function getBannerParams() {

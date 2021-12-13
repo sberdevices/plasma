@@ -28,6 +28,21 @@ function createCrossIcon({ onClickCloseButton }) {
     return button;
 }
 
+function createBackBlock({ onClickCloseButton, isTvRemote }) {
+    if (isTvRemote) {
+        const backTitle = document.createElement("div");
+        backTitle.style.color = "white";
+        backTitle.innerHTML = 'Чтобы вернуться нажмите "назад"';
+        return backTitle;
+    } else {
+        const crossCircleIcon = createCrossIcon({ onClickCloseButton });
+        crossCircleIcon.style.flexGrow = "0";
+        crossCircleIcon.style.flexShrink = "0";
+
+        return crossCircleIcon;
+    }
+}
+
 function createTimerText({ autoCloseTime, timerId }) {
     const timerText = document.createElement("div");
     timerText.innerHTML = `Реклама закроется через <span id="${timerId}">${autoCloseTime}</span>с`;
@@ -35,23 +50,61 @@ function createTimerText({ autoCloseTime, timerId }) {
     return timerText;
 }
 
-export function createBanner({ iframeUrl, width, height, timerId, autoCloseTime, onLoadIframe, onClickCloseButton }) {
-    const adIframe = document.createElement("iframe");
-    adIframe.setAttribute("src", iframeUrl);
-    adIframe.setAttribute("width", width);
-    adIframe.setAttribute("height", height);
-    adIframe.style.border = "none";
-    const viewPortWidth = window.innerWidth;
-    const viewPortHeight = window.innerHeight;
-    const widthPixel = parseInt(width);
-    const heightPixel = parseInt(height);
-    if (widthPixel > viewPortWidth || heightPixel > viewPortHeight) {
-        const widthRatio = viewPortWidth / widthPixel;
-        const heightRatio = viewPortHeight / heightPixel;
-        const ratio = widthRatio < heightRatio ? widthRatio : heightRatio;
-        adIframe.style.transformOrigin = "left top";
-        adIframe.style.transform = `scale(${ratio})`;
+function getIframeSize(width, height) {
+    let resultWidth;
+    let resultHeight;
+    if (width.indexOf("%") !== -1) {
+        resultWidth = "100%";
+    } else {
+        resultWidth = width;
     }
+
+    if (height.indexOf("%") !== -1) {
+        resultHeight = "100%";
+    } else {
+        resultHeight = height;
+    }
+
+    return {
+        width: resultWidth,
+        height: resultHeight,
+    };
+}
+
+function getBannerContainerSize(width, height) {
+    let resultWidth;
+    let resultHeight;
+    if (width.indexOf("%") !== -1) {
+        resultWidth = width;
+    }
+
+    if (height.indexOf("%") !== -1) {
+        resultHeight = height;
+    }
+
+    return {
+        width: resultWidth,
+        height: resultHeight,
+    };
+}
+
+export function createBanner({
+    iframeUrl,
+    width,
+    height,
+    timerId,
+    autoCloseTime,
+    onLoadIframe,
+    onClickCloseButton,
+    isTvRemote,
+}) {
+    const iframeSize = getIframeSize(width, height);
+    const adIframe = document.createElement("iframe");
+    adIframe.id = "plasma-ad-frame";
+    adIframe.setAttribute("src", iframeUrl);
+    adIframe.setAttribute("width", iframeSize.width);
+    adIframe.setAttribute("height", iframeSize.height);
+    adIframe.style.border = "none";
     adIframe.addEventListener("load", onLoadIframe);
 
     const adWrapper = document.createElement("div");
@@ -62,30 +115,57 @@ export function createBanner({ iframeUrl, width, height, timerId, autoCloseTime,
     adWrapper.style.height = "100%";
     adWrapper.style.display = "none";
 
+    const containerSize = getBannerContainerSize(width, height);
     const banner = document.createElement("div");
     banner.style.margin = "auto";
     banner.style.flexShrink = "0";
     banner.style.flexGrow = "0";
     banner.style.maxWidth = "100vw";
     banner.style.maxHeight = "100vh";
+    banner.style.padding = "5px";
+    banner.style.boxSizing = "border-box";
+    banner.style.display = "flex";
+    banner.style.flexDirection = "column";
+    banner.style.alignItems = "strength";
+    if (containerSize.width) {
+        banner.style.width = containerSize.width;
+    }
+    if (containerSize.height) {
+        banner.style.height = containerSize.height;
+    }
 
-    const adHeader = document.createElement("div");
-    adHeader.style.display = "flex";
-    adHeader.style.alignItems = "center";
+    if (isTvRemote) {
+        const adHeader = document.createElement("div");
+        adHeader.style.display = "flex";
+        adHeader.style.alignItems = "center";
+        adHeader.style.boxSizing = "border-box";
+        adHeader.style.padding = "5px";
+        adHeader.style.flexGrow = "0";
+        adHeader.style.flexShrink = "0";
 
-    const crossCircleIcon = createCrossIcon({ onClickCloseButton });
-    crossCircleIcon.style.flexGrow = "0";
-    crossCircleIcon.style.flexShrink = "0";
+        const backBlock = createBackBlock({ onClickCloseButton, isTvRemote });
 
-    const textTimer = createTimerText({ autoCloseTime, timerId });
-    textTimer.style.flexGrow = "1";
-    textTimer.style.flexShrink = "1";
+        const textTimer = createTimerText({ autoCloseTime, timerId });
+        textTimer.style.flexGrow = "1";
+        textTimer.style.flexShrink = "1";
 
-    adHeader.appendChild(textTimer);
-    adHeader.appendChild(crossCircleIcon);
+        adHeader.appendChild(textTimer);
+        adHeader.appendChild(backBlock);
 
-    banner.appendChild(adHeader);
-    banner.appendChild(adIframe);
+        banner.appendChild(adHeader);
+    }
+
+    if (isTvRemote) {
+        const linkWrapper = document.createElement("a");
+        linkWrapper.id = "plasma-ad-banner-link";
+        linkWrapper.setAttribute("href", "https://www.google.com/");
+        linkWrapper.appendChild(adIframe);
+        linkWrapper.style.flexGrow = "1";
+        linkWrapper.style.flexShrink = "1";
+        banner.appendChild(linkWrapper);
+    } else {
+        banner.appendChild(adIframe);
+    }
 
     adWrapper.appendChild(banner);
     return adWrapper;

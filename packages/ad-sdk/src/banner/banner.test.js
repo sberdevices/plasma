@@ -100,6 +100,8 @@ describe("banner.js - Banner class", () => {
 
         jest.advanceTimersByTime(5 * 1000);
 
+        jest.advanceTimersByTime(1000);
+
         rootElement = document.getElementById("root");
         expect(rootElement).toBeFalsy();
     });
@@ -114,6 +116,8 @@ describe("banner.js - Banner class", () => {
 
         const closeButton = document.getElementsByTagName("button")[0];
         closeButton.dispatchEvent(new Event("click"));
+
+        jest.advanceTimersByTime(1000);
 
         rootElement = document.getElementById("root");
         expect(rootElement).toBeFalsy();

@@ -51,7 +51,7 @@ function generateStyles({ rootId, outlineSize = "0.125rem", outlineOffset = outl
     `;
 }
 
-export function openBanner({ container, params, cooldownTime, events }) {
+export function openBanner({ container, params, cooldownTime, events, isTvRemote }) {
     if (!container.id) {
         throw new Error("id у container обязателен");
     }
@@ -63,7 +63,7 @@ export function openBanner({ container, params, cooldownTime, events }) {
             enableToOpenBanner = true;
         }, cooldownTime);
 
-        const banner = new Banner(container, events, params);
+        const banner = new Banner(container, events, params, { isTvRemote });
         banner.run();
     } else {
         events.onError();

@@ -83,6 +83,19 @@
             z-index: 500;
         }
 
+        a[href]:not([tabindex='-1']):focus,
+        area[href]:not([tabindex='-1']):focus,
+        input:not([disabled]):not([tabindex='-1']):focus,
+        select:not([disabled]):not([tabindex='-1']):focus,
+        textarea:not([disabled]):not([tabindex='-1']):focus,
+        button:not([disabled]):not([tabindex='-1']):focus,
+        iframe:not([tabindex='-1']):focus,
+        [tabindex]:not([tabindex='-1']):focus,
+        [contentEditable=true]:not([tabindex='-1']):focus
+        {
+            outline: 3px solid green;
+        }
+
     </style>
 
     <div class="loading-wrapper">
