@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-web-docs",
-    "version": "0.22.1",
+    "version": "0.22.2",
     "private": true,
     "description": "Plasma Documentation.",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
