@@ -1,3 +1,25 @@
+# (Mon Dec 13 2021)
+
+#### 🚀 Enhancement
+
+- feat: Add concurrently for documentation and storybook builds [#948](https://github.com/sberdevices/plasma/pull/948) ([@neretin-trike](https://github.com/neretin-trike))
+- feat: Create Main CI for sequenced execution release and documentation jobs [#948](https://github.com/sberdevices/plasma/pull/948) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-temple-docs@0.4.0`, `@sberdevices/plasma-ui-docs@0.32.0`, `@sberdevices/plasma-web-docs@0.23.0`, `@sberdevices/plasma-website@0.17.0`
+  - feat(plasma-temple-docs/ui-docs/web-docs/website): Rename PR_NAME env to ARTIFACT_NAME [#948](https://github.com/sberdevices/plasma/pull/948) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-temple@1.12.0`
+  - feat(plasma-temple): add multiline product description [#963](https://github.com/sberdevices/plasma/pull/963) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### 🐛 Bug Fix
+
+- chore: Remove documentation workflows [#948](https://github.com/sberdevices/plasma/pull/948) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # (Thu Dec 09 2021)
 
 #### 🚀 Enhancement
