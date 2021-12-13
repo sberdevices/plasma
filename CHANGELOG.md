@@ -1,5 +1,24 @@
 # (Mon Dec 13 2021)
 
+#### 🐛 Bug Fix
+
+- Revert "feat: Create Main CI for sequenced execution release and documentation jobs" [#982](https://github.com/sberdevices/plasma/pull/982) ([@fanisco](https://github.com/fanisco))
+- Revert "chore: Remove documentation workflows" [#982](https://github.com/sberdevices/plasma/pull/982) ([@fanisco](https://github.com/fanisco))
+- Revert "feat: Add concurrently for documentation and storybook builds" [#982](https://github.com/sberdevices/plasma/pull/982) ([@fanisco](https://github.com/fanisco))
+- Revert "fix: Add step for restore cache node_modules" [#982](https://github.com/sberdevices/plasma/pull/982) ([@fanisco](https://github.com/fanisco))
+- fix: Add step for restore cache node_modules [#979](https://github.com/sberdevices/plasma/pull/979) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-temple-docs@0.3.1`, `@sberdevices/plasma-ui-docs@0.31.2`, `@sberdevices/plasma-web-docs@0.22.2`, `@sberdevices/plasma-website@0.16.3`
+  - Revert "feat(plasma-temple-docs/ui-docs/web-docs/website): Rename PR_NAME env to ARTIFACT_NAME" [#982](https://github.com/sberdevices/plasma/pull/982) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
+# (Mon Dec 13 2021)
+
 #### 🚀 Enhancement
 
 - feat: Add concurrently for documentation and storybook builds [#948](https://github.com/sberdevices/plasma/pull/948) ([@neretin-trike](https://github.com/neretin-trike))
