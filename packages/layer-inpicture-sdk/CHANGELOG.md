@@ -1,3 +1,20 @@
+# v0.3.0 (Tue Dec 14 2021)
+
+#### 🚀 Enhancement
+
+- feat(app): rewrote the application [#152](https://github.com/sberdevices/pashka/pull/152) (KVIlikov@sberbank.ru)
+- feat(index.tx): added new logic [#152](https://github.com/sberdevices/pashka/pull/152) (KVIlikov@sberbank.ru)
+
+#### 🐛 Bug Fix
+
+- fix(app): исправил поведение слайдера при наведении, исправил скелетон [#152](https://github.com/sberdevices/pashka/pull/152) (KVIlikov@sberbank.ru)
+
+#### Authors: 1
+
+- Kirill Ilikov (KVIlikov@sberbank.ru)
+
+---
+
 # v0.2.1 (Tue Nov 30 2021)
 
 #### 🐛 Bug Fix

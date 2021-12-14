@@ -1,3 +1,22 @@
+# (Tue Dec 14 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/layer-inpicture-sdk@0.3.0`
+  - feat(app): rewrote the application [#152](https://github.com/sberdevices/pashka/pull/152) (KVIlikov@sberbank.ru)
+  - feat(index.tx): added new logic [#152](https://github.com/sberdevices/pashka/pull/152) (KVIlikov@sberbank.ru)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/layer-inpicture-sdk@0.3.0`
+  - fix(app): исправил поведение слайдера при наведении, исправил скелетон [#152](https://github.com/sberdevices/pashka/pull/152) (KVIlikov@sberbank.ru)
+
+#### Authors: 1
+
+- Kirill Ilikov (KVIlikov@sberbank.ru)
+
+---
+
 # (Mon Dec 13 2021)
 
 #### 🚀 Enhancement
