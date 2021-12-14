@@ -85,41 +85,41 @@ jobs:
           npm run storybook:build --prefix="./packages/plasma-temple"
           cp -R ./packages/plasma-temple/build-sb ../build/${PR_NAME}/temple-storybook
 
-      - name: Clean old builds
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.DOCS_HOST }}
-          username: ${{ secrets.DOCS_LOGIN }}
-          key: ${{ secrets.DOCS_KEY }}
-          envs: PR_NAME
-          script: |
-            cd ../../var/www/plasma
-            rm -rf $PR_NAME/
+      # - name: Clean old builds
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.DOCS_HOST }}
+      #     username: ${{ secrets.DOCS_LOGIN }}
+      #     key: ${{ secrets.DOCS_KEY }}
+      #     envs: PR_NAME
+      #     script: |
+      #       cd ../../var/www/plasma
+      #       rm -rf $PR_NAME/
 
-      - name: Upload builds
-        uses: garygrossgarten/github-action-scp@release
-        with:
-          host: ${{ secrets.DOCS_HOST }}
-          username: ${{ secrets.DOCS_LOGIN }}
-          privateKey: ${{ secrets.DOCS_KEY }}
-          local: "../build"
-          remote: "/var/www/plasma"
+      # - name: Upload builds
+      #   uses: garygrossgarten/github-action-scp@release
+      #   with:
+      #     host: ${{ secrets.DOCS_HOST }}
+      #     username: ${{ secrets.DOCS_LOGIN }}
+      #     privateKey: ${{ secrets.DOCS_KEY }}
+      #     local: "../build"
+      #     remote: "/var/www/plasma"
 
-      - name: Post success comment
-        uses: actions/github-script@v3
-        with:
-          github-token: ${{secrets.GH_TOKEN}}
-          script: |
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `Documentation preview deployed!
+      # - name: Post success comment
+      #   uses: actions/github-script@v3
+      #   with:
+      #     github-token: ${{secrets.GH_TOKEN}}
+      #     script: |
+      #       github.issues.createComment({
+      #         issue_number: context.issue.number,
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         body: `Documentation preview deployed!
               
-              website: http://plasma.sberdevices.ru/pr-${context.issue.number}/
-              ui storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/ui-storybook/
-              web storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/web-storybook/
-              b2c storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/b2c-storybook/
-              temple storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/temple-storybook/
-              `
-            })
+      #         website: http://plasma.sberdevices.ru/pr-${context.issue.number}/
+      #         ui storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/ui-storybook/
+      #         web storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/web-storybook/
+      #         b2c storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/b2c-storybook/
+      #         temple storybook: http://plasma.sberdevices.ru/pr-${context.issue.number}/temple-storybook/
+      #         `
+      #       })

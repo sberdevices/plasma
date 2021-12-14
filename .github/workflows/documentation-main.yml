@@ -82,22 +82,22 @@ jobs:
           npm run storybook:build --prefix="./packages/plasma-temple"
           cp -R ./packages/plasma-temple/build-sb ../build/next/temple-storybook
 
-      - name: Upload documentation build
-        uses: garygrossgarten/github-action-scp@release
-        with:
-          host: ${{ secrets.DOCS_HOST }}
-          username: ${{ secrets.DOCS_LOGIN }}
-          privateKey: ${{ secrets.DOCS_KEY }}
-          local: "../build"
-          remote: "/var/www/plasma"
+      # - name: Upload documentation build
+      #   uses: garygrossgarten/github-action-scp@release
+      #   with:
+      #     host: ${{ secrets.DOCS_HOST }}
+      #     username: ${{ secrets.DOCS_LOGIN }}
+      #     privateKey: ${{ secrets.DOCS_KEY }}
+      #     local: "../build"
+      #     remote: "/var/www/plasma"
 
-      - name: Update and clean documentation
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.DOCS_HOST }}
-          username: ${{ secrets.DOCS_LOGIN }}
-          key: ${{ secrets.DOCS_KEY }}
-          script: |
-            cd ../../var/www/plasma
-            rm -rf current/
-            mv next current
+      # - name: Update and clean documentation
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.DOCS_HOST }}
+      #     username: ${{ secrets.DOCS_LOGIN }}
+      #     key: ${{ secrets.DOCS_KEY }}
+      #     script: |
+      #       cd ../../var/www/plasma
+      #       rm -rf current/
+      #       mv next current
