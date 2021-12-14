@@ -1,3 +1,28 @@
+# v1.72.0 (Tue Dec 14 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): Add infinite scroll for `DatePicker` and `TimePicker` components [#957](https://github.com/sberdevices/plasma/pull/957) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### 🐛 Bug Fix
+
+- test(plasma-ui): add Card component tests [#978](https://github.com/sberdevices/plasma/pull/978) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui): add SmartPaginationDots component tests [#978](https://github.com/sberdevices/plasma/pull/978) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui): add MarkedList component tests [#978](https://github.com/sberdevices/plasma/pull/978) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui): add Marquee component tests [#978](https://github.com/sberdevices/plasma/pull/978) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui): add Skeleton component tests [#978](https://github.com/sberdevices/plasma/pull/978) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui): add Spinner component tests [#978](https://github.com/sberdevices/plasma/pull/978) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui): add TextBox component tests [#978](https://github.com/sberdevices/plasma/pull/978) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui): add Cell component tests [#978](https://github.com/sberdevices/plasma/pull/978) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui): Add tests for `DatePicker` and `TimePicker` components and update snapshots [#957](https://github.com/sberdevices/plasma/pull/957) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 2
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.71.0 (Tue Dec 07 2021)
 
 #### 🚀 Enhancement

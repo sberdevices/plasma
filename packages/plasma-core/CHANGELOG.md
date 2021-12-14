@@ -1,3 +1,19 @@
+# v1.42.0 (Tue Dec 14 2021)
+
+#### 🐛 Bug Fix
+
+- fix: Set Underline to uppercase [#950](https://github.com/sberdevices/plasma/pull/950) ([@fanisco](https://github.com/fanisco))
+- test(plasma-ui): add more Image component tests [#978](https://github.com/sberdevices/plasma/pull/978) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui): add Skeleton component tests [#978](https://github.com/sberdevices/plasma/pull/978) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui): add Spinner component tests [#978](https://github.com/sberdevices/plasma/pull/978) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.41.1 (Thu Dec 09 2021)
 
 #### 🐛 Bug Fix

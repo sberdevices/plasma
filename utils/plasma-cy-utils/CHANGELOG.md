@@ -1,3 +1,15 @@
+# v0.4.0 (Tue Dec 14 2021)
+
+#### 🐛 Bug Fix
+
+- test(plasma-cy-utils): add withNoAnimation helper [#978](https://github.com/sberdevices/plasma/pull/978) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v0.3.1 (Wed Oct 13 2021)
 
 #### 🐛 Bug Fix
