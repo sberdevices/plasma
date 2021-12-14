@@ -1,10 +1,12 @@
 name: Main Documentation and Storybook
 
 on:
-  push:
-    branches:
-      - rc
-      - master
+  workflow_run:
+    workflows: ["Release"]
+    branches: [master, rc]
+    types:
+      - completed
+      - requested
 
 jobs:
   build:
@@ -30,6 +32,10 @@ jobs:
           key: npm-deps-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             npm-deps-${{ hashFiles('package-lock.json') }}
+
+      - name: Show Git Log
+        id: git_log
+        uses: JantHsueh/get-git-log-action@master
 
       - name: Setup packages
         run: |
