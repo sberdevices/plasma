@@ -125,7 +125,7 @@ export const VideoPlayer = React.memo(
 
         const isControlsHidden = controlsHidden && !alwaysShowControls;
 
-        const onKewDown = React.useCallback(() => !isControlsHidden && startTimer(), [isControlsHidden, startTimer]);
+        const onKewDown = React.useCallback(() => startTimer(), [startTimer]);
         useMediaPlayerKeyboard(playback, isControlsHidden, onKewDown);
 
         React.useEffect(() => {
