@@ -1,9 +1,10 @@
 export type Template = 'primary' | 'secondary';
 export type Image = HTMLImageElement;
+export type Container = HTMLDivElement;
 
 export type Config = {
     image: Image;
-    container: HTMLDivElement;
+    container: Container;
     template?: Template;
     withSkeleton?: boolean;
 }

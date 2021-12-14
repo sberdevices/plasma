@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'preact/compat';
+import { useEffect, useRef, useState } from 'preact/compat';
 import { html } from 'htm/preact';
 import Swiper from 'swiper';
 
@@ -25,16 +25,17 @@ const getSliderInstance = () => {
     });
 };
 
-export const Container = ({ template = 'primary', image, withSkeleton }: Config) => {
+export const Container = ({ template = 'primary', image, withSkeleton, container }: Config) => {
     const [isError, setIsError] = useState(false);
     const [products, setProducts] = useState<Product[] | null | SKELETON_LIST>(withSkeleton ? SKELETON_LIST : null);
+    const wrapperRef = useRef(null);
+    const containerRef = useRef(container);
 
     useEffect(() => {
         const load = async () => {
             try {
-                getSliderInstance(); // for skeleton
-                setProducts(await loadProducts(image));
-                getSliderInstance(); // for slider with products
+                const products = await loadProducts(image);
+                setProducts(products);
             } catch {
                 setIsError(true);
             }
@@ -42,12 +43,20 @@ export const Container = ({ template = 'primary', image, withSkeleton }: Config)
         load();
     }, [image]);
 
-    if (isError || !products) {
+    useEffect(() => {
+        if (products !== null) {
+            containerRef.current.style.height = `${wrapperRef.current?.clientHeight}px`;
+            containerRef.current.style.visibility = 'visible';
+            getSliderInstance();
+        }
+    }, [products]);
+
+    if (isError || !products?.length) {
         return null;
     }
 
     return html`
-        <div class=${`layer-hidden${template === 'primary' ? '' : ' layer-secondary-wrap'}`}>
+        <div class=${`layer-hidden layer-content${template === 'primary' ? '' : ' layer-secondary-wrap'}`} ref=${wrapperRef} style=${{ width: container.clientWidth }}>
             <div class="layer-main-container">
                 ${html`<${template === 'primary' ? PrimaryTopContent : SecondaryTopContent} />`}
                 <${SliderWrapper} products=${products} />

@@ -10,7 +10,10 @@ export const Slide = ({ product }: { product?: Product }) => html`
     <div
         class="swiper-slide layer-swiper-slide layer-unselectable"
         style=${{ width: adaptiveValue(94, 74), height: adaptiveValue(138, 108) }}
-        onClick="${() => window.open(product.url, '_blank')}"
+        onClick="${(event: any) => {
+            event.stopPropagation();
+            window.open(product.url, '_blank');
+        }}"
     >
         ${product ? html`<img src=${product.pic} alt="product"/>` : html`<img src=${stub} alt="stub"/>`}
         <div class="layer-swiper-slide-bottom${product ? '' : ' layer-swiper-slide-bottom_stub'}">

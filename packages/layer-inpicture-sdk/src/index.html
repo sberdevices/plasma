@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="ad" style="display: none; height: 200px; background: lightblue">Реклама</div>
-    <div style="width: 35%;">
+    <div style="width: 100%;">
         <div>
             <img src="img/dress.jpg" alt="gucci" style="width: 100%; margin-left: 100px;">
         </div>
@@ -18,7 +18,9 @@
         <div>
             <img src="img/0357234520_1.jpeg" alt="gucci" style="width: 100%">
         </div>
-        <div class="container"></div>
+        <div onclick="alert('boo')">
+            <div class="container"></div>
+        </div>
     </div>
 </body>
 
@@ -32,7 +34,7 @@
                 image: img,
                 container: containers[index],
                 template: index === 0 ? 'primary' : 'secondary',
-                withSkeleton: true
+                // withSkeleton: true
             });
         })
 

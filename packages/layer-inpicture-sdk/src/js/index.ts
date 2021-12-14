@@ -20,6 +20,8 @@ export const initInPicture = async (config: Config): Promise<void> => {
             throw new Error('Не переданы все обязательные параметры: image, container');
         }
 
+        container.classList.add('layer-container');
+
         render(html`<${Container} ...${config} />`, container);
     } catch (error) {
         console.error('layer-inpicture-sdk', error);
