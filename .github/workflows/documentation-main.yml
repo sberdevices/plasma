@@ -1,10 +1,11 @@
 name: Main Documentation and Storybook
 
 on:
-  push:
-    branches:
-      - rc
-      - master
+  workflow_run:
+    workflows: ["Release"]
+    branches: [master, rc]
+    types:
+      - completed
 
 jobs:
   build:
@@ -23,6 +24,7 @@ jobs:
         with:
           node-version: 12.x
 
+      # Данный шаг не исполняется, т.к. в настоящее время actions/cache поддерживается только для типов событий push и pull_request 
       - name: Cache node modules
         uses: actions/cache@v1
         with:
