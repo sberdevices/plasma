@@ -2,6 +2,20 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/ad-sdk@1.4.0`
+  - feat(ad-sdk): add test surface [#146](https://github.com/sberdevices/pashka/pull/146) ([@OgNellis](https://github.com/OgNellis))
+  - feat(ad-sdk): block_id and pad_id [#146](https://github.com/sberdevices/pashka/pull/146) ([@OgNellis](https://github.com/OgNellis))
+
+#### Authors: 1
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+
+---
+
+# (Tue Dec 14 2021)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/layer-inpicture-sdk@0.3.0`
   - feat(app): rewrote the application [#152](https://github.com/sberdevices/pashka/pull/152) (KVIlikov@sberbank.ru)
   - feat(index.tx): added new logic [#152](https://github.com/sberdevices/pashka/pull/152) (KVIlikov@sberbank.ru)
