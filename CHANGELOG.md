@@ -1,3 +1,25 @@
+# (Wed Dec 15 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/demo-canvas-app@0.50.0`
+  - feat(demo-canvas-app): Add checkbox test example [#969](https://github.com/sberdevices/plasma/pull/969) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-core@1.43.0`
+  - feat(plasma-core): Add ReactNode type for label in `Checkbox` component [#969](https://github.com/sberdevices/plasma/pull/969) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-ui-docs@0.33.0`, `@sberdevices/plasma-web-docs@0.24.0`
+  - docs(plasma-ui-docs,plasma-web-docs): Add snippet for `Checkbox` component [#969](https://github.com/sberdevices/plasma/pull/969) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-b2c@1.29.0`, `@sberdevices/plasma-ui@1.73.0`, `@sberdevices/plasma-web@1.67.0`
+  - feat(plasma-web,plasma-b2c,plasma-ui): Add example for checkbox with jsx in label [#969](https://github.com/sberdevices/plasma/pull/969) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # (Tue Dec 14 2021)
 
 #### 🚀 Enhancement

@@ -1,3 +1,17 @@
+# v1.67.0 (Wed Dec 15 2021)
+
+#### 🐛 Bug Fix
+
+- feat(plasma-web,plasma-b2c,plasma-ui): Add example for checkbox with jsx in label [#969](https://github.com/sberdevices/plasma/pull/969) ([@neretin-trike](https://github.com/neretin-trike))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.65.0 (Tue Dec 07 2021)
 
 #### 🚀 Enhancement

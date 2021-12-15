@@ -1,3 +1,20 @@
+# v1.43.0 (Wed Dec 15 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-core): Add ReactNode type for label in `Checkbox` component [#969](https://github.com/sberdevices/plasma/pull/969) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.42.0 (Tue Dec 14 2021)
 
 #### 🐛 Bug Fix
