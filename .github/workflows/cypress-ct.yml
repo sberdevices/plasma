@@ -35,6 +35,11 @@ jobs:
       if: ${{ always() }}
       run: | 
         npm run cy:b2c:run-ct 
+
+    - name: Merge coverage
+      if: ${{ always() }}
+      run: | 
+        npx nyc merge .nyc_output cypress/coverage-merged.json
     
     - name: Save artifacts
       if: ${{ always() }}
