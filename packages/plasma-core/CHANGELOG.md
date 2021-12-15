@@ -1,3 +1,18 @@
+# v1.44.0 (Wed Dec 15 2021)
+
+#### 🐛 Bug Fix
+
+- test(plasma-ui): fix Skeleton component tests [#990](https://github.com/sberdevices/plasma/pull/990) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui): add Fade component tests [#990](https://github.com/sberdevices/plasma/pull/990) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui): add Toast component tests [#990](https://github.com/sberdevices/plasma/pull/990) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui): add Grid component tests [#990](https://github.com/sberdevices/plasma/pull/990) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.43.0 (Wed Dec 15 2021)
 
 #### 🚀 Enhancement

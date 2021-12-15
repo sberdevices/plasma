@@ -1,3 +1,23 @@
+# v1.30.0 (Wed Dec 15 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-b2c): make RadioGroup public [#992](https://github.com/sberdevices/plasma/pull/992) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### 🐛 Bug Fix
+
+- test(plasma-b2c): fix tests [#993](https://github.com/sberdevices/plasma/pull/993) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-b2c): Add Cypress component test for `Carousel` [#968](https://github.com/sberdevices/plasma/pull/968) ([@fanisco](https://github.com/fanisco))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 3
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.29.0 (Wed Dec 15 2021)
 
 #### 🐛 Bug Fix

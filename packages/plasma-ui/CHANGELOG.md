@@ -1,3 +1,23 @@
+# v1.74.0 (Wed Dec 15 2021)
+
+#### 🐛 Bug Fix
+
+- test(plasma-b2c): Add Cypress component test for `Carousel` [#968](https://github.com/sberdevices/plasma/pull/968) ([@fanisco](https://github.com/fanisco))
+- test(plasma-ui): Add Cypress component test for `Carousel` [#968](https://github.com/sberdevices/plasma/pull/968) ([@fanisco](https://github.com/fanisco))
+- test(plasma-ui): add Fade component tests [#990](https://github.com/sberdevices/plasma/pull/990) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui): add Sheet component tests [#990](https://github.com/sberdevices/plasma/pull/990) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui): add Grid component tests [#990](https://github.com/sberdevices/plasma/pull/990) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-ui): add Header component tests [#990](https://github.com/sberdevices/plasma/pull/990) ([@Yeti-or](https://github.com/Yeti-or))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 3
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.73.0 (Wed Dec 15 2021)
 
 #### 🐛 Bug Fix

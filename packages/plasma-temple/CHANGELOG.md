@@ -1,3 +1,19 @@
+# v1.15.0 (Wed Dec 15 2021)
+
+#### 🐛 Bug Fix
+
+- Bump independent versions \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- Update CHANGELOG.md \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- fix(plasma-temple): Always show player controls on key press [#989](https://github.com/sberdevices/plasma/pull/989) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.14.1 (Wed Dec 15 2021)
 
 #### 🐛 Bug Fix

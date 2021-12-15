@@ -1,3 +1,17 @@
+# v1.68.0 (Wed Dec 15 2021)
+
+#### 🐛 Bug Fix
+
+- test(plasma-web): Add Cypress component test for `Carousel` [#968](https://github.com/sberdevices/plasma/pull/968) ([@fanisco](https://github.com/fanisco))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.67.0 (Wed Dec 15 2021)
 
 #### 🐛 Bug Fix
