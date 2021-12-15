@@ -1,5 +1,18 @@
 # (Wed Dec 15 2021)
 
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@1.14.1`
+  - fix(plasma-temple): Always show player controls on key press [#989](https://github.com/sberdevices/plasma/pull/989) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
+# (Wed Dec 15 2021)
+
 #### 🚀 Enhancement
 
 - `@sberdevices/demo-canvas-app@0.50.0`
