@@ -1,3 +1,41 @@
+# (Thu Dec 16 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-b2c@1.31.0`
+  - feat(plasma-b2c): Add mobile sizes for Tabs [#972](https://github.com/sberdevices/plasma/pull/972) (yaarny@gmail.com)
+  - feat(plasma-b2c): make RadioGroup public [#992](https://github.com/sberdevices/plasma/pull/992) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-b2c@1.31.0`
+  - test(plasma-b2c): fix tests [#993](https://github.com/sberdevices/plasma/pull/993) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-b2c@1.31.0`, `@sberdevices/plasma-ui@1.75.0`
+  - test(plasma-b2c): Add Cypress component test for `Carousel` [#968](https://github.com/sberdevices/plasma/pull/968) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-web@1.69.0`
+  - test(plasma-web): Add Cypress component test for `Carousel` [#968](https://github.com/sberdevices/plasma/pull/968) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-ui@1.75.0`
+  - test(plasma-ui): Add Cypress component test for `Carousel` [#968](https://github.com/sberdevices/plasma/pull/968) ([@fanisco](https://github.com/fanisco))
+  - test(plasma-ui): add Sheet component tests [#990](https://github.com/sberdevices/plasma/pull/990) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui): add Header component tests [#990](https://github.com/sberdevices/plasma/pull/990) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-core@1.45.0`
+  - test(plasma-ui): fix Skeleton component tests [#990](https://github.com/sberdevices/plasma/pull/990) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui): add Toast component tests [#990](https://github.com/sberdevices/plasma/pull/990) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-core@1.45.0`, `@sberdevices/plasma-ui@1.75.0`
+  - test(plasma-ui): add Fade component tests [#990](https://github.com/sberdevices/plasma/pull/990) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui): add Grid component tests [#990](https://github.com/sberdevices/plasma/pull/990) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-temple@1.16.0`
+  - fix(plasma-temple): Always show player controls on key press [#989](https://github.com/sberdevices/plasma/pull/989) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 4
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+- Булах Александр (yaarny@gmail.com)
+
+---
+
 # (Wed Dec 15 2021)
 
 #### 🚀 Enhancement

@@ -1,3 +1,27 @@
+# v1.31.0 (Thu Dec 16 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-b2c): Add mobile sizes for Tabs [#972](https://github.com/sberdevices/plasma/pull/972) (yaarny@gmail.com)
+- feat(plasma-b2c): make RadioGroup public [#992](https://github.com/sberdevices/plasma/pull/992) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- Bump independent versions \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- Update CHANGELOG.md \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- test(plasma-b2c): fix tests [#993](https://github.com/sberdevices/plasma/pull/993) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-b2c): Add Cypress component test for `Carousel` [#968](https://github.com/sberdevices/plasma/pull/968) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 4
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+- Булах Александр (yaarny@gmail.com)
+
+---
+
 # v1.30.0 (Wed Dec 15 2021)
 
 #### 🚀 Enhancement
