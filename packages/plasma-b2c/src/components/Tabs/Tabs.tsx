@@ -11,16 +11,29 @@ export interface TabsProps extends BaseTabsProps {
      * Кнопки табов и контейнер примут вид скругленных "капсул".
      */
     pilled?: boolean;
+    /**
+     * Размер компонента. По умолчанию 'l'
+     */
+    size?: 'l' | 's';
 }
+
+const sizes = {
+    l: (stretch: boolean) => css`
+        --tabs-height: 3rem;
+        --tab-item-padding: ${stretch ? '0.75rem 1.25rem' : '0.75rem 1.75rem'};
+    `,
+    s: (stretch: boolean) => css`
+        --tabs-height: 2.5rem;
+        --tab-item-padding: ${stretch ? '0.625rem 0.5rem' : '0.625rem 1rem'};
+    `,
+};
 
 const views = {
     secondary: css`
-        --tabs-height: 3rem;
         --tabs-padding: 0.125rem;
         --tabs-background-color: ${surfaceLiquid01};
     `,
     clear: css`
-        --tabs-height: 3rem;
         --tabs-padding: 0rem;
         --tabs-background-color: transparent;
     `,
@@ -31,9 +44,9 @@ const views = {
  */
 export const Tabs = styled(BaseTabs)<TabsProps>`
     ${({ view = 'secondary' }) => views[view]}
+    ${({ size = 'l', stretch = false }) => sizes[size](stretch)}
 
     --tabs-border-radius: ${({ pilled }) => (pilled ? '6.25rem' : '0.875rem')};
-    --tab-item-padding: ${({ stretch }) => (stretch ? '0.75rem 1.25rem' : '0.75rem 1.75rem')};
     --tab-item-height: calc(var(--tabs-height) - var(--tabs-padding) * 2);
     --tab-item-border-radius: calc(var(--tabs-border-radius) - var(--tabs-padding));
 
