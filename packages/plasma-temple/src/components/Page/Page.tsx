@@ -114,8 +114,8 @@ export const Page: PageFunctionComponent = ({
     );
 
     return (
-        <React.Suspense fallback={fallbackComponent}>
-            <Layout ignoreInsets={ignoreInsets}>
+        <Layout ignoreInsets={ignoreInsets}>
+            <React.Suspense fallback={fallbackComponent}>
                 <Component
                     name={name}
                     params={window.history.state}
@@ -131,8 +131,8 @@ export const Page: PageFunctionComponent = ({
                     fallbackComponent={fallbackComponent}
                     header={header ?? appHeader}
                 />
-            </Layout>
-        </React.Suspense>
+            </React.Suspense>
+        </Layout>
     );
 };
 
