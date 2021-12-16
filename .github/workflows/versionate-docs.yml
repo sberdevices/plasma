@@ -1,0 +1,63 @@
+name: Versionate Docs
+
+on:
+  # Запуск только в мастере
+  push:
+    branches:
+      - rc
+      - master
+
+jobs:
+  versionate_docs:
+    name: Versionate docs
+    runs-on: ubuntu-latest
+    env:
+      NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Setup packages
+        run: |
+          npm ci
+          npx lerna bootstrap
+
+      # Проверит лог коммитов, по ним забекапит нужные версии нужных сайтов документации
+      - name: Versionate script
+        id: versionate_script
+        uses: ./actions/versionate-docs
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Предыдущий шаг проапдейдит json-файлы, их нужно закоммитить
+      - name: Extract branch name
+        if: ${{ steps.versionate_script.outputs.result == 'true' }}
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      # Коммит изменений в полученную в предыдущем шаге ветку
+      - name: Commit & Push changes
+        if: ${{ steps.versionate_script.outputs.result == 'true' }}
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          message: 'chore: Update `versionsArchive.json` [skip ci]'
+          branch: ${{ steps.extract_branch.outputs.branch }}
+          author_name: SberDevices Frontend Team
+          author_email: sberdevices.frontend@gmail.com
+
+      # В папке "../build" скрипт положил артефакты сборки, заливаем их на удаленный сервер
+      - name: Upload documentation build
+        if: ${{ steps.versionate_script.outputs.result == 'true' }}
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          host: ${{ secrets.DOCS_HOST }}
+          username: ${{ secrets.DOCS_LOGIN }}
+          privateKey: ${{ secrets.DOCS_KEY }}
+          local: "../build"
+          remote: "/var/www/plasma"

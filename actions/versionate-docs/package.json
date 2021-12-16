@@ -1,0 +1,37 @@
+{
+    "name": "@sberdevices/versionate-docs",
+    "version": "0.0.0",
+    "private": true,
+    "description": "Versionate documentation action",
+    "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
+    "license": "Sber Public License at-nc-sa v.2",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "ssh://git@github.com:sberdevices/plasma.git",
+        "directory": "actions/versionate-docs"
+    },
+    "dependencies": {
+        "@actions/core": "1.6.0",
+        "@actions/github": "5.0.0"
+    },
+    "devDependencies": {
+        "@types/jest": "^26.0.20",
+        "jest": "^26.6.3",
+        "ts-jest": "^26.5.3",
+        "typescript": "^3.9.10"
+    },
+    "scripts": {
+        "prepare": "npm run build",
+        "prebuild": "npm run clean",
+        "build": "tsc",
+        "clean": "rm -rf lib",
+        "test": "jest",
+        "test:watch": "jest --watch"
+    },
+    "publishConfig": {
+        "access": "restricted"
+    },
+    "files": ["lib", "action.yml"]
+}
