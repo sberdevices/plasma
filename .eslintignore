@@ -1,6 +1,9 @@
 build
 node_modules
 
+actions/versionate-docs/lib
+actions/versionate-docs/node_modules
+
 packages/plasma-colors/*
 !packages/plasma-colors/additional.ts
 !packages/plasma-colors/general.ts

@@ -110,10 +110,10 @@
     ]
   },
   "dependencies": {
-    "babel-plugin-annotate-pure-calls": "0.4.0",
     "@sberdevices/plasma-tokens": "*",
     "@sberdevices/plasma-tokens-b2c": "*",
     "@sberdevices/plasma-tokens-web": "*",
-    "@sberdevices/plasma-typo": "*"
+    "@sberdevices/plasma-typo": "*",
+    "babel-plugin-annotate-pure-calls": "0.4.0"
   }
 }
