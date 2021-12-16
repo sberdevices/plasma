@@ -1,52 +1,86 @@
-function createCrossIcon({ onClickCloseButton }) {
-    const crossCircleIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    crossCircleIcon.style.display = "block";
-    crossCircleIcon.setAttribute("width", "40px");
-    crossCircleIcon.setAttribute("height", "40px");
-    crossCircleIcon.setAttribute("viewBox", "0 0 24 24");
-    crossCircleIcon.setAttribute("fill", "none");
-    crossCircleIcon.setAttribute("color", "inherit");
+import { addStyle } from "../utils/addStyle";
+import { createElement } from "../utils/createElement";
 
-    const crossCircleIconContent = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    crossCircleIconContent.setAttribute(
-        "d",
-        "M12 2c5.522 0 10 4.477 10 10s-4.478 10-10 10S2 17.523 2 12 6.478 2 12 2zM8.707 7.292a1 1 0 00-1.414 1.415L10.586 12l-3.293 3.293a.999.999 0 00-.083 1.32l.083.094a.997.997 0 001.414 0L12 13.414l3.293 3.293a.996.996 0 00.58.285L16 17a.999.999 0 00.707-1.707L13.414 12l3.293-3.293a1 1 0 00.083-1.32l-.083-.095a1 1 0 00-1.414 0L12 10.585 8.707 7.292z"
-    );
-    crossCircleIconContent.setAttribute("fill", "white");
+function createCrossIcon({ onClickCloseButton, style }) {
+    const crossCircleIcon = createElement({
+        elementName: "svg",
+        namespace: "http://www.w3.org/2000/svg",
+        style: {
+            display: "block",
+        },
+        attributes: {
+            width: "40px",
+            height: "40px",
+            viewBox: "0 0 24 24",
+            fill: "none",
+            color: "inherit",
+        },
+    });
+
+    const crossCircleIconContent = createElement({
+        elementName: "path",
+        namespace: "http://www.w3.org/2000/svg",
+        attributes: {
+            d:
+                "M12 2c5.522 0 10 4.477 10 10s-4.478 10-10 10S2 17.523 2 12 6.478 2 12 2zM8.707 7.292a1 1 0 00-1.414 1.415L10.586 12l-3.293 3.293a.999.999 0 00-.083 1.32l.083.094a.997.997 0 001.414 0L12 13.414l3.293 3.293a.996.996 0 00.58.285L16 17a.999.999 0 00.707-1.707L13.414 12l3.293-3.293a1 1 0 00.083-1.32l-.083-.095a1 1 0 00-1.414 0L12 10.585 8.707 7.292z",
+            fill: "white",
+        },
+    });
+
     crossCircleIcon.appendChild(crossCircleIconContent);
-    const button = document.createElement("button");
-    button.appendChild(crossCircleIcon);
-    button.style.background = "none";
-    button.style.border = "none";
-    button.style.padding = "0";
-    button.style.margin = "0";
-    button.style.position = "relative";
+
+    const button = createElement({
+        elementName: "button",
+        style: Object.assign(
+            {
+                background: "none",
+                border: "none",
+                padding: "0",
+                margin: "0",
+                position: "relative",
+            },
+            style
+        ),
+    });
+
     button.addEventListener("click", (event) => {
         event.stopPropagation();
         onClickCloseButton(event);
     });
+
+    button.appendChild(crossCircleIcon);
     return button;
 }
 
 function createBackBlock({ onClickCloseButton, isTvRemote }) {
     if (isTvRemote) {
-        const backTitle = document.createElement("div");
-        backTitle.style.color = "white";
-        backTitle.innerHTML = 'Чтобы вернуться нажмите "назад"';
-        return backTitle;
+        return createElement({
+            elementName: "div",
+            style: {
+                color: "white",
+            },
+            innerText: 'Чтобы вернуться нажмите "назад"',
+            classList: ["back-title"],
+        });
     } else {
-        const crossCircleIcon = createCrossIcon({ onClickCloseButton });
-        crossCircleIcon.style.flexGrow = "0";
-        crossCircleIcon.style.flexShrink = "0";
-
-        return crossCircleIcon;
+        return createCrossIcon({
+            onClickCloseButton,
+            style: {
+                flexGrow: "0",
+                flexShrink: "0",
+            },
+        });
     }
 }
 
 function createTimerText({ autoCloseTime, timerId }) {
-    const timerText = document.createElement("div");
+    const timerText = createElement({
+        elementName: "div",
+        style: {
+            color: "white",
+        },
+    });
     timerText.innerHTML = `Реклама закроется через <span id="${timerId}">${autoCloseTime}</span>с`;
-    timerText.style.color = "white";
     return timerText;
 }
 
@@ -99,55 +133,72 @@ export function createBanner({
     isTvRemote,
 }) {
     const iframeSize = getIframeSize(width, height);
-    const adIframe = document.createElement("iframe");
-    adIframe.id = "plasma-ad-frame";
-    adIframe.setAttribute("src", iframeUrl);
-    adIframe.setAttribute("width", iframeSize.width);
-    adIframe.setAttribute("height", iframeSize.height);
-    adIframe.style.border = "none";
+
+    const adIframe = createElement({
+        elementName: "iframe",
+        id: "plasma-ad-frame",
+        style: {
+            border: "none",
+        },
+        attributes: {
+            src: iframeUrl,
+            width: iframeSize.width,
+            height: iframeSize.height,
+        },
+    });
     adIframe.addEventListener("load", onLoadIframe);
 
-    const adWrapper = document.createElement("div");
-    adWrapper.style.position = "absolute";
-    adWrapper.style.top = "0";
-    adWrapper.style.left = "0";
-    adWrapper.style.width = "100%";
-    adWrapper.style.height = "100%";
-    adWrapper.style.display = "none";
+    const adWrapper = createElement({
+        elementName: "div",
+        style: {
+            position: "absolute",
+            top: "0",
+            left: "0",
+            width: "100%",
+            height: "100%",
+            display: "none",
+        },
+    });
 
     const containerSize = getBannerContainerSize(width, height);
-    const banner = document.createElement("div");
-    banner.style.margin = "auto";
-    banner.style.flexShrink = "0";
-    banner.style.flexGrow = "0";
-    banner.style.maxWidth = "100vw";
-    banner.style.maxHeight = "100vh";
-    banner.style.padding = "5px";
-    banner.style.boxSizing = "border-box";
-    banner.style.display = "flex";
-    banner.style.flexDirection = "column";
-    banner.style.alignItems = "strength";
-    if (containerSize.width) {
-        banner.style.width = containerSize.width;
-    }
-    if (containerSize.height) {
-        banner.style.height = containerSize.height;
-    }
+    const banner = createElement({
+        elementName: "div",
+        style: {
+            margin: "auto",
+            flexShrink: "0",
+            flexGrow: "0",
+            maxWidth: "100vw",
+            maxHeight: "100vh",
+            padding: "5px",
+            boxSizing: "border-box",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "strength",
+            width: containerSize.width || null,
+            height: containerSize.height || null,
+        },
+    });
 
     if (isTvRemote) {
-        const adHeader = document.createElement("div");
-        adHeader.style.display = "flex";
-        adHeader.style.alignItems = "center";
-        adHeader.style.boxSizing = "border-box";
-        adHeader.style.padding = "5px";
-        adHeader.style.flexGrow = "0";
-        adHeader.style.flexShrink = "0";
+        const adHeader = createElement({
+            elementName: "div",
+            style: {
+                display: "flex",
+                alignItems: "center",
+                boxSizing: "border-box",
+                padding: "5px",
+                flexGrow: "0",
+                flexShrink: "0",
+            },
+        });
 
         const backBlock = createBackBlock({ onClickCloseButton, isTvRemote });
 
         const textTimer = createTimerText({ autoCloseTime, timerId });
-        textTimer.style.flexGrow = "1";
-        textTimer.style.flexShrink = "1";
+        addStyle(textTimer, {
+            flexGrow: "1",
+            flexShrink: "1",
+        });
 
         adHeader.appendChild(textTimer);
         adHeader.appendChild(backBlock);
@@ -156,12 +207,20 @@ export function createBanner({
     }
 
     if (isTvRemote) {
-        const linkWrapper = document.createElement("a");
-        linkWrapper.id = "plasma-ad-banner-link";
-        linkWrapper.setAttribute("href", "https://www.google.com/");
+        const linkWrapper = createElement({
+            elementName: "a",
+            id: "plasma-ad-banner-link",
+            style: {
+                flexGrow: "1",
+                flexShrink: "1",
+            },
+            attributes: {
+                href: "https://plasma.sberdevices.ru/",
+                target: "_blank",
+            },
+        });
+
         linkWrapper.appendChild(adIframe);
-        linkWrapper.style.flexGrow = "1";
-        linkWrapper.style.flexShrink = "1";
         banner.appendChild(linkWrapper);
     } else {
         banner.appendChild(adIframe);
@@ -172,19 +231,27 @@ export function createBanner({
 }
 
 export function createPreloader({ id }) {
-    const adWrapper = document.createElement("div");
-    adWrapper.style.position = "absolute";
-    adWrapper.style.top = "0";
-    adWrapper.style.left = "0";
-    adWrapper.style.width = "100%";
-    adWrapper.style.height = "100%";
-    adWrapper.style.display = "flex";
-    adWrapper.id = id;
+    const adWrapper = createElement({
+        elementName: "div",
+        style: {
+            position: "absolute",
+            top: "0",
+            left: "0",
+            width: "100%",
+            height: "100%",
+            display: "flex",
+        },
+        id: id,
+    });
 
-    const preloader = document.createElement("div");
-    preloader.innerText = "Loading...";
-    preloader.style.margin = "auto";
-    preloader.style.color = "white";
+    const preloader = createElement({
+        elementName: "div",
+        style: {
+            margin: "auto",
+            color: "white",
+        },
+        innerText: "Loading...",
+    });
 
     adWrapper.appendChild(preloader);
     return adWrapper;

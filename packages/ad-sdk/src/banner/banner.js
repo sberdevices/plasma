@@ -1,4 +1,5 @@
 import fetch from "../utils/fetch";
+import { addStyle } from "../utils/addStyle";
 import { createBanner, createPreloader } from "./bannerComponent";
 
 const TIME_TO_AUTO_CLOSE_IN_SECONDS = 10;
@@ -86,15 +87,17 @@ export class Banner {
     }
 
     _blockFocus() {
-        if (this._isTvRemote) {
-            const link = document.getElementById("plasma-ad-banner-link");
+        const link = document.getElementById("plasma-ad-banner-link");
+        if (link) {
             link.focus();
         }
         document.addEventListener("navbeforefocus", blockFocusHandle);
     }
 
     _showBanner(banner) {
-        banner.style.display = "flex";
+        addStyle(banner, {
+            display: "flex",
+        });
     }
 
     _showPreloader() {

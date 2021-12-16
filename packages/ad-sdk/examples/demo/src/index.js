@@ -52,9 +52,9 @@ function initAssistant() {
         console.error("AdSDK Error", err);
     };
     if (IS_DEVELOPMENT) {
-        initDev({ token: DEV_TOKEN, initPhrase: DEV_PHRASE, onSuccess, onError, test: isTest });
+        initDev({ token: DEV_TOKEN, initPhrase: DEV_PHRASE, onSuccess, onError, test: isTest, cooldownTime: 0 });
     } else {
-        init({ onSuccess, onError, test: isTest });
+        init({ onSuccess, onError, test: isTest, cooldownTime: 0 });
     }
 }
 

@@ -9,7 +9,7 @@
     "clean": "rm public/bundle.js",
     "predev": "npm run clean && npm run build:dev",
     "dev": "npm run build-sdk:watch | npx http-server",
-    "prod": "npx http-server",
+    "prod": "npm run build-sdk:watch | npx http-server",
     "build-sdk:watch": "npm run prepare-demo:watch --prefix='../../'",
     "start": "npx vercel dev"
   },

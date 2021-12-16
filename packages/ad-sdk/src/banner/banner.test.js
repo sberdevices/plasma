@@ -22,7 +22,7 @@ function triggerOnLoadIframe() {
     iframe.dispatchEvent(new Event("load"));
 }
 
-function createBanner({ events } = {}) {
+function createBanner({ events, params } = {}) {
     const adContainer = document.createElement("div");
     adContainer.id = "root";
     const banner = new Banner(
@@ -31,7 +31,10 @@ function createBanner({ events } = {}) {
             onError: (err) => console.log("error", err),
             ...events,
         },
-        {}
+        {},
+        {
+            ...params,
+        }
     );
     return banner;
 }
@@ -46,8 +49,16 @@ describe("banner.js - Banner class", () => {
         jest.clearAllTimers();
     });
 
-    test("Совпадает снапшот", async () => {
-        const banner = createBanner();
+    test("Совпадает снапшот для устройств без пульта", async () => {
+        const banner = createBanner({ params: { isTvRemote: false } });
+        await banner.run();
+        triggerOnLoadIframe();
+        const bodyElement = document.getElementsByTagName("body")[0];
+        expect(bodyElement).toMatchSnapshot();
+    });
+
+    test("Совпадает снапшот для устройств с пультом", async () => {
+        const banner = createBanner({ params: { isTvRemote: true } });
         await banner.run();
         triggerOnLoadIframe();
         const bodyElement = document.getElementsByTagName("body")[0];
@@ -86,7 +97,7 @@ describe("banner.js - Banner class", () => {
     });
 
     test("Реклама автоматически закрывается после 10 секунд", async () => {
-        const banner = createBanner();
+        const banner = createBanner({ params: { isTvRemote: true } });
         await banner.run();
         let rootElement = document.getElementById("root");
         expect(rootElement).toBeTruthy();
@@ -106,16 +117,15 @@ describe("banner.js - Banner class", () => {
         expect(rootElement).toBeFalsy();
     });
 
-    test('Реклама закрывается при нажатии на кнопку "закрыть"', async () => {
-        const banner = createBanner();
+    test('Реклама закрывается при нажатии на кнопку "назад" на пульте', async () => {
+        const banner = createBanner({ params: { isTvRemote: true } });
         await banner.run();
         let rootElement = document.getElementById("root");
         expect(rootElement).toBeTruthy();
 
         triggerOnLoadIframe();
 
-        const closeButton = document.getElementsByTagName("button")[0];
-        closeButton.dispatchEvent(new Event("click"));
+        history.back();
 
         jest.advanceTimersByTime(1000);
 
@@ -124,7 +134,7 @@ describe("banner.js - Banner class", () => {
     });
 
     test("Таймер меняется корректно раз в секунду", async () => {
-        const banner = createBanner();
+        const banner = createBanner({ params: { isTvRemote: true } });
         await banner.run();
 
         const timerElement = document.getElementById("plasma-ad-time-to-close");

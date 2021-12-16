@@ -5,10 +5,9 @@ describe("bannerComponent.js", () => {
         document.body.innerHTML = "";
     });
 
-    test("Событие клика не всплывает выше баннера", () => {
+    test('Для сбербокса отображается предложение надать кнопку "Назад"', () => {
         const onLoadIframe = jest.fn();
         const onClickCloseButton = jest.fn();
-        const onClickBody = jest.fn();
 
         const banner = createBanner({
             iframeUrl: "",
@@ -18,14 +17,10 @@ describe("bannerComponent.js", () => {
             autoCloseTime: 10000,
             onLoadIframe,
             onClickCloseButton,
+            isTvRemote: true,
         });
 
-        document.body.addEventListener("click", onClickBody);
-        document.body.append(banner);
-        const closeButton = document.getElementsByTagName("button")[0];
-        closeButton.dispatchEvent(new Event("click", { bubbles: true }));
-
-        expect(onClickCloseButton).toHaveBeenCalledTimes(1);
-        expect(onClickBody).toHaveBeenCalledTimes(0);
+        const backTitle = banner.getElementsByClassName("back-title")[0];
+        expect(backTitle.innerText).toBe('Чтобы вернуться нажмите "назад"');
     });
 });

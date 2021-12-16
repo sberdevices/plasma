@@ -14,8 +14,11 @@ const logger = {
 };
 
 let initParams = {};
+let realSurface;
 
-let cooldownTime = 2 * 60 * 1000;
+const minCooldownTime = 2 * 60 * 1000;
+
+let cooldownTime = minCooldownTime;
 
 let _inited = false;
 let adTag = "";
@@ -55,6 +58,8 @@ function _initWithParams(params = {}, test) {
     if (!params.device.surface) {
         errParam("device.surface");
     }
+
+    realSurface = params.device.surface;
 
     if (test) {
         params.device.surface = "TEST";
@@ -138,7 +143,11 @@ export function init(params = {}) {
     }
 
     if (typeof params.cooldownTime === "number") {
-        cooldownTime = params.cooldownTime;
+        if (test) {
+            cooldownTime = params.cooldownTime;
+        } else {
+            cooldownTime = Math.max(minCooldownTime, params.cooldownTime);
+        }
     }
 
     try {
@@ -391,8 +400,7 @@ export function runBanner(events = {}) {
 }
 
 function getIsTvRemote() {
-    const surface = initParams.surface;
-    return surfacesWithTVRemote.some((surf) => surf === surface);
+    return surfacesWithTVRemote.some((surf) => surf === realSurface);
 }
 
 function getBannerParams() {
