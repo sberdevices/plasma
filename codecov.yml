@@ -1,0 +1,21 @@
+coverage:
+  status:
+    project:
+      plasma-ui:
+        threshold: 0%
+        paths:
+          - packages/plasma-ui
+        flags:
+          - plasma-ui
+      plasma-web:
+        threshold: 0%
+        paths:
+          - packages/plasma-web
+        flags:
+          - plasma-web
+      plasma-b2c:
+        threshold: 0%
+        paths:
+          - packages/plasma-b2c
+        flags:
+          - plasma-b2c

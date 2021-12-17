@@ -42,3 +42,24 @@ jobs:
       with:
         name: Test Artifacts
         path: /home/runner/work/plasma/plasma/cypress
+
+    - name: Code Coverage UI
+      if: ${{ always() }}
+      uses: codecov/codecov-action@v2
+      with:
+        directory: cypress/plasma-ui-coverage
+        flags: plasma-ui
+
+    - name: Code Coverage WEB
+      if: ${{ always() }}
+      uses: codecov/codecov-action@v2
+      with:
+        directory: cypress/plasma-web-coverage
+        flags: plasma-web
+
+    - name: Code Coverage B2C
+      if: ${{ always() }}
+      uses: codecov/codecov-action@v2
+      with:
+        directory: cypress/plasma-b2c-coverage
+        flags: plasma-b2c
