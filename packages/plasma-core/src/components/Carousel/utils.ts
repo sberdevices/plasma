@@ -11,6 +11,7 @@ const positionModByScrollAlign = ({
     itemSize,
     offset,
     scrollStart,
+    axis,
 }: {
     scrollAlign: ScrollAlign;
     position: number;
@@ -18,7 +19,13 @@ const positionModByScrollAlign = ({
     itemSize: number;
     offset: number;
     scrollStart: number;
+    axis: ScrollAxis;
 }) => {
+    if (scrollAlign === 'start') {
+        const inaccuracy = 1;
+        const paddingOffset = axis === 'y' ? offset - itemSize / 2 + inaccuracy : 0;
+        return position + paddingOffset;
+    }
     if (scrollAlign === 'center') {
         return position - carouselSize / 2 + itemSize / 2;
     }
@@ -57,6 +64,7 @@ export const getCalculatedPos = ({
     let position = scrollAlign === 'center' ? offset : 0;
     let carouselSize;
     let itemSize;
+    let scrollStart;
 
     if (!items[index]) {
         return position;
@@ -69,15 +77,15 @@ export const getCalculatedPos = ({
             position += items[i].current?.offsetHeight || 0;
         }
     }
-    if (scrollAlign === 'start') {
-        return position;
-    }
+
     if (axis === 'x') {
         carouselSize = scrollEl.offsetWidth;
         itemSize = items[index].current?.offsetWidth || 0;
+        scrollStart = scrollEl.scrollLeft;
     } else {
         carouselSize = scrollEl.offsetHeight;
         itemSize = items[index].current?.offsetHeight || 0;
+        scrollStart = scrollEl.scrollTop;
     }
 
     return positionModByScrollAlign({
@@ -86,7 +94,8 @@ export const getCalculatedPos = ({
         carouselSize,
         itemSize,
         offset,
-        scrollStart: axis === 'x' ? scrollEl.scrollLeft : scrollEl.scrollTop,
+        scrollStart,
+        axis,
     });
 };
 
