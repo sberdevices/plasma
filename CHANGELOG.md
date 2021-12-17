@@ -1,3 +1,16 @@
+# (Fri Dec 17 2021)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@1.15.1`
+  - fix(plasma-temple): Fix async Layout render [#995](https://github.com/sberdevices/plasma/pull/995) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # (Thu Dec 16 2021)
 
 #### 🚀 Enhancement
