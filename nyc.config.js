@@ -7,6 +7,7 @@ if (coverageDir) {
         'report-dir': coverageDir,
         'temp-dir': `.nyc_output/${coverageDir}`,
         include: [`**/packages/${process.env.PACKAGE_NAME}/**`],
+        exclude: ['**/*.examples.tsx'],
         excludeAfterRemap: true,
     };
 

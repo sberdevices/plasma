@@ -64,7 +64,6 @@ module.exports = function getWebpackConfig() {
                         loader: 'babel-loader',
                         options: {
                             ...babelrc.env.cjs,
-                            ignore: ['**/*.d.ts', '**/*.stories.tsx'],
                         },
                     },
                 },
