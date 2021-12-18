@@ -78,6 +78,29 @@ describe('plasma-core: Radiobox', () => {
         );
         cy.matchImageSnapshot();
     });
+
+    it(':id', () => {
+        mount(
+            <CypressTestDecorator noSSR>
+                <Radiobox name="uniqId" label="radiobox" description="О чём мечтают роботы?" />
+                <Radiobox name="robots" id="radio" label="radiobox" description="О чём мечтают роботы?" />
+            </CypressTestDecorator>,
+        );
+
+        cy.get('#radio').then((el) => {
+            cy.get(`#${el.attr('aria-labelledby')}`).should('contain', 'radiobox');
+
+            cy.get(`#${el.attr('aria-describedby')}`).should('contain', 'О чём мечтают роботы');
+        });
+
+        cy.get('[name="uniqId"]').then((el) => {
+            cy.get(`#${el.attr('aria-labelledby')}`).should('contain', 'radiobox');
+
+            cy.get(`#${el.attr('aria-describedby')}`).should('contain', 'О чём мечтают роботы');
+        });
+
+        cy.get('[name="uniqId"]').should('have.attr', 'id');
+    });
 });
 
 describe('plasma-core: RadioGroup', () => {
