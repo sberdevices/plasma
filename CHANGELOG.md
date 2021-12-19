@@ -1,3 +1,30 @@
+# (Sun Dec 19 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-b2c@1.32.0`
+  - feat(b2c): add SSRProvider [#1000](https://github.com/sberdevices/plasma/pull/1000) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### 🐛 Bug Fix
+
+- ci: improve coverall check [#999](https://github.com/sberdevices/plasma/pull/999) ([@Yeti-or](https://github.com/Yeti-or))
+- ci: add codecov [#997](https://github.com/sberdevices/plasma/pull/997) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-core@1.45.0`
+  - test(plasma-ui): improve TextArea component tests [#991](https://github.com/sberdevices/plasma/pull/991) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui): improve Checkbox component tests [#991](https://github.com/sberdevices/plasma/pull/991) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui): add RadioGroup component tests [#991](https://github.com/sberdevices/plasma/pull/991) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui): add Switch component tests [#991](https://github.com/sberdevices/plasma/pull/991) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui): improve Button component tests [#991](https://github.com/sberdevices/plasma/pull/991) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-ui@1.75.0`
+  - test(plasma-ui): add Slider component tests [#991](https://github.com/sberdevices/plasma/pull/991) ([@Yeti-or](https://github.com/Yeti-or))
+  - test(plasma-ui): add Stepper component tests [#991](https://github.com/sberdevices/plasma/pull/991) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # (Fri Dec 17 2021)
 
 #### 🐛 Bug Fix

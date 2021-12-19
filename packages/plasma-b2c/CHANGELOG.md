@@ -1,3 +1,15 @@
+# v1.32.0 (Sun Dec 19 2021)
+
+#### 🚀 Enhancement
+
+- feat(b2c): add SSRProvider [#1000](https://github.com/sberdevices/plasma/pull/1000) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.31.0 (Thu Dec 16 2021)
 
 #### 🚀 Enhancement
