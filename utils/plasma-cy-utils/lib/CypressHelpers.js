@@ -81,24 +81,33 @@ exports.getComponent = function (componentName) {
     throw new Error("Library " + pkgName + " is not required in plasma-core/CypressHelpers:getComponent");
 };
 exports.CypressTestDecorator = function (_a) {
-    var children = _a.children;
+    var noSSR = _a.noSSR, children = _a.children;
     // eslint-disable-next-line
     // @ts-ignore
     var pkgName = Cypress.env('package');
+    var SSRProvider = exports.getComponent('SSRProvider');
+    var SSR = function (_a) {
+        var _noSSR = _a.noSSR, children = _a.children;
+        if (_noSSR) {
+            return react_1.default.createElement(react_1.default.Fragment, null, children);
+        }
+        return react_1.default.createElement(SSRProvider, null, children);
+    };
     if (pkgName === 'plasma-ui') {
         var DeviceThemeProvider = exports.getComponent('DeviceThemeProvider');
         return (react_1.default.createElement(DeviceThemeProvider, null,
-            react_1.default.createElement(ThemeStyle, null),
-            children));
+            react_1.default.createElement(SSR, { noSSR: noSSR },
+                react_1.default.createElement(ThemeStyle, null),
+                children)));
     }
     if (pkgName === 'plasma-web') {
-        return (react_1.default.createElement(react_1.default.Fragment, null,
+        return (react_1.default.createElement(SSR, { noSSR: noSSR },
             react_1.default.createElement(TypoThemeStyle, null),
             react_1.default.createElement(ColorThemeStyle, null),
             children));
     }
     if (pkgName === 'plasma-b2c') {
-        return (react_1.default.createElement(react_1.default.Fragment, null,
+        return (react_1.default.createElement(SSR, { noSSR: noSSR },
             react_1.default.createElement(StandardTypoStyle, null),
             react_1.default.createElement(CompatibleTypoStyle, null),
             react_1.default.createElement(ColorB2CStyle, null),
