@@ -68,40 +68,54 @@ export const getComponent = (componentName: string) => {
     throw new Error(`Library ${pkgName} is not required in plasma-core/CypressHelpers:getComponent`);
 };
 
-export const CypressTestDecorator: React.FC = ({ children }) => {
+interface CYTDec {
+    noSSR?: boolean;
+}
+
+export const CypressTestDecorator: React.FC<CYTDec> = ({ noSSR, children }) => {
     // eslint-disable-next-line
     // @ts-ignore
     const pkgName = Cypress.env('package');
+    const SSRProvider = getComponent('SSRProvider');
+
+    const SSR: React.FC<CYTDec> = ({ noSSR: _noSSR, children }) => {
+        if (_noSSR) {
+            return <>{children}</>;
+        }
+        return <SSRProvider>{children}</SSRProvider>;
+    };
 
     if (pkgName === 'plasma-ui') {
         const DeviceThemeProvider = getComponent('DeviceThemeProvider');
 
         return (
             <DeviceThemeProvider>
-                <ThemeStyle />
-                {children}
+                <SSR noSSR={noSSR}>
+                    <ThemeStyle />
+                    {children}
+                </SSR>
             </DeviceThemeProvider>
         );
     }
 
     if (pkgName === 'plasma-web') {
         return (
-            <>
+            <SSR noSSR={noSSR}>
                 <TypoThemeStyle />
                 <ColorThemeStyle />
                 {children}
-            </>
+            </SSR>
         );
     }
 
     if (pkgName === 'plasma-b2c') {
         return (
-            <>
+            <SSR noSSR={noSSR}>
                 <StandardTypoStyle />
                 <CompatibleTypoStyle />
                 <ColorB2CStyle />
                 {children}
-            </>
+            </SSR>
         );
     }
 
