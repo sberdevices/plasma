@@ -68,3 +68,10 @@ jobs:
       with:
         directory: cypress/plasma-b2c-coverage
         flags: plasma-b2c,plasma-core
+
+    - name: Code Covarege Temple
+      if: ${{ always() }}
+      uses: codecov/codecov-action@v2
+      with:
+        directory: cypress/plasma-temple-coverage
+        flags: plasma-temple

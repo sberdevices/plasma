@@ -29,3 +29,8 @@ coverage:
           - packages/plasma-b2c
         flags:
           - plasma-b2c
+      plasma-temple:
+        target: auto
+        threshold: 5
+        paths:
+          - packages/plasma-temple
