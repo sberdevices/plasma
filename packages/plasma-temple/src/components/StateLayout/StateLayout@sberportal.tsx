@@ -26,7 +26,7 @@ const StyledImageWrapper = styled.div`
     width: 408px;
 `;
 
-export const StateLayout: React.FC<StateLayoutCommonProps> = (props) => (
+export const StateLayoutSberPortal: React.FC<StateLayoutCommonProps> = (props) => (
     <CommonStateLayout
         {...props}
         platformComponents={{

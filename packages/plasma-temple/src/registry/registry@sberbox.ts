@@ -3,7 +3,7 @@ import { ItemEntities } from '../pages/ItemPage/components/ItemEntities/ItemEnti
 import { NavCol } from '../pages/ShopLandingPage/components/NavCol/NavCol@sberbox';
 import { Carousel } from '../pages/GalleryPage/components/Carousel@sberbox';
 import { HeroSliderSberbox as Slider } from '../components/HeroSlider/HeroSlider@sberbox';
-import { StateLayout } from '../components/StateLayout/StateLayout@sberbox';
+import { StateLayoutSberBox as StateLayout } from '../components/StateLayout/StateLayout@sberbox';
 
 import { Registry } from './types';
 
