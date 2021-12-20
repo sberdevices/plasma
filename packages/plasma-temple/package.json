@@ -33,8 +33,12 @@
         "@sberdevices/plasma-icons": "1.63.2",
         "@sberdevices/plasma-tokens": "1.15.1",
         "@sberdevices/plasma-ui": "1.76.2",
+        "@storybook/addon-docs": "^6.4.9",
+        "@storybook/addon-essentials": "^6.4.9",
+        "@storybook/addons": "^6.4.9",
         "@storybook/preset-create-react-app": "^3.2.0",
-        "@storybook/react": "^6.3.8",
+        "@storybook/react": "^6.4.9",
+        "@storybook/theming": "^6.4.9",
         "@testing-library/react-hooks": "5.1.0",
         "@types/jest": "26.0.20",
         "@types/lodash": "4.14.160",
@@ -75,9 +79,7 @@
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
         "test": "jest"
     },
-    "files": [
-        "dist"
-    ],
+    "files": ["dist"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Виноградов Антон Александрович",

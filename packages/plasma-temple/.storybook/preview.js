@@ -1,26 +1,37 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { addDecorator, addParameters } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { sberBox as sberBoxTypo } from '@sberdevices/plasma-tokens/typo';
-import { darkSber } from '@sberdevices/plasma-tokens/themes';
-import { Container, DeviceThemeProvider } from '@sberdevices/plasma-ui';
+import { darkSber, darkEva, darkJoy } from '@sberdevices/plasma-tokens';
+import { DeviceThemeProvider } from '@sberdevices/plasma-ui';
 import { createAssistant } from '@sberdevices/assistant-client';
 
 import { AssistantContext } from '../src/components/PlasmaApp/AssistantContext';
+import { withAppState } from './decorators/withAppState';
+import { Layout } from '../src/components/Layout/Layout';
 
 const mock = createAssistant({
     getState: () => ({}),
 });
 
-const Color = createGlobalStyle(darkSber);
+const themes = {
+    darkSber: createGlobalStyle(darkSber),
+    darkEva: createGlobalStyle(darkEva),
+    darkJoy: createGlobalStyle(darkJoy),
+};
 
-const withGlobalStyles = (storyFn) => (
-    <DeviceThemeProvider>
-        <Color />
-        <Container>{storyFn ? storyFn() : null}</Container>
-    </DeviceThemeProvider>
-);
+const withGlobalStyles = (Story, context) => {
+    const Theme = themes[context.globals.theme];
+    const typoSize = context.globals.typoSize;
+
+    return (
+        <DeviceThemeProvider detectDeviceCallback={() => typoSize}>
+            <Theme />
+            <Layout ignoreInsets={context.parameters?.ignoreInsets ?? false}>
+                <Story {...context} />
+            </Layout>
+        </DeviceThemeProvider>
+    );
+};
 
 const withAssistant = (Story) => (
     <AssistantContext.Provider
@@ -34,19 +45,35 @@ const withAssistant = (Story) => (
 );
 
 addDecorator(withGlobalStyles);
-addDecorator(withKnobs);
 addDecorator(withAssistant);
+addDecorator(withAppState);
 
-addParameters({
-    backgrounds: {
-        default: 'dark',
-        values: [{ name: 'dark', value: '#0B121E', default: true }],
+// TODO: решить проблему с реестром компонент и компонент зависящих от UA браузера
+
+export const globalTypes = {
+    theme: {
+        name: 'Theme',
+        description: 'Global theme for components',
+        defaultValue: 'darkSber',
+        toolbar: {
+            items: ['darkSber', 'darkJoy', 'darkEva'],
+            showName: true,
+        },
     },
-});
+    typoSize: {
+        name: 'Device kind',
+        description: 'Global typography size for components',
+        defaultValue: 'mobile',
+        toolbar: {
+            items: ['mobile', 'sberBox', 'sberPortal'],
+            showName: true,
+        },
+    },
+};
 
 addParameters({
     viewport: {
-        defaultViewport: 'SberBox',
+        defaultViewport: 'Mobile',
         viewports: {
             SberPortal: {
                 name: 'SberPortal',
@@ -66,7 +93,7 @@ addParameters({
                 name: 'Mobile',
                 styles: {
                     width: '375px',
-                    height: '667px',
+                    height: '812px',
                 },
             },
         },
