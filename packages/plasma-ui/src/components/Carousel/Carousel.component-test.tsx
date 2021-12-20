@@ -22,7 +22,6 @@ const items = [
 ];
 
 describe('plasma-ui: Carousel', () => {
-    const DeviceThemeProvider = getComponent('DeviceThemeProvider');
     const Container = getComponent('Container');
     const Row = getComponent('Row');
     const Carousel = getComponent('Carousel');
@@ -33,9 +32,7 @@ describe('plasma-ui: Carousel', () => {
 
     const CarouselDecorator: FC = ({ children }) => (
         <CypressTestDecorator>
-            <DeviceThemeProvider>
-                <Container>{children}</Container>
-            </DeviceThemeProvider>
+            <Container>{children}</Container>
         </CypressTestDecorator>
     );
 
@@ -268,6 +265,41 @@ describe('plasma-ui: Carousel', () => {
         cy.wait(1000);
         cy.get('body').type('{leftarrow}');
         cy.wait(1000);
+        cy.matchImageSnapshot();
+    });
+
+    it('_scrollAlign', () => {
+        const index = 0;
+
+        const scrollAlignList = ['start', 'center', 'end', 'activeDirection'];
+
+        mount(
+            <CarouselDecorator>
+                {scrollAlignList.map((scrollAlign) => (
+                    <CarouselGridWrapper>
+                        <Carousel
+                            as={Row}
+                            axis="x"
+                            index={index}
+                            detectActive
+                            detectThreshold={0.5}
+                            scaleCallback={scaleCallback}
+                            scaleResetCallback={scaleResetCallback}
+                            scrollAlign={scrollAlign}
+                            paddingStart="50%"
+                            paddingEnd="50%"
+                            scrollSnapType="none"
+                            style={{ paddingTop: '7.5rem' }}
+                        >
+                            {items.map((item, i) => (
+                                <ScalingColCard key={`item:${i}`} isActive={i === index} item={item} />
+                            ))}
+                        </Carousel>
+                    </CarouselGridWrapper>
+                ))}
+            </CarouselDecorator>,
+        );
+
         cy.matchImageSnapshot();
     });
 
