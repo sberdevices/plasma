@@ -7,13 +7,7 @@ module.exports = {
         '../examples/**/*.stories.tsx',
         '../examples/**/*.examples.tsx',
     ],
-    addons: [
-        '@storybook/addon-knobs/register',
-        '@storybook/addon-backgrounds/register',
-        '@storybook/addon-viewport/register',
-        '@storybook/addon-actions',
-        '@storybook/preset-create-react-app',
-    ],
+    addons: ['@storybook/preset-create-react-app', '@storybook/addon-essentials'],
     webpackFinal: async (config) => {
         return {
             ...config,
