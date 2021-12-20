@@ -14,12 +14,15 @@ import {
 } from './CartItem@common';
 
 const StyledRow = styled(Row)`
-    margin-bottom: 0.5rem;
+    padding: 0.5rem 0;
+    align-items: flex-start;
+    flex-wrap: nowrap;
 `;
 
 const StyledLeftCol = styled(Col)`
     display: flex;
     align-items: center;
+    flex-basis: 100%;
 `;
 
 const StyledTitle = styled(Caption)`
@@ -39,11 +42,7 @@ const StyledImageContainer = styled.div<{ backgroundColor?: string }>`
 `;
 
 const StyledQuantityCol = styled(Col)`
-    padding-right: 3.5rem;
-`;
-
-const StyledTextBox = styled(TextBox)`
-    width: calc(100% - 3rem);
+    margin-left: auto;
 `;
 
 export const CartItemSberPortal: React.FC<CartItemProps> = ({
@@ -59,18 +58,18 @@ export const CartItemSberPortal: React.FC<CartItemProps> = ({
 
     return (
         <StyledRow data-cy="CartItem">
-            <StyledLeftCol sizeM={3}>
+            <StyledLeftCol>
                 <StyledImageContainer backgroundColor={imageBackgroundColor} onClick={clickHandler}>
                     <StyledImage imageSrc={imageSrc} />
                 </StyledImageContainer>
-                <StyledTextBox>
+                <TextBox>
                     <StyledTitle>{name}</StyledTitle>
                     <StyledPriceContainer>
                         <Price price={price} currency={currency} present={present} />
                     </StyledPriceContainer>
-                </StyledTextBox>
+                </TextBox>
             </StyledLeftCol>
-            <StyledQuantityCol sizeM={3}>
+            <StyledQuantityCol>
                 {present ? <Present /> : <QuantityButton id={id} quantity={quantity} {...props} />}
             </StyledQuantityCol>
         </StyledRow>

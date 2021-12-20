@@ -5,6 +5,7 @@ import { Carousel, CarouselCol, mediaQuery, Row } from '@sberdevices/plasma-ui';
 import { CartItem } from '../CartItem/CartItem';
 import { CartItem as CartItemType } from '../../types';
 import { useRemoteHandlers } from '../../../../hooks/useRemoteHandlers';
+import { Insets, useInsets } from '../../../../hooks/useInsets';
 import { Currency } from '../../../../types';
 import { useSpatNavStop } from '../../../../hooks/useSpatNav';
 
@@ -15,8 +16,11 @@ export interface CartItemListProps {
     onItemClick?: (item: CartItemType) => void;
 }
 
-const StyledCarouselGridWrapper = styled.div`
+const StyledCarouselGridWrapper = styled.div<Partial<Insets>>`
     height: calc(100vh - 5rem);
+
+    padding-bottom: ${({ bottom = 0 }) => bottom}px;
+    box-sizing: border-box;
 
     ${mediaQuery(
         'M',
@@ -41,6 +45,7 @@ export const CartItemListCommon: React.FC<CartItemListProps> = ({
     const [activeButton, setActiveButton] = React.useState<'left' | 'right'>('right');
 
     useSpatNavStop('y');
+    const insets = useInsets();
 
     const [cartIndex, setCartIndex] = useRemoteHandlers({
         initialIndex: 0,
@@ -52,18 +57,17 @@ export const CartItemListCommon: React.FC<CartItemListProps> = ({
     });
 
     return (
-        <StyledCarouselGridWrapper>
+        <StyledCarouselGridWrapper bottom={insets.bottom}>
             <Carousel
                 axis="y"
                 as={StyledRow}
                 index={cartIndex}
-                scrollAlign="center"
+                scrollAlign="start"
                 scrollSnapType="mandatory"
-                paddingEnd="50%"
                 tabIndex={-1}
             >
                 {items.map((item, index) => (
-                    <CarouselCol key={`${item.id}-${index}`} scrollSnapAlign="center">
+                    <CarouselCol key={`${item.id}-${index}`} scrollSnapAlign="start">
                         <CartItem
                             index={index}
                             item={item}

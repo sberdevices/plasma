@@ -24,7 +24,7 @@ export function CartPage<T extends CartState = CartState>({
     name,
     emptyCart,
     orderButtonText = 'Оформить заказ',
-    itemImageBackgroundColor,
+    itemImageBackgroundColor = 'unset',
     onMakeOrder,
     onItemClick,
     children,
@@ -43,7 +43,7 @@ export function CartPage<T extends CartState = CartState>({
                 emptyCart
             ) : (
                 <Row>
-                    <Col sizeXL={6} sizeM={4} sizeS={4} data-cy="CartPage-items">
+                    <Col sizeXL={6} sizeL={6} sizeM={4} sizeS={4} data-cy="CartPage-items">
                         <CartItemList
                             items={items}
                             currency={currency}
