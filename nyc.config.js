@@ -11,8 +11,15 @@ if (coverageDir) {
         excludeAfterRemap: true,
     };
 
-    if (process.env.PACKAGE_NAME === 'plasma-ui') {
-        nycConfig.include.push('**/packages/plasma-core/**');
+    switch (process.env.PACKAGE_NAME) {
+        case 'plasma-ui':
+            nycConfig.include.push('**/packages/plasma-core/**');
+            break;
+        case 'plasma-temple':
+            nycConfig.exclude.push('**/packages/plasma-temple/testHelpers/**');
+            break;
+        default:
+            break;
     }
 }
 

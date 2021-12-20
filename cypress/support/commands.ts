@@ -107,3 +107,16 @@ Cypress.Commands.add(
         }, chainer);
     },
 );
+
+Cypress.Commands.add(
+    'triggerSpatNavEvent',
+    { prevSubject: 'element' },
+    (subject: HTMLElement, dir: 'left' | 'right' | 'up' | 'down', times = 1) => {
+        return Array({ length: times }).reduce<Cypress.Chainable>((acc) => {
+            return acc.trigger('navbeforefocus', {
+                eventConstructor: 'CustomEvent',
+                detail: { dir },
+            });
+        }, cy.wrap(subject));
+    },
+);

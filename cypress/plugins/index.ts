@@ -6,7 +6,7 @@ const { startDevServer } = require('@cypress/webpack-dev-server');
 const getWebpackConfig = require('../webpack.config');
 const coverage = require('@cypress/code-coverage/task');
 
-module.exports = (on, config) => {
+const overrideConfig: Cypress.PluginConfig = (on, config) => {
     addMatchImageSnapshotPlugin(on, config);
 
     coverage(on, config);
@@ -18,7 +18,7 @@ module.exports = (on, config) => {
     }
 
     if (config.env.package === 'plasma-temple') {
-        on('before:browser:launch', (browser: Cypress.Browser, launchOptions: Cypress.BrowserLaunchOptions) => {
+        on('before:browser:launch', (browser, launchOptions) => {
             if (browser.name === 'chrome' || browser.name === 'chromium') {
                 launchOptions.args.push('--window-size=2000,1080');
                 launchOptions.args.push('--disable-dev-shm-usage');
@@ -44,3 +44,5 @@ module.exports = (on, config) => {
 
     return config;
 };
+
+module.exports = overrideConfig;
