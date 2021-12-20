@@ -1,11 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { action } from '@storybook/addon-actions';
-import { createAssistant } from '@sberdevices/assistant-client';
 import { tertiary } from '@sberdevices/plasma-tokens';
-import { Underline } from '@sberdevices/plasma-ui';
-
-import { AssistantContext } from '../../components/PlasmaApp/AssistantContext';
+import { Footnote1 } from '@sberdevices/plasma-ui';
 
 import { CartPage } from './CartPage';
 import { CartProvider } from './components/CartProvider/CartProvider';
@@ -13,6 +10,9 @@ import { CartItem, CartState } from './types';
 
 export default {
     title: 'Pages/Cart',
+    parameters: {
+        ignoreInsets: true,
+    },
 };
 
 const items: CartItem[] = [
@@ -71,12 +71,7 @@ const initialState: CartState = {
     amount: 7412,
 };
 
-const assistantContextValue = {
-    getAssistant: () => createAssistant({ getState: () => ({}) }),
-    setAssistantState: () => {},
-};
-
-const StyledUnderline = styled(Underline)`
+const StyledText = styled(Footnote1)`
     margin-top: 1rem;
     color: ${tertiary};
     text-align: center;
@@ -84,30 +79,24 @@ const StyledUnderline = styled(Underline)`
 
 export const Default = (): React.ReactElement => {
     return (
-        <AssistantContext.Provider value={assistantContextValue}>
-            <CartProvider initialState={initialState} onChangeCart={action('onChangeCart')}>
-                <CartPage onMakeOrder={action('onMakeOrder')}>
-                    <StyledUnderline>
-                        Заполняя данную форму, я соглашаюсь с условиями продажи и политикой обработки персональных
-                        данных
-                    </StyledUnderline>
-                </CartPage>
-            </CartProvider>
-        </AssistantContext.Provider>
+        <CartProvider initialState={initialState} onChangeCart={action('onChangeCart')}>
+            <CartPage onMakeOrder={action('onMakeOrder')} header={{ title: 'Корзина' }}>
+                <StyledText>
+                    Текст про стоимость доставки, которая зависит от адреса или “заполняя эту форму...”
+                </StyledText>
+            </CartPage>
+        </CartProvider>
     );
 };
 
 export const WithDiscount = (): React.ReactElement => {
     return (
-        <AssistantContext.Provider value={assistantContextValue}>
-            <CartProvider initialState={{ ...initialState, discount: 107, deliveryPrice: 500 }}>
-                <CartPage onMakeOrder={action('onMakeOrder')}>
-                    <StyledUnderline>
-                        Заполняя данную форму, я соглашаюсь с условиями продажи и политикой обработки персональных
-                        данных
-                    </StyledUnderline>
-                </CartPage>
-            </CartProvider>
-        </AssistantContext.Provider>
+        <CartProvider initialState={{ ...initialState, discount: 107, deliveryPrice: 500 }}>
+            <CartPage onMakeOrder={action('onMakeOrder')} header={{ title: 'Корзина' }}>
+                <StyledText>
+                    Текст про стоимость доставки, которая зависит от адреса или “заполняя эту форму...”
+                </StyledText>
+            </CartPage>
+        </CartProvider>
     );
 };

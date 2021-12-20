@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { IconClose, IconMinus, IconPlus, IconProps } from '@sberdevices/plasma-icons';
-import { secondary, success, white } from '@sberdevices/plasma-tokens';
+import { accent, secondary, white } from '@sberdevices/plasma-tokens';
 import { StepperButton, StepperRoot, StepperValue, Price as PlasmaPrice } from '@sberdevices/plasma-ui';
 
 import { Currency } from '../../../../types';
@@ -35,7 +35,8 @@ export const titleMixin = css`
 const withBackground = (backgroundColor?: string) => backgroundColor !== 'unset' && backgroundColor !== 'transparent';
 
 export const imageContainerMixin = ({ padding }: { padding: number }) => css<{ backgroundColor?: string }>`
-    border-radius: ${({ backgroundColor }) => (withBackground(backgroundColor) ? 0.75 : 0)}rem;
+    border-radius: 0.75rem;
+    overflow: hidden;
     background-color: ${({ backgroundColor }) => backgroundColor ?? white};
     padding: ${({ backgroundColor }) => (withBackground(backgroundColor) ? padding : 0)}rem;
 `;
@@ -47,6 +48,7 @@ export const priceMixin = css`
 const StyledPresentContainer = styled.div`
     display: flex;
     justify-content: center;
+    align-self: center;
     align-items: center;
     margin-left: auto;
     border-radius: 50%;
@@ -78,7 +80,7 @@ export const PresentIcon: React.FC<IconProps> = (props) => (
 export const Present: React.FC = () => {
     return (
         <StyledPresentContainer>
-            <PresentIcon size="xs" color={success} />
+            <PresentIcon size="xs" color={accent} />
         </StyledPresentContainer>
     );
 };
@@ -200,7 +202,7 @@ export const QuantityButton: React.FC<{
 });
 
 const StyledPresentText = styled.span`
-    color: ${success};
+    color: ${accent};
 `;
 
 export const Price: React.FC<{ present?: boolean; price: number; currency?: Currency }> = ({

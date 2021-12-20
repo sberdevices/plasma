@@ -21,13 +21,20 @@ const StyledTitleContainer = styled.div`
 `;
 
 const StyledRow = styled(Row)`
-    margin-bottom: 0.5rem;
+    padding: 0.5rem 0;
     align-items: center;
+    flex-wrap: nowrap;
 `;
 
 const StyledLeftCol = styled(Col)`
     display: flex;
     align-items: center;
+    flex-basis: 100%;
+`;
+
+const StyledRightCol = styled(Col)`
+    margin-left: auto;
+    align-self: flex-start;
 `;
 
 const StyledTitle = styled(Body1)`
@@ -64,21 +71,25 @@ export const CartItemSberBox: React.FC<CartItemProps> = ({
 
     return (
         <StyledRow data-cy="CartItem">
-            <StyledLeftCol sizeXL={8}>
+            <StyledLeftCol sizeXL={4.5} sizeL={4.5}>
                 <StyledImageContainer backgroundColor={imageBackgroundColor} onClick={clickHandler}>
                     <StyledImage imageSrc={imageSrc} />
                 </StyledImageContainer>
                 <TextBox>
                     <StyledTitleContainer>
-                        <StyledTitle>{name}</StyledTitle>
-                        <StyledNameDetails>{nameDetails}</StyledNameDetails>
+                        <StyledTitle>
+                            {name}
+                            <StyledNameDetails>{nameDetails}</StyledNameDetails>
+                        </StyledTitle>
                     </StyledTitleContainer>
                     <StyledPriceContainer>
                         <Price price={price} currency={currency} present={present} />
                     </StyledPriceContainer>
                 </TextBox>
             </StyledLeftCol>
-            <Col sizeXL={4}>{present ? <Present /> : <QuantityButton id={id} quantity={quantity} {...props} />}</Col>
+            <StyledRightCol>
+                {present ? <Present /> : <QuantityButton id={id} quantity={quantity} {...props} />}
+            </StyledRightCol>
         </StyledRow>
     );
 };

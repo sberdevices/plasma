@@ -14,12 +14,20 @@ import {
 } from './CartItem@common';
 
 const StyledRow = styled(Row)`
+    display: flex;
     margin-bottom: 1.25rem;
+    flex-wrap: nowrap;
+
+    align-items: center;
 `;
 
 const StyledLeftCol = styled(Col)`
     display: flex;
     align-items: center;
+`;
+
+const StyledRigthCol = styled(Col)`
+    margin-left: auto;
 `;
 
 const StyledTitle = styled(Caption)`
@@ -67,7 +75,9 @@ export const CartItemMobile: React.FC<CartItemProps> = ({
                     </StyledPriceContainer>
                 </StyledTextBox>
             </StyledLeftCol>
-            <Col sizeS={2}>{present ? <Present /> : <QuantityButton id={id} quantity={quantity} {...props} />}</Col>
+            <StyledRigthCol sizeS={2}>
+                {present ? <Present /> : <QuantityButton id={id} quantity={quantity} {...props} />}
+            </StyledRigthCol>
         </StyledRow>
     );
 };
