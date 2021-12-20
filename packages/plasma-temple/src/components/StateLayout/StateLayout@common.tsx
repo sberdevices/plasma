@@ -18,7 +18,7 @@ type PlatformComponents = {
 
 type StateLayoutProps = UnifiedComponentProps<StateLayoutCommonProps, PlatformComponents>;
 
-const StyledHeaderContainer = styled.div`
+export const StyledHeaderContainer = styled.div`
     position: fixed;
     width: 100vw;
     top: 0;
@@ -45,6 +45,18 @@ const StyledWrapper = styled.div`
     padding: 0 var(--plasma-grid-margin);
 `;
 
+export const getImageToRender = (image: React.ReactNode) => {
+    if (typeof image === 'string') {
+        return <Image base="div" src={image} ratio="1 / 1" />;
+    }
+
+    if (React.isValidElement(image)) {
+        return image;
+    }
+
+    return null;
+};
+
 export const StateLayout: React.FC<StateLayoutProps> = ({
     title,
     text,
@@ -65,13 +77,7 @@ export const StateLayout: React.FC<StateLayoutProps> = ({
         }
 
         if (image) {
-            if (typeof image === 'string') {
-                return <Image base="div" src={image} ratio="1 / 1" />;
-            }
-
-            if (React.isValidElement(image)) {
-                return image;
-            }
+            return getImageToRender(image);
         }
 
         return null;
