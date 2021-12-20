@@ -15,6 +15,8 @@ declare global {
                     times?: number;
                 },
             ): Chainable;
+
+            triggerSpatNavEvent(dir: 'left' | 'right' | 'up' | 'down', times?: number): Chainable<HTMLElement>;
         }
     }
 }

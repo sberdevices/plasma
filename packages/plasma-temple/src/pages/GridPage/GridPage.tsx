@@ -76,8 +76,12 @@ export const GridPage: React.FC<GridPageProps> = ({ state, header, onItemShow, o
             }
         };
         const throttledScroll = throttle(onScroll, 100);
+
         window.addEventListener('scroll', throttledScroll, { capture: false, passive: true });
-        return () => window.removeEventListener('scroll', throttledScroll);
+
+        return () => {
+            window.removeEventListener('scroll', throttledScroll);
+        };
     }, [onScrollBottom]);
 
     return (

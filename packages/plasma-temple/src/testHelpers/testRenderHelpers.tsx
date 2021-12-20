@@ -17,11 +17,12 @@ interface OuterProps<T> {
     (props: T): Partial<T>;
 }
 
+/* istanbul ignore next */
 export function wrapComponent<T extends React.ComponentType<any>>(
     Component: React.ComponentType<React.ComponentProps<T>>,
     outerProps?: OuterProps<React.ComponentProps<T>> | Partial<React.ComponentProps<T>>,
 ) {
-    return (props: React.ComponentProps<T> & ReturnType<OuterProps<React.ComponentProps<T>>>) => {
+    const component: React.FC<React.ComponentProps<T> & ReturnType<OuterProps<React.ComponentProps<T>>>> = (props) => {
         let renderProps = {
             ...props,
         };
@@ -40,8 +41,13 @@ export function wrapComponent<T extends React.ComponentType<any>>(
 
         return <Component {...renderProps} />;
     };
+
+    component.displayName = Component.displayName ?? 'WrappedComponent';
+
+    return component;
 }
 
+/* istanbul ignore next */
 const appProps = {
     header: {
         title: 'Cypress Test',
@@ -67,6 +73,48 @@ interface StartApp {
     ): Cypress.Chainable<MountReturn>;
 }
 
+const defaultCommands: AssistantClientCustomizedCommand<AssistantSmartAppData>[] = [
+    {
+        type: 'insets',
+        insets: {
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 144,
+        },
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        sdk_meta: {
+            mid: String(Date.now()),
+            requestId: '-1',
+        },
+    },
+    {
+        type: 'character',
+        character: {
+            id: 'sber',
+            name: 'Сбер',
+            gender: 'male',
+            appeal: 'official',
+        },
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        sdk_meta: {
+            mid: String(Date.now()),
+            requestId: '-1',
+        },
+    },
+    {
+        type: 'theme',
+        theme: {
+            name: 'dark',
+        },
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        sdk_meta: {
+            mid: String(Date.now()),
+            requestId: '-1',
+        },
+    },
+];
+
 export const startApp: StartApp = (pages, onStart, commands = []) => {
     const pagesToRender = pages.map((config) => {
         if (config.lazy) {
@@ -87,18 +135,8 @@ export const startApp: StartApp = (pages, onStart, commands = []) => {
     return cy.window().then((win) => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
-        win.appInitialData = commands;
+        win.appInitialData = defaultCommands.concat(commands);
         mockAssistant = createAssistantHostMock({ context: win });
-
-        Cypress.Commands.add('sendAction', (val) => {
-            return new Cypress.Promise((resolve) => {
-                Cypress.log({
-                    message: `send action with ${val.type}`,
-                    name: 'Assistant Action',
-                });
-                mockAssistant.receiveCommand(val).then(() => resolve());
-            });
-        });
 
         return mount(
             <PlasmaApp {...appProps} onStart={onStart}>

@@ -12,5 +12,6 @@
     "viewportHeight": 1080,
     "viewportWidth": 1920,
     "retries": 3,
-    "video": false
+    "video": false,
+    "scrollBehavior": false
 }
