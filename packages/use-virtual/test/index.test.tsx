@@ -12,6 +12,7 @@ import {
     // useVirtualDynamicSmoothScroll,
     useVirtualSmoothScroll,
 } from '../src';
+import { Range } from '../src/types';
 
 const VISIBLE_LIMIT = 3;
 const ELEMENT_SIZE = 300;
@@ -27,6 +28,8 @@ const Virtual = ({
     paddingStart,
     paddingEnd,
     limit,
+    initialCurrentIndex,
+    initialRange,
 }: {
     itemsLength: number;
     height?: number;
@@ -36,6 +39,8 @@ const Virtual = ({
     paddingStart?: number;
     paddingEnd?: number;
     limit?: number;
+    initialCurrentIndex?: number;
+    initialRange?: Range;
 }) => {
     const parentRef = useRef<HTMLDivElement | null>(null);
     useLayoutEffect(() => {
@@ -58,6 +63,8 @@ const Virtual = ({
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         limit,
+        initialCurrentIndex,
+        initialRange,
     });
 
     return (
@@ -109,6 +116,9 @@ describe.each([useVirtualKeyboard, useVirtualScroll, useVirtual, useVirtualSmoot
     let virtualResult: Record<string, unknown>;
     const isVirtualKeyboard = hook.name === 'useVirtualKeyboard';
     const limit = isVirtualKeyboard ? VISIBLE_LIMIT : undefined;
+    const updateHookMock = () => {
+        hookMock = jest.fn((props) => hook(props));
+    };
 
     beforeAll(() => {
         hookMock = jest.fn((props) => hook(props));
@@ -161,7 +171,7 @@ describe.each([useVirtualKeyboard, useVirtualScroll, useVirtual, useVirtualSmoot
     test('Should support paddingStart and paddingEnd', () => {
         const paddingStart = 100;
         const paddingEnd = 200;
-        hookMock = jest.fn((props) => hook(props));
+        updateHookMock();
         render(
             <Virtual
                 itemsLength={VISIBLE_LIMIT}
@@ -176,5 +186,45 @@ describe.each([useVirtualKeyboard, useVirtualScroll, useVirtual, useVirtualSmoot
         virtualResult = hookMock.mock.results[0].value;
         expect(screen.queryByText(`Row=0 Start=${paddingStart} Size=${ELEMENT_SIZE}`)).toBeInTheDocument();
         expect(virtualResult).toHaveProperty('totalSize', VISIBLE_LIMIT * ELEMENT_SIZE + paddingStart + paddingEnd);
+    });
+
+    test('Should support initialCurrentIndex', () => {
+        const initialCurrentIndex = 5;
+        updateHookMock();
+        render(
+            <Virtual
+                itemsLength={VISIBLE_LIMIT}
+                width={ELEMENT_SIZE * VISIBLE_LIMIT}
+                useVirtualMock={hookMock}
+                initialCurrentIndex={initialCurrentIndex}
+                limit={limit}
+                horizontal
+            />,
+        );
+        virtualResult = hookMock.mock.results[0].value;
+        expect(virtualResult).toHaveProperty('currentIndex', initialCurrentIndex);
+    });
+
+    test('Should support initialRange', () => {
+        const initialRange = {
+            start: 5,
+            end: 7,
+        };
+        updateHookMock();
+        render(
+            <Virtual
+                itemsLength={initialRange.end + 10}
+                width={ELEMENT_SIZE * VISIBLE_LIMIT}
+                useVirtualMock={hookMock}
+                initialRange={initialRange}
+                horizontal
+                limit={limit}
+            />,
+        );
+        expect(screen.queryByText(/Row=4/)).not.toBeInTheDocument;
+        expect(screen.queryByText(/Row=5/)).toBeInTheDocument();
+        expect(screen.queryByText(/Row=6/)).toBeInTheDocument();
+        expect(screen.queryByText(/Row=7/)).toBeInTheDocument();
+        expect(screen.queryByText(/Row=8/)).not.toBeInTheDocument();
     });
 });

@@ -2,20 +2,22 @@ import { useRef } from 'react';
 
 import { MeasurementItem, VirtualProps } from './types';
 import { defaultKeyExtractor, useIsomorphicLayoutEffect, useMeasurements, useVisibleItems } from './utils';
-import { useOnScroll, useScrollToIndex } from './utils/use-scroll';
+import { getMeasurementByIndex, useOnScroll, useScrollToIndex } from './utils/use-scroll';
 import { useVirualInit } from './utils/use-virtual-init';
 
-export const useVirtualScroll = ({
-    parentRef,
-    horizontal = false,
-    itemsLength = 0,
-    estimateSize,
-    paddingStart = 0,
-    paddingEnd = 0,
-    scrollToFn,
-    keyExtractor = defaultKeyExtractor,
-    useIsScrolling,
-}: VirtualProps) => {
+export const useVirtualScroll = (props: VirtualProps) => {
+    const {
+        parentRef,
+        itemsLength = 0,
+        estimateSize,
+        paddingStart = 0,
+        paddingEnd = 0,
+        scrollToFn,
+        keyExtractor = defaultKeyExtractor,
+        useIsScrolling,
+        initialRange,
+    } = props;
+
     const {
         sizeKey,
         scrollKey,
@@ -27,9 +29,8 @@ export const useVirtualScroll = ({
         downIndex,
         currentIndex,
         isScrolling,
-    } = useVirualInit({
-        horizontal,
-    });
+    } = useVirualInit(props);
+
     const latestRef = useRef<{
         scrollOffset: number;
         measurements: MeasurementItem[];
@@ -58,13 +59,35 @@ export const useVirtualScroll = ({
     }, [useIsScrolling, measurements, parentRef, sizeKey]);
 
     const visibleItems = useVisibleItems(range, measurements);
-    const scrollToIndex = useScrollToIndex({
+    const { defaultScrollToFn, scrollToIndex } = useScrollToIndex({
         parentRef,
         scrollKey,
         latestRef,
         itemsLength,
         scrollToFn,
     });
+
+    /**
+     * Если есть initialRange и initialRange.start !== 0,
+     * то при монтировании компонента необходимо
+     * установить валидный (scrollLeft или scrollTop) у контейнера.
+     */
+    const initialRangeRef = useRef(initialRange);
+    const defaultScrollToFnRef = useRef(defaultScrollToFn);
+    useIsomorphicLayoutEffect(() => {
+        if (typeof initialRangeRef.current?.start === 'number' && initialRangeRef.current?.start !== 0) {
+            const measurement = getMeasurementByIndex(
+                measurements,
+                initialRangeRef.current.start,
+                initialRangeRef.current.end,
+            );
+            if (!measurement) {
+                return;
+            }
+
+            defaultScrollToFnRef.current(measurement.start);
+        }
+    }, []);
 
     useOnScroll({
         parentRef,

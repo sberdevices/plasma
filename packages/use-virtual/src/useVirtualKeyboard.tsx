@@ -5,17 +5,18 @@ import { defaultKeyExtractor, useMeasurements, useVisibleItems } from './utils';
 import { useKeyboard } from './utils/use-keyboard';
 import { useVirualInit } from './utils/use-virtual-init';
 
-export const useVirtualKeyboard = ({
-    itemsLength = 0,
-    limit,
-    horizontal = false,
-    align,
-    estimateSize,
-    paddingStart = 0,
-    paddingEnd = 0,
-    keyExtractor = defaultKeyExtractor,
-    ...props
-}: VirtualPropsKeyboard) => {
+export const useVirtualKeyboard = (props: VirtualPropsKeyboard) => {
+    const {
+        itemsLength = 0,
+        limit,
+        horizontal = false,
+        align,
+        estimateSize,
+        paddingStart = 0,
+        paddingEnd = 0,
+        keyExtractor = defaultKeyExtractor,
+    } = props;
+
     const params = useMemo(
         () => ({
             limit,
@@ -25,10 +26,7 @@ export const useVirtualKeyboard = ({
         [limit, itemsLength, align],
     );
 
-    const { upIndexAndRange, downIndexAndRange, range, currentIndex } = useVirualInit({
-        horizontal,
-        limit,
-    });
+    const { upIndexAndRange, downIndexAndRange, range, currentIndex } = useVirualInit(props);
     const measurements = useMeasurements({
         estimateSize,
         itemsLength,

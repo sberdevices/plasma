@@ -79,6 +79,18 @@ export type VirtualProps = {
      * тормозов во время скролла.
      */
     useIsScrolling?: boolean;
+    /**
+     * Начальный текущий элемент (currentIndex).
+     * Если нужно при обновлении компонента изменить сurrentIndex,
+     * то следует использовать upIndex / downIndex / upIndexAndRange / downIndexAndRange.
+     * Учитывается только при монтировании компонента.
+     */
+    initialCurrentIndex?: number;
+    /**
+     * Начальные индексы (initialRange.start - initialRange.end) для отображения элементов (visibleItems).
+     * Учитывается только при монтировании компонента.
+     */
+    initialRange?: Range;
 };
 
 export type VirtualDynamicProps = Omit<VirtualProps, 'estimateSize'> & {

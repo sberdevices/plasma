@@ -1,6 +1,6 @@
 import { useMemo, useReducer } from 'react';
 
-import { Range } from '../types';
+import { Range, VirtualDynamicProps, VirtualProps, VirtualPropsKeyboard } from '../types';
 
 type State = {
     range: Range;
@@ -148,18 +148,23 @@ const reducer = (state: State, action: Action) => {
     }
 };
 
-export function useVirualInit({ horizontal, limit }: { horizontal: boolean; limit?: number }) {
+export function useVirualInit({
+    horizontal = false,
+    initialCurrentIndex = 0,
+    initialRange,
+    ...props
+}: VirtualProps | VirtualPropsKeyboard | VirtualDynamicProps) {
     // нужно только для scroll хуков
     const sizeKey = horizontal ? 'clientWidth' : 'clientHeight';
     // нужно только для scroll хуков
     const scrollKey = horizontal ? 'scrollLeft' : 'scrollTop';
 
     const [state, dispatch] = useReducer(reducer, {
-        range: {
+        range: initialRange || {
             start: 0,
-            end: typeof limit === 'number' ? limit - 1 : 0,
+            end: 'limit' in props && typeof props.limit === 'number' ? props.limit - 1 : 0,
         },
-        currentIndex: 0,
+        currentIndex: initialCurrentIndex,
         isScrolling: false,
     });
 

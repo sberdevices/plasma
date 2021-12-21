@@ -13,18 +13,18 @@ import {
 import { useOnScroll, useScrollToIndex } from './utils/use-scroll';
 import { useVirualInit } from './utils/use-virtual-init';
 
-export const useVirtualDynamicScroll = ({
-    parentRef,
-    horizontal = false,
-    itemsLength = 0,
-    estimateSize,
-    paddingStart = 0,
-    paddingEnd = 0,
-    scrollToFn,
-    keyExtractor = defaultKeyExtractor,
-    addItemsMode,
-}: VirtualDynamicProps) => {
-    const { sizeKey, scrollKey, range, setRange, upIndex, downIndex, currentIndex } = useVirualInit({ horizontal });
+export const useVirtualDynamicScroll = (props: VirtualDynamicProps) => {
+    const {
+        parentRef,
+        itemsLength = 0,
+        estimateSize,
+        paddingStart = 0,
+        paddingEnd = 0,
+        scrollToFn,
+        keyExtractor = defaultKeyExtractor,
+        addItemsMode,
+    } = props;
+    const { sizeKey, scrollKey, range, setRange, upIndex, downIndex, currentIndex } = useVirualInit(props);
 
     const latestRef = useRef<{
         scrollOffset: number;
@@ -44,7 +44,7 @@ export const useVirtualDynamicScroll = ({
         keyExtractor,
     });
     const visibleItems = useVisibleItems(range, measurements);
-    const scrollToIndex = useScrollToIndex({
+    const { scrollToIndex } = useScrollToIndex({
         parentRef,
         scrollKey,
         latestRef,

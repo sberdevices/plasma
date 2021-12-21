@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-import { LatestRefData, VirtualProps, Range } from '../types';
+import { LatestRefData, VirtualProps, Range, MeasurementItem } from '../types';
 import { calculateRange, useIsomorphicLayoutEffect, useMetricsMeasureScroll } from '../utils';
 
 import { debounceByFrames } from './helpers';
@@ -77,6 +77,9 @@ export const useOnScroll = ({
     }, [scrollKey, metricsMeasureScroll]);
 };
 
+export const getMeasurementByIndex = (measurements: MeasurementItem[], index: number, itemsLength: number) => {
+    return measurements[Math.max(0, Math.min(index, itemsLength - 1))];
+};
 export const useScrollToIndex = ({
     parentRef,
     scrollKey,
@@ -134,14 +137,14 @@ export const useScrollToIndex = ({
         [scrollToFnOverride, latestRef],
     );
 
-    const tryScrollToIndex = useCallback(
+    const scrollToIndexNoRAF = useCallback(
         (index, { align = 'center' } = {}) => {
             if (!latestRef.current) {
                 return;
             }
             const { measurements, scrollOffset, scrollableSize } = latestRef.current;
 
-            const measurement = measurements[Math.max(0, Math.min(index, itemsLength - 1))];
+            const measurement = getMeasurementByIndex(measurements, index, itemsLength);
 
             if (!measurement) {
                 return;
@@ -173,11 +176,14 @@ export const useScrollToIndex = ({
     const scrollToIndex = useCallback(
         (index: number, params?: { align: 'auto' | 'center' | 'start' | 'end' }) => {
             requestAnimationFrame(() => {
-                tryScrollToIndex(index, params);
+                scrollToIndexNoRAF(index, params);
             });
         },
-        [tryScrollToIndex],
+        [scrollToIndexNoRAF],
     );
 
-    return scrollToIndex;
+    return {
+        defaultScrollToFn,
+        scrollToIndex,
+    };
 };
