@@ -23,6 +23,20 @@ describe('plasma-web: Select', () => {
         { value: 'fullText', label: 'Каждый охотник желает знать, где сидит фазан' },
     ];
 
+    const ControlledSelect = () => {
+        const [value, setValue] = React.useState(null);
+
+        return (
+            <Select
+                value={value}
+                onChange={(v) => setValue(v)}
+                items={items}
+                placeholder="Попробуй радугу"
+                helperText="Skittles"
+            />
+        );
+    };
+
     it('simple', () => {
         mount(
             <CypressTestDecorator>
@@ -54,6 +68,38 @@ describe('plasma-web: Select', () => {
             </CypressTestDecorator>,
         );
 
+        cy.get('button').click();
+
+        cy.matchImageSnapshot();
+    });
+
+    it('multiselect', () => {
+        mount(
+            <CypressTestDecorator>
+                <Select
+                    multiselect
+                    value={['each', 'wants']}
+                    items={items}
+                    placeholder="Попробуй радугу"
+                    helperText="Skittles"
+                />
+            </CypressTestDecorator>,
+        );
+
+        cy.get('button').click();
+
+        cy.matchImageSnapshot();
+    });
+
+    it('item click', () => {
+        mount(
+            <CypressTestDecorator>
+                <ControlledSelect />
+            </CypressTestDecorator>,
+        );
+
+        cy.get('button').click();
+        cy.get('a').contains('Каждый').click({ force: true });
         cy.get('button').click();
 
         cy.matchImageSnapshot();
