@@ -297,10 +297,19 @@ export const Picker: React.FC<PickerProps> = ({
             if (newItems[i]?.value !== value) {
                 onChange?.(newItems[i]);
             }
+
+            // Изменяем выбранный индекс если значение не изменилось
+            if (prevValue === newItems[i]?.value) {
+                setScrollAnim(false);
+                setIndex(i);
+                const newIndex = findItemIndex(newItems, newItems[i].value, infiniteScroll, ADDITIONAL_OFFSET);
+                setIndex(newIndex);
+            }
+
             // Включаем анимацию скролла, после изменения индекса
             setScrollAnim(true);
         },
-        [newItems, value, onChange],
+        [newItems, value, onChange, prevValue],
     );
 
     return (
