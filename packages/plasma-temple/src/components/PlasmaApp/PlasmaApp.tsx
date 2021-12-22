@@ -11,7 +11,7 @@ import { initialState as initialPlasmaAppState, reducer } from '../../store/redu
 import * as Actions from '../../store/actions';
 import { last } from '../../utils/last';
 import { PushScreenParams } from '../Page/types';
-import { AnyObject } from '../../types';
+import { AnyObject, AssistantInstance } from '../../types';
 import { isPlasmaAppAction, isPopHistoryAction, isPushHistoryAction } from '../../store/guards';
 import { PlasmaAction, History } from '../../store/types';
 import { InitializeParams } from '../../assistant';
@@ -23,6 +23,7 @@ export type OnStartFn<
     PageStateType extends AnyObject = AnyObject,
     PageParamsType extends Partial<Record<keyof PageStateType, unknown>> = Partial<Record<keyof PageStateType, unknown>>
 > = (params: {
+    assistant: AssistantInstance;
     pushHistory: <T extends keyof PageStateType>(name: T, data: PageStateType[T]) => void;
     pushScreen: <T extends keyof PageStateType>(...args: PushScreenParams<PageStateType, PageParamsType, T>) => void;
 }) => void;
@@ -118,7 +119,7 @@ export function App<Name extends string>({
 
     const assistantContextValue = useInitializeAssistant({
         assistantParams,
-        onStart: () => onStart?.({ pushScreen, pushHistory }),
+        onStart: (assistant: AssistantInstance) => onStart?.({ assistant, pushScreen, pushHistory }),
         onData: (c) => onData(c as AssistantClientCustomizedCommand<PlasmaAction>),
     });
 
