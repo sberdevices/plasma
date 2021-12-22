@@ -40,57 +40,62 @@ const TimeTravelButton = ({ forward, ...restProps }: MediaPlayerButtonProps & { 
     );
 };
 
-export const MediaPlayerControls: React.FC<MediaPlayerControlsProps> = ({
-    playback,
-    goBack,
-    goNext,
-    jumpTo,
-    paused,
-    finished,
-    canPlay,
-    backDisabled,
-    nextDisabled,
-    visibleControlList,
-    className,
-}) => {
-    const IconPlayComponent = finished ? IconRepeat : IconPlay;
+export const MediaPlayerControls = React.forwardRef<HTMLDivElement, MediaPlayerControlsProps>(
+    (
+        {
+            playback,
+            goBack,
+            goNext,
+            jumpTo,
+            paused,
+            finished,
+            canPlay,
+            backDisabled,
+            nextDisabled,
+            visibleControlList,
+            className,
+        },
+        ref,
+    ) => {
+        const IconPlayComponent = finished ? IconRepeat : IconPlay;
 
-    const mountRef = React.useRef<HTMLButtonElement>(null);
-    useFocusOnMount(mountRef, { delay: 150, prevent: !canPlay, callOnce: true });
+        const mountRef = React.useRef<HTMLButtonElement>(null);
+        useFocusOnMount(mountRef, { delay: 150, prevent: !canPlay, callOnce: true });
 
-    return (
-        <StyledWrapper className={className}>
-            <MediaPlayerButton
-                disabled={backDisabled}
-                onClick={goBack}
-                visible={isControlVisible(ControlType.BACK, visibleControlList)}
-            >
-                <IconPrevious size="xs" />
-            </MediaPlayerButton>
-            <TimeTravelButton
-                onClick={() => jumpTo(-1)}
-                visible={isControlVisible(ControlType.JUMP_BACK, visibleControlList)}
-            />
-            <MediaPlayerButton
-                onClick={playback}
-                visible={isControlVisible(ControlType.PLAYBACK, visibleControlList)}
-                disabled={!canPlay}
-                ref={mountRef}
-            >
-                {paused ? <IconPlayComponent size="xs" /> : <IconPause size="xs" />}
-            </MediaPlayerButton>
-            <TimeTravelButton
-                onClick={() => jumpTo(1)}
-                visible={isControlVisible(ControlType.JUMP_FORWARD, visibleControlList)}
-                forward
-            />
-            <MediaPlayerButton
-                disabled={nextDisabled}
-                onClick={goNext}
-                visible={isControlVisible(ControlType.NEXT, visibleControlList)}
-            >
-                <IconNext size="xs" />
-            </MediaPlayerButton>
-        </StyledWrapper>
-    );
-};
+        return (
+            <StyledWrapper className={className} ref={ref}>
+                <MediaPlayerButton
+                    disabled={backDisabled}
+                    onClick={goBack}
+                    visible={isControlVisible(ControlType.BACK, visibleControlList)}
+                >
+                    <IconPrevious size="xs" />
+                </MediaPlayerButton>
+                <TimeTravelButton
+                    onClick={() => jumpTo(-1)}
+                    visible={isControlVisible(ControlType.JUMP_BACK, visibleControlList)}
+                />
+                <MediaPlayerButton
+                    onClick={playback}
+                    visible={isControlVisible(ControlType.PLAYBACK, visibleControlList)}
+                    disabled={!canPlay}
+                    ref={mountRef}
+                >
+                    {paused ? <IconPlayComponent size="xs" /> : <IconPause size="xs" />}
+                </MediaPlayerButton>
+                <TimeTravelButton
+                    onClick={() => jumpTo(1)}
+                    visible={isControlVisible(ControlType.JUMP_FORWARD, visibleControlList)}
+                    forward
+                />
+                <MediaPlayerButton
+                    disabled={nextDisabled}
+                    onClick={goNext}
+                    visible={isControlVisible(ControlType.NEXT, visibleControlList)}
+                >
+                    <IconNext size="xs" />
+                </MediaPlayerButton>
+            </StyledWrapper>
+        );
+    },
+);
