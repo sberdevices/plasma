@@ -38,7 +38,7 @@ export const arrayItemRemoving = (oldItems: Array<PreviewGalleryItemProps>, id: 
     const idIndex = newItems.findIndex((item) => item.id === id);
 
     if (idIndex === -1) {
-        return newItems;
+        return oldItems;
     }
 
     newItems.splice(idIndex, 1);
@@ -74,7 +74,7 @@ export const arrayItemSelecting = (
     const idIndex = newItems.findIndex((item) => item.id === id);
 
     if (idIndex === -1) {
-        return newItems;
+        return oldItems;
     }
 
     newItems[idIndex].isSelected = Boolean(!newItems[idIndex].isSelected);
