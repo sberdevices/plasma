@@ -6,7 +6,7 @@ import { PreviewGalleryItemProps } from './PreviewGalleryItemBase';
 export const noop = () => {};
 
 /**
- * Метод для смены элементов в массиве по инедксам
+ * Метод для смены элементов в массиве по индексам
  * @param {Array<PreviewGalleryItemProps>} oldItems массив в предыдущем состоянии
  * @param {number} oldIndex старое значение индекса
  * @param {number} newIndex новое значение индекса
@@ -62,7 +62,7 @@ export const arrayItemSelecting = (
         return [];
     }
 
-    // Метод для предовтращения лишних ререндеров
+    // Метод для предотвращения лишних ререндеров
     const getRemovedSelectionItems = (items: Array<PreviewGalleryItemProps>) =>
         items.map((item) => ({
             ...item,
