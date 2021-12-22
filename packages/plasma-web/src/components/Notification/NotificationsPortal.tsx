@@ -80,7 +80,7 @@ export const NotificationsPortal: React.FC = () => {
                 {notifications.length > 0 && (
                     <StyledRoot>
                         {notifications.map(({ id, ...rest }) => (
-                            <Notification key={`notification:${id}`} as={StyledItemWrapper} {...rest} />
+                            <Notification key={id} as={StyledItemWrapper} id={id} {...rest} />
                         ))}
                     </StyledRoot>
                 )}

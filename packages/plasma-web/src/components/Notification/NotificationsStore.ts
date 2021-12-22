@@ -50,12 +50,12 @@ export const closeNotification = (id: string, delay = 380) => {
  * @param props Пропсы всплывающего окна
  * @return Идентификатор нового окна
  */
-export function addNotification(props: NotificationProps, timeout = 2000) {
-    const id = String(Date.now());
+export function addNotification({ id: externalId, ...rest }: NotificationProps, timeout = 2000) {
+    const id = externalId || `plasma-notification-${Date.now()}`;
     const { dispatch } = NotificationsStore;
 
     dispatch('add', {
-        ...props,
+        ...rest,
         id,
         isHiding: false,
     });

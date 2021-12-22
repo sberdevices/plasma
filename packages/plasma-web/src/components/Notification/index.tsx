@@ -1,2 +1,2 @@
 export { NotificationsProvider } from './NotificationsProvider';
-export { addNotification } from './NotificationsStore';
+export { addNotification, closeNotification } from './NotificationsStore';
