@@ -9,7 +9,7 @@ import { AnyObject } from '../../types';
 import { VideoPageState } from './types';
 
 interface VideoPageProps<T extends AnyObject = AnyObject>
-    extends Pick<VideoPlayerProps, 'autoPlay' | 'alwaysShowControls' | 'visibleControlList'> {
+    extends Pick<VideoPlayerProps, 'autoPlay' | 'alwaysShowControls' | 'visibleControlList' | 'controlsHidden'> {
     state: VideoPageState<T>;
     customControls?: React.ComponentType<CustomMediaPlayerControlsProps<HTMLVideoElement>>;
     children?: (props: CustomMediaPlayerControlsProps<HTMLVideoElement>) => React.ReactElement;
@@ -30,6 +30,7 @@ export function VideoPage<T extends AnyObject = AnyObject>({
     autoPlay,
     visibleControlList,
     alwaysShowControls,
+    controlsHidden,
     children,
     changeState,
 }: VideoPageProps<T>): React.ReactElement {
@@ -62,6 +63,7 @@ export function VideoPage<T extends AnyObject = AnyObject>({
                 autoPlay={autoPlay}
                 visibleControlList={visibleControlList}
                 alwaysShowControls={alwaysShowControls}
+                controlsHidden={controlsHidden}
                 startTime={startTime}
                 endTime={endTime}
                 goNext={onNext}

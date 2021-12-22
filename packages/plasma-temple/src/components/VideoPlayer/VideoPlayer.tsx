@@ -19,6 +19,7 @@ export interface VideoPlayerProps extends React.VideoHTMLAttributes<HTMLVideoEle
     backDisabled?: boolean;
     nextDisabled?: boolean;
     alwaysShowControls?: boolean;
+    controlsHidden?: boolean;
     visibleControlList?: ControlType[];
     startTime?: number;
     endTime?: number;
@@ -101,6 +102,7 @@ export const VideoPlayer = React.memo(
         backDisabled,
         nextDisabled,
         alwaysShowControls,
+        controlsHidden: forceControlsHidden,
         customControls: CustomControlsComponent,
         visibleControlList,
         children,
@@ -123,7 +125,7 @@ export const VideoPlayer = React.memo(
 
         const { stopped: controlsHidden, startTimer, stopTimer } = useTimer(CONTROLS_HIDE_TIMEOUT);
 
-        const isControlsHidden = controlsHidden && !alwaysShowControls;
+        const isControlsHidden = forceControlsHidden || (controlsHidden && !alwaysShowControls);
 
         const onKewDown = React.useCallback(() => startTimer(), [startTimer]);
         useMediaPlayerKeyboard(playback, isControlsHidden, onKewDown);
