@@ -1,3 +1,15 @@
+# v0.4.0 (Wed Dec 22 2021)
+
+#### 🚀 Enhancement
+
+- feat(app): поменял ручку бека, доработки (KVIlikov@sberbank.ru)
+
+#### Authors: 1
+
+- Kirill Ilikov (KVIlikov@sberbank.ru)
+
+---
+
 # v0.3.0 (Tue Dec 14 2021)
 
 #### 🚀 Enhancement

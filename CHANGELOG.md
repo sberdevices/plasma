@@ -1,3 +1,18 @@
+# (Wed Dec 22 2021)
+
+#### 🚀 Enhancement
+
+- feat: build demo on push master [#147](https://github.com/sberdevices/pashka/pull/147) ([@OgNellis](https://github.com/OgNellis))
+- `@sberdevices/layer-inpicture-sdk@0.4.0`
+  - feat(app): поменял ручку бека, доработки (KVIlikov@sberbank.ru)
+
+#### Authors: 2
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+- Kirill Ilikov (KVIlikov@sberbank.ru)
+
+---
+
 # (Tue Dec 14 2021)
 
 #### 🚀 Enhancement
