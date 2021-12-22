@@ -8,19 +8,17 @@
 </head>
 <body>
     <div class="ad" style="display: none; height: 200px; background: lightblue">Реклама</div>
-    <div style="width: 100%;">
+    <div style="width: 40%;">
         <div>
-            <img src="img/dress.jpg" alt="gucci" style="width: 100%; margin-left: 100px;">
+            <img src="https://n1s1.hsmedia.ru/3e/c5/69/3ec5690af34c57a240156cf72efe8fb0/564x705_0xac120003_2596602641638259605.jpeg" alt="gucci" style="width: 100%; margin-left: 100px;">
         </div>
         <div class="container"></div>
     </div>
     <div style="width: 35%;">
         <div>
-            <img src="img/0357234520_1.jpeg" alt="gucci" style="width: 100%">
+            <img src="https://n1s1.hsmedia.ru/3e/c5/69/3ec5690af34c57a240156cf72efe8fb0/564x705_0xac120003_2596602641638259605.jpeg" alt="gucci" style="width: 100%">
         </div>
-        <div onclick="alert('boo')">
-            <div class="container"></div>
-        </div>
+        <div class="container"></div>
     </div>
 </body>
 
@@ -33,6 +31,7 @@
             layer.initInPicture({
                 image: img,
                 container: containers[index],
+                site: 'elle',
                 template: index === 0 ? 'primary' : 'secondary',
                 // withSkeleton: true
             });

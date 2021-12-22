@@ -25,23 +25,25 @@ const getSliderInstance = () => {
     });
 };
 
-export const Container = ({ template = 'primary', image, withSkeleton, container }: Config) => {
+export const Container = ({ template = 'primary', image, withSkeleton, container, site }: Config) => {
     const [isError, setIsError] = useState(false);
     const [products, setProducts] = useState<Product[] | null | SKELETON_LIST>(withSkeleton ? SKELETON_LIST : null);
+    const [isPrimaryTitleShow, setIsPrimaryTitleShow] = useState(true);
     const wrapperRef = useRef(null);
     const containerRef = useRef(container);
 
     useEffect(() => {
         const load = async () => {
             try {
-                const products = await loadProducts(image);
-                setProducts(products);
+                const productsList = await loadProducts(image, site);
+                setProducts(productsList);
             } catch {
                 setIsError(true);
+                throw new Error('произошла ошибка при получении товара');
             }
         };
         load();
-    }, [image]);
+    }, [image, site]);
 
     useEffect(() => {
         if (products !== null) {
@@ -56,10 +58,10 @@ export const Container = ({ template = 'primary', image, withSkeleton, container
     }
 
     return html`
-        <div class=${`layer-hidden layer-content${template === 'primary' ? '' : ' layer-secondary-wrap'}`} ref=${wrapperRef} style=${{ width: container.clientWidth }}>
+        <div class=${`layer-hidden layer-content${template === 'primary' ? '' : ' layer-secondary-wrap'}`} ref=${wrapperRef}>
             <div class="layer-main-container">
-                ${html`<${template === 'primary' ? PrimaryTopContent : SecondaryTopContent} />`}
-                <${SliderWrapper} products=${products} />
+                ${template === 'primary' ? html`<${PrimaryTopContent} isShow=${isPrimaryTitleShow} />` : html`<${SecondaryTopContent} />`}
+                <${SliderWrapper} products=${products} onSlideHover=${(isHover: boolean) => setIsPrimaryTitleShow(!isHover)}/>
                 <${SliderButtons} />
             </div>
         </div>

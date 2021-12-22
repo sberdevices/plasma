@@ -1,6 +1,6 @@
 @mixin big-card
-    width: 166px !important
-    height: 252px !important
+    width: 150px !important
+    height: 210px !important
 
 @mixin adaptive-value($prop, $startSize, $minSize)
     $addSize: $startSize - $minSize
@@ -16,6 +16,7 @@
     &-content
         position: absolute
         bottom: 0
+        width: 100%
 
     &-swiper-wrapper
         align-items: flex-end !important
@@ -42,8 +43,6 @@
         overflow: hidden
         position: relative
         bottom: 0
-        &_open
-
 
     &-main-container *
         box-sizing: border-box
@@ -51,6 +50,7 @@
     &-slider-top-content
         margin-bottom: 10px
         margin-left: 21px
+        transition: opacity 0.5s
 
     &-swiper-slide
         display: flex
@@ -82,7 +82,7 @@
             padding: 10px 14px
             text-align: left
             @media (max-width: 767.99px)
-                padding: 8px 0
+                padding: 8px 4px
 
         &_stub
             position: initial
@@ -117,7 +117,7 @@
             @media (min-width: 768px)
                 display: block
                 font-weight: 500
-                font-size: 16px
+                font-size: 14px
                 line-height: 20px
                 letter-spacing: 0.0125em
                 color: #080808
@@ -180,7 +180,7 @@
                 display: block
 
         .layer-swiper-button
-            bottom: 102px
+            bottom: 80px
 
         .layer-secondary-top-content
             display: flex

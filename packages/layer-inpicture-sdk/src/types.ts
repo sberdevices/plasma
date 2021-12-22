@@ -2,9 +2,12 @@ export type Template = 'primary' | 'secondary';
 export type Image = HTMLImageElement;
 export type Container = HTMLDivElement;
 
+export type RequiredKeys<T> = { [K in keyof T]-?: Record<string, unknown> extends Pick<T, K> ? never : K }[keyof T];
+
 export type Config = {
     image: Image;
     container: Container;
+    site: string;
     template?: Template;
     withSkeleton?: boolean;
 }

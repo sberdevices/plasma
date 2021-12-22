@@ -5,7 +5,7 @@ import { html, render } from 'htm/preact';
 import '../css/styles.sass';
 
 import { PLASMA_FONTS_CDN } from '../constants';
-import { Config } from '../types';
+import { Config, RequiredKeys } from '../types';
 import { Container } from '../components/Container';
 
 Swiper.use([Navigation]);
@@ -13,17 +13,19 @@ Swiper.use([Navigation]);
 document.head.insertAdjacentHTML('afterend', `<link href="${PLASMA_FONTS_CDN}" type="text/css" rel="stylesheet">`);
 
 export const initInPicture = async (config: Config): Promise<void> => {
-    const { image, container } = config;
+    const { container } = config;
+    const requiredParams: Array<RequiredKeys<Config>> = ['image', 'container', 'site'];
+    const notPassedRequiredParameters = requiredParams.filter((key) => !config[key]);
 
     try {
-        if (!image || !container) {
-            throw new Error('Не переданы все обязательные параметры: image, container');
+        if (notPassedRequiredParameters.length !== 0) {
+            throw new Error(`Не переданы обязательные параметры: ${notPassedRequiredParameters}`);
         }
 
         container.classList.add('layer-container');
 
         render(html`<${Container} ...${config} />`, container);
     } catch (error) {
-        console.error('layer-inpicture-sdk', error);
+        console.error('layer-inpicture-sdk: ', error);
     }
 };

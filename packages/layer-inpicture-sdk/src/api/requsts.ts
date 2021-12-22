@@ -1,18 +1,8 @@
-const BASE_URL = 'https://mcrai.sberdevices.ru/v2/frame-mp';
+export const loadProducts = async (img: HTMLImageElement, site: string) => {
+    const url = new URL('https://layer-dev.sberdevices.ru/iimg/v0/recognize');
+    url.search = new URLSearchParams({ url: img.src, utm: site }).toString();
 
-export const loadProducts = async (img: HTMLImageElement) => {
-    const formData = new FormData();
+    const response = await fetch(url.toString());
 
-    const responseImg = await fetch(img.src);
-    const blob = await responseImg.blob();
-
-    formData.append('frame', blob, 'foo.jpg');
-
-    const requestOptions = {
-        method: 'POST',
-        body: formData,
-    };
-
-    const response = await fetch(BASE_URL, requestOptions);
     return (await response.json()).data.products;
 };
