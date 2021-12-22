@@ -2,7 +2,7 @@ import { ValidationResult } from './types';
 
 /**
  * Метод валидация по-умолчанию, принимающая список поддерживаемых расширений через запятую
- * и возвращающает результат проверки
+ * и возвращает результат проверки
  * @param {FileList | null} files выбранный файл
  * @param {string | undefined} accept поддерживаемые форматы, например, `.mp3,.wav`
  * @returns {ValidationResult} объект, имеющий необязательные поля `message, status, data`
