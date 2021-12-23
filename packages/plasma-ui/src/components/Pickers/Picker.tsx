@@ -45,7 +45,7 @@ const masks = {
     },
 };
 
-const StyledDivButton = styled.div`
+const StyledButton = styled(Button)`
     position: absolute;
     left: 0;
     right: 0;
@@ -78,7 +78,7 @@ const StyledCarousel = styled(Carousel)`
             color: ${primary};
         }
 
-        & ~ ${StyledDivButton} {
+        & ~ ${StyledButton} {
             opacity: 0.32;
         }
     }
@@ -352,9 +352,8 @@ export const Picker: React.FC<PickerProps> = ({
             </StyledCarousel>
             {controls && (
                 <>
-                    <Button
+                    <StyledButton
                         data-placement="top"
-                        forwardedAs={StyledDivButton}
                         tabIndex={-1}
                         view="clear"
                         disabled={disabled}
@@ -362,9 +361,8 @@ export const Picker: React.FC<PickerProps> = ({
                         contentLeft={<IconChevronUp size="s" />}
                         onClick={toPrev}
                     />
-                    <Button
+                    <StyledButton
                         data-placement="bottom"
-                        forwardedAs={StyledDivButton}
                         tabIndex={-1}
                         view="clear"
                         disabled={disabled}

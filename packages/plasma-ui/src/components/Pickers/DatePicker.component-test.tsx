@@ -56,4 +56,20 @@ describe('plasma-ui: DatePicker', () => {
 
         cy.matchImageSnapshot();
     });
+
+    it('with controls', () => {
+        mount(
+            <CypressTestDecorator>
+                <DatePicker
+                    value={new Date(1980, 8, 1)}
+                    min={new Date(1975, 1, 1)}
+                    max={new Date(1985, 10, 30)}
+                    controls
+                    autofocus
+                />
+            </CypressTestDecorator>,
+        );
+
+        cy.matchImageSnapshot();
+    });
 });
