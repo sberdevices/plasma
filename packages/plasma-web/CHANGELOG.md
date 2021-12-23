@@ -1,3 +1,18 @@
+# v1.68.1 (Thu Dec 23 2021)
+
+#### 🐛 Bug Fix
+
+- test(plasma-b2c, plasma-web): Added click and multiselect tests for `Select` [#983](https://github.com/sberdevices/plasma/pull/983) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-web, plasma-b2c): Arrow and check placement in `Select` [#983](https://github.com/sberdevices/plasma/pull/983) ([@fanisco](https://github.com/fanisco))
+- test(plasma-web): add Grid component test [#1001](https://github.com/sberdevices/plasma/pull/1001) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.68.0 (Wed Dec 15 2021)
 
 #### 🐛 Bug Fix

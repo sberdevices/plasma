@@ -1,3 +1,15 @@
+# v1.74.1 (Thu Dec 23 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): Prevent `Radiobox`'s & `Checkbox`'s trigger from squeeze [#958](https://github.com/sberdevices/plasma/pull/958) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.74.0 (Wed Dec 15 2021)
 
 #### 🐛 Bug Fix

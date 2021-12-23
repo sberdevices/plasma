@@ -1,3 +1,29 @@
+# (Thu Dec 23 2021)
+
+#### 🐛 Bug Fix
+
+- test(plasma-ui): Improve Checkbox tests [#1001](https://github.com/sberdevices/plasma/pull/1001) ([@Yeti-or](https://github.com/Yeti-or))
+- test(plasma-web): update base screens [#1001](https://github.com/sberdevices/plasma/pull/1001) ([@Yeti-or](https://github.com/Yeti-or))
+- build(plasma-ui,plasma-web,plasma-b2c): ignore examples.tsx [#1001](https://github.com/sberdevices/plasma/pull/1001) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-core@1.44.1`, `@sberdevices/plasma-ui@1.74.1`
+  - fix(plasma-ui): Prevent `Radiobox`'s & `Checkbox`'s trigger from squeeze [#958](https://github.com/sberdevices/plasma/pull/958) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-web@1.68.1`
+  - test(plasma-b2c, plasma-web): Added click and multiselect tests for `Select` [#983](https://github.com/sberdevices/plasma/pull/983) ([@fanisco](https://github.com/fanisco))
+  - test(plasma-web): add Grid component test [#1001](https://github.com/sberdevices/plasma/pull/1001) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-b2c@1.32.1`, `@sberdevices/plasma-web@1.68.1`
+  - feat(plasma-web, plasma-b2c): Arrow and check placement in `Select` [#983](https://github.com/sberdevices/plasma/pull/983) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-core@1.44.1`
+  - test(plasma-ui): Radiobox: uniqId test [#1001](https://github.com/sberdevices/plasma/pull/1001) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-cy-utils@0.4.1`
+  - test(plasma-cy-utils): wrap SSRProvider over all tests [#1001](https://github.com/sberdevices/plasma/pull/1001) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # (Sun Dec 19 2021)
 
 #### 🚀 Enhancement

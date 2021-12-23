@@ -1,3 +1,15 @@
+# v1.32.1 (Thu Dec 23 2021)
+
+#### 🐛 Bug Fix
+
+- feat(plasma-web, plasma-b2c): Arrow and check placement in `Select` [#983](https://github.com/sberdevices/plasma/pull/983) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.32.0 (Sun Dec 19 2021)
 
 #### 🚀 Enhancement

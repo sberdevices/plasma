@@ -1,3 +1,15 @@
+# v0.4.1 (Thu Dec 23 2021)
+
+#### 🐛 Bug Fix
+
+- test(plasma-cy-utils): wrap SSRProvider over all tests [#1001](https://github.com/sberdevices/plasma/pull/1001) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v0.4.0 (Tue Dec 14 2021)
 
 #### 🐛 Bug Fix

@@ -1,3 +1,17 @@
+# v1.44.1 (Thu Dec 23 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): Prevent `Radiobox`'s & `Checkbox`'s trigger from squeeze [#958](https://github.com/sberdevices/plasma/pull/958) ([@fanisco](https://github.com/fanisco))
+- test(plasma-ui): Radiobox: uniqId test [#1001](https://github.com/sberdevices/plasma/pull/1001) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.44.0 (Wed Dec 15 2021)
 
 #### 🐛 Bug Fix
