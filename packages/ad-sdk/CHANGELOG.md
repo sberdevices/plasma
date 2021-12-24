@@ -1,3 +1,20 @@
+# v1.5.0 (Fri Dec 24 2021)
+
+#### 🚀 Enhancement
+
+- feat: add banner link in sberbox [#151](https://github.com/sberdevices/pashka/pull/151) ([@OgNellis](https://github.com/OgNellis))
+
+#### 🐛 Bug Fix
+
+- fix(ad-sdk): add min cooldown [#151](https://github.com/sberdevices/pashka/pull/151) ([@OgNellis](https://github.com/OgNellis))
+- fix: stopPropagate close button, add cooldown in params [#151](https://github.com/sberdevices/pashka/pull/151) ([@OgNellis](https://github.com/OgNellis))
+
+#### Authors: 1
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+
+---
+
 # v1.4.0 (Tue Dec 14 2021)
 
 #### 🚀 Enhancement
