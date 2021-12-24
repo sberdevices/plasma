@@ -1,3 +1,22 @@
+# (Fri Dec 24 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@1.16.0`
+  - feat(plasma-temple): Ability to hide player controls [#1011](https://github.com/sberdevices/plasma/pull/1011) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-b2c@1.33.0`
+  - test(plasma-b2c): Add tests and snapshots for `Editable` component [#1013](https://github.com/sberdevices/plasma/pull/1013) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 2
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # (Thu Dec 23 2021)
 
 #### 🐛 Bug Fix
