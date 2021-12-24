@@ -32,9 +32,10 @@ const StyledButton = styled(Button)`
         )(css`
             position: static;
             width: auto;
-            height: auto;
+            height: calc(var(--plasma-header-pt) + var(--plasma-header-height) + var(--plasma-header-pb));
             padding: 0;
             margin-right: 1rem;
+            margin-top: calc(var(--plasma-header-pt) * -1);
         `)}
 `;
 const StyledIcon = styled(IconChevronLeft)<Pick<HeaderArrowProps, 'arrow'>>`
