@@ -71,12 +71,12 @@ const theme = {
     light_button_primary: playgroundWebB2CTokens.colors.buttonPrimaryBrand,
     light_button_secondary: playgroundWebB2CTokens.colors.buttonSecondaryDefault2,
 
-    light_button_accent: playgroundWebB2CTokens.colors.buttonPrimaryBrand,
+    light_button_accent: playgroundWebB2CTokens.colors.buttonPrimaryBrand1,
     light_button_success: playgroundWebB2CTokens.colors.buttonStatusSuccess,
     light_button_warning: playgroundWebB2CTokens.colors.buttonStatusWarning,
     light_button_critical: playgroundWebB2CTokens.colors.buttonStatusCritical,
     light_button_checked: playgroundWebB2CTokens.colors.buttonStatusChecked1,
-    light_button_focused: playgroundWebB2CTokens.colors.buttonPrimaryBrand,
+    light_button_focused: playgroundWebB2CTokens.colors.buttonPrimaryBrand1,
 
     // dark
     dark_primary: playgroundWebB2CTokens.colors.textIconsPrimary1,
@@ -117,12 +117,12 @@ const theme = {
     dark_button_primary: playgroundWebB2CTokens.colors.buttonPrimaryBrand1,
     dark_button_secondary: playgroundWebB2CTokens.colors.buttonSecondaryDefault1,
 
-    dark_button_accent: playgroundWebB2CTokens.colors.buttonPrimaryBrand1,
+    dark_button_accent: playgroundWebB2CTokens.colors.buttonPrimaryBrand,
     dark_button_success: playgroundWebB2CTokens.colors.buttonStatusSuccess1,
     dark_button_warning: playgroundWebB2CTokens.colors.buttonStatusWarning,
     dark_button_critical: playgroundWebB2CTokens.colors.buttonStatusCritical1,
     dark_button_checked: playgroundWebB2CTokens.colors.buttonStatusChecked,
-    dark_button_focused: playgroundWebB2CTokens.colors.buttonPrimaryBrand1,
+    dark_button_focused: playgroundWebB2CTokens.colors.buttonPrimaryBrand,
 };
 
 const gradients = {
