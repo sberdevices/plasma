@@ -53,7 +53,7 @@ export const useKeyboard = ({
 
         const throttledHandler = throttleByFrames(handler, framesToThrottle);
 
-        document.addEventListener('keydown', throttledHandler);
+        window.addEventListener('keydown', throttledHandler);
 
         return () => {
             window.removeEventListener('keydown', throttledHandler);
