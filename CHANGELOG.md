@@ -1,3 +1,21 @@
+# (Mon Dec 27 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/use-virtual@0.3.0`
+  - feat(use-virtual): initialCurrentIndex, initialRange [#153](https://github.com/sberdevices/pashka/pull/153) ([@KateKate](https://github.com/KateKate))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/use-virtual@0.3.0`
+  - fix(use-virtual): document.addEventListener('keydown') [#153](https://github.com/sberdevices/pashka/pull/153) ([@KateKate](https://github.com/KateKate))
+
+#### Authors: 1
+
+- Ekaterina Anishkina ([@KateKate](https://github.com/KateKate))
+
+---
+
 # (Fri Dec 24 2021)
 
 #### 🚀 Enhancement
