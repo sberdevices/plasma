@@ -49,11 +49,10 @@ export const ElasticGrid: React.FC<ElasticGridProps> = ({ children, minColWidth,
     useLayoutEffect(() => {
         const currentRef = containerRef.current;
 
+        /* istanbul ignore if: убираем проверку на рефы из покрытия */
         if (!currentRef) return;
 
-        const resizeObserver = new window.ResizeObserver((entries) => {
-            if (!Array.isArray(entries) || !entries.length) return;
-
+        const resizeObserver = new window.ResizeObserver(() => {
             const { width } = currentRef.getBoundingClientRect();
             const cols = Math.trunc(width / minColWidth);
             const scale = width / minColWidth / cols;
