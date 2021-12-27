@@ -78,4 +78,27 @@ describe('plasma-core: Tabs', () => {
         cy.get('div > button:nth-child(2)').click();
         cy.matchImageSnapshot();
     });
+
+    it('controller with keydown', () => {
+        mount(
+            <CypressTestDecorator>
+                <ControlledTabsController />
+            </CypressTestDecorator>,
+        );
+
+        cy.root().get('[role="tablist"]').trigger('keydown', { keyCode: 13 });
+        cy.get('div > button:nth-child(1)').should('have.attr', 'tabindex', '0');
+
+        cy.root().get('[role="tablist"]').trigger('keydown', { keyCode: 39 });
+        cy.get('div > button:nth-child(2)').should('have.attr', 'tabindex', '0');
+
+        cy.root().get('[role="tablist"]').trigger('keydown', { keyCode: 37 });
+        cy.get('div > button:nth-child(1)').should('have.attr', 'tabindex', '0');
+
+        cy.root().get('[role="tablist"]').trigger('keydown', { keyCode: 35 });
+        cy.get('div > button:nth-child(3)').should('have.attr', 'tabindex', '0');
+
+        cy.root().get('[role="tablist"]').trigger('keydown', { keyCode: 36 });
+        cy.get('div > button:nth-child(1)').should('have.attr', 'tabindex', '0');
+    });
 });
