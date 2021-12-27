@@ -1,3 +1,18 @@
+# v1.32.2 (Mon Dec 27 2021)
+
+#### 🐛 Bug Fix
+
+- refactor(plasma-b2c): Update return items in utils for `PreviewGallery` component [#1009](https://github.com/sberdevices/plasma/pull/1009) ([@neretin-trike](https://github.com/neretin-trike))
+- test(plasma-b2c): Add tests and snapshots for `PreviewGallery` component [#1009](https://github.com/sberdevices/plasma/pull/1009) ([@neretin-trike](https://github.com/neretin-trike))
+- test(plasma-b2c): Add tests and snapshots for `Upload` component [#1012](https://github.com/sberdevices/plasma/pull/1012) ([@neretin-trike](https://github.com/neretin-trike))
+- test(plasma-b2c): Add tests and snapshots for `Slider` component [#1015](https://github.com/sberdevices/plasma/pull/1015) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.32.1 (Thu Dec 23 2021)
 
 #### 🐛 Bug Fix

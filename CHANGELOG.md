@@ -1,3 +1,28 @@
+# (Mon Dec 27 2021)
+
+#### 🐛 Bug Fix
+
+- test(plasma-b2c): Add missing snapshots for `Toast` component [#1009](https://github.com/sberdevices/plasma/pull/1009) ([@neretin-trike](https://github.com/neretin-trike))
+- test(plasma-b2c): Add missing snapshot for `Tabs` component [#1009](https://github.com/sberdevices/plasma/pull/1009) ([@neretin-trike](https://github.com/neretin-trike))
+- test(plasma-b2c): Add missing snapshots for `Tabs` component [#1009](https://github.com/sberdevices/plasma/pull/1009) ([@neretin-trike](https://github.com/neretin-trike))
+- test(plasma-b2c): Add missing snapshots for `Switch` component [#1009](https://github.com/sberdevices/plasma/pull/1009) ([@neretin-trike](https://github.com/neretin-trike))
+- test(plasma-b2c): Add missing snapshots for `Radiobox` component [#1009](https://github.com/sberdevices/plasma/pull/1009) ([@neretin-trike](https://github.com/neretin-trike))
+- test(plasma-b2c): Add missing snapshots for `Checkbox` component [#1009](https://github.com/sberdevices/plasma/pull/1009) ([@neretin-trike](https://github.com/neretin-trike))
+- test(plasma-b2c): Add missing snapshots for `Button` component [#1009](https://github.com/sberdevices/plasma/pull/1009) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-ui@1.74.2`
+  - fix(plasma-ui): Add scroll fix for `Picker` component [#1007](https://github.com/sberdevices/plasma/pull/1007) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-b2c@1.32.2`
+  - refactor(plasma-b2c): Update return items in utils for `PreviewGallery` component [#1009](https://github.com/sberdevices/plasma/pull/1009) ([@neretin-trike](https://github.com/neretin-trike))
+  - test(plasma-b2c): Add tests and snapshots for `PreviewGallery` component [#1009](https://github.com/sberdevices/plasma/pull/1009) ([@neretin-trike](https://github.com/neretin-trike))
+  - test(plasma-b2c): Add tests and snapshots for `Upload` component [#1012](https://github.com/sberdevices/plasma/pull/1012) ([@neretin-trike](https://github.com/neretin-trike))
+  - test(plasma-b2c): Add tests and snapshots for `Slider` component [#1015](https://github.com/sberdevices/plasma/pull/1015) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # (Fri Dec 24 2021)
 
 #### 🚀 Enhancement

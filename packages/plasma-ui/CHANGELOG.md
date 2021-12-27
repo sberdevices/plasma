@@ -1,3 +1,15 @@
+# v1.74.2 (Mon Dec 27 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): Add scroll fix for `Picker` component [#1007](https://github.com/sberdevices/plasma/pull/1007) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.74.1 (Thu Dec 23 2021)
 
 #### 🐛 Bug Fix
