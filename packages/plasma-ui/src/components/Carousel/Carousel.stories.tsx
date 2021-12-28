@@ -77,12 +77,18 @@ export const Basic: Story<CarouselProps & CarouselColProps & { displayGrid: bool
                     style={{ paddingTop: '1.25rem', paddingBottom: '1.25rem' }}
                 >
                     {items.map(({ title, subtitle }, i) => (
-                        <CarouselCol key={`item:${i}`} size={3} sizeXL={4} scrollSnapAlign={scrollSnapAlign}>
+                        <CarouselCol
+                            key={`item:${i}`}
+                            size={3}
+                            sizeXL={4}
+                            scrollSnapAlign={scrollSnapAlign}
+                            aria-label={`${i + 1} из ${items.length}`}
+                        >
                             <ProductCard
                                 title={title}
                                 subtitle={subtitle}
-                                focused={i === index}
                                 imageSrc={`${process.env.PUBLIC_URL}/images/320_320_${i % 12}.jpg`}
+                                focused={i === index}
                             />
                         </CarouselCol>
                     ))}
@@ -164,7 +170,12 @@ export const Vertical: Story<CarouselProps & CarouselColProps & { displayGrid: b
                 }}
             >
                 {items.map(({ title, subtitle }, i) => (
-                    <CarouselItem key={`item:${i}`} scrollSnapAlign={scrollSnapAlign} style={{ padding: '0.75rem 0' }}>
+                    <CarouselItem
+                        key={`item:${i}`}
+                        scrollSnapAlign={scrollSnapAlign}
+                        style={{ padding: '0.75rem 0' }}
+                        aria-label={`${i + 1} из ${items.length}`}
+                    >
                         <GalleryCard
                             title={title}
                             subtitle={subtitle}
@@ -172,6 +183,7 @@ export const Vertical: Story<CarouselProps & CarouselColProps & { displayGrid: b
                             imageSrc={`${process.env.PUBLIC_URL}/images/320_320_${i % 12}.jpg`}
                             imageRatio="1 / 1"
                             scaleOnFocus
+                            tabIndex={0}
                         />
                     </CarouselItem>
                 ))}
@@ -289,6 +301,8 @@ export const CenterItem: Story<CarouselProps & ScalingColCardProps & { displayGr
                             scrollSnapAlign={scrollSnapAlign}
                             isActive={i === index}
                             item={item}
+                            tabIndex={0}
+                            aria-label={`${i + 1} из ${items.length}`}
                         />
                     ))}
                 </Carousel>

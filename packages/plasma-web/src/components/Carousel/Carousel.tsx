@@ -9,7 +9,12 @@ import {
 } from '@sberdevices/plasma-core';
 import type { CarouselProps as BaseProps } from '@sberdevices/plasma-core';
 
-export type CarouselProps = Omit<BaseProps, 'axis' | 'animatedScrollByIndex' | 'throttleMs' | 'debounceMs'>;
+export type CarouselProps = Omit<BaseProps, 'axis' | 'animatedScrollByIndex' | 'throttleMs' | 'debounceMs'> & {
+    /**
+     * При значении `polite` скринридер будет объявлять переключаемые слайды.
+     */
+    ariaLive?: 'off' | 'polite';
+};
 
 export const CarouselGridWrapper = styled(BaseWrapper)``;
 const StyledCarousel = styled(BaseCarousel)``;
@@ -36,6 +41,7 @@ export const Carousel: React.FC<CarouselProps> = ({
     paddingStart,
     paddingEnd,
     children,
+    ariaLive = 'off',
     ...rest
 }) => {
     const axis = 'x';
@@ -61,11 +67,11 @@ export const Carousel: React.FC<CarouselProps> = ({
                 {...rest}
             >
                 <StyledCarouselTrack
-                    as="ul"
-                    ref={trackRef as React.MutableRefObject<HTMLUListElement | null>}
+                    ref={trackRef as React.MutableRefObject<HTMLDivElement | null>}
                     axis={axis}
                     paddingStart={paddingStart}
                     paddingEnd={paddingEnd}
+                    aria-live={ariaLive}
                 >
                     {children}
                 </StyledCarouselTrack>

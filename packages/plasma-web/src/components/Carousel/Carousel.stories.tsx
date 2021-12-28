@@ -1,31 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Story, Meta } from '@storybook/react';
+import { Meta } from '@storybook/react';
+import { IconChevronLeft, IconChevronRight } from '@sberdevices/plasma-icons';
 
-import { InSpacingDecorator, disableProps } from '../../helpers';
+import { InSpacingDecorator } from '../../helpers';
 import { Button } from '../Button';
 import { SmartPaginationDots } from '../PaginationDots';
-import { Headline4 } from '../Typography';
 
 import { CarouselCard } from './Carousel.examples';
 
 import { Carousel, CarouselItem } from '.';
-
-const propsToDisable = [
-    'onScroll',
-    'index',
-    'scrollSnapType',
-    'scrollAlign',
-    'paddingStart',
-    'paddingEnd',
-    'detectActive',
-    'detectThreshold',
-    'onIndexChange',
-    'scaleCallback',
-    'scaleResetCallback',
-    'as',
-    'forwardedAs',
-];
 
 export default {
     title: 'Controls/Carousel',
@@ -41,70 +25,104 @@ export default {
     },
 } as Meta;
 
-type alignType = 'center' | 'start' | 'end';
-
 const items = Array(25)
     .fill({
-        title: 'Заголовок',
-        subtitle: 'Описание уравнение времени, сублимиpуя с повеpхности ядpа кометы, вращает реликтовый ледник',
+        title: 'Слайд',
+        subtitle: 'Описание слайда',
         imageSrc: `${process.env.PUBLIC_URL}/images/320_320_n.jpg`,
+        imageAlt: 'Картинка',
     })
-    .map(({ title, subtitle, imageSrc }, i) => ({
-        id: i,
+    .map(({ title, subtitle, imageSrc, imageAlt }, i) => ({
+        id: `slide_${i}`,
         title: `${title} ${i}`,
         subtitle: `${subtitle} ${i}`,
         imageSrc: imageSrc.replace('n', i % 12),
+        imageAlt: `${imageAlt} ${i}`,
     }));
 
-const StyledWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-const StyledButtonGroup = styled.div`
-    display: grid;
-    grid-template-columns: repeat(3, max-content);
-    grid-gap: 1.25rem;
-    align-self: center;
-    align-items: center;
-    margin-top: 2rem;
-`;
-
-export const Default: Story<{ align: string }> = ({ align }) => {
-    const [index, setIndex] = React.useState(0);
-
+export const Default = () => {
     return (
-        <StyledWrapper>
-            <Carousel
-                index={index}
-                detectActive
-                onIndexChange={(i) => setIndex(i)}
-                scrollAlign={align as alignType}
-                style={{ margin: '0 -0.5rem' }}
-            >
-                {items.map((item, i) => (
-                    <CarouselItem
-                        key={`item:${i}`}
-                        style={{ width: 550, padding: '0 0.5rem' }}
-                        scrollSnapAlign={align as alignType}
-                    >
-                        <CarouselCard {...item} />
-                    </CarouselItem>
-                ))}
-            </Carousel>
-            <SmartPaginationDots items={items} index={index} visibleItems={7} onIndexChange={(i) => setIndex(i)} />
-            <StyledButtonGroup>
-                <Button text="Prev" onClick={() => setIndex((i) => (i > 0 ? i - 1 : items.length - 1))} />
-                <Headline4>{index}</Headline4>
-                <Button text="Next" onClick={() => setIndex((i) => (i < items.length - 1 ? i + 1 : 0))} />
-            </StyledButtonGroup>
-        </StyledWrapper>
+        <Carousel index={0} style={{ margin: '0 -0.5rem' }}>
+            {items.map((item, i) => (
+                <CarouselItem key={`item:${i}`} style={{ width: '20rem', padding: '0 0.5rem' }}>
+                    <CarouselCard {...item} />
+                </CarouselItem>
+            ))}
+        </Carousel>
     );
 };
 
-Default.args = {
-    align: 'center',
-};
+const StyledWrapper = styled.div`
+    width: 32.5rem;
+    margin-left: auto;
+    margin-right: auto;
+`;
+const StyledCarouselWrapper = styled.section`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+`;
+const StyledControls = styled.div`
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1;
+`;
+const StyledCarousel = styled(Carousel)`
+    display: flex;
+    padding: 0.5rem 0;
+`;
+const StyledCarouselItem = styled(CarouselItem)`
+    width: 32.5rem;
+    padding: 0 0.5rem;
+    box-sizing: border-box;
+`;
 
-Default.argTypes = {
-    ...disableProps(propsToDisable),
+export const AccessabilityDemo = () => {
+    const [index, setIndex] = useState(0);
+    const [ariaLive, setAriaLive] = useState<'off' | 'polite'>('off');
+
+    return (
+        <StyledWrapper>
+            <StyledCarouselWrapper
+                id="carousel-example"
+                aria-label="Пример карусели с доступностью"
+                onFocus={() => setAriaLive('polite')}
+                onBlur={() => setAriaLive('off')}
+                onMouseOver={() => setAriaLive('polite')}
+                onMouseLeave={() => setAriaLive('off')}
+            >
+                <StyledControls>
+                    <Button
+                        contentLeft={<IconChevronLeft size="s" color="#fff" />}
+                        onClick={() => setIndex((i) => (i > 0 ? i - 1 : items.length - 1))}
+                        aria-controls="carousel-example"
+                        aria-label="Предыдущий слайд"
+                        view="clear"
+                    />
+                    <Button
+                        contentLeft={<IconChevronRight size="s" color="#fff" />}
+                        onClick={() => setIndex((i) => (i < items.length - 1 ? i + 1 : 0))}
+                        aria-controls="carousel-example"
+                        aria-label="Следующий слайд"
+                        view="clear"
+                    />
+                </StyledControls>
+                <StyledCarousel index={index} scrollSnapType="none" ariaLive={ariaLive}>
+                    {items.map((item, i) => (
+                        <StyledCarouselItem key={`item:${i}`} aria-label={`${i + 1} из ${items.length}`}>
+                            <CarouselCard
+                                {...item}
+                                href="#"
+                                imageBase="img"
+                                style={{ display: i === index ? 'block' : 'none' }}
+                            />
+                        </StyledCarouselItem>
+                    ))}
+                </StyledCarousel>
+                <SmartPaginationDots items={items} index={index} visibleItems={7} onIndexChange={(i) => setIndex(i)} />
+            </StyledCarouselWrapper>
+        </StyledWrapper>
+    );
 };

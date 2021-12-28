@@ -1,12 +1,27 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 
-import { Image } from '../Image';
+import { addFocus } from '../../mixins';
+import { Image, ImageProps } from '../Image';
 import { Headline4, Footnote1 } from '../Typography';
 
-const StyledCard = styled.div`
+interface CarouselCardProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+    title: string;
+    subtitle: string;
+    imageSrc: string;
+    imageAlt?: string;
+    imageBase?: ImageProps['base'];
+}
+
+const StyledCard = styled.a`
+    display: flex;
     position: relative;
     border-radius: 1rem;
+
+    ${addFocus({
+        outlined: true,
+        outlineRadius: '1.125rem',
+    })}
 `;
 const StyledCardContent = styled.div`
     position: absolute;
@@ -21,13 +36,16 @@ const StyledCardContent = styled.div`
  * Карточка под примеры с каруселью.
  * @private
  */
-export const CarouselCard: FC<{ title: string; subtitle: string; imageSrc: string }> = ({
+export const CarouselCard: FC<CarouselCardProps> = ({
     title,
     subtitle,
     imageSrc,
+    imageAlt,
+    imageBase = 'div',
+    ...rest
 }) => (
-    <StyledCard>
-        <Image src={imageSrc} ratio="16 / 9" base="div" />
+    <StyledCard {...rest}>
+        <Image src={imageSrc} ratio="16 / 9" base={imageBase} alt={imageAlt} />
         <StyledCardContent>
             <Headline4>{title}</Headline4>
             <Footnote1>{subtitle}</Footnote1>

@@ -7,6 +7,7 @@ import {
     CardMedia,
     CardContent,
     Body1,
+    Footnote1,
     useRemoteHandlers,
 } from '@sberdevices/plasma-ui';
 import { isSberBox } from '@sberdevices/plasma-ui/utils';
@@ -14,19 +15,17 @@ import styled from 'styled-components';
 
 const StyledCarousel = styled(Carousel)`
     padding: var(--plasma-grid-margin) 0;
-    margin-left: calc(var(--plasma-grid-gutter) * -1);
-    margin-right: calc(var(--plasma-grid-gutter) * -1);
 `;
 
 const basePath = process.env.BASE_PATH || '';
 const items = [
-    { text: 'Each', image: `${basePath}/images/320_320_0.jpg` },
-    { text: 'Hunter', image: `${basePath}/images/320_320_1.jpg` },
-    { text: 'Wants', image: `${basePath}/images/320_320_2.jpg` },
-    { text: 'To know', image: `${basePath}/images/320_320_3.jpg` },
-    { text: 'Where', image: `${basePath}/images/320_320_4.jpg` },
-    { text: 'Is', image: `${basePath}/images/320_320_5.jpg` },
-    { text: 'The peasant', image: `${basePath}/images/320_320_6.jpg` },
+    { title: 'Каждый', subtitle: 'Each', imageSrc: `${basePath}/images/320_320_0.jpg` },
+    { title: 'Охотник', subtitle: 'Hunter', imageSrc: `${basePath}/images/320_320_1.jpg` },
+    { title: 'Желает', subtitle: 'Whants', imageSrc: `${basePath}/images/320_320_2.jpg` },
+    { title: 'Знать', subtitle: 'To know', imageSrc: `${basePath}/images/320_320_3.jpg` },
+    { title: 'Где', subtitle: 'Where', imageSrc: `${basePath}/images/320_320_4.jpg` },
+    { title: 'Сидит', subtitle: 'Is', imageSrc: `${basePath}/images/320_320_5.jpg` },
+    { title: 'Фазан', subtitle: 'The pheasant', imageSrc: `${basePath}/images/320_320_6.jpg` },
 ];
 
 const isSberbox = isSberBox();
@@ -47,12 +46,19 @@ export default function CarouselPage() {
         <CarouselGridWrapper>
             <StyledCarousel index={index} axis="x" animatedScrollByIndex={isSberbox}>
                 {items.map((item, i) => (
-                    <CarouselCol key={item.text} size={2}>
+                    <CarouselCol
+                        key={i}
+                        size={2}
+                        sizeXL={4}
+                        aria-label={`${i + 1} из ${items.length}`}
+                        tabIndex={i === index ? 0 : -1}
+                    >
                         <Card outlined scaleOnFocus focused={i === index}>
                             <CardBody>
-                                <CardMedia src={item.image} alt={item.text} width={320} height={320} />
+                                <CardMedia src={item.imageSrc} alt={item.subtitle} width={320} height={320} />
                                 <CardContent cover>
-                                    <Body1>{item.text}</Body1>
+                                    <Body1>{item.title}</Body1>
+                                    <Footnote1>{item.subtitle}</Footnote1>
                                 </CardContent>
                             </CardBody>
                         </Card>

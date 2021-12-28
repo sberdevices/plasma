@@ -3,9 +3,7 @@ import styled from 'styled-components';
 
 import { MusicCard } from '../Card/Card.examples';
 
-import { CarouselItemProps } from './CarouselItem';
-
-import { CarouselCol } from '.';
+import { CarouselCol, CarouselItemProps } from '.';
 
 const scaleDelta = 0.37;
 
@@ -53,8 +51,7 @@ export const scaleCallback = (itemEl: HTMLDivElement, slot: number) => {
     }
 };
 
-export interface ScalingColCardProps {
-    scrollSnapAlign?: CarouselItemProps['scrollSnapAlign'];
+export interface ScalingColCardProps extends Omit<CarouselItemProps, 'size' | 'sizeM'> {
     isActive: boolean;
     item: {
         title: string;
@@ -62,8 +59,8 @@ export interface ScalingColCardProps {
     };
 }
 
-export const ScalingColCard: React.FC<ScalingColCardProps> = ({ isActive, scrollSnapAlign, item }) => (
-    <CarouselCol size={2} sizeM={1.5} scrollSnapAlign={scrollSnapAlign}>
+export const ScalingColCard: React.FC<ScalingColCardProps> = ({ isActive, scrollSnapAlign, item, ...rest }) => (
+    <CarouselCol size={2} sizeM={1.5} scrollSnapAlign={scrollSnapAlign} {...rest}>
         <StyledColInner>
             <StyledMusicCard
                 title={item.title}
