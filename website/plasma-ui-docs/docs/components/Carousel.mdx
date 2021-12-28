@@ -8,18 +8,23 @@ import { PropsTable, Description, CodeSandbox} from '@site/src/components';
 # Carousel
 Набор компонентов для создания списков с прокруткой (галерей).
 
-## Carousel
+## Состав
+При сборке карусели используйте структуру, в которой корневым элементом
+является `Carousel` со вложенными в него `CarouselItem` или `CarouselCol`.
+При необходимости отображения элементов карусели в [сетке](./grid), оборачивайте карусель в `CarouselGridWrapper`.
+
+### Carousel
 <Description name="Carousel" />
 <PropsTable name="Carousel" />
 
-## CarouselGridWrapper
+### CarouselGridWrapper
 <Description name="CarouselGridWrapper" />
 
-## CarouselItem
+### CarouselItem
 <Description name="CarouselItem" />
 <PropsTable name="CarouselItem" />
 
-## CarouselCol
+### CarouselCol
 <Description name="CarouselCol" />
 <PropsTable name="CarouselCol" />
 
@@ -190,4 +195,14 @@ export function App() {
         </DeviceThemeProvider>
     );
 }
+```
+
+## Доступность
+В элемент карусели добавьте атрибут `aria-label`,
+со значением, обозначающим текущую позицию в списке:
+
+```tsx
+<Carousel>
+    {items.map((item, i) => <CarouselItem aria-label={`${i + 1} из ${items.length}`} />)}
+</Carousel>
 ```
