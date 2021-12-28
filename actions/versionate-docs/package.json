@@ -33,5 +33,8 @@
     "publishConfig": {
         "access": "restricted"
     },
-    "files": ["lib", "action.yml"]
+    "files": [
+        "lib",
+        "action.yml"
+    ]
 }
