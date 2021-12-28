@@ -15,7 +15,7 @@ import {
 
 const StyledRow = styled(Row)`
     display: flex;
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.625rem;
     flex-wrap: nowrap;
 
     align-items: center;
