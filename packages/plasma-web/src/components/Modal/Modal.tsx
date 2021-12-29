@@ -13,6 +13,8 @@ interface HidingProps {
     isHiding?: boolean;
 }
 
+const ESCAPE_KEYCODE = 27;
+
 const wrapperHideAnimation = keyframes`
     from {
         opacity: 1;
@@ -88,8 +90,9 @@ const StyledModal = styled.div<HidingProps>`
 export const Modal: React.FC<ModalProps> = ({ id, isOpen, onClose, ...rest }) => {
     const uniqId = useUniqId();
     const innerId = id || uniqId;
+    const wrapperRef = React.useRef<HTMLDivElement | null>(null);
     const portalRef = React.useRef<HTMLElement | null>(null);
-    const modals = React.useContext(ModalsContext);
+    const controller = React.useContext(ModalsContext);
 
     React.useEffect(() => {
         const portalId = 'plasma-modals-root';
@@ -106,18 +109,38 @@ export const Modal: React.FC<ModalProps> = ({ id, isOpen, onClose, ...rest }) =>
         portalRef.current = portal;
 
         return () => {
-            modals.unregister(innerId);
+            controller.unregister(innerId);
 
-            if (portal && document.body.contains(portal) && modals.items.length < 1) {
+            if (portal && document.body.contains(portal) && controller.items.length < 1) {
                 document.body.removeChild(portal);
             }
         };
     }, []);
 
+    React.useEffect(() => {
+        const onKeyDown = (event: KeyboardEvent) => {
+            if (
+                event.keyCode === ESCAPE_KEYCODE &&
+                wrapperRef.current &&
+                portalRef.current &&
+                portalRef.current.contains(wrapperRef.current) &&
+                portalRef.current.children[portalRef.current.children.length - 1] === wrapperRef.current
+            ) {
+                onClose?.(event as any);
+            }
+        };
+
+        window.addEventListener('keydown', onKeyDown);
+
+        return () => {
+            window.removeEventListener('keydown', onKeyDown);
+        };
+    }, []);
+
     if (isOpen) {
-        modals.register(innerId);
+        controller.register(innerId);
     } else {
-        modals.unregister(innerId);
+        controller.unregister(innerId);
         return null;
     }
 
@@ -125,8 +148,8 @@ export const Modal: React.FC<ModalProps> = ({ id, isOpen, onClose, ...rest }) =>
         portalRef &&
         portalRef.current &&
         ReactDOM.createPortal(
-            <StyledWrapper>
-                <StyledOverlay transparent={modals.items.indexOf(innerId) !== 0} onClick={onClose} />
+            <StyledWrapper ref={wrapperRef}>
+                <StyledOverlay transparent={controller.items.indexOf(innerId) !== 0} onClick={onClose} />
                 <StyledModal>
                     <ModalView onClose={onClose} {...rest} />
                 </StyledModal>
