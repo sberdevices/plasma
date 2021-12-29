@@ -1,3 +1,37 @@
+# (Wed Dec 29 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): Add animationDistanceThreshold in ui-config for cypress [#1022](https://github.com/sberdevices/plasma/pull/1022) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-b2c@1.33.0`
+  - feat(plasma-b2c): Added `TabsController` component [#985](https://github.com/sberdevices/plasma/pull/985) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-ui@1.75.0`
+  - test(plasma-ui): Add tests and snapshots for `Pickers` component [#1022](https://github.com/sberdevices/plasma/pull/1022) ([@neretin-trike](https://github.com/neretin-trike))
+  - test(plasma-ui): Add tests and snapshots for `Slider` component [#1021](https://github.com/sberdevices/plasma/pull/1021) ([@neretin-trike](https://github.com/neretin-trike))
+  - test(plasma-ui): Add test for `Carousel` component with scrollAlign [#996](https://github.com/sberdevices/plasma/pull/996) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/versionate-docs@0.1.0`
+  - ci: Versionate docs [#953](https://github.com/sberdevices/plasma/pull/953) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-core@1.45.0`
+  - test: Add controller tests with keydown for plasma-ui [#985](https://github.com/sberdevices/plasma/pull/985) ([@neretin-trike](https://github.com/neretin-trike))
+  - fix(plasma-core): Add fix for `Carousel` component in start scroll align with vertical orientation [#996](https://github.com/sberdevices/plasma/pull/996) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-b2c@1.33.0`, `@sberdevices/plasma-core@1.45.0`, `@sberdevices/plasma-ui@1.75.0`, `@sberdevices/plasma-web@1.69.0`
+  - test: Complete tests for `Tabs` [#985](https://github.com/sberdevices/plasma/pull/985) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.33.0`
+  - test(plasma-b2c): `Body` & `Text` tests [#1019](https://github.com/sberdevices/plasma/pull/1019) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.33.0`, `@sberdevices/plasma-web@1.69.0`
+  - test(plasma-b2c, plasma-web): Add statuses to `Notification` test [#1017](https://github.com/sberdevices/plasma/pull/1017) ([@fanisco](https://github.com/fanisco))
+  - feat(plasma-web, plasma-b2c): Added possibility to specify id for `Notification` [#1017](https://github.com/sberdevices/plasma/pull/1017) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # (Mon Dec 27 2021)
 
 #### 🐛 Bug Fix

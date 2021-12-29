@@ -1,3 +1,17 @@
+# v1.69.0 (Wed Dec 29 2021)
+
+#### 🐛 Bug Fix
+
+- test: Complete tests for `Tabs` [#985](https://github.com/sberdevices/plasma/pull/985) ([@fanisco](https://github.com/fanisco))
+- test(plasma-b2c, plasma-web): Add statuses to `Notification` test [#1017](https://github.com/sberdevices/plasma/pull/1017) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-web, plasma-b2c): Added possibility to specify id for `Notification` [#1017](https://github.com/sberdevices/plasma/pull/1017) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.68.1 (Thu Dec 23 2021)
 
 #### 🐛 Bug Fix

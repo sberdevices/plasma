@@ -1,3 +1,18 @@
+# v1.45.0 (Wed Dec 29 2021)
+
+#### 🐛 Bug Fix
+
+- test: Add controller tests with keydown for plasma-ui [#985](https://github.com/sberdevices/plasma/pull/985) ([@neretin-trike](https://github.com/neretin-trike))
+- test: Complete tests for `Tabs` [#985](https://github.com/sberdevices/plasma/pull/985) ([@fanisco](https://github.com/fanisco))
+- fix(plasma-core): Add fix for `Carousel` component in start scroll align with vertical orientation [#996](https://github.com/sberdevices/plasma/pull/996) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.44.1 (Thu Dec 23 2021)
 
 #### 🐛 Bug Fix

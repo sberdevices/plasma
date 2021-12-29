@@ -1,3 +1,19 @@
+# v1.75.0 (Wed Dec 29 2021)
+
+#### 🐛 Bug Fix
+
+- test(plasma-ui): Add tests and snapshots for `Pickers` component [#1022](https://github.com/sberdevices/plasma/pull/1022) ([@neretin-trike](https://github.com/neretin-trike))
+- test(plasma-ui): Add tests and snapshots for `Slider` component [#1021](https://github.com/sberdevices/plasma/pull/1021) ([@neretin-trike](https://github.com/neretin-trike))
+- test: Complete tests for `Tabs` [#985](https://github.com/sberdevices/plasma/pull/985) ([@fanisco](https://github.com/fanisco))
+- test(plasma-ui): Add test for `Carousel` component with scrollAlign [#996](https://github.com/sberdevices/plasma/pull/996) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.74.2 (Mon Dec 27 2021)
 
 #### 🐛 Bug Fix
