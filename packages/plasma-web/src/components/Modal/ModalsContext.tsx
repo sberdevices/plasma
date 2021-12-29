@@ -15,10 +15,10 @@ class ModalsController {
     }
 }
 
-const initialState = new ModalsController();
+const controller = new ModalsController();
 
-export const ModalsContext = React.createContext(initialState);
+export const ModalsContext = React.createContext(controller);
 
 export const ModalsProvider: React.FC = ({ children }) => {
-    return <ModalsContext.Provider value={initialState}>{children}</ModalsContext.Provider>;
+    return <ModalsContext.Provider value={controller}>{children}</ModalsContext.Provider>;
 };
