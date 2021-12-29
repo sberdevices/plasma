@@ -11,6 +11,7 @@ import { useMediaPlayerKeyboard } from '../MediaPlayer/hooks/useMediaPlayerKeybo
 import { useTimer } from '../MediaPlayer/hooks/useTimer';
 import { MediaPlayer } from '../MediaPlayer/MediaPlayer';
 import { useInsets, Insets } from '../../hooks';
+import { ObjectFit } from '../../types';
 
 export interface VideoPlayerProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
     header?: React.ReactNode;
@@ -24,6 +25,7 @@ export interface VideoPlayerProps extends React.VideoHTMLAttributes<HTMLVideoEle
     startTime?: number;
     endTime?: number;
     customControls?: React.ComponentType<CustomMediaPlayerControlsProps<HTMLVideoElement>>;
+    videoFit?: ObjectFit;
     children?: (props: CustomMediaPlayerControlsProps<HTMLVideoElement>) => React.ReactElement;
     src: string;
 }
@@ -40,7 +42,7 @@ const paddingsControlsMixin = gridSizes.map((breakpoint) => {
     `);
 });
 
-const StyledContainer = styled.div`
+const StyledContainer = styled.div<{ videoFit: ObjectFit }>`
     position: relative;
     height: 100%;
     width: 100%;
@@ -48,7 +50,7 @@ const StyledContainer = styled.div`
     & > video {
         height: 100%;
         width: 100%;
-        object-fit: contain;
+        object-fit: ${({ videoFit }) => videoFit};
         background: rgba(8, 8, 8, 0.56);
     }
 `;
@@ -110,6 +112,7 @@ export const VideoPlayer = React.memo(
         endTime,
         autoPlay,
         muted,
+        videoFit = 'contain',
         ...restProps
     }: VideoPlayerProps) => {
         const insets = useInsets();
@@ -155,7 +158,7 @@ export const VideoPlayer = React.memo(
         const playerState = { ...state, backDisabled, nextDisabled, finished };
 
         return (
-            <StyledContainer onClick={startTimer}>
+            <StyledContainer onClick={startTimer} videoFit={videoFit}>
                 <MediaPlayer type="video" {...restProps} innerRef={playerRef} />
                 {loading && <StyledSpinner />}
                 <StyledOverlay transparent={isControlsHidden}>
