@@ -9,6 +9,7 @@
         "package": "plasma-ui",
         "a11yCheck": true
     },
+    "animationDistanceThreshold": 0,
     "video": false,
     "retries": 3
 }
