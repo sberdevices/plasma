@@ -126,7 +126,7 @@ export const Modal: React.FC<ModalProps> = ({ id, isOpen, onClose, ...rest }) =>
                 portalRef.current.contains(wrapperRef.current) &&
                 portalRef.current.children[portalRef.current.children.length - 1] === wrapperRef.current
             ) {
-                onClose?.(event as any);
+                onClose?.();
             }
         };
 

@@ -13,7 +13,7 @@ export interface ModalViewProps extends React.HTMLAttributes<HTMLDivElement> {
     /**
      * Обработчик клика по кнопке "закрыть".
      */
-    onClose?: React.HTMLAttributes<HTMLElement>['onClick'];
+    onClose?: () => void;
 }
 
 const StyledBody = styled.div`
