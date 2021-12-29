@@ -1,3 +1,17 @@
+# v1.75.1 (Wed Dec 29 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): Set `HeaderArrow` full height [#1016](https://github.com/sberdevices/plasma/pull/1016) ([@fanisco](https://github.com/fanisco))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.75.0 (Wed Dec 29 2021)
 
 #### 🐛 Bug Fix

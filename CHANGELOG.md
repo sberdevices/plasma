@@ -1,5 +1,18 @@
 # (Wed Dec 29 2021)
 
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-ui@1.75.1`
+  - fix(plasma-ui): Set `HeaderArrow` full height [#1016](https://github.com/sberdevices/plasma/pull/1016) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Wed Dec 29 2021)
+
 #### 🚀 Enhancement
 
 - feat(plasma-ui): Add animationDistanceThreshold in ui-config for cypress [#1022](https://github.com/sberdevices/plasma/pull/1022) ([@neretin-trike](https://github.com/neretin-trike))
