@@ -106,7 +106,9 @@ export const Modal: React.FC<ModalProps> = ({ id, isOpen, onClose, ...rest }) =>
         portalRef.current = portal;
 
         return () => {
-            if (portal && document.body.contains(portal)) {
+            modals.unregister(innerId);
+
+            if (portal && document.body.contains(portal) && modals.items.length < 1) {
                 document.body.removeChild(portal);
             }
         };

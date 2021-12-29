@@ -53,8 +53,13 @@ export const LiveDemo = () => {
         <SSRProvider>
             <ModalsProvider>
                 <Button text="Open modal" onClick={() => setIsOpenA(true)} />
+                <ul>
+                    <li>A: {isOpenA ? 'open' : 'closed'}</li>
+                    <li>B: {isOpenB ? 'open' : 'closed'}</li>
+                    <li>C: {isOpenC ? 'open' : 'closed'}</li>
+                </ul>
 
-                <Modal isOpen={isOpenA} onClose={onCloseA}>
+                <Modal id="modalA" isOpen={isOpenA} onClose={onCloseA}>
                     <Headline3>Modal A</Headline3>
                     <Button view="primary" text="Open modal B" onClick={() => setIsOpenB(true)} />
                     <Button text="Close" onClick={onCloseA} />

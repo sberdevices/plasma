@@ -6,12 +6,12 @@ import React from 'react';
 class ModalsController {
     public items: string[] = [];
 
-    public register(ref: string) {
-        return this.items.push(ref);
+    public register(id: string) {
+        return this.items.push(id);
     }
 
-    public unregister(ref: string) {
-        this.items.splice(this.items.indexOf(ref), 1);
+    public unregister(id: string) {
+        this.items.splice(this.items.indexOf(id), 1);
     }
 }
 
