@@ -20,6 +20,7 @@ export const textAndIcons: Array<keyof typeof FullColorsList> = [
 ];
 export const buttons: Array<keyof typeof FullColorsList> = [
     'buttonAccent',
+    'buttonFocused',
     'buttonPrimary',
     'buttonSecondary',
     'buttonSuccess',
