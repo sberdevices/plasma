@@ -1,3 +1,20 @@
+# v1.15.0 (Thu Dec 30 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-tokens): addd brand theme and update some tokens [#1026](https://github.com/sberdevices/plasma/pull/1026) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-tokens): forgotten buttonFocus [#1026](https://github.com/sberdevices/plasma/pull/1026) ([@Yeti-or](https://github.com/Yeti-or))
+- build(plasma-tokens): load figma stuff [#1026](https://github.com/sberdevices/plasma/pull/1026) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.14.0 (Fri Oct 08 2021)
 
 #### 🚀 Enhancement

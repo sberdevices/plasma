@@ -2,6 +2,27 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-tokens@1.15.0`
+  - feat(plasma-tokens): addd brand theme and update some tokens [#1026](https://github.com/sberdevices/plasma/pull/1026) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-tokens-utils@0.9.0`
+  - fix(plasma-tokens-utils): buttonClear not GblBlack [#1026](https://github.com/sberdevices/plasma/pull/1026) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-tokens@1.15.0`
+  - fix(plasma-tokens): forgotten buttonFocus [#1026](https://github.com/sberdevices/plasma/pull/1026) ([@Yeti-or](https://github.com/Yeti-or))
+  - build(plasma-tokens): load figma stuff [#1026](https://github.com/sberdevices/plasma/pull/1026) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# (Thu Dec 30 2021)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-temple@1.18.0`
   - feat(plasma-temple): Controlled video fit on video page [#1023](https://github.com/sberdevices/plasma/pull/1023) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
 

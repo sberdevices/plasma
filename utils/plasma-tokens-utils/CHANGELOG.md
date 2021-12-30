@@ -1,3 +1,15 @@
+# v0.9.0 (Thu Dec 30 2021)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-tokens-utils): buttonClear not GblBlack [#1026](https://github.com/sberdevices/plasma/pull/1026) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v0.8.0 (Fri Oct 08 2021)
 
 #### 🚀 Enhancement
