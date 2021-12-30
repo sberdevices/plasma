@@ -56,7 +56,7 @@ export const mapDesignToBaseColors = (ds: DesignLanguage): BaseColors => ({
     },
 
     buttonClear: {
-        value: humanizeColor(ds.colors.button_black.color),
+        value: humanizeColor(ds.colors.button_clear.color),
         comment: 'Второстепенная прозрачная',
     },
 
