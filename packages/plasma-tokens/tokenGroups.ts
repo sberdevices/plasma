@@ -1,6 +1,7 @@
 import { FullColorsList } from '@sberdevices/plasma-tokens-utils';
 
 export const textAndIcons: Array<keyof typeof FullColorsList> = [
+    'accent',
     'text',
     'primary',
     'secondary',
@@ -18,9 +19,7 @@ export const textAndIcons: Array<keyof typeof FullColorsList> = [
     'blackTertiary',
 ];
 export const buttons: Array<keyof typeof FullColorsList> = [
-    'success',
-    'warning',
-    'critical',
+    'buttonAccent',
     'buttonPrimary',
     'buttonSecondary',
     'buttonSuccess',

@@ -398,6 +398,34 @@ const darkJoy: ThemeTokens = {
         comment: FullColorsList.voicePhraseGradient,
     },
 };
+const darkBrand: ThemeTokens = {
+    ...darkTheme,
+    accent: {
+        value: humanizeColor(ds.theme.dark_brand.color),
+        comment: FullColorsList.accent,
+    },
+    buttonAccent: {
+        value: humanizeColor(ds.theme.dark_button_brand.color),
+        comment: FullColorsList.buttonAccent,
+    },
+    buttonFocused: {
+        value: humanizeColor(ds.theme.dark_focus_brand.color),
+        comment: FullColorsList.buttonFocused,
+    },
+    // TODO: export from figma is broken (#135)
+    gradient: {
+        value: ds.gradients.dark_bg_brand,
+        comment: FullColorsList.gradient,
+    },
+    gradientDevice: {
+        value: ds.gradients.dark_device_brand,
+        comment: FullColorsList.gradient,
+    },
+    voicePhraseGradient: {
+        value: ds.gradients.dark_voice_phrase_brand.linearGradient,
+        comment: FullColorsList.voicePhraseGradient,
+    },
+};
 const lightSber: ThemeTokens = {
     ...lightTheme,
     accent: {
@@ -483,14 +511,44 @@ const lightJoy: ThemeTokens = {
         comment: FullColorsList.voicePhraseGradient,
     },
 };
+const lightBrand: ThemeTokens = {
+    ...lightTheme,
+    accent: {
+        value: humanizeColor(ds.theme.light_brand.color),
+        comment: FullColorsList.accent,
+    },
+    buttonAccent: {
+        value: humanizeColor(ds.theme.light_button_brand.color),
+        comment: FullColorsList.buttonAccent,
+    },
+    buttonFocused: {
+        value: humanizeColor(ds.theme.light_focus_brand.color),
+        comment: FullColorsList.buttonFocused,
+    },
+    // TODO: export from figma is broken (#135)
+    gradient: {
+        value: ds.gradients.light_bg_brand,
+        comment: FullColorsList.gradient,
+    },
+    gradientDevice: {
+        value: ds.gradients.light_device_brand,
+        comment: FullColorsList.gradient,
+    },
+    voicePhraseGradient: {
+        value: ds.gradients.light_voice_phrase_brand.linearGradient,
+        comment: FullColorsList.voicePhraseGradient,
+    },
+};
 
 export const themes = {
     darkSber,
     darkEva,
     darkJoy,
+    darkBrand,
     lightSber,
     lightEva,
     lightJoy,
+    lightBrand,
 };
 
 export type SimpleTokens = {
