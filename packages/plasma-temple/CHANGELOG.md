@@ -1,3 +1,22 @@
+# v1.18.0 (Thu Dec 30 2021)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Controlled video fit on video page [#1023](https://github.com/sberdevices/plasma/pull/1023) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- Bump independent versions \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- Update CHANGELOG.md \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.17.1 (Wed Dec 29 2021)
 
 #### 🐛 Bug Fix

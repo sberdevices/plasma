@@ -1,3 +1,22 @@
+# (Thu Dec 30 2021)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@1.18.0`
+  - feat(plasma-temple): Controlled video fit on video page [#1023](https://github.com/sberdevices/plasma/pull/1023) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-ui@1.76.0`
+  - fix(plasma-ui): Set `HeaderArrow` full height [#1016](https://github.com/sberdevices/plasma/pull/1016) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Wed Dec 29 2021)
 
 #### 🐛 Bug Fix
