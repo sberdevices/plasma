@@ -66,22 +66,26 @@ const StyledButton = styled(Button)`
         bottom: 0;
     }
 `;
-const StyledCarousel = styled(Carousel)`
+const StyledCarousel = styled(Carousel)<{ $isFocused?: boolean }>`
     &[data-no-scroll-behavior='true'] {
         scroll-behavior: unset;
     }
 
     &:focus {
         outline: 0 none;
-
-        & ${StyledWhiteText} {
-            color: ${primary};
-        }
-
-        & ~ ${StyledButton} {
-            opacity: 0.32;
-        }
     }
+
+    ${({ $isFocused }) =>
+        $isFocused &&
+        css`
+            & ${StyledWhiteText} {
+                color: ${primary};
+            }
+
+            & ~ ${StyledButton} {
+                opacity: 0.32;
+            }
+        `}
 `;
 interface StyledWrapperProps {
     $visibleItems: 3 | 5;
@@ -240,6 +244,8 @@ export const Picker: React.FC<PickerProps> = ({
     const toPrev = React.useCallback(() => !disabled && setIndex(getIndex(index, '-', min, max)), [index, min, max]);
     const toNext = React.useCallback(() => !disabled && setIndex(getIndex(index, '+', min, max)), [index, min, max]);
 
+    const [isFocused, setIsFocused] = React.useState(false);
+
     const prevValue = usePreviousValue(newItems[index]?.value);
 
     // Изменяет индекс выделенного элемента
@@ -320,6 +326,8 @@ export const Picker: React.FC<PickerProps> = ({
             $disabled={disabled}
             $visibleItems={visibleItems}
             $controls={controls}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
             {...rest}
         >
             <StyledCarousel
@@ -335,6 +343,7 @@ export const Picker: React.FC<PickerProps> = ({
                 paddingStart={sizes[size][visibleItems].padding}
                 paddingEnd={sizes[size][visibleItems].padding}
                 onIndexChange={onIndexChange}
+                $isFocused={isFocused}
                 {...(hasScrollAnim ? {} : { 'data-no-scroll-behavior': true })}
             >
                 {newItems.map((item, i) => (
