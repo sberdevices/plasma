@@ -18,7 +18,7 @@
         "prebuild:ds": "npm ci --prefix='design-language'",
         "build:ds": "npm run build --prefix='./design-language'",
         "generate": "npx ts-node ./generate.ts",
-        "postgenerate": "npx style-dictionary build",
+        "postgenerate": "npx style-dictionary build && node clean.js",
         "figma": "npm run extract --prefix='./design-language'"
     },
     "publishConfig": {
@@ -48,10 +48,6 @@
         "ts-node": "10.2.1",
         "typescript": "3.9.10"
     },
-    "contributors": [
-        "Виноградов Антон Александрович",
-        "Зубаиров Фаниль Асхатович",
-        "Vasiliy Loginevskiy"
-    ],
+    "contributors": ["Виноградов Антон Александрович", "Зубаиров Фаниль Асхатович", "Vasiliy Loginevskiy"],
     "sideEffects": false
 }

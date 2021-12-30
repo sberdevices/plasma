@@ -139,18 +139,18 @@ interface ThemeTokensGroup {
     speech: ThemeTokens;
 }
 
-const convertGroupedTokenData = (theme: ThemeTokens): ThemeTokensGroup => {
+const convertGroupedTokenData = (theme: ThemeTokens): ThemeTokens => {
     return {
-        textAndIcons: convertGroupTokens(tokenGroups.textAndIcons, theme),
-        buttons: convertGroupTokens(tokenGroups.buttons, theme),
-        backgrounds: convertGroupTokens(tokenGroups.backgrounds, theme),
-        surfaces: convertGroupTokens(tokenGroups.surfaces, theme),
-        speech: convertGroupTokens(tokenGroups.speech, theme),
+        ...convertGroupTokens(tokenGroups.textAndIcons, theme),
+        ...convertGroupTokens(tokenGroups.buttons, theme),
+        ...convertGroupTokens(tokenGroups.backgrounds, theme),
+        ...convertGroupTokens(tokenGroups.surfaces, theme),
+        ...convertGroupTokens(tokenGroups.speech, theme),
     };
 };
 
 const generateColors = () => {
-    const fixThemes = {} as { [key: string]: ThemeTokensGroup };
+    const fixThemes = {} as { [key: string]: ThemeTokens };
 
     for (const [themeName, theme] of Object.entries(themes)) {
         fixThemes[themeName] = convertGroupedTokenData(theme);

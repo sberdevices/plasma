@@ -27,7 +27,7 @@ const colors = {
     black_secondary: plasmaStylesTokens.colors.textIconsGblBlackSecondary,
     black_tertiary: plasmaStylesTokens.colors.textIconsGlblBlackTetriary,
 
-    white: plasmaStylesTokens.colors.textIconsGblWhitePrimary,
+    white: plasmaStylesTokens.colors.textIconsGlblWhitePrimary,
     black: plasmaStylesTokens.colors.textIconsGblBlackPrimary,
 
     dark01: Color.rgba(23, 23, 23, 1),
@@ -63,6 +63,7 @@ const theme = {
     dark_sber: plasmaStylesTokens.colors.textIconsAccentSber1,
     dark_eva: plasmaStylesTokens.colors.textIconsAccentAthena1,
     dark_joy: plasmaStylesTokens.colors.textIconsAccentJoy1,
+    dark_brand: plasmaStylesTokens.colors.textIconsAccentBrand1,
 
     dark_bg: plasmaStylesTokens.colors.backgroundDefault,
     dark_overlay: Color.rgba(0, 0, 0, 0.8),
@@ -84,6 +85,7 @@ const theme = {
     dark_button_sber: plasmaStylesTokens.colors.buttonPrimarySber1,
     dark_button_eva: plasmaStylesTokens.colors.buttonPrimaryAthena1,
     dark_button_joy: plasmaStylesTokens.colors.buttonPrimaryJoy1,
+    dark_button_brand: plasmaStylesTokens.colors.buttonPrimaryBrand1,
 
     dark_button_primary: plasmaStylesTokens.colors.buttonPrimaryDefault1,
     dark_button_secondary: plasmaStylesTokens.colors.buttonSecondaryDefault1,
@@ -96,6 +98,7 @@ const theme = {
     dark_focus_sber: plasmaStylesTokens.colors.buttonPrimarySber1,
     dark_focus_eva: plasmaStylesTokens.colors.buttonPrimaryAthena1,
     dark_focus_joy: plasmaStylesTokens.colors.buttonPrimaryJoy1,
+    dark_focus_brand: plasmaStylesTokens.colors.buttonPrimaryBrand1,
 
     dark_speech_bubble_sent: Color.rgba(0, 0, 0, 0.28),
     dark_speech_bubble_received: Color.rgba(255, 255, 255, 0.12),
@@ -115,6 +118,7 @@ const theme = {
     light_sber: plasmaStylesTokens.colors.textIconsAccentSber,
     light_eva: plasmaStylesTokens.colors.textIconsAccentAthena,
     light_joy: plasmaStylesTokens.colors.textIconsAccentJoy,
+    light_brand: plasmaStylesTokens.colors.textIconsAccentBrand,
 
     light_bg: Color.rgba(255, 255, 255, 1),
     light_overlay: Color.rgba(0, 0, 0, 0.8),
@@ -136,6 +140,7 @@ const theme = {
     light_button_sber: plasmaStylesTokens.colors.buttonPrimarySber,
     light_button_eva: plasmaStylesTokens.colors.buttonPrimaryAthena,
     light_button_joy: plasmaStylesTokens.colors.buttonPrimaryJoy,
+    light_button_brand: plasmaStylesTokens.colors.buttonPrimaryBrand,
 
     light_button_primary: plasmaStylesTokens.colors.buttonPrimaryDefault,
     light_button_secondary: plasmaStylesTokens.colors.buttonSecondaryDefault,
@@ -148,6 +153,7 @@ const theme = {
     light_focus_sber: plasmaStylesTokens.colors.buttonPrimarySber,
     light_focus_eva: plasmaStylesTokens.colors.buttonPrimaryAthena,
     light_focus_joy: plasmaStylesTokens.colors.buttonPrimaryJoy,
+    light_focus_brand: plasmaStylesTokens.colors.buttonPrimaryBrand,
 
     light_speech_bubble_sent: Color.rgba(8, 8, 8, 0.4),
     light_speech_bubble_received: Color.rgba(0, 0, 0, 0.02),
@@ -161,6 +167,7 @@ const gradients = {
         'linear-gradient(336.9deg, #143787 0%, rgba(8, 8, 8, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(110, 5, 193, 0.44) 0%, rgba(53, 19, 149, 0.1) 99.69%), linear-gradient(180.03deg, rgba(8, 8, 8, 0) 50%, rgba(25, 63, 152, 0.41) 99.97%), linear-gradient(270deg, rgba(39, 15, 107, 0.3) 0%, rgba(8, 8, 8, 0) 100%)',
     dark_bg_joy:
         'linear-gradient(336.9deg, rgba(255, 156, 101, 0.24) 0%, rgba(8, 8, 8, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(61, 19, 149, 0.34) 0%, rgba(19, 24, 149, 0.1) 99.69%), linear-gradient(180.03deg, rgba(8, 8, 8, 0) 50%, rgba(255, 215, 179, 0.15) 99.97%), linear-gradient(270deg, rgba(107, 15, 87, 0.2) 0%, rgba(8, 8, 8, 0) 100%)',
+    dark_bg_brand: '#080808',
 
     dark_device_sber:
         'linear-gradient(26.05deg, rgba(15, 153, 24, 0.28) 0%, rgba(8, 8, 8, 0) 72.24%), radial-gradient(100% 100% at 0% 100%, rgba(0, 170, 255, 0.24) 0%, rgba(8, 8, 8, 0) 99.69%), radial-gradient(74.68% 149.35% at 50% 149.35%, rgba(0, 102, 255, 0.6) 0%, rgba(8, 8, 8, 0) 99.69%)',
@@ -168,10 +175,12 @@ const gradients = {
         'linear-gradient(26.05deg, rgba(26, 140, 255, 0.16) 0%, rgba(8, 8, 8, 0) 72.24%), radial-gradient(100% 100% at 0% 100%, rgba(0, 85, 255, 0.28) 0%, rgba(8, 8, 8, 0) 99.69%), radial-gradient(74.68% 149.35% at 50% 149.35%, rgba(128, 0, 255, 0.48) 0%, rgba(8, 8, 8, 0) 99.69%)',
     dark_device_joy:
         'linear-gradient(26.05deg, rgba(255, 148, 77, 0.24) 0%, rgba(8, 8, 8, 0) 72.24%), radial-gradient(100% 100% at 0% 100%, rgba(138, 60, 215, 0.24) 0%, rgba(8, 8, 8, 0) 99.69%), radial-gradient(74.68% 149.35% at 50% 149.35%, rgba(89, 22, 215, 0.48) 0%, rgba(8, 8, 8, 0) 99.69%)',
+    dark_device_brand: '#080808',
 
     dark_voice_phrase_sber: plasmaStylesTokens.gradients.textIconsGradientSber1,
     dark_voice_phrase_eva: plasmaStylesTokens.gradients.textIconsGradientAthena1,
     dark_voice_phrase_joy: plasmaStylesTokens.gradients.textIconsGradientJoy1,
+    dark_voice_phrase_brand: plasmaStylesTokens.gradients.textIconsGradientBrand1,
 
     // light
     light_bg_sber:
@@ -180,6 +189,7 @@ const gradients = {
         'linear-gradient(336.9deg, rgba(0, 224, 255, 0.06) 0%, rgba(255, 255, 255, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(0, 87, 255, 0.04) 0%, rgba(87, 8, 255, 0.01) 99.69%), linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, rgba(0, 224, 255, 0.06) 100%), linear-gradient(270deg, rgba(0, 71, 253, 0.02) 0%, rgba(255, 255, 255, 0) 100%)',
     light_bg_joy:
         'linear-gradient(336.9deg, rgba(255, 200, 3, 0.05) 0%, rgba(255, 255, 255, 0) 64.95%), radial-gradient(66.53% 100% at 73.33% 100%, rgba(148, 0, 238, 0.02) 0%, rgba(160, 4, 255, 0.01) 99.69%), linear-gradient(180.03deg, rgba(255, 255, 255, 0) 50%, rgba(255, 184, 0, 0.04) 99.97%), linear-gradient(270deg, rgba(240, 0, 187, 0.03) 0%, rgba(255, 255, 255, 0) 100%)',
+    light_bg_brand: '#F5F5F5',
 
     light_device_sber:
         'linear-gradient(26.05deg, rgba(24, 242, 61, 0.06) 0%, rgba(255, 255, 255, 0) 72.24%), radial-gradient(100% 100% at 0% 100%, rgba(0, 170, 255, 0.04) 0%, rgba(255, 255, 255, 0) 99.69%), radial-gradient(74.68% 149.35% at 50% 149.35%, rgba(0, 170, 255, 0.12) 0%, rgba(255, 255, 255, 0) 99.69%)',
@@ -187,10 +197,12 @@ const gradients = {
         'linear-gradient(26.05deg, rgba(26, 178, 255, 0.08) 0%, rgba(255, 255, 255, 0) 72.24%), radial-gradient(100% 100% at 0% 100%, rgba(0, 170, 255, 0.04) 0%, rgba(255, 255, 255, 0) 99.69%), radial-gradient(74.68% 149.35% at 50% 149.35%, rgba(128, 0, 255, 0.08) 0%, rgba(255, 255, 255, 0) 99.69%)',
     light_device_joy:
         'linear-gradient(26.05deg, rgba(255, 219, 77, 0.1) 0%, rgba(255, 255, 255, 0) 72.24%), radial-gradient(100% 100% at 0% 100%, rgba(163, 71, 255, 0.04) 0%, rgba(255, 255, 255, 0) 99.69%), radial-gradient(74.68% 149.35% at 50% 149.35%, rgba(140, 26, 255, 0.1) 0%, rgba(255, 255, 255, 0) 99.69%)',
+    light_device_brand: '#F5F5F5',
 
     light_voice_phrase_sber: plasmaStylesTokens.gradients.textIconsGradientSber,
     light_voice_phrase_eva: plasmaStylesTokens.gradients.textIconsGradientAthena,
     light_voice_phrase_joy: plasmaStylesTokens.gradients.textIconsGradientJoy,
+    light_voice_phrase_brand: plasmaStylesTokens.gradients.textIconsGradientBrand,
 };
 //
 // /**
