@@ -2,9 +2,35 @@ import { useEffect, useRef } from 'react';
 
 type ShortKey = 'UP' | 'DOWN' | 'LEFT' | 'RIGHT' | 'OK';
 type LongKey = 'LONG_UP' | 'LONG_DOWN' | 'LONG_LEFT' | 'LONG_RIGHT' | 'LONG_OK';
-export type RemoteKey = ShortKey | LongKey;
+type JumpKey = 'PAGE_UP' | 'PAGE_DOWN' | 'HOME' | 'END';
+export type RemoteKey = ShortKey | LongKey | JumpKey;
 
-const navKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Enter'];
+const navKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Enter', 'PageUp', 'PageDown', 'Home', 'End'];
+
+const getRemoteKey = (key: string, isLong: boolean): RemoteKey | undefined => {
+    switch (key) {
+        case 'ArrowUp':
+            return isLong ? 'LONG_UP' : 'UP';
+        case 'ArrowDown':
+            return isLong ? 'LONG_DOWN' : 'DOWN';
+        case 'ArrowLeft':
+            return isLong ? 'LONG_LEFT' : 'LEFT';
+        case 'ArrowRight':
+            return isLong ? 'LONG_RIGHT' : 'RIGHT';
+        case 'Enter':
+            return isLong ? 'LONG_OK' : 'OK';
+        case 'PageUp':
+            return 'PAGE_UP';
+        case 'PageDown':
+            return 'PAGE_DOWN';
+        case 'Home':
+            return 'HOME';
+        case 'End':
+            return 'END';
+        default:
+            return undefined;
+    }
+};
 
 /**
  * Создает слушателя событий клавиатуры,
@@ -18,31 +44,14 @@ export const useRemoteListener = (cb: (key: RemoteKey, event: KeyboardEvent) => 
 
     useEffect(() => {
         const handleKeydown = (event: KeyboardEvent): void => {
-            if (navKeys.indexOf(event.key) === -1) {
+            const isLong = Boolean(keydown.current && Date.now() - keydown.current < keypressTimeMs);
+            const remoteKey = getRemoteKey(event.key, isLong);
+
+            if (!remoteKey) {
                 return;
             }
 
-            const isLong = keydown.current && Date.now() - keydown.current < keypressTimeMs;
-
-            switch (event.key) {
-                case 'ArrowUp':
-                    cb(isLong ? 'LONG_UP' : 'UP', event);
-                    break;
-                case 'ArrowDown':
-                    cb(isLong ? 'LONG_DOWN' : 'DOWN', event);
-                    break;
-                case 'ArrowLeft':
-                    cb(isLong ? 'LONG_LEFT' : 'LEFT', event);
-                    break;
-                case 'ArrowRight':
-                    cb(isLong ? 'LONG_RIGHT' : 'RIGHT', event);
-                    break;
-                case 'Enter':
-                    cb(isLong ? 'LONG_OK' : 'OK', event);
-                    break;
-                default:
-                    break;
-            }
+            cb(remoteKey, event);
             keydown.current = Date.now();
         };
         const handleKeyup = (event: KeyboardEvent): void => {

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useMemo, useState, useRef, useCallback, useEffect } from 'react';
+import type { FC, HTMLAttributes } from 'react';
 import styled, { css } from 'styled-components';
 import { primary } from '@sberdevices/plasma-tokens';
 import { IconChevronUp, IconChevronDown } from '@sberdevices/plasma-icons';
@@ -162,17 +163,33 @@ const getItems = (items: Item[], infiniteScroll: boolean, additionalOffset: numb
     return [...firstPart, ...items, ...lastPart];
 };
 
-const getIndex = (index: number, cmd: '+' | '-', min: number, max: number) => {
-    if (cmd === '+') {
-        return index !== max ? index + 1 : min;
+type GetIndexCmd = '+' | '-' | '++' | '--' | 'home' | 'end';
+
+/**
+ * Возвращает следующий/предыдущий индекс.
+ */
+const getIndex = (index: number, cmd: GetIndexCmd, min: number, max: number) => {
+    switch (cmd) {
+        case '+':
+            return index !== max ? index + 1 : min;
+        case '-':
+            return index !== min ? index - 1 : max;
+        case '++':
+            return Math.min(max, index + 10);
+        case '--':
+            return Math.max(min, index - 10);
+        case 'home':
+            return min;
+        case 'end':
+        default:
+            return max;
     }
-    return index !== min ? index - 1 : max;
 };
 
 export interface PickerProps
     extends SizeProps,
         DisabledProps,
-        Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>,
+        Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>,
         Pick<CarouselProps, 'scrollSnapType'> {
     /**
      * Список опций
@@ -217,7 +234,7 @@ export interface PickerProps
     infiniteScroll?: boolean;
 }
 
-export const Picker: React.FC<PickerProps> = ({
+export const Picker: FC<PickerProps> = ({
     id,
     size = 's',
     value,
@@ -232,41 +249,56 @@ export const Picker: React.FC<PickerProps> = ({
     infiniteScroll = true,
     ...rest
 }) => {
-    const newItems = React.useMemo(() => getItems(items, infiniteScroll, ADDITIONAL_OFFSET), [items, infiniteScroll]);
+    const virtualItems = useMemo(() => getItems(items, infiniteScroll, ADDITIONAL_OFFSET), [items, infiniteScroll]);
 
     const min = 0;
-    const max = newItems.length - 1;
-    const [index, setIndex] = React.useState(findItemIndex(newItems, value, infiniteScroll, ADDITIONAL_OFFSET));
-    const [hasScrollAnim, setScrollAnim] = React.useState(true);
+    const max = virtualItems.length - 1;
+    const [index, setIndex] = useState(findItemIndex(virtualItems, value, infiniteScroll, ADDITIONAL_OFFSET));
+    const [hasScrollAnim, setScrollAnim] = useState(true);
 
-    const wrapperRef = React.useRef<HTMLDivElement | null>(null);
-    const carouselRef = React.useRef<HTMLDivElement | null>(null);
-    const toPrev = React.useCallback(() => !disabled && setIndex(getIndex(index, '-', min, max)), [index, min, max]);
-    const toNext = React.useCallback(() => !disabled && setIndex(getIndex(index, '+', min, max)), [index, min, max]);
+    const wrapperRef = useRef<HTMLDivElement | null>(null);
+    const carouselRef = useRef<HTMLDivElement | null>(null);
+    const toPrev = useCallback(() => !disabled && setIndex(getIndex(index, '-', min, max)), [index, min, max]);
+    const toNext = useCallback(() => !disabled && setIndex(getIndex(index, '+', min, max)), [index, min, max]);
+    const jump = useCallback(
+        (cmd: GetIndexCmd) => {
+            if (disabled) {
+                return;
+            }
 
-    const [isFocused, setIsFocused] = React.useState(false);
+            let newIndex = getIndex(index, cmd, 0, items.length - 1);
 
-    const prevValue = usePreviousValue(newItems[index]?.value);
+            if (cmd === 'home' || cmd === 'end') {
+                newIndex = virtualItems.findIndex((item) => item.value === items[newIndex].value);
+            }
+            setIndex(newIndex);
+        },
+        [index, items, virtualItems],
+    );
+
+    const [isFocused, setIsFocused] = useState(false);
+
+    const prevValue = usePreviousValue(virtualItems[index]?.value);
 
     // Изменяет индекс выделенного элемента
     // при обновлении значения value извне
     useIsomorphicLayoutEffect(() => {
-        const newIndex = findItemIndex(newItems, value, infiniteScroll, ADDITIONAL_OFFSET);
+        const newIndex = findItemIndex(virtualItems, value, infiniteScroll, ADDITIONAL_OFFSET);
 
         // Отключаем анимацию скролла, если значение компонента осталось
         // прежним, но индекс изменился
-        if (prevValue === newItems[newIndex]?.value && newIndex !== index) {
+        if (prevValue === virtualItems[newIndex]?.value && newIndex !== index) {
             setScrollAnim(false);
         }
 
         // Отключаем анимацию скролла, если выбраны крайние значения в списке
         const offset = ADDITIONAL_OFFSET * 2;
-        if (newIndex === offset - 1 || newIndex === newItems.length - offset) {
+        if (newIndex === offset - 1 || newIndex === virtualItems.length - offset) {
             setScrollAnim(false);
         }
 
         setIndex(newIndex);
-    }, [value, newItems]);
+    }, [value, virtualItems]);
 
     // Навигация с помощью пульта/клавиатуры
     // Не перелистывает, если компонент неактивен
@@ -274,10 +306,6 @@ export const Picker: React.FC<PickerProps> = ({
         if (carouselRef.current !== document.activeElement) {
             return;
         }
-        if (key !== 'UP' && key !== 'DOWN') {
-            return;
-        }
-        event.preventDefault();
         switch (key) {
             case 'UP':
                 toPrev();
@@ -285,12 +313,25 @@ export const Picker: React.FC<PickerProps> = ({
             case 'DOWN':
                 toNext();
                 break;
-            default:
+            case 'PAGE_UP':
+                jump('--');
                 break;
+            case 'PAGE_DOWN':
+                jump('++');
+                break;
+            case 'HOME':
+                jump('home');
+                break;
+            case 'END':
+                jump('end');
+                break;
+            default:
+                return;
         }
+        event.preventDefault();
     });
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (autofocus && carouselRef.current) {
             carouselRef.current.focus();
         }
@@ -298,24 +339,24 @@ export const Picker: React.FC<PickerProps> = ({
         setScrollAnim(false);
     }, []);
 
-    const onIndexChange = React.useCallback(
+    const onIndexChange = useCallback(
         (i: number) => {
-            if (newItems[i]?.value !== value) {
-                onChange?.(newItems[i]);
+            if (virtualItems[i]?.value !== value) {
+                onChange?.(virtualItems[i]);
             }
 
             // Изменяем выбранный индекс если значение не изменилось
-            if (prevValue === newItems[i]?.value) {
+            if (prevValue === virtualItems[i]?.value) {
                 setScrollAnim(false);
                 setIndex(i);
-                const newIndex = findItemIndex(newItems, newItems[i].value, infiniteScroll, ADDITIONAL_OFFSET);
+                const newIndex = findItemIndex(virtualItems, virtualItems[i].value, infiniteScroll, ADDITIONAL_OFFSET);
                 setIndex(newIndex);
             }
 
             // Включаем анимацию скролла, после изменения индекса
             setScrollAnim(true);
         },
-        [newItems, value, onChange, prevValue],
+        [virtualItems, value, onChange, prevValue],
     );
 
     return (
@@ -346,7 +387,7 @@ export const Picker: React.FC<PickerProps> = ({
                 $isFocused={isFocused}
                 {...(hasScrollAnim ? {} : { 'data-no-scroll-behavior': true })}
             >
-                {newItems.map((item, i) => (
+                {virtualItems.map((item, i) => (
                     <PickerItem
                         key={`item:${i}`}
                         item={item}
