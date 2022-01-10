@@ -103,9 +103,9 @@ Default.args = {
     stretch: true,
     pilled: false,
     scaleOnInteraction: true,
-    outlined: false,
+    outlined: true,
     disabled: false,
-    animated: true,
+    animated: false,
     enableContentLeft: true,
     text: 'Label',
 };

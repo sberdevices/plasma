@@ -16,45 +16,37 @@ export interface TabsProps extends AsProps, DisabledProps, React.HTMLAttributes<
     stretch?: boolean;
 }
 
-const StyledTabs = styled.div<TabsProps>`
+const StyledWrapper = styled.div<TabsProps>`
+    box-sizing: border-box;
+    overflow-x: auto;
+
+    /* stylelint-disable-next-line selector-max-empty-lines, selector-nested-pattern, selector-type-no-unknown */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
     ${applyDisabled}
 
-    position: relative;
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    flex-wrap: nowrap;
-    justify-content: stretch;
-
-    margin: 0;
-    padding: 0;
-    width: max-content;
-
-    list-style-type: none;
-    user-select: none;
-
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-
     /**
-     * Стили айтемов, зависимые от модификаторов контейнера, определяем тут.
-     */
+    * Стили айтемов, зависимые от модификаторов контейнера, определяем тут.
+    */
     ${({ stretch }) =>
         stretch &&
         css`
             width: 100%;
 
             /**
-             * Айтемы помещаются максимум по 4 штуки в контейнер,
-             * а при минимальном количестве занимают максимум половину ширины.
-             */
-            & > * {
+            * Айтемы помещаются максимум по 4 штуки в контейнер,
+            * а при минимальном количестве занимают максимум половину ширины.
+            */
+            ${StyledTabItem} {
                 min-width: 25%;
                 max-width: 50%;
                 width: 100%;
             }
         `}
 
-    & > ${StyledTabItem} {
+    ${StyledTabItem} {
         ${({ disabled }) =>
             disabled &&
             css`
@@ -62,10 +54,36 @@ const StyledTabs = styled.div<TabsProps>`
             `}
     }
 `;
+const StyledTabs = styled.div`
+    position: relative;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    flex-wrap: nowrap;
+    justify-content: stretch;
+
+    min-width: 100%;
+    width: max-content;
+    height: var(--plasma-tabs-list-height);
+    margin: 0;
+    padding: 0;
+
+    background: var(--plasma-tabs-list-background);
+    border-radius: var(--plasma-tabs-list-border-radius);
+
+    list-style-type: none;
+    user-select: none;
+
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+`;
 
 /**
  * Контейнер вкладок.
  */
-export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(({ role = 'tablist', ...rest }, ref) => (
-    <StyledTabs ref={ref} role={role} {...rest} />
+export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(({ role = 'tablist', as, children, ...rest }, ref) => (
+    <StyledWrapper {...rest}>
+        <StyledTabs as={as} ref={ref} role={role}>
+            {children}
+        </StyledTabs>
+    </StyledWrapper>
 ));

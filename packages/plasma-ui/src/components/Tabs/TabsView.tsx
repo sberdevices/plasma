@@ -22,8 +22,10 @@ const sizes = {
         --tab-item-padding-y-reduced: 0.75rem;
         --tab-item-height: 3rem;
         --tab-item-border-radius: 1rem;
-        height: 3.25rem;
-        border-radius: 1.125rem;
+        --plasma-tabs-list-height: 3.25rem;
+        --plasma-tabs-list-border-radius: 1.125rem;
+
+        height: 3.5rem;
     `,
     m: (stretch: boolean) => css`
         --tabs-shifting: -${stretch ? 0.875 : 1.375}rem;
@@ -32,8 +34,10 @@ const sizes = {
         --tab-item-padding-y-reduced: 0.5rem;
         --tab-item-height: 2.5rem;
         --tab-item-border-radius: 0.75rem;
-        height: 2.75rem;
-        border-radius: 0.875rem;
+        --plasma-tabs-list-height: 2.75rem;
+        --plasma-tabs-list-border-radius: 0.875rem;
+
+        height: 3rem;
     `,
     s: (stretch: boolean) => css`
         --tabs-shifting: -${stretch ? 0.75 : 1.125}rem;
@@ -42,8 +46,10 @@ const sizes = {
         --tab-item-padding-y-reduced: 0.375rem;
         --tab-item-height: 2.25rem;
         --tab-item-border-radius: 0.75rem;
-        height: 2.5rem;
-        border-radius: 0.875rem;
+        --plasma-tabs-list-height: 2.5rem;
+        --plasma-tabs-list-border-radius: 0.875rem;
+
+        height: 2.75rem;
     `,
 };
 
@@ -95,9 +101,10 @@ export interface TabsViewProps
  * Визуальная составляющая контейнера (списка) вкладок.
  */
 export const TabsView = styled(BaseTabs)<TabsViewProps>`
-    padding: 0.125rem 0;
+    --plasma-tabs-list-background: ${({ view = 'secondary' }) => views[view]};
 
-    background-color: ${({ view = 'secondary' }) => views[view]};
+    padding: 0.125rem;
+    margin: -0.125rem;
 
     &:focus {
         outline: 0 none;
@@ -110,7 +117,7 @@ export const TabsView = styled(BaseTabs)<TabsViewProps>`
             ${
                 stretch &&
                 css`
-                    & > * {
+                    ${StyledTabItem} {
                         min-width: calc(25% - 0.25rem);
                         max-width: calc(50% - 0.25rem);
                     }
@@ -144,7 +151,7 @@ export const TabsView = styled(BaseTabs)<TabsViewProps>`
     `}
 
     /* stylelint-disable-next-line selector-max-universal */
-    & > ${StyledTabItem} {
+    ${StyledTabItem} {
         ${applyInteraction};
 
         margin-left: 0.125rem;
