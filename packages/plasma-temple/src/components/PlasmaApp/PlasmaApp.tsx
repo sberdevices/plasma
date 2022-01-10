@@ -72,6 +72,7 @@ export function App<Name extends string>({
             const screenIndex = history.findIndex((screenState) => screenState.name === name);
 
             if (screenIndex === -1) {
+                pushScreen(name, null);
                 return;
             }
 
@@ -82,7 +83,7 @@ export function App<Name extends string>({
                 window.history.go(-delta);
             }
         },
-        [history],
+        [history, pushScreen],
     );
 
     const changeActiveScreenState = React.useCallback(
