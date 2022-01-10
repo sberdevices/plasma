@@ -4,28 +4,28 @@ coverage:
     project:
       plasma-core:
         target: auto
-        threshold: 0
+        threshold: 0.1%
         paths:
           - packages/plasma-core
         flags:
           - plasma-core
       plasma-ui:
         target: auto
-        threshold: 0
+        threshold: 0.1%
         paths:
           - packages/plasma-ui
         flags:
           - plasma-ui
       plasma-web:
         target: auto
-        threshold: 0
+        threshold: 0.1%
         paths:
           - packages/plasma-web
         flags:
           - plasma-web
       plasma-b2c:
         target: auto
-        threshold: 0
+        threshold: 0.1%
         paths:
           - packages/plasma-b2c
         flags:
