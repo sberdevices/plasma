@@ -61,7 +61,7 @@ export const Container = ({ template = 'primary', image, withSkeleton, container
         <div class=${`layer-hidden layer-content${template === 'primary' ? '' : ' layer-secondary-wrap'}`} ref=${wrapperRef}>
             <div class="layer-main-container">
                 ${template === 'primary' ? html`<${PrimaryTopContent} isShow=${isPrimaryTitleShow} />` : html`<${SecondaryTopContent} />`}
-                <${SliderWrapper} products=${products} onSlideHover=${(isHover: boolean) => setIsPrimaryTitleShow(!isHover)}/>
+                <${SliderWrapper} products=${products} name=${site} onSlideHover=${(isHover: boolean) => setIsPrimaryTitleShow(!isHover)}/>
                 <${SliderButtons} />
             </div>
         </div>

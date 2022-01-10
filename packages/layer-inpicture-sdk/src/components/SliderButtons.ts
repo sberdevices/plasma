@@ -8,7 +8,7 @@ export const SliderButtons = () => html`
     ${buttons.map(({ direction }) => html`
         <div
             class="swiper-button-${direction} layer-swiper-button layer-swiper-button-${direction} layer-unselectable"
-            onClick=${(event: any) => event.stopPropagation()}
+            onClick=${(event: MouseEvent) => event.stopPropagation()}
             key=${direction}
         >
             <img src="${arrow}" alt="arrow ${direction}"/>
