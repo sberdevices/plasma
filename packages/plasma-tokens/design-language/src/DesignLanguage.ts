@@ -104,8 +104,8 @@ const theme = {
     dark_speech_bubble_received: Color.rgba(255, 255, 255, 0.12),
 
     // light
-    light_primary: plasmaStylesTokens.colors.textIconsPrimary6,
-    light_secondary: plasmaStylesTokens.colors.textIconsSecondary5,
+    light_primary: plasmaStylesTokens.colors.textIconsPrimary4,
+    light_secondary: plasmaStylesTokens.colors.textIconsSecondary4,
     light_tertiary: plasmaStylesTokens.colors.textIconsTertiary1,
 
     light_paragraph: plasmaStylesTokens.colors.textIconsParagraph,
