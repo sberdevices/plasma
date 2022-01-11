@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { secondary, tertiary, display2, headline1 } from '@sberdevices/plasma-tokens';
 
@@ -30,6 +30,7 @@ export const StyledPickerItem = styled.div<StyledSizeProps>`
     position: relative;
     box-sizing: border-box;
     overflow: hidden;
+    display: flex;
     align-items: center;
     text-align: center;
     width: 100%;
@@ -95,6 +96,10 @@ export interface PickerItemProps extends React.HTMLAttributes<HTMLDivElement>, S
     activeIndex: number;
     noScrollBehavior: boolean;
     onItemClick?: (item: Item) => void;
+    /**
+     * Автофокус на компоненте.
+     */
+    autofocus?: boolean;
 }
 
 export const PickerItem: React.FC<PickerItemProps> = ({
@@ -104,6 +109,7 @@ export const PickerItem: React.FC<PickerItemProps> = ({
     activeIndex,
     noScrollBehavior,
     onItemClick,
+    autofocus,
     ...rest
 }) => {
     const itemRef = useCarouselItem<HTMLDivElement>();
@@ -117,11 +123,19 @@ export const PickerItem: React.FC<PickerItemProps> = ({
         onItemClick?.(item);
     }, [item]);
 
+    useEffect(() => {
+        if (autofocus && itemRef.current) {
+            itemRef.current.focus();
+        }
+    }, [autofocus]);
+
     return (
         <StyledPickerItem $noScrollBehavior={noScrollBehavior} ref={itemRef} $size={size} onClick={onClick} {...rest}>
             <StyledTransformable $noScrollBehavior={noScrollBehavior} $size={size} style={styles.wrapper}>
                 <StyledText style={styles.text}>{item.label}</StyledText>
-                <StyledWhiteText style={styles.whiteText}>{item.label}</StyledWhiteText>
+                <StyledWhiteText style={styles.whiteText} aria-hidden="true">
+                    {item.label}
+                </StyledWhiteText>
             </StyledTransformable>
         </StyledPickerItem>
     );
