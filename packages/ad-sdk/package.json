@@ -4,9 +4,7 @@
   "description": "SberDevices Ad SDK",
   "main": "umd/ad-sdk.production.min.js",
   "browser": "umd/ad-sdk.production.min.js",
-  "files": [
-    "umd"
-  ],
+  "files": ["umd"],
   "scripts": {
     "build": "npx rollup -c rollup.config.js",
     "watch": "npx rollup -c rollup.config.js -w",
@@ -14,7 +12,7 @@
     "prepare-demo": "npx rollup -c rollup.config.js -o examples/demo/public/ad-sdk.js",
     "prepare": "npm run build",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watchAll"
   },
   "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
   "license": "Sber Public License at-nc-sa v.2",
@@ -34,6 +32,7 @@
   },
   "dependencies": {
     "lodash.debounce": "^4.0.8",
+    "nanoid": "3.2.0",
     "sane-domparser-error": "^0.2.0"
   }
 }

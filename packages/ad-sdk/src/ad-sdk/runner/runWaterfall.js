@@ -117,7 +117,7 @@ const waterfall = async (fetchVastChain, placeholder, options, isCanceled) => {
             }
         }
 
-        onRunFinish();
+        onRunFinish({ failed: true });
     }
 };
 

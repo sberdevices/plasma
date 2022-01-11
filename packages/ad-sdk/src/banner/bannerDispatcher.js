@@ -51,21 +51,60 @@ function generateStyles({ rootId, outlineSize = "0.125rem", outlineOffset = outl
     `;
 }
 
-export function openBanner({ container, params, cooldownTime, events, isTvRemote }) {
+export function openBanner({ container, params, cooldownTime, events = {}, isTvRemote, triggerEvent, addEventData }) {
     if (!container.id) {
         throw new Error("id у container обязателен");
     }
-    injectCss(generateStyles({ rootId: container.id }));
-    const isAlreadyOpen = !!document.getElementById(container.id);
-    if (!isAlreadyOpen && enableToOpenBanner) {
-        enableToOpenBanner = false;
-        setTimeout(() => {
-            enableToOpenBanner = true;
-        }, cooldownTime);
 
-        const banner = new Banner(container, events, params, { isTvRemote });
-        banner.run();
-    } else {
+    const isAlreadyOpen = !!document.getElementById(container.id);
+
+    if (isAlreadyOpen) {
         events.onError();
+        return;
     }
+
+    if (!enableToOpenBanner) {
+        events.onError();
+        triggerEvent("errorOpenBeforeCooldown");
+        return;
+    }
+
+    const stylesElementId = "pasma-ad-banner-styles";
+    const styleElement = document.getElementById(stylesElementId);
+    if (!styleElement) {
+        injectCss(stylesElementId, generateStyles({ rootId: container.id }));
+    }
+
+    enableToOpenBanner = false;
+    setTimeout(() => {
+        enableToOpenBanner = true;
+    }, cooldownTime);
+
+    const onSuccess = () => {
+        if (events.onSuccess) {
+            events.onSuccess();
+        }
+    };
+
+    const onError = (err) => {
+        if (events.onError) {
+            events.onError(err);
+        }
+    };
+
+    const banner = new Banner({
+        container,
+        events: {
+            onSuccess,
+            onError,
+            onAdReady: events.onAdReady,
+        },
+        sspParams: params,
+        params: {
+            isTvRemote,
+            triggerEvent,
+            addEventData,
+        },
+    });
+    banner.run();
 }

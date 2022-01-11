@@ -15,18 +15,25 @@ export class Banner {
     _timerElement = null;
     _isTvRemote = false;
     _focusOutsideBanner = null;
+    _triggerEvent = () => {};
+    _addEventData = () => {};
+    _closeByScript = false;
 
-    constructor(container, events = {}, sspParams, { isTvRemote } = {}) {
+    constructor({ container, events = {}, sspParams, params = {} }) {
         this.container = container;
         this.onSuccess = events.onSuccess || (() => {});
         this.onError = events.onError || (() => {});
         this.onAdReady = events.onAdReady || (() => {});
         this.sspParams = sspParams;
-        this._isTvRemote = isTvRemote;
+        this._isTvRemote = params.isTvRemote;
         this._onIframeMessage = this._onIframeMessage.bind(this);
+        this._onVisibilityChange = this._onVisibilityChange.bind(this);
+        this._triggerEvent = params.triggerEvent;
+        this._addEventData = params.addEventData;
     }
 
     async run() {
+        this._triggerEvent("run");
         this._focusOutsideBanner = document.activeElement;
         history.pushState(null, null, "#plasma-ad-banner");
         this._listenOnPopState();
@@ -43,6 +50,7 @@ export class Banner {
                 autoCloseTime: TIME_TO_AUTO_CLOSE_IN_SECONDS,
                 isTvRemote: this._isTvRemote,
                 onLoadIframe: () => {
+                    this._triggerEvent("impression");
                     this._showBanner(banner);
                     this._hidePreloader();
                     this.onAdReady();
@@ -52,10 +60,15 @@ export class Banner {
                     if (this._isTvRemote) {
                         this._startAutoCloseTimer(banner);
                         this._blockFocus();
+                    } else {
+                        this._listenFollowLinkInFrame();
                     }
                 },
                 onClickCloseButton: () => {
                     this._closeAdSuccess();
+                },
+                onFollowLink: () => {
+                    this._onFollowLink();
                 },
             });
 
@@ -68,13 +81,41 @@ export class Banner {
         }
     }
 
+    _listenFollowLinkInFrame() {
+        // Невозможно точно определять, что произошел переход по ссылке внутри iframe
+        // Здесь определяем переход по косвенным признакам
+        window.focus();
+
+        window.addEventListener(
+            "blur",
+            () => {
+                setTimeout(() => {
+                    if (document.activeElement.tagName === "IFRAME") {
+                        document.addEventListener("visibilitychange", this._onVisibilityChange, { once: true });
+                    }
+                });
+            },
+            { once: true }
+        );
+    }
+
+    _onVisibilityChange() {
+        if (document.visibilityState === "hidden") {
+            this._onFollowLink();
+        }
+    }
+
+    _onFollowLink() {
+        this._triggerEvent("click");
+    }
+
     _onIframeMessage(message) {
         const childWindow = document.getElementById("plasma-ad-frame").contentWindow;
         if (message.source !== childWindow) {
             return;
         }
         if (message.data && message.data.event === "close") {
-            this._historyGoBack();
+            this._closeAdSuccess();
         }
     }
 
@@ -131,15 +172,19 @@ export class Banner {
 
     _listenOnPopState() {
         const onPopStateHandler = () => {
+            if (!this._closeByScript) {
+                this.onSuccess();
+            }
             this._close();
-            window.removeEventListener("onpopstate", onPopStateHandler);
         };
-        window.addEventListener("popstate", onPopStateHandler);
+        window.addEventListener("popstate", onPopStateHandler, { once: true });
     }
 
     _historyGoBack() {
         if (window.location.hash === "#plasma-ad-banner") {
+            this._closeByScript = true;
             history.back();
+            document.removeEventListener("visibilitychange", this._onVisibilityChange);
         }
     }
 
@@ -165,15 +210,22 @@ export class Banner {
 
     async _requestBanner() {
         const url = "https://ssp.rambler.ru/sberdevapp.jsp?" + new URLSearchParams(this.sspParams);
-        const response = await fetch(url);
-        const { source, height, width } = await response.json();
-        if (!source || !height || !width) {
-            throw new Error("Некорректный ответ сервера");
+        this._addEventData("requestLink", url);
+        try {
+            const response = await fetch(url);
+            const { source, height, width } = await response.json();
+            if (!source || !height || !width) {
+                throw new Error("Некорректный ответ сервера");
+            }
+            this._addEventData("responseLink", source);
+            return {
+                source,
+                height,
+                width,
+            };
+        } catch (e) {
+            this._triggerEvent("errorOnLoad");
+            throw e;
         }
-        return {
-            source,
-            height,
-            width,
-        };
     }
 }

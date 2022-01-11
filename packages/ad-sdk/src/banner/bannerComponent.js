@@ -130,6 +130,7 @@ export function createBanner({
     autoCloseTime,
     onLoadIframe,
     onClickCloseButton,
+    onFollowLink,
     isTvRemote,
 }) {
     const iframeSize = getIframeSize(width, height);
@@ -219,6 +220,8 @@ export function createBanner({
                 target: "_blank",
             },
         });
+
+        linkWrapper.addEventListener("click", onFollowLink);
 
         linkWrapper.appendChild(adIframe);
         banner.appendChild(linkWrapper);

@@ -22,24 +22,32 @@ function triggerOnLoadIframe() {
     iframe.dispatchEvent(new Event("load"));
 }
 
-function createBanner({ events, params } = {}) {
-    const adContainer = document.createElement("div");
-    adContainer.id = "root";
-    const banner = new Banner(
-        adContainer,
-        {
-            onError: (err) => console.log("error", err),
-            ...events,
-        },
-        {},
-        {
-            ...params,
-        }
-    );
-    return banner;
-}
-
 describe("banner.js - Banner class", () => {
+    let triggerEvent = jest.fn();
+    let addEventData = jest.fn();
+    window.focus = jest.fn();
+
+    function createBanner({ events, params } = {}) {
+        triggerEvent = jest.fn();
+        addEventData = jest.fn();
+        const adContainer = document.createElement("div");
+        adContainer.id = "root";
+        const banner = new Banner({
+            container: adContainer,
+            events: {
+                onError: jest.fn(),
+                ...events,
+            },
+            sspParams: {},
+            params: {
+                triggerEvent,
+                addEventData,
+                ...params,
+            },
+        });
+        return banner;
+    }
+
     beforeEach(() => {
         document.body.innerHTML = "";
     });
@@ -117,8 +125,24 @@ describe("banner.js - Banner class", () => {
         expect(rootElement).toBeFalsy();
     });
 
-    test('Реклама закрывается при нажатии на кнопку "назад" на пульте', async () => {
+    test("Реклама автоматически закрывается после 10 секунд и происходит сохранение событий", async () => {
         const banner = createBanner({ params: { isTvRemote: true } });
+        await banner.run();
+        let rootElement = document.getElementById("root");
+        expect(rootElement).toBeTruthy();
+
+        triggerOnLoadIframe();
+
+        jest.advanceTimersByTime(11 * 1000);
+
+        rootElement = document.getElementById("root");
+
+        expect(rootElement).toBeFalsy();
+    });
+
+    test('Реклама закрывается при нажатии на кнопку "назад" на пульте и вызывается событие onSuccess', async () => {
+        const onSuccess = jest.fn();
+        const banner = createBanner({ events: { onSuccess }, params: { isTvRemote: true } });
         await banner.run();
         let rootElement = document.getElementById("root");
         expect(rootElement).toBeTruthy();
@@ -131,6 +155,22 @@ describe("banner.js - Banner class", () => {
 
         rootElement = document.getElementById("root");
         expect(rootElement).toBeFalsy();
+        expect(onSuccess).toBeCalledTimes(1);
+    });
+
+    test('Реклама закрывается при нажатии на кнопку "назад" на пульте и происходит сохранение событий', async () => {
+        const banner = createBanner({ params: { isTvRemote: true } });
+        await banner.run();
+        let rootElement = document.getElementById("root");
+        expect(rootElement).toBeTruthy();
+
+        triggerOnLoadIframe();
+
+        history.back();
+
+        jest.advanceTimersByTime(1000);
+
+        rootElement = document.getElementById("root");
     });
 
     test("Таймер меняется корректно раз в секунду", async () => {
@@ -145,5 +185,12 @@ describe("banner.js - Banner class", () => {
             jest.advanceTimersByTime(1 * 1000);
             expect(timerElement.innerText).toBe(i.toString());
         }
+    });
+
+    test('Сохраняется событие "run" при открытии', async () => {
+        const onSuccess = jest.fn();
+        const banner = createBanner({ events: { onSuccess }, params: { isTvRemote: true } });
+        await banner.run();
+        expect(triggerEvent).toHaveBeenCalledWith("run");
     });
 });

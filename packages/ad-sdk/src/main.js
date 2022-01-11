@@ -1,7 +1,9 @@
+import { nanoid } from "nanoid/non-secure";
 import { runWaterfall } from "./ad-sdk/index";
 import { openBanner } from "./banner";
 import { getBannerBlockId, getVideoBlockId } from "./utils/blockId";
 import { getBannerPadId, getVideoPadId } from "./utils/padId";
+import fetch from "./utils/fetch";
 
 const surfacesWithTVRemote = ["SBERBOX", "SATELLITE", "TV", "TV_HUAWEI", "SAMSUNG_TV"];
 
@@ -13,6 +15,10 @@ const logger = {
     error: (err) => console.error(err),
 };
 
+function generateSessionId() {
+    return nanoid(21);
+}
+
 let initParams = {};
 let realSurface;
 
@@ -22,6 +28,8 @@ let cooldownTime = minCooldownTime;
 
 let _inited = false;
 let adTag = "";
+
+let isTest = false;
 
 function createContainer() {
     const adContainer = document.createElement("div");
@@ -35,6 +43,28 @@ function createContainer() {
     adContainer.style.background = "#000";
     adContainer.id = "plasma-ad";
     return adContainer;
+}
+
+function getCommonDataForEvents() {
+    return {
+        affiliationType: initParams.affiliationType,
+        ageLimit: initParams.ageLimit,
+        applicationId: initParams.applicationId,
+        appversionId: initParams.appversionId,
+        deviceId: initParams.deviceId,
+        deviceManufacturer: initParams.deviceManufacturer,
+        deviceModel: initParams.deviceModel,
+        frontendEndpoint: initParams.frontendEndpoint,
+        frontendType: initParams.frontendType,
+        platformType: initParams.platformType,
+        platformVersion: initParams.platformVersion,
+        projectId: initParams.projectId,
+        projectName: initParams.projectName,
+        sub: initParams.projectName,
+        surface: initParams.surface,
+        surfaceVersion: initParams.surfaceVersion,
+        systemName: initParams.systemName,
+    };
 }
 
 function _initWithParams(params = {}, test) {
@@ -204,6 +234,7 @@ export function initDev(params = {}) {
 }
 
 export function initWithParams(params = {}, test = false) {
+    isTest = test;
     const onSuccess = params.onSuccess || (params.onSuccess = () => {});
     const onError = params.onError || (params.onError = () => {});
 
@@ -215,12 +246,14 @@ export function initWithParams(params = {}, test = false) {
     try {
         _initWithParams(params.params, params.test || test);
         onSuccess();
+        saveEvent("init", "init", { sessionId: generateSessionId() });
     } catch (err) {
         onError(err);
     }
 }
 
 export function initWithAssistant(params = {}, test = false) {
+    isTest = test;
     const onSuccess = params.onSuccess || (params.onSuccess = () => {});
     const onError = params.onError || (params.onError = () => {});
 
@@ -240,7 +273,15 @@ export function initWithAssistant(params = {}, test = false) {
         return;
     }
 
-    _initWithAssistant(assistant, onSuccess, onError, params.test || test);
+    _initWithAssistant(
+        assistant,
+        () => {
+            saveEvent("init", "init", { sessionId: generateSessionId() });
+            onSuccess();
+        },
+        onError,
+        params.test || test
+    );
     _assistantRef.current = assistant;
 }
 
@@ -283,6 +324,7 @@ const buildAdTag = () => {
 };
 
 export function runVideoAd(params = {}) {
+    const startTime = performance.now();
     params.onSuccess || (params.onSuccess = () => {});
     params.onError || (params.onError = () => {});
     params.onAdReady || (params.onAdReady = () => {});
@@ -298,6 +340,7 @@ export function runVideoAd(params = {}) {
     let adUnit;
 
     const onAdReady = (newAdUnit) => {
+        addEventData("timeToStart", performance.now() - startTime);
         try {
             adUnit = newAdUnit;
 
@@ -313,10 +356,10 @@ export function runVideoAd(params = {}) {
             adUnit.videoAdContainer.videoElement.playsInline = true;
 
             adUnit.on("clickThrough", () => {
+                triggerEvent("click");
                 adUnit.videoAdContainer.videoElement.pause();
                 adUnit.videoAdContainer.element.remove();
-                document.body.removeChild(adContainer);
-                params.onSuccess();
+                onRunFinish();
             });
 
             const logEvent = (evt) => logger.log(`### ${evt.type}`, evt.adUnit, initParams);
@@ -333,7 +376,10 @@ export function runVideoAd(params = {}) {
                 "thirdQuartile",
                 "complete",
             ].forEach((evtType) => {
-                adUnit.on(evtType, logEvent);
+                adUnit.on(evtType, (event) => {
+                    logEvent(event);
+                    triggerEvent(event.type);
+                });
             });
 
             params.onAdReady();
@@ -346,13 +392,19 @@ export function runVideoAd(params = {}) {
     const onError = (evt) => {
         logger.log("### onError", evt);
         params.onError(Error("Something goes wrong inside player"));
+        addEventData("timeToComplete", performance.now() - startTime);
     };
 
     const onAdStart = (evt) => {
         logger.log("### onAdStart", evt);
+        addEventData("responseLink", evt.assetUri);
     };
 
-    const onRunFinish = () => {
+    const onRunFinish = ({ failed } = {}) => {
+        if (failed) {
+            triggerEvent("errorOnLoad");
+        }
+        addEventData("timeToComplete", performance.now() - startTime);
         document.body.removeChild(adContainer);
         logger.log("### onRunFinish");
         params.onSuccess();
@@ -370,6 +422,20 @@ export function runVideoAd(params = {}) {
 
     logger.log("### adTag", adTag);
 
+    const videoEventData = {
+        sessionId: generateSessionId(),
+        requestLink: adTag,
+        responseLink: null,
+    };
+
+    function triggerEvent(eventType) {
+        saveEvent("fullVideo", eventType, videoEventData);
+    }
+
+    function addEventData(key, value) {
+        videoEventData[key] = value;
+    }
+
     runWaterfall(adTag, adContainer, {
         onAdReady,
         onAdStart,
@@ -381,13 +447,45 @@ export function runVideoAd(params = {}) {
 }
 
 export function runBanner(events = {}) {
-    events.onSuccess || (events.onSuccess = () => {});
-    events.onError || (events.onError = () => {});
-    events.onAdReady || (events.onAdReady = () => {});
+    const startTime = performance.now();
+
+    const bannerEventData = {
+        sessionId: generateSessionId(),
+    };
+
+    function triggerEvent(eventType) {
+        saveEvent("fullBanner", eventType, bannerEventData);
+    }
+
+    function addEventData(key, value) {
+        bannerEventData[key] = value;
+    }
+
+    const onSuccess = () => {
+        if (events.onSuccess) {
+            events.onSuccess();
+        }
+        addEventData("timeToComplete", performance.now() - startTime);
+        triggerEvent("close");
+    };
+    const onError = () => {
+        if (events.onError) {
+            events.onError();
+        }
+        addEventData("timeToComplete", performance.now() - startTime);
+        triggerEvent("close");
+    };
+    const onAdReady = () => {
+        if (events.onAdReady) {
+            events.onAdReady();
+        }
+        addEventData("timeToStart", performance.now() - startTime);
+    };
     if (!_inited) {
         events.onError(Error("Module is not inited, try to run init() first"));
         return;
     }
+
     try {
         const adContainer = createContainer();
 
@@ -397,12 +495,55 @@ export function runBanner(events = {}) {
             container: adContainer,
             params,
             cooldownTime,
-            events,
+            events: {
+                onSuccess,
+                onError,
+                onAdReady,
+            },
             isTvRemote: getIsTvRemote(),
+            triggerEvent,
+            addEventData,
         });
     } catch (err) {
         saveError(err);
     }
+}
+
+function saveEvent(adType, eventType, data) {
+    if (isTest) {
+        return;
+    }
+    const commonData = getCommonDataForEvents();
+    const resultData = Object.assign({ adType, eventType }, commonData, data);
+    const eventData = {
+        affiliationType: resultData.affiliationType,
+        ageLimit: resultData.ageLimit,
+        applicationId: resultData.applicationId,
+        appVersionId: resultData.appversionId,
+        deviceId: resultData.deviceId,
+        deviceManufacturer: resultData.deviceManufacturer,
+        deviceModel: resultData.deviceModel,
+        frontendEndpoint: resultData.frontendEndpoint,
+        frontendType: resultData.frontendType,
+        platformType: resultData.platformType,
+        platformVersion: resultData.platformVersion,
+        projectId: resultData.projectId,
+        projectName: resultData.projectName,
+        sub: resultData.sub,
+        surface: resultData.surface,
+        surfaceVersion: resultData.surfaceVersion,
+        systemName: resultData.systemName || "unknown",
+        requestLink: resultData.requestLink || "unknown",
+        responseLink: resultData.responseLink || "unknown",
+        timeToComplete: parseInt(resultData.timeToComplete) || 0,
+        timeToStart: parseInt(resultData.timeToStart) || 0,
+        sessionId: resultData.sessionId || "unknown",
+        adType: resultData.adType,
+        eventType: resultData.eventType,
+    };
+    const body = JSON.stringify(eventData);
+
+    navigator.sendBeacon("https://metrics.prom.third-party-app.sberdevices.ru/plasma/ads", body);
 }
 
 function getIsTvRemote() {
@@ -429,10 +570,6 @@ function getBannerParams() {
     return {
         device_type: "2",
         secure: "1",
-        // os_family: 'iOS',
-        // os_version: '14.6',
-        // vendor: 'Apple',
-        // model: 'iPad 10.2',
         winh: `${viewPortHeight}`,
         winw: `${viewPortWidth}`,
         url: document.location.href,
