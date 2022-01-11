@@ -46,7 +46,7 @@ const masks = {
     },
 };
 
-const StyledButton = styled(Button)`
+const StyledArrow = styled(Button)`
     position: absolute;
     left: 0;
     right: 0;
@@ -83,7 +83,7 @@ const StyledCarousel = styled(Carousel)<{ $isFocused?: boolean }>`
                 color: ${primary};
             }
 
-            & ~ ${StyledButton} {
+            & ~ ${StyledArrow} {
                 opacity: 0.32;
             }
         `}
@@ -243,10 +243,10 @@ export const Picker: FC<PickerProps> = ({
     autofocus,
     disabled,
     visibleItems = 5,
-    tabIndex = 0,
     scrollSnapType,
     onChange,
     infiniteScroll = true,
+    'aria-label': ariaLabel,
     ...rest
 }) => {
     const virtualItems = useMemo(() => getItems(items, infiniteScroll, ADDITIONAL_OFFSET), [items, infiniteScroll]);
@@ -303,7 +303,7 @@ export const Picker: FC<PickerProps> = ({
     // Навигация с помощью пульта/клавиатуры
     // Не перелистывает, если компонент неактивен
     useRemoteListener((key, event) => {
-        if (carouselRef.current !== document.activeElement) {
+        if (!isFocused) {
             return;
         }
         switch (key) {
@@ -332,9 +332,6 @@ export const Picker: FC<PickerProps> = ({
     });
 
     useEffect(() => {
-        if (autofocus && carouselRef.current) {
-            carouselRef.current.focus();
-        }
         // Отключаем анимацию скролла при первом рендере
         setScrollAnim(false);
     }, []);
@@ -373,7 +370,6 @@ export const Picker: FC<PickerProps> = ({
         >
             <StyledCarousel
                 ref={carouselRef}
-                tabIndex={tabIndex}
                 axis="y"
                 index={index}
                 scaleCallback={size === 's' ? scaleCallbackS : scaleCallbackL}
@@ -385,6 +381,8 @@ export const Picker: FC<PickerProps> = ({
                 paddingEnd={sizes[size][visibleItems].padding}
                 onIndexChange={onIndexChange}
                 $isFocused={isFocused}
+                listRole="listbox"
+                listAriaLabel={ariaLabel}
                 {...(hasScrollAnim ? {} : { 'data-no-scroll-behavior': true })}
             >
                 {virtualItems.map((item, i) => (
@@ -393,31 +391,35 @@ export const Picker: FC<PickerProps> = ({
                         item={item}
                         index={i}
                         activeIndex={index}
-                        tabIndex={-1}
+                        tabIndex={index === i ? 0 : -1}
                         size={size}
                         onItemClick={onChange}
                         noScrollBehavior={!hasScrollAnim}
+                        autofocus={(autofocus || isFocused) && index === i}
+                        role="option"
                     />
                 ))}
             </StyledCarousel>
             {controls && (
                 <>
-                    <StyledButton
+                    <StyledArrow
                         data-placement="top"
                         tabIndex={-1}
                         view="clear"
                         disabled={disabled}
                         outlined={false}
                         contentLeft={<IconChevronUp size="s" />}
+                        aria-hidden="true"
                         onClick={toPrev}
                     />
-                    <StyledButton
+                    <StyledArrow
                         data-placement="bottom"
                         tabIndex={-1}
                         view="clear"
                         disabled={disabled}
                         outlined={false}
                         contentLeft={<IconChevronDown size="s" />}
+                        aria-hidden="true"
                         onClick={toNext}
                     />
                 </>

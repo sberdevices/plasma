@@ -49,6 +49,18 @@ export interface DatePickerProps extends Omit<SimpleDatePickerProps, 'type' | 'f
      * Формат выводимого значения
      */
     options?: Partial<typeof defaultOptions>;
+    /**
+     * Сменить WAI-ARIA Label списка дней.
+     */
+    daysAriaLabel?: string;
+    /**
+     * Сменить WAI-ARIA Label списка месяцев.
+     */
+    monthsAriaLabel?: string;
+    /**
+     * Сменить WAI-ARIA Label списка годов.
+     */
+    yearsAriaLabel?: string;
 }
 
 /**
@@ -69,6 +81,9 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     onChange,
     name,
     enableNativeControl,
+    daysAriaLabel: dayAriaLabel,
+    monthsAriaLabel: monthAriaLabel,
+    yearsAriaLabel: yearAriaLabel,
     infiniteScroll = true,
     ...rest
 }) => {
@@ -225,6 +240,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                     scrollSnapType={scrollSnapType}
                     infiniteScroll={infiniteScroll}
                     onChange={onDayChange}
+                    aria-label={dayAriaLabel}
                 />
             )}
             {monthsOption && (
@@ -243,6 +259,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                     scrollSnapType={scrollSnapType}
                     infiniteScroll={infiniteScroll}
                     onChange={onMonthChange}
+                    aria-label={monthAriaLabel}
                 />
             )}
             {yearsOption && (
@@ -260,6 +277,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                     scrollSnapType={scrollSnapType}
                     infiniteScroll={infiniteScroll}
                     onChange={onYearChange}
+                    aria-label={yearAriaLabel}
                 />
             )}
             {enableNativeControl && <input type="hidden" value={value.toISOString()} name={name} />}

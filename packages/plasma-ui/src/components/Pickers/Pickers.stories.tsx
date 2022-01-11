@@ -101,6 +101,9 @@ export const Default: Story<DefaultStoryProps> = (args) => {
                 autofocus={args.autofocus}
                 onChange={onChange}
                 enableNativeControl={args.DatePickerNativeControl}
+                daysAriaLabel="день"
+                monthsAriaLabel="месяц"
+                yearsAriaLabel="год"
             />
             <TimePicker
                 id="timepicker"
@@ -116,6 +119,9 @@ export const Default: Story<DefaultStoryProps> = (args) => {
                 controls={args.controls}
                 onChange={onChange}
                 enableNativeControl={args.TimePickerNativeControl}
+                secondsAriaLabel="секунды"
+                minutesAriaLabel="минуты"
+                hoursAriaLabel="часы"
             />
         </StyledWrapper>
     );
@@ -136,7 +142,7 @@ Default.args = {
     controls: isSberbox,
     autofocus: true,
     scrollSnapType: isSberbox ? 'none' : 'mandatory',
-    infiniteScroll: true,
+    infiniteScroll: false,
     DatePickeSize: 's',
     DatePickerVisibleItems: 3,
     TimePickeSize: 's',
@@ -220,7 +226,18 @@ export const Date_Picker: Story<DatePickerStoryProps> = ({
     );
 
     return (
-        <DatePicker id="example" value={value} min={min} max={max} options={options} onChange={onChange} {...rest} />
+        <DatePicker
+            id="example"
+            value={value}
+            min={min}
+            max={max}
+            options={options}
+            onChange={onChange}
+            daysAriaLabel="день"
+            monthsAriaLabel="месяц"
+            yearsAriaLabel="год"
+            {...rest}
+        />
     );
 };
 
@@ -300,7 +317,19 @@ export const Time_Picker: Story<TimePickerStoryProps> = ({
         [hours, minutes, seconds],
     );
 
-    return <TimePicker value={value} min={min} max={max} options={options} onChange={onChange} {...rest} />;
+    return (
+        <TimePicker
+            value={value}
+            min={min}
+            max={max}
+            options={options}
+            onChange={onChange}
+            secondsAriaLabel="секунды"
+            minutesAriaLabel="минуты"
+            hoursAriaLabel="часы"
+            {...rest}
+        />
+    );
 };
 
 // eslint-disable-next-line @typescript-eslint/camelcase

@@ -130,6 +130,18 @@ export interface TimePickerProps extends Omit<SimpleTimePickerProps, 'type' | 'r
      * 7505 = интервалы 2 часа, 5 минут, 5 секунд
      */
     step?: number;
+    /**
+     * Сменить WAI-ARIA Label списка дней.
+     */
+    secondsAriaLabel?: string;
+    /**
+     * Сменить WAI-ARIA Label списка месяцев.
+     */
+    minutesAriaLabel?: string;
+    /**
+     * Сменить WAI-ARIA Label списка годов.
+     */
+    hoursAriaLabel?: string;
 }
 
 /**
@@ -151,6 +163,9 @@ export const TimePicker: React.FC<TimePickerProps> = ({
     onChange,
     name,
     enableNativeControl,
+    secondsAriaLabel,
+    minutesAriaLabel,
+    hoursAriaLabel,
     infiniteScroll = true,
     ...rest
 }) => {
@@ -273,6 +288,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     scrollSnapType={scrollSnapType}
                     infiniteScroll={infiniteScroll}
                     onChange={onHoursChange}
+                    aria-label={hoursAriaLabel}
                 />
             )}
             {options.hours && options.minutes && <StyledDividers />}
@@ -290,6 +306,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     scrollSnapType={scrollSnapType}
                     infiniteScroll={infiniteScroll}
                     onChange={onMinutesChange}
+                    aria-label={minutesAriaLabel}
                 />
             )}
             {options.minutes && options.seconds && <StyledDividers />}
@@ -307,6 +324,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     scrollSnapType={scrollSnapType}
                     infiniteScroll={infiniteScroll}
                     onChange={onSecondsChange}
+                    aria-label={secondsAriaLabel}
                 />
             )}
             {enableNativeControl && <input type="hidden" value={value.toISOString()} name={name} />}
