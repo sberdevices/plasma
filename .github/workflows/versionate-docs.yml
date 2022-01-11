@@ -12,6 +12,7 @@ jobs:
     name: Versionate docs
     runs-on: ubuntu-latest
     env:
+      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -45,7 +46,7 @@ jobs:
         if: ${{ steps.versionate_script.outputs.result == 'true' }}
         uses: actions-js/push@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GH_TOKEN }}
           message: 'chore: Update `versionsArchive.json` [skip ci]'
           branch: ${{ steps.extract_branch.outputs.branch }}
           author_name: SberDevices Frontend Team
