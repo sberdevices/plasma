@@ -1,3 +1,18 @@
+# v1.70.1 (Tue Jan 11 2022)
+
+#### 🐛 Bug Fix
+
+- feat(plasma-ui, plasma-web): `Carousel` a11y improvements [#973](https://github.com/sberdevices/plasma/pull/973) ([@fanisco](https://github.com/fanisco))
+- refactor: Move `Carousel`'s modules in Core/UI/Web [#973](https://github.com/sberdevices/plasma/pull/973) ([@fanisco](https://github.com/fanisco))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.69.0 (Wed Dec 29 2021)
 
 #### 🐛 Bug Fix
