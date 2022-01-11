@@ -25,6 +25,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 module.exports = function getWebpackConfig() {
+    const babelOpts = { ...babelrc.env.cjs };
+
+    if (process.env.PACKEGE_DIR.includes('plasma-temple')) {
+        babelOpts.plugins.push('@babel/plugin-transform-regenerator', '@babel/transform-runtime');
+    }
     return {
         mode: 'development',
         entry: 'src/index.ts',
@@ -62,9 +67,7 @@ module.exports = function getWebpackConfig() {
                     exclude: [/node_modules/],
                     use: {
                         loader: 'babel-loader',
-                        options: {
-                            ...babelrc.env.cjs,
-                        },
+                        options: babelOpts,
                     },
                 },
                 // В @sberdevices/plasma-temple есть графические ассеты

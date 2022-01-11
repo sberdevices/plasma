@@ -71,15 +71,13 @@ export function App<Name extends string>({
         (name: string) => {
             const screenIndex = history.findIndex((screenState) => screenState.name === name);
 
-            if (screenIndex === -1) {
-                return;
-            }
+            if (screenIndex >= 0) {
+                const delta = history.length - screenIndex - 1;
 
-            const delta = history.length - screenIndex - 1;
-
-            if (delta && delta < history.length) {
-                popScreenDelta.current = delta;
-                window.history.go(-delta);
+                if (delta && delta < history.length) {
+                    popScreenDelta.current = delta;
+                    window.history.go(-delta);
+                }
             }
         },
         [history],
