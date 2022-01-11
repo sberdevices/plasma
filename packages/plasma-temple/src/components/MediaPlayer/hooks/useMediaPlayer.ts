@@ -61,7 +61,11 @@ export const useMediaPlayer: UseMediaPlayer = (ref, params) => {
             },
             durationChange: () => {
                 if (ref.current && !durationParams) {
-                    const { duration } = ref.current;
+                    const { duration, paused } = ref.current;
+                    // Исправление проблемы с тем, что видео иногда не воспроизводится после смены дорожки
+                    if (autoPlay && paused) {
+                        ref.current.play();
+                    }
                     setState((prevState) =>
                         updateStateDuration(prevState, duration, startTimeAbsolute, endTimeAbsolute),
                     );
