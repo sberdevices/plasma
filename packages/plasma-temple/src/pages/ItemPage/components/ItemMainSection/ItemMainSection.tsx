@@ -79,10 +79,10 @@ export const ItemMainSection: React.FC<UnifiedComponentProps<ItemMainSectionProp
     return (
         <Container withSpatNav>
             {cover && <FullScreenBackground src={cover} />}
-            <Title>{title}</Title>
-            <Subtitle>{subtitle}</Subtitle>
+            <Title data-cy="item-page-title">{title}</Title>
+            <Subtitle data-cy="item-page-subtitle">{subtitle}</Subtitle>
             {description && (
-                <StyledRow>
+                <StyledRow data-cy="item-page-desc">
                     {description.map(
                         ({ title: descTitle, content }, index) =>
                             content && (
