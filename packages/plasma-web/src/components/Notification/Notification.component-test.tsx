@@ -68,5 +68,6 @@ describe('plasma-web: Notification', () => {
         cy.get('button').contains('Открыть').click();
         cy.matchImageSnapshot();
         cy.get('button').contains('Закрыть').click();
+        cy.get('#plasma-notifications-root').should('be.empty');
     });
 });
