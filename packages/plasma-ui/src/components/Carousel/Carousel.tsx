@@ -5,11 +5,22 @@ import {
     CarouselContext,
     Carousel as BaseCarousel,
     CarouselTrack as BaseTrack,
-    CarouselProps,
+    CarouselProps as BaseProps,
     applyNoSelect,
 } from '@sberdevices/plasma-core';
 
 import { useForkRef } from '../../hooks';
+
+export type CarouselProps = BaseProps & {
+    /**
+     * Сменить WAI-ARIA Role списка.
+     */
+    listRole?: string;
+    /**
+     * Сменить WAI-ARIA Label списка.
+     */
+    listAriaLabel?: string;
+};
 
 const StyledCarousel = styled(BaseCarousel)``;
 const StyledCarouselTrack = styled(BaseTrack)`
@@ -37,6 +48,8 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
         throttleMs,
         debounceMs,
         animatedScrollByIndex,
+        listRole,
+        listAriaLabel,
         children,
         ...rest
     },
@@ -72,6 +85,8 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function
                     axis={axis}
                     paddingStart={paddingStart}
                     paddingEnd={paddingEnd}
+                    role={listRole}
+                    aria-label={listAriaLabel}
                 >
                     {children}
                 </StyledCarouselTrack>
