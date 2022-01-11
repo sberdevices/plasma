@@ -3,20 +3,17 @@
     "license": "MIT",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
-    "files": [
-        "dist",
-        "src"
-    ],
+    "files": ["dist", "src"],
     "engines": {
         "node": ">=12"
     },
     "scripts": {
-        "start": "tsdx watch",
-        "build": "tsdx build",
-        "test": "tsdx test --passWithNoTests",
-        "test:watch": "tsdx test --watch",
+        "start": "tsc --watch",
+        "build": "rm -rf dist && rollup -c rollup.config.js",
+        "test": "jest --passWithNoTests",
+        "test:watch": "jest --watch",
         "lint": "eslint src --ext .js,.ts,.tsx",
-        "prepare": "tsdx build",
+        "prepare": "npm run build",
         "size": "size-limit",
         "analyze": "size-limit --why",
         "storybook": "start-storybook -p 6006",
@@ -38,19 +35,17 @@
     },
     "name": "@sberdevices/use-virtual",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
-    "module": "dist/use-virtual.esm.js",
+    "module": "dist/index.js",
     "size-limit": [
         {
-            "path": "dist/use-virtual.cjs.production.min.js",
-            "limit": "10 KB"
-        },
-        {
-            "path": "dist/use-virtual.esm.js",
+            "path": "dist/index.js",
             "limit": "10 KB"
         }
     ],
     "devDependencies": {
-        "@babel/core": "7.16.0",
+        "@babel/core": "7.16.7",
+        "@babel/plugin-proposal-class-properties": "7.16.7",
+        "@rollup/plugin-typescript": "8.3.0",
         "@sberdevices/plasma-icons": "1.57.0",
         "@sberdevices/plasma-tokens": "1.14.0",
         "@sberdevices/plasma-ui": "1.70.0",
@@ -74,9 +69,10 @@
         "react": "17.0.2",
         "react-dom": "17.0.2",
         "react-is": "17.0.2",
+        "rollup": "2.63.0",
         "size-limit": "7.0.3",
         "styled-components": "5.3.3",
-        "tsdx": "0.14.1",
+        "ts-jest": "27.1.2",
         "tslib": "2.3.1",
         "typescript": "4.5.2"
     }
