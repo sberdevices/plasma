@@ -21,10 +21,13 @@ export interface PageProps<Name extends string> {
     ignoreInsets?: boolean;
 }
 
-export interface GetInitialProps<P, R> {
-    (context: P): Promise<R>;
-    (context: P): R;
-}
+export type GetInitialProps<P, R> =
+    | {
+          (context: P): Promise<R>;
+      }
+    | {
+          (context: P): R;
+      };
 
 interface InitialPropsGetter<P, S> {
     getInitialProps?: GetInitialProps<P, S>;
