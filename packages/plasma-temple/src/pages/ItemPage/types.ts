@@ -22,7 +22,7 @@ export interface ItemPageState extends MetaPayload {
     subtitle?: string;
     entities: Array<ItemEntity>;
     entitiesTitle: string;
-    description: ItemDescription[];
+    description?: ItemDescription[];
     actionButtonText: string;
     background?: MediaObject;
 }

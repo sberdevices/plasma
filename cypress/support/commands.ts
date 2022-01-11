@@ -1,4 +1,3 @@
-import { dirxml, time } from 'console';
 import { addMatchImageSnapshotCommand } from 'cypress-image-snapshot/command';
 
 addMatchImageSnapshotCommand({
