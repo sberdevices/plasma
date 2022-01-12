@@ -31,3 +31,30 @@ export type Product = {
     url: string
     vendor: string
 }
+
+export type EventProduct = Product & {
+    index: number,
+    amount: number
+}
+
+export enum EventTypeEnum {
+    ShownTab = 'ShownTab',
+    ClickedTab = 'ClickedTab'
+}
+
+export type EventBody = { 'event_type': EventTypeEnum, 'event_properties': Record<string, unknown>}
+
+export enum EventTab {
+    Clothes = 'сlothes',
+    Actors = 'actors',
+    Accessories = 'accessories',
+    Merch = 'merch',
+    Furniture = 'furniture',
+    Food = 'food',
+    Locations = 'locations'
+}
+
+export type BaseEventParams = {
+    image: Image,
+    site: string,
+}
