@@ -6,6 +6,17 @@ const noop = () => {};
 
 describe('plasma-ui: DatePicker', () => {
     const DatePicker = getComponent('DatePicker');
+    const AutofocusedDatePicker = () => (
+        <DatePicker
+            scrollSnapType="none"
+            onChange={noop}
+            infiniteScroll={false}
+            value={new Date(2022, 0, 12)}
+            min={new Date(2000, 3, 15)}
+            max={new Date(2025, 10, 30)}
+            autofocus
+        />
+    );
 
     it('default', () => {
         mount(
@@ -70,6 +81,54 @@ describe('plasma-ui: DatePicker', () => {
             </CypressTestDecorator>,
         );
 
+        cy.matchImageSnapshot();
+    });
+
+    it('jump 10 down', () => {
+        mount(
+            <CypressTestDecorator>
+                <AutofocusedDatePicker />
+            </CypressTestDecorator>,
+        );
+
+        cy.get('body').type('{pagedown}');
+        cy.wait(100);
+        cy.matchImageSnapshot();
+    });
+
+    it('jump 10 up', () => {
+        mount(
+            <CypressTestDecorator>
+                <AutofocusedDatePicker />
+            </CypressTestDecorator>,
+        );
+
+        cy.get('body').type('{pageup}');
+        cy.wait(100);
+        cy.matchImageSnapshot();
+    });
+
+    it('jump home', () => {
+        mount(
+            <CypressTestDecorator>
+                <AutofocusedDatePicker />
+            </CypressTestDecorator>,
+        );
+
+        cy.get('body').type('{home}');
+        cy.wait(100);
+        cy.matchImageSnapshot();
+    });
+
+    it('jump end', () => {
+        mount(
+            <CypressTestDecorator>
+                <AutofocusedDatePicker />
+            </CypressTestDecorator>,
+        );
+
+        cy.get('body').type('{end}');
+        cy.wait(100);
         cy.matchImageSnapshot();
     });
 });
