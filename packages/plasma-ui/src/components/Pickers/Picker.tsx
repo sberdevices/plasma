@@ -157,8 +157,8 @@ const getItems = (items: Item[], infiniteScroll: boolean, additionalOffset: numb
         return items;
     }
 
-    const firstPart = items.slice(-additionalOffset);
-    const lastPart = items.slice(0, additionalOffset);
+    const firstPart = items.slice(-additionalOffset).map((item) => ({ ...item, isVirtual: true }));
+    const lastPart = items.slice(0, additionalOffset).map((item) => ({ ...item, isVirtual: true }));
 
     return [...firstPart, ...items, ...lastPart];
 };
@@ -397,6 +397,7 @@ export const Picker: FC<PickerProps> = ({
                         noScrollBehavior={!hasScrollAnim}
                         autofocus={(autofocus || isFocused) && index === i}
                         role="option"
+                        aria-hidden={item.isVirtual}
                     />
                 ))}
             </StyledCarousel>
