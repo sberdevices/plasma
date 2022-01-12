@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Tabs as BaseTabs, TabsProps as BaseTabsProps } from '@sberdevices/plasma-core';
+import { Tabs as BaseTabs, TabsProps as BaseTabsProps, StyledTabs } from '@sberdevices/plasma-core';
 import { surfaceLiquid01, blackSecondary, transparent } from '@sberdevices/plasma-tokens';
 import type { FocusProps, OutlinedProps, ShiftProps } from '@sberdevices/plasma-core';
 
@@ -16,7 +16,6 @@ import { StyledTabItem } from './TabItem';
  */
 const sizes = {
     l: (stretch: boolean) => css`
-        --tabs-shifting: -${stretch ? 0.875 : 1.625}rem;
         --tab-item-padding-x: ${stretch ? 0.75 : 1.5}rem;
         --tab-item-padding-y: 0.875rem;
         --tab-item-padding-y-reduced: 0.75rem;
@@ -26,7 +25,6 @@ const sizes = {
         border-radius: 1.125rem;
     `,
     m: (stretch: boolean) => css`
-        --tabs-shifting: -${stretch ? 0.875 : 1.375}rem;
         --tab-item-padding-x: ${stretch ? 0.75 : 1.25}rem;
         --tab-item-padding-y: 0.75rem;
         --tab-item-padding-y-reduced: 0.5rem;
@@ -36,7 +34,6 @@ const sizes = {
         border-radius: 0.875rem;
     `,
     s: (stretch: boolean) => css`
-        --tabs-shifting: -${stretch ? 0.75 : 1.125}rem;
         --tab-item-padding-x: ${stretch ? 0.625 : 1}rem;
         --tab-item-padding-y: 0.625rem;
         --tab-item-padding-y-reduced: 0.375rem;
@@ -45,6 +42,12 @@ const sizes = {
         height: 2.5rem;
         border-radius: 0.875rem;
     `,
+};
+
+const shiftingSizes = {
+    l: (stretch: boolean) => `-${stretch ? 0.875 : 1.625}rem`,
+    m: (stretch: boolean) => `-${stretch ? 0.875 : 1.375}rem`,
+    s: (stretch: boolean) => `-${stretch ? 0.75 : 1.125}rem`,
 };
 
 const outlineSizes = {
@@ -95,59 +98,74 @@ export interface TabsViewProps
  * Визуальная составляющая контейнера (списка) вкладок.
  */
 export const TabsView = styled(BaseTabs)<TabsViewProps>`
-    padding: 0.125rem 0;
-
-    background-color: ${({ view = 'secondary' }) => views[view]};
-
-    &:focus {
-        outline: 0 none;
-    }
+    --tab-focus-border-size: 0.125rem;
+    --tabs-margin: var(--plasma-grid-margin, 0rem);
 
     ${({ size = 'l', stretch = false, shiftLeft, shiftRight }) =>
         css`
-            ${sizes[size](stretch)};
-
-            ${
-                stretch &&
-                css`
-                    & > * {
-                        min-width: calc(25% - 0.25rem);
-                        max-width: calc(50% - 0.25rem);
-                    }
-                `
-            }
-
             ${
                 shiftLeft &&
                 css`
-                    margin-left: var(--tabs-shifting);
+                    margin-left: calc(${shiftingSizes[size](stretch)} - var(--tab-focus-border-size) * 2);
                 `
             }
 
             ${
                 shiftRight &&
                 css`
-                    margin-right: var(--tabs-shifting);
+                    margin-right: ${shiftingSizes[size](stretch)};
+                `
+            }
+
+            ${
+                stretch &&
+                css`
+                    width: calc(100% + var(--tab-focus-border-size));
                 `
             }
         `};
 
-    ${({ pilled }) =>
-        pilled &&
-        css`
-            --tab-item-border-radius: 6.25rem;
-            border-radius: 6.25rem;
+    ${StyledTabs} {
+        padding: var(--tab-focus-border-size) 0;
+
+        background-color: ${({ view = 'secondary' }) => views[view]};
+
+        &:focus {
+            outline: 0 none;
+        }
+
+        ${({ size = 'l', stretch = false }) =>
+            css`
+                ${sizes[size](stretch)};
+
+                ${stretch &&
+                css`
+                    width: calc(100% - var(--tab-focus-border-size));
+
+                    & > * {
+                        min-width: calc(25% - 0.25rem);
+                        max-width: calc(50% - 0.25rem);
+                    }
+                `}
+            `};
+
+        ${({ pilled }) =>
+            pilled &&
+            css`
+                --tab-item-border-radius: 6.25rem;
+                border-radius: 6.25rem;
+            `}
+
+        ${({ size = 'l' }) => css`
+            --tab-item-outline-radius: ${outlineSizes[size].radius};
         `}
 
-    ${({ size = 'l' }) => css`
-        --tab-item-outline-radius: ${outlineSizes[size].radius};
-    `}
+        /* stylelint-disable-next-line selector-max-universal */
+        & > ${StyledTabItem} {
+            ${applyInteraction};
 
-    /* stylelint-disable-next-line selector-max-universal */
-    & > ${StyledTabItem} {
-        ${applyInteraction};
-
-        margin-left: 0.125rem;
-        margin-right: 0.125rem;
+            margin-left: var(--tab-focus-border-size);
+            margin-right: var(--tab-focus-border-size);
+        }
     }
 `;
