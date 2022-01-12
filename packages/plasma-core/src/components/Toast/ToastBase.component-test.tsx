@@ -8,7 +8,7 @@ describe('plasma-core: Toast', () => {
     const useToast = getComponent('useToast');
     const ToastProvider = getComponent('ToastProvider');
 
-    it('default', () => {
+    it.skip('default', () => {
         mount(
             <CypressTestDecorator>
                 <Toast text="Short Text Message Without Action" />
@@ -18,7 +18,7 @@ describe('plasma-core: Toast', () => {
         cy.matchImageSnapshot();
     });
 
-    it('__content-left', () => {
+    it.skip('__content-left', () => {
         mount(
             <CypressTestDecorator>
                 <Toast
@@ -31,7 +31,7 @@ describe('plasma-core: Toast', () => {
         cy.matchImageSnapshot();
     });
 
-    it('_role', () => {
+    it.skip('_role', () => {
         mount(
             <CypressTestDecorator>
                 <Toast role="alert" text="Short Text Message Without Action" />
@@ -53,7 +53,7 @@ describe('plasma-core: Toast', () => {
             return <Button id="show" text="show" onClick={() => showToast(_text, position, timeout)} />;
         };
 
-        it('showToast', () => {
+        it.skip('showToast', () => {
             mount(
                 <CypressTestDecorator>
                     <ToastProvider>
@@ -69,7 +69,7 @@ describe('plasma-core: Toast', () => {
             cy.matchImageSnapshot();
         });
 
-        it('_position', () => {
+        it.skip('_position', () => {
             mount(
                 <CypressTestDecorator>
                     <ToastProvider>
@@ -85,7 +85,7 @@ describe('plasma-core: Toast', () => {
             cy.matchImageSnapshot();
         });
 
-        it('dumm', () => {
+        it.skip('dumm', () => {
             mount(
                 <CypressTestDecorator>
                     <ToastProvider>
@@ -99,7 +99,7 @@ describe('plasma-core: Toast', () => {
             cy.matchImageSnapshot();
         });
 
-        it('timeout', () => {
+        it.skip('timeout', () => {
             mount(
                 <CypressTestDecorator>
                     <ToastProvider>
