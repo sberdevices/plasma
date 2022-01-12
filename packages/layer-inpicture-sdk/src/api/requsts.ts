@@ -1,13 +1,17 @@
 import { getID } from '../utils/getId';
 import { BaseEventParams, EventBody, EventProduct, EventTab, EventTypeEnum } from '../types';
 
-export const loadProducts = async (img: HTMLImageElement, site: string) => {
+export const loadProducts = async (img: HTMLImageElement, site: string, maxCount?: number) => {
     const url = new URL('https://layer-dev.sberdevices.ru/iimg/v0/recognize');
     url.search = new URLSearchParams({ url: img.src, utm: site }).toString();
 
     const response = await fetch(url.toString());
-
-    return (await response.json()).data.products;
+    const responseJSON = await response.json();
+    const { products } = responseJSON.data;
+    if (maxCount) {
+        return products.slice(0, maxCount);
+    }
+    return products;
 };
 
 const createEventRequst = ({ image, site, eventBody }: BaseEventParams & { eventBody: EventBody }) => {

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'preact/compat';
 import { html } from 'htm/preact';
 import Swiper from 'swiper';
 import { createContext } from 'preact';
+import classNames from 'classnames';
 
 import { Config, Product } from '../types';
 import { loadProducts, sendShowWidgetEvent } from '../api/requsts';
@@ -48,18 +49,20 @@ const observer = new IntersectionObserver(callback, options);
 export const ConfigContext = createContext<Config>(null);
 
 export const Container = (config: Config) => {
-    const { template = 'primary', image, withSkeleton, container, site } = config;
+    const { template = 'primary', image, withSkeleton, container, site, maxCount } = config;
 
     const [isError, setIsError] = useState(false);
     const [products, setProducts] = useState<Product[] | null | SKELETON_LIST>(withSkeleton ? SKELETON_LIST : null);
     const [isPrimaryTitleShow, setIsPrimaryTitleShow] = useState(true);
+    const [isShowPrimaryWidget, toggleShowingPrimaryWidget] = useState(true);
+
     const wrapperRef = useRef(null);
     const containerRef = useRef(container);
 
     useEffect(() => {
         const load = async () => {
             try {
-                const productsList = await loadProducts(image, site);
+                const productsList = await loadProducts(image, site, maxCount);
                 setProducts(productsList);
             } catch {
                 setIsError(true);
@@ -67,7 +70,7 @@ export const Container = (config: Config) => {
             }
         };
         load();
-    }, [image, site]);
+    }, [image, site, maxCount]);
 
     const observe = useCallback((element: Element) => {
         widgetsMap.set(element, { image, site });
@@ -83,15 +86,22 @@ export const Container = (config: Config) => {
         }
     }, [products, image, observe]);
 
+    const onPrimaryHeaderClick = () => toggleShowingPrimaryWidget((prev) => !prev);
+
     if (isError || !products?.length) {
         return null;
     }
 
     return html`
         <${ConfigContext.Provider} value=${config}>
-            <div class=${`layer-hidden layer-content${template === 'primary' ? '' : ' layer-secondary-wrap'}`} ref=${wrapperRef}>
-                <div class="layer-main-container">
-                    ${template === 'primary' ? html`<${PrimaryTopContent} isShow=${isPrimaryTitleShow} />` : html`<${SecondaryTopContent} />`}
+            <div
+                ref=${wrapperRef}
+                class=${classNames('layer-hidden layer-content', {
+                    'layer-secondary-wrap': template === 'secondary',
+                })}
+            >
+                <div class="layer-main-container" style=${isShowPrimaryWidget ? '' : `transform: translateY(${wrapperRef.current?.clientHeight - 30}px)`}>
+                    ${template === 'primary' ? html`<${PrimaryTopContent} isShow=${isPrimaryTitleShow} onPrimaryHeaderClick=${onPrimaryHeaderClick} />` : html`<${SecondaryTopContent} />`}
                     <${SliderWrapper} products=${products} name=${site} onSlideHover=${(isHover: boolean) => setIsPrimaryTitleShow(!isHover)}/>
                     <${SliderButtons} />
                 </div>

@@ -10,6 +10,7 @@ export type Config = {
     site: string;
     template?: Template;
     withSkeleton?: boolean;
+    maxCount?: number;
 }
 
 export type Product = {
