@@ -8,6 +8,7 @@ export interface SizeProps {
 export type Item = {
     value: string | number | Date;
     label: string | number;
+    isVirtual?: boolean;
 };
 
 export type DateType = readonly [number, number, number];
