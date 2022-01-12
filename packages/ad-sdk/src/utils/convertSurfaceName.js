@@ -6,6 +6,7 @@ const surfaces = {
     TV_HUAWEI: "saluteTV",
     SAMSUNG_TV: "saluteTV",
     COMPANION: "saluteApp",
+    SBERZVUK: "saluteApp",
     SBER_RU_WEB: "web",
     SBOL: "sbol",
     WEB: "sbol",
