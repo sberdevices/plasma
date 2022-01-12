@@ -11,7 +11,7 @@ export interface TabItemProps extends AsProps, BaseTabItemProps {
 }
 
 /**
- * Элемент списка, недопустимо импользовать вне компонента Tabs.
+ * Элемент списка, недопустимо использовать вне компонента Tabs.
  */
 export const StyledTabItem = styled(BaseTabItem)<TabItemProps>`
     ${button2};
@@ -19,7 +19,7 @@ export const StyledTabItem = styled(BaseTabItem)<TabItemProps>`
     position: relative;
 
     /**
-    * Определенные на компоненте Tabs css vars испольуем тут,
+    * Определенные на компоненте Tabs css vars используем тут,
     * потому что у айтемов нет свойства size,
     * чтобы не приходилось передавать кучу пропсов
     * на компонентах контейнере (Tabs) и элементах (TabItem).
@@ -51,15 +51,15 @@ export const StyledTabItem = styled(BaseTabItem)<TabItemProps>`
         content: '';
 
         position: absolute;
-        top: -0.125rem;
-        left: -0.125rem;
-        right: -0.125rem;
-        bottom: -0.125rem;
+        top: calc(var(--tab-focus-border-size) * -1);
+        left: calc(var(--tab-focus-border-size) * -1);
+        right: calc(var(--tab-focus-border-size) * -1);
+        bottom: calc(var(--tab-focus-border-size) * -1);
 
         display: block;
         box-sizing: content-box;
 
-        border: 0.125rem solid transparent;
+        border: var(--tab-focus-border-size) solid transparent;
         border-radius: var(--tab-item-outline-radius);
 
         transition: box-shadow 0.2s ease-in-out;
@@ -70,13 +70,13 @@ export const StyledTabItem = styled(BaseTabItem)<TabItemProps>`
     &.focus-visible,
     &[data-focus-visible-added] {
         &::before {
-            box-shadow: 0 0 0 0.125rem ${buttonFocused};
+            box-shadow: 0 0 0 var(--tab-focus-border-size) ${buttonFocused};
         }
     }
 `;
 
 /**
- * Элемент списка вкладок, недопустимо импользовать вне компонента Tabs.
+ * Элемент списка вкладок, недопустимо использовать вне компонента Tabs.
  */
 export const TabItem: FC<TabItemProps> = (props) => {
     const ref = useRef<HTMLElement>(null);
