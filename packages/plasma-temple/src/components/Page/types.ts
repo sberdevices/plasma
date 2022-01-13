@@ -36,7 +36,7 @@ export type PageComponent<
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     PageParamsType extends Partial<Record<keyof PageStateType, any>> = Partial<Record<keyof PageStateType, any>>
 > = React.ComponentType<
-    PageMethods<PageStateType[Name], PageStateType, PageParamsType, Name> & {
+    PageMethods<PageStateType[Name], PageStateType, PageParamsType> & {
         name: Name;
         state: PageStateType[Name];
         params: PageParamsType[Name];
