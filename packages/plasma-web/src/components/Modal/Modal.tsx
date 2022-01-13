@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import styled, { css, keyframes } from 'styled-components';
 import { overlay, useUniqId } from '@sberdevices/plasma-core';
 
-import { ModalsContext } from './ModalsContext';
+import { ModalsContext, MODALS_PORTAL_ID } from './ModalsContext';
 import { ModalView, ModalViewProps } from './ModalView';
 
 export interface ModalProps extends ModalViewProps {
@@ -95,12 +95,11 @@ export const Modal: React.FC<ModalProps> = ({ id, isOpen, onClose, ...rest }) =>
     const controller = React.useContext(ModalsContext);
 
     React.useEffect(() => {
-        const portalId = 'plasma-modals-root';
-        let portal = document.getElementById(portalId);
+        let portal = document.getElementById(MODALS_PORTAL_ID);
 
         if (!portal) {
             portal = document.createElement('div');
-            portal.setAttribute('id', portalId);
+            portal.setAttribute('id', MODALS_PORTAL_ID);
             portal.style.position = 'relative';
             portal.style.zIndex = '9000';
             document.body.appendChild(portal);
@@ -110,10 +109,6 @@ export const Modal: React.FC<ModalProps> = ({ id, isOpen, onClose, ...rest }) =>
 
         return () => {
             controller.unregister(innerId);
-
-            if (portal && document.body.contains(portal) && controller.items.length < 1) {
-                document.body.removeChild(portal);
-            }
         };
     }, []);
 
@@ -129,9 +124,7 @@ export const Modal: React.FC<ModalProps> = ({ id, isOpen, onClose, ...rest }) =>
                 onClose?.();
             }
         };
-
         window.addEventListener('keydown', onKeyDown);
-
         return () => {
             window.removeEventListener('keydown', onKeyDown);
         };
@@ -145,7 +138,6 @@ export const Modal: React.FC<ModalProps> = ({ id, isOpen, onClose, ...rest }) =>
     }
 
     return (
-        portalRef &&
         portalRef.current &&
         ReactDOM.createPortal(
             <StyledWrapper ref={wrapperRef}>
