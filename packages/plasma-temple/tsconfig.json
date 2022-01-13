@@ -25,14 +25,20 @@
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
-        "outDir": "./dist",
-        "rootDir": "./src",
-        "baseUrl": "./",
+        "outDir": "dist",
+        "rootDir": "src",
+        "baseUrl": ".",
         "paths": {
-            "@sberdevices/plasma-ui": ["./node_modules/@sberdevices/plasma-ui"]
+            "@sberdevices/plasma-ui": ["node_modules/@sberdevices/plasma-ui"]
         },
         "preserveSymlinks": true
     },
-    "include": ["./src"],
-    "exclude": ["**/*.stories.tsx", "**/*.test.tsx", "./src/**/*.component-test.tsx"]
+    "include": ["src"],
+    "exclude": [
+        "**/*.stories.tsx",
+        "**/*.examples.tsx",
+        "**/*.test.tsx",
+        "**/*.component-test.tsx",
+        "**/*.component-test.ts"
+    ]
 }
