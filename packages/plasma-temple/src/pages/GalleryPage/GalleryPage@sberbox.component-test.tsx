@@ -12,6 +12,8 @@ interface State {
     gallery: GalleryPageState<{}>;
 }
 
+let stubbedOnCardClick: () => void;
+
 /**
  * TODO
  * упросить инициализацию после влития
@@ -20,8 +22,6 @@ interface State {
  */
 describe('GalleryPage', () => {
     describe('Single Gallery on Page', () => {
-        let stubbedOnCardClick: Function;
-
         const stubbedData = Array.from({ length: 10 }, (_, i) => ({
             label: `Title ${i + 1}`,
             description: `Decription for Card ${i + 1}`,
@@ -73,8 +73,6 @@ describe('GalleryPage', () => {
     });
 
     describe('Single Gallery with title on Page', () => {
-        let stubbedOnCardClick: Function;
-
         const stubbedData = Array.from({ length: 10 }, (_, i) => ({
             label: `Title ${i + 1}`,
             description: `Decription for Card ${i + 1}`,
@@ -127,8 +125,6 @@ describe('GalleryPage', () => {
     });
 
     describe('Multiple Galleries on Page', () => {
-        let stubbedOnCardClick: Function;
-
         const stubbedData = Array.from({ length: 10 }, (_, i) => ({
             label: `Title ${i + 1}`,
             description: `Decription for Card ${i + 1}`,

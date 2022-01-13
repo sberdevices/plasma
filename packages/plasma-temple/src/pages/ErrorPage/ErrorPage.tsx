@@ -40,7 +40,7 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({ header, error, buttons }) 
         prevent: !isSberBoxLike(),
     });
 
-    const buttonsToRender: React.ReactNode = React.useMemo(() => {
+    const buttonsToRender = React.useMemo<React.ReactNode>(() => {
         if (typeof buttons === 'function') {
             return buttons(buttonRef);
         }

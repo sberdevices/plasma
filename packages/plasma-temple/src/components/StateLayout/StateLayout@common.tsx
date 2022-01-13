@@ -96,14 +96,14 @@ export const StateLayout: React.FC<StateLayoutProps> = ({
             <StyledContainer offset={insets.bottom || 144}>
                 <Col sizeXL={6} sizeM={3}>
                     <TextWrapper>
-                        <Headline>{title}</Headline>
-                        {text && <Text>{text}</Text>}
+                        <Headline data-cy="state-layout-title">{title}</Headline>
+                        {text && <Text data-cy="state-layout-text">{text}</Text>}
                     </TextWrapper>
                     {button}
                 </Col>
                 {image && (
                     <Col sizeXL={6} sizeM={3}>
-                        <ImageContainer>{imageToRender}</ImageContainer>
+                        <ImageContainer data-cy="state-layout-image-wrapper">{imageToRender}</ImageContainer>
                     </Col>
                 )}
             </StyledContainer>
