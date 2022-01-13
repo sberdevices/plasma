@@ -2,6 +2,19 @@
 
 #### 🐛 Bug Fix
 
+- `@sberdevices/plasma-temple@1.19.3`
+  - fix(plasma-temple): Dont pass page name to PageMethods [#1040](https://github.com/sberdevices/plasma/pull/1040) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
+# (Thu Jan 13 2022)
+
+#### 🐛 Bug Fix
+
 - chore: Increase threshold for codecov [#1020](https://github.com/sberdevices/plasma/pull/1020) ([@neretin-trike](https://github.com/neretin-trike))
 - ci: coveralls patch off [#1034](https://github.com/sberdevices/plasma/pull/1034) ([@Yeti-or](https://github.com/Yeti-or))
 - ci: Unset header in order of branch unprotect [#1035](https://github.com/sberdevices/plasma/pull/1035) ([@fanisco](https://github.com/fanisco))

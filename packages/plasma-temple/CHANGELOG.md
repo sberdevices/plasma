@@ -1,3 +1,17 @@
+# v1.19.3 (Thu Jan 13 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): Dont pass page name to PageMethods [#1040](https://github.com/sberdevices/plasma/pull/1040) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.19.2 (Thu Jan 13 2022)
 
 #### 🐛 Bug Fix
