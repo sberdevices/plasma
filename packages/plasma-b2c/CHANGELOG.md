@@ -1,3 +1,18 @@
+# v1.34.2 (Thu Jan 13 2022)
+
+#### 🐛 Bug Fix
+
+- test(plasma-b2c): Add test and snapshot for `ElasticGrid` component [#1020](https://github.com/sberdevices/plasma/pull/1020) ([@neretin-trike](https://github.com/neretin-trike))
+- refactor(plasma-b2c): Remove unsused condition in `ElasticGrid` component [#1020](https://github.com/sberdevices/plasma/pull/1020) ([@neretin-trike](https://github.com/neretin-trike))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.34.1 (Tue Jan 11 2022)
 
 #### 🐛 Bug Fix

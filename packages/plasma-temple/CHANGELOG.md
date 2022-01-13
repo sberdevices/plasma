@@ -1,3 +1,17 @@
+# v1.19.2 (Thu Jan 13 2022)
+
+#### 🐛 Bug Fix
+
+- build(plasma-temple): fix `excludes` tests file mask [#1038](https://github.com/sberdevices/plasma/pull/1038) ([@LamaEats](https://github.com/LamaEats))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v1.19.1 (Tue Jan 11 2022)
 
 #### 🐛 Bug Fix

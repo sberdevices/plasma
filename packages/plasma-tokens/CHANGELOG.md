@@ -1,3 +1,15 @@
+# v1.15.1 (Thu Jan 13 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-tokens): wrong primary/secondary tokens [#1030](https://github.com/sberdevices/plasma/pull/1030) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.15.0 (Thu Dec 30 2021)
 
 #### 🚀 Enhancement

@@ -1,3 +1,17 @@
+# v1.70.2 (Thu Jan 13 2022)
+
+#### 🐛 Bug Fix
+
+- test(plasma-web): `Notification` close [#1033](https://github.com/sberdevices/plasma/pull/1033) ([@fanisco](https://github.com/fanisco))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.70.1 (Tue Jan 11 2022)
 
 #### 🐛 Bug Fix

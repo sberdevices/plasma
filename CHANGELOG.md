@@ -1,3 +1,32 @@
+# (Thu Jan 13 2022)
+
+#### 🐛 Bug Fix
+
+- chore: Increase threshold for codecov [#1020](https://github.com/sberdevices/plasma/pull/1020) ([@neretin-trike](https://github.com/neretin-trike))
+- ci: coveralls patch off [#1034](https://github.com/sberdevices/plasma/pull/1034) ([@Yeti-or](https://github.com/Yeti-or))
+- ci: Unset header in order of branch unprotect [#1035](https://github.com/sberdevices/plasma/pull/1035) ([@fanisco](https://github.com/fanisco))
+- ci: Use `GH_TOKEN` to push versionate jsons [#1035](https://github.com/sberdevices/plasma/pull/1035) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-tokens@1.15.1`
+  - fix(plasma-tokens): wrong primary/secondary tokens [#1030](https://github.com/sberdevices/plasma/pull/1030) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-b2c@1.34.2`
+  - test(plasma-b2c): Add test and snapshot for `ElasticGrid` component [#1020](https://github.com/sberdevices/plasma/pull/1020) ([@neretin-trike](https://github.com/neretin-trike))
+  - refactor(plasma-b2c): Remove unsused condition in `ElasticGrid` component [#1020](https://github.com/sberdevices/plasma/pull/1020) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-temple@1.19.2`
+  - build(plasma-temple): fix `excludes` tests file mask [#1038](https://github.com/sberdevices/plasma/pull/1038) ([@LamaEats](https://github.com/LamaEats))
+- `@sberdevices/plasma-core@1.46.2`
+  - test: Skip `Toast` test [#1033](https://github.com/sberdevices/plasma/pull/1033) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-web@1.70.2`
+  - test(plasma-web): `Notification` close [#1033](https://github.com/sberdevices/plasma/pull/1033) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 4
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # (Tue Jan 11 2022)
 
 #### 🐛 Bug Fix

@@ -1,3 +1,15 @@
+# v1.46.2 (Thu Jan 13 2022)
+
+#### 🐛 Bug Fix
+
+- test: Skip `Toast` test [#1033](https://github.com/sberdevices/plasma/pull/1033) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.46.1 (Tue Jan 11 2022)
 
 #### 🐛 Bug Fix
