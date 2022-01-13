@@ -9,7 +9,8 @@ import {
 import { mount } from '@sberdevices/plasma-cy-utils';
 
 import { OnStartFn, PlasmaApp } from '../components/PlasmaApp/PlasmaApp';
-import { GetInitialProps, Page, PageProps } from '../components/Page/Page';
+import { GetInitialProps, Page } from '../components/Page/Page';
+import { PageComponent } from '../components/Page/types';
 
 import image320 from './assets/320_320_0.jpg';
 
@@ -17,7 +18,7 @@ import image320 from './assets/320_320_0.jpg';
 let mockAssistant: ReturnType<typeof createAssistantHostMock>;
 
 interface OuterProps<T> {
-    (props: T): Partial<T>;
+    (props?: T): Partial<T>;
 }
 
 /* istanbul ignore next */
@@ -60,18 +61,20 @@ const appProps = {
     },
 };
 
-interface SingleScreenProps<N extends string> extends PageProps<N> {
+interface SingleScreen<K extends string, S extends { [key in K]: unknown }, P = { [key in K]?: unknown }> {
+    name: K;
+    component: PageComponent<S, K, P> | React.ComponentType<any>;
     lazy?: boolean;
 }
 
 interface StartApp {
     <K extends string, S extends { [key in K]: unknown }, P = { [key in K]?: unknown }>(
         pages: Array<
-            SingleScreenProps<K> & {
+            SingleScreen<K, S, P> & {
                 getInitialProps?: GetInitialProps<any, S[K]>;
             }
         >,
-        onStart: OnStartFn<S, P>,
+        onStart?: OnStartFn<S, P>,
         commands?: AssistantClientCustomizedCommand<AssistantSmartAppData>[],
     ): Cypress.Chainable<MountReturn>;
 }
@@ -147,10 +150,19 @@ export const startApp: StartApp = (pages, onStart, commands = []) => {
             },
         });
 
+        const onStartHandler: OnStartFn = (api) => {
+            if (onStart) {
+                onStart(api);
+                return;
+            }
+
+            api.pushScreen(pages[0].name);
+        };
+
         return mount(
             <>
                 <StyledComp />
-                <PlasmaApp {...appProps} onStart={onStart}>
+                <PlasmaApp {...appProps} onStart={onStartHandler}>
                     {pagesToRender.map((page) => {
                         return <Page key={page.name} name={page.name} component={page.component} />;
                     })}
@@ -186,6 +198,7 @@ export function sendSmartAppData<T extends AssistantSmartAppData['smart_app_data
     });
 }
 
+/* istanbul ignore next */
 export const createSyntheticEvent = <T extends Element, E extends Event>(event: E): React.SyntheticEvent<T, E> => {
     let isDefaultPrevented = false;
     let isPropagationStopped = false;
@@ -216,6 +229,7 @@ export const createSyntheticEvent = <T extends Element, E extends Event>(event: 
     };
 };
 
+/* istanbul ignore next */
 export const createEvent = <T extends React.SyntheticEvent<HTMLElement, Event>>(
     target: HTMLElement,
     type: string,
@@ -226,6 +240,7 @@ export const createEvent = <T extends React.SyntheticEvent<HTMLElement, Event>>(
     return createSyntheticEvent(event) as T;
 };
 
+/* istanbul ignore next */
 function stubImage(originalSrc: string, fixture: string): string {
     let url: URL;
 
