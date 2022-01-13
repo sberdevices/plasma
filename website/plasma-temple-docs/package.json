@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-temple-docs",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "private": true,
     "description": "Plasma Temple documentation",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
@@ -30,7 +30,7 @@
         "@mdx-js/react": "^1.6.21",
         "@sberdevices/plasma-docs-ui": "0.4.0",
         "@sberdevices/plasma-icons": "1.50.0",
-        "@sberdevices/plasma-tokens": "1.15.0",
+        "@sberdevices/plasma-tokens": "1.15.1",
         "@sberdevices/plasma-ui": "1.60.1",
         "@svgr/webpack": "^5.5.0",
         "clsx": "^1.1.1",
