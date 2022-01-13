@@ -1,14 +1,15 @@
 {
     "extends": "./tsconfig.json",
     "exclude": [
-        "./src/helpers",
-        "./src/testHelpers",
-        "./src/**/*.stories.tsx",
-        "./src/**/*.test.ts",
-        "./src/**/*.test.tsx",
-        "./src/**/*.spec.ts",
-        "./src/**/*.spec.tsx",
-        "./src/**/component-test.ts",
-        "./src/**/component-test.tsx"
+        "**/helpers",
+        "**/testHelpers",
+        "**/*.stories.tsx",
+        "**/*.examples.tsx",
+        "**/*.test.ts",
+        "**/*.test.tsx",
+        "**/*.spec.ts",
+        "**/*.spec.tsx",
+        "**/*.component-test.ts",
+        "**/*.component-test.tsx"
     ]
 }
