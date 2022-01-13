@@ -43,3 +43,42 @@ export function App() {
     );
 }
 ```
+
+## Доступность
+
+### DatePicker
+Добавьте значения атрибутам `daysAriaLabel` `monthsAriaLabel` и `yearsAriaLabel`
+для озвучивания компонента с помощью ScreenReader:
+
+```tsx
+<DatePicker
+    daysAriaLabel="день"
+    monthsAriaLabel="месяц"
+    yearsAriaLabel="год"
+/>
+```
+
+### TimePicker
+По аналогии с `DatePicker`, добавьте значения атрибутам `secondsAriaLabel` `minutesAriaLabel` и `hoursAriaLabel`:
+
+```tsx
+<TimePicker
+    secondsAriaLabel="секунды"
+    minutesAriaLabel="минуты"
+    hoursAriaLabel="часы"
+/>
+```
+
+### Управление с клавиатуры
+Компоненты `DatePicker` и `TimePicker` имеют возможность
+переключаться с помощью клавиш на клавиатуре:
+
+* `ArrowUp` - прокрутка назад;
+* `ArrowDown` - вперед;
+* `PageUp` - вернуться на 10 пунктов назад;
+* `PageDown` - на 10 пунктов вперед;
+* `Home` - переход к первому элементу;
+* `End` - к последнему элементу.
+
+При этом, с активированным экранным считывающим устройством (screen reader),
+происходит объявление переключаемых опций.
