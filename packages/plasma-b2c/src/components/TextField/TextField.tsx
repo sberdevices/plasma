@@ -1,9 +1,17 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
-import { FieldRoot, FieldPlaceholder, FieldContent, FieldHelper, Input, primary } from '@sberdevices/plasma-core';
+import {
+    FieldRoot,
+    FieldPlaceholder,
+    FieldContent,
+    FieldHelper,
+    Input,
+    primary,
+    secondary,
+} from '@sberdevices/plasma-core';
 import type { InputProps } from '@sberdevices/plasma-core';
 
-import { bodySBold } from '../../tokens';
+import { bodySBold, textXSBold } from '../../tokens';
 import { FieldWrapper, applyInputStyles } from '../Field';
 
 export interface TextFieldProps extends Omit<InputProps, 'size'> {
@@ -22,6 +30,7 @@ const StyledInput = styled(Input)`
     &:not(:placeholder-shown) {
         /* stylelint-disable-next-line number-max-precision */
         padding-top: 1.4375rem;
+        padding-bottom: 0.5rem;
     }
 
     &::placeholder {
@@ -34,10 +43,12 @@ const StyledPlaceholder = styled(FieldPlaceholder)`
     top: 1rem;
     left: 1rem;
     right: 1rem;
+    color: ${secondary};
 
     input:not(:placeholder-shown) ~ & {
         transform: scale(0.715);
-        top: 0.375rem;
+        top: 0.5rem;
+        left: 0;
     }
 `;
 const StyledCaption = styled.span`
@@ -46,6 +57,11 @@ const StyledCaption = styled.span`
     display: flex;
     margin-bottom: 0.75rem;
     color: ${primary};
+`;
+const StyledHelper = styled(FieldHelper)`
+    ${textXSBold}
+
+    left: 0;
 `;
 
 /**
@@ -88,7 +104,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function T
                 {placeLabel && <StyledPlaceholder htmlFor={id}>{placeLabel}</StyledPlaceholder>}
                 {contentRight && <FieldContent pos="right">{contentRight}</FieldContent>}
             </FieldWrapper>
-            {helperText && <FieldHelper>{helperText}</FieldHelper>}
+            {helperText && <StyledHelper>{helperText}</StyledHelper>}
         </FieldRoot>
     );
 });

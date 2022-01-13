@@ -49,7 +49,7 @@ export const applyInputStyles: InterpolationFunction<Pick<FieldProps, 'status' |
         color: ${secondary};
     }
 
-    &:focus:not(:read-only) {
+    &:focus:not([readonly]) {
         background-color: ${surfaceLiquid02};
     }
 
