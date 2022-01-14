@@ -1,6 +1,7 @@
 import React from 'react';
-import { DeviceFamily } from 'src/types';
-import { deviceFamily } from 'src/utils/deviceFamily';
+
+import { DeviceFamily } from '../../types';
+import { deviceFamily } from '../../utils/deviceFamily';
 
 import { StateLayoutMobile } from './StateLayout@mobile';
 import { StateLayoutSberBox } from './StateLayout@sberbox';
