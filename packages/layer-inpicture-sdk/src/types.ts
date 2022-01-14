@@ -1,4 +1,8 @@
-export type Template = 'primary' | 'secondary';
+export enum TemplateEnum {
+    INTERACTIVE = 'interactive',
+    LARGE = 'large',
+    MINIMAL = 'minimal'
+}
 export type Image = HTMLImageElement;
 export type Container = HTMLDivElement;
 
@@ -8,7 +12,7 @@ export type Config = {
     image: Image;
     container: Container;
     site: string;
-    template?: Template;
+    template?: TemplateEnum;
     withSkeleton?: boolean;
     maxCount?: number;
 }
@@ -40,7 +44,8 @@ export type EventProduct = Product & {
 
 export enum EventTypeEnum {
     ShownTab = 'ShownTab',
-    ClickedTab = 'ClickedTab'
+    ClickedTab = 'ClickedTab',
+    OpenedTab = 'OpenedTab'
 }
 
 export type EventBody = { 'event_type': EventTypeEnum, 'event_properties': Record<string, unknown>}
@@ -53,9 +58,4 @@ export enum EventTab {
     Furniture = 'furniture',
     Food = 'food',
     Locations = 'locations'
-}
-
-export type BaseEventParams = {
-    image: Image,
-    site: string,
 }

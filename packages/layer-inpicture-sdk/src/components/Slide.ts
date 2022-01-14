@@ -2,10 +2,10 @@ import { html } from 'htm/preact';
 import { useContext } from 'preact/compat';
 import classNames from 'classnames';
 
-import { Product } from '../types';
-import { adaptiveValue } from '../utils/adaptiveValue';
+import { Product, TemplateEnum } from '../types';
 import stub from '../assets/stub.svg';
 import { sendProductClickEvent } from '../api/requsts';
+import { adaptiveValue } from '../utils/adaptiveValue';
 
 import { ConfigContext } from './Container';
 
@@ -20,15 +20,22 @@ type Props = {
 }
 
 export const Slide = ({ product, onSlideHover, name, index, amount }: Props) => {
-    const { image, site, template } = useContext(ConfigContext);
+    const config = useContext(ConfigContext);
+    const { template } = config;
 
     const onSlideClick = (event: MouseEvent) => {
         event.stopPropagation();
 
-        sendProductClickEvent({ image, site, product: { ...product, index, amount } });
+        sendProductClickEvent({ ...config, product: { ...product, index, amount } });
 
         window.open(`${product.url}?utm=${name}`, '_blank');
     };
+
+    let productName = product?.name;
+
+    if (template === TemplateEnum.MINIMAL) {
+        productName = product?.name.split(' ').at(0);
+    }
 
     return html`
         <div
@@ -42,13 +49,15 @@ export const Slide = ({ product, onSlideHover, name, index, amount }: Props) => 
                 <img src=${product.pic} alt="product"/>` : html`<img src=${stub} alt="stub"/>`}
                 <div class=${classNames('layer-swiper-slide-bottom', {
                     'layer-swiper-slide-bottom_stub': !product,
-                    'layer-swiper-slide-bottom_secondary': template === 'secondary',
+                    'layer-swiper-slide-bottom_secondary': template === TemplateEnum.LARGE,
                 })}>
                 ${product ? html`
                     <div class="layer-swiper-slide-bottom__shop-name">${product.retailer.name}</div>` : ''}
                     <div class="layer-swiper-slide-bottom__bg">
                     ${product ?
-                        html`<div class="layer-swiper-slide-bottom__name">${product.name}</div>`
+                        html`<div class=${classNames('layer-swiper-slide-bottom__name', {
+                            'layer-swiper-slide-bottom__name_minimal': template === TemplateEnum.MINIMAL,
+                        })}>${productName}</div>`
                         :
                         html`<div class="layer__sketelon layer-mb-6"></div>
                              <div class="layer__sketelon layer-mb-6"></div>`

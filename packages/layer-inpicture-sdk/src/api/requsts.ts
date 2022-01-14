@@ -1,5 +1,5 @@
 import { getID } from '../utils/getId';
-import { BaseEventParams, EventBody, EventProduct, EventTab, EventTypeEnum } from '../types';
+import { Config, EventBody, EventProduct, EventTab, EventTypeEnum } from '../types';
 
 export const loadProducts = async (img: HTMLImageElement, site: string, maxCount?: number) => {
     const url = new URL('https://layer-dev.sberdevices.ru/iimg/v0/recognize');
@@ -14,7 +14,7 @@ export const loadProducts = async (img: HTMLImageElement, site: string, maxCount
     return products;
 };
 
-const createEventRequst = ({ image, site, eventBody }: BaseEventParams & { eventBody: EventBody }) => {
+const createEventRequst = ({ image, site, template, eventBody }: Config & { eventBody: EventBody }) => {
     const body = JSON.stringify({
         events: [
             {
@@ -24,6 +24,7 @@ const createEventRequst = ({ image, site, eventBody }: BaseEventParams & { event
                 page_url: window.location.href,
                 site_name: site,
                 site_url: window.location.hostname,
+                template,
                 ...eventBody,
             },
         ],
@@ -42,9 +43,9 @@ const createEventRequst = ({ image, site, eventBody }: BaseEventParams & { event
     }
 };
 
-export const sendShowWidgetEvent = (params: BaseEventParams) => {
+export const sendShowWidgetEvent = (config: Config) => {
     const eventParams = {
-        ...params,
+        ...config,
         eventBody: {
             event_type: EventTypeEnum.ShownTab,
             event_properties: {
@@ -56,7 +57,21 @@ export const sendShowWidgetEvent = (params: BaseEventParams) => {
     createEventRequst(eventParams);
 };
 
-export const sendProductClickEvent = ({ product, ...otherParams }: BaseEventParams & { product: EventProduct }) => {
+export const sendOpenedWidgetEvent = (config: Config) => {
+    const eventParams = {
+        ...config,
+        eventBody: {
+            event_type: EventTypeEnum.OpenedTab,
+            event_properties: {
+                hasClothes: true,
+            },
+        },
+    };
+
+    createEventRequst(eventParams);
+};
+
+export const sendProductClickEvent = ({ product, ...otherParams }: Config & { product: EventProduct }) => {
     const { id, name, amount, index, retailer } = product;
 
     const eventParams = {

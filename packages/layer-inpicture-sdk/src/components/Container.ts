@@ -4,8 +4,9 @@ import Swiper from 'swiper';
 import { createContext } from 'preact';
 import classNames from 'classnames';
 
-import { Config, Product } from '../types';
-import { loadProducts, sendShowWidgetEvent } from '../api/requsts';
+import { Config, Product, TemplateEnum } from '../types';
+import { loadProducts, sendOpenedWidgetEvent, sendShowWidgetEvent } from '../api/requsts';
+import { useOnceForceUpdate } from '../utils/hooks/useOnceForceUpdate';
 
 import { PrimaryTopContent } from './PrimaryTopContent';
 import { SecondaryTopContent } from './SecondaryTopContent';
@@ -16,10 +17,8 @@ const SKELETON_LIST = Array.from({ length: 6 });
 type SKELETON_LIST = typeof SKELETON_LIST;
 
 const getSliderInstance = () => {
-    // eslint-disable-next-line no-new
-    new Swiper('.layer-main-container', {
+    return new Swiper('.layer-main-container', {
         slidesPerView: 'auto',
-        spaceBetween: 16,
         navigation: {
             nextEl: '.layer-swiper-button-next',
             prevEl: '.layer-swiper-button-prev',
@@ -27,37 +26,37 @@ const getSliderInstance = () => {
     });
 };
 
+const widgetsMap = new Map<Element, Config>();
+
 const options: IntersectionObserverInit = {
     root: null,
     threshold: 1,
 };
 
-const widgetsMap = new Map();
-
-const callback: IntersectionObserverCallback = (entries, observer) => {
+const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
-            console.log('event: widget is shown');
-
             sendShowWidgetEvent(widgetsMap.get(entry.target));
             observer.unobserve(entry.target);
         }
     });
-};
-const observer = new IntersectionObserver(callback, options);
+}, options);
 
 export const ConfigContext = createContext<Config>(null);
 
 export const Container = (config: Config) => {
-    const { template = 'primary', image, withSkeleton, container, site, maxCount } = config;
+    const { template = TemplateEnum.INTERACTIVE, image, withSkeleton, container, site, maxCount } = config;
 
     const [isError, setIsError] = useState(false);
     const [products, setProducts] = useState<Product[] | null | SKELETON_LIST>(withSkeleton ? SKELETON_LIST : null);
     const [isPrimaryTitleShow, setIsPrimaryTitleShow] = useState(true);
-    const [isShowPrimaryWidget, toggleShowingPrimaryWidget] = useState(true);
+    const [isShowPrimaryWidget, toggleShowingPrimaryWidget] = useState(template !== TemplateEnum.MINIMAL);
+    const isMinimalWidgetEventAlreadySent = useRef(null);
 
     const wrapperRef = useRef(null);
     const containerRef = useRef(container);
+
+    const onceForceUpdate = useOnceForceUpdate();
 
     useEffect(() => {
         const load = async () => {
@@ -73,36 +72,58 @@ export const Container = (config: Config) => {
     }, [image, site, maxCount]);
 
     const observe = useCallback((element: Element) => {
-        widgetsMap.set(element, { image, site });
+        widgetsMap.set(element, config);
         observer.observe(element);
-    }, [image, site]);
+    }, [config]);
 
     useEffect(() => {
         if (products !== null) {
-            observe(wrapperRef.current);
+            template !== TemplateEnum.MINIMAL && observe(wrapperRef.current);
             containerRef.current.style.height = `${wrapperRef.current?.clientHeight}px`;
             containerRef.current.style.visibility = 'visible';
             getSliderInstance();
         }
-    }, [products, image, observe]);
+    }, [products, image, observe, template]);
 
-    const onPrimaryHeaderClick = () => toggleShowingPrimaryWidget((prev) => !prev);
+    const onPrimaryHeaderClick = () => {
+        if (template === TemplateEnum.MINIMAL && !isMinimalWidgetEventAlreadySent.current) {
+            sendOpenedWidgetEvent(config);
+            sendShowWidgetEvent(config);
+            isMinimalWidgetEventAlreadySent.current = true;
+        }
+
+        toggleShowingPrimaryWidget((prev) => !prev);
+    };
 
     if (isError || !products?.length) {
         return null;
     }
+
+    onceForceUpdate();
 
     return html`
         <${ConfigContext.Provider} value=${config}>
             <div
                 ref=${wrapperRef}
                 class=${classNames('layer-hidden layer-content', {
-                    'layer-secondary-wrap': template === 'secondary',
+                    'layer-primary-wrap': template === TemplateEnum.INTERACTIVE,
+                    'layer-secondary-wrap': template === TemplateEnum.LARGE,
                 })}
             >
-                <div class="layer-main-container" style=${isShowPrimaryWidget ? '' : `transform: translateY(${wrapperRef.current?.clientHeight - 30}px)`}>
-                    ${template === 'primary' ? html`<${PrimaryTopContent} isShow=${isPrimaryTitleShow} onPrimaryHeaderClick=${onPrimaryHeaderClick} />` : html`<${SecondaryTopContent} />`}
-                    <${SliderWrapper} products=${products} name=${site} onSlideHover=${(isHover: boolean) => setIsPrimaryTitleShow(!isHover)}/>
+                <div
+                    class="layer-main-container"
+                    style=${isShowPrimaryWidget ? '' : `transform: translateY(${(wrapperRef.current?.clientHeight || 1000) - 30}px);`}
+                >
+                    ${template === TemplateEnum.INTERACTIVE || template === TemplateEnum.MINIMAL
+                        ? html`<${PrimaryTopContent}
+                            isShow=${template === TemplateEnum.MINIMAL || isPrimaryTitleShow}
+                            onPrimaryHeaderClick=${onPrimaryHeaderClick} />`
+                        : html`<${SecondaryTopContent} />`}
+                    <${SliderWrapper}
+                        products=${products}
+                        name=${site}
+                        onSlideHover=${(isHover: boolean) => setIsPrimaryTitleShow(!isHover)}
+                    />
                     <${SliderButtons} />
                 </div>
             </div>
