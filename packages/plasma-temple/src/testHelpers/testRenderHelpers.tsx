@@ -13,6 +13,7 @@ import { GetInitialProps, Page } from '../components/Page/Page';
 import { PageComponent } from '../components/Page/types';
 
 import image320 from './assets/320_320_0.jpg';
+import imageBg from './assets/parrot.png';
 
 // eslint-disable-next-line import/no-mutable-exports
 let mockAssistant: ReturnType<typeof createAssistantHostMock>;
@@ -269,4 +270,5 @@ export { mockAssistant, sendAction, stubImage };
 
 export const images = {
     image320,
+    imageBg,
 };
