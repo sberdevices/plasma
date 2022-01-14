@@ -8,7 +8,7 @@ import { useRegistry } from '../../hooks/useRegistry';
 import { ComponentPropsWithHeader } from '../../components/Header/types';
 import { isSberBoxLike } from '../../utils/deviceFamily';
 
-interface OrderSuccessProps extends ComponentPropsWithHeader {
+export interface OrderSuccessProps extends ComponentPropsWithHeader {
     header?: HeaderProps;
     imageSrc?: string;
     onGoBack: () => void;
@@ -29,7 +29,7 @@ export const OrderSuccessPage: React.FC<OrderSuccessProps> = ({ header, imageSrc
             title="Заказ успешно оформлен! Статус заказа будет отправлен на E-mail"
             image={imageSrc}
             button={
-                <Button view="primary" onClick={onGoBack} ref={buttonRef}>
+                <Button view="primary" onClick={onGoBack} ref={buttonRef} data-cy="order-success-button">
                     Вернуться в магазин
                 </Button>
             }
