@@ -43,7 +43,7 @@ const StyledContentContainer = styled.div`
 
 export const ConfirmOrderCard: React.FC<ConfirmOrderCardProps> = ({ title, content, caption, price = 0, onClick }) => {
     return (
-        <StyledCard onClick={onClick} outlined tabIndex={0}>
+        <StyledCard onClick={onClick} outlined tabIndex={0} data-cy="confirm-order-card">
             <CardBody>
                 <StyledCardContent>
                     <StyledContentContainer>
