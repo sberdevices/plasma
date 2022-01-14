@@ -15,7 +15,7 @@ import { ConfirmOrderCard } from './components/ConfirmOrderCard/ConfirmOrderCard
 import { LocationIcon } from './ConfirmOrderPage.assets/LocationIcon';
 import defaultBackground from './ConfirmOrderPage.assets/map.png';
 
-interface ConfirmOrderProps extends ComponentPropsWithHeader {
+export interface ConfirmOrderProps extends ComponentPropsWithHeader {
     delivery: {
         details: string;
         amount: number;
@@ -148,12 +148,13 @@ export const ConfirmOrderPage: React.FC<ConfirmOrderProps> = ({
                         stretch
                         view="primary"
                         text="К оплате"
+                        data-cy="confirm-order-payment-button"
                         disabled={paymentDisabled}
                         contentRight={<Price>{amount}</Price>}
                         onClick={handlePay}
                     />
                 </Col>
-                <StyledLocationCol sizeXL={5.5} sizeM={3} offsetXL={1}>
+                <StyledLocationCol sizeXL={5.5} sizeM={3} offsetXL={1} data-cy="confirm-order-location">
                     <LocationIcon />
                     <StyledAddressTitle>{address.title}</StyledAddressTitle>
                     <StyledAddressContent>{address.content}</StyledAddressContent>
