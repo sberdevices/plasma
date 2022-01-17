@@ -86,7 +86,9 @@ export const Container = (config: Config) => {
         }
     }, [products, image, observe, template]);
 
-    const onPrimaryHeaderClick = () => {
+    const onPrimaryHeaderClick = (event: MouseEvent) => {
+        event.stopPropagation();
+
         if (template === TemplateEnum.MINIMAL && !isMinimalWidgetEventAlreadySent.current) {
             sendOpenedWidgetEvent(config);
             isMinimalWidgetEventAlreadySent.current = true;
