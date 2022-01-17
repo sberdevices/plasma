@@ -1,3 +1,28 @@
+# (Mon Jan 17 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/layer-inpicture-sdk@0.5.0`
+  - feat(layer-inpicture-sdk): bug fix [#157](https://github.com/sberdevices/pashka/pull/157) (KVIlikov@sberbank.ru)
+  - feat(layer-inpicture-sdk): added minimal widget tempate [#157](https://github.com/sberdevices/pashka/pull/157) (KVIlikov@sberbank.ru)
+  - feat(layer-inpicture-sdk): changed card tempate [#157](https://github.com/sberdevices/pashka/pull/157) (KVIlikov@sberbank.ru)
+  - feat(layer-inpicture-sdk): aligned arrows, added product limit, added hiding slider [#157](https://github.com/sberdevices/pashka/pull/157) (KVIlikov@sberbank.ru)
+  - feat(app): added event dispatch [#157](https://github.com/sberdevices/pashka/pull/157) (KVIlikov@sberbank.ru)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/layer-inpicture-sdk@0.5.0`
+  - fix(slide.ts): добавил utm метку [#157](https://github.com/sberdevices/pashka/pull/157) (KVIlikov@sberbank.ru)
+- `@sberdevices/use-virtual@0.4.0`
+  - build(use-virtual): drop tsdx [#154](https://github.com/sberdevices/pashka/pull/154) ([@KateKate](https://github.com/KateKate))
+
+#### Authors: 2
+
+- Ekaterina Anishkina ([@KateKate](https://github.com/KateKate))
+- Kirill Ilikov (KVIlikov@sberbank.ru)
+
+---
+
 # (Mon Dec 27 2021)
 
 #### 🚀 Enhancement

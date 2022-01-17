@@ -1,3 +1,23 @@
+# v0.5.0 (Mon Jan 17 2022)
+
+#### 🚀 Enhancement
+
+- feat(layer-inpicture-sdk): bug fix [#157](https://github.com/sberdevices/pashka/pull/157) (KVIlikov@sberbank.ru)
+- feat(layer-inpicture-sdk): added minimal widget tempate [#157](https://github.com/sberdevices/pashka/pull/157) (KVIlikov@sberbank.ru)
+- feat(layer-inpicture-sdk): changed card tempate [#157](https://github.com/sberdevices/pashka/pull/157) (KVIlikov@sberbank.ru)
+- feat(layer-inpicture-sdk): aligned arrows, added product limit, added hiding slider [#157](https://github.com/sberdevices/pashka/pull/157) (KVIlikov@sberbank.ru)
+- feat(app): added event dispatch [#157](https://github.com/sberdevices/pashka/pull/157) (KVIlikov@sberbank.ru)
+
+#### 🐛 Bug Fix
+
+- fix(slide.ts): добавил utm метку [#157](https://github.com/sberdevices/pashka/pull/157) (KVIlikov@sberbank.ru)
+
+#### Authors: 1
+
+- Kirill Ilikov (KVIlikov@sberbank.ru)
+
+---
+
 # v0.4.0 (Wed Dec 22 2021)
 
 #### 🚀 Enhancement

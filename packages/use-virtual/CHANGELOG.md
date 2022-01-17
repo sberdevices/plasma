@@ -1,3 +1,15 @@
+# v0.4.0 (Mon Jan 17 2022)
+
+#### 🐛 Bug Fix
+
+- build(use-virtual): drop tsdx [#154](https://github.com/sberdevices/pashka/pull/154) ([@KateKate](https://github.com/KateKate))
+
+#### Authors: 1
+
+- Ekaterina Anishkina ([@KateKate](https://github.com/KateKate))
+
+---
+
 # v0.3.0 (Mon Dec 27 2021)
 
 #### 🚀 Enhancement
