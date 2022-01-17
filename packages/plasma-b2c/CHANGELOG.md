@@ -1,3 +1,17 @@
+# v1.34.3 (Mon Jan 17 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-b2c,plasma-web): Add re-export for `Notification` component [#1029](https://github.com/sberdevices/plasma/pull/1029) ([@neretin-trike](https://github.com/neretin-trike))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.34.2 (Thu Jan 13 2022)
 
 #### 🐛 Bug Fix

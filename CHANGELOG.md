@@ -1,3 +1,19 @@
+# (Mon Jan 17 2022)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-b2c@1.34.3`, `@sberdevices/plasma-web@1.70.3`
+  - fix(plasma-b2c,plasma-web): Add re-export for `Notification` component [#1029](https://github.com/sberdevices/plasma/pull/1029) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-temple@1.19.4`
+  - fix(plasma-temple): Dont pass page name to PageMethods [#1040](https://github.com/sberdevices/plasma/pull/1040) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 2
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # (Thu Jan 13 2022)
 
 #### 🐛 Bug Fix
