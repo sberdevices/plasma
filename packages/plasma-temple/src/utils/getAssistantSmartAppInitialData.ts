@@ -21,3 +21,11 @@ export function getAssistantSmartAppInitialData<
         )
         .filter(Boolean);
 }
+
+export function findAssistantSmartAppInitialData<T extends AssistantSmartAppData = AssistantSmartAppData>({
+    command,
+}: {
+    command?: string;
+}): T['smart_app_data'] | undefined {
+    return getAssistant().findInInitialData<T['smart_app_data']>({ type: 'smart_app_data', command });
+}

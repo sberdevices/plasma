@@ -28,7 +28,7 @@
         "@rollup/plugin-image": "2.0.6",
         "@rollup/plugin-node-resolve": "13.0.0",
         "@rollup/plugin-typescript": "8.2.1",
-        "@sberdevices/assistant-client": "4.10.0",
+        "@sberdevices/assistant-client": "4.15.0",
         "@sberdevices/plasma-cy-utils": "0.3.3",
         "@sberdevices/plasma-icons": "1.63.2",
         "@sberdevices/plasma-tokens": "1.15.1",
@@ -79,9 +79,7 @@
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
         "test": "jest"
     },
-    "files": [
-        "dist"
-    ],
+    "files": ["dist"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Виноградов Антон Александрович",
