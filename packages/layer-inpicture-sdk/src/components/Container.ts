@@ -55,6 +55,7 @@ export const Container = (config: Config) => {
 
     const wrapperRef = useRef(null);
     const containerRef = useRef(container);
+    const topContentRef = useRef(null);
 
     const onceForceUpdate = useOnceForceUpdate();
 
@@ -78,7 +79,7 @@ export const Container = (config: Config) => {
 
     useEffect(() => {
         if (products !== null) {
-            template !== TemplateEnum.MINIMAL && observe(wrapperRef.current);
+            observe(template === TemplateEnum.MINIMAL ? topContentRef.current : wrapperRef.current);
             containerRef.current.style.height = `${wrapperRef.current?.clientHeight}px`;
             containerRef.current.style.visibility = 'visible';
             getSliderInstance();
@@ -88,7 +89,6 @@ export const Container = (config: Config) => {
     const onPrimaryHeaderClick = () => {
         if (template === TemplateEnum.MINIMAL && !isMinimalWidgetEventAlreadySent.current) {
             sendOpenedWidgetEvent(config);
-            sendShowWidgetEvent(config);
             isMinimalWidgetEventAlreadySent.current = true;
         }
 
@@ -108,25 +108,28 @@ export const Container = (config: Config) => {
                 class=${classNames('layer-hidden layer-content', {
                     'layer-primary-wrap': template === TemplateEnum.INTERACTIVE,
                     'layer-secondary-wrap': template === TemplateEnum.LARGE,
+                    'layer-minimal-wrap': template === TemplateEnum.MINIMAL,
                 })}
             >
-                <div
-                    class="layer-main-container"
-                    style=${isShowPrimaryWidget ? '' : `transform: translateY(${(wrapperRef.current?.clientHeight || 1000) - 30}px);`}
-                >
+                <div class="layer-content__drawer" style=${isShowPrimaryWidget ? '' : `transform: translateY(${(wrapperRef.current?.clientHeight || 1000) - 30}px);`}>
                     ${template === TemplateEnum.INTERACTIVE || template === TemplateEnum.MINIMAL
                         ? html`<${PrimaryTopContent}
-                            isShow=${template === TemplateEnum.MINIMAL || isPrimaryTitleShow}
-                            onPrimaryHeaderClick=${onPrimaryHeaderClick} />`
+                                ref=${topContentRef}
+                                isShow=${template === TemplateEnum.MINIMAL || isPrimaryTitleShow}
+                                onPrimaryHeaderClick=${onPrimaryHeaderClick} />`
                         : html`<${SecondaryTopContent} />`}
-                    <${SliderWrapper}
-                        products=${products}
-                        name=${site}
-                        onSlideHover=${(isHover: boolean) => setIsPrimaryTitleShow(!isHover)}
-                    />
-                    <${SliderButtons} />
+                    <div
+                        class="layer-main-container"
+                    >
+                        <${SliderWrapper}
+                            products=${products}
+                            name=${site}
+                            onSlideHover=${(isHover: boolean) => setIsPrimaryTitleShow(!isHover)}
+                        />
+                        <${SliderButtons} />
+                    </div>
                 </div>
-            </div>
+            </div> 
         </EXTERNAL_FRAGMENT>
     `;
 };

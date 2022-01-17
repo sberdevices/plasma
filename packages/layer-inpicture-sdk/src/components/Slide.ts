@@ -40,7 +40,6 @@ export const Slide = ({ product, onSlideHover, name, index, amount }: Props) => 
     return html`
         <div
             class="swiper-slide layer-swiper-slide layer-unselectable"
-            style=${{ width: adaptiveValue(94, 74), height: adaptiveValue(138, 108) }}
             onClick=${onSlideClick}
             onMouseEnter=${() => onSlideHover(true)}
             onMouseLeave=${() => onSlideHover(false)}

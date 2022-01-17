@@ -4,6 +4,7 @@ import { useRef } from 'preact/compat';
 import { Product } from '../types';
 
 import { Slide } from './Slide';
+import { SliderButtons } from './SliderButtons';
 
 type Props = {
     products: Product[];

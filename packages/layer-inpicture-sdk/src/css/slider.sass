@@ -8,6 +8,26 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
     width: 150px !important
     height: 210px !important
 
+@mixin minimal-card-desktop-size
+    width: 111px
+    height: 162px
+
+@mixin minimal-card-mobile-size
+    width: 74px
+    height: 108px
+
+@mixin primary-card-desktop-size
+    width: 94px
+    height: 138px
+
+@mixin primary-card-mobile-size
+    width: 74px
+    height: 108px
+
+@mixin secondary-card-mobile-size
+    width: 166px
+    height: 252px
+
 @mixin big-card
     .layer
         &-swiper-slide-bottom
@@ -29,32 +49,32 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
     &-container
         position: relative
         visibility: hidden
+        font-family: SB Sans Text, sans-serif
 
     &-content
         position: absolute
         bottom: 0
         width: 100%
+        &__drawer
+            transition: all 0.5s
+
 
     &-swiper-wrapper
         align-items: flex-end !important
-        padding-left: 16px
         @media (min-width: 768px)
             &:hover
                 cursor: pointer !important
 
     &-slider-wrap
-        position: absolute
-        font-family: SB Sans Text, sans-serif
+        position: absolute 
         overflow: hidden
         pointer-events: none
 
     &-main-container
         width: 100%
-        transition: all 0.5s
         opacity: 1
         z-index: 1
         font-size: 14px
-        font-family: SB Sans Text, sans-serif
         color: #000
         pointer-events: initial
         overflow: hidden
@@ -66,7 +86,6 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
 
     &-slider-top-content
         margin-bottom: 10px
-        margin-left: 21px
         transition: opacity 0.5s
 
     &-swiper-slide
@@ -80,7 +99,8 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
         overflow: hidden
         transition: all 0.5s !important
         border: 1px solid rgba(8, 8, 8, 0.12)
-        margin-right: 16px
+        &:not(:last-of-type)
+            margin-right: 16px
 
     &-primary-wrap
         & .layer-swiper-slide
@@ -88,6 +108,40 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
                 &:hover
                     @include big-card-size
                     @include big-card
+
+    &-minimal-wrap
+        .layer-swiper-slide
+            @include minimal-card-mobile-size
+            @media (min-width: 768px)
+                @include minimal-card-desktop-size
+        .layer-swiper-slide-bottom__price
+            @media (max-width: 767.98px)
+                font-weight: 500
+                font-size: 12px
+        .layer-swiper-slide-bottom__name
+            @media (max-width: 767.98px)
+                font-size: 14px
+                font-weight: 400
+
+    &-primary-wrap
+        .layer-swiper-slide
+            @include primary-card-mobile-size
+            height: 108px
+            @media (min-width: 768px)
+                @include primary-card-desktop-size
+        .layer-swiper-slide-bottom__price
+            @media (max-width: 767.98px)
+                font-weight: 500
+                font-size: 12px
+        .layer-swiper-button
+            top: auto !important
+            bottom: 30px
+            @media (min-width: 768px)
+                bottom: 45px
+
+    &-secondary-wrap
+        .layer-swiper-slide
+            @include secondary-card-mobile-size
 
     &-swiper-slide &-swiper-slide-bottom
         display: block
@@ -177,16 +231,14 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
             pointer-events: auto
 
     &-swiper-button-prev
-        margin-left: 16px
+        left: 16px
 
     &-swiper-button-next
-        margin-right: 16px
+        right: 16px
 
     &-swiper-button-prev, &-swiper-button-next
         cursor: pointer
-        top: auto !important
         background-image: none
-        bottom: 43px
 
     &-swiper-button-prev img, &-swiper-button-next img
         max-width: initial
