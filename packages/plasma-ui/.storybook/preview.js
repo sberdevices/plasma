@@ -18,11 +18,6 @@ if (typeof document !== 'undefined') {
     document.documentElement.setAttribute('lang', 'ru');
 }
 
-const isDocs = () => {
-    const params = new URL(document.location).searchParams;
-    return params.get('viewMode') === 'docs';
-};
-
 const DocumentStyle = createGlobalStyle`
     /* stylelint-disable-next-line selector-nested-pattern */
     html:root {
@@ -44,19 +39,13 @@ const themes = {
 
 const withTheme = (Story, context) => {
     const Theme = themes[context.globals.theme];
-    const deviceKind = new URL(document.location).searchParams.get('deviceKind');
-    let typoSize = context.globals.typoSize;
-
-    if (isDocs()) {
-        typoSize = 'mobile';
-    }
-
-    if (deviceKind) {
-        typoSize = deviceKind;
-    }
+    const deviceKind = new URL(document.location).searchParams.get('deviceKind') || context.globals.deviceKind;
 
     return (
-        <DeviceThemeProvider detectDeviceCallback={() => typoSize}>
+        <DeviceThemeProvider
+            detectDeviceCallback={() => deviceKind}
+            responsiveTypo={context.globals.typoSystem === 'responsive'}
+        >
             <Theme />
             <DocumentStyle />
             <Story {...context} />
@@ -133,9 +122,18 @@ export const globalTypes = {
             showName: true,
         },
     },
-    typoSize: {
+    typoSystem: {
+        name: 'Typo system',
+        description: 'Typography system',
+        defaultValue: 'legacy',
+        toolbar: {
+            items: ['legacy', 'responsive'],
+            showName: true,
+        },
+    },
+    deviceKind: {
         name: 'Device kind',
-        description: 'Global typography size for components',
+        description: 'Device kind',
         defaultValue: 'sberBox',
         toolbar: {
             items: ['mobile', 'sberBox', 'sberPortal'],
