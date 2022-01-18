@@ -2,6 +2,7 @@ import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { sberPortal, sberBox, mobile, sberPortalScale } from '@sberdevices/plasma-tokens';
 import { transformStyles } from '@sberdevices/plasma-core';
+import { standard, compatible } from '@sberdevices/plasma-typo';
 
 import { detectDevice, deviceScales, DeviceKind } from '../../utils';
 
@@ -16,6 +17,9 @@ const typoSizes = {
     mobile: createGlobalStyle`${transformWithRoot(mobile)}`,
 };
 /* stylelint-enable */
+
+const StandardTypo = createGlobalStyle(standard);
+const CompatibleTypo = createGlobalStyle(compatible);
 
 export interface DeviceThemeProps {
     /**
@@ -35,6 +39,7 @@ export interface DeviceThemeProps {
      * При значениях `sberBox` и `sberPortal` типографика примет размер **x2**, а при `mobile` - **x1**.
      */
     detectDeviceCallback?: () => DeviceKind;
+    responsiveTypo?: boolean;
 }
 
 /**
@@ -56,6 +61,7 @@ export const DeviceThemeProvider: React.FC<DeviceThemeProps> = ({
     theme,
     children,
     detectDeviceCallback = detectDevice,
+    responsiveTypo = false,
 }) => {
     const deviceKind = detectDeviceCallback();
     const deviceScale = deviceScales[deviceKind] || sberPortalScale;
@@ -63,7 +69,14 @@ export const DeviceThemeProvider: React.FC<DeviceThemeProps> = ({
 
     return (
         <ThemeProvider theme={{ ...theme, deviceScale }}>
-            <Typo />
+            {responsiveTypo ? (
+                <>
+                    <StandardTypo deviceScale={deviceScale} />
+                    <CompatibleTypo />
+                </>
+            ) : (
+                <Typo />
+            )}
             {children}
         </ThemeProvider>
     );
