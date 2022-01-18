@@ -45,6 +45,8 @@ describe('plasma-core: Toast', () => {
 
     describe('useToast', () => {
         const text = 'Short Text Message Without Action';
+        const textLong =
+            'Long Text Message Without Action Long Text Message Without Action Long Text Message Without Action';
         const Button = getComponent('Button');
 
         const Interactive = ({ text: _text, position, timeout }) => {
@@ -112,6 +114,22 @@ describe('plasma-core: Toast', () => {
 
             // eslint-disable-next-line cypress/no-unnecessary-waiting
             cy.wait(600);
+            cy.matchImageSnapshot();
+        });
+
+        it('two lines', () => {
+            mount(
+                <CypressTestDecorator>
+                    <ToastProvider>
+                        <Interactive text={textLong} />
+                    </ToastProvider>
+                </CypressTestDecorator>,
+            );
+
+            cy.get('#show').click();
+
+            // eslint-disable-next-line cypress/no-unnecessary-waiting
+            cy.wait(300);
             cy.matchImageSnapshot();
         });
     });
