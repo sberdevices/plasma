@@ -13,7 +13,7 @@ export type ToastProps = {
     contentLeft?: ReactNode;
 };
 
-const StyledRoot = styled(Footnote1)`
+export const StyledRoot = styled(Footnote1)`
     display: inline-flex;
     padding: 0.75rem 1.25rem;
     border-radius: 1.25rem;

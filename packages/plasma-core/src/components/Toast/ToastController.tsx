@@ -4,7 +4,7 @@ import styled, { css, keyframes } from 'styled-components';
 import { Fade } from '../Fade';
 
 import { ToastInfo } from './Toast.types';
-import { Toast } from './Toast';
+import { Toast, StyledRoot as ToastStyledRoot } from './Toast';
 import { useToast } from './useToast';
 
 const showAnimation = (position: string) => keyframes`
@@ -73,6 +73,15 @@ const StyledRoot = styled.div<{ position: string; isVisible: boolean }>`
         ${position}: 5rem;
         animation: 300ms ${isVisible ? showAnimation(position) : hideAnimation(position)};
     `};
+
+    display: flex;
+    width: 0;
+
+    ${ToastStyledRoot} {
+        transform: translateX(-50%);
+        max-width: calc(100vw - 5rem);
+        flex-shrink: 0;
+    }
 `;
 
 /**
