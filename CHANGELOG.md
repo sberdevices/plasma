@@ -1,3 +1,17 @@
+# (Tue Jan 18 2022)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/layer-inpicture-sdk@0.5.1`
+  - fix(inpicture-sdk): some fix [#158](https://github.com/sberdevices/pashka/pull/158) (KVIlikov@sberbank.ru)
+  - fix(container): added stopPropagation [#158](https://github.com/sberdevices/pashka/pull/158) (KVIlikov@sberbank.ru)
+
+#### Authors: 1
+
+- Kirill Ilikov (KVIlikov@sberbank.ru)
+
+---
+
 # (Mon Jan 17 2022)
 
 #### 🚀 Enhancement

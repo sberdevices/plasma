@@ -1,3 +1,16 @@
+# v0.5.1 (Tue Jan 18 2022)
+
+#### 🐛 Bug Fix
+
+- fix(inpicture-sdk): some fix [#158](https://github.com/sberdevices/pashka/pull/158) (KVIlikov@sberbank.ru)
+- fix(container): added stopPropagation [#158](https://github.com/sberdevices/pashka/pull/158) (KVIlikov@sberbank.ru)
+
+#### Authors: 1
+
+- Kirill Ilikov (KVIlikov@sberbank.ru)
+
+---
+
 # v0.5.0 (Mon Jan 17 2022)
 
 #### 🚀 Enhancement
