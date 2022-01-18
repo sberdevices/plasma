@@ -3,7 +3,7 @@ import type { InterpolationFunction } from 'styled-components';
 
 import { prepareStandardBreakpointTypo } from './helpers';
 
-const typoS = {
+const typoS = prepareStandardBreakpointTypo({
     'dspl-l': {
         'font-size': '5.5rem',
         'font-weight': '600',
@@ -134,8 +134,8 @@ const typoS = {
         'font-weight': '600',
         'line-height': '1rem',
     },
-};
-const typoM = {
+});
+const typoM = prepareStandardBreakpointTypo({
     'dspl-l': {
         'font-size': '7rem',
         'font-weight': '600',
@@ -266,8 +266,8 @@ const typoM = {
         'font-weight': '600',
         'line-height': '1rem',
     },
-};
-const typoL = {
+});
+const typoL = prepareStandardBreakpointTypo({
     'dspl-l': {
         'font-size': '8rem',
         'font-weight': '600',
@@ -398,9 +398,9 @@ const typoL = {
         'font-weight': '600',
         'line-height': '1rem',
     },
-};
+});
 
-export const standard: InterpolationFunction<{}> = () => css`
+export const standard: InterpolationFunction<{ deviceScale?: number }> = ({ deviceScale = 1 }) => css`
     :root {
         --plasma-typo-display-font-family: 'SB Sans Display', sans-serif;
         --plasma-typo-text-font-family: 'SB Sans Text', sans-serif;
@@ -456,16 +456,18 @@ export const standard: InterpolationFunction<{}> = () => css`
         --plasma-typo-text-xs-font-style: normal;
         --plasma-typo-text-xs-letter-spacing: -0.019em;
 
-        @media (max-width: 559px) {
-            ${prepareStandardBreakpointTypo(typoS)}
+        font-size: ${16 * deviceScale}px;
+
+        @media (max-width: ${559 * deviceScale}px) {
+            ${typoS}
         }
 
-        @media (min-width: 560px) and (max-width: 959px) {
-            ${prepareStandardBreakpointTypo(typoM)}
+        @media (min-width: ${560 * deviceScale}px) and (max-width: ${959 * deviceScale}px) {
+            ${typoM}
         }
 
-        @media (min-width: 960px) {
-            ${prepareStandardBreakpointTypo(typoL)}
+        @media (min-width: ${960 * deviceScale}px) {
+            ${typoL}
         }
     }
 `;
