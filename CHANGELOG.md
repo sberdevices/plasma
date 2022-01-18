@@ -1,3 +1,28 @@
+# (Tue Jan 18 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-web@1.71.0`
+  - feat(plasma-web): Close `Modal` with esc key [#1024](https://github.com/sberdevices/plasma/pull/1024) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-web@1.71.0`
+  - fix(plasma-web): `Modal`: Portal management in provider [#1024](https://github.com/sberdevices/plasma/pull/1024) ([@fanisco](https://github.com/fanisco))
+  - test(plasma-web): Test `Modal` closing [#1024](https://github.com/sberdevices/plasma/pull/1024) ([@fanisco](https://github.com/fanisco))
+  - fix(plasma-web): Simplify event handler type (`onClick`) of `Modal` [#1024](https://github.com/sberdevices/plasma/pull/1024) ([@fanisco](https://github.com/fanisco))
+  - fix(plasma-web): `Modals` closing order [#1024](https://github.com/sberdevices/plasma/pull/1024) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-temple@1.20.0`
+  - test(plasma-temple): cypress tests for PlasmaApp component [#1025](https://github.com/sberdevices/plasma/pull/1025) ([@LamaEats](https://github.com/LamaEats))
+  - chore(plasma-temple): rewrite type of GetInitialProps func [#1025](https://github.com/sberdevices/plasma/pull/1025) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Mon Jan 17 2022)
 
 #### 🐛 Bug Fix

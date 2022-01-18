@@ -1,3 +1,16 @@
+# v1.20.0 (Tue Jan 18 2022)
+
+#### 🐛 Bug Fix
+
+- test(plasma-temple): cypress tests for PlasmaApp component [#1025](https://github.com/sberdevices/plasma/pull/1025) ([@LamaEats](https://github.com/LamaEats))
+- chore(plasma-temple): rewrite type of GetInitialProps func [#1025](https://github.com/sberdevices/plasma/pull/1025) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v1.19.3 (Thu Jan 13 2022)
 
 #### 🐛 Bug Fix

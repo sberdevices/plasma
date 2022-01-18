@@ -1,3 +1,22 @@
+# v1.71.0 (Tue Jan 18 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-web): Close `Modal` with esc key [#1024](https://github.com/sberdevices/plasma/pull/1024) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web): `Modal`: Portal management in provider [#1024](https://github.com/sberdevices/plasma/pull/1024) ([@fanisco](https://github.com/fanisco))
+- test(plasma-web): Test `Modal` closing [#1024](https://github.com/sberdevices/plasma/pull/1024) ([@fanisco](https://github.com/fanisco))
+- fix(plasma-web): Simplify event handler type (`onClick`) of `Modal` [#1024](https://github.com/sberdevices/plasma/pull/1024) ([@fanisco](https://github.com/fanisco))
+- fix(plasma-web): `Modals` closing order [#1024](https://github.com/sberdevices/plasma/pull/1024) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.70.3 (Mon Jan 17 2022)
 
 #### 🐛 Bug Fix
