@@ -45,6 +45,37 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
 
     #{$prop}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{1920 - 320}))
 
+@mixin shopName
+    width: fit-content
+    padding: 2px 6px
+    margin: 0 0 8px 8px
+    font-weight: 500
+    font-size: 10px
+    line-height: 12px
+    letter-spacing: 0.0125em
+    background: rgba(8, 8, 8, 0.56)
+    color: #FFFFFF
+    border-radius: 6px
+
+@mixin name
+    font-weight: 500
+    font-size: 14px
+    line-height: 20px
+    letter-spacing: 0.0125em
+    color: #080808
+    margin-bottom: 12px
+    height: 38px
+    -webkit-line-clamp: 2
+    -webkit-box-orient: vertical
+    overflow: hidden
+
+@mixin price
+    font-weight: 600
+    font-size: 16px
+    color: $SMALL_BOTTOM_CARD_PRICE_COLOR
+    margin-bottom: 4px
+    line-height: initial
+
 .layer
     &-container
         position: relative
@@ -120,7 +151,7 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
                 font-size: 12px
         .layer-swiper-slide-bottom__name
             @media (max-width: 767.98px)
-                font-size: 14px
+                font-size: 12px
                 font-weight: 400
 
     &-primary-wrap
@@ -142,6 +173,15 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
     &-secondary-wrap
         .layer-swiper-slide
             @include secondary-card-mobile-size
+    
+        .layer-swiper-slide-bottom__shop-name
+            @include shopName
+        
+        .layer-swiper-slide-bottom__name
+            @include name
+        
+        .layer-swiper-slide-bottom__price 
+            @include price
 
     &-swiper-slide &-swiper-slide-bottom
         display: block
@@ -178,24 +218,11 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
 
     &-swiper-slide-bottom
         &__price
-            font-weight: 600
-            font-size: 16px
-            color: $SMALL_BOTTOM_CARD_PRICE_COLOR
-            margin-bottom: 4px
-            line-height: initial
+            @include price
 
         &__name
             @media (min-width: 768px)
-                font-weight: 500
-                font-size: 14px
-                line-height: 20px
-                letter-spacing: 0.0125em
-                color: #080808
-                margin-bottom: 12px
-                height: 38px
-                -webkit-line-clamp: 2
-                -webkit-box-orient: vertical
-                overflow: hidden
+                @include name
             &_minimal
                 margin-bottom: 4px
                 color: rgba(255, 255, 255, 0.96)
@@ -204,20 +231,12 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
                 height: auto
                 text-overflow: ellipsis
                 white-space: nowrap
+                overflow: hidden
 
         &__shop-name
             display: none
             @media (min-width: 768px)
-                width: fit-content
-                padding: 2px 6px
-                margin: 0 0 8px 8px
-                font-weight: 500
-                font-size: 10px
-                line-height: 12px
-                letter-spacing: 0.0125em
-                background: rgba(8, 8, 8, 0.56)
-                color: #FFFFFF
-                border-radius: 6px
+                @include shopName
 
         &_secondary
             @include big-card
@@ -271,12 +290,17 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
         .layer-secondary-top-content
             display: flex
             align-items: center
-            margin-bottom: 28px
+            margin-bottom: 16px
+            @media (min-width: 768px)
+                margin-bottom: 28px
             &__title
-                font-weight: 600
-                font-size: 24px
                 color: #080808
                 padding-right: 12px
+                font-size: 20px
+                font-weight: 600
+                @media (min-width: 768px)
+                    font-size: 24px
+                    
             &__devider
                 width: 1px
                 height: 18px

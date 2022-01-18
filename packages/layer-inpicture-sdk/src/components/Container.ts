@@ -42,6 +42,18 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, options);
 
+const ro = new ResizeObserver((entries) => {
+    for (const entry of entries) {
+        const { width } = entry.contentRect;
+
+        if (width < 320) {
+            (entry.target as HTMLElement).style.visibility = 'hidden';
+        } else {
+            (entry.target as HTMLElement).style.visibility = 'visible';
+        }
+    }
+});
+
 export const ConfigContext = createContext<Config>(null);
 
 export const Container = (config: Config) => {
@@ -80,6 +92,7 @@ export const Container = (config: Config) => {
     useEffect(() => {
         if (products !== null) {
             observe(template === TemplateEnum.MINIMAL ? topContentRef.current : wrapperRef.current);
+            ro.observe(wrapperRef.current);
             containerRef.current.style.height = `${wrapperRef.current?.clientHeight}px`;
             containerRef.current.style.visibility = 'visible';
             getSliderInstance();
@@ -131,7 +144,7 @@ export const Container = (config: Config) => {
                         <${SliderButtons} />
                     </div>
                 </div>
-            </div> 
+            </div>
         </EXTERNAL_FRAGMENT>
     `;
 };
