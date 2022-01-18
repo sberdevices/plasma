@@ -99,7 +99,7 @@ export type VirtualDynamicProps = Omit<VirtualProps, 'estimateSize'> & {
     align?: 'center' | 'end';
 };
 
-export type VirtualPropsKeyboard = Omit<VirtualProps, 'parentRef'> & {
+export type VirtualPropsKeyboard = VirtualProps & {
     limit: number;
     align?: 'center' | 'end';
 };

@@ -1,4 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+
+import { VirtualProps } from '../types';
 
 import { throttleByFrames } from './helpers';
 
@@ -17,14 +19,44 @@ export const useKeyboard = ({
     down,
     horizontal,
     framesToThrottle = 12,
+    parentRef,
 }: {
     up: () => void;
     down: () => void;
     horizontal: boolean;
     framesToThrottle?: number;
+    parentRef: VirtualProps['parentRef'];
 }) => {
+    const isScrollableParentFocusedRef = useRef(true);
+
+    useEffect(() => {
+        const parent = parentRef.current;
+        if (!parent) {
+            return;
+        }
+
+        const setFocusTrue = () => {
+            isScrollableParentFocusedRef.current = true;
+        };
+
+        const setFocusFalse = () => {
+            isScrollableParentFocusedRef.current = false;
+        };
+        parent.addEventListener('focusin', setFocusTrue);
+        parent.addEventListener('focusout', setFocusFalse);
+
+        return () => {
+            parent.removeEventListener('focusin', setFocusTrue);
+            parent.removeEventListener('focusout', setFocusFalse);
+        };
+    }, [parentRef]);
+
     useEffect(() => {
         const handler = (event: KeyboardEvent) => {
+            if (!isScrollableParentFocusedRef.current) {
+                return;
+            }
+
             if (horizontal) {
                 switch (event.key) {
                     case 'ArrowLeft':

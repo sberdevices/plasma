@@ -15,6 +15,7 @@ export const useVirtualKeyboard = (props: VirtualPropsKeyboard) => {
         paddingStart = 0,
         paddingEnd = 0,
         keyExtractor = defaultKeyExtractor,
+        parentRef,
     } = props;
 
     const params = useMemo(
@@ -52,6 +53,7 @@ export const useVirtualKeyboard = (props: VirtualPropsKeyboard) => {
         down,
         horizontal,
         framesToThrottle: props.framesToThrottle,
+        parentRef,
     });
 
     return {
