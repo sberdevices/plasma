@@ -1,8 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
-import { secondary, scalingPixelBasis } from '@sberdevices/plasma-tokens';
+import { Story, Meta } from '@storybook/react';
+import { InSpacingDecorator, disableProps } from '@sberdevices/plasma-sb-utils';
+import { secondary } from '@sberdevices/plasma-core';
+
+import type { SpacingProps } from '../../mixins';
 
 import {
+    DsplL,
+    DsplM,
+    DsplS,
+    H1,
+    H2,
+    H3,
+    H4,
+    H5,
+    BodyL,
+    BodyM,
+    BodyS,
+    BodyXS,
+    BodyXXS,
+    TextL,
+    TextM,
+    TextS,
+    TextXS,
     Display1,
     Display2,
     Display3,
@@ -23,11 +44,84 @@ import {
     Underline,
 } from '.';
 
+export default {
+    title: 'Content/Typography',
+    component: DsplL,
+    argTypes: {
+        ...disableProps(['ref', 'theme', 'as', 'forwardedAs']),
+    },
+    decorators: [InSpacingDecorator],
+} as Meta;
+
+export const Dspl: Story<SpacingProps> = (props) => (
+    <>
+        <DsplL {...props}>DsplL</DsplL>
+        <DsplM {...props}>DsplM</DsplM>
+        <DsplS {...props}>DsplS</DsplS>
+    </>
+);
+
+export const H: Story<SpacingProps> = (props) => (
+    <>
+        <H1 {...props}>H1</H1>
+        <H2 {...props}>H2</H2>
+        <H3 {...props}>H3</H3>
+        <H4 {...props}>H4</H4>
+        <H5 {...props}>H5</H5>
+    </>
+);
+
+export const Body: Story<SpacingProps> = (props) => (
+    <>
+        <BodyL {...props}>BodyL</BodyL>
+        <BodyL bold {...props}>
+            BodyL Bold
+        </BodyL>
+        <BodyM {...props}>BodyM</BodyM>
+        <BodyM bold {...props}>
+            BodyM Bold
+        </BodyM>
+        <BodyS {...props}>BodyS</BodyS>
+        <BodyS bold {...props}>
+            BodyS Bold
+        </BodyS>
+        <BodyXS {...props}>BodyXS</BodyXS>
+        <BodyXS bold {...props}>
+            BodyXS Bold
+        </BodyXS>
+        <BodyXXS {...props}>BodyXXS</BodyXXS>
+        <BodyXXS bold {...props}>
+            BodyXXS Bold
+        </BodyXXS>
+    </>
+);
+
+export const Text: Story<SpacingProps> = (props) => (
+    <>
+        <TextL {...props}>TextL</TextL>
+        <TextL bold {...props}>
+            TextL Bold
+        </TextL>
+        <TextM {...props}>TextM</TextM>
+        <TextM bold {...props}>
+            TextM Bold
+        </TextM>
+        <TextS {...props}>TextS</TextS>
+        <TextS bold {...props}>
+            TextS Bold
+        </TextS>
+        <TextXS {...props}>TextXS</TextXS>
+        <TextXS bold {...props}>
+            TextXS Bold
+        </TextXS>
+    </>
+);
+
 const Section = styled.section`
-    margin-bottom: ${42 / scalingPixelBasis}rem;
+    margin-bottom: 2.625rem;
 
     &:nth-child(n + 4) {
-        margin-bottom: ${22 / scalingPixelBasis}rem;
+        margin-bottom: 1.375rem;
     }
 
     &:last-child {
@@ -39,7 +133,7 @@ const Note = styled(Footnote1)`
     color: ${secondary};
 `;
 
-export const Default = () => (
+export const Legacy = () => (
     <>
         <Section>
             <Display1>Display1</Display1>

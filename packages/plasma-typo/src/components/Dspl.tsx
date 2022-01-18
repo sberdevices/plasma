@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { applyHyphens, applySpacing } from '@sberdevices/plasma-core';
+import type { BreakWordProps, SpacingProps } from '@sberdevices/plasma-core';
 
-import { dsplL, dsplM, dsplS } from '../../tokens';
-import { applyHyphens, applySpacing, BreakWordProps, SpacingProps } from '../../mixins';
+import { dsplL, dsplM, dsplS } from '../tokens';
 
 export const DsplL = styled.div<SpacingProps & BreakWordProps>`
     ${applyHyphens}
