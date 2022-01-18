@@ -1,9 +1,9 @@
 import styled from 'styled-components';
+import { applyHyphens, applySpacing } from '@sberdevices/plasma-core';
+import type { BreakWordProps, SpacingProps } from '@sberdevices/plasma-core';
 
-import { textL, textLBold, textM, textMBold, textS, textSBold, textXS, textXSBold } from '../../tokens';
-import { applyHyphens, applySpacing, BreakWordProps, SpacingProps } from '../../mixins';
-
-import type { BoldProps } from './Typography.types';
+import { textL, textLBold, textM, textMBold, textS, textSBold, textXS, textXSBold } from '../tokens';
+import type { BoldProps } from '../types';
 
 export const TextL = styled.div<SpacingProps & BoldProps & BreakWordProps>`
     ${applyHyphens}

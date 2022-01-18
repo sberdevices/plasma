@@ -32,3 +32,4 @@ export * from './utils';
 export * from './hocs';
 export * from './hooks';
 export * from './mixins';
+export * from './tokens';

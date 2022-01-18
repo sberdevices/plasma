@@ -13,6 +13,7 @@
     "license": "Sber Public License at-nc-sa v.2",
     "dependencies": {
         "@sberdevices/plasma-core": "1.49.7",
+        "@sberdevices/plasma-typo": "0.2.3",
         "color": "3.1.2",
         "lodash.throttle": "4.1.1",
         "react-draggable": "4.4.3"
@@ -67,7 +68,7 @@
     },
     "scripts": {
         "prepare": "npm run build",
-        "prebuild": "rm -rf ./components ./es ./helpers ./hocs ./hooks ./mixins ./types ./utils index.d.ts index.d.ts.map index.js index.js.map",
+        "prebuild": "rm -rf ./components ./es ./helpers ./hocs ./hooks ./mixins ./tokens ./types ./utils index.d.ts index.d.ts.map index.js index.js.map",
         "build": "npm run build:cjs && npm run build:esm",
         "postbuild": "tsc --outDir . --emitDeclarationOnly",
         "build:cjs": "BABEL_ENV=cjs SC_NAMESPACE=plasma-ui babel ./src --out-dir . --source-maps --extensions .ts,.tsx",
@@ -89,17 +90,7 @@
             "^styled-components": "<rootDir>/node_modules/styled-components"
         }
     },
-    "files": [
-        "components",
-        "hocs",
-        "hooks",
-        "mixins",
-        "types",
-        "utils",
-        "index.d.ts",
-        "index.js",
-        "es"
-    ],
+    "files": ["components", "hocs", "hooks", "mixins", "tokens", "types", "utils", "index.d.ts", "index.js", "es"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Антонов Игорь Александрович",

@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { applyHyphens, applySpacing } from '@sberdevices/plasma-core';
+import type { BreakWordProps, SpacingProps } from '@sberdevices/plasma-core';
 
 import {
     bodyL,
@@ -11,10 +13,8 @@ import {
     bodyXSBold,
     bodyXXS,
     bodyXXSBold,
-} from '../../tokens';
-import { applyHyphens, applySpacing, BreakWordProps, SpacingProps } from '../../mixins';
-
-import type { BoldProps } from './Typography.types';
+} from '../tokens';
+import type { BoldProps } from '../types';
 
 export const BodyL = styled.div<SpacingProps & BoldProps & BreakWordProps>`
     ${applyHyphens}
