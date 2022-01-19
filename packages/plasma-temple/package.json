@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-temple",
-    "version": "1.20.0",
+    "version": "1.20.1",
     "description": "SberDevices CanvasApp Templates.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -79,7 +79,9 @@
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
         "test": "jest"
     },
-    "files": ["dist"],
+    "files": [
+        "dist"
+    ],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Виноградов Антон Александрович",
