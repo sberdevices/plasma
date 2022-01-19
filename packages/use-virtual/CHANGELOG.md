@@ -1,3 +1,15 @@
+# v0.5.0 (Wed Jan 19 2022)
+
+#### 🚀 Enhancement
+
+- feat(use-virtual): keyboard handler only in focus [#159](https://github.com/sberdevices/pashka/pull/159) ([@KateKate](https://github.com/KateKate))
+
+#### Authors: 1
+
+- Ekaterina Anishkina ([@KateKate](https://github.com/KateKate))
+
+---
+
 # v0.4.0 (Mon Jan 17 2022)
 
 #### 🐛 Bug Fix
