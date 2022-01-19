@@ -1,3 +1,19 @@
+# (Wed Jan 19 2022)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@1.20.1`
+  - fix(plasma-temple): improve CartPage mobile markup [#1005](https://github.com/sberdevices/plasma/pull/1005) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - fix(plasma-temple): improve CartPage markup [#1005](https://github.com/sberdevices/plasma/pull/1005) ([@LamaEats](https://github.com/LamaEats))
+  - chore(plasma-temple): common storybook style [#1005](https://github.com/sberdevices/plasma/pull/1005) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 2
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Tue Jan 18 2022)
 
 #### 🚀 Enhancement
