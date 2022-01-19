@@ -15,7 +15,7 @@ import { applyInteraction, InteractionProps } from '../../mixins';
 export type ActionButtonProps = Omit<BaseProps, 'stretch' | 'pin'> &
     Partial<ButtonSizeProps> &
     Partial<ButtonViewProps> &
-    InteractionProps & { pin: Extract<PinProps['pin'], 'square-square' | 'circle-circle'> };
+    InteractionProps & { pin?: Extract<PinProps['pin'], 'square-square' | 'circle-circle'> };
 
 const buttonSizes = {
     l: {
