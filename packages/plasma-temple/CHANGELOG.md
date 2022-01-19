@@ -1,3 +1,15 @@
+# v1.21.0 (Wed Jan 19 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Support for findInInitialData [#1043](https://github.com/sberdevices/plasma/pull/1043) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.20.1 (Wed Jan 19 2022)
 
 #### 🐛 Bug Fix
