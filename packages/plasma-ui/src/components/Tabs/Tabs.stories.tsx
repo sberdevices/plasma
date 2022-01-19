@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { Icon, IconClock } from '@sberdevices/plasma-icons';
 
-import { InSpacingDecorator, disableProps } from '../../helpers';
+import { InContainerDecorator, disableProps } from '../../helpers';
 
 import { Tabs, TabItem, TabsProps, TabsController, TabsControllerProps } from '.';
 
@@ -16,7 +16,7 @@ const propsToDisable = ['index', 'focused', 'shiftLeft', 'shiftRight', 'scaleOnP
 export default {
     title: 'Controls/Tabs',
     component: Tabs,
-    decorators: [InSpacingDecorator],
+    decorators: [InContainerDecorator],
     argTypes: {
         animated: {
             control: {
