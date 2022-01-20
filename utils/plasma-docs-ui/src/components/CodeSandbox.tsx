@@ -22,9 +22,11 @@ ${
 }
 
 ReactDOM.render(
-  <StyledPreview>
-    <App />
-  </StyledPreview>,
+  <DeviceThemeProvider responsiveTypo>
+    <StyledPreview>
+        <App />
+    </StyledPreview>
+  </DeviceThemeProvider>,
   document.getElementById("root")
 );`;
 
