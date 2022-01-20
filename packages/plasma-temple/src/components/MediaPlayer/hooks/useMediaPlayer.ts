@@ -51,6 +51,14 @@ export const useMediaPlayer: UseMediaPlayer = (ref, params) => {
                     setState((prevState) => ({ ...prevState, loading: false }));
                 }
             },
+            timeUpdate: () => {
+                if (ref.current) {
+                    setState((prevState) => ({
+                        ...prevState,
+                        ...(ref.current && { currentTime: ref.current.currentTime }),
+                    }));
+                }
+            },
             durationChange: () => {
                 if (ref.current && !durationParams) {
                     const { duration } = ref.current;
@@ -156,7 +164,7 @@ export const useMediaPlayer: UseMediaPlayer = (ref, params) => {
         state: {
             ...state,
             get currentTime() {
-                return (ref.current?.currentTime ?? 0) - startTimeAbsolute;
+                return state.currentTime - startTimeAbsolute;
             },
         },
     };
