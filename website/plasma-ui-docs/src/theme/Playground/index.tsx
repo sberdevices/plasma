@@ -6,6 +6,7 @@ import Translate from '@docusaurus/Translate';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import usePrismTheme from '@theme/hooks/usePrismTheme';
+import { DeviceThemeProvider } from '@sberdevices/plasma-ui';
 import { gradient } from '@sberdevices/plasma-tokens';
 import { darkSber } from '@sberdevices/plasma-tokens/themes';
 import { PlaygroundPreview } from '@sberdevices/plasma-docs-ui';
@@ -47,7 +48,7 @@ const Header: FC = ({ children }) => {
 
 const ResultWithHeader: FC = () => {
     return (
-        <>
+        <DeviceThemeProvider responsiveTypo>
             <Header>
                 <Translate id="theme.Playground.result" description="The result label of the live codeblocks">
                     Result
@@ -55,7 +56,7 @@ const ResultWithHeader: FC = () => {
             </Header>
             <LivePreview Component={StyledPreview} />
             <LiveError />
-        </>
+        </DeviceThemeProvider>
     );
 };
 
