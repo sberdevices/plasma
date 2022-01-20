@@ -116,7 +116,24 @@ function sendAction<T extends Partial<AssistantClientCustomizedCommand<Assistant
         // eslint-disable-next-line @typescript-eslint/camelcase
         sdk_meta: {},
     } as AssistantClientCustomizedCommand<AssistantSmartAppData>;
-    mockAssistant.receiveCommand(sendedCommand);
+
+    Cypress.log({
+        name: 'receive assistant action',
+        message: `type: ${command.type}`,
+        consoleProps: () => command,
+    });
+
+    return cy.wrap(mockAssistant.receiveCommand(sendedCommand), {
+        log: false,
+    });
+}
+
+export function sendSmartAppData<T extends AssistantSmartAppData['smart_app_data']>(action: T) {
+    return sendAction({
+        type: 'smart_app_data',
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        smart_app_data: action,
+    });
 }
 
 export { mockAssistant, sendAction };

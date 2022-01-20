@@ -7,17 +7,18 @@ import { FieldComponentProps } from '../types';
 
 type DatePickerProps = FieldComponentProps<
     UIDatePickerProps,
-    'onSubmit' | 'onChange',
+    'onSubmit' | 'onChange' | 'value',
     {
         onSubmit: () => void;
         onChange: (val: Date) => void;
+        value?: Date;
     }
 >;
 
 export const DatePicker = withWrapField<Date, DatePickerProps>(
     // eslint-disable-next-line prefer-arrow-callback
     function DatePicker(props) {
-        const { value = new Date(), max, min, onChange, onSubmit } = props;
+        const { value, max, min, onChange, onSubmit } = props;
 
         const mountRef = React.useRef<HTMLButtonElement>(null);
         useFocusOnMount(mountRef, {

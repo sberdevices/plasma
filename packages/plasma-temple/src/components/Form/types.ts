@@ -8,15 +8,15 @@ export interface FormState {
     readonly [key: string]: unknown;
 }
 export interface FieldProps<V> {
-    value: V;
-    onChange: (val: V) => void;
+    value?: V;
+    onChange: (val?: V) => void;
     onSubmit: () => void;
     label?: string;
     validationMessages?: ValidationMessage;
     /**
      * Коллбек для валидации ввода в дополнение к браузерной валидации
      */
-    customValidate?: (value: V) => boolean;
+    customValidate?: (value?: V) => boolean;
     checkInput?: () => void;
     description?: string;
 }
