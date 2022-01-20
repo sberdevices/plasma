@@ -29,15 +29,14 @@ Cypress.Commands.add('waitForResources', (...args) => {
         options = {};
     }
 
-    const log = false; // let's not log inner commands
     const timeout = options.timeout || Cypress.config('defaultCommandTimeout');
 
     cy.log(`Waiting for resources ${names.join(', ')}`);
 
-    cy.window({ log }).then(
+    cy.window({ log: false }).then(
         // note that ".then" method has options first, callback second
         // https://on.cypress.io/then
-        { log, timeout },
+        { timeout },
         (win) => {
             return new Cypress.Promise((resolve, reject) => {
                 // flag set when we find all names
@@ -88,17 +87,23 @@ type SendNavigatioActionParams = Partial<Cypress.TypeOptions> & {
     times?: number;
 };
 
-Cypress.Commands.add('sendNavigateAction', (dir: navigate, opts: SendNavigatioActionParams = {}) => {
-    const times = opts?.times ?? 1;
-    const sequence = Array.isArray(dir) ? dir : Array(times).fill(dir);
+Cypress.Commands.add(
+    'sendNavigateAction',
+    { prevSubject: 'optional' },
+    (subject: HTMLElement | void, dir: navigate, opts: SendNavigatioActionParams = {}) => {
+        const { times = 1, ...typeOptions } = opts;
+        const sequence: navigate[] = Array.isArray(dir) ? dir : Array(times).fill(dir);
 
-    const options = {
-        delay: 350, // анимация перемещения фокуса
-        waitForAnimation: true,
-        ...opts,
-    };
+        const options = {
+            delay: 350, // анимация перемещения фокуса
+            waitForAnimation: true,
+            ...typeOptions,
+        };
 
-    return sequence.reduce<Cypress.Chainable>((acc, key) => {
-        return acc.type(key, options);
-    }, cy.get('body'));
-});
+        const chainer = subject ? cy.wrap(subject, { log: false }) : cy.get('body');
+
+        return sequence.reduce<Cypress.Chainable>((acc, key) => {
+            return acc.type(key, options);
+        }, chainer);
+    },
+);

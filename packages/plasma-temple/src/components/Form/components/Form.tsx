@@ -12,7 +12,7 @@ const StyledRow = styled.div`
 interface FormProps<D, K extends keyof D> {
     sequence: Array<K>;
     initialData: D;
-    children: (val: FormContextApi<D>) => React.ReactElement;
+    children: (val: FormContextApi<D>) => React.ReactNode;
     initialField?: K;
     onSubmit?: (data: D) => void;
     onChangeValueField?: (val: D[K], field: K) => void;

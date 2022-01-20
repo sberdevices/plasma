@@ -91,7 +91,7 @@ function reducer<T>(state: State<T>, action: Action<T>) {
     }
 }
 
-interface VoiceFieldProps<T> {
+export interface VoiceFieldProps<T> {
     labels: VoiceLabels;
     formatter?: (value: T) => string;
     onChange: (value: T) => void;
