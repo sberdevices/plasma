@@ -8,193 +8,81 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Типографическая система
-Текст – основа интерфейса. Типографическая система Plasma разработана, чтобы текст выглядел одинаково во всей экосистеме SberDevices.
-Типографическая система представляет собой набор констант ([_токенов_](./tokens)) и [компонентов](../components/typography).
-Компоненты заменяют обычные HTML-теги, такие как `h1`, `h2`, `h3`, `h4`, `p` и некоторые другие.
+Дизайн Plasma базируется на типографической системе, которая имеет возможность изменять размеры в зависимости от разрешения экрана устройства:
 
+| Размер | Разрешение, px      | Поверхность |
+| ------ | ------------------- | ----------- |
+| S      | до `559`            | SaluteApp   |
+| M      | от `1120` до `1919` | SberPortal  |
+| L      | от `1920`           | SberBox     |
 
-## Токен
+## Использование
 
-```js
-import { typography } from '@sberdevices/plasma-tokens';
-```
-
-`typography` включает в себя готовые стилевые объекты:
-
-- [Hero Unit](../components/typography#hero-unit):
-  - display1
-  - display2
-  - display3
-- [Заголовки](../components/typography#заголовки):
-  - headline1
-  - headline2
-  - headline3
-  - headline4
-- [Основной текст](../components/typography#основной-текст):
-  - body1
-  - body2
-  - body3
-  - paragraph1
-  - paragraph2
-- [Вспомогательный текст](../components/typography#вспомогательный-текст):
-  - footnote1
-  - footnote2
-- [Контролы](../components/typography#контролы):
-  - button1
-  - button2
-- [Дополнительные](../components/typography#контролы):
-  - caption
-  - underline
-
-### Импорт токена
-Каждый стилевой объект можно импортировать отдельно:
-
-```jsx title="App.tsx"
-import React from 'react';
-import styled from 'styled-components';
-
-import { body1, headline2 } from '@sberdevices/plasma-tokens';
-
-const AppStyled = styled.div`
-    padding: 30px;
-    ${body1}
-`;
+```tsx
+import { BodyL, bodyL } from '@sberdevices/plasma-ui';
 
 export default function App() {
     return (
-        <AppStyled>
-            <h2 style={headline2}>Hello Plasma</h2>
-            <div>
-                <span>Сил человеческих хватает до известного предела.</span>
-                <br />
-                <span>Кто виноват, что именно этот предел играет решающую роль?</span>
-            </div>
-        </AppStyled>
+        <>
+            <BodyL>Hello, World!</BodyL>{/* как компонент */}
+            <div style={bodyL}>This is Plasma.</div>{/* как стилевой токен */}
+        </>
     );
 }
 ```
 
-В приведенном примере:
-
-- Текст написан не [фирменным шрифтом](#установка-шрифта).
-- Размер шрифта выглядит хорошо на экране средних размеров, но будет слишком маленьким на экране телевизора.
+### Подключение
+Адаптивная типографика спрятана за флагом `responsiveTypo` компонента [`DeviceThemeProvider`](../components/devicethemeprovider). По умолчанию она выключена.
 
 ### Размеры
 Размер текста в объектах стилей, которые предоставляет типографическая система, задан в единицах измерения `rem`.
 
 ```js
-export const body1 = {
-    fontFamily: "'SB Sans Text','Helvetica','Arial',sans-serif",
-    fontWeight: 500,
-    fontStyle: 'normal',
-    fontSize: 'var(--plasma-typo-body1-font-size, 1rem)',
-    letterSpacing: '-0.0190em',
-    lineHeight: 'var(--plasma-typo-body1-line-height, 1.25rem)',
+export const bodyL = {
+    fontFamily: 'var(--plasma-typo-body-l-font-family)',
+    fontSize: 'var(--plasma-typo-body-l-font-size)',
+    fontStyle: 'var(--plasma-typo-body-l-font-style)',
+    fontWeight: 'var(--plasma-typo-body-l-font-weight)',
+    letterSpacing: 'var(--plasma-typo-body-l-letter-spacing)',
+    lineHeight: 'var(--plasma-typo-body-l-line-height)',
 };
 ```
 
-Это позволяет масштабировать весь интерфейс за счёт указания `font-size` на теге `<html>`.
+Это позволяет масштабировать весь интерфейс за счёт указания `font-size` на теге `<html>`. Для устройств **SberBox** и **SberPortal** используется значение `32px`. Для остальных поверхностей (например, приложение **SaluteApp**) используется значение по умолчанию — `16px`.
 
-Для устройств SberBox и SberPortal надо использовать значение `32px`.
-Для остальных поверхностей используйте значение по умолчанию — `16px`.
+> При использовании стандартной типографики устанавливать размер шрифта на теге `<html>` не обязательно, это уже предусмотрено в глобальных стилях.
 
-```css
-html {
-    font-size: 32px;
-}
-```
-
-Необходимые значения также предоставляются в пакете `plasma-tokens`.
-
-```js
-import { sberBox } from '@sberdevices/plasma-tokens/typo';
-```
-
-Пример использования со styled-components:
-
-```js title="App.tsx"
-import React from 'react';
-// createGlobalStyle нужен для создания глобальных стилей
-import styled, { createGlobalStyle } from 'styled-components';
-
-// получаем значение для целевой платформы
-import { sberBox } from '@sberdevices/plasma-tokens/typo';
-
-// получаем стилевые объекты для нашего интерфейса
-import { body1, headline2 } from '@sberdevices/plasma-tokens';
-
-const AppStyled = styled.div`
-    padding: 30px;
-    ${body1}
-`;
-
-// создаем react-компонент c глобальными стилями
-const TypoScale = createGlobalStyle(sberBox);
-
-export default function App() {
-    return (
-        <AppStyled>
-            {/* Используем  react-компонент один раз */}
-            <TypoScale />
-
-            <h2 style={headline2}>Hello Plasma</h2>
-            <div>
-                <span>Сил человеческих хватает до известного предела.</span>
-                <br />
-                <span>Кто виноват, что именно этот предел играет решающую роль?</span>
-            </div>
-        </AppStyled>
-    );
-}
-```
-
-### Дополнительно
-Также из пакета можно получить все возможные значения для:
-
-- `fontSizes`
-- `fonts`
-- `fontWeights`
-- `lineHeights`
-- `letterSpacings`
-
-```js
-import { fonts } from '@sberdevices/plasma-tokens';
-
-console.log(fonts);
-// –> {
-//     Medium: "'SB Sans Text','Helvetica','Arial',sans-serif",
-//     Bold: "'SB Sans Text','Helvetica','Arial',sans-serif",
-//     Semibold: "'SB Sans Text','Helvetica','Arial',sans-serif",
-//     Regular: "'SB Sans Text','Helvetica','Arial',sans-serif"
-// }
-```
-
-## Компонент
-Все типографические компоненты Plasma UI поддерживают типографическую систему Plasma Tokens по умолчанию.
-Такой подход позволяет использовать типографику, создавая меньше кода в проекте.
-
-```tsx title="App.tsx"
-import React from 'react';
-// вместо
-// import { body1 } from '@sberdevices/plasma-tokens';
-// используем
-import { Body1 } from '@sberdevices/plasma-ui';
-
-export default function App() {
-    return <Body1>some text</Body1>;
-}
-```
-
-> С компонентами, реализующими типографику Plasma, можно ознакомиться на странице [Typography](../components/typography).
+## Состав
+Типографика дизайн-системы Plasma включает в себя следующие компоненты:
+- [Hero Unit](../components/typography#hero-unit):
+  - DsplL
+  - DsplM
+  - DsplS
+- [Заголовки](../components/typography#заголовки):
+  - H1
+  - H2
+  - H3
+  - H4
+  - H5
+- [Интерфейсы](../components/typography#интерфейсы):
+  - BodyL
+  - BodyM
+  - BodyS
+  - BodyXS
+  - BodyXXS
+- [Текст](../components/typography#текст):
+  - TextL
+  - TextM
+  - TextS
+  - TextXS
 
 ## Установка шрифта
-Типографическая система основана на фирменном шрифте SB Sans Text.
-Для подключения в веб-приложения, шрифт загружен в [CDN](https://ru.wikipedia.org/wiki/Content_Delivery_Network).
+Типографическая система основана на фирменных шрифтах **SB Sans Display** (для заголовков) и **SB Sans Text** (для текста и компонентов). Для подключения в веб-приложения, шрифт загружен в [CDN](https://ru.wikipedia.org/wiki/Content_Delivery_Network).
 
 Чтобы использовать типографическую систему, достаточно указать один CSS-файл внутри тега `<head>`.
 
 + Если вы используете [Create React App](https://create-react-app.dev), подключите систему в файле `public/index.html`.
-+ Если вы используете [Next.js](https://nextjs.org/), создайте файл `pages/_document.tsx` и подключите систему в нем.
++ Если вы используете [Next.js](https://nextjs.org/), создайте файл [`pages/_document.tsx`](https://nextjs.org/docs/advanced-features/custom-document) и подключите систему в нем.
 
 <Tabs
   defaultValue="cra"
@@ -208,6 +96,10 @@ export default function App() {
 ```html {3-6} title="public/index.html"
 <html>
     <head>
+        <link
+            rel="stylesheet"
+            href="https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansDisplay.0.1.0.css"
+        />
         <link
             rel="stylesheet"
             href="https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansText.0.1.0.css"
@@ -231,6 +123,10 @@ export default class Document extends BaseDocument {
                 <Head>
                     <link
                         rel="stylesheet"
+                        href="https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansDisplay.0.1.0.css"
+                    />
+                    <link
+                        rel="stylesheet"
                         href="https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansText.0.1.0.css"
                     />
                 </Head>
@@ -245,3 +141,6 @@ export default class Document extends BaseDocument {
 ```
 </TabItem>
 </Tabs>
+
+## Типографика, совместимая со старыми версиями
+См. на странице [Совместимая типографика](./typography-legacy).

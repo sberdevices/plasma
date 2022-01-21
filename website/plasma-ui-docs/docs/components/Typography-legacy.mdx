@@ -1,0 +1,124 @@
+---
+id: typography-legacy
+title: Typography (legacy)
+---
+
+# Typography
+
+:::caution
+Текст данной страницы относится к функциональности, которая больше не поддерживается. С актуальной информацией можно ознакомиться на странице [Typography](./typography).
+:::
+
+В состав Plasma UI входят компоненты, реализующие [типографическую систему Plasma](../design/typography). Они заменяют обычные HTML-теги, такие как `h1`, `h2`, `h3`, `h4`, `p` и некоторые другие.
+
+## Установка шрифта
+Компоненты типографики используют фирменный шрифт **SB Sans Text**. О том, как установить данный шрифт, смотрите на странице [Типографическая система](../design/typography#установка-шрифта).
+
+## Отступы
+По умолчанию типографика поддерживает стандартные отступы. О том, как использовать отступы, читайте на странице [Стандартные отступы](../design/spacing#встроенные-отступы-в-типографике).
+
+## Переносы
+По умолчанию в типографике слова переносятся по слогам. Чтобы отключить данный функционал, необходимо установить свойство `breakWord` в значении `false`.
+
+## Состав
+
+### Hero unit
+
+```tsx live
+import React from 'react';
+import { Display1, Display2, Display3 } from '@sberdevices/plasma-ui';
+
+export function App() {
+    return (
+        <div>
+            <Display1>Display1</Display1>
+            <Display2>Display2</Display2>
+            <Display3>Display3</Display3>
+        </div>
+    );
+}
+```
+
+### Заголовки
+
+```tsx live
+import React from 'react';
+import { Headline1, Headline2, Headline3, Headline4 } from '@sberdevices/plasma-ui';
+
+export function App() {
+    return (
+        <div>
+            <Headline1>Headline1</Headline1>
+            <Headline2>Headline2</Headline2>
+            <Headline3>Headline3</Headline3>
+            <Headline4>Headline4</Headline4>
+        </div>
+    );
+}
+```
+
+### Основной текст
+
+```tsx live
+import React from 'react';
+import { Body1, Body2, Body3, ParagraphText1, ParagraphText2 } from '@sberdevices/plasma-ui';
+
+export function App() {
+    return (
+        <div>
+            <Body1>Body1</Body1>
+            <Body2>Body2</Body2>
+            <Body3>Body3</Body3>
+            <ParagraphText1>ParagraphText1</ParagraphText1>
+            <ParagraphText2>ParagraphText2</ParagraphText2>
+        </div>
+    );
+}
+```
+
+### Вспомогательный текст
+
+```tsx live
+import React from 'react';
+import { Footnote1, Footnote2 } from '@sberdevices/plasma-ui';
+
+export function App() {
+    return (
+        <div>
+            <Footnote1>Footnote1</Footnote1>
+            <Footnote2>Footnote2</Footnote2>
+        </div>
+    );
+}
+```
+
+### Контролы
+
+```tsx live
+import React from 'react';
+import { Button1, Button2 } from '@sberdevices/plasma-ui';
+
+export function App() {
+    return (
+        <div>
+            <Button1>Button1</Button1>
+            <Button2>Button2</Button2>
+        </div>
+    );
+}
+```
+
+### Дополнительные
+```tsx live
+import React from 'react';
+import { Caption, Underline } from '@sberdevices/plasma-ui';
+
+export function App() {
+    return (
+        <div>
+            <Caption>Caption</Caption>
+            <Underline>Underline</Underline>
+        </div>
+    );
+}
+```
