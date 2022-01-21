@@ -6,18 +6,15 @@ title: Typography
 import { StorybookLink } from '@site/src/components';
 
 # Typography
-В состав Plasma UI входят компоненты, реализующие типографическую систему [типографическую систему Plasma](../design/typography).
-Они заменяют обычные HTML-теги, такие как `h1`, `h2`, `h3`, `h4`, `p` и некоторые другие.
+В состав Plasma UI входят компоненты, реализующие типографическую систему [типографическую систему Plasma](../design/typography). Они заменяют обычные HTML-теги, такие как `h1`, `h2`, `h3`, `h4`, `p` и некоторые другие.
 
 <StorybookLink name="Typography" />
 
 ## Установка шрифта
-Компоненты типографики используют фирменный шрифт **SB Sans Text**.
-О том, как установить данный шрифт, смотрите на странице [Типографическая система](../design/typography#установка-шрифта).
+Компоненты типографики используют фирменный шрифт **SB Sans Text**. О том, как установить данный шрифт, смотрите на странице [Типографическая система](../design/typography#установка-шрифта).
 
 ## Отступы
-По умолчанию типографика поддерживает стандартные отступы.
-О том, как использовать отступы, читайте на странице [Стандартные отступы](../design/spacing#встроенные-отступы-в-типографике).
+По умолчанию типографика поддерживает стандартные отступы. О том, как использовать отступы, читайте на странице [Стандартные отступы](../design/spacing#встроенные-отступы-в-типографике).
 
 ## Переносы
 По умолчанию в типографике слова переносятся по слогам. Чтобы отключить данный функционал, необходимо установить свойство `breakWord` в значении `false`.
@@ -28,14 +25,14 @@ import { StorybookLink } from '@site/src/components';
 
 ```tsx live
 import React from 'react';
-import { Display1, Display2, Display3 } from '@sberdevices/plasma-ui';
+import { DsplL, DsplM, DsplS } from '@sberdevices/plasma-ui';
 
 export function App() {
     return (
-        <div>
-            <Display1>Display1</Display1>
-            <Display2>Display2</Display2>
-            <Display3>Display3</Display3>
+        <div style={{ display: 'block' }}>
+            <DsplL>DsplL</DsplL>
+            <DsplM>DsplM</DsplM>
+            <DsplS>DsplS</DsplS>
         </div>
     );
 }
@@ -45,81 +42,64 @@ export function App() {
 
 ```tsx live
 import React from 'react';
-import { Headline1, Headline2, Headline3, Headline4 } from '@sberdevices/plasma-ui';
+import { H1, H2, H3, H4, H5 } from '@sberdevices/plasma-ui';
 
 export function App() {
     return (
-        <div>
-            <Headline1>Headline1</Headline1>
-            <Headline2>Headline2</Headline2>
-            <Headline3>Headline3</Headline3>
-            <Headline4>Headline4</Headline4>
+        <div style={{ display: 'block' }}>
+            <H1>H1</H1>
+            <H2>H2</H2>
+            <H3>H3</H3>
+            <H4>H4</H4>
+            <H5>H5</H5>
         </div>
     );
 }
 ```
 
-### Основной текст
+### Интерфейсы
+Типографика для таких частей интерфейса, как кнопки, подписи, лэйблы и т.п.
 
 ```tsx live
 import React from 'react';
-import { Body1, Body2, Body3, ParagraphText1, ParagraphText2 } from '@sberdevices/plasma-ui';
+import { BodyL, BodyM, BodyS, BodyXS, BodyXXS } from '@sberdevices/plasma-ui';
 
 export function App() {
     return (
-        <div>
-            <Body1>Body1</Body1>
-            <Body2>Body2</Body2>
-            <Body3>Body3</Body3>
-            <ParagraphText1>ParagraphText1</ParagraphText1>
-            <ParagraphText2>ParagraphText2</ParagraphText2>
+        <div style={{ display: 'block' }}>
+            <BodyL>BodyL</BodyL>
+            <BodyL bold>BodyL полужирный</BodyL>
+            <BodyM>BodyM</BodyM>
+            <BodyM bold>BodyM полужирный</BodyM>
+            <BodyS>BodyS</BodyS>
+            <BodyS bold>BodyS полужирный</BodyS>
+            <BodyS>BodyXS</BodyS>
+            <BodyS bold>BodyXS полужирный</BodyS>
+            <BodyXXS>BodyXXS</BodyXXS>
+            <BodyXXS bold>BodyXXS полужирный</BodyXXS>
         </div>
     );
 }
 ```
 
-### Вспомогательный текст
+### Текст
+Типографические элементы для описаний к статьям, дополнительной информации и т.д.
 
 ```tsx live
 import React from 'react';
-import { Footnote1, Footnote2 } from '@sberdevices/plasma-ui';
+import { TextL, TextM, TextS, TextXS } from '@sberdevices/plasma-ui';
 
 export function App() {
     return (
-        <div>
-            <Footnote1>Footnote1</Footnote1>
-            <Footnote2>Footnote2</Footnote2>
-        </div>
-    );
-}
-```
-
-### Контролы
-
-```tsx live
-import React from 'react';
-import { Button1, Button2 } from '@sberdevices/plasma-ui';
-
-export function App() {
-    return (
-        <div>
-            <Button1>Button1</Button1>
-            <Button2>Button2</Button2>
-        </div>
-    );
-}
-```
-
-### Дополнительные
-```tsx live
-import React from 'react';
-import { Caption, Underline } from '@sberdevices/plasma-ui';
-
-export function App() {
-    return (
-        <div>
-            <Caption>Caption</Caption>
-            <Underline>Underline</Underline>
+        <div style={{ display: 'block' }}>
+            <TextL>TextL</TextL>
+            <TextL bold>TextL полужирный</TextL>
+            <TextM>TextM</TextM>
+            <TextM bold>TextM полужирный</TextM>
+            <TextS>TextS</TextS>
+            <TextS bold>TextS полужирный</TextS>
+            <TextXS>TextXS</TextXS>
+            <TextXS bold>TextXS полужирный</TextXS>
         </div>
     );
 }
