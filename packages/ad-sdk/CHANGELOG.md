@@ -1,3 +1,15 @@
+# v1.5.1 (Fri Jan 21 2022)
+
+#### 🐛 Bug Fix
+
+- fix(ad-sdk): add pad_id and block_id for surface SBERZVUK [#156](https://github.com/sberdevices/pashka/pull/156) ([@OgNellis](https://github.com/OgNellis))
+
+#### Authors: 1
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+
+---
+
 # v1.5.0 (Fri Dec 24 2021)
 
 #### 🚀 Enhancement
