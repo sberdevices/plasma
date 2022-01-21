@@ -1,6 +1,6 @@
 {
   "name": "@sberdevices/ad-sdk",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "SberDevices Ad SDK",
   "main": "umd/ad-sdk.production.min.js",
   "browser": "umd/ad-sdk.production.min.js",
