@@ -1,15 +1,24 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "ES6",
+    "module": "CommonJS",
     "outDir": "dist",
-    "jsx": "react-jsx",
+    "jsx": "react",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "experimentalDecorators": true,
     "removeComments": true,
-    "noImplicitAny": false,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "typeRoots": ["./node_modules/@types", "./node_modules/@figma"]
-  }
+    "typeRoots": ["./node_modules/@types", "./node_modules/@figma"],
+    "declaration": true,
+    "composite": true,
+    "strict": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "rootDir": "src",
+    "allowJs": true
+  },
+  "include": ["./src"]
 }

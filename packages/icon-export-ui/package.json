@@ -5,6 +5,10 @@
   "main": "code.js",
   "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
   "license": "Sber Public License at-nc-sa v.2",
+  "private": true,
+  "publishConfig": {
+    "access": "restricted"
+  },
   "scripts": {
     "build": "webpack --mode=production",
     "watch": "webpack --mode=development --watch"
@@ -29,8 +33,8 @@
     "@sberdevices/plasma-icons": "^1.63.2",
     "@sberdevices/plasma-tokens-web": "^1.14.0",
     "@sberdevices/plasma-web": "^1.71.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "styled-components": "^5.3.3"
   }
 }
