@@ -1,0 +1,36 @@
+{
+  "name": "icon-export-ui",
+  "version": "1.0.0",
+  "description": "Icon exporter figma plugin",
+  "main": "code.js",
+  "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
+  "license": "Sber Public License at-nc-sa v.2",
+  "scripts": {
+    "build": "webpack --mode=production",
+    "watch": "webpack --mode=development --watch"
+  },
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.41.1",
+    "@types/react": "^17.0.11",
+    "@types/react-dom": "^17.0.7",
+    "@types/styled-components": "^5.1.20",
+    "html-webpack-inline-source-plugin": "^0.0.10",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.5.1",
+    "prettier": "^2.3.1",
+    "style-loader": "^2.0.0",
+    "ts-loader": "^8.0.11",
+    "typescript": "^4.1.2",
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.6"
+  },
+  "dependencies": {
+    "@sberdevices/plasma-icons": "^1.63.2",
+    "@sberdevices/plasma-tokens-web": "^1.14.0",
+    "@sberdevices/plasma-web": "^1.71.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.3"
+  }
+}
