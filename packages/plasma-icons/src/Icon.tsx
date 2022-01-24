@@ -103,6 +103,7 @@ import { WifiSignal3 } from './Icon.assets/WifiSignal3';
 import { WifiSignalLock } from './Icon.assets/WifiSignalLock';
 // Hardware
 import { Devices } from './Icon.assets/Devices';
+import { DevicesAlt1 } from './Icon.assets/DevicesAlt1';
 import { Device } from './Icon.assets/Device';
 import { DeviceTv } from './Icon.assets/DeviceTv';
 import { Display } from './Icon.assets/Display';
@@ -110,12 +111,27 @@ import { Gamepad } from './Icon.assets/Gamepad';
 import { Gyro } from './Icon.assets/Gyro';
 import { Headphones } from './Icon.assets/Headphones';
 import { Keyboard } from './Icon.assets/Keyboard';
+import { Mobile } from './Icon.assets/Mobile';
 import { MobileAutorotate } from './Icon.assets/MobileAutorotate';
+import { Phone } from './Icon.assets/Phone';
+import { PhoneStroke } from './Icon.assets/PhoneStroke';
+import { PhoneWiFi } from './Icon.assets/PhoneWiFi';
 import { RemotesAndAccessories } from './Icon.assets/RemotesAndAccessories';
 import { RemotesAndAccessoriesStroke } from './Icon.assets/RemotesAndAccessoriesStroke';
+import { SberBoom } from './Icon.assets/SberBoom';
+import { SberBoxTime } from './Icon.assets/SberBoxTime';
+import { SberBoxTimeStroke } from './Icon.assets/SberBoxTimeStroke';
+import { SberBoxTop } from './Icon.assets/SberBoxTop';
+import { SberBoxTopFront } from './Icon.assets/SberBoxTopFront';
+import { SberBoxTopStroke } from './Icon.assets/SberBoxTopStroke';
+import { SberPortal } from './Icon.assets/SberPortal';
+import { SberPortalStroke } from './Icon.assets/SberPortalStroke';
 import { Tv } from './Icon.assets/Tv';
+import { TvAlt1 } from './Icon.assets/TvAlt1';
 import { TvChannel } from './Icon.assets/TvChannel';
 import { TvChannelAlt1 } from './Icon.assets/TvChannelAlt1';
+import { TvMode } from './Icon.assets/TvMode';
+import { TvModeWiFi } from './Icon.assets/TvModeWiFi';
 // Communication
 import { AddToCall } from './Icon.assets/AddToCall';
 import { Call } from './Icon.assets/Call';
@@ -263,6 +279,7 @@ export const iconSectionsSet = {
     },
     hardware: {
         devices: Devices,
+        devicesAlt1: DevicesAlt1,
         device: Device,
         deviceTv: DeviceTv,
         display: Display,
@@ -270,12 +287,27 @@ export const iconSectionsSet = {
         gyro: Gyro,
         headphones: Headphones,
         keyboard: Keyboard,
+        mobile: Mobile,
         mobileAutorotate: MobileAutorotate,
+        phone: Phone,
+        phoneStroke: PhoneStroke,
+        phoneWiFi: PhoneWiFi,
         remotesAndAccessories: RemotesAndAccessories,
         remotesAndAccessoriesStroke: RemotesAndAccessoriesStroke,
+        sberBoom: SberBoom,
+        sberBoxTime: SberBoxTime,
+        sberBoxTimeStroke: SberBoxTimeStroke,
+        sberBoxTop: SberBoxTop,
+        sberBoxTopFront: SberBoxTopFront,
+        sberBoxTopStroke: SberBoxTopStroke,
+        sberPortal: SberPortal,
+        sberPortalStroke: SberPortalStroke,
         tv: Tv,
+        tvAlt1: TvAlt1,
         tvChannel: TvChannel,
         tvChannelAlt1: TvChannelAlt1,
+        tvMode: TvMode,
+        tvModeWiFi: TvModeWiFi,
     },
     communication: {
         addToCall: AddToCall,
