@@ -51,7 +51,7 @@ export enum EventTypeEnum {
 export type EventBody = { 'event_type': EventTypeEnum, 'event_properties': Record<string, unknown>}
 
 export enum EventTab {
-    Clothes = 'сlothes',
+    Clothes = 'clothes',
     Actors = 'actors',
     Accessories = 'accessories',
     Merch = 'merch',
