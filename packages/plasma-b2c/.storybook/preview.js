@@ -9,6 +9,11 @@ import { standard as standardTypo, compatible as compatibleTypo } from '@sberdev
 
 import { ToastProvider } from '../src/components/Toast';
 
+// Workaround: to make VoiceOver read russian text properly
+if (typeof document !== 'undefined') {
+    document.documentElement.setAttribute('lang', 'ru');
+}
+
 /* stylelint-disable */
 const DocumentStyle = createGlobalStyle`
     html:root {
