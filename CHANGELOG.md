@@ -1,3 +1,18 @@
+# (Mon Jan 24 2022)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@1.21.1`
+  - fix(plasma-temple): Realtime update for currentTime in useMediaPlayer [#1050](https://github.com/sberdevices/plasma/pull/1050) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - test(plasma-temple): ItemPage Spec [#1032](https://github.com/sberdevices/plasma/pull/1032) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 2
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Wed Jan 19 2022)
 
 #### 🚀 Enhancement
