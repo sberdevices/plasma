@@ -9,6 +9,11 @@ import { AssistantContext } from '../src/components/PlasmaApp/AssistantContext';
 import { withAppState } from './decorators/withAppState';
 import { Layout } from '../src/components/Layout/Layout';
 
+// Workaround: to make VoiceOver read russian text properly
+if (typeof document !== 'undefined') {
+    document.documentElement.setAttribute('lang', 'ru');
+}
+
 const mock = createAssistant({
     getState: () => ({}),
 });
