@@ -2,6 +2,7 @@ import React from 'react';
 
 import { IconProps } from '../IconRoot';
 
+// TODO: https://github.com/sberdevices/plasma/issues/1058
 export const PictureFilled: React.FC<IconProps> = (props) => (
     <svg width="100%" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path
