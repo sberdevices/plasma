@@ -16,6 +16,7 @@ export const useVirtualScroll = (props: VirtualProps) => {
         keyExtractor = defaultKeyExtractor,
         useIsScrolling,
         initialRange,
+        debouncedFramesScrollSync,
     } = props;
 
     const {
@@ -29,6 +30,9 @@ export const useVirtualScroll = (props: VirtualProps) => {
         downIndex,
         currentIndex,
         isScrolling,
+        lastUpdateSource,
+        setCurrentIndexAfterScrolling,
+        setIsScrollingToIndexTrue,
     } = useVirualInit(props);
 
     const latestRef = useRef<{
@@ -65,6 +69,7 @@ export const useVirtualScroll = (props: VirtualProps) => {
         latestRef,
         itemsLength,
         scrollToFn,
+        setIsScrollingToIndexTrue,
     });
 
     /**
@@ -96,6 +101,8 @@ export const useVirtualScroll = (props: VirtualProps) => {
         scrollKey,
         setRangeAndIsScrollingTrue,
         setIsScrollingFalse,
+        setCurrentIndexAfterScrolling,
+        debouncedFramesScrollSync,
     });
 
     return {
@@ -106,5 +113,6 @@ export const useVirtualScroll = (props: VirtualProps) => {
         downIndex,
         currentIndex,
         isScrolling,
+        lastUpdateSource,
     };
 };

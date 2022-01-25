@@ -56,7 +56,7 @@ export const useRect = (nodeRef: React.RefObject<HTMLElement>) => {
     return rect;
 };
 
-const findNearestBinarySearch = (
+export const findNearestBinarySearch = (
     low: number,
     high: number,
     getCurrentValue: (index: number) => number,

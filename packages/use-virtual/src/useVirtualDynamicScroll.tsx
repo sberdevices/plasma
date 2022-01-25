@@ -24,7 +24,17 @@ export const useVirtualDynamicScroll = (props: VirtualDynamicProps) => {
         keyExtractor = defaultKeyExtractor,
         addItemsMode,
     } = props;
-    const { sizeKey, scrollKey, range, setRange, upIndex, downIndex, currentIndex } = useVirualInit(props);
+    const {
+        sizeKey,
+        scrollKey,
+        range,
+        setRange,
+        upIndex,
+        downIndex,
+        currentIndex,
+        lastUpdateSource,
+        setIsScrollingToIndexTrue,
+    } = useVirualInit(props);
 
     const latestRef = useRef<{
         scrollOffset: number;
@@ -50,6 +60,7 @@ export const useVirtualDynamicScroll = (props: VirtualDynamicProps) => {
         latestRef,
         itemsLength,
         scrollToFn,
+        setIsScrollingToIndexTrue,
     });
 
     const [scrollableSize, setScrollableSize] = useState(0);
@@ -180,5 +191,6 @@ export const useVirtualDynamicScroll = (props: VirtualDynamicProps) => {
         setNeedRestoreScrollWeakFlag,
         upIndex,
         downIndex,
+        lastUpdateSource,
     };
 };

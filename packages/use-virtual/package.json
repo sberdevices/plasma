@@ -3,10 +3,7 @@
     "license": "MIT",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
-    "files": [
-        "dist",
-        "src"
-    ],
+    "files": ["dist", "src"],
     "engines": {
         "node": ">=12"
     },
@@ -67,6 +64,7 @@
         "@types/resize-observer-browser": "0.1.6",
         "@types/styled-components": "5.1.16",
         "babel-loader": "8.2.3",
+        "eslint": "6.8.0",
         "husky": "7.0.4",
         "jest": "27.4.3",
         "react": "17.0.2",

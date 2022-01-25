@@ -7,9 +7,9 @@ import { useKeyboard } from './utils/use-keyboard';
 export const useVirtualDynamic = (props: VirtualDynamicProps) => {
     const virtual = useVirtualDynamicScroll(props);
     const { horizontal = false, align, itemsLength, parentRef } = props;
-    const { upIndex, downIndex, setNeedRestoreScrollWeakFlag, scrollToIndex } = virtual;
+    const { upIndex, downIndex, setNeedRestoreScrollWeakFlag, scrollToIndex, currentIndex, lastUpdateSource } = virtual;
     const [prevRange, setPrevRange] = useState(virtual.range);
-    const [prevCurrentIndex, setPrevCurrentIndex] = useState(virtual.currentIndex);
+    const [prevCurrentIndex, setPrevCurrentIndex] = useState(currentIndex);
 
     if (virtual.range !== prevRange) {
         setPrevRange(virtual.range);
@@ -37,9 +37,11 @@ export const useVirtualDynamic = (props: VirtualDynamicProps) => {
         parentRef,
     });
 
-    if (prevCurrentIndex !== virtual.currentIndex) {
-        scrollToIndex(virtual.currentIndex);
-        setPrevCurrentIndex(virtual.currentIndex);
+    if (prevCurrentIndex !== currentIndex) {
+        if (lastUpdateSource === 'keyboard') {
+            scrollToIndex(currentIndex);
+        }
+        setPrevCurrentIndex(currentIndex);
     }
 
     return virtual;

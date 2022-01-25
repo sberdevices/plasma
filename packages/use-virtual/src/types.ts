@@ -30,17 +30,18 @@ export type LatestRefData = {
 
 export type VirtualProps = {
     /**
-     * контейнер, который скроллится
+     * Контейнер, внутри которого виртуализация.
+     * Если есть скролл, то контейнер со скроллом.
      */
     parentRef: React.RefObject<HTMLDivElement>;
     horizontal?: boolean;
     /**
-     * количество всех элементов в списке
+     * Количество всех элементов в списке.
      */
     itemsLength: number;
     /**
-     * вычисление размера элемента в зависимости от индекса
-     * по умолчанию размер = 50px
+     * Вычисление размера элемента в зависимости от индекса.
+     * По умолчанию размер = 50px
      */
     estimateSize: (index: number) => number;
     /**
@@ -91,6 +92,13 @@ export type VirtualProps = {
      * Учитывается только при монтировании компонента.
      */
     initialRange?: Range;
+    /**
+     * Сколько кадров дебаунсить для
+     * вычисления currentIndex после скролла.
+     * По умолчанию debouncedFramesScrollSync = 1.
+     * Для useVirtualSmoothScroll debouncedFramesScrollSync = 2.
+     */
+    debouncedFramesScrollSync?: number;
 };
 
 export type VirtualDynamicProps = Omit<VirtualProps, 'estimateSize'> & {

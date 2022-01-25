@@ -6,6 +6,19 @@ type State = {
     range: Range;
     currentIndex: number;
     isScrolling: boolean;
+    /**
+     * lastUpdateSource нужен для вызова scrollToIndex.
+     * scrollToIndex вызываем только в случае обновления
+     * currentIndex с клавиатуры.
+     */
+    lastUpdateSource: 'init' | 'scroll' | 'keyboard';
+    /**
+     * isScrollingToIndex - запоминаем,
+     * что был вызван scrollToIndex.
+     * Чтобы узнать надо пересчитывать currentIndex или нет.
+     * lastUpdateSource подошел бы, но не для SmoothScroll.
+     */
+    isScrollingToIndex: boolean;
 };
 
 type SetIndexParams = {
@@ -56,15 +69,23 @@ type Action =
       }
     | {
           type: 'set isScrolling false';
+      }
+    | {
+          type: 'set current index after scrolling';
+          payload: number;
+      }
+    | {
+          type: 'set isScrollingToIndex true';
+          payload: number | undefined;
       };
 
 const getSafeCurrent = (current: number, size: number) => {
     if (current < 0) {
-        return size - 1;
+        return 0;
     }
 
     if (current > size - 1) {
-        return 0;
+        return size - 1;
     }
 
     return current;
@@ -81,17 +102,21 @@ const getOffset = (limit: number, align: 'center' | 'end') => {
 
 const reducer = (state: State, action: Action) => {
     switch (action.type) {
+        // вызывается только на scroll event
         case 'set range and isScrolling true':
-        case 'set range':
+        case 'set range': {
             return {
                 ...state,
                 isScrolling: action.type === 'set range and isScrolling true',
                 range: action.payload.getRange(state.range),
+                lastUpdateSource: 'scroll' as const,
             };
+        }
         case 'set isScrolling false': {
             return {
                 ...state,
                 isScrolling: false,
+                lastUpdateSource: 'scroll' as const,
             };
         }
         case 'up index':
@@ -105,8 +130,10 @@ const reducer = (state: State, action: Action) => {
             return {
                 ...state,
                 currentIndex,
+                lastUpdateSource: 'keyboard' as const,
             };
         }
+        // используем только в useKeyboard хуках
         case 'up index and range':
         case 'down index and range': {
             const {
@@ -141,8 +168,29 @@ const reducer = (state: State, action: Action) => {
                     end: start + limit - 1,
                 },
                 currentIndex,
+                pendingCurrentIndex: currentIndex,
+                lastUpdateSource: 'keyboard' as const,
             };
         }
+        case 'set current index after scrolling': {
+            const newCurrentIndex = action.payload;
+
+            if (newCurrentIndex === state.currentIndex) {
+                return state;
+            }
+
+            return {
+                ...state,
+                currentIndex: state.isScrollingToIndex ? state.currentIndex : newCurrentIndex,
+                isScrollingToIndex: false,
+            };
+        }
+        case 'set isScrollingToIndex true':
+            return {
+                ...state,
+                isScrollingToIndex: true,
+                currentIndex: action.payload ?? state.currentIndex,
+            };
         default:
             throw new Error('useVirualInit reducer');
     }
@@ -166,6 +214,8 @@ export function useVirualInit({
         },
         currentIndex: initialCurrentIndex,
         isScrolling: false,
+        lastUpdateSource: 'init',
+        isScrollingToIndex: false,
     });
 
     const {
@@ -176,6 +226,8 @@ export function useVirualInit({
         setRange,
         setRangeAndIsScrollingTrue,
         setIsScrollingFalse,
+        setCurrentIndexAfterScrolling,
+        setIsScrollingToIndexTrue,
     } = useMemo(
         () => ({
             upIndex: (params: SetIndexParams) =>
@@ -213,6 +265,18 @@ export function useVirualInit({
                     type: 'set isScrolling false',
                 });
             },
+            setCurrentIndexAfterScrolling: (currentIndex: number) => {
+                dispatch({
+                    type: 'set current index after scrolling',
+                    payload: currentIndex,
+                });
+            },
+            setIsScrollingToIndexTrue: (currentIndex?: number) => {
+                dispatch({
+                    type: 'set isScrollingToIndex true',
+                    payload: currentIndex,
+                });
+            },
         }),
         [],
     );
@@ -230,6 +294,9 @@ export function useVirualInit({
         downIndexAndRange,
         currentIndex: state.currentIndex,
         isScrolling: state.isScrolling,
+        lastUpdateSource: state.lastUpdateSource,
+        setCurrentIndexAfterScrolling,
+        setIsScrollingToIndexTrue,
     } as const;
 }
 

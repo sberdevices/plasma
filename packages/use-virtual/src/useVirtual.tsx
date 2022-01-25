@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 import { VirtualProps } from './types';
 import { useVirtualScroll } from './useVirtualScroll';
@@ -7,7 +7,7 @@ import { useKeyboard } from './utils/use-keyboard';
 export const useVirtual = (props: VirtualProps) => {
     const virtual = useVirtualScroll(props);
     const { horizontal = false, align, itemsLength = 0, parentRef } = props;
-    const { upIndex, downIndex, scrollToIndex, currentIndex } = virtual;
+    const { upIndex, downIndex, scrollToIndex, currentIndex, lastUpdateSource } = virtual;
     const [prevCurrentIndex, setPrevCurrentIndex] = useState(currentIndex);
 
     const { up, down } = useMemo(() => {
@@ -31,7 +31,9 @@ export const useVirtual = (props: VirtualProps) => {
     });
 
     if (prevCurrentIndex !== currentIndex) {
-        scrollToIndex(currentIndex);
+        if (lastUpdateSource === 'keyboard') {
+            scrollToIndex(currentIndex);
+        }
         setPrevCurrentIndex(currentIndex);
     }
 
