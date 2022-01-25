@@ -1,3 +1,15 @@
+# v1.47.0 (Tue Jan 25 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-core): Make toasts stretch more then 50% of container [#1037](https://github.com/sberdevices/plasma/pull/1037) (yaarny@gmail.com)
+
+#### Authors: 1
+
+- Булах Александр (yaarny@gmail.com)
+
+---
+
 # v1.46.2 (Thu Jan 13 2022)
 
 #### 🐛 Bug Fix
