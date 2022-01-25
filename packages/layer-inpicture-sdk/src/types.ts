@@ -15,6 +15,7 @@ export type Config = {
     template?: TemplateEnum;
     withSkeleton?: boolean;
     maxCount?: number;
+    hiddenByDefault?: boolean
 }
 
 export type Product = {

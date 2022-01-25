@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { Config, Product, TemplateEnum } from '../types';
 import { loadProducts, sendOpenedWidgetEvent, sendShowWidgetEvent } from '../api/requsts';
 import { useOnceForceUpdate } from '../utils/hooks/useOnceForceUpdate';
+import { useInView } from '../utils/hooks/useInView';
 
 import { PrimaryTopContent } from './PrimaryTopContent';
 import { SecondaryTopContent } from './SecondaryTopContent';
@@ -26,22 +27,6 @@ const getSliderInstance = () => {
     });
 };
 
-const widgetsMap = new Map<Element, Config>();
-
-const options: IntersectionObserverInit = {
-    root: null,
-    threshold: 1,
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            sendShowWidgetEvent(widgetsMap.get(entry.target));
-            observer.unobserve(entry.target);
-        }
-    });
-}, options);
-
 const ro = new ResizeObserver((entries) => {
     for (const entry of entries) {
         const { width } = entry.contentRect;
@@ -57,13 +42,24 @@ const ro = new ResizeObserver((entries) => {
 export const ConfigContext = createContext<Config>(null);
 
 export const Container = (config: Config) => {
-    const { template = TemplateEnum.INTERACTIVE, image, withSkeleton, container, site, maxCount } = config;
+    const {
+        template = TemplateEnum.INTERACTIVE,
+        hiddenByDefault = false,
+        image,
+        withSkeleton,
+        container,
+        site,
+        maxCount,
+    } = config;
 
     const [isError, setIsError] = useState(false);
     const [products, setProducts] = useState<Product[] | null | SKELETON_LIST>(withSkeleton ? SKELETON_LIST : null);
     const [isPrimaryTitleShow, setIsPrimaryTitleShow] = useState(true);
-    const [isShowPrimaryWidget, toggleShowingPrimaryWidget] = useState(template !== TemplateEnum.MINIMAL);
-    const isMinimalWidgetEventAlreadySent = useRef(null);
+    const [
+        isShowPrimaryWidget,
+        toggleShowingPrimaryWidget,
+    ] = useState(!hiddenByDefault || template === TemplateEnum.LARGE);
+    const isWidgetClickOpenTabEventAlreadySent = useRef(null);
 
     const wrapperRef = useRef(null);
     const containerRef = useRef(container);
@@ -84,27 +80,35 @@ export const Container = (config: Config) => {
         load();
     }, [image, site, maxCount]);
 
-    const observe = useCallback((element: Element) => {
-        widgetsMap.set(element, config);
-        observer.observe(element);
-    }, [config]);
+    const handleWidgetInView = useCallback(() => {
+        if (!hiddenByDefault || template === TemplateEnum.LARGE) {
+            sendOpenedWidgetEvent(config);
+        } else {
+            sendShowWidgetEvent(config);
+        }
+    }, [config, template, hiddenByDefault]);
+
+    const [initInViewObserver] = useInView({ threshold: 1 }, handleWidgetInView);
 
     useEffect(() => {
         if (products !== null) {
-            observe(template === TemplateEnum.MINIMAL ? topContentRef.current : wrapperRef.current);
+            initInViewObserver(template === TemplateEnum.MINIMAL ? topContentRef.current : wrapperRef.current);
             ro.observe(wrapperRef.current);
             containerRef.current.style.height = `${wrapperRef.current?.clientHeight}px`;
             containerRef.current.style.visibility = 'visible';
             getSliderInstance();
         }
-    }, [products, image, observe, template]);
+    }, [products, image, template, initInViewObserver]);
 
     const onPrimaryHeaderClick = (event: MouseEvent) => {
         event.stopPropagation();
 
-        if (template === TemplateEnum.MINIMAL && !isMinimalWidgetEventAlreadySent.current) {
+        if (
+            (template === TemplateEnum.MINIMAL || template === TemplateEnum.INTERACTIVE)
+            && !isWidgetClickOpenTabEventAlreadySent.current
+        ) {
             sendOpenedWidgetEvent(config);
-            isMinimalWidgetEventAlreadySent.current = true;
+            isWidgetClickOpenTabEventAlreadySent.current = true;
         }
 
         toggleShowingPrimaryWidget((prev) => !prev);

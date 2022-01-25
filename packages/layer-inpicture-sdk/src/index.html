@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        body {
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
 </head>
 <body>
     <div class="ad" style="display: none; height: 200px; background: lightblue">Реклама</div>
-    <div style="margin-top: 500px; width:35%;">
+    <div style="margin-top: 500px; width: 35%;">
         <div>
             <img src="https://n1s1.hsmedia.ru/3e/c5/69/3ec5690af34c57a240156cf72efe8fb0/564x705_0xac120003_2596602641638259605.jpeg" alt="gucci" style="width: 100%;" onclick="alert('bla')">
         </div>
@@ -29,17 +34,30 @@
 </body>
 
 <script>
+    const configMap = {
+        0: {
+            template: 'minimal',
+            hiddenByDefault: true,
+        },
+        1: {
+            template: 'interactive',
+            hiddenByDefault: true,
+        },
+        2: {
+            template: 'large',
+        }
+    }
     setTimeout(() => {
         const imgs = document.querySelectorAll('img');
         const containers = document.querySelectorAll('.container');
 
         imgs.forEach((img, index) => {
             layer.initInPicture({
+                ...configMap[index],
                 image: img,
                 container: containers[index],
                 site: 'elle',
-                template: index === 0 ? 'minimal' : index === 1 ? 'interactive' : 'large',
-                // withSkeleton: true
+                // withSkeleton: true,
                 maxCount: 20
             });
         })
