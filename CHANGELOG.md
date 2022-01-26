@@ -1,3 +1,16 @@
+# (Wed Jan 26 2022)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-ui@1.77.1`
+  - fix(plasma-ui): `ActionButton`: Made `pin` not required again [#1045](https://github.com/sberdevices/plasma/pull/1045) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Tue Jan 25 2022)
 
 #### 🚀 Enhancement
