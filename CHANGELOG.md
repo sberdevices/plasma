@@ -1,3 +1,17 @@
+# (Wed Jan 26 2022)
+
+#### 🚀 Enhancement
+
+- `icon-export-ui@1.1.0`
+  - feat(icon-export-ui): Add ui form for export icon from figma [#161](https://github.com/sberdevices/pashka/pull/161) ([@neretin-trike](https://github.com/neretin-trike))
+  - feat(icon-export-ui): Add figma plugin template [#161](https://github.com/sberdevices/pashka/pull/161) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # (Fri Jan 21 2022)
 
 #### 🐛 Bug Fix
