@@ -1,23 +1,37 @@
 import { useEffect, useRef } from 'react';
 
-import { Size } from './types';
+import { PickerSize } from './types';
 
-const sizes = {
+interface PickerItemScale {
+    /**
+     * Размер (transform: scale) при slot = 0, 1, 2.
+     */
+    scale: number[];
+    /**
+     * Коэффициент смещения по oY.
+     */
+    offset: number;
+    /**
+     * Высота элемента.
+     */
+    height: number;
+}
+
+const sizes: Record<PickerSize, PickerItemScale> = {
     l: {
-        // Размер (transform: scale) при slot = 0, 1, 2
         scale: [1, 0.8, 0.8],
-        // Коэффициент смещения по oY
         offset: -0.15,
-        // Высота элемента
         height: 5,
     },
     s: {
-        // Размер (transform: scale) при slot = 0, 1, 2
         scale: [1, 0.75, 0.5],
-        // Коэффициент смещения по oY
         offset: 0.35,
-        // Высота элемента
         height: 2.875,
+    },
+    xs: {
+        scale: [1, 0.8334, 0.5834],
+        offset: 0.35,
+        height: 2.05,
     },
 };
 
@@ -44,7 +58,7 @@ export function getOpacity(slot: number) {
     return NONE_OPACITY;
 }
 
-export function getOffset(slot: number, size: Size) {
+export function getOffset(slot: number, size: PickerSize) {
     const absoluteSlot = Math.abs(slot);
     const ceilSlot = Math.ceil(absoluteSlot) || 1; // Ячейка, в которую перемещается элемент
 
@@ -67,7 +81,7 @@ export function getOffset(slot: number, size: Size) {
     return round(((absoluteSlot - 2) / (ceilSlot - 2)) * Math.sign(slot) * -1 * Math.abs(sizes[size].height));
 }
 
-export function getScale(slot: number, size: Size) {
+export function getScale(slot: number, size: PickerSize) {
     const absoluteSlot = Math.abs(slot);
     const ceilSlot = Math.ceil(absoluteSlot) || 1; // Ячейка, в которую перемещается элемент
 
@@ -92,7 +106,7 @@ export function getScale(slot: number, size: Size) {
  * Абстрактный просчет стилей в зависимости от слота,
  * не основываясь на реальном элементе списка.
  */
-export const getStyles = (slot: number, size: Size) => {
+export const getStyles = (slot: number, size: PickerSize) => {
     const normalizedSlot = Math.min(Math.abs(slot), MAX_SLOT) * Math.sign(slot);
     const opacity = getOpacity(normalizedSlot);
     const offset = getOffset(normalizedSlot, size);
@@ -124,7 +138,7 @@ export const getStyles = (slot: number, size: Size) => {
  * Малый размер => большой размер
  * Серый текст => белый текст
  */
-const scaleCallback = (size: Size) => (itemEl: HTMLElement, slot: number) => {
+const scaleCallback = (size: PickerSize) => (itemEl: HTMLElement, slot: number) => {
     const styles = getStyles(slot, size);
 
     if (itemEl.children[0] instanceof HTMLElement) {
@@ -146,8 +160,11 @@ const scaleCallback = (size: Size) => (itemEl: HTMLElement, slot: number) => {
     }
 };
 
-export const scaleCallbackL = scaleCallback('l');
-export const scaleCallbackS = scaleCallback('s');
+export const scaleCallbacks = {
+    l: scaleCallback('l'),
+    s: scaleCallback('s'),
+    xs: scaleCallback('xs'),
+};
 
 /**
  * Сброс стилей

@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
-import styled, { css } from 'styled-components';
-import { secondary, tertiary, display2, headline1 } from '@sberdevices/plasma-tokens';
+import styled, { css, CSSObject } from 'styled-components';
+import { secondary, tertiary, display2, headline1, headline2 } from '@sberdevices/plasma-tokens';
 
 import { useCarouselItem } from '../Carousel';
 
-import type { SizeProps, Item } from './types';
+import type { SizeProps, PickerSize, PickerItem as PickerItemType } from './types';
 import { getStyles } from './utils';
 
-const sizes = {
+const sizes: Record<PickerSize, CSSObject> = {
     l: {
         ...display2,
         height: '5rem', // 4rem + 2*0.5rem = 64px + 2*8px
@@ -17,6 +17,12 @@ const sizes = {
         ...headline1,
         fontWeight: 600,
         height: '2.25rem', // 2.25rem + 2*0.3125rem = 36px + 2*5px
+        padding: '0',
+    },
+    xs: {
+        ...headline2,
+        fontWeight: 600,
+        height: '2.05rem',
         padding: '0',
     },
 };
@@ -91,11 +97,11 @@ export const StyledWhiteText = styled.div`
 `;
 
 export interface PickerItemProps extends React.HTMLAttributes<HTMLDivElement>, SizeProps {
-    item: Item;
+    item: PickerItemType;
     index: number;
     activeIndex: number;
     noScrollBehavior: boolean;
-    onItemClick?: (item: Item) => void;
+    onItemClick?: (item: PickerItemType) => void;
     /**
      * Автофокус на компоненте.
      */

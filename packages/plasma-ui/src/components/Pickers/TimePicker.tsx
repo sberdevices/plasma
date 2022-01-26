@@ -1,44 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useIsomorphicLayoutEffect } from '@sberdevices/plasma-core';
-import { accent } from '@sberdevices/plasma-tokens';
 
+import { PickerDots } from './PickerDots';
 import { SimpleTimePicker, SimpleTimePickerProps } from './SimpleTimePicker';
 import { getNormalizeValues, getTimeValues, isChanged } from './utils';
-import { TimeType } from './types';
+import type { TimeType } from './types';
 
 const StyledWrapper = styled.div`
     display: flex;
     width: max-content;
     align-items: stretch;
-`;
-
-const StyledDividers = styled.div`
-    position: relative;
-    margin-left: 0.375rem;
-    margin-right: 0.375rem;
-    width: 0.25rem;
-
-    /* stylelint-disable-next-line selector-nested-pattern */
-    &::before,
-    &::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 0;
-        width: 0.25rem;
-        height: 0.25rem;
-        background-color: ${accent};
-        border-radius: 50%;
-    }
-
-    &::before {
-        margin-top: -0.625rem;
-    }
-
-    &::after {
-        margin-top: 0.375rem;
-    }
 `;
 
 const defaultOptions = {
@@ -291,7 +263,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     aria-label={hoursAriaLabel}
                 />
             )}
-            {options.hours && options.minutes && <StyledDividers />}
+            {options.hours && options.minutes && <PickerDots $size={size} />}
             {options.minutes && (
                 <SimpleTimePicker
                     id={id}
@@ -309,7 +281,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     aria-label={minutesAriaLabel}
                 />
             )}
-            {options.minutes && options.seconds && <StyledDividers />}
+            {options.minutes && options.seconds && <PickerDots $size={size} />}
             {options.seconds && (
                 <SimpleTimePicker
                     id={id}

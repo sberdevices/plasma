@@ -158,13 +158,13 @@ Default.argTypes = {
     DatePickeSize: {
         control: {
             type: 'inline-radio',
-            options: ['l', 's'],
+            options: ['l', 's', 'xs'],
         },
     },
     TimePickeSize: {
         control: {
             type: 'inline-radio',
-            options: ['l', 's'],
+            options: ['l', 's', 'xs'],
         },
     },
     DatePickerVisibleItems: {

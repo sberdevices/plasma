@@ -10,10 +10,22 @@ import { Button } from '../Button';
 import { Carousel, CarouselProps } from '../Carousel';
 
 import { PickerItem, StyledPickerItem, StyledWhiteText } from './PickerItem';
-import type { Item, SizeProps } from './types';
-import { scaleCallbackS, scaleCallbackL, scaleResetCallback, usePreviousValue } from './utils';
+import { DEFAULT_PICKER_SIZE, DEFAULT_VISIBLE_ITEMS } from './types';
+import type { PickerItem as PickerItemType, SizeProps, PickerSize, PickerVisibleItems } from './types';
+import { scaleCallbacks, scaleResetCallback, usePreviousValue } from './utils';
 
-const sizes = {
+interface PickerStyle {
+    /**
+     * Высота контрола.
+     */
+    height: string;
+    /**
+     * Оверскролл сверху и снизу {(h - 1.5) / 2}.
+     */
+    padding: string;
+}
+
+const sizes: Record<PickerSize, Record<PickerVisibleItems, PickerStyle>> = {
     l: {
         3: {
             height: '14rem',
@@ -34,6 +46,16 @@ const sizes = {
             padding: '5.25rem',
         },
     },
+    xs: {
+        3: {
+            height: '7.5rem',
+            padding: '2.85rem',
+        },
+        5: {
+            height: '10.75rem',
+            padding: '4.625rem',
+        },
+    },
 };
 const masks = {
     l: {
@@ -43,6 +65,10 @@ const masks = {
     s: {
         3: 'linear-gradient(rgba(0, 0, 0, 0) 0.875rem, rgb(0, 0, 0) 3.125rem, rgb(0, 0, 0) 5.375rem, rgba(0, 0, 0, 0) 7.625rem)',
         5: 'linear-gradient(rgba(0, 0, 0, 0) 0.75rem, rgb(0, 0, 0) 2.625rem, rgb(0, 0, 0) 9.375rem, rgba(0, 0, 0, 0) 11.25rem)',
+    },
+    xs: {
+        3: 'linear-gradient(rgba(0, 0, 0, 0) 0.875rem, rgb(0, 0, 0) 2.125rem, rgb(0, 0, 0) 5.5rem, rgba(0, 0, 0, 0) 6.625rem)',
+        5: 'linear-gradient(rgba(0, 0, 0, 0) 0.75rem, rgb(0, 0, 0) 1.625rem, rgb(0, 0, 0) 9.125rem, rgba(0, 0, 0, 0) 10rem)',
     },
 };
 
@@ -89,8 +115,8 @@ const StyledCarousel = styled(Carousel)<{ $isFocused?: boolean }>`
         `}
 `;
 interface StyledWrapperProps {
-    $visibleItems: 3 | 5;
-    $size: 'l' | 's';
+    $visibleItems: PickerVisibleItems;
+    $size: PickerSize;
     $disabled?: boolean;
     $controls?: boolean;
 }
@@ -138,7 +164,7 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
 const ADDITIONAL_OFFSET = 1;
 
 const findItemIndex = (
-    items: Item[],
+    items: PickerItemType[],
     value: string | number | Date,
     infiniteScroll: boolean,
     additionalOffset: number,
@@ -152,7 +178,7 @@ const findItemIndex = (
     return index;
 };
 
-const getItems = (items: Item[], infiniteScroll: boolean, additionalOffset: number) => {
+const getItems = (items: PickerItemType[], infiniteScroll: boolean, additionalOffset: number) => {
     if (!infiniteScroll) {
         return items;
     }
@@ -194,7 +220,7 @@ export interface PickerProps
     /**
      * Список опций
      */
-    items: Item[];
+    items: PickerItemType[];
     /**
      * Значение компонента
      */
@@ -206,11 +232,11 @@ export interface PickerProps
     /**
      * Отображаемое количество опций
      */
-    visibleItems?: 3 | 5;
+    visibleItems?: PickerVisibleItems;
     /**
      * Обработчик изменения значения
      */
-    onChange?: (value: Item) => void;
+    onChange?: (value: PickerItemType) => void;
     /**
      * Компонент в фокусе (визуально, независимо от tabIndex)
      */
@@ -234,15 +260,19 @@ export interface PickerProps
     infiniteScroll?: boolean;
 }
 
+/**
+ * Компонент для отображения барабана-пикера,
+ * позволяющего визуально проскроллить опции вверх-вниз.
+ */
 export const Picker: FC<PickerProps> = ({
     id,
-    size = 's',
+    size = DEFAULT_PICKER_SIZE,
     value,
     items,
     controls,
     autofocus,
     disabled,
-    visibleItems = 5,
+    visibleItems = DEFAULT_VISIBLE_ITEMS,
     scrollSnapType,
     onChange,
     infiniteScroll = true,
@@ -372,7 +402,7 @@ export const Picker: FC<PickerProps> = ({
                 ref={carouselRef}
                 axis="y"
                 index={index}
-                scaleCallback={size === 's' ? scaleCallbackS : scaleCallbackL}
+                scaleCallback={scaleCallbacks[size]}
                 scaleResetCallback={scaleResetCallback}
                 scrollSnapType={scrollSnapType}
                 detectActive
