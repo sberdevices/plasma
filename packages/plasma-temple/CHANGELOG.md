@@ -1,3 +1,20 @@
+# v1.23.0 (Wed Jan 26 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Mobile StateLayout [#1004](https://github.com/sberdevices/plasma/pull/1004) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.22.1 (Wed Jan 26 2022)
 
 #### 🐛 Bug Fix
