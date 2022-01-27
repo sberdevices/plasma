@@ -122,13 +122,13 @@ export function useWeakFlag(initialValue: boolean) {
 
 export const useMeasurements = ({
     estimateSize = defaultEstimateSize,
-    itemsLength,
+    itemCount,
     paddingStart,
     measuredCache,
     keyExtractor,
 }: {
     estimateSize?: VirtualProps['estimateSize'];
-    itemsLength: number;
+    itemCount: number;
     paddingStart: number;
     keyExtractor: Required<VirtualProps>['keyExtractor'];
     /**
@@ -139,7 +139,7 @@ export const useMeasurements = ({
 }) => {
     const measurements = useMemo(() => {
         const result: MeasurementItem[] = [];
-        for (let i = 0; i < itemsLength; i++) {
+        for (let i = 0; i < itemCount; i++) {
             const cacheKey = keyExtractor(i);
             const cachedSize = measuredCache?.[cacheKey];
             const start = result[i - 1] ? result[i - 1].end : paddingStart;
@@ -151,7 +151,7 @@ export const useMeasurements = ({
         }
 
         return result;
-    }, [itemsLength, paddingStart, estimateSize, measuredCache, keyExtractor]);
+    }, [itemCount, paddingStart, estimateSize, measuredCache, keyExtractor]);
 
     return measurements;
 };

@@ -20,7 +20,7 @@ const LIST_LENGTH = 200;
 
 const estimateSize = () => ELEMENT_SIZE;
 const Virtual = ({
-    itemsLength,
+    itemCount,
     height,
     width,
     useVirtualMock = useVirtualScroll,
@@ -31,7 +31,7 @@ const Virtual = ({
     initialCurrentIndex,
     initialRange,
 }: {
-    itemsLength: number;
+    itemCount: number;
     height?: number;
     width?: number;
     useVirtualMock?: typeof useVirtualScroll | typeof useVirtualKeyboard;
@@ -54,7 +54,7 @@ const Virtual = ({
         }
     }, [width, height]);
     const { visibleItems, totalSize } = useVirtualMock({
-        itemsLength,
+        itemCount,
         parentRef,
         estimateSize,
         horizontal,
@@ -124,7 +124,7 @@ describe.each([useVirtualKeyboard, useVirtualScroll, useVirtual, useVirtualSmoot
         hookMock = jest.fn((props) => hook(props));
         render(
             <Virtual
-                itemsLength={LIST_LENGTH}
+                itemCount={LIST_LENGTH}
                 width={ELEMENT_SIZE * VISIBLE_LIMIT}
                 useVirtualMock={hookMock}
                 limit={limit}
@@ -159,7 +159,7 @@ describe.each([useVirtualKeyboard, useVirtualScroll, useVirtual, useVirtualSmoot
     test('Should support vertical view', () => {
         render(
             <Virtual
-                itemsLength={LIST_LENGTH}
+                itemCount={LIST_LENGTH}
                 height={ELEMENT_SIZE * VISIBLE_LIMIT}
                 useVirtualMock={hookMock}
                 limit={limit}
@@ -174,7 +174,7 @@ describe.each([useVirtualKeyboard, useVirtualScroll, useVirtual, useVirtualSmoot
         updateHookMock();
         render(
             <Virtual
-                itemsLength={VISIBLE_LIMIT}
+                itemCount={VISIBLE_LIMIT}
                 width={ELEMENT_SIZE * VISIBLE_LIMIT}
                 useVirtualMock={hookMock}
                 paddingStart={paddingStart}
@@ -193,7 +193,7 @@ describe.each([useVirtualKeyboard, useVirtualScroll, useVirtual, useVirtualSmoot
         updateHookMock();
         render(
             <Virtual
-                itemsLength={VISIBLE_LIMIT}
+                itemCount={VISIBLE_LIMIT}
                 width={ELEMENT_SIZE * VISIBLE_LIMIT}
                 useVirtualMock={hookMock}
                 initialCurrentIndex={initialCurrentIndex}
@@ -213,7 +213,7 @@ describe.each([useVirtualKeyboard, useVirtualScroll, useVirtual, useVirtualSmoot
         updateHookMock();
         render(
             <Virtual
-                itemsLength={initialRange.end + 10}
+                itemCount={initialRange.end + 10}
                 width={ELEMENT_SIZE * VISIBLE_LIMIT}
                 useVirtualMock={hookMock}
                 initialRange={initialRange}

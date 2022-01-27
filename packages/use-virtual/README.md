@@ -23,7 +23,7 @@ type VirtualProps = {
     /**
      * Количество всех элементов в списке.
      */
-    itemsLength: number;
+    itemCount: number;
     /**
      * Вычисление размера элемента в зависимости от индекса.
      * По умолчанию размер = 50px
@@ -94,7 +94,7 @@ const estimateSize = () => 300;
 
 const VirtualKeyboard = () => {
     const { visibleItems, currentIndex } = useVirtualKeyboard({
-        itemsLength: fixturesVirtualizedItems.length,
+        itemCount: fixturesVirtualizedItems.length,
         limit: 5,
         estimateSize,
         horizontal: true,

@@ -111,8 +111,8 @@ export const useOnScroll = ({
     }, [scrollKey, metricsMeasureScroll]);
 };
 
-export const getMeasurementByIndex = (measurements: MeasurementItem[], index: number, itemsLength: number) => {
-    return measurements[Math.max(0, Math.min(index, itemsLength - 1))];
+export const getMeasurementByIndex = (measurements: MeasurementItem[], index: number, itemCount: number) => {
+    return measurements[Math.max(0, Math.min(index, itemCount - 1))];
 };
 
 type ScrollParams = {
@@ -124,13 +124,13 @@ export const useScrollToIndex = ({
     scrollKey,
     latestRef,
     scrollToFn,
-    itemsLength,
+    itemCount,
     setIsScrollingToIndexTrue,
 }: {
     parentRef: React.RefObject<HTMLDivElement>;
     scrollKey: 'scrollLeft' | 'scrollTop';
     latestRef: React.RefObject<LatestRefData>;
-    itemsLength: number;
+    itemCount: number;
     scrollToFn?: (offset: number) => void;
     setIsScrollingToIndexTrue: UseVirualInit['setIsScrollingToIndexTrue'];
 }) => {
@@ -187,7 +187,7 @@ export const useScrollToIndex = ({
 
             const { measurements, scrollOffset, scrollableSize } = latestRef.current;
 
-            const measurement = getMeasurementByIndex(measurements, index, itemsLength);
+            const measurement = getMeasurementByIndex(measurements, index, itemCount);
 
             if (!measurement) {
                 return;
@@ -214,7 +214,7 @@ export const useScrollToIndex = ({
 
             scrollToOffset(toOffset, { align });
         },
-        [scrollToOffset, itemsLength, latestRef, setIsScrollingToIndexTrue],
+        [scrollToOffset, itemCount, latestRef, setIsScrollingToIndexTrue],
     );
 
     const scrollToIndex = useCallback(

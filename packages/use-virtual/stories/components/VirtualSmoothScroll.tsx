@@ -30,7 +30,7 @@ export const VirtualSmoothScroll = ({
     }, [estimateSizeAndGap]);
 
     const { visibleItems, totalSize, currentIndex } = useVirtualSmoothScroll({
-        itemsLength: fixturesVirtualizedItems.length,
+        itemCount: fixturesVirtualizedItems.length,
         parentRef,
         horizontal,
         paddingStart,

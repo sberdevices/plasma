@@ -6,7 +6,7 @@ import { useKeyboard } from './utils/use-keyboard';
 
 export const useVirtualDynamic = (props: VirtualDynamicProps) => {
     const virtual = useVirtualDynamicScroll(props);
-    const { horizontal = false, align, itemsLength, parentRef } = props;
+    const { horizontal = false, align, itemCount, parentRef } = props;
     const { upIndex, downIndex, setNeedRestoreScrollWeakFlag, scrollToIndex, currentIndex, lastUpdateSource } = virtual;
     const [prevRange, setPrevRange] = useState(virtual.range);
     const [prevCurrentIndex, setPrevCurrentIndex] = useState(currentIndex);
@@ -17,7 +17,7 @@ export const useVirtualDynamic = (props: VirtualDynamicProps) => {
     }
 
     const { up, down } = useMemo(() => {
-        const params = { align, itemsLength };
+        const params = { align, itemCount };
 
         return {
             up: () => {
@@ -27,7 +27,7 @@ export const useVirtualDynamic = (props: VirtualDynamicProps) => {
                 downIndex(params);
             },
         };
-    }, [upIndex, downIndex, align, itemsLength]);
+    }, [upIndex, downIndex, align, itemCount]);
 
     useKeyboard({
         up,

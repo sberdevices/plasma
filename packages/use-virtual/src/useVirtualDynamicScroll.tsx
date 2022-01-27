@@ -16,7 +16,7 @@ import { useVirualInit } from './utils/use-virtual-init';
 export const useVirtualDynamicScroll = (props: VirtualDynamicProps) => {
     const {
         parentRef,
-        itemsLength = 0,
+        itemCount = 0,
         estimateSize,
         paddingStart = 0,
         paddingEnd = 0,
@@ -48,7 +48,7 @@ export const useVirtualDynamicScroll = (props: VirtualDynamicProps) => {
     const [measuredCache, setMeasuredCache] = useState<Record<string, number>>({});
     const measurements = useMeasurements({
         estimateSize,
-        itemsLength,
+        itemCount,
         paddingStart,
         measuredCache,
         keyExtractor,
@@ -58,7 +58,7 @@ export const useVirtualDynamicScroll = (props: VirtualDynamicProps) => {
         parentRef,
         scrollKey,
         latestRef,
-        itemsLength,
+        itemCount,
         scrollToFn,
         setIsScrollingToIndexTrue,
     });
@@ -83,7 +83,7 @@ export const useVirtualDynamicScroll = (props: VirtualDynamicProps) => {
     useEffect(() => {
         // Если количество элементов изменилось, то считаем, что могли добавиться элементы
         // сверху, поэтому нужно восстановить позицию скрола
-        if (latestRef.current.measurements && latestRef.current.measurements.length !== itemsLength) {
+        if (latestRef.current.measurements && latestRef.current.measurements.length !== itemCount) {
             addItemsMode === 'prepend' && setNeedRestoreScrollWeakFlag(true);
         }
     });
@@ -139,7 +139,7 @@ export const useVirtualDynamicScroll = (props: VirtualDynamicProps) => {
     }, [keyExtractor, sizeKey, measuredCache, observeItem, setNeedRestoreScrollWeakFlag]);
 
     const prevTotalSizeRef = useRef<number>();
-    const totalSize = (measurements[itemsLength - 1]?.end || 0) + paddingEnd;
+    const totalSize = (measurements[itemCount - 1]?.end || 0) + paddingEnd;
     // Срабатывает на изменение размера списка и скролящейся области, размер списка меняется,
     // если добавились новые элементы, или один из элементов виртуального списка поменял свои размеры
     // Нужен чтобы восстановить позицию скрола и пересчитать видимые элементы согласно новой позиции скрола

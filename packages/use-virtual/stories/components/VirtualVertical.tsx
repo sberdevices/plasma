@@ -14,7 +14,7 @@ export const VirtualVertical = () => {
     const parentRef = useRef<null | HTMLDivElement>(null);
 
     const { visibleItems, totalSize, currentIndex } = useVirtualSmoothScroll({
-        itemsLength: fixturesVirtualizedItems.length,
+        itemCount: fixturesVirtualizedItems.length,
         parentRef,
         horizontal: false,
         estimateSize,
