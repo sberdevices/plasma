@@ -17,8 +17,8 @@
     "peerDependencies": {
         "@sberdevices/plasma-colors": "0.1.2",
         "@sberdevices/plasma-core": "^1.12.1",
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1",
+        "react": ">=16.13.1",
+        "react-dom": ">=16.13.1",
         "styled-components": "^5.1.1"
     },
     "devDependencies": {
@@ -42,7 +42,5 @@
     "publishConfig": {
         "access": "restricted"
     },
-    "files": [
-        "lib"
-    ]
+    "files": ["lib"]
 }

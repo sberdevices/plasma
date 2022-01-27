@@ -12,8 +12,8 @@
         "directory": "utils/plasma-cy-utils"
     },
     "peerDependencies": {
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1",
+        "react": ">=16.13.1",
+        "react-dom": ">=16.13.1",
         "styled-components": "^5.1.1"
     },
     "devDependencies": {
@@ -35,9 +35,7 @@
     "publishConfig": {
         "access": "restricted"
     },
-    "files": [
-        "lib"
-    ],
+    "files": ["lib"],
     "dependencies": {
         "@sberdevices/plasma-tokens": "1.15.1",
         "@sberdevices/plasma-tokens-b2c": "0.8.0",
