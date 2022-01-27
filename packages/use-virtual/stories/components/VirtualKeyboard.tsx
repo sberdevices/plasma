@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 
 import { useVirtualKeyboard } from '../../src';
@@ -16,16 +16,19 @@ const StyledCarouselWrapperHorizontal = styled(CarouselWrapperHorizontal)`
 `;
 
 export const VirtualKeyboard = () => {
+    const parentRef = useRef<null | HTMLDivElement>(null);
+
     const { visibleItems, currentIndex } = useVirtualKeyboard({
         itemCount: fixturesVirtualizedItems.length,
         limit: 5,
         estimateSize,
         horizontal: true,
+        parentRef,
     });
 
     return (
         <ReactProfiler id="VirtualKeyboard">
-            <StyledCarouselWrapperHorizontal>
+            <StyledCarouselWrapperHorizontal ref={parentRef}>
                 {visibleItems.map(({ index }) => {
                     const item = fixturesVirtualizedItems[index];
 
