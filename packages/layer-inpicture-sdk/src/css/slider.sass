@@ -57,9 +57,9 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
     color: #FFFFFF
     border-radius: 6px
 
-@mixin name
+@mixin name($fontSize: 14px)
     font-weight: 500
-    font-size: 14px
+    font-size: $fontSize
     line-height: 20px
     letter-spacing: 0.0125em
     color: #080808
@@ -153,6 +153,9 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
             @media (max-width: 767.98px)
                 font-size: 12px
                 font-weight: 400
+        .layer-swiper-button
+            width: 48px
+            height: 48px
 
     &-primary-wrap
         .layer-swiper-slide
@@ -167,6 +170,8 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
         .layer-swiper-button
             top: auto !important
             bottom: 30px
+            width: 48px
+            height: 48px
             @media (min-width: 768px)
                 bottom: 45px
 
@@ -178,7 +183,7 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
             @include shopName
         
         .layer-swiper-slide-bottom__name
-            @include name
+            @include name(16px)
         
         .layer-swiper-slide-bottom__price 
             @include price
@@ -261,8 +266,7 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
 
     &-swiper-button-prev img, &-swiper-button-next img
         max-width: initial
-        width: 48px
-
+        width: 100%
 
     &-swiper-button-prev img
         transform: rotate(180deg)
@@ -278,14 +282,28 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
         .layer-main-container
             position: relative
             bottom: 0
+            padding: 0 52px
+            box-sizing: border-box
 
         .layer-swiper-slide
-            @include big-card-size
-            .layer-swiper-slide-bottom
+            border-radius: 16px
+
+            &-bottom
                 display: block
+
+                &__bg
+                    padding: 12px
 
         .layer-swiper-button
             bottom: 80px
+            width: 36px
+            height: 36px
+
+            &-prev
+                left: 0
+
+            &-next
+                right: 0
 
         .layer-secondary-top-content
             display: flex
