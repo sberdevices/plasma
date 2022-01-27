@@ -1,18 +1,13 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
-import {
-    BaseboxInput,
-    BaseboxLabel,
-    BaseboxDescription,
-    BaseboxContentWrapper,
-    useUniqId,
-} from '@sberdevices/plasma-core';
+import { BaseboxLabel, BaseboxDescription, BaseboxContentWrapper, useUniqId } from '@sberdevices/plasma-core';
 import type { BaseboxProps, FocusProps, OutlinedProps } from '@sberdevices/plasma-core';
 import { white } from '@sberdevices/plasma-tokens';
 
 import { InteractionProps } from '../../mixins';
 import {
     StyledRoot as CheckboxRoot,
+    StyledInput as CheckboxInput,
     StyledTrigger as CheckboxTrigger,
     StyledContent as CheckboxContent,
 } from '../Checkbox/Checkbox';
@@ -59,8 +54,8 @@ export const Radiobox = forwardRef<HTMLInputElement, RadioboxProps>(function Rad
     const uniqDescriptionId = useUniqId();
     const radioboxId = id || uniqId;
     return (
-        <CheckboxRoot $disabled={disabled} style={style} className={className}>
-            <BaseboxInput
+        <CheckboxRoot $disabled={disabled} style={style} className={className} tabIndex={-1}>
+            <CheckboxInput
                 aria-labelledby={uniqLabelId}
                 aria-describedby={uniqDescriptionId}
                 id={radioboxId}

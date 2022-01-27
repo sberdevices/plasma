@@ -27,6 +27,13 @@ export const StyledRoot = styled(BaseboxRoot)`
         margin-top: 1.25rem;
     }
 `;
+export const StyledInput = styled(BaseboxInput)`
+    /* SberBox не видит этот элемент, нужно спрятать от глаз,
+     * но сделать достаточно большим, чтобы сфокусироваться на нем. */
+    appearance: none;
+    width: 100%;
+    height: 100%;
+`;
 export const StyledTrigger = styled(BaseboxTrigger)<{
     $focused?: boolean;
     $scaleOnInteraction?: boolean;
@@ -136,8 +143,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
     const uniqDescriptionId = useUniqId();
     const checkboxId = id || uniqId;
     return (
-        <StyledRoot $disabled={disabled} style={style} className={className}>
-            <BaseboxInput
+        <StyledRoot $disabled={disabled} style={style} className={className} tabIndex={-1}>
+            <StyledInput
                 aria-labelledby={uniqLabelId}
                 aria-describedby={uniqDescriptionId}
                 id={checkboxId}

@@ -43,10 +43,6 @@ export const StyledContentWrapper = styled.label`
 
 export const StyledInput = styled.input`
     position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
-    opacity: 0;
 
     &:focus {
         outline: 0 none;
