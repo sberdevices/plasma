@@ -1,3 +1,17 @@
+# v1.78.0 (Thu Jan 27 2022)
+
+#### 🐛 Bug Fix
+
+- chore(plasma-ui,plasma-b2c): Remove unused stories mdx for `Tabs` component [#976](https://github.com/sberdevices/plasma/pull/976) ([@neretin-trike](https://github.com/neretin-trike))
+- test(plasma-b2c,plasma-web,plasma-ui): Add test and update snapshots for `Tab` component [#976](https://github.com/sberdevices/plasma/pull/976) ([@neretin-trike](https://github.com/neretin-trike))
+- feat(plasma-b2c,plasma-web,plasma-ui): Update style for `Tabs` component [#976](https://github.com/sberdevices/plasma/pull/976) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.77.1 (Wed Jan 26 2022)
 
 #### 🐛 Bug Fix

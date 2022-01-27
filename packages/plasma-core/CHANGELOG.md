@@ -1,3 +1,19 @@
+# v1.48.0 (Thu Jan 27 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-core): Add scrollable container for `Tab` component [#976](https://github.com/sberdevices/plasma/pull/976) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### 🐛 Bug Fix
+
+- test(plasma-b2c,plasma-web,plasma-ui): Add test and update snapshots for `Tab` component [#976](https://github.com/sberdevices/plasma/pull/976) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.47.0 (Tue Jan 25 2022)
 
 #### 🚀 Enhancement

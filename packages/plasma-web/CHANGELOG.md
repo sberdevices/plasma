@@ -1,3 +1,15 @@
+# v1.73.0 (Thu Jan 27 2022)
+
+#### 🐛 Bug Fix
+
+- feat(plasma-b2c,plasma-web,plasma-ui): Update style for `Tabs` component [#976](https://github.com/sberdevices/plasma/pull/976) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.71.0 (Tue Jan 18 2022)
 
 #### 🚀 Enhancement

@@ -1,3 +1,28 @@
+# (Thu Jan 27 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-core@1.48.0`
+  - feat(plasma-core): Add scrollable container for `Tab` component [#976](https://github.com/sberdevices/plasma/pull/976) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-temple@1.24.0`
+  - feat(plasma-temple): Mobile StateLayout [#1004](https://github.com/sberdevices/plasma/pull/1004) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-b2c@1.37.0`, `@sberdevices/plasma-ui@1.78.0`
+  - chore(plasma-ui,plasma-b2c): Remove unused stories mdx for `Tabs` component [#976](https://github.com/sberdevices/plasma/pull/976) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-core@1.48.0`, `@sberdevices/plasma-ui@1.78.0`
+  - test(plasma-b2c,plasma-web,plasma-ui): Add test and update snapshots for `Tab` component [#976](https://github.com/sberdevices/plasma/pull/976) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-b2c@1.37.0`, `@sberdevices/plasma-ui@1.78.0`, `@sberdevices/plasma-web@1.73.0`
+  - feat(plasma-b2c,plasma-web,plasma-ui): Update style for `Tabs` component [#976](https://github.com/sberdevices/plasma/pull/976) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 2
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # (Wed Jan 26 2022)
 
 #### 🚀 Enhancement
