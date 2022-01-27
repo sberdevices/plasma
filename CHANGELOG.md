@@ -1,5 +1,18 @@
 # (Thu Jan 27 2022)
 
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@1.24.1`
+  - fix(plasma-temple): don't stop video on source change [#1036](https://github.com/sberdevices/plasma/pull/1036) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
+# (Thu Jan 27 2022)
+
 #### 🚀 Enhancement
 
 - `@sberdevices/plasma-core@1.48.0`

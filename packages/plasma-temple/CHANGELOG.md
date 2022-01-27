@@ -1,3 +1,17 @@
+# v1.24.1 (Thu Jan 27 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): don't stop video on source change [#1036](https://github.com/sberdevices/plasma/pull/1036) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.24.0 (Thu Jan 27 2022)
 
 #### 🚀 Enhancement
