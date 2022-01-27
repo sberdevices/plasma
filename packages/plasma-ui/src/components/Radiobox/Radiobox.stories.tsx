@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { SSRProvider } from '../SSRProvider';
-import { applySpacing } from '../../mixins';
 import { actionWithPersistedEvent, InSpacingDecorator } from '../../helpers';
 
 import { Radiobox, RadioGroup } from '.';
@@ -10,76 +9,69 @@ import { Radiobox, RadioGroup } from '.';
 export default {
     title: 'Controls/Radiobox',
     component: Radiobox,
-    decorators: [InSpacingDecorator],
+    decorators: [
+        InSpacingDecorator,
+        (Story: React.FC) => (
+            <SSRProvider>
+                <Story />
+            </SSRProvider>
+        ),
+    ],
 };
 
 const onChange = actionWithPersistedEvent('onChange');
 const onFocus = actionWithPersistedEvent('onFocus');
 const onBlur = actionWithPersistedEvent('onBlur');
 
-const rows = [
-    [
-        { name: 'radio-1', value: 1, label: 'Radiobox 1', disabled: false },
-        { name: 'radio-1', value: 2, label: 'Radiobox 2', disabled: false },
-    ],
-    [
-        { name: 'radio-2', value: 3, label: 'Radiobox 3', disabled: true },
-        { name: 'radio-2', value: 4, label: 'Radiobox 4', disabled: true, checked: true },
-    ],
+const items = [
+    {
+        id: 'radio-1-1',
+        name: 'radio-1',
+        value: 1,
+        label: 'Radiobox with a very very very very very long label',
+        disabled: false,
+    },
+    { id: 'radio-1-2', name: 'radio-1', value: 2, label: 'Radiobox 2', disabled: false },
+    { id: 'radio-2-1', name: 'radio-2', value: 3, label: 'Radiobox 3', disabled: true },
+    { id: 'radio-2-2', name: 'radio-2', value: 4, label: 'Radiobox 4', disabled: true, checked: true },
 ];
 
-const StyledRadioGroup = styled(RadioGroup)`
-    display: flex;
-    justify-content: flex-start;
-    ${applySpacing({ mb: 20 })};
+const StyledGriddyRadioGroup = styled(RadioGroup)`
+    display: inline-grid;
+    grid-template-columns: repeat(2, 50%);
+    gap: 1rem;
+    align-items: flex-start;
+
+    /* stylelint-disable-next-line selector-max-universal */
+    & > * + * {
+        margin-top: 0 !important;
+    }
 `;
 
-const Showcase = ({ render, withLabels = true }) => (
-    <div>
-        <SSRProvider>
-            {rows.map((items, i) => (
-                <StyledRadioGroup key={i}>
-                    {items.map((item, j) => render({ ...item, label: withLabels ? item.label : '' }, `item:${j}`))}
-                </StyledRadioGroup>
-            ))}
-        </SSRProvider>
-    </div>
-);
-
-/* eslint-disable prefer-rest-params */
-export function Default() {
+export const Default = () => {
     const [value, setValue] = React.useState(2);
     return (
-        <Showcase
-            {...arguments[0]}
-            render={(props, key) => (
+        <StyledGriddyRadioGroup>
+            {items.map((item) => (
                 <Radiobox
-                    key={key}
-                    style={applySpacing({ mr: 20, mb: 0, mt: 0 }) as React.CSSProperties}
-                    name={props.name}
-                    value={props.value}
-                    label={props.label}
-                    disabled={props.disabled}
-                    checked={props.checked || props.value === value}
+                    key={item.id}
+                    id={item.id}
+                    name={item.name}
+                    value={item.value}
+                    label={item.label}
+                    disabled={item.disabled}
+                    checked={item.checked || item.value === value}
                     onChange={(event) => {
-                        setValue(props.value);
+                        setValue(item.value);
                         onChange(event);
                     }}
                     onFocus={onFocus}
                     onBlur={onBlur}
                 />
-            )}
-        />
+            ))}
+        </StyledGriddyRadioGroup>
     );
-}
-/* eslint-enable prefer-rest-params */
-
-const items = [
-    { value: 1, label: 'Radiobox with a very very very very very long label' },
-    { value: 2, label: 'Radiobox 2' },
-    { value: 3, label: 'Radiobox 3', disabled: true },
-    { value: 4, label: 'Radiobox 4', disabled: true },
-];
+};
 
 export const Squeeze = () => {
     const [value, setValue] = useState(1);

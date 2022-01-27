@@ -35,6 +35,13 @@ export const StyledRoot = styled(BaseboxRoot)<{ $disabled?: boolean }>`
 
     ${({ $disabled }) => $disabled && 'cursor: not-allowed;'}
 `;
+export const StyledInput = styled(BaseboxInput)`
+    /* Спрятать от IE */
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+`;
 export const StyledTrigger = styled(BaseboxTrigger)`
     /* stylelint-disable-next-line number-max-precision */
     margin: 0.1875rem 0; /* FixMe: Выпилить, v2.0 Привести к единому стилю с UI */
@@ -135,8 +142,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
     const uniqDescriptionId = useUniqId();
     const checkboxId = id || uniqId;
     return (
-        <StyledRoot $disabled={disabled} style={style} className={className}>
-            <BaseboxInput
+        <StyledRoot $disabled={disabled} style={style} className={className} tabIndex={-1}>
+            <StyledInput
                 aria-labelledby={uniqLabelId}
                 aria-describedby={uniqDescriptionId}
                 id={checkboxId}

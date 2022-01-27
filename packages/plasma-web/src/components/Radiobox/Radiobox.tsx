@@ -1,10 +1,11 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
-import { BaseboxInput, BaseboxDescription, BaseboxContentWrapper, useUniqId, white } from '@sberdevices/plasma-core';
+import { BaseboxDescription, BaseboxContentWrapper, useUniqId, white } from '@sberdevices/plasma-core';
 import type { BaseboxProps } from '@sberdevices/plasma-core';
 
 import {
     StyledRoot as CheckboxRoot,
+    StyledInput as CheckboxInput,
     StyledTrigger as CheckboxTrigger,
     StyledContent as CheckboxContent,
     StyledLabel as CheckboxLabel,
@@ -56,8 +57,8 @@ export const Radiobox = forwardRef<HTMLInputElement, RadioboxProps>(function Rad
     const uniqDescriptionId = useUniqId();
     const radioboxId = id || uniqId;
     return (
-        <CheckboxRoot $disabled={disabled} style={style} className={className}>
-            <BaseboxInput
+        <CheckboxRoot $disabled={disabled} style={style} className={className} tabIndex={-1}>
+            <CheckboxInput
                 aria-labelledby={uniqLabelId}
                 aria-describedby={uniqDescriptionId}
                 id={radioboxId}
