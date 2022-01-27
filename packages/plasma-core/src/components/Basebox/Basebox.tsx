@@ -38,6 +38,7 @@ export const StyledContentWrapper = styled.label`
     align-items: flex-start;
     display: flex;
     width: 100%;
+    cursor: inherit;
 `;
 
 export const StyledInput = styled.input`
