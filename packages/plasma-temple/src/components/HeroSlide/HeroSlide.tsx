@@ -39,13 +39,14 @@ export const HeroSlide: React.FC<UnifiedComponentProps<HeroSlideProps, PlatformC
     onBlur,
     platformComponents,
     children,
+    ...props
 }) => {
     const { Title, Suggest, Button, Wrapper } = platformComponents;
     const mountRef = React.useRef<HTMLButtonElement>(null);
     useFocusOnMount(mountRef, { delay: 100, prevent: !autofocus });
 
     return (
-        <Wrapper>
+        <Wrapper {...props}>
             <StyledRow>
                 <Col sizeXL={6} sizeM={4}>
                     <Suggest>Попробуйте спросить</Suggest>
