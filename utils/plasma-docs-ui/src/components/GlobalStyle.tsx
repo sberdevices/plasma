@@ -37,6 +37,12 @@ const DocStyle = createGlobalStyle`
     html[data-theme='dark'] .docusaurus-highlight-code-line {
         background-color: rgba(0, 0, 0, 0.3);
     }
+
+    /* Контент документации */
+    .markdown {
+        /* Чтобы разместить кнопку сторибука справа */
+        position: relative;
+    }
 `;
 
 export const GlobalStyle: FC<GlobalStyleProps> = ({ theme = 'light' }) => {
