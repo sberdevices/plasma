@@ -1,3 +1,20 @@
+# v0.6.0 (Fri Jan 28 2022)
+
+#### 🚀 Enhancement
+
+- feat(inpicture-sdk): new prop and stylefixes [#163](https://github.com/sberdevices/pashka/pull/163) ([@c1aphas](https://github.com/c1aphas))
+
+#### 🐛 Bug Fix
+
+- fix(inpicture-sdk): large template stylefixes [#165](https://github.com/sberdevices/pashka/pull/165) ([@c1aphas](https://github.com/c1aphas))
+- fix(inpicture-sdk): typo fix in the EventTab enum [#162](https://github.com/sberdevices/pashka/pull/162) ([@c1aphas](https://github.com/c1aphas))
+
+#### Authors: 1
+
+- Mike ([@c1aphas](https://github.com/c1aphas))
+
+---
+
 # v0.5.1 (Tue Jan 18 2022)
 
 #### 🐛 Bug Fix

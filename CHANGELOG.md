@@ -1,3 +1,22 @@
+# (Fri Jan 28 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/layer-inpicture-sdk@0.6.0`
+  - feat(inpicture-sdk): new prop and stylefixes [#163](https://github.com/sberdevices/pashka/pull/163) ([@c1aphas](https://github.com/c1aphas))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/layer-inpicture-sdk@0.6.0`
+  - fix(inpicture-sdk): large template stylefixes [#165](https://github.com/sberdevices/pashka/pull/165) ([@c1aphas](https://github.com/c1aphas))
+  - fix(inpicture-sdk): typo fix in the EventTab enum [#162](https://github.com/sberdevices/pashka/pull/162) ([@c1aphas](https://github.com/c1aphas))
+
+#### Authors: 1
+
+- Mike ([@c1aphas](https://github.com/c1aphas))
+
+---
+
 # (Wed Jan 26 2022)
 
 #### 🚀 Enhancement
