@@ -1,3 +1,21 @@
+# v1.24.3 (Fri Jan 28 2022)
+
+#### 🐛 Bug Fix
+
+- Bump independent versions \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- Update CHANGELOG.md \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- fix(plasma-temple): exports VideoPlayer component [#1042](https://github.com/sberdevices/plasma/pull/1042) ([@LamaEats](https://github.com/LamaEats))
+- fix(plasma-temple): don't stop video on source change [#1036](https://github.com/sberdevices/plasma/pull/1036) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 3
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v1.24.2 (Thu Jan 27 2022)
 
 #### 🐛 Bug Fix

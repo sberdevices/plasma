@@ -1,3 +1,15 @@
+# v1.48.1 (Fri Jan 28 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-core): Add inherit cursor in label for `BaseBox` component [#1056](https://github.com/sberdevices/plasma/pull/1056) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.48.0 (Thu Jan 27 2022)
 
 #### 🚀 Enhancement

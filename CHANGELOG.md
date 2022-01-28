@@ -1,3 +1,21 @@
+# (Fri Jan 28 2022)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-core@1.48.1`
+  - fix(plasma-core): Add inherit cursor in label for `BaseBox` component [#1056](https://github.com/sberdevices/plasma/pull/1056) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-temple@1.24.3`
+  - fix(plasma-temple): exports VideoPlayer component [#1042](https://github.com/sberdevices/plasma/pull/1042) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): don't stop video on source change [#1036](https://github.com/sberdevices/plasma/pull/1036) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 3
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Thu Jan 27 2022)
 
 #### 🐛 Bug Fix
