@@ -8,7 +8,10 @@ const removeFillOpacity = (source: string) => source.replace(/fill-opacity="(.*?
 
 const setFillCurrentColor = (source: string) => source.replace(/fill="(.*?)"/gm, 'fill="currentColor"');
 
-export const getAssert = (name: string, source: string) => {
+/**
+ * Здесь генерируется svg компонент иконки.
+ */
+const getAssert = (name: string, source: string) => {
     const viewBox = getViewBox(source);
     const svgContent = compose(
         removeLineBreak,
@@ -29,10 +32,15 @@ export const ${name}: React.FC<IconProps> = (props) => (
 );`;
 };
 
+/**
+ * Функция генерации файла `/Icon.assets/<Name>.tsx`. Здесь экспортируется иконка из figma
+ * и возвращается svg компонент иконки.
+ */
 export default async (selection: SceneNode, iconName: string) => {
     const svgSource = await selection.exportAsync({
         format: 'SVG',
     });
     const svgResult = String.fromCharCode.apply(null, Array.from(svgSource));
+
     return getAssert(iconName, svgResult);
 };

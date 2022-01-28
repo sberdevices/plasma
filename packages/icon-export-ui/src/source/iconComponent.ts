@@ -1,3 +1,6 @@
+/**
+ * Функция генерации файла `/Icons/Icon<Name>.tsx`. Здесь формируется компонент иконки.
+ */
 export default (name: string) => `import React from 'react';
 
 import { ${name} } from '../Icon.assets/${name}';
