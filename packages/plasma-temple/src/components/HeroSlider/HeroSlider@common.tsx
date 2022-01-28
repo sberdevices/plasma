@@ -91,7 +91,7 @@ const HeroDots: React.FC<HeroDotsProps> = ({ count, current, time }) => {
 
 type PlatformComponents = {
     Wrapper: React.RefAttributes<HTMLDivElement>;
-    Slide: HeroSlideProps;
+    Slide: HeroSlideProps & React.RefAttributes<HTMLDivElement>;
 };
 
 export const HeroSlider: React.FC<UnifiedComponentProps<HeroSliderProps, PlatformComponents>> = ({
@@ -172,6 +172,7 @@ export const HeroSlider: React.FC<UnifiedComponentProps<HeroSliderProps, Platfor
                 buttonText={buttonText}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
+                data-cy={`hero-slide-${activeIndex}`}
             >
                 {withTimeline && <HeroDots count={childLen.current} current={activeIndex} time={time} />}
             </Slide>
