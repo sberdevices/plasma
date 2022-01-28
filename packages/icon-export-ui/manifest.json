@@ -2,7 +2,8 @@
   "name": "icon-export-ui",
   "id": "1065149449043856348",
   "api": "1.0.0",
-  "main": "dist/code.js",
+  "main": "dist/main.js",
   "ui": "dist/ui.html",
-  "editorType": ["figma"]
+  "editorType": ["figma"],
+  "permissions": ["currentuser"]
 }
