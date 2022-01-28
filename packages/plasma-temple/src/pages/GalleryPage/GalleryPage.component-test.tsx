@@ -1,6 +1,9 @@
+import React from 'react';
 import { unmount } from '@cypress/react';
+import { Card, CardBody, CardMedia, CardContent, CardHeadline1 } from '@sberdevices/plasma-ui';
 
 import { navigate } from '../../../../../cypress/support/commands';
+import { GalleryCardProps } from '../../components/GalleryCard/types';
 import { wrapComponent, startApp } from '../../testHelpers/testRenderHelpers';
 
 import { GalleryPage } from './GalleryPage';
@@ -12,6 +15,12 @@ interface State {
 
 const imageSrc = 'https://plasma.sberdevices.ru/ui-storybook/images/320_320_0.jpg';
 
+/**
+ * TODO
+ * упросить инициализацию после влития
+ * https://github.com/sberdevices/plasma/pull/1041
+ * https://github.com/sberdevices/plasma/pull/1046
+ */
 describe('GalleryPage', () => {
     describe('Single Gallery on Page', () => {
         let stubbedOnCardClick: Function;
@@ -218,6 +227,83 @@ describe('GalleryPage', () => {
                 navigate.ENTER,
             ]).then(() => {
                 expect(stubbedOnCardClick).to.be.calledWith(stubbedData[2]);
+            });
+        });
+    });
+
+    describe('CustomCard in galleries', () => {
+        it('Variable card height', () => {
+            cy.intercept(imageSrc, (req) => {
+                req.reply({
+                    fixture: 'images/320_320_0.jpg',
+                });
+            });
+            const stubbedData = Array.from({ length: 10 }, (_, i) => ({
+                label: `Title ${i + 1}`,
+                description: `Decription for Card ${i + 1}`,
+                id: i,
+                position: i + 1,
+                image: {
+                    src: imageSrc,
+                },
+            }));
+
+            const galleries = [
+                {
+                    title: 'Cypress Gallery 1',
+                    id: 'first',
+                    activeCardIndex: 0,
+                    items: stubbedData.map((item) => ({
+                        ...item,
+                        covered: true,
+                    })),
+                },
+                {
+                    title: 'Cypress Gallery 2',
+                    id: 'second',
+                    activeCardIndex: 0,
+                    items: stubbedData.map((item) => ({
+                        ...item,
+                        covered: false,
+                    })),
+                },
+            ];
+
+            const CustomCard: React.FC<GalleryCardProps> = ({ card, focused }) => {
+                const src = Array.isArray(card.image.src) ? card.image.src[0] : card.image.src;
+
+                return (
+                    <Card focused={focused} style={{ width: '398px', height: card.covered ? '200px' : '600px' }}>
+                        <CardBody>
+                            <CardMedia src={src} ratio={card.covered ? '2 / 1' : '1 / 1'} />
+                            <CardContent cover={card.covered}>
+                                <CardHeadline1>{card.label}</CardHeadline1>
+                            </CardContent>
+                        </CardBody>
+                    </Card>
+                );
+            };
+
+            const stubbedOnCardClick = cy.stub();
+
+            startApp<keyof State, State>(
+                [
+                    {
+                        name: 'gallery',
+                        component: wrapComponent(GalleryPage, () => ({
+                            onCardClick: stubbedOnCardClick,
+                            galleryCard: CustomCard,
+                        })),
+                    },
+                ],
+                ({ pushHistory }) => {
+                    pushHistory('gallery', {
+                        activeGalleryIndex: 0,
+                        gallery: galleries,
+                    });
+                },
+            ).then(() => {
+                cy.matchImageSnapshot();
             });
         });
     });
