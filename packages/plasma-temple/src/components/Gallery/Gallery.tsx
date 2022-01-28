@@ -22,6 +22,8 @@ const StyledCarousel = styled(Carousel)<{ initialized: boolean }>`
     outline: none;
     scroll-snap-type: none;
     scroll-behavior: ${({ initialized }) => (initialized && isSberBoxLike() ? 'smooth' : 'unset')};
+    display: flex;
+    flex-wrap: no-wrap;
 `;
 
 const StyledCarouselItem = styled(CarouselItem)`
@@ -57,7 +59,10 @@ export function Gallery<T extends AnyObject>({
             >
                 {children ??
                     items.map((card, index) => (
-                        <StyledCarouselItem key={index} scrollSnapAlign={isSberPortal() ? 'start' : undefined}>
+                        <StyledCarouselItem
+                            key={card.id ?? index}
+                            scrollSnapAlign={isSberPortal() ? 'start' : undefined}
+                        >
                             <GalleryCardContainer<T>
                                 card={card}
                                 index={index}

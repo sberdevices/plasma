@@ -9,6 +9,7 @@ export const GalleryIndexContext = React.createContext(0);
 
 const StyledFocusableContainer = styled.div`
     outline: none;
+    display: flex;
 `;
 
 export const withNavigation = (
