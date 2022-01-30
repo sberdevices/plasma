@@ -1,10 +1,13 @@
 import { useMemo, useRef, useState } from 'react';
 
 import { MeasurementItem, VirtualProps } from './types';
-import { defaultKeyExtractor, useIsomorphicLayoutEffect, useMeasurements, useVisibleItems } from './utils';
-import { useKeyboard } from './utils/use-keyboard';
-import { getMeasurementByIndex, useOnScroll, useScrollToIndex } from './utils/use-scroll';
-import { useVirualInit } from './utils/use-virtual-init';
+import { defaultKeyExtractor } from './utils';
+import { useKeyboard } from './hooks-helpers/useKeyboard';
+import { getMeasurementByIndex, useOnScroll, useScrollToIndex } from './hooks-helpers/useScroll';
+import { useVirualInit } from './hooks-helpers/useVirtualInit';
+import { useIsomorphicLayoutEffect } from './hooks-helpers/useIsomorphicLayoutEffect';
+import { useMeasurements } from './hooks-helpers/useMeasurements';
+import { useVisibleItems } from './hooks-helpers/useVisibleItems';
 
 export const useVirtual = (props: VirtualProps) => {
     const {

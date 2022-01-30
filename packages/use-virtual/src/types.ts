@@ -13,7 +13,7 @@ export type MeasurementItem = {
     key?: number | string;
 };
 
-export type Range = {
+export type VisibleRange = {
     start: number;
     end: number;
 };
@@ -91,7 +91,7 @@ export type VirtualProps = {
      * Начальные индексы (initialRange.start - initialRange.end) для отображения элементов (visibleItems).
      * Учитывается только при монтировании компонента.
      */
-    initialRange?: Range;
+    initialRange?: VisibleRange;
     /**
      * Сколько кадров дебаунсить для
      * вычисления currentIndex после скролла.

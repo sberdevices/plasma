@@ -1,9 +1,9 @@
 import { useMemo, useReducer } from 'react';
 
-import { Range, VirtualDynamicProps, VirtualProps, VirtualPropsKeyboard } from '../types';
+import { VisibleRange, VirtualDynamicProps, VirtualProps, VirtualPropsKeyboard } from '../types';
 
 type State = {
-    range: Range;
+    range: VisibleRange;
     currentIndex: number;
     isScrolling: boolean;
     /**
@@ -58,13 +58,13 @@ type Action =
     | {
           type: 'set range';
           payload: {
-              getRange: (v: Range) => Range;
+              getRange: (v: VisibleRange) => VisibleRange;
           };
       }
     | {
           type: 'set range and isScrolling true';
           payload: {
-              getRange: (v: Range) => Range;
+              getRange: (v: VisibleRange) => VisibleRange;
           };
       }
     | {
@@ -246,12 +246,12 @@ export function useVirualInit({
                     type: 'down index and range',
                     payload: { params },
                 }),
-            setRange: (getRange: (v: Range) => Range) =>
+            setRange: (getRange: (v: VisibleRange) => VisibleRange) =>
                 dispatch({
                     type: 'set range',
                     payload: { getRange },
                 }),
-            setRangeAndIsScrollingTrue: (getRange: (v: Range) => Range) =>
+            setRangeAndIsScrollingTrue: (getRange: (v: VisibleRange) => VisibleRange) =>
                 dispatch({
                     type: 'set range and isScrolling true',
                     payload: { getRange },

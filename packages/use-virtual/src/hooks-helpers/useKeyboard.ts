@@ -1,8 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 import { VirtualProps } from '../types';
-
-import { throttleByFrames } from './helpers';
+import { throttleByFrames } from '../utils';
 
 /**
  * Всегда "тротлим" нажатие на клавиатуру.

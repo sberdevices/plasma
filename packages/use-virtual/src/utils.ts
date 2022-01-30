@@ -1,60 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import React, { useLayoutEffect, useEffect, useState, useReducer, useRef, useCallback, useMemo } from 'react';
-// import observeRect from '@reach/observe-rect';
-
-// import { webTelemetryKV } from '../../../analytics';
-
-import { LatestRefData, MeasurementItem, Range, VirtualProps } from './types';
-
-export const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
-
-const rectReducer = (state: DOMRect | null, action: { rect: DOMRect }): null | DOMRect => {
-    const { rect } = action;
-
-    if (!state || state.height !== rect.height || state.width !== rect.width) {
-        return rect;
-    }
-
-    return state;
-};
-
-export const useRect = (nodeRef: React.RefObject<HTMLElement>) => {
-    const [element, setElement] = useState<HTMLElement | null>(nodeRef.current);
-    const [rect, dispatch] = useReducer(rectReducer, null);
-    const initialRectSet = useRef(false);
-
-    useIsomorphicLayoutEffect(() => {
-        if (nodeRef.current !== element) {
-            setElement(nodeRef.current);
-        }
-    });
-
-    useIsomorphicLayoutEffect(() => {
-        if (element && !initialRectSet.current) {
-            initialRectSet.current = true;
-            const rect = element.getBoundingClientRect();
-            dispatch({ rect });
-        }
-    }, [element]);
-
-    useEffect(() => {
-        if (!element) {
-            return;
-        }
-        // @ts-ignore
-        const observer = observeRect(element, (rect) => {
-            dispatch({ rect });
-        });
-
-        observer.observe();
-
-        return () => {
-            observer.unobserve();
-        };
-    }, [element]);
-
-    return rect;
-};
+import { LatestRefData, VisibleRange } from './types';
 
 export const findNearestBinarySearch = (
     low: number,
@@ -85,7 +29,7 @@ export const findNearestBinarySearch = (
 
 export const calculateRange = (
     { measurements, scrollableSize, scrollOffset }: LatestRefData,
-    prevRange: Range,
+    prevRange: VisibleRange,
     itemCount: number,
 ) => {
     const getOffset = (index: number) => measurements[index].start;
@@ -114,157 +58,62 @@ export const defaultMeasureSize = (el: HTMLElement, horizontal?: boolean) => {
     return el[key];
 };
 
-export function useWeakFlag(initialValue: boolean) {
-    const ref = useRef(initialValue);
-    const updater = useCallback((value: boolean) => {
-        ref.current = value;
-    }, []);
+export function debounceByFrames<FN extends (...args: any[]) => void>(fn: FN, framesToDebounce = 0) {
+    if (framesToDebounce === 0) {
+        return fn;
+    }
 
-    return [ref, updater] as const;
-}
+    let timeoutId: number | null = null;
+    let framesCounter = 0;
 
-export const useMeasurements = ({
-    estimateSize = defaultEstimateSize,
-    itemCount,
-    paddingStart,
-    measuredCache,
-    keyExtractor,
-}: {
-    estimateSize?: VirtualProps['estimateSize'];
-    itemCount: number;
-    paddingStart: number;
-    keyExtractor: Required<VirtualProps>['keyExtractor'];
-    /**
-     * используется для динамического (неизвестного
-     * до рендера) размера элемента
-     */
-    measuredCache?: Record<string, number>;
-}) => {
-    const measurements = useMemo(() => {
-        const result: MeasurementItem[] = [];
-        for (let i = 0; i < itemCount; i++) {
-            const cacheKey = keyExtractor(i);
-            const cachedSize = measuredCache?.[cacheKey];
-            const start = result[i - 1] ? result[i - 1].end : paddingStart;
-            const size = typeof cachedSize === 'number' ? cachedSize : estimateSize(i);
-            // TODO check measuredCache[cacheKey]
-            // measuredCache[cacheKey] = size;
-            const end = start + size;
-            result[i] = { index: i, start, size, end };
-        }
-
-        return result;
-    }, [itemCount, paddingStart, estimateSize, measuredCache, keyExtractor]);
-
-    return measurements;
-};
-
-export function useVisibleItems<MI = MeasurementItem>(range: Range, measurements: MI[]) {
-    const visibleItems = useMemo(() => {
-        if (range.start === 0 && range.end === 0) return [];
-
-        const result: MI[] = [];
-        const end = Math.min(range.end, measurements.length - 1);
-
-        for (let i = range.start; i <= end; i++) {
-            result.push(measurements[i]);
-        }
-
-        return result;
-        // Правило срабатывает на generic "MI", что не должно быть.
-        // React Hook useMemo has a missing dependency: 'MI'. Either include it or remove the dependency array.
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [range.start, range.end, measurements]);
-
-    return visibleItems;
-}
-
-const NUMBER_OF_METRICS_TO_COLLECT = 4;
-// TODO: inject webTelemetryKV from component
-// const sendMetrics = async (
-// payload: Array<{
-//     frameDuration: number;
-//     frameCounter: number;
-// }>,
-// ) => {
-// const meta = {
-//     widget: 'useVirtual',
-//     event: 'scroll',
-// };
-// for (const { frameDuration, frameCounter } of payload) {
-
-// TODO: pass webTelemetryKV instance
-// webTelemetryKV.push(
-//     {
-//         key: 'frameDuration',
-//         value: frameDuration,
-//     },
-//     meta,
-// );
-// webTelemetryKV.push(
-//     {
-//         key: 'frameCounter',
-//         value: frameCounter,
-//     },
-//     meta,
-// );
-// }
-// };
-
-export const useMetricsMeasureScroll = () => {
-    const ref = useRef<{
-        buffer: number[];
-        now: number;
-        prevEvent: 'rAF' | 'scroll';
-        lastScrollNow: null | number;
-        metrics: Array<{
-            frameDuration: number;
-            frameCounter: number;
-        }>;
-    }>({
-        buffer: [],
-        now: 0,
-        prevEvent: 'rAF',
-        lastScrollNow: null,
-        metrics: [],
-    });
-
-    useEffect(() => {
-        ref.current.now = performance.now();
-        const runMetric = () => {
-            if (ref.current.metrics.length >= NUMBER_OF_METRICS_TO_COLLECT) {
-                return;
-            }
-
-            const newNow = performance.now();
-            const diff = newNow - ref.current.now;
-
-            if (ref.current.prevEvent === 'scroll') {
-                ref.current.buffer.push(diff);
-            } else if (ref.current.prevEvent === 'rAF' && ref.current.buffer.length > 0) {
-                const { buffer } = ref.current;
-                ref.current.lastScrollNow = newNow;
-                ref.current.metrics.push({
-                    frameDuration: Math.round(buffer.reduce((a, b) => a + b, 0) / buffer.length),
-                    frameCounter: buffer.length,
-                });
-                ref.current.buffer = [];
-            }
-
-            ref.current.prevEvent = 'rAF';
-            ref.current.now = newNow;
-            requestAnimationFrame(runMetric);
-
-            if (ref.current.metrics.length >= NUMBER_OF_METRICS_TO_COLLECT) {
-                // sendMetrics(ref.current.metrics);
+    return (...args: Parameters<FN>) => {
+        const tick = () => {
+            if (framesCounter === framesToDebounce - 1) {
+                timeoutId = null;
+                framesCounter = 0;
+                fn(...args);
+            } else {
+                framesCounter++;
+                timeoutId = requestAnimationFrame(tick);
             }
         };
-        runMetric();
-    }, []);
 
-    const measureScroll = useCallback(() => {
-        ref.current.prevEvent = 'scroll';
-    }, []);
+        if (timeoutId !== null) {
+            framesCounter = 0;
+            cancelAnimationFrame(timeoutId);
+        }
 
-    return measureScroll;
-};
+        timeoutId = requestAnimationFrame(tick);
+    };
+}
+
+// eslint-disable-next-line space-before-function-paren
+export function throttleByFrames<FN extends (...args: any[]) => void>(fn: FN, framesToThrottle = 0) {
+    if (framesToThrottle === 0) {
+        return fn;
+    }
+
+    let isWaited = false;
+    let framesCounter = 0;
+
+    const tick = () => {
+        if (framesCounter === framesToThrottle - 1) {
+            isWaited = false;
+            framesCounter = 0;
+        } else {
+            framesCounter++;
+            requestAnimationFrame(tick);
+        }
+    };
+
+    return (...args: Parameters<FN>) => {
+        if (isWaited) {
+            return;
+        }
+
+        fn(...args);
+        isWaited = true;
+
+        tick();
+    };
+}

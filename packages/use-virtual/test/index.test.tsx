@@ -11,7 +11,7 @@ import {
     // useVirtualDynamicSmoothScroll,
     useVirtualSmoothScroll,
 } from '../src';
-import { Range } from '../src/types';
+import { VisibleRange } from '../src/types';
 
 const VISIBLE_LIMIT = 3;
 const ELEMENT_SIZE = 300;
@@ -39,7 +39,7 @@ const Virtual = ({
     paddingEnd?: number;
     limit?: number;
     initialCurrentIndex?: number;
-    initialRange?: Range;
+    initialRange?: VisibleRange;
 }) => {
     const parentRef = useRef<HTMLDivElement | null>(null);
     useLayoutEffect(() => {

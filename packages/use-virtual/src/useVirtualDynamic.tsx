@@ -2,17 +2,14 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { MeasurementItem, VirtualDynamicProps } from './types';
-import {
-    calculateRange,
-    defaultKeyExtractor,
-    useIsomorphicLayoutEffect,
-    useMeasurements,
-    useVisibleItems,
-    useWeakFlag,
-} from './utils';
-import { useKeyboard } from './utils/use-keyboard';
-import { useOnScroll, useScrollToIndex } from './utils/use-scroll';
-import { useVirualInit } from './utils/use-virtual-init';
+import { calculateRange, defaultKeyExtractor } from './utils';
+import { useKeyboard } from './hooks-helpers/useKeyboard';
+import { useOnScroll, useScrollToIndex } from './hooks-helpers/useScroll';
+import { useVirualInit } from './hooks-helpers/useVirtualInit';
+import { useIsomorphicLayoutEffect } from './hooks-helpers/useIsomorphicLayoutEffect';
+import { useWeakFlag } from './hooks-helpers/useWeakFlag';
+import { useMeasurements } from './hooks-helpers/useMeasurements';
+import { useVisibleItems } from './hooks-helpers/useVisibleItems';
 
 export const useVirtualDynamic = (props: VirtualDynamicProps) => {
     const {

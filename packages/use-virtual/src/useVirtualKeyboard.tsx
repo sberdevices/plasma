@@ -1,9 +1,11 @@
 import { useMemo } from 'react';
 
 import { VirtualPropsKeyboard } from './types';
-import { defaultKeyExtractor, useMeasurements, useVisibleItems } from './utils';
-import { useKeyboard } from './utils/use-keyboard';
-import { useVirualInit } from './utils/use-virtual-init';
+import { defaultKeyExtractor } from './utils';
+import { useKeyboard } from './hooks-helpers/useKeyboard';
+import { useVirualInit } from './hooks-helpers/useVirtualInit';
+import { useMeasurements } from './hooks-helpers/useMeasurements';
+import { useVisibleItems } from './hooks-helpers/useVisibleItems';
 
 export const useVirtualKeyboard = (props: VirtualPropsKeyboard) => {
     const {
