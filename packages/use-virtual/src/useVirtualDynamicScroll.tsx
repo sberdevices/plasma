@@ -158,8 +158,8 @@ export const useVirtualDynamicScroll = (props: VirtualDynamicProps) => {
         }
 
         latestRef.current.scrollOffset = scrollOffset;
-        setRange((prev) => calculateRange(latestRef.current, prev));
-    }, [needRestoreScrollWeakFlag, scrollKey, totalSize, scrollableSize]);
+        setRange((prev) => calculateRange(latestRef.current, prev, itemCount));
+    }, [needRestoreScrollWeakFlag, scrollKey, totalSize, scrollableSize, itemCount]);
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore

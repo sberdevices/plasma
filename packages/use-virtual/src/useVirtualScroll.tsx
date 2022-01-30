@@ -103,6 +103,7 @@ export const useVirtualScroll = (props: VirtualProps) => {
         setIsScrollingFalse,
         setCurrentIndexAfterScrolling,
         debouncedFramesScrollSync,
+        itemCount,
     });
 
     return {

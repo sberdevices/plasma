@@ -120,40 +120,52 @@ describe.each([useVirtualKeyboard, useVirtualScroll, useVirtual, useVirtualSmoot
         hookMock = jest.fn((props) => hook(props));
     };
 
-    beforeAll(() => {
-        hookMock = jest.fn((props) => hook(props));
-        render(
-            <Virtual
-                itemCount={LIST_LENGTH}
-                width={ELEMENT_SIZE * VISIBLE_LIMIT}
-                useVirtualMock={hookMock}
-                limit={limit}
-                horizontal
-            />,
-        );
-        virtualResult = hookMock.mock.results[0].value;
-    });
+    describe('basic features', () => {
+        let rerender: ReturnType<typeof render>['rerender'];
 
-    test('Should render only visible items', () => {
-        expect(screen.getAllByText(/Row/).length).toEqual(VISIBLE_LIMIT);
-    });
-
-    test('Should call hook', () => {
-        // повторный рендер после получения размера parentRef
-        expect(hookMock).toHaveBeenCalledTimes(isVirtualKeyboard ? 1 : 2);
-    });
-
-    test('Should return the proper result', () => {
-        const keys = ['visibleItems', 'totalSize', 'upIndex', 'downIndex', 'currentIndex'];
-
-        if (!isVirtualKeyboard) {
-            keys.push('scrollToIndex', 'isScrolling');
-        }
-        keys.forEach((key) => {
-            expect(virtualResult).toHaveProperty(key);
+        beforeAll(() => {
+            hookMock = jest.fn((props) => hook(props));
+            rerender = render(
+                <Virtual
+                    itemCount={LIST_LENGTH}
+                    width={ELEMENT_SIZE * VISIBLE_LIMIT}
+                    useVirtualMock={hookMock}
+                    limit={limit}
+                    horizontal
+                />,
+            ).rerender;
+            virtualResult = hookMock.mock.results[0].value;
         });
-        expect(virtualResult).toHaveProperty('currentIndex', 0);
-        expect(virtualResult).toHaveProperty('totalSize', LIST_LENGTH * ELEMENT_SIZE);
+
+        test('Should render only visible items', () => {
+            expect(screen.getAllByText(/Row/).length).toEqual(VISIBLE_LIMIT);
+        });
+
+        test('Should call hook', () => {
+            // повторный рендер после получения размера parentRef
+            expect(hookMock).toHaveBeenCalledTimes(isVirtualKeyboard ? 1 : 2);
+        });
+
+        test('Should return the proper result', () => {
+            const keys = ['visibleItems', 'totalSize', 'upIndex', 'downIndex', 'currentIndex'];
+
+            if (!isVirtualKeyboard) {
+                keys.push('scrollToIndex', 'isScrolling');
+            }
+            keys.forEach((key) => {
+                expect(virtualResult).toHaveProperty(key);
+            });
+            expect(virtualResult).toHaveProperty('currentIndex', 0);
+            expect(virtualResult).toHaveProperty('totalSize', LIST_LENGTH * ELEMENT_SIZE);
+        });
+
+        test('Should support itemCount increment', () => {
+            hookMock = jest.fn((props) => hook(props));
+            const newItemCount = LIST_LENGTH + 10;
+            rerender(<Virtual itemCount={newItemCount} useVirtualMock={hookMock} />);
+            virtualResult = hookMock.mock.results[0].value;
+            expect(virtualResult).toHaveProperty('totalSize', newItemCount * ELEMENT_SIZE);
+        });
     });
 
     test('Should support vertical view', () => {

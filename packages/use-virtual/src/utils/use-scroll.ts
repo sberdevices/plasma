@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { LatestRefData, VirtualProps, Range, MeasurementItem } from '../types';
 import { calculateRange, findNearestBinarySearch, useIsomorphicLayoutEffect, useMetricsMeasureScroll } from '../utils';
@@ -17,6 +17,7 @@ export const useOnScroll = ({
     scrollKey,
     setCurrentIndexAfterScrolling,
     debouncedFramesScrollSync = 1,
+    itemCount,
 }: {
     parentRef: VirtualProps['parentRef'];
     latestRef: React.RefObject<LatestRefData>;
@@ -26,21 +27,15 @@ export const useOnScroll = ({
     scrollKey: UseVirualInit['scrollKey'];
     setCurrentIndexAfterScrolling: UseVirualInit['setCurrentIndexAfterScrolling'];
     debouncedFramesScrollSync?: number;
+    itemCount: number;
 }) => {
     const metricsMeasureScroll = useMetricsMeasureScroll();
 
-    useIsomorphicLayoutEffect(() => {
-        if (!parentRef.current) return;
-        const scrollableParent = parentRef.current;
-
+    const onScroll = useMemo(() => {
         const debouncedSetIsScrollingFalse = debounceByFrames(
             setIsScrollingFalse,
             FRAMES_TO_DEBOUNCE_IS_SCROLLING_FALSE,
         );
-
-        /**
-         * какой индекс сделать текущим?
-         */
         const debouncedSetCurrentIndex = debounceByFrames(
             (isScrolling: boolean, align: 'center' | 'start' | 'end' = 'center') => {
                 if (!latestRef.current || !isScrolling) {
@@ -66,7 +61,9 @@ export const useOnScroll = ({
             debouncedFramesScrollSync,
         );
 
-        const onScroll = (event?: Event) => {
+        return (event?: Event) => {
+            if (!parentRef.current) return;
+
             const isScrolling = Boolean(event);
 
             if (isScrolling) {
@@ -77,14 +74,14 @@ export const useOnScroll = ({
             if (!latestData) {
                 return;
             }
-            const scrollOffset = scrollableParent[scrollKey];
+            const scrollOffset = parentRef.current[scrollKey];
             latestData.scrollOffset = scrollOffset;
 
             if (latestRef.current?.useIsScrolling && isScrolling) {
-                setRangeAndIsScrollingTrue((prevRange: Range) => calculateRange(latestData, prevRange));
+                setRangeAndIsScrollingTrue((prevRange: Range) => calculateRange(latestData, prevRange, itemCount));
                 debouncedSetIsScrollingFalse();
             } else {
-                setRange((prevRange: Range) => calculateRange(latestData, prevRange));
+                setRange((prevRange: Range) => calculateRange(latestData, prevRange, itemCount));
             }
             debouncedSetCurrentIndex(isScrolling);
 
@@ -100,6 +97,22 @@ export const useOnScroll = ({
             // setNeedRestoreScrollWeakFlag(false);
             // setProgrammaticallyScrollWeakFlag(false);
         };
+    }, [
+        scrollKey,
+        metricsMeasureScroll,
+        debouncedFramesScrollSync,
+        parentRef,
+        latestRef,
+        setIsScrollingFalse,
+        setRangeAndIsScrollingTrue,
+        setCurrentIndexAfterScrolling,
+        setRange,
+        itemCount,
+    ]);
+
+    useIsomorphicLayoutEffect(() => {
+        if (!parentRef.current) return;
+        const scrollableParent = parentRef.current;
 
         onScroll();
         scrollableParent.addEventListener('scroll', onScroll, {
@@ -108,7 +121,7 @@ export const useOnScroll = ({
         });
 
         return () => scrollableParent.removeEventListener('scroll', onScroll);
-    }, [scrollKey, metricsMeasureScroll]);
+    }, [parentRef, onScroll]);
 };
 
 export const getMeasurementByIndex = (measurements: MeasurementItem[], index: number, itemCount: number) => {

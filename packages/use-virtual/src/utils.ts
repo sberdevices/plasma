@@ -83,14 +83,17 @@ export const findNearestBinarySearch = (
     return 0;
 };
 
-export const calculateRange = ({ measurements, scrollableSize, scrollOffset }: LatestRefData, prevRange: Range) => {
-    const size = measurements.length - 1;
+export const calculateRange = (
+    { measurements, scrollableSize, scrollOffset }: LatestRefData,
+    prevRange: Range,
+    itemCount: number,
+) => {
     const getOffset = (index: number) => measurements[index].start;
 
-    const start = findNearestBinarySearch(0, size, getOffset, scrollOffset);
+    const start = findNearestBinarySearch(0, itemCount, getOffset, scrollOffset);
     let end = start;
 
-    while (end < size && measurements[end].end < scrollOffset + scrollableSize) {
+    while (end < itemCount && measurements[end].end < scrollOffset + scrollableSize) {
         end++;
     }
 
