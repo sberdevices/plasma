@@ -1,14 +1,114 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 
-import { VirtualProps } from './types';
-import { useVirtualScroll } from './useVirtualScroll';
+import { MeasurementItem, VirtualProps } from './types';
+import { defaultKeyExtractor, useIsomorphicLayoutEffect, useMeasurements, useVisibleItems } from './utils';
 import { useKeyboard } from './utils/use-keyboard';
+import { getMeasurementByIndex, useOnScroll, useScrollToIndex } from './utils/use-scroll';
+import { useVirualInit } from './utils/use-virtual-init';
 
-export const useVirtual = ({ horizontal = false, itemCount = 0, ...props }: VirtualProps) => {
-    const virtual = useVirtualScroll({ horizontal, itemCount, ...props });
-    const { align, parentRef } = props;
-    const { upIndex, downIndex, scrollToIndex, currentIndex, lastUpdateSource } = virtual;
-    const [prevCurrentIndex, setPrevCurrentIndex] = useState(currentIndex);
+export const useVirtual = (props: VirtualProps) => {
+    const {
+        parentRef,
+        itemCount = 0,
+        estimateSize,
+        paddingStart = 0,
+        paddingEnd = 0,
+        scrollToFn,
+        keyExtractor = defaultKeyExtractor,
+        useIsScrolling,
+        initialRange,
+        debouncedFramesScrollSync,
+        align,
+        horizontal = false,
+        framesToThrottle,
+    } = props;
+
+    const {
+        sizeKey,
+        scrollKey,
+        range,
+        setRange,
+        setRangeAndIsScrollingTrue,
+        setIsScrollingFalse,
+        upIndex,
+        downIndex,
+        currentIndex,
+        isScrolling,
+        lastUpdateSource,
+        setCurrentIndexAfterScrolling,
+        setIsScrollingToIndexTrue,
+    } = useVirualInit(props);
+
+    const latestRef = useRef<{
+        scrollOffset: number;
+        measurements: MeasurementItem[];
+        scrollableSize: number;
+        useIsScrolling?: boolean;
+    }>({
+        scrollOffset: 0,
+        measurements: [],
+        scrollableSize: 0,
+        useIsScrolling,
+    });
+    const measurements = useMeasurements({
+        estimateSize,
+        itemCount,
+        paddingStart,
+        keyExtractor,
+    });
+
+    useIsomorphicLayoutEffect(() => {
+        if (!parentRef.current) {
+            return;
+        }
+        latestRef.current.scrollableSize = parentRef.current[sizeKey];
+        latestRef.current.measurements = measurements;
+        latestRef.current.useIsScrolling = useIsScrolling;
+    }, [useIsScrolling, measurements, parentRef, sizeKey]);
+
+    const visibleItems = useVisibleItems(range, measurements);
+    const { defaultScrollToFn, scrollToIndex } = useScrollToIndex({
+        parentRef,
+        scrollKey,
+        latestRef,
+        itemCount,
+        scrollToFn,
+        setIsScrollingToIndexTrue,
+    });
+
+    /**
+     * Если есть initialRange и initialRange.start !== 0,
+     * то при монтировании компонента необходимо
+     * установить валидный (scrollLeft или scrollTop) у контейнера.
+     */
+    const initialRangeRef = useRef(initialRange);
+    const defaultScrollToFnRef = useRef(defaultScrollToFn);
+    useIsomorphicLayoutEffect(() => {
+        if (typeof initialRangeRef.current?.start === 'number' && initialRangeRef.current?.start !== 0) {
+            const measurement = getMeasurementByIndex(
+                measurements,
+                initialRangeRef.current.start,
+                initialRangeRef.current.end,
+            );
+            if (!measurement) {
+                return;
+            }
+
+            defaultScrollToFnRef.current(measurement.start);
+        }
+    }, []);
+
+    useOnScroll({
+        parentRef,
+        latestRef,
+        setRange,
+        scrollKey,
+        setRangeAndIsScrollingTrue,
+        setIsScrollingFalse,
+        setCurrentIndexAfterScrolling,
+        debouncedFramesScrollSync,
+        itemCount,
+    });
 
     const { up, down } = useMemo(() => {
         const params = { align, itemCount };
@@ -22,14 +122,16 @@ export const useVirtual = ({ horizontal = false, itemCount = 0, ...props }: Virt
             },
         };
     }, [upIndex, downIndex, align, itemCount]);
+
     useKeyboard({
         up,
         down,
         horizontal,
-        framesToThrottle: props.framesToThrottle,
+        framesToThrottle,
         parentRef,
     });
 
+    const [prevCurrentIndex, setPrevCurrentIndex] = useState(currentIndex);
     if (prevCurrentIndex !== currentIndex) {
         if (lastUpdateSource === 'keyboard') {
             scrollToIndex(currentIndex);
@@ -37,5 +139,14 @@ export const useVirtual = ({ horizontal = false, itemCount = 0, ...props }: Virt
         setPrevCurrentIndex(currentIndex);
     }
 
-    return virtual;
+    return {
+        visibleItems,
+        totalSize: (measurements[itemCount - 1]?.end || 0) + paddingEnd,
+        scrollToIndex,
+        upIndex,
+        downIndex,
+        currentIndex,
+        isScrolling,
+        lastUpdateSource,
+    };
 };

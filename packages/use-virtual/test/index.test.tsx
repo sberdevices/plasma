@@ -4,11 +4,10 @@ import React, { useRef, useLayoutEffect } from 'react';
 import { render, screen } from '@testing-library/react';
 
 import {
-    useVirtualScroll,
     useVirtual,
     useVirtualKeyboard,
     // useVirtualDynamic,
-    // useVirtualDynamicScroll,
+    // useVirtualDynamicKeyboard,
     // useVirtualDynamicSmoothScroll,
     useVirtualSmoothScroll,
 } from '../src';
@@ -23,7 +22,7 @@ const Virtual = ({
     itemCount,
     height,
     width,
-    useVirtualMock = useVirtualScroll,
+    useVirtualMock = useVirtual,
     horizontal,
     paddingStart,
     paddingEnd,
@@ -34,7 +33,7 @@ const Virtual = ({
     itemCount: number;
     height?: number;
     width?: number;
-    useVirtualMock?: typeof useVirtualScroll | typeof useVirtualKeyboard;
+    useVirtualMock?: typeof useVirtual | typeof useVirtualKeyboard;
     horizontal?: boolean;
     paddingStart?: number;
     paddingEnd?: number;
@@ -111,7 +110,7 @@ const Virtual = ({
  * keyExtractor
  * useVirtualDynamic
  */
-describe.each([useVirtualKeyboard, useVirtualScroll, useVirtual, useVirtualSmoothScroll])('%p', (hook) => {
+describe.each([useVirtualKeyboard, useVirtual, useVirtualSmoothScroll])('%p', (hook) => {
     let hookMock: jest.Mock;
     let virtualResult: Record<string, unknown>;
     const isVirtualKeyboard = hook.name === 'useVirtualKeyboard';
