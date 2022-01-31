@@ -1,3 +1,15 @@
+# v0.7.0 (Mon Jan 31 2022)
+
+#### 🐛 Bug Fix
+
+- fix(inpicture-sdk): исправления стилей шаблона large [#167](https://github.com/sberdevices/pashka/pull/167) ([@c1aphas](https://github.com/c1aphas))
+
+#### Authors: 1
+
+- Mike ([@c1aphas](https://github.com/c1aphas))
+
+---
+
 # v0.6.0 (Fri Jan 28 2022)
 
 #### 🚀 Enhancement

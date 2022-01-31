@@ -1,3 +1,21 @@
+# v0.6.0 (Mon Jan 31 2022)
+
+#### 🚀 Enhancement
+
+- feat(use-virtual): set currentIndex after scroll, fix getSafeCurrent [#164](https://github.com/sberdevices/pashka/pull/164) ([@KateKate](https://github.com/KateKate))
+
+#### 🐛 Bug Fix
+
+- fix(use-virtual): update range for itemCount increment [#164](https://github.com/sberdevices/pashka/pull/164) ([@KateKate](https://github.com/KateKate))
+- fix(use-virtual): fix VirtualKeyboard [#164](https://github.com/sberdevices/pashka/pull/164) ([@KateKate](https://github.com/KateKate))
+- refactor(use-virtual): itemsLength => itemCount [#164](https://github.com/sberdevices/pashka/pull/164) ([@KateKate](https://github.com/KateKate))
+
+#### Authors: 1
+
+- Ekaterina Anishkina ([@KateKate](https://github.com/KateKate))
+
+---
+
 # v0.5.0 (Wed Jan 19 2022)
 
 #### 🚀 Enhancement

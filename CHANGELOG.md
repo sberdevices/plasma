@@ -1,3 +1,26 @@
+# (Mon Jan 31 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/use-virtual@0.6.0`
+  - feat(use-virtual): set currentIndex after scroll, fix getSafeCurrent [#164](https://github.com/sberdevices/pashka/pull/164) ([@KateKate](https://github.com/KateKate))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/layer-inpicture-sdk@0.7.0`
+  - fix(inpicture-sdk): исправления стилей шаблона large [#167](https://github.com/sberdevices/pashka/pull/167) ([@c1aphas](https://github.com/c1aphas))
+- `@sberdevices/use-virtual@0.6.0`
+  - fix(use-virtual): update range for itemCount increment [#164](https://github.com/sberdevices/pashka/pull/164) ([@KateKate](https://github.com/KateKate))
+  - fix(use-virtual): fix VirtualKeyboard [#164](https://github.com/sberdevices/pashka/pull/164) ([@KateKate](https://github.com/KateKate))
+  - refactor(use-virtual): itemsLength => itemCount [#164](https://github.com/sberdevices/pashka/pull/164) ([@KateKate](https://github.com/KateKate))
+
+#### Authors: 2
+
+- Ekaterina Anishkina ([@KateKate](https://github.com/KateKate))
+- Mike ([@c1aphas](https://github.com/c1aphas))
+
+---
+
 # (Fri Jan 28 2022)
 
 #### 🚀 Enhancement
