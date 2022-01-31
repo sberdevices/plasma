@@ -57,12 +57,12 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
     color: #FFFFFF
     border-radius: 6px
 
-@mixin name($fontSize: 14px)
+@mixin name($fontSize: 14px, $color: #080808)
     font-weight: 500
     font-size: $fontSize
     line-height: 20px
     letter-spacing: 0.0125em
-    color: #080808
+    color: $color
     margin-bottom: 12px
     height: 38px
     -webkit-line-clamp: 2
@@ -181,9 +181,13 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
     
         .layer-swiper-slide-bottom__shop-name
             @include shopName
+            display: block
+            margin-top: 12px
+            margin-bottom: 0
+            margin-left: 12px
         
         .layer-swiper-slide-bottom__name
-            @include name(16px)
+            @include name(16px, #FFF)
         
         .layer-swiper-slide-bottom__price 
             @include price
@@ -243,9 +247,6 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
             @media (min-width: 768px)
                 @include shopName
 
-        &_secondary
-            @include big-card
-
     &-primary-wrap
         & .layer-swiper-slide-bottom__name
             display: none
@@ -290,9 +291,17 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
 
             &-bottom
                 display: block
+                background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.01) 4.64%, rgba(0, 0, 0, 0.03) 9.27%, rgba(0, 0, 0, 0.06) 13.91%, rgba(0, 0, 0, 0.12) 18.55%, rgba(0, 0, 0, 0.18) 23.18%, rgba(0, 0, 0, 0.26) 27.82%, rgba(0, 0, 0, 0.36) 32.45%, rgba(0, 0, 0, 0.44) 37.09%, rgba(0, 0, 0, 0.54) 41.73%, rgba(0, 0, 0, 0.62) 46.36%, rgba(0, 0, 0, 0.68) 51%, rgba(0, 0, 0, 0.74) 55.64%, rgba(0, 0, 0, 0.77) 60.27%, rgba(0, 0, 0, 0.8) 64.91%, rgba(0, 0, 0, 0.8) 69.55%)
 
                 &__bg
                     padding: 12px
+                    background: none
+                
+                &__name
+                    margin-bottom: 6px
+
+                &__price
+                    margin-bottom: 0
 
         .layer-swiper-button
             bottom: 80px
@@ -310,7 +319,9 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
             align-items: center
             margin-bottom: 12px
             @media (min-width: 768px)
+                padding-left: 52px
                 margin-bottom: 20px
+                margin-top: 20px
 
             &__title
                 color: #808080
