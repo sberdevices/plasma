@@ -7,10 +7,15 @@ import { useVirualInit } from './hooks-helpers/useVirtualInit';
 import { useMeasurements } from './hooks-helpers/useMeasurements';
 import { useVisibleItems } from './hooks-helpers/useVisibleItems';
 
+// TODO: убрать дефолтное значение,
+// определять по размеру контейнера
+const DEFAULT_INITIAL_RANGE = {
+    start: 0,
+    end: 3,
+};
 export const useVirtualKeyboard = (props: VirtualPropsKeyboard) => {
     const {
         itemCount = 0,
-        limit,
         horizontal = false,
         align,
         estimateSize,
@@ -18,24 +23,32 @@ export const useVirtualKeyboard = (props: VirtualPropsKeyboard) => {
         paddingEnd = 0,
         keyExtractor = defaultKeyExtractor,
         parentRef,
+        initialCurrentIndex = 0,
+        initialRange = DEFAULT_INITIAL_RANGE,
     } = props;
 
     const params = useMemo(
         () => ({
-            limit,
             itemCount,
             align,
         }),
-        [limit, itemCount, align],
+        [itemCount, align],
     );
 
-    const { upIndexAndRange, downIndexAndRange, range, currentIndex } = useVirualInit(props);
+    const { upIndexAndRange, downIndexAndRange, range, currentIndex } = useVirualInit({
+        ...props,
+        horizontal,
+        initialCurrentIndex,
+        initialRange,
+    });
+
     const measurements = useMeasurements({
         estimateSize,
         itemCount,
         paddingStart,
         keyExtractor,
     });
+
     const visibleItems = useVisibleItems(range, measurements);
 
     const { up, down } = useMemo(

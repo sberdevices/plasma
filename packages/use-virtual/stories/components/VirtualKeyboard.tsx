@@ -15,12 +15,17 @@ const StyledCarouselWrapperHorizontal = styled(CarouselWrapperHorizontal)`
     display: flex;
 `;
 
+const INITIAL_RANGE = {
+    start: 0,
+    end: 5,
+};
+
 export const VirtualKeyboard = () => {
     const parentRef = useRef<null | HTMLDivElement>(null);
 
     const { visibleItems, currentIndex } = useVirtualKeyboard({
         itemCount: fixturesVirtualizedItems.length,
-        limit: 5,
+        initialRange: INITIAL_RANGE,
         estimateSize,
         horizontal: true,
         parentRef,

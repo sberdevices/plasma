@@ -88,7 +88,8 @@ export type VirtualProps = {
      */
     initialCurrentIndex?: number;
     /**
-     * Начальные индексы (initialRange.start - initialRange.end) для отображения элементов (visibleItems).
+     * Начальные индексы (initialRange.start - initialRange.end) для отображения элементов (visibleItems),
+     * включая initialRange.end
      * Учитывается только при монтировании компонента.
      */
     initialRange?: VisibleRange;
@@ -108,6 +109,5 @@ export type VirtualDynamicProps = Omit<VirtualProps, 'estimateSize'> & {
 };
 
 export type VirtualPropsKeyboard = VirtualProps & {
-    limit: number;
     align?: 'center' | 'end';
 };

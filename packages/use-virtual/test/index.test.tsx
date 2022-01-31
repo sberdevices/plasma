@@ -26,7 +26,6 @@ const Virtual = ({
     horizontal,
     paddingStart,
     paddingEnd,
-    limit,
     initialCurrentIndex,
     initialRange,
 }: {
@@ -37,7 +36,6 @@ const Virtual = ({
     horizontal?: boolean;
     paddingStart?: number;
     paddingEnd?: number;
-    limit?: number;
     initialCurrentIndex?: number;
     initialRange?: VisibleRange;
 }) => {
@@ -59,9 +57,6 @@ const Virtual = ({
         horizontal,
         paddingStart,
         paddingEnd,
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        limit,
         initialCurrentIndex,
         initialRange,
     });
@@ -110,11 +105,11 @@ const Virtual = ({
  * keyExtractor
  * useVirtualDynamic
  */
+
 describe.each([useVirtualKeyboard, useVirtual, useVirtualSmoothScroll])('%p', (hook) => {
     let hookMock: jest.Mock;
     let virtualResult: Record<string, unknown>;
     const isVirtualKeyboard = hook.name === 'useVirtualKeyboard';
-    const limit = isVirtualKeyboard ? VISIBLE_LIMIT : undefined;
     const updateHookMock = () => {
         hookMock = jest.fn((props) => hook(props));
     };
@@ -129,7 +124,6 @@ describe.each([useVirtualKeyboard, useVirtual, useVirtualSmoothScroll])('%p', (h
                     itemCount={LIST_LENGTH}
                     width={ELEMENT_SIZE * VISIBLE_LIMIT}
                     useVirtualMock={hookMock}
-                    limit={limit}
                     horizontal
                 />,
             ).rerender;
@@ -137,7 +131,7 @@ describe.each([useVirtualKeyboard, useVirtual, useVirtualSmoothScroll])('%p', (h
         });
 
         test('Should render only visible items', () => {
-            expect(screen.getAllByText(/Row/).length).toEqual(VISIBLE_LIMIT);
+            expect(screen.getAllByText(/Row/).length).toEqual(isVirtualKeyboard ? 4 : VISIBLE_LIMIT);
         });
 
         test('Should call hook', () => {
@@ -147,10 +141,6 @@ describe.each([useVirtualKeyboard, useVirtual, useVirtualSmoothScroll])('%p', (h
 
         test('Should return the proper result', () => {
             const keys = ['visibleItems', 'totalSize', 'upIndex', 'downIndex', 'currentIndex'];
-
-            if (!isVirtualKeyboard) {
-                keys.push('scrollToIndex', 'isScrolling');
-            }
             keys.forEach((key) => {
                 expect(virtualResult).toHaveProperty(key);
             });
@@ -167,17 +157,13 @@ describe.each([useVirtualKeyboard, useVirtual, useVirtualSmoothScroll])('%p', (h
         });
     });
 
-    test('Should support vertical view', () => {
-        render(
-            <Virtual
-                itemCount={LIST_LENGTH}
-                height={ELEMENT_SIZE * VISIBLE_LIMIT}
-                useVirtualMock={hookMock}
-                limit={limit}
-            />,
-        );
-        expect(screen.getAllByText(/Row/).length).toEqual(VISIBLE_LIMIT);
-    });
+    // для isVirtualKeyboard horizontal нужен только для обработки событий с клавиатуры
+    if (!isVirtualKeyboard) {
+        test('Should support vertical view', () => {
+            render(<Virtual itemCount={LIST_LENGTH} height={ELEMENT_SIZE * VISIBLE_LIMIT} useVirtualMock={hookMock} />);
+            expect(screen.getAllByText(/Row/).length).toEqual(VISIBLE_LIMIT);
+        });
+    }
 
     test('Should support paddingStart and paddingEnd', () => {
         const paddingStart = 100;
@@ -190,7 +176,6 @@ describe.each([useVirtualKeyboard, useVirtual, useVirtualSmoothScroll])('%p', (h
                 useVirtualMock={hookMock}
                 paddingStart={paddingStart}
                 paddingEnd={paddingEnd}
-                limit={limit}
                 horizontal
             />,
         );
@@ -208,7 +193,6 @@ describe.each([useVirtualKeyboard, useVirtual, useVirtualSmoothScroll])('%p', (h
                 width={ELEMENT_SIZE * VISIBLE_LIMIT}
                 useVirtualMock={hookMock}
                 initialCurrentIndex={initialCurrentIndex}
-                limit={limit}
                 horizontal
             />,
         );
@@ -229,7 +213,6 @@ describe.each([useVirtualKeyboard, useVirtual, useVirtualSmoothScroll])('%p', (h
                 useVirtualMock={hookMock}
                 initialRange={initialRange}
                 horizontal
-                limit={limit}
             />,
         );
         expect(screen.queryByText(/Row=4/)).not.toBeInTheDocument;

@@ -26,7 +26,6 @@ type SetIndexParams = {
 };
 
 type SetIndexRangeParams = SetIndexParams & {
-    limit?: number;
     align?: 'center' | 'end';
 };
 
@@ -136,7 +135,8 @@ const reducer = (state: State, action: Action) => {
         // используем только в useKeyboard хуках
         case 'up index and range':
         case 'down index and range': {
-            const { limit = state.range.end - state.range.start, itemCount, align = 'center' } = action.payload.params;
+            const { itemCount, align = 'center' } = action.payload.params;
+            const limit = state.range.end - state.range.start;
             const offset = getOffset(limit, align);
             const currentIndex = getSafeCurrent(
                 action.type === 'up index and range' ? state.currentIndex + 1 : state.currentIndex - 1,
@@ -146,7 +146,7 @@ const reducer = (state: State, action: Action) => {
             let { start } = state.range;
             const isLatest = currentIndex >= itemCount - 1 - offset;
             const currentIsOkWithStart = currentIndex >= start;
-            const endToGo = state.range.end - offset;
+            const endToGo = state.range.end - offset - 1;
             const currentIsOkWithEnd = currentIndex <= endToGo;
 
             if (isLatest) {
@@ -161,10 +161,9 @@ const reducer = (state: State, action: Action) => {
                 ...state,
                 range: {
                     start,
-                    end: start + limit - 1,
+                    end: start + limit,
                 },
                 currentIndex,
-                pendingCurrentIndex: currentIndex,
                 lastUpdateSource: 'keyboard' as const,
             };
         }
@@ -196,7 +195,6 @@ export function useVirualInit({
     horizontal = false,
     initialCurrentIndex = 0,
     initialRange,
-    ...props
 }: VirtualProps | VirtualPropsKeyboard | VirtualDynamicProps) {
     // нужно только для scroll хуков
     const sizeKey = horizontal ? 'clientWidth' : 'clientHeight';
@@ -206,7 +204,7 @@ export function useVirualInit({
     const [state, dispatch] = useReducer(reducer, {
         range: initialRange || {
             start: 0,
-            end: 'limit' in props && typeof props.limit === 'number' ? props.limit - 1 : 0,
+            end: 0,
         },
         currentIndex: initialCurrentIndex,
         isScrolling: false,
