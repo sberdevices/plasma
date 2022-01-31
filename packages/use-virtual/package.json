@@ -1,9 +1,12 @@
 {
-    "version": "0.5.0",
+    "version": "0.6.0",
     "license": "MIT",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
-    "files": ["dist", "src"],
+    "files": [
+        "dist",
+        "src"
+    ],
     "engines": {
         "node": ">=12"
     },
