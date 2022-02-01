@@ -1,3 +1,21 @@
+# (Tue Feb 01 2022)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/layer-inpicture-sdk@0.7.1`
+  - fix(inpicture-sdk): багфиксы [#169](https://github.com/sberdevices/pashka/pull/169) ([@c1aphas](https://github.com/c1aphas))
+- `@sberdevices/use-virtual@0.6.1`
+  - refactor(use-virtual): replace limit with initialRange for useVirtualKeyboard [#168](https://github.com/sberdevices/pashka/pull/168) ([@KateKate](https://github.com/KateKate))
+  - refactor(use-virtual): update structure [#168](https://github.com/sberdevices/pashka/pull/168) ([@KateKate](https://github.com/KateKate))
+  - refactor(use-virtual): drop scroll only hooks [#168](https://github.com/sberdevices/pashka/pull/168) ([@KateKate](https://github.com/KateKate))
+
+#### Authors: 2
+
+- Ekaterina Anishkina ([@KateKate](https://github.com/KateKate))
+- Mike ([@c1aphas](https://github.com/c1aphas))
+
+---
+
 # (Mon Jan 31 2022)
 
 #### 🚀 Enhancement

@@ -1,3 +1,17 @@
+# v0.6.1 (Tue Feb 01 2022)
+
+#### 🐛 Bug Fix
+
+- refactor(use-virtual): replace limit with initialRange for useVirtualKeyboard [#168](https://github.com/sberdevices/pashka/pull/168) ([@KateKate](https://github.com/KateKate))
+- refactor(use-virtual): update structure [#168](https://github.com/sberdevices/pashka/pull/168) ([@KateKate](https://github.com/KateKate))
+- refactor(use-virtual): drop scroll only hooks [#168](https://github.com/sberdevices/pashka/pull/168) ([@KateKate](https://github.com/KateKate))
+
+#### Authors: 1
+
+- Ekaterina Anishkina ([@KateKate](https://github.com/KateKate))
+
+---
+
 # v0.6.0 (Mon Jan 31 2022)
 
 #### 🚀 Enhancement
