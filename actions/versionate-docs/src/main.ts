@@ -16,7 +16,7 @@ const createBuildFolder = async () => {
 const buildDocumentation = async (docpckgName: string, prefix: string, version: string) => {
     console.log(`> Building apllication for "${docpckgName}".`);
 
-    const build = await exec(`npm run build --prefix="./website/${docpckgName}"`);
+    const build = await exec(`VERSION_NAME=${prefix}-${version} npm run build --prefix="./website/${docpckgName}"`);
 
     console.log(build.stdout, build.stderr);
 
