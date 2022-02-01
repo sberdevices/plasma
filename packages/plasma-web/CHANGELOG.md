@@ -1,3 +1,17 @@
+# v1.74.0 (Tue Feb 01 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web, plasma-ui): `Basebox`: Hide input properly; tabIndex={-1} on root [#1057](https://github.com/sberdevices/plasma/pull/1057) ([@fanisco](https://github.com/fanisco))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.73.1 (Fri Jan 28 2022)
 
 #### 🐛 Bug Fix
