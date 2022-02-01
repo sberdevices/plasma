@@ -34,7 +34,7 @@ export const Slide = ({ product, onSlideHover, name, index, amount }: Props) => 
     let productName = product?.name;
 
     if (template === TemplateEnum.MINIMAL) {
-        productName = product?.name.split(' ').at(0);
+        productName = product?.name.split(' ')[0];
     }
 
     return html`

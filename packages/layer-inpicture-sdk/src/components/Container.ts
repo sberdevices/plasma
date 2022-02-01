@@ -106,6 +106,7 @@ export const Container = (config: Config) => {
         if (
             (template === TemplateEnum.MINIMAL || template === TemplateEnum.INTERACTIVE)
             && !isWidgetClickOpenTabEventAlreadySent.current
+            && hiddenByDefault
         ) {
             sendOpenedWidgetEvent(config);
             isWidgetClickOpenTabEventAlreadySent.current = true;
