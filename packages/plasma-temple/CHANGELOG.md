@@ -1,3 +1,17 @@
+# v1.26.0 (Wed Feb 02 2022)
+
+#### 🐛 Bug Fix
+
+- chore: Storybook: Added lang to make VoiceOver read russian text properly [#1052](https://github.com/sberdevices/plasma/pull/1052) ([@fanisco](https://github.com/fanisco))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.25.0 (Tue Feb 01 2022)
 
 #### 🐛 Bug Fix

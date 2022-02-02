@@ -1,3 +1,26 @@
+# (Wed Feb 02 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-icons@1.67.0`
+  - feat(plasma-icons): Add all devices icons [#1051](https://github.com/sberdevices/plasma/pull/1051) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-ui-docs@0.41.0`
+  - chore(plasma-ui-docs): Empty `versionsArchived.json` [#1062](https://github.com/sberdevices/plasma/pull/1062) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/versionate-docs@0.2.0`, `@sberdevices/plasma-temple-docs@0.5.0`, `@sberdevices/plasma-ui-docs@0.41.0`, `@sberdevices/plasma-web-docs@0.32.0`
+  - fix: Docs base url via env VERSION_NAME [#1062](https://github.com/sberdevices/plasma/pull/1062) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.39.0`, `@sberdevices/plasma-temple@1.26.0`, `@sberdevices/plasma-web@1.75.0`
+  - chore: Storybook: Added lang to make VoiceOver read russian text properly [#1052](https://github.com/sberdevices/plasma/pull/1052) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # (Tue Feb 01 2022)
 
 #### 🚀 Enhancement
