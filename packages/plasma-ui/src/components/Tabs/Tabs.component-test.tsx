@@ -118,6 +118,23 @@ describe('plasma-ui: Tabs', () => {
         cy.matchImageSnapshot();
     });
 
+    it('item autoFocus with pilled', () => {
+        mount(
+            <CypressTestDecorator>
+                <Tabs pilled>
+                    {items.map((item, i) => (
+                        <AutoFocusTabItem key={i} isActive={i === 1} autoFocus={i === 1}>
+                            {item.label}
+                        </AutoFocusTabItem>
+                    ))}
+                </Tabs>
+            </CypressTestDecorator>,
+        );
+
+        cy.get('div > button:nth-child(2)').focus();
+        cy.matchImageSnapshot();
+    });
+
     it('_animated', () => {
         mount(
             <CypressTestDecorator>
