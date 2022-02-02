@@ -61,6 +61,10 @@
             margin: 20px 0;
         }
 
+        .insets {
+            margin-bottom: 180px;
+        }
+
         .loading {
             font-size: 30px;
             margin: auto;
@@ -104,6 +108,9 @@
 
     <div class="container">
         <h2 class="header">SberDevices Video Ad Player</h2>
+        <button class="button change-init-btn">init</button>
+        <button class="button change-init-btn">initWithAssistant</button>
+        <button class="button change-init-btn">initWithParams</button>
         <div class="video-ids">
             <div>
                 <span>pad_id: </span>
@@ -140,6 +147,15 @@
         <div>
             <span>Surface: </span><span id="surface-id">---</span>
         </div>
+        <div>
+            <span>Init API: </span><span id="init-api-id">---</span>
+        </div>
+        <div class="container">
+            <h2 class="header">SberDevices Banner</h2>
+            <button disabled class="button show-sugs-rating-btn">Покажи саджест Оценки</button>
+            <button disabled class="button show-rating-btn">Покажи Оценки</button>
+        </div>
+        <div class="insets"></div>
     </div>
 </body>
 

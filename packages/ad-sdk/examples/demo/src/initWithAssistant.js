@@ -55,4 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
             onError,
         });
     });
+
+    const ratingsBtn = document.getElementById("show-ratings");
+    ratingsBtn.addEventListener("click", () => {
+        assistant.sendAction("SHOW_RATING_SUGGEST");
+    });
 });
