@@ -131,6 +131,11 @@ export function isInited() {
 // init({ onSuccess, onError }); // PROD
 
 const _assistantState = {};
+const _assistantRef = { current: null };
+
+export function getAssistantRef() {
+    return _assistantRef;
+}
 
 export function init(params = {}) {
     const test = !!params.test;
@@ -208,7 +213,7 @@ export function initWithParams(params = {}, test = false) {
     }
 
     try {
-        _initWithParams(params.params, test);
+        _initWithParams(params.params, params.test || test);
         onSuccess();
     } catch (err) {
         onError(err);
@@ -235,7 +240,8 @@ export function initWithAssistant(params = {}, test = false) {
         return;
     }
 
-    _initWithAssistant(assistant, onSuccess, onError, test);
+    _initWithAssistant(assistant, onSuccess, onError, params.test || test);
+    _assistantRef.current = assistant;
 }
 
 const buildAdTag = () => {
