@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-website",
-    "version": "0.28.0",
+    "version": "0.29.0",
     "description": "Plasma Main App",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
@@ -19,8 +19,8 @@
         "lint": "next lint"
     },
     "dependencies": {
-        "@sberdevices/plasma-b2c": "1.38.0",
-        "@sberdevices/plasma-icons": "1.66.0",
+        "@sberdevices/plasma-b2c": "1.39.0",
+        "@sberdevices/plasma-icons": "1.67.0",
         "@sberdevices/plasma-tokens-b2c": "0.8.0",
         "@sberdevices/plasma-typo": "0.2.1",
         "next": "^11.1.2",
