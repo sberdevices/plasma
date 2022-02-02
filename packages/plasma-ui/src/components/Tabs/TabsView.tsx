@@ -156,8 +156,8 @@ export const TabsView = styled(BaseTabs)<TabsViewProps>`
                 border-radius: 6.25rem;
             `}
 
-        ${({ size = 'l' }) => css`
-            --tab-item-outline-radius: ${outlineSizes[size].radius};
+        ${({ size = 'l', pilled }) => css`
+            --tab-item-outline-radius: ${pilled ? '6.375rem' : outlineSizes[size].radius};
         `}
 
         /* stylelint-disable-next-line selector-max-universal */
