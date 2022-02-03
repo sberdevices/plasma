@@ -15,8 +15,8 @@
         "@sberdevices/plasma-icons": "^1.0.0",
         "@sberdevices/plasma-tokens": "^1.0.0",
         "@sberdevices/plasma-ui": "^1.0.0",
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1",
+        "react": ">=16.13.1",
+        "react-dom": ">=16.13.1",
         "styled-components": "^5.1.1"
     },
     "devDependencies": {
@@ -76,9 +76,7 @@
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
         "test": "jest"
     },
-    "files": [
-        "dist"
-    ],
+    "files": ["dist"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Виноградов Антон Александрович",
