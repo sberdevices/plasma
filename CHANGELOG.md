@@ -1,3 +1,23 @@
+# (Thu Feb 03 2022)
+
+#### 🚀 Enhancement
+
+- `icon-export-ui@1.2.0`
+  - feat(icon-export-ui): Add listeners and fetch source files [#166](https://github.com/sberdevices/pashka/pull/166) ([@neretin-trike](https://github.com/neretin-trike))
+  - feat(icon-export-ui): Add types and create payload in plugin [#166](https://github.com/sberdevices/pashka/pull/166) ([@neretin-trike](https://github.com/neretin-trike))
+  - feat(icon-export-ui): Add utils for generate payload [#166](https://github.com/sberdevices/pashka/pull/166) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### 🐛 Bug Fix
+
+- `icon-export-ui@1.2.0`
+  - chore(icon-export-ui): Update infrastructure configs [#166](https://github.com/sberdevices/pashka/pull/166) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # (Tue Feb 01 2022)
 
 #### 🐛 Bug Fix
