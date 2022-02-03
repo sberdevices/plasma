@@ -98,7 +98,6 @@ export const Gallery: PageComponent<PageStateType, 'gallery', PageParamsType> = 
     // Устанавливаем состояние Canvas App
     useAssistantAppState({
         screen: name,
-        // eslint-disable-next-line @typescript-eslint/camelcase
         item_selector: {
             items: getItemSelectorItems(gallery).flatMap(({ items }) =>
                 items.map((item) => ({
