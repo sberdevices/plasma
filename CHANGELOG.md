@@ -1,3 +1,19 @@
+# (Thu Feb 03 2022)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-b2c@1.39.1`, `@sberdevices/plasma-core@1.49.1`, `@sberdevices/plasma-icons@1.67.1`, `@sberdevices/plasma-temple@1.26.1`, `@sberdevices/plasma-typo@0.2.2`, `@sberdevices/plasma-ui@1.80.1`, `@sberdevices/plasma-web@1.75.1`, `@sberdevices/plasma-cy-utils@0.5.2`, `@sberdevices/plasma-sb-utils@0.48.1`
+  - fix: peer dependencies versions [#1053](https://github.com/sberdevices/plasma/pull/1053) ([@LamaEats](https://github.com/LamaEats))
+- `@sberdevices/plasma-docs-ui@0.4.1`, `@sberdevices/plasma-ui-docs@0.41.1`, `@sberdevices/plasma-web-docs@0.32.1`
+  - feat(plasma-ui-docs, plasma-web-docs): Added Storybook links on doc pages [#1060](https://github.com/sberdevices/plasma/pull/1060) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Wed Feb 02 2022)
 
 #### 🚀 Enhancement

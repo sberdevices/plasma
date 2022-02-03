@@ -1,3 +1,17 @@
+# v0.4.1 (Thu Feb 03 2022)
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- feat(plasma-ui-docs, plasma-web-docs): Added Storybook links on doc pages [#1060](https://github.com/sberdevices/plasma/pull/1060) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v0.4.0 (Fri Dec 03 2021)
 
 #### 🚀 Enhancement

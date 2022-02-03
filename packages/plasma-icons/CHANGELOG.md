@@ -1,3 +1,15 @@
+# v1.67.1 (Thu Feb 03 2022)
+
+#### 🐛 Bug Fix
+
+- fix: peer dependencies versions [#1053](https://github.com/sberdevices/plasma/pull/1053) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v1.67.0 (Wed Feb 02 2022)
 
 #### 🚀 Enhancement

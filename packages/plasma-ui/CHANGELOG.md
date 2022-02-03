@@ -1,3 +1,17 @@
+# v1.80.1 (Thu Feb 03 2022)
+
+#### 🐛 Bug Fix
+
+- fix: peer dependencies versions [#1053](https://github.com/sberdevices/plasma/pull/1053) ([@LamaEats](https://github.com/LamaEats))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v1.80.0 (Wed Feb 02 2022)
 
 #### 🐛 Bug Fix

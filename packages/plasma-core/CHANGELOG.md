@@ -1,3 +1,15 @@
+# v1.49.1 (Thu Feb 03 2022)
+
+#### 🐛 Bug Fix
+
+- fix: peer dependencies versions [#1053](https://github.com/sberdevices/plasma/pull/1053) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v1.49.0 (Tue Feb 01 2022)
 
 #### 🐛 Bug Fix
