@@ -7,7 +7,7 @@ import { Film } from './pages/Film';
 
 const assistantParams: AssistantProps = {
     initPhrase: 'запусти проверочка',
-    token: process.env.REACT_APP_SMARTAPP_TOKEN,
+    token: process.env.REACT_APP_SMARTAPP_TOKEN || '',
 };
 
 const headerProps: AppHeaderProps = {
