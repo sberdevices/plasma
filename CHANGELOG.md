@@ -1,5 +1,26 @@
 # (Thu Feb 03 2022)
 
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-ui@1.81.0`, `@sberdevices/plasma-ui-docs@0.42.0`
+  - feat(plasma-ui): `Picker`: Added `xs` size [#1055](https://github.com/sberdevices/plasma/pull/1055) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@1.27.0`
+  - test(plasma-temple): add tests for GalleryPage [#1059](https://github.com/sberdevices/plasma/pull/1059) ([@LamaEats](https://github.com/LamaEats))
+  - chore(plasma-temple): add story for GalleryPage [#1059](https://github.com/sberdevices/plasma/pull/1059) ([@LamaEats](https://github.com/LamaEats))
+  - fix(plasma-temple): carousels height [#1059](https://github.com/sberdevices/plasma/pull/1059) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
+# (Thu Feb 03 2022)
+
 #### 🐛 Bug Fix
 
 - `@sberdevices/plasma-b2c@1.39.1`, `@sberdevices/plasma-core@1.49.1`, `@sberdevices/plasma-icons@1.67.1`, `@sberdevices/plasma-temple@1.26.1`, `@sberdevices/plasma-typo@0.2.2`, `@sberdevices/plasma-ui@1.80.1`, `@sberdevices/plasma-web@1.75.1`, `@sberdevices/plasma-cy-utils@0.5.2`, `@sberdevices/plasma-sb-utils@0.48.1`

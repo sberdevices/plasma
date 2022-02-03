@@ -1,3 +1,20 @@
+# v1.81.0 (Thu Feb 03 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): `Picker`: Added `xs` size [#1055](https://github.com/sberdevices/plasma/pull/1055) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.80.1 (Thu Feb 03 2022)
 
 #### 🐛 Bug Fix
