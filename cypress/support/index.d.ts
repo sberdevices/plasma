@@ -17,6 +17,8 @@ declare global {
             ): Chainable;
 
             triggerSpatNavEvent(dir: 'left' | 'right' | 'up' | 'down', times?: number): Chainable<HTMLElement>;
+            mockImage(selector: string, path: string): Chainable;
+            mockBackgroundImage(selector: string, path: string): Chainable;
         }
     }
 }
