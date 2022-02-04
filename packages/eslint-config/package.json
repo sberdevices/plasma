@@ -1,6 +1,6 @@
 {
   "name": "@sberdevices/eslint-config",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "SberDevices eslint config",
   "main": "index.js",
   "repository": {
@@ -33,7 +33,7 @@
     "typescript": ">= 3.8.3"
   },
   "dependencies": {
-    "@sberdevices/eslint-config-base": "0.1.0"
+    "@sberdevices/eslint-config-base": "0.2.0"
   },
   "publishConfig": {
     "access": "public"
