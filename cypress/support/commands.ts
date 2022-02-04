@@ -120,3 +120,15 @@ Cypress.Commands.add(
         }, cy.wrap(subject));
     },
 );
+
+Cypress.Commands.add('mockImage', (selector: string, path: string) => {
+    cy.fixture(path, 'base64').then((src) => {
+        cy.get(selector).invoke('attr', 'src', `data:image/png;base64, ${src}`);
+    });
+});
+
+Cypress.Commands.add('mockBackgroundImage', (selector: string, path: string) => {
+    cy.fixture(path, 'base64').then((src) => {
+        cy.get(selector).invoke('css', 'background-image', `url(data:image/jpg;base64,${src})`);
+    });
+});
