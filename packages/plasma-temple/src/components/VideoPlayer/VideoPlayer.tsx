@@ -11,8 +11,8 @@ import { useMediaPlayer } from '../MediaPlayer/hooks/useMediaPlayer';
 import { useMediaPlayerKeyboard } from '../MediaPlayer/hooks/useMediaPlayerKeyboard';
 import { useTimer } from '../MediaPlayer/hooks/useTimer';
 import { MediaPlayer } from '../MediaPlayer/MediaPlayer';
-import { useInsets, Insets } from '../../hooks';
-import { ObjectFit } from '../../types';
+import { useInsets } from '../../hooks';
+import { Insets, ObjectFit } from '../../types';
 
 export interface VideoPlayerProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
     header?: React.ReactNode;
