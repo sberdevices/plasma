@@ -152,5 +152,5 @@ function CartItemComponent<ID = unknown, T extends AnyObject = AnyObject>({
         </StyledContainer>
     );
 }
-/** Компонет отдельной позиции в корзине */
+/** Компонент отдельной позиции в корзине */
 export const CartItem = React.memo(CartItemComponent) as typeof CartItemComponent;
