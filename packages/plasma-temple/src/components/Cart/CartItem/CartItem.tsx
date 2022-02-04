@@ -9,19 +9,38 @@ import { CartItemType } from '../types';
 import { AnyObject, Currency } from '../../../types';
 
 export interface CartItemProps<ID = unknown, T extends AnyObject = AnyObject> {
+    /** Данные товара */
     item: CartItemType<ID, T>;
+    /**  Индекс товара в корзине */
     index: number;
+    /** Валюта */
     currency?: Currency;
+    /** Флаг определяет возможность увеличить количетво товара в корзине */
     plusDisabled?: boolean;
+    /** Флаг определяет наличие числового бейджа на изображении товара */
     withBadge?: boolean;
+    /**
+     * Дефолтное изображение.
+     * Используется при отсутствии изображения или при ошибке загрузки изображения
+     */
     defaultImage?: string;
     className?: string;
+    /** Кастомный элемент изображения товара */
     imageComponent?: React.ComponentType<CartItemImageProps<ID, T>>;
+    /** Кастомный элемент деталей товара */
     detailsComponent?: React.ComponentType<CartItemDetailsProps<ID, T>>;
+    /** Кастомный элемент кнопок изменения количества товара в корзине */
     quantityButtonComponent?: React.ComponentType<CartItemQuantityButtonProps<ID, T>>;
+    /** Колбэк вызываемый при клике по кнопке добавить */
     onPlus: (item: CartItemType<ID, T>) => void;
+    /** Колбэк вызываемый при клике по кнопке уменьшить */
     onMinus: (item: CartItemType<ID, T>) => void;
+    /**
+     * Колбэк вызываемый при клике по кнопке удалить. Отображается если `item.disabled = true`.
+     * Также вызывается если количество товара в корзине равно 0.
+     */
     onRemove?: (item: CartItemType<ID, T>) => void;
+    /** Колбэк вызываемый при клике по изображению товара */
     onImageClick?: (item: CartItemType<ID, T>) => void;
 }
 
@@ -133,5 +152,5 @@ function CartItemComponent<ID = unknown, T extends AnyObject = AnyObject>({
         </StyledContainer>
     );
 }
-
+/** Компонет отдельной позиции в корзине */
 export const CartItem = React.memo(CartItemComponent) as typeof CartItemComponent;
