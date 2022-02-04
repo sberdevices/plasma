@@ -30,6 +30,7 @@
         "@sberdevices/plasma-icons": "1.67.2",
         "@sberdevices/plasma-tokens": "1.15.1",
         "@sberdevices/plasma-ui": "1.81.1",
+        "@sberdevices/spatial-navigation": "1.0.4",
         "@storybook/addon-docs": "^6.4.9",
         "@storybook/addon-essentials": "^6.4.9",
         "@storybook/addons": "^6.4.9",

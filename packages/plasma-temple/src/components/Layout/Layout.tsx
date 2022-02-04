@@ -2,9 +2,10 @@ import { Container } from '@sberdevices/plasma-ui';
 import React from 'react';
 import styled, { CSSObject } from 'styled-components';
 
-import { Insets, useInsets } from '../../hooks';
+import { useInsets } from '../../hooks';
 import { useWindowInnerHeight } from '../../hooks/useWindowInnerHeight';
 import { AssistantInsets } from '../../store';
+import { Insets } from '../../types';
 
 import { LayoutElementContext } from './LayoutElementContext';
 

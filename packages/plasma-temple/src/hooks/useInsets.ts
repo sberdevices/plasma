@@ -1,9 +1,7 @@
-import { AssistantInsetsCommand } from '@sberdevices/assistant-client';
 import React from 'react';
 
 import { AppStateContext } from '../components/PlasmaApp/AppStateContext';
-
-export type Insets = AssistantInsetsCommand['insets'];
+import { Insets } from '../types';
 
 export function useInsets(): Insets {
     const {
