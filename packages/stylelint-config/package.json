@@ -8,7 +8,7 @@
     "url": "git+https://github.com/sberdevices/pashka.git"
   },
   "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
-  "license": "UNLICENSED",
+  "license": "Sber Public License at-nc-sa v.2",
   "homepage": "https://github.com/sberdevices/pashka/tree/master/packages/stylelint-config",
   "peerDependencies": {
     "stylelint": ">= 13.13.0",
@@ -17,5 +17,8 @@
     "stylelint-order": ">= 4.0.0",
     "stylelint-processor-styled-components": ">= 1.10.0",
     "stylelint-scss": ">= 3.17.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
