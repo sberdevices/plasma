@@ -42,16 +42,8 @@
         "url-loader": "^4.1.1"
     },
     "browserslist": {
-        "production": [
-            ">0.5%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
+        "production": [">0.5%", "not dead", "not op_mini all"],
+        "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
     },
     "devDependencies": {
         "@docusaurus/module-type-aliases": "^2.0.0-beta.4",
@@ -60,7 +52,7 @@
         "@types/react-helmet": "^6.1.2",
         "@types/react-router-dom": "^5.1.8",
         "@types/styled-components": "^5.1.12",
-        "globby": "^11.0.0",
+        "fast-glob": "3.2.11",
         "react-docgen-typescript": "^2.1.0",
         "typescript": "^3.9.10"
     }

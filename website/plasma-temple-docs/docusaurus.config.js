@@ -4,6 +4,10 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const docgen = require('react-docgen-typescript');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const fg = require('fast-glob');
 
 const { PR_NAME, VERSION_NAME } = process.env;
 const prefix = VERSION_NAME || !PR_NAME ? '' : `/${PR_NAME}`;
@@ -125,7 +129,23 @@ module.exports = {
             return {
                 name: 'docusaurus-plugin-react-docgen-typescript',
                 async loadContent() {
-                    return 'noop';
+                    return docgen
+                        .withCustomConfig('./tsconfig.json', {
+                            shouldExtractLiteralValuesFromEnum: true,
+                            shouldRemoveUndefinedFromOptional: true,
+                            propFilter: (prop) => {
+                                if (prop.parent) {
+                                    return !prop.parent.fileName.includes('@types/react');
+                                }
+                                return true;
+                            },
+                        })
+                        .parse(
+                            await fg([
+                                '../../packages/plasma-temple/src/**/*.{ts,tsx}',
+                                '!../../packages/plasma-temple/src/**/*.test.*',
+                            ]),
+                        );
                 },
                 configureWebpack(config) {
                     return {
@@ -141,7 +161,45 @@ module.exports = {
                     };
                 },
                 async contentLoaded({ content, actions }) {
-                    actions.createData(`${content}.json`, JSON.stringify({}));
+                    const names = [];
+                    content
+                        .filter((module) => {
+                            const result =
+                                !names.includes(module.displayName) &&
+                                /^[A-Z]/.test(module.displayName) &&
+                                (module.props || module.description) &&
+                                module.displayName !== 'Default';
+
+                            if (result) {
+                                names.push(module.displayName);
+                                return true;
+                            }
+
+                            return false;
+                        })
+                        .map((component) =>
+                            actions.createData(
+                                `${component.displayName}.json`,
+                                JSON.stringify({ props: component.props, description: component.description }),
+                            ),
+                        );
+                },
+            };
+        },
+        function aliasPlugin() {
+            return {
+                name: 'docusaurus-plugin-aliases',
+                configureWebpack() {
+                    return {
+                        resolve: {
+                            symlinks: false,
+                            alias: {
+                                react: path.resolve(__dirname, 'node_modules', 'react'),
+                                'react-dom': path.resolve(__dirname, 'node_modules', 'react-dom'),
+                                'styled-components': path.resolve(__dirname, 'node_modules', 'styled-components'),
+                            },
+                        },
+                    };
                 },
             };
         },

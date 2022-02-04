@@ -1,0 +1,57 @@
+---
+id: cart
+title: Cart
+---
+
+import { PropsTable, Description } from '@site/src/components';
+
+# Cart
+Набор компонентов и хуков для создания корзины ecom приложений
+
+## CartProvider
+<Description name="CartProvider" />
+<PropsTable name="CartProvider" />
+
+## Cart
+<Description name="Cart" />
+<PropsTable name="Cart" />
+
+## CartHeaderButton
+<Description name="CartHeaderButton" />
+<PropsTable name="CartHeaderButton" />
+
+## CartItemList
+<Description name="CartItemList" />
+<PropsTable name="CartItemList" />
+
+## CartItem
+<Description name="CartItem" />
+<PropsTable name="CartItem" />
+
+
+## CartOrder
+<Description name="CartOrder" />
+<PropsTable name="CartOrder" />
+
+## Хуки
+
+### useCart
+Позволяет получить и изменить состояние корзины. Для использования хука необходимо обернуть дерево компонентов компонентом `CartProvider`.
+
+## Примеры
+
+```tsx
+import React from 'react';
+import { Cart, CartProvider, EmptyCart } from '@sberdevices/plasma-temple';
+
+export function App() {
+    return (
+        <CartProvider>
+            <Cart
+                onCheckout={() => {}}
+                emptyCart={<EmptyCart imageSrc="/images/img.png" onGoToCatalog={() => {}} />}
+            />
+        </CartProvider>
+    );
+}
+```

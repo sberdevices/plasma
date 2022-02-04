@@ -12,4 +12,5 @@ export const mapDeviceToCartItem: Record<DeviceKind, React.FC<CartItemListProps>
     mobile: CartItemListMobile,
 };
 
+/** Компонент отображает товары в корзине  */
 export const CartItemList = mapDeviceToCartItem[deviceFamily] as typeof CartItemListCommon;
