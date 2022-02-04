@@ -1,3 +1,16 @@
+# (Fri Feb 04 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/eslint-config-base@0.2.0`, `@sberdevices/eslint-config@0.4.0`, `@sberdevices/stylelint-config@0.3.0`
+  - feat(eslint-stylelint): public publish [#171](https://github.com/sberdevices/pashka/pull/171) ([@KateKate](https://github.com/KateKate))
+
+#### Authors: 1
+
+- Ekaterina Anishkina ([@KateKate](https://github.com/KateKate))
+
+---
+
 # (Thu Feb 03 2022)
 
 #### 🚀 Enhancement
