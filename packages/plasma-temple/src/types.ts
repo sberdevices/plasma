@@ -1,4 +1,9 @@
-import { AssistantNavigationCommand, AssistantSmartAppData, createAssistant } from '@sberdevices/assistant-client';
+import {
+    AssistantInsetsCommand,
+    AssistantNavigationCommand,
+    AssistantSmartAppData,
+    createAssistant,
+} from '@sberdevices/assistant-client';
 import type { PriceProps, Ratio } from '@sberdevices/plasma-ui';
 import { DeviceKind } from '@sberdevices/plasma-ui/utils';
 import { StyledComponent } from 'styled-components';
@@ -21,6 +26,8 @@ export type Direction = AssistantNavigationCommand['navigation']['command'];
 export type DeviceFamily = DeviceKind;
 
 export type Currency = PriceProps['currency'];
+
+export type Insets = AssistantInsetsCommand['insets'];
 
 export interface AssistantAction {
     type: string;

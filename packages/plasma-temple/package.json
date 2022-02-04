@@ -30,6 +30,7 @@
         "@sberdevices/plasma-icons": "1.69.1",
         "@sberdevices/plasma-tokens": "1.16.0",
         "@sberdevices/plasma-ui": "1.84.1",
+        "@sberdevices/spatial-navigation": "1.0.4",
         "@storybook/addon-docs": "^6.4.9",
         "@storybook/addon-essentials": "^6.4.9",
         "@storybook/addons": "^6.4.9",
@@ -76,9 +77,7 @@
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
         "test": "jest"
     },
-    "files": [
-        "dist"
-    ],
+    "files": ["dist"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Виноградов Антон Александрович",
