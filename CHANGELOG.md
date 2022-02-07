@@ -1,3 +1,16 @@
+# (Mon Feb 07 2022)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@1.27.1`
+  - fix(plasma-temple): peer deps versions [#1065](https://github.com/sberdevices/plasma/pull/1065) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Thu Feb 03 2022)
 
 #### 🚀 Enhancement
