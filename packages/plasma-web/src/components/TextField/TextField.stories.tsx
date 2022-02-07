@@ -11,7 +11,7 @@ const onFocus = action('onFocus');
 const onBlur = action('onBlur');
 
 const sizes = ['m', 'l'];
-const statuses = ['', 'success', 'error'];
+const statuses = ['', 'success', 'warning', 'error'];
 
 const propsToDisable = [
     'helperBlock',
