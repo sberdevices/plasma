@@ -12,7 +12,11 @@
         "prebuild": "rm -rf ./lib",
         "build": "npm run build:cjs && npm run build:esm",
         "build:cjs": "tsc",
-        "build:esm": "tsc -p ./tsconfig.es.json"
+        "build:esm": "tsc -p ./tsconfig.es.json",
+        "typescript-coverage": "npx type-coverage"
+    },
+    "typeCoverage": {
+        "atLeast": 100
     },
     "peerDependencies": {
         "react": ">=16.13.1",
@@ -33,8 +37,6 @@
     "publishConfig": {
         "access": "public"
     },
-    "files": [
-        "lib"
-    ],
+    "files": ["lib"],
     "sideEffects": false
 }

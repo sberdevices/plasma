@@ -30,14 +30,17 @@
         "prepare": "npm run build",
         "prebuild": "npm run clean",
         "build": "tsc",
-        "clean": "rm -rf lib"
+        "clean": "rm -rf lib",
+        "typescript-coverage": "npx type-coverage"
+    },
+    "typeCoverage": {
+        "ignoreFiles": ["src/CypressHelpers.tsx"],
+        "atLeast": 100
     },
     "publishConfig": {
         "access": "restricted"
     },
-    "files": [
-        "lib"
-    ],
+    "files": ["lib"],
     "dependencies": {
         "@sberdevices/plasma-tokens": "1.15.1",
         "@sberdevices/plasma-tokens-b2c": "0.8.0",

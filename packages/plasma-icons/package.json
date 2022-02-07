@@ -46,7 +46,11 @@
         "build": "npm run build:cjs && npm run build:esm",
         "postbuild": "tsc --outDir . --emitDeclarationOnly",
         "build:cjs": "BABEL_ENV=cjs SC_NAMESPACE=plasma babel ./src --out-dir . --source-maps --extensions .ts,.tsx",
-        "build:esm": "BABEL_ENV=esm SC_NAMESPACE=plasma babel ./src --out-dir ./es --source-maps --extensions .ts,.tsx"
+        "build:esm": "BABEL_ENV=esm SC_NAMESPACE=plasma babel ./src --out-dir ./es --source-maps --extensions .ts,.tsx",
+        "typescript-coverage": "npx type-coverage"
+    },
+    "typeCoverage": {
+        "atLeast": 100
     },
     "files": [
         "Icon.assets",

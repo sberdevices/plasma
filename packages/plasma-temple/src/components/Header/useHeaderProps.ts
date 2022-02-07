@@ -32,7 +32,7 @@ export const useNewHeaderProps = (props: HeaderProps): NewHeaderProps => {
 
     const subtitle = hasOldSubtitleProps(props) ? props.subtitle : props.subTitle;
 
-    const onArrowClick = React.useCallback(
+    const onArrowClick = React.useCallback<React.MouseEventHandler<HTMLButtonElement>>(
         (event) => {
             if (!isOldHeaderProps(props)) {
                 if (props.onArrowClick) {

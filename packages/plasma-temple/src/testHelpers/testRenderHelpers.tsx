@@ -90,7 +90,7 @@ export const startApp: StartApp = (pages, onStart, commands = []) => {
         win.appInitialData = commands;
         mockAssistant = createAssistantHostMock({ context: win });
 
-        Cypress.Commands.add('sendAction', (val) => {
+        Cypress.Commands.add('sendAction', (val: AssistantClientCustomizedCommand<AssistantSmartAppData>) => {
             return new Cypress.Promise((resolve) => {
                 Cypress.log({
                     message: `send action with ${val.type}`,

@@ -1,5 +1,8 @@
 interface Body extends HTMLElement {
-    createTextRange: () => any;
+    createTextRange: () => {
+        moveToElementText: (node: Node) => void;
+        select: () => void;
+    };
 }
 
 export function selectText(node: Node) {
@@ -13,6 +16,7 @@ export function selectText(node: Node) {
             selection?.removeAllRanges();
             selection?.addRange(range);
         } else if (body.createTextRange) {
+            // а мы поддерживаем IE?
             const range = body.createTextRange();
             range.moveToElementText(node);
             range.select();

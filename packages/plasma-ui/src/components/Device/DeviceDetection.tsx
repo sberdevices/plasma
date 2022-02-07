@@ -37,6 +37,7 @@ export interface DeviceThemeProps {
     detectDeviceCallback?: () => DeviceKind;
 }
 
+export type ThemeProviderValue = DeviceThemeProps & { deviceScale: number };
 /**
  * Провайдер обязателен для использования, необходимо обернуть в него все приложение.
  *

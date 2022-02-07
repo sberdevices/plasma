@@ -1,6 +1,8 @@
 import React, { forwardRef, useCallback, useMemo } from 'react';
 import type { ComponentType, RefAttributes } from 'react';
 
+import { DropdownItem, DropdownNode } from '../Dropdown/Dropdown.types';
+
 import { flattenItemsRecursive, setActiveRecursive } from './Select.utils';
 import type { SelectRefElement, SelectViewProps } from './Select.types';
 
@@ -25,7 +27,7 @@ export interface MultiSelectProps extends Omit<SelectViewProps, 'onItemClick' | 
 export const withMultiSelect = (View: ComponentType<SelectViewProps & RefAttributes<SelectRefElement>>) =>
     forwardRef<SelectRefElement, MultiSelectProps>(
         ({ value, items = [], separator = ', ', onChange, ...rest }, ref) => {
-            const isActive = useCallback((item) => Boolean(value && value.includes(item.value)), [value]);
+            const isActive = useCallback((item: DropdownNode) => Boolean(value && value.includes(item.value)), [value]);
 
             const viewValue = useMemo(
                 () =>
@@ -39,7 +41,7 @@ export const withMultiSelect = (View: ComponentType<SelectViewProps & RefAttribu
             const viewItems = useMemo(() => setActiveRecursive(items, isActive), [value, items, isActive]);
 
             const onItemClick = useCallback(
-                (item) => {
+                (item: DropdownItem) => {
                     const set = new Set(value);
 
                     if (set.has(item.value)) {

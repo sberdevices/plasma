@@ -1,7 +1,7 @@
 import styled, { StyledComponent } from 'styled-components';
 import { Carousel, CarouselProps as BaseCarouselProps } from '@sberdevices/plasma-ui';
 
-import { GetStyledComponentProps } from '../../../types';
+import type { GetStyledComponentProps } from '../../../types';
 
 export type CarouselProps = Omit<BaseCarouselProps, 'detectActive' | 'detectThreshold'>;
 

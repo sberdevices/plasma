@@ -48,7 +48,8 @@ export function Form<D, K extends keyof D = keyof D>(props: FormProps<D, K>): Re
     }, [sequence, currentField, formState, onChangeValueField, onSubmit]);
 
     const onChangeHandler = React.useCallback(
-        (value) => {
+        // eslint-disable-next-line prefer-arrow-callback
+        function <V>(value: V) {
             setFormState((prevData) => {
                 return {
                     ...prevData,

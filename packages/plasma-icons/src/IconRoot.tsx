@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { primary } from '@sberdevices/plasma-core';
 
-const sizeMap = {
+export const sizeMap = {
     xs: 1, // 16px
     s: 1.5, // 24px
     // m: 2.25, // 36px
@@ -19,7 +19,7 @@ export interface IconProps {
     className?: string;
 }
 
-interface IconRootProps extends IconProps {
+export interface IconRootProps extends IconProps {
     size: IconSize;
     icon: React.FC<IconProps>;
 }

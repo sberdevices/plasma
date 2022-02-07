@@ -1,4 +1,5 @@
 import React from 'react';
+import { DraggableData } from 'react-draggable';
 
 import { SliderBase } from './SliderBase';
 import { Handle } from './Handle';
@@ -65,7 +66,7 @@ export const Slider: React.FC<SliderProps> = ({ min, max, value, disabled, onCha
         }));
     }, [value, state.stepSize, min]);
 
-    const setStepSize = React.useCallback((newStepSize) => {
+    const setStepSize = React.useCallback((newStepSize: number) => {
         setState((prevState) => ({
             ...prevState,
             stepSize: newStepSize,
@@ -73,7 +74,7 @@ export const Slider: React.FC<SliderProps> = ({ min, max, value, disabled, onCha
     }, []);
 
     const onFirstHandleChange = React.useCallback(
-        (handleValue, data) => {
+        (handleValue: number, data: DraggableData) => {
             if (secondHandleRef?.current) {
                 const newHandleXPosition = data.x;
                 const secondHandleXPosition = getXCenterHandle(secondHandleRef.current);
@@ -95,7 +96,7 @@ export const Slider: React.FC<SliderProps> = ({ min, max, value, disabled, onCha
     );
 
     const onFirstHandleChangeCommited = React.useCallback(
-        (handleValue, data) => {
+        (handleValue: number, data: DraggableData) => {
             onChangeCommitted([handleValue, value[1]]);
 
             setState((prevState) => ({
@@ -108,7 +109,7 @@ export const Slider: React.FC<SliderProps> = ({ min, max, value, disabled, onCha
     );
 
     const onSecondHandleChange = React.useCallback(
-        (handleValue, data) => {
+        (handleValue: number, data: DraggableData) => {
             if (firstHandleRef?.current) {
                 const firstXHandleXPosition = getXCenterHandle(firstHandleRef.current);
 
@@ -131,7 +132,7 @@ export const Slider: React.FC<SliderProps> = ({ min, max, value, disabled, onCha
     );
 
     const onSecondHandleChangeCommited = React.useCallback(
-        (handleValue, data) => {
+        (handleValue: number, data: DraggableData) => {
             onChangeCommitted([value[0], handleValue]);
             setState((prevState) => ({
                 ...prevState,

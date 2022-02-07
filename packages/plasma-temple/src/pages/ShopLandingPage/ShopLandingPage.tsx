@@ -72,7 +72,7 @@ export const ShopLandingPage = <T extends AnyObject = AnyObject>({
     }, [activeIndex, changeState, getState]);
 
     const handleItemClick = React.useCallback(
-        (card, index: number) => {
+        (card: T, index: number) => {
             setActiveIndex(index);
             onItemClick(card);
         },

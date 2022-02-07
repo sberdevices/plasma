@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount as cyMount } from '@cypress/react';
+export declare type PackageName = 'plasma-ui' | 'plasma-web' | 'plasma-b2c';
 export declare const getComponent: (componentName: string) => any;
 interface CYTDec {
     noSSR?: boolean;

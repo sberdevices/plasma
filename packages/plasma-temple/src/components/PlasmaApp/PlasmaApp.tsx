@@ -45,7 +45,7 @@ export function App<Name extends string>({
 
     const { history } = state;
 
-    const pushHistory = React.useCallback((name, data) => {
+    const pushHistory = React.useCallback((name: string, data) => {
         window.history.pushState(null, name);
         dispatch(Actions.pushHistory(name, data));
     }, []);

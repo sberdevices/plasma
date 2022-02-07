@@ -2,7 +2,7 @@ interface ComponentProp {
     type: {
         name: string;
     };
-    defaultValue?: any;
+    defaultValue?: { value: string };
     description?: string;
     required?: boolean;
 }

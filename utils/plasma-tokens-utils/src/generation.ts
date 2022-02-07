@@ -52,9 +52,17 @@ export const generateToken = ({
         if (typeof value === 'string' || typeof value === 'number') {
             out += `type ${typeName} = ${typeof value};`;
         } else {
-            out += `type ${typeName} = {\n${Object.keys(value)
-                .map((k) => `    ${k}: any`)
-                .join(';\n')};\n};`;
+            const isAllValuesInObjectStrings = Object.keys(value).every(
+                (key) => typeof value[key as keyof typeof value] === 'string',
+            );
+            console.log('value ion generateToken:', isAllValuesInObjectStrings);
+            if (isAllValuesInObjectStrings) {
+                out += `type ${typeName} = {\n    [key: string]: string\n};\n`;
+            } else {
+                out += `type ${typeName} = {\n${Object.keys(value)
+                    .map((k) => `    ${k}: any`)
+                    .join(';\n')};\n};`;
+            }
         }
 
         out += '\n\n';
@@ -99,12 +107,12 @@ export const generateTokens = (
     type: GeneratedTokenType = 'value',
     prefix?: string,
     withType?: boolean,
-) =>
-    Object.entries(tokens).reduce(
+) => {
+    return Object.entries(tokens).reduce(
         (acc, [name, token]) => `${acc}${generateToken({ token, type, name, prefix, withType })}\n`,
         ROBO_COMMENT,
     );
-
+};
 /**
  * Генерация тем на основе объекта.
  * @param {Record<string, TokenGroup<TokenType>>} themes Объект с темами
@@ -123,7 +131,7 @@ export const generateThemes = (
     for (const [name, theme] of Object.entries(themes)) {
         index += `export { ${name} } from './${name}';\n`;
 
-        let content;
+        let content: string;
 
         if (type === 'tokens') {
             content = generateTokens(theme);

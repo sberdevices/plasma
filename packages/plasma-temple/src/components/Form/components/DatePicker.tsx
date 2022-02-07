@@ -16,7 +16,7 @@ type DatePickerProps = FieldComponentProps<
 
 export const DatePicker = withWrapField<Date, DatePickerProps>(
     // eslint-disable-next-line prefer-arrow-callback
-    function DatePicker(props) {
+    function DatePicker(props: DatePickerProps) {
         const { value = new Date(), max, min, onChange, onSubmit } = props;
 
         const mountRef = React.useRef<HTMLButtonElement>(null);

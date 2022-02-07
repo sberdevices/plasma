@@ -35,6 +35,7 @@ fs.existsSync(OUT_DIR) || fs.mkdirSync(OUT_DIR);
 /** ========= Генерация цветов и тем ========= **/
 /** ========================================== **/
 
+console.log('start generate tokens111');
 // Генерация цветов
 writeGeneratedToFS(COLORS_DIR, [
     // Файл с токенами CSS-Variables (с дефолтными значениями)

@@ -28,13 +28,15 @@
         "build": "tsc",
         "clean": "rm -rf lib",
         "test": "jest",
-        "test:watch": "jest --watch"
+        "test:watch": "jest --watch",
+        "typescript-coverage": "npx type-coverage"
+    },
+    "typeCoverage": {
+        "ignoreFiles": ["src/github.ts"],
+        "atLeast": 100
     },
     "publishConfig": {
         "access": "restricted"
     },
-    "files": [
-        "lib",
-        "action.yml"
-    ]
+    "files": ["lib", "action.yml"]
 }

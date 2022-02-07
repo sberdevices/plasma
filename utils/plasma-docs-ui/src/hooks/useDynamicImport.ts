@@ -11,7 +11,7 @@ type ComponentInfo = {
  * Метод для полуечния динамического импорта
  * по переданному элиасу
  */
-const getImport = (alias: string, name: string) => {
+const getImport = (alias: string, name: string): Promise<{ default: ComponentInfo }> => {
     if (alias.startsWith('@docgen')) {
         return import(`@docgen/${name}.json`);
     }
@@ -36,7 +36,7 @@ export const useDynamicImport = (alias: string, name: string): ComponentInfo => 
                         setInfo(importedInfo.default);
                     }
                 })
-                .catch((e) => console.error(`Not found module in ${alias}/${name}.`, e));
+                .catch((e: Error) => console.error(`Not found module in ${alias}/${name}.`, e));
         } catch (e) {
             console.error(e);
         }

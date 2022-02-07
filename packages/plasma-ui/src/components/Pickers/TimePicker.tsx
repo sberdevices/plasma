@@ -5,7 +5,7 @@ import { useIsomorphicLayoutEffect } from '@sberdevices/plasma-core';
 import { PickerDots } from './PickerDots';
 import { SimpleTimePicker, SimpleTimePickerProps } from './SimpleTimePicker';
 import { getNormalizeValues, getTimeValues, isChanged } from './utils';
-import type { TimeType } from './types';
+import type { PickerItem, TimeType } from './types';
 
 const StyledWrapper = styled.div`
     display: flex;
@@ -195,9 +195,18 @@ export const TimePicker: React.FC<TimePickerProps> = ({
         ];
     }, [minHours, maxHours, minMinutes, maxMinutes, minSeconds, maxSeconds, hours, minutes, step]);
 
-    const onHoursChange = React.useCallback(({ value: h }) => setState(([, m, s]) => [h, m, s]), []);
-    const onMinutesChange = React.useCallback(({ value: m }) => setState(([h, , s]) => [h, m, s]), []);
-    const onSecondsChange = React.useCallback(({ value: s }) => setState(([h, m]) => [h, m, s]), []);
+    const onHoursChange = React.useCallback(
+        ({ value: h }: PickerItem) => setState(([, m, s]) => [h as number, m, s]),
+        [],
+    );
+    const onMinutesChange = React.useCallback(
+        ({ value: m }: PickerItem) => setState(([h, , s]) => [h, m as number, s]),
+        [],
+    );
+    const onSecondsChange = React.useCallback(
+        ({ value: s }: PickerItem) => setState(([h, m]) => [h, m, s as number]),
+        [],
+    );
 
     // При очередном прогоне, если значения hours, minutes, seconds изменились,
     // необходимо вызвать событие изменения, создав новый экземпляр Date

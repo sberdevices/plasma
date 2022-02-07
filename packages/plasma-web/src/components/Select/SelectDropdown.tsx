@@ -1,7 +1,7 @@
 import React, { FC, useState, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 
-import { DropdownList, DropdownItem } from '../Dropdown';
+import { DropdownList, DropdownItem, DropdownItemType } from '../Dropdown';
 import { Popup } from '../Popup';
 
 import { SelectArrow } from './SelectArrow';
@@ -44,7 +44,7 @@ export const SelectDropdown: FC<SelectDopdownProps> = ({
     const hasItems = Array.isArray(items) && items.length > 0;
 
     const onItemClick = useCallback(
-        (item) => {
+        (item: DropdownItemType) => {
             if (!multiselect) {
                 setIsOpen(false);
             }
@@ -53,7 +53,7 @@ export const SelectDropdown: FC<SelectDopdownProps> = ({
         [multiselect, onItemClickExternal],
     );
     const onToggle = useCallback(
-        (newIsOpen) => {
+        (newIsOpen: boolean) => {
             if (newIsOpen && (!hasItems || disabled)) {
                 return;
             }

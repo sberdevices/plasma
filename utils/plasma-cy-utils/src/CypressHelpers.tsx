@@ -20,10 +20,10 @@ const StandardTypoStyle = createGlobalStyle(standardTypo);
 const CompatibleTypoStyle = createGlobalStyle(compatibleTypo);
 const ColorB2CStyle = createGlobalStyle(dark);
 
+export type PackageName = 'plasma-ui' | 'plasma-web' | 'plasma-b2c';
+
 export const getComponent = (componentName: string) => {
-    // eslint-disable-next-line
-    // @ts-ignore
-    const pkgName = Cypress.env('package');
+    const pkgName: PackageName = Cypress.env('package');
 
     if (!pkgName) {
         throw new Error('Add package env to your Cypress config');
@@ -73,9 +73,7 @@ interface CYTDec {
 }
 
 export const CypressTestDecorator: React.FC<CYTDec> = ({ noSSR, children }) => {
-    // eslint-disable-next-line
-    // @ts-ignore
-    const pkgName = Cypress.env('package');
+    const pkgName: PackageName = Cypress.env('package');
     const SSRProvider = getComponent('SSRProvider');
 
     const SSR: React.FC<CYTDec> = ({ noSSR: _noSSR, children }) => {

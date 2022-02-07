@@ -46,8 +46,6 @@ var StandardTypoStyle = styled_components_1.createGlobalStyle(plasma_typo_1.stan
 var CompatibleTypoStyle = styled_components_1.createGlobalStyle(plasma_typo_1.compatible);
 var ColorB2CStyle = styled_components_1.createGlobalStyle(themes_3.dark);
 exports.getComponent = function (componentName) {
-    // eslint-disable-next-line
-    // @ts-ignore
     var pkgName = Cypress.env('package');
     if (!pkgName) {
         throw new Error('Add package env to your Cypress config');
@@ -82,8 +80,6 @@ exports.getComponent = function (componentName) {
 };
 exports.CypressTestDecorator = function (_a) {
     var noSSR = _a.noSSR, children = _a.children;
-    // eslint-disable-next-line
-    // @ts-ignore
     var pkgName = Cypress.env('package');
     var SSRProvider = exports.getComponent('SSRProvider');
     var SSR = function (_a) {

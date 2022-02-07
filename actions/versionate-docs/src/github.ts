@@ -15,7 +15,7 @@ const getPullRequestCommitList = async (token: string) => {
     return commits.map(({ commit }) => commit.message);
 };
 
-const getPushCommitList = async () => {
+const getPushCommitList: () => Promise<string[]> = async () => {
     return eventContext.payload.commits.map((commit: { message: string }) => commit.message);
 };
 

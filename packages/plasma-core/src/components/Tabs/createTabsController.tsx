@@ -30,7 +30,7 @@ export function createTabsController<T extends HTMLDivElement, P extends TabsCon
     return forwardRef<T, P>(function TabsController({ disabled, items, index, onIndexChange, ...rest }, ref) {
         const refs = useMemo(() => new TabItemRefs(), []);
 
-        const onItemFocus = useCallback(
+        const onItemFocus = useCallback<React.FocusEventHandler<HTMLButtonElement>>(
             (event) => {
                 const focusIndex = refs.items.findIndex((itemRef) => itemRef.current === event.target);
 
@@ -45,7 +45,7 @@ export function createTabsController<T extends HTMLDivElement, P extends TabsCon
             (event: KeyboardEvent) => {
                 const minIndex = 0;
                 const maxIndex = refs.items.length - 1;
-                let nextIndex;
+                let nextIndex: number;
 
                 switch (event.keyCode) {
                     case Keys.end:

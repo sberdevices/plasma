@@ -6,7 +6,7 @@ import { useDelayedActivation } from '../../../hooks/useDelayedActivation';
 import { CommonCarousel, CarouselProps } from './Carousel';
 
 const StyledCarousel = styled(CommonCarousel)<{ initialized: boolean }>`
-    scroll-behavior: ${({ initialized }) => (initialized ? 'smooth' : 'unset')};
+    scroll-behavior: ${({ initialized }: { initialized: boolean }) => (initialized ? 'smooth' : 'unset')};
 `;
 
 export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(({ axis, index, children }, ref) => {

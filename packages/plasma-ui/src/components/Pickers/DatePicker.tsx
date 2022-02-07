@@ -4,7 +4,7 @@ import { useIsomorphicLayoutEffect } from '@sberdevices/plasma-core';
 
 import { SimpleDatePicker, SimpleDatePickerProps } from './SimpleDatePicker';
 import { getDateValues, getNormalizeValues, getTimeValues, isChanged } from './utils';
-import { DateType } from './types';
+import { DateType, PickerItem } from './types';
 
 const defaultOptions = {
     years: true,
@@ -160,27 +160,27 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     );
 
     const onYearChange = React.useCallback(
-        ({ value: y }) => {
+        ({ value: y }: PickerItem) => {
             setState(([, m, d]) => {
-                const nextMonth = getNextMonth(m, y);
-                const nextDay = getNextDay(d, nextMonth, y);
+                const nextMonth = getNextMonth(m, y as number);
+                const nextDay = getNextDay(d, nextMonth, y as number);
 
-                return [y, nextMonth, nextDay];
+                return [y as number, nextMonth, nextDay];
             });
         },
         [getNextDay, getNextMonth],
     );
     const onMonthChange = React.useCallback(
-        ({ value: m }) => {
+        ({ value: m }: PickerItem) => {
             setState(([y, , d]) => {
-                const nextDay = getNextDay(d, m, y);
+                const nextDay = getNextDay(d, m as number, y);
 
-                return [y, m, nextDay];
+                return [y, m as number, nextDay];
             });
         },
         [getNextDay],
     );
-    const onDayChange = React.useCallback(({ value: d }) => setState(([y, m]) => [y, m, d]), []);
+    const onDayChange = React.useCallback(({ value: d }: PickerItem) => setState(([y, m]) => [y, m, d as number]), []);
 
     /**
      * При очередном прогоне, если значения year, month, day изменились,

@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components';
 import { mediaQuery } from '@sberdevices/plasma-core';
 import Color from 'color';
 
+import { ThemeProviderValue } from '../Device/DeviceDetection';
+
 const sizes = {
     sberBox: css`
         --plasma-header-height: 2.25rem; /* 36px */
@@ -34,7 +36,7 @@ const StyledHeaderRoot = styled.header<StyledHeaderRootProps>`
     padding-top: var(--plasma-header-pt);
     padding-bottom: var(--plasma-header-pb);
 
-    ${({ $size, theme }) =>
+    ${({ $size, theme }: { theme: ThemeProviderValue; $size?: keyof typeof sizes }) =>
         $size
             ? sizes[$size] // Выберет указанный размер или разложит размеры по брейкпоинтам
             : css`

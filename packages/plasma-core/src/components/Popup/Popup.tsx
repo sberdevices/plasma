@@ -71,9 +71,9 @@ export const Popup = memo<PopupProps>(({ disclosure, children, isOpen, trigger, 
     const popupRef = useRef<HTMLDivElement | null>(null);
 
     const onDocumentClick = useCallback(
-        (event) => {
+        (event: MouseEvent) => {
             const targetIsRoot = event.target === rootRef.current;
-            const targetInRoot = rootRef.current?.contains(event.target);
+            const targetInRoot = rootRef.current?.contains(event.target as Node);
 
             if (!targetIsRoot && !targetInRoot) {
                 onToggle?.(false);
@@ -82,11 +82,11 @@ export const Popup = memo<PopupProps>(({ disclosure, children, isOpen, trigger, 
         [onToggle],
     );
 
-    const onClick = useCallback(
+    const onClick = useCallback<React.MouseEventHandler<HTMLDivElement>>(
         (event) => {
             if (trigger === 'click') {
-                const targetIsPopup = event.target === popupRef;
-                const targetInPopup = popupRef.current?.contains(event.target);
+                const targetIsPopup = event.target === popupRef.current;
+                const targetInPopup = popupRef.current?.contains(event.target as Node);
 
                 if (!targetIsPopup && !targetInPopup) {
                     onToggle?.(!isOpen);

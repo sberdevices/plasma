@@ -74,11 +74,20 @@
         "storybook": "start-storybook -s .storybook/public -p ${PORT:-6006} -c .storybook",
         "storybook:build": "build-storybook --quiet -s .storybook/public -c .storybook -o build-sb",
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
-        "test": "jest"
+        "test": "jest",
+        "typescript-coverage": "npx type-coverage"
     },
-    "files": [
-        "dist"
-    ],
+    "typeCoverage": {
+        "ignoreFiles": [
+            "src/utils/isNonNullableValue.ts",
+            "src/pages/GalleryPage/components/Carousel.ts",
+            "src/components/Page/Page.tsx",
+            "src/components/PlasmaApp/PlasmaApp.tsx",
+            "src/hooks/useInitializeAssistant.ts"
+        ],
+        "atLeast": 100
+    },
+    "files": ["dist"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Виноградов Антон Александрович",

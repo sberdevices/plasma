@@ -73,4 +73,4 @@ async function main() {
     setOutput('result', true);
 }
 
-main().catch((err) => setFailed(err.message));
+main().catch((err: Error) => setFailed(err.message));

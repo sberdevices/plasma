@@ -31,12 +31,15 @@
         "prebuild": "npm run clean",
         "build": "tsc",
         "clean": "rm -rf lib",
-        "test": "jest"
+        "test": "jest",
+        "typescript-coverage": "npx type-coverage"
+    },
+    "typeCoverage": {
+        "ignoreFiles": ["src/**/*functions*", "src/**/*test.*", "src/mappers.ts"],
+        "atLeast": 100
     },
     "publishConfig": {
         "access": "restricted"
     },
-    "files": [
-        "lib"
-    ]
+    "files": ["lib"]
 }

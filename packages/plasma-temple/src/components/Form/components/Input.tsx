@@ -9,7 +9,7 @@ type InputProps = FieldComponentProps<
     TextFieldProps,
     'onChange' | 'onSubmit',
     {
-        onSubmit?: () => void;
+        onSubmit?: (event?: React.KeyboardEvent<HTMLInputElement>) => void;
         onChange?: (val: string) => void;
         pattern?: string;
         required?: boolean;
@@ -27,7 +27,7 @@ const StyledTextField = styled(TextField)`
 
 export const Input = withWrapField<string, InputProps>(
     // eslint-disable-next-line prefer-arrow-callback
-    function Input(props): React.ReactElement {
+    function Input(props: InputProps): React.ReactElement {
         const { onChange, onSubmit, value, innerRef, label, ...rest } = props;
 
         const keyDownHandler: React.KeyboardEventHandler<HTMLInputElement> = React.useCallback(

@@ -1,84 +1,86 @@
+import { Property } from 'csstype';
+
 import { humanizeColor } from './functions';
 import { matchFontToWeight } from './normalizers';
 import type { DesignLanguage, BaseColors, TypoSystem } from './types';
 
 export const mapDesignToBaseColors = (ds: DesignLanguage): BaseColors => ({
     white: {
-        value: humanizeColor(ds.colors.white.color),
+        value: humanizeColor(ds.colors.white.color as Property.Color),
         comment: 'Базовый белый цвет совпадает с whitePrimary',
     },
     whitePrimary: {
-        value: humanizeColor(ds.colors.white_primary.color),
+        value: humanizeColor(ds.colors.white_primary.color as Property.Color),
         comment: 'Первичный белый цвет',
     },
     whiteSecondary: {
-        value: humanizeColor(ds.colors.white_secondary.color),
+        value: humanizeColor(ds.colors.white_secondary.color as Property.Color),
         comment: 'Вторичный белый цвет',
     },
     whiteTertiary: {
-        value: humanizeColor(ds.colors.white_tertiary.color),
+        value: humanizeColor(ds.colors.white_tertiary.color as Property.Color),
         comment: 'Третичный белый цвет',
     },
 
     black: {
-        value: humanizeColor(ds.colors.black.color),
+        value: humanizeColor(ds.colors.black.color as Property.Color),
         comment: 'Базовый черный цвет совпадает с blackPrimary',
     },
     blackPrimary: {
-        value: humanizeColor(ds.colors.black_primary.color),
+        value: humanizeColor(ds.colors.black_primary.color as Property.Color),
         comment: 'Первичный черный цвет',
     },
     blackSecondary: {
-        value: humanizeColor(ds.colors.black_secondary.color),
+        value: humanizeColor(ds.colors.black_secondary.color as Property.Color),
         comment: 'Вторичный черныйцвет',
     },
     blackTertiary: {
-        value: humanizeColor(ds.colors.black_tertiary.color),
+        value: humanizeColor(ds.colors.black_tertiary.color as Property.Color),
         comment: 'Третичный черный цвет',
     },
 
     dark01: {
-        value: humanizeColor(ds.colors.dark01.color),
+        value: humanizeColor(ds.colors.dark01.color as Property.Color),
         comment: 'Чёрный непрозрачный, не зависит от темы',
     },
     dark02: {
-        value: humanizeColor(ds.colors.dark02.color),
+        value: humanizeColor(ds.colors.dark02.color as Property.Color),
         comment: 'Чёрный непрозрачный, не зависит от темы',
     },
     dark03: {
-        value: humanizeColor(ds.colors.dark03.color),
+        value: humanizeColor(ds.colors.dark03.color as Property.Color),
         comment: 'Чёрный непрозрачный, не зависит от темы',
     },
 
     transparent: {
-        value: humanizeColor(ds.colors.transparent.color),
+        value: humanizeColor(ds.colors.transparent.color as Property.Color),
         comment: 'Прозрачный цвет',
     },
 
     buttonClear: {
-        value: humanizeColor(ds.colors.button_clear.color),
+        value: humanizeColor(ds.colors.button_clear.color as Property.Color),
         comment: 'Второстепенная прозрачная',
     },
 
     buttonBlack: {
-        value: humanizeColor(ds.colors.button_black.color),
+        value: humanizeColor(ds.colors.button_black.color as Property.Color),
         comment: 'Дефолтная чёрная, не зависит от темы',
     },
     buttonBlackSecondary: {
-        value: humanizeColor(ds.colors.button_black_secondary.color),
+        value: humanizeColor(ds.colors.button_black_secondary.color as Property.Color),
         comment: 'Второстепенная чёрная, не зависит от темы',
     },
     buttonBlackTransparent: {
-        value: humanizeColor(ds.colors.button_black_transparent.color),
+        value: humanizeColor(ds.colors.button_black_transparent.color as Property.Color),
         comment: 'Чёрная для использования поверх картинок',
     },
 
     buttonWhite: {
-        value: humanizeColor(ds.colors.button_white.color),
+        value: humanizeColor(ds.colors.button_white.color as Property.Color),
         comment: 'Дефолтная белая, не зависит от темы',
     },
     buttonWhiteSecondary: {
-        value: humanizeColor(ds.colors.button_white_secondary.color),
+        value: humanizeColor(ds.colors.button_white_secondary.color as Property.Color),
         comment: 'Второстепенная белая, не зависит от темы',
     },
 });

@@ -58,7 +58,7 @@ export const useForm = <T extends AnyObject = AnyObject>({
         [data, errors, onChange],
     );
 
-    const handleSubmit = React.useCallback(
+    const handleSubmit = React.useCallback<(event: React.SyntheticEvent) => void>(
         (event) => {
             event.preventDefault();
 

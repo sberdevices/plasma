@@ -184,7 +184,7 @@ export const useCarousel = ({
     /**
      * Обработчик скролла на DOM-узел.
      */
-    const handleScroll = useCallback(
+    const handleScroll = useCallback<React.UIEventHandler<HTMLDivElement>>(
         (event) => {
             detectActiveItem();
             onScroll?.(event);
