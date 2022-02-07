@@ -1,13 +1,12 @@
-name: Cypress component testing
+name: Typescript coverage
 
 on: push
 
 jobs:
-  cypress:
+  typescript-coverage:
     runs-on: ubuntu-latest
     env:
       NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
-      COVERAGE: true
     steps: 
     - uses: actions/checkout@v2
 
