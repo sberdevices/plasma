@@ -1,0 +1,35 @@
+---
+id: sheet
+title: Sheet
+---
+
+import { PropsTable, Description, StorybookLink } from '@site/src/components';
+
+# Sheet
+<Description name="Sheet" />
+<PropsTable name="Sheet" />
+<StorybookLink name="Sheet" />
+
+```tsx live
+import React from 'react';
+import { Body1, Button, Sheet } from '@sberdevices/plasma-ui';
+
+export function App() {
+    const [isOpen, setIsOpen] = React.useState(false);
+
+    return (
+        <>
+            <Button onClick={() => setIsOpen(true)}>Открыть</Button>
+            <Sheet isOpen={isOpen} onClose={() => setIsOpen(false)}>
+                <Body1>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae tempore vitae porro laboriosam
+                    consectetur fugiat assumenda, earum nesciunt. Distinctio minima nesciunt dicta rem quae vel illum ea
+                    fugit molestiae dolorem? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos nostrum
+                    placeat, neque repudiandae consectetur voluptates soluta et sint eum obcaecati nesciunt ullam,
+                    dolorem labore quaerat vero maxime ab ipsa nihil.
+                </Body1>
+            </Sheet>
+        </>
+    );
+}
+```
