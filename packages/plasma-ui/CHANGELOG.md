@@ -1,3 +1,16 @@
+# v1.81.1 (Tue Feb 08 2022)
+
+#### 🐛 Bug Fix
+
+- test(plasma-ui): Add test and snapshot for `Tabs` component [#1064](https://github.com/sberdevices/plasma/pull/1064) ([@neretin-trike](https://github.com/neretin-trike))
+- fix(plasma-ui): Fix outline-radius size for pilled tabs [#1064](https://github.com/sberdevices/plasma/pull/1064) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.81.0 (Thu Feb 03 2022)
 
 #### 🚀 Enhancement

@@ -1,3 +1,20 @@
+# (Tue Feb 08 2022)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-typo@0.2.3`
+  - fix(plasma-typo): Use `SBSansText` in body and text components [#1068](https://github.com/sberdevices/plasma/pull/1068) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-ui@1.81.1`
+  - test(plasma-ui): Add test and snapshot for `Tabs` component [#1064](https://github.com/sberdevices/plasma/pull/1064) ([@neretin-trike](https://github.com/neretin-trike))
+  - fix(plasma-ui): Fix outline-radius size for pilled tabs [#1064](https://github.com/sberdevices/plasma/pull/1064) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # (Mon Feb 07 2022)
 
 #### 🐛 Bug Fix

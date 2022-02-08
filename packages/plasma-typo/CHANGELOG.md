@@ -1,3 +1,15 @@
+# v0.2.3 (Tue Feb 08 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-typo): Use `SBSansText` in body and text components [#1068](https://github.com/sberdevices/plasma/pull/1068) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v0.2.2 (Thu Feb 03 2022)
 
 #### 🐛 Bug Fix
