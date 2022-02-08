@@ -214,4 +214,26 @@ export const createEvent = <T extends React.SyntheticEvent<HTMLElement, Event>>(
     return createSyntheticEvent(event) as T;
 };
 
-export { mockAssistant, sendAction };
+function stubImage(originalSrc: string, fixture: string): string {
+    let url: URL;
+
+    try {
+        url = new URL(originalSrc);
+    } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(error);
+        throw new TypeError(`Invalid url, got ${originalSrc}`);
+    }
+
+    const paths = url.pathname.split('/');
+    const aliasName = paths[paths.length - 1].split('.')[0];
+    const alias = `@${aliasName}`;
+
+    cy.intercept(originalSrc, (req) => {
+        req.reply({ fixture });
+    });
+
+    return alias;
+}
+
+export { mockAssistant, sendAction, stubImage };

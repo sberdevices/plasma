@@ -1,8 +1,7 @@
 import React from 'react';
-import { unmount } from '@cypress/react';
 import { Body1, Col } from '@sberdevices/plasma-ui';
 
-import { wrapComponent, startApp } from '../../testHelpers/testRenderHelpers';
+import { wrapComponent, startApp, stubImage } from '../../testHelpers/testRenderHelpers';
 import { navigate } from '../../../../../cypress/support/commands';
 
 import { ItemPage } from './ItemPage';
@@ -19,11 +18,7 @@ let onItemFocus: Function;
 
 function beforeTests<T extends object>(partialProps?: T) {
     beforeEach(() => {
-        cy.intercept(imageSrc, (req) => {
-            req.reply({
-                fixture: 'images/320_320_0.jpg',
-            });
-        });
+        stubImage(imageSrc, 'images/320_320_0.jpg');
 
         onItemShow = cy.stub();
         onItemFocus = cy.stub();
