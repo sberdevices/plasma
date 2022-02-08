@@ -1,5 +1,5 @@
 import { navigate } from '../../../../../cypress/support/commands';
-import { wrapComponent, startApp } from '../../testHelpers/testRenderHelpers';
+import { wrapComponent, startApp, stubImage } from '../../testHelpers/testRenderHelpers';
 
 import { GridPage } from './GridPage';
 import { GridPageState } from './types';
@@ -23,11 +23,7 @@ describe('GridPage', () => {
     }));
 
     beforeEach(() => {
-        cy.intercept(imageSrc, (req) => {
-            req.reply({
-                fixture: 'images/320_320_0.jpg',
-            });
-        });
+        stubImage(imageSrc, 'images/320_320_0.jpg');
 
         stubbedCallback = cy.stub();
 

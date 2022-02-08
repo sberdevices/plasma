@@ -3,8 +3,7 @@ import { unmount } from '@cypress/react';
 import { Card, CardBody, CardMedia, CardContent, CardHeadline1 } from '@sberdevices/plasma-ui';
 
 import { navigate } from '../../../../../cypress/support/commands';
-import { GalleryCardProps } from '../../components/GalleryCard/types';
-import { wrapComponent, startApp } from '../../testHelpers/testRenderHelpers';
+import { wrapComponent, startApp, stubImage } from '../../testHelpers/testRenderHelpers';
 
 import { GalleryPage } from './GalleryPage';
 import { GalleryPageState } from './types';
@@ -36,11 +35,7 @@ describe('GalleryPage', () => {
         }));
 
         beforeEach(() => {
-            cy.intercept(imageSrc, (req) => {
-                req.reply({
-                    fixture: 'images/320_320_0.jpg',
-                });
-            });
+            stubImage(imageSrc, 'images/320_320_0.jpg');
 
             stubbedOnCardClick = cy.stub();
 
@@ -95,11 +90,7 @@ describe('GalleryPage', () => {
         }));
 
         beforeEach(() => {
-            cy.intercept(imageSrc, (req) => {
-                req.reply({
-                    fixture: 'images/320_320_0.jpg',
-                });
-            });
+            stubImage(imageSrc, 'images/320_320_0.jpg');
 
             stubbedOnCardClick = cy.stub();
 
@@ -182,11 +173,7 @@ describe('GalleryPage', () => {
         ];
 
         beforeEach(() => {
-            cy.intercept(imageSrc, (req) => {
-                req.reply({
-                    fixture: 'images/320_320_0.jpg',
-                });
-            });
+            stubImage(imageSrc, 'images/320_320_0.jpg');
 
             stubbedOnCardClick = cy.stub();
 
@@ -233,11 +220,7 @@ describe('GalleryPage', () => {
 
     describe('CustomCard in galleries', () => {
         it('Variable card height', () => {
-            cy.intercept(imageSrc, (req) => {
-                req.reply({
-                    fixture: 'images/320_320_0.jpg',
-                });
-            });
+            stubImage(imageSrc, 'images/320_320_0.jpg');
             const stubbedData = Array.from({ length: 10 }, (_, i) => ({
                 label: `Title ${i + 1}`,
                 description: `Decription for Card ${i + 1}`,
