@@ -20,7 +20,7 @@
 /packages/plasma-shop-template @LamaEats @kvpolyanskiy @VladislavPetyukevich
 
 # Tests
-/cypress @dakhetov
-*.spec.* @dakhetov
-*.test.* @dakhetov
-*.component-test.* @dakhetov
+/cypress @seryoshka @dakhetov
+*.spec.* @seryoshka @dakhetov
+*.test.* @seryoshka @dakhetov
+*.component-test.* @seryoshka @dakhetov
