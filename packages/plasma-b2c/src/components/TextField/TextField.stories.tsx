@@ -9,7 +9,6 @@ const onChange = action('onChange');
 const onFocus = action('onFocus');
 const onBlur = action('onBlur');
 
-const sizes = ['m', 'l'];
 const statuses = ['', 'success', 'error'];
 
 const propsToDisable = [
@@ -40,12 +39,6 @@ export default {
             control: {
                 type: 'select',
                 options: statuses,
-            },
-        },
-        size: {
-            control: {
-                type: 'inline-radio',
-                options: sizes,
             },
         },
         ...disableProps(propsToDisable),
