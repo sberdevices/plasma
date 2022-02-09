@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { mount, CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
 
+import { SheetProps } from './Sheet';
+
 describe('plasma-ui: Sheet', () => {
     const Sheet = getComponent('Sheet');
     const Body1 = getComponent('Body1');
@@ -23,19 +25,22 @@ describe('plasma-ui: Sheet', () => {
         cy.matchImageSnapshot();
     });
 
-    const Interactive = () => {
+    const Interactive = ({ withOverlay }: Pick<SheetProps, 'withOverlay'>) => {
         const [open, setOpen] = useState(true);
 
         return (
-            <Sheet id="sheet" isOpen={open} onClose={() => setOpen(false)}>
-                <Body1>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae tempore vitae porro laboriosam
-                    consectetur fugiat assumenda, earum nesciunt. Distinctio minima nesciunt dicta rem quae vel illum ea
-                    fugit molestiae dolorem? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos nostrum
-                    placeat, neque repudiandae consectetur voluptates soluta et sint eum obcaecati nesciunt ullam,
-                    dolorem labore quaerat vero maxime ab ipsa nihil.
-                </Body1>
-            </Sheet>
+            <>
+                <div>Content</div>
+                <Sheet id="sheet" isOpen={open} withOverlay={withOverlay} onClose={() => setOpen(false)}>
+                    <Body1>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae tempore vitae porro laboriosam
+                        consectetur fugiat assumenda, earum nesciunt. Distinctio minima nesciunt dicta rem quae vel
+                        illum ea fugit molestiae dolorem? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos
+                        nostrum placeat, neque repudiandae consectetur voluptates soluta et sint eum obcaecati nesciunt
+                        ullam, dolorem labore quaerat vero maxime ab ipsa nihil.
+                    </Body1>
+                </Sheet>
+            </>
         );
     };
 
@@ -85,5 +90,17 @@ describe('plasma-ui: Sheet', () => {
             .trigger('touchend', touchEvent({ clientX: 180, clientY: 500 }));
 
         cy.matchImageSnapshot(':closed');
+    });
+
+    it('withoutOverlay', () => {
+        cy.viewport('iphone-6');
+
+        mount(
+            <CypressTestDecorator>
+                <Interactive withOverlay={false} />
+            </CypressTestDecorator>,
+        );
+
+        cy.matchImageSnapshot();
     });
 });

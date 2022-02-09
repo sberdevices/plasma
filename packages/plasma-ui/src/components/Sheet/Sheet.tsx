@@ -14,6 +14,12 @@ export interface SheetProps extends React.HTMLAttributes<HTMLDivElement> {
      * Обработчик закрытия шторки. Вызывается при клике по оверлею или смахиванию шторки вниз
      */
     onClose: () => void;
+
+    /**
+     * Наличие оверлея шторки. Если включен, то контент под шторкой перекрывается оверлеем, при нажатии на
+     * который шторка закрывается.
+     */
+    withOverlay?: boolean;
 }
 
 const StyledWrapper = styled.div<{ isOpen: boolean }>`
@@ -97,7 +103,13 @@ const StyledSheetHandle = styled.div`
  * Открывает окно-шторку поверх основного экрана.
  * Только для СберБанк Онлайн и Сбер Салют.
  */
-export const Sheet: React.FC<React.PropsWithChildren<SheetProps>> = ({ isOpen, children, onClose, ...restProps }) => {
+export const Sheet: React.FC<React.PropsWithChildren<SheetProps>> = ({
+    isOpen,
+    children,
+    onClose,
+    withOverlay = true,
+    ...restProps
+}) => {
     const contentWrapperRef = React.useRef<HTMLDivElement>(null);
     const handleRef = React.useRef<HTMLDivElement>(null);
 
@@ -109,7 +121,7 @@ export const Sheet: React.FC<React.PropsWithChildren<SheetProps>> = ({ isOpen, c
                 <StyledSheetHandle ref={handleRef} />
                 <StyledSheetContent>{children}</StyledSheetContent>
             </StyledContentWrapper>
-            <StyledOverlay onClick={onClose} />
+            {withOverlay && <StyledOverlay onClick={onClose} />}
         </StyledWrapper>
     );
 };
