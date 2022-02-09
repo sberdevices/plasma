@@ -46,7 +46,15 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function T
             className={className}
         >
             {contentLeft && <FieldContent pos="left">{contentLeft}</FieldContent>}
-            <StyledInput ref={ref} id={id} placeholder={placeLabel} disabled={disabled} status={status} {...rest} />
+            <StyledInput
+                ref={ref}
+                id={id}
+                $size={size}
+                placeholder={placeLabel}
+                disabled={disabled}
+                status={status}
+                {...rest}
+            />
             {placeLabel && size === 'l' && <FieldPlaceholder htmlFor={id}>{placeLabel}</FieldPlaceholder>}
             {contentRight && <FieldContent pos="right">{contentRight}</FieldContent>}
             {helperText && <FieldHelper>{helperText}</FieldHelper>}
