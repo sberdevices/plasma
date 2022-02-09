@@ -67,18 +67,26 @@ export const GridPage: React.FC<GridPageProps> = ({ state, header, onItemShow, o
     }, []);
 
     React.useEffect(() => {
-        if (!onScrollBottom) {
+        if (!onScrollBottom || !layoutElementContext) {
             return;
         }
+
         const onScroll = () => {
-            if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-                onScrollBottom();
+            if (layoutElementContext) {
+                if (layoutElementContext.scrollHeight === layoutElementContext.scrollTop + window.innerHeight) {
+                    onScrollBottom();
+                }
             }
         };
+
         const throttledScroll = throttle(onScroll, 100);
-        window.addEventListener('scroll', throttledScroll, { capture: false, passive: true });
-        return () => window.removeEventListener('scroll', throttledScroll);
-    }, [onScrollBottom]);
+
+        layoutElementContext.addEventListener('scroll', throttledScroll, { capture: false, passive: true });
+
+        return () => {
+            layoutElementContext.removeEventListener('scroll', throttledScroll);
+        };
+    }, [onScrollBottom, layoutElementContext]);
 
     return (
         <>
