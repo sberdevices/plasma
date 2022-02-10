@@ -99,6 +99,7 @@ export const HeroSlider: React.FC<UnifiedComponentProps<HeroSliderProps, Platfor
     withTimeline = true,
     initialIndex = 0,
     items,
+    disableAutofocus,
     onItemClick,
     onActiveItemChange,
     buttonText,
@@ -164,7 +165,14 @@ export const HeroSlider: React.FC<UnifiedComponentProps<HeroSliderProps, Platfor
 
     return (
         <Wrapper ref={containerRef}>
-            <Slide {...item} onClick={handleClick} buttonText={buttonText} onFocus={handleFocus} onBlur={handleBlur}>
+            <Slide
+                {...item}
+                autofocus={!disableAutofocus}
+                onClick={handleClick}
+                buttonText={buttonText}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+            >
                 {withTimeline && <HeroDots count={childLen.current} current={activeIndex} time={time} />}
             </Slide>
         </Wrapper>
