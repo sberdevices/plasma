@@ -1,11 +1,4 @@
-import {
-    generateToken,
-    generateTokens,
-    generateThemes,
-    generateTypography,
-    generateTypographyValues,
-    generateTypo,
-} from './generation';
+import { generateToken, generateTokens, generateTypography, generateTypographyValues } from './generation';
 
 const typoSystem = {
     fonts: { Regular: 'SBSansText Regular' },
@@ -13,7 +6,7 @@ const typoSystem = {
     fontWeights: { Regular: 400 },
     letterSpacings: ['0.1em'],
     lineHeights: ['1rem'],
-    text: {
+    typoStyles: {
         h1: {},
     },
 };
@@ -54,24 +47,8 @@ describe('generateTokens', () => {
     });
 });
 
-describe('generateThemes', () => {
-    const generatedCSSObject = generateThemes({ light: { border: { value: '#FFFFFF' } } }, 'cssobject', true);
-
-    it('Array with theme files with objects with ":root" key and index', () => {
-        expect(generatedCSSObject).toEqual(
-            expect.arrayContaining([
-                {
-                    file: 'light.ts',
-                    content: expect.stringMatching(/export const light .+:root.+--plasma-colors-border/gs),
-                },
-                { file: 'index.ts', content: expect.stringMatching(/export \{ light \} from/) },
-            ]),
-        );
-    });
-});
-
 describe('generateTypography', () => {
-    const generated = generateTypography(typoSystem);
+    const generated = generateTypography(typoSystem.typoStyles);
 
     it('Array with token files and index', () => {
         expect(generated).toEqual(
@@ -104,19 +81,6 @@ describe('generateTypographyValues', () => {
                 },
                 { file: 'lineHeights.ts', content: expect.stringMatching(/var\(--plasma-typo-lineHeights-0, 1rem\)/) },
                 { file: 'index.ts', content: expect.stringMatching(/export.+(font|line|letter).+from '.+';/) },
-            ]),
-        );
-    });
-});
-
-describe('generateTypo', () => {
-    const generated = generateTypo({ someDevice: { ':root': {} } });
-
-    it('Array with token files and index', () => {
-        expect(generated).toEqual(
-            expect.arrayContaining([
-                { file: 'someDevice.ts', content: expect.stringMatching(/export const someDevice .+:root/gs) },
-                { file: 'index.ts', content: expect.stringMatching(/export \{ someDevice \} from/) },
             ]),
         );
     });

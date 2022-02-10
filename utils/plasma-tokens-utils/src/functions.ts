@@ -1,8 +1,7 @@
 import Color from 'color';
-import { css } from '@theme-ui/css';
 
-import { HTML_FONT_SIZE } from './generation';
-import type { TypographStyle, TokenGroup, TypoStyles, TypoSystem, ThemeCSSObject } from './types';
+import type { TypographStyle } from './types';
+import { escapeValue, getCSSVariableName } from './utils';
 
 /**
  * Convert color to hex or rgba for alpha channel
@@ -59,27 +58,13 @@ const toRem = (value: string | number, basis = 16): string => {
 };
 
 /**
- * В строковых значениях токенов встречаются нежелательные символы,
- * их нужно очищать перед размещением в CSS Var или JSON.
- * @param {string|number} value
- * @return {string|number}
- */
-export const escapeValue = <T = string | number>(value: T) => {
-    if (typeof value === 'string') {
-        return value.replace(/\s+/g, ' ');
-    }
-    return value;
-};
-const toVarName = (key: string) => `--plasma-${key}`;
-
-/**
  * Преобразует название и значение токена в CSS Var.
  * @param {string} name
  * @param {string|number} value
  * @return {string}
  */
 export const toCSSVarTokenWithValue = (name: string, value: string | number) =>
-    value ? `var(${toVarName(name)}, ${escapeValue(value)})` : `var(${toVarName(name)})`;
+    value ? `var(${getCSSVariableName(name)}, ${escapeValue(value)})` : `var(${getCSSVariableName(name)})`;
 
 // ToDo: перенести в новый пакет, plasma-utils, где шарится код между всеми компонентами, токенами, утилитами
 export const capitalize = (str: string) => str[0].toUpperCase() + str.slice(1);
@@ -107,83 +92,3 @@ export const compose = (...fns: Array<(s: TypographStyle) => TypographStyle>) =>
         (prevFn, nextFn) => (...args) => nextFn(prevFn(...args)),
         (value) => value,
     );
-
-const join = (...args: (string | undefined)[]) => args.filter(Boolean).join('-');
-
-/**
- * Преобразовать объект токенов в плоский объект,
- * где ключом выступает название CSS переменной, значением - значение переменной.
- * @param {string} namespace
- * @param {object} obj
- * @return {object}
- */
-const objectToCSSVars = (namespace: string, obj: Record<string, any>) => {
-    let vars: Record<string, string | number> = {};
-    for (const key in obj) {
-        if (key !== 'modes' && key !== 'comment') {
-            const name = join(namespace, key);
-            const value = obj[key];
-
-            if (value && typeof value === 'object') {
-                vars = {
-                    ...vars,
-                    ...objectToCSSVars(name, value),
-                };
-            } else {
-                vars[toVarName(name)] = escapeValue(value);
-            }
-        }
-    }
-    return vars;
-};
-
-export const createThemeStyles = (theme: object) => {
-    return css({
-        ':root': {
-            ...objectToCSSVars('colors', theme),
-            color: 'text',
-            bg: 'background',
-        },
-    })({ colors: theme }) as {};
-};
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
-export const createTypoStyles = <TK extends string>(typoSystem: TypoSystem<TK>, typoScale = 1): ThemeCSSObject => {
-    const typoText = Object.entries(typoSystem.text).reduce((textAcc, [text, styles]) => {
-        // @ts-ignore
-        styles = Object.entries(styles).reduce((stylesAcc, [key, prop]) => {
-            if (
-                key === 'fontFamily' ||
-                key === 'fontSize' ||
-                key === 'fontStyle' ||
-                key === 'fontWeight' ||
-                key === 'letterSpacing' ||
-                key === 'lineHeight'
-            ) {
-                // @ts-ignore
-                stylesAcc[key] = prop;
-            }
-
-            return stylesAcc;
-        }, {} as typeof styles);
-
-        // @ts-ignore
-        textAcc[text as keyof TypoStyles<TK>] = styles;
-
-        return textAcc;
-    }, {} as TypoStyles<TK>);
-
-    return css({
-        ':root': {
-            'font-size': `${HTML_FONT_SIZE * typoScale}px`,
-            ...objectToCSSVars('typo', typoText),
-        },
-    })();
-};
-/* eslint-enable @typescript-eslint/ban-ts-ignore */
-
-export const flattenTokenData = <T extends TokenGroup = TokenGroup>(theme: T) => {
-    return Object.entries(theme).reduce((acc, [key, token]) => {
-        acc[key as keyof T] = token.value;
-        return acc;
-    }, {} as { [key in keyof T]: T[key]['value'] });
-};
