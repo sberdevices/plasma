@@ -8,6 +8,7 @@ import { UnifiedComponentProps } from '../../registry/types';
 import { isSberBoxLike } from '../../utils/deviceFamily';
 
 export interface HeroSlideProps {
+    autofocus: boolean;
     src: string;
     onClick: React.MouseEventHandler<HTMLButtonElement>;
     title: string;
@@ -29,6 +30,7 @@ type PlatformComponents = {
 };
 
 export const HeroSlide: React.FC<UnifiedComponentProps<HeroSlideProps, PlatformComponents>> = ({
+    autofocus,
     title,
     buttonText,
     src,
@@ -40,7 +42,7 @@ export const HeroSlide: React.FC<UnifiedComponentProps<HeroSlideProps, PlatformC
 }) => {
     const { Title, Suggest, Button, Wrapper } = platformComponents;
     const mountRef = React.useRef<HTMLButtonElement>(null);
-    useFocusOnMount(mountRef, { delay: 100 });
+    useFocusOnMount(mountRef, { delay: 100, prevent: !autofocus });
 
     return (
         <Wrapper>
