@@ -17,6 +17,10 @@ const StyledPrice = styled(Price)<{ old?: boolean }>`
 `;
 
 export const ProductPriceCommon: React.FC<ProductPriceProps> = ({ price, oldPrice, currency, className }) => {
+    if (!price) {
+        return null;
+    }
+
     return (
         <Row className={className}>
             <Col>
