@@ -1,3 +1,18 @@
+# v1.75.3 (Thu Feb 10 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web): `TextField`: fix `size:l` by providing $size to input [#1073](https://github.com/sberdevices/plasma/pull/1073) ([@fanisco](https://github.com/fanisco))
+- chore(plasma-web-docs): `TextField`: Incorrect `status` prop usage [#1069](https://github.com/sberdevices/plasma/pull/1069) ([@fanisco](https://github.com/fanisco))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.75.1 (Thu Feb 03 2022)
 
 #### 🐛 Bug Fix

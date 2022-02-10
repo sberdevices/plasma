@@ -1,3 +1,20 @@
+# v1.27.3 (Thu Feb 10 2022)
+
+#### 🐛 Bug Fix
+
+- test(plasma-temple): stub image for tests [#1006](https://github.com/sberdevices/plasma/pull/1006) ([@LamaEats](https://github.com/LamaEats))
+- test(plasma-temple): grid page spec [#1006](https://github.com/sberdevices/plasma/pull/1006) ([@LamaEats](https://github.com/LamaEats))
+- test(plasma-temple): useForm hook spec [#1046](https://github.com/sberdevices/plasma/pull/1046) ([@LamaEats](https://github.com/LamaEats))
+- test(plasma-temple): Form components spec [#1046](https://github.com/sberdevices/plasma/pull/1046) ([@LamaEats](https://github.com/LamaEats))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v1.27.1 (Mon Feb 07 2022)
 
 #### 🐛 Bug Fix

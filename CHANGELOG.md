@@ -1,3 +1,27 @@
+# (Thu Feb 10 2022)
+
+#### 🐛 Bug Fix
+
+- chore: Add @seryoshka to CODEOWNERS/#Tests [#1072](https://github.com/sberdevices/plasma/pull/1072) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-web@1.75.3`
+  - fix(plasma-web): `TextField`: fix `size:l` by providing $size to input [#1073](https://github.com/sberdevices/plasma/pull/1073) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-temple@1.27.3`
+  - test(plasma-temple): stub image for tests [#1006](https://github.com/sberdevices/plasma/pull/1006) ([@LamaEats](https://github.com/LamaEats))
+  - test(plasma-temple): grid page spec [#1006](https://github.com/sberdevices/plasma/pull/1006) ([@LamaEats](https://github.com/LamaEats))
+  - test(plasma-temple): useForm hook spec [#1046](https://github.com/sberdevices/plasma/pull/1046) ([@LamaEats](https://github.com/LamaEats))
+  - test(plasma-temple): Form components spec [#1046](https://github.com/sberdevices/plasma/pull/1046) ([@LamaEats](https://github.com/LamaEats))
+- `@sberdevices/plasma-ui-docs@0.42.2`
+  - docs(plasma-ui): Added `Sheet` documentation [#1070](https://github.com/sberdevices/plasma/pull/1070) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-web@1.75.3`, `@sberdevices/plasma-web-docs@0.32.3`
+  - chore(plasma-web-docs): `TextField`: Incorrect `status` prop usage [#1069](https://github.com/sberdevices/plasma/pull/1069) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Tue Feb 08 2022)
 
 #### 🐛 Bug Fix
