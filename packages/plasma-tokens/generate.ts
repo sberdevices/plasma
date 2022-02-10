@@ -4,19 +4,20 @@ import {
     ROBO_COMMENT,
     HTML_FONT_SIZE,
     writeGeneratedToFS,
+    extractTokenData,
+    generateColorThemes,
+    generateColorThemeValues,
     generateTokens,
-    generateThemes,
     generateTypography,
     generateTypographyValues,
-    generateTypo,
+    generateTypoSystem,
     generateThemeJSON,
-    createTypoStyles,
-    flattenTokenData,
+    generateThemeFromData,
     FullColorsList,
 } from '@sberdevices/plasma-tokens-utils';
 import type { TypoSystem } from '@sberdevices/plasma-tokens-utils';
 
-import { baseColors, themes, typoSystem, deviceScales } from './data';
+import { baseColors, colorThemes, typoSystem, typo, sizes } from './data';
 import type { ThemeTokens, TypographyTypes } from './data';
 import * as tokenGroups from './tokenGroups';
 
@@ -38,36 +39,35 @@ fs.existsSync(OUT_DIR) || fs.mkdirSync(OUT_DIR);
 // Генерация цветов
 writeGeneratedToFS(COLORS_DIR, [
     // Файл с токенами CSS-Variables (с дефолтными значениями)
-    { file: 'index.ts', content: generateTokens(themes.darkSber, 'css', 'colors') },
+    { file: 'index.ts', content: generateTokens(colorThemes.darkSber, 'css', 'colors') },
     // Файл с токенами (JS-переменными) для инъекции значения напрямую
-    { file: 'values.ts', content: generateTokens(themes.darkSber) },
+    { file: 'values.ts', content: generateTokens(colorThemes.darkSber) },
 ]);
 
 // Генерация и запись файлов тем для создания глобальных стилей
-writeGeneratedToFS(THEMES_DIR, generateThemes(themes, 'cssobject', true));
+writeGeneratedToFS(THEMES_DIR, generateColorThemes(colorThemes));
 
 // Отдельные файлы для импорта в компонентах
-writeGeneratedToFS(THEMES_VALUES_DIR, generateThemes(themes, 'tokens', false));
+writeGeneratedToFS(THEMES_VALUES_DIR, generateColorThemeValues(colorThemes));
+
+/** ========================================== **/
+/** ===== Генерация размеров компонентов ===== **/
+/** ========================================== **/
+
+writeGeneratedToFS(OUT_DIR, [generateThemeFromData(sizes, 'sizes')]);
 
 /** =================================================== **/
 /** ========= Генерация типографической сетки ========= **/
 /** =================================================== **/
 
 // Типографика, разложенная по типам компонентов
-writeGeneratedToFS(TYPOGRAPHY_DIR, generateTypography(typoSystem));
+writeGeneratedToFS(TYPOGRAPHY_DIR, generateTypography(typoSystem.typoStyles));
 
 // Параметрическая система (к примеру, все размеры шрифтов / высоты строк)
 writeGeneratedToFS(TYPOGRAPHY_VALUES_DIR, generateTypographyValues(typoSystem));
 
 // Типографика по типам устройств для создания глобального стиля
-writeGeneratedToFS(
-    TYPO_DIR,
-    generateTypo({
-        sberBox: createTypoStyles(typoSystem, deviceScales.sberBox),
-        sberPortal: createTypoStyles(typoSystem, deviceScales.sberPortal),
-        mobile: createTypoStyles(typoSystem, deviceScales.mobile),
-    }),
-);
+writeGeneratedToFS(TYPO_DIR, generateTypoSystem(typo, sizes));
 
 /** ====================================== **/
 /** ========= Генерация index.ts ========= **/
@@ -83,12 +83,13 @@ export { colorValues };
 export { typography };
 export { typographyValues };
 
-export const sberPortalScale = ${deviceScales.sberPortal};
-export const sberBoxScale = ${deviceScales.sberBox};
-export const mobileScale = ${deviceScales.mobile};
+export const sberPortalScale = ${typo.sberPortal.scale};
+export const sberBoxScale = ${typo.sberBox.scale};
+export const mobileScale = ${typo.mobile.scale};
 export const scalingPixelBasis = ${HTML_FONT_SIZE};
 
 export * from './colors';
+export * from './sizes';
 export * from './typography';
 export * from './typographyValues';
 export * from './typo';
@@ -152,7 +153,7 @@ const convertGroupedTokenData = (theme: ThemeTokens): ThemeTokens => {
 const generateColors = () => {
     const fixThemes = {} as { [key: string]: ThemeTokens };
 
-    for (const [themeName, theme] of Object.entries(themes)) {
+    for (const [themeName, theme] of Object.entries(colorThemes)) {
         fixThemes[themeName] = convertGroupedTokenData(theme);
     }
 
@@ -177,33 +178,33 @@ fs.writeFileSync(
 
 // https://theme-ui.com/theme-spec/#styles
 const addStylesToTypo = (t: TypoSystem<TypographyTypes>) => {
-    const { text } = t;
+    const { typoStyles } = t;
 
     t.styles = {
         h1: {
-            ...text.headline1,
+            ...typoStyles.headline1,
             margin: 0,
         },
         h2: {
-            ...text.headline2,
+            ...typoStyles.headline2,
             margin: 0,
         },
         h3: {
-            ...text.headline3,
+            ...typoStyles.headline3,
             margin: 0,
         },
         h4: {
-            ...text.headline4,
+            ...typoStyles.headline4,
             margin: 0,
         },
         p: {
-            ...text.paragraph1,
+            ...typoStyles.paragraph1,
             margin: 0,
         },
         root: {
-            ...text.body1,
-            color: flattenTokenData(themes.darkSber).text,
-            backgroundColor: flattenTokenData(themes.darkSber).background,
+            ...typoStyles.body1,
+            color: extractTokenData(colorThemes.darkSber).text,
+            backgroundColor: extractTokenData(colorThemes.darkSber).background,
         },
     };
 
@@ -215,15 +216,15 @@ fs.writeFileSync(
     generateThemeJSON(
         addStylesToTypo(typoSystem),
         // Dark Sber is default
-        flattenTokenData(themes.darkSber),
+        extractTokenData(colorThemes.darkSber),
         // Check https://theme-ui.com/theme-spec/#color-modes
         {
-            darkSber: flattenTokenData(themes.darkSber),
-            darkEva: flattenTokenData(themes.darkEva),
-            darkJoy: flattenTokenData(themes.darkJoy),
-            lightSber: flattenTokenData(themes.lightSber),
-            lightEva: flattenTokenData(themes.lightEva),
-            lightJoy: flattenTokenData(themes.lightJoy),
+            darkSber: extractTokenData(colorThemes.darkSber),
+            darkEva: extractTokenData(colorThemes.darkEva),
+            darkJoy: extractTokenData(colorThemes.darkJoy),
+            lightSber: extractTokenData(colorThemes.lightSber),
+            lightEva: extractTokenData(colorThemes.lightEva),
+            lightJoy: extractTokenData(colorThemes.lightJoy),
         },
     ),
 );

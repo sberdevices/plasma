@@ -1,6 +1,6 @@
 // import { general } from '@sberdevices/plasma-colors';
 
-export const dataColors = {
+export const colors = {
     dark: {
         skeletonGradient: `linear-gradient(
             90deg,

@@ -36,6 +36,10 @@
         "index.d.ts.map",
         "index.js",
         "index.js.map",
+        "sizes.d.ts",
+        "sizes.d.ts.map",
+        "sizes.js",
+        "sizes.js.map",
         "theme.json"
     ],
     "devDependencies": {
@@ -48,10 +52,6 @@
         "ts-node": "10.2.1",
         "typescript": "3.9.10"
     },
-    "contributors": [
-        "Виноградов Антон Александрович",
-        "Зубаиров Фаниль Асхатович",
-        "Vasiliy Loginevskiy"
-    ],
+    "contributors": ["Виноградов Антон Александрович", "Зубаиров Фаниль Асхатович", "Vasiliy Loginevskiy"],
     "sideEffects": false
 }

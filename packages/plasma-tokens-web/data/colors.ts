@@ -1,7 +1,7 @@
 import { general } from '@sberdevices/plasma-colors';
 import { lightenColor } from '@sberdevices/plasma-tokens-utils';
 
-export const dataColors = {
+export const colors = {
     light: {
         link: general.electricBlue['600'],
         linkHover: lightenColor(general.electricBlue['600'], 7),

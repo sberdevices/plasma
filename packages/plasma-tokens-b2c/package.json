@@ -43,12 +43,12 @@
         "index.d.ts.map",
         "index.js",
         "index.js.map",
+        "sizes.d.ts",
+        "sizes.d.ts.map",
+        "sizes.js",
+        "sizes.js.map",
         "theme.json"
     ],
-    "contributors": [
-        "Vasiliy Loginevskiy",
-        "Anton Vinogradov",
-        "Fanil Zubairov"
-    ],
+    "contributors": ["Vasiliy Loginevskiy", "Anton Vinogradov", "Fanil Zubairov"],
     "sideEffects": false
 }

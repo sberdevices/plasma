@@ -2,6 +2,7 @@ import type { TokenData, TColor } from '@sberdevices/plasma-tokens-utils';
 import {
     mapDesignToBaseColors,
     mapDesignToTypography,
+    filterTypoStyles,
     humanizeColor,
     compose,
     normalizeFontNames,
@@ -13,12 +14,13 @@ import {
     FullColorsList,
 } from '@sberdevices/plasma-tokens-utils';
 
-import { DesignLanguage } from './design-language/build/diez-plasma-tokens-web';
+import { DesignLanguage } from '../design-language/build/diez-plasma-tokens-web';
 import type {
     Typography as TypographySet,
     Typograph as TypographyData,
-} from './design-language/build/diez-plasma-tokens-web';
-import { dataColors } from './dataColors';
+} from '../design-language/build/diez-plasma-tokens-web';
+
+import { colors } from './colors';
 
 const ds = new DesignLanguage();
 
@@ -163,10 +165,10 @@ const darkTheme: BaseTheme = {
     },
 
     skeletonGradient: {
-        value: dataColors.dark.skeletonGradient,
+        value: colors.dark.skeletonGradient,
     },
     skeletonGradientLighter: {
-        value: dataColors.dark.skeletonGradientLighter,
+        value: colors.dark.skeletonGradientLighter,
     },
 
     speechBubbleSent: {
@@ -298,10 +300,10 @@ const lightTheme: BaseTheme = {
     },
 
     skeletonGradient: {
-        value: dataColors.light.skeletonGradient,
+        value: colors.light.skeletonGradient,
     },
     skeletonGradientLighter: {
-        value: dataColors.light.skeletonGradientLighter,
+        value: colors.light.skeletonGradientLighter,
     },
 
     speechBubbleSent: {
@@ -540,7 +542,7 @@ const lightBrand: ThemeTokens = {
     },
 };
 
-export const themes = {
+export const colorThemes = {
     darkSber,
     darkEva,
     darkJoy,
@@ -573,9 +575,8 @@ const normalizeTypographyStyle = compose(
 );
 
 export const typoSystem = mapDesignToTypography<TypographyTypes, TypographyData>(ds, normalizeTypographyStyle);
-
-export const deviceScales = {
-    sberPortal: 2,
-    sberBox: 2,
-    mobile: 1,
+export const typo = {
+    sberPortal: { theme: filterTypoStyles(typoSystem.typoStyles), scale: 2 },
+    sberBox: { theme: filterTypoStyles(typoSystem.typoStyles), scale: 2 },
+    mobile: { theme: filterTypoStyles(typoSystem.typoStyles), scale: 1 },
 };
