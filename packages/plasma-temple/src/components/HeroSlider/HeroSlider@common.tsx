@@ -97,6 +97,7 @@ type PlatformComponents = {
 export const HeroSlider: React.FC<UnifiedComponentProps<HeroSliderProps, PlatformComponents>> = ({
     time = 10000,
     withTimeline = true,
+    initialIndex = 0,
     items,
     onItemClick,
     onActiveItemChange,
@@ -110,7 +111,7 @@ export const HeroSlider: React.FC<UnifiedComponentProps<HeroSliderProps, Platfor
 
     const [activeIndex, setActiveIndex] = useRemoteHandlers({
         axis: 'x',
-        initialIndex: 0,
+        initialIndex,
         min: 0,
         max: childLen.current - 1,
         longCount: 1,
@@ -150,7 +151,7 @@ export const HeroSlider: React.FC<UnifiedComponentProps<HeroSliderProps, Platfor
     }, [item, activeIndex, onActiveItemChange]);
 
     const handleClick = React.useCallback(() => {
-        onItemClick?.(item);
+        onItemClick?.(item, activeIndex);
     }, [item, onItemClick]);
 
     const handleFocus = React.useCallback(() => {

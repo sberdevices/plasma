@@ -7,8 +7,9 @@ export interface HeroItemSliderProps extends Pick<HeroSlideProps, 'title' | 'src
 export interface HeroSliderProps {
     time?: number;
     withTimeline?: boolean;
+    initialIndex?: number;
     items: HeroItemSliderProps[];
-    onItemClick?: (item: HeroItemSliderProps) => void;
+    onItemClick?: (item: HeroItemSliderProps, index: number) => void;
     onActiveItemChange?: (item: HeroItemSliderProps, index: number) => void;
     buttonText: string;
 }
