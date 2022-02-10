@@ -30,6 +30,7 @@ const ProductCharacteristicsItem: React.FC<{ title: string; content: string }> =
     </StyledProductCharacteristicsItem>
 );
 
+/** @deprecated use ProductDetails */
 export const ProductCharacteristics: React.FC<ProductCharacteristicsProps> = ({ characteristics, className }) => (
     <StyledProductCharacteristicsContainer className={className}>
         {characteristics.map(({ title, content }) => (

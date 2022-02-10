@@ -9,9 +9,9 @@ const StyledSubtitle = styled(Footnote1)`
     color: ${secondary};
 `;
 
-export const ProductTitleMobile: React.FC<ProductTitleProps> = ({ title, subtitle }) => (
-    <TextBox>
-        <Headline2>{title}</Headline2>
+export const ProductTitleMobile: React.FC<ProductTitleProps> = ({ title, subtitle, ...rest }) => (
+    <TextBox {...rest}>
+        <Headline2 breakWord={false}>{title}</Headline2>
         <StyledSubtitle>{subtitle}</StyledSubtitle>
     </TextBox>
 );

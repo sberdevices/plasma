@@ -1,11 +1,12 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { IconMinus, IconPlus } from '@sberdevices/plasma-icons';
-import { Col, Body2, Button, Row, mediaQuery } from '@sberdevices/plasma-ui';
+import { Col, Body2, Button, Row, mediaQuery, isSberPortal } from '@sberdevices/plasma-ui';
 
 import { useMount, useThrottledCallback } from '../../../hooks';
 import { useGetMutableValue } from '../../../hooks/useGetMutableValue';
 import { THROTTLE_WAIT } from '../../../hooks/useThrottledCallback';
+import { isSberBoxLike } from '../../../utils';
 
 export type ChangeQuantityFn = (plus: 1 | -1) => void;
 
@@ -21,9 +22,15 @@ interface NoQuantityProps {
     onChangeQuantity?: never;
 }
 
-type ProductActionButtonProps = {
-    actionButtonText: string;
-    contentRight?: string;
+export enum ActionButtonSelector {
+    ActionButton = 'product-action-button',
+    MinusButton = 'product-action-button-minus',
+    PlusButton = 'product-action-button-plus',
+}
+
+export type ProductActionButtonProps = {
+    actionButtonText: React.ReactNode;
+    contentRight?: React.ReactNode;
     autoFocus?: boolean;
     className?: string;
     disabled?: boolean;
@@ -68,7 +75,7 @@ export const ProductActionButton: React.FC<ProductActionButtonProps> = React.mem
 
         useMount(() => {
             const timer = setTimeout(() => {
-                if (autoFocus && buttonRef.current) {
+                if (autoFocus && isSberBoxLike() && buttonRef.current) {
                     buttonRef.current.focus({ preventScroll: true });
                 }
             }, THROTTLE_WAIT);
@@ -86,12 +93,21 @@ export const ProductActionButton: React.FC<ProductActionButtonProps> = React.mem
 
         const handleClick = useThrottledCallback(() => onClick(), [onClick]);
 
+        const size = isSberPortal() ? 's' : 'm';
+
         return (
             <StyledRow className={className}>
                 {withQuantity && (
                     <>
                         <Col>
-                            <Button size="s" square onClick={onDecreaseQuantity}>
+                            <Button
+                                size={size}
+                                square
+                                onClick={onDecreaseQuantity}
+                                data-focusable
+                                data-name={ActionButtonSelector.MinusButton}
+                                tabIndex={0}
+                            >
                                 <IconMinus size="xs" />
                             </Button>
                         </Col>
@@ -99,7 +115,14 @@ export const ProductActionButton: React.FC<ProductActionButtonProps> = React.mem
                             <Body2>{quantity}</Body2>
                         </Col>
                         <Col>
-                            <Button size="s" square onClick={onIncreaseQuantity}>
+                            <Button
+                                size={size}
+                                square
+                                onClick={onIncreaseQuantity}
+                                data-focusable
+                                data-name={ActionButtonSelector.PlusButton}
+                                tabIndex={0}
+                            >
                                 <IconPlus size="xs" />
                             </Button>
                         </Col>
@@ -108,11 +131,14 @@ export const ProductActionButton: React.FC<ProductActionButtonProps> = React.mem
                 <StyledActionButtonCol>
                     <Button
                         ref={buttonRef}
-                        size="s"
+                        size={size}
                         view="primary"
                         disabled={disabled !== undefined ? disabled : withQuantity && !quantity}
                         onClick={handleClick}
                         stretch
+                        data-focusable
+                        data-name={ActionButtonSelector.ActionButton}
+                        tabIndex={0}
                     >
                         {actionButtonText}
                         {contentRight && <StyledContentRight>{` ${contentRight}`}</StyledContentRight>}

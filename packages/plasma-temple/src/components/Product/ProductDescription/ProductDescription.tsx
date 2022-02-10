@@ -14,4 +14,5 @@ const mapDeviceToProductDescription: Record<DeviceFamily, React.FC<ProductDescri
     mobile: ProductDescriptionMobile,
 };
 
+/** @deprecated use ProductDetails */
 export const ProductDescription = mapDeviceToProductDescription[detectDevice()];

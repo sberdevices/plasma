@@ -1,0 +1,80 @@
+import React from 'react';
+import styled from 'styled-components';
+
+import { ProductTitle } from './ProductTitle/ProductTitle';
+import { ProductPrice } from './ProductPrice/ProductPrice';
+import { ProductActionButton } from './ProductActionButton/ProductActionButton';
+import { ProductDetails } from './ProductDetails/ProductDetails';
+import { ExpandableProductDetails } from './ProductDetails/ExpandableProductDetails/ExpandableProductDetails';
+import { ProductInfo } from './ProductInfo/ProductInfo';
+import { ProductProps, ProductVariation } from './Product@common';
+import { ProductImageSlider } from './ProductImageSlider/ProductImageSlider';
+import { ProductRecommendations } from './ProductRecommendations/ProductRecommendations';
+
+const StyledTitle = styled(ProductTitle)`
+    margin-top: 2.25rem;
+    margin-bottom: 0.75rem;
+`;
+
+const StyledSmallSection = styled.div`
+    margin-bottom: 1.5rem;
+`;
+
+const StyledSection = styled.div`
+    margin-bottom: 2rem;
+`;
+
+export const ProductMobile = ({
+    product,
+    variations,
+    recommendations,
+    actionButtonProps,
+    onChangeVariation,
+    onClickRecommendation,
+}: ProductProps) => {
+    const { name, shortDescription, price, oldPrice, shortDetails, details, description, images = [] } = product;
+
+    return (
+        <>
+            <ProductImageSlider images={images} />
+            <StyledTitle title={name} subtitle={shortDescription} />
+            {price && (
+                <StyledSmallSection>
+                    <ProductPrice price={price} oldPrice={oldPrice} />
+                </StyledSmallSection>
+            )}
+            <StyledSection>
+                <ProductActionButton {...actionButtonProps} />
+            </StyledSection>
+            {variations?.map((variation) => (
+                <StyledSmallSection>
+                    <ProductVariation {...variation} onChange={onChangeVariation} />
+                </StyledSmallSection>
+            ))}
+            {shortDetails && (
+                <StyledSection>
+                    <ProductDetails details={shortDetails} />
+                </StyledSection>
+            )}
+            {details && (
+                <StyledSection>
+                    <ExpandableProductDetails title={details.title} details={details.values} />
+                </StyledSection>
+            )}
+            {description && (
+                <StyledSection>
+                    <ProductInfo title={description.title} info={description.content} />
+                </StyledSection>
+            )}
+            {recommendations && recommendations.items.length > 0 && (
+                <StyledSection>
+                    <ProductRecommendations
+                        title="Похожие товары"
+                        recommendations={recommendations.items}
+                        onClick={onClickRecommendation}
+                    />
+                </StyledSection>
+            )}
+        </>
+    );
+};
