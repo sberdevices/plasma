@@ -15,5 +15,5 @@
         "rootDir": "./src"
     },
     "include": ["./src"],
-    "exclude": ["./design-language", "./data.ts", "./dataColors", "./generate.ts", "./tokenGroups.ts"]
+    "exclude": ["./design-language", "./data", "./generate.ts", "./tokenGroups.ts"]
 }

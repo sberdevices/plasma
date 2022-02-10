@@ -2,6 +2,7 @@ import type { TokenData, TColor } from '@sberdevices/plasma-tokens-utils';
 import {
     mapDesignToBaseColors,
     mapDesignToTypography,
+    filterTypoStyles,
     humanizeColor,
     alphenColor,
     compose,
@@ -14,12 +15,12 @@ import {
     FullColorsList,
 } from '@sberdevices/plasma-tokens-utils';
 
-import { DesignLanguage } from './design-language/build/diez-plasma-tokens-b2c-web';
+import { DesignLanguage } from '../design-language/build/diez-plasma-tokens-b2c-web';
 import type {
     Typography as TypographySet,
     Typograph as TypographyData,
-} from './design-language/build/diez-plasma-tokens-b2c-web';
-import { dataColors } from './dataColors';
+} from '../design-language/build/diez-plasma-tokens-b2c-web';
+import { colors } from './colors';
 
 const ds = new DesignLanguage();
 
@@ -61,22 +62,22 @@ const light: ThemeTokens & ExtendedTokens = {
         comment: FullColorsList.text,
     },
     link: {
-        value: dataColors.light.link,
+        value: colors.light.link,
     },
     linkHover: {
-        value: dataColors.light.linkHover,
+        value: colors.light.linkHover,
     },
     linkActive: {
-        value: dataColors.light.linkActive,
+        value: colors.light.linkActive,
     },
     linkVisited: {
-        value: dataColors.light.linkVisited,
+        value: colors.light.linkVisited,
     },
     linkVisitedHover: {
-        value: dataColors.light.linkVisitedHover,
+        value: colors.light.linkVisitedHover,
     },
     linkVisitedActive: {
-        value: dataColors.light.linkVisitedActive,
+        value: colors.light.linkVisitedActive,
     },
 
     primary: {
@@ -226,10 +227,10 @@ const light: ThemeTokens & ExtendedTokens = {
         value: '',
     },
     skeletonGradient: {
-        value: dataColors.light.skeletonGradient,
+        value: colors.light.skeletonGradient,
     },
     skeletonGradientLighter: {
-        value: dataColors.light.skeletonGradientLighter,
+        value: colors.light.skeletonGradientLighter,
     },
 
     speechBubbleSent: {
@@ -247,22 +248,22 @@ const dark: ThemeTokens & ExtendedTokens = {
         comment: FullColorsList.text,
     },
     link: {
-        value: dataColors.dark.link,
+        value: colors.dark.link,
     },
     linkHover: {
-        value: dataColors.dark.linkHover,
+        value: colors.dark.linkHover,
     },
     linkActive: {
-        value: dataColors.dark.linkActive,
+        value: colors.dark.linkActive,
     },
     linkVisited: {
-        value: dataColors.dark.linkVisited,
+        value: colors.dark.linkVisited,
     },
     linkVisitedHover: {
-        value: dataColors.dark.linkVisitedHover,
+        value: colors.dark.linkVisitedHover,
     },
     linkVisitedActive: {
-        value: dataColors.dark.linkVisitedActive,
+        value: colors.dark.linkVisitedActive,
     },
 
     primary: {
@@ -412,10 +413,10 @@ const dark: ThemeTokens & ExtendedTokens = {
         value: '',
     },
     skeletonGradient: {
-        value: dataColors.dark.skeletonGradient,
+        value: colors.dark.skeletonGradient,
     },
     skeletonGradientLighter: {
-        value: dataColors.dark.skeletonGradientLighter,
+        value: colors.dark.skeletonGradientLighter,
     },
 
     speechBubbleSent: {
@@ -426,7 +427,7 @@ const dark: ThemeTokens & ExtendedTokens = {
     },
 };
 
-export const themes = {
+export const colorThemes = {
     light,
     dark,
 };
@@ -448,3 +449,4 @@ const normalizeTypographyStyle = compose(
 );
 
 export const typoSystem = mapDesignToTypography<TypographyTypes, TypographyData>(ds, normalizeTypographyStyle);
+export const typo = { b2c: { theme: filterTypoStyles(typoSystem.typoStyles) } };

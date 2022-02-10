@@ -4,18 +4,19 @@ import {
     ROBO_COMMENT,
     HTML_FONT_SIZE,
     writeGeneratedToFS,
+    extractTokenData,
+    generateColorThemes,
+    generateColorThemeValues,
     generateTokens,
-    generateThemes,
     generateTypography,
     generateTypographyValues,
-    generateTypo,
+    generateTypoSystem,
     generateThemeJSON,
-    createTypoStyles,
-    flattenTokenData,
+    generateThemeFromData,
 } from '@sberdevices/plasma-tokens-utils';
 import type { TypoSystem } from '@sberdevices/plasma-tokens-utils';
 
-import { themes, typoSystem } from './data';
+import { colorThemes, typoSystem, typo, sizes } from './data';
 import type { TypographyTypes } from './data';
 
 const OUT_DIR = 'src';
@@ -36,29 +37,35 @@ fs.existsSync(OUT_DIR) || fs.mkdirSync(OUT_DIR);
 // Генерация цветов
 writeGeneratedToFS(COLORS_DIR, [
     // Файл с токенами CSS-Variables (с дефолтными значениями)
-    { file: 'index.ts', content: generateTokens(themes.light, 'css', 'colors') },
+    { file: 'index.ts', content: generateTokens(colorThemes.light, 'css', 'colors') },
     // Файл с токенами (JS-переменными) для инъекции значения напрямую
-    { file: 'values.ts', content: generateTokens(themes.light) },
+    { file: 'values.ts', content: generateTokens(colorThemes.light) },
 ]);
 
 // Генерация и запись файлов тем для создания глобальных стилей
-writeGeneratedToFS(THEMES_DIR, generateThemes(themes, 'cssobject', true));
+writeGeneratedToFS(THEMES_DIR, generateColorThemes(colorThemes));
 
 // Отдельные файлы для импорта в компонентах
-writeGeneratedToFS(THEMES_VALUES_DIR, generateThemes(themes, 'tokens', false));
+writeGeneratedToFS(THEMES_VALUES_DIR, generateColorThemeValues(colorThemes));
+
+/** ========================================== **/
+/** ===== Генерация размеров компонентов ===== **/
+/** ========================================== **/
+
+writeGeneratedToFS(OUT_DIR, [generateThemeFromData(sizes, 'sizes')]);
 
 /** =================================================== **/
 /** ========= Генерация типографической сетки ========= **/
 /** =================================================== **/
 
 // Типографика, разложенная по типам компонентов
-writeGeneratedToFS(TYPOGRAPHY_DIR, generateTypography(typoSystem));
+writeGeneratedToFS(TYPOGRAPHY_DIR, generateTypography(typoSystem.typoStyles));
 
 // Параметрическая система (к примеру, все размеры шрифтов / высоты строк)
 writeGeneratedToFS(TYPOGRAPHY_VALUES_DIR, generateTypographyValues(typoSystem));
 
 // Типографика, разложенная по типам устройств для создания глобального стиля
-writeGeneratedToFS(TYPO_DIR, generateTypo({ web: createTypoStyles(typoSystem) }));
+writeGeneratedToFS(TYPO_DIR, generateTypoSystem(typo, sizes));
 
 /** ====================================== **/
 /** ========= Генерация index.ts ========= **/
@@ -77,6 +84,7 @@ export { typographyValues };
 export const scalingPixelBasis = ${HTML_FONT_SIZE};
 
 export * from './colors';
+export * from './sizes';
 export * from './typography';
 export * from './typographyValues';
 `;
@@ -89,37 +97,37 @@ fs.writeFileSync(ROOT_INDEX_TS, indexTsContent);
 
 // https://theme-ui.com/theme-spec/#styles
 const addStylesToTypo = (t: TypoSystem<TypographyTypes>) => {
-    const { text } = t;
+    const { typoStyles } = t;
 
     t.styles = {
         h1: {
-            ...text.headline1,
+            ...typoStyles.headline1,
             margin: 0,
         },
         h2: {
-            ...text.headline2,
+            ...typoStyles.headline2,
             margin: 0,
         },
         h3: {
-            ...text.headline3,
+            ...typoStyles.headline3,
             margin: 0,
         },
         h4: {
-            ...text.headline4,
+            ...typoStyles.headline4,
             margin: 0,
         },
         h5: {
-            ...text.headline5,
+            ...typoStyles.headline5,
             margin: 0,
         },
         p: {
-            ...text.paragraph1,
+            ...typoStyles.paragraph1,
             margin: 0,
         },
         root: {
-            ...text.body1,
-            color: flattenTokenData(themes.light).text,
-            backgroundColor: flattenTokenData(themes.light).background,
+            ...typoStyles.body1,
+            color: extractTokenData(colorThemes.light).text,
+            backgroundColor: extractTokenData(colorThemes.light).background,
         },
     };
 
@@ -131,10 +139,10 @@ fs.writeFileSync(
     generateThemeJSON(
         addStylesToTypo(typoSystem),
         // Light theme is default
-        flattenTokenData(themes.light),
+        extractTokenData(colorThemes.light),
         // check https://theme-ui.com/theme-spec/#color-modes
         {
-            light: flattenTokenData(themes.light),
+            light: extractTokenData(colorThemes.light),
         },
     ),
 );
