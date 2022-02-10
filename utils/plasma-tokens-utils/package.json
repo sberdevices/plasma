@@ -31,12 +31,11 @@
         "prebuild": "npm run clean",
         "build": "tsc",
         "clean": "rm -rf lib",
-        "test": "jest"
+        "test": "ROBO_COMMENT=\"\" jest",
+        "test:watch": "ROBO_COMMENT=\"\" jest --watch"
     },
     "publishConfig": {
         "access": "restricted"
     },
-    "files": [
-        "lib"
-    ]
+    "files": ["lib"]
 }

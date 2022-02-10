@@ -60,7 +60,7 @@ describe('mapDesignToTypography', () => {
             fonts: {},
             letterSpacings: [],
             lineHeights: [],
-            text: {},
+            typoStyles: {},
         });
     });
 });

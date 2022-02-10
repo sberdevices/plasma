@@ -87,7 +87,7 @@ export const mapDesignToTypography = <TK extends string, TV extends Record<strin
     ds: DesignLanguage,
     normalize?: Function,
 ): TypoSystem<TK> => {
-    const text = {} as TV;
+    const typoStyles = {} as TV;
     const fonts = {} as Record<string, string>;
     const fontWeights = {} as Record<string, number>;
     const fontSizeSet = new Set<string>();
@@ -95,14 +95,14 @@ export const mapDesignToTypography = <TK extends string, TV extends Record<strin
     const letterSpacingSet = new Set<string>();
 
     for (const [key, value] of Object.entries(ds.typography)) {
-        const style = normalize?.(value.style);
+        const typoStyle = normalize?.(value.style);
 
         if (key === 'underline') {
-            style.textTransform = 'uppercase';
+            typoStyle.textTransform = 'uppercase';
         }
 
-        const { fontFamily, fontSize, fontWeight, lineHeight, letterSpacing } = style;
-        const fontType = matchFontToWeight(style);
+        const { fontFamily, fontSize, fontWeight, lineHeight, letterSpacing } = typoStyle;
+        const fontType = matchFontToWeight(typoStyle);
 
         // https://system-ui.com/theme/
         fonts[fontType] = fontFamily;
@@ -112,7 +112,7 @@ export const mapDesignToTypography = <TK extends string, TV extends Record<strin
         lineHeightSet.add(lineHeight || fontSize);
         letterSpacingSet.add(String(letterSpacing));
 
-        text[key as TK] = style;
+        typoStyles[key as TK] = typoStyle;
     }
 
     const fontSizes = Array.from(fontSizeSet).sort((a, b) => parseFloat(a) - parseFloat(b));
@@ -134,6 +134,7 @@ export const mapDesignToTypography = <TK extends string, TV extends Record<strin
         lineHeights,
         letterSpacings,
 
-        text,
+        typoStyles,
+        text: typoStyles,
     };
 };
