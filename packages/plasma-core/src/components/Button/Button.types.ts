@@ -131,12 +131,10 @@ export interface ButtonSizes {
         height: string | number;
         paddingY: string | number;
         paddingX: string | number;
-        paddingXContent: string | number;
-        paddingXResizable: string | number;
-        squareRadius: string;
-        sOutlineRadius: string;
-        circleRadius: string;
-        cOutlineRadius: string;
+        paddingContentX: string | number;
+        paddingStretchX: string | number;
+        radius: string;
+        radiusCircle: string;
     };
 }
 

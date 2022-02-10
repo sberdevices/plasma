@@ -1,12 +1,17 @@
-// Матрица радиусов. r - радиус стандартный, h - радиус округлый (вычисляемый из высоты)
+/** Матрица радиусов. r - радиус стандартный, h - радиус округлый (вычисляемый из высоты)
+ * tl ---- tr
+ * |        |
+ * |        |
+ * bl ---- br
+ */
 export const pins = {
-    'square-square': 'r r r r',
+    'square-square': 'r',
     'square-clear': 'r 0 0 r',
     'clear-square': '0 r r 0',
-    'clear-clear': '0 0 0 0',
+    'clear-clear': '0',
     'clear-circle': '0 h h 0',
     'circle-clear': 'h 0 0 h',
-    'circle-circle': 'h h h h',
+    'circle-circle': 'h',
 };
 
 export type Pin = keyof typeof pins;
