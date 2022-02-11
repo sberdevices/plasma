@@ -65,6 +65,10 @@ export interface DetectionProps {
      */
     onIndexChange?: (index: number) => void;
     /**
+     * Коллбек изменения позиции скролла
+     */
+    onDetectActiveItem?: (index: number) => void;
+    /**
      * Обработчик стилизации элемента во вьюпорте
      */
     scaleCallback?: (itemEl: HTMLElement, slot: number) => void;
@@ -77,6 +81,7 @@ export interface NoDetectionProps {
     detectActive?: false;
     detectThreshold?: never;
     onIndexChange?: never;
+    onDetectActiveItem?: never;
     scaleCallback?: never;
     scaleResetCallback?: never;
 }

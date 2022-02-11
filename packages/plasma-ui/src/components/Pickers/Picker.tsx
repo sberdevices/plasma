@@ -13,6 +13,7 @@ import { PickerItem, StyledPickerItem, StyledWhiteText } from './PickerItem';
 import { DEFAULT_PICKER_SIZE, DEFAULT_VISIBLE_ITEMS } from './types';
 import type { PickerItem as PickerItemType, SizeProps, PickerSize, PickerVisibleItems } from './types';
 import { scaleCallbacks, scaleResetCallback, usePreviousValue } from './utils';
+import { useFirstRender } from './hooks';
 
 interface PickerStyle {
     /**
@@ -159,34 +160,29 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
         `}
 `;
 
-// Значение, отвечающее за количество чисел,
-// которое необходимо добавить перед и после основного списка
-const ADDITIONAL_OFFSET = 1;
+// Значение, отвечающее за количество элементов,
+// перед которыми надо остановить скролл
+const INDEX_STOP_BUFFER = 2;
 
-const findItemIndex = (
-    items: PickerItemType[],
-    value: string | number | Date,
-    infiniteScroll: boolean,
-    additionalOffset: number,
-) => {
-    const index = items.findIndex((item) => item.value === value);
+function getAllIndices(items: PickerItemType[], value: string | number | Date) {
+    const res: number[] = [];
 
-    if (infiniteScroll && index === 0) {
-        return items.length - additionalOffset * 2;
+    items.forEach((item, i) => {
+        if (item.value === value) {
+            res.push(i);
+        }
+    });
+
+    return res;
+}
+
+const findItemIndex = (items: PickerItemType[], value: string | number | Date, infiniteScroll: boolean) => {
+    if (infiniteScroll) {
+        const middleIndex = 1;
+        return getAllIndices(items, value)[middleIndex];
     }
 
-    return index;
-};
-
-const getItems = (items: PickerItemType[], infiniteScroll: boolean, additionalOffset: number) => {
-    if (!infiniteScroll) {
-        return items;
-    }
-
-    const firstPart = items.slice(-additionalOffset).map((item) => ({ ...item, isVirtual: true }));
-    const lastPart = items.slice(0, additionalOffset).map((item) => ({ ...item, isVirtual: true }));
-
-    return [...firstPart, ...items, ...lastPart];
+    return items.findIndex((item) => item.value === value);
 };
 
 type GetIndexCmd = '+' | '-' | '++' | '--' | 'home' | 'end';
@@ -194,23 +190,37 @@ type GetIndexCmd = '+' | '-' | '++' | '--' | 'home' | 'end';
 /**
  * Возвращает следующий/предыдущий индекс.
  */
-const getIndex = (index: number, cmd: GetIndexCmd, min: number, max: number) => {
+const getIndex = (index: number, cmd: GetIndexCmd, min: number, max: number, infiniteScroll: boolean) => {
     switch (cmd) {
         case '+':
             return index !== max ? index + 1 : min;
         case '-':
             return index !== min ? index - 1 : max;
         case '++':
-            return Math.min(max, index + 10);
+            return index + 10;
         case '--':
-            return Math.max(min, index - 10);
+            return index - 10;
         case 'home':
-            return min;
+            return infiniteScroll && min === index ? 0 : min;
         case 'end':
         default:
-            return max;
+            // вычисления в первом выражении - это максимальный индекс виртуального списка
+            return infiniteScroll && max === index ? (max - 1) / 2 + max + 1 : max;
     }
 };
+
+const getItems = (items: PickerItemType[], infiniteScroll: boolean) => {
+    if (infiniteScroll) {
+        const virtualItems = items.map((item) => ({ ...item, isVirtual: true }));
+        return [...virtualItems, ...items, ...virtualItems];
+    }
+
+    return items;
+};
+
+const isTopPosition = (i: number) => i < INDEX_STOP_BUFFER;
+
+const isBottomPosition = (i: number, itemsLength: number) => i > itemsLength - 1 - INDEX_STOP_BUFFER;
 
 export interface PickerProps
     extends SizeProps,
@@ -279,41 +289,55 @@ export const Picker: FC<PickerProps> = ({
     'aria-label': ariaLabel,
     ...rest
 }) => {
-    const virtualItems = useMemo(() => getItems(items, infiniteScroll, ADDITIONAL_OFFSET), [items, infiniteScroll]);
+    const virtualItems = useMemo(() => getItems(items, infiniteScroll), [items, infiniteScroll]);
 
     const min = 0;
-    const max = virtualItems.length - 1;
-    const [index, setIndex] = useState(findItemIndex(virtualItems, value, infiniteScroll, ADDITIONAL_OFFSET));
+    const max = items.length - 1;
+
+    const isFirstRender = useFirstRender();
+    const [isFocused, setIsFocused] = useState(false);
+    const [index, setIndex] = useState(findItemIndex(virtualItems, value, infiniteScroll));
     const [hasScrollAnim, setScrollAnim] = useState(true);
 
     const wrapperRef = useRef<HTMLDivElement | null>(null);
     const carouselRef = useRef<HTMLDivElement | null>(null);
-    const toPrev = useCallback(() => !disabled && setIndex(getIndex(index, '-', min, max)), [index, min, max]);
-    const toNext = useCallback(() => !disabled && setIndex(getIndex(index, '+', min, max)), [index, min, max]);
+    const toPrev = useCallback(() => !disabled && setIndex(getIndex(index, '-', min, max, infiniteScroll)), [
+        index,
+        min,
+        max,
+        infiniteScroll,
+    ]);
+    const toNext = useCallback(() => !disabled && setIndex(getIndex(index, '+', min, max, infiniteScroll)), [
+        index,
+        min,
+        max,
+        infiniteScroll,
+    ]);
     const jump = useCallback(
         (cmd: GetIndexCmd) => {
             if (disabled) {
                 return;
             }
 
-            let newIndex = getIndex(index, cmd, 0, items.length - 1);
+            const firstRealItemsIndex = infiniteScroll ? max + 1 : min;
+            const lastRealItemsIndex = infiniteScroll ? max * 2 + 1 : max;
+            const newIndex = getIndex(index, cmd, firstRealItemsIndex, lastRealItemsIndex, infiniteScroll);
 
-            if (cmd === 'home' || cmd === 'end') {
-                newIndex = virtualItems.findIndex((item) => item.value === items[newIndex].value);
-            }
             setIndex(newIndex);
         },
-        [index, items, virtualItems],
+        [index, max, min, items, virtualItems, infiniteScroll],
     );
 
-    const [isFocused, setIsFocused] = useState(false);
-
     const prevValue = usePreviousValue(virtualItems[index]?.value);
+
+    const onFocus = useCallback(() => setIsFocused(true), []);
+
+    const onBlur = useCallback(() => setIsFocused(false), []);
 
     // Изменяет индекс выделенного элемента
     // при обновлении значения value извне
     useIsomorphicLayoutEffect(() => {
-        const newIndex = findItemIndex(virtualItems, value, infiniteScroll, ADDITIONAL_OFFSET);
+        const newIndex = findItemIndex(virtualItems, value, infiniteScroll);
 
         // Отключаем анимацию скролла, если значение компонента осталось
         // прежним, но индекс изменился
@@ -321,14 +345,19 @@ export const Picker: FC<PickerProps> = ({
             setScrollAnim(false);
         }
 
-        // Отключаем анимацию скролла, если выбраны крайние значения в списке
-        const offset = ADDITIONAL_OFFSET * 2;
-        if (newIndex === offset - 1 || newIndex === virtualItems.length - offset) {
+        // Отключаем анимацию скролла, если выбраны крайние значения реального массива (items)
+        // при изменение value извне.
+        // Например, есть изначальный массив значений: [0,1,2,3], где max = 3.
+        // После добавления буферных значений для скролла, он становится [0,1,2,3,0,1,2,3,0,1,2,3],
+        // в котором необходимо попадать на "средний сектор" без анимации, т.е. на элементы с индексом 4 или 7
+        const firstRealItemsIndex = max + 1;
+        const lastRealItemsIndex = max * 2 + 1;
+        if (newIndex === firstRealItemsIndex || newIndex === lastRealItemsIndex) {
             setScrollAnim(false);
         }
 
         setIndex(newIndex);
-    }, [value, virtualItems]);
+    }, [value, virtualItems, infiniteScroll, max]);
 
     // Навигация с помощью пульта/клавиатуры
     // Не перелистывает, если компонент неактивен
@@ -368,6 +397,10 @@ export const Picker: FC<PickerProps> = ({
 
     const onIndexChange = useCallback(
         (i: number) => {
+            if (i !== index) {
+                setIndex(i);
+            }
+
             if (virtualItems[i]?.value !== value) {
                 onChange?.(virtualItems[i]);
             }
@@ -376,14 +409,38 @@ export const Picker: FC<PickerProps> = ({
             if (prevValue === virtualItems[i]?.value) {
                 setScrollAnim(false);
                 setIndex(i);
-                const newIndex = findItemIndex(virtualItems, virtualItems[i].value, infiniteScroll, ADDITIONAL_OFFSET);
+                const newIndex = findItemIndex(virtualItems, virtualItems[i].value, infiniteScroll);
                 setIndex(newIndex);
             }
 
             // Включаем анимацию скролла, после изменения индекса
             setScrollAnim(true);
         },
-        [virtualItems, value, onChange, prevValue],
+        [virtualItems, infiniteScroll, value, onChange, prevValue],
+    );
+
+    const onDetectActiveItem = useCallback(
+        (i: number) => {
+            if (!infiniteScroll || (!isTopPosition(i) && !isBottomPosition(i, virtualItems.length))) {
+                return;
+            }
+
+            // Отключаем анимацию скролла, если полученный индекс за
+            // пределами реального массива (items) и перебрасываем на
+            // аналогичное значение в середину
+            setScrollAnim(false);
+            setIndex(i);
+
+            if (isTopPosition(i)) {
+                setIndex(i + (max - min) + 1);
+                return;
+            }
+
+            if (isBottomPosition(i, virtualItems.length)) {
+                setIndex(i - (max - min) - 1);
+            }
+        },
+        [virtualItems, infiniteScroll, max, min, index],
     );
 
     return (
@@ -394,8 +451,8 @@ export const Picker: FC<PickerProps> = ({
             $disabled={disabled}
             $visibleItems={visibleItems}
             $controls={controls}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
+            onFocus={onFocus}
+            onBlur={onBlur}
             {...rest}
         >
             <StyledCarousel
@@ -407,9 +464,11 @@ export const Picker: FC<PickerProps> = ({
                 scrollSnapType={scrollSnapType}
                 detectActive
                 detectThreshold={0.5}
+                throttleMs={125}
                 paddingStart={sizes[size][visibleItems].padding}
                 paddingEnd={sizes[size][visibleItems].padding}
                 onIndexChange={onIndexChange}
+                onDetectActiveItem={onDetectActiveItem}
                 $isFocused={isFocused}
                 listRole="listbox"
                 listAriaLabel={ariaLabel}
@@ -425,9 +484,12 @@ export const Picker: FC<PickerProps> = ({
                         size={size}
                         onItemClick={onChange}
                         noScrollBehavior={!hasScrollAnim}
-                        autofocus={(autofocus || isFocused) && index === i}
+                        autofocus={((isFirstRender && autofocus) || isFocused) && index === i}
                         role="option"
                         aria-hidden={item.isVirtual}
+                        isSnapAlwaysStop={
+                            i === min + INDEX_STOP_BUFFER || i === virtualItems.length - 1 - INDEX_STOP_BUFFER
+                        }
                     />
                 ))}
             </StyledCarousel>

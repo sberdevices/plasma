@@ -74,7 +74,9 @@ describe('plasma-ui: TimePicker', () => {
         cy.get('div').invoke('attr', 'style', 'transition: unset; animation: none; scroll-snap-type: none;');
 
         cy.get('div > div:nth-child(1)').contains('03').click({ force: true });
+        cy.wait(150);
         cy.get('div > div:nth-child(3)').contains('04').click({ force: true });
+        cy.wait(150);
         cy.get('div > div:nth-child(5)').contains('06').click({ force: true });
 
         cy.wait(1000);

@@ -26,6 +26,7 @@ const sizes: Record<PickerSize, CSSObject> = {
 interface StyledSizeProps {
     $size: keyof typeof sizes;
     $noScrollBehavior: boolean;
+    isSnapAlwaysStop?: boolean;
 }
 
 export const StyledPickerItem = styled.div<StyledSizeProps>`
@@ -52,6 +53,12 @@ export const StyledPickerItem = styled.div<StyledSizeProps>`
         outline: 0 none;
         background: none;
     }
+
+    ${({ isSnapAlwaysStop }) =>
+        isSnapAlwaysStop &&
+        css`
+            scroll-snap-stop: always;
+        `}
 
     ${({ $size }) => sizes[$size]}
 `;
@@ -93,6 +100,15 @@ export interface PickerItemProps extends React.HTMLAttributes<HTMLDivElement>, S
      * Автофокус на компоненте.
      */
     autofocus?: boolean;
+    /**
+     * Останавливает прокрутку скролла на выбранном элементе
+     *
+     * @example
+     * Например, исходный массив: [0,1,2,3,0,1,2,3,0,1,2,3], и активный индекс <5> (т.е. число 1)
+     * тогда, при сильном свайпе вниз скролл остановится на элементе с индексом <2> (и числом 2),
+     * и перебросит на элемент с индексом <6> (т.е. числом 2)
+     */
+    isSnapAlwaysStop?: boolean;
 }
 
 export const PickerItem: React.FC<PickerItemProps> = ({
