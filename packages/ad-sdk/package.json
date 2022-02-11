@@ -4,9 +4,7 @@
   "description": "SberDevices Ad SDK",
   "main": "umd/ad-sdk.production.min.js",
   "browser": "umd/ad-sdk.production.min.js",
-  "files": [
-    "umd"
-  ],
+  "files": ["umd"],
   "scripts": {
     "build": "npx rollup -c rollup.config.js",
     "watch": "npx rollup -c rollup.config.js -w",
@@ -18,6 +16,11 @@
   },
   "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
   "license": "Sber Public License at-nc-sa v.2",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sberdevices/pashka.git",
+    "directory": "packages/ad-sdk"
+  },
   "devDependencies": {
     "@babel/preset-env": "7.15.8",
     "@rollup/plugin-commonjs": "^20.0.0",
