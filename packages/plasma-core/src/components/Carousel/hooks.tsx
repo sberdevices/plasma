@@ -38,6 +38,7 @@ export const useCarousel = ({
     scaleResetCallback,
     onScroll,
     onIndexChange,
+    onDetectActiveItem,
     animatedScrollByIndex = false,
     throttleMs = THROTTLE_DEFAULT_MS,
     debounceMs = DEBOUNCE_DEFAULT_MS,
@@ -146,6 +147,7 @@ export const useCarousel = ({
 
                 if (itemSlot !== null) {
                     if (detectThreshold && Math.abs(itemSlot) <= detectThreshold) {
+                        onDetectActiveItem?.(itemIndex);
                         debouncedOnIndexChange(itemIndex);
                     }
 
