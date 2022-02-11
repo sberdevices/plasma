@@ -1,3 +1,20 @@
+# v1.6.0 (Fri Feb 11 2022)
+
+#### 🚀 Enhancement
+
+- feat(ad-sdk): bump version [#173](https://github.com/sberdevices/pashka/pull/173) ([@Yeti-or](https://github.com/Yeti-or))
+- feat(ad-sdk): add getAssistantRef() [#170](https://github.com/sberdevices/pashka/pull/170) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### 🐛 Bug Fix
+
+- chore(ad-sdk): improve demo-app [#170](https://github.com/sberdevices/pashka/pull/170) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.5.1 (Fri Jan 21 2022)
 
 #### 🐛 Bug Fix
