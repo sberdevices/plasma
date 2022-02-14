@@ -104,7 +104,7 @@ Default.args = args;
 
 export const Anchor: Story<ButtonStoryProps> = ({ contentType, text, ...rest }) => (
     <Button
-        forwardedAs="a"
+        as="a"
         text={contentType !== 'Left' && text}
         contentLeft={(contentType === 'Left' || contentType === 'Text+Left') && <IconPlaceholder />}
         contentRight={contentType === 'Text+Right' && <IconPlaceholder />}
