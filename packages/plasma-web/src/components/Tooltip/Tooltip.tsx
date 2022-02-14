@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { caption, buttonChecked, inverse, shadows } from '@sberdevices/plasma-core';
+import { caption, dark02, shadows, white } from '@sberdevices/plasma-core';
 import { usePopper } from 'react-popper';
 
 /** Направление раскрытия тултипа */
@@ -68,10 +68,10 @@ const StyledTooltip = styled.span<Pick<TooltipProps, 'isVisible' | 'animated'>>`
 
     padding: 0.375rem 0.5rem;
 
-    background-color: ${buttonChecked};
+    background-color: ${dark02};
     border-radius: 0.25rem;
     box-shadow: ${shadows.small};
-    color: ${inverse};
+    color: ${white};
 
     white-space: pre;
 
