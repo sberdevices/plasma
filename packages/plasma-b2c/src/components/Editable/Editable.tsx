@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { tertiary, white } from '@sberdevices/plasma-tokens-b2c';
+import { tertiary, text, background } from '@sberdevices/plasma-core';
 
 import { selectText, clearSelection } from '../../utils';
 import * as typography from '../Typography';
@@ -12,7 +12,12 @@ enum KeyCodes {
 
 const EditButton = styled.span<{ $isHidden: boolean }>`
     position: relative;
-    background: var(--plasma-editable-icon-background, linear-gradient(270deg, #000 70%, rgba(0, 0, 0, 0) 120%));
+    /* stylelint-disable */
+    background: var(
+        --plasma-editable-icon-background,
+        linear-gradient(270deg, ${background} 70%, rgba(0, 0, 0, 0) 120%)
+    );
+    /* stylelint-enable */
     padding-left: 1rem;
     color: ${tertiary};
     align-self: stretch;
@@ -27,7 +32,7 @@ const StyledContainer = styled.span`
     cursor: pointer;
 
     &:hover > ${EditButton} {
-        color: ${white};
+        color: ${text};
     }
 `;
 
