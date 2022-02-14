@@ -2,17 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import { paramCase } from 'param-case';
 
-import { ROBO_COMMENT } from './constants';
+import { ROBO_COMMENT, ThemeColorsList } from './constants';
 import { toCSSVarTokenWithValue, capitalize } from './functions';
-import type {
-    TokenDataGroup,
-    TokenData,
-    TokenType,
-    TypoSystem,
-    ThemeColorsList,
-    GeneratedFiles,
-    TypoStyles,
-} from './types';
+import type { TokenDataGroup, TokenData, TokenType, TypoSystem, GeneratedFiles, TypoStyles } from './types';
 import { escapeValue } from './utils';
 
 type GeneratedTokenType = 'value' | 'css';
