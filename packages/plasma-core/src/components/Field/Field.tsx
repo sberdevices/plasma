@@ -78,8 +78,6 @@ export const FieldHelper = styled.span`
     display: block;
 
     margin-top: 0.25rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
 
     ${applyEllipsis}
 `;

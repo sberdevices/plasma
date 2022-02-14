@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
-import { FieldRoot, FieldContent, FieldHelper, TextArea as BaseArea } from '@sberdevices/plasma-core';
+import { FieldRoot, FieldContent, TextArea as BaseArea } from '@sberdevices/plasma-core';
 import type { TextAreaProps as BaseProps } from '@sberdevices/plasma-core';
 
-import { applyInputStyles } from '../Field';
+import { FieldHelper, applyInputStyles } from '../Field';
 
 export interface TextAreaProps extends BaseProps {}
 
