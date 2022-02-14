@@ -6,7 +6,7 @@ import { IconPlaceholder, disableProps } from '../../helpers';
 
 import { Button, ButtonProps } from '.';
 
-const views = ['primary', 'secondary', 'success', 'warning', 'critical', 'clear'];
+const views = ['primary', 'secondary', 'success', 'warning', 'critical', 'checked', 'clear'];
 const sizes = ['l', 'm', 's'];
 const pins = [
     'square-square',

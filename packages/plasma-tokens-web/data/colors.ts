@@ -3,6 +3,18 @@ import { lightenColor } from '@sberdevices/plasma-tokens-utils';
 
 export const colors = {
     light: {
+        buttonPrimaryHover: '#447ff9',
+        buttonPrimaryActive: '#2868e0',
+
+        buttonSuccessHover: '#379740',
+        buttonSuccessActive: '#157e26',
+
+        buttonWarningHover: '#f76d2f',
+        buttonWarningActive: '#de550a',
+
+        buttonCriticalHover: '#f53b46',
+        buttonCriticalActive: '#dc1b2b',
+
         link: general.electricBlue['600'],
         linkHover: lightenColor(general.electricBlue['600'], 7),
         linkActive: lightenColor(general.electricBlue['600'], -8),
@@ -45,6 +57,18 @@ export const colors = {
         )`,
     },
     dark: {
+        buttonPrimaryHover: '#538efe',
+        buttonPrimaryActive: '#3a75e5',
+
+        buttonSuccessHover: '#3eaa4d',
+        buttonSuccessActive: '#1d9233',
+
+        buttonWarningHover: '#f76d2f',
+        buttonWarningActive: '#de550a',
+
+        buttonCriticalHover: '#ff4757',
+        buttonCriticalActive: '#e82a3e',
+
         link: general.electricBlue['500'],
         linkHover: lightenColor(general.electricBlue['500'], 7),
         linkActive: lightenColor(general.electricBlue['500'], -8),

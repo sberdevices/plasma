@@ -1,4 +1,4 @@
-import type { TokenData, TColor } from '@sberdevices/plasma-tokens-utils';
+import type { FullColors, WebColors } from '@sberdevices/plasma-tokens-utils';
 import {
     mapDesignToBaseColors,
     mapDesignToTypography,
@@ -38,23 +38,7 @@ const baseColors = mapDesignToBaseColors(ds);
 /* =                THEMES                = */
 /* ======================================== */
 
-export type ThemeTokens = { [key in keyof typeof FullColorsList]: TokenData<TColor> };
-export type ExtendedTokens = {
-    link: TokenData<TColor>;
-    linkHover: TokenData<TColor>;
-    linkActive: TokenData<TColor>;
-    linkVisited: TokenData<TColor>;
-    linkVisitedHover: TokenData<TColor>;
-    linkVisitedActive: TokenData<TColor>;
-
-    buttonSecondaryHover: TokenData<TColor>;
-    buttonSecondaryActive: TokenData<TColor>;
-
-    inputBorder: TokenData<TColor>;
-    inputBorderHover: TokenData<TColor>;
-};
-
-const light: ThemeTokens & ExtendedTokens = {
+const light: FullColors & WebColors = {
     ...baseColors,
 
     text: {
@@ -180,6 +164,13 @@ const light: ThemeTokens & ExtendedTokens = {
         value: humanizeColor(ds.theme.light_button_primary.color),
         comment: FullColorsList.buttonPrimary,
     },
+    buttonPrimaryHover: {
+        value: colors.light.buttonPrimaryHover,
+    },
+    buttonPrimaryActive: {
+        value: colors.light.buttonPrimaryActive,
+    },
+
     buttonSecondary: {
         value: humanizeColor(ds.theme.light_button_secondary.color),
         comment: FullColorsList.buttonSecondary,
@@ -195,22 +186,57 @@ const light: ThemeTokens & ExtendedTokens = {
         value: humanizeColor(ds.theme.light_button_accent.color),
         comment: FullColorsList.buttonAccent,
     },
+
     buttonSuccess: {
         value: humanizeColor(ds.theme.light_button_success.color),
         comment: FullColorsList.buttonSuccess,
     },
+    buttonSuccessHover: {
+        value: colors.light.buttonSuccessHover,
+    },
+    buttonSuccessActive: {
+        value: colors.light.buttonSuccessActive,
+    },
+
     buttonWarning: {
         value: humanizeColor(ds.theme.light_button_warning.color),
         comment: FullColorsList.buttonWarning,
     },
+    buttonWarningHover: {
+        value: colors.light.buttonWarningHover,
+    },
+    buttonWarningActive: {
+        value: colors.light.buttonWarningActive,
+    },
+
     buttonCritical: {
         value: humanizeColor(ds.theme.light_button_critical.color),
         comment: FullColorsList.buttonCritical,
     },
+    buttonCriticalHover: {
+        value: colors.light.buttonCriticalHover,
+    },
+    buttonCriticalActive: {
+        value: colors.light.buttonCriticalActive,
+    },
+
     buttonChecked: {
         value: humanizeColor(ds.theme.light_button_checked.color),
         comment: FullColorsList.buttonChecked,
     },
+    buttonCheckedHover: {
+        value: humanizeColor(ds.theme.light_button_checked.color),
+    },
+    buttonCheckedHoverColor: {
+        value: ds.theme.light_inverse.color,
+    },
+    buttonCheckedActive: {
+        value: humanizeColor(ds.theme.light_button_checked.color),
+    },
+    buttonCheckedActiveColor: {
+        value: ds.theme.light_inverse.color,
+    },
+
     buttonFocused: {
         value: humanizeColor(ds.theme.light_button_focused.color),
         comment: FullColorsList.buttonFocused,
@@ -240,7 +266,7 @@ const light: ThemeTokens & ExtendedTokens = {
         value: '',
     },
 };
-const dark: ThemeTokens & ExtendedTokens = {
+const dark: FullColors & WebColors = {
     ...baseColors,
 
     text: {
@@ -366,6 +392,13 @@ const dark: ThemeTokens & ExtendedTokens = {
         value: humanizeColor(ds.theme.dark_button_primary.color),
         comment: FullColorsList.buttonPrimary,
     },
+    buttonPrimaryHover: {
+        value: colors.dark.buttonPrimaryHover,
+    },
+    buttonPrimaryActive: {
+        value: colors.dark.buttonPrimaryActive,
+    },
+
     buttonSecondary: {
         value: humanizeColor(ds.theme.dark_button_secondary.color),
         comment: FullColorsList.buttonSecondary,
@@ -381,22 +414,57 @@ const dark: ThemeTokens & ExtendedTokens = {
         value: humanizeColor(ds.theme.dark_button_accent.color),
         comment: FullColorsList.buttonAccent,
     },
+
     buttonSuccess: {
         value: humanizeColor(ds.theme.dark_button_success.color),
         comment: FullColorsList.buttonSuccess,
     },
+    buttonSuccessHover: {
+        value: colors.dark.buttonSuccessHover,
+    },
+    buttonSuccessActive: {
+        value: colors.dark.buttonSuccessActive,
+    },
+
     buttonWarning: {
         value: humanizeColor(ds.theme.dark_button_warning.color),
         comment: FullColorsList.buttonWarning,
     },
+    buttonWarningHover: {
+        value: colors.dark.buttonWarningHover,
+    },
+    buttonWarningActive: {
+        value: colors.dark.buttonWarningActive,
+    },
+
     buttonCritical: {
         value: humanizeColor(ds.theme.dark_button_critical.color),
         comment: FullColorsList.buttonCritical,
     },
+    buttonCriticalHover: {
+        value: colors.dark.buttonCriticalHover,
+    },
+    buttonCriticalActive: {
+        value: colors.dark.buttonCriticalActive,
+    },
+
     buttonChecked: {
         value: humanizeColor(ds.theme.dark_button_checked.color),
         comment: FullColorsList.buttonChecked,
     },
+    buttonCheckedHover: {
+        value: humanizeColor(ds.theme.dark_button_checked.color),
+    },
+    buttonCheckedHoverColor: {
+        value: ds.theme.dark_inverse.color,
+    },
+    buttonCheckedActive: {
+        value: humanizeColor(ds.theme.dark_button_checked.color),
+    },
+    buttonCheckedActiveColor: {
+        value: ds.theme.dark_inverse.color,
+    },
+
     buttonFocused: {
         value: humanizeColor(ds.theme.dark_button_focused.color),
         comment: FullColorsList.buttonFocused,
