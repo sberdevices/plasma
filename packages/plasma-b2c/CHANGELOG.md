@@ -1,3 +1,15 @@
+# v1.39.4 (Mon Feb 14 2022)
+
+#### 🐛 Bug Fix
+
+- chore(plasma-b2c): `TextField` hide `size` prop in storybook [#1074](https://github.com/sberdevices/plasma/pull/1074) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.39.3 (Thu Feb 10 2022)
 
 #### 🐛 Bug Fix

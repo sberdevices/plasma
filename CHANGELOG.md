@@ -1,5 +1,21 @@
 # (Mon Feb 14 2022)
 
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-icons@1.67.3`
+  - fix(plasma-icons): remove unused icon [#1085](https://github.com/sberdevices/plasma/pull/1085) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-b2c@1.39.4`
+  - chore(plasma-b2c): `TextField` hide `size` prop in storybook [#1074](https://github.com/sberdevices/plasma/pull/1074) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# (Mon Feb 14 2022)
+
 #### 🚀 Enhancement
 
 - `@sberdevices/plasma-temple@1.28.0`

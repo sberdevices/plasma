@@ -1,3 +1,15 @@
+# v1.67.3 (Mon Feb 14 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-icons): remove unused icon [#1085](https://github.com/sberdevices/plasma/pull/1085) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 1
+
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.67.1 (Thu Feb 03 2022)
 
 #### 🐛 Bug Fix
