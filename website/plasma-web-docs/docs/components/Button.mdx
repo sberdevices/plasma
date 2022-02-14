@@ -142,3 +142,18 @@ export function App() {
     );
 }
 ```
+
+### Гиперссылка
+Компонент поддерживает вывод в виде тега `<a>`, для этого необходимо указать свойство `as`:
+
+```tsx live
+import React from 'react';
+import { Button } from '@sberdevices/plasma-web';
+import { IconDownload } from '@sberdevices/plasma-icons';
+
+export function App() {
+    return (
+        <Button as="a" text="Гиперссылка" />
+    );
+}
+```
