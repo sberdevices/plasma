@@ -1,3 +1,21 @@
+# (Mon Feb 14 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@1.28.0`
+  - feat(plasma-temple): Config initial index in HeroSlider [#1078](https://github.com/sberdevices/plasma/pull/1078) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- chore: Update CONTRIBUTING.md [#952](https://github.com/sberdevices/plasma/pull/952) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Thu Feb 10 2022)
 
 #### 🐛 Bug Fix
