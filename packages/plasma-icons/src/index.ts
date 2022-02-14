@@ -116,7 +116,6 @@ export { IconPhoneStroke } from './Icons/IconPhoneStroke';
 export { IconPhoneWiFi } from './Icons/IconPhoneWiFi';
 export { IconRemotesAndAccessories } from './Icons/IconRemotesAndAccessories';
 export { IconRemotesAndAccessoriesStroke } from './Icons/IconRemotesAndAccessoriesStroke';
-export { IconSberBoom } from './Icons/IconSberBoom';
 export { IconSberBoxTime } from './Icons/IconSberBoxTime';
 export { IconSberBoxTimeStroke } from './Icons/IconSberBoxTimeStroke';
 export { IconSberBoxTop } from './Icons/IconSberBoxTop';
