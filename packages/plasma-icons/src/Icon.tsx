@@ -118,7 +118,6 @@ import { PhoneStroke } from './Icon.assets/PhoneStroke';
 import { PhoneWiFi } from './Icon.assets/PhoneWiFi';
 import { RemotesAndAccessories } from './Icon.assets/RemotesAndAccessories';
 import { RemotesAndAccessoriesStroke } from './Icon.assets/RemotesAndAccessoriesStroke';
-import { SberBoom } from './Icon.assets/SberBoom';
 import { SberBoxTime } from './Icon.assets/SberBoxTime';
 import { SberBoxTimeStroke } from './Icon.assets/SberBoxTimeStroke';
 import { SberBoxTop } from './Icon.assets/SberBoxTop';
@@ -294,7 +293,6 @@ export const iconSectionsSet = {
         phoneWiFi: PhoneWiFi,
         remotesAndAccessories: RemotesAndAccessories,
         remotesAndAccessoriesStroke: RemotesAndAccessoriesStroke,
-        sberBoom: SberBoom,
         sberBoxTime: SberBoxTime,
         sberBoxTimeStroke: SberBoxTimeStroke,
         sberBoxTop: SberBoxTop,
