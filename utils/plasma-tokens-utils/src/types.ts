@@ -1,5 +1,7 @@
 import * as CSS from 'csstype';
 
+import { BaseColorsList, ThemeColorsList, WebColorsList } from './constants';
+
 type DataValue = string | number | DataObject;
 
 /**
@@ -42,83 +44,9 @@ export interface DesignLanguage {
     typography: Record<string, any>;
 }
 
-export enum BaseColorsList {
-    white = 'Основной белый, не зависит от темы',
-    whitePrimary = 'Основной белый, не зависит от темы',
-    whiteSecondary = 'Второстепенный белый',
-    whiteTertiary = 'Третичный белый',
-
-    black = 'Основной чёрный, не зависит от темы',
-    blackPrimary = 'Основной чёрный, не зависит от темы',
-    blackSecondary = 'Второстепенный чёрный',
-    blackTertiary = 'Третичный чёрный',
-
-    transparent = '',
-
-    buttonClear = 'Второстепенная прозрачная',
-
-    buttonBlack = 'Дефолтная чёрная, не зависит от темы',
-    buttonBlackSecondary = 'Второстепенная чёрная, не зависит от темы',
-    buttonBlackTransparent = 'Чёрная для использования поверх картинок',
-
-    buttonWhite = 'Дефолтная белая, не зависит от темы',
-    buttonWhiteSecondary = 'Второстепенная белая, не зависит от темы',
-}
-export enum ThemeColorsList {
-    text = 'Базовый цвет текста, совпадает с primary',
-    primary = 'Основной текст в интерфейсе',
-    secondary = 'Второстепенный текст',
-    tertiary = 'Третичный цвет текста',
-
-    paragraph = 'Сплошной наборный текст',
-    inverse = 'Белый в светлой теме / Чёрный в тёмной теме',
-
-    background = 'Основной бэкграунд всех приложений и смартапов',
-    backgroundPrimary = 'Первичный цвет фона', // ToDo: https://github.com/sberdevices/plasma/issues/1107
-    backgroundSecondary = 'Вторичный цвет фона', // ToDo: https://github.com/sberdevices/plasma/issues/1107
-    backgroundTertiary = 'Третичный цвет фона', // ToDo: https://github.com/sberdevices/plasma/issues/1107
-
-    accent = 'Акцентный цвет бренда',
-    success = 'Обозначение успешного сценария',
-    warning = 'Цвет предупреждения',
-    critical = 'Цвет ошибки',
-
-    overlay = 'Цвет фона паранжи',
-
-    gradient = 'Градиент для заливки основного фона',
-    gradientDevice = 'Бэкграунд ассистента на девайсах',
-
-    surfaceLiquid01 = 'Полупрозрачные поверхности', // ToDo: https://github.com/sberdevices/plasma/issues/1107
-    surfaceLiquid02 = 'Полупрозрачные поверхности', // ToDo: https://github.com/sberdevices/plasma/issues/1107
-    surfaceLiquid03 = 'Полупрозрачные поверхности', // ToDo: https://github.com/sberdevices/plasma/issues/1107
-    surfaceSolid01 = 'Непрозрачные поверхности',
-    surfaceSolid02 = 'Непрозрачные поверхности',
-    surfaceSolid03 = 'Непрозрачные поверхности',
-    surfaceCard = 'Основной фон для карточек',
-
-    buttonPrimary = 'Первичный цвет контролов',
-    buttonSecondary = 'Второстепенная кнопка',
-
-    buttonAccent = 'Акцентный цвет у контролов',
-    buttonSuccess = 'Кнопка для успешного сценария',
-    buttonWarning = 'Цвет предупреждения у контролов',
-    buttonCritical = 'Цвет ошибки у контролов',
-    buttonChecked = 'Цвет зажатого контрола',
-    buttonFocused = 'Цвет рамки фокуса у контрола',
-
-    speechBubbleSent = 'Цвет фона баблов отправленный сообщений',
-    speechBubbleReceived = 'Цвет фона баблов получнных сообщений',
-
-    voicePhraseGradient = 'Градиент подсказок о голосовых запросах',
-
-    skeletonGradient = 'Градиент скелетона',
-    skeletonGradientLighter = 'Градиент скелетона для ярких компонентов',
-}
-
-export const FullColorsList = { ...BaseColorsList, ...ThemeColorsList };
-
 export type BaseColors = TokenDataGroup<TColor> & Record<keyof typeof BaseColorsList, TokenData<TColor>>;
 export type ThemeColors = TokenDataGroup<TColor> & Record<keyof typeof ThemeColorsList, TokenData<TColor>>;
+export type WebColors = TokenDataGroup<TColor> & Record<keyof typeof WebColorsList, TokenData<TColor>>;
 export type FullColors = BaseColors & ThemeColors;
 
 export interface TypographStyle {
