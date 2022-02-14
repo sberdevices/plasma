@@ -3,6 +3,21 @@ import { lightenColor } from '@sberdevices/plasma-tokens-utils';
 
 export const colors = {
     light: {
+        buttonPrimaryHover: lightenColor(general.electricBlue['600'], 3),
+        buttonPrimaryActive: lightenColor(general.electricBlue['600'], -3),
+
+        buttonSuccessHover: '#3eaa4d',
+        buttonSuccessActive: '#1d9233',
+
+        buttonWarningHover: lightenColor(general.orange['500'], 3),
+        buttonWarningActive: lightenColor(general.orange['500'], -3),
+
+        buttonCriticalHover: lightenColor(general.red['600'], 3),
+        buttonCriticalActive: lightenColor(general.red['600'], -3),
+
+        buttonCheckedHover: lightenColor(general.gray['1000'], 6),
+        buttonCheckedActive: general.gray['1000'],
+
         link: general.electricBlue['600'],
         linkHover: lightenColor(general.electricBlue['600'], 7),
         linkActive: lightenColor(general.electricBlue['600'], -8),
@@ -45,6 +60,21 @@ export const colors = {
         )`,
     },
     dark: {
+        buttonPrimaryHover: lightenColor(general.electricBlue['500'], 3),
+        buttonPrimaryActive: lightenColor(general.electricBlue['500'], -3),
+
+        buttonSuccessHover: '#3eaa4d',
+        buttonSuccessActive: '#1d9233',
+
+        buttonWarningHover: lightenColor(general.orange['600'], 3),
+        buttonWarningActive: lightenColor(general.orange['600'], -3),
+
+        buttonCriticalHover: lightenColor(general.red['500'], 3),
+        buttonCriticalActive: lightenColor(general.red['500'], -3),
+
+        buttonCheckedHover: '#FFFFFF',
+        buttonCheckedActive: lightenColor('#FFFFFF', -6),
+
         link: general.electricBlue['500'],
         linkHover: lightenColor(general.electricBlue['500'], 7),
         linkActive: lightenColor(general.electricBlue['500'], -8),

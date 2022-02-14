@@ -1,34 +1,22 @@
 import { css } from 'styled-components';
-import { buttonViews as baseViews, black, white } from '@sberdevices/plasma-core';
-import type { DisabledProps } from '@sberdevices/plasma-core';
+import { buttonViews as baseViews } from '@sberdevices/plasma-core';
 
-import { buttonSecondaryHover, buttonSecondaryActive } from '../../tokens';
-
-const viewInteractive = ({ disabled }: DisabledProps) =>
-    !disabled &&
-    css`
-        &::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: ${white};
-            border-radius: inherit;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        &:hover::after {
-            opacity: 0.1;
-        }
-
-        &:active::after {
-            opacity: 0.1;
-            background-color: ${black};
-        }
-    `;
+import {
+    buttonPrimaryHover,
+    buttonPrimaryActive,
+    buttonSecondaryHover,
+    buttonSecondaryActive,
+    buttonSuccessHover,
+    buttonSuccessActive,
+    buttonWarningHover,
+    buttonWarningActive,
+    buttonCriticalHover,
+    buttonCriticalActive,
+    buttonCheckedHover,
+    buttonCheckedHoverColor,
+    buttonCheckedActive,
+    buttonCheckedActiveColor,
+} from '../../tokens';
 
 /**
  * Views (colors) for both B2B and B2C
@@ -36,33 +24,53 @@ const viewInteractive = ({ disabled }: DisabledProps) =>
 export const buttonViews = {
     primary: css`
         ${baseViews.primary}
-        ${viewInteractive}
 
         &:hover {
+            background-color: ${buttonPrimaryHover};
+            color: ${baseViews.primary.color};
+        }
+
+        &:active {
+            background-color: ${buttonPrimaryActive};
             color: ${baseViews.primary.color};
         }
     `,
     success: css`
         ${baseViews.success}
-        ${viewInteractive}
 
         &:hover {
+            background-color: ${buttonSuccessHover};
+            color: ${baseViews.success.color};
+        }
+
+        &:active {
+            background-color: ${buttonSuccessActive};
             color: ${baseViews.success.color};
         }
     `,
     warning: css`
         ${baseViews.warning}
-        ${viewInteractive}
 
         &:hover {
+            background-color: ${buttonWarningHover};
+            color: ${baseViews.warning.color};
+        }
+
+        &:active {
+            background-color: ${buttonWarningActive};
             color: ${baseViews.warning.color};
         }
     `,
     critical: css`
         ${baseViews.critical}
-        ${viewInteractive}
 
         &:hover {
+            background-color: ${buttonCriticalHover};
+            color: ${baseViews.critical.color};
+        }
+
+        &:active {
+            background-color: ${buttonCriticalActive};
             color: ${baseViews.critical.color};
         }
     `,
@@ -76,9 +84,22 @@ export const buttonViews = {
 
         &:active {
             background-color: ${buttonSecondaryActive};
+            color: ${baseViews.secondary.color};
         }
     `,
-    checked: baseViews.checked,
+    checked: css`
+        ${baseViews.checked}
+
+        &:hover {
+            background-color: ${buttonCheckedHover};
+            color: ${buttonCheckedHoverColor};
+        }
+
+        &:active {
+            background-color: ${buttonCheckedActive};
+            color: ${buttonCheckedActiveColor};
+        }
+    `,
     overlay: baseViews.overlay,
     clear: baseViews.clear,
 };
