@@ -1,1 +1,1 @@
-export { applyInputStyles } from './Field';
+export { FieldHelper, applyInputStyles } from './Field';

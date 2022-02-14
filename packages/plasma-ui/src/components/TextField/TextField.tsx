@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
-import { FieldRoot, FieldPlaceholder, FieldContent, FieldHelper, Input } from '@sberdevices/plasma-core';
+import { FieldRoot, FieldPlaceholder, FieldContent, Input } from '@sberdevices/plasma-core';
 import type { InputProps } from '@sberdevices/plasma-core';
 
-import { applyInputStyles } from '../Field';
+import { FieldHelper, applyInputStyles } from '../Field';
 
 export interface TextFieldProps extends InputProps {}
 
