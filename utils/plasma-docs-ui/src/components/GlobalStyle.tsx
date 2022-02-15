@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { createGlobalStyle } from 'styled-components';
-import { accent } from '@sberdevices/plasma-tokens-web';
-import { web } from '@sberdevices/plasma-tokens-web/typo';
-import { light, dark } from '@sberdevices/plasma-tokens-web/themes';
+import { accent } from '@sberdevices/plasma-tokens-b2b';
+import { b2b } from '@sberdevices/plasma-tokens-b2b/typo';
+import { light, dark } from '@sberdevices/plasma-tokens-b2b/themes';
 
 interface GlobalStyleProps {
     theme?: 'light' | 'dark';
@@ -13,7 +13,7 @@ const themes = {
     light: createGlobalStyle(light),
     dark: createGlobalStyle(dark),
 };
-const TypoTheme = createGlobalStyle(web);
+const TypoTheme = createGlobalStyle(b2b);
 const DocStyle = createGlobalStyle`
     :root {
         --ifm-color-primary: ${accent};
