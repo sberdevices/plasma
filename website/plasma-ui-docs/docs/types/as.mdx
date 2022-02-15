@@ -1,0 +1,95 @@
+---
+id: as-and-forwardedas
+title: Свойства `as` и `forwardedAs`
+---
+
+# Свойства `as` и `forwardedAs`
+
+## `as`
+Иногда, при использовании компонентов, бывает необходимо сменить тег.
+Например, в случае использования компонента `Button` нужно сменить ему тег `button` на `a`.
+Для ситуаций, подобной этой, подходит свойство styled-components `as`:
+
+```tsx live
+import React from 'react';
+import { Button } from '@sberdevices/plasma-ui';
+
+export function App() {
+const StyledButton = styled(Button)``;
+    return (
+        <StyledButton as="a" text="Гиперссылка" />
+    );
+}
+```
+
+В иных ситуациях может понадобится передать стилизованный компонент вместо указания тега:
+
+```tsx live
+import React from 'react';
+import styled from 'styled-components';
+import { Button } from '@sberdevices/plasma-ui';
+
+export function App() {
+    const StyledLink = styled.a`
+        color: #fff;
+
+        &:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+    `;
+
+    return (
+        <Button as={StyledLink} text="Гиперссылка и компонент" />
+    );
+}
+```
+
+## `forwardedAs`
+Бывают ситуации, когда компонент многократно обернут в хок `styled`.
+В таких случаях использование свойства `as` не даст никакого результата,
+т.к тег (или стилизованный компонент) заменит собой желаемый, как в данном примере:
+
+```tsx live
+import styled from 'styled-components';
+import { Button } from '@sberdevices/plasma-ui';
+
+export function App() {
+    const StyledButton = styled(Button)`
+        color: red;
+
+        &:hover {
+            color: red;
+        }
+    `;
+
+    return (
+        <StyledButton as="a">Тут должна быть кнопка-гиперссылка</StyledButton>
+    );
+}
+```
+
+Для того, чтобы избежать подобных ошибок, используйте `forwardedAs` вместо `as`:
+
+```tsx live
+import styled from 'styled-components';
+import { Button } from '@sberdevices/plasma-ui';
+
+export function App() {
+    const StyledButton = styled(Button)`
+        color: red;
+
+        &:hover {
+            color: red;
+        }
+    `;
+
+    return (
+        <StyledButton forwardedAs="a">Кнопка-гиперссылка</StyledButton>
+    );
+}
+```
+
+> Пояснение к примеру: поскольку `Button` - уже является стилизованным компонентом,
+повторное оборачивание её в хок `styled` приводит к увеличению вложенности компонентов (не DOM-узлов!).
+См. официальзую документацию styled-components [https://styled-components.com/docs/api#forwardedas-prop](https://styled-components.com/docs/api#forwardedas-prop).
