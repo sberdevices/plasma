@@ -1,3 +1,15 @@
+# v1.75.5 (Tue Feb 15 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web, plasma-b2c): `Tooltip`: global dark [#1087](https://github.com/sberdevices/plasma/pull/1087) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.75.3 (Thu Feb 10 2022)
 
 #### 🐛 Bug Fix
