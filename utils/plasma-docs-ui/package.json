@@ -28,11 +28,10 @@
     "publishConfig": {
         "access": "restricted"
     },
-    "files": [
-        "lib"
-    ],
+    "files": ["lib"],
     "dependencies": {
         "@sberdevices/plasma-core": "1.27.3",
+        "@sberdevices/plasma-tokens-b2b": "1.1.0",
         "@sberdevices/plasma-web": "1.73.1",
         "@types/marked": "3.0.1",
         "codesandbox": "2.2.3",
