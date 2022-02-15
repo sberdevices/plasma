@@ -1,3 +1,16 @@
+# (Tue Feb 15 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@1.29.0`
+  - feat(plasma-temple): Ability to disable autofocus in HeroSlider [#1077](https://github.com/sberdevices/plasma/pull/1077) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # (Mon Feb 14 2022)
 
 #### 🐛 Bug Fix
