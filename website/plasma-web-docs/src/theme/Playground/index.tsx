@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import usePrismTheme from '@theme/hooks/usePrismTheme';
+import useThemeContext from '@theme/hooks/useThemeContext';
 import { PlaygroundPreview } from '@sberdevices/plasma-docs-ui';
-import { light } from '@sberdevices/plasma-tokens-web/themes';
+import { light, dark } from '@sberdevices/plasma-tokens-b2b/themes';
 import Translate from '@docusaurus/Translate';
 import clsx from 'clsx';
 
@@ -14,8 +15,9 @@ import { CodeSandbox } from '../../components';
 import styles from './styles.module.css';
 
 const lightTheme = light[':root'];
-const StyledPreview = styled(PlaygroundPreview)`
-    ${lightTheme}
+const darkTheme = dark[':root'];
+const StyledPreview = styled(PlaygroundPreview)<{ theme?: 'light' | 'dark' }>`
+    ${({ theme = 'light' }) => (theme === 'light' ? lightTheme : darkTheme)}
 `;
 
 const StyledWrap = styled.div`
@@ -42,6 +44,8 @@ const Header: FC = ({ children }) => {
 };
 
 const ResultWithHeader: FC = () => {
+    const { isDarkTheme } = useThemeContext();
+
     return (
         <>
             <Header>
@@ -49,7 +53,7 @@ const ResultWithHeader: FC = () => {
                     Result
                 </Translate>
             </Header>
-            <LivePreview Component={StyledPreview} />
+            <LivePreview Component={StyledPreview} theme={isDarkTheme ? 'dark' : 'light'} />
             <LiveError />
         </>
     );
