@@ -28,7 +28,8 @@
     "build-docz": "lerna bootstrap --scope=@sberdevices/ui && lerna run docz:build",
     "extract-docgen-info": "lerna run extract-docgen-info",
     "lint": "eslint --ext .js,.ts,.tsx .",
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "typescript-coverage": "lerna run typescript-coverage"
   },
   "devDependencies": {
     "@actions/core": "1.2.7",
