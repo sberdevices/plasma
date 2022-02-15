@@ -1,0 +1,33 @@
+name: Typescript coverage
+
+on: push
+
+jobs:
+  typescript-coverage:
+    runs-on: ubuntu-latest
+    env:
+      NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Setup packages
+        run: |
+          npm i
+          npx lerna bootstrap
+
+      - name: Run Typescript Coverage
+        if: ${{ always() }}
+        run: |
+          npm run typescript-coverage
+
+      - name: Save artifacts
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: Typescript Coverage Report Artifacts
+          path: /home/runner/work/plasma/plasma/packages/**/coverage-ts/
