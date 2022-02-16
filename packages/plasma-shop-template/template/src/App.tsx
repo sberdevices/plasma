@@ -3,7 +3,6 @@ import { PlasmaApp, Page, CartButton, CartProvider, OnStartFn, CartState } from 
 
 import { AssistantProps, AppHeaderProps, RecipientInfo, PageState, PageParams } from './types';
 import { About } from './pages/About/About';
-import { Main } from './pages/Main';
 import { Catalog } from './pages/Catalog/Catalog';
 import { Product } from './pages/Product/Product';
 import { Delivery } from './pages/Delivery/Delivery';
@@ -14,16 +13,17 @@ import { MakeOrder } from './pages/MakeOrder/MakeOrder';
 import { RecipientForm } from './pages/RecipientForm/RecipientForm';
 import { recipientInfoInitialValue, RecipientInfoContext } from './pages/MakeOrder/RecipientInfoContext';
 import { OrderSuccess } from './pages/OrderSuccess/OrderSuccess';
+import { HeaderCartButton } from './components/HeaderCartButton/HeaderCartButton';
 
 const assistantParams: AssistantProps = {
-    initPhrase: 'запусти магазин',
+    initPhrase: 'запусти проверочка',
     token: process.env.REACT_APP_SMARTAPP_TOKEN ?? '',
 };
 
 const headerProps: AppHeaderProps = {
     title: 'Шаблон магазина',
     logo: 'logo192.png',
-    children: <CartButton screen="cart" />,
+    children: <HeaderCartButton />,
 };
 
 const onStart: OnStartFn<PageState, PageParams> = async ({ pushScreen }) => {
@@ -37,6 +37,8 @@ const initialCartState: CartState = {
     currency: 'rub',
     amount: 0,
 };
+
+const Main = Page.lazy(() => import('./pages/Main'));
 
 export const App: React.FC = () => {
     const [recipientInfo, setRecipientInfo] = React.useState(recipientInfoInitialValue);

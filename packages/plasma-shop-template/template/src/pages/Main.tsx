@@ -3,7 +3,6 @@ import {
     ShopLandingPage,
     useAssistantOnSmartAppData,
     INNER_ASSISTANT_ACTION,
-    useMount,
     ShopLandingPageState,
 } from '@sberdevices/plasma-temple';
 
@@ -19,20 +18,18 @@ const defaultState: ShopLandingPageState<Product> = {
     activeCardIndex: 0,
 };
 
+export const getInitialProps = async () => {
+    const res = await getPopularProducts();
+
+    return {
+        ...defaultState,
+        items: res.map(productToGalleryItem),
+    };
+};
+
 export const Main: React.FC<PageComponentProps<'main'>> = (props) => {
     const { header, state, pushScreen, sendData, changeState } = props;
     const pageState = !state ? defaultState : state;
-
-    useMount(() => {
-        if (!pageState.items.length) {
-            getPopularProducts().then((products) =>
-                changeState({
-                    ...defaultState,
-                    items: products.map(productToGalleryItem),
-                }),
-            );
-        }
-    });
 
     useAssistantState({
         screen: props.name,
@@ -84,3 +81,5 @@ export const Main: React.FC<PageComponentProps<'main'>> = (props) => {
         />
     );
 };
+
+export default Main;

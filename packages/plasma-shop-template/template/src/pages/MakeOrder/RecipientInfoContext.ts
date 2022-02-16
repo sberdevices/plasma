@@ -7,15 +7,21 @@ interface RecipientInfoContextValue extends RecipientInfo {
 }
 
 export const recipientInfoInitialValue: RecipientInfo = {
+    /**
+     * Пример заполненных данных пользователем о доставке и получателе заказа
+     */
     recipient: {
-        name: '',
-        phone: '',
-        email: '',
+        name: 'Иван',
+        phone: '791023123412',
+        email: 'qwe@qwe.ru',
         address: {
-            city: '',
-            street: '',
-            house: '',
-            flat: '',
+            city: 'Город',
+            comment: 'Комментарий к доставке',
+            entrance: '2',
+            flat: '32',
+            floor: '2',
+            house: '1',
+            street: 'ул Улица',
         },
     },
 };

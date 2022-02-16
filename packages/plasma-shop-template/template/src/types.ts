@@ -62,7 +62,7 @@ export type CommonCatalogData = Record<string, Product[]>;
 export type CatalogData = Category | Product;
 
 export interface PageState {
-    main: ShopLandingPageState<Product> | null;
+    main: ShopLandingPageState<Product>;
     catalog: GalleryPageState<CatalogData> | null;
     product: Product | null;
     history: null;
