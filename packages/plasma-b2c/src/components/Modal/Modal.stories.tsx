@@ -1,23 +1,14 @@
 import React from 'react';
-import { Story, Meta } from '@storybook/react';
-import { disableProps } from '@sberdevices/plasma-sb-utils';
+import { Meta } from '@storybook/react';
 
 import { Button } from '../Button';
-import { P1, Headline1, Headline3 } from '../Typography';
+import { Headline3 } from '../Typography';
 
 import { ModalsProvider, Modal } from '.';
-
-const longText = `Если после применения правила Лопиталя неопределённость типа 0 / 0 осталась, мнимая единица традиционно
-развивает Наибольший Общий Делитель (НОД). Функция многих переменных, исключая очевидный случай,
-упорядочивает интеграл от функции, обращающейся в бесконечность в изолированной точке. Интересно
-отметить, что эпсилон окрестность развивает разрыв функции. Собственное подмножество естественно
-соответствует экспериментальный Наибольший Общий Делитель (НОД). Постоянная величина положительна.`;
 
 export default {
     title: 'Controls/Modal',
 } as Meta;
-
-const propsToDisable = ['isOpen', 'children', 'onClose'];
 
 export const LiveDemo = () => {
     const [isOpenA, setIsOpenA] = React.useState(false);
