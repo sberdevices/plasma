@@ -52,6 +52,10 @@
         "ts-node": "10.2.1",
         "typescript": "3.9.10"
     },
-    "contributors": ["Виноградов Антон Александрович", "Зубаиров Фаниль Асхатович", "Vasiliy Loginevskiy"],
+    "contributors": [
+        "Виноградов Антон Александрович",
+        "Зубаиров Фаниль Асхатович",
+        "Vasiliy Loginevskiy"
+    ],
     "sideEffects": false
 }

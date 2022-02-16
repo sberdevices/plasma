@@ -49,6 +49,10 @@
         "sizes.js.map",
         "theme.json"
     ],
-    "contributors": ["Vasiliy Loginevskiy", "Anton Vinogradov", "Fanil Zubairov"],
+    "contributors": [
+        "Vasiliy Loginevskiy",
+        "Anton Vinogradov",
+        "Fanil Zubairov"
+    ],
     "sideEffects": false
 }
