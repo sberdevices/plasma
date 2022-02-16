@@ -44,7 +44,7 @@ export const calculateRange = (
 ): VisibleRange => {
     const getOffset = (index: number) => measurements[index].start;
 
-    const start = findNearestBinarySearch(0, itemCount, getOffset, scrollOffset);
+    const start = findNearestBinarySearch(0, itemCount - 1, getOffset, scrollOffset);
     let end = start;
 
     while (end < itemCount && measurements[end].end < scrollOffset + scrollableSize) {
