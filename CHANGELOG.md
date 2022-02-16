@@ -1,5 +1,18 @@
 # (Wed Feb 16 2022)
 
+#### 🐛 Bug Fix
+
+- `@sberdevices/use-virtual@0.7.1`
+  - fix(use-virtual): fix calculateRange search [#175](https://github.com/sberdevices/pashka/pull/175) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+#### Authors: 1
+
+- Arseny Kruglikov ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+---
+
+# (Wed Feb 16 2022)
+
 #### 🚀 Enhancement
 
 - `@sberdevices/use-virtual@0.7.0`

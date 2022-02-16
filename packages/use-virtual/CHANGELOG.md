@@ -1,3 +1,15 @@
+# v0.7.1 (Wed Feb 16 2022)
+
+#### 🐛 Bug Fix
+
+- fix(use-virtual): fix calculateRange search [#175](https://github.com/sberdevices/pashka/pull/175) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+#### Authors: 1
+
+- Arseny Kruglikov ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+---
+
 # v0.7.0 (Wed Feb 16 2022)
 
 #### 🚀 Enhancement
