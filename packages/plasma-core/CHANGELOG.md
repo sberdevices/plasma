@@ -1,3 +1,15 @@
+# v1.49.3 (Wed Feb 16 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web, plasma-b2c): `TextField`: separated helper spacing styles [#1090](https://github.com/sberdevices/plasma/pull/1090) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.49.1 (Thu Feb 03 2022)
 
 #### 🐛 Bug Fix

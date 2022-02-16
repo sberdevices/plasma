@@ -1,3 +1,24 @@
+# (Wed Feb 16 2022)
+
+#### 🐛 Bug Fix
+
+- chore: templates eslint ignore by default [#1054](https://github.com/sberdevices/plasma/pull/1054) ([@LamaEats](https://github.com/LamaEats))
+- `@sberdevices/plasma-b2c@1.39.6`
+  - fix(plasma-b2c): `Editable`: background in light theme [#1088](https://github.com/sberdevices/plasma/pull/1088) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/cra-template-plasma-basic-template@2.1.2`
+  - fix(plasma-basic-template): deps versions [#1054](https://github.com/sberdevices/plasma/pull/1054) ([@LamaEats](https://github.com/LamaEats))
+- `@sberdevices/cra-template-plasma-shop-template@2.1.2`
+  - fix(plasma-shop-template): deps versions [#1054](https://github.com/sberdevices/plasma/pull/1054) ([@LamaEats](https://github.com/LamaEats))
+- `@sberdevices/plasma-core@1.49.3`, `@sberdevices/plasma-ui@1.81.3`
+  - fix(plasma-web, plasma-b2c): `TextField`: separated helper spacing styles [#1090](https://github.com/sberdevices/plasma/pull/1090) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Tue Feb 15 2022)
 
 #### 🐛 Bug Fix

@@ -1,3 +1,15 @@
+# v2.1.2 (Wed Feb 16 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-basic-template): deps versions [#1054](https://github.com/sberdevices/plasma/pull/1054) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v2.1.1 (Tue Oct 26 2021)
 
 #### 🐛 Bug Fix

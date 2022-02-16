@@ -1,3 +1,17 @@
+# v1.39.6 (Wed Feb 16 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-b2c): `Editable`: background in light theme [#1088](https://github.com/sberdevices/plasma/pull/1088) ([@fanisco](https://github.com/fanisco))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.39.4 (Mon Feb 14 2022)
 
 #### 🐛 Bug Fix
