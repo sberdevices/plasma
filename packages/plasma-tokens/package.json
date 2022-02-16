@@ -19,7 +19,11 @@
         "build:ds": "npm run build --prefix='./design-language'",
         "generate": "npx ts-node ./generate.ts",
         "postgenerate": "npx style-dictionary build && node clean.js",
-        "figma": "npm run extract --prefix='./design-language'"
+        "figma": "npm run extract --prefix='./design-language'",
+        "typescript-coverage": "npx typescript-coverage-report || echo 'See artifacts'"
+    },
+    "typeCoverage": {
+        "atLeast": 100
     },
     "publishConfig": {
         "access": "public"
@@ -52,10 +56,6 @@
         "ts-node": "10.2.1",
         "typescript": "3.9.10"
     },
-    "contributors": [
-        "Виноградов Антон Александрович",
-        "Зубаиров Фаниль Асхатович",
-        "Vasiliy Loginevskiy"
-    ],
+    "contributors": ["Виноградов Антон Александрович", "Зубаиров Фаниль Асхатович", "Vasiliy Loginevskiy"],
     "sideEffects": false
 }
