@@ -28,7 +28,7 @@
         "prebuild:ds": "npm ci --prefix='design-language'",
         "build:ds": "npm run build --prefix='./design-language'",
         "generate": "npx ts-node ./generate.ts",
-        "typescript-coverage": "npx typescript-coverage-report || echo 'See artifacts'"
+        "typescript-coverage": "npx typescript-coverage-report"
     },
     "typeCoverage": {
         "atLeast": 100
