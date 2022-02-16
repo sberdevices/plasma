@@ -33,4 +33,5 @@
 
 ## Переменные окружения
 
-REACT_APP_SMARTAPP_TOKEN - токен, используется для тестирования и отладки с помощью [Assistant Client](https://developer.sberdevices.ru/docs/ru/developer_tools/sdk/overview)
+REACT_APP_DEV_TOKEN - токен, используется для тестирования и отладки с помощью [Assistant Client](https://developer.sberdevices.ru/docs/ru/developer_tools/sdk/overview)
+REACT_APP_DEV_PHRASE - фраза запуска приложения
