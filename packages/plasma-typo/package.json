@@ -13,7 +13,7 @@
         "build": "npm run build:cjs && npm run build:esm",
         "build:cjs": "tsc",
         "build:esm": "tsc -p ./tsconfig.es.json",
-        "typescript-coverage": "npx typescript-coverage-report || echo 'See artifacts'"
+        "typescript-coverage": "npx typescript-coverage-report"
     },
     "typeCoverage": {
         "atLeast": 100
