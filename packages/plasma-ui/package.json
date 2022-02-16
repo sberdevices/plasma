@@ -86,7 +86,7 @@
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
         "test": "BABEL_ENV=cjs jest",
         "test:watch": "BABEL_ENV=cjs jest --watch",
-        "typescript-coverage": "npx typescript-coverage-report || echo 'See artifacts'"
+        "typescript-coverage": "npx typescript-coverage-report"
     },
     "typeCoverage": {
         "ignoreFiles": ["src/**/*component-test.tsx", "src/**/*stories.tsx"],

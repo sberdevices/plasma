@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Draggable, { DraggableData } from 'react-draggable';
+import Draggable, { DraggableData, DraggableEventHandler } from 'react-draggable';
 import { surfaceLiquid03, white } from '@sberdevices/plasma-tokens';
 
 import { handleDiameter, handleBorderWidth } from './SliderBase';
@@ -63,7 +63,7 @@ export const Handle = React.forwardRef<HTMLDivElement, HandleProps>(
     ({ stepSize, onChangeCommitted, onChange, xPosition, min, max, bounds = [], zIndex, disabled, side }, ref) => {
         const lastOnChangeValue = React.useRef<number | null>(null);
 
-        const onDrag = React.useCallback(
+        const onDrag = React.useCallback<DraggableEventHandler>(
             (_, data) => {
                 const newHandleXPosition = data.lastX;
 
@@ -78,7 +78,7 @@ export const Handle = React.forwardRef<HTMLDivElement, HandleProps>(
             [onChange, stepSize, min, max],
         );
 
-        const onStop = React.useCallback(
+        const onStop = React.useCallback<DraggableEventHandler>(
             (_, data) => {
                 const newHandleXPosition = data.lastX;
                 const newValue = getValue(newHandleXPosition, stepSize, min, max);

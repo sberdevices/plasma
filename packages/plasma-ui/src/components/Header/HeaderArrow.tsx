@@ -5,6 +5,7 @@ import type { PickOptional } from '@sberdevices/plasma-core';
 import { mediaQuery } from '@sberdevices/plasma-core';
 
 import { Button, ButtonProps } from '../Button';
+import { ThemeProviderValue } from '../Device/DeviceDetection';
 
 export interface HeaderArrowProps
     extends PickOptional<ButtonProps, 'as' | 'size' | 'scaleOnInteraction' | 'disabled'>,
@@ -25,7 +26,7 @@ const StyledButton = styled(Button)`
     right: 100%;
     margin-right: 0.5rem;
 
-    ${({ theme }) =>
+    ${({ theme }: { theme: ThemeProviderValue }) =>
         mediaQuery(
             'S',
             theme.deviceScale,

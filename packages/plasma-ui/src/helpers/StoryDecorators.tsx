@@ -10,7 +10,7 @@ export const InSpacing = (Story: React.FC) => (
     </div>
 );
 
-export const WithGridLines = (Story: React.FC, context) => (
+export const WithGridLines = (Story: React.FC, context: { args: { displayGrid: boolean } }) => (
     <>
         {context.args.displayGrid && <GridLines />}
         <Story />

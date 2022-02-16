@@ -87,7 +87,9 @@ export const Stepper: React.FC<StepperProps> = ({
     const { showRemove: remover, onRemove, ...rest } = props as RemoverProps;
     const onLessClick = React.useCallback(() => onChange(value - step), [value, step, onChange]);
     const onMoreClick = React.useCallback(() => onChange(value + step), [value, step, onChange]);
-    const onRemoveClick = React.useCallback((e) => onRemove?.(e), [onRemove]);
+    const onRemoveClick = React.useCallback<React.MouseEventHandler<HTMLButtonElement>>((e) => onRemove?.(e), [
+        onRemove,
+    ]);
     const isMin = value <= min;
     const isMax = value >= max;
     const lessDisabled = isMin || value - step < min;
