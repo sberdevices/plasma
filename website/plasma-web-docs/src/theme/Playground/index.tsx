@@ -1,24 +1,18 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import styled from 'styled-components';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import usePrismTheme from '@theme/hooks/usePrismTheme';
 import useThemeContext from '@theme/hooks/useThemeContext';
-import { PlaygroundPreview } from '@sberdevices/plasma-docs-ui';
-import { light, dark } from '@sberdevices/plasma-tokens-b2b/themes';
+import { Button } from '@sberdevices/plasma-web';
 import Translate from '@docusaurus/Translate';
 import clsx from 'clsx';
 
 import { CodeSandbox } from '../../components';
 
+import { PlaygroundPreview } from './PlaygroundPreview';
 import styles from './styles.module.css';
-
-const lightTheme = light[':root'];
-const darkTheme = dark[':root'];
-const StyledPreview = styled(PlaygroundPreview)<{ theme?: 'light' | 'dark' }>`
-    ${({ theme = 'light' }) => (theme === 'light' ? lightTheme : darkTheme)}
-`;
 
 const StyledWrap = styled.div`
     width: fit-content;
@@ -44,16 +38,26 @@ const Header: FC = ({ children }) => {
 };
 
 const ResultWithHeader: FC = () => {
+    const [pckg, setPackage] = useState('b2b');
     const { isDarkTheme } = useThemeContext();
 
     return (
         <>
             <Header>
-                <Translate id="theme.Playground.result" description="The result label of the live codeblocks">
-                    Result
-                </Translate>
+                <Button
+                    size="s"
+                    text="B2B"
+                    onClick={() => setPackage('b2b')}
+                    view={pckg === 'b2b' ? 'primary' : 'secondary'}
+                />
+                <Button
+                    size="s"
+                    text="B2C"
+                    onClick={() => setPackage('b2c')}
+                    view={pckg === 'b2c' ? 'primary' : 'secondary'}
+                />
             </Header>
-            <LivePreview Component={StyledPreview} theme={isDarkTheme ? 'dark' : 'light'} />
+            <LivePreview Component={PlaygroundPreview} theme={isDarkTheme ? 'dark' : 'light'} pckg={pckg} />
             <LiveError />
         </>
     );
