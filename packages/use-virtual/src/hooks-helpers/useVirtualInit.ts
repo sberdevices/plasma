@@ -1,6 +1,7 @@
 import { useMemo, useReducer } from 'react';
 
 import { VisibleRange, VirtualDynamicProps, VirtualProps, VirtualPropsKeyboard } from '../types';
+import { extendRangeWithOverscan } from '../utils';
 
 type State = {
     range: VisibleRange;
@@ -187,14 +188,16 @@ const reducer = (state: State, action: Action) => {
                 currentIndex: action.payload ?? state.currentIndex,
             };
         default:
-            throw new Error('useVirualInit reducer');
+            throw new Error('useVirtualInit reducer');
     }
 };
 
-export function useVirualInit({
+export function useVirtualInit({
     horizontal = false,
     initialCurrentIndex = 0,
     initialRange,
+    overscan = 0,
+    itemCount,
 }: VirtualProps | VirtualPropsKeyboard | VirtualDynamicProps) {
     // нужно только для scroll хуков
     const sizeKey = horizontal ? 'clientWidth' : 'clientHeight';
@@ -202,10 +205,13 @@ export function useVirualInit({
     const scrollKey = horizontal ? 'scrollLeft' : 'scrollTop';
 
     const [state, dispatch] = useReducer(reducer, {
-        range: initialRange || {
-            start: 0,
-            end: 0,
-        },
+        range:
+            typeof initialRange !== 'undefined'
+                ? extendRangeWithOverscan(initialRange.start, initialRange.end, itemCount, overscan)
+                : {
+                      start: 0,
+                      end: 0,
+                  },
         currentIndex: initialCurrentIndex,
         isScrolling: false,
         lastUpdateSource: 'init',
@@ -294,4 +300,4 @@ export function useVirualInit({
     } as const;
 }
 
-export type UseVirualInit = ReturnType<typeof useVirualInit>;
+export type UseVirtualInit = ReturnType<typeof useVirtualInit>;

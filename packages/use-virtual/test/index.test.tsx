@@ -28,6 +28,7 @@ const Virtual = ({
     paddingEnd,
     initialCurrentIndex,
     initialRange,
+    overscan,
 }: {
     itemCount: number;
     height?: number;
@@ -38,6 +39,7 @@ const Virtual = ({
     paddingEnd?: number;
     initialCurrentIndex?: number;
     initialRange?: VisibleRange;
+    overscan?: number;
 }) => {
     const parentRef = useRef<HTMLDivElement | null>(null);
     useLayoutEffect(() => {
@@ -59,6 +61,7 @@ const Virtual = ({
         paddingEnd,
         initialCurrentIndex,
         initialRange,
+        overscan,
     });
 
     return (
@@ -220,5 +223,34 @@ describe.each([useVirtualKeyboard, useVirtual, useVirtualSmoothScroll])('%p', (h
         expect(screen.queryByText(/Row=6/)).toBeInTheDocument();
         expect(screen.queryByText(/Row=7/)).toBeInTheDocument();
         expect(screen.queryByText(/Row=8/)).not.toBeInTheDocument();
+    });
+
+    test('Should support overscan with initialRange', () => {
+        const initialRange = {
+            start: 5,
+            end: 7,
+        };
+        updateHookMock();
+        render(
+            <Virtual
+                itemCount={initialRange.end + 10}
+                width={ELEMENT_SIZE * VISIBLE_LIMIT}
+                useVirtualMock={hookMock}
+                initialRange={initialRange}
+                horizontal
+                overscan={3}
+            />,
+        );
+        expect(screen.queryByText(/Row=1/)).not.toBeInTheDocument;
+        expect(screen.queryByText(/Row=2/)).toBeInTheDocument();
+        expect(screen.queryByText(/Row=3/)).toBeInTheDocument();
+        expect(screen.queryByText(/Row=4/)).toBeInTheDocument();
+        expect(screen.queryByText(/Row=5/)).toBeInTheDocument();
+        expect(screen.queryByText(/Row=6/)).toBeInTheDocument();
+        expect(screen.queryByText(/Row=7/)).toBeInTheDocument();
+        expect(screen.queryByText(/Row=8/)).toBeInTheDocument();
+        expect(screen.queryByText(/Row=9/)).toBeInTheDocument();
+        expect(screen.queryByText(/Row=10/)).toBeInTheDocument();
+        expect(screen.queryByText(/Row=11/)).not.toBeInTheDocument();
     });
 });

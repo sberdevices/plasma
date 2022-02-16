@@ -27,11 +27,21 @@ export const findNearestBinarySearch = (
     return 0;
 };
 
+export const extendRangeWithOverscan = (
+    start: number,
+    end: number,
+    itemCount: number,
+    overscan: number,
+): VisibleRange => {
+    return { start: Math.max(start - overscan, 0), end: Math.min(end + overscan, itemCount) };
+};
+
 export const calculateRange = (
     { measurements, scrollableSize, scrollOffset }: LatestRefData,
     prevRange: VisibleRange,
     itemCount: number,
-) => {
+    overscan: number,
+): VisibleRange => {
     const getOffset = (index: number) => measurements[index].start;
 
     const start = findNearestBinarySearch(0, itemCount, getOffset, scrollOffset);
@@ -42,7 +52,7 @@ export const calculateRange = (
     }
 
     if (prevRange.start !== start || prevRange.end !== end) {
-        return { start, end };
+        return extendRangeWithOverscan(start, end, itemCount, overscan);
     }
 
     return prevRange;

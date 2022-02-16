@@ -4,7 +4,7 @@ import { MeasurementItem, VirtualProps } from './types';
 import { defaultKeyExtractor } from './utils';
 import { useKeyboard } from './hooks-helpers/useKeyboard';
 import { getMeasurementByIndex, useOnScroll, useScrollToIndex } from './hooks-helpers/useScroll';
-import { useVirualInit } from './hooks-helpers/useVirtualInit';
+import { useVirtualInit } from './hooks-helpers/useVirtualInit';
 import { useIsomorphicLayoutEffect } from './hooks-helpers/useIsomorphicLayoutEffect';
 import { useMeasurements } from './hooks-helpers/useMeasurements';
 import { useVisibleItems } from './hooks-helpers/useVisibleItems';
@@ -24,6 +24,7 @@ export const useVirtual = (props: VirtualProps) => {
         align,
         horizontal = false,
         framesToThrottle,
+        overscan = 0,
     } = props;
 
     const {
@@ -40,7 +41,7 @@ export const useVirtual = (props: VirtualProps) => {
         lastUpdateSource,
         setCurrentIndexAfterScrolling,
         setIsScrollingToIndexTrue,
-    } = useVirualInit(props);
+    } = useVirtualInit(props);
 
     const latestRef = useRef<{
         scrollOffset: number;
@@ -111,6 +112,7 @@ export const useVirtual = (props: VirtualProps) => {
         setCurrentIndexAfterScrolling,
         debouncedFramesScrollSync,
         itemCount,
+        overscan,
     });
 
     const { up, down } = useMemo(() => {

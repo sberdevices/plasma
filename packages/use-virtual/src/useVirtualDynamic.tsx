@@ -5,7 +5,7 @@ import { MeasurementItem, VirtualDynamicProps } from './types';
 import { calculateRange, defaultKeyExtractor } from './utils';
 import { useKeyboard } from './hooks-helpers/useKeyboard';
 import { useOnScroll, useScrollToIndex } from './hooks-helpers/useScroll';
-import { useVirualInit } from './hooks-helpers/useVirtualInit';
+import { useVirtualInit } from './hooks-helpers/useVirtualInit';
 import { useIsomorphicLayoutEffect } from './hooks-helpers/useIsomorphicLayoutEffect';
 import { useWeakFlag } from './hooks-helpers/useWeakFlag';
 import { useMeasurements } from './hooks-helpers/useMeasurements';
@@ -24,6 +24,7 @@ export const useVirtualDynamic = (props: VirtualDynamicProps) => {
         align,
         horizontal = false,
         framesToThrottle,
+        overscan = 0,
     } = props;
     const {
         sizeKey,
@@ -38,7 +39,7 @@ export const useVirtualDynamic = (props: VirtualDynamicProps) => {
         setCurrentIndexAfterScrolling,
         setRangeAndIsScrollingTrue,
         setIsScrollingFalse,
-    } = useVirualInit(props);
+    } = useVirtualInit(props);
 
     const latestRef = useRef<{
         scrollOffset: number;
@@ -162,7 +163,7 @@ export const useVirtualDynamic = (props: VirtualDynamicProps) => {
         }
 
         latestRef.current.scrollOffset = scrollOffset;
-        setRange((prev) => calculateRange(latestRef.current, prev, itemCount));
+        setRange((prev) => calculateRange(latestRef.current, prev, itemCount, overscan));
     }, [needRestoreScrollWeakFlag, scrollKey, totalSize, scrollableSize, itemCount]);
 
     useOnScroll({
@@ -174,6 +175,7 @@ export const useVirtualDynamic = (props: VirtualDynamicProps) => {
         scrollKey,
         setCurrentIndexAfterScrolling,
         itemCount,
+        overscan,
     });
 
     // TODO: additionalOnScroll

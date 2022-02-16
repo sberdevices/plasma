@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { VirtualPropsKeyboard } from './types';
 import { defaultKeyExtractor } from './utils';
 import { useKeyboard } from './hooks-helpers/useKeyboard';
-import { useVirualInit } from './hooks-helpers/useVirtualInit';
+import { useVirtualInit } from './hooks-helpers/useVirtualInit';
 import { useMeasurements } from './hooks-helpers/useMeasurements';
 import { useVisibleItems } from './hooks-helpers/useVisibleItems';
 
@@ -35,7 +35,7 @@ export const useVirtualKeyboard = (props: VirtualPropsKeyboard) => {
         [itemCount, align],
     );
 
-    const { upIndexAndRange, downIndexAndRange, range, currentIndex } = useVirualInit({
+    const { upIndexAndRange, downIndexAndRange, range, currentIndex } = useVirtualInit({
         ...props,
         horizontal,
         initialCurrentIndex,

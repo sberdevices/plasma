@@ -13,11 +13,13 @@ export const VirtualSmoothScroll = ({
     estimateSizeAndGap,
     paddingStart,
     paddingEnd,
+    overscan,
 }: {
     horizontal: boolean;
     estimateSizeAndGap: (index: number) => { size: number; gap: number };
     paddingStart?: number;
     paddingEnd?: number;
+    overscan?: number;
 }) => {
     const parentRef = useRef<null | HTMLDivElement>(null);
 
@@ -36,6 +38,7 @@ export const VirtualSmoothScroll = ({
         paddingStart,
         paddingEnd,
         estimateSize,
+        overscan,
     });
 
     return (

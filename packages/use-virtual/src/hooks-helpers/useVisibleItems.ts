@@ -14,10 +14,7 @@ export function useVisibleItems<MI = MeasurementItem>(range: VisibleRange, measu
         }
 
         return result;
-        // Правило срабатывает на generic "MI", что не должно быть.
-        // React Hook useMemo has a missing dependency: 'MI'. Either include it or remove the dependency array.
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [range.start, range.end, measurements]);
+    }, [measurements, range.end, range.start]);
 
     return visibleItems;
 }

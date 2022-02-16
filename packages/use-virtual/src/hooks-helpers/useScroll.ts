@@ -3,7 +3,7 @@ import { useCallback, useMemo } from 'react';
 import { LatestRefData, VirtualProps, VisibleRange, MeasurementItem } from '../types';
 import { calculateRange, debounceByFrames, findNearestBinarySearch } from '../utils';
 
-import { UseVirualInit } from './useVirtualInit';
+import { UseVirtualInit } from './useVirtualInit';
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 import { useMetricsMeasureScroll } from './useMetricsMeasureScroll';
 
@@ -19,16 +19,18 @@ export const useOnScroll = ({
     setCurrentIndexAfterScrolling,
     debouncedFramesScrollSync = 1,
     itemCount,
+    overscan,
 }: {
     parentRef: VirtualProps['parentRef'];
     latestRef: React.RefObject<LatestRefData>;
-    setRange: UseVirualInit['setRange'];
-    setRangeAndIsScrollingTrue: UseVirualInit['setRangeAndIsScrollingTrue'];
-    setIsScrollingFalse: UseVirualInit['setIsScrollingFalse'];
-    scrollKey: UseVirualInit['scrollKey'];
-    setCurrentIndexAfterScrolling: UseVirualInit['setCurrentIndexAfterScrolling'];
+    setRange: UseVirtualInit['setRange'];
+    setRangeAndIsScrollingTrue: UseVirtualInit['setRangeAndIsScrollingTrue'];
+    setIsScrollingFalse: UseVirtualInit['setIsScrollingFalse'];
+    scrollKey: UseVirtualInit['scrollKey'];
+    setCurrentIndexAfterScrolling: UseVirtualInit['setCurrentIndexAfterScrolling'];
     debouncedFramesScrollSync?: number;
     itemCount: number;
+    overscan: number;
 }) => {
     const metricsMeasureScroll = useMetricsMeasureScroll();
 
@@ -80,11 +82,11 @@ export const useOnScroll = ({
 
             if (latestRef.current?.useIsScrolling && isScrolling) {
                 setRangeAndIsScrollingTrue((prevRange: VisibleRange) =>
-                    calculateRange(latestData, prevRange, itemCount),
+                    calculateRange(latestData, prevRange, itemCount, overscan),
                 );
                 debouncedSetIsScrollingFalse();
             } else {
-                setRange((prevRange: VisibleRange) => calculateRange(latestData, prevRange, itemCount));
+                setRange((prevRange: VisibleRange) => calculateRange(latestData, prevRange, itemCount, overscan));
             }
             debouncedSetCurrentIndex(isScrolling);
 
@@ -111,6 +113,7 @@ export const useOnScroll = ({
         setCurrentIndexAfterScrolling,
         setRange,
         itemCount,
+        overscan,
     ]);
 
     useIsomorphicLayoutEffect(() => {
@@ -148,7 +151,7 @@ export const useScrollToIndex = ({
     latestRef: React.RefObject<LatestRefData>;
     itemCount: number;
     scrollToFn?: (offset: number) => void;
-    setIsScrollingToIndexTrue: UseVirualInit['setIsScrollingToIndexTrue'];
+    setIsScrollingToIndexTrue: UseVirtualInit['setIsScrollingToIndexTrue'];
 }) => {
     const defaultScrollToFn = useCallback(
         (offset) => {
