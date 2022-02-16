@@ -18,6 +18,9 @@ export const CarouselGridWrapper = styled.div`
  */
 export const Carousel = styled.div<Pick<CarouselProps, 'axis' | 'scrollSnapType'>>`
     position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 
     /* stylelint-disable-next-line selector-max-empty-lines, selector-nested-pattern, selector-type-no-unknown */
     ::-webkit-scrollbar {
