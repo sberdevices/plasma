@@ -1,5 +1,5 @@
 import React, { forwardRef, useMemo } from 'react';
-import type { TabsProps as BaseProps } from '@sberdevices/plasma-core';
+import type { TabItemProps, TabsProps as BaseProps } from '@sberdevices/plasma-core';
 
 import { TabsView, TabsViewProps } from './TabsView';
 import { TabItem } from './TabItem';
@@ -40,7 +40,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs({ childr
     const { index, ...rest } = props;
     const childrenArray = React.Children.toArray(children);
     const animatedChildren = childrenArray.map((child, i) => {
-        if (React.isValidElement(child)) {
+        if (React.isValidElement<TabItemProps>(child)) {
             return <TabItem animated key={i} {...child.props} />;
         }
         return child;
