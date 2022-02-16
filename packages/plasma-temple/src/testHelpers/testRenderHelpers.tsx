@@ -1,4 +1,5 @@
 import React from 'react';
+import { createGlobalStyle } from 'styled-components';
 import type { MountReturn } from '@cypress/react';
 import {
     AssistantClientCustomizedCommand,
@@ -138,12 +139,21 @@ export const startApp: StartApp = (pages, onStart, commands = []) => {
         win.appInitialData = defaultCommands.concat(commands);
         mockAssistant = createAssistantHostMock({ context: win });
 
+        const StyledComp = createGlobalStyle({
+            'input:not([type="hidden"])': {
+                'caret-color': 'transparent',
+            },
+        });
+
         return mount(
-            <PlasmaApp {...appProps} onStart={onStart}>
-                {pagesToRender.map((page) => {
-                    return <Page key={page.name} name={page.name} component={page.component} />;
-                })}
-            </PlasmaApp>,
+            <>
+                <StyledComp />
+                <PlasmaApp {...appProps} onStart={onStart}>
+                    {pagesToRender.map((page) => {
+                        return <Page key={page.name} name={page.name} component={page.component} />;
+                    })}
+                </PlasmaApp>
+            </>,
         );
     });
 };
