@@ -26,7 +26,11 @@
         "build:esm": "tsc -p ./tsconfig.es.json",
         "prebuild:ds": "npm ci --prefix='design-language'",
         "build:ds": "npm run build --prefix='./design-language'",
-        "generate": "npx ts-node ./generate.ts"
+        "generate": "npx ts-node ./generate.ts",
+        "typescript-coverage": "npx typescript-coverage-report || echo 'See artifacts'"
+    },
+    "typeCoverage": {
+        "atLeast": 100
     },
     "publishConfig": {
         "access": "public"
@@ -49,10 +53,6 @@
         "sizes.js.map",
         "theme.json"
     ],
-    "contributors": [
-        "Vasiliy Loginevskiy",
-        "Anton Vinogradov",
-        "Fanil Zubairov"
-    ],
+    "contributors": ["Vasiliy Loginevskiy", "Anton Vinogradov", "Fanil Zubairov"],
     "sideEffects": false
 }
