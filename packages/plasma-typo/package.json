@@ -12,7 +12,11 @@
         "prebuild": "rm -rf ./lib",
         "build": "npm run build:cjs && npm run build:esm",
         "build:cjs": "tsc",
-        "build:esm": "tsc -p ./tsconfig.es.json"
+        "build:esm": "tsc -p ./tsconfig.es.json",
+        "typescript-coverage": "npx typescript-coverage-report || echo 'See artifacts'"
+    },
+    "typeCoverage": {
+        "atLeast": 100
     },
     "peerDependencies": {
         "@sberdevices/plasma-core": "1.46.2",
@@ -30,13 +34,12 @@
         "react-dom": "16.13.1",
         "react-scripts": "3.4.4",
         "styled-components": "5.3.1",
-        "typescript": "3.9.10"
+        "typescript": "3.9.10",
+        "typescript-coverage-report": "0.6.4"
     },
     "publishConfig": {
         "access": "public"
     },
-    "files": [
-        "lib"
-    ],
+    "files": ["lib"],
     "sideEffects": false
 }
