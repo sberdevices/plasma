@@ -52,7 +52,7 @@
         "build:esm": "BABEL_ENV=esm SC_NAMESPACE=plasma babel ./src --out-dir ./es --source-maps --extensions .ts,.tsx",
         "test": "NODE_ICU_DATA=node_modules/full-icu jest",
         "test:watch": "NODE_ICU_DATA=node_modules/full-icu jest --watch",
-        "typescript-coverage": "npx typescript-coverage-report || echo 'See artifacts'"
+        "typescript-coverage": "npx typescript-coverage-report"
     },
     "typeCoverage": {
         "ignoreFiles": ["src/**/*component-test.tsx"],

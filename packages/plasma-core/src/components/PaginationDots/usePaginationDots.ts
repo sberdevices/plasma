@@ -15,8 +15,8 @@ export const usePaginationDots = ({ items, index, visibleItems = 7 }: SmartPagin
         direction = index > prevIndex.current ? 1 : -1;
     }
 
-    let start;
-    let end;
+    let start: number;
+    let end: number;
 
     if (direction === 1) {
         end = Math.min(Math.max(index + 2, visibleItems), items.length);

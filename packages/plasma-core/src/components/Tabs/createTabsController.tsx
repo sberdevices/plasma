@@ -31,7 +31,7 @@ export function createTabsController<T extends HTMLDivElement, P extends TabsCon
         const { disabled } = rest;
         const refs = useMemo(() => new TabItemRefs(), []);
 
-        const onItemFocus = useCallback(
+        const onItemFocus = useCallback<React.FocusEventHandler<HTMLButtonElement>>(
             (event) => {
                 if (disabled) {
                     return;
@@ -54,7 +54,7 @@ export function createTabsController<T extends HTMLDivElement, P extends TabsCon
 
                 const minIndex = 0;
                 const maxIndex = refs.items.length - 1;
-                let nextIndex;
+                let nextIndex: number;
 
                 switch (event.keyCode) {
                     case Keys.end:
