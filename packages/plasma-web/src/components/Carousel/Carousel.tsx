@@ -1,11 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import {
     useCarousel,
     CarouselContext,
-    CarouselGridWrapper as BaseWrapper,
-    Carousel as BaseCarousel,
-    CarouselTrack as BaseTrack,
+    Carousel as StyledCarousel,
+    CarouselTrack as StyledCarouselTrack,
 } from '@sberdevices/plasma-core';
 import type { CarouselProps as BaseProps } from '@sberdevices/plasma-core';
 
@@ -15,15 +13,6 @@ export type CarouselProps = Omit<BaseProps, 'axis' | 'animatedScrollByIndex' | '
      */
     ariaLive?: 'off' | 'polite';
 };
-
-export const CarouselGridWrapper = styled(BaseWrapper)``;
-const StyledCarousel = styled(BaseCarousel)``;
-const StyledCarouselTrack = styled(BaseTrack)`
-    margin: 0;
-    padding: 0;
-
-    list-style: none;
-`;
 
 /**
  * Компонент для создания списков с прокруткой.
