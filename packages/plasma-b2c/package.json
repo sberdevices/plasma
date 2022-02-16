@@ -25,7 +25,7 @@
         "storybook": "start-storybook -s .storybook/public -p ${PORT:-7007} -c .storybook",
         "storybook:build": "build-storybook -s .storybook/public -c .storybook -o build-sb",
         "test": "jest",
-        "typescript-coverage": "npx typescript-coverage-report || echo 'See artifacts'"
+        "typescript-coverage": "npx typescript-coverage-report"
     },
     "typeCoverage": {
         "ignoreFiles": ["src/**/*component-test.tsx", "src/**/*stories.tsx", "src/**/*test.*"],

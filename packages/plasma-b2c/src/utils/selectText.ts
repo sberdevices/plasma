@@ -1,5 +1,8 @@
 interface Body extends HTMLElement {
-    createTextRange: () => any;
+    createTextRange: () => {
+        moveToElementText: (node: Node) => void;
+        select: () => void;
+    };
 }
 
 export function selectText(node: Node) {
