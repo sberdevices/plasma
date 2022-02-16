@@ -11,6 +11,8 @@ import {
     useIsomorphicLayoutEffect,
 } from '@sberdevices/plasma-core';
 
+import { ThemeProviderValue } from '../Device/DeviceDetection';
+
 interface StyledContainerProps {
     $width: number;
 }
@@ -19,7 +21,7 @@ const sidesCount = 2;
 const htmlFontSizePx = 16;
 
 const StyledContainer = styled(BaseContainer)<StyledContainerProps>`
-    ${({ $width, theme }) =>
+    ${({ $width, theme }: { $width: number; theme: ThemeProviderValue }) =>
         gridSizes.map((breakpoint) => {
             const containerWidth = $width;
             const margins =
