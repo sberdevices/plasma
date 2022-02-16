@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import classnames from 'classnames';
 import { Headline3, Spinner } from '@sberdevices/plasma-ui';
 import { gridMargins, gridSizes, mediaQuery } from '@sberdevices/plasma-ui/utils';
 
@@ -26,6 +27,7 @@ export interface VideoPlayerProps extends React.VideoHTMLAttributes<HTMLVideoEle
     endTime?: number;
     customControls?: React.ComponentType<CustomMediaPlayerControlsProps<HTMLVideoElement>>;
     videoFit?: ObjectFit;
+    posterClassName?: string;
     children?: (props: CustomMediaPlayerControlsProps<HTMLVideoElement>) => React.ReactElement;
     src: string;
 }
@@ -113,6 +115,8 @@ export const VideoPlayer = React.memo(
         autoPlay,
         muted,
         videoFit = 'contain',
+        posterClassName = '',
+        className,
         ...restProps
     }: VideoPlayerProps) => {
         const insets = useInsets();
@@ -125,6 +129,13 @@ export const VideoPlayer = React.memo(
         });
         const { playback, jumpTo } = actions;
         const { currentTime, duration, loading, paused } = state;
+        const [isPosterShowing, setIsPosterShowing] = React.useState(true);
+
+        React.useEffect(() => {
+            if (isPosterShowing && !loading && !paused) {
+                setIsPosterShowing(false);
+            }
+        }, [isPosterShowing, loading, paused]);
 
         const { stopped: controlsHidden, startTimer, stopTimer } = useTimer(CONTROLS_HIDE_TIMEOUT);
 
@@ -156,10 +167,10 @@ export const VideoPlayer = React.memo(
 
         const finished = Boolean(duration) && currentTime >= duration;
         const playerState = { ...state, backDisabled, nextDisabled, finished };
-
+        const classNames = classnames(className, { [posterClassName]: isPosterShowing });
         return (
             <StyledContainer onClick={startTimer} videoFit={videoFit}>
-                <MediaPlayer type="video" {...restProps} innerRef={playerRef} />
+                <MediaPlayer type="video" {...restProps} innerRef={playerRef} className={classNames} />
                 {loading && <StyledSpinner />}
                 <StyledOverlay transparent={isControlsHidden}>
                     {CustomControlsComponent && (
