@@ -48,7 +48,7 @@ type RefElement = HTMLDivElement | HTMLSpanElement;
 
 export interface EditableProps {
     value?: string;
-    onChange?: React.ChangeEventHandler<RefElement>;
+    onChange?: React.FormEventHandler<HTMLDivElement>;
     onBlur?: React.FocusEventHandler<HTMLDivElement>;
     onPaste?: React.ClipboardEventHandler<HTMLDivElement>;
     spellCheck?: 'true' | 'false';
@@ -144,7 +144,7 @@ export const Editable: React.FC<EditableProps> = ({
         [maxLength],
     );
 
-    const handleChange = useCallback(
+    const handleChange = useCallback<React.FormEventHandler<HTMLDivElement>>(
         (e) => {
             if (!inputRef.current) return;
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { DraggableData } from 'react-draggable';
 
 import { SliderBase } from './SliderBase';
 import { Handle } from './Handle';
@@ -48,7 +49,7 @@ export const Slider: React.FC<SliderProps> = ({ min, max, value, disabled, onCha
         }));
     }, [value, state.stepSize, min]);
 
-    const setStepSize = React.useCallback((newStepSize) => {
+    const setStepSize = React.useCallback((newStepSize: number) => {
         setState((prevState) => ({
             ...prevState,
             stepSize: newStepSize,
@@ -56,7 +57,7 @@ export const Slider: React.FC<SliderProps> = ({ min, max, value, disabled, onCha
     }, []);
 
     const onHandleChange = React.useCallback(
-        (handleValue, data) => {
+        (handleValue: number, data: DraggableData) => {
             const newHandleXPosition = data.x;
 
             setState((prevState) => ({
@@ -72,7 +73,7 @@ export const Slider: React.FC<SliderProps> = ({ min, max, value, disabled, onCha
     );
 
     const onHandleChangeCommited = React.useCallback(
-        (handleValue, data) => {
+        (handleValue: number, data: { lastX: number }) => {
             onChangeCommitted(handleValue);
             setState((prevState) => ({
                 ...prevState,
