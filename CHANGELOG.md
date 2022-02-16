@@ -1,3 +1,16 @@
+# (Wed Feb 16 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/use-virtual@0.7.0`
+  - feat(use-virtual): overscan [#174](https://github.com/sberdevices/pashka/pull/174) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+#### Authors: 1
+
+- Arseny Kruglikov ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+---
+
 # (Fri Feb 11 2022)
 
 #### 🚀 Enhancement

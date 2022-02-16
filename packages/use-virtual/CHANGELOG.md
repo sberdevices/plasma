@@ -1,3 +1,15 @@
+# v0.7.0 (Wed Feb 16 2022)
+
+#### 🚀 Enhancement
+
+- feat(use-virtual): overscan [#174](https://github.com/sberdevices/pashka/pull/174) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+#### Authors: 1
+
+- Arseny Kruglikov ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+---
+
 # v0.6.1 (Tue Feb 01 2022)
 
 #### 🐛 Bug Fix
