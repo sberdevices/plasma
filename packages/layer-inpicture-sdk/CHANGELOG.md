@@ -1,3 +1,15 @@
+# v0.8.0 (Thu Feb 17 2022)
+
+#### 🚀 Enhancement
+
+- feat(inpicture-sdk): исправления [#176](https://github.com/sberdevices/pashka/pull/176) ([@c1aphas](https://github.com/c1aphas))
+
+#### Authors: 1
+
+- Mike ([@c1aphas](https://github.com/c1aphas))
+
+---
+
 # v0.7.1 (Tue Feb 01 2022)
 
 #### 🐛 Bug Fix

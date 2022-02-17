@@ -1,3 +1,16 @@
+# (Thu Feb 17 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/layer-inpicture-sdk@0.8.0`
+  - feat(inpicture-sdk): исправления [#176](https://github.com/sberdevices/pashka/pull/176) ([@c1aphas](https://github.com/c1aphas))
+
+#### Authors: 1
+
+- Mike ([@c1aphas](https://github.com/c1aphas))
+
+---
+
 # (Wed Feb 16 2022)
 
 #### 🐛 Bug Fix
