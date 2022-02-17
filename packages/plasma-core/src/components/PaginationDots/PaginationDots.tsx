@@ -4,7 +4,9 @@ import styled from 'styled-components';
  * Оборачивающий компонент для пагинации точками.
  * Стилизованный компонент, обладающий всеми свойствами ``div``.
  */
-export const PaginationDots = styled.ul`
+export const PaginationDots = styled.ul.attrs(({ 'aria-hidden': ariaHidden = 'true' }) => ({
+    'aria-hidden': ariaHidden,
+}))`
     display: flex;
     flex-wrap: wrap;
     align-self: center;
