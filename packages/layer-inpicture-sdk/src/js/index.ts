@@ -12,8 +12,9 @@ Swiper.use([Navigation]);
 
 document.head.insertAdjacentHTML('afterend', `<link href="${PLASMA_FONTS_CDN}" type="text/css" rel="stylesheet">`);
 
-export const initInPicture = async (config: Config): Promise<void> => {
+const renderWidget = (config: Config) => {
     const { container } = config;
+
     const requiredParams: Array<RequiredKeys<Config>> = ['image', 'container', 'site'];
     const notPassedRequiredParameters = requiredParams.filter((key) => !config[key]);
 
@@ -27,5 +28,17 @@ export const initInPicture = async (config: Config): Promise<void> => {
         render(html`<${Container} ...${config} />`, container);
     } catch (error) {
         console.error('layer-inpicture-sdk: ', error);
+    }
+};
+
+export const initInPicture = async (config: Config): Promise<void> => {
+    const { image } = config;
+
+    if (image.complete && image.getAttribute('src')) {
+        renderWidget(config);
+    } else {
+        image.addEventListener('load', () => {
+            renderWidget(config);
+        });
     }
 };

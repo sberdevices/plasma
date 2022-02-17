@@ -1,5 +1,5 @@
 import { getID } from '../utils/getId';
-import { Config, EventBody, EventProduct, EventTab, EventTypeEnum } from '../types';
+import { Config, EventBody, EventProduct, EventTab, EventTypeEnum, Product } from '../types';
 
 export const loadProducts = async (img: HTMLImageElement, site: string, maxCount?: number) => {
     const url = new URL('https://layer-dev.sberdevices.ru/iimg/v0/recognize');
@@ -8,10 +8,20 @@ export const loadProducts = async (img: HTMLImageElement, site: string, maxCount
     const response = await fetch(url.toString());
     const responseJSON = await response.json();
     const { products } = responseJSON.data;
-    if (maxCount) {
-        return products.slice(0, maxCount);
+
+    // TODO убрать, когда будет реализована фильтрация на беке
+    const result: { [x: string]: Product } = {};
+    for (let i = 0; i < products.length; i++) {
+        const product = products[i];
+
+        if (maxCount && maxCount === Object.keys(result).length) break;
+
+        if (!result[`${product.vendor}`]) {
+            result[`${product.vendor}`] = product;
+        }
     }
-    return products;
+
+    return Object.values(result);
 };
 
 const createEventRequst = ({ image, site, template, eventBody }: Config & { eventBody: EventBody }) => {
@@ -31,7 +41,7 @@ const createEventRequst = ({ image, site, template, eventBody }: Config & { even
     });
 
     try {
-        fetch('https://okr.sbdv.ru/events/layer?api_key=VqkFfVZIHn7dfuNdRZWjXhykmiGugvR9&env=dev', {
+        fetch('https://okr.sbdv.ru/events/layer?api_key=VqkFfVZIHn7dfuNdRZWjXhykmiGugvR9&env=prod', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',

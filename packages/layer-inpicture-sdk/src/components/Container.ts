@@ -55,10 +55,9 @@ export const Container = (config: Config) => {
     const [isError, setIsError] = useState(false);
     const [products, setProducts] = useState<Product[] | null | SKELETON_LIST>(withSkeleton ? SKELETON_LIST : null);
     const [isPrimaryTitleShow, setIsPrimaryTitleShow] = useState(true);
-    const [
-        isShowPrimaryWidget,
-        toggleShowingPrimaryWidget,
-    ] = useState(!hiddenByDefault || template === TemplateEnum.LARGE);
+    const [isShowPrimaryWidget, toggleShowingPrimaryWidget] = useState(
+        !hiddenByDefault || template === TemplateEnum.LARGE,
+    );
     const isWidgetClickOpenTabEventAlreadySent = useRef(null);
 
     const wrapperRef = useRef(null);
@@ -104,9 +103,9 @@ export const Container = (config: Config) => {
         event.stopPropagation();
 
         if (
-            (template === TemplateEnum.MINIMAL || template === TemplateEnum.INTERACTIVE)
-            && !isWidgetClickOpenTabEventAlreadySent.current
-            && hiddenByDefault
+            (template === TemplateEnum.MINIMAL || template === TemplateEnum.INTERACTIVE) &&
+            !isWidgetClickOpenTabEventAlreadySent.current &&
+            hiddenByDefault
         ) {
             sendOpenedWidgetEvent(config);
             isWidgetClickOpenTabEventAlreadySent.current = true;
@@ -121,6 +120,9 @@ export const Container = (config: Config) => {
 
     onceForceUpdate();
 
+    const drawerStyle =
+        !isShowPrimaryWidget && `transform: translateY(${(wrapperRef.current?.clientHeight || 1000) - 48}px);`;
+
     return html`
         <${ConfigContext.Provider} value=${config}>
             <div
@@ -131,13 +133,17 @@ export const Container = (config: Config) => {
                     'layer-minimal-wrap': template === TemplateEnum.MINIMAL,
                 })}
             >
-                <div class="layer-content__drawer" style=${isShowPrimaryWidget ? '' : `transform: translateY(${(wrapperRef.current?.clientHeight || 1000) - 30}px);`}>
-                    ${template === TemplateEnum.INTERACTIVE || template === TemplateEnum.MINIMAL
-                        ? html`<${PrimaryTopContent}
-                                ref=${topContentRef}
-                                isShow=${template === TemplateEnum.MINIMAL || isPrimaryTitleShow}
-                                onPrimaryHeaderClick=${onPrimaryHeaderClick} />`
-                        : html`<${SecondaryTopContent} />`}
+                <div class="layer-content__drawer" style=${drawerStyle}>
+                    ${
+                        template === TemplateEnum.INTERACTIVE || template === TemplateEnum.MINIMAL
+                            ? html`<${PrimaryTopContent}
+                                  ref=${topContentRef}
+                                  isShow=${template === TemplateEnum.MINIMAL || isPrimaryTitleShow}
+                                  isOpen=${isShowPrimaryWidget}
+                                  onPrimaryHeaderClick=${onPrimaryHeaderClick}
+                              />`
+                            : html`<${SecondaryTopContent} />`
+                    }
                     <div
                         class="layer-main-container"
                     >

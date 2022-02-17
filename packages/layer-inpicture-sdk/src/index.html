@@ -8,42 +8,91 @@
     <style>
         body {
             -webkit-font-smoothing: antialiased;
+            margin: 0;
+            padding: 0;
+        }
+        .block {
+            width: 100%;
+        }
+        @media screen and (min-width: 768px) {
+            .block {
+                width: 40%;
+            }
+        }
+        .image-wrap {
+            position: relative;
+        }
+        .image-wrap > img {
+            width: 100%;
+            display: block;
+        }
+        .container-wrap {
+            width: 100%;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+        .container {
+            width: 100%;
         }
     </style>
 </head>
 <body>
     <div class="ad" style="display: none; height: 200px; background: lightblue">Реклама</div>
-    <div style="margin-top: 500px; width: 35%;">
-        <div>
-            <img src="https://n1s1.hsmedia.ru/3e/c5/69/3ec5690af34c57a240156cf72efe8fb0/564x705_0xac120003_2596602641638259605.jpeg" alt="gucci" style="width: 100%; display: block" onclick="alert('bla')">
+    <div style="height: 400px"></div>
+    <div class="block">
+        <div class="image-wrap">
+            <img src="https://n1s1.hsmedia.ru/3e/c5/69/3ec5690af34c57a240156cf72efe8fb0/564x705_0xac120003_2596602641638259605.jpeg" alt="gucci">
+            <div class="container-wrap"><div class="container"></div></div>
         </div>
-        <div class="container" style="margin-top: -200px"></div>
     </div>
-    <div style="width: 35%;">
-        <div>
-            <img src="https://n1s1.hsmedia.ru/3e/c5/69/3ec5690af34c57a240156cf72efe8fb0/564x705_0xac120003_2596602641638259605.jpeg" alt="gucci" style="width: 100%; display: block">
+    <div style="height: 400px"></div>
+    <!-- <div class="block">
+        <div class="image-wrap">
+            <img src="https://n1s1.hsmedia.ru/52/3b/87/523b87018b51c12bb68eeb39ecd8dc9a/728x910_1_af9aa31f0b7fd7e9f59d567c20c68643@1080x1350_0xac120003_12964879491643633388.jpeg" alt="gucci">
         </div>
         <div class="container"></div>
     </div>
-    <div style="width: 35%;">
-        <div>
-            <img src="https://n1s1.hsmedia.ru/3e/c5/69/3ec5690af34c57a240156cf72efe8fb0/564x705_0xac120003_2596602641638259605.jpeg" alt="gucci" style="width: 100%; display: block">
+    <div style="height: 400px"></div> -->
+    <div class="block">
+        <div class="image-wrap">
+            <img src="https://n1s2.hsmedia.ru/93/ea/e6/93eae641ac101e2ccc23ce47eca9c5bc/728x910_1_e59d6deb05d45d960933be06bcc18b61@1080x1350_0xac120003_20347331991643633383.jpeg" alt="gucci" loading="lazy">
         </div>
         <div class="container"></div>
     </div>
 </body>
+<!-- image loading="lazy" polyfill -->
+<script>
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+    lazyImages.forEach(lazyImage => {
+        const src = lazyImage.getAttribute('src');
+        lazyImage.removeAttribute('src');
 
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const image = new Image();
+                    image.src = src;
+                    image.onload = () => {
+                        lazyImage.setAttribute('src', src);
+                    }
+                }
+            })
+        });
+        io.observe(lazyImage);
+    })
+</script>
 <script>
     const configMap = {
         0: {
             template: 'minimal',
             hiddenByDefault: true,
         },
+        // 1: {
+        //     template: 'interactive',
+        //     hiddenByDefault: false,
+        // },
         1: {
-            template: 'interactive',
-            hiddenByDefault: true,
-        },
-        2: {
             template: 'large',
         }
     }

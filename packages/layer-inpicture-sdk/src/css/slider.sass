@@ -116,7 +116,7 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
         box-sizing: border-box
 
     &-slider-top-content
-        margin-bottom: 10px
+        margin-bottom: 16px
         transition: opacity 0.5s
 
     &-swiper-slide
@@ -124,12 +124,11 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
         flex-direction: column
         justify-content: space-between
         background: rgba(255, 255, 255, 0.96) !important
-        border-radius: 8px
+        border-radius: 16px
         font-size: 18px
         background: #fff
         overflow: hidden
         transition: all 0.5s !important
-        border: 1px solid rgba(8, 8, 8, 0.12)
         &:not(:last-of-type)
             margin-right: 16px
 
@@ -142,20 +141,32 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
 
     &-minimal-wrap
         .layer-swiper-slide
+            border-radius: 8px
             @include minimal-card-mobile-size
             @media (min-width: 768px)
                 @include minimal-card-desktop-size
         .layer-swiper-slide-bottom__price
+            margin-bottom: 0
             @media (max-width: 767.98px)
                 font-weight: 500
                 font-size: 12px
+                line-height: 16px
+        .layer-swiper-slide-bottom__bg
+            padding: 34px 8px 6px
         .layer-swiper-slide-bottom__name
             @media (max-width: 767.98px)
-                font-size: 12px
-                font-weight: 400
+                display: none
         .layer-swiper-button
             width: 48px
             height: 48px
+        .layer-main-container
+            padding-left: 16px
+            padding-right: 16px
+            margin-bottom: 16px
+            box-sizing: border-box
+            @media (min-width: 768px)
+                padding-left: 24px
+                padding-right: 24px
 
     &-primary-wrap
         .layer-swiper-slide
@@ -200,11 +211,8 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
 
         &__bg
             background: $SMALL_BOTTOM_CARD_BG
-            padding: 10px
             text-align: left
             transition: all 0.5s
-            @media (max-width: 767.99px)
-                padding: 8px 4px
 
         &_stub
             position: initial
@@ -237,6 +245,7 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
                 color: rgba(255, 255, 255, 0.96)
                 font-weight: 400
                 font-size: 14px
+                line-height: 18px
                 height: auto
                 text-overflow: ellipsis
                 white-space: nowrap
@@ -252,8 +261,13 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
             display: none
 
     &-swiper-button
+        display: none
+
+        @media (min-width: 768px)
+            display: block
+
         &.swiper-button-disabled
-            pointer-events: auto
+            display: none
 
     &-swiper-button-prev
         left: 16px
@@ -283,8 +297,11 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
         .layer-main-container
             position: relative
             bottom: 0
-            padding: 0 52px
+            padding-left: 16px
             box-sizing: border-box
+
+            @media (min-width: 768px)
+                padding: 0
 
         .layer-swiper-slide
             border-radius: 16px
@@ -318,8 +335,9 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
             display: flex
             align-items: center
             margin-bottom: 12px
+            padding-left: 16px
             @media (min-width: 768px)
-                padding-left: 52px
+                padding: 0
                 margin-bottom: 20px
                 margin-top: 20px
 

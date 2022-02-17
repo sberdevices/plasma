@@ -1,5 +1,6 @@
-const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+/* eslint-disable @typescript-eslint/no-var-requires */
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     context: path.resolve(__dirname, 'src'),
@@ -10,9 +11,7 @@ module.exports = {
         libraryTarget: 'umd',
     },
     target: ['web', 'es5'],
-    plugins: [
-        new MiniCssExtractPlugin(),
-    ],
+    plugins: [new MiniCssExtractPlugin()],
     module: {
         rules: [
             {
@@ -31,7 +30,7 @@ module.exports = {
             },
             {
                 test: /\.svg/,
-                type: 'asset/inline'
+                type: 'asset/inline',
             },
             {
                 test: /\.(png|jpg|jpeg|gif)$/i,
@@ -39,15 +38,11 @@ module.exports = {
             },
             {
                 test: /\.s[ac]ss$/i,
-                use: [
-                    "style-loader",
-                    "css-loader",
-                    "sass-loader",
-                ],
+                use: ['style-loader', 'css-loader', 'sass-loader'],
             },
         ],
     },
     resolve: {
         extensions: ['.ts', '.js'],
     },
-}
+};
