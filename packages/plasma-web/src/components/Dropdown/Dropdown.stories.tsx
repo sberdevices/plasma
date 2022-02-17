@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { accent, success, warning, critical } from '@sberdevices/plasma-core';
 import {
@@ -133,11 +133,27 @@ export const InlineOrBlockWrapper = () => {
 };
 
 export const Trigger = () => {
+    const [isOpen, setOpen] = useState(false);
+    const [selectedItem, setSelectedItem] = useState<string | null>(null);
     return (
         <Styled25Rem>
             <StyledDashedBorder style={{ display: 'inline-flex' }}>
-                <Dropdown items={items} trigger="click">
-                    <Button text="Click me" />
+                <Dropdown
+                    onToggle={setOpen}
+                    onActiveChange={setSelectedItem}
+                    listId="combo1"
+                    items={items}
+                    trigger="click"
+                >
+                    <Button
+                        aria-activedescendant={selectedItem}
+                        aria-controls="combo1"
+                        aria-expanded={isOpen}
+                        aria-haspopup="listbox"
+                        id="combobox1"
+                        role="combobox"
+                        text="Click me"
+                    />
                 </Dropdown>
             </StyledDashedBorder>
             <StyledDashedBorder>

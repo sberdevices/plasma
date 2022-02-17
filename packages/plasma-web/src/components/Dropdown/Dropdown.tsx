@@ -1,5 +1,6 @@
-import React, { FC, useRef, useState, useCallback, useEffect } from 'react';
+import React, { FC, useRef, useState, useCallback, useEffect, MutableRefObject, RefAttributes } from 'react';
 import styled, { css } from 'styled-components';
+import { useKeyboardNavigation } from '@sberdevices/plasma-core';
 
 import { PickOptional as Optional } from '../../types';
 import { Popup, PopupProps } from '../Popup';
@@ -7,6 +8,7 @@ import { Popup, PopupProps } from '../Popup';
 import { DropdownList } from './DropdownList';
 import { DropdownItem } from './DropdownItem';
 import { DropdownNode as DropdownNodeType, DropdownItem as DropdownItemType } from './Dropdown.types';
+import { NestedDropdown } from './NestedDropdown';
 
 export interface DropdownProps
     extends Omit<PopupProps, 'isOpen' | 'offset' | 'placement' | 'trigger' | 'children'>,
@@ -23,9 +25,20 @@ export interface DropdownProps
      * Обработчик клика по айтему.
      */
     onItemClick?: (item: DropdownItemType) => void;
+
+    /**
+     * id для listbox(контейнера для опций). Используется для a11y
+     */
+    listId?: string;
+
+    previousFocus?: React.MutableRefObject<HTMLElement | null>;
+
+    onActiveChange?: (id: string) => void;
+
+    isNested?: boolean;
 }
 
-const StyledPopup = styled(Popup)<Pick<DropdownProps, 'offsetTop'>>`
+const StyledPopup = styled(Popup)<Pick<DropdownProps, 'offsetTop'> & RefAttributes<HTMLDivElement>>`
     ${({ placement, offsetTop }) =>
         placement === 'bottom'
             ? css`
@@ -48,6 +61,10 @@ export const Dropdown: FC<DropdownProps> = ({
     items,
     onItemClick: onItemClickExternal,
     onToggle: onToggleExternal,
+    previousFocus,
+    listId,
+    onActiveChange,
+    isNested,
     ...rest
 }) => {
     const hasItems = Array.isArray(items) && items.length > 0;
@@ -78,6 +95,15 @@ export const Dropdown: FC<DropdownProps> = ({
         oldIsOpen.current = isOpen;
     }, [isOpen, onToggleExternal]);
 
+    const { popupRef, dropdownListRef, lastFocus, activeIndex, changeActiveIndex } = useKeyboardNavigation({
+        isOpen,
+        setIsOpen,
+        items,
+        onActiveChange,
+        previousFocus: previousFocus?.current ? (previousFocus as MutableRefObject<HTMLElement>) : null,
+        onItemClick,
+        isNested,
+    });
     return (
         <StyledPopup
             isOpen={isOpen}
@@ -86,22 +112,27 @@ export const Dropdown: FC<DropdownProps> = ({
             disclosure={children}
             offsetTop={offsetTop}
             onToggle={onToggle}
+            ref={popupRef}
             {...rest}
         >
-            <DropdownList>
-                {items.map((item) =>
+            <DropdownList id={listId} role="listbox" ref={dropdownListRef}>
+                {items.map((item, idx) =>
                     item.items && item.items.length ? (
-                        <Dropdown
-                            key={item.value}
-                            trigger="hover"
-                            placement="right"
-                            items={item.items}
+                        <NestedDropdown
+                            lastFocus={lastFocus}
+                            item={item}
+                            id={`${listId}-${idx}`}
+                            isHovered={idx === activeIndex}
                             onItemClick={onItemClick}
-                        >
-                            <DropdownItem onClick={onItemClick} {...item} />
-                        </Dropdown>
+                        />
                     ) : (
-                        <DropdownItem key={item.value} onClick={onItemClick} {...item} />
+                        <DropdownItem
+                            isHovered={idx === activeIndex}
+                            key={item.value}
+                            onHover={() => changeActiveIndex(idx)}
+                            onClick={onItemClick}
+                            {...item}
+                        />
                     ),
                 )}
             </DropdownList>
