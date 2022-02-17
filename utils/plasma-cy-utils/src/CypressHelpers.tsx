@@ -155,6 +155,9 @@ export const mount: typeof cyMount = (...args) => {
     // eslint-disable-next-line
     // @ts-ignore
     cy.waitForResources('https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansDisplay.0.1.0.css');
+    // eslint-disable-next-line
+    // @ts-ignore
+    cy.waitForResources('SBSansText.0.1.0.css', 'SBSansDisplay.0.1.0.css', { timeout: 1500 });
 
     return cm;
 };
