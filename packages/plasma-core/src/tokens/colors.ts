@@ -23,18 +23,18 @@ export const inverse = 'var(--plasma-colors-inverse)';
 export const paragraph = 'var(--plasma-colors-paragraph)';
 
 export const background = 'var(--plasma-colors-background)';
-export const backgroundPrimary = 'var(--plasma-colors-background-primary)';
-export const backgroundSecondary = 'var(--plasma-colors-background-secondary)';
-export const backgroundTertiary = 'var(--plasma-colors-background-tertiary)';
+export const backgroundPrimary = 'var(--plasma-colors-background-primary)'; // ToDo: https://github.com/sberdevices/plasma/issues/1107
+export const backgroundSecondary = 'var(--plasma-colors-background-secondary)'; // ToDo: https://github.com/sberdevices/plasma/issues/1107
+export const backgroundTertiary = 'var(--plasma-colors-background-tertiary)'; // ToDo: https://github.com/sberdevices/plasma/issues/1107
 
 export const success = 'var(--plasma-colors-success)';
 export const warning = 'var(--plasma-colors-warning)';
 export const critical = 'var(--plasma-colors-critical)';
 export const overlay = 'var(--plasma-colors-overlay)';
 
-export const surfaceLiquid01 = 'var(--plasma-colors-surface-liquid01)';
-export const surfaceLiquid02 = 'var(--plasma-colors-surface-liquid02)';
-export const surfaceLiquid03 = 'var(--plasma-colors-surface-liquid03)';
+export const surfaceLiquid01 = 'var(--plasma-colors-surface-liquid01)'; // ToDo: https://github.com/sberdevices/plasma/issues/1107
+export const surfaceLiquid02 = 'var(--plasma-colors-surface-liquid02)'; // ToDo: https://github.com/sberdevices/plasma/issues/1107
+export const surfaceLiquid03 = 'var(--plasma-colors-surface-liquid03)'; // ToDo: https://github.com/sberdevices/plasma/issues/1107
 export const surfaceSolid01 = 'var(--plasma-colors-surface-solid01)';
 export const surfaceSolid02 = 'var(--plasma-colors-surface-solid02)';
 export const surfaceSolid03 = 'var(--plasma-colors-surface-solid03)';

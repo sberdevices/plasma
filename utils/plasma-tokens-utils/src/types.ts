@@ -74,9 +74,9 @@ export enum ThemeColorsList {
     inverse = 'Белый в светлой теме / Чёрный в тёмной теме',
 
     background = 'Основной бэкграунд всех приложений и смартапов',
-    backgroundPrimary = 'Первичный цвет фона',
-    backgroundSecondary = 'Вторичный цвет фона',
-    backgroundTertiary = 'Третичный цвет фона',
+    backgroundPrimary = 'Первичный цвет фона', // ToDo: https://github.com/sberdevices/plasma/issues/1107
+    backgroundSecondary = 'Вторичный цвет фона', // ToDo: https://github.com/sberdevices/plasma/issues/1107
+    backgroundTertiary = 'Третичный цвет фона', // ToDo: https://github.com/sberdevices/plasma/issues/1107
 
     accent = 'Акцентный цвет бренда',
     success = 'Обозначение успешного сценария',
@@ -88,9 +88,9 @@ export enum ThemeColorsList {
     gradient = 'Градиент для заливки основного фона',
     gradientDevice = 'Бэкграунд ассистента на девайсах',
 
-    surfaceLiquid01 = 'Полупрозрачные поверхности',
-    surfaceLiquid02 = 'Полупрозрачные поверхности',
-    surfaceLiquid03 = 'Полупрозрачные поверхности',
+    surfaceLiquid01 = 'Полупрозрачные поверхности', // ToDo: https://github.com/sberdevices/plasma/issues/1107
+    surfaceLiquid02 = 'Полупрозрачные поверхности', // ToDo: https://github.com/sberdevices/plasma/issues/1107
+    surfaceLiquid03 = 'Полупрозрачные поверхности', // ToDo: https://github.com/sberdevices/plasma/issues/1107
     surfaceSolid01 = 'Непрозрачные поверхности',
     surfaceSolid02 = 'Непрозрачные поверхности',
     surfaceSolid03 = 'Непрозрачные поверхности',
