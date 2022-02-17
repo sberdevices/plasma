@@ -1,6 +1,6 @@
 {
   "name": "@sberdevices/layer-inpicture-sdk",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "description": "",
   "browser": "umd/layer-inpicture-sdk.production.min.js",
   "files": [
