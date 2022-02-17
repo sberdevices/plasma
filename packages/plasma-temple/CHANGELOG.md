@@ -1,3 +1,19 @@
+# v1.29.2 (Thu Feb 17 2022)
+
+#### 🐛 Bug Fix
+
+- chore(plasma-temple): fix blink cursor [#1061](https://github.com/sberdevices/plasma/pull/1061) ([@LamaEats](https://github.com/LamaEats))
+- test(plasma-temple): HeroSlider spec [#1061](https://github.com/sberdevices/plasma/pull/1061) ([@LamaEats](https://github.com/LamaEats))
+- chore(plasma-temple): prepare HeroSlider for tests [#1061](https://github.com/sberdevices/plasma/pull/1061) ([@LamaEats](https://github.com/LamaEats))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v1.29.0 (Tue Feb 15 2022)
 
 #### 🚀 Enhancement

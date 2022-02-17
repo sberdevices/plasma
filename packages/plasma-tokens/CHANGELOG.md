@@ -1,3 +1,18 @@
+# v1.15.2 (Thu Feb 17 2022)
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- feat(plasma-ui, plasma-web, plasma-b2c): `Button`: Added theming [#1063](https://github.com/sberdevices/plasma/pull/1063) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-tokens, plasma-tokens-web, plasma-tokens-b2c): Added possibility for component theming [#1063](https://github.com/sberdevices/plasma/pull/1063) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.15.1 (Thu Jan 13 2022)
 
 #### 🐛 Bug Fix

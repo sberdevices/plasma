@@ -1,3 +1,27 @@
+# (Thu Feb 17 2022)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-ui@1.81.4`
+  - fix(plasma-ui): `HeaderArrow`: made unfocusable [#1076](https://github.com/sberdevices/plasma/pull/1076) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-core@1.49.4`, `@sberdevices/plasma-tokens-b2c@0.8.1`, `@sberdevices/plasma-tokens-web@1.14.1`, `@sberdevices/plasma-tokens@1.15.2`, `@sberdevices/plasma-ui@1.81.4`, `@sberdevices/plasma-web@1.75.7`
+  - feat(plasma-ui, plasma-web, plasma-b2c): `Button`: Added theming [#1063](https://github.com/sberdevices/plasma/pull/1063) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-tokens-b2c@0.8.1`, `@sberdevices/plasma-tokens-web@1.14.1`, `@sberdevices/plasma-tokens@1.15.2`
+  - feat(plasma-tokens, plasma-tokens-web, plasma-tokens-b2c): Added possibility for component theming [#1063](https://github.com/sberdevices/plasma/pull/1063) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-tokens-utils@0.9.1`
+  - refactor(plasma-tokens-utils): Refactored code base for component theming [#1063](https://github.com/sberdevices/plasma/pull/1063) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-temple@1.29.2`
+  - chore(plasma-temple): fix blink cursor [#1061](https://github.com/sberdevices/plasma/pull/1061) ([@LamaEats](https://github.com/LamaEats))
+  - test(plasma-temple): HeroSlider spec [#1061](https://github.com/sberdevices/plasma/pull/1061) ([@LamaEats](https://github.com/LamaEats))
+  - chore(plasma-temple): prepare HeroSlider for tests [#1061](https://github.com/sberdevices/plasma/pull/1061) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Wed Feb 16 2022)
 
 #### 🐛 Bug Fix

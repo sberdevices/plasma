@@ -1,3 +1,18 @@
+# v1.81.4 (Thu Feb 17 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): `HeaderArrow`: made unfocusable [#1076](https://github.com/sberdevices/plasma/pull/1076) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-ui, plasma-web, plasma-b2c): `Button`: Added theming [#1063](https://github.com/sberdevices/plasma/pull/1063) ([@fanisco](https://github.com/fanisco))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.81.3 (Wed Feb 16 2022)
 
 #### 🐛 Bug Fix

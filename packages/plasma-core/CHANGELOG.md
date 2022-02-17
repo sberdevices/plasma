@@ -1,3 +1,15 @@
+# v1.49.4 (Thu Feb 17 2022)
+
+#### 🐛 Bug Fix
+
+- feat(plasma-ui, plasma-web, plasma-b2c): `Button`: Added theming [#1063](https://github.com/sberdevices/plasma/pull/1063) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.49.3 (Wed Feb 16 2022)
 
 #### 🐛 Bug Fix
