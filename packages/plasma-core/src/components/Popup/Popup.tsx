@@ -1,5 +1,7 @@
-import React, { HTMLAttributes, ReactNode, memo, useRef, useCallback, useEffect } from 'react';
+import React, { HTMLAttributes, ReactNode, memo, useRef, useCallback, useEffect, RefAttributes } from 'react';
 import styled, { css } from 'styled-components';
+
+import { useForkRef } from '../../hooks';
 
 export interface PopupProps extends HTMLAttributes<HTMLDivElement> {
     /**
@@ -66,61 +68,77 @@ const StyledPopup = styled.div<Pick<PopupProps, 'placement'>>`
  * Всплывающее окно с возможностью позиционирования
  * и вызова по клику либо ховеру.
  */
-export const Popup = memo<PopupProps>(({ disclosure, children, isOpen, trigger, placement, onToggle, ...rest }) => {
-    const rootRef = useRef<HTMLDivElement | null>(null);
-    const popupRef = useRef<HTMLDivElement | null>(null);
+export const Popup = memo<PopupProps & RefAttributes<HTMLDivElement>>(
+    React.forwardRef<HTMLDivElement, PopupProps>(
+        ({ disclosure, children, isOpen, trigger, placement, onToggle, ...rest }, outerRootRef) => {
+            const rootRef = useRef<HTMLDivElement | null>(null);
+            const popupRef = useRef<HTMLDivElement | null>(null);
+            const handleRef = useForkRef<HTMLDivElement>(rootRef, outerRootRef);
 
-    const onDocumentClick = useCallback(
-        (event) => {
-            const targetIsRoot = event.target === rootRef.current;
-            const targetInRoot = rootRef.current?.contains(event.target);
+            const onDocumentClick = useCallback(
+                (event) => {
+                    const targetIsRoot = event.target === rootRef.current;
+                    const rootHasTarget = rootRef.current?.contains(event.target);
 
-            if (!targetIsRoot && !targetInRoot) {
-                onToggle?.(false);
-            }
-        },
-        [onToggle],
-    );
+                    if (!targetIsRoot && !rootHasTarget) {
+                        onToggle?.(false);
+                    }
+                },
+                [onToggle],
+            );
 
-    const onClick = useCallback(
-        (event) => {
-            if (trigger === 'click') {
-                const targetIsPopup = event.target === popupRef;
-                const targetInPopup = popupRef.current?.contains(event.target);
+            const onClick = useCallback(
+                (event) => {
+                    if (trigger === 'click') {
+                        const targetIsPopup = event.target === popupRef;
+                        const rootHasTarget = popupRef.current?.contains(event.target);
 
-                if (!targetIsPopup && !targetInPopup) {
-                    onToggle?.(!isOpen);
+                        if (!targetIsPopup && !rootHasTarget) {
+                            onToggle?.(!isOpen);
+                        }
+                    }
+                },
+                [trigger, isOpen, onToggle],
+            );
+
+            const onMouseEnter = useCallback(() => {
+                if (trigger === 'hover') {
+                    onToggle?.(true);
                 }
-            }
+            }, [trigger, onToggle]);
+
+            const onMouseLeave = useCallback(() => {
+                if (trigger === 'hover') {
+                    onToggle?.(false);
+                }
+            }, [trigger, onToggle]);
+
+            useEffect(() => {
+                document.addEventListener('click', onDocumentClick);
+                return () => document.removeEventListener('click', onDocumentClick);
+            }, []);
+
+            console.log('isOpen in Popups', isOpen);
+            return (
+                <StyledRoot
+                    ref={handleRef}
+                    onClick={onClick}
+                    onMouseEnter={onMouseEnter}
+                    onMouseLeave={onMouseLeave}
+                    {...rest}
+                >
+                    {disclosure}
+                    {children && (
+                        <StyledPopup
+                            ref={popupRef}
+                            placement={placement}
+                            style={{ display: isOpen ? 'block' : 'none' }}
+                        >
+                            {children}
+                        </StyledPopup>
+                    )}
+                </StyledRoot>
+            );
         },
-        [trigger, isOpen, onToggle],
-    );
-
-    const onMouseEnter = useCallback(() => {
-        if (trigger === 'hover') {
-            onToggle?.(true);
-        }
-    }, [trigger, onToggle]);
-
-    const onMouseLeave = useCallback(() => {
-        if (trigger === 'hover') {
-            onToggle?.(false);
-        }
-    }, [trigger, onToggle]);
-
-    useEffect(() => {
-        document.addEventListener('click', onDocumentClick);
-        return () => document.removeEventListener('click', onDocumentClick);
-    }, []);
-
-    return (
-        <StyledRoot ref={rootRef} onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} {...rest}>
-            {disclosure}
-            {children && (
-                <StyledPopup ref={popupRef} placement={placement} style={{ display: isOpen ? 'block' : 'none' }}>
-                    {children}
-                </StyledPopup>
-            )}
-        </StyledRoot>
-    );
-});
+    ),
+);
