@@ -13,14 +13,22 @@ import { IconChevronRight, IconDone } from '@sberdevices/plasma-icons';
 
 import { DropdownItem as DropdownItemType, DropdownNode as DropdownNodeType } from './Dropdown.types';
 
-export interface DropdownItemProps extends DropdownNodeType {
+export interface DropdownItemProps
+    extends DropdownNodeType,
+        Omit<
+            React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>,
+            'onClick' | 'ref'
+        > {
     isActive?: boolean;
+    isHovered?: boolean;
     color?: string;
     contentLeft?: ReactNode;
     onClick?: (item: DropdownItemType) => void;
+    onHover?: () => void;
+    onFocus?: () => void;
 }
 
-const StyledDropdownItem = styled.a<{ $disabled?: boolean; $color?: string }>`
+const StyledDropdownItem = styled.a<{ isHovered?: boolean; $disabled?: boolean; $color?: string }>`
     display: flex;
     flex: 1;
     align-items: center;
@@ -50,6 +58,13 @@ const StyledDropdownItem = styled.a<{ $disabled?: boolean; $color?: string }>`
         color: ${({ $color }) => $color || primary};
         background-color: ${surfaceLiquid02};
     }
+
+    ${({ isHovered, $color }) =>
+        isHovered &&
+        css`
+            color: ${() => $color || primary};
+            background-color: ${surfaceLiquid02};
+        `}
 
     &:active {
         background-color: ${surfaceLiquid03};
@@ -104,10 +119,13 @@ export const DropdownItem: FC<DropdownItemProps> = ({
     label,
     isActive,
     isDisabled,
+    isHovered,
     color,
     contentLeft,
     items = [],
     onClick: onClickExternal,
+    onHover,
+    onFocus,
     ...rest
 }) => {
     const itemRef = useRef<HTMLAnchorElement>(null);
@@ -145,7 +163,20 @@ export const DropdownItem: FC<DropdownItemProps> = ({
     );
 
     return (
-        <StyledDropdownItem ref={itemRef} $disabled={isDisabled} $color={color} onClick={onClick} {...rest}>
+        <StyledDropdownItem
+            isHovered={isHovered}
+            ref={itemRef}
+            $disabled={isDisabled}
+            $color={color}
+            onClick={onClick}
+            role="option"
+            aria-selected={isActiveNode}
+            aria-label={label}
+            onMouseOver={onHover}
+            onFocus={onFocus}
+            id={value.toString()}
+            {...rest}
+        >
             {contentLeft && <StyledContent>{contentLeft}</StyledContent>}
             {label && <StyledText>{label}</StyledText>}
             {contentRight}
