@@ -68,13 +68,13 @@ const theme = {
     dark_bg: plasmaStylesTokens.colors.backgroundDefault,
     dark_overlay: Color.rgba(0, 0, 0, 0.8),
 
-    dark_bg_primary: Color.rgba(23, 23, 23, 1),
-    dark_bg_secondary: Color.rgba(35, 35, 35, 1),
-    dark_bg_tertiary: Color.rgba(54, 54, 54, 1),
+    dark_bg_primary: Color.rgba(23, 23, 23, 1), // ToDo: https://github.com/sberdevices/plasma/issues/1107
+    dark_bg_secondary: Color.rgba(35, 35, 35, 1), // ToDo: https://github.com/sberdevices/plasma/issues/1107
+    dark_bg_tertiary: Color.rgba(54, 54, 54, 1), // ToDo: https://github.com/sberdevices/plasma/issues/1107
 
-    dark_surface_Liquid01: Color.rgba(255, 255, 255, 0.06), // FixMe: v2.0 переименовать в transparent01
-    dark_surface_Liquid02: Color.rgba(255, 255, 255, 0.12), // FixMe: v2.0 переименовать в transparent02
-    dark_surface_Liquid03: Color.rgba(255, 255, 255, 0.2), // FixMe: v2.0 переименовать в transparent03
+    dark_surface_Liquid01: Color.rgba(255, 255, 255, 0.06), // ToDo: https://github.com/sberdevices/plasma/issues/1107
+    dark_surface_Liquid02: Color.rgba(255, 255, 255, 0.12), // ToDo: https://github.com/sberdevices/plasma/issues/1107
+    dark_surface_Liquid03: Color.rgba(255, 255, 255, 0.2), // FToDo: https://github.com/sberdevices/plasma/issues/1107
 
     dark_surface_solid01: Color.rgba(23, 23, 23, 1),
     dark_surface_solid02: Color.rgba(35, 35, 35, 1),
@@ -123,13 +123,13 @@ const theme = {
     light_bg: Color.rgba(255, 255, 255, 1),
     light_overlay: Color.rgba(0, 0, 0, 0.8),
 
-    light_bg_primary: Color.rgba(255, 255, 255, 1),
-    light_bg_secondary: Color.rgba(255, 255, 255, 1),
-    light_bg_tertiary: Color.rgba(255, 255, 255, 1),
+    light_bg_primary: Color.rgba(255, 255, 255, 1), // ToDo: https://github.com/sberdevices/plasma/issues/1107
+    light_bg_secondary: Color.rgba(255, 255, 255, 1), // ToDo: https://github.com/sberdevices/plasma/issues/1107
+    light_bg_tertiary: Color.rgba(255, 255, 255, 1), // ToDo: https://github.com/sberdevices/plasma/issues/1107
 
-    light_surface_Liquid01: Color.rgba(8, 8, 8, 0.02), // FixMe: v2.0 переименовать в transparent01
-    light_surface_Liquid02: Color.rgba(8, 8, 8, 0.06), // FixMe: v2.0 переименовать в transparent02
-    light_surface_Liquid03: Color.rgba(8, 8, 8, 0.12), // FixMe: v2.0 переименовать в transparent03
+    light_surface_Liquid01: Color.rgba(8, 8, 8, 0.02), // ToDo: https://github.com/sberdevices/plasma/issues/1107
+    light_surface_Liquid02: Color.rgba(8, 8, 8, 0.06), // ToDo: https://github.com/sberdevices/plasma/issues/1107
+    light_surface_Liquid03: Color.rgba(8, 8, 8, 0.12), // ToDo: https://github.com/sberdevices/plasma/issues/1107
 
     light_surface_solid01: Color.rgba(250, 250, 250, 1),
     light_surface_solid02: Color.rgba(240, 240, 240, 1),
