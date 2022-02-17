@@ -191,7 +191,6 @@ export const ProductCommon = ({
                         <ProductInfo
                             title={description.title}
                             info={description.content}
-                            fixedHeight={500}
                             renderToggleButton={renderToggleButton}
                         />
                     </StyledSection>

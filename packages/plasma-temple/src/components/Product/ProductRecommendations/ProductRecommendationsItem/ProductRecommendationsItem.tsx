@@ -121,9 +121,21 @@ export const ProductRecommendationsItem: React.FC<ProductRecommendationsItemProp
     }, [index, onFocus]);
 
     return (
-        <StyledCard onFocus={handleFocus} onClick={handleClick} onKeyDown={handleKeyDown} tabIndex={0} data-focusable>
+        <StyledCard
+            onFocus={handleFocus}
+            onClick={handleClick}
+            onKeyDown={handleKeyDown}
+            tabIndex={0}
+            data-focusable
+            data-cy="ProductRecommendationsItem"
+        >
             <CardBody>
-                <CardMedia src={images[0]} placeholder={defaultImage} ratio="4 / 3" />
+                <CardMedia
+                    src={images[0]}
+                    placeholder={defaultImage}
+                    ratio="4 / 3"
+                    data-cy="ProductRecommendationsItem-image"
+                />
                 <CardContent>
                     <StyledName lines={nameDetails ? 1 : 2}>{name}</StyledName>
                     {nameDetails && <StyledNameDetails>{nameDetails}</StyledNameDetails>}

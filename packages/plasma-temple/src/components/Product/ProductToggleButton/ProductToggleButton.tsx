@@ -23,7 +23,7 @@ export const ProductToggleButton: React.FC<ProductToggleButtonProps> = ({
         size={isSberBoxLike() ? 'm' : 's'}
         onClick={toggle}
         data-focusable
-        data-name="product-toggle-button"
+        data-cy="ProductToggleButton"
         tabIndex={0}
     >
         {expanded ? lessText : moreText}
