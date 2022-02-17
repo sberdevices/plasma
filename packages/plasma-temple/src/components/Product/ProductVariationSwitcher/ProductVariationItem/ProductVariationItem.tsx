@@ -56,6 +56,7 @@ export const ProductVariationItem: React.FC<ProductVariationItemProps> = ({
             onFocus={handleFocus}
             onClick={handleClick}
             onKeyDown={handleKeyDown}
+            data-cy="ProductVariationItem-button"
         >
             {variation}
         </StyledButton>
