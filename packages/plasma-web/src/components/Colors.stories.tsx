@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { general, additional } from '@sberdevices/plasma-colors';
-import { light, dark } from '@sberdevices/plasma-tokens-web/themes';
+import { light, dark } from '@sberdevices/plasma-tokens-b2b/themes';
 import { ThemeColors, extractWebThemeColors } from '@sberdevices/plasma-sb-utils';
 
 import { PaletteGrid, flattenPalette } from '../helpers';

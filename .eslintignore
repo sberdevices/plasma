@@ -19,6 +19,10 @@ packages/plasma-tokens/*
 !packages/plasma-tokens/generate.ts
 !packages/plasma-tokens/utils.ts
 
+packages/plasma-tokens-b2b/*
+!packages/plasma-tokens-b2b/data
+!packages/plasma-tokens-b2b/generate.ts
+
 packages/plasma-tokens-b2c/*
 !packages/plasma-tokens-b2c/data.ts
 !packages/plasma-tokens-b2c/dataColors.ts

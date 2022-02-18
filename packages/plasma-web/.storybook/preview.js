@@ -2,10 +2,11 @@ import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { addDecorator, addParameters } from '@storybook/react';
 import { Title, Subtitle, Description, Primary, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
-import { link, linkHover, linkActive } from '@sberdevices/plasma-tokens-web';
-import { light, dark } from '@sberdevices/plasma-tokens-web/themes';
+import { link, linkHover, linkActive } from '@sberdevices/plasma-tokens-b2b';
+import { light as b2bLight, dark as b2bDark } from '@sberdevices/plasma-tokens-b2b/themes';
 import { light as b2cLight, dark as b2cDark } from '@sberdevices/plasma-tokens-b2c/themes';
-import { web } from '@sberdevices/plasma-tokens-web/typo';
+import { light as legacyLight, dark as legacyDark } from '@sberdevices/plasma-tokens-web/themes';
+import { b2b as b2bTypo } from '@sberdevices/plasma-tokens-b2b/typo';
 
 import { ToastProvider } from '../src/components/Toast';
 
@@ -35,18 +36,28 @@ const DocumentStyle = createGlobalStyle`
 `;
 /* stylelint-enable */
 
-const TypoStyle = createGlobalStyle(web);
+const TypoStyle = createGlobalStyle(b2bTypo);
 
 const themes = {
-    light: createGlobalStyle(light),
-    dark: createGlobalStyle(dark),
+    'b2b:light': createGlobalStyle(b2bLight),
+    'b2b:dark': createGlobalStyle(b2bDark),
     'b2c:light': createGlobalStyle(b2cLight),
     'b2c:dark': createGlobalStyle(b2cDark),
+    'light (legacy)': createGlobalStyle(legacyLight),
+    'dark (legacy)': createGlobalStyle(legacyDark),
 };
 
 const withTheme = (Story, context) => {
-    const Theme = themes[context.globals.theme];
-    console.log(context.globals.theme, Theme);
+    let theme = context.globals.theme;
+
+    if (theme === 'light') {
+        theme = 'light (legacy)';
+    } else if (theme === 'dark') {
+        theme = 'dark (legacy)';
+    }
+
+    const Theme = themes[theme];
+
     return (
         <>
             <TypoStyle />
@@ -105,9 +116,9 @@ export const globalTypes = {
     theme: {
         name: 'Theme',
         description: 'Global theme for components',
-        defaultValue: 'light',
+        defaultValue: 'b2b:light',
         toolbar: {
-            items: ['light', 'dark', 'b2c:light', 'b2c:dark'],
+            items: ['b2b:light', 'b2b:dark', 'b2c:light', 'b2c:dark', 'light (legacy)', 'dark (legacy)'],
             showName: true,
         },
     },

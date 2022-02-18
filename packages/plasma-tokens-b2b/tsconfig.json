@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "typeRoots": ["./types", "./node_modules/@types"],
+        "target": "ES5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "strict": true,
+        "resolveJsonModule": true,
+        "declaration": true,
+        "declarationMap": true,
+        "sourceMap": true,
+        "removeComments": false,
+        "outDir": ".",
+        "rootDir": "./src"
+    },
+    "include": ["./src"],
+    "exclude": ["./design-language", "./data", "./generate.ts"]
+}
