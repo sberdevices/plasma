@@ -109,6 +109,9 @@ const light: FullColors & WebColors = {
     inputBorderHover: {
         value: humanizeColor(ds.theme.light_input_border_hover.color),
     },
+    inputBorderFocus: {
+        value: humanizeColor(ds.theme.light_input_border_focus.color),
+    },
 
     accent: {
         value: humanizeColor(ds.theme.light_accent.color),
@@ -336,6 +339,9 @@ const dark: FullColors & WebColors = {
     },
     inputBorderHover: {
         value: humanizeColor(ds.theme.dark_input_border_hover.color),
+    },
+    inputBorderFocus: {
+        value: humanizeColor(ds.theme.dark_input_border_focus.color),
     },
 
     accent: {

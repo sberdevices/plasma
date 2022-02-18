@@ -53,8 +53,9 @@ const theme = {
     light_bg_secondary: Color.rgba(255, 255, 255, 1),
     light_bg_tertiary: Color.rgba(255, 255, 255, 1),
 
-    light_input_border: Color.rgba(8, 8, 8, 0.16),
-    light_input_border_hover: Color.rgba(8, 8, 8, 0.32),
+    light_input_border: plasmaStylesTokens.colors.textIconsTertiary1,
+    light_input_border_hover: plasmaStylesTokens.colors.textIconsSecondary4,
+    light_input_border_focus: plasmaStylesTokens.colors.textIconsAccentBrand,
 
     light_surface_Liquid01: Color.rgba(8, 8, 8, 0.02), // FixMe: v2.0 переименовать в transparent01
     light_surface_Liquid02: Color.rgba(8, 8, 8, 0.06), // FixMe: v2.0 переименовать в transparent02
@@ -101,6 +102,7 @@ const theme = {
 
     dark_input_border: Color.rgba(255, 255, 255, 0.16),
     dark_input_border_hover: Color.rgba(255, 255, 255, 0.32),
+    dark_input_border_focus: plasmaStylesTokens.colors.textIconsAccentBrand1,
 
     dark_surface_Liquid01: Color.rgba(255, 255, 255, 0.06), // FixMe: v2.0 переименовать в transparent01
     dark_surface_Liquid02: Color.rgba(255, 255, 255, 0.12), // FixMe: v2.0 переименовать в transparent02

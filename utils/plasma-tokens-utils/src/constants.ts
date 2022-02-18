@@ -95,6 +95,7 @@ export enum WebColorsList {
     buttonCheckedActiveColor = 'Цвет надписи зажатой кнопки / нажатие',
     inputBorder = 'Цвет рамки поля ввода',
     inputBorderHover = 'Цвет рамки поля ввода / наведение',
+    inputBorderFocus = 'Цвет рамки поля ввода / фокус',
     link = 'Цвет ссылки',
     linkHover = 'Цвет ссылки / наведение',
     linkActive = 'Цвет ссылки / нажатие',
