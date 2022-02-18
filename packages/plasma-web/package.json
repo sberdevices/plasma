@@ -33,6 +33,7 @@
     "dependencies": {
         "@popperjs/core": "2.9.2",
         "@sberdevices/plasma-core": "1.54.0",
+        "@sberdevices/plasma-typo": "0.2.3",
         "react-focus-lock": "2.8.1",
         "react-popper": "2.2.5",
         "storeon": "3.1.4"
