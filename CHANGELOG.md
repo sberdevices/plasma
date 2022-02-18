@@ -1,3 +1,16 @@
+# (Fri Feb 18 2022)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/layer-inpicture-sdk@0.8.1`
+  - fix(inpicture-sdk): добавлен бордер для темплейта large [#177](https://github.com/sberdevices/pashka/pull/177) ([@c1aphas](https://github.com/c1aphas))
+
+#### Authors: 1
+
+- Mike ([@c1aphas](https://github.com/c1aphas))
+
+---
+
 # (Thu Feb 17 2022)
 
 #### 🚀 Enhancement
