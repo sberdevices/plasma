@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-temple",
-    "version": "1.29.2",
+    "version": "1.30.0",
     "description": "SberDevices CanvasApp Templates.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -29,7 +29,7 @@
         "@sberdevices/plasma-cy-utils": "0.3.3",
         "@sberdevices/plasma-icons": "1.67.5",
         "@sberdevices/plasma-tokens": "1.15.2",
-        "@sberdevices/plasma-ui": "1.81.4",
+        "@sberdevices/plasma-ui": "1.82.0",
         "@storybook/addon-docs": "^6.4.9",
         "@storybook/addon-essentials": "^6.4.9",
         "@storybook/addons": "^6.4.9",
