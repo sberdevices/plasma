@@ -1,15 +1,13 @@
 import React, { forwardRef } from 'react';
-import styled from 'styled-components';
-import { FieldRoot, FieldPlaceholder, FieldContent, FieldHelper, Input } from '@sberdevices/plasma-core';
-import type { InputProps } from '@sberdevices/plasma-core';
 
-import { applyInputStyles } from '../Field';
+import { Field } from '../Field';
+import type { FieldProps } from '../Field';
+import { Input } from '../Input';
+import type { InputProps } from '../Input';
 
-export interface TextFieldProps extends InputProps {}
-
-const StyledInput = styled(Input)`
-    ${applyInputStyles}
-`;
+export interface TextFieldProps
+    extends Pick<FieldProps, 'contentLeft' | 'contentRight' | 'helperText'>,
+        Omit<InputProps, 'hasContentLeft' | 'hasContentRight'> {}
 
 /**
  * Поле ввода текста.
@@ -18,47 +16,46 @@ const StyledInput = styled(Input)`
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function TextField(
     {
         id,
-        size = 'm',
+        size,
         disabled,
         status,
         label,
-        placeholder,
+        animatedHint,
         contentLeft,
         contentRight,
         helperText,
-        style,
         className,
+        style,
         ...rest
     },
     ref,
 ) {
-    const placeLabel = (label || placeholder) as string | undefined;
-
     return (
-        <FieldRoot
-            $size={size}
-            $disabled={disabled}
-            $isContentLeft={Boolean(contentLeft)}
-            $isContentRight={Boolean(contentRight)}
-            $isHelper={Boolean(helperText)}
+        <Field
+            id={id}
+            disabled={disabled}
+            label={animatedHint !== 'label' ? label : undefined}
+            helperText={helperText}
+            contentLeft={contentLeft}
+            contentRight={contentRight}
             status={status}
-            style={style}
             className={className}
+            style={style}
         >
-            {contentLeft && <FieldContent pos="left">{contentLeft}</FieldContent>}
-            <StyledInput
+            <Input
+                {...rest}
                 ref={ref}
                 id={id}
-                $size={size}
-                placeholder={placeLabel}
                 disabled={disabled}
+                size={size}
                 status={status}
+                label={label}
+                animatedHint={animatedHint}
+                hasContentLeft={Boolean(contentLeft)}
+                hasContentRight={Boolean(contentRight)}
+                aria-labelledby={id ? `${id}-label` : undefined}
                 aria-describedby={id ? `${id}-helpertext` : undefined}
-                {...rest}
             />
-            {placeLabel && size === 'l' && <FieldPlaceholder htmlFor={id}>{placeLabel}</FieldPlaceholder>}
-            {contentRight && <FieldContent pos="right">{contentRight}</FieldContent>}
-            {helperText && <FieldHelper id={id ? `${id}-helpertext` : undefined}>{helperText}</FieldHelper>}
-        </FieldRoot>
+        </Field>
     );
 });

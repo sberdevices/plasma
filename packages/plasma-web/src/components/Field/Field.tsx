@@ -1,52 +1,72 @@
-import { css, InterpolationFunction } from 'styled-components';
-import { background, accent, tertiary, fieldStatuses } from '@sberdevices/plasma-core';
-import type { FieldProps } from '@sberdevices/plasma-core';
+import React, { FC, HTMLAttributes } from 'react';
+import styled from 'styled-components';
+import type { FieldProps as BaseProps, DisabledProps } from '@sberdevices/plasma-core';
+import { applyDisabled } from '@sberdevices/plasma-core';
 
-import { inputBorder, inputBorderHover } from '../../tokens';
+import {
+    fieldTypo,
+    fieldHelperTextTypo,
+    fieldColor,
+    fieldContentMargin,
+    fieldHelperTextMarginTop,
+    fieldLabelColor,
+    fieldLabelMarginBottom,
+} from '../../tokens';
 
-export const applyInputStyles: InterpolationFunction<Pick<FieldProps, 'status' | '$isFocused'>> = ({
-    status,
-    $isFocused,
-}) => css`
-    background-color: ${background};
-    box-shadow: inset 0 0 0 1px ${inputBorder};
-    border-radius: 0.25rem;
+import { statuses } from './Field.props';
 
-    transition: box-shadow 0.1s ease-in-out;
+export interface FieldProps extends BaseProps, DisabledProps, HTMLAttributes<HTMLLabelElement> {}
 
-    &:hover {
-        box-shadow: inset 0 0 0 1px ${inputBorderHover};
-    }
+const StyledField = styled.label<FieldProps>`
+    ${fieldTypo}
+    ${applyDisabled}
 
-    &:focus {
-        box-shadow: inset 0 0 0 1px ${accent};
-    }
+    position: relative;
+    display: flex;
+    flex-direction: column;
 
-    /* stylelint-disable-next-line selector-nested-pattern */
-    &:disabled,
-    &:read-only,
-    &:read-only:focus {
-        box-shadow: inset 0 0 0 1px ${inputBorder};
-    }
+    color: ${fieldColor};
 
-    &::placeholder {
-        color: ${tertiary};
-    }
-
-    ${status &&
-    css`
-        color: ${fieldStatuses[status]};
-
-        &,
-        &:hover,
-        &:focus,
-        &:disabled {
-            box-shadow: inset 0 0 0 1px ${fieldStatuses[status]};
-        }
-    `}
-
-    ${$isFocused &&
-    css`
-        box-shadow: inset 0 0 0 1px ${accent};
-    `}
+    ${({ status }) => status && statuses[status]}
 `;
+const StyledLabel = styled.span`
+    margin-bottom: ${fieldLabelMarginBottom};
+    color: ${fieldLabelColor};
+`;
+const StyledInputWrapper = styled.div`
+    position: relative;
+`;
+const StyledContent = styled.div`
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+`;
+const StyledContentLeft = styled(StyledContent)`
+    left: 0;
+    margin-left: ${fieldContentMargin};
+`;
+const StyledContentRight = styled(StyledContent)`
+    right: 0;
+    margin-right: ${fieldContentMargin};
+`;
+const StyledHelperText = styled.span`
+    ${fieldHelperTextTypo}
+
+    margin-top: ${fieldHelperTextMarginTop};
+`;
+
+export const Field: FC<FieldProps> = ({ id, label, children, contentLeft, contentRight, helperText, ...rest }) => {
+    return (
+        <StyledField id={id ? `${id}-field` : undefined} {...rest}>
+            {label && <StyledLabel id={id ? `${id}-label` : undefined}>{label}</StyledLabel>}
+            <StyledInputWrapper>
+                {contentLeft && <StyledContentLeft>{contentLeft}</StyledContentLeft>}
+                {children}
+                {contentRight && <StyledContentRight>{contentRight}</StyledContentRight>}
+            </StyledInputWrapper>
+            {helperText && <StyledHelperText id={id ? `${id}-helpertext` : undefined}>{helperText}</StyledHelperText>}
+        </StyledField>
+    );
+};

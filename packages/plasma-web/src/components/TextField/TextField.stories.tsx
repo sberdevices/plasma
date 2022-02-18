@@ -10,27 +10,8 @@ const onChange = action('onChange');
 const onFocus = action('onFocus');
 const onBlur = action('onBlur');
 
-const sizes = ['m', 'l'];
+const sizes = ['l', 'm', 's'];
 const statuses = ['', 'success', 'warning', 'error'];
-
-const propsToDisable = [
-    'helperBlock',
-    'contentLeft',
-    'htmlSize',
-    '$isFocused',
-    'label',
-    'contentRight',
-    'type',
-    'name',
-    'onFocus',
-    'onBlur',
-    'onChange',
-    'value',
-    'checked',
-    'maxLength',
-    'minLength',
-    'required',
-];
 
 export default {
     title: 'Controls/TextField',
@@ -49,20 +30,42 @@ export default {
                 options: sizes,
             },
         },
-        ...disableProps(propsToDisable),
     },
 } as Meta;
 
-interface DefaultSortyProps extends TextFieldProps {
-    enableContentLeft: boolean;
-    enableContentRight: boolean;
+interface DefaultSortyProps
+    extends Omit<
+        TextFieldProps,
+        | 'helperBlock'
+        | 'contentLeft'
+        | 'htmlSize'
+        | 'contentRight'
+        | 'type'
+        | 'name'
+        | 'onFocus'
+        | 'onBlur'
+        | 'onChange'
+        | 'value'
+        | 'checked'
+        | 'maxLength'
+        | 'minLength'
+        | 'required'
+    > {
+    'storybook:contentLeft': boolean;
+    'storybook:contentRight': boolean;
 }
 
-export const Default: Story<DefaultSortyProps> = ({ enableContentLeft, enableContentRight, status, ...rest }) => {
+export const Default: Story<DefaultSortyProps> = ({
+    'storybook:contentLeft': enableContentLeft,
+    'storybook:contentRight': enableContentRight,
+    status,
+    ...rest
+}) => {
     const [value, setValue] = React.useState('Значение поля');
 
     return (
         <TextField
+            {...rest}
             value={value}
             contentLeft={enableContentLeft && <IconPlaceholder />}
             contentRight={enableContentRight && <IconPlaceholder />}
@@ -73,22 +76,31 @@ export const Default: Story<DefaultSortyProps> = ({ enableContentLeft, enableCon
             }}
             onFocus={onFocus}
             onBlur={onBlur}
-            {...rest}
         />
     );
 };
 
 Default.args = {
     id: 'example-text-field',
-    type: 'text',
-    size: 'm',
+    size: 'l',
+    label: 'Лейбл',
+    animatedHint: undefined,
     placeholder: 'Заполните поле',
     helperText: 'Подсказка к полю',
-    enableContentLeft: true,
-    enableContentRight: true,
     status: '' as 'success',
     disabled: false,
     readOnly: false,
+    'storybook:contentLeft': true,
+    'storybook:contentRight': true,
+};
+
+Default.argTypes = {
+    animatedHint: {
+        control: {
+            type: 'inline-radio',
+            options: ['label', 'placeholder'],
+        },
+    },
 };
 
 export const DeferredValue: Story<{ readOnly: boolean }> = ({ readOnly }) => {
@@ -105,10 +117,4 @@ export const DeferredValue: Story<{ readOnly: boolean }> = ({ readOnly }) => {
 
 DeferredValue.args = {
     readOnly: true,
-};
-
-const defValuePropsToDisable = [...propsToDisable, 'status', 'size', 'helperText', 'placeholder', 'disabled'];
-
-DeferredValue.argTypes = {
-    ...disableProps(defValuePropsToDisable),
 };

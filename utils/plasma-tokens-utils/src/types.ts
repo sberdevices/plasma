@@ -46,7 +46,7 @@ export interface DesignLanguage {
 
 export type BaseColors = TokenDataGroup<TColor> & Record<keyof typeof BaseColorsList, TokenData<TColor>>;
 export type ThemeColors = TokenDataGroup<TColor> & Record<keyof typeof ThemeColorsList, TokenData<TColor>>;
-export type WebColors = TokenDataGroup<TColor> & Record<keyof typeof WebColorsList, TokenData<TColor>>;
+export type WebColors = TokenDataGroup<TColor> & Partial<Record<keyof typeof WebColorsList, TokenData<TColor>>>;
 export type FullColors = BaseColors & ThemeColors;
 
 export interface TypographStyle {
