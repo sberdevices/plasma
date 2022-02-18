@@ -11,8 +11,11 @@ import { isSberBoxLike } from '../../../utils';
 export type ChangeQuantityFn = (plus: 1 | -1) => void;
 
 interface QuantityProps {
+    /** Если флаг установлен, то возможно изменить количество товара  */
     withQuantity: true;
+    /** Количество товара */
     quantity: number;
+    /** Колбэк, вызываемый при изменении количества товара */
     onChangeQuantity: ChangeQuantityFn;
 }
 
@@ -29,11 +32,16 @@ export enum ActionButtonSelector {
 }
 
 export type ProductActionButtonProps = {
+    /** Контент кнопки */
     actionButtonText: React.ReactNode;
+    /** Контент кнопки справа, например цена */
     contentRight?: React.ReactNode;
+    /** Автофокус при монтировании компонента, работает только для устройств с пультом */
     autoFocus?: boolean;
     className?: string;
+    /** Флаг влияет на доступность кнопки */
     disabled?: boolean;
+    /** Колбэк, вызываемый при клике по кнопке */
     onClick: () => void;
 } & (QuantityProps | NoQuantityProps);
 
@@ -56,7 +64,10 @@ const StyledActionButtonCol = styled(Col)`
         `,
     )}
 `;
-
+/**
+ * Компонент представляет экшен кнопку на странице товара, например:
+ * добавить в корзину, закрыть страницу товара, изменить количество товара
+ */
 export const ProductActionButton: React.FC<ProductActionButtonProps> = React.memo(
     ({
         autoFocus,
