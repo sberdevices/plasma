@@ -1,3 +1,20 @@
+# v1.82.0 (Fri Feb 18 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): Made overlay optional for Sheet [#1075](https://github.com/sberdevices/plasma/pull/1075) (lsostanin@sberbank.ru)
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Лев Останин (lsostanin@sberbank.ru)
+
+---
+
 # v1.81.4 (Thu Feb 17 2022)
 
 #### 🐛 Bug Fix

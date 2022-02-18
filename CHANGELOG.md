@@ -1,3 +1,25 @@
+# (Fri Feb 18 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-ui@1.82.0`
+  - feat(plasma-ui): Made overlay optional for Sheet [#1075](https://github.com/sberdevices/plasma/pull/1075) (lsostanin@sberbank.ru)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-ui-docs@0.43.0`
+  - docs(plasma-ui): Described props `as` and `forwardedAs` [#1092](https://github.com/sberdevices/plasma/pull/1092) ([@fanisco](https://github.com/fanisco))
+  - docs(plasma-ui): `Header`: title and arrow components description [#1092](https://github.com/sberdevices/plasma/pull/1092) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.40.0`, `@sberdevices/plasma-web@1.76.0`, `@sberdevices/plasma-web-docs@0.33.0`
+  - docs(plasma-web, plasma-b2c): `Button`: using as an anchor [#1092](https://github.com/sberdevices/plasma/pull/1092) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Лев Останин (lsostanin@sberbank.ru)
+
+---
+
 # (Thu Feb 17 2022)
 
 #### 🐛 Bug Fix

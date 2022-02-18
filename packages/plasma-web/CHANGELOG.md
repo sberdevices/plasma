@@ -1,3 +1,17 @@
+# v1.76.0 (Fri Feb 18 2022)
+
+#### 🐛 Bug Fix
+
+- docs(plasma-web, plasma-b2c): `Button`: using as an anchor [#1092](https://github.com/sberdevices/plasma/pull/1092) ([@fanisco](https://github.com/fanisco))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.75.7 (Thu Feb 17 2022)
 
 #### 🐛 Bug Fix
