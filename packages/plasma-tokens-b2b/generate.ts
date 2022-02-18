@@ -116,10 +116,6 @@ const addStylesToTypo = (t: TypoSystem<TypographyTypes>) => {
             ...typoStyles.headline4,
             margin: 0,
         },
-        h5: {
-            ...typoStyles.headline5,
-            margin: 0,
-        },
         p: {
             ...typoStyles.paragraph1,
             margin: 0,
