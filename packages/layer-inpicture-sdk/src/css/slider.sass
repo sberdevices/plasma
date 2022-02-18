@@ -124,7 +124,7 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
         flex-direction: column
         justify-content: space-between
         background: rgba(255, 255, 255, 0.96) !important
-        border-radius: 16px
+        border-radius: 8px
         font-size: 18px
         background: #fff
         overflow: hidden
@@ -138,10 +138,14 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
                 &:hover
                     @include big-card-size
                     @include big-card
+                    border-radius: 16px
+                    .layer-swiper-slide-bottom__bg
+                        padding: 8px 12px 12px
 
     &-minimal-wrap
         .layer-swiper-slide
             border-radius: 8px
+            filter: drop-shadow(2px 2px 10px rgba(0, 0, 0, 0.1))
             @include minimal-card-mobile-size
             @media (min-width: 768px)
                 @include minimal-card-desktop-size
@@ -169,12 +173,22 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
                 padding-right: 24px
 
     &-primary-wrap
+        .layer-main-container
+            width: auto
+            margin-bottom: 16px
+            padding-left: 16px
+            padding-right: 16px
         .layer-swiper-slide
             @include primary-card-mobile-size
+            filter: drop-shadow(2px 2px 10px rgba(0, 0, 0, 0.1))
             height: 108px
             @media (min-width: 768px)
                 @include primary-card-desktop-size
+        .layer-swiper-slide-bottom__bg
+            padding: 8px
         .layer-swiper-slide-bottom__price
+            margin-bottom: 0
+            line-height: 18px
             @media (max-width: 767.98px)
                 font-weight: 500
                 font-size: 12px
@@ -189,6 +203,7 @@ $BIG_BOTTOM_CARD_PRICE_COLOR: #080808
     &-secondary-wrap
         .layer-swiper-slide
             @include secondary-card-mobile-size
+            border: 1px solid #E1E1E1
     
         .layer-swiper-slide-bottom__shop-name
             @include shopName
