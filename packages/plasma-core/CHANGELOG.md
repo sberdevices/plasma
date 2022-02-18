@@ -1,3 +1,15 @@
+# v1.49.5 (Fri Feb 18 2022)
+
+#### 🐛 Bug Fix
+
+- chore: Added fixme comments for background tokens [#1106](https://github.com/sberdevices/plasma/pull/1106) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.49.4 (Thu Feb 17 2022)
 
 #### 🐛 Bug Fix

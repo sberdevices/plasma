@@ -1,3 +1,15 @@
+# v1.76.1 (Fri Feb 18 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web): `Modal` background set to `backgroundPrimary` (01) token [#1106](https://github.com/sberdevices/plasma/pull/1106) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.76.0 (Fri Feb 18 2022)
 
 #### 🐛 Bug Fix
