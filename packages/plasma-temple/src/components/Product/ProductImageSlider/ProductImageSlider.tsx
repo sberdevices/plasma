@@ -5,7 +5,9 @@ import { Carousel, CarouselItem, SmartPaginationDots } from '@sberdevices/plasma
 import { ProductImage } from '../ProductImage/ProductImage';
 
 interface ImageSliderProps {
+    /** Ссылки на картинки */
     images: string[];
+    /** Ссылка на картинку по умолчанию */
     defaultImage?: string;
     className?: string;
 }
@@ -30,6 +32,7 @@ const StyledPaginationDots = styled(SmartPaginationDots)`
     justify-content: center;
 `;
 
+/** Компонент для отображения слайдера картинок товара. Актуально только для мобильной версии */
 export const ProductImageSlider = React.forwardRef<HTMLDivElement, ImageSliderProps>(
     ({ images, defaultImage, className }, ref) => {
         const [index, setIndex] = React.useState(0);

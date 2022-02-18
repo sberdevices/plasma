@@ -5,10 +5,14 @@ import { Carousel, CarouselItem, detectDevice, DeviceKind, Footnote2, ParagraphT
 import { ProductVariationItem } from './ProductVariationItem/ProductVariationItem';
 
 export interface ProductVariationSwitcherProps {
+    /** Заголовок */
     title: React.ReactNode;
+    /** Варианты товара */
     variations: React.ReactNode[];
+    /** Выбранный вариант */
     activeIndex: number;
     className?: string;
+    /** Колбэк, вызываемый при выборе варианта */
     onChange: (index: number) => void;
 }
 
@@ -35,6 +39,7 @@ const StyledCarousel = styled(Carousel)`
     mask-image: linear-gradient(270deg, rgba(196, 196, 196, 0) 0%, #c4c4c4 25.92%);
 `;
 
+/** Компонент предназначен для выбора модификации товара */
 export const ProductVariationSwitcher = React.memo<ProductVariationSwitcherProps>(
     ({ title, variations, activeIndex, className, onChange }) => {
         const [carouselIndex, setCarouselIndex] = React.useState(activeIndex);

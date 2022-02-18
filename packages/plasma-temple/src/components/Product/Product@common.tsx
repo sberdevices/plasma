@@ -16,14 +16,25 @@ import { ProductRecommendations } from './ProductRecommendations/ProductRecommen
 import { ProductToggleButtonProps } from './ProductToggleButton/ProductToggleButton';
 
 export interface ProductProps<Id = unknown, VariationId = unknown> {
+    /** Данные продукта */
     product: ProductEntity<Id>;
+    /** Пропсы экшен кнопки */
     actionButtonProps: ProductActionButtonProps;
+    /** Модификации товара */
     variations?: ProductVariationType<VariationId>[];
+    /** Рекомендации товара */
     recommendations?: { title: string; items: ProductEntity<Id>[] };
+    /** Ссылка на картинку товара по умолчанию */
     defaultImage?: string;
     className?: string;
+    /** Колбэк, вызываемый при выборе модификации товара */
     onChangeVariation?: (id: VariationId, index: number) => void;
+    /** Колбэк, вызываемый при клике по карточке рекомендации */
     onClickRecommendation?: (recommendation: ProductEntity<Id>, index: number) => void;
+    /**
+     * Кастомная кнопка для раскрытия/скрытия части деталей.
+     * Актуальна для устройств с пультом и SberPortal
+     */
     renderToggleButton?: (props: Pick<ProductToggleButtonProps, 'expanded' | 'toggle'>) => React.ReactNode;
 }
 

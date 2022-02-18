@@ -10,4 +10,5 @@ const mapDeviceToProduct: Record<DeviceKind, React.FC<ProductProps>> = {
     mobile: ProductMobile,
 };
 
+/** Компонент страницы товара (без заголовка) */
 export const Product = mapDeviceToProduct[detectDevice()];

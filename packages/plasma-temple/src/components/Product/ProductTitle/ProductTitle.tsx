@@ -12,4 +12,5 @@ const mapDeviceToProductTitle: Record<DeviceKind, React.FC<ProductTitleProps>> =
     mobile: ProductTitleMobile,
 };
 
+/** Заголовок товара на странице товара */
 export const ProductTitle = mapDeviceToProductTitle[detectDevice()];

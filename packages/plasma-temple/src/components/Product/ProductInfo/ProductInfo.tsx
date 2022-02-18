@@ -10,4 +10,8 @@ const mapDeviceToProductInfo: Record<DeviceKind, React.FC<ProductInfoProps>> = {
     mobile: ProductInfoMobile,
 };
 
+/**
+ * Компонент для отображения информации (описания) о товаре
+ * Актуален для устройств с пультом и SberPortal
+ */
 export const ProductInfo = mapDeviceToProductInfo[detectDevice()];

@@ -13,4 +13,5 @@ const mapDeviceToProductPrice: Record<DeviceFamily, React.FC<ProductPriceProps>>
     mobile: ProductPriceSberPortal,
 };
 
+/** Компонент для отображения цены на странице товара */
 export const ProductPrice = mapDeviceToProductPrice[detectDevice()];

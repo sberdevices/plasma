@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 export interface ProductImageProps {
+    /** Ссылка на картинку */
     src?: string;
+    /** Ссылка на картинку по умолчанию */
     defaultSrc?: string;
     className?: string;
 }
@@ -21,6 +23,10 @@ const StyledImage = styled.img`
     border-radius: 1rem;
 `;
 
+/**
+ * Компонент для отображения картинки товара, с возможностью указать картинку по умолчанию
+ * при отсутствии картинки или ошибке загрузки
+ */
 export function ProductImage({ src = '', defaultSrc = '', className }: ProductImageProps) {
     const [isDefault, setDefault] = React.useState(!src);
 

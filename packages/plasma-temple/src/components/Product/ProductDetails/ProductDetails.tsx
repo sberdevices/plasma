@@ -5,7 +5,9 @@ import { detectDevice, DeviceKind, Headline3, Button2, ParagraphText2 } from '@s
 import { DetailsItemProps, ProductDetailsItem } from './ProductDetailsItem/ProductDetailsItem';
 
 export interface ProductDetailsProps {
+    /** Детали (характеристики) товара */
     details: (DetailsItemProps | React.ReactNode)[];
+    /** Заголовок */
     title?: React.ReactNode;
     className?: string;
 }
@@ -30,6 +32,7 @@ export const StyledTitle = styled(mapDeviceToTitle[detectDevice()])`
     margin-bottom: 0.75rem;
 `;
 
+/** Компонент для отображения деталей (характеристик) товара */
 export const ProductDetails: React.FC<ProductDetailsProps> = ({ className, details, title }) => {
     return (
         <div className={className}>
