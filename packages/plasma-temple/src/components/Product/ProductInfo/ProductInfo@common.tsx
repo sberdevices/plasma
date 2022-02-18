@@ -15,9 +15,15 @@ import { useCollapse } from '../../Collapse/hooks/useCollapse';
 import { ProductToggleButton, ProductToggleButtonProps } from '../ProductToggleButton/ProductToggleButton';
 
 export interface ProductInfoProps {
+    /** Информация (описание) о товаре */
     info: React.ReactNode;
+    /** Высота контента в пикселах, отображаемого по умолчанию */
     fixedHeight?: number;
+    /** Заголовок */
     title?: React.ReactNode;
+    /**
+     * Кастомная кнопка для раскрытия/скрытия части деталей.
+     */
     renderToggleButton?: (props: Pick<ProductToggleButtonProps, 'expanded' | 'toggle'>) => React.ReactNode;
 }
 

@@ -16,7 +16,7 @@ const StyledPrice = styled(Price)<{ old?: boolean }>`
         `}
 `;
 
-export const ProductPriceCommon: React.FC<ProductPriceProps> = ({ price, oldPrice, currency, className }) => {
+export const ProductPriceCommon: React.FC<ProductPriceProps> = ({ price, oldPrice, className, ...rest }) => {
     if (!price) {
         return null;
     }
@@ -24,11 +24,11 @@ export const ProductPriceCommon: React.FC<ProductPriceProps> = ({ price, oldPric
     return (
         <Row className={className}>
             <Col>
-                <StyledPrice currency={currency}>{price}</StyledPrice>
+                <StyledPrice {...rest}>{price}</StyledPrice>
             </Col>
             {oldPrice && (
                 <Col>
-                    <StyledPrice currency={currency} old>
+                    <StyledPrice {...rest} old>
                         {oldPrice}
                     </StyledPrice>
                 </Col>

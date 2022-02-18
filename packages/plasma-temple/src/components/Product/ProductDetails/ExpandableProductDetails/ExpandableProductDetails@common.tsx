@@ -5,7 +5,9 @@ import { ProductDetails, ProductDetailsProps } from '../ProductDetails';
 import { ProductToggleButton, ProductToggleButtonProps } from '../../ProductToggleButton/ProductToggleButton';
 
 export interface ExpandableProductDetailsProps extends ProductDetailsProps {
+    /** Количество элементов отображаемых по умолчанию. */
     fixedLines?: number;
+    /** Кастомная кнопка для раскрытия/скрытия части деталей. */
     renderToggleButton?: (props: Pick<ProductToggleButtonProps, 'expanded' | 'toggle'>) => React.ReactNode;
 }
 

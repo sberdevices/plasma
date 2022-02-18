@@ -16,9 +16,12 @@ import { ProductEntity } from '../types';
 import { ProductRecommendationsItem } from './ProductRecommendationsItem/ProductRecommendationsItem';
 
 export interface ProductRecommendationsProps<Id = unknown> {
+    /** Заголовок */
     title: React.ReactNode;
+    /** Рекомендации */
     recommendations: ProductEntity<Id>[];
     className?: string;
+    /** Колбэк, вызываемый при клике по карточке рекомендации */
     onClick?: (recommendation: ProductEntity, index: number) => void;
 }
 
@@ -83,6 +86,7 @@ function ProductRecommendationsComponent<Id = unknown>({
     );
 }
 
+/** Компонент для показа рекомендаций на странице товара */
 export const ProductRecommendations = React.memo(
     ProductRecommendationsComponent,
 ) as typeof ProductRecommendationsComponent;

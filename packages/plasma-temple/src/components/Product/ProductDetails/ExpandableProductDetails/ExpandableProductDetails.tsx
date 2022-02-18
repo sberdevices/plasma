@@ -10,4 +10,9 @@ const mapDeviceToExpandableProductDetails: Record<DeviceKind, React.FC<Expandabl
     mobile: ExpandableProductDetailsMobile,
 };
 
+/**
+ * Компонент для отображения деталей (характеристик) товара
+ * с возможность по умолчанию скрывать часть характеристик
+ * Актуален для устройств с пультом и SberPortal
+ */
 export const ExpandableProductDetails = mapDeviceToExpandableProductDetails[detectDevice()];
