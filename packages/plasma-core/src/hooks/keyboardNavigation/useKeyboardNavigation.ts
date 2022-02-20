@@ -1,6 +1,6 @@
-import { MutableRefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { moveFocusToElement, getActionFromKey, getUpdatedIndex, noop, SelectActions } from './helpers';
+import { getActionFromKey, getUpdatedIndex, noop, SelectActions } from './helpers';
 import { useOnComboType } from './useOnComboType';
 
 export interface Item {
@@ -14,9 +14,11 @@ export interface UseKeyboardNavigation {
     setIsOpen: (open: boolean) => void;
     items: Item[];
     onActiveChange?: (id: string) => void;
-    previousFocus?: MutableRefObject<HTMLElement> | null;
     onItemClick: (item: Item) => void;
     isNested?: boolean;
+    openedNestedDropdown?: boolean | number;
+    setOpenedNestedDropdown: (openedNestedDropdown: boolean | number) => void;
+    multiselect?: boolean;
 }
 
 export const useKeyboardNavigation = ({
@@ -24,16 +26,17 @@ export const useKeyboardNavigation = ({
     setIsOpen,
     items,
     onActiveChange,
-    previousFocus,
     onItemClick,
     isNested,
+    openedNestedDropdown,
+    setOpenedNestedDropdown,
+    multiselect,
 }: UseKeyboardNavigation) => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const dropdownListRef = useRef<HTMLDivElement | null>(null);
 
     const popupRef = useRef<HTMLDivElement | null>(null);
-    const lastFocus = useRef<HTMLElement | null>(null);
 
     useEffect(() => {
         if (onActiveChange && items[activeIndex]?.value) {
@@ -47,6 +50,15 @@ export const useKeyboardNavigation = ({
         (event: KeyboardEvent) => {
             if (isNested) {
                 event.stopPropagation();
+            }
+            if (typeof openedNestedDropdown === 'number') {
+                const item = dropdownListRef.current?.children.item(openedNestedDropdown);
+                if (item) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    item.dispatchEvent(new KeyboardEvent('keydown', { key: event.key, altKey: event.altKey }));
+                    return;
+                }
             }
             const { key } = event;
             const max = items.length - 1;
@@ -90,8 +102,7 @@ export const useKeyboardNavigation = ({
                             return;
                         }
 
-                        lastFocus.current = document.activeElement as HTMLElement;
-                        moveFocusToElement(firstChild);
+                        setOpenedNestedDropdown(activeIndex);
                         onActiveChange?.('');
                         firstChild.dispatchEvent(
                             new KeyboardEvent('keydown', {
@@ -101,17 +112,13 @@ export const useKeyboardNavigation = ({
 
                         return;
                     }
-                    if (previousFocus && previousFocus.current) {
-                        moveFocusToElement(previousFocus.current);
-                    }
                     onItemClick(item);
-                    setIsOpen(false);
+                    if (!multiselect) {
+                        setIsOpen(false);
+                    }
                     return;
                 }
                 case SelectActions.Close: {
-                    if (previousFocus && previousFocus.current) {
-                        moveFocusToElement(previousFocus.current);
-                    }
                     setIsOpen(false);
                     return;
                 }
@@ -135,8 +142,9 @@ export const useKeyboardNavigation = ({
             onActiveChange,
             onComboType,
             onItemClick,
-            previousFocus,
             setIsOpen,
+            openedNestedDropdown,
+            multiselect,
         ],
     );
 
@@ -154,5 +162,5 @@ export const useKeyboardNavigation = ({
         return noop;
     }, [onComboKeyDown]);
 
-    return { popupRef, dropdownListRef, lastFocus, activeIndex, changeActiveIndex: setActiveIndex };
+    return { popupRef, dropdownListRef, activeIndex, changeActiveIndex: setActiveIndex };
 };
