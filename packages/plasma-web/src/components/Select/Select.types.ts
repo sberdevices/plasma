@@ -15,11 +15,9 @@ export interface SelectDopdownProps extends PopupProps, Pick<DropdownProps, 'ite
     children?: never;
 
     /**
-     * id для listbox(контейнера для опций). Используется для a11y
+     * id для listbox(контейнера для опций). Используется для a11y. Должен быть уникальным
      */
     listId?: string;
-
-    previousFocus?: React.MutableRefObject<HTMLElement | null>;
 
     onActiveChange?: (id: string) => void;
 

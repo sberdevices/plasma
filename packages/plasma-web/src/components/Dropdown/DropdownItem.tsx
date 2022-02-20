@@ -174,7 +174,6 @@ export const DropdownItem: FC<DropdownItemProps> = ({
             aria-label={label}
             onMouseOver={onHover}
             onFocus={onFocus}
-            id={value.toString()}
             {...rest}
         >
             {contentLeft && <StyledContent>{contentLeft}</StyledContent>}

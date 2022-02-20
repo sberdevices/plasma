@@ -1,4 +1,4 @@
-import React, { FC, useState, useCallback, MutableRefObject, RefAttributes, useEffect } from 'react';
+import React, { FC, useState, useCallback, RefAttributes, useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import { PopupProps, useKeyboardNavigation } from '@sberdevices/plasma-core';
 
@@ -40,15 +40,23 @@ export const SelectDropdown: FC<SelectDopdownProps> = ({
     multiselect,
     disabled,
     onItemClick: onItemClickExternal,
-    previousFocus,
     listId,
     onActiveChange,
     isNested,
     isOpen: outerIsOpen,
+    onToggle: onToggleExternal,
     ...rest
 }) => {
     const [isOpen, setIsOpen] = useState(Boolean(false));
+    const oldIsOpen = useRef<boolean | null>(null);
     const hasItems = Array.isArray(items) && items.length > 0;
+    useEffect(() => {
+        if (oldIsOpen.current !== null && oldIsOpen.current !== isOpen) {
+            onToggleExternal?.(isOpen);
+        }
+        oldIsOpen.current = isOpen;
+    }, [isOpen, onToggleExternal]);
+
     useEffect(() => {
         if (typeof outerIsOpen === 'boolean') {
             setIsOpen(outerIsOpen);
@@ -74,27 +82,37 @@ export const SelectDropdown: FC<SelectDopdownProps> = ({
         [hasItems, disabled],
     );
 
-    const { popupRef, dropdownListRef, lastFocus, activeIndex, changeActiveIndex } = useKeyboardNavigation({
+    const [openedNestedDropdown, setOpenedNestedDropdown] = useState<boolean | number>(false);
+
+    const { popupRef, dropdownListRef, activeIndex, changeActiveIndex } = useKeyboardNavigation({
         isOpen,
         setIsOpen,
         items,
         onActiveChange,
-        previousFocus: previousFocus?.current ? (previousFocus as MutableRefObject<HTMLElement>) : null,
         onItemClick,
         isNested,
+        openedNestedDropdown,
+        setOpenedNestedDropdown,
+        multiselect,
     });
+
+    const onClose = useCallback(() => {
+        setOpenedNestedDropdown(false);
+    }, []);
 
     return (
         <StyledPopup ref={popupRef} isOpen={isOpen} onToggle={onToggle} {...rest}>
-            <DropdownList id={listId} role="listbox" ref={dropdownListRef}>
+            <DropdownList id={listId} role="menu" ref={dropdownListRef}>
                 {items.map((item, idx) =>
                     item.items && item.items.length ? (
                         <NestedDropdown
-                            lastFocus={lastFocus}
                             item={item}
                             id={`${listId}-${idx}`}
                             isHovered={idx === activeIndex}
+                            onActiveChange={onActiveChange}
                             onItemClick={onItemClick}
+                            multiselect={multiselect}
+                            onClose={onClose}
                         />
                     ) : (
                         <DropdownItem
