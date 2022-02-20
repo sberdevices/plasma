@@ -143,8 +143,3 @@ export const getIndexByLetter = (options: string[], filter: string, startIndex =
 };
 
 export const noop = () => {};
-
-export const moveFocusToElement = (el: HTMLElement) => {
-    el.tabIndex = 1;
-    el.focus();
-};
