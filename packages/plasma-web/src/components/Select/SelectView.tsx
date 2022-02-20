@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import styled, { css } from 'styled-components';
 import {
     TextFieldRoot,
@@ -144,7 +144,12 @@ export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
         ref,
     ) => {
         const hasItems = Array.isArray(items) && items.length > 0;
-
+        const [selectedItem, setSelectedItem] = useState<string | undefined>(undefined);
+        const [isOpen, setOpen] = useState(false);
+        const handleBlur = useCallback(() => {
+            setOpen(false);
+            setSelectedItem(undefined);
+        }, []);
         return (
             <StyledRoot
                 $size="m"
@@ -157,16 +162,25 @@ export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
             >
                 <SelectDropdown
                     items={items}
+                    onToggle={setOpen}
                     trigger="click"
                     placement="bottom"
+                    listId="combo1"
                     multiselect={multiselect}
                     disabled={disabled}
                     onItemClick={onItemClick}
+                    onActiveChange={setSelectedItem}
                     disclosure={
                         <StyledButton
                             ref={ref}
+                            onBlur={handleBlur}
                             disabled={disabled}
                             status={status}
+                            aria-activedescendant={selectedItem}
+                            aria-controls="combo1"
+                            aria-expanded={isOpen}
+                            aria-haspopup="menu"
+                            role="combobox"
                             type="button"
                             hasItems={hasItems}
                             {...rest}

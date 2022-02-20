@@ -1,45 +1,58 @@
-import React, { useState } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 
 import { DropdownItem as DropdownItemType, DropdownNode } from '../Dropdown/Dropdown.types';
 import { DropdownItem } from '../Dropdown';
 
 import { SelectDropdown } from './SelectDropdown';
 
-export const NestedDropdown = ({
-    lastFocus,
-    item,
-    onItemClick,
-    id,
-    isHovered,
-}: {
-    lastFocus: React.MutableRefObject<HTMLElement | null>;
+export interface NestedDropdownProps {
     item: DropdownNode;
     id: string;
     onItemClick?: (item: DropdownItemType) => void;
     isHovered?: boolean;
+    onActiveChange?: (id: string) => void;
+    onClose?: () => void;
+    multiselect?: boolean;
+}
+
+export const NestedDropdown: FC<NestedDropdownProps> = ({
+    item,
+    onItemClick,
+    id,
+    isHovered,
+    onActiveChange,
+    onClose,
+    multiselect,
 }) => {
     const [isOpen, setOpen] = useState(false);
-    const [selectedItem, setSelectedItem] = useState<string | undefined>(undefined);
-
+    const handleToggle = useCallback(
+        (wasOpen) => {
+            if (!wasOpen) {
+                onClose?.();
+            }
+            setOpen(wasOpen);
+        },
+        [onClose],
+    );
     return (
         <SelectDropdown
-            previousFocus={lastFocus}
             key={item.value}
-            trigger="click"
+            trigger="hover"
             placement="right"
             items={item.items || []}
             onItemClick={onItemClick}
-            onActiveChange={setSelectedItem}
-            onToggle={setOpen}
+            multiselect={multiselect}
+            onActiveChange={onActiveChange}
+            onToggle={handleToggle}
             isOpen={isOpen}
             listId={id}
             isNested
             disclosure={
                 <DropdownItem
-                    aria-activedescendant={selectedItem}
                     aria-expanded={isOpen}
-                    aria-haspopup="listbox"
+                    aria-haspopup="menu"
                     role="combobox"
+                    aria-label={item.label}
                     aria-controls={id}
                     isHovered={isHovered}
                     {...item}
