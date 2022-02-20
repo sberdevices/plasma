@@ -116,6 +116,7 @@ export const SelectDropdown: FC<SelectDopdownProps> = ({
                         />
                     ) : (
                         <DropdownItem
+                            multiselect={multiselect}
                             isHovered={idx === activeIndex}
                             key={item.value}
                             onHover={() => changeActiveIndex(idx)}

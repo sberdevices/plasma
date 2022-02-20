@@ -144,13 +144,13 @@ export const Trigger = () => {
                     listId="combo1"
                     items={items}
                     trigger="click"
+                    multiselect
                 >
                     <Button
                         aria-activedescendant={selectedItem}
                         aria-controls="combo1"
                         aria-expanded={isOpen}
-                        aria-haspopup="listbox"
-                        id="combobox1"
+                        aria-haspopup="menu"
                         role="combobox"
                         text="Click me"
                     />

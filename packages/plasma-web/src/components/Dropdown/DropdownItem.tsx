@@ -26,6 +26,7 @@ export interface DropdownItemProps
     onClick?: (item: DropdownItemType) => void;
     onHover?: () => void;
     onFocus?: () => void;
+    multiselect?: boolean;
 }
 
 const StyledDropdownItem = styled.a<{ isHovered?: boolean; $disabled?: boolean; $color?: string }>`
@@ -126,6 +127,7 @@ export const DropdownItem: FC<DropdownItemProps> = ({
     onClick: onClickExternal,
     onHover,
     onFocus,
+    multiselect,
     ...rest
 }) => {
     const itemRef = useRef<HTMLAnchorElement>(null);
@@ -169,8 +171,8 @@ export const DropdownItem: FC<DropdownItemProps> = ({
             $disabled={isDisabled}
             $color={color}
             onClick={onClick}
-            role="option"
-            aria-selected={isActiveNode}
+            role={multiselect ? 'menuitemcheckbox' : 'menuitemradio'}
+            aria-checked={isActiveNode}
             aria-label={label}
             onMouseOver={onHover}
             onFocus={onFocus}

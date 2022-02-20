@@ -1,44 +1,53 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import { DropdownItem as DropdownItemType, DropdownNode } from './Dropdown.types';
 import { DropdownItem } from './DropdownItem';
 import { Dropdown } from './Dropdown';
 
-export const NestedDropdown = ({
-    lastFocus,
-    item,
-    onItemClick,
-    id,
-    isHovered,
-}: {
-    lastFocus: React.MutableRefObject<HTMLElement | null>;
+export interface NestedDropdownProps {
     item: DropdownNode;
     id: string;
     onItemClick?: (item: DropdownItemType) => void;
     isHovered?: boolean;
+    onActiveChange?: (id: string) => void;
+    onClose?: () => void;
+    multiselect?: boolean;
+}
+
+export const NestedDropdown: FC<NestedDropdownProps> = ({
+    item,
+    onItemClick,
+    id,
+    isHovered,
+    onActiveChange,
+    onClose,
+    multiselect,
 }) => {
     const [isOpen, setOpen] = useState(false);
-    const [selectedItem, setSelectedItem] = useState<string | undefined>(undefined);
+
     return (
         <Dropdown
-            previousFocus={lastFocus}
             key={item.value}
             trigger="hover"
             placement="right"
             items={item.items!}
             onItemClick={onItemClick}
-            onActiveChange={setSelectedItem}
-            onToggle={setOpen}
+            onActiveChange={onActiveChange}
+            onToggle={(isOpen) => {
+                if (!isOpen) {
+                    onClose?.();
+                }
+                setOpen(isOpen);
+            }}
             listId={id}
             isNested
-            data-cy={`popup-${id}`}
+            multiselect={multiselect}
         >
             <DropdownItem
-                aria-activedescendant={selectedItem}
                 aria-expanded={isOpen}
-                id={`combobox1-${id}`}
-                aria-haspopup="listbox"
+                aria-haspopup="menu"
                 role="combobox"
+                aria-label={item.label}
                 aria-controls={id}
                 isHovered={isHovered}
                 {...item}
