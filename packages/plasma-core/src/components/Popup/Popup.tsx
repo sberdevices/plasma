@@ -118,7 +118,6 @@ export const Popup = memo<PopupProps & RefAttributes<HTMLDivElement>>(
                 return () => document.removeEventListener('click', onDocumentClick);
             }, []);
 
-            console.log('isOpen in Popups', isOpen);
             return (
                 <StyledRoot
                     ref={handleRef}
