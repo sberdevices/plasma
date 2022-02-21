@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { Product, TemplateEnum } from '../types';
 import stub from '../assets/stub.svg';
-import { sendProductClickEvent } from '../api/requsts';
+import { sendProductClickEvent } from '../api';
 import { adaptiveValue } from '../utils/adaptiveValue';
 
 import { ConfigContext } from './Container';

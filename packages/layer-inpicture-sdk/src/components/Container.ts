@@ -5,7 +5,7 @@ import { createContext } from 'preact';
 import classNames from 'classnames';
 
 import { Config, Product, TemplateEnum } from '../types';
-import { loadProducts, sendOpenedWidgetEvent, sendShowWidgetEvent } from '../api/requsts';
+import { loadProducts, sendOpenedWidgetEvent, sendShowWidgetEvent } from '../api';
 import { useOnceForceUpdate } from '../utils/hooks/useOnceForceUpdate';
 import { useInView } from '../utils/hooks/useInView';
 

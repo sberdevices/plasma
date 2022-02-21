@@ -2,7 +2,7 @@ import { getID } from '../utils/getId';
 import { Config, EventBody, EventProduct, EventTab, EventTypeEnum, Product } from '../types';
 
 export const loadProducts = async (img: HTMLImageElement, site: string, maxCount?: number) => {
-    const url = new URL('https://layer-dev.sberdevices.ru/iimg/v0/recognize');
+    const url = new URL('https://mcrai.sberdevices.ru/iimg/v0/recognize');
     url.search = new URLSearchParams({ url: img.src, utm: site }).toString();
 
     const response = await fetch(url.toString());
