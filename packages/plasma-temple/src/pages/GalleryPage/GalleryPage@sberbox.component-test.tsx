@@ -3,7 +3,7 @@ import { unmount } from '@cypress/react';
 import { Card, CardBody, CardMedia, CardContent, CardHeadline1 } from '@sberdevices/plasma-ui';
 
 import { navigate } from '../../../../../cypress/support/commands';
-import { wrapComponent, startApp, stubImage } from '../../testHelpers/testRenderHelpers';
+import { wrapComponent, startApp, images } from '../../testHelpers/testRenderHelpers';
 
 import { GalleryPage } from './GalleryPage';
 import { GalleryPageState } from './types';
@@ -11,8 +11,6 @@ import { GalleryPageState } from './types';
 interface State {
     gallery: GalleryPageState<{}>;
 }
-
-const imageSrc = 'https://plasma.sberdevices.ru/ui-storybook/images/320_320_0.jpg';
 
 /**
  * TODO
@@ -30,13 +28,11 @@ describe('GalleryPage', () => {
             id: i,
             position: i + 1,
             image: {
-                src: imageSrc,
+                src: images.image320,
             },
         }));
 
         beforeEach(() => {
-            stubImage(imageSrc, 'images/320_320_0.jpg');
-
             stubbedOnCardClick = cy.stub();
 
             startApp<keyof State, State>(
@@ -85,13 +81,11 @@ describe('GalleryPage', () => {
             id: i,
             position: i + 1,
             image: {
-                src: imageSrc,
+                src: images.image320,
             },
         }));
 
         beforeEach(() => {
-            stubImage(imageSrc, 'images/320_320_0.jpg');
-
             stubbedOnCardClick = cy.stub();
 
             startApp<keyof State, State>(
@@ -141,7 +135,7 @@ describe('GalleryPage', () => {
             id: i,
             position: i + 1,
             image: {
-                src: imageSrc,
+                src: images.image320,
             },
         }));
 
@@ -173,8 +167,6 @@ describe('GalleryPage', () => {
         ];
 
         beforeEach(() => {
-            stubImage(imageSrc, 'images/320_320_0.jpg');
-
             stubbedOnCardClick = cy.stub();
 
             startApp<keyof State, State>(
@@ -220,14 +212,13 @@ describe('GalleryPage', () => {
 
     describe('CustomCard in galleries', () => {
         it('Variable card height', () => {
-            stubImage(imageSrc, 'images/320_320_0.jpg');
             const stubbedData = Array.from({ length: 10 }, (_, i) => ({
                 label: `Title ${i + 1}`,
                 description: `Decription for Card ${i + 1}`,
                 id: i,
                 position: i + 1,
                 image: {
-                    src: imageSrc,
+                    src: images.image320,
                 },
             }));
 
