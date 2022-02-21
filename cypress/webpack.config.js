@@ -6,8 +6,12 @@ const fs = require('fs-extra');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const babelrc = require('../.babelrc');
 
+const resolveModule = (...fromPaths) => (...pathSegments) => path.resolve(...fromPaths, ...pathSegments);
+
 const rootPath = path.resolve(__dirname, '..');
 const packsPath = path.join(rootPath, 'packages');
+const resolveInsidePackage = resolveModule(process.env.PACKAGE_DIR, 'node_modules');
+const resolveFromRoot = resolveModule(rootPath, 'node_modules');
 
 const dummyModule = `
 "use strict";
@@ -27,7 +31,7 @@ Object.defineProperty(exports, "__esModule", {
 module.exports = function getWebpackConfig() {
     const babelOpts = { ...babelrc.env.cjs };
 
-    if (process.env.PACKEGE_DIR.includes('plasma-temple')) {
+    if (process.env.PACKAGE_DIR.includes('plasma-temple')) {
         babelOpts.plugins.push('@babel/plugin-transform-regenerator', '@babel/transform-runtime');
     }
     return {
@@ -39,22 +43,11 @@ module.exports = function getWebpackConfig() {
             extensions: ['.wasm', '.ts', '.tsx', '.mjs', '.cjs', '.js', '.jsx', '.json', '.map'],
             modules: ['node_modules'],
             alias: {
-                'styled-components': path.resolve(process.env.PACKEGE_DIR, 'node_modules', 'styled-components'),
-                react: path.resolve(process.env.PACKEGE_DIR, 'node_modules', 'react'),
-                'react-dom': path.resolve(process.env.PACKEGE_DIR, 'node_modules', 'react-dom'),
-                '@sberdevices/plasma-icons': path.resolve(
-                    process.env.PACKEGE_DIR,
-                    'node_modules',
-                    '@sberdevices',
-                    'plasma-icons',
-                ),
-                '@sberdevices/plasma-cy-utils': path.resolve(
-                    __dirname,
-                    '..',
-                    'node_modules',
-                    '@sberdevices',
-                    'plasma-cy-utils',
-                ),
+                'styled-components': resolveInsidePackage('styled-components'),
+                react: resolveInsidePackage('react'),
+                'react-dom': resolveInsidePackage('react-dom'),
+                '@sberdevices/plasma-icons': resolveInsidePackage('@sberdevices', 'plasma-icons'),
+                '@sberdevices/plasma-cy-utils': resolveFromRoot('@sberdevices', 'plasma-cy-utils'),
             },
         },
         optimization: {
@@ -77,7 +70,7 @@ module.exports = function getWebpackConfig() {
                     use: 'file-loader',
                 },
                 {
-                    test: /\.png$/,
+                    test: /\.(png|jpe?g)$/,
                     use: [
                         {
                             loader: 'url-loader',

@@ -1,0 +1,15 @@
+{
+    "componentFolder": "./packages/plasma-temple/src",
+    "testFiles": ["**/*@{common,sberbox}.component-test.{ts,tsx}"],
+    "viewportHeight": 1080,
+    "viewportWidth": 1920,
+    "env": {
+        "snapshotsDir": "cypress/snapshots/temple@sberbox",
+        "packageDir": "packages/plasma-temple",
+        "package": "plasma-temple"
+    },
+    "userAgent": "sberbox",
+    "retries": 1,
+    "video": false,
+    "scrollBehavior": false
+}
