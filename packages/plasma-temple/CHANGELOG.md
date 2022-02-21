@@ -1,3 +1,20 @@
+# v1.31.0 (Mon Feb 21 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): className for poster on VideoPage [#1103](https://github.com/sberdevices/plasma/pull/1103) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.30.1 (Fri Feb 18 2022)
 
 #### 🐛 Bug Fix

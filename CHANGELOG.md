@@ -1,3 +1,24 @@
+# (Mon Feb 21 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@1.31.0`
+  - feat(plasma-temple): className for poster on VideoPage [#1103](https://github.com/sberdevices/plasma/pull/1103) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- chore: add typescript-coverage workflow [#1093](https://github.com/sberdevices/plasma/pull/1093) ([@didolf](https://github.com/didolf))
+- `@sberdevices/plasma-b2c@1.41.0`
+  - chore(plasma-b2c): fix Modal.stories [#1105](https://github.com/sberdevices/plasma/pull/1105) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 3
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+- Дмитрий Лекомцев ([@didolf](https://github.com/didolf))
+
+---
+
 # (Fri Feb 18 2022)
 
 #### 🐛 Bug Fix
