@@ -44,7 +44,8 @@ export interface OutlineProps {
 }
 
 export const syntheticFocus: SynthesizeFocus = (ruleset, focused) => css`
-    &.focus-visible:focus {
+    &.focus-visible:focus,
+    &[data-focus-visible-added] {
         outline: none;
         ${ruleset}
     }
