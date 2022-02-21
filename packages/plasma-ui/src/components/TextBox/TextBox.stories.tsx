@@ -113,7 +113,7 @@ export const Variations = () => {
             <Row>
                 <Col size={3}>
                     <Example>
-                        <Variation>Laber+Title+Subtitle</Variation>
+                        <Variation>Label+Title+Subtitle</Variation>
                         <TextBox label={labelText} title={titleText} subTitle={subTitleText} />
                     </Example>
                 </Col>
