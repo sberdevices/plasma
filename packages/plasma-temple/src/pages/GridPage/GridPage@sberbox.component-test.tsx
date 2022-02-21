@@ -1,5 +1,5 @@
 import { navigate } from '../../../../../cypress/support/commands';
-import { wrapComponent, startApp, stubImage } from '../../testHelpers/testRenderHelpers';
+import { wrapComponent, startApp, images } from '../../testHelpers/testRenderHelpers';
 
 import { GridPage } from './GridPage';
 import { GridPageState } from './types';
@@ -8,8 +8,6 @@ interface State {
     list: GridPageState;
 }
 
-const imageSrc = 'https://plasma.sberdevices.ru/ui-storybook/images/320_320_0.jpg';
-
 describe('GridPage', () => {
     let stubbedCallback: Function;
 
@@ -17,14 +15,12 @@ describe('GridPage', () => {
         text: `Title ${i + 1}`,
         position: i + 1,
         image: {
-            src: imageSrc,
+            src: images.image320,
         },
         id: String(i),
     }));
 
     beforeEach(() => {
-        stubImage(imageSrc, 'images/320_320_0.jpg');
-
         stubbedCallback = cy.stub();
 
         startApp<keyof State, State>(

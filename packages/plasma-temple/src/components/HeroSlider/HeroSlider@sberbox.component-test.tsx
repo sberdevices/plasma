@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { navigate } from '../../../../../cypress/support/commands';
-import { startApp, stubImage, wrapComponent } from '../../testHelpers/testRenderHelpers';
+import { startApp, wrapComponent, images } from '../../testHelpers/testRenderHelpers';
 
 import { HeroSlider } from './HeroSlider';
 import { HeroSliderProps } from './types';
@@ -11,8 +11,6 @@ interface State {
         items: HeroSliderProps;
     };
 }
-
-const imageSrc = 'https://plasma.sberdevices.ru/ui-storybook/images/320_320_0.jpg';
 
 function initTests<T>(outerProps: T) {
     return startApp<keyof State, State>(
@@ -28,12 +26,11 @@ function initTests<T>(outerProps: T) {
     );
 }
 
-describe('HeroSlider', () => {
+describe('HeroSlider@sberbox', () => {
     let onItemClick: () => void;
     let onActiveItemChange: () => void;
 
     beforeEach(() => {
-        stubImage(imageSrc, 'images/320_320_0.jpg');
         onItemClick = cy.stub();
         onActiveItemChange = cy.stub();
 
@@ -43,7 +40,7 @@ describe('HeroSlider', () => {
             items: Array.from({ length: 6 }, (_, i) => {
                 return {
                     title: `Slide ${i + 1}`,
-                    src: imageSrc,
+                    src: images.image320,
                     id: i + 1,
                 };
             }),
@@ -53,8 +50,23 @@ describe('HeroSlider', () => {
         });
     });
 
-    it('render', () => {
-        cy.matchImageSnapshot();
+    it('circular play', () => {
+        cy.sendNavigateAction(navigate.RIGHT, { times: 5 });
+
+        cy.get('[data-cy="hero-slide-5"]').should('be.visible');
+
+        cy.get('[data-cy="hero-slide-0"]', { timeout: 3500 })
+            .should('be.visible')
+            .then(() => {
+                expect(onActiveItemChange).to.be.calledWithExactly(
+                    {
+                        title: 'Slide 1',
+                        src: images.image320,
+                        id: 1,
+                    },
+                    0,
+                );
+            });
     });
 
     it('switch forward by keyboard', () => {
@@ -63,7 +75,7 @@ describe('HeroSlider', () => {
             expect(onActiveItemChange).to.be.calledWithExactly(
                 {
                     title: 'Slide 3',
-                    src: imageSrc,
+                    src: images.image320,
                     id: 3,
                 },
                 2,
@@ -79,7 +91,7 @@ describe('HeroSlider', () => {
             expect(onActiveItemChange).to.be.calledWithExactly(
                 {
                     title: 'Slide 5',
-                    src: imageSrc,
+                    src: images.image320,
                     id: 5,
                 },
                 4,
@@ -96,7 +108,7 @@ describe('HeroSlider', () => {
                 expect(onItemClick).to.be.calledWithExactly(
                     {
                         title: 'Slide 1',
-                        src: imageSrc,
+                        src: images.image320,
                         id: 1,
                     },
                     0,
@@ -104,60 +116,5 @@ describe('HeroSlider', () => {
 
                 expect(onItemClick).to.be.called;
             });
-    });
-
-    it('should switch to next slide automaticaly', () => {
-        cy.get('[data-cy="hero-slide-1"]', { timeout: 3500 })
-            .should('be.visible')
-            .then(() => {
-                expect(onActiveItemChange).to.be.calledWithExactly(
-                    {
-                        title: 'Slide 2',
-                        src: imageSrc,
-                        id: 2,
-                    },
-                    1,
-                );
-            });
-    });
-
-    it('circular play', () => {
-        cy.sendNavigateAction(navigate.RIGHT, { times: 5 });
-
-        cy.get('[data-cy="hero-slide-5"]').should('be.visible');
-
-        cy.get('[data-cy="hero-slide-0"]', { timeout: 3500 })
-            .should('be.visible')
-            .then(() => {
-                expect(onActiveItemChange).to.be.calledWithExactly(
-                    {
-                        title: 'Slide 1',
-                        src: imageSrc,
-                        id: 1,
-                    },
-                    0,
-                );
-            });
-    });
-});
-
-describe('HeroSlider without timline', () => {
-    it('render', () => {
-        stubImage(imageSrc, 'images/320_320_0.jpg');
-
-        initTests({
-            withTimeline: false,
-            disableAutofocus: true,
-            items: Array.from({ length: 6 }, (_, i) => {
-                return {
-                    title: `Slide ${i + 1}`,
-                    src: imageSrc,
-                    id: i + 1,
-                };
-            }),
-            buttonText: 'Покажи',
-        }).then(() => {
-            cy.matchImageSnapshot();
-        });
     });
 });

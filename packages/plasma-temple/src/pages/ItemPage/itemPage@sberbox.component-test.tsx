@@ -1,7 +1,7 @@
 import React from 'react';
 import { Body1, Col } from '@sberdevices/plasma-ui';
 
-import { wrapComponent, startApp, stubImage } from '../../testHelpers/testRenderHelpers';
+import { wrapComponent, startApp, images } from '../../testHelpers/testRenderHelpers';
 import { navigate } from '../../../../../cypress/support/commands';
 
 import { ItemPage } from './ItemPage';
@@ -11,15 +11,11 @@ interface State {
     detail: ItemPageState;
 }
 
-const imageSrc = 'https://plasma.sberdevices.ru/ui-storybook/images/320_320_0.jpg';
-
 let onItemShow: Function;
 let onItemFocus: Function;
 
 function beforeTests<T extends object>(partialProps?: T) {
     beforeEach(() => {
-        stubImage(imageSrc, 'images/320_320_0.jpg');
-
         onItemShow = cy.stub();
         onItemFocus = cy.stub();
 
@@ -39,7 +35,7 @@ function beforeTests<T extends object>(partialProps?: T) {
                         id: String(i + 1),
                         label: `Entity ${i + 1}`,
                         image: {
-                            src: imageSrc,
+                            src: images.image320,
                             ratio: '1 / 1',
                         },
                         position: i + 1,

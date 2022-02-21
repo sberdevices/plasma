@@ -11,6 +11,8 @@ import { mount } from '@sberdevices/plasma-cy-utils';
 import { OnStartFn, PlasmaApp } from '../components/PlasmaApp/PlasmaApp';
 import { GetInitialProps, Page, PageProps } from '../components/Page/Page';
 
+import image320 from './assets/320_320_0.jpg';
+
 // eslint-disable-next-line import/no-mutable-exports
 let mockAssistant: ReturnType<typeof createAssistantHostMock>;
 
@@ -240,10 +242,16 @@ function stubImage(originalSrc: string, fixture: string): string {
     const alias = `@${aliasName}`;
 
     cy.intercept(originalSrc, (req) => {
-        req.reply({ fixture });
-    });
+        req.reply((res) => {
+            res.send({ fixture });
+        });
+    }).as(aliasName);
 
     return alias;
 }
 
 export { mockAssistant, sendAction, stubImage };
+
+export const images = {
+    image320,
+};

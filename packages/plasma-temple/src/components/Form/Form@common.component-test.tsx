@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { navigate } from '../../../../../cypress/support/commands';
 import { wrapComponent, startApp, sendSmartAppData } from '../../testHelpers/testRenderHelpers';
 import { Header } from '../Header/Header';
 import { HeaderProps } from '../Header/types';
@@ -167,70 +166,6 @@ describe('Form', { scrollBehavior: false }, () => {
             },
         );
     });
-
-    it('render and fill first field', () => {
-        cy.focused().type('Ivan Ivanov');
-
-        cy.matchImageSnapshot();
-    });
-
-    it('render and fill second field', () => {
-        cy.focused()
-            .type('Ivan Ivanov')
-            .sendNavigateAction([navigate.ENTER])
-            .then(() => {
-                sendSmartAppData({
-                    type: 'fieldFill',
-                    payload: {
-                        value: ['2021-05-12'],
-                    },
-                });
-            })
-            .then(() => {
-                cy.focused().click();
-            })
-            .then(() => {
-                expect(onSubmitStub).to.be.calledWith({
-                    name: 'Ivan Ivanov',
-                    date: '2021-05-12',
-                });
-
-                cy.matchImageSnapshot();
-            });
-    });
-});
-
-describe('Form -- check validity state', { scrollBehavior: false }, () => {
-    beforeEach(() => {
-        initTestForm(
-            createForm<{ email: string }>({
-                email: {
-                    type: 'manual',
-                    component: (props) => <Input {...props} required type="email" />,
-                    label: 'Email',
-                    validationMessages: {
-                        valueMissing: 'Please fill the field',
-                        typeMismatch: 'Please enter correct value',
-                    },
-                },
-            }),
-            {
-                initialData: { email: '' },
-            },
-        );
-    });
-
-    it('valueMissing state', () => {
-        cy.focused().sendNavigateAction([navigate.ENTER]);
-
-        cy.matchImageSnapshot();
-    });
-
-    it('typeMismatch', () => {
-        cy.focused().type('Иоанн Грозный').sendNavigateAction([navigate.ENTER]);
-
-        cy.matchImageSnapshot();
-    });
 });
 
 describe('Form -- different types of fields', () => {
@@ -280,12 +215,6 @@ describe('reaction on user actions', { scrollBehavior: false }, () => {
                 onSubmit: onSubmitStub,
             },
         );
-    });
-
-    it('switch to manual mode', () => {
-        cy.focused().click();
-
-        cy.matchImageSnapshot();
     });
 
     it('get error from voice action', () => {
