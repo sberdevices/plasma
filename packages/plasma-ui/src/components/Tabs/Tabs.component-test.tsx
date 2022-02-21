@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
 import { mount, CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
+import styled from 'styled-components';
 
 const items = [{ label: 'Joy' }, { label: 'Sber' }, { label: 'Athena' }];
 
 describe('plasma-ui: Tabs', () => {
+    const withAutoFocus = getComponent('withAutoFocus');
+    const addFocus = getComponent('addFocus');
+
     const Tabs = getComponent('Tabs');
     const TabItem = getComponent('TabItem');
-    const withAutoFocus = getComponent('withAutoFocus');
     const AutoFocusTabItem = withAutoFocus(TabItem);
+
+    const StyledTabItem = styled(TabItem)`
+        ${addFocus({
+            outlineColor: 'red',
+            outlineRadius: '1.125rem',
+        })}
+    `;
 
     const ControlledTabs = () => {
         const [index, setIndex] = useState(0);
@@ -132,6 +142,35 @@ describe('plasma-ui: Tabs', () => {
         );
 
         cy.get('div > button:nth-child(2)').focus();
+        cy.matchImageSnapshot();
+    });
+
+    // Данный тест должен обязательно идти после проверки на autoFocus,
+    // иначе фокус в предыдущих двух не будет работать
+    it('item add styled focus', () => {
+        function Demo() {
+            const [index, setIndex] = React.useState(1);
+
+            return (
+                <Tabs>
+                    {items.map((item, i) => (
+                        <StyledTabItem key={i} isActive={i === index} onClick={() => setIndex(i)}>
+                            {item.label}
+                        </StyledTabItem>
+                    ))}
+                </Tabs>
+            );
+        }
+
+        mount(
+            <CypressTestDecorator>
+                <Demo />
+            </CypressTestDecorator>,
+        );
+
+        cy.get('div > button:nth-child(2)').focus();
+        cy.get('div > button:nth-child(1)').focus().click({ force: true });
+
         cy.matchImageSnapshot();
     });
 
