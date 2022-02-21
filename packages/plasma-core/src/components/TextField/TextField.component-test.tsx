@@ -46,6 +46,16 @@ describe('plasma-core: TextField', () => {
         cy.matchImageSnapshot();
     });
 
+    it(':readOnly', () => {
+        mount(
+            <CypressTestDecorator>
+                <TextField value="Value" placeholder="Placeholder" helperText="Helper text" readOnly />
+            </CypressTestDecorator>,
+        );
+
+        cy.matchImageSnapshot();
+    });
+
     it(':success, :warning, :error', () => {
         mount(
             <CypressTestDecorator>

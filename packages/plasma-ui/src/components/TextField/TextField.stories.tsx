@@ -24,7 +24,6 @@ const propsToDisable = [
     'checked',
     'maxLength',
     'minLength',
-    'readOnly',
     'required',
 ];
 
@@ -82,6 +81,7 @@ Default.args = {
     label: 'Label',
     helperText: 'Helper text',
     disabled: false,
+    readOnly: false,
     status: '' as 'success',
     size: 'l',
     enableLeftIcon: true,
