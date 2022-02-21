@@ -1,6 +1,6 @@
 import { css, InterpolationFunction } from 'styled-components';
 
-import { accent, tertiary } from '../../tokens';
+import { accent } from '../../tokens';
 import { fieldStatuses } from '../Field';
 import type { FieldProps } from '../Field';
 
@@ -31,8 +31,6 @@ export const applyInputStyles: InterpolationFunction<StyledInputProps> = ({ stat
     /* stylelint-disable-next-line selector-nested-pattern */
     &[readonly] {
         cursor: default;
-        box-shadow: none;
-        color: ${tertiary};
     }
 
     ${$size === 'l'
