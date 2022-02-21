@@ -3,6 +3,8 @@ node_modules
 
 actions/versionate-docs/lib
 actions/versionate-docs/node_modules
+actions/platform-test/lib
+actions/platform-test/node_modules
 
 packages/plasma-colors/*
 !packages/plasma-colors/additional.ts
