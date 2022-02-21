@@ -1,3 +1,16 @@
+# (Mon Feb 21 2022)
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/layer-inpicture-sdk@0.8.2`
+  - fix(inpicture-sdk): переключение на прод ручку recognize [#178](https://github.com/sberdevices/pashka/pull/178) ([@c1aphas](https://github.com/c1aphas))
+
+#### Authors: 1
+
+- Mike ([@c1aphas](https://github.com/c1aphas))
+
+---
+
 # (Fri Feb 18 2022)
 
 #### 🐛 Bug Fix
