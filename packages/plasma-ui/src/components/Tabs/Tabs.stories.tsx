@@ -63,6 +63,8 @@ export const Default: Story<StoryProps & TabsProps> = ({
     const items = Array(itemsNumber).fill(0);
     const [index, setIndex] = React.useState(0);
 
+    const tabIndex = disabled ? -1 : 0;
+
     return (
         <Tabs
             id={id}
@@ -83,7 +85,7 @@ export const Default: Story<StoryProps & TabsProps> = ({
                     forwardedAs="li"
                     isActive={i === index}
                     aria-controls={id}
-                    tabIndex={0}
+                    tabIndex={tabIndex}
                     contentLeft={enableContentLeft && <Icon icon={icons[i % icons.length] as 'clock'} size="s" />}
                     onClick={() => !disabled && setIndex(i)}
                     onFocus={action(`onFocus item #${i}`)}
