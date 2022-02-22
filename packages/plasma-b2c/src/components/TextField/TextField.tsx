@@ -1,12 +1,12 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { FieldRoot, FieldPlaceholder, FieldContent, FieldHelper, Input, primary } from '@sberdevices/plasma-core';
-import type { InputProps } from '@sberdevices/plasma-core';
+import type { FieldProps, InputProps } from '@sberdevices/plasma-core';
 
 import { bodySBold } from '../../tokens';
 import { FieldWrapper, applyInputStyles } from '../Field';
 
-export interface TextFieldProps extends Omit<InputProps, 'size'> {
+export interface TextFieldProps extends Omit<FieldProps, 'size'>, InputProps {
     /**
      * Лейбл сверху.
      */

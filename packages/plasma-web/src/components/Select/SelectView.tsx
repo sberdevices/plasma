@@ -1,13 +1,14 @@
 import React, { forwardRef } from 'react';
-import { TextFieldRoot, TextFieldHelper, TextFieldProps } from '@sberdevices/plasma-core';
+import { TextFieldRoot, TextFieldHelper } from '@sberdevices/plasma-core';
 
 import { withAssistiveDropdown } from '../Dropdown';
+import type { FieldProps } from '../Field';
 
 import { SelectDropdown, SelectDropdownProps } from './SelectDropdown';
 import { SelectButton, SelectButtonProps, SelectRefElement } from './SelectButton';
 
 export interface SelectViewProps
-    extends Pick<TextFieldProps, 'status' | 'placeholder' | 'helperText' | 'disabled'>,
+    extends Pick<FieldProps, 'status' | 'placeholder' | 'helperText' | 'disabled'>,
         Pick<SelectDropdownProps, 'items' | 'onItemSelect'>,
         Omit<SelectButtonProps, 'hasItems' | 'isExpanded' | 'onChange'> {
     /**
