@@ -162,7 +162,7 @@ export const TabsView = styled(BaseTabs)<TabsViewProps>`
 
         /* stylelint-disable-next-line selector-max-universal */
         & > ${StyledTabItem} {
-            ${applyInteraction};
+            ${(props) => !props.disabled && applyInteraction(props)}
 
             margin-left: var(--tab-focus-border-size);
             margin-right: var(--tab-focus-border-size);

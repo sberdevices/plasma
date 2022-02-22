@@ -34,7 +34,7 @@ export const StyledTabItem = styled(BaseTabItem)<TabItemProps>`
     * При нажатии слайдер также прожимается
     */
     &:active ~ ${StyledSlider} {
-        transform: scale(0.96);
+        transform: ${({ disabled }) => (disabled ? 'none' : 'scale(0.96)')};
     }
 
     /**

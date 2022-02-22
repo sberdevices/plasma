@@ -41,7 +41,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs({ childr
     const childrenArray = React.Children.toArray(children);
     const animatedChildren = childrenArray.map((child, i) => {
         if (React.isValidElement(child)) {
-            return <TabItem animated key={i} {...child.props} />;
+            return <TabItem animated key={i} {...child.props} disabled={rest.disabled} />;
         }
         return child;
     });
@@ -50,7 +50,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs({ childr
         <TabsAnimationContext.Provider value={{ refs }}>
             <TabsView ref={ref} {...rest}>
                 {animatedChildren}
-                <TabsSlider index={index} />
+                <TabsSlider index={index} disabled={rest.disabled} />
             </TabsView>
         </TabsAnimationContext.Provider>
     );
