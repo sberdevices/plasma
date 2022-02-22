@@ -1,15 +1,17 @@
+import React from 'react';
+
 import { GalleryCardParams } from '../../components/GalleryCard/types';
 import { AnyObject } from '../../types';
 
 export interface SingleGallery<T> {
-    title?: string;
+    title?: React.ReactNode;
     items: GalleryCardParams<T>[];
     activeCardIndex: number;
 }
 
 export interface MultipleGallery<T> {
     id: string;
-    title: string;
+    title: React.ReactNode;
     items: GalleryCardParams<T>[];
     activeCardIndex: number;
 }

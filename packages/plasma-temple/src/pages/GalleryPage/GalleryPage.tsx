@@ -21,7 +21,6 @@ interface GalleryPageProps<T extends AnyObject = AnyObject> extends ComponentPro
     changeState: (state: GalleryPageState<T>) => void;
     onCardClick: (card: GalleryCardParams<T>) => void;
     galleryCard?: React.ComponentType<GalleryCardProps<T>>;
-    titleComponent?: React.ComponentType<{ title: string }>;
 }
 
 interface StyledSectionWrapperProps {
@@ -54,8 +53,7 @@ const StyledSectionTitle = styled(Headline3)<{ active: boolean }>`
 
 interface FocusableGalleryProps {
     index: number;
-    title?: string;
-    TitleComponent?: React.ComponentType<{ title: string }>;
+    title?: React.ReactNode;
     activeCardIndex?: number;
     isMultiple?: boolean;
 }
@@ -63,7 +61,6 @@ interface FocusableGalleryProps {
 const FocusableGallery: React.FC<FocusableGalleryProps & GalleryProps> = ({
     index,
     title,
-    TitleComponent,
     activeCardIndex = -1,
     isMultiple = false,
     ...props
@@ -84,13 +81,12 @@ const FocusableGallery: React.FC<FocusableGalleryProps & GalleryProps> = ({
         if (!title) {
             return null;
         }
-        const titleContent = TitleComponent ? <TitleComponent title={title} /> : title;
 
         if (isMultiple) {
-            return <StyledSectionTitle active={isActive}>{titleContent}</StyledSectionTitle>;
+            return <StyledSectionTitle active={isActive}>{title}</StyledSectionTitle>;
         }
 
-        return <Headline3>{titleContent}</Headline3>;
+        return <Headline3>{title}</Headline3>;
     }, [isActive, isMultiple, title]);
 
     return (
@@ -106,7 +102,7 @@ export interface GalleryPageControl {
 }
 
 export const GalleryPage = React.forwardRef<GalleryPageControl, GalleryPageProps<AnyObject>>(
-    ({ state, header, changeState, onCardClick, galleryCard, titleComponent }, ref): React.ReactElement => {
+    ({ state, header, changeState, onCardClick, galleryCard }, ref): React.ReactElement => {
         const { gallery, activeGalleryIndex } = state;
         const galleries = React.useMemo(() => (Array.isArray(gallery) ? gallery : [{ id: 'id', ...gallery }]), [
             gallery,
@@ -175,7 +171,6 @@ export const GalleryPage = React.forwardRef<GalleryPageControl, GalleryPageProps
                     index={index}
                     items={galleryData.items}
                     title={galleryData.title}
-                    TitleComponent={titleComponent}
                     activeCardIndex={galleryData.activeCardIndex}
                     onItemFocus={() => changeGallery(index)}
                     onItemClick={handleItemClick}
