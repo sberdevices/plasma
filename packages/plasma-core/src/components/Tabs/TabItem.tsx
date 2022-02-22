@@ -46,6 +46,11 @@ const StyledTabItemText = styled.span`
     ${StyledTabItemContentLeft} ~ & {
         margin-left: 0.375rem;
     }
+
+    &:focus,
+    &.focus-visible {
+        outline: 0 none;
+    }
 `;
 
 export const StyledTabItem = styled.button<StyledTabItemProps>`
