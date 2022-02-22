@@ -1,11 +1,11 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { FieldRoot, FieldPlaceholder, FieldContent, Input } from '@sberdevices/plasma-core';
-import type { InputProps } from '@sberdevices/plasma-core';
+import type { FieldProps, InputProps } from '@sberdevices/plasma-core';
 
 import { FieldHelper, applyInputStyles } from '../Field';
 
-export interface TextFieldProps extends InputProps {}
+export interface TextFieldProps extends FieldProps, InputProps {}
 
 const StyledInput = styled(Input)`
     ${applyInputStyles}
