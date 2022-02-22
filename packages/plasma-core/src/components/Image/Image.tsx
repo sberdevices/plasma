@@ -76,8 +76,16 @@ const StyledRoot = styled.div<StyledRootProps>`
         `}
 `;
 
-const StyledImg = styled.img`
+const StyledImg = styled.img<RatioProps>`
     width: 100%;
+    ${({ src, ratio }) =>
+        src &&
+        ratio &&
+        css`
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+        `};
 `;
 
 const StyledDivImg = styled.div`
@@ -91,15 +99,14 @@ const StyledDivImg = styled.div`
 /**
  * Компонент для отображения картинок.
  */
-export const Image: React.FC<ImageProps> = ({ src, base = 'img', alt, width, height, ...props }) => (
-    <StyledRoot
-        $ratio={'ratio' in props ? props.ratio : undefined}
-        $customRatio={'customRatio' in props ? props.customRatio : undefined}
-        $width={width}
-        $height={height}
-        {...props}
-    >
-        {base === 'img' && <StyledImg src={src} alt={alt} />}
-        {base === 'div' && <StyledDivImg style={{ backgroundImage: `url(${src})` }} role="img" aria-label={alt} />}
-    </StyledRoot>
-);
+export const Image: React.FC<ImageProps> = ({ src, base = 'img', alt, width, height, ...props }) => {
+    const ratio = 'ratio' in props ? props.ratio : undefined;
+    const customRatio = 'customRatio' in props ? props.customRatio : undefined;
+
+    return (
+        <StyledRoot $ratio={ratio} $customRatio={customRatio} $width={width} $height={height} {...props}>
+            {base === 'img' && <StyledImg src={src} alt={alt} ratio={ratio} />}
+            {base === 'div' && <StyledDivImg style={{ backgroundImage: `url(${src})` }} role="img" aria-label={alt} />}
+        </StyledRoot>
+    );
+};
