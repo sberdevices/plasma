@@ -32,26 +32,36 @@ export interface SliderProps extends React.HTMLAttributes<HTMLDivElement> {
  * Слайдер переключения табов
  */
 export const TabsSlider: React.FC<SliderProps> = ({ className, index }) => {
-    const [{ left, width, height }, setDimensions] = useState({ left: 0, width: 0, height: 0 });
+    const [dimensions, setDimensions] = useState({ left: 0, width: 0, height: 0 });
     const { refs } = useTabsAnimationContext();
 
     useEffect(() => {
-        if (refs) {
-            if (index === undefined) {
-                return;
-            }
-
-            const activeTab = refs.items[index].current;
-            if (activeTab) {
-                const style = getComputedStyle(activeTab);
-                setDimensions({
-                    width: activeTab.offsetWidth,
-                    left: activeTab.offsetLeft - parseInt(style.marginLeft, 10),
-                    height: activeTab.offsetHeight,
-                });
-            }
+        if (!refs || index === undefined) {
+            return;
         }
+
+        const activeTab = refs.items[index].current;
+
+        if (!activeTab) {
+            return;
+        }
+
+        const resizeObserver = new window.ResizeObserver(() => {
+            const style = getComputedStyle(activeTab);
+
+            setDimensions({
+                width: activeTab.offsetWidth,
+                left: activeTab.offsetLeft - parseInt(style.marginLeft, 10),
+                height: activeTab.offsetHeight,
+            });
+        });
+
+        resizeObserver.observe(activeTab, { box: 'border-box' });
+
+        return () => {
+            resizeObserver.unobserve(activeTab);
+        };
     }, [index]);
 
-    return <StyledSlider className={className} style={{ left, width, height }} />;
+    return <StyledSlider className={className} style={dimensions} />;
 };
