@@ -1,3 +1,15 @@
+# v1.82.2 (Thu Feb 24 2022)
+
+#### 🐛 Bug Fix
+
+- test(plasma-ui): Add test and snapshot for `Tabs` component [#1113](https://github.com/sberdevices/plasma/pull/1113) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.82.0 (Fri Feb 18 2022)
 
 #### 🚀 Enhancement

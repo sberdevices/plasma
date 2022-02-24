@@ -1,3 +1,15 @@
+# v1.76.2 (Thu Feb 24 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web): `Carousel`: moved style resets to core [#1104](https://github.com/sberdevices/plasma/pull/1104) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.76.1 (Fri Feb 18 2022)
 
 #### 🐛 Bug Fix

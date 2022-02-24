@@ -1,3 +1,17 @@
+# v1.49.6 (Thu Feb 24 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web): `Carousel`: moved style resets to core [#1104](https://github.com/sberdevices/plasma/pull/1104) ([@fanisco](https://github.com/fanisco))
+- fix(plasma-core): Add data selector for syntheticFocus in `addFocus` mixin [#1113](https://github.com/sberdevices/plasma/pull/1113) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.49.5 (Fri Feb 18 2022)
 
 #### 🐛 Bug Fix
