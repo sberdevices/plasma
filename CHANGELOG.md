@@ -1,3 +1,16 @@
+# (Thu Feb 24 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/ad-sdk@1.7.0`
+  - feat(ad-sdk): save events for banners [#155](https://github.com/sberdevices/pashka/pull/155) ([@OgNellis](https://github.com/OgNellis))
+
+#### Authors: 1
+
+- Artem Feoktistov ([@OgNellis](https://github.com/OgNellis))
+
+---
+
 # (Mon Feb 21 2022)
 
 #### 🐛 Bug Fix
