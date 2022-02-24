@@ -3,16 +3,21 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { mount as cyMount } from '@cypress/react';
 // plasma-web
 import { web } from '@sberdevices/plasma-tokens-web/typo';
-import { light } from '@sberdevices/plasma-tokens-web/themes';
+import { light as webLight } from '@sberdevices/plasma-tokens-web/themes';
 // plasma-ui
 import { darkSber } from '@sberdevices/plasma-tokens/themes';
+// B2B
+import { light as b2bLight } from '@sberdevices/plasma-tokens-b2b/themes';
 // plasma-b2c
 import { dark } from '@sberdevices/plasma-tokens-b2c/themes';
 import { standard as standardTypo, compatible as compatibleTypo } from '@sberdevices/plasma-typo';
 
 // TODO: better naming
 const TypoThemeStyle = createGlobalStyle(web);
-const ColorThemeStyle = createGlobalStyle(light);
+const WebLightThemeStyle = createGlobalStyle(webLight);
+
+// B2B
+const B2BLightThemeStyle = createGlobalStyle(b2bLight);
 
 const ThemeStyle = createGlobalStyle(darkSber);
 
@@ -76,6 +81,7 @@ export const CypressTestDecorator: React.FC<CYTDec> = ({ noSSR, children }) => {
     // eslint-disable-next-line
     // @ts-ignore
     const pkgName = Cypress.env('package');
+    const tokens = Cypress.env('tokens');
     const SSRProvider = getComponent('SSRProvider');
 
     const SSR: React.FC<CYTDec> = ({ noSSR: _noSSR, children }) => {
@@ -98,11 +104,22 @@ export const CypressTestDecorator: React.FC<CYTDec> = ({ noSSR, children }) => {
         );
     }
 
+    // B2B
+    if (pkgName === 'plasma-web' && tokens === 'plasma-tokens-b2b') {
+        return (
+            <SSR noSSR={noSSR}>
+                <TypoThemeStyle />
+                <B2BLightThemeStyle />
+                {children}
+            </SSR>
+        );
+    }
+
     if (pkgName === 'plasma-web') {
         return (
             <SSR noSSR={noSSR}>
                 <TypoThemeStyle />
-                <ColorThemeStyle />
+                <WebLightThemeStyle />
                 {children}
             </SSR>
         );

@@ -31,6 +31,11 @@ jobs:
       run: | 
         npm run cy:web:run-ct
 
+    - name: Run Cypress CT for Plasma Web B2B
+      if: ${{ always() }}
+      run: | 
+        npm run cy:b2b:run-ct 
+
     - name: Run Cypress CT for Plasma Web B2C
       if: ${{ always() }}
       run: | 

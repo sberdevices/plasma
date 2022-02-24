@@ -1,0 +1,15 @@
+{
+    "component": {
+        "componentFolder": "./packages/plasma-web/src",
+        "testFiles": "**/ButtonBase.component-test.tsx"
+    },
+    "env": {
+        "snapshotsDir": "cypress/snapshots/tokens-b2b",
+        "packageDir": "../../packages/plasma-web",
+        "package": "plasma-web",
+        "tokens": "plasma-tokens-b2b",
+        "a11yCheck": true
+    },
+    "video": false,
+    "retries": 3
+}

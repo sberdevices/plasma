@@ -35,16 +35,20 @@ var typo_1 = require("@sberdevices/plasma-tokens-web/typo");
 var themes_1 = require("@sberdevices/plasma-tokens-web/themes");
 // plasma-ui
 var themes_2 = require("@sberdevices/plasma-tokens/themes");
+// B2B
+var themes_3 = require("@sberdevices/plasma-tokens-b2b/themes");
 // plasma-b2c
-var themes_3 = require("@sberdevices/plasma-tokens-b2c/themes");
+var themes_4 = require("@sberdevices/plasma-tokens-b2c/themes");
 var plasma_typo_1 = require("@sberdevices/plasma-typo");
 // TODO: better naming
 var TypoThemeStyle = styled_components_1.createGlobalStyle(typo_1.web);
-var ColorThemeStyle = styled_components_1.createGlobalStyle(themes_1.light);
+var WebLightThemeStyle = styled_components_1.createGlobalStyle(themes_1.light);
+// B2B
+var B2BLightThemeStyle = styled_components_1.createGlobalStyle(themes_3.light);
 var ThemeStyle = styled_components_1.createGlobalStyle(themes_2.darkSber);
 var StandardTypoStyle = styled_components_1.createGlobalStyle(plasma_typo_1.standard);
 var CompatibleTypoStyle = styled_components_1.createGlobalStyle(plasma_typo_1.compatible);
-var ColorB2CStyle = styled_components_1.createGlobalStyle(themes_3.dark);
+var ColorB2CStyle = styled_components_1.createGlobalStyle(themes_4.dark);
 exports.getComponent = function (componentName) {
     // eslint-disable-next-line
     // @ts-ignore
@@ -85,6 +89,7 @@ exports.CypressTestDecorator = function (_a) {
     // eslint-disable-next-line
     // @ts-ignore
     var pkgName = Cypress.env('package');
+    var tokens = Cypress.env('tokens');
     var SSRProvider = exports.getComponent('SSRProvider');
     var SSR = function (_a) {
         var _noSSR = _a.noSSR, children = _a.children;
@@ -100,10 +105,17 @@ exports.CypressTestDecorator = function (_a) {
                 react_1.default.createElement(ThemeStyle, null),
                 children)));
     }
+    // B2B
+    if (pkgName === 'plasma-web' && tokens === 'plasma-tokens-b2b') {
+        return (react_1.default.createElement(SSR, { noSSR: noSSR },
+            react_1.default.createElement(TypoThemeStyle, null),
+            react_1.default.createElement(B2BLightThemeStyle, null),
+            children));
+    }
     if (pkgName === 'plasma-web') {
         return (react_1.default.createElement(SSR, { noSSR: noSSR },
             react_1.default.createElement(TypoThemeStyle, null),
-            react_1.default.createElement(ColorThemeStyle, null),
+            react_1.default.createElement(WebLightThemeStyle, null),
             children));
     }
     if (pkgName === 'plasma-b2c') {
