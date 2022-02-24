@@ -27,22 +27,31 @@ export function createTabsController<T extends HTMLDivElement, P extends TabsCon
     ItemComponent: FunctionComponent<TabItemProps> = TabItem,
 ) {
     // eslint-disable-next-line prefer-arrow-callback
-    return forwardRef<T, P>(function TabsController({ disabled, items, index, onIndexChange, ...rest }, ref) {
+    return forwardRef<T, P>(function TabsController({ items, index, onIndexChange, ...rest }, ref) {
+        const { disabled } = rest;
         const refs = useMemo(() => new TabItemRefs(), []);
 
         const onItemFocus = useCallback(
             (event) => {
+                if (disabled) {
+                    return;
+                }
+
                 const focusIndex = refs.items.findIndex((itemRef) => itemRef.current === event.target);
 
                 if (focusIndex !== index) {
                     onIndexChange?.(focusIndex);
                 }
             },
-            [refs, index, onIndexChange],
+            [refs, index, onIndexChange, disabled],
         );
 
         const onKeyDown = useCallback(
             (event: KeyboardEvent) => {
+                if (disabled) {
+                    return;
+                }
+
                 const minIndex = 0;
                 const maxIndex = refs.items.length - 1;
                 let nextIndex;
@@ -69,7 +78,7 @@ export function createTabsController<T extends HTMLDivElement, P extends TabsCon
                     refs.items[nextIndex].current?.focus();
                 }
             },
-            [index, onIndexChange],
+            [index, onIndexChange, disabled],
         );
 
         return (
@@ -81,8 +90,9 @@ export function createTabsController<T extends HTMLDivElement, P extends TabsCon
                             isActive={i === index}
                             tabIndex={!disabled && i === index ? 0 : -1}
                             contentLeft={contentLeft}
-                            onClick={() => !disabled && onIndexChange?.(i)}
+                            onClick={() => onIndexChange?.(i)}
                             onFocus={onItemFocus}
+                            disabled={disabled}
                         >
                             {label}
                         </ItemComponent>
