@@ -19,6 +19,7 @@ export interface UseKeyboardNavigation {
     openedNestedDropdown?: boolean | number;
     setOpenedNestedDropdown: (openedNestedDropdown: boolean | number) => void;
     multiselect?: boolean;
+    listId?: string;
 }
 
 export const useKeyboardNavigation = ({
@@ -31,6 +32,7 @@ export const useKeyboardNavigation = ({
     openedNestedDropdown,
     setOpenedNestedDropdown,
     multiselect,
+    listId,
 }: UseKeyboardNavigation) => {
     const [activeIndex, setActiveIndex] = useState(0);
 
@@ -40,9 +42,9 @@ export const useKeyboardNavigation = ({
 
     useEffect(() => {
         if (onActiveChange && items[activeIndex]?.value) {
-            onActiveChange(items[activeIndex].value.toString());
+            onActiveChange(`${listId}-${items[activeIndex].value}`);
         }
-    }, [activeIndex, items, onActiveChange]);
+    }, [listId, activeIndex, items, onActiveChange]);
 
     const isAllItemsDisabled = useMemo(() => items.every((item) => item.isDisabled), [items]);
     const onComboType = useOnComboType({ updateOpen: setIsOpen, activeIndex, setActiveIndex, items });
