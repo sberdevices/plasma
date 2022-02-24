@@ -72,6 +72,12 @@ export const StyledTabItem = styled.button<StyledTabItemProps>`
         outline: 0 none;
     }
 
+    ${({ disabled }) =>
+        disabled &&
+        css`
+            pointer-events: none;
+        `}
+
     /**
     * Не передали контент => квадратная кнопка.
     */

@@ -137,4 +137,27 @@ describe('plasma-core: Tabs', () => {
 
         cy.matchImageSnapshot();
     });
+
+    it('try click by disabled tabs', () => {
+        const onIndexChange = cy.stub();
+
+        mount(
+            <CypressTestDecorator>
+                <TabsController items={items} index={0} disabled onIndexChange={onIndexChange} />
+            </CypressTestDecorator>,
+        );
+
+        cy.get('div > button:nth-child(2)')
+            .click({ force: true })
+            .then(() => {
+                expect(onIndexChange).not.called;
+            });
+
+        cy.root()
+            .get('[role="tablist"]')
+            .trigger('keydown', { keyCode: 39 })
+            .then(() => {
+                expect(onIndexChange).not.called;
+            });
+    });
 });
