@@ -60,6 +60,7 @@ export const Default: Story<SelectProps> = ({ status, ...rest }) => {
                         setValue(v);
                         onChange(v);
                     }}
+                    listId="testId"
                     onFocus={onFocus}
                     onBlur={onBlur}
                     {...rest}

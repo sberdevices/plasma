@@ -12,6 +12,7 @@ export interface NestedDropdownProps {
     onActiveChange?: (id: string) => void;
     onClose?: () => void;
     multiselect?: boolean;
+    itemId: string;
 }
 
 export const NestedDropdown: FC<NestedDropdownProps> = ({
@@ -22,6 +23,7 @@ export const NestedDropdown: FC<NestedDropdownProps> = ({
     onActiveChange,
     onClose,
     multiselect,
+    itemId,
 }) => {
     const [isOpen, setOpen] = useState(false);
 
@@ -44,6 +46,7 @@ export const NestedDropdown: FC<NestedDropdownProps> = ({
             multiselect={multiselect}
         >
             <DropdownItem
+                id={itemId}
                 aria-expanded={isOpen}
                 aria-haspopup="menu"
                 role="combobox"

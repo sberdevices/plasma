@@ -26,7 +26,7 @@ export interface SelectDopdownProps extends PopupProps, Pick<DropdownProps, 'ite
 
 export interface SelectViewProps
     extends Pick<TextFieldProps, 'status' | 'placeholder' | 'helperText' | 'disabled'>,
-        Pick<SelectDopdownProps, 'items' | 'multiselect' | 'onItemClick'>,
+        Pick<SelectDopdownProps, 'items' | 'multiselect' | 'onItemClick' | 'listId'>,
         Omit<HTMLAttributes<HTMLButtonElement>, 'onChange'> {
     value?: string | number | null;
 }

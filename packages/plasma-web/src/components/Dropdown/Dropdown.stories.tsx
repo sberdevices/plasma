@@ -144,7 +144,6 @@ export const Trigger = () => {
                     listId="combo1"
                     items={items}
                     trigger="click"
-                    multiselect
                 >
                     <Button
                         aria-activedescendant={selectedItem}

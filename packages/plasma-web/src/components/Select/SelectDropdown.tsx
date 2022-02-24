@@ -94,6 +94,7 @@ export const SelectDropdown: FC<SelectDopdownProps> = ({
         openedNestedDropdown,
         setOpenedNestedDropdown,
         multiselect,
+        listId,
     });
 
     const onClose = useCallback(() => {
@@ -113,9 +114,11 @@ export const SelectDropdown: FC<SelectDopdownProps> = ({
                             onItemClick={onItemClick}
                             multiselect={multiselect}
                             onClose={onClose}
+                            itemId={`${listId}-${item.value}`}
                         />
                     ) : (
                         <DropdownItem
+                            id={`${listId}-${item.value}`}
                             multiselect={multiselect}
                             isHovered={idx === activeIndex}
                             key={item.value}

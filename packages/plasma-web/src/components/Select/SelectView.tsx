@@ -139,6 +139,7 @@ export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
             items,
             multiselect,
             onItemClick,
+            listId,
             ...rest
         },
         ref,
@@ -165,7 +166,7 @@ export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
                     onToggle={setOpen}
                     trigger="click"
                     placement="bottom"
-                    listId="combo1"
+                    listId={listId}
                     multiselect={multiselect}
                     disabled={disabled}
                     onItemClick={onItemClick}
@@ -177,7 +178,7 @@ export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
                             disabled={disabled}
                             status={status}
                             aria-activedescendant={selectedItem}
-                            aria-controls="combo1"
+                            aria-controls={listId}
                             aria-expanded={isOpen}
                             aria-haspopup="menu"
                             role="combobox"

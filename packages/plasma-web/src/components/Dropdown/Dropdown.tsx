@@ -112,6 +112,7 @@ export const Dropdown: FC<DropdownProps> = ({
         openedNestedDropdown,
         setOpenedNestedDropdown,
         multiselect,
+        listId,
     });
 
     return (
@@ -140,9 +141,11 @@ export const Dropdown: FC<DropdownProps> = ({
                                     setOpenedNestedDropdown(false);
                                 }
                             }}
+                            itemId={`${listId}-${item.value}`}
                         />
                     ) : (
                         <DropdownItem
+                            id={`${listId}-${item.value}`}
                             multiselect={multiselect}
                             isHovered={idx === activeIndex}
                             key={item.value}
