@@ -2,6 +2,19 @@
 
 #### 🐛 Bug Fix
 
+- `@sberdevices/plasma-core@1.49.7`
+  - fix: `Tabs`: removed focus outline in item text [#1115](https://github.com/sberdevices/plasma/pull/1115) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Thu Feb 24 2022)
+
+#### 🐛 Bug Fix
+
 - `@sberdevices/plasma-core@1.49.6`, `@sberdevices/plasma-web@1.76.2`
   - fix(plasma-web): `Carousel`: moved style resets to core [#1104](https://github.com/sberdevices/plasma/pull/1104) ([@fanisco](https://github.com/fanisco))
 - `@sberdevices/plasma-ui@1.82.2`

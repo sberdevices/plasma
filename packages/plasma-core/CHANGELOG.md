@@ -1,3 +1,15 @@
+# v1.49.7 (Thu Feb 24 2022)
+
+#### 🐛 Bug Fix
+
+- fix: `Tabs`: removed focus outline in item text [#1115](https://github.com/sberdevices/plasma/pull/1115) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.49.6 (Thu Feb 24 2022)
 
 #### 🐛 Bug Fix
