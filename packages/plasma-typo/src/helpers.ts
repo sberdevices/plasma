@@ -28,7 +28,7 @@ export const prepareCompatibleTypo = (typoMap: TypoMap) =>
             acc[`${oldPrefix}-${compatProp}`] = `var(${newPrefix}-${compatProp})`;
         });
 
-        Object.entries(rest).forEach(([customCompatProp, value]) => {
+        Object.entries(rest).forEach(<T extends keyof TypoMap>([customCompatProp, value]: [T, TypoMap[T]]) => {
             acc[`${oldPrefix}-${customCompatProp}`] = value;
         });
 
