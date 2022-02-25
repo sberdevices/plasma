@@ -16,7 +16,7 @@ import {
 } from '@sberdevices/plasma-tokens-utils';
 import type { TypoSystem } from '@sberdevices/plasma-tokens-utils';
 
-import { colorThemes, typoSystem, typo, sizes } from './data';
+import { colorThemes, typoSystem, typo, components } from './data';
 import type { TypographyTypes } from './data';
 
 const OUT_DIR = 'src';
@@ -43,7 +43,7 @@ writeGeneratedToFS(COLORS_DIR, [
 ]);
 
 // Генерация и запись файлов тем для создания глобальных стилей
-writeGeneratedToFS(THEMES_DIR, generateColorThemes(colorThemes, sizes));
+writeGeneratedToFS(THEMES_DIR, generateColorThemes(colorThemes, components));
 
 // Отдельные файлы для импорта в компонентах
 writeGeneratedToFS(THEMES_VALUES_DIR, generateColorThemeValues(colorThemes));
@@ -52,7 +52,7 @@ writeGeneratedToFS(THEMES_VALUES_DIR, generateColorThemeValues(colorThemes));
 /** ===== Генерация размеров компонентов ===== **/
 /** ========================================== **/
 
-writeGeneratedToFS(OUT_DIR, [generateThemeFromData(sizes, 'sizes')]);
+writeGeneratedToFS(OUT_DIR, [generateThemeFromData(components, 'sizes')]);
 
 /** =================================================== **/
 /** ========= Генерация типографической сетки ========= **/

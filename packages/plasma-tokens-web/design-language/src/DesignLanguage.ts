@@ -55,6 +55,7 @@ const theme = {
 
     light_input_border: Color.rgba(8, 8, 8, 0.16),
     light_input_border_hover: Color.rgba(8, 8, 8, 0.32),
+    light_input_border_focus: plasmaStylesTokens.colors.textIconsAccentBrand1,
 
     light_surface_Liquid01: Color.rgba(8, 8, 8, 0.02), // ToDo: https://github.com/sberdevices/plasma/issues/1107
     light_surface_Liquid02: Color.rgba(8, 8, 8, 0.06), // ToDo: https://github.com/sberdevices/plasma/issues/1107
@@ -101,6 +102,7 @@ const theme = {
 
     dark_input_border: Color.rgba(255, 255, 255, 0.16),
     dark_input_border_hover: Color.rgba(255, 255, 255, 0.32),
+    dark_input_border_focus: plasmaStylesTokens.colors.textIconsAccentBrand1,
 
     dark_surface_Liquid01: Color.rgba(255, 255, 255, 0.06), // ToDo: https://github.com/sberdevices/plasma/issues/1107
     dark_surface_Liquid02: Color.rgba(255, 255, 255, 0.12), // ToDo: https://github.com/sberdevices/plasma/issues/1107
