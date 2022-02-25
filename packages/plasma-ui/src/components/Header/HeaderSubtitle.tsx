@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 import { mediaQuery } from '@sberdevices/plasma-core';
 
 import { TextBoxSubTitle } from '../TextBox';
+import { ThemeProviderValue } from '../Device/DeviceDetection';
 
 /**
  * Компонент для размещения подзаголовка.
@@ -13,7 +14,7 @@ export const HeaderSubtitle = styled(TextBoxSubTitle)`
     overflow: hidden;
     text-overflow: ellipsis;
 
-    ${({ theme }) => css`
+    ${({ theme }: { theme: ThemeProviderValue }) => css`
         ${mediaQuery(
             'S',
             theme.deviceScale,

@@ -2,6 +2,8 @@ import React from 'react';
 import styled, { css, ThemeContext } from 'styled-components';
 import { surfaceLiquid03, buttonAccent, scalingPixelBasis, sberPortalScale } from '@sberdevices/plasma-tokens';
 
+import { ThemeProviderValue } from '../Device/DeviceDetection';
+
 export const handleDiameter = 1.5;
 export const handleBorderWidth = 0.0625;
 export const railHeight = 0.25;
@@ -59,7 +61,7 @@ export const SliderBase: React.FC<SliderProps> = ({
     disabled,
 }) => {
     const ref = React.useRef<HTMLDivElement | null>(null);
-    const theme = React.useContext(ThemeContext);
+    const theme = React.useContext<ThemeProviderValue>(ThemeContext);
 
     React.useLayoutEffect(() => {
         const resizeHandler = () => {

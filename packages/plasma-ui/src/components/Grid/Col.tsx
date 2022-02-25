@@ -9,6 +9,8 @@ import {
     gridColumns,
 } from '@sberdevices/plasma-core';
 
+import { ThemeProviderValue } from '../Device/DeviceDetection';
+
 export interface ColProps extends BaseProps {
     /**
      * Тип ячейки
@@ -27,7 +29,7 @@ export interface ColProps extends BaseProps {
  * С примером использования можно ознакомиться в документации по [каруселям](/?path=/docs/controls-carousel--basic).
  */
 export const Col = styled(BaseCol)<ColProps>`
-    ${({ type = 'rel', theme, size, offset, ...props }) =>
+    ${({ type = 'rel', theme, size, offset, ...props }: { theme: ThemeProviderValue } & ColProps) =>
         gridSizes.map((breakpoint) => {
             const bpSize = sizes[breakpoint];
             const bpOffset = offsets[breakpoint];
