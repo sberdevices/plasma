@@ -1,0 +1,15 @@
+{
+    "componentFolder": "./packages/plasma-temple/src",
+    "testFiles": ["**/*@mobile.component-test.{ts,tsx}"],
+    "viewportHeight": 812,
+    "viewportWidth": 375,
+    "env": {
+        "snapshotsDir": "cypress/snapshots/temple@mobile",
+        "packageDir": "packages/plasma-temple",
+        "package": "plasma-temple"
+    },
+    "userAgent": "mobile",
+    "retries": 1,
+    "video": false,
+    "scrollBehavior": false
+}
