@@ -61,7 +61,7 @@ const defaultState: CartState = {
 
 const dummyFn = () => {};
 
-function generateWrapper<ID = unknown, T extends AnyObject = AnyObject>(
+export function generateWrapper<ID = unknown, T extends AnyObject = AnyObject>(
     passedProps?: Partial<CartProps<ID, T>>,
     passedProviderProps?: Partial<CartProviderProps>,
     cartWrapper?: React.ComponentType,
