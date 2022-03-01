@@ -1,15 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import {
-    Carousel,
-    CarouselItem,
-    detectDevice,
-    DeviceKind,
-    Headline2,
-    Headline3,
-    Headline4,
-    mediaQuery,
-} from '@sberdevices/plasma-ui';
+import { Carousel, CarouselItem, Headline3, mediaQuery } from '@sberdevices/plasma-ui';
 
 import { ProductEntity } from '../types';
 
@@ -30,13 +21,7 @@ const StyledContainer = styled.div`
     width: 100%;
 `;
 
-const mapDeviceToTitle: Record<DeviceKind, React.FC> = {
-    sberBox: Headline2,
-    sberPortal: Headline4,
-    mobile: Headline3,
-};
-
-const StyledTitle = styled(mapDeviceToTitle[detectDevice()])`
+const StyledTitle = styled(Headline3)`
     margin-bottom: 1rem;
 `;
 

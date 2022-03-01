@@ -21,6 +21,7 @@ const StyledCarouselItem = styled(CarouselItem)`
     display: flex;
     justify-items: center;
 
+    box-sizing: border-box;
     padding: 1rem;
     width: 100vw;
     height: 90vw;

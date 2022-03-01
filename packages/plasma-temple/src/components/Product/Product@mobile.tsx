@@ -29,6 +29,7 @@ export const ProductMobile = ({
     variations,
     recommendations,
     actionButtonProps,
+    defaultImage,
     onChangeVariation,
     onClickRecommendation,
 }: ProductProps) => {
@@ -36,7 +37,7 @@ export const ProductMobile = ({
 
     return (
         <>
-            <ProductImageSlider images={images} />
+            <ProductImageSlider images={images} defaultImage={defaultImage} />
             <StyledTitle title={name} subtitle={shortDescription} />
             {price && (
                 <StyledSmallSection>
