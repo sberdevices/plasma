@@ -1,3 +1,20 @@
+# v1.51.0 (Tue Mar 01 2022)
+
+#### 🚀 Enhancement
+
+- feat: `PaginationDots`: made `aria-hidden=true` by default [#1108](https://github.com/sberdevices/plasma/pull/1108) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.50.0 (Tue Mar 01 2022)
 
 #### 🐛 Bug Fix

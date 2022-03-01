@@ -1,3 +1,20 @@
+# v0.10.0 (Tue Mar 01 2022)
+
+#### 🚀 Enhancement
+
+- feat: update tokens [#1047](https://github.com/sberdevices/plasma/pull/1047) ([@didolf](https://github.com/didolf))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Дмитрий Лекомцев ([@didolf](https://github.com/didolf))
+
+---
+
 # v0.9.0 (Tue Mar 01 2022)
 
 #### 🚀 Enhancement
