@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CarouselGridWrapper, CarouselItem, Container, Headline3 } from '@sberdevices/plasma-ui';
+import { CarouselGridWrapper, CarouselItem, Container } from '@sberdevices/plasma-ui';
 
 import { useRemoteHandlers } from '../../hooks/useRemoteHandlers';
 import { useGetMutableValue } from '../../hooks/useGetMutableValue';
@@ -44,8 +44,12 @@ const StyledFixedHeader = styled(Container)`
     z-index: 10;
 `;
 
-const StyledSectionTitle = styled(Headline3)<{ active: boolean }>`
-    padding-bottom: 56px;
+const StyledTitleWrapper = styled.div`
+    padding-bottom: 0.875rem;
+`;
+
+const StyledSectionTitleWrapper = styled.div<{ active: boolean }>`
+    padding-bottom: 28px;
     padding-top: 72px;
     transition: transform 0.15s linear;
     transform: translateX(${(props) => (props.active ? '3rem' : undefined)});
@@ -65,6 +69,7 @@ const FocusableGallery: React.FC<FocusableGalleryProps & GalleryProps> = ({
     isMultiple = false,
     ...props
 }) => {
+    const { FocusableGalleryTitle } = useRegistry();
     const activeIndex = React.useContext(ActiveGalleryContext);
     const isActive = index === activeIndex;
     const ref = React.useRef<HTMLDivElement>(null);
@@ -83,10 +88,18 @@ const FocusableGallery: React.FC<FocusableGalleryProps & GalleryProps> = ({
         }
 
         if (isMultiple) {
-            return <StyledSectionTitle active={isActive}>{title}</StyledSectionTitle>;
+            return (
+                <StyledSectionTitleWrapper active={isActive}>
+                    <FocusableGalleryTitle>{title}</FocusableGalleryTitle>
+                </StyledSectionTitleWrapper>
+            );
         }
 
-        return <Headline3>{title}</Headline3>;
+        return (
+            <StyledTitleWrapper>
+                <FocusableGalleryTitle>{title}</FocusableGalleryTitle>
+            </StyledTitleWrapper>
+        );
     }, [isActive, isMultiple, title]);
 
     return (

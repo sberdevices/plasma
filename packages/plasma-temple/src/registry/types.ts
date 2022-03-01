@@ -22,4 +22,5 @@ export interface Registry {
     >;
     Slider: React.ComponentType<HeroSliderProps>;
     StateLayout: React.ComponentType<StateLayoutProps>;
+    FocusableGalleryTitle: React.ComponentType<{}>;
 }

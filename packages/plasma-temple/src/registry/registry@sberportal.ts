@@ -1,3 +1,5 @@
+import { Body3 } from '@sberdevices/plasma-ui';
+
 import { ItemMainSection } from '../pages/ItemPage/components/ItemMainSection/ItemMainSection@sberportal';
 import { ItemEntities } from '../pages/ItemPage/components/ItemEntities/ItemEntities@sberportal';
 import { NavCol } from '../pages/ShopLandingPage/components/NavCol/NavCol@sberportal';
@@ -14,6 +16,7 @@ const registry: Registry = {
     Carousel,
     Slider,
     StateLayout,
+    FocusableGalleryTitle: Body3,
 };
 
 export default registry;
