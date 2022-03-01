@@ -38,8 +38,8 @@ export const TextSkeleton: React.FC<TextSkeletonProps & React.HTMLAttributes<HTM
     ...props
 }) => (
     <StyledTextSkeleton {...props}>
-        {Array.from(Array(lines), (_, i) => {
-            let w;
+        {Array.from(Array(lines), (_: number, i: number) => {
+            let w: number | string;
             if (width) {
                 w = width;
             } else {

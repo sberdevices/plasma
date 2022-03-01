@@ -50,7 +50,7 @@ export const ButtonText = styled.span<ButtonIsContentProps>`
  * Базовая кнопка.
  * @deprecated
  */
-export const Button = React.forwardRef<any, any>(
+export const Button = React.forwardRef<HTMLButtonElement, StyledButtonProps>(
     // eslint-disable-next-line prefer-arrow-callback
     function Button(props, ref) {
         return <ButtonRoot ref={ref} {...props} />;
