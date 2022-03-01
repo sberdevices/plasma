@@ -40,10 +40,10 @@ const theme = {
     light_paragraph: playgroundWebB2CTokens.colors.textIconsParagraph1,
     light_inverse: playgroundWebB2CTokens.colors.textIconsInverse1,
 
-    light_accent: playgroundWebB2CTokens.colors.textIconsAccentBrand,
-    light_success: playgroundWebB2CTokens.colors.textIconsStatusSuccess,
-    light_warning: playgroundWebB2CTokens.colors.textIconsStatusWarning,
-    light_critical: playgroundWebB2CTokens.colors.textIconsStatusCritical,
+    light_accent: playgroundWebB2CTokens.colors.textIconsAccentBrand1,
+    light_success: playgroundWebB2CTokens.colors.textIconsStatusSuccess1,
+    light_warning: playgroundWebB2CTokens.colors.textIconsStatusWarning1,
+    light_critical: playgroundWebB2CTokens.colors.textIconsStatusCritical1,
 
     light_bg: Color.rgba(255, 255, 255, 1),
     light_overlay: Color.rgba(0, 0, 0, 0.8),
@@ -68,15 +68,15 @@ const theme = {
     light_surface_gbl_white: Color.hex('#ffffff'),
     light_surface_gbl_black: Color.hex('#080808'),
 
-    light_button_primary: playgroundWebB2CTokens.colors.buttonPrimaryBrand,
+    light_button_primary: playgroundWebB2CTokens.colors.buttonPrimaryBrand1,
     light_button_secondary: playgroundWebB2CTokens.colors.buttonSecondaryDefault2,
 
-    light_button_accent: playgroundWebB2CTokens.colors.buttonPrimaryBrand,
-    light_button_success: playgroundWebB2CTokens.colors.buttonStatusSuccess,
+    light_button_accent: playgroundWebB2CTokens.colors.textIconsAccentBrand1,
+    light_button_success: playgroundWebB2CTokens.colors.buttonStatusSuccess1,
     light_button_warning: playgroundWebB2CTokens.colors.buttonStatusWarning,
-    light_button_critical: playgroundWebB2CTokens.colors.buttonStatusCritical,
+    light_button_critical: playgroundWebB2CTokens.colors.buttonStatusCritical1,
     light_button_checked: playgroundWebB2CTokens.colors.buttonStatusChecked1,
-    light_button_focused: playgroundWebB2CTokens.colors.buttonPrimaryBrand,
+    light_button_focused: playgroundWebB2CTokens.colors.textIconsAccentBrand1,
 
     // dark
     dark_primary: playgroundWebB2CTokens.colors.textIconsPrimary1,
@@ -86,10 +86,10 @@ const theme = {
     dark_paragraph: playgroundWebB2CTokens.colors.textIconsParagraph,
     dark_inverse: playgroundWebB2CTokens.colors.textIconsInverse,
 
-    dark_accent: playgroundWebB2CTokens.colors.textIconsAccentBrand1,
-    dark_success: playgroundWebB2CTokens.colors.textIconsStatusSuccess1,
-    dark_warning: playgroundWebB2CTokens.colors.textIconsStatusWarning1,
-    dark_critical: playgroundWebB2CTokens.colors.textIconsStatusCritical1,
+    dark_accent: playgroundWebB2CTokens.colors.textIconsAccentBrand,
+    dark_success: playgroundWebB2CTokens.colors.textIconsStatusSuccess,
+    dark_warning: playgroundWebB2CTokens.colors.textIconsStatusWarning,
+    dark_critical: playgroundWebB2CTokens.colors.textIconsStatusCritical,
 
     dark_bg: Color.rgba(8, 8, 8, 1),
     dark_overlay: Color.rgba(0, 0, 0, 0.8),
@@ -114,15 +114,15 @@ const theme = {
     dark_surface_gbl_white: Color.hex('#ffffff'),
     dark_surface_gbl_black: Color.hex('#080808'),
 
-    dark_button_primary: playgroundWebB2CTokens.colors.buttonPrimaryBrand1,
+    dark_button_primary: playgroundWebB2CTokens.colors.buttonPrimaryBrand,
     dark_button_secondary: playgroundWebB2CTokens.colors.buttonSecondaryDefault1,
 
-    dark_button_accent: playgroundWebB2CTokens.colors.buttonPrimaryBrand1,
-    dark_button_success: playgroundWebB2CTokens.colors.buttonStatusSuccess1,
+    dark_button_accent: playgroundWebB2CTokens.colors.buttonPrimaryBrand,
+    dark_button_success: playgroundWebB2CTokens.colors.buttonStatusSuccess,
     dark_button_warning: playgroundWebB2CTokens.colors.buttonStatusWarning,
-    dark_button_critical: playgroundWebB2CTokens.colors.buttonStatusCritical1,
+    dark_button_critical: playgroundWebB2CTokens.colors.buttonStatusCritical,
     dark_button_checked: playgroundWebB2CTokens.colors.buttonStatusChecked,
-    dark_button_focused: playgroundWebB2CTokens.colors.buttonPrimaryBrand1,
+    dark_button_focused: playgroundWebB2CTokens.colors.buttonPrimaryBrand,
 };
 
 const gradients = {

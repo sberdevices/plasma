@@ -41,12 +41,12 @@ const theme = {
     light_paragraph: plasmaStylesTokens.colors.textIconsParagraph,
     light_inverse: plasmaStylesTokens.colors.textIconsInverse,
 
-    light_accent: plasmaStylesTokens.colors.textIconsAccentBrand,
-    light_success: plasmaStylesTokens.colors.textIconsStatusSuccess,
-    light_warning: plasmaStylesTokens.colors.textIconsStatusWarning,
-    light_critical: plasmaStylesTokens.colors.textIconsStatusCritical,
+    light_accent: Color.rgb(41, 105, 227),
+    light_success: Color.rgb(13, 133, 35),
+    light_warning: Color.rgb(209, 77, 0),
+    light_critical: Color.rgb(227, 18, 39),
 
-    light_bg: Color.rgba(255, 255, 255, 1),
+    light_bg: Color.rgba(245, 245, 245, 1),
     light_overlay: Color.rgba(0, 0, 0, 0.8),
 
     light_bg_primary: Color.rgba(255, 255, 255, 1), // ToDo: https://github.com/sberdevices/plasma/issues/1107
@@ -72,9 +72,9 @@ const theme = {
     light_button_primary: plasmaStylesTokens.colors.buttonPrimaryBrand,
     light_button_secondary: plasmaStylesTokens.colors.buttonSecondaryDefault,
 
-    light_button_accent: plasmaStylesTokens.colors.buttonPrimaryBrand,
-    light_button_success: plasmaStylesTokens.colors.buttonStatusSuccess,
-    light_button_warning: plasmaStylesTokens.colors.buttonStatusWarning,
+    light_button_accent: Color.rgb(41, 105, 227),
+    light_button_success: Color.rgb(20, 143, 43),
+    light_button_warning: Color.rgb(227, 85, 2),
     light_button_critical: plasmaStylesTokens.colors.buttonStatusCritical,
     light_button_checked: plasmaStylesTokens.colors.buttonStatusChecked,
     light_button_focused: plasmaStylesTokens.colors.buttonPrimaryBrand,
@@ -88,9 +88,9 @@ const theme = {
     dark_inverse: plasmaStylesTokens.colors.textIconsInverse1,
 
     dark_accent: plasmaStylesTokens.colors.textIconsAccentBrand1,
-    dark_success: plasmaStylesTokens.colors.textIconsStatusSuccess1,
-    dark_warning: plasmaStylesTokens.colors.textIconsStatusWarning1,
-    dark_critical: plasmaStylesTokens.colors.textIconsStatusCritical1,
+    dark_success: Color.rgb(36, 178, 62),
+    dark_warning: Color.rgb(250, 109, 32),
+    dark_critical: Color.rgb(255, 77, 94),
 
     dark_bg: Color.rgba(8, 8, 8, 1),
     dark_overlay: Color.rgba(0, 0, 0, 0.8),
@@ -120,7 +120,7 @@ const theme = {
 
     dark_button_accent: plasmaStylesTokens.colors.buttonPrimaryBrand1,
     dark_button_success: plasmaStylesTokens.colors.buttonStatusSuccess1,
-    dark_button_warning: plasmaStylesTokens.colors.buttonStatusWarning,
+    dark_button_warning: Color.rgb(227, 85, 2),
     dark_button_critical: plasmaStylesTokens.colors.buttonStatusCritical1,
     dark_button_checked: plasmaStylesTokens.colors.buttonStatusChecked1,
     dark_button_focused: plasmaStylesTokens.colors.buttonPrimaryBrand1,
