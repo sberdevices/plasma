@@ -78,6 +78,7 @@ export const Default: Story<TextFieldProps & { enableLeftIcon: boolean; enableRi
 };
 
 Default.args = {
+    id: 'example-text-field',
     label: 'Label',
     helperText: 'Helper text',
     disabled: false,
