@@ -27,7 +27,7 @@ export const Collapse: React.FC<React.PropsWithChildren<CollapseProps>> = ({ tit
 
     return (
         <>
-            <StyledTitle onClick={toggle}>
+            <StyledTitle onClick={toggle} data-cy="Collapse-title">
                 {title}
                 {expanded ? <IconChevronUp /> : <IconChevronDown />}
             </StyledTitle>

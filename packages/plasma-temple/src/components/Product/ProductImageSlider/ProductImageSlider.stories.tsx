@@ -7,5 +7,5 @@ export default {
 };
 
 export const Default = (): React.ReactElement => {
-    return <ProductImageSlider images={['images/img.png', 'images/placeholder.png']} />;
+    return <ProductImageSlider images={['images/img.png', 'images/placeholder.png', 'images/cat.png']} />;
 };

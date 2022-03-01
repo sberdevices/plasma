@@ -10,15 +10,18 @@ export interface ProductImageProps {
 }
 
 const StyledImageContainer = styled.div`
-    position: relative;
     height: 100%;
     width: 100%;
     border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 const StyledImage = styled.img`
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+
     object-fit: contain;
     border-radius: 1rem;
 `;
