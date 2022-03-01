@@ -55,11 +55,12 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function T
                 placeholder={placeLabel}
                 disabled={disabled}
                 status={status}
+                aria-describedby={id ? `${id}-helpertext` : undefined}
                 {...rest}
             />
             {placeLabel && size === 'l' && <FieldPlaceholder htmlFor={id}>{placeLabel}</FieldPlaceholder>}
             {contentRight && <FieldContent pos="right">{contentRight}</FieldContent>}
-            {helperText && <FieldHelper>{helperText}</FieldHelper>}
+            {helperText && <FieldHelper id={id ? `${id}-helpertext` : undefined}>{helperText}</FieldHelper>}
         </FieldRoot>
     );
 });
