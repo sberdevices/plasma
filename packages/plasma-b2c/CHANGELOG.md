@@ -1,3 +1,19 @@
+# v1.42.0 (Tue Mar 01 2022)
+
+#### 🐛 Bug Fix
+
+- test(plasma-b2c): Added responsive typo tests [#1044](https://github.com/sberdevices/plasma/pull/1044) ([@fanisco](https://github.com/fanisco))
+- chore: Storybook fonts [#1044](https://github.com/sberdevices/plasma/pull/1044) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-typo, plasma-ui, plasma-b2c): Moved responsive typography to common package [#1044](https://github.com/sberdevices/plasma/pull/1044) ([@fanisco](https://github.com/fanisco))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.41.2 (Thu Feb 24 2022)
 
 #### 🐛 Bug Fix

@@ -1,3 +1,55 @@
+# (Tue Mar 01 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-tokens-utils@0.10.0`
+  - feat(plasma-tokens-utils): Added `WebColors` list [#1084](https://github.com/sberdevices/plasma/pull/1084) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-tokens-b2b@1.1.0`, `@sberdevices/plasma-tokens-b2c@0.9.0`, `@sberdevices/plasma-tokens-web@1.15.0`, `@sberdevices/plasma-web@1.77.0`
+  - feat: `Button`: colors theming [#1084](https://github.com/sberdevices/plasma/pull/1084) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-tokens-b2b@1.1.0`, `@sberdevices/plasma-tokens-web@1.15.0`, `@sberdevices/plasma-web@1.77.0`
+  - feat: Init `plasma-tokens-b2b` package [#1084](https://github.com/sberdevices/plasma/pull/1084) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-ui@1.83.0`
+  - feat(plasma-ui): `DeviceThemeProvider`: Added responsive typo support [#1044](https://github.com/sberdevices/plasma/pull/1044) ([@fanisco](https://github.com/fanisco))
+  - feat(plasma-ui): Added mixin re-exports [#1044](https://github.com/sberdevices/plasma/pull/1044) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-typo@0.3.0`
+  - feat(plasma-typo): Added deviceScale to standard responsive typo [#1044](https://github.com/sberdevices/plasma/pull/1044) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- test(plasma-temple): record new snapshots [#1089](https://github.com/sberdevices/plasma/pull/1089) ([@LamaEats](https://github.com/LamaEats))
+- test(plasma-temple): multiple platform configs [#1089](https://github.com/sberdevices/plasma/pull/1089) ([@LamaEats](https://github.com/LamaEats))
+- `@sberdevices/plasma-ui@1.83.0`
+  - chore(plasma-ui): Label in `TextBox`'s stories [#1112](https://github.com/sberdevices/plasma/pull/1112) ([@fanisco](https://github.com/fanisco))
+  - fix(plasma-ui): Fix slider when active tab size is changed [#1118](https://github.com/sberdevices/plasma/pull/1118) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- `@sberdevices/plasma-core@1.50.0`
+  - fix(plasma-web): Image ratio fix [#1117](https://github.com/sberdevices/plasma/pull/1117) ([@kayman233](https://github.com/kayman233))
+- `@sberdevices/plasma-temple@1.32.0`
+  - test(plasma-temple): refactor test specs for platforms test [#1089](https://github.com/sberdevices/plasma/pull/1089) ([@LamaEats](https://github.com/LamaEats))
+- `@sberdevices/platform-test@1.1.0`
+  - test: platforms run tests [#1089](https://github.com/sberdevices/plasma/pull/1089) ([@LamaEats](https://github.com/LamaEats))
+- `@sberdevices/plasma-core@1.50.0`, `@sberdevices/plasma-ui@1.83.0`
+  - fix(plasma-core): Use default view for input readonly state [#1114](https://github.com/sberdevices/plasma/pull/1114) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- `@sberdevices/plasma-ui-docs@0.44.0`
+  - fix(plasma-ui-docs): Docusaurus docgen plugin's json fail [#1044](https://github.com/sberdevices/plasma/pull/1044) ([@fanisco](https://github.com/fanisco))
+  - docs(plasma-ui): Responsive typography system [#1044](https://github.com/sberdevices/plasma/pull/1044) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-docs-ui@0.5.0`, `@sberdevices/plasma-ui-docs@0.44.0`
+  - feat(plasma-ui-docs, plasma-docs-ui): Added `DeviceThemeProvider` to the preview root and sandbox [#1044](https://github.com/sberdevices/plasma/pull/1044) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.42.0`, `@sberdevices/plasma-core@1.50.0`
+  - test(plasma-b2c): Added responsive typo tests [#1044](https://github.com/sberdevices/plasma/pull/1044) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.42.0`, `@sberdevices/plasma-ui@1.83.0`
+  - chore: Storybook fonts [#1044](https://github.com/sberdevices/plasma/pull/1044) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.42.0`, `@sberdevices/plasma-typo@0.3.0`, `@sberdevices/plasma-ui@1.83.0`
+  - feat(plasma-typo, plasma-ui, plasma-b2c): Moved responsive typography to common package [#1044](https://github.com/sberdevices/plasma/pull/1044) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 4
+
+- [@kayman233](https://github.com/kayman233)
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # (Thu Feb 24 2022)
 
 #### 🐛 Bug Fix

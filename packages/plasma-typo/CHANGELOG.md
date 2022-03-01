@@ -1,3 +1,21 @@
+# v0.3.0 (Tue Mar 01 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-typo): Added deviceScale to standard responsive typo [#1044](https://github.com/sberdevices/plasma/pull/1044) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- feat(plasma-typo, plasma-ui, plasma-b2c): Moved responsive typography to common package [#1044](https://github.com/sberdevices/plasma/pull/1044) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v0.2.3 (Tue Feb 08 2022)
 
 #### 🐛 Bug Fix

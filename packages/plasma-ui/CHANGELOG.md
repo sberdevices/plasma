@@ -1,3 +1,27 @@
+# v1.83.0 (Tue Mar 01 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): `DeviceThemeProvider`: Added responsive typo support [#1044](https://github.com/sberdevices/plasma/pull/1044) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-ui): Added mixin re-exports [#1044](https://github.com/sberdevices/plasma/pull/1044) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- chore(plasma-ui): Label in `TextBox`'s stories [#1112](https://github.com/sberdevices/plasma/pull/1112) ([@fanisco](https://github.com/fanisco))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- fix(plasma-core): Use default view for input readonly state [#1114](https://github.com/sberdevices/plasma/pull/1114) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- fix(plasma-ui): Fix slider when active tab size is changed [#1118](https://github.com/sberdevices/plasma/pull/1118) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- chore: Storybook fonts [#1044](https://github.com/sberdevices/plasma/pull/1044) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-typo, plasma-ui, plasma-b2c): Moved responsive typography to common package [#1044](https://github.com/sberdevices/plasma/pull/1044) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 3
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.82.3 (Thu Feb 24 2022)
 
 #### 🐛 Bug Fix

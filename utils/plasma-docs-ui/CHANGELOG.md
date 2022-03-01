@@ -1,3 +1,15 @@
+# v0.5.0 (Tue Mar 01 2022)
+
+#### 🐛 Bug Fix
+
+- feat(plasma-ui-docs, plasma-docs-ui): Added `DeviceThemeProvider` to the preview root and sandbox [#1044](https://github.com/sberdevices/plasma/pull/1044) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v0.4.1 (Thu Feb 03 2022)
 
 #### 🐛 Bug Fix

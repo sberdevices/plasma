@@ -1,3 +1,19 @@
+# v1.50.0 (Tue Mar 01 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web): Image ratio fix [#1117](https://github.com/sberdevices/plasma/pull/1117) ([@kayman233](https://github.com/kayman233))
+- fix(plasma-core): Use default view for input readonly state [#1114](https://github.com/sberdevices/plasma/pull/1114) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- test(plasma-b2c): Added responsive typo tests [#1044](https://github.com/sberdevices/plasma/pull/1044) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 3
+
+- [@kayman233](https://github.com/kayman233)
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.49.7 (Thu Feb 24 2022)
 
 #### 🐛 Bug Fix

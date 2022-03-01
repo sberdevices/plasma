@@ -1,3 +1,17 @@
+# v1.32.0 (Tue Mar 01 2022)
+
+#### 🐛 Bug Fix
+
+- test(plasma-temple): refactor test specs for platforms test [#1089](https://github.com/sberdevices/plasma/pull/1089) ([@LamaEats](https://github.com/LamaEats))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v1.31.2 (Thu Feb 24 2022)
 
 #### 🐛 Bug Fix
