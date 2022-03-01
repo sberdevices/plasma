@@ -55,7 +55,7 @@ export const Default: Story<TextFieldProps & { enableLeftIcon: boolean; enableRi
     enableRightIcon,
     ...rest
 }) => {
-    const [value, setValue] = useState('Title 🌚');
+    const [value, setValue] = useState('Значение поля');
 
     return (
         <TextField
@@ -79,8 +79,9 @@ export const Default: Story<TextFieldProps & { enableLeftIcon: boolean; enableRi
 
 Default.args = {
     id: 'example-text-field',
-    label: 'Label',
-    helperText: 'Helper text',
+    type: 'text',
+    placeholder: 'Заполните поле',
+    helperText: 'Подсказка к полю',
     disabled: false,
     readOnly: false,
     status: '' as 'success',

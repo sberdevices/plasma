@@ -51,7 +51,7 @@ interface DefaultSortyProps extends TextFieldProps {
 }
 
 export const Default: Story<DefaultSortyProps> = ({ enableContentLeft, enableContentRight, status, ...rest }) => {
-    const [value, setValue] = React.useState('Title');
+    const [value, setValue] = React.useState('Значение поля');
 
     return (
         <TextField
@@ -72,9 +72,10 @@ export const Default: Story<DefaultSortyProps> = ({ enableContentLeft, enableCon
 
 Default.args = {
     id: 'example-text-field',
-    placeholder: 'Label',
-    caption: 'Caption',
-    helperText: 'Helper text',
+    type: 'text',
+    placeholder: 'Заполните поле',
+    caption: 'Лейбл',
+    helperText: 'Подсказка к полю',
     enableContentLeft: true,
     enableContentRight: true,
     status: '' as 'success',
