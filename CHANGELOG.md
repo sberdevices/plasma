@@ -1,5 +1,20 @@
 # (Tue Mar 01 2022)
 
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-core@1.51.1`
+  - fix(plasma-core): fix BaseTabs disable state [#1116](https://github.com/sberdevices/plasma/pull/1116) ([@LamaEats](https://github.com/LamaEats))
+- `@sberdevices/plasma-ui@1.84.1`
+  - fix(plasma-ui): correct Tabs disable state [#1116](https://github.com/sberdevices/plasma/pull/1116) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
+# (Tue Mar 01 2022)
+
 #### 🚀 Enhancement
 
 - `@sberdevices/plasma-core@1.51.0`

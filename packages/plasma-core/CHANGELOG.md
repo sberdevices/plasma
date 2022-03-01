@@ -1,3 +1,17 @@
+# v1.51.1 (Tue Mar 01 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-core): fix BaseTabs disable state [#1116](https://github.com/sberdevices/plasma/pull/1116) ([@LamaEats](https://github.com/LamaEats))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v1.51.0 (Tue Mar 01 2022)
 
 #### 🚀 Enhancement
