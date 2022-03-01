@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-typo",
-    "version": "0.2.3",
+    "version": "0.3.0",
     "description": "Plasma Typography System's tokens",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",

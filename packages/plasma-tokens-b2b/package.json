@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-tokens-b2b",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
@@ -9,7 +9,7 @@
     "types": "index.d.ts",
     "devDependencies": {
         "@sberdevices/plasma-colors": "0.2.1",
-        "@sberdevices/plasma-tokens-utils": "0.9.2",
+        "@sberdevices/plasma-tokens-utils": "0.10.0",
         "@types/node": "16.7.13",
         "jsdom": "17.0.0",
         "jsdom-global": "3.0.2",

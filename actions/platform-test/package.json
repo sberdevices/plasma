@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/platform-test",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Utility for test run by platforms",
     "main": "index.js",
     "scripts": {
