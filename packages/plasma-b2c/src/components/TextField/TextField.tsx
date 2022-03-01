@@ -81,14 +81,23 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function T
             style={style}
             className={className}
         >
-            {caption && <StyledCaption>{caption}</StyledCaption>}
+            {caption && <StyledCaption id={id ? `${id}-label` : undefined}>{caption}</StyledCaption>}
             <FieldWrapper status={status}>
                 {contentLeft && <FieldContent pos="left">{contentLeft}</FieldContent>}
-                <StyledInput ref={ref} id={id} placeholder={placeLabel} disabled={disabled} status={status} {...rest} />
+                <StyledInput
+                    ref={ref}
+                    id={id}
+                    placeholder={placeLabel}
+                    disabled={disabled}
+                    status={status}
+                    aria-labelledby={id ? `${id}-label` : undefined}
+                    aria-describedby={id ? `${id}-helpertext` : undefined}
+                    {...rest}
+                />
                 {placeLabel && <StyledPlaceholder htmlFor={id}>{placeLabel}</StyledPlaceholder>}
                 {contentRight && <FieldContent pos="right">{contentRight}</FieldContent>}
             </FieldWrapper>
-            {helperText && <FieldHelper>{helperText}</FieldHelper>}
+            {helperText && <FieldHelper id={id ? `${id}-helpertext` : undefined}>{helperText}</FieldHelper>}
         </FieldRoot>
     );
 });

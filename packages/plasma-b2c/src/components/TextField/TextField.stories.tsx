@@ -71,6 +71,7 @@ export const Default: Story<DefaultSortyProps> = ({ enableContentLeft, enableCon
 };
 
 Default.args = {
+    id: 'example-text-field',
     placeholder: 'Label',
     caption: 'Caption',
     helperText: 'Helper text',
