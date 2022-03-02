@@ -45,16 +45,13 @@ describe('OrderSuccessPage', { scrollBehavior: false }, () => {
     });
 
     it('render without image', () => {
-        initOrderSuccessPageTest({ imageSrc: undefined })
-            .then(() => cy.get('[data-cy="state-layout-image-wrapper"]').should('not.exist'))
-            .then(() => cy.matchImageSnapshot());
+        initOrderSuccessPageTest({ imageSrc: undefined }).then(() => cy.matchImageSnapshot());
     });
 
     it('call received function', () => {
         initOrderSuccessPageTest().then(() => {
             cy.get('[data-cy="order-success-button"]')
                 .should('be.enabled')
-                // .should('be.focused')
                 .click()
                 .then(() => {
                     expect(onGoBack).to.be.called;

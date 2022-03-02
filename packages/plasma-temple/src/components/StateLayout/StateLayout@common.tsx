@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Row, Col, Image } from '@sberdevices/plasma-ui';
+import { Row, Col } from '@sberdevices/plasma-ui';
 
 import { Header } from '../Header/Header';
 import { UnifiedComponentProps } from '../../registry/types';
-import { useInsets } from '../../hooks';
 import { FullScreenBackground } from '../FullScreenBackground/FullScreenBackground';
+import { useWindowInnerHeight } from '../../hooks';
 
 import { StateLayoutCommonProps } from './types';
+import { useImageToRender } from './hooks/useImageToRender';
 
 type PlatformComponents = {
     Headline: void;
@@ -27,35 +28,21 @@ export const StyledHeaderContainer = styled.div`
     padding-right: var(--plasma-grid-margin);
 `;
 
-const StyledContainer = styled(Row)<{ offset?: number }>`
-    box-sizing: border-box;
-    height: 100vh;
-
+const StyledContainer = styled(Row)`
     align-items: center;
-
-    ${({ offset }) =>
-        offset && {
-            paddingBottom: `${offset}px`,
-        }}
+    flex: 1;
 `;
 
-const StyledWrapper = styled.div`
+const StyledWrapper = styled.div<{ $height: number | null }>`
     position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    height: ${({ $height }) => ($height ? `${$height}px` : '100vh')};
     margin: 0 calc(var(--plasma-grid-margin) * -1);
     padding: 0 var(--plasma-grid-margin);
 `;
-
-export const getImageToRender = (image: React.ReactNode) => {
-    if (typeof image === 'string') {
-        return <Image base="div" src={image} ratio="1 / 1" />;
-    }
-
-    if (React.isValidElement(image)) {
-        return image;
-    }
-
-    return null;
-};
 
 export const StateLayout: React.FC<StateLayoutProps> = ({
     title,
@@ -68,23 +55,13 @@ export const StateLayout: React.FC<StateLayoutProps> = ({
     header,
     children,
     platformComponents: { Headline, ImageContainer, Text, TextWrapper },
+    className,
 }) => {
-    const insets = useInsets();
-
-    const imageToRender = React.useMemo(() => {
-        if (children) {
-            return children;
-        }
-
-        if (image) {
-            return getImageToRender(image);
-        }
-
-        return null;
-    }, [children, image]);
+    const imageToRender = useImageToRender(image, children);
+    const height = useWindowInnerHeight();
 
     return (
-        <StyledWrapper>
+        <StyledWrapper className={className} $height={height}>
             {background && (
                 <FullScreenBackground src={background} imageWidth={backgroundWidth} imageFit={backgroundFit} />
             )}
@@ -93,7 +70,7 @@ export const StateLayout: React.FC<StateLayoutProps> = ({
                     <Header {...header} />
                 </StyledHeaderContainer>
             )}
-            <StyledContainer offset={insets.bottom || 144}>
+            <StyledContainer>
                 <Col sizeXL={6} sizeM={3}>
                     <TextWrapper>
                         <Headline data-cy="state-layout-title">{title}</Headline>
@@ -101,11 +78,9 @@ export const StateLayout: React.FC<StateLayoutProps> = ({
                     </TextWrapper>
                     {button}
                 </Col>
-                {image && (
-                    <Col sizeXL={6} sizeM={3}>
-                        <ImageContainer data-cy="state-layout-image-wrapper">{imageToRender}</ImageContainer>
-                    </Col>
-                )}
+                <Col sizeXL={6} sizeM={3} data-cy="state-layout-image-wrapper">
+                    <ImageContainer>{imageToRender}</ImageContainer>
+                </Col>
             </StyledContainer>
         </StyledWrapper>
     );
