@@ -14,6 +14,18 @@ describe('plasma-web: Progress', () => {
         cy.matchImageSnapshot();
     });
 
+    it('over min and max', () => {
+        mount(
+            <CypressTestDecorator>
+                <Progress value={-25} status="success" />
+                <PadMe />
+                <Progress value={125} status="success" />
+            </CypressTestDecorator>,
+        );
+
+        cy.matchImageSnapshot();
+    });
+
     it('__displayValue', () => {
         mount(
             <CypressTestDecorator>

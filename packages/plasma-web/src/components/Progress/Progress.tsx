@@ -60,16 +60,16 @@ const StyledValue = styled.span`
  * Компонент для отображения прогресса в процентах.
  */
 export const Progress: React.FC<ProgressProps> = ({ value, status, displayValue = true }) => {
-    const max = 100;
     const min = 0;
-    const normalizeValue = Math.max(Math.min(value, max), min);
+    const max = 100;
+    const normalizedValue = Math.max(Math.min(value, max), min);
 
     return (
         <StyledRoot>
             <StyledTrack>
-                <StyledProgress value={normalizeValue} status={status} />
+                <StyledProgress value={normalizedValue} status={status} />
             </StyledTrack>
-            {displayValue && <StyledValue>{normalizeValue}%</StyledValue>}
+            {displayValue && <StyledValue>{normalizedValue}%</StyledValue>}
         </StyledRoot>
     );
 };
