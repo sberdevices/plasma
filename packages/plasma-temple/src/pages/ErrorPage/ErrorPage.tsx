@@ -1,38 +1,49 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { mediaQuery } from '@sberdevices/plasma-ui/utils';
 
 import { useFocusOnMount } from '../../hooks/useFocusOnMount';
 import { THROTTLE_WAIT } from '../../hooks/useThrottledCallback';
 import { StateLayout } from '../../components/StateLayout/StateLayout';
-import { ComponentPropsWithHeader } from '../../components/Header/types';
+import { HeaderProps } from '../../components/Header/types';
 import { isSberBoxLike } from '../../utils/deviceFamily';
 
 import iconWarn from './ErrorPage.assets/warning-circle.svg';
 
-export interface ErrorPageProps extends ComponentPropsWithHeader {
+export interface ErrorPageProps {
+    /** @deprecated работает только с PlasmaApp */
+    header?: HeaderProps;
+    /** Основной и дополнительный текст об ошибке */
     error: {
         status: string;
         message?: string;
     };
+    /** Дополнительный контент, обычно кнопки для выполнения какого-либо действия */
     buttons?: ((focusedRef: React.Ref<HTMLButtonElement>) => React.ReactNode) | React.ReactNode;
+    className?: string;
 }
 
 const StyledWarningIcon = styled.div`
-    ${mediaQuery('M')`
-        width: 176px;
-        height: 176px;
-    `}
+    width: 252px;
+    height: 252px;
 
-    width: 320px;
-    height: 320px;
+    ${mediaQuery('M')(css`
+        width: 168px;
+        height: 168px;
+    `)}
+
+    ${mediaQuery('S')(css`
+        width: 84px;
+        height: 84px;
+    `)}
 
     background-image: url(${iconWarn});
     background-size: contain;
     margin: auto;
 `;
 
-export const ErrorPage: React.FC<ErrorPageProps> = ({ header, error, buttons }) => {
+/** Компонент страницы для отображения состояния ошибки */
+export const ErrorPage: React.FC<ErrorPageProps> = ({ header, error, buttons, className }) => {
     const buttonRef = React.useRef<HTMLButtonElement>(null);
 
     useFocusOnMount<HTMLButtonElement>(buttonRef, {
@@ -54,6 +65,7 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({ header, error, buttons }) 
 
     return (
         <StateLayout
+            className={className}
             header={header}
             title={error.status}
             text={error.message}

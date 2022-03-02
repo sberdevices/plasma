@@ -1,38 +1,51 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Image } from '@sberdevices/plasma-ui';
-import { headline3, body1, secondary } from '@sberdevices/plasma-tokens';
+import { headline2, paragraph1, secondary } from '@sberdevices/plasma-tokens';
 
 import { Header } from '../Header/Header';
+import { FullScreenBackground } from '../FullScreenBackground/FullScreenBackground';
+import { useWindowInnerHeight } from '../../hooks';
 
-import { getImageToRender, StyledHeaderContainer } from './StateLayout@common';
+import { StyledHeaderContainer } from './StateLayout@common';
 import { StateLayoutCommonProps } from './types';
+import { useImageToRender } from './hooks/useImageToRender';
 
-const StyledContainer = styled.div<{ offsetBottom: number }>`
+const defaultBottomOffset = 80;
+
+const StyledContainer = styled.div<{ offsetBottom?: number; $height: number | null }>`
     display: flex;
     flex-direction: column;
-    padding-top: 74px;
-    ${({ offsetBottom }) => ({
-        height: `calc(100vh - 74px - ${offsetBottom}px)`,
-    })}
+    align-items: center;
+    justify-content: center;
+    height: ${({ $height }) => ($height ? `${$height}px` : '100vh')};
+    box-sizing: border-box;
+
+    padding-bottom: ${({ offsetBottom }) => offsetBottom ?? defaultBottomOffset}px;
+`;
+
+const StyledImageContainer = styled.div`
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: 2.875rem;
 `;
 
 const StyledTitle = styled.div`
-    ${headline3}
-    padding-top: 19px;
+    ${headline2}
     text-align: center;
+    margin-bottom: 0.75rem;
 `;
 
 const StyledSubtitle = styled.div`
-    ${body1}
+    ${paragraph1}
     color: ${secondary};
-    padding-top: 8px;
+    hyphens: none;
     text-align: center;
 `;
 
 const StyledButtonWrapper = styled.div`
     display: flex;
     flex-direction: column;
+    width: 100%;
     margin-top: auto;
 `;
 
@@ -40,32 +53,31 @@ export const StateLayoutMobile: React.FC<StateLayoutCommonProps> = ({
     header,
     image,
     background,
+    backgroundFit,
+    backgroundWidth,
     title,
     text,
     button,
     children,
+    className,
+    insets,
 }) => {
-    const imageToRender = React.useMemo(() => {
-        if (children) {
-            return children;
-        }
-        if (image) {
-            return getImageToRender(image);
-        }
-        return null;
-    }, [children, image]);
+    const imageToRender = useImageToRender(image, children);
+    const height = useWindowInnerHeight();
 
     return (
-        <StyledContainer offsetBottom={118}>
+        <StyledContainer className={className} offsetBottom={insets?.bottom} $height={height}>
             {header && (
                 <StyledHeaderContainer>
                     <Header {...header} />
                 </StyledHeaderContainer>
             )}
-            {background && <Image base="div" src={background} ratio="1 / 1" />}
-            {image && imageToRender}
-            <StyledTitle>{title}</StyledTitle>
-            {text && <StyledSubtitle>{text}</StyledSubtitle>}
+            {background && (
+                <FullScreenBackground src={background} imageWidth={backgroundWidth} imageFit={backgroundFit} />
+            )}
+            {(image || children) && <StyledImageContainer>{imageToRender}</StyledImageContainer>}
+            <StyledTitle data-cy="state-layout-title">{title}</StyledTitle>
+            {text && <StyledSubtitle data-cy="state-layout-text">{text}</StyledSubtitle>}
             <StyledButtonWrapper>{button}</StyledButtonWrapper>
         </StyledContainer>
     );

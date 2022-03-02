@@ -14,4 +14,9 @@ export const mapDeviceToStateLayout: Record<DeviceFamily, React.FC<StateLayoutCo
     mobile: StateLayoutMobile,
 };
 
+/**
+ * Компонент для отображения какого-либо состояния, например ошибки или успеха
+ * По умолчанию предполагается, что состояние отображается на всю страницу,
+ * это поведение можно переопределить через `className` установив значение `height`
+ */
 export const StateLayout = mapDeviceToStateLayout[deviceFamily];

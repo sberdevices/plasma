@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { mediaQuery } from '@sberdevices/plasma-ui';
 
 const StyledBackgroundWrapper = styled.div`
     position: absolute;
@@ -33,7 +34,35 @@ const StyledBackgroundWrapper = styled.div`
         rgba(255, 255, 255, 0.009) 96.52%,
         rgba(255, 255, 255, 0) 99.84%
     );
-    /* stylelint-enable */
+
+    ${mediaQuery(
+        'S',
+        1,
+    )(css`
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+        mask-image: linear-gradient(
+            180deg,
+            #fff 50.05%,
+            rgba(255, 255, 255, 0.991) 53.37%,
+            rgba(255, 255, 255, 0.965) 56.69%,
+            rgba(255, 255, 255, 0.918) 60.01%,
+            rgba(255, 255, 255, 0.853) 63.33%,
+            rgba(255, 255, 255, 0.768) 66.65%,
+            rgba(255, 255, 255, 0.668) 69.97%,
+            rgba(255, 255, 255, 0.557) 73.29%,
+            rgba(255, 255, 255, 0.443) 76.61%,
+            rgba(255, 255, 255, 0.332) 79.93%,
+            rgba(255, 255, 255, 0.232) 83.24%,
+            rgba(255, 255, 255, 0.147) 86.56%,
+            rgba(255, 255, 255, 0.082) 89.88%,
+            rgba(255, 255, 255, 0.036) 93.2%,
+            rgba(255, 255, 255, 0.009) 96.52%,
+            rgba(255, 255, 255, 0) 99.84%
+        );
+    `)}/* stylelint-enable */
 `;
 
 const StyledBackgroundWrapperInner = styled(StyledBackgroundWrapper)`

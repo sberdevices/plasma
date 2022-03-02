@@ -1,22 +1,18 @@
 import React from 'react';
-import styled, { StyledComponent } from 'styled-components';
+import styled from 'styled-components';
 import { Headline1, Headline3 } from '@sberdevices/plasma-ui';
 import { secondary } from '@sberdevices/plasma-tokens';
 
-import { GetStyledComponentProps } from '../../types';
-
 import { StateLayout as CommonStateLayout } from './StateLayout@common';
 import { StateLayoutCommonProps } from './types';
-
-type StyledComponentProps = GetStyledComponentProps<typeof Headline3>;
-type StyledTextNode = StyledComponent<'div', any, StyledComponentProps, never>;
 
 const StyledTextWrapper = styled.div`
     margin-bottom: 2rem;
 `;
 
-const StyledText: StyledTextNode = styled(Headline3)`
+const StyledText = styled(Headline3)`
     margin-top: 1rem;
+    hyphens: none;
     color: ${secondary};
 `;
 
