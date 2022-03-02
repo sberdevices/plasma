@@ -23,7 +23,7 @@
     "cy:temple:run-ct-update-diffs": "PACKAGE_NAME=plasma-temple CYPRESS_updateSnapshots=true CYPRESS_CONFIG_FILE=temple npm run cy:run-ct",
     "cy:ui:open-ct": "PACKAGE_DIR=packages/plasma-ui node actions/platform-test/lib/index.js --config cypress/config/ui-config.json --command open-ct --env failOnSnapshotDiff=false",
     "cy:web:open-ct": "PACKAGE_DIR=packages/plasma-web node actions/platform-test/lib/index.js --config cypress/config/web-config.json --command open-ct --env failOnSnapshotDiff=false",
-    "cy:b2b:open-ct": "PACKEGE_DIR=packages/plasma-web node actions/platform-test/lib/index.js --config cypress/config/b2b-config.json --command open-ct --env failOnSnapshotDiff=false",
+    "cy:b2b:open-ct": "PACKAGE_DIR=packages/plasma-web node actions/platform-test/lib/index.js --config cypress/config/b2b-config.json --command open-ct --env failOnSnapshotDiff=false",
     "cy:b2c:open-ct": "PACKAGE_DIR=packages/plasma-b2c node actions/platform-test/lib/index.js --config cypress/config/b2c-config.json --command open-ct --env failOnSnapshotDiff=false",
     "cy:temple:open-ct": "PACKAGE_DIR=packages/plasma-temple node actions/platform-test/lib/index.js --config cypress/config/temple --command open-ct --platform ${TEST_PLATFORM:=sberbox} --env failOnSnapshotDiff=false",
     "cy:report:coverage": "nyc report --reporter=cobertura --reporter=html",
