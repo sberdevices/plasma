@@ -108,7 +108,8 @@ export const CypressTestDecorator: React.FC<CYTDec> = ({ noSSR, children }) => {
     if (pkgName === 'plasma-web' && tokens === 'plasma-tokens-b2b') {
         return (
             <SSR noSSR={noSSR}>
-                <TypoThemeStyle />
+                <StandardTypoStyle />
+                <CompatibleTypoStyle />
                 <B2BLightThemeStyle />
                 {children}
             </SSR>

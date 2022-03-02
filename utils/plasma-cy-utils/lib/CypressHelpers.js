@@ -108,7 +108,8 @@ exports.CypressTestDecorator = function (_a) {
     // B2B
     if (pkgName === 'plasma-web' && tokens === 'plasma-tokens-b2b') {
         return (react_1.default.createElement(SSR, { noSSR: noSSR },
-            react_1.default.createElement(TypoThemeStyle, null),
+            react_1.default.createElement(StandardTypoStyle, null),
+            react_1.default.createElement(CompatibleTypoStyle, null),
             react_1.default.createElement(B2BLightThemeStyle, null),
             children));
     }

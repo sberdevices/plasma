@@ -1,7 +1,10 @@
 {
     "component": {
         "componentFolder": "./packages/plasma-web/src",
-        "testFiles": "**/ButtonBase.component-test.tsx"
+        "testFiles": [
+            "components/Button/ButtonBase.component-test.tsx",
+            "components/TextField/TextField.component-test.tsx"
+        ]
     },
     "env": {
         "snapshotsDir": "cypress/snapshots/tokens-b2b",
