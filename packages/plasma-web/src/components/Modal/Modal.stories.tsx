@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Story, Meta } from '@storybook/react';
 
 import { SSRProvider } from '../SSRProvider';
 import { disableProps } from '../../helpers';
+import { withAutoFocus } from '../../hocs';
 import { Button } from '../Button';
 import { P1, Headline1, Headline3 } from '../Typography';
 
@@ -40,6 +41,8 @@ Default.argTypes = {
     ...disableProps(propsToDisable),
 };
 
+const AutofocusButton = withAutoFocus(Button);
+
 export const LiveDemo = () => {
     const [isOpenA, setIsOpenA] = React.useState(false);
     const [isOpenB, setIsOpenB] = React.useState(false);
@@ -49,30 +52,68 @@ export const LiveDemo = () => {
     const onCloseB = React.useCallback(() => setIsOpenB(false), []);
     const onCloseC = React.useCallback(() => setIsOpenC(false), []);
 
+    useEffect(() => {}, [document.activeElement]);
+
     return (
         <SSRProvider>
             <ModalsProvider>
-                <Button text="Open modal" onClick={() => setIsOpenA(true)} />
+                <Button text="Открыть окно A" onClick={() => setIsOpenA(true)} />
                 <ul>
                     <li>A: {isOpenA ? 'open' : 'closed'}</li>
                     <li>B: {isOpenB ? 'open' : 'closed'}</li>
                     <li>C: {isOpenC ? 'open' : 'closed'}</li>
                 </ul>
 
-                <Modal id="modalA" isOpen={isOpenA} onClose={onCloseA}>
-                    <Headline3>Modal A</Headline3>
-                    <Button view="primary" text="Open modal B" onClick={() => setIsOpenB(true)} />
-                    <Button text="Close" onClick={onCloseA} />
+                <Modal
+                    id="modalA"
+                    isOpen={isOpenA}
+                    onClose={onCloseA}
+                    aria-labelledby="example-modalA-title"
+                    closeButtonAriaLabel="Закрыть"
+                >
+                    <Headline3 id="example-modalA-title" mb="8x">
+                        Модальное окно A
+                    </Headline3>
+                    <AutofocusButton
+                        view="primary"
+                        text="Открыть окно B"
+                        autoFocus={isOpenA}
+                        tabIndex={null}
+                        onClick={() => setIsOpenB(true)}
+                    />
+                    <Button text="Закрыть" onClick={onCloseA} />
                 </Modal>
 
-                <Modal id="modalB" isOpen={isOpenB} onClose={onCloseB}>
-                    <Headline3>Modal B</Headline3>
-                    <Button view="primary" text="Open modal C" onClick={() => setIsOpenC(true)} />
-                    <Button text="Close" onClick={onCloseB} />
+                <Modal
+                    id="modalB"
+                    isOpen={isOpenB}
+                    onClose={onCloseB}
+                    aria-labelledby="example-modalB-title"
+                    closeButtonAriaLabel="Закрыть"
+                >
+                    <Headline3 id="example-modalB-title" mb="8x">
+                        Модальное окно B
+                    </Headline3>
+                    <AutofocusButton
+                        view="primary"
+                        text="Открыть окно C"
+                        autoFocus={isOpenB}
+                        tabIndex={null}
+                        onClick={() => setIsOpenC(true)}
+                    />
+                    <Button text="Закрыть" onClick={onCloseB} />
 
-                    <Modal id="modalC" isOpen={isOpenC} onClose={onCloseC}>
-                        <Headline3>Modal C</Headline3>
-                        <Button text="Close" onClick={onCloseC} />
+                    <Modal
+                        id="modalC"
+                        isOpen={isOpenC}
+                        onClose={onCloseC}
+                        aria-labelledby="example-modalC-title"
+                        closeButtonAriaLabel="Закрыть"
+                    >
+                        <Headline3 id="example-modalC-title" mb="8x">
+                            Модальное окно C (вложенное)
+                        </Headline3>
+                        <AutofocusButton text="Закрыть" autoFocus={isOpenC} tabIndex={null} onClick={onCloseC} />
                     </Modal>
                 </Modal>
             </ModalsProvider>
