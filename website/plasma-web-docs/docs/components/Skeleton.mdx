@@ -77,3 +77,29 @@ export function App() {
     );
 }
 ```
+
+## Доступность
+При использование хока `withSkeleton` необходимо воспользоваться атрибутами WAI ARIA. Пример с кнопкой:
+
+```tsx
+import React, { useState } from 'react';
+import { Button } from '@sberdevices/plasma-web';
+
+const ButtonSkeleton = withSkeleton<ButtonProps & WithSkeletonProps>(BasicButton);
+
+export default function App () {
+    const [skeleton, setSkeleton] = useState(false);
+
+    return (
+        <ButtonSkeleton
+            type="button"
+            text={skeleton ? 'Загрузка' : 'Нажмите'}
+            skeleton={skeleton}
+            aria-busy={skeleton}
+            onClick={() => setSkeleton((prevValue) => !prevValue)}
+        />
+    );
+}
+```
+
+Таким образом, при `skeleton=true` и `aria-busy=true` скринридер будет оповещать о соответствующем статусе компонента.
