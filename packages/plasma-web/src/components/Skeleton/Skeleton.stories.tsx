@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { typography } from '@sberdevices/plasma-tokens-b2b';
 import { radiuses, TypographyTypes } from '@sberdevices/plasma-core';
 import { Story, Meta } from '@storybook/react';
@@ -56,4 +56,16 @@ Rect.args = {
     height: 4,
 };
 
-export const Button = () => <ButtonSkeleton text="test" skeleton />;
+export const Button = () => {
+    const [skeleton, setSkeleton] = useState(false);
+
+    return (
+        <ButtonSkeleton
+            type="button"
+            text={skeleton ? 'Загрузка' : 'Нажмите'}
+            skeleton={skeleton}
+            aria-busy={skeleton}
+            onClick={() => setSkeleton((prevValue) => !prevValue)}
+        />
+    );
+};
