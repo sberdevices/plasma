@@ -59,22 +59,23 @@ Default.argTypes = {
     },
 };
 
-export const LiveDemo: Story<{ timeout: number }> = ({ timeout }) => {
+export const LiveDemo: Story<{ timeout: number } & NotificationProps> = ({ timeout, ...rest }) => {
     const count = React.useRef(0);
     const handleClick = React.useCallback(() => {
-        addNotification(getNotificationProps(count.current), timeout);
+        addNotification({ ...rest, ...getNotificationProps(count.current) }, timeout);
         count.current++;
     }, [count]);
 
     return (
         <NotificationsProvider>
-            <Button text="Add notification" onClick={handleClick} />
+            <Button text="Добавить уведомление" onClick={handleClick} />
         </NotificationsProvider>
     );
 };
 
 LiveDemo.args = {
     timeout: 3000,
+    role: 'alert',
 };
 
 export const WithModal: Story<{ timeout: number }> = ({ timeout }) => {
