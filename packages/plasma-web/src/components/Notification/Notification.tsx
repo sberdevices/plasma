@@ -59,9 +59,18 @@ const StyledContent = styled.div`
  * Компонент для небольших уведомлений пользователя
  */
 export const Notification = React.forwardRef<HTMLDivElement, NotificationProps>(
-    ({ status, title, children: content, ...rest }, ref) => {
+    ({ role = 'status', status, title, children: content, ...rest }, ref) => {
+        let ariaLive: 'assertive' | 'polite' = 'polite';
+        let ariaAtomic = false;
+
+        if (role === 'alert') {
+            ariaLive = 'assertive';
+        } else if (role === 'status') {
+            ariaAtomic = true;
+        }
+
         return (
-            <StyledRoot ref={ref} {...rest}>
+            <StyledRoot ref={ref} role={role} aria-live={ariaLive} aria-atomic={ariaAtomic} {...rest}>
                 <StyledTitle status={status}>{title}</StyledTitle>
                 <StyledContent>{content}</StyledContent>
             </StyledRoot>
