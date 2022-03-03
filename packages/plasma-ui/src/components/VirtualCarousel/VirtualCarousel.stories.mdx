@@ -1,0 +1,27 @@
+import { Meta, ArgsTable, Canvas, Story, Description } from '@storybook/addon-docs/blocks';
+
+import { WithGridLines, InContainer } from '../../helpers/StoryDecorators';
+
+import * as stories from './VirtualCarousel.stories';
+
+import { VirtualCarouselGridWrapper, VirtualCarousel, VirtualCarouselItem, VirtualCarouselCol } from '.';
+
+<Meta title="Controls/VirtualCarousel" decorators={[InContainer, WithGridLines]} />
+
+# VirtualCarousel
+Набор компонентов для создания списков с прокруткой с виртуализацией.
+
+## VirtualCarousel
+<Description of={VirtualCarousel} />
+<ArgsTable of={VirtualCarousel} exclude={["forwardedAs", "as"]} />
+
+## VirtualCarouselGridWrapper
+<Description of={VirtualCarouselGridWrapper} />
+
+## VirtualCarouselItem
+<Description of={VirtualCarouselItem} />
+<ArgsTable of={VirtualCarouselItem} exclude={["forwardedAs", "as"]} />
+
+## VirtualCarouselCol
+<Description of={VirtualCarouselCol} />
+<ArgsTable of={VirtualCarouselCol} exclude={["forwardedAs", "as"]} />
