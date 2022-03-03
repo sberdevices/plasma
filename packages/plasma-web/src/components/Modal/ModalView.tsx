@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import FocusLock from 'react-focus-lock';
 import { backgroundPrimary } from '@sberdevices/plasma-core';
 import { IconClose } from '@sberdevices/plasma-icons';
 
@@ -41,11 +42,15 @@ const StyledButtonClose = styled(Button).attrs(() => ({ view: 'clear' }))`
 /**
  * Визуальная часть модального окна.
  */
-export const ModalView = React.forwardRef<HTMLDivElement, ModalViewProps>(({ children, onClose, ...rest }, ref) => {
-    return (
-        <StyledBody ref={ref} {...rest}>
-            <StyledButtonClose onClick={onClose} contentLeft={<IconClose size="s" color="inherit" />} />
-            <StyledContent>{children}</StyledContent>
-        </StyledBody>
-    );
-});
+export const ModalView = React.forwardRef<HTMLDivElement, ModalViewProps>(
+    ({ role = 'dialog', children, onClose, ...rest }, ref) => {
+        return (
+            <FocusLock returnFocus>
+                <StyledBody ref={ref} role={role} {...rest}>
+                    <StyledButtonClose onClick={onClose} contentLeft={<IconClose size="s" color="inherit" />} />
+                    <StyledContent>{children}</StyledContent>
+                </StyledBody>
+            </FocusLock>
+        );
+    },
+);
