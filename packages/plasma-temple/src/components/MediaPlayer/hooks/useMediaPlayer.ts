@@ -76,6 +76,11 @@ export const useMediaPlayer: UseMediaPlayer = (ref, params) => {
                     setState((prevState) => ({ ...prevState, loading: true }));
                 }
             },
+            loadstart: () => {
+                if (ref.current) {
+                    setState((prevState) => ({ ...prevState, loading: true }));
+                }
+            },
         }),
         [end, ref, start],
     );
