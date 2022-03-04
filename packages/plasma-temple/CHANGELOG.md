@@ -1,3 +1,25 @@
+# v1.35.0 (Fri Mar 04 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Product component [#1079](https://github.com/sberdevices/plasma/pull/1079) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-temple): New Cart component [#1067](https://github.com/sberdevices/plasma/pull/1067) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-temple): New Cart component [#1066](https://github.com/sberdevices/plasma/pull/1066) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### 🐛 Bug Fix
+
+- test(plasma-temple): multi-platform tests [#1067](https://github.com/sberdevices/plasma/pull/1067) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- test(plasma-temple): Cart component tests [#1067](https://github.com/sberdevices/plasma/pull/1067) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- docs(plasma-temple): Cart component doc [#1066](https://github.com/sberdevices/plasma/pull/1066) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
 # v1.34.0 (Fri Mar 04 2022)
 
 #### 🚀 Enhancement
