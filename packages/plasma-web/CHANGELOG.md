@@ -1,3 +1,23 @@
+# v1.79.0 (Fri Mar 04 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-web): add multiselect logic to select [#1083](https://github.com/sberdevices/plasma/pull/1083) ([@didolf](https://github.com/didolf))
+- feat(plasma-web): add keyboard navigation to Select [#1083](https://github.com/sberdevices/plasma/pull/1083) ([@didolf](https://github.com/didolf))
+- feat(plasma-web): add additional fields to DropdownItem [#1083](https://github.com/sberdevices/plasma/pull/1083) ([@didolf](https://github.com/didolf))
+
+#### 🐛 Bug Fix
+
+- test(plasma-web): add tests on keyboard navigation [#1083](https://github.com/sberdevices/plasma/pull/1083) ([@didolf](https://github.com/didolf))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Дмитрий Лекомцев ([@didolf](https://github.com/didolf))
+
+---
+
 # v1.78.1 (Tue Mar 01 2022)
 
 #### 🐛 Bug Fix

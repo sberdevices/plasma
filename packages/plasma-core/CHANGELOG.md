@@ -1,3 +1,17 @@
+# v1.52.0 (Fri Mar 04 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-core): add ref to popup [#1083](https://github.com/sberdevices/plasma/pull/1083) ([@didolf](https://github.com/didolf))
+- feat(plasma-core): add multiselect logic to keyboard navigation hook [#1083](https://github.com/sberdevices/plasma/pull/1083) ([@didolf](https://github.com/didolf))
+- feat(plasma-core): add keyboard navigation hook [#1083](https://github.com/sberdevices/plasma/pull/1083) ([@didolf](https://github.com/didolf))
+
+#### Authors: 1
+
+- Дмитрий Лекомцев ([@didolf](https://github.com/didolf))
+
+---
+
 # v1.51.1 (Tue Mar 01 2022)
 
 #### 🐛 Bug Fix

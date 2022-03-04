@@ -1,3 +1,17 @@
+# v0.8.0 (Fri Mar 04 2022)
+
+#### 🐛 Bug Fix
+
+- ci: Added `plasma-tokens-b2b` ct jobs [#1123](https://github.com/sberdevices/plasma/pull/1123) ([@fanisco](https://github.com/fanisco))
+- test: update snaps [#1083](https://github.com/sberdevices/plasma/pull/1083) ([@didolf](https://github.com/didolf))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Дмитрий Лекомцев ([@didolf](https://github.com/didolf))
+
+---
+
 # v0.7.0 (Tue Mar 01 2022)
 
 #### 🐛 Bug Fix

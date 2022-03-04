@@ -1,3 +1,44 @@
+# (Fri Mar 04 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@1.34.0`
+  - feat(plasma-temple): New Cart component [#1080](https://github.com/sberdevices/plasma/pull/1080) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- `@sberdevices/plasma-core@1.52.0`
+  - feat(plasma-core): add ref to popup [#1083](https://github.com/sberdevices/plasma/pull/1083) ([@didolf](https://github.com/didolf))
+  - feat(plasma-core): add multiselect logic to keyboard navigation hook [#1083](https://github.com/sberdevices/plasma/pull/1083) ([@didolf](https://github.com/didolf))
+  - feat(plasma-core): add keyboard navigation hook [#1083](https://github.com/sberdevices/plasma/pull/1083) ([@didolf](https://github.com/didolf))
+- `@sberdevices/plasma-web@1.79.0`
+  - feat(plasma-web): add multiselect logic to select [#1083](https://github.com/sberdevices/plasma/pull/1083) ([@didolf](https://github.com/didolf))
+  - feat(plasma-web): add keyboard navigation to Select [#1083](https://github.com/sberdevices/plasma/pull/1083) ([@didolf](https://github.com/didolf))
+  - feat(plasma-web): add additional fields to DropdownItem [#1083](https://github.com/sberdevices/plasma/pull/1083) ([@didolf](https://github.com/didolf))
+
+#### 🐛 Bug Fix
+
+- test(plasma-tokens-b2b): Addded tests for `Button` [#1123](https://github.com/sberdevices/plasma/pull/1123) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-temple@1.34.0`
+  - test(plasma-temple): StateLayout component spec [#1041](https://github.com/sberdevices/plasma/pull/1041) ([@LamaEats](https://github.com/LamaEats))
+  - test(plasma-temple): OrderSuccessPage spec [#1041](https://github.com/sberdevices/plasma/pull/1041) ([@LamaEats](https://github.com/LamaEats))
+  - chore(plasma-temple): prepare OrderSuccessPage for tests [#1041](https://github.com/sberdevices/plasma/pull/1041) ([@LamaEats](https://github.com/LamaEats))
+  - test(plasma-temple): ConfirmOrderPage spec [#1041](https://github.com/sberdevices/plasma/pull/1041) ([@LamaEats](https://github.com/LamaEats))
+  - chore(plasma-temple): prepare ConfirmOrderPage for tests [#1041](https://github.com/sberdevices/plasma/pull/1041) ([@LamaEats](https://github.com/LamaEats))
+  - test(plasma-temple): ErrorPage spec [#1041](https://github.com/sberdevices/plasma/pull/1041) ([@LamaEats](https://github.com/LamaEats))
+  - chore(plasma-temple): prepare ErrorPage for tests [#1041](https://github.com/sberdevices/plasma/pull/1041) ([@LamaEats](https://github.com/LamaEats))
+- `@sberdevices/plasma-cy-utils@0.8.0`
+  - ci: Added `plasma-tokens-b2b` ct jobs [#1123](https://github.com/sberdevices/plasma/pull/1123) ([@fanisco](https://github.com/fanisco))
+  - test: update snaps [#1083](https://github.com/sberdevices/plasma/pull/1083) ([@didolf](https://github.com/didolf))
+- `@sberdevices/plasma-web@1.79.0`
+  - test(plasma-web): add tests on keyboard navigation [#1083](https://github.com/sberdevices/plasma/pull/1083) ([@didolf](https://github.com/didolf))
+
+#### Authors: 4
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+- Дмитрий Лекомцев ([@didolf](https://github.com/didolf))
+
+---
+
 # (Tue Mar 01 2022)
 
 #### 🐛 Bug Fix
