@@ -131,11 +131,15 @@ export const VideoPlayer = React.memo(
         const { currentTime, duration, loading, paused } = state;
         const [isPosterShowing, setIsPosterShowing] = React.useState(true);
 
-        React.useEffect(() => {
-            if (isPosterShowing && !loading && !paused) {
+        React.useLayoutEffect(() => {
+            const isOnStart = currentTime === 0;
+            if (isPosterShowing && !loading && !isOnStart) {
                 setIsPosterShowing(false);
             }
-        }, [isPosterShowing, loading, paused]);
+            if (!isPosterShowing && loading && isOnStart) {
+                setIsPosterShowing(true);
+            }
+        }, [isPosterShowing, loading, currentTime]);
 
         const { stopped: controlsHidden, startTimer, stopTimer } = useTimer(CONTROLS_HIDE_TIMEOUT);
 
