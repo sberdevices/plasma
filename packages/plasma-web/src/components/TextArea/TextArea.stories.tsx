@@ -61,7 +61,7 @@ export const Default: Story<TextAreaProps & { enableContentRight: boolean }> = (
     status,
     ...rest
 }) => {
-    const [value, setValue] = React.useState('Some text 🌝');
+    const [value, setValue] = React.useState('Значение поля');
 
     return (
         <TextArea
@@ -81,8 +81,8 @@ export const Default: Story<TextAreaProps & { enableContentRight: boolean }> = (
 
 Default.args = {
     id: 'example-textarea',
-    placeholder: 'Label',
-    helperText: 'Helper text',
+    placeholder: 'Заполните многострочное поле',
+    helperText: 'Подсказка к полю',
     enableContentRight: true,
     status: '' as 'success',
     resize: 'vertical',
