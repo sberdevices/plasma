@@ -89,9 +89,10 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                         onChange={onChange}
                         onFocus={onFocus}
                         onBlur={onBlur}
+                        aria-describedby={id ? `${id}-helper` : undefined}
                         {...rest}
                     />
-                    <FieldHelpers>
+                    <FieldHelpers id={id ? `${id}-helper` : undefined}>
                         <FieldHelper as={TextFieldHelper}>{leftHelper}</FieldHelper>
                         <FieldHelper>{rightHelper}</FieldHelper>
                     </FieldHelpers>
