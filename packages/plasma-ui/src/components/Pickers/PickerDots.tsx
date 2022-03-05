@@ -31,33 +31,34 @@ const sizes: Record<PickerSize, SimpleInterpolation> = {
             height: 0.25rem;
         }
 
+        /* stylelint-disable number-max-precision */
         &::before {
-            margin-top: -0.625rem;
+            margin-top: -0.3125rem;
         }
 
         &::after {
-            margin-top: 0.375rem;
+            margin-top: 0.1875rem;
         }
+        /* stylelint-enable number-max-precision */
     `,
     xs: css`
-        /* stylelint-disable-next-line number-max-precision */
+        /* stylelint-disable number-max-precision */
         width: 0.1875rem;
 
         &::before,
         &::after {
-            /* stylelint-disable-next-line number-max-precision */
             width: 0.1875rem;
-            /* stylelint-disable-next-line number-max-precision */
             height: 0.1875rem;
         }
 
         &::before {
-            margin-top: -0.55rem;
+            margin-top: -0.3125rem;
         }
 
         &::after {
-            margin-top: 0.2rem;
+            margin-top: 0.1875rem;
         }
+        /* stylelint-enable number-max-precision */
     `,
 };
 

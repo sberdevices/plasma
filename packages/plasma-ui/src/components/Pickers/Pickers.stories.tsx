@@ -321,6 +321,7 @@ export const Time_Picker: Story<TimePickerStoryProps> = ({
 
     return (
         <TimePicker
+            key={rest.size}
             value={value}
             min={min}
             max={max}
@@ -337,7 +338,7 @@ export const Time_Picker: Story<TimePickerStoryProps> = ({
 // eslint-disable-next-line @typescript-eslint/camelcase
 Time_Picker.args = {
     initialValue: '01.09.1980 00:28:59',
-    minDate: '01.01.1975 00:15:29',
+    minDate: '01.09.1980 00:15:29',
     maxDate: '01.09.1980 12:30:30',
     optionsHours: true,
     optionsMinutes: true,
@@ -356,4 +357,10 @@ Time_Picker.args = {
 Time_Picker.argTypes = {
     // eslint-disable-next-line @typescript-eslint/camelcase
     ...Date_Picker.argTypes,
+    size: {
+        control: {
+            type: 'inline-radio',
+            options: ['l', 's', 'xs'],
+        },
+    },
 };
