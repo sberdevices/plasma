@@ -35,9 +35,17 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function 
             style={style}
             className={className}
         >
-            <StyledTextArea ref={ref} id={id} placeholder={placeLabel} disabled={disabled} status={status} {...rest} />
+            <StyledTextArea
+                ref={ref}
+                id={id}
+                placeholder={placeLabel}
+                disabled={disabled}
+                status={status}
+                aria-describedby={id ? `${id}-helpertext` : undefined}
+                {...rest}
+            />
             {contentRight && <FieldContent pos="right">{contentRight}</FieldContent>}
-            {helperText && <FieldHelper>{helperText}</FieldHelper>}
+            {helperText && <FieldHelper id={id ? `${id}-helpertext` : undefined}>{helperText}</FieldHelper>}
         </FieldRoot>
     );
 });
