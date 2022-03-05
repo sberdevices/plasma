@@ -10,20 +10,16 @@ import { getStyles } from './utils';
 const sizes: Record<PickerSize, CSSObject> = {
     l: {
         ...display2,
-        height: '5rem', // 4rem + 2*0.5rem = 64px + 2*8px
         padding: '0.5rem 0',
     },
     s: {
         ...headline1,
         fontWeight: 600,
-        height: '2.25rem', // 2.25rem + 2*0.3125rem = 36px + 2*5px
-        padding: '0',
+        padding: 0,
     },
     xs: {
         ...headline2,
-        fontWeight: 600,
-        height: '2.05rem',
-        padding: '0',
+        padding: 0,
     },
 };
 
@@ -72,15 +68,6 @@ const StyledTransformable = styled.div<StyledSizeProps>`
             transition: transform 0.1s ease;
             transform: translate3d(0, 0, 0);
         `}
-
-    ${({ $size }) =>
-        $size === 's'
-            ? css`
-                  top: 0;
-              `
-            : css`
-                  top: -0.025em;
-              `}
 `;
 
 const StyledText = styled.span`

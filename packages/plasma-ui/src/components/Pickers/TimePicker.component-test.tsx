@@ -21,6 +21,26 @@ describe('plasma-ui: TimePicker', () => {
         cy.matchImageSnapshot();
     });
 
+    it('_size', () => {
+        const props = {
+            value: new Date(1980, 8, 1, 1, 28, 58),
+            min: new Date(1975, 1, 1, 0, 15, 29),
+            max: new Date(1985, 10, 30, 12, 30, 30),
+            infiniteScroll: false,
+            visibleItems: 3,
+        };
+
+        mount(
+            <CypressTestDecorator>
+                <TimePicker size="xs" {...props} />
+                <TimePicker size="s" {...props} />
+                <TimePicker size="l" {...props} />
+            </CypressTestDecorator>,
+        );
+
+        cy.matchImageSnapshot();
+    });
+
     it('without infiniteScroll', () => {
         mount(
             <CypressTestDecorator>
