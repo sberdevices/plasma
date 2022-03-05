@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { caption, dark02, shadows, white } from '@sberdevices/plasma-core';
 import { usePopper } from 'react-popper';
@@ -7,6 +7,8 @@ import { usePopper } from 'react-popper';
 export type BasePlacement = 'top' | 'bottom' | 'right' | 'left';
 export type VariationPlacement = 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end';
 export type Placement = BasePlacement | VariationPlacement;
+
+const ESCAPE_KEYCODE = 27;
 
 export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
     /**
@@ -29,6 +31,10 @@ export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
      * Анимированное появление/сокрытие.
      */
     animated?: boolean;
+    /**
+     * Событие закрытия тултипа по кнопке Esc.
+     */
+    onDismiss?: () => void;
 }
 
 const offset = [0, 6];
@@ -74,6 +80,7 @@ const StyledTooltip = styled.span<Pick<TooltipProps, 'isVisible' | 'animated'>>`
     color: ${white};
 
     white-space: pre;
+    pointer-events: none;
 
     transition: opacity 200ms ease-in-out;
 
@@ -114,6 +121,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
     animated = true,
     placement = 'bottom',
     children,
+    onDismiss,
     ...rest
 }) => {
     const [wrapperElement, setWrapperElement] = useState<HTMLDivElement | null>(null);
@@ -127,22 +135,37 @@ export const Tooltip: React.FC<TooltipProps> = ({
         ],
     });
 
+    useEffect(() => {
+        const onKeyDown = (event: KeyboardEvent) => {
+            if (event.keyCode === ESCAPE_KEYCODE) {
+                onDismiss?.();
+            }
+        };
+
+        window.addEventListener('keydown', onKeyDown);
+
+        return () => {
+            window.removeEventListener('keydown', onKeyDown);
+        };
+    }, []);
+
     return (
-        <StyledRoot aria-describedby={id} {...rest}>
+        <StyledRoot {...rest}>
+            {children && <StyledWrapper ref={setWrapperElement}>{children}</StyledWrapper>}
             <StyledTooltip
+                {...attributes.popper}
                 ref={setTooltipElement}
                 id={id}
                 isVisible={isVisible}
                 animated={animated}
                 style={styles.popper}
                 role="tooltip"
-                aria-hidden="true"
-                {...attributes.popper}
+                aria-live="polite"
+                aria-hidden={!isVisible}
             >
                 {arrow && <StyledArrow ref={setArrowElement} style={styles.arrow} {...attributes.arrow} />}
                 {text}
             </StyledTooltip>
-            {children && <StyledWrapper ref={setWrapperElement}>{children}</StyledWrapper>}
         </StyledRoot>
     );
 };
