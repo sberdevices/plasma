@@ -1,3 +1,32 @@
+# (Sat Mar 05 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@1.36.0`
+  - feat(plasma-temple): Product component [#1110](https://github.com/sberdevices/plasma/pull/1110) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Product component [#1079](https://github.com/sberdevices/plasma/pull/1079) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): New Cart component [#1067](https://github.com/sberdevices/plasma/pull/1067) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): New Cart component [#1066](https://github.com/sberdevices/plasma/pull/1066) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-temple@1.36.0`
+  - fix(plasma-temple): Poster classname on video change [#1132](https://github.com/sberdevices/plasma/pull/1132) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - test(plasma-temple): Multi-platform tests [#1109](https://github.com/sberdevices/plasma/pull/1109) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - test(plasma-temple): Product tests [#1109](https://github.com/sberdevices/plasma/pull/1109) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - test(plasma-temple): multi-platform tests [#1067](https://github.com/sberdevices/plasma/pull/1067) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - test(plasma-temple): Cart component tests [#1067](https://github.com/sberdevices/plasma/pull/1067) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- `@sberdevices/plasma-temple@1.36.0`, `@sberdevices/plasma-temple-docs@0.8.0`
+  - docs(plasma-temple): Product docs [#1110](https://github.com/sberdevices/plasma/pull/1110) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - docs(plasma-temple): Cart component doc [#1066](https://github.com/sberdevices/plasma/pull/1066) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # (Fri Mar 04 2022)
 
 #### 🚀 Enhancement

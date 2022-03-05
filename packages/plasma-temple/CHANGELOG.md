@@ -1,3 +1,33 @@
+# v1.36.0 (Sat Mar 05 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Product component [#1110](https://github.com/sberdevices/plasma/pull/1110) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-temple): Product component [#1079](https://github.com/sberdevices/plasma/pull/1079) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-temple): New Cart component [#1067](https://github.com/sberdevices/plasma/pull/1067) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-temple): New Cart component [#1066](https://github.com/sberdevices/plasma/pull/1066) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): Poster classname on video change [#1132](https://github.com/sberdevices/plasma/pull/1132) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+- test(plasma-temple): Multi-platform tests [#1109](https://github.com/sberdevices/plasma/pull/1109) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- test(plasma-temple): Product tests [#1109](https://github.com/sberdevices/plasma/pull/1109) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- docs(plasma-temple): Product docs [#1110](https://github.com/sberdevices/plasma/pull/1110) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- Bump independent versions \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- Update CHANGELOG.md \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+- test(plasma-temple): multi-platform tests [#1067](https://github.com/sberdevices/plasma/pull/1067) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- test(plasma-temple): Cart component tests [#1067](https://github.com/sberdevices/plasma/pull/1067) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- docs(plasma-temple): Cart component doc [#1066](https://github.com/sberdevices/plasma/pull/1066) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 3
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.35.0 (Fri Mar 04 2022)
 
 #### 🚀 Enhancement
