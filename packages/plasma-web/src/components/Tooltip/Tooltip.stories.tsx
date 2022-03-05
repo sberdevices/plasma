@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { Story, Meta } from '@storybook/react';
 import { IconDownload } from '@sberdevices/plasma-icons';
 
-import { disableProps } from '../../helpers';
+import { InSpacingDecorator, disableProps } from '../../helpers';
+import { applySpacing, SpacingProps } from '../../mixins';
 import { Button } from '../Button';
+import { TextField } from '../TextField';
 
 import { Tooltip, TooltipProps, Placement } from '.';
 
@@ -30,9 +32,10 @@ const StyledGrid = styled.div`
 
 export default {
     title: 'Controls/Tooltip',
+    decorators: [InSpacingDecorator],
 } as Meta;
 
-export const Live = () => {
+export const All = () => {
     return (
         <StyledGrid>
             <Tooltip placement="top-start" isVisible arrow text="Top start" animated={false}>
@@ -61,29 +64,58 @@ export const Live = () => {
     );
 };
 
-export const Default: Story<TooltipProps> = (args) => {
-    const [isVisible, setVisible] = React.useState(false);
+const StyledRow = styled.div<SpacingProps>`
+    ${applySpacing}
+    display: flex;
+`;
+
+export const Live: Story<TooltipProps> = (args) => {
+    const [isVisibleA, setVisibleA] = React.useState(false);
+    const [isVisibleB, setVisibleB] = React.useState(false);
 
     return (
-        <Tooltip isVisible={isVisible} {...args}>
-            <Button
-                text="Toggle"
-                onClick={() => {
-                    setVisible((isVis) => !isVis);
-                }}
-            />
-        </Tooltip>
+        <>
+            <StyledRow mb="8x">
+                <Tooltip
+                    {...args}
+                    id="example-tooltip-firstname"
+                    text="Введите имя"
+                    isVisible={isVisibleA}
+                    onDismiss={() => setVisibleA(false)}
+                    onFocus={() => setVisibleA(true)}
+                    onMouseOver={() => setVisibleA(true)}
+                    onBlur={() => setVisibleA(false)}
+                    onMouseOut={() => setVisibleA(false)}
+                >
+                    <TextField label="Имя" aria-describedby="example-tooltip-firstname" />
+                </Tooltip>
+            </StyledRow>
+            <StyledRow mb="8x">
+                <Tooltip
+                    {...args}
+                    id="example-tooltip-lastname"
+                    text="Введите фамилию"
+                    isVisible={isVisibleB}
+                    onDismiss={() => setVisibleB(false)}
+                    onFocus={() => setVisibleB(true)}
+                    onMouseOver={() => setVisibleB(true)}
+                    onBlur={() => setVisibleB(false)}
+                    onMouseOut={() => setVisibleB(false)}
+                >
+                    <TextField label="Фамилия" aria-describedby="example-tooltip-lastname" />
+                </Tooltip>
+            </StyledRow>
+        </>
     );
 };
 
-Default.args = {
+Live.args = {
     placement: 'bottom',
     animated: true,
     arrow: true,
-    text: 'Hello there.',
 };
 
-Default.argTypes = {
+Live.argTypes = {
     placement: {
         control: {
             type: 'select',
