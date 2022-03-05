@@ -56,7 +56,7 @@ export default {
 } as Meta;
 
 export const Default: Story<TextAreaProps & { enableRightIcon: boolean }> = ({ enableRightIcon, status, ...rest }) => {
-    const [value, setValue] = React.useState('Some text 🌝');
+    const [value, setValue] = React.useState('Значение поля');
 
     return (
         <TextArea
@@ -75,8 +75,9 @@ export const Default: Story<TextAreaProps & { enableRightIcon: boolean }> = ({ e
 };
 
 Default.args = {
-    placeholder: 'Label',
-    helperText: 'Helper text',
+    id: 'example-textarea',
+    placeholder: 'Заполните многострочное поле',
+    helperText: 'Подсказка к полю',
     enableRightIcon: true,
     status: '' as 'success',
     resize: 'vertical',
