@@ -74,6 +74,7 @@ export const Default: Story<TextAreaProps & { enableContentRight: boolean }> = (
 };
 
 Default.args = {
+    id: 'example-textarea',
     placeholder: 'Placeholder text',
     leftHelper: 'Helper text',
     rightHelper: '125 слов',
