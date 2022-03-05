@@ -129,6 +129,7 @@ const StyledButton = styled.button<StyledButtonProps>`
 export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
     (
         {
+            id,
             placeholder,
             value,
             helperText,
@@ -150,8 +151,10 @@ export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
             setOpen(false);
             setSelectedItem(undefined);
         }, []);
+
         return (
             <StyledRoot
+                id={id}
                 $size="m"
                 $disabled={disabled}
                 $isContentRight={hasItems}
@@ -161,11 +164,12 @@ export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
                 style={style}
             >
                 <SelectDropdown
+                    id={id ? `${id}-popup` : undefined}
                     items={items}
                     onToggle={setOpen}
                     trigger="click"
                     placement="bottom"
-                    listId="combo1"
+                    listId={id ? `${id}-listbox` : undefined}
                     multiselect={multiselect}
                     disabled={disabled}
                     onItemClick={onItemClick}
@@ -177,7 +181,7 @@ export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
                             disabled={disabled}
                             status={status}
                             aria-activedescendant={selectedItem}
-                            aria-controls="combo1"
+                            aria-controls={id ? `${id}-listbox` : undefined}
                             aria-expanded={isOpen}
                             aria-haspopup="menu"
                             role="combobox"

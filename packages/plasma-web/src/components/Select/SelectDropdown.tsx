@@ -102,7 +102,7 @@ export const SelectDropdown: FC<SelectDopdownProps> = ({
 
     return (
         <StyledPopup ref={popupRef} isOpen={isOpen} onToggle={onToggle} {...rest}>
-            <DropdownList id={listId} role="menu" ref={dropdownListRef}>
+            <DropdownList as="ul" id={listId} role="listbox" ref={dropdownListRef}>
                 {items.map((item, idx) =>
                     item.items && item.items.length ? (
                         <NestedDropdown
@@ -116,6 +116,7 @@ export const SelectDropdown: FC<SelectDopdownProps> = ({
                         />
                     ) : (
                         <DropdownItem
+                            as="li"
                             isHovered={idx === activeIndex}
                             key={item.value}
                             onHover={() => changeActiveIndex(idx)}

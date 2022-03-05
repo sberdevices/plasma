@@ -73,6 +73,7 @@ export const Default: Story<SelectProps> = ({ status, ...rest }) => {
 };
 
 Default.args = {
+    id: 'example-select',
     multiselect: false,
     placeholder: 'Выберите пример',
     helperText: 'Заполните пример',

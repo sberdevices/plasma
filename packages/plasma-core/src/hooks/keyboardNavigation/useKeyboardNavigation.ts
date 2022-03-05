@@ -34,7 +34,7 @@ export const useKeyboardNavigation = ({
 }: UseKeyboardNavigation) => {
     const [activeIndex, setActiveIndex] = useState(0);
 
-    const dropdownListRef = useRef<HTMLDivElement | null>(null);
+    const dropdownListRef = useRef<HTMLUListElement | null>(null);
 
     const popupRef = useRef<HTMLDivElement | null>(null);
 

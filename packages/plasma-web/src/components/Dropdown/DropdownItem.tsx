@@ -9,12 +9,14 @@ import {
     applyDisabled,
     applyEllipsis,
 } from '@sberdevices/plasma-core';
+import type { AsProps } from '@sberdevices/plasma-core';
 import { IconChevronRight, IconDone } from '@sberdevices/plasma-icons';
 
 import { DropdownItem as DropdownItemType, DropdownNode as DropdownNodeType } from './Dropdown.types';
 
 export interface DropdownItemProps
     extends DropdownNodeType,
+        AsProps,
         Omit<
             React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>,
             'onClick' | 'ref'
