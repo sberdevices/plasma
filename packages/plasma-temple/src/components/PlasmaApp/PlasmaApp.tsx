@@ -32,6 +32,7 @@ export interface PlasmaAppProps<Name extends string = string> {
     assistantParams: Omit<InitializeParams, 'getState'>;
     header?: HeaderProps;
     onStart?: OnStartFn;
+    theme?: any;
 }
 
 export function App<Name extends string>({
@@ -39,6 +40,7 @@ export function App<Name extends string>({
     assistantParams,
     header,
     onStart,
+    theme,
 }: React.PropsWithChildren<PlasmaAppProps<Name>>): React.ReactElement {
     const [state, dispatch] = useReducer(reducer, initialPlasmaAppState);
     const popScreenDelta = React.useRef(1);
@@ -154,7 +156,7 @@ export function App<Name extends string>({
         <AssistantContext.Provider value={assistantContextValue}>
             <AppStateContext.Provider value={appStateContextValue}>
                 <DeviceThemeProvider>
-                    <GlobalStyles />
+                    <GlobalStyles customTheme={theme} />
                     {childToRender}
                 </DeviceThemeProvider>
             </AppStateContext.Provider>

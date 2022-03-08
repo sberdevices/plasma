@@ -44,13 +44,20 @@ const charactersTheme: Record<CharacterId, React.ComponentType> = {
     sber: createGlobalStyle(darkSber),
 };
 
-export const GlobalStyles: React.FC = React.memo(() => {
+interface GlobalStylesProps {
+    customTheme?: any;
+}
+
+export const GlobalStyles: React.FC<GlobalStylesProps> = React.memo((props) => {
     const { state } = React.useContext(AppStateContext);
     const Theme = React.useMemo(() => charactersTheme[state.ui.character], [state.ui.character]);
+    const { customTheme } = props;
+
+    const CustomTheme = customTheme ? createGlobalStyle(customTheme) : Theme;
 
     return (
         <>
-            <Theme />
+            <CustomTheme />
             <DocumentStyles />
         </>
     );
