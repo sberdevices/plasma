@@ -56,10 +56,19 @@ export const Container: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ chil
         if (canUseDOM) {
             window.addEventListener('resize', resizeHandler);
         }
+
+        // Костыль для обработки случая асинхронного появления элемента из ref
+        const updateWidthTimeout = setTimeout(() => {
+            if (ref.current) {
+                setWidth(ref.current.offsetWidth);
+            }
+        }, 111); // Счастливое число
+
         return () => {
             if (canUseDOM) {
                 window.removeEventListener('resize', resizeHandler);
             }
+            clearTimeout(updateWidthTimeout);
         };
     }, []);
 
