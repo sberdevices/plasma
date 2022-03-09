@@ -1,3 +1,15 @@
+# v1.85.1 (Wed Mar 09 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-ui): `TimePicker` splitter size [#1120](https://github.com/sberdevices/plasma/pull/1120) ([@LamaEats](https://github.com/LamaEats))
+
+#### Authors: 1
+
+- Sviridov Maksim ([@LamaEats](https://github.com/LamaEats))
+
+---
+
 # v1.85.0 (Fri Mar 04 2022)
 
 #### 🐛 Bug Fix
