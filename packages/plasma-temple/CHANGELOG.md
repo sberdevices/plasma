@@ -1,3 +1,15 @@
+# v1.37.0 (Wed Mar 09 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Exports for custom item page [#1125](https://github.com/sberdevices/plasma/pull/1125) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.36.0 (Sat Mar 05 2022)
 
 #### 🚀 Enhancement
