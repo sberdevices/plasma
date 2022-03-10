@@ -14,7 +14,7 @@ export default {
 export const Default: Story<ToastProps> = (args) => <Toast {...args} />;
 
 Default.args = {
-    text: 'Short Text Message Without Action',
+    text: 'Текст всплывающего уведомления',
 };
 
 interface LiveDemoProps extends ToastProps {
@@ -42,7 +42,7 @@ export const LiveDemo: Story<LiveDemoProps> = ({ role, text, position, timeout, 
 
 LiveDemo.args = {
     role: 'alert',
-    text: 'Short Text Message Without Action',
+    text: 'Текст всплывающего уведомления',
     enableContentLeft: true,
     position: 'bottom',
     timeout: 10000,
