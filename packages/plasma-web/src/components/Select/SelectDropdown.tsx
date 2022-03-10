@@ -2,7 +2,7 @@ import React, { FC, useState, useCallback, RefAttributes, useEffect, useRef } fr
 import styled, { css } from 'styled-components';
 import { PopupProps, useKeyboardNavigation } from '@sberdevices/plasma-core';
 
-import { DropdownList, DropdownItem } from '../Dropdown';
+import { DropdownList, DropdownItem, DropdownItemType } from '../Dropdown';
 import { Popup } from '../Popup';
 
 import { SelectArrow } from './SelectArrow';
@@ -64,7 +64,7 @@ export const SelectDropdown: FC<SelectDopdownProps> = ({
     }, [outerIsOpen]);
 
     const onItemClick = useCallback(
-        (item) => {
+        (item: DropdownItemType) => {
             if (!multiselect) {
                 setIsOpen(false);
             }
@@ -73,7 +73,7 @@ export const SelectDropdown: FC<SelectDopdownProps> = ({
         [multiselect, onItemClickExternal],
     );
     const onToggle = useCallback(
-        (newIsOpen) => {
+        (newIsOpen: boolean) => {
             if (newIsOpen && (!hasItems || disabled)) {
                 return;
             }

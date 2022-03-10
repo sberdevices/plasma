@@ -4,27 +4,11 @@
     "description": "SberDevices Design System / React UI kit for web applications",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
-    "keywords": [
-        "design-system",
-        "react-components",
-        "ui-kit",
-        "react"
-    ],
+    "keywords": ["design-system", "react-components", "ui-kit", "react"],
     "main": "index.js",
     "module": "es/index.js",
     "types": "index.d.ts",
-    "files": [
-        "components",
-        "es",
-        "hocs",
-        "hooks",
-        "mixins",
-        "tokens",
-        "types",
-        "utils",
-        "index.d.ts",
-        "index.js"
-    ],
+    "files": ["components", "es", "hocs", "hooks", "mixins", "tokens", "types", "utils", "index.d.ts", "index.js"],
     "repository": {
         "type": "git",
         "url": "ssh://git@github.com:sberdevices/plasma.git",
@@ -73,7 +57,8 @@
         "react-dom": "16.13.1",
         "react-scripts": "3.4.4",
         "styled-components": "5.3.1",
-        "typescript": "3.9.10"
+        "typescript": "3.9.10",
+        "typescript-coverage-report": "0.6.4"
     },
     "publishConfig": {
         "access": "public"
@@ -87,12 +72,13 @@
         "build:esm": "BABEL_ENV=esm SC_NAMESPACE=plasma-web babel ./src --out-dir ./es --source-maps --extensions .ts,.tsx",
         "storybook": "start-storybook -s .storybook/public -p ${PORT:-7007} -c .storybook",
         "storybook:build": "build-storybook -s .storybook/public -c .storybook -o build-sb",
-        "storybook:build:docs": "DOCS=true build-storybook --quiet -s .storybook/public -c .storybook -o build-sb-docs --docs"
+        "storybook:build:docs": "DOCS=true build-storybook --quiet -s .storybook/public -c .storybook -o build-sb-docs --docs",
+        "typescript-coverage": "npx typescript-coverage-report"
     },
-    "contributors": [
-        "Vasiliy Loginevskiy",
-        "Anton Vinogradov",
-        "Fanil Zubairov"
-    ],
+    "typeCoverage": {
+        "ignoreFiles": ["src/**/*component-test.tsx", "src/**/*stories.tsx"],
+        "atLeast": 100
+    },
+    "contributors": ["Vasiliy Loginevskiy", "Anton Vinogradov", "Fanil Zubairov"],
     "sideEffects": false
 }

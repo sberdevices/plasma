@@ -55,7 +55,7 @@ export const Dropdown: FC<DropdownProps> = ({
     const [isOpen, setIsOpen] = useState(false);
 
     const onItemClick = useCallback(
-        (item) => {
+        (item: DropdownItemType) => {
             setIsOpen(false);
             onItemClickExternal?.(item);
         },
@@ -63,7 +63,7 @@ export const Dropdown: FC<DropdownProps> = ({
     );
 
     const onToggle = useCallback(
-        (newIsOpen) => {
+        (newIsOpen: boolean) => {
             if (hasItems) {
                 setIsOpen(newIsOpen);
             }
