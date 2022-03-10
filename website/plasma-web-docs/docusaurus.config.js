@@ -182,10 +182,19 @@ module.exports = {
                                 module.displayName !== 'Default'
                             );
                         })
-                        .map((component) =>
+                        .forEach(async (component) =>
                             actions.createData(
                                 `${component.displayName}.json`,
-                                JSON.stringify({ props: component.props, description: component.description }),
+                                JSON.stringify({
+                                    props: Object.entries(component.props).reduce(
+                                        (acc, [key, { declarations, parent, ...rest }]) => ({
+                                            ...acc,
+                                            [key]: rest,
+                                        }),
+                                        {},
+                                    ),
+                                    description: component.description,
+                                }),
                             ),
                         );
                 },
