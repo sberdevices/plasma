@@ -2,10 +2,11 @@ import React from 'react';
 
 import { MediaObject, MetaPayload } from '../../types';
 
-export interface ItemEntity extends MetaPayload {
+interface ItemEntity extends MetaPayload {
     id: string | number;
     label: string;
     image: MediaObject;
+    /** @deprecated не используется */
     position: number;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;

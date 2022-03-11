@@ -53,6 +53,7 @@ export interface Description {
 export interface MediaObject {
     src: string[] | string;
     ratio?: AspectRatio;
+    customRatio?: string;
     covered?: boolean;
 }
 

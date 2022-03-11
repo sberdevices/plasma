@@ -12,6 +12,7 @@ import { LayoutElementContext } from '../../components/Layout/LayoutElementConte
 
 import { ItemEntityProps } from './components/ItemEntity/ItemEntity';
 import { ItemPageState } from './types';
+import { ItemMainSection } from './components/ItemMainSection/ItemMainSection';
 
 interface ItemPageProps extends ComponentPropsWithHeader {
     state: ItemPageState;
@@ -36,6 +37,7 @@ const scrollToWithOffset = (offset: number, element: HTMLDivElement | null) => {
     });
 };
 
+/** @depreceted use Item */
 export const ItemPage: React.FC<ItemPageProps> = ({
     state,
     header,
@@ -45,7 +47,7 @@ export const ItemPage: React.FC<ItemPageProps> = ({
     additionalButons,
 }) => {
     const { entities, entitiesTitle, background, title, subtitle, description, actionButtonText } = state;
-    const { ItemMainSection, ItemEntities } = useRegistry();
+    const { ItemEntities } = useRegistry();
     const layoutElementContext = React.useContext(LayoutElementContext);
 
     const list = React.useMemo(

@@ -105,7 +105,7 @@ export const ProductRecommendationsItem: React.FC<ProductRecommendationsItemProp
 
     const handleClick = React.useCallback(() => {
         onClick(recommendation, index);
-    }, [index, onClick]);
+    }, [recommendation, index, onClick]);
 
     const handleKeyDown = React.useCallback(
         (event: React.KeyboardEvent) => {

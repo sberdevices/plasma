@@ -8,7 +8,7 @@ import { ComponentPropsWithHeader } from '../../components/Header/types';
 import { useSpatNavBetweenTargets } from '../../hooks/useSpatNav';
 import { useVoiceNavigationWithSpatNav } from '../../hooks/useVoiceNavigation';
 import { scroll } from '../../utils/scroll';
-import { FullScreenBackground } from '../ItemPage/components/FullScreenBackground/FullScreenBackground';
+import { FullScreenBackground } from '../../components/FullScreenBackground/FullScreenBackground';
 import { LayoutElementContext } from '../../components/Layout/LayoutElementContext';
 
 import { GridEntity, GridPageState } from './types';

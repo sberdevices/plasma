@@ -1,19 +1,18 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Cell, TextBox, TextBoxLabel, TextBoxTitle, Button, ButtonProps } from '@sberdevices/plasma-ui';
+import styled, { css } from 'styled-components';
+import { Button, ButtonProps, mediaQuery } from '@sberdevices/plasma-ui';
 import { IconPlay } from '@sberdevices/plasma-icons/Icons/IconPlay';
 
 import { isSberBoxLike } from '../../../../utils/deviceFamily';
-import { FullScreenBackground } from '../FullScreenBackground/FullScreenBackground';
 import { useFocusOnMount } from '../../../../hooks/useFocusOnMount';
-import { UnifiedComponentProps } from '../../../../registry/types';
-import { SectionProps } from '../Section/Section';
+import { ItemBackground } from '../../../../components/Item/ItemBackground/ItemBackground';
+import { ItemMainSection as ItemMainSectionNew } from '../../../../components/Item/ItemMainSection/ItemMainSection';
 
 interface ItemCellProps {
     title: React.ReactNode;
     content: React.ReactNode;
 }
-export interface ItemMainSectionProps {
+interface ItemMainSectionProps {
     title: string;
     subtitle: string;
     cover?: string;
@@ -23,47 +22,25 @@ export interface ItemMainSectionProps {
     additionalButons?: ButtonProps[];
 }
 
-const StyledRow = styled.div`
-    display: flex;
-    align-items: flex-start;
+const StyledItemMainSection = styled(ItemMainSectionNew)`
+    margin-bottom: 2.5rem;
 
-    margin-bottom: 64px;
+    ${mediaQuery(
+        'M',
+        2,
+    )(css`
+        margin-bottom: 2rem;
+    `)}
 `;
 
-const StyledTextBox = styled(Cell)`
-    min-width: 200px;
-    margin-left: 1rem;
-
-    &:first-child {
-        margin-left: 0;
-    }
-`;
-
-const ItemCell: React.FC<ItemCellProps> = ({ title, content }) => (
-    <StyledTextBox
-        content={
-            <TextBox>
-                <TextBoxLabel>{title}</TextBoxLabel>
-                <TextBoxTitle>{content}</TextBoxTitle>
-            </TextBox>
-        }
-    />
-);
-
-type PlatformComponents = {
-    Container: SectionProps;
-    Title: void;
-    Subtitle: void;
-};
-
-export const ItemMainSection: React.FC<UnifiedComponentProps<ItemMainSectionProps, PlatformComponents>> = ({
+/** @deprecated */
+export const ItemMainSection: React.FC<ItemMainSectionProps> = ({
     title,
     subtitle,
     description,
     itemShowButtonText,
     onItemShow,
     cover,
-    platformComponents: { Container, Title, Subtitle },
     additionalButons = [],
 }) => {
     const buttonRef = React.useRef<HTMLButtonElement>(null);
@@ -77,29 +54,26 @@ export const ItemMainSection: React.FC<UnifiedComponentProps<ItemMainSectionProp
     );
 
     return (
-        <Container withSpatNav>
-            {cover && <FullScreenBackground src={cover} />}
-            <Title data-cy="item-page-title">{title}</Title>
-            <Subtitle data-cy="item-page-subtitle">{subtitle}</Subtitle>
-            {description && (
-                <StyledRow data-cy="item-page-desc">
-                    {description.map(
-                        ({ title: descTitle, content }, index) =>
-                            content && (
-                                <ItemCell key={`ItemPageDescription${index}`} title={descTitle} content={content} />
-                            ),
-                    )}
-                </StyledRow>
-            )}
-            <Button
-                size="s"
-                onClick={onItemShow}
-                ref={buttonRef}
-                contentLeft={<IconPlay size="s" />}
-                outlined={isSberBoxLike()}
-                text={itemShowButtonText}
+        <>
+            {cover && <ItemBackground src={cover} />}
+            <StyledItemMainSection
+                title={title}
+                subtitle={subtitle}
+                details={description}
+                buttons={
+                    <>
+                        <Button
+                            size="s"
+                            onClick={onItemShow}
+                            ref={buttonRef}
+                            contentLeft={<IconPlay size="s" />}
+                            outlined={isSberBoxLike()}
+                            text={itemShowButtonText}
+                        />
+                        {additionalButons.map(renderButton)}
+                    </>
+                }
             />
-            {additionalButons.map(renderButton)}
-        </Container>
+        </>
     );
 };

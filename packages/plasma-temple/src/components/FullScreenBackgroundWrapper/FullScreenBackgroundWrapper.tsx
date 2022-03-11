@@ -90,9 +90,12 @@ const StyledBackgroundWrapperInner = styled(StyledBackgroundWrapper)`
     /* stylelint-enable */
 `;
 
-export const FullScreenBackgroundWrapper: React.FC = ({ children }) => {
+export const FullScreenBackgroundWrapper: React.FC<React.PropsWithChildren<{ className?: string }>> = ({
+    className,
+    children,
+}) => {
     return (
-        <StyledBackgroundWrapper>
+        <StyledBackgroundWrapper className={className}>
             <StyledBackgroundWrapperInner>{children}</StyledBackgroundWrapperInner>
         </StyledBackgroundWrapper>
     );
