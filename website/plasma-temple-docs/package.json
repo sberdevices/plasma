@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-temple-docs",
-    "version": "0.8.0",
+    "version": "0.9.0",
     "private": true,
     "description": "Plasma Temple documentation",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
