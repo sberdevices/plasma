@@ -2,6 +2,19 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-ui-docs@0.49.0`
+  - feat(aml): mention AML in plasma ui docs [#1137](https://github.com/sberdevices/plasma/pull/1137) ([@jabzzy](https://github.com/jabzzy))
+
+#### Authors: 1
+
+- Eugene Dashkevich ([@jabzzy](https://github.com/jabzzy))
+
+---
+
+# (Fri Mar 11 2022)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-core@1.53.0`, `@sberdevices/plasma-ui@1.86.0`
   - feat(plasma-core): Add onDetectActiveItem callback for `Carousel` component [#1081](https://github.com/sberdevices/plasma/pull/1081) ([@neretin-trike](https://github.com/neretin-trike))
 
