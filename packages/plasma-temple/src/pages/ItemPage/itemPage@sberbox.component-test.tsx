@@ -52,8 +52,8 @@ describe('ItemPage -- base test', () => {
     beforeTests();
 
     it('screen rendered', () => {
-        cy.get('[data-cy="item-page-title"]').contains('Cypress Test Item Page');
-        cy.get('[data-cy="item-page-subtitle"]').contains('Subtitle');
+        cy.get('[data-cy="ItemMainSection-title"]').contains('Cypress Test Item Page');
+        cy.get('[data-cy="ItemMainSection-title"]').contains('Subtitle');
 
         cy.matchImageSnapshot();
     });

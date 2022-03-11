@@ -17,13 +17,14 @@ interface FullScreenBackgroundProps {
     src: string;
     imageWidth?: string;
     imageFit?: ObjectFit;
+    className?: string;
 }
 
-export const FullScreenBackground: React.FC<FullScreenBackgroundProps> = ({ src, imageWidth, imageFit }) => {
+export const FullScreenBackground: React.FC<FullScreenBackgroundProps> = ({ src, imageWidth, imageFit, className }) => {
     const imageWidthValue = imageWidth || '100%';
     const imageFitValue = imageFit || 'cover';
     return (
-        <FullScreenBackgroundWrapper>
+        <FullScreenBackgroundWrapper className={className}>
             <StyledBackgroundImage
                 src={src}
                 imageWidth={imageWidthValue}

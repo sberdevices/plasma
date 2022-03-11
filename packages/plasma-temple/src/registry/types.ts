@@ -1,6 +1,5 @@
 import React from 'react';
 
-import type { ItemMainSectionProps } from '../pages/ItemPage/components/ItemMainSection/ItemMainSection';
 import type { ItemEntitiesProps } from '../pages/ItemPage/components/ItemEntities/ItemEntities';
 import type { NavColProps } from '../pages/ShopLandingPage/components/NavCol/NavCol';
 import type { CarouselProps } from '../pages/GalleryPage/components/Carousel';
@@ -14,7 +13,6 @@ export type UnifiedComponentProps<T, P extends Record<string, unknown>> = T & {
 };
 
 export interface Registry {
-    ItemMainSection: React.ComponentType<ItemMainSectionProps>;
     ItemEntities: React.ComponentType<ItemEntitiesProps>;
     NavCol: React.ComponentType<NavColProps>;
     Carousel: React.ForwardRefExoticComponent<

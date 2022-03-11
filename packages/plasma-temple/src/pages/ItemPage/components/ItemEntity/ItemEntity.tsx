@@ -28,6 +28,7 @@ const StyledCol = styled(Col)`
     margin-bottom: 56px;
 `;
 
+/** @deprecated */
 export const ItemEntity = React.forwardRef<HTMLDivElement, ItemEntityProps>(
     // eslint-disable-next-line prefer-arrow-callback
     function ItemEntity({ url, title, onClick, onFocus, onKeyDown, order }, ref) {

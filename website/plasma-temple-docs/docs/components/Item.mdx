@@ -1,0 +1,91 @@
+---
+id: item
+title: Item
+---
+
+import { PropsTable, Description } from '@site/src/components';
+
+# Item
+Набор компонентов для создания страницы сущности
+
+## Item
+<Description name="Item" />
+<PropsTable name="Item" />
+
+## ItemDetails
+<Description name="ItemDetails" />
+<PropsTable name="ItemDetails" />
+
+## ItemEntities
+<Description name="ItemEntities" />
+<PropsTable name="ItemEntities" />
+
+## Примеры
+
+```tsx
+import React from 'react';
+import styled from 'styled-components';
+import { Item } from '@sberdevices/plasma-temple';
+
+const details = [
+    {
+        title: 'Автор аудиогида',
+        content: 'Иван Иванов',
+    },
+    {
+        title: 'Читает',
+        content: 'Петр Петров',
+    },
+    {
+        title: 'Тур займёт',
+        content: '2 часа 30 минут',
+    },
+];
+
+const entities: ItemEntityType[] = [
+    {
+        id: 1,
+        name: 'Космос',
+        image: {
+            src: 'images/cat.png',
+        },
+    },
+    {
+        id: 2,
+        name: 'Животные',
+        image: {
+            src: 'images/cat.png',
+        },
+    },
+    {
+        id: 3,
+        name: 'Как все устроено',
+        image: {
+            src: 'images/cat.png',
+        },
+    },
+];
+
+const StyledItem = styled(Item)`
+    height: 100vh;
+`;
+
+export function App() {
+    return (
+        <StyledItem
+                title="Архив. Эль Патио с Иваном Ивановым"
+                subtitle="Новый Вавилон"
+                details={details}
+                actionButtonProps={{
+                    actionButtonText: 'Начать аудиотур',
+                    onActionButtonClick: () => {},
+                }}
+                entities={entities}
+                entitiesTitle="Все экспонаты"
+                background="images/cat.png"
+                insets={{ bottom: 80 }}
+                onEntityClick={() => {}}
+            />
+    );
+}
+```
