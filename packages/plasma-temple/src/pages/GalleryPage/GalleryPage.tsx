@@ -53,7 +53,7 @@ const StyledSectionTitle = styled(Headline3)<{ active: boolean }>`
 
 interface FocusableGalleryProps {
     index: number;
-    title?: string;
+    title?: React.ReactNode;
     activeCardIndex?: number;
     isMultiple?: boolean;
 }
