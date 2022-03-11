@@ -2,6 +2,19 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-core@1.53.0`, `@sberdevices/plasma-ui@1.86.0`
+  - feat(plasma-core): Add onDetectActiveItem callback for `Carousel` component [#1081](https://github.com/sberdevices/plasma/pull/1081) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
+# (Fri Mar 11 2022)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-temple@1.38.0`, `@sberdevices/plasma-temple-docs@0.9.0`
   - feat(plasma-temple): error page improvments and mobile version [#1128](https://github.com/sberdevices/plasma/pull/1128) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
 

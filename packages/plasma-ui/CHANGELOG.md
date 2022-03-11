@@ -1,3 +1,15 @@
+# v1.86.0 (Fri Mar 11 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-core): Add onDetectActiveItem callback for `Carousel` component [#1081](https://github.com/sberdevices/plasma/pull/1081) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.85.1 (Wed Mar 09 2022)
 
 #### 🐛 Bug Fix
