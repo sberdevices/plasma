@@ -1,3 +1,15 @@
+# v1.38.0 (Fri Mar 11 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): error page improvments and mobile version [#1128](https://github.com/sberdevices/plasma/pull/1128) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v1.37.0 (Wed Mar 09 2022)
 
 #### 🚀 Enhancement

@@ -1,3 +1,24 @@
+# (Fri Mar 11 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@1.38.0`, `@sberdevices/plasma-temple-docs@0.9.0`
+  - feat(plasma-temple): error page improvments and mobile version [#1128](https://github.com/sberdevices/plasma/pull/1128) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-web@1.80.0`
+  - chore(plasma-web): Delete `Popup` from storybook [#1136](https://github.com/sberdevices/plasma/pull/1136) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/versionate-docs@0.3.0`
+  - docs(versionate-docs): Added `README.md` [#1139](https://github.com/sberdevices/plasma/pull/1139) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Thu Mar 10 2022)
 
 #### 🐛 Bug Fix

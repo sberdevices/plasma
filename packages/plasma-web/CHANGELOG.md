@@ -1,3 +1,15 @@
+# v1.80.0 (Fri Mar 11 2022)
+
+#### 🐛 Bug Fix
+
+- chore(plasma-web): Delete `Popup` from storybook [#1136](https://github.com/sberdevices/plasma/pull/1136) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.79.0 (Fri Mar 04 2022)
 
 #### 🚀 Enhancement
