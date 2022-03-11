@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-icons",
-    "version": "1.70.0",
+    "version": "1.71.0",
     "description": "SberDevices Design System Icons",
     "main": "index.js",
     "module": "es/index.js",
@@ -23,7 +23,7 @@
         "@babel/preset-env": "^7.15.4",
         "@babel/preset-react": "^7.14.5",
         "@babel/preset-typescript": "^7.15.0",
-        "@sberdevices/plasma-core": "1.52.0",
+        "@sberdevices/plasma-core": "1.53.0",
         "@types/node": "^16.7.13",
         "@types/react": "16.9.38",
         "@types/react-dom": "16.9.8",
