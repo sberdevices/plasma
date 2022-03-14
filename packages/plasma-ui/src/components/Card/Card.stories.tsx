@@ -1,7 +1,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 
-import { IconPlaceholder } from '../../helpers/IconPlaceholder';
+import { InSpacingDecorator, IconPlaceholder } from '../../helpers';
 import { Button } from '../Button';
 import { Cell, CellIcon, CellListItem, CellDisclosure } from '../Cell';
 import { TextBox, TextBoxTitle, TextBoxSubTitle, TextBoxBiggerTitle, TextBoxBigTitle } from '../TextBox';
@@ -18,6 +18,7 @@ const longText = `Канадский актёр, кинопродюсер, и м
 
 export default {
     title: 'Content/Card',
+    decorators: [InSpacingDecorator],
 } as Meta;
 
 interface BasicValueProps extends CardProps {
