@@ -1,8 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { surfaceCard } from '@sberdevices/plasma-tokens';
-import { addFocus, applyRoundness, radiuses, syntheticFocus } from '@sberdevices/plasma-core';
-import type { FocusProps, OutlinedProps, RoundnessProps } from '@sberdevices/plasma-core';
+import { addFocus, applyDisabled, applyRoundness, radiuses, syntheticFocus } from '@sberdevices/plasma-core';
+import type { DisabledProps, FocusProps, OutlinedProps, RoundnessProps } from '@sberdevices/plasma-core';
 
 import { Body1 } from '../Typography';
 
@@ -20,9 +20,10 @@ interface ScaleOnFocusProps {
      */
     scaleOnFocus?: boolean;
 }
-interface StyledRootProps extends FocusProps, OutlinedProps, RoundnessProps, ScaleOnFocusProps {}
+interface StyledRootProps extends DisabledProps, FocusProps, OutlinedProps, RoundnessProps, ScaleOnFocusProps {}
 
 export const StyledCard = styled(Body1)<StyledRootProps>`
+    ${applyDisabled}
     ${applyRoundness};
 
     position: relative;
@@ -62,7 +63,8 @@ export const StyledCard = styled(Body1)<StyledRootProps>`
 `;
 
 export interface CardProps
-    extends FocusProps,
+    extends DisabledProps,
+        FocusProps,
         OutlinedProps,
         ScaleOnFocusProps,
         Partial<RoundnessProps>,

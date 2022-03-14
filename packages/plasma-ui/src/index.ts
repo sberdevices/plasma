@@ -13,6 +13,7 @@ export * from './components/Marquee';
 export * from './components/PaginationDots';
 export * from './components/Pickers';
 export * from './components/Price';
+export * from './components/ProductCard';
 export * from './components/Radiobox';
 export * from './components/Sheet';
 export * from './components/Skeleton';
