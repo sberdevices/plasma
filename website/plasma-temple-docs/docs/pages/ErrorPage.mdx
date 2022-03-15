@@ -1,0 +1,35 @@
+---
+id: errorPage
+title: ErrorPage
+---
+
+import { PropsTable, Description } from '@site/src/components';
+
+# ErrorPage
+<Description name="ErrorPage" />
+<PropsTable name="ErrorPage" />
+
+
+## Примеры
+
+```tsx
+import React from 'react';
+import { Button } from '@sberdevices/plasma-ui';
+
+
+export function App() {
+    return (
+        <ErrorPage
+            error={{
+                status: 'Ошибка',
+                message: 'Описание ошибки',
+            }}
+            buttons={(buttonRef) => (
+                <Button ref={buttonRef} view="primary" size="m" stretch data-cy="button">
+                    Label
+                </Button>
+            )}
+        />
+    );
+}
+```

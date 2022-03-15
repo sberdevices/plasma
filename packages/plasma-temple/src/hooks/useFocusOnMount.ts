@@ -15,7 +15,7 @@ export const useFocusOnMount: UseFocusOnMount = (ref, params = {}) => {
     const { preventScroll, delay = 150, prevent = false, callOnce = false } = params;
     const calledOnce = React.useRef(false);
 
-    React.useLayoutEffect(() => {
+    React.useEffect(() => {
         if (callOnce && calledOnce.current) {
             return;
         }
