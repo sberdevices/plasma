@@ -1,3 +1,17 @@
+# v1.48.0 (Tue Mar 15 2022)
+
+#### 🐛 Bug Fix
+
+- chore: `Toast` stories text & role [#1127](https://github.com/sberdevices/plasma/pull/1127) ([@fanisco](https://github.com/fanisco))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.47.0 (Mon Mar 14 2022)
 
 #### 🐛 Bug Fix

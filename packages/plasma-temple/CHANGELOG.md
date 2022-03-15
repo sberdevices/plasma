@@ -1,3 +1,15 @@
+# v1.40.0 (Tue Mar 15 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-temple): GalleryPage header typography [#1122](https://github.com/sberdevices/plasma/pull/1122) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.38.0 (Fri Mar 11 2022)
 
 #### 🚀 Enhancement

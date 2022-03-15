@@ -1,3 +1,19 @@
+# v1.83.0 (Tue Mar 15 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-web): `Notification`: added possibility to anounce text when open [#1127](https://github.com/sberdevices/plasma/pull/1127) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- chore: `Toast` stories text & role [#1127](https://github.com/sberdevices/plasma/pull/1127) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.82.0 (Mon Mar 14 2022)
 
 #### 🐛 Bug Fix

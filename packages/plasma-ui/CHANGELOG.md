@@ -1,3 +1,15 @@
+# v1.87.0 (Tue Mar 15 2022)
+
+#### 🐛 Bug Fix
+
+- chore: `Toast` stories text & role [#1127](https://github.com/sberdevices/plasma/pull/1127) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.86.0 (Fri Mar 11 2022)
 
 #### 🚀 Enhancement
