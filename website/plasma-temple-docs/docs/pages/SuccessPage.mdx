@@ -1,0 +1,33 @@
+---
+id: successPage
+title: SuccessPage
+---
+
+import { PropsTable, Description } from '@site/src/components';
+
+# SuccessPage
+<Description name="SuccessPage" />
+<PropsTable name="SuccessPage" />
+
+
+## Примеры
+
+```tsx
+import React from 'react';
+import { Button } from '@sberdevices/plasma-ui';
+
+
+export function App() {
+    return (
+        <SuccessPage
+            title="Успех"
+            subtitle="Описание"
+            buttons={(buttonRef) => (
+                <Button ref={buttonRef} view="primary" size="m" stretch data-cy="button">
+                    Label
+                </Button>
+            )}
+        />
+    );
+}
+```
