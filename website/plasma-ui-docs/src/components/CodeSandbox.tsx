@@ -16,10 +16,16 @@ const sberdevicesDependencies = Object.entries(packageJson.dependencies)
         return acc;
     }, {});
 
-const styledPreview = `
+const indexSource = `import React from "react";
+import ReactDOM from "react-dom";
+import styled from "styled-components";
+import { DeviceThemeProvider } from '@sberdevices/plasma-ui';
 import { gradient } from '@sberdevices/plasma-tokens';
 import { darkSber } from '@sberdevices/plasma-tokens/themes';
 import { sberBox } from '@sberdevices/plasma-tokens/typo';
+
+import { App } from "./App";
+import "./style.css";
 
 const StyledPreview = styled.div\`
     \${darkSber[":root"]};
@@ -28,12 +34,22 @@ const StyledPreview = styled.div\`
     height: 100%;
     background-image: \${gradient};
 
-    padding: 1rem; 
+    padding: 1rem;
+
     > div { 
         display: flex; 
         gap: 1rem; 
     }
-\``;
+\`
+    
+ReactDOM.render(
+    <DeviceThemeProvider responsiveTypo>
+        <StyledPreview>
+            <App />
+        </StyledPreview>
+    </DeviceThemeProvider>,
+    document.getElementById("root")
+);`;
 
 export const CodeSandbox: FC<{ source: string }> = ({ source }) => {
     return (
@@ -47,7 +63,7 @@ export const CodeSandbox: FC<{ source: string }> = ({ source }) => {
             }
             sandboxName="plasma-ui-example"
             dependencies={sberdevicesDependencies}
-            styledPreview={styledPreview}
+            indexSource={indexSource}
         />
     );
 };
