@@ -3,33 +3,6 @@ import { getParameters } from 'codesandbox/lib/api/define';
 import styled from 'styled-components';
 import qs from 'qs';
 
-const getIndexStyle = (styledPreview?: string) => `import React from "react";
-import ReactDOM from "react-dom";
-import styled from "styled-components";
-import { App } from "./App";
-import "./style.css";
-
-${
-    styledPreview?.includes('StyledPreview')
-        ? styledPreview
-        : `const StyledPreview = styled.div\`
-            padding: 1rem; 
-            > div { 
-                display: flex; 
-                gap: 1rem; 
-            }
-        \``
-}
-
-ReactDOM.render(
-  <DeviceThemeProvider responsiveTypo>
-    <StyledPreview>
-        <App />
-    </StyledPreview>
-  </DeviceThemeProvider>,
-  document.getElementById("root")
-);`;
-
 const style = `@import "https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansText.0.1.0.css";
 
 body {
@@ -68,14 +41,9 @@ export interface CodeSandboxProps extends HTMLAttributes<HTMLIFrameElement> {
      */
     sandboxName: string;
     /**
-     * Стиль обёртки для сниппета, где StyledPreview - стилизованный div
-     *
-     * @example
-     *
-     * const StyledPreview = styled.div${'`height: 100%; ${darkSber[":root"]};background-image: ${gradient};`'}
-     *
+     * Исходный код index.js
      */
-    styledPreview?: string;
+    indexSource: string;
     /**
      * Зависимости для сниппета
      */
@@ -88,9 +56,7 @@ export interface CodeSandboxProps extends HTMLAttributes<HTMLIFrameElement> {
     content?: string | JSX.Element;
 }
 
-export const CodeSandbox: FC<CodeSandboxProps> = ({ source, sandboxName, dependencies, styledPreview, content }) => {
-    const index = useMemo(() => getIndexStyle(styledPreview), [styledPreview]);
-
+export const CodeSandbox: FC<CodeSandboxProps> = ({ source, sandboxName, dependencies, indexSource, content }) => {
     const parameters = useMemo(
         () =>
             getParameters({
@@ -111,7 +77,7 @@ export const CodeSandbox: FC<CodeSandboxProps> = ({ source, sandboxName, depende
                     },
                     'src/index.js': {
                         isBinary: false,
-                        content: index,
+                        content: indexSource,
                     },
                     'src/App.js': {
                         isBinary: false,

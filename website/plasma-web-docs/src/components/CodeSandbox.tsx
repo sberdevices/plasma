@@ -16,20 +16,33 @@ const sberdevicesDependencies = Object.entries(packageJson.dependencies)
         return acc;
     }, {});
 
-const styledPreview = `
+const indexSource = `import React from "react";
+import ReactDOM from "react-dom";
+import styled from "styled-components";
 import { light } from "@sberdevices/plasma-tokens-b2b/themes";
-import { web } from '@sberdevices/plasma-tokens-b2b/typo';
+import { b2b } from '@sberdevices/plasma-tokens-b2b/typo';
+
+import { App } from "./App";
+import "./style.css";
 
 const StyledPreview = styled.div\`
     \${light[":root"]};
-    \${web[":root"]};
+    \${b2b[":root"]};
 
     padding: 1rem; 
+
     > div { 
         display: flex; 
         gap: 1rem; 
     }
-\``;
+\`
+    
+ReactDOM.render(
+    <StyledPreview>
+        <App />
+    </StyledPreview>,
+    document.getElementById("root")
+);`;
 
 export const CodeSandbox: FC<{ source: string }> = ({ source }) => {
     return (
@@ -43,7 +56,7 @@ export const CodeSandbox: FC<{ source: string }> = ({ source }) => {
             }
             sandboxName="plasma-web-example"
             dependencies={sberdevicesDependencies}
-            styledPreview={styledPreview}
+            indexSource={indexSource}
         />
     );
 };
