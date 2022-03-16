@@ -44,6 +44,7 @@ Default.argTypes = {
 const AutofocusButton = withAutoFocus(Button);
 
 export const LiveDemo = () => {
+    const root = React.useRef<HTMLElement | null>(null);
     const [isOpenA, setIsOpenA] = React.useState(false);
     const [isOpenB, setIsOpenB] = React.useState(false);
     const [isOpenC, setIsOpenC] = React.useState(false);
@@ -52,35 +53,35 @@ export const LiveDemo = () => {
     const onCloseB = React.useCallback(() => setIsOpenB(false), []);
     const onCloseC = React.useCallback(() => setIsOpenC(false), []);
 
-    useEffect(() => {}, [document.activeElement]);
+    useEffect(() => {
+        if (!root.current) {
+            root.current = document.getElementById('root');
+        }
+        if (isOpenA || isOpenB || isOpenC) {
+            root.current?.setAttribute('role', 'presentation');
+            root.current?.setAttribute('aria-hidden', 'true');
+        } else {
+            root.current?.removeAttribute('role');
+            root.current?.removeAttribute('aria-hidden');
+        }
+    }, [isOpenA, isOpenB, isOpenC]);
 
     return (
         <SSRProvider>
             <ModalsProvider>
                 <Button text="Открыть окно A" onClick={() => setIsOpenA(true)} />
-                <ul>
-                    <li>A: {isOpenA ? 'open' : 'closed'}</li>
-                    <li>B: {isOpenB ? 'open' : 'closed'}</li>
-                    <li>C: {isOpenC ? 'open' : 'closed'}</li>
-                </ul>
 
                 <Modal
                     id="modalA"
                     isOpen={isOpenA}
                     onClose={onCloseA}
                     aria-labelledby="example-modalA-title"
-                    closeButtonAriaLabel="Закрыть"
+                    closeButtonAriaLabel="Закрыть (кнока-крестик)"
                 >
                     <Headline3 id="example-modalA-title" mb="8x">
                         Модальное окно A
                     </Headline3>
-                    <AutofocusButton
-                        view="primary"
-                        text="Открыть окно B"
-                        autoFocus={isOpenA}
-                        tabIndex={null}
-                        onClick={() => setIsOpenB(true)}
-                    />
+                    <Button view="primary" text="Открыть окно B" onClick={() => setIsOpenB(true)} />
                     <Button text="Закрыть" onClick={onCloseA} />
                 </Modal>
 
@@ -89,18 +90,12 @@ export const LiveDemo = () => {
                     isOpen={isOpenB}
                     onClose={onCloseB}
                     aria-labelledby="example-modalB-title"
-                    closeButtonAriaLabel="Закрыть"
+                    closeButtonAriaLabel="Закрыть (кнока-крестик)"
                 >
                     <Headline3 id="example-modalB-title" mb="8x">
                         Модальное окно B
                     </Headline3>
-                    <AutofocusButton
-                        view="primary"
-                        text="Открыть окно C"
-                        autoFocus={isOpenB}
-                        tabIndex={null}
-                        onClick={() => setIsOpenC(true)}
-                    />
+                    <Button view="primary" text="Открыть окно C" onClick={() => setIsOpenC(true)} />
                     <Button text="Закрыть" onClick={onCloseB} />
 
                     <Modal
@@ -108,12 +103,16 @@ export const LiveDemo = () => {
                         isOpen={isOpenC}
                         onClose={onCloseC}
                         aria-labelledby="example-modalC-title"
-                        closeButtonAriaLabel="Закрыть"
+                        closeButtonAriaLabel="Закрыть (кнока-крестик)"
                     >
                         <Headline3 id="example-modalC-title" mb="8x">
                             Модальное окно C (вложенное)
                         </Headline3>
-                        <AutofocusButton text="Закрыть" autoFocus={isOpenC} tabIndex={null} onClick={onCloseC} />
+                        <P1>
+                            Подмножество, исключая очевидный случай, реально стабилизирует предел последовательности.
+                            Нечетная функция решительно создает коллинеарный интеграл Гамильтона. Доказательство
+                            развивает неопровержимый постулат.
+                        </P1>
                     </Modal>
                 </Modal>
             </ModalsProvider>
