@@ -1,3 +1,20 @@
+# v1.43.0 (Wed Mar 16 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Export for useSpatNavBetweenTargets [#1140](https://github.com/sberdevices/plasma/pull/1140) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.42.0 (Wed Mar 16 2022)
 
 #### 🐛 Bug Fix
