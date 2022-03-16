@@ -15,6 +15,10 @@ export interface ModalViewProps extends React.HTMLAttributes<HTMLDivElement> {
      * Обработчик клика по кнопке "закрыть".
      */
     onClose?: () => void;
+    /**
+     * WAI-ARIA атрибут кнопки "закрыть".
+     */
+    closeButtonAriaLabel?: string;
 }
 
 const StyledBody = styled.div`
@@ -30,10 +34,10 @@ const StyledContent = styled.div`
     padding: 2rem;
 `;
 const StyledButtonClose = styled(Button).attrs(() => ({ view: 'clear' }))`
-    float: right;
-
+    position: absolute;
+    top: 0;
+    right: 0;
     margin: 2rem;
-
     width: auto;
     height: auto;
     padding: 0;
@@ -43,12 +47,16 @@ const StyledButtonClose = styled(Button).attrs(() => ({ view: 'clear' }))`
  * Визуальная часть модального окна.
  */
 export const ModalView = React.forwardRef<HTMLDivElement, ModalViewProps>(
-    ({ role = 'dialog', children, onClose, ...rest }, ref) => {
+    ({ role = 'dialog', closeButtonAriaLabel, children, onClose, ...rest }, ref) => {
         return (
             <FocusLock returnFocus>
-                <StyledBody ref={ref} role={role} {...rest}>
-                    <StyledButtonClose onClick={onClose} contentLeft={<IconClose size="s" color="inherit" />} />
+                <StyledBody {...rest} ref={ref} role={role} aria-modal="true">
                     <StyledContent>{children}</StyledContent>
+                    <StyledButtonClose
+                        aria-label={closeButtonAriaLabel}
+                        onClick={onClose}
+                        contentLeft={<IconClose size="s" color="inherit" />}
+                    />
                 </StyledBody>
             </FocusLock>
         );

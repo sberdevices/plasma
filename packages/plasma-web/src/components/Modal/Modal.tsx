@@ -100,6 +100,8 @@ export const Modal: React.FC<ModalProps> = ({ id, isOpen, onClose, ...rest }) =>
         if (!portal) {
             portal = document.createElement('div');
             portal.setAttribute('id', MODALS_PORTAL_ID);
+            portal.setAttribute('aria-live', 'off');
+            portal.setAttribute('role', 'presentation');
             portal.style.position = 'relative';
             portal.style.zIndex = '9000';
             document.body.appendChild(portal);
