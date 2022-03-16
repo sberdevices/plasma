@@ -1,3 +1,21 @@
+# v1.49.0 (Wed Mar 16 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-web): `TextField`: added `aria-describedby` attr [#1124](https://github.com/sberdevices/plasma/pull/1124) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-b2c): `TextField`: added `aria-labelled` and `aria-describedby` attrs [#1124](https://github.com/sberdevices/plasma/pull/1124) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.48.0 (Tue Mar 15 2022)
 
 #### 🐛 Bug Fix

@@ -1,3 +1,20 @@
+# (Wed Mar 16 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-b2c@1.49.0`, `@sberdevices/plasma-ui@1.88.0`, `@sberdevices/plasma-web@1.84.0`
+  - feat(plasma-web): `TextField`: added `aria-describedby` attr [#1124](https://github.com/sberdevices/plasma/pull/1124) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-ui@1.88.0`
+  - feat(plasma-ui): `TextField`: added `aria-describedby` attr [#1124](https://github.com/sberdevices/plasma/pull/1124) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.49.0`
+  - feat(plasma-b2c): `TextField`: added `aria-labelled` and `aria-describedby` attrs [#1124](https://github.com/sberdevices/plasma/pull/1124) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Tue Mar 15 2022)
 
 #### 🚀 Enhancement
