@@ -2,6 +2,7 @@ import fs from 'fs';
 import { promisify } from 'util';
 
 import { associatedPackages } from './packages';
+import { sortVersions } from './utils';
 
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
@@ -26,8 +27,9 @@ const readJson = async <T>(path: string): Promise<T | undefined> => {
  */
 export const writeVersionsJson = async (path: string, version: string, url: string) => {
     const json = (await readJson<Record<string, string>>(path)) || {};
+    const sortedJson = sortVersions({ ...json, [version]: url });
 
-    return writeFile(path, JSON.stringify({ ...json, [version]: url }));
+    return writeFile(path, JSON.stringify(sortedJson, null, 4));
 };
 
 /**
