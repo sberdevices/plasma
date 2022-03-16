@@ -1,3 +1,15 @@
+# v1.89.0 (Wed Mar 16 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): `TextArea`: added `aria-describedby` attr [#1133](https://github.com/sberdevices/plasma/pull/1133) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.88.0 (Wed Mar 16 2022)
 
 #### 🚀 Enhancement

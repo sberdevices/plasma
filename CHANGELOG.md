@@ -2,6 +2,23 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-b2c@1.50.0`, `@sberdevices/plasma-ui@1.89.0`, `@sberdevices/plasma-web@1.85.0`
+  - feat(plasma-ui): `TextArea`: added `aria-describedby` attr [#1133](https://github.com/sberdevices/plasma/pull/1133) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.50.0`
+  - feat(plasma-b2c): `TextArea`: added `aria-describedby` attr [#1133](https://github.com/sberdevices/plasma/pull/1133) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-web@1.85.0`
+  - feat(plasma-web): `TextArea`: added `aria-describedby` attr [#1133](https://github.com/sberdevices/plasma/pull/1133) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Wed Mar 16 2022)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-b2c@1.49.0`, `@sberdevices/plasma-ui@1.88.0`, `@sberdevices/plasma-web@1.84.0`
   - feat(plasma-web): `TextField`: added `aria-describedby` attr [#1124](https://github.com/sberdevices/plasma/pull/1124) ([@fanisco](https://github.com/fanisco))
 - `@sberdevices/plasma-ui@1.88.0`

@@ -1,3 +1,21 @@
+# v1.50.0 (Wed Mar 16 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): `TextArea`: added `aria-describedby` attr [#1133](https://github.com/sberdevices/plasma/pull/1133) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-b2c): `TextArea`: added `aria-describedby` attr [#1133](https://github.com/sberdevices/plasma/pull/1133) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.49.0 (Wed Mar 16 2022)
 
 #### 🚀 Enhancement
