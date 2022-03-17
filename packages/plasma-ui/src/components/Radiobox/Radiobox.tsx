@@ -70,21 +70,17 @@ export const Radiobox = forwardRef<HTMLInputElement, RadioboxProps>(function Rad
                 </StyledTrigger>
                 {label && (
                     <CheckboxContent>
-                        {label && <BaseboxLabel as="span">{label}</BaseboxLabel>}
-                        {description && <BaseboxDescription mt={4}>{description}</BaseboxDescription>}
+                        <BaseboxLabel as="span" id={uniqLabelId}>
+                            {label}
+                        </BaseboxLabel>
+                        {description && (
+                            <BaseboxDescription mt={4} id={uniqDescriptionId}>
+                                {description}
+                            </BaseboxDescription>
+                        )}
                     </CheckboxContent>
                 )}
             </BaseboxContentWrapper>
-            {label && (
-                <span style={{ visibility: 'hidden', width: 0, height: 0 }} id={uniqLabelId}>
-                    {label}
-                </span>
-            )}
-            {description && (
-                <span style={{ visibility: 'hidden', width: 0, height: 0 }} id={uniqDescriptionId}>
-                    {description}
-                </span>
-            )}
         </CheckboxRoot>
     );
 });

@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 import { SSRProvider } from '../SSRProvider';
 import { InSpacingDecorator } from '../../helpers';
+import { Headline4 } from '../Typography';
 
 import { Radiobox, RadioboxProps, RadioGroup } from '.';
 
@@ -16,25 +17,30 @@ const onChange = action('onChange');
 const onFocus = action('onFocus');
 const onBlur = action('onBlur');
 
-const cDescription = (
-    <div>
-        A general-purpose, procedural computer programming{' '}
-        <a href="https://en.wikipedia.org/wiki/C_(programming_language)">language</a>{' '}
-    </div>
-);
-
-const langName = 'language';
 const items = [
     {
-        langName,
+        name: 'language',
         value: 'c',
         label: 'C',
         disabled: false,
-        description: cDescription,
+        description: (
+            <>
+                Си (
+                <a
+                    href="https://ru.wikipedia.org/wiki/%D0%90%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9_%D1%8F%D0%B7%D1%8B%D0%BA"
+                    aria-label="английский"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    англ.
+                </a>{' '}
+                C) — компилируемый статически типизированный язык программирования общего назначения.
+            </>
+        ),
     },
-    { langName, value: 'cpp', label: 'C++', disabled: false },
-    { langName, value: 'assembly', label: 'Assembly', disabled: false },
-    { langName, value: 'elixir', label: 'Elixir', disabled: true },
+    { name: 'language', value: 'cpp', label: 'C++', disabled: false },
+    { name: 'language', value: 'assembly', label: 'Assembly', disabled: false },
+    { name: 'language', value: 'elixir', label: 'Elixir', disabled: true },
 ];
 
 export const Live = () => {
@@ -42,11 +48,14 @@ export const Live = () => {
 
     return (
         <SSRProvider>
-            <RadioGroup>
+            <RadioGroup aria-labelledby="example-radiogroup-title">
+                <Headline4 id="example-radiogroup-title" mb="8x">
+                    Выберите язык программирования
+                </Headline4>
                 {items.map((item) => (
                     <Radiobox
                         key={item.value}
-                        name={item.langName}
+                        name={item.name}
                         value={item.value}
                         label={item.label}
                         disabled={item.disabled}
