@@ -159,21 +159,17 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
                 </StyledTrigger>
                 {label && (
                     <StyledContent>
-                        {label && <BaseboxLabel as="span">{label}</BaseboxLabel>}
-                        {description && <BaseboxDescription mt={4}>{description}</BaseboxDescription>}
+                        <BaseboxLabel as="span" id={uniqLabelId}>
+                            {label}
+                        </BaseboxLabel>
+                        {description && (
+                            <BaseboxDescription mt={4} id={uniqDescriptionId}>
+                                {description}
+                            </BaseboxDescription>
+                        )}
                     </StyledContent>
                 )}
             </BaseboxContentWrapper>
-            {label && (
-                <span style={{ visibility: 'hidden', width: 0, height: 0 }} id={uniqLabelId}>
-                    {label}
-                </span>
-            )}
-            {description && (
-                <span style={{ visibility: 'hidden', width: 0, height: 0 }} id={uniqDescriptionId}>
-                    {description}
-                </span>
-            )}
         </StyledRoot>
     );
 });
