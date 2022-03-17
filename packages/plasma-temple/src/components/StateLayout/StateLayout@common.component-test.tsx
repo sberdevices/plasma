@@ -40,7 +40,7 @@ describe('StateLayout', () => {
         initStateLayoutTest().then(() => {
             cy.get('[data-cy="state-layout-title"]').should('contain.text', 'StateLayout Component Test');
             cy.get('[data-cy="test-control"]').should('be.enabled').should('be.visible');
-            cy.get('[data-cy="state-layout-image-wrapper"]').children().should('have.length', 1);
+            cy.get('[data-cy="StateLayoutImage-container"]').children().should('have.length', 1);
         });
     });
 
@@ -52,12 +52,12 @@ describe('StateLayout', () => {
                 case 'sberPortal':
                     return '486px';
                 default:
-                    return '375px';
+                    return '192px';
             }
         };
         initStateLayoutTest({
             children: (
-                <div style={{ marginLeft: 'auto', width: imageWidth() }}>
+                <div style={{ width: imageWidth() }}>
                     <Image base="div" src={images.image320} ratio="1 / 1" data-cy="test-image" />
                 </div>
             ),
@@ -70,15 +70,15 @@ describe('StateLayout', () => {
         initStateLayoutTest({
             image: 'invalid url',
         }).then(() => {
-            cy.get('[data-cy="state-layout-image-wrapper"]').should('exist');
+            cy.get('[data-cy="StateLayoutImage-container"]').should('exist');
         });
     });
 
     it('render with custom ratio', () => {
         initStateLayoutTest({
-            image: { src: images.image320, customRatio: '100' },
+            image: { src: images.image320, customRatio: '150' },
         }).then(() => {
-            cy.get('[data-cy="state-layout-image-wrapper"]').should('exist');
+            cy.get('[data-cy="StateLayoutImage-container"]').should('exist');
         });
     });
 
@@ -87,7 +87,7 @@ describe('StateLayout', () => {
             image: { src: images.image320, customRatio: '100' },
             backgroundMask: false,
         }).then(() => {
-            cy.get('[data-cy="state-layout-image-wrapper"]').should('exist');
+            cy.get('[data-cy="StateLayoutImage-container"]').should('exist');
         });
     });
 });
