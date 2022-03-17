@@ -52,7 +52,7 @@ describe('StateLayout', () => {
                 case 'sberPortal':
                     return '486px';
                 default:
-                    return '192px';
+                    return '375px';
             }
         };
         initStateLayoutTest({
@@ -69,6 +69,23 @@ describe('StateLayout', () => {
     it('render with broken image', () => {
         initStateLayoutTest({
             image: 'invalid url',
+        }).then(() => {
+            cy.get('[data-cy="state-layout-image-wrapper"]').should('exist');
+        });
+    });
+
+    it('render with custom ratio', () => {
+        initStateLayoutTest({
+            image: { src: images.image320, customRatio: '100' },
+        }).then(() => {
+            cy.get('[data-cy="state-layout-image-wrapper"]').should('exist');
+        });
+    });
+
+    it('render without background mask', () => {
+        initStateLayoutTest({
+            image: { src: images.image320, customRatio: '100' },
+            backgroundMask: false,
         }).then(() => {
             cy.get('[data-cy="state-layout-image-wrapper"]').should('exist');
         });

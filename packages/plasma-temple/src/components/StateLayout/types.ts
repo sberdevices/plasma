@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { HeaderProps } from '../Header/types';
-import { Insets, ObjectFit } from '../../types';
+import { Insets, MediaObject, ObjectFit } from '../../types';
 
 export interface StateLayoutCommonProps {
     /** Основной текст состояния */
@@ -18,8 +18,10 @@ export interface StateLayoutCommonProps {
     backgroundFit?: ObjectFit;
     /** Устанавливает свойство `width`, значение по умолчанию `100%` */
     backgroundWidth?: string;
+    /** Добавляет маску, на фоновое изображение, значение по умолчанию `true` */
+    backgroundMask?: boolean;
     /** Ссылка на картинку состояния */
-    image?: string | React.ReactNode;
+    image?: MediaObject | React.ReactNode;
     className?: string;
     /**
      * Отступы, вокруг контента. В текущей версии используется только в мобильной версии

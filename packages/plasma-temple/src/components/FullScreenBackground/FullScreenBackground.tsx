@@ -4,6 +4,14 @@ import styled from 'styled-components';
 import { ObjectFit } from '../../types';
 import { FullScreenBackgroundWrapper } from '../FullScreenBackgroundWrapper/FullScreenBackgroundWrapper';
 
+interface FullScreenBackgroundProps {
+    src: string;
+    imageWidth?: string;
+    imageFit?: ObjectFit;
+    mask?: boolean;
+    className?: string;
+}
+
 const StyledBackgroundImage = styled.img<{ imageWidth: string; imageFit: ObjectFit }>`
     position: absolute;
     right: 0px;
@@ -13,24 +21,16 @@ const StyledBackgroundImage = styled.img<{ imageWidth: string; imageFit: ObjectF
     object-fit: ${(props) => props.imageFit};
 `;
 
-interface FullScreenBackgroundProps {
-    src: string;
-    imageWidth?: string;
-    imageFit?: ObjectFit;
-    className?: string;
-}
-
-export const FullScreenBackground: React.FC<FullScreenBackgroundProps> = ({ src, imageWidth, imageFit, className }) => {
-    const imageWidthValue = imageWidth || '100%';
-    const imageFitValue = imageFit || 'cover';
+export const FullScreenBackground: React.FC<FullScreenBackgroundProps> = ({
+    src,
+    imageWidth = '100%',
+    imageFit = 'cover',
+    mask,
+    className,
+}) => {
     return (
-        <FullScreenBackgroundWrapper className={className}>
-            <StyledBackgroundImage
-                src={src}
-                imageWidth={imageWidthValue}
-                imageFit={imageFitValue}
-                data-cy="background-image"
-            />
+        <FullScreenBackgroundWrapper className={className} mask={mask}>
+            <StyledBackgroundImage src={src} imageWidth={imageWidth} imageFit={imageFit} data-cy="background-image" />
         </FullScreenBackgroundWrapper>
     );
 };

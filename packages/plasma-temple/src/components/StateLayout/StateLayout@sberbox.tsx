@@ -16,11 +16,6 @@ const StyledText = styled(Headline3)`
     color: ${secondary};
 `;
 
-const StyledImageWrapper = styled.div`
-    margin-left: auto;
-    width: 656px;
-`;
-
 export const StateLayoutSberBox: React.FC<StateLayoutCommonProps> = (props) => (
     <CommonStateLayout
         {...props}
@@ -28,7 +23,6 @@ export const StateLayoutSberBox: React.FC<StateLayoutCommonProps> = (props) => (
             Headline: Headline1,
             Text: StyledText,
             TextWrapper: StyledTextWrapper,
-            ImageContainer: StyledImageWrapper,
         }}
     />
 );
