@@ -1,3 +1,16 @@
+# v0.6.0 (Thu Mar 17 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-docs-ui): `CodeSandbox`: index.js management [#1146](https://github.com/sberdevices/plasma/pull/1146) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-docs-ui): Using b2b tokens [#1146](https://github.com/sberdevices/plasma/pull/1146) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v0.5.0 (Tue Mar 01 2022)
 
 #### 🐛 Bug Fix
