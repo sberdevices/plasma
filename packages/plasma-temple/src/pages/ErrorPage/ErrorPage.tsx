@@ -39,7 +39,6 @@ const StyledWarningIcon = styled.div`
 
     background-image: url(${iconWarn});
     background-size: contain;
-    margin: auto;
 `;
 
 /** Компонент страницы для отображения состояния ошибки */

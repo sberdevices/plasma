@@ -45,7 +45,6 @@ const StyledIcon = styled.div<{ src: string }>`
 
     background-image: url(${({ src }) => src});
     background-size: contain;
-    margin: auto;
 `;
 
 const insets = { bottom: 80 };
@@ -84,13 +83,27 @@ export const Error = () => {
     );
 };
 
-export const WithBackgroundImage = () => {
+export const OnBoarding = () => {
+    return (
+        <StateLayout
+            title="Мускат кейтеринг — организуем стол для вашего мероприятия"
+            text="Здесь вы сможете выбрать и заказать готовые фуршетные наборы и отдельные закуски. Доставка по Москве и МО"
+            button={buttonGroup}
+            background="images/cat.png"
+            image={{ src: 'images/food.png', customRatio: '144' }}
+        />
+    );
+};
+
+export const WithoutBackgroundMask = () => {
     return (
         <StateLayout
             title="Название навыка"
             text="Более подробное описание навыка, условия доставки или важной информации для принятия решения"
             button={buttonGroup}
             background="images/cat.png"
+            image={{ src: 'images/food.png', customRatio: '144' }}
+            backgroundMask={false}
         />
     );
 };

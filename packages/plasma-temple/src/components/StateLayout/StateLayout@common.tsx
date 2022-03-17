@@ -8,13 +8,12 @@ import { FullScreenBackground } from '../FullScreenBackground/FullScreenBackgrou
 import { useWindowInnerHeight } from '../../hooks';
 
 import { StateLayoutCommonProps } from './types';
-import { useImageToRender } from './hooks/useImageToRender';
+import { StateLayoutImage } from './StateLayoutImage/StateLayoutImage';
 
 type PlatformComponents = {
     Headline: void;
     Text: void;
     TextWrapper: void;
-    ImageContainer: void;
 };
 
 type StateLayoutProps = UnifiedComponentProps<StateLayoutCommonProps, PlatformComponents>;
@@ -52,18 +51,23 @@ export const StateLayout: React.FC<StateLayoutProps> = ({
     background,
     backgroundWidth,
     backgroundFit,
+    backgroundMask,
     header,
     children,
-    platformComponents: { Headline, ImageContainer, Text, TextWrapper },
+    platformComponents: { Headline, Text, TextWrapper },
     className,
 }) => {
-    const imageToRender = useImageToRender(image, children);
     const height = useWindowInnerHeight();
 
     return (
         <StyledWrapper className={className} $height={height}>
             {background && (
-                <FullScreenBackground src={background} imageWidth={backgroundWidth} imageFit={backgroundFit} />
+                <FullScreenBackground
+                    src={background}
+                    imageWidth={backgroundWidth}
+                    imageFit={backgroundFit}
+                    mask={backgroundMask}
+                />
             )}
             {header && (
                 <StyledHeaderContainer>
@@ -79,7 +83,7 @@ export const StateLayout: React.FC<StateLayoutProps> = ({
                     {button}
                 </Col>
                 <Col sizeXL={6} sizeM={3} data-cy="state-layout-image-wrapper">
-                    <ImageContainer>{imageToRender}</ImageContainer>
+                    <StateLayoutImage image={children ?? image} />
                 </Col>
             </StyledContainer>
         </StyledWrapper>
