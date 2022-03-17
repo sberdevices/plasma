@@ -30,7 +30,7 @@ const StyledImageContainer = styled.div`
         'S',
         1,
     )(css`
-        width: 53%;
+        width: 55%;
         margin: 2.875rem auto;
     `)}
 `;
@@ -55,5 +55,9 @@ const getImageToRender = (image: React.ReactNode | MediaObject) => {
 export const StateLayoutImage: React.FC<StateLayoutImageProps> = ({ image }) => {
     const imageToRender = getImageToRender(image);
 
-    return imageToRender && <StyledImageContainer>{imageToRender}</StyledImageContainer>;
+    return (
+        imageToRender && (
+            <StyledImageContainer data-cy="StateLayoutImage-container">{imageToRender}</StyledImageContainer>
+        )
+    );
 };
