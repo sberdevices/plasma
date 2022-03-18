@@ -2,6 +2,19 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-ui-docs@0.55.0`
+  - feat(aml): Cross reference with corresp. SM docs [#1151](https://github.com/sberdevices/plasma/pull/1151) ([@jabzzy](https://github.com/jabzzy))
+
+#### Authors: 1
+
+- Eugene Dashkevich ([@jabzzy](https://github.com/jabzzy))
+
+---
+
+# (Fri Mar 18 2022)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/versionate-docs@0.3.0`
   - feat(versionate-docs): Added versionArchived.json sort [#1147](https://github.com/sberdevices/plasma/pull/1147) ([@fanisco](https://github.com/fanisco))
 
