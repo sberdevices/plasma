@@ -1,3 +1,16 @@
+# (Fri Mar 18 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/versionate-docs@0.3.0`
+  - feat(versionate-docs): Added versionArchived.json sort [#1147](https://github.com/sberdevices/plasma/pull/1147) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Thu Mar 17 2022)
 
 #### 🚀 Enhancement
