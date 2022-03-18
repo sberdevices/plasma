@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/versionate-docs",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "private": true,
     "description": "Versionate documentation action",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
@@ -35,5 +35,8 @@
     "publishConfig": {
         "access": "restricted"
     },
-    "files": ["lib", "action.yml"]
+    "files": [
+        "lib",
+        "action.yml"
+    ]
 }
