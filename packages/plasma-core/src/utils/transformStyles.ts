@@ -9,7 +9,7 @@ const hyphenate = (str: string) => (uppercaseCheck.test(str) ? str.replace(upper
  * а ключи переводя в kebab-case.
  * Подходит для подготовки типографической темы.
  */
-export const transformStyles = (styles: object) =>
+export const transformStyles = (styles: { [key: string]: string | number }) =>
     Object.entries(styles)
         .map(([key, value]) => `${hyphenate(key)}: ${value}`)
         .join(';');

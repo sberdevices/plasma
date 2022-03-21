@@ -42,6 +42,8 @@ export interface DeviceThemeProps {
     responsiveTypo?: boolean;
 }
 
+export type ThemeProviderValue = DeviceThemeProps & { deviceScale: number };
+
 /**
  * Провайдер обязателен для использования, необходимо обернуть в него все приложение.
  *

@@ -1,4 +1,4 @@
-import { useContext, useRef, useMemo, useEffect, useCallback } from 'react';
+import { useContext, useRef, useMemo, useEffect, useCallback, UIEventHandler } from 'react';
 import throttle from 'lodash.throttle';
 
 import { useDebouncedFunction } from '../../hooks';
@@ -186,7 +186,7 @@ export const useCarousel = ({
     /**
      * Обработчик скролла на DOM-узел.
      */
-    const handleScroll = useCallback(
+    const handleScroll = useCallback<UIEventHandler<HTMLDivElement>>(
         (event) => {
             detectActiveItem();
             onScroll?.(event);

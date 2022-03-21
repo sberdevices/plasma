@@ -11,7 +11,11 @@
     },
     "scripts": {
         "prepare": "npm run build",
-        "build": "tsc"
+        "build": "tsc",
+        "typescript-coverage": "npx typescript-coverage-report"
+    },
+    "typeCoverage": {
+        "atLeast": 100
     },
     "files": [
         "additional.d.ts",
@@ -23,12 +27,9 @@
         "types.d.ts",
         "types.js"
     ],
-    "contributors": [
-        "Vasiliy Loginevskiy",
-        "Anton Vinogradov",
-        "Fanil Zubairov"
-    ],
+    "contributors": ["Vasiliy Loginevskiy", "Anton Vinogradov", "Fanil Zubairov"],
     "devDependencies": {
-        "typescript": "^3.9.10"
+        "typescript": "^3.9.10",
+        "typescript-coverage-report": "0.6.4"
     }
 }

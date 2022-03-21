@@ -148,12 +148,12 @@ export const DropdownItem: FC<DropdownItemProps> = ({
         return null;
     }, [isActive, isActiveNode, hasItems]);
 
-    const onClick = useCallback(
+    const onClick = useCallback<React.MouseEventHandler<HTMLAnchorElement>>(
         (event) => {
             event.preventDefault();
 
             const targetIsItem = event.target === itemRef.current;
-            const targetInItem = itemRef.current?.contains(event.target);
+            const targetInItem = itemRef.current?.contains(event.target as Node);
 
             if (value !== undefined && !isDisabled && (targetIsItem || targetInItem)) {
                 onClickExternal?.({ value, label });

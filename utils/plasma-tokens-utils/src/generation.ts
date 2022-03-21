@@ -46,9 +46,16 @@ export const generateToken = ({
         if (typeof value === 'string' || typeof value === 'number') {
             out += `type ${typeName} = ${typeof value};`;
         } else {
-            out += `type ${typeName} = {\n${Object.keys(value)
-                .map((k) => `    ${k}: any`)
-                .join(';\n')};\n};`;
+            const isAllValuesInObjectStrings = Object.keys(value).every(
+                (key) => typeof value[key as keyof typeof value] === 'string',
+            );
+            if (isAllValuesInObjectStrings) {
+                out += `type ${typeName} = {\n    [key: string]: string\n};\n`;
+            } else {
+                out += `type ${typeName} = {\n${Object.keys(value)
+                    .map((k) => `    ${k}: any`)
+                    .join(';\n')};\n};`;
+            }
         }
 
         out += '\n\n';

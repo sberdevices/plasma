@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { mediaQuery } from '@sberdevices/plasma-core';
 
 import { Container, Row, Col } from '../components/Grid';
+import { ThemeProviderValue } from '../components/Device/DeviceDetection';
 
 const StyledFullHeightContainer = styled(Container)`
     position: fixed;
@@ -20,7 +21,7 @@ const StyledFullHeightRow = styled(Row)`
 const StyledFullHeightCol = styled(Col)`
     height: 100vh;
 
-    ${({ theme }) =>
+    ${({ theme }: { theme: ThemeProviderValue }) =>
         css`
             ${mediaQuery(
                 'S',
@@ -67,7 +68,7 @@ export interface GridLinesProps extends React.HTMLAttributes<HTMLDivElement> {
  * Вспомогательный компонент для демонстрации в Storybook.
  */
 export const GridLines: React.FC<GridLinesProps> = ({ columns = 12, ...rest }) => {
-    const cols = Array(columns).fill(0);
+    const cols: number[] = Array(columns).fill(0);
 
     return (
         <StyledFullHeightContainer {...rest}>

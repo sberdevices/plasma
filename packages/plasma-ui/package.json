@@ -62,7 +62,8 @@
         "sb": "6.3.8",
         "styled-components": "5.3.1",
         "ts-jest": "27.0.5",
-        "typescript": "3.9.10"
+        "typescript": "3.9.10",
+        "typescript-coverage-report": "0.6.4"
     },
     "publishConfig": {
         "access": "public"
@@ -84,25 +85,19 @@
         "storybook:build:docs": "DOCS=true build-storybook --quiet -s .storybook/public -c .storybook -o build-sb-docs --docs",
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
         "test": "BABEL_ENV=cjs jest",
-        "test:watch": "BABEL_ENV=cjs jest --watch"
+        "test:watch": "BABEL_ENV=cjs jest --watch",
+        "typescript-coverage": "npx typescript-coverage-report"
+    },
+    "typeCoverage": {
+        "ignoreFiles": ["src/**/*component-test.tsx", "src/**/*stories.tsx"],
+        "atLeast": 100
     },
     "jest": {
         "moduleNameMapper": {
             "^styled-components": "<rootDir>/node_modules/styled-components"
         }
     },
-    "files": [
-        "components",
-        "hocs",
-        "hooks",
-        "mixins",
-        "tokens",
-        "types",
-        "utils",
-        "index.d.ts",
-        "index.js",
-        "es"
-    ],
+    "files": ["components", "hocs", "hooks", "mixins", "tokens", "types", "utils", "index.d.ts", "index.js", "es"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Антонов Игорь Александрович",

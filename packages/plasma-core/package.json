@@ -7,18 +7,7 @@
     "main": "index.js",
     "module": "es/index.js",
     "types": "index.d.ts",
-    "files": [
-        "components",
-        "hocs",
-        "hooks",
-        "mixins",
-        "tokens",
-        "types",
-        "utils",
-        "index.d.ts",
-        "index.js",
-        "es"
-    ],
+    "files": ["components", "hocs", "hooks", "mixins", "tokens", "types", "utils", "index.d.ts", "index.js", "es"],
     "peerDependencies": {
         "react": ">=16.13.1",
         "react-dom": ">=16.13.1",
@@ -48,7 +37,8 @@
         "styled-components": "5.3.1",
         "ts-jest": "27.0.5",
         "ts-node": "10.2.1",
-        "typescript": "3.9.10"
+        "typescript": "3.9.10",
+        "typescript-coverage-report": "0.6.4"
     },
     "publishConfig": {
         "access": "public"
@@ -61,13 +51,14 @@
         "build:cjs": "BABEL_ENV=cjs SC_NAMESPACE=plasma babel ./src --out-dir . --source-maps --extensions .ts,.tsx",
         "build:esm": "BABEL_ENV=esm SC_NAMESPACE=plasma babel ./src --out-dir ./es --source-maps --extensions .ts,.tsx",
         "test": "NODE_ICU_DATA=node_modules/full-icu jest",
-        "test:watch": "NODE_ICU_DATA=node_modules/full-icu jest --watch"
+        "test:watch": "NODE_ICU_DATA=node_modules/full-icu jest --watch",
+        "typescript-coverage": "npx typescript-coverage-report"
     },
-    "contributors": [
-        "Vasiliy Loginevskiy",
-        "Виноградов Антон Александрович",
-        "Зубаиров Фаниль Асхатович"
-    ],
+    "typeCoverage": {
+        "ignoreFiles": ["src/**/*component-test.tsx"],
+        "atLeast": 100
+    },
+    "contributors": ["Vasiliy Loginevskiy", "Виноградов Антон Александрович", "Зубаиров Фаниль Асхатович"],
     "sideEffects": false,
     "dependencies": {
         "focus-visible": "5.2.0",

@@ -12,6 +12,10 @@ export type PickerItem = {
     isVirtual?: boolean;
 };
 
+export type PickerItemValue = {
+    value: number;
+};
+
 export const DEFAULT_PICKER_SIZE: PickerSize = 's';
 export const DEFAULT_VISIBLE_ITEMS: PickerVisibleItems = 5;
 
