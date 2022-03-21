@@ -1,4 +1,4 @@
-import type { FullColors, WebColors } from '@sberdevices/plasma-tokens-utils';
+import type { FullColors, WebColors, TokenData } from '@sberdevices/plasma-tokens-utils';
 import {
     mapDesignToBaseColors,
     mapDesignToTypography,
@@ -34,11 +34,13 @@ require('jsdom-global')();
 
 const baseColors = mapDesignToBaseColors(ds);
 
+type ExtendedColors = Record<'inputErrorBackground', TokenData>;
+
 /* ======================================== */
 /* =                THEMES                = */
 /* ======================================== */
 
-const light: FullColors & WebColors = {
+const light: FullColors & WebColors & ExtendedColors = {
     ...baseColors,
 
     text: {
@@ -107,6 +109,13 @@ const light: FullColors & WebColors = {
     },
     inputBorderHover: {
         value: humanizeColor(ds.theme.light_input_border_hover.color),
+    },
+    inputBorderFocus: {
+        value: humanizeColor(ds.theme.light_input_border_focus.color),
+    },
+
+    inputErrorBackground: {
+        value: humanizeColor(colors.light.inputErrorBackground),
     },
 
     accent: {
@@ -266,7 +275,7 @@ const light: FullColors & WebColors = {
         value: '',
     },
 };
-const dark: FullColors & WebColors = {
+const dark: FullColors & WebColors & ExtendedColors = {
     ...baseColors,
 
     text: {
@@ -335,6 +344,13 @@ const dark: FullColors & WebColors = {
     },
     inputBorderHover: {
         value: humanizeColor(ds.theme.dark_input_border_hover.color),
+    },
+    inputBorderFocus: {
+        value: humanizeColor(ds.theme.dark_input_border_focus.color),
+    },
+
+    inputErrorBackground: {
+        value: humanizeColor(colors.dark.inputErrorBackground),
     },
 
     accent: {

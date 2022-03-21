@@ -1,5 +1,5 @@
 import { general } from '@sberdevices/plasma-colors';
-import { lightenColor } from '@sberdevices/plasma-tokens-utils';
+import { lightenColor, alphenColor } from '@sberdevices/plasma-tokens-utils';
 
 export const colors = {
     light: {
@@ -14,6 +14,8 @@ export const colors = {
 
         buttonCriticalHover: '#f53b46',
         buttonCriticalActive: '#dc1b2b',
+
+        inputErrorBackground: alphenColor(general.red['600'], -0.88),
 
         link: general.electricBlue['600'],
         linkHover: lightenColor(general.electricBlue['600'], 7),
@@ -68,6 +70,8 @@ export const colors = {
 
         buttonCriticalHover: '#ff4757',
         buttonCriticalActive: '#e82a3e',
+
+        inputErrorBackground: alphenColor(general.red['500'], -0.88),
 
         link: general.electricBlue['500'],
         linkHover: lightenColor(general.electricBlue['500'], 7),

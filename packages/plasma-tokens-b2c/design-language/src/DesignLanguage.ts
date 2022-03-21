@@ -52,8 +52,9 @@ const theme = {
     light_bg_secondary: Color.rgba(255, 255, 255, 1), // ToDo: https://github.com/sberdevices/plasma/issues/1107
     light_bg_tertiary: Color.rgba(255, 255, 255, 1), // ToDo: https://github.com/sberdevices/plasma/issues/1107
 
-    light_input_border: Color.rgba(8, 8, 8, 0.16),
-    light_input_border_hover: Color.rgba(8, 8, 8, 0.32),
+    light_input_border: Color.rgba(0, 0, 0, 0),
+    light_input_border_hover: Color.rgba(0, 0, 0, 0),
+    light_input_border_focus: Color.rgba(0, 0, 0, 0),
 
     light_surface_Liquid01: Color.rgba(8, 8, 8, 0.02), // ToDo: https://github.com/sberdevices/plasma/issues/1107
     light_surface_Liquid02: Color.rgba(8, 8, 8, 0.06), // ToDo: https://github.com/sberdevices/plasma/issues/1107
@@ -98,8 +99,9 @@ const theme = {
     dark_bg_secondary: Color.rgba(35, 35, 35, 1), // ToDo: https://github.com/sberdevices/plasma/issues/1107
     dark_bg_tertiary: Color.rgba(54, 54, 54, 1), // ToDo: https://github.com/sberdevices/plasma/issues/1107
 
-    dark_input_border: Color.rgba(255, 255, 255, 0.16),
-    dark_input_border_hover: Color.rgba(255, 255, 255, 0.32),
+    dark_input_border: Color.rgba(0, 0, 0, 0),
+    dark_input_border_hover: Color.rgba(0, 0, 0, 0),
+    dark_input_border_focus: Color.rgba(0, 0, 0, 0),
 
     dark_surface_Liquid01: Color.rgba(255, 255, 255, 0.06), // ToDo: https://github.com/sberdevices/plasma/issues/1107
     dark_surface_Liquid02: playgroundWebB2CTokens.colors.surfaceTransparent02, // ToDo: https://github.com/sberdevices/plasma/issues/1107
