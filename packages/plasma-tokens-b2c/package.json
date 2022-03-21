@@ -9,8 +9,11 @@
     "types": "index.d.ts",
     "devDependencies": {
         "@sberdevices/plasma-colors": "0.2.1",
+        "@sberdevices/plasma-core": "1.49.5",
         "@sberdevices/plasma-tokens-utils": "0.10.0",
+        "@sberdevices/plasma-typo": "0.2.3",
         "@types/node": "16.7.13",
+        "deepmerge": "4.2.2",
         "jsdom": "17.0.0",
         "jsdom-global": "3.0.2",
         "ts-node": "10.2.1",
@@ -49,10 +52,6 @@
         "sizes.js.map",
         "theme.json"
     ],
-    "contributors": [
-        "Vasiliy Loginevskiy",
-        "Anton Vinogradov",
-        "Fanil Zubairov"
-    ],
+    "contributors": ["Vasiliy Loginevskiy", "Anton Vinogradov", "Fanil Zubairov"],
     "sideEffects": false
 }

@@ -1,3 +1,3 @@
 export { colorThemes, typoSystem, typo } from './ds';
 export type { TypographyTypes } from './ds';
-export { sizes } from './sizes';
+export { components } from './components';
