@@ -1,3 +1,18 @@
+# v1.86.0 (Wed Mar 23 2022)
+
+#### 🐛 Bug Fix
+
+- feat(plasma-web,plasma-b2c): Add focus for `Checkbox` and `Radiobox` components [#1154](https://github.com/sberdevices/plasma/pull/1154) ([@neretin-trike](https://github.com/neretin-trike))
+- docs: `withSkeleton` wraps component with a11y [#1129](https://github.com/sberdevices/plasma/pull/1129) ([@fanisco](https://github.com/fanisco))
+- docs: `Spinner` live example of a11y [#1134](https://github.com/sberdevices/plasma/pull/1134) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.85.0 (Wed Mar 16 2022)
 
 #### 🚀 Enhancement

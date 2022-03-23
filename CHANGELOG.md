@@ -1,3 +1,30 @@
+# (Wed Mar 23 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-ui-docs@0.56.0`
+  - feat(aml): Cross reference with corresp. SM docs [#1151](https://github.com/sberdevices/plasma/pull/1151) ([@jabzzy](https://github.com/jabzzy))
+
+#### 🐛 Bug Fix
+
+- ci: delete unused files [#1153](https://github.com/sberdevices/plasma/pull/1153) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-core@1.54.0`
+  - test(plasma-web,plasma-b2c): Add tests and snapshots [#1154](https://github.com/sberdevices/plasma/pull/1154) ([@neretin-trike](https://github.com/neretin-trike))
+- `@sberdevices/plasma-web@1.86.0`
+  - feat(plasma-web,plasma-b2c): Add focus for `Checkbox` and `Radiobox` components [#1154](https://github.com/sberdevices/plasma/pull/1154) ([@neretin-trike](https://github.com/neretin-trike))
+  - docs: `Spinner` live example of a11y [#1134](https://github.com/sberdevices/plasma/pull/1134) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-web@1.86.0`, `@sberdevices/plasma-web-docs@0.44.0`
+  - docs: `withSkeleton` wraps component with a11y [#1129](https://github.com/sberdevices/plasma/pull/1129) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 4
+
+- Eugene Dashkevich ([@jabzzy](https://github.com/jabzzy))
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # (Fri Mar 18 2022)
 
 #### 🚀 Enhancement
