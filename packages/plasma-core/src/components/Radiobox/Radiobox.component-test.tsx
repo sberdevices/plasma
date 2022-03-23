@@ -14,6 +14,18 @@ describe('plasma-core: Radiobox', () => {
         cy.matchImageSnapshot();
     });
 
+    it('with focus', () => {
+        mount(
+            <CypressTestDecorator>
+                <Radiobox label="checkbox with focus" />
+            </CypressTestDecorator>,
+        );
+
+        cy.get('input').focus();
+
+        cy.matchImageSnapshot();
+    });
+
     it('__label', () => {
         mount(
             <CypressTestDecorator>

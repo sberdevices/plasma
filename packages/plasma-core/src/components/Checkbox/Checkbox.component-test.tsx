@@ -13,6 +13,18 @@ describe('plasma-core: Checkbox', () => {
         cy.matchImageSnapshot();
     });
 
+    it('with focus', () => {
+        mount(
+            <CypressTestDecorator>
+                <Checkbox label="checkbox with focus" />
+            </CypressTestDecorator>,
+        );
+
+        cy.get('input').focus();
+
+        cy.matchImageSnapshot();
+    });
+
     it('__label', () => {
         mount(
             <CypressTestDecorator>
