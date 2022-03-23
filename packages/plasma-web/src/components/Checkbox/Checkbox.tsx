@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef } from 'react';
-import styled from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import {
     BaseboxRoot,
     BaseboxInput,
@@ -15,6 +15,7 @@ import {
     transparent,
     useForkRef,
     useUniqId,
+    addFocus,
 } from '@sberdevices/plasma-core';
 import type { BaseboxProps } from '@sberdevices/plasma-core';
 
@@ -27,6 +28,14 @@ export interface CheckboxProps extends BaseboxProps {
     indeterminate?: boolean;
 }
 
+export const syntheticFocus = (ruleset: FlattenSimpleInterpolation, focused?: boolean) => css`
+    input[data-focus-visible-added] + label & {
+        outline: none;
+        ${ruleset}
+    }
+
+    ${focused && ruleset};
+`;
 export const StyledRoot = styled(BaseboxRoot)<{ $disabled?: boolean }>`
     /* stylelint-disable-next-line number-max-precision */
     margin-left: 0.1875rem; /* FixMe: Выпилить, v2.0 Привести к единому стилю с UI */
@@ -42,7 +51,8 @@ export const StyledInput = styled(BaseboxInput)`
     overflow: hidden;
     clip: rect(0 0 0 0);
 `;
-export const StyledTrigger = styled(BaseboxTrigger)`
+
+export const StyledTrigger = styled(BaseboxTrigger)<{ outlineRadius?: string }>`
     /* stylelint-disable-next-line number-max-precision */
     margin: 0.1875rem 0; /* FixMe: Выпилить, v2.0 Привести к единому стилю с UI */
     width: 1.125rem;
@@ -83,6 +93,14 @@ export const StyledTrigger = styled(BaseboxTrigger)`
         border-color: ${transparent};
         color: ${tertiary};
     }
+
+    ${({ outlineRadius = '0.25rem' }) => css`
+        ${addFocus({
+            synthesizeFocus: syntheticFocus,
+            outlineOffset: '0.25rem',
+            outlineRadius,
+        })}
+    `}
 `;
 export const StyledContent = styled(BaseboxContent)`
     margin-left: 0.875rem;
