@@ -42,7 +42,7 @@
     },
     "scripts": {
         "prepare": "npm run build",
-        "prebuild": "rm -rf ./es ./Icon.assets ./Icons index.js ./Icon* ./index.*",
+        "prebuild": "rm -rf ./es ./Icon.assets ./Icons index.js ./Icon* ./index.* ./scalable",
         "build": "npm run build:cjs && npm run build:esm",
         "postbuild": "tsc --outDir . --emitDeclarationOnly",
         "build:cjs": "BABEL_ENV=cjs SC_NAMESPACE=plasma babel ./src --out-dir . --source-maps --extensions .ts,.tsx",

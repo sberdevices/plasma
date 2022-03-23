@@ -4,6 +4,7 @@
 /types
 /utils
 /helpers
+/scalable
 /index.js*
 /index.d.ts*
 /Icon.js*
