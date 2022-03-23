@@ -7,6 +7,8 @@ import {
 } from '@sberdevices/plasma-core';
 import type { CarouselProps as BaseProps } from '@sberdevices/plasma-core';
 
+import { useForkRef } from '../../hooks';
+
 export type CarouselProps = Omit<BaseProps, 'axis' | 'animatedScrollByIndex' | 'throttleMs' | 'debounceMs'> & {
     /**
      * При значении `polite` скринридер будет объявлять переключаемые слайды.
@@ -17,22 +19,26 @@ export type CarouselProps = Omit<BaseProps, 'axis' | 'animatedScrollByIndex' | '
 /**
  * Компонент для создания списков с прокруткой.
  */
-export const Carousel: React.FC<CarouselProps> = ({
-    index,
-    scrollSnapType = 'mandatory',
-    scrollAlign,
-    detectActive,
-    detectThreshold,
-    scaleCallback,
-    scaleResetCallback,
-    onScroll,
-    onIndexChange,
-    paddingStart,
-    paddingEnd,
-    children,
-    ariaLive = 'off',
-    ...rest
-}) => {
+// eslint-disable-next-line prefer-arrow-callback
+export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carousel(
+    {
+        index = 0,
+        scrollSnapType = 'mandatory',
+        scrollAlign,
+        detectActive,
+        detectThreshold,
+        scaleCallback,
+        scaleResetCallback,
+        onScroll,
+        onIndexChange,
+        paddingStart,
+        paddingEnd,
+        children,
+        ariaLive = 'off',
+        ...rest
+    },
+    ref,
+) {
     const axis = 'x';
     const { scrollRef, trackRef, refs, handleScroll } = useCarousel({
         index,
@@ -45,11 +51,12 @@ export const Carousel: React.FC<CarouselProps> = ({
         onScroll,
         onIndexChange,
     });
+    const handleRef = useForkRef(scrollRef, ref);
 
     return (
         <CarouselContext.Provider value={{ axis, refs }}>
             <StyledCarousel
-                ref={scrollRef}
+                ref={handleRef}
                 axis={axis}
                 scrollSnapType={scrollSnapType}
                 onScroll={handleScroll}
@@ -67,4 +74,4 @@ export const Carousel: React.FC<CarouselProps> = ({
             </StyledCarousel>
         </CarouselContext.Provider>
     );
-};
+});
