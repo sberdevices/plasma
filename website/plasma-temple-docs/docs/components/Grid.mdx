@@ -1,0 +1,68 @@
+---
+id: grid
+title: Grid
+---
+
+import { PropsTable, Description, StorybookLink } from '@site/src/components';
+
+# Grid
+<Description name="Grid" />
+<PropsTable name="Grid" />
+<StorybookLink name="Grid" />
+
+В `children` передается массив элеменов сетки.
+
+## Примеры
+
+```tsx
+import React from 'react';
+import { Grid, Card, CardEntity, useScrollableContainer } from '@sberdevices/plasma-temple';
+
+const items = Array.from(
+    { length: 12 },
+    (_, index) =>
+        ({
+            id: index,
+            name: 'Очень очень длинное длинное название ',
+            image: { src: 'images/img.png' },
+            badge: { type: 'accent', content: 'Скидка 40%' },
+        } as CardEntity<number>),
+);
+
+const StyledContainer = styled.div`
+    height: 100vh;
+    overflow-y: auto;
+
+    margin: calc(var(--plasma-grid-gutter) * -1);
+    padding: 1rem var(--plasma-grid-gutter);
+
+    &::-webkit-scrollbar {
+        display: none;
+        opacity: 0;
+        width: 0;
+    }
+`;
+
+export function App() {
+    const scrollableRef = useScrollableContainer();
+
+    return (
+        <StyledContainer ref={scrollableRef}>
+            <Grid background={{ src: 'images/cat.png' }}>
+                {items.map((item, index) => (
+                    <Card
+                        key={item.id}
+                        entity={item}
+                        index={index}
+                        onClick={() => {}}
+                        cover
+                        withPositionBadge={isSberBoxLike()}
+                    >
+                        <Footnote1>{item.name}</Footnote1>
+                    </Card>
+                ))}
+            </Grid>
+        </StyledContainer>
+    );
+}
+```
