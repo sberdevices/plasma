@@ -1,15 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import throttle from 'lodash.throttle';
-import { Row } from '@sberdevices/plasma-ui';
 
 import { Header } from '../../components/Header/Header';
 import { ComponentPropsWithHeader } from '../../components/Header/types';
 import { useSpatNavBetweenTargets } from '../../hooks/useSpatNav';
 import { useVoiceNavigationWithSpatNav } from '../../hooks/useVoiceNavigation';
 import { scroll } from '../../utils/scroll';
-import { FullScreenBackground } from '../../components/FullScreenBackground/FullScreenBackground';
 import { LayoutElementContext } from '../../components/Layout/LayoutElementContext';
+import { Grid } from '../../components/Grid/Grid';
 
 import { GridEntity, GridPageState } from './types';
 import { GridCard, GridCardProps } from './components/GridCard';
@@ -36,10 +35,16 @@ const scrollToWithOffset = (offset: number, element: HTMLDivElement | null) => {
     });
 };
 
-const ContentSection = styled.section`
+const StyledGrid = styled(Grid)`
     margin-top: 1.5rem;
 `;
 
+/**
+ * TODO: в данном компоненте должна остаться только навигация и возможно фиксированный заголовок.
+ * Карточки реализуются вне компонента и передаются как children
+ */
+
+/** @deprecated Работает, только с PlasmaApp, вместо этого компонента используйте Grid */
 export const GridPage: React.FC<GridPageProps> = ({ state, header, onItemShow, onScrollBottom, children }) => {
     const { items, background } = state;
     const layoutElementContext = React.useContext(LayoutElementContext);
@@ -88,19 +93,15 @@ export const GridPage: React.FC<GridPageProps> = ({ state, header, onItemShow, o
         <>
             {header && <Header {...header} />}
 
-            {background && <FullScreenBackground src={background.src} />}
+            <StyledGrid columnXL={3} background={background}>
+                {list.map((item) => {
+                    if (children) {
+                        return children({ key: item.uuid, ...item });
+                    }
 
-            <ContentSection>
-                <Row>
-                    {list.map((item) => {
-                        if (children) {
-                            return children({ key: item.uuid, ...item });
-                        }
-
-                        return <GridCard key={item.uuid} {...item} />;
-                    })}
-                </Row>
-            </ContentSection>
+                    return <GridCard key={item.uuid} {...item} />;
+                })}
+            </StyledGrid>
         </>
     );
 };

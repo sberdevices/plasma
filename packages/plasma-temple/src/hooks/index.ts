@@ -13,3 +13,4 @@ export * from './useForm';
 export * from './useGetMutableValue';
 export * from './useWindowInnerHeight';
 export { useSpatNav, useSpatNavBetweenTargets } from './useSpatNav';
+export { useScrollableContainer } from './useScrollableContainer';

@@ -5,7 +5,7 @@ import { Col, Row } from '@sberdevices/plasma-ui';
 import { CartItemType } from '../types';
 import { CartItem, CartItemProps } from '../CartItem/CartItem';
 import { AnyObject, Currency } from '../../../types';
-import { useScrollableContainer } from '../hooks/useScrollableContainer';
+import { useScrollableContainer } from '../../../hooks/useScrollableContainer';
 
 export interface CartItemListProps<ID = unknown, T extends AnyObject = AnyObject> {
     /** Список товаров */

@@ -1,0 +1,43 @@
+---
+id: card
+title: Card
+---
+
+import { PropsTable, Description, StorybookLink } from '@site/src/components';
+
+# Card
+<Description name="Card" />
+<PropsTable name="Card" />
+<StorybookLink name="Card" />
+
+В `children` передается контент карточки.
+
+## Примеры
+
+```tsx
+import React from 'react';
+import { Grid, Card } from '@sberdevices/plasma-temple';
+
+const entity: CardEntity<number> = {
+    id: 1,
+    name: 'Название ',
+    image: { src: 'images/img.png' },
+    badge: { type: 'accent', content: 'Скидка 40%' }
+};
+
+export function App() {
+    return (
+         <Grid>
+            <Card
+                entity={entity}
+                index={0}
+                onClick={() => {}}
+                cover={cover}
+                withPositionBadge
+            >
+                <Footnote1>{entity.name}</Footnote1>
+            </Card>
+        </Grid>
+    );
+}
+```
