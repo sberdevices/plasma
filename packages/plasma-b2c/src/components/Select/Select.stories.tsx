@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { InSpacingDecorator, disableProps } from '@sberdevices/plasma-sb-utils';
 
-import { Select, SelectProps, SelectGroup } from '.';
+import { Select, SelectProps } from '.';
 
 const statuses = ['', 'success', 'warning', 'error'];
 const propsToDisable = ['value', 'items', 'onItemClick', 'separator', 'onChange'];
@@ -49,41 +49,7 @@ export const Default: Story<SelectProps> = ({ status, ...rest }) => {
     const [value, setValue] = React.useState<string | Array<string>>(null);
 
     return (
-        <div style={{ maxWidth: '20rem' }}>
-            <div style={{ marginBottom: '1rem' }}>
-                <Select
-                    value={value as string}
-                    items={items}
-                    status={status || undefined}
-                    onChange={(v) => {
-                        setValue(v);
-                        onChange(v);
-                    }}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
-                    {...rest}
-                />
-            </div>
-            <div>
-                <Select value={null} items={[]} placeholder="Another select" />
-            </div>
-        </div>
-    );
-};
-
-Default.args = {
-    multiselect: false,
-    placeholder: 'Выберите пример',
-    helperText: 'Заполните пример',
-    status: '' as 'success',
-    disabled: false,
-};
-
-export const Group: Story<SelectProps> = ({ status, ...rest }) => {
-    const [value, setValue] = React.useState<string | Array<string>>(null);
-
-    return (
-        <SelectGroup>
+        <div style={{ display: 'grid', gap: '1rem', width: '20rem', gridTemplateColumns: '100%' }}>
             <Select
                 value={value as string}
                 items={items}
@@ -96,12 +62,20 @@ export const Group: Story<SelectProps> = ({ status, ...rest }) => {
                 onBlur={onBlur}
                 {...rest}
             />
-            <Select value={null} items={[]} placeholder="Another select" />
-        </SelectGroup>
+            <Select id="example-empty-select" value={null} items={[]} placeholder="Пустой список" />
+            <Select
+                id="example-disabled-select"
+                value={null}
+                items={items}
+                placeholder="Задизейбленный список"
+                disabled
+            />
+        </div>
     );
 };
 
-Group.args = {
+Default.args = {
+    id: 'example-select',
     multiselect: false,
     placeholder: 'Выберите пример',
     helperText: 'Заполните пример',

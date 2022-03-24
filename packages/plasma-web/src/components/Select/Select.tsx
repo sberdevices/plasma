@@ -3,7 +3,8 @@ import React, { forwardRef, ReactElement, RefAttributes } from 'react';
 import { SelectView } from './SelectView';
 import { withSingleSelect } from './withSingleSelect';
 import { withMultiSelect } from './withMultiSelect';
-import type { SelectViewProps, SelectRefElement } from './Select.types';
+import type { SelectViewProps } from './SelectView';
+import type { SelectRefElement } from './SelectButton';
 
 export type SelectProps<T = any> = (
     | {

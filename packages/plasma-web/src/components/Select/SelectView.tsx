@@ -1,134 +1,30 @@
-import React, { useCallback, useState } from 'react';
-import styled, { css } from 'styled-components';
-import {
-    TextFieldRoot,
-    TextFieldHelper,
-    body1,
-    accent,
-    primary,
-    secondary,
-    tertiary,
-    success,
-    warning,
-    critical,
-    applyEllipsis,
-} from '@sberdevices/plasma-core';
-import type { TextFieldProps as BaseProps } from '@sberdevices/plasma-core';
+import React, { forwardRef } from 'react';
+import { TextFieldRoot, TextFieldHelper, TextFieldProps } from '@sberdevices/plasma-core';
 
-import { inputBorder, inputBorderHover } from '../../tokens';
+import { withAssistiveDropdown } from '../Dropdown';
 
-import { SelectDropdown } from './SelectDropdown';
-import { SelectArrow } from './SelectArrow';
-import type { SelectRefElement, SelectViewProps } from './Select.types';
+import { SelectDropdown, SelectDropdownProps } from './SelectDropdown';
+import { SelectButton, SelectButtonProps, SelectRefElement } from './SelectButton';
 
-const statuses = {
-    success,
-    warning,
-    error: critical,
-};
-
-const StyledRoot = styled(TextFieldRoot)`
-    --plasma-dropdown-padding: 0.25rem;
-    --plasma-dropdown-border-radius: 0.25rem;
-    --plasma-dropdown-item-border-radius: 0.25rem;
-`;
-const StyledText = styled.span`
-    ${applyEllipsis}
-
-    color: ${primary};
-    transition: color 0.3s ease-in-out;
-    pointer-events: none;
-    user-select: none;
-`;
-const StyledPlaceholder = styled.span`
-    ${applyEllipsis}
-
-    color: ${tertiary};
-    pointer-events: none;
-    user-select: none;
-`;
-
-interface StyledButtonProps extends Pick<BaseProps, 'status'> {
-    focused?: boolean;
-    hasItems?: boolean;
+export interface SelectViewProps
+    extends Pick<TextFieldProps, 'status' | 'placeholder' | 'helperText' | 'disabled'>,
+        Pick<SelectDropdownProps, 'items' | 'onItemSelect'>,
+        Omit<SelectButtonProps, 'hasItems' | 'isExpanded' | 'onChange'> {
+    /**
+     * Выбор нескольких значений.
+     */
+    multiselect?: boolean;
 }
-const StyledButton = styled.button<StyledButtonProps>`
-    ${body1};
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-sizing: border-box;
-
-    width: 100%;
-    height: 3rem;
-
-    /* stylelint-disable-next-line number-max-precision */
-    padding: 0.875rem 0.9375rem;
-    border: 1px solid ${inputBorder};
-    border-radius: 0.25rem;
-
-    background-color: transparent;
-    color: ${secondary};
-    transition: border-color 0.3s ease-in-out;
-
-    &:disabled {
-        cursor: inherit;
-    }
-
-    ${({ hasItems }) =>
-        hasItems &&
-        css`
-            &:hover:not(:disabled) {
-                cursor: pointer;
-                border-color: ${inputBorderHover};
-                color: ${secondary};
-            }
-        `}
-
-    &:focus:not(:disabled) {
-        outline: 0 none;
-        border-color: ${accent};
-        color: ${accent};
-
-        /* stylelint-disable-next-line selector-nested-pattern */
-        ${StyledText} {
-            color: ${accent};
-        }
-    }
-
-    ${({ focused }) =>
-        focused &&
-        css`
-            border-color: ${accent};
-            color: ${accent};
-
-            ${StyledText} {
-                color: ${accent};
-            }
-        `}
-
-    ${({ status }) =>
-        status &&
-        css`
-            border-color: ${statuses[status]};
-            color: ${statuses[status]};
-
-            /* stylelint-disable-next-line selector-nested-pattern */
-            &:hover,
-            &:focus,
-            &:disabled {
-                border-color: ${statuses[status]};
-            }
-        `}
-`;
+const DropdownButton = withAssistiveDropdown(SelectButton, SelectDropdown);
 
 /**
  * Поле с выпадающим списком.
  */
-export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
+export const SelectView = forwardRef<SelectRefElement, SelectViewProps>(
     (
         {
+            id,
             placeholder,
             value,
             helperText,
@@ -138,20 +34,16 @@ export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
             style,
             items,
             multiselect,
-            onItemClick,
+            onItemSelect,
             ...rest
         },
         ref,
     ) => {
         const hasItems = Array.isArray(items) && items.length > 0;
-        const [selectedItem, setSelectedItem] = useState<string | undefined>(undefined);
-        const [isOpen, setOpen] = useState(false);
-        const handleBlur = useCallback(() => {
-            setOpen(false);
-            setSelectedItem(undefined);
-        }, []);
+
         return (
-            <StyledRoot
+            <TextFieldRoot
+                id={id}
                 $size="m"
                 $disabled={disabled}
                 $isContentRight={hasItems}
@@ -160,39 +52,24 @@ export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
                 className={className}
                 style={style}
             >
-                <SelectDropdown
+                <DropdownButton
+                    {...rest}
+                    ref={ref}
+                    id={id ? `${id}-dropdown` : id}
+                    role="combobox"
+                    menuRole="listbox"
+                    menuItemRole="option"
+                    value={value}
+                    placeholder={placeholder}
+                    hasItems={hasItems}
+                    status={status}
                     items={items}
-                    onToggle={setOpen}
-                    trigger="click"
-                    placement="bottom"
-                    listId="combo1"
-                    multiselect={multiselect}
                     disabled={disabled}
-                    onItemClick={onItemClick}
-                    onActiveChange={setSelectedItem}
-                    disclosure={
-                        <StyledButton
-                            ref={ref}
-                            onBlur={handleBlur}
-                            disabled={disabled}
-                            status={status}
-                            aria-activedescendant={selectedItem}
-                            aria-controls="combo1"
-                            aria-expanded={isOpen}
-                            aria-haspopup="menu"
-                            role="combobox"
-                            type="button"
-                            hasItems={hasItems}
-                            {...rest}
-                        >
-                            {value && <StyledText>{value}</StyledText>}
-                            {placeholder && !value && <StyledPlaceholder>{placeholder}</StyledPlaceholder>}
-                            {hasItems && <SelectArrow size="xs" color="inherit" />}
-                        </StyledButton>
-                    }
+                    closeOnSelect={!multiselect}
+                    onItemSelect={onItemSelect}
                 />
                 {helperText && <TextFieldHelper>{helperText}</TextFieldHelper>}
-            </StyledRoot>
+            </TextFieldRoot>
         );
     },
 );
