@@ -1,8 +1,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-
-import { InSpacingDecorator, disableProps } from '../../helpers';
+import { InSpacingDecorator, disableProps } from '@sberdevices/plasma-sb-utils';
 
 import { Select, SelectProps } from '.';
 
@@ -50,29 +49,33 @@ export const Default: Story<SelectProps> = ({ status, ...rest }) => {
     const [value, setValue] = React.useState<string | Array<string>>(null);
 
     return (
-        <div style={{ maxWidth: '20rem' }}>
-            <div style={{ marginBottom: '1rem' }}>
-                <Select
-                    value={value as string}
-                    items={items}
-                    status={status || undefined}
-                    onChange={(v) => {
-                        setValue(v);
-                        onChange(v);
-                    }}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
-                    {...rest}
-                />
-            </div>
-            <div>
-                <Select value={null} items={[]} placeholder="Another select" />
-            </div>
+        <div style={{ display: 'grid', gap: '1rem', width: '20rem', gridTemplateColumns: '100%' }}>
+            <Select
+                value={value as string}
+                items={items}
+                status={status || undefined}
+                onChange={(v) => {
+                    setValue(v);
+                    onChange(v);
+                }}
+                onFocus={onFocus}
+                onBlur={onBlur}
+                {...rest}
+            />
+            <Select id="example-empty-select" value={null} items={[]} placeholder="Пустой список" />
+            <Select
+                id="example-disabled-select"
+                value={null}
+                items={items}
+                placeholder="Задизейбленный список"
+                disabled
+            />
         </div>
     );
 };
 
 Default.args = {
+    id: 'example-select',
     multiselect: false,
     placeholder: 'Выберите пример',
     helperText: 'Заполните пример',

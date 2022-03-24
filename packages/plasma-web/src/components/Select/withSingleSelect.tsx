@@ -2,7 +2,8 @@ import React, { forwardRef, useCallback, useMemo } from 'react';
 import type { ComponentType, RefAttributes } from 'react';
 
 import { flattenItemsRecursive, setActiveRecursive } from './Select.utils';
-import type { SelectRefElement, SelectViewProps } from './Select.types';
+import type { SelectRefElement } from './SelectButton';
+import type { SelectViewProps } from './SelectView';
 
 export interface SingleSelectProps extends Omit<SelectViewProps, 'onItemClick' | 'value' | 'label' | 'multiselect'> {
     /**
@@ -30,7 +31,7 @@ export const withSingleSelect = (View: ComponentType<SelectViewProps & RefAttrib
 
         const viewItems = useMemo(() => setActiveRecursive(items, isActive), [value, items, isActive]);
 
-        const onItemClick = useCallback((item) => onChange?.(item.value), [onChange]);
+        const onItemSelect = useCallback((item) => onChange?.(item.value), [onChange]);
 
-        return <View ref={ref} value={viewValue} items={viewItems} onItemClick={onItemClick} {...rest} />;
+        return <View {...rest} ref={ref} value={viewValue} items={viewItems} onItemSelect={onItemSelect} />;
     });
