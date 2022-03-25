@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 import {
     TextFieldRoot,
@@ -7,14 +7,15 @@ import {
     surfaceLiquid01,
     surfaceLiquid02,
     primary,
-    accent,
-    tertiary,
     success,
     warning,
     critical,
-    applyEllipsis,
 } from '@sberdevices/plasma-core';
-import { SelectDropdown, SelectArrow } from '@sberdevices/plasma-web';
+import {
+    SelectDropdown as BaseDropdown,
+    SelectButton as BaseButton,
+    withAssistiveDropdown,
+} from '@sberdevices/plasma-web';
 import type { SelectViewProps, SelectRefElement } from '@sberdevices/plasma-web';
 
 import { SelectGroup } from './SelectGroup';
@@ -25,36 +26,10 @@ const statuses = {
     error: critical,
 };
 
-const StyledArrow = styled(SelectArrow)`
-    margin-left: 0.75rem;
-    margin-right: -0.25rem;
-    color: ${primary};
-
-    &:hover {
-        color: ${accent};
-    }
-`;
-const StyledText = styled.span`
-    ${applyEllipsis}
-
-    transition: color 0.3s ease-in-out;
-    pointer-events: none;
-    user-select: none;
-`;
-const StyledPlaceholder = styled.span`
-    ${applyEllipsis}
-
-    color: ${tertiary};
-    pointer-events: none;
-    user-select: none;
-`;
-
-interface StyledButtonProps extends Pick<SelectViewProps, 'status'> {
-    focused?: boolean;
-    hasItems?: boolean;
-}
-const StyledButton = styled.button<StyledButtonProps>`
+const SelectButton = styled(BaseButton)`
     ${button2}
+
+    --plasma-select-button-arrow-margin: 0 -0.25rem 0 0.75rem;
 
     display: flex;
     align-items: center;
@@ -85,6 +60,7 @@ const StyledButton = styled.button<StyledButtonProps>`
             &:hover:not(:disabled),
             &:focus:not(:disabled) {
                 background-color: ${surfaceLiquid02};
+                color: ${primary};
                 cursor: pointer;
             }
         `}
@@ -100,6 +76,24 @@ const StyledButton = styled.button<StyledButtonProps>`
         `}
 `;
 const StyledRoot = styled(TextFieldRoot)`
+    /* stylelint-disable-next-line declaration-block-semicolon-newline-after, rule-empty-line-before */
+    ${SelectGroup} &:not(:last-child) {
+        margin-right: 0.125rem;
+    }
+
+    /* stylelint-disable-next-line declaration-block-semicolon-newline-after, rule-empty-line-before */
+    ${SelectGroup} &:not(:first-child) ${SelectButton} {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    /* stylelint-disable-next-line declaration-block-semicolon-newline-after, rule-empty-line-before */
+    ${SelectGroup} &:not(:last-child) ${SelectButton} {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+`;
+const SelectDropdown = styled(BaseDropdown)`
     --plasma-dropdown-padding: 0.125rem;
     --plasma-dropdown-border-radius: 0.875rem;
     --plasma-dropdown-item-height: 2.75rem;
@@ -109,31 +103,17 @@ const StyledRoot = styled(TextFieldRoot)`
     --plasma-dropdown-item-font-weight: ${button2.fontWeight};
     --plasma-dropdown-item-line-height: ${button2.lineHeight};
     --plasma-dropdown-item-letter-spacing: ${button2.letterSpacing};
-
-    /* stylelint-disable-next-line declaration-block-semicolon-newline-after, rule-empty-line-before */
-    ${SelectGroup} &:not(:last-child) {
-        margin-right: 0.125rem;
-    }
-
-    /* stylelint-disable-next-line declaration-block-semicolon-newline-after, rule-empty-line-before */
-    ${SelectGroup} &:not(:first-child) ${StyledButton} {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-    }
-
-    /* stylelint-disable-next-line declaration-block-semicolon-newline-after, rule-empty-line-before */
-    ${SelectGroup} &:not(:last-child) ${StyledButton} {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-    }
 `;
+
+const DropdownButton = withAssistiveDropdown(SelectButton, SelectDropdown);
 
 /**
  * Поле с выпадающим списком.
  */
-export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
+export const SelectView = forwardRef<SelectRefElement, SelectViewProps>(
     (
         {
+            id,
             placeholder,
             value,
             helperText,
@@ -143,7 +123,7 @@ export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
             style,
             items,
             multiselect,
-            onItemClick,
+            onItemSelect,
             ...rest
         },
         ref,
@@ -160,27 +140,21 @@ export const SelectView = React.forwardRef<SelectRefElement, SelectViewProps>(
                 className={className}
                 style={style}
             >
-                <SelectDropdown
+                <DropdownButton
+                    {...rest}
+                    ref={ref}
+                    id={id ? `${id}-dropdown` : id}
+                    role="combobox"
+                    menuRole="listbox"
+                    menuItemRole="option"
+                    value={value}
+                    placeholder={placeholder}
+                    hasItems={hasItems}
+                    status={status}
                     items={items}
-                    trigger="click"
-                    placement="bottom"
-                    multiselect={multiselect}
-                    onItemClick={onItemClick}
                     disabled={disabled}
-                    disclosure={
-                        <StyledButton
-                            ref={ref}
-                            disabled={disabled}
-                            status={status}
-                            type="button"
-                            hasItems={hasItems}
-                            {...rest}
-                        >
-                            {value && <StyledText>{value}</StyledText>}
-                            {placeholder && !value && <StyledPlaceholder>{placeholder}</StyledPlaceholder>}
-                            {hasItems && <StyledArrow size="xs" color="inherit" />}
-                        </StyledButton>
-                    }
+                    closeOnSelect={!multiselect}
+                    onItemSelect={onItemSelect}
                 />
                 {helperText && <TextFieldHelper>{helperText}</TextFieldHelper>}
             </StyledRoot>
