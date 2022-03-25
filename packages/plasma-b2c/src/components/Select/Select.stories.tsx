@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { InSpacingDecorator, disableProps } from '@sberdevices/plasma-sb-utils';
 
-import { Select, SelectProps } from '.';
+import { Select, SelectProps, SelectGroup } from '.';
 
 const statuses = ['', 'success', 'warning', 'error'];
 const propsToDisable = ['value', 'items', 'onItemClick', 'separator', 'onChange'];
@@ -76,6 +76,43 @@ export const Default: Story<SelectProps> = ({ status, ...rest }) => {
 
 Default.args = {
     id: 'example-select',
+    multiselect: false,
+    placeholder: 'Выберите пример',
+    helperText: 'Заполните пример',
+    status: '' as 'success',
+    disabled: false,
+};
+
+export const Group: Story<SelectProps> = ({ status, ...rest }) => {
+    const [value, setValue] = React.useState<string | Array<string>>(null);
+
+    return (
+        <SelectGroup>
+            <Select
+                value={value as string}
+                items={items}
+                status={status || undefined}
+                onChange={(v) => {
+                    setValue(v);
+                    onChange(v);
+                }}
+                onFocus={onFocus}
+                onBlur={onBlur}
+                {...rest}
+            />
+            <Select value={null} items={[]} placeholder="Пустой список" />
+            <Select
+                id="example-disabled-select"
+                value={null}
+                items={items}
+                placeholder="Задизейбленный список"
+                disabled
+            />
+        </SelectGroup>
+    );
+};
+
+Group.args = {
     multiselect: false,
     placeholder: 'Выберите пример',
     helperText: 'Заполните пример',
