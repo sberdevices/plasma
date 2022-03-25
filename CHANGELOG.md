@@ -1,3 +1,25 @@
+# (Fri Mar 25 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-web@1.87.0`
+  - feat(plasma-web): Add ref to carousel [#1155](https://github.com/sberdevices/plasma/pull/1155) (ADBelousova@sberbank.ru)
+- `@sberdevices/plasma-icons@1.72.0`
+  - feat(plasma-icons): Add new root files for scalable icons [#1152](https://github.com/sberdevices/plasma/pull/1152) ([@neretin-trike](https://github.com/neretin-trike))
+  - feat(plasma-icons): Add first icons for 16,24 and 36 sizes [#1152](https://github.com/sberdevices/plasma/pull/1152) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-icons@1.72.0`
+  - chore(plasma-icons): Update .gitignore and package.json [#1152](https://github.com/sberdevices/plasma/pull/1152) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 2
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+- Белоусова Алиса Дмитриевна (ADBelousova@sberbank.ru)
+
+---
+
 # (Wed Mar 23 2022)
 
 #### 🚀 Enhancement

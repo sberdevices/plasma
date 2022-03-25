@@ -1,3 +1,20 @@
+# v1.72.0 (Fri Mar 25 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-icons): Add new root files for scalable icons [#1152](https://github.com/sberdevices/plasma/pull/1152) ([@neretin-trike](https://github.com/neretin-trike))
+- feat(plasma-icons): Add first icons for 16,24 and 36 sizes [#1152](https://github.com/sberdevices/plasma/pull/1152) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### 🐛 Bug Fix
+
+- chore(plasma-icons): Update .gitignore and package.json [#1152](https://github.com/sberdevices/plasma/pull/1152) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.70.0 (Fri Mar 04 2022)
 
 #### 🐛 Bug Fix

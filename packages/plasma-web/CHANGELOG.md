@@ -1,3 +1,15 @@
+# v1.87.0 (Fri Mar 25 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-web): Add ref to carousel [#1155](https://github.com/sberdevices/plasma/pull/1155) (ADBelousova@sberbank.ru)
+
+#### Authors: 1
+
+- Белоусова Алиса Дмитриевна (ADBelousova@sberbank.ru)
+
+---
+
 # v1.86.0 (Wed Mar 23 2022)
 
 #### 🐛 Bug Fix
