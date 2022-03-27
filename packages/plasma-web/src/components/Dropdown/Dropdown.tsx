@@ -1,110 +1,61 @@
-import React, { FC, useRef, useState, useCallback, useEffect } from 'react';
-import styled, { css } from 'styled-components';
+import React, { FC, useState, useCallback } from 'react';
 
-import { PickOptional as Optional } from '../../types';
-import { Popup, PopupProps } from '../Popup';
+import { DropdownUncontrolled, DropdownUncontrolledProps } from './DropdownUncontrolled';
+import type { OnItemSelect } from './Dropdown.types';
 
-import { DropdownList } from './DropdownList';
-import { DropdownItem } from './DropdownItem';
-import { DropdownNode as DropdownNodeType, DropdownItem as DropdownItemType } from './Dropdown.types';
-
-export interface DropdownProps
-    extends Omit<PopupProps, 'isOpen' | 'offset' | 'placement' | 'trigger' | 'children'>,
-        Optional<PopupProps, 'placement' | 'trigger'> {
+export interface DropdownProps extends Omit<DropdownUncontrolledProps, 'isOpen' | 'hoverIndex'> {
     /**
-     * Отступ сверху.
+     * Закрыть выпадающий список после выбора.
      */
-    offsetTop?: string | number;
-    /**
-     * Список элементов.
-     */
-    items: Array<DropdownNodeType>;
+    closeOnSelect?: boolean;
     /**
      * Обработчик клика по айтему.
+     * @deprecated Будет удалено в v2.0, используйте onItemSelect.
      */
-    onItemClick?: (item: DropdownItemType) => void;
+    onItemClick?: OnItemSelect;
 }
 
-const StyledPopup = styled(Popup)<Pick<DropdownProps, 'offsetTop'>>`
-    ${({ placement, offsetTop }) =>
-        placement === 'bottom'
-            ? css`
-                  --plasma-popup-padding: ${offsetTop} 0 0;
-              `
-            : css`
-                  --plasma-popup-padding: 0;
-                  width: 100%;
-              `}
-`;
-
 /**
- * Выпадающий список.
+ * Выпадающий список без внешнего контроля видимости.
  */
 export const Dropdown: FC<DropdownProps> = ({
-    children,
-    offsetTop,
-    placement = 'bottom',
-    trigger = 'click',
-    items,
-    onItemClick: onItemClickExternal,
+    disabled,
+    closeOnSelect = true,
+    onItemClick,
     onToggle: onToggleExternal,
+    onItemSelect: onItemSelectExternal,
     ...rest
 }) => {
-    const hasItems = Array.isArray(items) && items.length > 0;
-    const oldIsOpen = useRef<boolean | null>(null);
     const [isOpen, setIsOpen] = useState(false);
 
-    const onItemClick = useCallback(
-        (item) => {
-            setIsOpen(false);
-            onItemClickExternal?.(item);
-        },
-        [onItemClickExternal],
-    );
-
     const onToggle = useCallback(
-        (newIsOpen) => {
-            if (hasItems) {
-                setIsOpen(newIsOpen);
-            }
+        (newIsOpen, event) => {
+            setIsOpen(newIsOpen);
+            onToggleExternal?.(newIsOpen, event);
         },
-        [hasItems],
+        [onToggleExternal, disabled],
     );
 
-    useEffect(() => {
-        if (oldIsOpen.current !== null && oldIsOpen.current !== isOpen) {
-            onToggleExternal?.(isOpen);
-        }
-        oldIsOpen.current = isOpen;
-    }, [isOpen, onToggleExternal]);
+    const onItemSelect = useCallback(
+        (item, event) => {
+            if (closeOnSelect) {
+                onToggle?.(false, event);
+            }
+            if (onItemSelectExternal) {
+                return onItemSelectExternal(item, event);
+            }
+            return onItemClick?.(item, event);
+        },
+        [closeOnSelect, onToggle, onItemSelectExternal, onItemClick],
+    );
 
     return (
-        <StyledPopup
-            isOpen={isOpen}
-            trigger={trigger}
-            placement={placement}
-            disclosure={children}
-            offsetTop={offsetTop}
-            onToggle={onToggle}
+        <DropdownUncontrolled
             {...rest}
-        >
-            <DropdownList>
-                {items.map((item) =>
-                    item.items && item.items.length ? (
-                        <Dropdown
-                            key={item.value}
-                            trigger="hover"
-                            placement="right"
-                            items={item.items}
-                            onItemClick={onItemClick}
-                        >
-                            <DropdownItem onClick={onItemClick} {...item} />
-                        </Dropdown>
-                    ) : (
-                        <DropdownItem key={item.value} onClick={onItemClick} {...item} />
-                    ),
-                )}
-            </DropdownList>
-        </StyledPopup>
+            isOpen={isOpen}
+            disabled={disabled}
+            onToggle={onToggle}
+            onItemSelect={onItemSelect}
+        />
     );
 };

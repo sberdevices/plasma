@@ -1,4 +1,6 @@
-export enum SelectActions {
+import type { DropdownNode } from '../Dropdown.types';
+
+export enum Actions {
     Close,
     CloseSelect,
     First,
@@ -10,12 +12,16 @@ export enum SelectActions {
     Previous,
     Select,
     Type,
+    OpenSub,
+    CloseSub,
 }
 
-export enum ActionKeys {
+export enum Keys {
     Home = 'Home',
-    ArrowDown = 'ArrowDown',
     ArrowUp = 'ArrowUp',
+    ArrowDown = 'ArrowDown',
+    ArrowLeft = 'ArrowLeft',
+    ArrowRight = 'ArrowRight',
     Enter = 'Enter',
     Space = ' ',
     End = 'End',
@@ -26,87 +32,111 @@ export enum ActionKeys {
     Escape = 'Escape',
 }
 
-export const getActionFromKey = (event: KeyboardEvent, menuOpen: boolean) => {
+/**
+ * Возвращает экшн в соответствии с нажатой клавишей.
+ */
+export const getActionFromKey = (event: KeyboardEvent, isOpen?: boolean) => {
     const { altKey, ctrlKey, metaKey } = event;
+
     // Все кнопки, которые открывают селект
-    const key = event.key as ActionKeys;
-    const openKeys = [ActionKeys.ArrowDown, ActionKeys.ArrowUp, ActionKeys.Enter, ActionKeys.Space];
+    const key = event.key as Keys;
+    const openKeys = [Keys.ArrowUp, Keys.ArrowDown, Keys.Enter, Keys.Space];
+
     // Обработка открытия когда селект закрыт
-    if (!menuOpen && openKeys.includes(key)) {
-        return SelectActions.Open;
+    if (!isOpen && openKeys.includes(key)) {
+        return Actions.Open;
     }
 
     // Кнопки Home и End должны перемещать всегда(открыт или закрыт)
-    if (key === ActionKeys.Home) {
-        return SelectActions.First;
+    if (key === Keys.Home) {
+        return Actions.First;
     }
-    if (key === ActionKeys.End) {
-        return SelectActions.Last;
+    if (key === Keys.End) {
+        return Actions.Last;
     }
 
     // Обработка ввода на клавиатуре при открытом и закрытом селекте
     if (
-        key === ActionKeys.Backspace ||
-        key === ActionKeys.Clear ||
-        (key.length === 1 && key !== ActionKeys.Space && !altKey && !ctrlKey && !metaKey)
+        key === Keys.Backspace ||
+        key === Keys.Clear ||
+        (key.length === 1 && key !== Keys.Space && !altKey && !ctrlKey && !metaKey)
     ) {
-        return SelectActions.Type;
+        return Actions.Type;
     }
 
     // Обработка когда селект открыт
-    if (menuOpen) {
-        if (key === ActionKeys.ArrowUp && altKey) {
-            return SelectActions.CloseSelect;
+    if (isOpen) {
+        if (key === Keys.ArrowUp && altKey) {
+            return Actions.CloseSelect;
         }
-        if (key === ActionKeys.ArrowDown && !altKey) {
-            return SelectActions.Next;
+        if (key === Keys.ArrowDown && !altKey) {
+            return Actions.Next;
         }
-        if (key === ActionKeys.ArrowUp) {
-            return SelectActions.Previous;
+        if (key === Keys.ArrowUp) {
+            return Actions.Previous;
         }
-        if (key === ActionKeys.PageUp) {
-            return SelectActions.PageUp;
+        if (key === Keys.ArrowRight) {
+            return Actions.OpenSub;
         }
-        if (key === ActionKeys.PageDown) {
-            return SelectActions.PageDown;
+        if (key === Keys.ArrowLeft) {
+            return Actions.CloseSub;
         }
-        if (key === ActionKeys.Escape) {
-            return SelectActions.Close;
+        if (key === Keys.PageUp) {
+            return Actions.PageUp;
         }
-        if (key === ActionKeys.Enter || key === ActionKeys.Space) {
-            return SelectActions.CloseSelect;
+        if (key === Keys.PageDown) {
+            return Actions.PageDown;
+        }
+        if (key === Keys.Escape) {
+            return Actions.Close;
+        }
+        if (key === Keys.Enter || key === Keys.Space) {
+            return Actions.Select;
         }
     }
     return null;
 };
 
-export const getUpdatedIndex = (currentIndex: number, maxIndex: number, action: number) => {
+export const getUpdatedIndex = (action: Actions, index: number, items: DropdownNode[]) => {
     const pageSize = 10; // Используется для pageup/pagedown
+    const maxIndex = items.length - 1;
+    let newIndex;
 
     switch (action) {
-        case SelectActions.First:
-            return 0;
-        case SelectActions.Last:
-            return maxIndex;
-        case SelectActions.Previous: {
-            if (currentIndex - 1 < 0) {
-                return maxIndex;
-            }
-            return currentIndex - 1;
-        }
-        case SelectActions.Next: {
-            if (currentIndex + 1 === maxIndex + 1) {
-                return 0;
-            }
-            return currentIndex + 1;
-        }
-        case SelectActions.PageUp:
-            return Math.max(0, currentIndex - pageSize);
-        case SelectActions.PageDown:
-            return Math.min(maxIndex, currentIndex + pageSize);
+        case Actions.First:
+            newIndex = 0;
+            break;
+        case Actions.Last:
+            newIndex = maxIndex;
+            break;
+        case Actions.Previous:
+            newIndex = index - 1 >= 0 ? index - 1 : maxIndex;
+            break;
+        case Actions.Next:
+            newIndex = index + 1 <= maxIndex ? index + 1 : 0;
+            break;
+        case Actions.PageUp:
+            newIndex = Math.max(0, index - pageSize);
+            break;
+        case Actions.PageDown:
+            newIndex = Math.min(maxIndex, index + pageSize);
+            break;
         default:
-            return currentIndex;
+            newIndex = index;
     }
+
+    let item = items[newIndex];
+
+    while (item.isDisabled) {
+        if (action !== Actions.Previous) {
+            newIndex = items.length - 1 === newIndex + 1 ? 0 : newIndex + 1;
+        } else {
+            newIndex = newIndex - 1 === -1 ? items.length - 1 : newIndex - 1;
+        }
+        item = items[newIndex];
+    }
+
+    return newIndex;
 };
 
 // Фильтрует массив по входной строке
@@ -141,5 +171,3 @@ export const getIndexByLetter = (options: string[], filter: string, startIndex =
 
     return -1;
 };
-
-export const noop = () => {};
