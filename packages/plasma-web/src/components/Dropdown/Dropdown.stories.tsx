@@ -9,11 +9,12 @@ import {
     IconTrash,
     IconLocation,
 } from '@sberdevices/plasma-icons';
+import { action } from '@storybook/addon-actions';
+import { InSpacingDecorator } from '@sberdevices/plasma-sb-utils';
 
-import { InSpacingDecorator } from '../../helpers';
 import { Button } from '../Button';
 
-import { Dropdown, DropdownList, DropdownItem } from '.';
+import { Dropdown, DropdownList, DropdownItem, withAssistiveDropdown } from '.';
 
 export default {
     title: 'Controls/Dropdown',
@@ -23,11 +24,6 @@ export default {
 
 const StyledWrapper = styled.div`
     width: 13.75rem;
-`;
-const StyledRadialWrapper = styled(StyledWrapper)`
-    --plasma-dropdown-padding: 0.25rem;
-    --plasma-dropdown-border-radius: 1rem;
-    --plasma-dropdown-item-border-radius: 0.75rem;
 `;
 const Styled25Rem = styled.div`
     display: flex;
@@ -40,9 +36,6 @@ const StyledDashedBorder = styled.div`
     border: 1px dashed #00000030;
     border-radius: 0.75rem;
 `;
-const StyledBlockDropdown = styled(Dropdown)`
-    display: block;
-`;
 
 const items = [
     { value: 'each', label: 'Каждый' },
@@ -52,7 +45,7 @@ const items = [
         label: 'Желает',
         contentLeft: <IconHeart color="inherit" />,
         items: [
-            { value: '_fulllabel', label: 'Каждый охотник желает знать, где сидит фазан' },
+            { value: '_nestedLabel', label: 'Лейбл во вложенном списке' },
             { value: '_thePheasant', label: 'Фазан' },
             { value: '_is', label: 'Сидит' },
         ],
@@ -62,34 +55,56 @@ const items = [
     { value: 'is', label: 'Сидит', color: success, contentLeft: <IconAccessibility color="inherit" /> },
     { value: 'thePheasant', label: 'Фазан', color: warning, contentLeft: <IconMagicWand color="inherit" /> },
     {
-        value: 'fulllabel',
-        label: 'Каждый охотник желает знать, где сидит фазан',
+        value: 'fullLabel',
+        label: 'Длинный лейбл: каждый охотник желает знать, где сидит фазан',
         contentLeft: <IconTrash color="inherit" />,
         color: critical,
     },
 ];
 
-export const Default = () => {
+export const Trigger = () => {
     return (
-        <StyledWrapper>
-            <DropdownList>
-                {items.map((item) => (
-                    <DropdownItem key={item.value} {...item} />
-                ))}
-            </DropdownList>
-        </StyledWrapper>
+        <Styled25Rem>
+            <StyledDashedBorder style={{ display: 'inline-flex' }}>
+                <Dropdown
+                    id="example-dropdown-click"
+                    items={items}
+                    trigger="click"
+                    placement="bottom"
+                    onItemSelect={action('onItemSelect')}
+                >
+                    <Button text="Нажмите" />
+                </Dropdown>
+            </StyledDashedBorder>
+            <StyledDashedBorder>
+                <Dropdown
+                    id="example-dropdown-hover"
+                    items={items}
+                    trigger="hover"
+                    placement="bottom"
+                    onItemSelect={action('onItemSelect')}
+                >
+                    <Button text="Наведите" />
+                </Dropdown>
+            </StyledDashedBorder>
+        </Styled25Rem>
     );
 };
 
-export const RadiusAndPadding = () => {
+const Styled240Dropdown = styled(Dropdown)`
+    --plasma-dropdown-padding: 0.25rem;
+    --plasma-dropdown-border-radius: 1rem;
+    --plasma-dropdown-item-border-radius: 0.75rem;
+    --plasma-popup-width: 240px;
+    --plasma-popup-nested-padding: 0 var(--plasma-dropdown-padding, 0);
+    --plasma-popup-nested-margin: calc(var(--plasma-dropdown-padding, 0) * -1) 0 0;
+`;
+
+export const Styling = () => {
     return (
-        <StyledRadialWrapper>
-            <DropdownList>
-                {items.map((item) => (
-                    <DropdownItem key={item.value} {...item} />
-                ))}
-            </DropdownList>
-        </StyledRadialWrapper>
+        <Styled240Dropdown id="example-dropdown-styled" items={items} onItemSelect={action('onItemSelect')}>
+            <Button text="Нажмите" />
+        </Styled240Dropdown>
     );
 };
 
@@ -97,34 +112,37 @@ export const Placement = () => {
     return (
         <Styled25Rem style={{ flexDirection: 'row' }}>
             <StyledDashedBorder>
-                <Dropdown items={items}>
-                    <Button text="Bottom" />
+                <Dropdown id="example-dropdown-bottom" items={items}>
+                    <Button text="Снизу" />
                 </Dropdown>
             </StyledDashedBorder>
             <StyledDashedBorder>
-                <Dropdown items={items} placement="right">
-                    <Button text="Right" />
-                </Dropdown>
-            </StyledDashedBorder>
-            <StyledDashedBorder>
-                <Dropdown items={items} placement="left">
-                    <Button text="Left" />
+                <Dropdown id="example-dropdown-right" items={items} placement="right">
+                    <Button text="Справа" />
                 </Dropdown>
             </StyledDashedBorder>
         </Styled25Rem>
     );
 };
 
+const StyledDropdown = styled(Dropdown)`
+    --plasma-popup-width: 100%;
+`;
+const StyledBlockDropdown = styled(Dropdown)`
+    --plasma-popup-width: 100%;
+    display: block;
+`;
+
 export const InlineOrBlockWrapper = () => {
     return (
         <Styled25Rem>
             <StyledDashedBorder style={{ display: 'inline-flex' }}>
-                <Dropdown items={items}>
+                <StyledDropdown id="example-dropdown-inline" items={items} onItemSelect={action('onItemSelect')}>
                     <Button text="Inline" />
-                </Dropdown>
+                </StyledDropdown>
             </StyledDashedBorder>
             <StyledDashedBorder>
-                <StyledBlockDropdown items={items}>
+                <StyledBlockDropdown id="example-dropdown-block" items={items} onItemSelect={action('onItemSelect')}>
                     <Button text="Block" stretch />
                 </StyledBlockDropdown>
             </StyledDashedBorder>
@@ -132,19 +150,29 @@ export const InlineOrBlockWrapper = () => {
     );
 };
 
-export const Trigger = () => {
+export const CustomAssembly = () => {
     return (
-        <Styled25Rem>
-            <StyledDashedBorder style={{ display: 'inline-flex' }}>
-                <Dropdown items={items} trigger="click">
-                    <Button text="Click me" />
-                </Dropdown>
-            </StyledDashedBorder>
-            <StyledDashedBorder>
-                <Dropdown items={items} trigger="hover">
-                    <Button text="Hover me" />
-                </Dropdown>
-            </StyledDashedBorder>
-        </Styled25Rem>
+        <StyledWrapper>
+            <DropdownList>
+                {items.map(({ items, ...rest }) => (
+                    <DropdownItem key={rest.value} {...rest} />
+                ))}
+            </DropdownList>
+        </StyledWrapper>
+    );
+};
+
+const DropdownButton = withAssistiveDropdown(Button);
+
+export const AccessibilityHOC = () => {
+    return (
+        <DropdownButton
+            id="example-dropdown-assistive"
+            text="Нажмите"
+            items={items}
+            trigger="click"
+            placement="bottom"
+            onItemSelect={action('onItemSelect')}
+        />
     );
 };

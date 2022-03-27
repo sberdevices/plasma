@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { background, accent, success, warning, critical } from '@sberdevices/plasma-core';
+import { accent, success, warning, critical } from '@sberdevices/plasma-core';
 import {
     IconEye,
     IconMagicWand,
@@ -9,10 +9,10 @@ import {
     IconTrash,
     IconLocation,
 } from '@sberdevices/plasma-icons';
+import { action } from '@storybook/addon-actions';
 import { InSpacingDecorator } from '@sberdevices/plasma-sb-utils';
 
 import { Button } from '../Button';
-import { Container } from '../Grid';
 
 import { Dropdown, DropdownList, DropdownItem } from '.';
 
@@ -25,24 +25,16 @@ export default {
 const StyledWrapper = styled.div`
     width: 13.75rem;
 `;
-const StyledRadialWrapper = styled(StyledWrapper)`
-    --plasma-dropdown-padding: 0.25rem;
-    --plasma-dropdown-border-radius: 1rem;
-    --plasma-dropdown-item-border-radius: 0.75rem;
-`;
-const StyledHeaderRoot = styled.header`
-    margin: -1rem -1rem 0;
-    background: ${background};
-    box-shadow: -1px 0 1px rgb(0 0 0 / 5%), -4px 0 14px rgb(0 0 0 / 8%);
-`;
-const StyledHeaderInner = styled.div`
+const Styled25Rem = styled.div`
     display: flex;
-    align-items: center;
-    height: 3.75rem;
+    flex-direction: column;
+    gap: 0.25rem;
+    width: 25rem;
 `;
-const StyledMenuButton = styled(Button)`
-    height: 3.75rem;
-    border-radius: 0;
+const StyledDashedBorder = styled.div`
+    padding: 0.25rem;
+    border: 1px dashed #00000030;
+    border-radius: 0.75rem;
 `;
 
 const items = [
@@ -53,7 +45,7 @@ const items = [
         label: 'Желает',
         contentLeft: <IconHeart color="inherit" />,
         items: [
-            { value: '_fulllabel', label: 'Каждый охотник желает знать, где сидит фазан' },
+            { value: '_nestedLabel', label: 'Лейбл во вложенном списке' },
             { value: '_thePheasant', label: 'Фазан' },
             { value: '_is', label: 'Сидит' },
         ],
@@ -63,47 +55,109 @@ const items = [
     { value: 'is', label: 'Сидит', color: success, contentLeft: <IconAccessibility color="inherit" /> },
     { value: 'thePheasant', label: 'Фазан', color: warning, contentLeft: <IconMagicWand color="inherit" /> },
     {
-        value: 'fulllabel',
-        label: 'Каждый охотник желает знать, где сидит фазан',
+        value: 'fullLabel',
+        label: 'Длинный лейбл: каждый охотник желает знать, где сидит фазан',
         contentLeft: <IconTrash color="inherit" />,
         color: critical,
     },
 ];
 
-export const Default = () => {
+export const Trigger = () => {
+    return (
+        <Styled25Rem>
+            <StyledDashedBorder style={{ display: 'inline-flex' }}>
+                <Dropdown
+                    id="example-dropdown-click"
+                    items={items}
+                    trigger="click"
+                    placement="bottom"
+                    onItemSelect={action('onItemSelect')}
+                >
+                    <Button text="Нажмите" />
+                </Dropdown>
+            </StyledDashedBorder>
+            <StyledDashedBorder>
+                <Dropdown
+                    id="example-dropdown-hover"
+                    items={items}
+                    trigger="hover"
+                    placement="bottom"
+                    onItemSelect={action('onItemSelect')}
+                >
+                    <Button text="Наведите" />
+                </Dropdown>
+            </StyledDashedBorder>
+        </Styled25Rem>
+    );
+};
+
+const Styled240Dropdown = styled(Dropdown)`
+    --plasma-dropdown-padding: 0.25rem;
+    --plasma-dropdown-border-radius: 1rem;
+    --plasma-dropdown-item-border-radius: 0.75rem;
+    --plasma-popup-width: 240px;
+    --plasma-popup-nested-padding: 0 var(--plasma-dropdown-padding, 0);
+    --plasma-popup-nested-margin: calc(var(--plasma-dropdown-padding, 0) * -1) 0 0;
+`;
+
+export const Styling = () => {
+    return (
+        <Styled240Dropdown id="example-dropdown-styled" items={items} onItemSelect={action('onItemSelect')}>
+            <Button text="Нажмите" />
+        </Styled240Dropdown>
+    );
+};
+
+export const Placement = () => {
+    return (
+        <Styled25Rem style={{ flexDirection: 'row' }}>
+            <StyledDashedBorder>
+                <Dropdown id="example-dropdown-bottom" items={items}>
+                    <Button text="Снизу" />
+                </Dropdown>
+            </StyledDashedBorder>
+            <StyledDashedBorder>
+                <Dropdown id="example-dropdown-right" items={items} placement="right">
+                    <Button text="Справа" />
+                </Dropdown>
+            </StyledDashedBorder>
+        </Styled25Rem>
+    );
+};
+
+const StyledDropdown = styled(Dropdown)`
+    --plasma-popup-width: 100%;
+`;
+const StyledBlockDropdown = styled(Dropdown)`
+    --plasma-popup-width: 100%;
+    display: block;
+`;
+
+export const InlineOrBlockWrapper = () => {
+    return (
+        <Styled25Rem>
+            <StyledDashedBorder style={{ display: 'inline-flex' }}>
+                <StyledDropdown id="example-dropdown-inline" items={items} onItemSelect={action('onItemSelect')}>
+                    <Button text="Inline" />
+                </StyledDropdown>
+            </StyledDashedBorder>
+            <StyledDashedBorder>
+                <StyledBlockDropdown id="example-dropdown-block" items={items} onItemSelect={action('onItemSelect')}>
+                    <Button text="Block" stretch />
+                </StyledBlockDropdown>
+            </StyledDashedBorder>
+        </Styled25Rem>
+    );
+};
+
+export const CustomAssembly = () => {
     return (
         <StyledWrapper>
             <DropdownList>
-                {items.map((item) => (
-                    <DropdownItem key={item.value} {...item} />
+                {items.map(({ items, ...rest }) => (
+                    <DropdownItem key={rest.value} {...rest} />
                 ))}
             </DropdownList>
         </StyledWrapper>
-    );
-};
-export const Radius = () => {
-    return (
-        <StyledRadialWrapper>
-            <DropdownList>
-                {items.map((item) => (
-                    <DropdownItem key={item.value} {...item} />
-                ))}
-            </DropdownList>
-        </StyledRadialWrapper>
-    );
-};
-export const LiveDemo = () => {
-    return (
-        <StyledHeaderRoot>
-            <Container>
-                <StyledHeaderInner>
-                    <Dropdown items={items}>
-                        <StyledMenuButton text="Item 1" />
-                    </Dropdown>
-                    <StyledMenuButton text="Item 2" view="clear" />
-                    <StyledMenuButton text="Item 3" view="clear" />
-                </StyledHeaderInner>
-            </Container>
-        </StyledHeaderRoot>
     );
 };

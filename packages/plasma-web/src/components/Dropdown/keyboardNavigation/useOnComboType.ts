@@ -1,42 +1,32 @@
 import { useCallback } from 'react';
 
-import { getIndexByLetter } from './helpers';
-import { useSearchString } from './useSearchString';
-import { Item } from './useKeyboardNavigation';
+import { DropdownItem } from '../Dropdown.types';
 
-export const useOnComboType = ({
-    updateOpen,
-    items,
-    activeIndex,
-    setActiveIndex,
-}: {
-    updateOpen: (open: boolean) => void;
-    items: Item[];
-    activeIndex: number;
-    setActiveIndex: (activeIndex: number) => void;
-}) => {
+import { getIndexByLetter } from './utils';
+import { useSearchString } from './useSearchString';
+
+export const useOnComboType = ({ items, index }: { items: DropdownItem[]; index: number }) => {
     const { getSearchString, resetSearchString } = useSearchString();
 
     return useCallback(
         (letter: string) => {
-            // Открываем дропдаун если закрыт
-            updateOpen(true);
-
             // Находим индекс первого подходящего айтема
             const updatedSearchString = getSearchString(letter);
             const searchIndex = getIndexByLetter(
                 items.map((item) => item.label),
                 updatedSearchString,
-                activeIndex + 1,
+                index + 1,
             );
 
             // Если есть подходящая опция - переходим к ней
             if (searchIndex >= 0) {
-                setActiveIndex(searchIndex);
-            } else {
-                resetSearchString();
+                return searchIndex;
             }
+
+            resetSearchString();
+
+            return undefined;
         },
-        [updateOpen, getSearchString, items, activeIndex, setActiveIndex, resetSearchString],
+        [items, index, getSearchString, resetSearchString],
     );
 };

@@ -1,4 +1,5 @@
-import React, { FC, ReactNode, useRef, useCallback, useMemo } from 'react';
+import React, { useRef, useCallback, useMemo } from 'react';
+import type { DetailedHTMLProps, HTMLAttributes, ReactNode, FC, SyntheticEvent } from 'react';
 import styled, { css } from 'styled-components';
 import {
     body1,
@@ -11,24 +12,39 @@ import {
 } from '@sberdevices/plasma-core';
 import { IconChevronRight, IconDone } from '@sberdevices/plasma-icons';
 
-import { DropdownItem as DropdownItemType, DropdownNode as DropdownNodeType } from './Dropdown.types';
+import type { DropdownItem as DropdownItemType, DropdownNode as DropdownNodeType } from './Dropdown.types';
 
 export interface DropdownItemProps
     extends DropdownNodeType,
-        Omit<
-            React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>,
-            'onClick' | 'ref'
-        > {
-    isActive?: boolean;
-    isHovered?: boolean;
+        Omit<DetailedHTMLProps<HTMLAttributes<HTMLLIElement>, HTMLLIElement>, 'onClick' | 'ref'> {
+    /**
+     * Цвет текста.
+     */
     color?: string;
+    /**
+     * Слот для контента слева, например `Icon`.
+     */
     contentLeft?: ReactNode;
-    onClick?: (item: DropdownItemType) => void;
+    /**
+     * Элемент активен (выбран).
+     */
+    isActive?: boolean;
+    /**
+     * Программный ховер (нужен для навигации с клавиатуры).
+     */
+    isHovered?: boolean;
+    onClick?: (item: DropdownItemType, event: SyntheticEvent) => void;
     onHover?: () => void;
     onFocus?: () => void;
 }
 
-const StyledDropdownItem = styled.a<{ isHovered?: boolean; $disabled?: boolean; $color?: string }>`
+interface StyledDropdownItemProps {
+    $hover?: boolean;
+    $disabled?: boolean;
+    $color?: string;
+}
+
+const StyledDropdownItem = styled.li<StyledDropdownItemProps>`
     display: flex;
     flex: 1;
     align-items: center;
@@ -59,8 +75,12 @@ const StyledDropdownItem = styled.a<{ isHovered?: boolean; $disabled?: boolean; 
         background-color: ${surfaceLiquid02};
     }
 
-    ${({ isHovered, $color }) =>
-        isHovered &&
+    &:focus {
+        outline: 0 none;
+    }
+
+    ${({ $hover, $color }) =>
+        $hover &&
         css`
             color: ${() => $color || primary};
             background-color: ${surfaceLiquid02};
@@ -123,19 +143,20 @@ export const DropdownItem: FC<DropdownItemProps> = ({
     color,
     contentLeft,
     items = [],
+    role = 'menuitem',
     onClick: onClickExternal,
     onHover,
     onFocus,
     ...rest
 }) => {
-    const itemRef = useRef<HTMLAnchorElement>(null);
+    const ref = useRef<HTMLLIElement>(null);
     const hasItems = Boolean(items.length);
-    const isActiveNode = Boolean(isActive || items.filter((item) => item.isActive)?.length);
+    const isActiveAsSingleOrNode = Boolean(isActive || items.filter((item) => item.isActive)?.length);
     const contentRight = useMemo(() => {
         if (hasItems) {
             return (
                 <>
-                    {isActiveNode && <StyledDot />}
+                    {isActiveAsSingleOrNode && <StyledDot />}
                     <StyledChevron size="xs" />
                 </>
             );
@@ -146,17 +167,17 @@ export const DropdownItem: FC<DropdownItemProps> = ({
         }
 
         return null;
-    }, [isActive, isActiveNode, hasItems]);
+    }, [isActive, isActiveAsSingleOrNode, hasItems]);
 
     const onClick = useCallback(
         (event) => {
             event.preventDefault();
 
-            const targetIsItem = event.target === itemRef.current;
-            const targetInItem = itemRef.current?.contains(event.target);
+            const targetIsItem = event.target === ref.current;
+            const targetInItem = ref.current?.contains(event.target);
 
             if (value !== undefined && !isDisabled && (targetIsItem || targetInItem)) {
-                onClickExternal?.({ value, label });
+                onClickExternal?.({ value, label }, event);
             }
         },
         [value, label, isDisabled, onClickExternal],
@@ -164,20 +185,20 @@ export const DropdownItem: FC<DropdownItemProps> = ({
 
     return (
         <StyledDropdownItem
-            isHovered={isHovered}
-            ref={itemRef}
+            {...rest}
+            ref={ref}
+            $hover={isHovered}
             $disabled={isDisabled}
             $color={color}
-            onClick={onClick}
-            role="option"
-            aria-selected={isActiveNode}
+            role={role}
             aria-label={label}
+            aria-selected={role === 'option' ? isActiveAsSingleOrNode : undefined}
+            onClick={onClick}
             onMouseOver={onHover}
             onFocus={onFocus}
-            {...rest}
         >
             {contentLeft && <StyledContent>{contentLeft}</StyledContent>}
-            {label && <StyledText>{label}</StyledText>}
+            {label && <StyledText role="presentation">{label}</StyledText>}
             {contentRight}
         </StyledDropdownItem>
     );

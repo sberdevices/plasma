@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode, SyntheticEvent } from 'react';
 
 export interface DropdownItem {
     value: string | number;
@@ -11,3 +11,6 @@ export interface DropdownNode extends DropdownItem {
     isActive?: boolean;
     isDisabled?: boolean;
 }
+
+export type OnItemSelect = (item: DropdownItem, event: SyntheticEvent) => void;
+export type OnIndexChange = (index: number) => void;
