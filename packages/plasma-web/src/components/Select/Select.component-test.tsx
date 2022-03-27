@@ -2,33 +2,132 @@
 import React, { useState } from 'react';
 import { mount, CypressTestDecorator, getComponent } from '@sberdevices/plasma-cy-utils';
 
-describe('plasma-web: Select', () => {
+enum Codes {
+    'ArrowUp' = 38,
+    'ArrowDown' = 40,
+    'Enter' = 13,
+    'Space' = 32,
+    'Esc' = 27,
+    'PageUp' = 33,
+    'PageDown' = 34,
+}
+
+const id = 'test-select';
+const items = [
+    { value: 'each', label: 'Каждый' },
+    { value: 'hunter', label: 'Охотник', isDisabled: true },
+    { value: 'wants', label: 'Желает' },
+    {
+        value: 'toKnow',
+        label: 'Знать',
+        items: [
+            { value: '_fullText', label: 'Каждый охотник желает знать, где сидит фазан' },
+            { value: '_thePheasant', label: 'Фазан' },
+            { value: '_is', label: 'Сидит' },
+        ],
+    },
+    { value: 'where', label: 'Где' },
+    { value: 'is', label: 'Сидит' },
+    { value: 'thePheasant', label: 'Фазан' },
+    { value: 'fullText', label: 'Каждый охотник желает знать, где сидит фазан' },
+];
+
+// describe('plasma-web: Select', () => {
+//     const Select = getComponent('Select');
+
+//     const ControlledSelect = () => {
+//         const [value, setValue] = useState(null);
+
+//         return (
+//             <Select
+//                 id={id}
+//                 value={value}
+//                 onChange={(v) => setValue(v)}
+//                 items={items}
+//                 placeholder="Попробуй радугу"
+//                 helperText="Skittles"
+//             />
+//         );
+//     };
+
+//     it('default', () => {
+//         mount(
+//             <CypressTestDecorator>
+//                 <Select items={items} placeholder="Попробуй радугу" helperText="Skittles" />
+//             </CypressTestDecorator>,
+//         );
+
+//         cy.get('button').click();
+
+//         cy.matchImageSnapshot();
+//     });
+
+//     it('disabled', () => {
+//         mount(
+//             <CypressTestDecorator>
+//                 <Select disabled items={items} placeholder="Попробуй радугу" helperText="Skittles" />
+//             </CypressTestDecorator>,
+//         );
+
+//         cy.get('button').click({ force: true });
+
+//         cy.matchImageSnapshot();
+//     });
+
+//     it('empty', () => {
+//         mount(
+//             <CypressTestDecorator>
+//                 <Select items={[]} placeholder="Пустой список" helperText="Empty" />
+//             </CypressTestDecorator>,
+//         );
+
+//         cy.get('button').click();
+
+//         cy.matchImageSnapshot();
+//     });
+
+//     it('multiselect', () => {
+//         mount(
+//             <CypressTestDecorator>
+//                 <Select
+//                     multiselect
+//                     value={['each', 'wants']}
+//                     items={items}
+//                     placeholder="Попробуй радугу"
+//                     helperText="Skittles"
+//                 />
+//             </CypressTestDecorator>,
+//         );
+
+//         cy.get('button').click();
+
+//         cy.matchImageSnapshot();
+//     });
+
+//     it('item click', () => {
+//         mount(
+//             <CypressTestDecorator>
+//                 <ControlledSelect />
+//             </CypressTestDecorator>,
+//         );
+
+//         cy.get('button').click();
+//         cy.get('li').contains('Каждый').click({ force: true });
+//         cy.get('button').click();
+
+//         cy.matchImageSnapshot();
+//     });
+// });
+
+describe('plasma-web: Select a11y - keyboard control', () => {
     const Select = getComponent('Select');
 
-    const items = [
-        { value: 'each', label: 'Каждый' },
-        { value: 'hunter', label: 'Охотник', isDisabled: true },
-        { value: 'wants', label: 'Желает' },
-        {
-            value: 'toKnow',
-            label: 'Знать',
-            items: [
-                { value: '_fullText', label: 'Каждый охотник желает знать, где сидит фазан' },
-                { value: '_thePheasant', label: 'Фазан' },
-                { value: '_is', label: 'Сидит' },
-            ],
-        },
-        { value: 'where', label: 'Где' },
-        { value: 'is', label: 'Сидит' },
-        { value: 'thePheasant', label: 'Фазан' },
-        { value: 'fullText', label: 'Каждый охотник желает знать, где сидит фазан' },
-    ];
-
     const ControlledSelect = () => {
-        const [value, setValue] = React.useState(null);
+        const [value, setValue] = useState(null);
 
         return (
             <Select
+                id={id}
                 value={value}
                 onChange={(v) => setValue(v)}
                 items={items}
@@ -38,586 +137,141 @@ describe('plasma-web: Select', () => {
         );
     };
 
-    it('simple', () => {
-        mount(
-            <CypressTestDecorator>
-                <Select items={items} placeholder="Попробуй радугу" helperText="Skittles" />
-            </CypressTestDecorator>,
-        );
-
-        cy.get('button').click();
-
-        cy.matchImageSnapshot();
-    });
-
-    it('disabled', () => {
-        mount(
-            <CypressTestDecorator>
-                <Select disabled items={items} placeholder="Попробуй радугу" helperText="Skittles" />
-            </CypressTestDecorator>,
-        );
-
-        cy.get('button').click({ force: true });
-
-        cy.matchImageSnapshot();
-    });
-
-    it('empty', () => {
-        mount(
-            <CypressTestDecorator>
-                <Select items={[]} placeholder="Пустой список" helperText="Empty" />
-            </CypressTestDecorator>,
-        );
-
-        cy.get('button').click();
-
-        cy.matchImageSnapshot();
-    });
-
-    it('multiselect', () => {
-        mount(
-            <CypressTestDecorator>
-                <Select
-                    multiselect
-                    value={['each', 'wants']}
-                    items={items}
-                    placeholder="Попробуй радугу"
-                    helperText="Skittles"
-                />
-            </CypressTestDecorator>,
-        );
-
-        cy.get('button').click();
-
-        cy.matchImageSnapshot();
-    });
-
-    it('item click', () => {
+    it('open with "ArrowDown", "Space" and "Enter"', () => {
         mount(
             <CypressTestDecorator>
                 <ControlledSelect />
             </CypressTestDecorator>,
         );
 
-        cy.get('button').click();
-        cy.get('a').contains('Каждый').click({ force: true });
-        cy.get('button').click();
+        // Open with "ArrowDown"
+        cy.root().get('[role="combobox"]').focus().trigger('keydown', { keyCode: Codes.ArrowDown });
+        cy.get('[role="combobox"]').should('have.attr', 'aria-expanded', 'true');
+        // Check is first item is in focus
+        cy.get('[role="combobox"]').should('have.attr', 'aria-activedescendant', `${id}-dropdown-item-0`);
 
-        cy.matchImageSnapshot();
+        // Close with "Esc"
+        cy.root().get('[role="combobox"]').focus().trigger('keydown', { keyCode: Codes.Esc });
+        cy.get('[role="combobox"]').should('have.attr', 'aria-expanded', 'false');
+
+        // Open with "Space"
+        cy.root().get('[role="combobox"]').focus().trigger('keydown', { keyCode: Codes.Space });
+        cy.get('[role="combobox"]').should('have.attr', 'aria-expanded', 'true');
+
+        // Close again
+        cy.root().get('[role="combobox"]').focus().trigger('keydown', { keyCode: Codes.Esc });
+        cy.get('[role="combobox"]').should('have.attr', 'aria-expanded', 'false');
+
+        // Open with "Enter"
+        cy.root().get('[role="combobox"]').focus().trigger('keydown', { keyCode: Codes.Enter });
+        cy.get('[role="combobox"]').should('have.attr', 'aria-expanded', 'true');
+
+        // Close again
+        cy.root().get('[role="combobox"]').focus().trigger('keydown', { keyCode: Codes.Esc });
+        cy.get('[role="combobox"]').should('have.attr', 'aria-expanded', 'false');
     });
 
-    const openTriggers = ['{uparrow}', '{downarrow}', 'text'];
-    openTriggers.forEach((trigger) =>
-        it(`should open by ${trigger}`, () => {
-            mount(
-                <CypressTestDecorator>
-                    <ControlledSelect />
-                </CypressTestDecorator>,
-            );
-            cy.get('button').type(trigger);
-
-            cy.matchImageSnapshot();
-        }),
-    );
-
-    it('should open by Space', () => {
+    it('navigate with "ArrowDown" and "ArrowUp" and select', () => {
         mount(
             <CypressTestDecorator>
                 <ControlledSelect />
             </CypressTestDecorator>,
         );
-        cy.get('button').type(' ');
 
-        cy.matchImageSnapshot();
+        // Open with "Enter"
+        cy.root().get('[role="combobox"]').focus().trigger('keydown', { keyCode: Codes.Enter });
+        cy.get('[role="combobox"]').should('have.attr', 'aria-expanded', 'true');
+
+        // Navigate to the third item (second is disabled)
+        cy.root().get('[role="combobox"]').focus().trigger('keydown', { keyCode: Codes.ArrowDown });
+        cy.get('[role="combobox"]').should('have.attr', 'aria-activedescendant', `${id}-dropdown-item-2`);
+
+        // Select navigated item with "Enter"
+        cy.root().get('[role="combobox"]').focus().trigger('keydown', { keyCode: Codes.Enter });
+        cy.get('[role="combobox"]').should(($p) => {
+            // select should contain a value
+            expect($p).to.contain('Желает');
+            // select should be closed
+            expect($p.attr('aria-expanded')).to.eq('false');
+        });
+
+        // Open with enter
+        cy.root().get('[role="combobox"]').focus().trigger('keydown', { keyCode: Codes.Enter });
+        cy.get('[role="combobox"]').should('have.attr', 'aria-expanded', 'true');
+
+        // Navigate to the last item
+        cy.root().get('[role="combobox"]').focus().trigger('keydown', { keyCode: Codes.ArrowUp });
+        cy.get('[role="combobox"]').should('have.attr', 'aria-activedescendant', `${id}-dropdown-item-7`);
+
+        // Select navigated item with "Space"
+        cy.root().get('[role="combobox"]').focus().trigger('keydown', { keyCode: Codes.Space });
+        cy.get('[role="combobox"]').should(($p) => {
+            // select should contain a value
+            expect($p).to.contain('Каждый охотник желает знать, где сидит фазан');
+            // select should be closed
+            expect($p.attr('aria-expanded')).to.eq('false');
+        });
+
+        // First item in the list must be selected
+        cy.get(`#${id}-dropdown-item-7`).should('have.attr', 'aria-selected', 'true');
     });
 
-    it('should open by Enter', () => {
+    it('navigate with "PageDown" and "PageUp"', () => {
         mount(
             <CypressTestDecorator>
                 <ControlledSelect />
             </CypressTestDecorator>,
         );
-        cy.get('button').type('{enter}');
 
-        cy.matchImageSnapshot();
+        // Open with "Enter"
+        cy.root().get('[role="combobox"]').focus().trigger('keydown', { keyCode: Codes.Enter });
+        cy.get('[role="combobox"]').should('have.attr', 'aria-expanded', 'true');
+
+        // Navigate to the last item
+        cy.root().get('[role="combobox"]').focus().trigger('keydown', { keyCode: Codes.PageDown });
+        cy.get('[role="combobox"]').should('have.attr', 'aria-activedescendant', `${id}-dropdown-item-7`);
+
+        // Navigate to the first item
+        cy.root().get('[role="combobox"]').focus().trigger('keydown', { keyCode: Codes.PageUp });
+        cy.get('[role="combobox"]').should('have.attr', 'aria-activedescendant', `${id}-dropdown-item-0`);
     });
 
-    it('should change selection on arrow clicks', () => {
+    it('search by typing', () => {
         mount(
             <CypressTestDecorator>
                 <ControlledSelect />
             </CypressTestDecorator>,
         );
-        cy.get('button').type('{enter}{downarrow}', { delay: 100 });
 
-        cy.matchImageSnapshot();
-    });
+        // Open with "Enter"
+        cy.root().get('[role="combobox"]').focus().trigger('keydown', { keyCode: Codes.Enter });
 
-    it('should select item by Enter click', () => {
-        const onItemClick = cy.stub();
-        mount(
-            <CypressTestDecorator>
-                <Select onChange={onItemClick} items={items} placeholder="Попробуй радугу" helperText="Skittles" />
-            </CypressTestDecorator>,
-        );
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-        cy.get('button').trigger('keydown', {
-            key: ' ',
-        });
-        cy.wait(100).then(() => expect(onItemClick).to.be.calledWith(items[2].value));
-    });
+        // Type a letter
+        cy.root().get('[role="combobox"]').focus().trigger('keydown', { key: 'Ж' });
+        cy.get('[role="combobox"]').should('have.attr', 'aria-activedescendant', `${id}-dropdown-item-2`);
 
-    it('should select last item by PageDown', () => {
-        const onItemClick = cy.stub();
-        mount(
-            <CypressTestDecorator>
-                <Select onChange={onItemClick} items={items} placeholder="Попробуй радугу" helperText="Skittles" />
-            </CypressTestDecorator>,
-        );
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'PageDown',
-        });
-        cy.get('button').trigger('keydown', {
-            key: ' ',
-        });
-        cy.wait(100).then(() => expect(onItemClick).to.be.calledWith(items[items.length - 1].value));
-    });
+        cy.wait(500);
 
-    it('should select last item by End', () => {
-        const onItemClick = cy.stub();
-        mount(
-            <CypressTestDecorator>
-                <Select onChange={onItemClick} items={items} placeholder="Попробуй радугу" helperText="Skittles" />
-            </CypressTestDecorator>,
-        );
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'End',
-        });
-        cy.get('button').trigger('keydown', {
-            key: ' ',
-        });
-        cy.wait(100).then(() => expect(onItemClick).to.be.calledWith(items[items.length - 1].value));
-    });
+        // Type a full word
+        cy.root()
+            .get('[role="combobox"]')
+            .focus()
+            .trigger('keydown', { key: 'З' })
+            .trigger('keydown', { key: 'Н' })
+            .trigger('keydown', { key: 'А' })
+            .trigger('keydown', { key: 'Т' })
+            .trigger('keydown', { key: 'Ь' });
+        cy.get('[role="combobox"]').should('have.attr', 'aria-activedescendant', `${id}-dropdown-item-3`);
 
-    it('should select first item by Home', () => {
-        const onItemClick = cy.stub();
-        mount(
-            <CypressTestDecorator>
-                <Select onChange={onItemClick} items={items} placeholder="Попробуй радугу" helperText="Skittles" />
-            </CypressTestDecorator>,
-        );
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-        cy.matchImageSnapshot();
-        cy.get('button').trigger('keydown', {
-            key: 'Home',
-        });
-        cy.get('button').trigger('keydown', {
-            key: ' ',
-        });
-        cy.wait(100).then(() => expect(onItemClick).to.be.calledWith(items[0].value));
-    });
+        // Close and open
+        cy.root()
+            .get('[role="combobox"]')
+            .focus()
+            .trigger('keydown', { keyCode: Codes.Esc })
+            .trigger('keydown', { keyCode: Codes.Enter });
 
-    it('should found item by text', () => {
-        const onItemClick = cy.stub();
-        mount(
-            <CypressTestDecorator>
-                <Select onChange={onItemClick} items={items} placeholder="Попробуй радугу" helperText="Skittles" />
-            </CypressTestDecorator>,
-        );
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'Г',
-        });
-        cy.get('button').trigger('keydown', {
-            key: ' ',
-        });
-        cy.wait(100).then(() => expect(onItemClick).to.be.calledWith(items[4].value));
-    });
-
-    it('should close without selection by {esc}', () => {
-        const onItemClick = cy.stub();
-        mount(
-            <CypressTestDecorator>
-                <Select onChange={onItemClick} items={items} placeholder="Попробуй радугу" helperText="Skittles" />
-            </CypressTestDecorator>,
-        );
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'Г',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'Escape',
-        });
-        cy.wait(100).then(() => expect(onItemClick.called).to.be.equal(false));
-    });
-
-    it('should close on blur', () => {
-        mount(
-            <CypressTestDecorator>
-                <ControlledSelect />
-            </CypressTestDecorator>,
-        );
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'Г',
-        });
-        cy.get('body').click();
-        cy.matchImageSnapshot();
-    });
-
-    it('should open nested dropdown by space click', () => {
-        mount(
-            <CypressTestDecorator>
-                <ControlledSelect />
-            </CypressTestDecorator>,
-        );
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'З',
-        });
-        cy.get('button').trigger('keydown', {
-            key: ' ',
-        });
-        cy.matchImageSnapshot();
-    });
-
-    it('should move over items into nested menu', () => {
-        mount(
-            <CypressTestDecorator>
-                <ControlledSelect />
-            </CypressTestDecorator>,
-        );
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'З',
-        });
-        cy.get('button').trigger('keydown', {
-            key: ' ',
-        });
-
-        cy.contains('Знать').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-        cy.matchImageSnapshot();
-    });
-
-    it('should close only nested menu on Escape', () => {
-        mount(
-            <CypressTestDecorator>
-                <ControlledSelect />
-            </CypressTestDecorator>,
-        );
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'З',
-        });
-        cy.get('button').trigger('keydown', {
-            key: ' ',
-        });
-
-        cy.contains('Знать').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-
-        cy.contains('Знать').trigger('keydown', {
-            key: 'Escape',
-        });
-        cy.matchImageSnapshot();
-    });
-
-    it('should close all menus and select item on Enter', () => {
-        const onItemClick = cy.stub();
-        mount(
-            <CypressTestDecorator>
-                <Select onChange={onItemClick} items={items} placeholder="Попробуй радугу" helperText="Skittles" />
-            </CypressTestDecorator>,
-        );
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'З',
-        });
-        cy.get('button').trigger('keydown', {
-            key: ' ',
-        });
-
-        cy.contains('Знать').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-
-        cy.contains('Знать').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.wait(100).then(() => expect(onItemClick).to.be.calledWith(items[3].items[1].value));
-        cy.matchImageSnapshot();
-    });
-
-    it('should close all menus on blur', () => {
-        mount(
-            <CypressTestDecorator>
-                <ControlledSelect />
-            </CypressTestDecorator>,
-        );
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'Ж',
-        });
-        cy.get('button').trigger('keydown', {
-            key: ' ',
-        });
-
-        cy.contains('Желает').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-
-        cy.get('body').click();
-        cy.matchImageSnapshot();
-    });
-
-    it('should skip disabled items', () => {
-        const onItemClick = cy.stub();
-        mount(
-            <CypressTestDecorator>
-                <Select onChange={onItemClick} items={items} placeholder="Попробуй радугу" helperText="Skittles" />
-            </CypressTestDecorator>,
-        );
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowUp',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.wait(100).then(() => expect(onItemClick).to.be.calledWith(items[5].value));
-    });
-
-    it('should be on first item on fail search', () => {
-        const onItemClick = cy.stub();
-        mount(
-            <CypressTestDecorator>
-                <Select onChange={onItemClick} items={items} placeholder="Попробуй радугу" helperText="Skittles" />
-            </CypressTestDecorator>,
-        );
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'F',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.wait(100).then(() => expect(onItemClick).to.be.calledWith(items[0].value));
-    });
-
-    it('should move to first item after last', () => {
-        const onItemClick = cy.stub();
-        mount(
-            <CypressTestDecorator>
-                <Select onChange={onItemClick} items={items} placeholder="Попробуй радугу" helperText="Skittles" />
-            </CypressTestDecorator>,
-        );
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'End',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.wait(100).then(() => expect(onItemClick).to.be.calledWith(items[2].value));
-    });
-
-    it('should move to first item on PageUp', () => {
-        const onItemClick = cy.stub();
-        mount(
-            <CypressTestDecorator>
-                <Select onChange={onItemClick} items={items} placeholder="Попробуй радугу" helperText="Skittles" />
-            </CypressTestDecorator>,
-        );
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'PageUp',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.wait(100).then(() => expect(onItemClick).to.be.calledWith(items[0].value));
-    });
-
-    it('should select item on alt + ArrowUp', () => {
-        const onItemClick = cy.stub();
-        mount(
-            <CypressTestDecorator>
-                <Select onChange={onItemClick} items={items} placeholder="Попробуй радугу" helperText="Skittles" />
-            </CypressTestDecorator>,
-        );
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'PageUp',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowUp',
-            altKey: true,
-        });
-        cy.wait(100).then(() => expect(onItemClick).to.be.calledWith(items[0].value));
-    });
-
-    it('should select more than 1 item and not close', () => {
-        mount(
-            <CypressTestDecorator>
-                <Select multiselect items={items} placeholder="Попробуй радугу" helperText="Skittles" />
-            </CypressTestDecorator>,
-        );
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.matchImageSnapshot();
-    });
-
-    it('should select some subitems', () => {
-        mount(
-            <CypressTestDecorator>
-                <Select
-                    value={['each', 'wants', '_thePheasant']}
-                    multiselect
-                    items={items}
-                    placeholder="Попробуй радугу"
-                    helperText="Skittles"
-                />
-            </CypressTestDecorator>,
-        );
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.matchImageSnapshot();
-    });
-
-    it('should select more than 1 item inside submenu and not close', () => {
-        mount(
-            <CypressTestDecorator>
-                <Select multiselect items={items} placeholder="Попробуй радугу" helperText="Skittles" />
-            </CypressTestDecorator>,
-        );
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-
-        cy.get('button').trigger('keydown', {
-            key: 'ArrowDown',
-        });
-        cy.get('button').trigger('keydown', {
-            key: 'Enter',
-        });
-        cy.matchImageSnapshot();
+        // Type, something, that doesnt exist
+        cy.root().get('[role="combobox"]').focus().trigger('keydown', { key: 'W' });
+        cy.get('[role="combobox"]').should('have.attr', 'aria-activedescendant', `${id}-dropdown-item-0`);
     });
 });
