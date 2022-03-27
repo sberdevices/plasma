@@ -6,74 +6,211 @@ title: Dropdown
 import { PropsTable, Description, StorybookLink } from '@site/src/components';
 
 # Dropdown
-<Description name="Dropdown" />
-<PropsTable name="Dropdown" />
+Набор компонентов для создания выпадающих списков. Обладают возможностью управления с клавиатуры (только 1й уровень).
+
 <StorybookLink name="Dropdown" />
 
-## Использование
-Каждый элемент в списке компонента `Dropdown` может иметь лейбл, иконку и цвет.
+## Dropdown
+<Description name="Dropdown" />
+<PropsTable name="Dropdown" />
 
+## Использование
+Перед использованием выпадающих списков необходимо создать массив с элементами `items: DropdownItemType[]`. Каждый элемент в списке компонента `Dropdown` может иметь надпись, иконку и цвет. Значение поля `value` должно быть уникальным:
+
+```tsx
+const items = [
+    {
+        /**
+         * @type string|number
+         */
+        value: 0,
+        /**
+         * @type string
+         */
+        label: 'Надпись',
+        /**
+         * @type ReactNode
+         */
+        contentLeft: <IconHeart color="inherit" />,
+        /**
+         * @type string
+         */
+        color: accent,
+        /**
+         * @type boolean
+         */
+        isDisabled: false
+    },
+    ...
+];
+```
+
+### Вызов по клику
 ```tsx live
 import React from 'react';
-import { Dropdown, Button } from '@sberdevices/plasma-web';
-import { IconHeart } from '@sberdevices/plasma-icons';
+import { Button, Dropdown } from '@sberdevices/plasma-web';
 
 export function App() {
     return (
-        <div style={{height:"350px", display: 'block'}}>
+        <div style={{ height:"350px", display: 'block' }}>
             <Dropdown
+                id="example-dropdown-click"
                 items={[
-                    { value: 'test-0', label: 'Элемент' },
-                    { value: 'test-1', label: 'Выпадающего', color: 'var(--plasma-colors-accent)' },
-                    {
-                        value: 'test-2',
-                        label: 'Списка',
-                        color: 'var(--plasma-colors-success)',
-                        contentLeft: <IconHeart color="inherit" />,
-                    },
-                    { value: 'test-3', label: 'Недоступно', isDisabled: true },
+                    { value: 'edit', label: 'Редактировать', contentLeft: <IconEdit color="inherit" /> },
+                    { value: 'copy', label: 'Копировать', contentLeft: <IconCopy color="inherit" />, isDisabled: true },
+                    { value: 'delete', label: 'Удалить', contentLeft: <IconTrash color="inherit" />, color: critical }
                 ]}
+                trigger="click"
+                onItemSelect={(item) => console.log(item)}
             >
-                <Button text="Раскрыть список" />
+                <Button text="Опции" />
             </Dropdown>
         </div>
     );
 }
 ```
 
-## Пользовательская сборка
-Выпадающие списки допустимо собирать вручную с помощью составных компонентов (используя компонент [Popup](./popup)):
+> Для обработки выбора элемента используйте коллбек `onItemSelect`.
+
+
+### Вызов по наведению
 
 ```tsx live
+import React from 'react';
+import { Button, Dropdown } from '@sberdevices/plasma-web';
+
+export function App() {
+    return (
+        <div style={{ height:"350px", display: 'block' }}>
+            <Dropdown
+                id="example-dropdown-hover"
+                items={[
+                    { value: 100001, label: 'Новости'},
+                    { value: 100002, label: 'Каталог' },
+                    { value: 100003, label: 'О нас' },
+                    { value: 100004, label: 'Недоступно' }
+                ]}
+                trigger="hover"
+                onItemSelect={(item) => console.log(item)}
+            >
+                <Button text="Меню" />
+            </Dropdown>
+        </div>
+    );
+}
+```
+
+### Стилизация
+Компонент `Dropdown` можно подвергать стилизации. Достаточно обернуть в конструктор `styled`:
+
+```tsx live
+import React from 'react';
+import styled from 'styled';
+import { Button, Dropdown } from '@sberdevices/plasma-web';
+
+export function App() {
+    const StyledDropdown = styled(Dropdown)`
+        --plasma-dropdown-padding: 0.25rem;
+        --plasma-dropdown-border-radius: 1rem;
+        --plasma-dropdown-item-border-radius: 0.75rem;
+        --plasma-popup-width: 240px;
+        --plasma-popup-nested-padding: 0 var(--plasma-dropdown-padding, 0);
+        --plasma-popup-nested-margin: calc(var(--plasma-dropdown-padding, 0) * -1) 0 0;
+    `;
+
+    return (
+        <div style={{ height:"350px", display: 'block' }}>
+            <StyledDropdown
+                id="example-dropdown-styled"
+                items={[
+                    { value: 'edit', label: 'Редактировать', contentLeft: <IconEdit color="inherit" /> },
+                    { value: 'copy', label: 'Копировать', contentLeft: <IconCopy color="inherit" />, isDisabled: true },
+                    { value: 'delete', label: 'Удалить', contentLeft: <IconTrash color="inherit" />, color: critical }
+                ]}
+                onItemSelect={(item) => console.log(item)}
+            >
+                <Button text="Опции" />
+            </StyledDropdown>
+        </div>
+    );
+}
+```
+
+## Пользовательская сборка
+Выпадающие списки допустимо собирать вручную с помощью составных компонентов. Для это этого используйте следующие компоненты:
+
+### DropdownPopup
+<Description name="DropdownPopup" />
+<PropsTable name="DropdownPopup" />
+
+### DropdownList
+<Description name="DropdownList" />
+
+### DropdownItem
+<Description name="DropdownItem" />
+<PropsTable name="DropdownItem" />
+
+### Пример
+```tsx live
 import React, { useState } from 'react';
-import { Popup, DropdownList, DropdownItem, Button } from '@sberdevices/plasma-web';
+import { DropdownPopup, DropdownList, DropdownItem, Button } from '@sberdevices/plasma-web';
 import { IconHeart } from '@sberdevices/plasma-icons';
 
 export function App() {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div style={{height:"350px", display: 'block'}}>
-            <Popup
-                trigger="click"
+        <div style={{ height:"350px", display: 'block' }}>
+            <DropdownPopup
                 isOpen={isOpen}
+                trigger="click"
                 placement="bottom"
                 onToggle={(is) => setIsOpen(is)}
-                disclosure={<Button text="Раскрыть список" />}
+                disclosure={<Button text="Меню" />}
             >
                 <DropdownList>
-                    <DropdownItem value="1" label="Элемент" />
-                    <DropdownItem value="2" label="Выпадающего" color="var(--plasma-colors-accent)" />
+                    <DropdownItem value={100001} label="Новости" />
+                    <DropdownItem value={100002} label="Каталог" color="var(--plasma-colors-accent)" />
                     <DropdownItem
-                        value="3"
-                        label="Списка"
-                        color="var(--plasma-colors-success)"
+                        value={100003}
+                        label="О нас"
+                        color="var(--plasma-colors-critical)"
                         contentLeft={<IconHeart color="inherit" />}
                     />
-                    <DropdownItem value="4" label="Недоступно" isDisabled />
+                    <DropdownItem value={100004} label="Недоступно" isDisabled />
                 </DropdownList>
-            </Popup>
+            </DropdownPopup>
         </div>
     );
 }
 ```
+
+## Доступность
+Для обеспечения доступности модуль `Dropdown` предлагает компонент высшего порядка `withAssistiveDropdown`, в который можно обернуть компонент-вызыватель, например, кнопку. Данный хок добавляет к компоненту API выпадающего списка, а также позволяет осуществлять навигацию с помощью клавиатуры.
+
+```tsx live
+import React from 'react';
+import { withAssistiveDropdown, Button } from '@sberdevices/plasma-web';
+
+export function App() {
+    const DropdownButton = withAssistiveDropdown(Button);
+
+    return (
+        <div style={{ height:"350px", display: 'block' }}>
+            <DropdownButton
+                id="example-dropdown-assistive"
+                text="Нажмите"
+                items={[
+                    { value: 'edit', label: 'Редактировать', contentLeft: <IconEdit color="inherit" /> },
+                    { value: 'copy', label: 'Копировать', contentLeft: <IconCopy color="inherit" />, isDisabled: true },
+                    { value: 'delete', label: 'Удалить', contentLeft: <IconTrash color="inherit" />, color: critical }
+                ]}
+            />
+        </div>
+    );
+}
+```
+
+:::caution
+Для обеспечния корректной работы навигации с помощью клавиатуры необходимо указать свойство `id`.
+:::
