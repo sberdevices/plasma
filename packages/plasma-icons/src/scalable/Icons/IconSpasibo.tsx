@@ -1,0 +1,8 @@
+import React from 'react';
+
+import { Spasibo } from '../Icon.assets/Spasibo';
+import { IconRoot, IconProps } from '../IconRoot';
+
+export const IconSpasibo: React.FC<IconProps> = ({ size = 's', color, className }) => {
+    return <IconRoot className={className} size={size} color={color} icon={Spasibo} />;
+};

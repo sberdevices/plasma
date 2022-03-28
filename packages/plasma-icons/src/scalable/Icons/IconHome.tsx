@@ -1,0 +1,8 @@
+import React from 'react';
+
+import { Home } from '../Icon.assets/Home';
+import { IconRoot, IconProps } from '../IconRoot';
+
+export const IconHome: React.FC<IconProps> = ({ size = 's', color, className }) => {
+    return <IconRoot className={className} size={size} color={color} icon={Home} />;
+};
