@@ -5,6 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { SSRProvider } from '../SSRProvider';
 import { InSpacingDecorator } from '../../helpers';
 import { Headline4 } from '../Typography';
+import { List, ListItem } from '../List';
 
 import { Radiobox, RadioboxProps, RadioGroup } from '.';
 
@@ -52,23 +53,27 @@ export const Live = () => {
                 <Headline4 id="example-radiogroup-title" mb="8x">
                     Выберите язык программирования
                 </Headline4>
-                {items.map((item) => (
-                    <Radiobox
-                        key={item.value}
-                        name={item.name}
-                        value={item.value}
-                        label={item.label}
-                        disabled={item.disabled}
-                        checked={value[item.value]}
-                        description={item.description}
-                        onChange={(event) => {
-                            setValue(item.value);
-                            onChange(event);
-                        }}
-                        onFocus={onFocus}
-                        onBlur={onBlur}
-                    />
-                ))}
+                <List>
+                    {items.map((item) => (
+                        <ListItem key={item.value} mb="4x">
+                            <Radiobox
+                                key={item.value}
+                                name={item.name}
+                                value={item.value}
+                                label={item.label}
+                                disabled={item.disabled}
+                                checked={value[item.value]}
+                                description={item.description}
+                                onChange={(event) => {
+                                    setValue(item.value);
+                                    onChange(event);
+                                }}
+                                onFocus={onFocus}
+                                onBlur={onBlur}
+                            />
+                        </ListItem>
+                    ))}
+                </List>
             </RadioGroup>
         </SSRProvider>
     );

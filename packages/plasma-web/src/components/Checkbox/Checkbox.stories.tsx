@@ -5,6 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { SSRProvider } from '../SSRProvider';
 import { InSpacingDecorator, disableProps } from '../../helpers';
 import { Link } from '../Link';
+import { List, ListItem } from '../List';
 
 import { Checkbox, CheckboxProps } from '.';
 
@@ -48,45 +49,68 @@ const onChange = action('onChange');
 const onFocus = action('onFocus');
 const onBlur = action('onBlur');
 
-const englishDescription = (
-    <div>
-        The most spoken language in the <Link href="/#">world</Link>
-    </div>
-);
-
-const chineseLabel = (
-    <div>
-        Chinese is the hardest <Link href="/#">language</Link>
-    </div>
-);
-
 const name = 'languages';
 const items = [
     {
         name,
         value: 'natural',
-        label: 'Natural languages',
+        label: 'Естественные языки',
         disabled: false,
-        description: 'Languages that people speak. They were not designed by people and they evolved naturally.',
+        description: 'Языки, на которых говорят люди. Они не были созданы искуственно и развивались естественно.',
     },
-    { name, value: 'russian', label: 'Russian', disabled: false, parent: 'natural' },
+    { name, value: 'russian', label: 'Русский', disabled: false, parent: 'natural' },
     {
         name,
         value: 'english',
-        label: 'English',
+        label: 'Английский',
         disabled: false,
+        description: (
+            <>
+                Самый распространенный язык в <Link href="/#">мире</Link>
+            </>
+        ),
         parent: 'natural',
-        description: englishDescription,
     },
-    { name, value: 'french', label: 'French', disabled: false, parent: 'natural' },
-    { name, value: 'klingon', label: 'Klingon', disabled: false, parent: 'natural' },
-    { name, value: 'elvish', label: 'Elvish', disabled: true, parent: 'natural' },
-    { name, value: 'dothraki', label: 'Dothraki', disabled: true, parent: 'natural' },
+    { name, value: 'french', label: 'Французский', disabled: false, parent: 'natural' },
     {
         name,
         value: 'chinese',
-        label: chineseLabel,
+        label: (
+            <>
+                Китайский <Link href="/#">язык</Link>
+            </>
+        ),
         parent: 'natural',
+    },
+    {
+        name,
+        value: 'artificial',
+        label: 'Искусственные языки',
+        disabled: false,
+    },
+    {
+        name,
+        value: 'klingon',
+        label: 'Клингонский',
+        disabled: false,
+        description: 'Язык одной из раз в сериале СтарТрек',
+        parent: 'artificial',
+    },
+    {
+        name,
+        value: 'elvish',
+        label: 'Эльфийский',
+        disabled: true,
+        description: 'Искусственный язык из вселенной Властелина колец',
+        parent: 'artificial',
+    },
+    {
+        name,
+        value: 'dothraki',
+        label: 'Дотракийский',
+        disabled: true,
+        description: 'Язык, разработанный для реплик дотракийских племен из вселенной Песнь Льда и Огня',
+        parent: 'artificial',
     },
 ];
 
@@ -124,37 +148,39 @@ export const Live = () => {
 
     return (
         <SSRProvider>
-            {items.map((item) => (
-                <Checkbox
-                    {...getState(values, item.value)}
-                    style={{ marginLeft: item.parent ? 36 : null }}
-                    key={item.value}
-                    name={item.name}
-                    value={item.value}
-                    label={item.label}
-                    disabled={item.disabled}
-                    description={item.description}
-                    onChange={(event) => {
-                        const { checked } = event.target;
+            <List>
+                {items.map((item) => (
+                    <ListItem key={item.value} ml={item.parent ? '16x' : undefined} mb="4x">
+                        <Checkbox
+                            {...getState(values, item.value)}
+                            name={item.name}
+                            value={item.value}
+                            label={item.label}
+                            disabled={item.disabled}
+                            description={item.description}
+                            onChange={(event) => {
+                                const { checked } = event.target;
 
-                        if (item.parent) {
-                            setValues({ ...values, [item.value]: checked });
-                        } else {
-                            setValues({
-                                ...values,
-                                ...getChildren(item.value).reduce(
-                                    (acc, child) => ({ ...acc, [child.value]: checked }),
-                                    {},
-                                ),
-                            });
-                        }
+                                if (item.parent) {
+                                    setValues({ ...values, [item.value]: checked });
+                                } else {
+                                    setValues({
+                                        ...values,
+                                        ...getChildren(item.value).reduce(
+                                            (acc, child) => ({ ...acc, [child.value]: checked }),
+                                            {},
+                                        ),
+                                    });
+                                }
 
-                        onChange(event);
-                    }}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
-                />
-            ))}
+                                onChange(event);
+                            }}
+                            onFocus={onFocus}
+                            onBlur={onBlur}
+                        />
+                    </ListItem>
+                ))}
+            </List>
         </SSRProvider>
     );
 };
