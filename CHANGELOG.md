@@ -1,3 +1,16 @@
+# (Mon Mar 28 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-web@1.88.0`
+  - feat(plasma-web): `Tooltip` a11y & close with esc [#1135](https://github.com/sberdevices/plasma/pull/1135) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Fri Mar 25 2022)
 
 #### 🚀 Enhancement
