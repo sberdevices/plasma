@@ -6,6 +6,8 @@ export { canUseDOM } from './canUseDOM';
 export { convertRoundnessMatrix } from './roundness';
 export type { PinProps } from './roundness';
 
+export { extractTextFrom } from './extractTextFrom';
+
 export { padZeroNumber, monthLongName, monthShortName } from './formatters';
 export { formatCurrency } from './formatCurrency';
 

@@ -1,8 +1,9 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useMemo } from 'react';
 import styled from 'styled-components';
 import { BaseboxDescription, BaseboxContentWrapper, useUniqId, white } from '@sberdevices/plasma-core';
 import type { BaseboxProps } from '@sberdevices/plasma-core';
 
+import { extractTextFrom } from '../../utils';
 import {
     StyledRoot as CheckboxRoot,
     StyledInput as CheckboxInput,
@@ -51,31 +52,33 @@ const StyledEllipse = styled.div`
  */
 // eslint-disable-next-line prefer-arrow-callback
 export const Radiobox = forwardRef<HTMLInputElement, RadioboxProps>(function Radiobox(
-    { id, label, description, disabled, style, className, ...rest },
+    { id, label, description, disabled, style, className, 'aria-label': ariaLabelExternal, ...rest },
     ref,
 ) {
     const uniqId = useUniqId();
     const uniqLabelId = useUniqId();
     const uniqDescriptionId = useUniqId();
     const radioboxId = id || uniqId;
+    const ariaLabel = useMemo(() => ariaLabelExternal || extractTextFrom(label), [ariaLabelExternal, label]);
+
     return (
         <CheckboxRoot $disabled={disabled} style={style} className={className} tabIndex={-1}>
             <CheckboxInput
-                aria-labelledby={uniqLabelId}
-                aria-describedby={uniqDescriptionId}
+                {...rest}
                 id={radioboxId}
                 ref={ref}
                 type="radio"
                 disabled={disabled}
-                {...rest}
+                aria-label={ariaLabel}
+                aria-describedby={uniqDescriptionId}
             />
             <BaseboxContentWrapper htmlFor={radioboxId}>
                 <StyledTrigger>
                     <StyledEllipse />
                 </StyledTrigger>
                 {label && (
-                    <CheckboxContent aria-hidden="true">
-                        <StyledLabel as="span" id={uniqLabelId}>
+                    <CheckboxContent>
+                        <StyledLabel as="span" id={uniqLabelId} aria-hidden={typeof label === 'string'}>
                             {label}
                         </StyledLabel>
                         {description && (
