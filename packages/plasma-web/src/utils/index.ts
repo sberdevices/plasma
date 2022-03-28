@@ -3,6 +3,7 @@ export {
     animatedScrollToY,
     canUseDOM,
     convertRoundnessMatrix,
+    extractTextFrom,
     padZeroNumber,
     monthLongName,
     monthShortName,
