@@ -38,7 +38,7 @@ module.exports = function getWebpackConfig() {
         mode: 'development',
         entry: 'src/index.ts',
         devtool: 'inline-source-map',
-        devServer: { contentBase: './public' },
+        devServer: { contentBase: path.join(__dirname, 'public') },
         resolve: {
             extensions: ['.wasm', '.ts', '.tsx', '.mjs', '.cjs', '.js', '.jsx', '.json', '.map'],
             modules: ['node_modules'],
