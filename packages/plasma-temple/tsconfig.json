@@ -39,6 +39,11 @@
         "**/*.examples.tsx",
         "**/*.test.tsx",
         "**/*.component-test.tsx",
-        "**/*.component-test.ts"
+        "**/*.component-test.ts",
+        "**/*.test.ts",
+        "**/*.test.tsx",
+        "**/*.spec.ts",
+        "**/*.spec.tsx",
+        "**/testHelpers"
     ]
 }
