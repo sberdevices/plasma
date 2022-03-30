@@ -1,3 +1,15 @@
+# v1.46.0 (Wed Mar 30 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Success page [#1145](https://github.com/sberdevices/plasma/pull/1145) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v1.45.0 (Wed Mar 30 2022)
 
 #### 🚀 Enhancement

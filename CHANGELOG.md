@@ -2,6 +2,19 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-temple@1.46.0`, `@sberdevices/plasma-temple-docs@0.12.0`
+  - feat(plasma-temple): Success page [#1145](https://github.com/sberdevices/plasma/pull/1145) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
+# (Wed Mar 30 2022)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-temple@1.45.0`, `@sberdevices/plasma-temple-docs@0.11.0`
   - feat(plasma-temple): Item component [#1143](https://github.com/sberdevices/plasma/pull/1143) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
 
