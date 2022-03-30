@@ -1,3 +1,16 @@
+# v1.48.0 (Wed Mar 30 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): tests [#1156](https://github.com/sberdevices/plasma/pull/1156) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-temple): Grid component [#1156](https://github.com/sberdevices/plasma/pull/1156) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v1.47.0 (Wed Mar 30 2022)
 
 #### 🚀 Enhancement
