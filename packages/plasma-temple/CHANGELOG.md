@@ -1,3 +1,16 @@
+# v1.47.0 (Wed Mar 30 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): update tests [#1150](https://github.com/sberdevices/plasma/pull/1150) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- feat(plasma-temple): Support onboarding page in StateLayout component [#1150](https://github.com/sberdevices/plasma/pull/1150) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v1.46.0 (Wed Mar 30 2022)
 
 #### 🚀 Enhancement

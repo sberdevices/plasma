@@ -2,6 +2,20 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-temple@1.47.0`
+  - feat(plasma-temple): update tests [#1150](https://github.com/sberdevices/plasma/pull/1150) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+  - feat(plasma-temple): Support onboarding page in StateLayout component [#1150](https://github.com/sberdevices/plasma/pull/1150) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
+# (Wed Mar 30 2022)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-temple@1.46.0`, `@sberdevices/plasma-temple-docs@0.12.0`
   - feat(plasma-temple): Success page [#1145](https://github.com/sberdevices/plasma/pull/1145) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
 
