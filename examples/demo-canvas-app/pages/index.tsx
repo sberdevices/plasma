@@ -12,6 +12,7 @@ const menu = [
     { href: '/test/components/tabs/', title: 'Tabs' },
     { href: '/test/components/text-field/', title: 'TextField' },
     { href: '/test/components/toast/', title: 'Toast' },
+    { href: '/test/components/icons/', title: 'Icons' },
 ];
 
 const StyledCard = styled.a`
