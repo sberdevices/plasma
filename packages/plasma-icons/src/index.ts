@@ -170,3 +170,8 @@ export type { IconProps, IconSize } from './IconRoot';
 
 export { Icon, iconSectionsSet } from './Icon';
 export type { IconName } from './Icon';
+
+export { iconSet16 } from './scalable/Icon.assets.16';
+export { iconSet24 } from './scalable/Icon.assets.24';
+export { iconSet36 } from './scalable/Icon.assets.36';
+export { IconRoot as IconRootScalable } from './scalable';
