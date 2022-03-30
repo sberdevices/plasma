@@ -1,3 +1,15 @@
+# v1.45.0 (Wed Mar 30 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Item component [#1143](https://github.com/sberdevices/plasma/pull/1143) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v1.43.0 (Wed Mar 16 2022)
 
 #### 🚀 Enhancement
