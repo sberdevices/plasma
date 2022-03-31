@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-core",
-    "version": "1.53.0",
+    "version": "1.54.0",
     "description": "Core library for SberDevices Design System",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
