@@ -1,3 +1,38 @@
+# (Thu Mar 31 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@1.49.0`
+  - feat(plasma-temple): Assistant impovements [#1163](https://github.com/sberdevices/plasma/pull/1163) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- `@sberdevices/plasma-b2c@1.54.0`, `@sberdevices/plasma-web@1.89.0`
+  - feat(plasma-web): `Select` a11y: keyboard navigation [#1157](https://github.com/sberdevices/plasma/pull/1157) ([@fanisco](https://github.com/fanisco))
+  - feat(plasma-web): Added `List` component [#1149](https://github.com/sberdevices/plasma/pull/1149) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.54.0`, `@sberdevices/plasma-core@1.54.0`, `@sberdevices/plasma-web@1.89.0`
+  - feat(plasma-web): `Dropdown` a11y: navigating with keyboard [#1157](https://github.com/sberdevices/plasma/pull/1157) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-web@1.89.0`
+  - test(plasma-web): `Select`: tests and a11y assertions [#1157](https://github.com/sberdevices/plasma/pull/1157) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.54.0`
+  - fix(plasma-b2c): `Select`: extending & restyling from web [#1157](https://github.com/sberdevices/plasma/pull/1157) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-web-docs@0.47.0`
+  - docs(plasma-web): `Dropdown` a11y: navigating with keyboard [#1157](https://github.com/sberdevices/plasma/pull/1157) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.54.0`, `@sberdevices/plasma-core@1.54.0`, `@sberdevices/plasma-web@1.89.0`
+  - test(plasma-web): `Radiobox`: check only for id existance [#1149](https://github.com/sberdevices/plasma/pull/1149) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-core@1.54.0`, `@sberdevices/plasma-web@1.89.0`
+  - fix(plasma-web): `Checkbox` & `Radibox` labeled and described by attrs and elems [#1149](https://github.com/sberdevices/plasma/pull/1149) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-ui@1.91.0`, `@sberdevices/plasma-web@1.89.0`
+  - fix(plasma-web, plasma-ui): `Radiobox`: removed duplication of label & descr + better live example [#1149](https://github.com/sberdevices/plasma/pull/1149) ([@fanisco](https://github.com/fanisco))
+  - fix(plasma-web, plasma-ui): `Checkbox`: removed duplication of label & descr [#1149](https://github.com/sberdevices/plasma/pull/1149) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Wed Mar 30 2022)
 
 #### 🚀 Enhancement

@@ -1,3 +1,20 @@
+# v1.54.0 (Thu Mar 31 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-web): `Dropdown` a11y: navigating with keyboard [#1157](https://github.com/sberdevices/plasma/pull/1157) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- test(plasma-web): `Radiobox`: check only for id existance [#1149](https://github.com/sberdevices/plasma/pull/1149) ([@fanisco](https://github.com/fanisco))
+- fix(plasma-web): `Checkbox` & `Radibox` labeled and described by attrs and elems [#1149](https://github.com/sberdevices/plasma/pull/1149) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.53.0 (Fri Mar 11 2022)
 
 #### 🚀 Enhancement

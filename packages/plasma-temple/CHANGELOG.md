@@ -1,3 +1,20 @@
+# v1.49.0 (Thu Mar 31 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): Assistant impovements [#1163](https://github.com/sberdevices/plasma/pull/1163) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
 # v1.48.0 (Wed Mar 30 2022)
 
 #### 🚀 Enhancement

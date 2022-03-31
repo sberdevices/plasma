@@ -1,3 +1,16 @@
+# v1.91.0 (Thu Mar 31 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-web, plasma-ui): `Radiobox`: removed duplication of label & descr + better live example [#1149](https://github.com/sberdevices/plasma/pull/1149) ([@fanisco](https://github.com/fanisco))
+- fix(plasma-web, plasma-ui): `Checkbox`: removed duplication of label & descr [#1149](https://github.com/sberdevices/plasma/pull/1149) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.89.0 (Wed Mar 16 2022)
 
 #### 🚀 Enhancement

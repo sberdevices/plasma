@@ -1,3 +1,22 @@
+# v1.54.0 (Thu Mar 31 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-web): `Select` a11y: keyboard navigation [#1157](https://github.com/sberdevices/plasma/pull/1157) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-web): `Dropdown` a11y: navigating with keyboard [#1157](https://github.com/sberdevices/plasma/pull/1157) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-web): Added `List` component [#1149](https://github.com/sberdevices/plasma/pull/1149) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- fix(plasma-b2c): `Select`: extending & restyling from web [#1157](https://github.com/sberdevices/plasma/pull/1157) ([@fanisco](https://github.com/fanisco))
+- test(plasma-web): `Radiobox`: check only for id existance [#1149](https://github.com/sberdevices/plasma/pull/1149) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.53.0 (Mon Mar 28 2022)
 
 #### 🐛 Bug Fix
