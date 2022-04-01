@@ -1,3 +1,17 @@
+# v1.92.0 (Fri Apr 01 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): Added `ProductCard` component [#1144](https://github.com/sberdevices/plasma/pull/1144) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-ui): `Stepper`: divide functionallity as `useStepper` [#1144](https://github.com/sberdevices/plasma/pull/1144) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-ui): `Badge`: Added `warning` view [#1144](https://github.com/sberdevices/plasma/pull/1144) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.91.0 (Thu Mar 31 2022)
 
 #### 🐛 Bug Fix

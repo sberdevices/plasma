@@ -2,6 +2,27 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-ui@1.92.0`, `@sberdevices/plasma-ui-docs@0.60.0`
+  - feat(plasma-ui): Added `ProductCard` component [#1144](https://github.com/sberdevices/plasma/pull/1144) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-ui@1.92.0`
+  - feat(plasma-ui): `Stepper`: divide functionallity as `useStepper` [#1144](https://github.com/sberdevices/plasma/pull/1144) ([@fanisco](https://github.com/fanisco))
+  - feat(plasma-ui): `Badge`: Added `warning` view [#1144](https://github.com/sberdevices/plasma/pull/1144) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-web@1.90.0`
+  - test(plasma-web): `Select`: enable snapshoting (was commented) [#1173](https://github.com/sberdevices/plasma/pull/1173) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
+# (Fri Apr 01 2022)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-temple@1.50.0`
   - feat(plasma-temple): update build [#1168](https://github.com/sberdevices/plasma/pull/1168) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
 
