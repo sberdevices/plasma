@@ -32,92 +32,92 @@ const items = [
     { value: 'fullText', label: 'Каждый охотник желает знать, где сидит фазан' },
 ];
 
-// describe('plasma-web: Select', () => {
-//     const Select = getComponent('Select');
+describe('plasma-web: Select', () => {
+    const Select = getComponent('Select');
 
-//     const ControlledSelect = () => {
-//         const [value, setValue] = useState(null);
+    const ControlledSelect = () => {
+        const [value, setValue] = useState(null);
 
-//         return (
-//             <Select
-//                 id={id}
-//                 value={value}
-//                 onChange={(v) => setValue(v)}
-//                 items={items}
-//                 placeholder="Попробуй радугу"
-//                 helperText="Skittles"
-//             />
-//         );
-//     };
+        return (
+            <Select
+                id={id}
+                value={value}
+                onChange={(v) => setValue(v)}
+                items={items}
+                placeholder="Попробуй радугу"
+                helperText="Skittles"
+            />
+        );
+    };
 
-//     it('default', () => {
-//         mount(
-//             <CypressTestDecorator>
-//                 <Select items={items} placeholder="Попробуй радугу" helperText="Skittles" />
-//             </CypressTestDecorator>,
-//         );
+    it('default', () => {
+        mount(
+            <CypressTestDecorator>
+                <Select items={items} placeholder="Попробуй радугу" helperText="Skittles" />
+            </CypressTestDecorator>,
+        );
 
-//         cy.get('button').click();
+        cy.get('button').click();
 
-//         cy.matchImageSnapshot();
-//     });
+        cy.matchImageSnapshot();
+    });
 
-//     it('disabled', () => {
-//         mount(
-//             <CypressTestDecorator>
-//                 <Select disabled items={items} placeholder="Попробуй радугу" helperText="Skittles" />
-//             </CypressTestDecorator>,
-//         );
+    it('disabled', () => {
+        mount(
+            <CypressTestDecorator>
+                <Select disabled items={items} placeholder="Попробуй радугу" helperText="Skittles" />
+            </CypressTestDecorator>,
+        );
 
-//         cy.get('button').click({ force: true });
+        cy.get('button').click({ force: true });
 
-//         cy.matchImageSnapshot();
-//     });
+        cy.matchImageSnapshot();
+    });
 
-//     it('empty', () => {
-//         mount(
-//             <CypressTestDecorator>
-//                 <Select items={[]} placeholder="Пустой список" helperText="Empty" />
-//             </CypressTestDecorator>,
-//         );
+    it('empty', () => {
+        mount(
+            <CypressTestDecorator>
+                <Select items={[]} placeholder="Пустой список" helperText="Empty" />
+            </CypressTestDecorator>,
+        );
 
-//         cy.get('button').click();
+        cy.get('button').click();
 
-//         cy.matchImageSnapshot();
-//     });
+        cy.matchImageSnapshot();
+    });
 
-//     it('multiselect', () => {
-//         mount(
-//             <CypressTestDecorator>
-//                 <Select
-//                     multiselect
-//                     value={['each', 'wants']}
-//                     items={items}
-//                     placeholder="Попробуй радугу"
-//                     helperText="Skittles"
-//                 />
-//             </CypressTestDecorator>,
-//         );
+    it('multiselect', () => {
+        mount(
+            <CypressTestDecorator>
+                <Select
+                    multiselect
+                    value={['each', 'wants']}
+                    items={items}
+                    placeholder="Попробуй радугу"
+                    helperText="Skittles"
+                />
+            </CypressTestDecorator>,
+        );
 
-//         cy.get('button').click();
+        cy.get('button').click();
 
-//         cy.matchImageSnapshot();
-//     });
+        cy.matchImageSnapshot();
+    });
 
-//     it('item click', () => {
-//         mount(
-//             <CypressTestDecorator>
-//                 <ControlledSelect />
-//             </CypressTestDecorator>,
-//         );
+    it('item click', () => {
+        mount(
+            <CypressTestDecorator>
+                <ControlledSelect />
+            </CypressTestDecorator>,
+        );
 
-//         cy.get('button').click();
-//         cy.get('li').contains('Каждый').click({ force: true });
-//         cy.get('button').click();
+        cy.get('button').click();
+        cy.get('li').contains('Каждый').click({ force: true });
+        cy.get('button').click();
 
-//         cy.matchImageSnapshot();
-//     });
-// });
+        cy.matchImageSnapshot();
+    });
+});
 
 describe('plasma-web: Select a11y - keyboard control', () => {
     const Select = getComponent('Select');
