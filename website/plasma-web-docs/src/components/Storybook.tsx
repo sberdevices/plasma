@@ -22,6 +22,7 @@ const storyLinks = {
     Tabs: 'controls-tabs--default',
     TextArea: 'controls-textarea--default',
     TextField: 'controls-textfield--default',
+    Toast: 'controls-toast--default',
     Tooltip: 'controls-tooltip--live',
     Typography: 'content-typography--default',
 };
