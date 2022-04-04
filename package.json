@@ -63,6 +63,7 @@
     "auto": "9.60.1",
     "axe-core": "4.3.4",
     "babel-eslint": "10.1.0",
+    "babel-plugin-inline-svg": "1.2.0",
     "babel-plugin-istanbul": "6.1.1",
     "babel-plugin-styled-components": "1.13.2",
     "cypress": "8.0.0",
