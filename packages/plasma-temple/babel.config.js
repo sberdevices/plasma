@@ -10,6 +10,7 @@ const plugins = [
             namespace,
         },
     ],
+    'inline-svg',
 ];
 
 const ignore = [

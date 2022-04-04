@@ -13,7 +13,6 @@ import { isSberBoxLike } from '../../utils/deviceFamily';
 
 import { ConfirmOrderCard } from './components/ConfirmOrderCard/ConfirmOrderCard';
 import { LocationIcon } from './ConfirmOrderPage.assets/LocationIcon';
-import defaultBackground from './ConfirmOrderPage.assets/map.png';
 
 export interface ConfirmOrderProps extends ComponentPropsWithHeader {
     delivery: {
@@ -46,17 +45,22 @@ const StyledLocationCol = styled(Col)`
     text-align: center;
 `;
 
-const StyledBackground = styled.div<{ background: string }>`
+const StyledBackground = styled.div<{ background?: string }>`
     position: absolute;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
     height: 100vh;
-    z-index: -1;
-    mask-image: linear-gradient(90.09deg, rgba(8, 8, 8, 0) 42.41%, rgb(8, 8, 8) 99.93%);
-    background: url(${({ background }) => background}) no-repeat;
-    background-size: cover;
+
+    ${({ background }) =>
+        background &&
+        css`
+            z-index: -1;
+            mask-image: linear-gradient(90.09deg, rgba(8, 8, 8, 0) 42.41%, rgb(8, 8, 8) 99.93%);
+            background: url(${background}) no-repeat;
+            background-size: cover;
+        `}
 `;
 
 const mapDeviceToAddressTitle: Record<DeviceFamily, React.FC> = {
@@ -114,7 +118,7 @@ export const ConfirmOrderPage: React.FC<ConfirmOrderProps> = ({
     onChangeRecipient,
     onChangeDelivery,
     header = defaultHeader,
-    background = defaultBackground,
+    background,
 }) => {
     const buttonRef = React.useRef<HTMLButtonElement>(null);
 
