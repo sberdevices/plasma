@@ -2,3 +2,4 @@ dist
 build-sb
 build-sb-docs
 build-storybook.log
+*.generated.ts

@@ -8,6 +8,7 @@ const plugins = [
         {
             displayName: false,
             namespace,
+            ssr: true,
         },
     ],
     'inline-svg',

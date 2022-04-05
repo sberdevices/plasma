@@ -1,0 +1,5 @@
+{
+    "main": "../dist/mobile.generated.js",
+    "module": "../dist/es/mobile.generated.js",
+    "types": "../dist/mobile.generated.d.ts"
+}

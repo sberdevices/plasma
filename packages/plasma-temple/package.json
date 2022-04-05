@@ -68,15 +68,13 @@
     "scripts": {
         "prepare": "npm run build",
         "clean": "rm -rf dist",
-        "prebuild": "npm run clean",
+        "generate:exports": "BABEL_ENV=esm node ./build-utils/generate-platform-exports",
+        "prebuild": "npm run clean && npm run generate:exports",
         "build": "npm run build:cjs && npm run build:esm",
         "build:command": "SC_NAMESPACE=plasma-temple babel src/ --out-dir $BUILD_OUT_DIR --source-maps --extensions .ts,.tsx",
         "build:cjs": "BABEL_ENV=cjs BUILD_OUT_DIR=dist/ npm run build:command",
         "build:esm": "BABEL_ENV=esm BUILD_OUT_DIR=dist/es/ npm run build:command",
-        "postbuild": "npm run build:copy:cjs && npm run build:copy:esm && npm run build:declaration",
-        "build:copy": "copyup src/**/*.png src/**/*.svg",
-        "build:copy:cjs": "npm run build:copy -- dist/",
-        "build:copy:esm": "npm run build:copy -- dist/es/",
+        "postbuild": "npm run build:declaration",
         "build:declaration": "tsc --outDir dist/ --emitDeclarationOnly",
         "build-storybook": "npm run storybook:build",
         "build:storybook": "npm run storybook:build && npm run storybook:extract",
@@ -85,9 +83,7 @@
         "storybook:extract": "sb extract build-sb ./build-sb/stories.json",
         "test": "BABEL_ENV=test jest"
     },
-    "files": [
-        "dist"
-    ],
+    "files": ["dist", "mobile", "sberportal", "sberbox"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Виноградов Антон Александрович",

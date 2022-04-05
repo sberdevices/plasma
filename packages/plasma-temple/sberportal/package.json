@@ -1,0 +1,5 @@
+{
+    "main": "../dist/sberportal.generated.js",
+    "module": "../dist/es/sberportal.generated.js",
+    "types": "../dist/sberportal.generated.d.ts"
+}

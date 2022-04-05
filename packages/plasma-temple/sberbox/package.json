@@ -1,0 +1,5 @@
+{
+    "main": "../dist/sberbox.generated.js",
+    "module": "../dist/es/sberbox.generated.js",
+    "types": "../dist/sberbox.generated.d.ts"
+}
