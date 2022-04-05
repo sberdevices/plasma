@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-b2c",
-    "version": "1.54.0",
+    "version": "1.55.0",
     "description": "SberDevices Design System / React UI kit for business-related web applications",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
@@ -30,7 +30,7 @@
         "@popperjs/core": "2.9.2",
         "@sberdevices/plasma-core": "1.54.0",
         "@sberdevices/plasma-typo": "0.3.0",
-        "@sberdevices/plasma-web": "1.89.0",
+        "@sberdevices/plasma-web": "1.90.0",
         "react-file-drop": "3.1.2",
         "react-popper": "2.2.5",
         "react-sortable-hoc": "2.0.0",
