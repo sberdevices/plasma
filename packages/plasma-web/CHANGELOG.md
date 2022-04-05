@@ -1,3 +1,16 @@
+# v1.90.0 (Tue Apr 05 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-web): `Modal`: a11y improvements [#1130](https://github.com/sberdevices/plasma/pull/1130) ([@fanisco](https://github.com/fanisco))
+- feat(plasma-web): `Modal` added react-focus-lock for focus management [#1130](https://github.com/sberdevices/plasma/pull/1130) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.89.0 (Thu Mar 31 2022)
 
 #### 🚀 Enhancement
