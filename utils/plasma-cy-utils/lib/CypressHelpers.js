@@ -138,17 +138,17 @@ exports.mount = function () {
         args[_i] = arguments[_i];
     }
     var jsx = args[0], _a = args[1], opts = _a === void 0 ? {} : _a;
-    opts.stylesheets = ((opts === null || opts === void 0 ? void 0 : opts.stylesheets) || []).concat('https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansText.0.1.0.css', 'https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansDisplay.0.1.0.css');
+    opts.stylesheets = ((opts === null || opts === void 0 ? void 0 : opts.stylesheets) || []).concat('/styles/SBSansText.css', '/styles/SBSansDisplay.css');
     var cm = react_2.mount(jsx, opts);
     // eslint-disable-next-line
     // @ts-ignore
-    cy.waitForResources('https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansText.0.1.0.css');
+    cy.waitForResources('/styles/SBSansText.css');
     // eslint-disable-next-line
     // @ts-ignore
-    cy.waitForResources('https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansDisplay.0.1.0.css');
+    cy.waitForResources('/styles/SBSansDisplay.css');
     // eslint-disable-next-line
     // @ts-ignore
-    cy.waitForResources('SBSansText.0.1.0.css', 'SBSansDisplay.0.1.0.css', { timeout: 1500 });
+    cy.waitForResources('SBSansText.css', 'SBSansDisplay.css', { timeout: 1500 });
     return cm;
 };
 var templateObject_1, templateObject_2, templateObject_3;
