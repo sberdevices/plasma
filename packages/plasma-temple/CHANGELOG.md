@@ -1,3 +1,17 @@
+# v1.51.1 (Tue Apr 05 2022)
+
+#### 🐛 Bug Fix
+
+- fix(plasma-teple): make svg imports inline [#1175](https://github.com/sberdevices/plasma/pull/1175) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+
+---
+
 # v1.50.0 (Fri Apr 01 2022)
 
 #### 🚀 Enhancement
