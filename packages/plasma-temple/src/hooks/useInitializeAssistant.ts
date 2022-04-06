@@ -9,10 +9,12 @@ import { useMount } from './useMount';
 export const useInitializeAssistant = <T extends AssistantSmartAppData>({
     assistantParams,
     onStart,
+    onStartWaitForCommand,
     onData,
 }: {
     assistantParams: Omit<InitializeParams, 'getState'>;
     onStart?: () => void;
+    onStartWaitForCommand?: string;
     onData?: (command: AssistantClientCustomizedCommand<AssistantSmartAppData>) => void;
 }): {
     getAssistant: () => AssistantInstance;
@@ -24,6 +26,7 @@ export const useInitializeAssistant = <T extends AssistantSmartAppData>({
     const setAssistantState = useCallback((newState) => {
         assistantStateRef.current = newState;
     }, []);
+    const isOnStartNotCalledRef = useRef(true);
 
     const assistantRef = useRef<AssistantInstance | null>(null);
     const getAssistant = useCallback(() => {
@@ -37,18 +40,24 @@ export const useInitializeAssistant = <T extends AssistantSmartAppData>({
     useMount(() => {
         const assistant = getAssistant();
         const offStartListener = assistant.on('start', () => {
-            if (onStart) {
+            if (onStart && !onStartWaitForCommand) {
                 onStart();
             }
             offStartListener();
         });
 
-        let removeListener = () => {};
+        const handleOnData = (command: AssistantClientCustomizedCommand<AssistantSmartAppData>) => {
+            if (onData) {
+                onData(command);
+            }
+            const isWaitedCommand = command.type === onStartWaitForCommand;
+            if (onStart && isWaitedCommand && isOnStartNotCalledRef.current) {
+                isOnStartNotCalledRef.current = false;
+                onStart();
+            }
+        };
 
-        if (onData) {
-            removeListener = assistant.on('data', onData);
-        }
-
+        const removeListener = assistant.on('data', handleOnData);
         return () => removeListener();
     });
 
