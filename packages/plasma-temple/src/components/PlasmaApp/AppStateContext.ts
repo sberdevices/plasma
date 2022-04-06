@@ -13,6 +13,10 @@ export interface AppStateContextValue {
         <N extends string, P>(name: N, params: P): void;
         <N extends string>(name: N, params?: never): void;
     };
+    replacePreviousScreens: {
+        <N extends string, P>(screens: Array<{ name: N; params?: P }>): void;
+        <N extends string>(screens: Array<{ name: N; params?: never }>): void;
+    };
     popScreen: () => void;
     goToScreen: <N extends string>(name: N) => void;
     changeActiveScreenState: (state: History) => void;
@@ -27,6 +31,7 @@ export const AppStateContext = createContext<AppStateContextValue>({
     dispatch: throwFn,
     pushHistory: throwFn,
     pushScreen: throwFn,
+    replacePreviousScreens: throwFn,
     popScreen: throwFn,
     goToScreen: throwFn,
     changeActiveScreenState: throwFn,

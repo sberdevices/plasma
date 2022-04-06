@@ -49,6 +49,15 @@ export const reducer = (state: AppState, action: PlasmaActionData): AppState => 
             };
         }
 
+        case AppStateActionType.REPLACE_PREVIOUS_HISTORY: {
+            const { history } = action.payload;
+
+            return {
+                ...state,
+                history: [...history, state.history[state.history.length - 1]],
+            };
+        }
+
         case AppStateActionType.POP_HISTORY: {
             const { delta = 1 } = action.payload;
             return {
