@@ -8,6 +8,7 @@ import {
     CharacterAction,
     InsetsAction,
     PushHistoryAction,
+    ReplacePreviousHistoryAction,
     PopHistoryAction,
     ChangeStateAction,
     AssistantInsets,
@@ -26,6 +27,13 @@ export const pushHistory = <
     name: N,
     data: T[N],
 ): PushHistoryAction => createAction(AppStateActionType.PUSH_HISTORY, { history: { name, data } });
+
+export const replacePreviousHistory = <
+    T extends AnyObject = AnyObject,
+    N extends Extract<keyof T, string> = Extract<keyof T, string>
+>(
+    screens: Array<{ name: N; data: T[N] }>,
+): ReplacePreviousHistoryAction => createAction(AppStateActionType.REPLACE_PREVIOUS_HISTORY, { history: screens });
 
 export const popHistory = (delta?: number): PopHistoryAction => createAction(AppStateActionType.POP_HISTORY, { delta });
 

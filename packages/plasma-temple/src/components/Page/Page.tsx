@@ -69,6 +69,7 @@ export const Page: PageFunctionComponent = ({
         popScreen,
         pushHistory,
         pushScreen,
+        replacePreviousScreens,
         goToScreen,
         header: appHeader,
     } = React.useContext(AppStateContext);
@@ -129,6 +130,7 @@ export const Page: PageFunctionComponent = ({
                     changeState={changeState}
                     pushHistory={pushHistory}
                     pushScreen={pushScreen}
+                    replacePreviousScreens={replacePreviousScreens}
                     popScreen={popScreen}
                     goToScreen={goToScreen}
                     sendData={sendData}

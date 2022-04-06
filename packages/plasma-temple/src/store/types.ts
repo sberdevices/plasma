@@ -23,6 +23,7 @@ export enum AppStateActionType {
     CHARACTER = 'character',
     INSETS = 'insets',
     PUSH_HISTORY = 'pushHistory',
+    REPLACE_PREVIOUS_HISTORY = 'replacePreviousHistory',
     POP_HISTORY = 'popHistory',
     CHANGE_ACTIVE_SCREEN_STATE = 'changeActiveScreenState',
 }
@@ -35,7 +36,15 @@ export interface Action<A extends Record<string, unknown>> extends AssistantSmar
 export type CharacterAction = StateAction<AppStateActionType.CHARACTER, { character: CharacterId }>;
 export type InsetsAction = StateAction<AppStateActionType.INSETS, { insets: AssistantInsets }>;
 export type PushHistoryAction = StateAction<AppStateActionType.PUSH_HISTORY, { history: History }>;
+export type ReplacePreviousHistoryAction = StateAction<
+    AppStateActionType.REPLACE_PREVIOUS_HISTORY,
+    { history: History[] }
+>;
 export type PopHistoryAction = StateAction<AppStateActionType.POP_HISTORY, { delta?: number }>;
 export type ChangeStateAction = StateAction<AppStateActionType.CHANGE_ACTIVE_SCREEN_STATE, History>;
-export type PlasmaAction = Action<PushHistoryAction> | Action<ChangeStateAction> | Action<PopHistoryAction>;
+export type PlasmaAction =
+    | Action<PushHistoryAction>
+    | Action<ReplacePreviousHistoryAction>
+    | Action<ChangeStateAction>
+    | Action<PopHistoryAction>;
 export type PlasmaActionData = CharacterAction | InsetsAction | PlasmaAction['smart_app_data'];

@@ -49,6 +49,7 @@ export function App<Name extends string>({
     const popScreenDelta = React.useRef(1);
 
     const { history } = state;
+    const activeScreen = last(history);
 
     const pushHistory = React.useCallback((name, data) => {
         window.history.pushState(null, name);
@@ -59,6 +60,19 @@ export function App<Name extends string>({
         window.history.pushState(params, name);
         dispatch(Actions.pushHistory(name, null));
     }, []);
+
+    const replacePreviousScreens = React.useCallback(
+        (screens: Array<{ name: string; params?: any }>) => {
+            const currentName = activeScreen.name;
+            const currentData = activeScreen.data;
+            screens.forEach(({ name, params }) => {
+                window.history.pushState(params, name);
+            });
+            window.history.pushState(currentData, currentName);
+            dispatch(Actions.replacePreviousHistory(screens.map((screen) => ({ name: screen.name, data: null }))));
+        },
+        [activeScreen],
+    );
 
     const onPopScreen = React.useCallback(() => {
         dispatch(Actions.popHistory(popScreenDelta.current));
@@ -134,20 +148,28 @@ export function App<Name extends string>({
 
     usePopHistoryListener(state.history.length, onPopScreen);
 
-    const activeScreen = last(state.history);
-
     const appStateContextValue = React.useMemo(
         () => ({
             state,
             header,
             pushScreen,
+            replacePreviousScreens,
             pushHistory,
             popScreen,
             goToScreen,
             changeActiveScreenState,
             dispatch,
         }),
-        [state, header, pushScreen, popScreen, pushHistory, goToScreen, changeActiveScreenState],
+        [
+            state,
+            header,
+            pushScreen,
+            replacePreviousScreens,
+            popScreen,
+            pushHistory,
+            goToScreen,
+            changeActiveScreenState,
+        ],
     );
 
     const childToRender = React.useMemo(() => {

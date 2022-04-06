@@ -14,6 +14,11 @@ export interface PushScreenFn<S, P extends { [key in keyof S]: unknown }> {
     <T extends keyof S>(name: T, params?: never): void;
 }
 
+export interface ReplaceScreensFn<S, P extends { [key in keyof S]: unknown }> {
+    <T extends keyof S, P1 extends P[T]>(screens: Array<{ name: T; params?: P extends void ? never : P1 }>): void;
+    <T extends keyof S>(screens: Array<{ name: T; params?: never }>): void;
+}
+
 export interface PageMethods<
     State,
     PageStateType extends AnyObject,
@@ -23,6 +28,7 @@ export interface PageMethods<
 > {
     pushHistory: <T extends PageType>(name: T, data: PageStateType[T]) => void;
     pushScreen: PushScreenFn<PageStateType, PageParamsType>;
+    replacePreviousScreens: ReplaceScreensFn<PageStateType, PageParamsType>;
     goToScreen: <T extends PageType>(name: T) => void;
     popScreen: () => void;
     changeState: (data: State) => void;
