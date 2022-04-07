@@ -31,7 +31,7 @@ export interface PopupProps extends HTMLAttributes<HTMLDivElement> {
     onToggle?: (isOpen: boolean, event: SyntheticEvent) => void;
 }
 
-const StyledRoot = styled.div`
+export const StyledRoot = styled.div`
     position: relative;
     box-sizing: border-box;
     display: inline-flex;
