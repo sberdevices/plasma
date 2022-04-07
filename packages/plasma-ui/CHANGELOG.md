@@ -1,3 +1,15 @@
+# v1.93.0 (Thu Apr 07 2022)
+
+#### 🐛 Bug Fix
+
+- fix: `Field` and `Input` props interfaces facelifting [#1121](https://github.com/sberdevices/plasma/pull/1121) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.92.0 (Fri Apr 01 2022)
 
 #### 🚀 Enhancement

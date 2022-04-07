@@ -1,3 +1,15 @@
+# v0.9.0 (Thu Apr 07 2022)
+
+#### 🐛 Bug Fix
+
+- ci: Added B2B `TextField` tests [#1121](https://github.com/sberdevices/plasma/pull/1121) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v0.8.0 (Fri Mar 04 2022)
 
 #### 🐛 Bug Fix

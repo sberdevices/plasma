@@ -1,3 +1,15 @@
+# v1.17.0 (Thu Apr 07 2022)
+
+#### 🐛 Bug Fix
+
+- feat(plasma-web, plasma-tokens-web): Design tokens for `plasma-web` [#1121](https://github.com/sberdevices/plasma/pull/1121) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.16.0 (Tue Mar 01 2022)
 
 #### 🚀 Enhancement

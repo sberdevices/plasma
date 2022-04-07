@@ -1,3 +1,30 @@
+# (Thu Apr 07 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-tokens-b2c@0.11.0`
+  - feat(plasma-tokens-b2c): `TextField`: added CSS Variables tokens [#1121](https://github.com/sberdevices/plasma/pull/1121) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-tokens-b2b@1.2.0`, `@sberdevices/plasma-web@1.91.0`, `@sberdevices/plasma-tokens-utils@0.11.0`
+  - feat(plasma-web): Designing `TextField` for B2B theme [#1121](https://github.com/sberdevices/plasma/pull/1121) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-web@1.91.0`
+  - test: Added B2B `TextField` tests / new tests for legacy Web [#1121](https://github.com/sberdevices/plasma/pull/1121) ([@fanisco](https://github.com/fanisco))
+  - chore(plasma-web): Support `plasma-typo` in Storybook [#1121](https://github.com/sberdevices/plasma/pull/1121) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-cy-utils@0.9.0`
+  - ci: Added B2B `TextField` tests [#1121](https://github.com/sberdevices/plasma/pull/1121) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-tokens-web@1.17.0`
+  - feat(plasma-web, plasma-tokens-web): Design tokens for `plasma-web` [#1121](https://github.com/sberdevices/plasma/pull/1121) ([@fanisco](https://github.com/fanisco))
+- `@sberdevices/plasma-b2c@1.56.0`, `@sberdevices/plasma-core@1.55.0`, `@sberdevices/plasma-ui@1.93.0`, `@sberdevices/plasma-web@1.91.0`
+  - fix: `Field` and `Input` props interfaces facelifting [#1121](https://github.com/sberdevices/plasma/pull/1121) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # (Tue Apr 05 2022)
 
 #### 🚀 Enhancement

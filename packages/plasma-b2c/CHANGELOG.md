@@ -1,3 +1,17 @@
+# v1.56.0 (Thu Apr 07 2022)
+
+#### 🐛 Bug Fix
+
+- fix: `Field` and `Input` props interfaces facelifting [#1121](https://github.com/sberdevices/plasma/pull/1121) ([@fanisco](https://github.com/fanisco))
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.54.0 (Thu Mar 31 2022)
 
 #### 🚀 Enhancement

@@ -1,3 +1,21 @@
+# v1.91.0 (Thu Apr 07 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-web): Designing `TextField` for B2B theme [#1121](https://github.com/sberdevices/plasma/pull/1121) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- test: Added B2B `TextField` tests / new tests for legacy Web [#1121](https://github.com/sberdevices/plasma/pull/1121) ([@fanisco](https://github.com/fanisco))
+- fix: `Field` and `Input` props interfaces facelifting [#1121](https://github.com/sberdevices/plasma/pull/1121) ([@fanisco](https://github.com/fanisco))
+- chore(plasma-web): Support `plasma-typo` in Storybook [#1121](https://github.com/sberdevices/plasma/pull/1121) ([@fanisco](https://github.com/fanisco))
+
+#### Authors: 1
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+
+---
+
 # v1.90.0 (Tue Apr 05 2022)
 
 #### 🚀 Enhancement
