@@ -74,7 +74,7 @@ const StyledTrigger = styled.div<{ $disabled?: boolean } & PressedProps & FocusP
     margin-left: auto;
     border-radius: 0.875rem;
     background-color: var(--plasma-switch-trigger-background);
-    transition: background-color 0.15s ease-in-out 0.1s;
+    transition: ${({ theme }) => (theme.disableAnimation ? 'unset' : 'background-color 0.15s ease-in-out 0.1s')};
 
     &::after {
         content: '';
@@ -89,7 +89,10 @@ const StyledTrigger = styled.div<{ $disabled?: boolean } & PressedProps & FocusP
         border-radius: 1.5rem;
         background-color: var(--plasma-switch-ellipse-background);
         box-shadow: ${shadows.tiny};
-        transition: width 0.15s ease-in-out, left 0.3s ease-in-out, right 0.3s ease-in-out;
+        transition: ${({ theme }) =>
+            theme.disableAnimation
+                ? 'unset'
+                : 'width 0.15s ease-in-out, left 0.3s ease-in-out, right 0.3s ease-in-out'};
     }
 
     ${({ $disabled, pressed }) =>
@@ -118,8 +121,9 @@ const StyledTrigger = styled.div<{ $disabled?: boolean } & PressedProps & FocusP
         }
     }
 
-    ${({ focused, outlined }) =>
+    ${({ focused, outlined, theme }) =>
         addFocus({
+            ...theme,
             focused,
             outlined,
             outlineRadius: '1rem',

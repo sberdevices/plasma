@@ -29,7 +29,7 @@ const StyledStepperButton = styled(Button).attrs(() => ({ size: 's', square: tru
     background-color: rgba(8, 8, 8, 0.12);
     color: ${black};
     align-self: flex-end;
-    transition: opacity 0.15s ease-in-out;
+    transition: ${({ theme }) => (theme.disableAnimation ? 'unset' : 'opacity 0.15s ease-in-out')};
 
     ${({ $isHidden }) =>
         $isHidden &&

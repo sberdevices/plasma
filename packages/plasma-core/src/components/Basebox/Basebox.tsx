@@ -51,7 +51,7 @@ export const StyledInput = styled.input`
 export const StyledTrigger = styled.div`
     box-sizing: border-box;
     position: relative;
-    transition: all 0.1s ease-in-out;
+    transition: ${({ theme }) => (theme.disableAnimation ? 'unset' : 'all 0.1s ease-in-out')};
 `;
 export const StyledContent = styled.div`
     display: flex;

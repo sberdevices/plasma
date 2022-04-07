@@ -11,8 +11,9 @@ export const CellRoot = styled.div<FocusProps & OutlinedProps>`
         outline: 0 none;
     }
 
-    ${({ focused, outlined }) =>
+    ${({ focused, outlined, theme }) =>
         addFocus({
+            disableAnimation: theme.disableAnimation,
             focused,
             outlined,
             outlineOffset: '0.25rem',

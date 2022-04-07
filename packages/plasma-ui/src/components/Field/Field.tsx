@@ -1,5 +1,5 @@
 import styled, { css, InterpolationFunction } from 'styled-components';
-import type { FieldProps } from '@sberdevices/plasma-core';
+import type { FieldProps, ThemeProps } from '@sberdevices/plasma-core';
 import {
     FieldHelper as BaseHelper,
     primary,
@@ -13,11 +13,13 @@ export const FieldHelper = styled(BaseHelper)`
     padding-right: 1rem;
 `;
 
-export const applyInputStyles: InterpolationFunction<Pick<FieldProps, '$isFocused'>> = ({ $isFocused }) => css`
+export const applyInputStyles: InterpolationFunction<ThemeProps & Pick<FieldProps, '$isFocused'>> = ({
+    $isFocused,
+}) => css`
     background-color: ${surfaceLiquid01};
     color: ${primary};
 
-    transition: background-color 0.1s ease-in-out;
+    transition: ${({ theme }) => (theme.disableAnimation ? 'unset' : 'background-color 0.1s ease-in-out')};
 
     &::placeholder {
         color: ${secondary};

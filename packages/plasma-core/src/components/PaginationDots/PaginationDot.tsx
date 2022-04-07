@@ -18,7 +18,8 @@ export const PaginationDot = styled.li<PaginationDotProps>`
     height: 0.375rem;
     border-radius: 1rem;
     background: ${surfaceLiquid03};
-    transition: width 0.1s ease-in-out, background 0.3s ease-in-out;
+    transition: ${({ theme }) =>
+        theme.disableAnimation ? 'unset' : 'width 0.1s ease-in-out, background 0.3s ease-in-out'};
     font-size: 0.5rem;
 
     & + & {

@@ -40,7 +40,7 @@ const linesMixin = ({ lines = 2 }) => css`
 `;
 
 const viewMixin = ({ view = 'primary' }: ViewProps) => css`
-    transition: color 0.1s ease-in-out;
+    transition: ${({ theme }) => (theme.disableAnimation ? 'unset' : 'color 0.1s ease-in-out')};
     color: ${views[view]};
 `;
 

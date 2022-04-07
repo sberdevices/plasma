@@ -92,7 +92,7 @@ export const StyledTrigger = styled(BaseboxTrigger)<{
             border: 0.125rem solid transparent;
             border-radius: var(--plasma-trigger-outline-radius);
 
-            transition: box-shadow 0.2s ease-in-out;
+            transition: ${({ theme }) => (theme.disableAnimation ? 'unset' : 'box-shadow 0.2s ease-in-out')};
 
             pointer-events: none;
         }
@@ -118,7 +118,7 @@ const StyledMark = styled(IconDone)`
     width: 1rem;
     height: 1rem;
 
-    transition: transform 0.1s ease-in-out;
+    transition: ${({ theme }) => (theme.disableAnimation ? 'unset' : 'transform 0.1s ease-in-out')};
     transform: scale(0);
 
     /* stylelint-disable-next-line selector-nested-pattern, selector-type-no-unknown */

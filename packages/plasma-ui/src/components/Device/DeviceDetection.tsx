@@ -40,6 +40,10 @@ export interface DeviceThemeProps {
      */
     detectDeviceCallback?: () => DeviceKind;
     responsiveTypo?: boolean;
+    /**
+     * Флаг для отключения анимаций и прочих твиков над UI, снижающих производительность.
+     */
+    lowPerformanceDevice?: boolean;
 }
 
 /**
@@ -62,13 +66,14 @@ export const DeviceThemeProvider: React.FC<DeviceThemeProps> = ({
     children,
     detectDeviceCallback = detectDevice,
     responsiveTypo = false,
+    lowPerformanceDevice = false,
 }) => {
     const deviceKind = detectDeviceCallback();
     const deviceScale = deviceScales[deviceKind] || sberPortalScale;
     const Typo = React.useMemo(() => typoSizes[deviceKind], [deviceKind]);
 
     return (
-        <ThemeProvider theme={{ ...theme, deviceScale }}>
+        <ThemeProvider theme={{ ...theme, deviceScale, disableAnimation: lowPerformanceDevice }}>
             {responsiveTypo ? (
                 <>
                     <StandardTypo deviceScale={deviceScale} />

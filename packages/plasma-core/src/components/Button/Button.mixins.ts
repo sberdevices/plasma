@@ -2,6 +2,7 @@ import { css } from 'styled-components';
 
 import { addFocus } from '../../mixins';
 import { convertRoundnessMatrix } from '../../utils';
+import type { ThemeProps } from '../../types';
 
 import type { StyledButtonProps, ButtonSizes, ButtonTypography } from './Button.types';
 
@@ -21,7 +22,8 @@ export const getButtonSizesMixin = (sizes: ButtonSizes, typos: ButtonTypography)
     shiftRight,
     square,
     stretch,
-}: StyledButtonProps) => {
+    theme,
+}: ThemeProps & StyledButtonProps) => {
     let { paddingX } = sizes[size];
 
     if (square) {
@@ -44,6 +46,7 @@ export const getButtonSizesMixin = (sizes: ButtonSizes, typos: ButtonTypography)
         ${typos[size]}
 
         ${addFocus({
+            ...theme,
             focused,
             outlined,
             outlineRadius: convertRoundnessMatrix(

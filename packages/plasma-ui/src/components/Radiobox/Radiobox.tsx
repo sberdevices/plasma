@@ -32,7 +32,7 @@ const StyledEllipse = styled.div`
     border-radius: 0.625rem;
     background-color: ${white};
 
-    transition: transform 0.3s ease-in-out;
+    transition: ${({ theme }) => (theme.disableAnimation ? 'unset' : 'transform 0.3s ease-in-out')};
     transform: scale(0);
 
     /* stylelint-disable-next-line selector-nested-pattern, selector-type-no-unknown */
