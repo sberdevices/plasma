@@ -36,10 +36,11 @@ export const StyledCard = styled(Body1)<StyledRootProps>`
     background: ${surfaceCard};
     box-shadow: 0 ${shadowOffset}em ${shadowSize}em rgba(0, 0, 0, 0.1);
 
-    transition: transform 0.4s ease-in-out;
+    transition: ${({ theme }) => (theme.disableAnimation ? 'unset' : 'transform 0.4s ease-in-out')};
 
-    ${({ focused, outlined, roundness, scaleOnFocus }) => css`
+    ${({ focused, outlined, roundness, scaleOnFocus, theme }) => css`
         ${addFocus({
+            disableAnimation: theme.disableAnimation,
             focused,
             outlined,
             outlineSize: `${outlineSize}rem`,

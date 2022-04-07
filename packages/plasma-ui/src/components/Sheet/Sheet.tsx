@@ -29,7 +29,7 @@ const StyledWrapper = styled.div<{ isOpen: boolean }>`
     left: 0;
     right: 0;
     opacity: 1;
-    transition: all 0.5s 0.1s;
+    transition: ${({ theme }) => (theme.disableAnimation ? 'unset' : 'all 0.5s 0.1s')};
     z-index: 1000;
 
     ${({ isOpen }) =>
@@ -52,7 +52,7 @@ const StyledContentWrapper = styled.div<{ isOpen: boolean }>`
     flex-direction: column;
     justify-content: flex-end;
 
-    transition: transform 0.5s;
+    transition: ${({ theme }) => (theme.disableAnimation ? 'unset' : 'transform 0.5s')};
 
     ${({ isOpen }) =>
         !isOpen &&

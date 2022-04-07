@@ -45,6 +45,7 @@ const withTheme = (Story, context) => {
         <DeviceThemeProvider
             detectDeviceCallback={() => deviceKind}
             responsiveTypo={context.globals.typoSystem === 'responsive'}
+            lowPerformanceDevice={context.globals.lowPerformanceDevice === 'yes'}
         >
             <Theme />
             <DocumentStyle />
@@ -137,6 +138,15 @@ export const globalTypes = {
         defaultValue: 'sberBox',
         toolbar: {
             items: ['mobile', 'sberBox', 'sberPortal'],
+            showName: true,
+        },
+    },
+    lowPerformanceDevice: {
+        name: 'Low performance',
+        description: 'Low performance device',
+        defaultValue: 'no',
+        toolbar: {
+            items: ['yes', 'no'],
             showName: true,
         },
     },

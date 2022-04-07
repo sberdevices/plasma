@@ -1,5 +1,6 @@
 import { css, FlattenSimpleInterpolation, InterpolationFunction } from 'styled-components';
 
+import type { ThemeProps } from '../types';
 import { buttonFocused } from '../tokens';
 
 import 'focus-visible';
@@ -73,7 +74,8 @@ export const syntheticFocus: SynthesizeFocus = (ruleset, focused) => css`
  *  outlineColor: 'greenyellow',
  * });
  */
-export const addFocus: InterpolationFunction<FocusProps & OutlinedProps & OutlineProps> = ({
+export const addFocus: InterpolationFunction<ThemeProps['theme'] & FocusProps & OutlinedProps & OutlineProps> = ({
+    disableAnimation,
     focused,
     outlined = true,
     outlineSize = '0.125rem',
@@ -101,7 +103,7 @@ export const addFocus: InterpolationFunction<FocusProps & OutlinedProps & Outlin
             border: ${outlineSize} solid transparent;
             border-radius: ${outlineRadius};
 
-            transition: box-shadow 0.2s ease-in-out;
+            transition: ${disableAnimation ? 'none' : 'box-shadow 0.2s ease-in-out'};
 
             pointer-events: none;
         }
