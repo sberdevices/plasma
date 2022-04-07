@@ -39,8 +39,8 @@ interface DefaultStoryProps extends DatePickerProps {
     initialValue: string;
     minDate: string;
     maxDate: string;
-    DatePickeSize: string;
-    TimePickeSize: string;
+    DatePickerSize: string;
+    TimePickerSize: string;
     TimePickerStep: number;
     DatePickerVisibleItems: number;
     TimePickerVisibleItems: number;
@@ -88,11 +88,12 @@ export const Default: Story<DefaultStoryProps> = (args) => {
     return (
         <StyledWrapper>
             <DatePicker
+                key={`date-${args.DatePickerSize}-${args.DatePickerVisibleItems}`}
                 id="datepicker"
                 value={value}
                 min={min}
                 max={max}
-                size={args.DatePickeSize as 's'}
+                size={args.DatePickerSize as 's'}
                 visibleItems={args.DatePickerVisibleItems as 3}
                 scrollSnapType={args.scrollSnapType}
                 options={dateOptions}
@@ -107,12 +108,13 @@ export const Default: Story<DefaultStoryProps> = (args) => {
                 yearsAriaLabel="год"
             />
             <TimePicker
+                key={`time-${args.TimePickerSize}-${args.TimePickerVisibleItems}`}
                 id="timepicker"
                 value={value}
                 min={min}
                 max={max}
                 step={args.TimePickerStep}
-                size={args.TimePickeSize as 's'}
+                size={args.TimePickerSize as 's'}
                 visibleItems={args.TimePickerVisibleItems as 3}
                 scrollSnapType={args.scrollSnapType}
                 options={timeOptions}
@@ -145,9 +147,9 @@ Default.args = {
     autofocus: true,
     scrollSnapType: isSberbox ? 'none' : 'mandatory',
     infiniteScroll: true,
-    DatePickeSize: 's',
+    DatePickerSize: 's',
     DatePickerVisibleItems: 3,
-    TimePickeSize: 's',
+    TimePickerSize: 's',
     TimePickerStep: 1,
     TimePickerVisibleItems: 5,
     DatePickerNativeControl: false,
@@ -155,13 +157,13 @@ Default.args = {
 };
 
 Default.argTypes = {
-    DatePickeSize: {
+    DatePickerSize: {
         control: {
             type: 'inline-radio',
             options: ['l', 's', 'xs'],
         },
     },
-    TimePickeSize: {
+    TimePickerSize: {
         control: {
             type: 'inline-radio',
             options: ['l', 's', 'xs'],
@@ -229,6 +231,7 @@ export const Date_Picker: Story<DatePickerStoryProps> = ({
 
     return (
         <DatePicker
+            key={`${rest.size}-${rest.visibleItems}`}
             id="example"
             value={value}
             min={min}
@@ -266,7 +269,7 @@ Date_Picker.argTypes = {
     size: {
         control: {
             type: 'inline-radio',
-            options: ['l', 's'],
+            options: ['l', 's', 'xs'],
         },
     },
     visibleItems: {
@@ -321,7 +324,7 @@ export const Time_Picker: Story<TimePickerStoryProps> = ({
 
     return (
         <TimePicker
-            key={rest.size}
+            key={`${rest.size}-${rest.visibleItems}`}
             value={value}
             min={min}
             max={max}
