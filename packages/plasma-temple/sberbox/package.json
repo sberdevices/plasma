@@ -1,0 +1,5 @@
+{
+    "main": "../dist/index@sberbox.js",
+    "module": "../dist/es/index@sberbox.js",
+    "types": "../dist/index@sberbox.d.ts"
+}
