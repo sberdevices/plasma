@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-docs-ui",
-    "version": "0.6.0",
+    "version": "0.7.0",
     "description": "Plasma Documentation.",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
@@ -33,7 +33,7 @@
     ],
     "dependencies": {
         "@sberdevices/plasma-core": "1.27.3",
-        "@sberdevices/plasma-tokens-b2b": "1.1.0",
+        "@sberdevices/plasma-tokens-b2b": "1.2.0",
         "@sberdevices/plasma-web": "1.73.1",
         "@types/marked": "3.0.1",
         "codesandbox": "2.2.3",

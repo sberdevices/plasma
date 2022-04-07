@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-cy-utils",
-    "version": "0.8.0",
+    "version": "0.9.0",
     "description": "Test helpers shared between ui libraries.",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
@@ -39,10 +39,10 @@
         "lib"
     ],
     "dependencies": {
-        "@sberdevices/plasma-tokens": "1.16.0",
-        "@sberdevices/plasma-tokens-b2b": "1.1.0",
-        "@sberdevices/plasma-tokens-b2c": "0.10.0",
-        "@sberdevices/plasma-tokens-web": "1.16.0",
+        "@sberdevices/plasma-tokens": "1.17.0",
+        "@sberdevices/plasma-tokens-b2b": "1.2.0",
+        "@sberdevices/plasma-tokens-b2c": "0.11.0",
+        "@sberdevices/plasma-tokens-web": "1.17.0",
         "@sberdevices/plasma-typo": "0.3.0"
     }
 }

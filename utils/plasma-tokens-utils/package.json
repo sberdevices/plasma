@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-tokens-utils",
-    "version": "0.10.0",
+    "version": "0.11.0",
     "description": "Code shared between token libraries.",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",

@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-tokens",
-    "version": "1.16.0",
+    "version": "1.17.0",
     "description": "",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
@@ -43,7 +43,7 @@
         "theme.json"
     ],
     "devDependencies": {
-        "@sberdevices/plasma-tokens-utils": "0.10.0",
+        "@sberdevices/plasma-tokens-utils": "0.11.0",
         "@types/node": "16.7.13",
         "@types/param-case": "1.1.2",
         "jsdom": "17.0.0",
