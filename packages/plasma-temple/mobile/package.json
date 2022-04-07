@@ -1,0 +1,5 @@
+{
+    "main": "../dist/index@mobile.js",
+    "module": "../dist/es/index@mobile.js",
+    "types": "../dist/index@mobile.d.ts"
+}
