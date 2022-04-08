@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
-import { accent, critical, warning } from '@sberdevices/plasma-tokens';
-import { Caption, detectDevice, DeviceKind, Footnote1 } from '@sberdevices/plasma-ui';
+import styled, { css } from 'styled-components';
+import { accent, caption, critical, footnote1, warning } from '@sberdevices/plasma-tokens';
+import { mediaQuery } from '@sberdevices/plasma-ui';
 
 import { CaptionType, CartItemCaptionType } from '../types';
 
@@ -29,13 +29,16 @@ const textColorMap: Record<CaptionType, string> = {
     accent,
 };
 
-const mapDeviceToCaption: Record<DeviceKind, React.FC> = {
-    sberBox: Footnote1,
-    sberPortal: Caption,
-    mobile: Footnote1,
-};
+const StyledLabel = styled.div<{ type: CaptionType; className?: string }>`
+    ${footnote1}
 
-const StyledLabel = styled(mapDeviceToCaption[detectDevice()])<{ type: CaptionType; className?: string }>`
+    ${mediaQuery(
+        'M',
+        2,
+    )(css`
+        ${caption}
+    `)}
+
     color: ${({ type }) => textColorMap[type]};
 `;
 

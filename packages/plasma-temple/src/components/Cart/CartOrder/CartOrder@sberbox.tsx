@@ -4,7 +4,7 @@ import { Button, Footnote1 } from '@sberdevices/plasma-ui';
 import { secondary } from '@sberdevices/plasma-tokens';
 
 import { useFocusOnMount } from '../../../hooks/useFocusOnMount';
-import { CartOrderDetails } from '../CartOrderDetails/CartOrderDetails';
+import { CartOrderDetailsCommon } from '../CartOrderDetails/CartOrderDetails@common';
 import { AnyObject } from '../../../types';
 
 import { CartOrderProps, CheckoutButtonContent } from './CartOrder@common';
@@ -15,7 +15,7 @@ const StyledContainer = styled.div`
     margin-top: 0.5rem;
 `;
 
-const StyledCartOrderDetails = styled(CartOrderDetails)`
+const StyledCartOrderDetails = styled(CartOrderDetailsCommon)`
     margin-bottom: 1.875rem;
 `;
 

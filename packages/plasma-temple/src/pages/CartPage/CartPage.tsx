@@ -2,7 +2,8 @@ import React from 'react';
 
 import { Header } from '../../components';
 import { ComponentPropsWithHeader } from '../../components/Header/types';
-import { Cart, CartProps } from '../../components/Cart/Cart';
+import { Cart } from '../../components/Cart/Cart';
+import { CartProps } from '../../components/Cart/Cart@common';
 import { useInsets } from '../../hooks';
 import { CartState } from '../../components/Cart/types';
 
