@@ -2,6 +2,19 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-temple@1.54.0`
+  - feat(plasma-temple): add device component, StateLayout component by platforms [#1182](https://github.com/sberdevices/plasma/pull/1182) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
+# (Fri Apr 08 2022)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-ui@1.94.0`
   - feat(plasma-ui): Add keys for `Pickers` components in stories [#1181](https://github.com/sberdevices/plasma/pull/1181) ([@neretin-trike](https://github.com/neretin-trike))
 
