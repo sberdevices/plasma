@@ -1,3 +1,16 @@
+# (Fri Apr 08 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-ui@1.94.0`
+  - feat(plasma-ui): Add keys for `Pickers` components in stories [#1181](https://github.com/sberdevices/plasma/pull/1181) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### Authors: 1
+
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # (Thu Apr 07 2022)
 
 #### 🚀 Enhancement

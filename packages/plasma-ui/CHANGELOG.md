@@ -1,3 +1,20 @@
+# v1.94.0 (Fri Apr 08 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-ui): Add keys for `Pickers` components in stories [#1181](https://github.com/sberdevices/plasma/pull/1181) ([@neretin-trike](https://github.com/neretin-trike))
+
+#### 🐛 Bug Fix
+
+- chore: update package-locks \[skip ci\] ([@SberDevices-Eva](https://github.com/SberDevices-Eva))
+
+#### Authors: 2
+
+- [@SberDevices-Eva](https://github.com/SberDevices-Eva)
+- neretinaa ([@neretin-trike](https://github.com/neretin-trike))
+
+---
+
 # v1.93.0 (Thu Apr 07 2022)
 
 #### 🐛 Bug Fix
