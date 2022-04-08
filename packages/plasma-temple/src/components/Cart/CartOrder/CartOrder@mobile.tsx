@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Button, Footnote1, Price } from '@sberdevices/plasma-ui';
 import { secondary } from '@sberdevices/plasma-tokens';
 
-import { CartOrderDetails } from '../CartOrderDetails/CartOrderDetails';
+import { CartOrderDetailsMobile } from '../CartOrderDetails/CartOrderDetails@mobile';
 import { AnyObject } from '../../../types';
 
 import { CartOrderProps, CheckoutButtonContent } from './CartOrder@common';
@@ -55,7 +55,7 @@ export function CartOrderMobile<ID = unknown, T extends AnyObject = AnyObject>({
 
     return (
         <StyledContainer bottom={insets?.bottom}>
-            <CartOrderDetails
+            <CartOrderDetailsMobile
                 amount={amount}
                 currency={currency}
                 deliveryPrice={deliveryPrice}

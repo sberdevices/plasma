@@ -1,7 +1,6 @@
 import React from 'react';
-import { DeviceKind } from '@sberdevices/plasma-ui';
 
-import { deviceFamily } from '../../../utils/deviceFamily';
+import { DeviceComponent } from '../../DeviceComponent/DeviceComponent';
 
 import { CartOrderProps } from './CartOrder@common';
 import { CartOrderMobile } from './CartOrder@mobile';
@@ -10,10 +9,11 @@ import { CartOrderSberPortal } from './CartOrder@sberportal';
 
 export type { CartOrderProps };
 
-const mapDeviceToCartOrder: Record<DeviceKind, React.FC<React.PropsWithChildren<CartOrderProps>>> = {
-    sberBox: CartOrderSberBox,
-    sberPortal: CartOrderSberPortal,
-    mobile: CartOrderMobile,
-};
-
-export const CartOrder = React.memo(mapDeviceToCartOrder[deviceFamily]);
+export const CartOrder = React.memo((props) => (
+    <DeviceComponent
+        sberbox={CartOrderSberBox}
+        sberportal={CartOrderSberPortal}
+        mobile={CartOrderMobile}
+        props={props}
+    />
+)) as typeof CartOrderSberBox;
