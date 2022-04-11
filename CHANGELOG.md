@@ -1,3 +1,19 @@
+# (Mon Apr 11 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@1.55.0`
+  - feat(plasma-temple): onStart wait for command [#1176](https://github.com/sberdevices/plasma/pull/1176) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - feat(plasma-temple): onStart wait for character [#1176](https://github.com/sberdevices/plasma/pull/1176) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+  - feat(plasma-temple): add device component, StateLayout component by platforms [#1182](https://github.com/sberdevices/plasma/pull/1182) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 2
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # (Fri Apr 08 2022)
 
 #### 🚀 Enhancement
