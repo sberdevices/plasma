@@ -2,6 +2,19 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-temple@1.56.0`
+  - feat(plasma-temple): replace previous screens [#1174](https://github.com/sberdevices/plasma/pull/1174) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
+# (Mon Apr 11 2022)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-temple@1.55.0`
   - feat(plasma-temple): onStart wait for command [#1176](https://github.com/sberdevices/plasma/pull/1176) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
   - feat(plasma-temple): onStart wait for character [#1176](https://github.com/sberdevices/plasma/pull/1176) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))

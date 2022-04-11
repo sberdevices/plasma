@@ -1,3 +1,15 @@
+# v1.56.0 (Mon Apr 11 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): replace previous screens [#1174](https://github.com/sberdevices/plasma/pull/1174) ([@VladislavPetyukevich](https://github.com/VladislavPetyukevich))
+
+#### Authors: 1
+
+- [@VladislavPetyukevich](https://github.com/VladislavPetyukevich)
+
+---
+
 # v1.55.0 (Mon Apr 11 2022)
 
 #### 🚀 Enhancement
