@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-temple",
-    "version": "1.54.0",
+    "version": "1.55.0",
     "description": "SberDevices CanvasApp Templates.",
     "main": "dist/index.js",
     "module": "dist/es/index.js",
