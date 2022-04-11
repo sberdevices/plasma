@@ -56,9 +56,8 @@ function ProductRecommendationsComponent<Id = unknown>({
 
             <Carousel axis="x" index={carouselIndex} scrollAlign="start" paddingEnd="5rem">
                 {recommendations.map((recommendation, index) => (
-                    <StyledCarouselItem scrollSnapAlign="start">
+                    <StyledCarouselItem scrollSnapAlign="start" key={index}>
                         <ProductRecommendationsItem
-                            key={index}
                             index={index}
                             recommendation={recommendation}
                             onClick={handleClick}
