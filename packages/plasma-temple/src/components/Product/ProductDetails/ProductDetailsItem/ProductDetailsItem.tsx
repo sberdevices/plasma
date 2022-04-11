@@ -1,15 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import {
-    detectDevice,
-    DeviceKind,
-    Footnote1,
-    Footnote2,
-    mediaQuery,
-    ParagraphText1,
-    ParagraphText2,
-} from '@sberdevices/plasma-ui';
-import { secondary } from '@sberdevices/plasma-tokens';
+import { mediaQuery } from '@sberdevices/plasma-ui';
+import { footnote1, footnote2, paragraph1, paragraph2, secondary } from '@sberdevices/plasma-tokens';
 
 import { useWindowInnerWidth } from '../../../../hooks/useWindowInnerWidth';
 
@@ -24,14 +16,16 @@ const StyledDetailsItemContainer = styled.div`
     align-items: flex-end;
 `;
 
-const mapDeviceToName: Record<DeviceKind, React.FC> = {
-    sberBox: ParagraphText1,
-    sberPortal: Footnote1,
-    mobile: Footnote1,
-};
-
-const StyledName = styled(mapDeviceToName[detectDevice()])<{ upperCase?: boolean }>`
+const StyledName = styled.div<{ upperCase?: boolean }>`
     color: ${secondary};
+    ${footnote1}
+
+    ${mediaQuery(
+        'XL',
+        2,
+    )(css`
+        ${paragraph1}
+    `)}
 
     ${({ upperCase }) =>
         upperCase &&
@@ -57,13 +51,16 @@ const StyledSpace = styled.div`
     `)}
 `;
 
-const mapDeviceToValue: Record<DeviceKind, React.FC> = {
-    sberBox: ParagraphText2,
-    sberPortal: Footnote2,
-    mobile: Footnote2,
-};
+const StyledValue = styled.div`
+    ${footnote2}
 
-const StyledValue = mapDeviceToValue[detectDevice()];
+    ${mediaQuery(
+        'XL',
+        2,
+    )(css`
+        ${paragraph2}
+    `)}
+`;
 
 interface LineParams {
     maxSymbolsInLine: number;

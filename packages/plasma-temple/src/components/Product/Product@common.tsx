@@ -8,8 +8,8 @@ import { ProductImage } from './ProductImage/ProductImage';
 import { ProductActionButton, ProductActionButtonProps } from './ProductActionButton/ProductActionButton';
 import { ProductVariationSwitcher } from './ProductVariationSwitcher/ProductVariationSwitcher';
 import { ProductDetails } from './ProductDetails/ProductDetails';
-import { ExpandableProductDetails } from './ProductDetails/ExpandableProductDetails/ExpandableProductDetails';
-import { ProductInfo } from './ProductInfo/ProductInfo';
+import { ExpandableProductDetailsCommon } from './ProductDetails/ExpandableProductDetails/ExpandableProductDetails@common';
+import { ProductInfoCommon } from './ProductInfo/ProductInfo@common';
 import { ProductEntity, ProductVariation as ProductVariationType } from './types';
 import { useScrollByBreakpoints } from './hooks/useScrollByBreakpoints';
 import { ProductRecommendations } from './ProductRecommendations/ProductRecommendations';
@@ -165,7 +165,7 @@ export const ProductCommon = ({
                 {variations.length > 0 && (
                     <div ref={variationRef}>
                         {variations.map((variation) => (
-                            <StyledSmallSection>
+                            <StyledSmallSection key={String(variation.id)}>
                                 <ProductVariation {...variation} onChange={onChangeVariation} />
                             </StyledSmallSection>
                         ))}
@@ -178,7 +178,7 @@ export const ProductCommon = ({
                 )}
                 {details && (
                     <StyledSection ref={detailsRef}>
-                        <ExpandableProductDetails
+                        <ExpandableProductDetailsCommon
                             title={details.title}
                             details={details.values}
                             fixedLines={6}
@@ -188,7 +188,7 @@ export const ProductCommon = ({
                 )}
                 {description && (
                     <StyledSection ref={descriptionRef}>
-                        <ProductInfo
+                        <ProductInfoCommon
                             title={description.title}
                             info={description.content}
                             renderToggleButton={renderToggleButton}

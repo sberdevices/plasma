@@ -5,8 +5,8 @@ import { ProductTitle } from './ProductTitle/ProductTitle';
 import { ProductPrice } from './ProductPrice/ProductPrice';
 import { ProductActionButton } from './ProductActionButton/ProductActionButton';
 import { ProductDetails } from './ProductDetails/ProductDetails';
-import { ExpandableProductDetails } from './ProductDetails/ExpandableProductDetails/ExpandableProductDetails';
-import { ProductInfo } from './ProductInfo/ProductInfo';
+import { ExpandableProductDetailsMobile } from './ProductDetails/ExpandableProductDetails/ExpandableProductDetails@mobile';
+import { ProductInfoMobile } from './ProductInfo/ProductInfo@mobile';
 import { ProductProps, ProductVariation } from './Product@common';
 import { ProductImageSlider } from './ProductImageSlider/ProductImageSlider';
 import { ProductRecommendations } from './ProductRecommendations/ProductRecommendations';
@@ -48,7 +48,7 @@ export const ProductMobile = ({
                 <ProductActionButton {...actionButtonProps} />
             </StyledSection>
             {variations?.map((variation) => (
-                <StyledSmallSection>
+                <StyledSmallSection key={String(variation.id)}>
                     <ProductVariation {...variation} onChange={onChangeVariation} />
                 </StyledSmallSection>
             ))}
@@ -59,12 +59,12 @@ export const ProductMobile = ({
             )}
             {details && (
                 <StyledSection>
-                    <ExpandableProductDetails title={details.title} details={details.values} />
+                    <ExpandableProductDetailsMobile title={details.title} details={details.values} />
                 </StyledSection>
             )}
             {description && (
                 <StyledSection>
-                    <ProductInfo title={description.title} info={description.content} />
+                    <ProductInfoMobile title={description.title} info={description.content} />
                 </StyledSection>
             )}
             {recommendations && recommendations.items.length > 0 && (

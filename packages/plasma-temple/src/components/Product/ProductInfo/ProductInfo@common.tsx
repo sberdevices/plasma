@@ -1,15 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import {
-    detectDevice,
-    DeviceKind,
-    Footnote1,
-    Footnote2,
-    Headline3,
-    ParagraphText1,
-    ParagraphText2,
-} from '@sberdevices/plasma-ui';
-import { secondary } from '@sberdevices/plasma-tokens';
+import { mediaQuery } from '@sberdevices/plasma-ui';
+import { footnote1, footnote2, headline3, paragraph1, paragraph2, secondary } from '@sberdevices/plasma-tokens';
 
 import { useCollapse } from '../../Collapse/hooks/useCollapse';
 import { ProductToggleButton, ProductToggleButtonProps } from '../ProductToggleButton/ProductToggleButton';
@@ -27,26 +19,39 @@ export interface ProductInfoProps {
     renderToggleButton?: (props: Pick<ProductToggleButtonProps, 'expanded' | 'toggle'>) => React.ReactNode;
 }
 
-const mapDeviceToTitle: Record<DeviceKind, React.FC> = {
-    sberBox: ParagraphText2,
-    sberPortal: Footnote2,
-    mobile: Headline3,
-};
+const StyledTitle = styled.div`
+    ${paragraph2}
 
-const StyledTitle = styled(mapDeviceToTitle[detectDevice()])`
+    ${mediaQuery(
+        'M',
+        2,
+    )(css`
+        ${footnote2}
+    `)}
+
+    ${mediaQuery(
+        'S',
+        1,
+    )(css`
+        ${headline3}
+    `)}
+
     margin-bottom: 0.5rem;
 `;
 
-const mapDeviceToInfo: Record<DeviceKind, React.FC> = {
-    sberBox: ParagraphText1,
-    sberPortal: Footnote1,
-    mobile: Footnote1,
-};
-
-const StyledInfo = styled(mapDeviceToInfo[detectDevice()])<{
+const StyledInfo = styled.div<{
     expanded: boolean;
 }>`
     hyphens: none;
+    ${footnote1}
+
+    ${mediaQuery(
+        'XL',
+        2,
+    )(css`
+        ${paragraph1}
+    `)}
+
     ${({ expanded }) =>
         expanded &&
         css`

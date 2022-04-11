@@ -1,6 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
-import { detectDevice, DeviceKind, Headline3, Button2, ParagraphText2 } from '@sberdevices/plasma-ui';
+import styled, { css } from 'styled-components';
+import { mediaQuery } from '@sberdevices/plasma-ui';
+import { button2, headline3, paragraph2 } from '@sberdevices/plasma-tokens';
 
 import { DetailsItemProps, ProductDetailsItem } from './ProductDetailsItem/ProductDetailsItem';
 
@@ -22,13 +23,23 @@ const StyledProductDetailsItemContainer = styled.div`
     }
 `;
 
-const mapDeviceToTitle: Record<DeviceKind, React.FC> = {
-    sberBox: ParagraphText2,
-    sberPortal: Button2,
-    mobile: Headline3,
-};
+export const StyledTitle = styled.div`
+    ${paragraph2}
 
-export const StyledTitle = styled(mapDeviceToTitle[detectDevice()])`
+    ${mediaQuery(
+        'M',
+        2,
+    )(css`
+        ${button2}
+    `)}
+
+    ${mediaQuery(
+        'S',
+        1,
+    )(css`
+        ${headline3}
+    `)}
+
     margin-bottom: 0.75rem;
 `;
 

@@ -11,3 +11,4 @@ export * from './ProductImageSlider/ProductImageSlider';
 export * from './ProductInfo/ProductInfo';
 export * from './ProductRecommendations/ProductRecommendations';
 export * from './ProductVariationSwitcher/ProductVariationSwitcher';
+export * from './types';

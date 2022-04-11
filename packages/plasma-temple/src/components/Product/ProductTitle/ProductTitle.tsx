@@ -1,8 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
-import { detectDevice, DeviceKind } from '@sberdevices/plasma-ui/utils';
-import { Body1, Footnote1, Headline1, Headline2, TextBox } from '@sberdevices/plasma-ui';
-import { secondary } from '@sberdevices/plasma-tokens';
+import styled, { css } from 'styled-components';
+import { mediaQuery } from '@sberdevices/plasma-ui/utils';
+import { applyHyphens, BreakWordProps, TextBox } from '@sberdevices/plasma-ui';
+import { body1, footnote1, headline1, headline2, secondary } from '@sberdevices/plasma-tokens';
 
 export interface ProductTitleProps {
     /** Заголовок */
@@ -12,21 +12,29 @@ export interface ProductTitleProps {
     className?: string;
 }
 
-const mapDeviceToTitle: Record<DeviceKind, React.FC> = {
-    sberBox: Headline1,
-    sberPortal: Headline2,
-    mobile: Headline2,
-};
+export const Title = styled.div<BreakWordProps>`
+    ${applyHyphens}
+    ${headline2}
 
-export const Title = mapDeviceToTitle[detectDevice()] as typeof Headline1;
+    ${mediaQuery(
+        'XL',
+        2,
+    )(css`
+        ${headline1}
+    `)}
+`;
 
-const mapDeviceToSubtitle: Record<DeviceKind, React.FC> = {
-    sberBox: Body1,
-    sberPortal: Body1,
-    mobile: Footnote1,
-};
+export const StyledSubtitle = styled.div<BreakWordProps>`
+    ${applyHyphens}
+    ${body1}
 
-export const StyledSubtitle = styled(mapDeviceToSubtitle[detectDevice()])`
+    ${mediaQuery(
+        'S',
+        1,
+    )(css`
+        ${footnote1}
+    `)}
+
     color: ${secondary};
     margin-top: 0.5rem;
 `;
