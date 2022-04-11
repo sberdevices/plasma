@@ -1,6 +1,12 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useState, useMemo, createRef } from 'react';
 import styled from 'styled-components';
-import { FieldRoot, FieldContent, FieldHelper, TextArea as BaseArea } from '@sberdevices/plasma-core';
+import {
+    FieldRoot,
+    FieldContent,
+    FieldHelper,
+    TextArea as BaseArea,
+    useResizeObserver,
+} from '@sberdevices/plasma-core';
 import type { TextAreaProps as BaseProps } from '@sberdevices/plasma-core';
 
 import { applyInputStyles } from '../Field';
@@ -16,14 +22,35 @@ const StyledTextArea = styled(BaseArea)`
     ${applyInputStyles}
 `;
 
+const StyledFieldHelperWrapper = styled.div<{ width: number }>`
+    position: absolute;
+    top: 0;
+
+    display: flex;
+    justify-content: flex-end;
+
+    width: ${({ width }) => width}px;
+`;
+
 /**
  * Поле ввода многострочного текста.
  */
 // eslint-disable-next-line prefer-arrow-callback
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function TextArea(
     { id, disabled, status, label, placeholder, contentRight, helperText, style, className, ...rest },
-    ref,
+    outerRef,
 ) {
+    const [width, setWidth] = useState(0);
+    const ref = useMemo(() => (outerRef && 'current' in outerRef ? outerRef : createRef<HTMLTextAreaElement>()), [
+        outerRef,
+    ]);
+
+    useResizeObserver(ref, (currentElement) => {
+        const { width: elementWidth } = currentElement.getBoundingClientRect();
+
+        setWidth(elementWidth);
+    });
+
     const placeLabel = (label || placeholder) as string | undefined;
 
     return (
@@ -44,8 +71,10 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function 
                 aria-describedby={id ? `${id}-helpertext` : undefined}
                 {...rest}
             />
-            {contentRight && <FieldContent pos="right">{contentRight}</FieldContent>}
             {helperText && <FieldHelper id={id ? `${id}-helpertext` : undefined}>{helperText}</FieldHelper>}
+            <StyledFieldHelperWrapper width={width}>
+                {contentRight && <FieldContent pos="right">{contentRight}</FieldContent>}
+            </StyledFieldHelperWrapper>
         </FieldRoot>
     );
 });

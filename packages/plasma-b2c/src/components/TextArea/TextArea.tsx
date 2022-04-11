@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import {
     TextFieldRoot,
@@ -7,6 +7,7 @@ import {
     primary,
     secondary,
     tertiary,
+    useResizeObserver,
 } from '@sberdevices/plasma-core';
 import type { TextAreaProps as BaseProps } from '@sberdevices/plasma-core';
 
@@ -44,6 +45,10 @@ const StyledTextArea = styled(BaseArea)`
     }
 `;
 
+const StyledFieldHelpers = styled(FieldHelpers)<{ width: number }>`
+    width: ${({ width }) => width}px;
+`;
+
 /**
  * Поле ввода многострочного текста.
  */
@@ -66,9 +71,20 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             className,
             ...rest
         },
-        ref,
+        outerRef,
     ) => {
+        const [width, setWidth] = useState(0);
+        const ref = useMemo(() => (outerRef && 'current' in outerRef ? outerRef : createRef<HTMLTextAreaElement>()), [
+            outerRef,
+        ]);
+
         const placeLabel = (label || placeholder) as string | undefined;
+
+        useResizeObserver(ref, (currentElement) => {
+            const { width: elementWidth } = currentElement.getBoundingClientRect();
+
+            setWidth(elementWidth);
+        });
 
         return (
             <TextFieldRoot
@@ -92,10 +108,10 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                         aria-describedby={id ? `${id}-helper` : undefined}
                         {...rest}
                     />
-                    <FieldHelpers id={id ? `${id}-helper` : undefined}>
+                    <StyledFieldHelpers width={width} id={id ? `${id}-helper` : undefined}>
                         <FieldHelper as={TextFieldHelper}>{leftHelper}</FieldHelper>
                         <FieldHelper>{rightHelper}</FieldHelper>
-                    </FieldHelpers>
+                    </StyledFieldHelpers>
                 </FieldWrapper>
             </TextFieldRoot>
         );
