@@ -1,3 +1,16 @@
+# (Tue Apr 12 2022)
+
+#### 🚀 Enhancement
+
+- `@sberdevices/plasma-temple@1.57.0`
+  - feat(plasma-temple): item - exports by platforms [#1187](https://github.com/sberdevices/plasma/pull/1187) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # (Mon Apr 11 2022)
 
 #### 🚀 Enhancement
