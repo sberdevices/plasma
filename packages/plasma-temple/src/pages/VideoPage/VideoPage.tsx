@@ -11,7 +11,13 @@ import { VideoPageState } from './types';
 interface VideoPageProps<T extends AnyObject = AnyObject>
     extends Pick<
         VideoPlayerProps,
-        'autoPlay' | 'alwaysShowControls' | 'visibleControlList' | 'controlsHidden' | 'videoFit' | 'posterClassName'
+        | 'autoPlay'
+        | 'alwaysShowControls'
+        | 'visibleControlList'
+        | 'controlsHidden'
+        | 'videoFit'
+        | 'posterClassName'
+        | 'insets'
     > {
     state: VideoPageState<T>;
     customControls?: React.ComponentType<CustomMediaPlayerControlsProps<HTMLVideoElement>>;
@@ -38,6 +44,7 @@ export function VideoPage<T extends AnyObject = AnyObject>({
     posterClassName,
     children,
     changeState,
+    insets,
 }: VideoPageProps<T>): React.ReactElement {
     const { items, position } = state;
     const videos = Array.isArray(items) ? items : [items];
@@ -77,6 +84,7 @@ export function VideoPage<T extends AnyObject = AnyObject>({
                 customControls={customControls}
                 videoFit={videoFit}
                 posterClassName={posterClassName}
+                insets={insets}
             >
                 {children}
             </VideoPlayer>

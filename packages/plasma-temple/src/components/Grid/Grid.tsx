@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import { detectDevice } from '@sberdevices/plasma-ui';
+import styled, { css } from 'styled-components';
+import { mediaQuery } from '@sberdevices/plasma-ui';
 
 import { FullScreenBackground } from '../FullScreenBackground/FullScreenBackground';
 
@@ -9,35 +9,40 @@ interface BackgroundProps {
     src: string;
 }
 
-export interface GridProps {
+interface GridColumns {
     /** Количество колонок при разрешении XL */
     columnXL?: number;
     /** Количество колонок при разрешении M */
     columnM?: number;
     /** Количество колонок при разрешении S */
     columnS?: number;
+}
+export interface GridProps extends GridColumns {
     /** Фоновое изображение */
     background?: BackgroundProps;
     className?: string;
 }
 
-const StyledContainer = styled.div<{ columns: number }>`
+const StyledContainer = styled.div<Required<GridColumns>>`
     display: grid;
     grid-gap: 1rem;
-    grid-template-columns: repeat(${({ columns }) => columns}, 1fr);
     grid-auto-rows: 1fr;
-`;
+    grid-template-columns: repeat(2, 1fr);
 
-const getColumnCount = ({ columnXL, columnM, columnS }: { columnXL: number; columnM: number; columnS: number }) => {
-    switch (detectDevice()) {
-        case 'sberBox':
-            return columnXL;
-        case 'sberPortal':
-            return columnM;
-        default:
-            return columnS;
-    }
-};
+    ${({ columnXL, columnM, columnS }) => {
+        return [
+            mediaQuery('XL')(css`
+                grid-template-columns: repeat(${columnXL}, 1fr);
+            `),
+            mediaQuery('M')(css`
+                grid-template-columns: repeat(${columnM}, 1fr);
+            `),
+            mediaQuery('S')(css`
+                grid-template-columns: repeat(${columnS}, 1fr);
+            `),
+        ];
+    }};
+`;
 
 /** Компонент для отображения однотипного контента (обычно карточки) в виде сетки с заданным количеством колонок */
 export function Grid({
@@ -49,7 +54,7 @@ export function Grid({
     background,
 }: React.PropsWithChildren<GridProps>) {
     return (
-        <StyledContainer className={className} columns={getColumnCount({ columnXL, columnM, columnS })}>
+        <StyledContainer className={className} columnXL={columnXL} columnM={columnM} columnS={columnS}>
             {background && <FullScreenBackground src={background.src} />}
             {children}
         </StyledContainer>
