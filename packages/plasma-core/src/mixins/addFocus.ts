@@ -75,7 +75,7 @@ export const syntheticFocus: SynthesizeFocus = (ruleset, focused) => css`
  * });
  */
 export const addFocus: InterpolationFunction<ThemeProps['theme'] & FocusProps & OutlinedProps & OutlineProps> = ({
-    disableAnimation,
+    lowPerformance,
     focused,
     outlined = true,
     outlineSize = '0.125rem',
@@ -103,7 +103,7 @@ export const addFocus: InterpolationFunction<ThemeProps['theme'] & FocusProps & 
             border: ${outlineSize} solid transparent;
             border-radius: ${outlineRadius};
 
-            transition: ${disableAnimation ? 'none' : 'box-shadow 0.2s ease-in-out'};
+            transition: ${lowPerformance ? 'unset' : 'box-shadow 0.2s ease-in-out'};
 
             pointer-events: none;
         }

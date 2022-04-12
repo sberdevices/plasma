@@ -45,7 +45,7 @@ const withTheme = (Story, context) => {
         <DeviceThemeProvider
             detectDeviceCallback={() => deviceKind}
             responsiveTypo={context.globals.typoSystem === 'responsive'}
-            lowPerformanceDevice={context.globals.lowPerformanceDevice === 'yes'}
+            lowPerformance={context.globals.lowPerformanceDevice === 'yes'}
         >
             <Theme />
             <DocumentStyle />

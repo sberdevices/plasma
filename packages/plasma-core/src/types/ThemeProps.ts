@@ -4,5 +4,5 @@ export type ThemeProps = BaseProps<{
     /**
      * Отключить любую анимацию компонента.
      */
-    disableAnimation?: boolean;
+    lowPerformance?: boolean;
 }>;

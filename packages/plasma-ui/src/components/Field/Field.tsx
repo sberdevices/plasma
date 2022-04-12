@@ -19,7 +19,7 @@ export const applyInputStyles: InterpolationFunction<ThemeProps & Pick<FieldProp
     background-color: ${surfaceLiquid01};
     color: ${primary};
 
-    transition: ${({ theme }) => (theme.disableAnimation ? 'unset' : 'background-color 0.1s ease-in-out')};
+    transition: ${({ theme }) => (theme.lowPerformance ? 'unset' : 'background-color 0.1s ease-in-out')};
 
     &::placeholder {
         color: ${secondary};

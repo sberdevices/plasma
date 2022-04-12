@@ -39,7 +39,7 @@ const StyledButton = styled(Button)`
         `)}
 `;
 const StyledIcon = styled(IconChevronLeft)<Pick<HeaderArrowProps, 'arrow'>>`
-    transition: ${({ theme }) => (theme.disableAnimation ? 'unset' : 'transform 0.15s ease-in-out')};
+    transition: ${({ theme }) => (theme.lowPerformance ? 'unset' : 'transform 0.15s ease-in-out')};
 
     ${({ arrow }) =>
         arrow === 'minimize' &&

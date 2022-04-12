@@ -74,7 +74,7 @@ const StyledTrigger = styled.div<{ $disabled?: boolean } & PressedProps & FocusP
     margin-left: auto;
     border-radius: 0.875rem;
     background-color: var(--plasma-switch-trigger-background);
-    transition: ${({ theme }) => (theme.disableAnimation ? 'unset' : 'background-color 0.15s ease-in-out 0.1s')};
+    transition: ${({ theme }) => (theme.lowPerformance ? 'unset' : 'background-color 0.15s ease-in-out 0.1s')};
 
     &::after {
         content: '';
@@ -90,9 +90,7 @@ const StyledTrigger = styled.div<{ $disabled?: boolean } & PressedProps & FocusP
         background-color: var(--plasma-switch-ellipse-background);
         box-shadow: ${shadows.tiny};
         transition: ${({ theme }) =>
-            theme.disableAnimation
-                ? 'unset'
-                : 'width 0.15s ease-in-out, left 0.3s ease-in-out, right 0.3s ease-in-out'};
+            theme.lowPerformance ? 'unset' : 'width 0.15s ease-in-out, left 0.3s ease-in-out, right 0.3s ease-in-out'};
     }
 
     ${({ $disabled, pressed }) =>

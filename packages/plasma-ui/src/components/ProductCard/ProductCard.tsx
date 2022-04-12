@@ -102,7 +102,7 @@ const StyledCardContent = styled(CardContent)<{ $backgroundColor?: string; $cove
     padding: 0.75rem;
     border-radius: 0;
     background-color: ${({ $backgroundColor }) => $backgroundColor};
-    transition: ${({ theme }) => (theme.disableAnimation ? 'unset' : 'all 0.15s ease-in-out')};
+    transition: ${({ theme }) => (theme.lowPerformance ? 'unset' : 'all 0.15s ease-in-out')};
 
     &::after {
         content: '';
@@ -112,7 +112,7 @@ const StyledCardContent = styled(CardContent)<{ $backgroundColor?: string; $cove
         right: 0;
         height: 2.5rem;
         opacity: 0;
-        transition: ${({ theme }) => (theme.disableAnimation ? 'unset' : 'all 0.15s ease-in-out')};
+        transition: ${({ theme }) => (theme.lowPerformance ? 'unset' : 'all 0.15s ease-in-out')};
         background: ${({ $backgroundColor }) => $backgroundColor && getGradient($backgroundColor)};
     }
 
@@ -169,7 +169,7 @@ const StyledPrice = styled(Price)<{ $type?: 'new' | 'old' }>`
 `;
 const StyledStepper = styled(ProductCardStepper)<{ $onTop?: boolean }>`
     width: 100%;
-    transition: ${({ theme }) => (theme.disableAnimation ? 'unset' : 'all 0.15s ease-in-out')};
+    transition: ${({ theme }) => (theme.lowPerformance ? 'unset' : 'all 0.15s ease-in-out')};
 
     ${({ $onTop }) =>
         $onTop

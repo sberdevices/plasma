@@ -8,11 +8,11 @@ import { CarouselCol, CarouselItemProps } from '.';
 const scaleDelta = 0.37;
 
 const StyledColInner = styled.div`
-    transition: ${({ theme }) => (theme.disableAnimation ? 'unset' : 'transform 0.1s ease 0s')};
+    transition: ${({ theme }) => (theme.lowPerformance ? 'unset' : 'transform 0.1s ease 0s')};
 `;
 
 const StyledMusicCard = styled(MusicCard)`
-    transition: ${({ theme }) => (theme.disableAnimation ? 'unset' : 'transform 0.1s ease 0s')};
+    transition: ${({ theme }) => (theme.lowPerformance ? 'unset' : 'transform 0.1s ease 0s')};
 `;
 
 /**
