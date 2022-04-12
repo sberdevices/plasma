@@ -1,6 +1,6 @@
 {
     "name": "@sberdevices/plasma-sb-utils",
-    "version": "0.54.0",
+    "version": "0.55.0",
     "description": "Code shared between ui libraries.",
     "author": "SberDevices Frontend Team <sberdevices.frontend@gmail.com>",
     "license": "Sber Public License at-nc-sa v.2",
@@ -23,7 +23,7 @@
     },
     "devDependencies": {
         "@sberdevices/plasma-colors": "0.2.1",
-        "@sberdevices/plasma-core": "1.55.0",
+        "@sberdevices/plasma-core": "1.56.0",
         "@storybook/react": "6.3.8",
         "@types/react": "16.9.38",
         "@types/react-dom": "16.9.8",
