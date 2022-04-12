@@ -49,7 +49,7 @@ export const FieldPlaceholder = styled.label`
     color: ${tertiary};
     pointer-events: none;
 
-    transition: ${({ theme }) => (theme.disableAnimation ? 'unset' : 'all 0.1s ease-in')};
+    transition: ${({ theme }) => (theme.lowPerformance ? 'unset' : 'all 0.1s ease-in')};
     transform-origin: top left;
 
     ${applyEllipsis}

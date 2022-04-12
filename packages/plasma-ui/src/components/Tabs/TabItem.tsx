@@ -29,7 +29,7 @@ export const StyledTabItem = styled(BaseTabItem)<TabItemProps>`
 
     border-radius: var(--tab-item-border-radius);
     transition: ${({ theme }) =>
-        theme.disableAnimation ? 'unset' : 'background-color 0.3s ease-in-out, transform 0.1s ease-in-out'};
+        theme.lowPerformance ? 'unset' : 'background-color 0.3s ease-in-out, transform 0.1s ease-in-out'};
 
     /**
     * При нажатии слайдер также прожимается
@@ -63,7 +63,7 @@ export const StyledTabItem = styled(BaseTabItem)<TabItemProps>`
         border: var(--tab-focus-border-size) solid transparent;
         border-radius: var(--tab-item-outline-radius);
 
-        transition: ${({ theme }) => (theme.disableAnimation ? 'unset' : 'box-shadow 0.2s ease-in-out')};
+        transition: ${({ theme }) => (theme.lowPerformance ? 'unset' : 'box-shadow 0.2s ease-in-out')};
 
         pointer-events: none;
     }

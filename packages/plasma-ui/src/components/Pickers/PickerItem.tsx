@@ -72,7 +72,7 @@ const StyledTransformable = styled.div<StyledSizeProps>`
     ${({ $noScrollBehavior }) =>
         !$noScrollBehavior &&
         css`
-            transition: ${({ theme }) => (theme.disableAnimation ? 'unset' : 'transform 0.1s ease')};
+            transition: ${({ theme }) => (theme.lowPerformance ? 'unset' : 'transform 0.1s ease')};
             transform: translate3d(0, 0, 0);
         `}
 `;

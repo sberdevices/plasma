@@ -43,7 +43,7 @@ export const Carousel = styled.div<Pick<CarouselProps, 'axis' | 'scrollSnapType'
         scrollSnapType &&
         scrollSnapType !== 'none' &&
         css`
-            scroll-behavior: ${({ theme }) => (theme.disableAnimation ? 'auto' : 'smooth')};
+            scroll-behavior: ${({ theme }) => (theme.lowPerformance ? 'unset' : 'smooth')};
             scroll-snap-type: ${axis} ${scrollSnapType};
         `}
 

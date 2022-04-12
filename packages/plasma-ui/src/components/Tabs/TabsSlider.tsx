@@ -23,7 +23,7 @@ export const StyledSlider = styled.div<Pick<SliderProps, 'disabled'>>`
     border-radius: var(--tab-item-border-radius);
 
     transition: ${({ disabled, theme }) =>
-        disabled || theme.disableAnimation ? 'unset' : 'left 0.2s ease-in-out, width 0.2s ease-in-out'};
+        disabled || theme.lowPerformance ? 'unset' : 'left 0.2s ease-in-out, width 0.2s ease-in-out'};
     ${activeItemStyle};
 
     pointer-events: none;
