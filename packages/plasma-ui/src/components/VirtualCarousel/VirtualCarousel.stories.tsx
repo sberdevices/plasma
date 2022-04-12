@@ -7,6 +7,7 @@ import { ProductCard, MusicCard, GalleryCard } from '../Card/Card.examples';
 import { DeviceThemeProvider } from '../Device';
 import { Row } from '../Grid';
 import { Body3 } from '../Typography/Body';
+import { useRemoteHandlers } from '../Carousel';
 
 import {
     VirtualCarouselGridWrapper,
@@ -35,7 +36,7 @@ const snapAlign = ['start', 'center', 'end'] as SnapAlign[];
 const isSberbox = isSberBox();
 
 export default {
-    title: 'Controls/VirtualCarousel',
+    title: 'Controls/VirtualCarousel2',
 } as Meta;
 
 export const Basic: Story<VirtualCarouselProps & VirtualCarouselCarouselColProps & { displayGrid: boolean }> = ({
@@ -46,12 +47,23 @@ export const Basic: Story<VirtualCarouselProps & VirtualCarouselCarouselColProps
     detectThreshold,
 }) => {
     const axis = 'x';
+    const delay = isSberbox ? 300 : 30;
+    const longDelay = isSberbox ? 1500 : 150;
+    const [index] = useRemoteHandlers({
+        initialIndex: 0,
+        axis,
+        delay,
+        longDelay,
+        min: 0,
+        max: items.length - 1,
+    });
 
     return (
         <DeviceThemeProvider>
             <VirtualCarouselGridWrapper>
                 <VirtualCarousel
                     as={Row}
+                    index={index}
                     axis={axis}
                     scrollAlign={scrollAlign}
                     scrollSnapType={scrollSnapType}
@@ -121,6 +133,8 @@ Basic.argTypes = {
         },
     },
 };
+
+// это пока можно не смотреть
 
 export const Vertical: Story<VirtualCarouselProps & VirtualCarouselCarouselColProps & { displayGrid: boolean }> = ({
     scrollAlign,

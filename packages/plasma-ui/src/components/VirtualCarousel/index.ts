@@ -5,7 +5,7 @@ export type { VirtualCarouselProps } from '@sberdevices/plasma-core';
 export { VirtualCarouselItem } from '@sberdevices/plasma-core';
 export type { VirtualCarouselItemProps } from '@sberdevices/plasma-core';
 
-export { useVirtualCarouselItem, useVirtualCarouselContext, useRemoteHandlers } from './VirtualCarousel.hooks';
+export { useRemoteHandlers } from './VirtualCarousel.hooks';
 
 export { VirtualCarousel } from './VirtualCarousel';
 

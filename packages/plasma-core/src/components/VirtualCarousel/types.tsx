@@ -19,10 +19,6 @@ export interface BasicProps extends AsProps, HTMLAttributes<HTMLDivElement> {
      */
     scrollSnapType?: SnapType;
     /**
-     * Центрирование активного элемента при скролле
-     */
-    scrollAlign?: ScrollAlign;
-    /**
      * Отступ в начале, используется при центрировании крайних элементов
      */
     paddingStart?: string;
@@ -30,14 +26,6 @@ export interface BasicProps extends AsProps, HTMLAttributes<HTMLDivElement> {
      * Отступ в конце, используется при центрировании крайних элементов
      */
     paddingEnd?: string;
-    /**
-     * Throttling внутренних обработчиков события onScroll
-     */
-    throttleMs?: number;
-    /**
-     * Debounce внутренних обработчиков события onScroll
-     */
-    debounceMs?: number;
     /**
      * Обработчик события скролла
      */
@@ -70,25 +58,9 @@ export interface BasicProps extends AsProps, HTMLAttributes<HTMLDivElement> {
 }
 export interface DetectionProps {
     /**
-     * Вычислять активный элемент
-     */
-    detectActive: true;
-    /**
-     * Пороговое значение определения центрального элемента (0-1)
-     */
-    detectThreshold: number;
-    /**
      * Коллбек изменения индекса
      */
     onIndexChange?: (index: number) => void;
-    /**
-     * Обработчик стилизации элемента во вьюпорте
-     */
-    scaleCallback?: (itemEl: HTMLElement, slot: number) => void;
-    /**
-     * Обработчик для сброса стилей элементов, находящихся вне вьюпорта
-     */
-    scaleResetCallback?: (itemEl: HTMLElement) => void;
 }
 export interface NoDetectionProps {
     detectActive?: false;

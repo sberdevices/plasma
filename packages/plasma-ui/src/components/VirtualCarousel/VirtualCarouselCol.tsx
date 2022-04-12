@@ -4,8 +4,6 @@ import { applyScrollSnap, ScrollSnapProps, VirtualCarouselItemProps } from '@sbe
 
 import { Col, ColProps } from '../Grid';
 
-import { useVirtualCarouselItem } from './VirtualCarousel.hooks';
-
 const StyledCol = styled(Col)<ScrollSnapProps>`
     ${applyScrollSnap};
 `;
@@ -28,11 +26,8 @@ export const VirtualCarouselCol: React.FC<VirtualCarouselCarouselColProps> = ({
     style,
     ...rest
 }) => {
-    const itemRef = useVirtualCarouselItem<HTMLDivElement>();
-
     return (
         <StyledCol
-            ref={itemRef}
             style={{
                 transform: axis === 'x' ? `translateX(${start}px)` : `translateY(${start}px)`,
                 position: 'absolute',

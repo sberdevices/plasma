@@ -4,8 +4,6 @@ import styled, { css } from 'styled-components';
 import { applyScrollSnap, ScrollSnapProps } from '../../mixins';
 import type { AsProps } from '../../types';
 
-import { useVirtualCarouselItem } from './hooks';
-
 export interface VirtualCarouselItemProps extends ScrollSnapProps, AsProps, React.HTMLAttributes<HTMLDivElement> {
     /**
      * Смещение по оси
@@ -32,10 +30,8 @@ export const VirtualCarouselItem: React.FC<VirtualCarouselItemProps> = ({
     children,
     ...rest
 }) => {
-    const ref = useVirtualCarouselItem<HTMLLIElement>();
-
     return (
-        <StyledItem ref={ref} scrollSnapAlign={scrollSnapAlign} role="group" aria-roledescription="slide" {...rest}>
+        <StyledItem scrollSnapAlign={scrollSnapAlign} role="group" aria-roledescription="slide" {...rest}>
             {children}
         </StyledItem>
     );

@@ -1,14 +1,13 @@
-import React, { RefObject } from 'react';
+import React, { RefObject, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import {
-    useVirtualCarousel,
     VirtualCarouselContext,
     VirtualCarousel as BaseCarousel,
     VirtualCarouselTrack as BaseTrack,
     VirtualCarouselProps as BaseProps,
     applyNoSelect,
 } from '@sberdevices/plasma-core';
-import { useVirtual } from '@sberdevices/use-virtual';
+import { useVirtualForPlasma } from '@sberdevices/use-virtual';
 
 import { useForkRef } from '../../hooks';
 
@@ -21,6 +20,7 @@ export type VirtualCarouselProps = BaseProps & {
      * Сменить WAI-ARIA Label списка.
      */
     listAriaLabel?: string;
+    index?: number;
 };
 
 const StyledVirtualCarousel = styled(BaseCarousel)``;
@@ -36,17 +36,10 @@ export const VirtualCarousel = React.forwardRef<HTMLDivElement, VirtualCarouselP
     {
         axis = 'x',
         scrollSnapType = 'mandatory',
-        scrollAlign,
-        detectActive,
-        detectThreshold,
-        scaleCallback,
-        scaleResetCallback,
         onScroll,
         onIndexChange,
         paddingStart,
         paddingEnd,
-        throttleMs,
-        debounceMs,
         listRole,
         listAriaLabel,
         itemCount,
@@ -54,24 +47,14 @@ export const VirtualCarousel = React.forwardRef<HTMLDivElement, VirtualCarouselP
         overscan,
         renderItems,
         carouselHeight,
+        index,
         ...rest
     },
     ref,
 ) {
-    const { scrollRef, trackRef, refs, handleScroll } = useVirtualCarousel({
-        axis,
-        scrollAlign,
-        detectActive,
-        detectThreshold,
-        scaleCallback,
-        scaleResetCallback,
-        onScroll,
-        onIndexChange,
-        throttleMs,
-        debounceMs,
-    });
+    const scrollRef = useRef<HTMLDivElement>(null);
     const handleRef = useForkRef<HTMLDivElement>(scrollRef as RefObject<HTMLDivElement>, ref);
-    const { visibleItems, totalSize, currentIndex } = useVirtual({
+    const { visibleItems, totalSize, currentIndex, scrollToIndex } = useVirtualForPlasma({
         itemCount,
         parentRef: scrollRef as RefObject<HTMLDivElement>,
         horizontal: axis === 'x',
@@ -81,25 +64,35 @@ export const VirtualCarousel = React.forwardRef<HTMLDivElement, VirtualCarouselP
         overscan,
         scrollToFn: React.useCallback(
             (offset: number) => {
-                console.log('scroll to fn');
                 scrollRef.current!.scrollTo({ [axis === 'y' ? 'top' : 'left']: offset, behavior: 'smooth' });
-                // animatedScrollToX(scrollRef.current as HTMLDivElement, offset);
             },
             [axis],
         ),
     });
+
+    useEffect(() => {
+        if (typeof index === 'number') {
+            scrollToIndex(index);
+        }
+    }, [index, scrollToIndex]);
+
+    useEffect(() => {
+        if (typeof index !== 'number' || index !== currentIndex) {
+            onIndexChange?.(currentIndex);
+        }
+    }, [onIndexChange, currentIndex]);
+
     return (
-        <VirtualCarouselContext.Provider value={{ axis, refs }}>
+        <VirtualCarouselContext.Provider value={{ axis }}>
             <StyledVirtualCarousel
                 ref={handleRef}
                 axis={axis}
                 scrollSnapType={scrollSnapType}
-                onScroll={handleScroll}
+                onScroll={onScroll}
                 carouselHeight={carouselHeight}
                 {...rest}
             >
                 <StyledVirtualCarouselTrack
-                    ref={trackRef as React.MutableRefObject<HTMLDivElement | null>}
                     axis={axis}
                     paddingStart={paddingStart}
                     paddingEnd={paddingEnd}

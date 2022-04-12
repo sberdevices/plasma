@@ -9,8 +9,6 @@ const throttlingParamsDefault = {
     trailing: false,
 };
 
-export { useVirtualCarouselContext, useVirtualCarouselItem } from '@sberdevices/plasma-core';
-
 /**
  * Хук для навигации. Слушает нажатие кнопок на пульте/клавиатуре.
  */

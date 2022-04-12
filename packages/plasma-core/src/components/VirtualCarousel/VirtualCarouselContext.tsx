@@ -1,10 +1,8 @@
 import { createContext } from 'react';
 
-import { VirtualCarouselItemRefs } from './VirtualCarouselItemRefs';
 import { ScrollAxis } from './types';
 
 export interface VirtualCarouselState {
-    refs?: VirtualCarouselItemRefs;
     axis: ScrollAxis;
 }
 
