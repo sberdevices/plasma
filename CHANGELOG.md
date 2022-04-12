@@ -2,6 +2,27 @@
 
 #### 🚀 Enhancement
 
+- `@sberdevices/plasma-ui@1.95.0`
+  - feat(plasma-ui): disable Pickers infinityScroll for lowPerfomance devices [#1179](https://github.com/sberdevices/plasma/pull/1179) ([@Yeti-or](https://github.com/Yeti-or))
+- `@sberdevices/plasma-core@1.56.0`, `@sberdevices/plasma-ui@1.95.0`
+  - feat: Added possibility to disable CSS animations via ThemeProvider [#1179](https://github.com/sberdevices/plasma/pull/1179) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- `@sberdevices/plasma-core@1.56.0`, `@sberdevices/plasma-ui@1.95.0`
+  - chore: disableAnimation => lowPerformance [#1179](https://github.com/sberdevices/plasma/pull/1179) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
+# (Tue Apr 12 2022)
+
+#### 🚀 Enhancement
+
 - `@sberdevices/plasma-temple@1.58.0`
   - feat(plasma-temple): cart - export by platforms [#1184](https://github.com/sberdevices/plasma/pull/1184) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
 

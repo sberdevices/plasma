@@ -1,3 +1,20 @@
+# v1.56.0 (Tue Apr 12 2022)
+
+#### 🚀 Enhancement
+
+- feat: Added possibility to disable CSS animations via ThemeProvider [#1179](https://github.com/sberdevices/plasma/pull/1179) ([@fanisco](https://github.com/fanisco))
+
+#### 🐛 Bug Fix
+
+- chore: disableAnimation => lowPerformance [#1179](https://github.com/sberdevices/plasma/pull/1179) ([@Yeti-or](https://github.com/Yeti-or))
+
+#### Authors: 2
+
+- Fanil' Zubairov ([@fanisco](https://github.com/fanisco))
+- Vasiliy ([@Yeti-or](https://github.com/Yeti-or))
+
+---
+
 # v1.55.0 (Thu Apr 07 2022)
 
 #### 🐛 Bug Fix
