@@ -4,8 +4,7 @@ import { Carousel, CarouselCol, Headline3, mediaQuery, Row } from '@sberdevices/
 
 import { ItemEntityType } from '../types';
 
-import { ItemEntityProps } from './ItemEntity/ItemEntity@common';
-import { ItemEntity } from './ItemEntity/ItemEntity';
+import { ItemEntityCommon, ItemEntityProps } from './ItemEntity/ItemEntity@common';
 
 export type EntitiesView = 'grid' | 'carousel';
 export interface ItemEntitiesProps<Id = unknown> {
@@ -58,7 +57,7 @@ export function ItemEntitiesCommon<Id = unknown>({
     onClick,
 }: ItemEntitiesProps<Id>) {
     const [carouselIndex, setCarouselIndex] = React.useState(0);
-    const EntityComponent = entityComponent ?? ItemEntity;
+    const EntityComponent = entityComponent ?? ItemEntityCommon;
 
     return (
         <div className={className}>
@@ -66,7 +65,7 @@ export function ItemEntitiesCommon<Id = unknown>({
             {view === 'grid' ? (
                 <StyledEntitiesGridContainer>
                     {entities.map((entity, index) => (
-                        <StyledEntity>
+                        <StyledEntity key={String(entity.id)}>
                             <EntityComponent<Id>
                                 key={String(entity.id)}
                                 entity={entity}
@@ -79,7 +78,7 @@ export function ItemEntitiesCommon<Id = unknown>({
             ) : (
                 <Carousel as={StyledRow} axis="x" index={carouselIndex} scrollAlign="start" paddingEnd="5rem">
                     {entities.map((entity, index) => (
-                        <CarouselCol scrollSnapAlign="start" sizeXL={3} sizeM={2}>
+                        <CarouselCol scrollSnapAlign="start" sizeXL={3} sizeM={2} key={String(entity.id)}>
                             <EntityComponent<Id>
                                 key={String(entity.id)}
                                 entity={entity}

@@ -15,3 +15,4 @@ export * from './Cart';
 export * from './Layout/LayoutElementContext';
 export * from './Card';
 export * from './Grid';
+export * from './Item';

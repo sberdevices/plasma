@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { FullScreenBackgroundProps } from './ItemBackground@common';
+import { ItemBackgroundProps } from './ItemBackground@common';
 
 const StyledImageContainer = styled.div`
     height: 100vw;
@@ -18,7 +18,7 @@ const StyledImage = styled.img`
     object-fit: cover;
 `;
 
-export const ItemBackgroundMobile: React.FC<FullScreenBackgroundProps> = ({ src }) => (
+export const ItemBackgroundMobile: React.FC<ItemBackgroundProps> = ({ src }) => (
     <StyledImageContainer>
         <StyledImage src={src} data-cy="background-image" />
     </StyledImageContainer>
