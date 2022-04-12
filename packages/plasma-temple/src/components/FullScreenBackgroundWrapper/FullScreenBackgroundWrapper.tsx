@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { mediaQuery } from '@sberdevices/plasma-ui';
 
 interface MaskProps {
-    mask?: boolean;
+    $mask?: boolean;
 }
 
 const StyledBackgroundWrapper = styled.div<MaskProps>`
@@ -13,13 +13,13 @@ const StyledBackgroundWrapper = styled.div<MaskProps>`
     bottom: 0;
     left: auto;
 
-    width: ${({ mask }) => (mask ? 78 : 100)}%;
+    width: ${({ $mask }) => ($mask ? 78 : 100)}%;
 
     user-select: none;
     pointer-events: none;
 
-    ${({ mask }) =>
-        mask &&
+    ${({ $mask }) =>
+        $mask &&
         css`
             /* stylelint-disable */
             mask-image: linear-gradient(
@@ -85,8 +85,8 @@ const StyledBackgroundWrapper = styled.div<MaskProps>`
 const StyledBackgroundWrapperInner = styled(StyledBackgroundWrapper)<MaskProps>`
     width: 100%;
 
-    ${({ mask }) =>
-        mask &&
+    ${({ $mask }) =>
+        $mask &&
         css`
             /* stylelint-disable */
             mask-image: linear-gradient(
@@ -118,8 +118,8 @@ export const FullScreenBackgroundWrapper: React.FC<React.PropsWithChildren<{ cla
     children,
 }) => {
     return (
-        <StyledBackgroundWrapper className={className} mask={mask}>
-            <StyledBackgroundWrapperInner mask={mask}>{children}</StyledBackgroundWrapperInner>
+        <StyledBackgroundWrapper className={className} $mask={mask}>
+            <StyledBackgroundWrapperInner $mask={mask}>{children}</StyledBackgroundWrapperInner>
         </StyledBackgroundWrapper>
     );
 };

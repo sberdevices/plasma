@@ -4,7 +4,7 @@ import { Col, Headline3, Row } from '@sberdevices/plasma-ui';
 
 import { ItemEntityType } from '../types';
 
-import { ItemEntity } from './ItemEntity/ItemEntity';
+import { ItemEntityMobile } from './ItemEntity/ItemEntity@mobile';
 import { ItemEntitiesProps } from './ItemEntities@common';
 
 type EntityColumns<Id = unknown> = ItemEntityType<Id>[][];
@@ -41,7 +41,7 @@ export function ItemEntitiesMobile<Id = unknown>({
     entityComponent,
     onClick,
 }: ItemEntitiesProps<Id>) {
-    const EntityComponent = entityComponent ?? ItemEntity;
+    const EntityComponent = entityComponent ?? ItemEntityMobile;
 
     const columns = React.useMemo(
         () =>
@@ -63,7 +63,7 @@ export function ItemEntitiesMobile<Id = unknown>({
                 {columns.map((column, columnIndex) => (
                     <Col sizeS={2} key={columnIndex}>
                         {column.map((entity, index) => (
-                            <StyledEntity>
+                            <StyledEntity key={String(entity.id)}>
                                 <EntityComponent<Id>
                                     key={String(entity.id)}
                                     entity={entity}

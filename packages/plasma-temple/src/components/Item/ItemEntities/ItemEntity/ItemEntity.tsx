@@ -1,14 +1,11 @@
 import React from 'react';
-import { detectDevice, DeviceKind } from '@sberdevices/plasma-ui/utils';
+
+import { DeviceComponent } from '../../../DeviceComponent/DeviceComponent';
 
 import { ItemEntityCommon, ItemEntityProps } from './ItemEntity@common';
 import { ItemEntityMobile } from './ItemEntity@mobile';
 
-const mapDeviceToItemEntity: Record<DeviceKind, React.FC<ItemEntityProps>> = {
-    sberBox: ItemEntityCommon,
-    sberPortal: ItemEntityCommon,
-    mobile: ItemEntityMobile,
-};
-
 /** Компонент, используемый для отображения карточки */
-export const ItemEntity = mapDeviceToItemEntity[detectDevice()] as typeof ItemEntityCommon;
+export const ItemEntity = React.memo<ItemEntityProps>((props) => (
+    <DeviceComponent sberbox={ItemEntityCommon} sberportal={ItemEntityCommon} mobile={ItemEntityMobile} props={props} />
+)) as typeof ItemEntityCommon;
