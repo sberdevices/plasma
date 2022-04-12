@@ -84,7 +84,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     daysAriaLabel: dayAriaLabel,
     monthsAriaLabel: monthAriaLabel,
     yearsAriaLabel: yearAriaLabel,
-    infiniteScroll = true,
+    infiniteScroll,
     ...rest
 }) => {
     const normalizeValues = React.useMemo(() => getNormalizeValues(getDateValues, getSeconds)(value, min, max), [

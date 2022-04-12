@@ -100,7 +100,6 @@ export const Default: Story<DefaultStoryProps> = (args) => {
                 disabled={args.disabled}
                 controls={args.controls}
                 autofocus={args.autofocus}
-                infiniteScroll={args.infiniteScroll}
                 onChange={onChange}
                 enableNativeControl={args.DatePickerNativeControl}
                 daysAriaLabel="день"
@@ -120,7 +119,6 @@ export const Default: Story<DefaultStoryProps> = (args) => {
                 options={timeOptions}
                 disabled={args.disabled}
                 controls={args.controls}
-                infiniteScroll={args.infiniteScroll}
                 onChange={onChange}
                 enableNativeControl={args.TimePickerNativeControl}
                 secondsAriaLabel="секунды"
@@ -146,7 +144,6 @@ Default.args = {
     controls: isSberbox,
     autofocus: true,
     scrollSnapType: isSberbox ? 'none' : 'mandatory',
-    infiniteScroll: true,
     DatePickerSize: 's',
     DatePickerVisibleItems: 3,
     TimePickerSize: 's',
