@@ -1,3 +1,15 @@
+# v1.58.0 (Tue Apr 12 2022)
+
+#### 🚀 Enhancement
+
+- feat(plasma-temple): cart - export by platforms [#1184](https://github.com/sberdevices/plasma/pull/1184) ([@kvpolyanskiy](https://github.com/kvpolyanskiy))
+
+#### Authors: 1
+
+- [@kvpolyanskiy](https://github.com/kvpolyanskiy)
+
+---
+
 # v1.57.0 (Tue Apr 12 2022)
 
 #### 🚀 Enhancement
