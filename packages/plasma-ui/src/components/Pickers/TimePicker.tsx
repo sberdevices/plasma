@@ -138,7 +138,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
     secondsAriaLabel,
     minutesAriaLabel,
     hoursAriaLabel,
-    infiniteScroll = true,
+    infiniteScroll,
     ...rest
 }) => {
     const normalizeValues = React.useMemo(() => getNormalizeValues(getTimeValues, getSeconds)(value, min, max), [

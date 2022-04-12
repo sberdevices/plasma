@@ -1,6 +1,6 @@
-import React, { useMemo, useState, useRef, useCallback, useEffect } from 'react';
+import React, { useMemo, useState, useRef, useCallback, useEffect, useContext } from 'react';
 import type { FC, HTMLAttributes } from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css, ThemeContext } from 'styled-components';
 import { primary } from '@sberdevices/plasma-tokens';
 import { IconChevronUp, IconChevronDown } from '@sberdevices/plasma-icons';
 import { applyDisabled, DisabledProps, useIsomorphicLayoutEffect } from '@sberdevices/plasma-core';
@@ -265,7 +265,7 @@ export interface PickerProps
      */
     name?: string;
     /**
-     * Бесконечная прокрутка
+     * Бесконечная прокрутка; выключена по умолчанию для lowPerformance Devices
      */
     infiniteScroll?: boolean;
 }
@@ -285,10 +285,13 @@ export const Picker: FC<PickerProps> = ({
     visibleItems = DEFAULT_VISIBLE_ITEMS,
     scrollSnapType,
     onChange,
-    infiniteScroll = true,
     'aria-label': ariaLabel,
     ...rest
 }) => {
+    const theme = useContext(ThemeContext);
+    // by default 'true' on high perfomance devices
+    const infiniteScroll = rest.infiniteScroll ?? !theme.lowPerformance;
+
     const virtualItems = useMemo(() => getItems(items, infiniteScroll), [items, infiniteScroll]);
 
     const min = 0;
