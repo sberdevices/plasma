@@ -1,8 +1,9 @@
 import React from 'react';
-import throttle from 'lodash.throttle';
 import { ScrollAxis } from '@sberdevices/plasma-core';
 
 import { useRemoteListener } from '../../hooks';
+
+import { throttleByFrames } from './utils';
 
 const throttlingParamsDefault = {
     leading: true,
@@ -15,18 +16,17 @@ const throttlingParamsDefault = {
 export function useRemoteHandlers({
     initialIndex = 0,
     axis,
-    delay,
-    longDelay,
+    delayFrames,
+    longDelayFrames,
     min,
     max,
     count = 1,
     longCount = 5,
-    throttlingParams = throttlingParamsDefault,
 }: {
     initialIndex: number;
     axis: ScrollAxis;
-    delay: number;
-    longDelay: number;
+    delayFrames: number;
+    longDelayFrames: number;
     min: number;
     max: number;
     count?: number;
@@ -37,7 +37,7 @@ export function useRemoteHandlers({
     const [, setIndex] = indexState;
 
     const step = React.useCallback(
-        throttle(
+        throttleByFrames(
             (cmd: '+' | '-') =>
                 setIndex((prevIndex) => {
                     if (cmd === '+') {
@@ -45,13 +45,12 @@ export function useRemoteHandlers({
                     }
                     return prevIndex - count >= min ? prevIndex - count : max;
                 }),
-            delay,
-            throttlingParams,
+            delayFrames,
         ),
         [min, max],
     );
     const jump = React.useCallback(
-        throttle(
+        throttleByFrames(
             (cmd: '+' | '-') =>
                 setIndex((prevIndex) => {
                     if (cmd === '+') {
@@ -59,8 +58,7 @@ export function useRemoteHandlers({
                     }
                     return prevIndex - longCount >= min ? prevIndex - longCount : max;
                 }),
-            longDelay,
-            throttlingParams,
+            longDelayFrames,
         ),
         [min, max],
     );

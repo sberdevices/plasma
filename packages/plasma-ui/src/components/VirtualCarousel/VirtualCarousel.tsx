@@ -72,6 +72,7 @@ export const VirtualCarousel = React.forwardRef<HTMLDivElement, VirtualCarouselP
 
     useEffect(() => {
         if (typeof index === 'number') {
+            console.log('>>> index in useEffect:', index);
             scrollToIndex(index);
         }
     }, [index, scrollToIndex]);

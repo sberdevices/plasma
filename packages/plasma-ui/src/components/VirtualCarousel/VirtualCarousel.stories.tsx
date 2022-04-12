@@ -7,7 +7,8 @@ import { ProductCard, MusicCard, GalleryCard } from '../Card/Card.examples';
 import { DeviceThemeProvider } from '../Device';
 import { Row } from '../Grid';
 import { Body3 } from '../Typography/Body';
-import { useRemoteHandlers } from '../Carousel';
+
+import { useRemoteHandlers } from './VirtualCarousel.hooks';
 
 import {
     VirtualCarouselGridWrapper,
@@ -40,20 +41,17 @@ export default {
 } as Meta;
 
 export const Basic: Story<VirtualCarouselProps & VirtualCarouselCarouselColProps & { displayGrid: boolean }> = ({
-    scrollAlign,
     scrollSnapType,
     scrollSnapAlign,
-    detectActive,
-    detectThreshold,
 }) => {
     const axis = 'x';
-    const delay = isSberbox ? 300 : 30;
-    const longDelay = isSberbox ? 1500 : 150;
+    const delayFrames = isSberbox ? 18 : 2;
+    const longDelayFrames = isSberbox ? 94 : 10;
     const [index] = useRemoteHandlers({
         initialIndex: 0,
         axis,
-        delay,
-        longDelay,
+        delayFrames,
+        longDelayFrames,
         min: 0,
         max: items.length - 1,
     });
@@ -65,10 +63,7 @@ export const Basic: Story<VirtualCarouselProps & VirtualCarouselCarouselColProps
                     as={Row}
                     index={index}
                     axis={axis}
-                    scrollAlign={scrollAlign}
                     scrollSnapType={scrollSnapType}
-                    detectActive={detectActive as true}
-                    detectThreshold={detectThreshold}
                     style={{ paddingTop: '1.25rem', paddingBottom: '1.25rem', height: '165px', width: '100vw' }}
                     itemCount={items.length}
                     estimateSize={() => 800}
@@ -106,33 +101,9 @@ export const Basic: Story<VirtualCarouselProps & VirtualCarouselCarouselColProps
 
 Basic.args = {
     displayGrid: true,
-    scrollAlign: 'start',
-    scrollSnapType: !isSberbox ? 'mandatory' : undefined,
-    scrollSnapAlign: !isSberbox ? 'start' : undefined,
-    detectActive: true,
-    detectThreshold: 0.5,
 };
 
-Basic.argTypes = {
-    scrollAlign: {
-        control: {
-            type: 'select',
-            options: ['center', 'start', 'end', 'activeDirection'],
-        },
-    },
-    scrollSnapType: {
-        control: {
-            type: 'inline-radio',
-            options: snapTypes,
-        },
-    },
-    scrollSnapAlign: {
-        control: {
-            type: 'inline-radio',
-            options: snapAlign,
-        },
-    },
-};
+Basic.argTypes = {};
 
 // это пока можно не смотреть
 
