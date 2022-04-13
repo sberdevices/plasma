@@ -87,6 +87,8 @@ describe('plasma-core: TextArea', () => {
             </CypressTestDecorator>,
         );
 
+        cy.root().get('textarea').last().invoke('attr', 'style', 'width: 280px; height: 140px;');
+
         cy.matchImageSnapshot();
     });
 
