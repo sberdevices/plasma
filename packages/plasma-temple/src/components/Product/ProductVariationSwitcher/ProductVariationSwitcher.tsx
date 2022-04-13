@@ -1,6 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Carousel, CarouselItem, detectDevice, DeviceKind, Footnote2, ParagraphText2 } from '@sberdevices/plasma-ui';
+import styled, { css } from 'styled-components';
+import { Carousel, CarouselItem, mediaQuery } from '@sberdevices/plasma-ui';
+import { footnote2, paragraph2 } from '@sberdevices/plasma-tokens';
 
 import { ProductVariationItem } from './ProductVariationItem/ProductVariationItem';
 
@@ -21,13 +22,15 @@ const StyledContainer = styled.div`
     width: 100%;
 `;
 
-const mapDeviceToTitle: Record<DeviceKind, React.FC> = {
-    sberBox: ParagraphText2,
-    sberPortal: Footnote2,
-    mobile: Footnote2,
-};
+const StyledTitle = styled.div`
+    ${footnote2}
 
-const StyledTitle = styled(mapDeviceToTitle[detectDevice()])`
+    ${mediaQuery(
+        'XL',
+        2,
+    )(css`
+        ${paragraph2}
+    `)}
     margin-bottom: 0.45rem;
 `;
 
@@ -55,9 +58,8 @@ export const ProductVariationSwitcher = React.memo<ProductVariationSwitcherProps
 
                 <StyledCarousel axis="x" index={carouselIndex} scrollAlign="start" paddingEnd="5rem">
                     {variations.map((variation, index) => (
-                        <StyledCarouselItem scrollSnapAlign="start">
+                        <StyledCarouselItem scrollSnapAlign="start" key={index}>
                             <ProductVariationItem
-                                key={index}
                                 index={index}
                                 active={index === activeIndex}
                                 variation={variation}
