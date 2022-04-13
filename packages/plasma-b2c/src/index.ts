@@ -13,6 +13,7 @@ export * from './components/List';
 export * from './components/Modal';
 export * from './components/Notification';
 export * from './components/PaginationDots';
+export * from './components/Popup';
 export * from './components/PreviewGallery';
 export * from './components/Price';
 export * from './components/Progress';
