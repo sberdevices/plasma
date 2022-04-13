@@ -133,4 +133,28 @@ describe('plasma-ui: DatePicker', () => {
         cy.wait(100);
         cy.matchImageSnapshot();
     });
+
+    it('with single item', () => {
+        mount(
+            <CypressTestDecorator>
+                <>
+                    <DatePicker
+                        value={new Date(1980, 8, 1, 0, 28, 59)}
+                        min={new Date(1980, 1, 1, 0, 15, 29)}
+                        max={new Date(1980, 10, 30, 0, 30, 30)}
+                        controls
+                    />
+                    <DatePicker
+                        value={new Date(1980, 8, 1, 0, 28, 59)}
+                        min={new Date(1980, 8, 1, 0, 28, 59)}
+                        max={new Date(1980, 8, 1, 0, 28, 59)}
+                        visibleItems={3}
+                        controls
+                    />
+                </>
+            </CypressTestDecorator>,
+        );
+
+        cy.matchImageSnapshot();
+    });
 });

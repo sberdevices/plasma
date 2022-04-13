@@ -120,6 +120,7 @@ interface StyledWrapperProps {
     $size: PickerSize;
     $disabled?: boolean;
     $controls?: boolean;
+    $isSingleItem?: boolean;
 }
 const StyledWrapper = styled.div<StyledWrapperProps>`
     position: relative;
@@ -158,6 +159,14 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
             padding-top: 1.25rem;
             padding-bottom: 1.25rem;
         `}
+
+    ${({ $isSingleItem }) =>
+        $isSingleItem &&
+        css`
+            ${StyledCarousel} {
+                overflow: hidden;
+            }
+        `}
 `;
 
 // Значение, отвечающее за количество элементов,
@@ -176,7 +185,16 @@ function getAllIndices(items: PickerItemType[], value: string | number | Date) {
     return res;
 }
 
-const findItemIndex = (items: PickerItemType[], value: string | number | Date, infiniteScroll: boolean) => {
+const findItemIndex = (
+    items: PickerItemType[],
+    value: string | number | Date,
+    infiniteScroll: boolean,
+    isSingleItem: boolean,
+) => {
+    if (infiniteScroll && isSingleItem) {
+        return Math.floor(items.length / 2);
+    }
+
     if (infiniteScroll) {
         const middleIndex = 1;
         return getAllIndices(items, value)[middleIndex];
@@ -209,7 +227,16 @@ const getIndex = (index: number, cmd: GetIndexCmd, min: number, max: number, inf
     }
 };
 
-const getItems = (items: PickerItemType[], infiniteScroll: boolean) => {
+const getItems = (
+    items: PickerItemType[],
+    infiniteScroll: boolean,
+    visibleItems: PickerVisibleItems,
+    isSingleItem: boolean,
+) => {
+    if (infiniteScroll && isSingleItem) {
+        return new Array(visibleItems).fill(items[0]);
+    }
+
     if (infiniteScroll) {
         const virtualItems = items.map((item) => ({ ...item, isVirtual: true }));
         return [...virtualItems, ...items, ...virtualItems];
@@ -288,34 +315,36 @@ export const Picker: FC<PickerProps> = ({
     'aria-label': ariaLabel,
     ...rest
 }) => {
-    const theme = useContext(ThemeContext);
-    // by default 'true' on high perfomance devices
-    const infiniteScroll = rest.infiniteScroll ?? !theme.lowPerformance;
-
-    const virtualItems = useMemo(() => getItems(items, infiniteScroll), [items, infiniteScroll]);
-
+    const isSingleItem = items.length === 1;
     const min = 0;
     const max = items.length - 1;
 
+    const theme = useContext(ThemeContext);
+    // by default 'true' on high perfomance devices
+    const infiniteScroll = rest.infiniteScroll ?? !theme?.lowPerformance;
+
+    const virtualItems = useMemo(() => getItems(items, infiniteScroll, visibleItems, isSingleItem), [
+        items,
+        infiniteScroll,
+        visibleItems,
+        isSingleItem,
+    ]);
+
     const isFirstRender = useFirstRender();
     const [isFocused, setIsFocused] = useState(false);
-    const [index, setIndex] = useState(findItemIndex(virtualItems, value, infiniteScroll));
+    const [index, setIndex] = useState(findItemIndex(virtualItems, value, infiniteScroll, isSingleItem));
     const [hasScrollAnim, setScrollAnim] = useState(true);
 
     const wrapperRef = useRef<HTMLDivElement | null>(null);
     const carouselRef = useRef<HTMLDivElement | null>(null);
-    const toPrev = useCallback(() => !disabled && setIndex(getIndex(index, '-', min, max, infiniteScroll)), [
-        index,
-        min,
-        max,
-        infiniteScroll,
-    ]);
-    const toNext = useCallback(() => !disabled && setIndex(getIndex(index, '+', min, max, infiniteScroll)), [
-        index,
-        min,
-        max,
-        infiniteScroll,
-    ]);
+    const toPrev = useCallback(
+        () => !isSingleItem && !disabled && setIndex(getIndex(index, '-', min, max, infiniteScroll)),
+        [isSingleItem, index, min, max, infiniteScroll],
+    );
+    const toNext = useCallback(
+        () => !isSingleItem && !disabled && setIndex(getIndex(index, '+', min, max, infiniteScroll)),
+        [isSingleItem, index, min, max, infiniteScroll],
+    );
     const jump = useCallback(
         (cmd: GetIndexCmd) => {
             if (disabled) {
@@ -340,7 +369,7 @@ export const Picker: FC<PickerProps> = ({
     // Изменяет индекс выделенного элемента
     // при обновлении значения value извне
     useIsomorphicLayoutEffect(() => {
-        const newIndex = findItemIndex(virtualItems, value, infiniteScroll);
+        const newIndex = findItemIndex(virtualItems, value, infiniteScroll, isSingleItem);
 
         // Отключаем анимацию скролла, если значение компонента осталось
         // прежним, но индекс изменился
@@ -360,7 +389,7 @@ export const Picker: FC<PickerProps> = ({
         }
 
         setIndex(newIndex);
-    }, [value, virtualItems, infiniteScroll, max]);
+    }, [value, virtualItems, infiniteScroll, max, isSingleItem]);
 
     // Навигация с помощью пульта/клавиатуры
     // Не перелистывает, если компонент неактивен
@@ -412,19 +441,19 @@ export const Picker: FC<PickerProps> = ({
             if (prevValue === virtualItems[i]?.value) {
                 setScrollAnim(false);
                 setIndex(i);
-                const newIndex = findItemIndex(virtualItems, virtualItems[i].value, infiniteScroll);
+                const newIndex = findItemIndex(virtualItems, virtualItems[i].value, infiniteScroll, isSingleItem);
                 setIndex(newIndex);
             }
 
             // Включаем анимацию скролла, после изменения индекса
             setScrollAnim(true);
         },
-        [virtualItems, infiniteScroll, value, onChange, prevValue],
+        [virtualItems, infiniteScroll, value, onChange, prevValue, isSingleItem],
     );
 
     const onDetectActiveItem = useCallback(
         (i: number) => {
-            if (!infiniteScroll || (!isTopPosition(i) && !isBottomPosition(i, virtualItems.length))) {
+            if (isSingleItem || !infiniteScroll || (!isTopPosition(i) && !isBottomPosition(i, virtualItems.length))) {
                 return;
             }
 
@@ -443,7 +472,7 @@ export const Picker: FC<PickerProps> = ({
                 setIndex(i - (max - min) - 1);
             }
         },
-        [virtualItems, infiniteScroll, max, min, index],
+        [virtualItems, infiniteScroll, max, min, index, isSingleItem],
     );
 
     return (
@@ -453,6 +482,7 @@ export const Picker: FC<PickerProps> = ({
             $size={size}
             $disabled={disabled}
             $visibleItems={visibleItems}
+            $isSingleItem={isSingleItem}
             $controls={controls}
             onFocus={onFocus}
             onBlur={onBlur}
