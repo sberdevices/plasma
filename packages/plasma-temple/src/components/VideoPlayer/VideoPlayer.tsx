@@ -30,6 +30,7 @@ export interface VideoPlayerProps extends React.VideoHTMLAttributes<HTMLVideoEle
     posterClassName?: string;
     children?: (props: CustomMediaPlayerControlsProps<HTMLVideoElement>) => React.ReactElement;
     src: string;
+    insets?: Insets;
 }
 
 const opacityMixin = css<{ hidden: boolean }>`
@@ -117,9 +118,11 @@ export const VideoPlayer = React.memo(
         videoFit = 'contain',
         posterClassName = '',
         className,
+        insets,
         ...restProps
     }: VideoPlayerProps) => {
-        const insets = useInsets();
+        // TODO: удалить не работает без PlasmaApp, использовать проп insets
+        const plasmaAppInsets = useInsets();
         const playerRef = React.useRef<HTMLVideoElement>(null);
         const { actions, state } = useMediaPlayer(playerRef, {
             start: startTime,
@@ -193,11 +196,11 @@ export const VideoPlayer = React.memo(
                             actions: customControlsActions,
                         })}
                     {isControlVisible(ControlType.HEADER, visibleControlList) && (
-                        <StyledHeader hidden={isControlsHidden} insets={insets}>
+                        <StyledHeader hidden={isControlsHidden} insets={insets ?? plasmaAppInsets}>
                             {header}
                         </StyledHeader>
                     )}
-                    <StyledControlsWrapper hidden={isControlsHidden} insets={insets}>
+                    <StyledControlsWrapper hidden={isControlsHidden} insets={insets ?? plasmaAppInsets}>
                         <MediaPlayerControls
                             playback={playback}
                             goBack={goBack}
