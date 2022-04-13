@@ -22,6 +22,7 @@ export * from './components/Price';
 export * from './components/Image';
 export * from './components/Toast';
 export * from './components/Typography';
+export * from './components/VirtualCarousel';
 export * from './types';
 export * from './tokens';
 export * from './utils';

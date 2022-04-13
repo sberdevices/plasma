@@ -7,18 +7,7 @@
     "main": "index.js",
     "module": "es/index.js",
     "types": "index.d.ts",
-    "files": [
-        "components",
-        "hocs",
-        "hooks",
-        "mixins",
-        "tokens",
-        "types",
-        "utils",
-        "index.d.ts",
-        "index.js",
-        "es"
-    ],
+    "files": ["components", "hocs", "hooks", "mixins", "tokens", "types", "utils", "index.d.ts", "index.js", "es"],
     "peerDependencies": {
         "react": ">=16.13.1",
         "react-dom": ">=16.13.1",
@@ -63,13 +52,10 @@
         "test": "NODE_ICU_DATA=node_modules/full-icu jest",
         "test:watch": "NODE_ICU_DATA=node_modules/full-icu jest --watch"
     },
-    "contributors": [
-        "Vasiliy Loginevskiy",
-        "Виноградов Антон Александрович",
-        "Зубаиров Фаниль Асхатович"
-    ],
+    "contributors": ["Vasiliy Loginevskiy", "Виноградов Антон Александрович", "Зубаиров Фаниль Асхатович"],
     "sideEffects": false,
     "dependencies": {
+        "@sberdevices/use-virtual": "0.7.1",
         "focus-visible": "5.2.0",
         "lodash.throttle": "4.1.1"
     }

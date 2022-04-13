@@ -14,6 +14,7 @@
     "dependencies": {
         "@sberdevices/plasma-core": "1.56.0",
         "@sberdevices/plasma-typo": "0.3.0",
+        "@sberdevices/use-virtual": "0.8.0",
         "color": "3.1.2",
         "lodash.throttle": "4.1.1",
         "react-draggable": "4.4.3"
@@ -91,18 +92,7 @@
             "^styled-components": "<rootDir>/node_modules/styled-components"
         }
     },
-    "files": [
-        "components",
-        "hocs",
-        "hooks",
-        "mixins",
-        "tokens",
-        "types",
-        "utils",
-        "index.d.ts",
-        "index.js",
-        "es"
-    ],
+    "files": ["components", "hocs", "hooks", "mixins", "tokens", "types", "utils", "index.d.ts", "index.js", "es"],
     "contributors": [
         "Vasiliy Loginevskiy",
         "Антонов Игорь Александрович",
