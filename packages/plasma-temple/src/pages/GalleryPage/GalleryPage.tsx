@@ -57,7 +57,7 @@ const StyledSectionTitleWrapper = styled.div<{ active: boolean }>`
 
 interface FocusableGalleryProps {
     index: number;
-    title?: string;
+    title?: React.ReactNode;
     activeCardIndex?: number;
     isMultiple?: boolean;
 }
