@@ -49,12 +49,12 @@ export const useTouchHandler: UseTouchHandler = (ref, callback, params) => {
             startPoint = event.changedTouches.item(event.changedTouches.length - 1);
         };
 
-        const moveHandler = (event: TouchEvent) => {
-            // зона для нативного свайпа `назад`
-            if (startPoint && startPoint?.clientX > 50) {
-                event.preventDefault();
-            }
-        };
+        // const moveHandler = (event: TouchEvent) => {
+        //     // зона для нативного свайпа `назад`
+        //     if (startPoint && startPoint?.clientX > 50) {
+        //         event.preventDefault();
+        //     }
+        // };
 
         const endHandler = (event: TouchEvent) => {
             const endPoint = event.changedTouches.item(event.changedTouches.length - 1);
@@ -83,12 +83,12 @@ export const useTouchHandler: UseTouchHandler = (ref, callback, params) => {
         };
 
         target.addEventListener('touchstart', startHandler);
-        target.addEventListener('touchmove', moveHandler);
+        // target.addEventListener('touchmove', moveHandler);
         target.addEventListener('touchend', endHandler);
 
         return () => {
             target.removeEventListener('touchstart', startHandler);
-            target.removeEventListener('touchmove', moveHandler);
+            // target.removeEventListener('touchmove', moveHandler);
             target.removeEventListener('touchend', endHandler);
         };
     }, [axis, callDistance, callback, ref]);
